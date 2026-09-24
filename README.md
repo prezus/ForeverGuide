@@ -30,7 +30,12 @@ into CVars every 30 s and restores them at login ("beta workaround" line in chat
 SavedVariables file and can be lost - `tools/apply_edits.py` folds them into the guide source.
 
 Developers: the addon folder doubles as the repo (`tools/`, `guides-src/`, `data-src/` are not loaded by the game);
-`python tools/package.py` builds the release zip. For local checks, install Lua 5.1 or LuaJIT,
+`python tools/package.py` builds the release zip. For a private Mac-to-Windows test build, run
+`python3 tools/package.py --test`: it validates a runtime-only ZIP in ignored `dist/`, names it
+with its hash, and prints the full SHA-256. Send that same ZIP to the Windows tester; it extracts
+into `_classic_beta_\Interface\AddOns\ForeverGuide\`. No Python is needed on Windows to install it.
+The ZIP reflects the current files on disk, including uncommitted changes; it does not go into Git.
+For local checks, install Lua 5.1 or LuaJIT,
 [Luacheck](https://github.com/lunarmodules/luacheck), and optionally Lua Language Server, then run:
 
 ```sh

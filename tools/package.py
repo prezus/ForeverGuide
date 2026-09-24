@@ -4,13 +4,16 @@ Zip the addon for distribution.
 
     python tools/package.py            -> dist/ForeverGuide-<version>.zip   (runtime files only)
     python tools/package.py --dev      -> also tools/, guides-src/, data-src/ (for contributors)
+    python tools/package.py --test     -> checked, hash-named private test ZIP (runtime files only)
 
 The version comes from ## Version in ForeverGuide.toc. The zip unpacks to
 Interface\\AddOns\\ForeverGuide\\.
 """
 
+import hashlib
 import os
 import re
+import subprocess
 import sys
 import zipfile
 
@@ -35,10 +38,13 @@ def version():
 
 def main():
     dev = "--dev" in sys.argv
+    test = "--test" in sys.argv
+    if dev and test:
+        raise SystemExit("--test packages runtime files only; do not combine it with --dev")
     ver = version()
     out_dir = os.path.join(ROOT, "dist")
     os.makedirs(out_dir, exist_ok=True)
-    out = os.path.join(out_dir, "%s-%s%s.zip" % (NAME, ver, "-dev" if dev else ""))
+    out = os.path.join(out_dir, "%s-%s%s.zip" % (NAME, ver, "-test" if test else "-dev" if dev else ""))
     n = 0
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for dirpath, dirnames, filenames in os.walk(ROOT):
@@ -57,6 +63,14 @@ def main():
                 src = os.path.join(dirpath, fn)
                 z.write(src, NAME + "/" + (rel + "/" if rel else "") + fn)
                 n += 1
+    if test:
+        subprocess.run([sys.executable, os.path.join(HERE, "check_package.py"), out], check=True)
+        with open(out, "rb") as fh:
+            digest = hashlib.sha256(fh.read()).hexdigest()
+        named = os.path.join(out_dir, "%s-%s-test-%s.zip" % (NAME, ver, digest[:12]))
+        os.replace(out, named)
+        out = named
+        print("SHA-256: %s" % digest)
     print("wrote %s (%d files, %.1f KB)" % (os.path.relpath(out, ROOT), n, os.path.getsize(out) / 1024))
     return 0
 

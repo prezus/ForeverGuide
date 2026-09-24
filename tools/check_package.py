@@ -4,11 +4,12 @@
 import os
 import posixpath
 import re
+import sys
 import zipfile
 
 from package import NAME, ROOT, version
 
-archive = f"{ROOT}/dist/{NAME}-{version()}.zip"
+archive = sys.argv[1] if len(sys.argv) > 1 else f"{ROOT}/dist/{NAME}-{version()}.zip"
 prefix = NAME + "/"
 with zipfile.ZipFile(archive) as package:
     files = set(package.namelist())
