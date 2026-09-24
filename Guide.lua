@@ -57,6 +57,16 @@ Guide.MANUAL, Guide.OBJECTIVE = MANUAL, OBJECTIVE
 ---@field faction? string
 ---@field class? string[]
 ---@field race? string[]
+---@field map? integer
+---@field x? number
+---@field y? number
+---@field zone? string
+---@field npc? integer
+---@field npcName? string
+---@field note? string
+---@field radius? number
+---@field hasEdit? boolean
+---@field edited? boolean
 
 function ns.RegisterGuide(guide)
     if type(guide) ~= "table" or type(guide.id) ~= "string" then
