@@ -661,7 +661,6 @@ end
 
 -- ---- bag space --------------------------------------------------------------------------------
 do
-    ns.db.bags.banners = true -- opt into legacy banner behavior for the existing banner checks
     MOCK_BAG(10, 2, 1); settle()
     check(ns.Bags:Tag() == nil, "plenty of room: no bag tag")
     MOCK_BAG(2, 4, 3); settle()
@@ -679,9 +678,9 @@ do
     check((ns.QuestGuide.frame.header.sub:GetText() or ""):find("|cffff5040bags 0/16|r", 1, true) ~= nil,
         "full bags: guide header uses urgent red tag")
     ns.char.mode = mode
-    check(ForeverGuideBagBanner and ForeverGuideBagBanner:IsShown() and (ForeverGuideBagBanner.title:GetText() or ""):find("BAGS FULL", 1, true), "full bags: the on-screen banner shows")
+    check(rawget(_G, "ForeverGuideBagBanner") == nil, "full bags: no popup, header tag remains")
     MOCK_BAG(16, 0, 0); settle()
-    check(not ForeverGuideBagBanner:IsShown(), "room again: the banner goes away")
+    check(ns.Bags:Tag() == nil, "room again: the header tag goes away")
 end
 
 -- ---- item tooltips ------------------------------------------------------------------------------
@@ -778,9 +777,7 @@ do
             ns.Crowd:Reset()
             ns.MobMarker:Scan()
             local _, _, _, cr = ns.Crowd:Level()
-            check(not cr and ForeverGuideCrowdBanner:IsShown() and (ForeverGuideCrowdBanner.title:GetText() or ""):find("Group up", 1, true), "two players on a kill step: the group-up reminder shows without a crowd (" .. tostring(ForeverGuideCrowdBanner.title:GetText()) .. ")")
-            check((ForeverGuideCrowdBanner.sub:GetText() or ""):find("2 players", 1, true), "the sub line names the players around")
-            check(ForeverGuideCrowdBanner.invite:IsShown() and ForeverGuideCrowdBanner:GetHeight() >= 58, "invite button shown and the banner tall enough for two lines")
+            check(not cr and (not ForeverGuideCrowdBanner or not ForeverGuideCrowdBanner:IsShown()), "two players on a kill step: no group-up popup without a crowd")
             for i = 3, 5 do MOCK_PLATE("nameplate" .. (20 + i), { name = "Player" .. i, player = true, friendly = true, npcID = 0 }) end
             ns.MobMarker:Scan()
         end
@@ -1419,7 +1416,6 @@ end
 
 -- ---- gear wear: the bags banner does the repair reminder too ---------------------------------
 do
-    ns.db.bags.banners = true -- the fresh-login test reset the defaults
     local B = ns.Bags
     MOCK_GEAR(nil)
     check(B:Durability() == nil, "no gear that wears: nothing to say")
@@ -1427,31 +1423,27 @@ do
     MOCK_GEAR(80)
     B:Check("test")
     check(B:GearLow() == nil, "gear at 80% is fine")
-    check(not ForeverGuideBagBanner:IsShown(), "and the banner stays down")
+    check(B:Tag() == nil, "and the header has no gear tag")
     MOCK_GEAR(18)
     B:Check("test")
     local d = B:GearLow()
     check(d ~= nil and math.abs(d.percent - 18) < 1, "gear at 18% is low (" .. tostring(d and math.floor(d.percent)) .. ")")
-    check(ForeverGuideBagBanner:IsShown(), "the banner says so")
-    check((ForeverGuideBagBanner.title:GetText() or ""):find("repair", 1, true) ~= nil,
-        "with a repair line: " .. tostring(ForeverGuideBagBanner.title:GetText()))
+    check((B:Advice() or ""):find("repair", 1, true) ~= nil, "the details still advise repair")
     local tag = B:Tag()
     check(tag == "gear 18%", "and the header tag reads " .. tostring(tag))
     MOCK_GEAR(40, { [1] = 0 })
     B:Check("test")
     local broken = B:GearLow()
     check(broken and broken.broken == 1 and broken.worst == "head", "a broken piece is named (" .. tostring(broken and broken.worst) .. ")")
-    check((ForeverGuideBagBanner.title:GetText() or ""):find("broken", 1, true) ~= nil,
-        "and the banner leads with it: " .. tostring(ForeverGuideBagBanner.title:GetText()))
+    check((B:Advice() or ""):find("broken", 1, true) ~= nil, "the details mention broken gear")
     -- full bags win: one errand, the more urgent line
     MOCK_BAG(0, 2, 0)
     B:Check("test")
-    check((ForeverGuideBagBanner.title:GetText() or ""):find("BAGS FULL", 1, true) ~= nil,
-        "full bags come first: " .. tostring(ForeverGuideBagBanner.title:GetText()))
+    check(B:Tag() == "bags 0/16", "full bags take priority in the header tag")
     MOCK_GEAR(nil)
     MOCK_BAG(10, 0, 0)
     B:Check("test")
-    check(not ForeverGuideBagBanner:IsShown(), "and everything settles down again")
+    check(B:Tag() == nil, "and everything settles down again")
 end
 
 -- ---- a chapter of another race's route ---------------------------------------------------------
@@ -1588,21 +1580,21 @@ do
     ns.UI:Show()
     MOCK_BAG(0, 3, 0)            -- something that would raise a banner outside
     ns.Bags:Check("test")
-    check(ForeverGuideBagBanner:IsShown(), "outside, a full-bag banner shows")
+    check(ns.Bags:Tag() == "bags 0/16", "outside, the full-bag header tag shows")
 
     MOCK_INSTANCE("party")
     check(I:Inside() == true, "the addon knows it is in a dungeon")
     check(ns.UI:AllHidden() == true and ns.UI:IsSuspended("dungeon"), "so everything is put away")
     check(ns.db.ui.hiddenAll ~= true, "without touching the hide-everything setting")
     ns.Bags:Check("test")
-    check(not ForeverGuideBagBanner:IsShown(), "and the banners stay down inside")
+    check(not ns.UI:Create():IsShown(), "the guide window stays down inside")
     ns.Crowd:Update()
     check(not ForeverGuideCrowdBanner:IsShown(), "the crowd banner too")
 
     MOCK_INSTANCE(nil)
     check(ns.UI:AllHidden() == false, "walking out brings it back")
     ns.Bags:Check("test")
-    check(ForeverGuideBagBanner:IsShown(), "banners and all")
+    check(ns.UI:Create():IsShown() and ns.Bags:Tag() == "bags 0/16", "guide and bag tag return outside")
 
     -- a battleground counts, a city does not
     MOCK_INSTANCE("pvp")

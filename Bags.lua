@@ -268,13 +268,11 @@ function Bags:Check(reason)
     local step = ns.Guide and ns.Guide:GetCurrentStep()
     local lootStep = step and (step.type == "COLLECT" or step.type == "KILL" or step.type == "COMPLETE")
     if band > (lastBand or 0) or (reason == "step" and band > 0 and lootStep and self.warnedStep ~= (step and step.index)) then
-        local advice = self:Advice(true)
-        if advice and cfg().banners == true then ns.Print(advice) end
+        -- Advice remains in the guide details and the header tag, not a popup.
         if reason == "step" and step then self.warnedStep = step.index end
     end
     lastBand = band
     if band == 0 then self.snoozedUntil = nil end
-    self:UpdateBanner()
     if ns.UI and ns.UI.Refresh then ns.UI:Refresh() end
 end
 
@@ -287,6 +285,4 @@ end
 
 function Bags:OnEnable()
     self.last = self:Status()
-    self:UpdateBanner()
-    ns.Events:Register("FG_HIDDEN_ALL_CHANGED", function() Bags:UpdateBanner() end)
 end

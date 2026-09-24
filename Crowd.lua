@@ -24,7 +24,6 @@ local MIN_PLAYERS = 5        -- or this many distinct players seen around
 local ALT_MIN_YD = 150       -- an alternative spot must be this far away
 local CLUSTER_YD = 120       -- spawn points closer than this are one spot
 local REPEAT_SEC = 180       -- chat reminder cadence
-local GROUP_UP_PLAYERS = 2   -- on a kill step, this many other players around = "group up" reminder
 
 local samples = {}           -- { t, free, tagged, players = {guid=true} }
 
@@ -412,21 +411,18 @@ function Crowd:Update()
     if ns.UI and ns.UI.AllHidden and ns.UI:AllHidden() then f:Hide() return end
     local tagged, free, players, crowded = self:Level()
     if crowded then self:MaybePostpone() end
-    -- a kill-x-mobs step with anyone else on the same mobs: the standing "group up" reminder (like the
-    -- bags banner) - kill credit is shared in a group, so this is the one crowd you can turn into a plus
+    -- Offer invites only as part of an actual crowd warning, never as a standalone popup.
     local step = ns.Guide and ns.Guide:GetCurrentStep()
     local inGroup = ns.Plain(ns.Safe(rawget(_G, "IsInGroup"))) == true
     local stepKill = step and step.type == "KILL" and self:IsSharedKillOrLoot(step)
     -- a kill objective from the log with its mobs around counts too (a quest picked up off-guide)
     local logKill = (self.killSeen or 0) > 0
     local killShare = (stepKill or logKill) and not inGroup
-    local groupUp = killShare and (players >= GROUP_UP_PLAYERS or tagged >= 1 or (self.killTagged or 0) >= 1)
-    if (not crowded and not groupUp) or (self.snoozedUntil and ns.Now() < self.snoozedUntil) then f:Hide() return end
+    if not crowded or (self.snoozedUntil and ns.Now() < self.snoozedUntil) then f:Hide() return end
     local total = tagged + free
     local title
     if crowded and tagged >= MIN_TAGGED then title = string.format("Crowded: %d of %d quest mobs are taken by others", tagged, total)
-    elseif crowded then title = string.format("Crowded: %d players hunting the same mobs", players)
-    else title = "Group up - kill credit is shared" end
+    else title = string.format("Crowded: %d players hunting the same mobs", players) end
     f.title:SetText(title)
     if ns.Theme then ns.Theme.Color(f.title, crowded and { 1, 0.7, 0.3 } or { 0.55, 0.85, 0.45 }) end
     local spawn = self:SpawnAlternatives()[1]
@@ -450,11 +446,7 @@ function Crowd:Update()
     end
     self:PollZone()
     -- a shared kill step: a group shares kill credit, so offer to invite the people around
-    if killShare and crowded then sub = "kill credit is shared in a group - invite them  ·  " .. sub
-    elseif killShare then
-        sub = string.format("Invite the %s near you (or ask to join theirs)", players >= 2 and (players .. " players") or "players")
-            .. (spawn and ("  ·  quieter: " .. spawn.label) or "")
-    end
+    if killShare then sub = "kill credit is shared in a group - invite them  ·  " .. sub end
     f.sub:SetText(sub)
     f.go.label:SetText(self.alt and "Go there" or "Switch zone")
     Layout(f, killShare == true, self.alt ~= nil or self.altZone ~= nil)
