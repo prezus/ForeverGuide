@@ -5,8 +5,8 @@
 --        [ skull ]   <- the best pick: nearest untagged quest mob
 --       Great Goretusk
 --
---        [skull]     <- smaller: every other quest mob around (this step's
---                       and any other active quest's)
+--        [skull]     <- smaller: other mobs with identifiable open objectives
+--                       in the quest log (including quests off the route)
 --
 -- Raid target icons (SetRaidTarget) are blocked for addons on this client
 -- (ADDON_ACTION_FORBIDDEN, the same reason RestedXP disables them on 12.x),
@@ -78,6 +78,7 @@ function MM:WantedNames()
     local step = ns.Guide and ns.Guide:GetCurrentStep()
     local set = {}
     if not step or not OBJECTIVE[step.type] then return set, nil end
+    if step.quest and ns.Quest:IsReadyForTurnIn(step.quest) then return set, nil end
     local DB = ns.DB
     if step.npc and DB then addName(set, DB:NPCName(step.npc)) end
     if step.type == "KILL" and step.target then
@@ -104,26 +105,31 @@ function MM:WantedNames()
     return set, step
 end
 
---- lower-case names of mobs of every OPEN kill objective in the log (any quest, not just the guide's step)
+--- Names from open log objectives: kill names and item-drop mobs, respectively.
+--- A quest ready to turn in has no open mobs, even if the client still calls them quest-related.
 function MM:OpenKillNames()
-    local set = {}
+    local set, loot = {}, {}
     local DB = ns.DB
-    if not DB or not DB:IsLoaded() or not ns.Quest then return set end
+    if not DB or not DB:IsLoaded() or not ns.Quest then return set, loot end
     for _, questID in ipairs(ns.Quest.order or {}) do
-        local live = ns.Quest:GetObjectives(questID) or {}
-        for k, o in ipairs(live) do
-            if not o.finished then
-                local d = liveToDB(DB, questID, k, live)
-                if d and (d.kind == "kill" or d.kind == "credit") then addName(set, d.name) end
-                -- "X slain: 4/10" with no database match: the wording itself names the mob
-                if not d and o.text then
-                    local mob = o.text:match("^(.-)%s+slain")
-                    if mob and mob ~= "" then addName(set, mob) end
+        local entry = ns.Quest:GetEntry(questID)
+        if entry and not entry.ready then
+            local live = entry.objectives
+            for k, o in ipairs(live) do
+                if not o.finished then
+                    local d = liveToDB(DB, questID, k, live)
+                    if d and (d.kind == "kill" or d.kind == "credit") then addName(set, d.name)
+                    elseif d and d.kind == "item" then objectiveMobs(DB, d, loot) end
+                    -- "X slain: 4/10" with no database match: the wording itself names the mob
+                    if not d and o.text then
+                        local mob = o.text:match("^(.-)%s+slain")
+                        if mob and mob ~= "" then addName(set, mob) end
+                    end
                 end
             end
         end
     end
-    return set
+    return set, loot
 end
 
 --- lower-case names of mobs whose objective is already complete for every quest in the log:
@@ -171,10 +177,6 @@ end
 
 local function tagged(u)
     return ns.Plain(ns.Safe(UnitIsTapDenied, u)) == true
-end
-
-local function questRelated(u)
-    return ns.Plain(ns.Call("C_QuestLog.UnitIsRelatedToActiveQuest", u)) == true
 end
 
 -- Closeness proxy. Nameplate frames are "restricted regions" on this client:
@@ -356,7 +358,7 @@ function MM:Scan()
     if c.enabled == false or (ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()) then forcePlates(false) return end
     local names, step = self:WantedNames()
     local finished = self:FinishedNames()
-    local openKills = self:OpenKillNames()
+    local openKills, openLoot = self:OpenKillNames()
     local killStep = step ~= nil
     -- plates (and the crowd watch) also while an off-guide kill objective is open, e.g. a quest the
     -- player picked up on their own
@@ -389,8 +391,10 @@ function MM:Scan()
             local isWanted = lower and names[lower] ~= nil
             if isWanted then if tagged(u) then seenTagged = seenTagged + 1 else seenFree = seenFree + 1 end end
             if lower and openKills[lower] then if tagged(u) then killTagged = killTagged + 1 else killFree = killFree + 1 end end
-            -- objective complete for this mob's quest(s): no skull, whatever the client says
-            local related = (not lower or not finished[lower] or openKills[lower]) and (isWanted or questRelated(u))
+            -- Only proven open objectives (or the current step) earn skulls; the client's
+            -- quest-related flag stays true for quests already ready to turn in.
+            local open = lower and (openKills[lower] or openLoot[lower])
+            local related = (not lower or not finished[lower] or open) and (isWanted or open)
             -- a mob tagged by someone else is nobody's kill: no skull at all
             if related and not tagged(u) then
                 local isTarget = targetGUID and ns.PlainString(ns.Safe(UnitGUID, u)) == targetGUID

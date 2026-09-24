@@ -840,6 +840,19 @@ do
     ns.MobMarker:Scan()
     check(ns.MobMarker.markedUnits["nameplate5"], "a second quest with the same mob still open keeps its skull")
     MOCK_PLATE("nameplate5", nil); MOCK_ABANDON(999992); MOCK_ABANDON(999993); settle()
+    -- The client can still call a mob quest-related after its quest is ready to turn in.
+    MOCK_ACCEPT(999994, "Finished hunt", { { text = "Unlisted Ravager defeated", finished = true, numFulfilled = 1, numRequired = 1 } }); settle()
+    MOCK_PLATE("nameplate5", { name = "Unlisted Ravager", npcID = 999994, quest = true })
+    ns.MobMarker:Scan()
+    check(ns.Quest:IsReadyForTurnIn(999994) and not ns.MobMarker.markedUnits["nameplate5"],
+        "ready-to-turn-in quest mob has no small skull even if the client still calls it quest-related")
+    local getStep = G.GetCurrentStep
+    G.GetCurrentStep = function() return { type = "KILL", quest = 999994, target = "Unlisted Ravager" } end
+    ns.MobMarker:Scan()
+    check(not ns.MobMarker.markedUnits["nameplate5"] and ns.MobMarker.primaryUnit == nil,
+        "ready-to-turn-in quest has no large skull even if the guide step has not advanced")
+    G.GetCurrentStep = getStep
+    MOCK_PLATE("nameplate5", nil); MOCK_ABANDON(999994); settle()
     ns.Commands:Run("skull off"); ns.MobMarker:Scan()
     check(ns.MobMarker.markedCount == 0 and GetCVar("nameplateShowEnemies") == "0", "/fg skull off removes the skulls and restores the nameplate setting")
     ns.Commands:Run("skull on")
@@ -860,7 +873,8 @@ do
         for _, q in ipairs(drop) do MOCK_ABANDON(q.id) end
         settle()
         ns.MobMarker:Scan()
-        check(next(ns.MobMarker:OpenKillNames()) == nil, "no open kill objectives left in the log")
+        local openKills = ns.MobMarker:OpenKillNames()
+        check(next(openKills) == nil, "no open kill objectives left in the log")
         check(GetCVar("nameplateShowEnemies") == "0", "leaving the kill step restores enemy nameplates (step=" .. tostring(step() and step().type) .. " cvar=" .. tostring(GetCVar("nameplateShowEnemies")) .. ")")
         for _, q in ipairs(drop) do MOCK_ACCEPT(q.id, q.title, q.objs) end
         settle()
