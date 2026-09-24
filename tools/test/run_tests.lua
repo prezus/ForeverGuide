@@ -828,6 +828,18 @@ do
     check(fin["prowler"] ~= nil and fin["young forest bear"] == nil, "finished objective mobs are known (prowler yes, bear no)")
     check(ns.MobMarker.markedUnits["nameplate6"] and not ns.MobMarker.markedUnits["nameplate5"], "the open objective's mob has a skull, the finished one has none")
     MOCK_PLATE("nameplate5", nil); MOCK_PLATE("nameplate6", nil); MOCK_ABANDON(52); settle()
+    -- An unknown quest has no DB objective mapping: its finished live kill must still remove the skull.
+    MOCK_ACCEPT(999992, "Unlisted hunt", { { text = "Unlisted Ravager slain", finished = false, numFulfilled = 0, numRequired = 1 },
+        { text = "Collect a keepsake", finished = false, numFulfilled = 0, numRequired = 1 } }); settle()
+    MOCK_PLATE("nameplate5", { name = "Unlisted Ravager", npcID = 999992, quest = true })
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.markedUnits["nameplate5"], "unknown quest mob is marked while its kill objective is open")
+    MOCK_PROGRESS(999992, 1, 1); settle(); ns.MobMarker:Scan()
+    check(not ns.MobMarker.markedUnits["nameplate5"], "completed unknown quest objective loses its skull while the quest stays in the log")
+    MOCK_ACCEPT(999993, "Another hunt", { { text = "Unlisted Ravager slain", finished = false, numFulfilled = 0, numRequired = 2 } }); settle()
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.markedUnits["nameplate5"], "a second quest with the same mob still open keeps its skull")
+    MOCK_PLATE("nameplate5", nil); MOCK_ABANDON(999992); MOCK_ABANDON(999993); settle()
     ns.Commands:Run("skull off"); ns.MobMarker:Scan()
     check(ns.MobMarker.markedCount == 0 and GetCVar("nameplateShowEnemies") == "0", "/fg skull off removes the skulls and restores the nameplate setting")
     ns.Commands:Run("skull on")

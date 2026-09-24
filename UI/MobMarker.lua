@@ -138,7 +138,11 @@ function MM:FinishedNames()
         for k, o in ipairs(live) do
             if o.finished then
                 local d = liveToDB(DB, questID, k, live)
-                if d then objectiveMobs(DB, d, set) end
+                if d then objectiveMobs(DB, d, set)
+                elseif o.text then
+                    local mob = o.text:match("^(.-)%s+slain")
+                    if mob and mob ~= "" then addName(set, mob) end
+                end
             end
         end
         -- a mob wanted by another, still open objective of the same quest stays
@@ -386,7 +390,7 @@ function MM:Scan()
             if isWanted then if tagged(u) then seenTagged = seenTagged + 1 else seenFree = seenFree + 1 end end
             if lower and openKills[lower] then if tagged(u) then killTagged = killTagged + 1 else killFree = killFree + 1 end end
             -- objective complete for this mob's quest(s): no skull, whatever the client says
-            local related = isWanted or (not (lower and finished[lower]) and questRelated(u))
+            local related = (not lower or not finished[lower] or openKills[lower]) and (isWanted or questRelated(u))
             -- a mob tagged by someone else is nobody's kill: no skull at all
             if related and not tagged(u) then
                 local isTarget = targetGUID and ns.PlainString(ns.Safe(UnitGUID, u)) == targetGUID
