@@ -57,8 +57,8 @@ selected fields of a registered guide step. LuaLS can flag incompatible annotate
 steps are **not** checked by LuaLS. There is no WoW Forever API definition here: undefined-game-global
 warnings remain, and static types cannot validate API availability, secret values in combat, or
 whether a game result is safe to use without `Plain*`/`Safe`. Treat warnings as leads to inspect,
-not proof of a passing type check. The CLI currently reports 172 warnings in 28 files (LuaLS 3.19.1:
-150 undefined globals, 21 possible nil accesses, 1 unbalanced assignment) and exits nonzero.
+not proof of a passing type check. With the playable UI stack, the CLI reports 178 warnings in 29 files
+(LuaLS 3.19.1: 156 undefined globals, 21 possible nil accesses, 1 unbalanced assignment) and exits nonzero.
 
 ### WoW client smoke test and error capture
 
