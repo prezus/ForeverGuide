@@ -67,6 +67,7 @@ MOCK_BAG(16, 0, 0); settle()
 check(G.active and G.active.faction == "Alliance" and G.active.minLevel == 1 and ns.Contains(G.active.race, "Human"), "auto-picked a human 1-10 guide: " .. tostring(G.active and G.active.id))
 G:Activate("HUMAN_NORTHSHIRE_1_6", true); settle()
 check(cur() == 1 and step().type == "ACCEPT" and step().quest == 783, "starts at step 1 (accept 783)")
+check(not ns.QuestGuide.frame.extra:IsShown(), "extra panel starts hidden with an empty quest log")
 
 -- accept A Threat Within -> advance to turn-in
 MOCK_ACCEPT(783, "A Threat Within"); settle()
@@ -190,6 +191,25 @@ ns.Commands:Run("rec")
 ns.Commands:Run("nav")
 ns.UI:Refresh()
 check(ForeverGuideFrame ~= nil, "UI frame created")
+-- The extra quest panel follows the guide window but never duplicates a routed quest.
+do
+    local f = ns.QuestGuide.frame
+    MOCK_ACCEPT(999991, "Unplanned errand", { { text = "Gather 2 things", finished = false, numFulfilled = 1, numRequired = 2 } }); settle()
+    local extra = f.extra
+    check(extra and extra:IsShown() and extra.list.entries[1] and extra.list.entries[1].questID == 999991,
+        "unrouted log quest appears in the panel below the guide")
+    check(extra and extra:GetParent() == f and extra.list.entries[1].subtitle:find("Gather 2 things", 1, true),
+        "extra panel is attached to guide and shows objective progress")
+    MOCK_ABANDON(999991); settle(); settle()
+    MOCK_ACCEPT(783, "A Threat Within"); settle()
+    local duplicated = false
+    for _, e in ipairs(extra.list.entries) do if e.questID == 783 then duplicated = true end end
+    check(not duplicated, "quest present in guide steps is not listed as extra")
+    local remains = false
+    for _, e in ipairs(extra.list.entries) do if e.questID == 999991 then remains = true end end
+    check(not remains, "abandoned quest leaves the extra panel")
+    MOCK_ABANDON(783); settle()
+end
 
 -- ---- quest database: lean steps resolve through the DB ----
 do

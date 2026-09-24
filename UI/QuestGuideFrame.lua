@@ -92,6 +92,30 @@ function QG:Create()
     f.list:SetPoint("TOPLEFT", scroll, "TOPLEFT", 0, 0)
     scroll:SetScrollChild(f.list)
 
+    -- Unrouted quests stay visible beneath the route, without entering its step order.
+    local okExtra, extra = pcall(CreateFrame, "Frame", nil, f, "BackdropTemplate")
+    if not okExtra or not extra then extra = CreateFrame("Frame", nil, f) end
+    extra:SetPoint("TOPLEFT", f, "BOTTOMLEFT", 0, -8)
+    extra:SetPoint("TOPRIGHT", f, "BOTTOMRIGHT", 0, -8)
+    Theme.Backdrop(extra, "panel", cfg.opacity or 0.75)
+    extra.title = Theme.NewText(extra, { fancy = true, size = 13, color = Theme.C.goldLight, oneLine = true })
+    extra.title:SetPoint("TOPLEFT", extra, "TOPLEFT", 14, -10)
+    extra.title:SetText("OTHER QUESTS")
+    local extraScroll = CreateFrame("ScrollFrame", nil, extra)
+    extraScroll:SetPoint("TOPLEFT", extra, "TOPLEFT", 6, -32)
+    extraScroll:SetPoint("BOTTOMRIGHT", extra, "BOTTOMRIGHT", -6, 6)
+    extraScroll:EnableMouseWheel(true)
+    extraScroll:SetScript("OnMouseWheel", function(self, delta)
+        self:SetVerticalScroll(math.max(0, math.min(self:GetVerticalScrollRange(), self:GetVerticalScroll() - delta * 40)))
+    end)
+    extra.list = ns.QuestList.Create(extraScroll)
+    extra.list:SetSize(cfg.width - 12, 40)
+    extra.list:SetPoint("TOPLEFT", extraScroll, "TOPLEFT", 0, 0)
+    extraScroll:SetScrollChild(extra.list)
+    extra.scroll = extraScroll
+    extra:Hide()
+    f.extra = extra
+
     f.footerLine = f:CreateTexture(nil, "ARTWORK")
     f.footerLine:SetHeight(1)
     pcall(f.footerLine.SetTexture, f.footerLine, Theme.TEX.separator)
@@ -99,6 +123,7 @@ function QG:Create()
     f:SetScript("OnSizeChanged", function(self, width, height)
         if not self.resizing then return end
         self.list:SetWidth(width - 12)
+        self.extra.list:SetWidth(width - 12)
         self.footerLine:ClearAllPoints()
         self.footerLine:SetPoint("TOPLEFT", self, "TOPLEFT", 12, -(height - FOOTER))
         self.footerLine:SetPoint("TOPRIGHT", self, "TOPRIGHT", -12, -(height - FOOTER))
@@ -201,6 +226,8 @@ function QG:Apply()
     pcall(frame.SetScale, frame, cfg.scale or 1)
     frame:SetWidth(math.max(cfg.width or 300, 240))
     frame.list:SetWidth(frame:GetWidth() - 12)
+    frame.extra.list:SetWidth(frame:GetWidth() - 12)
+    if frame.extra.SetBackdropColor then pcall(frame.extra.SetBackdropColor, frame.extra, 0, 0, 0, cfg.opacity or 0.75) end
     if frame.SetBackdropColor then pcall(frame.SetBackdropColor, frame, 0, 0, 0, cfg.opacity or 0.75) end
     self:Layout()
 end
@@ -365,10 +392,40 @@ function QG:BuildTrackerEntries()
 end
 
 -- ---- refresh -------------------------------------------------------------------------------
+function QG:RefreshExtra()
+    local f = frame
+    local g = ns.Guide.active
+    if ns.char.mode == "auto" then
+        f.extra:Hide()
+        return
+    end
+    local covered = {}
+    if g then
+        for _, step in ipairs(g.steps) do
+            if step.quest then covered[step.quest] = true end
+        end
+    end
+    local entries = {}
+    for quest in ns.Quest:Iterate() do
+        if not covered[quest.questID] then
+            local objective = quest.objectives[1]
+            entries[#entries + 1] = {
+                questID = quest.questID, title = ns.Quest:TitleWithLevel(quest.questID, quest.title),
+                subtitle = quest.ready and "Ready to turn in" or (objective and objective.text or "In progress"),
+                icon = quest.ready and "turnin" or "collect", state = quest.ready and "available" or "future",
+            }
+        end
+    end
+    f.extra.list:Set(entries)
+    f.extra:SetHeight(32 + math.min(f.extra.list.height, 180) + 6)
+    f.extra:SetShown(#entries > 0)
+end
+
 function QG:Refresh()
     if not frame then return end
     local f = frame
     self:ApplyTracker()
+    self:RefreshExtra()
     local G, T = ns.Guide, ns.Tracker
     local g = G.active
     local level = ns.Player:GetLevel()
