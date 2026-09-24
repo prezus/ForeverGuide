@@ -50,6 +50,17 @@ whether a game result is safe to use without `Plain*`/`Safe`. Treat warnings as 
 not proof of a passing type check. The CLI currently reports 172 warnings in 28 files (LuaLS 3.19.1:
 150 undefined globals, 21 possible nil accesses, 1 unbalanced assignment) and exits nonzero.
 
+### WoW client smoke test and error capture
+
+In the beta client, enter `/console scriptErrors 1`, then `/reload`. Open `/fg` and `/fg guides`,
+select a guide, try Guide/Auto mode and a waypoint, and repeat while in combat (game API results
+may become secret). Capture the **full first Lua error** from the client's error popup, including
+stack trace, and note the client build (`/fg`), what you clicked, and whether you were in combat.
+ForeverGuide also catches some callback errors with `pcall` and prints `ForeverGuide: error in
+<key>: <message>` in chat **once per key per reload**; capture those lines too. The popup will
+not show errors caught by the addon, and the addon does not save an error log. `/reload` resets the
+once-per-key reporting. Redact character, realm, account, and local path details before sharing.
+
 In game:
 
 | command | what |

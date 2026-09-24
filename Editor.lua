@@ -134,6 +134,8 @@ end
 
 --- Apply the edit on top of a step for navigation: returns a step-like table
 --- (the original when nothing is edited).
+---@param step FGStep?
+---@return FGStep?
 function Editor:Effective(step)
     local G = ns.Guide
     if not step or not G.active then return step end
