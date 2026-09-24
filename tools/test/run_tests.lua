@@ -200,7 +200,22 @@ do
         "unrouted log quest appears in the panel below the guide")
     check(extra and extra:GetParent() == f and extra.list.entries[1].subtitle:find("Gather 2 things", 1, true),
         "extra panel is attached to guide and shows objective progress")
+    local reportsBefore = #(ns.db.reports or {})
+    extra.list.rows[1]:GetScript("OnClick")(extra.list.rows[1], "RightButton")
+    local missing = ns.db.reports and ns.db.reports[reportsBefore + 1]
+    check(missing and missing.q == 999991 and missing.title == "Unplanned errand" and missing.questLevel == 1
+        and missing.guide == G.active.id and missing.type == "MISSING_ROUTE_QUEST" and missing.m ~= nil
+        and missing.objectives and missing.objectives[1] and missing.objectives[1].text == "Gather 2 things"
+        and missing.objectives[1].numFulfilled == 1 and missing.objectives[1].numRequired == 2,
+        "right-click captures unknown quest, objectives, route and player location")
+    check(missing and ns.Reports.Export({ missing }):find("Unplanned errand", 1, true)
+        and ns.Reports.Export({ missing }):find("Gather 2 things", 1, true),
+        "copyable report includes quest title and objectives")
     MOCK_ABANDON(999991); settle(); settle()
+    local afterAbandon = #(ns.db.reports or {})
+    ns.Reports:MissingQuest(999991)
+    check(#ns.db.reports == afterAbandon, "abandoned quest cannot be reported as current")
+    if missing then table.remove(ns.db.reports, reportsBefore + 1) end
     MOCK_ACCEPT(783, "A Threat Within"); settle()
     local duplicated = false
     for _, e in ipairs(extra.list.entries) do if e.questID == 783 then duplicated = true end end

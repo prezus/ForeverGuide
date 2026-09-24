@@ -57,6 +57,33 @@ function Reports:Prompt()
     prompt.input:SetFocus()
 end
 
+-- Snapshot the selected log quest now; the player may move or abandon it later.
+function Reports:MissingQuest(questID)
+    local quest = ns.Quest:GetEntry(questID)
+    if not quest then return end
+    local map, x, y = ns.Player:GetMapPosition()
+    local zone, sub = ns.Player:GetZone()
+    local npc = ns.Player:GetUnitInfo("target")
+    local guide = ns.Guide.active
+    local r = {
+        t = ns.Now(), type = "MISSING_ROUTE_QUEST", q = quest.questID,
+        title = quest.title, questLevel = quest.level, ready = quest.ready, failed = quest.isFailed,
+        m = map, x = x, y = y, zone = zone, sub = sub, lvl = ns.Player:GetLevel(),
+        guide = guide and guide.id, step = guide and ns.Guide.current, objectives = {},
+    }
+    if npc and npc.npcID then r.npc, r.npcName = npc.npcID, npc.name end
+    for _, obj in ipairs(quest.objectives) do
+        r.objectives[#r.objectives + 1] = {
+            text = obj.text, numFulfilled = obj.numFulfilled,
+            numRequired = obj.numRequired, finished = obj.finished,
+        }
+    end
+    ns.db.reports = ns.db.reports or {}
+    table.insert(ns.db.reports, r)
+    while #ns.db.reports > 300 do table.remove(ns.db.reports, 1) end
+    ns.Printf("missing route quest reported: %s (%d). Copy it with /fg reports.", quest.title, questID)
+end
+
 local function Export(reports)
     local lines = {}
     for i, r in ipairs(reports) do
@@ -67,9 +94,17 @@ local function Export(reports)
         lines[#lines + 1] = string.format("%d. time %s | %s%s | quest %s | %s | expected %s | actual %s | level %s%s | %s",
             i, tostring(r.t or "?"), r.guide and (r.guide .. " step " .. tostring(r.step or "?")) or (r.mode or "unknown mode"),
             r.type and (" " .. r.type) or (r.what and " " .. r.what or ""), tostring(r.q or "?"),
-            r.text or "(no description)", where, actual, tostring(r.lvl or "?"),
+            r.text or r.title or "(no description)", r.type == "MISSING_ROUTE_QUEST" and "not in route" or where, actual, tostring(r.lvl or "?"),
             r.npc and (" | target NPC " .. tostring(r.npc) .. " " .. (r.npcName or "")) or "",
             r.npcStep and ("expected NPC " .. tostring(r.npcStep)) or "")
+        if r.type == "MISSING_ROUTE_QUEST" then
+            lines[#lines + 1] = string.format("  Quest level %s | %s", tostring(r.questLevel or "?"),
+                r.failed and "failed" or (r.ready and "ready to turn in" or "in progress"))
+            for _, obj in ipairs(r.objectives or {}) do
+                lines[#lines + 1] = string.format("  Objective: %s (%s/%s)%s", obj.text or "?",
+                    tostring(obj.numFulfilled or 0), tostring(obj.numRequired or 0), obj.finished and " done" or "")
+            end
+        end
     end
     return table.concat(lines, "\n")
 end

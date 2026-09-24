@@ -413,6 +413,8 @@ function QG:RefreshExtra()
                 questID = quest.questID, title = ns.Quest:TitleWithLevel(quest.questID, quest.title),
                 subtitle = quest.ready and "Ready to turn in" or (objective and objective.text or "In progress"),
                 icon = quest.ready and "turnin" or "collect", state = quest.ready and "available" or "future",
+                tooltip = { "Right click: report missing route quest" },
+                onRightClick = function() ns.Reports:MissingQuest(quest.questID) end,
             }
         end
     end
