@@ -72,6 +72,33 @@ ForeverGuide also catches some callback errors with `pcall` and prints `ForeverG
 not show errors caught by the addon, and the addon does not save an error log. `/reload` resets the
 once-per-key reporting. Redact character, realm, account, and local path details before sharing.
 
+### Testing the same build on macOS and Windows
+
+On the Mac, from this repo run `python3 tools/package.py && python3 tools/check_package.py`.
+Send the resulting `dist/ForeverGuide-<version>.zip` **privately** to the Windows tester; the ZIP
+contains one `ForeverGuide/` directory with the `.toc` at its root. Bundled data still has
+[unresolved redistribution questions](Data/README.md#redistribution-status-unresolved), so do
+not publish this test ZIP as a public release. On Windows, quit WoW, remove or back up the old
+`_classic_beta_\Interface\AddOns\ForeverGuide` directory, then extract the ZIP into
+`_classic_beta_\Interface\AddOns\` (not into an extra nested `ForeverGuide/`). Both machines
+should test the **same ZIP**, not separately built copies: compare `shasum -a 256 <zip>` on macOS
+with PowerShell `Get-FileHash <zip> -Algorithm SHA256` on Windows. Keep the ZIP hash with the
+reports so we know which code was tested. Do not copy or sync the `WTF/` folder.
+
+On **each** client, run `/console scriptErrors 1` and `/reload`, then test login, guide/auto mode,
+window and arrow controls, and combat. For copyable uncaught Lua stacks, you may install
+[!BugGrabber](https://www.curseforge.com/wow/addons/bug-grabber) and
+[BugSack](https://www.curseforge.com/wow/addons/bugsack) as separate development addons on
+both machines; verify that those versions load on this beta client. They cannot capture errors
+already caught by ForeverGuide (`ForeverGuide: error in ...` in chat), and `ns.Safe` may return
+`nil` without reporting an optional API failure. The **Reports** window is for wrong guide
+steps, not Lua errors; do not rely on this beta client's SavedVariables to retain reports.
+
+For each bug, send: OS (macOS/Windows), ZIP SHA-256, client build (`/fg`), steps to reproduce,
+expected versus actual result, combat state, the full BugSack/native Lua stack **and** any red
+ForeverGuide chat line. Screenshot visual bugs. Redact account/character/realm names and local
+paths before sharing; never send raw `WTF/` files or SavedVariables.
+
 In game:
 
 | command | what |
