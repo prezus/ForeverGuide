@@ -388,7 +388,8 @@ function QG:Refresh()
         return
     end
     local entries, cur, total = self:BuildGuideEntries()
-    local bagTag, bagFull = ns.Bags and ns.Bags:Tag()
+    local bagTag, bagFull
+    if ns.Bags then bagTag, bagFull = ns.Bags:Tag() end
     local sub = string.format("%s  ·  Lv %d", g.name or g.id, level)
     -- "Lv 18 -> 19 in 1h 0m" while the pace is known
     local pace = ns.Pace and ns.Pace:Tag()

@@ -12,6 +12,7 @@
 -- ============================================================
 
 local _, ns = ...
+---@cast ns FGCore
 local Player = ns:NewModule("Player")
 
 local Plain, PlainNumber, PlainString, Safe = ns.Plain, ns.PlainNumber, ns.PlainString, ns.Safe

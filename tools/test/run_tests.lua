@@ -638,6 +638,12 @@ do
     local _, full0 = ns.Bags:Tag()
     local adv0 = ns.Bags:Advice()
     check(full0 == true and adv0 and adv0:find("FULL", 1, true) and adv0:find("never quest items", 1, true), "full bags with only quest items: urgent, no sale suggested (" .. tostring(adv0) .. ")")
+    local mode = ns.char.mode
+    ns.char.mode = "guide"
+    ns.QuestGuide:Refresh()
+    check((ns.QuestGuide.frame.header.sub:GetText() or ""):find("|cffff5040bags 0/16|r", 1, true) ~= nil,
+        "full bags: guide header uses urgent red tag")
+    ns.char.mode = mode
     check(ForeverGuideBagBanner and ForeverGuideBagBanner:IsShown() and (ForeverGuideBagBanner.title:GetText() or ""):find("BAGS FULL", 1, true), "full bags: the on-screen banner shows")
     MOCK_BAG(16, 0, 0); settle()
     check(not ForeverGuideBagBanner:IsShown(), "room again: the banner goes away")

@@ -13,6 +13,16 @@
 --    GetQuestLogTitle / QuestPOIGetIconInfo etc. do not exist here.
 -- ============================================================
 
+---@class FGCore
+---@field Plain fun<T>(value: T): T?  Secret values become nil; this does not make game data safe by itself.
+---@field PlainNumber fun(value: any): number?
+---@field PlainString fun(value: any): string?
+---@field PlainBool fun(value: any): boolean?
+---@field Call fun(path: string, ...: any): ...
+---@field Safe fun(fn: function?, ...: any): ...
+---@field NewModule fun(self: FGCore, name: string): table
+---@field Events table
+
 local ADDON_NAME, ns = ...
 
 ns.name    = ADDON_NAME

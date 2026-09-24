@@ -47,18 +47,19 @@ client API, secret-value, or combat-lockdown issue: verify behavior in-game too.
 ### LuaLS (local editor diagnostics, not a type-check gate)
 
 Open this folder as the workspace in an editor with Lua Language Server. `.luarc.json` uses Lua 5.1 and
-checks the handwritten addon Lua files at the root and in `UI/` (39 files); `Guides/`, `Data/`,
+checks the handwritten addon Lua files at the root and in `UI/` (40 files); `Guides/`, `Data/`,
 `guides-src/`, `data-src/`, and `tools/` are excluded from workspace diagnostics. These exclusions
 are not a guarantee that an individually opened file will have no diagnostics.
 
 LuaCATS hints describe the `Plain*` helpers' nullable results, the string path to `ns.Call`, and
-selected fields of a registered guide step. LuaLS can flag incompatible annotated step fields
-(e.g. a string quest ID), or misuse of typed helpers where their types are known; generated
+selected fields of a registered guide step. `Player.lua` also casts the shared namespace to its
+small core-helper contract so LuaLS can complete and check those calls across files. LuaLS can flag
+incompatible annotated step fields (e.g. a string quest ID), or misuse of typed helpers where their types are known; generated
 steps are **not** checked by LuaLS. There is no WoW Forever API definition here: undefined-game-global
 warnings remain, and static types cannot validate API availability, secret values in combat, or
 whether a game result is safe to use without `Plain*`/`Safe`. Treat warnings as leads to inspect,
-not proof of a passing type check. With the playable UI stack, the CLI reports 178 warnings in 29 files
-(LuaLS 3.19.1: 156 undefined globals, 21 possible nil accesses, 1 unbalanced assignment) and exits nonzero.
+not proof of a passing type check. With the playable UI stack, the CLI reports 177 warnings in 29 files
+(LuaLS 3.19.1: 156 undefined globals and 21 possible nil accesses) and exits nonzero.
 
 ### WoW client smoke test and error capture
 
