@@ -10,7 +10,7 @@ ForeverGuide DB (JSON)  ->  tools/compile_guides.py  ->  Guides/*.lua  ->  addon
 
 ## License
 
-The [MIT license](LICENSE) covers only original ForeverGuide code and assets owned by RevoltLive85. It does **not** grant rights to redistribute the bundled Questie-derived database or other third-party-sourced material; see [Data/README.md](Data/README.md) for attribution and check those sources' terms separately.
+The [MIT license](LICENSE) covers only original ForeverGuide code and assets owned by RevoltLive85. It does **not** grant rights to redistribute the bundled Questie-derived database or other third-party-sourced material. **Redistributors:** bundled data has unresolved third-party licensing questions; see [Data/README.md](Data/README.md#redistribution-status-unresolved) before publishing a package.
 
 ## Install
 
