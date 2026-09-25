@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_17_THE_HINTERLANDS",
   "name": "17. The Hinterlands 44-45 (Orc)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 44,
