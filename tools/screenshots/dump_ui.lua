@@ -16,6 +16,11 @@ local outDir = arg[1] or (root .. "build/screenshots")
 
 dofile(root .. "tools/test/mock_wow.lua")
 
+-- a level-3 Dwarf shaman in Coldridge Valley: the character the example reports come from
+MOCK.race, MOCK.class, MOCK.level = { "Dwarf", "Dwarf" }, { "Shaman", "SHAMAN", 7 }, 3
+MOCK.mapID, MOCK.mapName, MOCK.zone, MOCK.subzone = 1426, "Dun Morogh", "Dun Morogh", "Coldridge Valley"
+MOCK.mapX, MOCK.mapY = 0.288, 0.662
+
 local ns = {}
 local order = {}
 for line in io.lines(root .. "ForeverGuide.toc") do
@@ -59,12 +64,13 @@ local function encode(v)
 end
 
 -- ---- the frame tree ------------------------------------------------------------
---- Every shown region under `frame`, parents before children, with anchors naming regions by id.
+--- Every region under `frame`, parents before children, with anchors naming regions by id. Hidden
+--- regions are kept (other regions may anchor to them) and marked `shown = false`.
 --- An anchor to anything outside the tree (UIParent) is written as the canvas (`null`).
-local function dump(frame)
+--- `marks` name regions to point at: `{ region, tooltip = { lines } }` draws a ring and a tooltip.
+local function dump(frame, marks)
     local ids, list = {}, {}
     local function walk(r)
-        if not r.shown then return end
         ids[r] = #list + 1
         list[#list + 1] = r
         for _, c in ipairs(r.children or {}) do walk(c) end
@@ -97,10 +103,16 @@ local function dump(frame)
             backdrop = r.backdrop and { edgeSize = r.backdrop.edgeSize, bg = r.backdropColor, border = r.backdropBorder } or nil,
             text = (r.kind == "FontString" or r.kind == "EditBox") and r.text or nil,
             font = r.font and r.font.size or nil, textColor = r.textColor, justifyH = r.justifyH, justifyV = r.justifyV,
-            multiLine = r.multiLine, shadow = r.shadowOffset ~= nil,
+            multiLine = r.multiLine, shadow = r.shadowOffset ~= nil, shown = r.shown,
+            oneLine = r.maxLines == 1 or r.wordWrap == false or nil,
         }
     end
-    return out
+    local outMarks = {}
+    for _, m in ipairs(marks or {}) do
+        assert(ids[m.region], "a mark names a region outside the scene")
+        outMarks[#outMarks + 1] = { id = ids[m.region], tooltip = m.tooltip, ring = m.ring ~= false, anchor = m.anchor }
+    end
+    return out, outMarks
 end
 
 -- ---- scenes ------------------------------------------------------------------------
@@ -116,10 +128,47 @@ local function seedReports()
         { t = now - 120, guide = "GEN_ALLIANCE_DWARF_01_DUN_MOROGH", step = 31, type = "KILL", q = 179,
           text = "the wolves are further up the hill", loc = { m = 1426, x = 26.3, y = 79.2 },
           m = 1426, x = 24.9, y = 76.8, zone = "Dun Morogh", sub = "Coldridge Valley", lvl = 4 },
+        -- a right click on Camping 101 in Unknown Quests
+        { t = now - 60, type = "MISSING_ROUTE_QUEST", q = 96047, title = "Camping 101: First Aid", questLevel = 6, ready = false,
+          guide = "GEN_ALLIANCE_DWARF_01_DUN_MOROGH", step = 52, m = 1426, x = 28.6, y = 66.9, zone = "Dun Morogh", sub = "Anvilmar", lvl = 4,
+          objectives = { { text = "Linen Bandage", numFulfilled = 0, numRequired = 1, finished = false } } },
     }
 end
 
+--- The Dwarf route's first chapter, open at Archaic Rune's turn-in, in the guide window.
+local function guideWindow()
+    MOCK_ACCEPT(98581, "Archaic Rune", { { text = "Archaic Rune: 1/1", finished = true, numFulfilled = 1, numRequired = 1 } })
+    ns.Guide:Activate("GEN_ALLIANCE_DWARF_01_DUN_MOROGH", true)
+    for i, step in ipairs(ns.Guide.active.steps) do
+        if step.quest == 98581 and step.type == "TURNIN" then ns.Guide:SetStep(i) break end
+    end
+    MOCK_ADVANCE(1)
+    local qg = ns.QuestGuide
+    local f = qg:Create()
+    -- a little wider than the default, as players often drag it; the mock does not fire OnSizeChanged
+    ns.db.ui.width = 340
+    qg:Apply()
+    local sized = f:GetScript("OnSizeChanged")
+    if sized then sized(f, f:GetWidth(), f:GetHeight()) end
+    f:Show()
+    qg:Refresh()
+    return f
+end
+
 local scenes = {
+    ["guide-report-button"] = function()
+        local f = guideWindow()
+        return f, { { region = f.header.report, tooltip = { "Report wrong step" } } }
+    end,
+    ["unknown-quests"] = function()
+        -- a Forever quest in Dun Morogh that no guide takes you through
+        MOCK_ACCEPT(96047, "Camping 101: First Aid", { { text = "Linen Bandage: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } })
+        local f = guideWindow()
+        ns.QuestGuide:SetDrawer("unknown")
+        ns.QuestGuide:Refresh()
+        local row = f.extra.list.rows and f.extra.list.rows[1]
+        return f, { { region = f.unknownBtn }, row and { region = row, anchor = "BOTTOM", tooltip = { "Camping 101: First Aid", "Left click: open in the quest log.  Right click: report missing route quest." } } or nil }
+    end,
     ["report-prompt"] = function()
         ns.Reports:Prompt()
         local f = _G.ForeverGuideReportPrompt
@@ -129,7 +178,13 @@ local scenes = {
     ["reports-list"] = function()
         seedReports()
         ns.Reports:ShowList()
-        return _G.ForeverGuideReports
+        local list = _G.ForeverGuideReports
+        -- the Select all button, found by its label
+        local selectAll
+        for _, c in ipairs(list.children or {}) do
+            if c.label and c.label:GetText() == "Select all" then selectAll = c end
+        end
+        return list, { selectAll and { region = selectAll } or nil }
     end,
 }
 
@@ -138,10 +193,11 @@ local names = {}
 for name in pairs(scenes) do names[#names + 1] = name end
 table.sort(names)
 for _, name in ipairs(names) do
-    local frame = scenes[name]()
+    local frame, marks = scenes[name]()
     local path = outDir .. "/" .. name .. ".json"
     local fh = assert(io.open(path, "w"))
-    fh:write(encode({ scene = name, canvas = { w = 1280, h = 720 }, regions = dump(frame) }), "\n")
+    local regions, outMarks = dump(frame, marks)
+    fh:write(encode({ scene = name, canvas = { w = 1280, h = 720 }, regions = regions, marks = outMarks }), "\n")
     fh:close()
     frame:Hide()
     print("wrote " .. path)

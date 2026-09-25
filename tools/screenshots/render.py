@@ -18,6 +18,7 @@ import argparse
 import glob
 import json
 import os
+import re
 import sys
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
@@ -56,7 +57,8 @@ class Layout:
 
     def text_size(self, r, width=None):
         font = self.fonts(r.get("font") or 12)
-        lines = wrap(r.get("text") or "", font, width) if width and not r.get("oneLine") else (r.get("text") or "").split("\n")
+        text = plain(r.get("text") or "")
+        lines = wrap(text, font, width) if width and not r.get("oneLine") else [text.split("\n")[0]]
         w = max((font.getlength(line) for line in lines), default=0)
         return w, line_height(font) * max(1, len(lines))
 
@@ -94,6 +96,31 @@ class Layout:
         return out
 
 
+CODE = re.compile(r"\|c([0-9a-fA-F]{8})|\|r")
+
+
+def plain(text):
+    """Text without the client's |cAARRGGBB ... |r colour codes."""
+    return CODE.sub("", text)
+
+
+def segments(text, default):
+    """(text, colour) runs of a line with colour codes."""
+    out, colour, pos = [], default, 0
+    for m in CODE.finditer(text):
+        if m.start() > pos:
+            out.append((text[pos:m.start()], colour))
+        if m.group(1):
+            a, rr, g, b = (int(m.group(1)[i:i + 2], 16) for i in (0, 2, 4, 6))
+            colour = (rr, g, b, default[3])
+        else:
+            colour = default
+        pos = m.end()
+    if pos < len(text):
+        out.append((text[pos:], colour))
+    return out
+
+
 def line_height(font):
     ascent, descent = font.getmetrics()
     return ascent + descent + 1
@@ -112,6 +139,18 @@ def wrap(text, font, width):
                 line = word
         lines.append(line)
     return lines
+
+
+def truncate(text, font, width):
+    """One line as the client draws it: cut with an ellipsis when it does not fit. A couple of
+    pixels over is font rounding (the stand-in font is not the game's), not a real overflow."""
+    line = text.split("\n")[0]
+    if width is None or font.getlength(plain(line)) <= width + 2 * font.size / 12:
+        return line
+    line = plain(line)
+    while line and font.getlength(line + "\u2026") > width:
+        line = line[:-1]
+    return line.rstrip() + "\u2026"
 
 
 def texture_image(path, size, coords, tint):
@@ -139,6 +178,44 @@ def world_backdrop(size):
     return img.convert("RGBA")
 
 
+TIP_PAD = 8
+TIP_SIZES = (13, 11)
+
+
+def tooltip_box(target, lines, fonts, anchor="TOP"):
+    """Where the game puts a tooltip: centred above the region (ANCHOR_TOP) or below it (BOTTOM)."""
+    w = max(fonts(TIP_SIZES[0] if i == 0 else TIP_SIZES[1]).getlength(line) for i, line in enumerate(lines)) + 2 * TIP_PAD
+    h = sum(line_height(fonts(TIP_SIZES[0] if i == 0 else TIP_SIZES[1])) for i in range(len(lines))) + 2 * TIP_PAD
+    cx = (target[0] + target[2]) / 2
+    if anchor == "BOTTOM":
+        return (cx - w / 2, target[3] + 6, cx + w / 2, target[3] + 6 + h)
+    return (cx - w / 2, target[1] - 6 - h, cx + w / 2, target[1] - 6)
+
+
+def draw_tooltip(out, box_px, lines, font_at, scale):
+    """A GameTooltip: near-black blue panel, grey-blue rim, the first line white, the rest grey."""
+    x0, y0, x1, y1 = box_px
+    layer = Image.new("RGBA", out.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    d.rounded_rectangle((x0, y0, x1, y1), radius=round(3 * scale), fill=(6, 8, 20, 235), outline=(110, 118, 140, 255), width=max(1, round(scale)))
+    y = y0 + TIP_PAD * scale
+    for i, line in enumerate(lines):
+        font = font_at(TIP_SIZES[0] if i == 0 else TIP_SIZES[1])
+        d.text((x0 + TIP_PAD * scale, y), line, font=font, fill=(255, 255, 255, 255) if i == 0 else (200, 200, 200, 255))
+        y += line_height(font)
+    out.alpha_composite(layer)
+
+
+def draw_ring(out, box_px, scale):
+    """A soft gold ring around what the reader should click."""
+    x0, y0, x1, y1 = box_px
+    pad = round(4 * scale)
+    glow = Image.new("RGBA", out.size, (0, 0, 0, 0))
+    ImageDraw.Draw(glow).rounded_rectangle((x0 - pad, y0 - pad, x1 + pad, y1 + pad), radius=round(6 * scale), outline=(255, 200, 40, 255), width=round(3 * scale))
+    out.alpha_composite(glow.filter(ImageFilter.GaussianBlur(3 * scale)))
+    out.alpha_composite(glow)
+
+
 def render(scene, font_path, scale):
     fonts_cache = {}
 
@@ -149,8 +226,22 @@ def render(scene, font_path, scale):
         return fonts_cache[key]
 
     layout = Layout(scene, fonts)
+    skipped = set()
     regions = scene["regions"]
-    window = layout.rect(regions[0]["id"])
+    by_id = {r["id"]: r for r in regions}
+
+    def visible(r):
+        while r is not None:
+            if r.get("shown") is False:
+                return False
+            r = by_id.get(r.get("parent"))
+        return True
+
+    # Crop to everything shown (a drawer hangs below the window) plus the tooltips the marks add.
+    shown_rects = [layout.rect(r["id"]) for r in regions if visible(r) and r["kind"] != "FontString"]
+    tips = [(m, tooltip_box(layout.rect(m["id"]), m["tooltip"], fonts, m.get("anchor") or "TOP")) for m in scene.get("marks", []) if m.get("tooltip")]
+    extent = shown_rects + [t for _, t in tips]
+    window = (min(r[0] for r in extent), min(r[1] for r in extent), max(r[2] for r in extent), max(r[3] for r in extent))
     ox, oy = window[0] - MARGIN, window[1] - MARGIN
     size = (round((window[2] - window[0] + 2 * MARGIN) * scale), round((window[3] - window[1] + 2 * MARGIN) * scale))
     out = world_backdrop(size)
@@ -191,7 +282,7 @@ def render(scene, font_path, scale):
             return
         font = fonts(r.get("font") or 12, scale)
         width = (rect[2] - rect[0]) * scale
-        lines = wrap(text, font, width if width > 0 else None)
+        lines = [truncate(text, font, width if width > 0 else None)] if r.get("oneLine") else wrap(plain(text), font, width if width > 0 else None)
         lh = line_height(font)
         x0, y0, x1, y1 = box(rect)
         total = lh * len(lines)
@@ -199,11 +290,13 @@ def render(scene, font_path, scale):
         layer_img = Image.new("RGBA", out.size, (0, 0, 0, 0))
         d = ImageDraw.Draw(layer_img)
         for line in lines:
-            lw = font.getlength(line)
+            lw = font.getlength(plain(line))
             x = {"CENTER": x0 + (x1 - x0 - lw) / 2, "RIGHT": x1 - lw}.get(r.get("justifyH"), x0)
-            if r.get("shadow"):
-                d.text((x + scale, y + scale), line, font=font, fill=(0, 0, 0, 204))
-            d.text((x, y), line, font=font, fill=color)
+            for part, colour in segments(line, color):
+                if r.get("shadow"):
+                    d.text((x + scale, y + scale), part, font=font, fill=(0, 0, 0, 204))
+                d.text((x, y), part, font=font, fill=colour)
+                x += font.getlength(part)
             y += lh
         paste(layer_img, (0, 0), clip)
 
@@ -213,6 +306,8 @@ def render(scene, font_path, scale):
         children.setdefault(r.get("parent"), []).append(r)
 
     def paint(r):
+        if r.get("shown") is False:
+            return
         rect = layout.rect(r["id"])
         clip = clip_of(r)
         bd = r.get("backdrop")
@@ -237,6 +332,9 @@ def render(scene, font_path, scale):
                 draw_rect(trect, rgba(t["colorTexture"], t.get("alpha") or 1), clip)
             elif t.get("texture", "").replace("\\", "/").endswith("WHITE8x8"):
                 draw_rect(trect, rgba(t.get("vertex"), t.get("alpha") or 1), clip)
+            elif t.get("texture") and "addons/foreverguide/textures/" not in t["texture"].replace("\\", "/").lower():
+                # the game's own art (Interface\\Buttons, ChatFrame, ...) is not in this repo to paint
+                skipped.add(t["texture"])
             elif t.get("texture"):
                 x0, y0, x1, y1 = box(trect)
                 if x1 > x0 and y1 > y0:
@@ -249,6 +347,13 @@ def render(scene, font_path, scale):
                 paint(k)
 
     paint(regions[0])
+    for m in scene.get("marks", []):
+        if m.get("ring"):
+            draw_ring(out, box(layout.rect(m["id"])), scale)
+    for m, tip in tips:
+        draw_tooltip(out, box(tip), m["tooltip"], lambda size: fonts(size, scale), scale)
+    for name in sorted(skipped):
+        print(f"  {scene['scene']}: skipped game texture {name}")
     return out
 
 
