@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_07_WETLANDS",
   "name": "7. Wetlands 22-25 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 22,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 7 of the Dwarf route: level 22 to 25, 69 steps, ~177 min of play in the model (27490 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 1571, "npcName": "Shellei Brondir", "map": 1437, "zone": "Wetlands", "x": 9.5, "y": 59.7},
     {"type": "ACCEPT", "quest": 250, "questName": "A Dark Threat Looms", "npc": 1093, "npcName": "Chief Engineer Hinderweir VII", "map": 1432, "zone": "Loch Modan", "x": 46, "y": 13.6},
     {"type": "TURNIN", "quest": 250, "questName": "A Dark Threat Looms", "map": 1432, "zone": "Loch Modan", "x": 56.1, "y": 13.3},
     {"type": "ACCEPT", "quest": 386, "questName": "What Comes Around...", "npc": 859, "npcName": "Guard Berton", "map": 1433, "zone": "Redridge Mountains", "x": 26.4, "y": 46.6, "note": "For The Stockade (dungeon guide)", "optional": true},
