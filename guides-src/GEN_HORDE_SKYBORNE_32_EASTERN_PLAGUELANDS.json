@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_32_EASTERN_PLAGUELANDS",
   "name": "32. Eastern Plaguelands 50-50 (Skyborne)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 50,
