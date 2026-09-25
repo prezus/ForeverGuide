@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_06_ASHENVALE",
   "name": "6. Ashenvale 25-26 (Undead)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 25,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 6 of the Scourge route: level 25 to 26, 39 steps, ~118 min of play in the model (22803 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 12616, "npcName": "Vhulgra", "map": 1440, "zone": "Ashenvale", "x": 73.2, "y": 61.6},
     {"type": "TRAVEL", "map": 1440, "zone": "Ashenvale", "x": 72.6, "y": 63.9, "radius": 60, "note": "travel to Ashenvale (Ashenvale)"},
     {"type": "NOTE", "map": 1440, "zone": "Ashenvale", "x": 72.6, "y": 63.9, "text": "set your hearthstone at the inn in Ashenvale (if there is one)"},
     {"type": "ACCEPT", "quest": 6383, "questName": "The Ashenvale Hunt", "npc": 12696, "npcName": "Senani Thunderheart", "map": 1440, "zone": "Ashenvale", "x": 73.8, "y": 61.5},
@@ -32,6 +33,7 @@
     {"type": "ACCEPT", "quest": 6544, "questName": "Torek's Assault", "npc": 12858, "npcName": "Torek", "map": 1440, "zone": "Ashenvale", "x": 68.3, "y": 75.3},
     {"type": "COMPLETE", "quest": 6544, "questName": "Torek's Assault", "target": "Take Silverwing Outpost.", "map": 1440, "zone": "Ashenvale", "x": 64.7, "y": 75.3, "note": "escort - stay close, it can fail: Take Silverwing Outpost."},
     {"type": "TURNIN", "quest": 6544, "questName": "Torek's Assault", "npc": 12877, "npcName": "Ertog Ragetusk", "map": 1440, "zone": "Ashenvale", "x": 73, "y": 62.5},
+    {"type": "FLIGHTPATH", "npc": 11901, "npcName": "Andruk", "map": 1440, "zone": "Ashenvale", "x": 12.2, "y": 33.8},
     {"type": "TURNIN", "quest": 6562, "questName": "Trouble in the Deeps", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2, "optional": true},
     {"type": "ACCEPT", "quest": 6563, "questName": "The Essence of Aku'Mai", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2, "note": "For Blackfathom Deeps (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: The Essence of Aku'Mai. When you have a group, open Blackfathom Deeps under Dungeons.", "text": "Ready for Blackfathom Deeps", "optional": true},
