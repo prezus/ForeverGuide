@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_03_LOCH_MODAN",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Human route: level 11 to 11, 6 steps, ~10 min of play in the model (25721 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 29,
+    stepCount = 33,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 1573, npcName = "Gryth Thurden", map = 1455, zone = "Ironforge", x = 55.5, y = 47.7 }, -- 1
         { type = "ACCEPT", quest = 92752, questName = "Explosive Consultation", npc = 11026, npcName = "Sprite Jumpsprocket", map = 1453, zone = "Stormwind City", x = 54.6, y = 8, note = "New in Forever" }, -- 2
@@ -24,25 +24,29 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1679, questName = "Muren Stormpike", npc = 1229, npcName = "Granis Swiftaxe", map = 1426, zone = "Dun Morogh", x = 47.2, y = 52.6, class = { "WARRIOR" } }, -- 7
         { type = "ACCEPT", quest = 1684, questName = "Elanaria", npc = 2151, npcName = "Moon Priestess Amara", map = 1438, zone = "Teldrassil", x = 55.6, y = 58.4, class = { "WARRIOR" } }, -- 8
         { type = "TURNIN", quest = 1684, questName = "Elanaria", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 9
-        { type = "TURNIN", quest = 5635, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 10
-        { type = "ACCEPT", quest = 5636, questName = "Desperate Prayer", npc = 3600, npcName = "Laurna Morninglight", map = 1438, zone = "Teldrassil", x = 55.6, y = 56.8, class = { "PRIEST" } }, -- 11
-        { type = "TURNIN", quest = 5636, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 12
-        { type = "TURNIN", quest = 5637, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 13
-        { type = "ACCEPT", quest = 5638, questName = "Desperate Prayer", npc = 11397, npcName = "Nara Meideros", map = 1453, zone = "Stormwind City", x = 20.8, y = 50.2, class = { "PRIEST" } }, -- 14
-        { type = "TURNIN", quest = 5638, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 15
-        { type = "ACCEPT", quest = 5639, questName = "Desperate Prayer", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" } }, -- 16
-        { type = "TURNIN", quest = 5639, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 17
-        { type = "TURNIN", quest = 94774, questName = "Divine Grace", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 18
-        { type = "TURNIN", quest = 1685, questName = "Gakin's Summons", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 19
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.6, y = 48.4, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 20
-        { type = "HEARTH", npc = 5111, npcName = "Innkeeper Firebrew", map = 1455, zone = "Ironforge", x = 18.1, y = 51.5, note = "talk to Innkeeper Firebrew and make this inn your home" }, -- 21
-        { type = "ACCEPT", quest = 94449, questName = "Call of Fire", npc = 258098, npcName = "Eldrun Stormbreaker", map = 1455, zone = "Ironforge", x = 47.4, y = 13.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 22
-        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 23
-        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 24
-        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 25
-        { type = "ACCEPT", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 26
-        { type = "TURNIN", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 27
-        { type = "ACCEPT", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 28
-        { type = "TURNIN", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 29
+        { type = "TURNIN", quest = 2205, questName = "Seek out SI: 7", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8, class = { "ROGUE" } }, -- 10
+        { type = "TURNIN", quest = 5635, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 11
+        { type = "ACCEPT", quest = 5636, questName = "Desperate Prayer", npc = 3600, npcName = "Laurna Morninglight", map = 1438, zone = "Teldrassil", x = 55.6, y = 56.8, class = { "PRIEST" } }, -- 12
+        { type = "TURNIN", quest = 5636, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 13
+        { type = "TURNIN", quest = 5637, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 14
+        { type = "ACCEPT", quest = 5638, questName = "Desperate Prayer", npc = 11397, npcName = "Nara Meideros", map = 1453, zone = "Stormwind City", x = 20.8, y = 50.2, class = { "PRIEST" } }, -- 15
+        { type = "TURNIN", quest = 5638, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 16
+        { type = "ACCEPT", quest = 5639, questName = "Desperate Prayer", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" } }, -- 17
+        { type = "TURNIN", quest = 5639, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 18
+        { type = "TURNIN", quest = 94774, questName = "Divine Grace", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 19
+        { type = "TURNIN", quest = 1860, questName = "Speak with Jennea", npc = 5497, npcName = "Jennea Cannon", map = 1453, zone = "Stormwind City", x = 38.6, y = 79.4, class = { "MAGE" } }, -- 20
+        { type = "TURNIN", quest = 1685, questName = "Gakin's Summons", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 21
+        { type = "ACCEPT", quest = 1715, questName = "The Slaughtered Lamb", npc = 6120, npcName = "Lago Blackwrench", map = 1455, zone = "Ironforge", x = 47.6, y = 9.6, class = { "WARLOCK" } }, -- 22
+        { type = "TURNIN", quest = 1715, questName = "The Slaughtered Lamb", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 23
+        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.6, y = 48.4, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 24
+        { type = "HEARTH", npc = 5111, npcName = "Innkeeper Firebrew", map = 1455, zone = "Ironforge", x = 18.1, y = 51.5, note = "talk to Innkeeper Firebrew and make this inn your home" }, -- 25
+        { type = "ACCEPT", quest = 94449, questName = "Call of Fire", npc = 258098, npcName = "Eldrun Stormbreaker", map = 1455, zone = "Ironforge", x = 47.4, y = 13.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 26
+        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 27
+        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 28
+        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 29
+        { type = "ACCEPT", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 30
+        { type = "TURNIN", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 31
+        { type = "ACCEPT", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 32
+        { type = "TURNIN", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 33
     } end,
 })
