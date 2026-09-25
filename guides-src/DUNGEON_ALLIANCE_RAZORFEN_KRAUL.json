@@ -1,0 +1,27 @@
+{
+  "id": "DUNGEON_ALLIANCE_RAZORFEN_KRAUL",
+  "name": "Razorfen Kraul 25-31",
+  "version": 1,
+  "kind": "dungeon",
+  "faction": "Alliance",
+  "minLevel": 25,
+  "maxLevel": 31,
+  "map": 1413,
+  "zone": "The Barrens",
+  "author": "ForeverGuide route planner",
+  "notes": "Razorfen Kraul: the quests, the run and the turn-ins. Open it when you have a group.",
+  "steps": [
+    {"type": "ACCEPT", "quest": 1221, "questName": "Blueleaf Tubers", "npc": 3446, "npcName": "Mebok Mizzyrix", "map": 1413, "zone": "The Barrens", "x": 62.4, "y": 37.6},
+    {"type": "NOTE", "map": 1413, "zone": "The Barrens", "x": 42.9, "y": 90.2, "note": "All quests available from level 25; hand them in by level 31 for full XP", "text": "Find a group for Razorfen Kraul"},
+    {"type": "ACCEPT", "quest": 1142, "questName": "Mortality Wanes", "map": 1413, "zone": "The Barrens", "x": 42.9, "y": 90.2},
+    {"type": "ACCEPT", "quest": 1144, "questName": "Willix the Importer", "map": 1413, "zone": "The Barrens", "x": 42.9, "y": 90.2},
+    {"type": "COLLECT", "quest": 1221, "questName": "Blueleaf Tubers", "target": "Blueleaf Tuber", "count": 6, "map": 1413, "zone": "The Barrens", "x": 42.9, "y": 90.2},
+    {"type": "COLLECT", "quest": 1221, "questName": "Blueleaf Tubers", "target": "Crate With Holes", "count": 1, "map": 1413, "zone": "The Barrens", "x": 42.9, "y": 90.2},
+    {"type": "COLLECT", "quest": 1221, "questName": "Blueleaf Tubers", "target": "Snufflenose Owner's Manual", "count": 1, "map": 1413, "zone": "The Barrens", "x": 42.9, "y": 90.2},
+    {"type": "COLLECT", "quest": 1221, "questName": "Blueleaf Tubers", "target": "Snufflenose Command Stick", "count": 1, "map": 1413, "zone": "The Barrens", "x": 42.9, "y": 90.2},
+    {"type": "COLLECT", "quest": 1142, "questName": "Mortality Wanes", "target": "Treshala's Pendant", "count": 1, "map": 1413, "zone": "The Barrens", "x": 42.9, "y": 90.2},
+    {"type": "TURNIN", "quest": 1144, "questName": "Willix the Importer", "map": 1413, "zone": "The Barrens", "x": 42.9, "y": 90.2},
+    {"type": "TURNIN", "quest": 1221, "questName": "Blueleaf Tubers", "npc": 3446, "npcName": "Mebok Mizzyrix", "map": 1413, "zone": "The Barrens", "x": 62.4, "y": 37.6},
+    {"type": "TURNIN", "quest": 1142, "questName": "Mortality Wanes", "npc": 4521, "npcName": "Treshala Fallowbrook", "map": 1457, "zone": "Darnassus", "x": 69.4, "y": 67.4}
+  ]
+}
