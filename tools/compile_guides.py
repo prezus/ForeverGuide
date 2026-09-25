@@ -20,12 +20,12 @@ import sys
 
 STEP_TYPES = {
     "ACCEPT", "TURNIN", "COMPLETE", "KILL", "COLLECT", "GRIND", "BUY", "TRAIN",
-    "HEARTH", "TRAVEL", "FLY", "TALK", "NOTE",
+    "HEARTH", "TRAVEL", "FLY", "TALK", "FLIGHTPATH", "NOTE",
 }
 REQUIRES = {
     "ACCEPT": ["quest"], "TURNIN": ["quest"], "COMPLETE": ["quest"], "KILL": ["quest"],
     "COLLECT": ["quest"], "GRIND": ["level"], "BUY": ["item"], "TRAIN": ["spell"],
-    "HEARTH": ["zone"], "TRAVEL": ["x", "y"], "FLY": ["x", "y"], "TALK": ["npc"], "NOTE": ["text"],
+    "HEARTH": ["zone"], "TRAVEL": ["x", "y"], "FLY": ["x", "y"], "TALK": ["npc"], "FLIGHTPATH": ["npc"], "NOTE": ["text"],
 }
 STEP_FIELDS = {
     "type": str, "text": str, "note": str, "quest": int, "questName": str, "objective": int,

@@ -42,7 +42,7 @@ Guide.postponed = {}     -- step index -> time until which it is walked past (cr
 Guide.note = nil         -- recovery note shown in UI
 Guide.blocked = nil      -- current step is blocked (quest missing, no accept step)
 
-local MANUAL = { TRAVEL = true, FLY = true, TALK = true, NOTE = true }
+local MANUAL = { TRAVEL = true, FLY = true, TALK = true, FLIGHTPATH = true, NOTE = true }
 local LOOKAHEAD = 6      -- automatic steps checked past a manual one before calling it stale
 local OBJECTIVE = { COMPLETE = true, KILL = true, COLLECT = true }
 Guide.MANUAL, Guide.OBJECTIVE = MANUAL, OBJECTIVE
@@ -402,6 +402,11 @@ function Guide:IsStepDone(step, idx)
         local bind = ns.PlainString(ns.Safe(rawget(_G, "GetBindLocation")))
         if bind and step.zone then return bind == step.zone, nil end
         return false, nil
+    elseif t == "FLIGHTPATH" then
+        -- a path learnt before (this guide, another guide, or on the character's own) is not asked for again
+        local R = ns.Reminders
+        local node = R and R:NodeAt(step.map, step.x, step.y)
+        return node ~= nil and R.Known()[node] == true, nil
     elseif t == "TRAVEL" or t == "FLY" then
         -- "travel to Westfall" is done the moment you are in Westfall: its coordinates are only
         -- the hub the route wants next, and the step after it points there anyway. A travel step
@@ -913,7 +918,7 @@ end
 local VERB = {
     ACCEPT = "Accept", TURNIN = "Turn in", COMPLETE = "Complete", KILL = "Kill", COLLECT = "Collect",
     GRIND = "Grind to level", BUY = "Buy", TRAIN = "Train", HEARTH = "Set hearthstone at",
-    TRAVEL = "Go to", FLY = "Fly to", TALK = "Talk to", NOTE = "",
+    TRAVEL = "Go to", FLY = "Fly to", TALK = "Talk to", FLIGHTPATH = "Get the flight path at", NOTE = "",
 }
 
 function Guide:GetStepText(step)
@@ -941,7 +946,7 @@ function Guide:GetStepText(step)
         return string.format("%s %d x %s", verb, step.count or 1, step.itemName or (DB and DB:ItemName(step.item)) or ("item " .. tostring(step.item)))
     elseif t == "TRAIN" then
         return verb .. " " .. tostring(step.spellName or ("spell " .. tostring(step.spell)))
-    elseif t == "TALK" then
+    elseif t == "TALK" or t == "FLIGHTPATH" then
         return verb .. " " .. tostring(step.npcName or (DB and DB:NPCName(step.npc)) or ("NPC " .. tostring(step.npc)))
     elseif t == "TRAVEL" or t == "FLY" then
         return verb .. " " .. tostring(step.zone or (step.x and step.y and string.format("%.1f, %.1f", step.x, step.y)) or "destination")
@@ -1013,6 +1018,21 @@ function Guide:OnInit()
                 Guide:MarkDone(step.index, "talked")
             end
         end)
+
+    -- FLIGHTPATH steps complete when that flight master's map opens (which learns the path), or when
+    -- "New flight path discovered!" comes up while the step is the current one
+    ns.Events:Register("TAXIMAP_OPENED", function()
+        local step = Guide:GetCurrentStep()
+        if not step or step.type ~= "FLIGHTPATH" then return end
+        local npc = ns.Player:GetInteractionNPC()
+        if not step.npc or not npc or step.npc == npc.npcID then Guide:MarkDone(step.index, "flight path") end
+    end)
+    ns.Events:Register("UI_INFO_MESSAGE", function(_, _, message)
+        local step = Guide:GetCurrentStep()
+        if not step or step.type ~= "FLIGHTPATH" then return end
+        local want = rawget(_G, "ERR_NEWTAXIPATH")
+        if want and ns.PlainString(message) == want then Guide:MarkDone(step.index, "flight path") end
+    end)
 
     -- TRAVEL/FLY steps complete on arrival (Navigation is polled by the UI)
     ns.Events:Register("FG_NAV_ARRIVED", function(_, target)

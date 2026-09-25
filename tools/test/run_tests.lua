@@ -1794,6 +1794,47 @@ do
     MOCK_LEVEL(levelBefore); settle()
 end
 
+-- ---- flight path steps: learnt at the flight master, skipped when already known ----------------
+do
+    local R = ns.Reminders
+    local known = ns.char.flightpoints
+    local function flightGuide(id, npc, name, x, y)
+        ns.RegisterGuide({ id = id, name = id, version = 1, faction = "Alliance", minLevel = 1, maxLevel = 60, map = 1436, zone = "Westfall",
+            steps = {
+                { type = "FLIGHTPATH", npc = npc, npcName = name, map = 1436, zone = "Westfall", x = x, y = y },
+                { type = "ACCEPT", quest = 99921, questName = "After the flight", map = 1436, x = 56, y = 47 },
+            } })
+    end
+    flightGuide("TEST_FLIGHTPATH_THOR", 523, "Thor", 56.55, 52.64)
+    flightGuide("TEST_FLIGHTPATH_AGAIN", 523, "Thor", 56.55, 52.64)
+    flightGuide("TEST_FLIGHTPATH_MESSAGE", 1571, "Shellei Brondir", 9.49, 59.69)
+    ns.char.flightpoints = {}
+    MOCK_TAXI(1436, { { nodeID = 4, name = "Sentinel Hill", x = 56.5, y = 52.6, faction = 2 } })
+
+    G:Activate("TEST_FLIGHTPATH_THOR", true); settle()
+    check(cur() == 1 and G:GetStepText(step()) == "Get the flight path at Thor", "a flight path step asks for it by the master's name (" .. G:GetStepText(step()) .. ")")
+    -- talking to him opens his flight map, which learns the path
+    MOCK.npc = { npcID = 523, name = "Thor", level = 55 }
+    MOCK_TAXIMAP({ { name = "Sentinel Hill", state = 0 } }); settle()
+    check(cur() == 2, "opening his flight map finishes the step (" .. tostring(cur()) .. ")")
+    MOCK.npc = nil
+
+    -- the same flight master later on: the path is known, the step is passed over
+    check(R:NodeAt(1436, 56.55, 52.64) == "Sentinel Hill", "the flight master's spot names its flight node")
+    G:Activate("TEST_FLIGHTPATH_AGAIN", true); settle()
+    check(cur() == 2, "a flight path already learnt is not asked for again (" .. tostring(cur()) .. ")")
+
+    -- "New flight path discovered!" while the step is up finishes it too
+    G:Activate("TEST_FLIGHTPATH_MESSAGE", true); settle()
+    check(cur() == 1, "another master's path is still to learn")
+    MOCK_FIRE("UI_INFO_MESSAGE", 0, "New flight path discovered!"); settle()
+    check(cur() == 2, "the discovery message finishes the step (" .. tostring(cur()) .. ")")
+
+    ns.char.flightpoints = known
+    MOCK_TAXI(1436, {})
+    G:Activate("HUMAN_NORTHSHIRE_1_6", true); G:Reset(); settle()
+end
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 do
     local expected = 0

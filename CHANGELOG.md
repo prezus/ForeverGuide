@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Guides can ask you to learn a flight path: the `FLIGHTPATH` step ("Get the flight path at Thor") finishes when you open that flight master's map, when "New flight path discovered!" comes up, or straight away if you already know that path. Like a travel step, it also finishes itself once you are past it, so skipping it never blocks the guide.
+
+## Unreleased
 - Dungeon guides: a guide with `"kind": "dungeon"` is a dungeon's own guide. `/fg dungeons` lists the ones your character can do, by level; auto-pick never lands on one. Opening one remembers the chapter you came from, and finishing it (or `/fg resume`) takes you back there. Opening another chapter by hand forgets the way back.
 - Dungeon badge: the guide window's header shows the next dungeon and how many of its quests you carry ("The Deadmines 3/5", "... - ready", "... - hand in by 22"). Click it for the dungeon's panel: its levels, each quest and where it stands (in your log, done, needs level N, pick up from whom, given inside), a Waypoint to the entrance, and buttons to open the dungeon's guide or go back to your chapter.
 - Guides: the 1-30 chapters pick up WoW Forever's new quests (marked "New in Forever"), class quests for each class (shown only to that class, and to the races that can take them), elite quests as optional group steps, and each dungeon's quests as you pass their givers, with a "Ready for <dungeon>" note once you have them. Each faction gets one guide per dungeon (14 in all, The Hall of Thanes and Ruins of Lordaeron included), listed under DUNGEONS in the guide picker and in `/fg dungeons`.
