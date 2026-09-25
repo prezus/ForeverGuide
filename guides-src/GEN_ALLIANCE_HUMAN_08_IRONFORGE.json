@@ -14,6 +14,8 @@
   "steps": [
     {"type": "TURNIN", "quest": 2923, "questName": "Tinkmaster Overspark", "npc": 7944, "npcName": "Tinkmaster Overspark", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 50.2, "optional": true},
     {"type": "ACCEPT", "quest": 2927, "questName": "The Day After", "npc": 6569, "npcName": "Gnoarn", "map": 1455, "zone": "Ironforge", "x": 69.4, "y": 50.6, "note": "For Gnomeregan (dungeon guide)", "optional": true},
+    {"type": "ACCEPT", "quest": 94494, "questName": "Call of Water", "npc": 258098, "npcName": "Eldrun Stormbreaker", "map": 1455, "zone": "Ironforge", "x": 47.4, "y": 13.6, "note": "New in Forever", "class": ["SHAMAN"]},
+    {"type": "TURNIN", "quest": 94494, "questName": "Call of Water", "npc": 258043, "npcName": "Norric Lochthane", "map": 1432, "zone": "Loch Modan", "x": 41.8, "y": 19, "class": ["SHAMAN"]},
     {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 61.7, "y": 48.4, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
     {"type": "ACCEPT", "quest": 2924, "questName": "Essential Artificials", "npc": 6169, "npcName": "Klockmort Spannerspan", "map": 1455, "zone": "Ironforge", "x": 67.9, "y": 46.1},
     {"type": "ACCEPT", "quest": 2930, "questName": "Data Rescue", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.1},
