@@ -315,6 +315,8 @@
     {"type": "ACCEPT", "quest": 914, "questName": "Leaders of the Fang", "npc": 5770, "npcName": "Nara Wildmane", "map": 1456, "zone": "Thunder Bluff", "x": 75.6, "y": 31.2, "note": "For Wailing Caverns (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 962, "questName": "Serpentbloom", "npc": 3419, "npcName": "Apothecary Zamah", "map": 1456, "zone": "Thunder Bluff", "x": 23, "y": 21, "note": "For Wailing Caverns (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: Leaders of the Fang, Serpentbloom. When you have a group, open Wailing Caverns under Dungeons.", "text": "Ready for Wailing Caverns", "optional": true},
+    {"type": "ACCEPT", "quest": 1823, "questName": "Speak with Ruga", "npc": 3354, "npcName": "Sorek", "map": 1454, "zone": "Orgrimmar", "x": 80.2, "y": 32.4, "class": ["WARRIOR"]},
+    {"type": "TURNIN", "quest": 1823, "questName": "Speak with Ruga", "npc": 6394, "npcName": "Ruga Ragetotem", "map": 1413, "zone": "The Barrens", "x": 44.6, "y": 59.4, "class": ["WARRIOR"]},
     {"type": "ACCEPT", "quest": 1528, "questName": "Call of Water", "npc": 5892, "npcName": "Searn Firewarder", "map": 1454, "zone": "Orgrimmar", "x": 37.8, "y": 37.4, "class": ["SHAMAN"]},
     {"type": "TURNIN", "quest": 1528, "questName": "Call of Water", "npc": 5901, "npcName": "Islen Waterseer", "map": 1413, "zone": "The Barrens", "x": 65.8, "y": 43.8, "class": ["SHAMAN"]},
     {"type": "ACCEPT", "quest": 1529, "questName": "Call of Water", "npc": 5906, "npcName": "Xanis Flameweaver", "map": 1456, "zone": "Thunder Bluff", "x": 25.2, "y": 21, "class": ["SHAMAN"]},
