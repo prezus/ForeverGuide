@@ -12,6 +12,7 @@ local HELP = {
     "/fg                 status readout (level, zone, coords, quests, current step)",
     "/fg show|hide|toggle   guide window  |  /fg hideall  hide window + arrow (alt-click the minimap button)",
     "/fg guides          list guides   |  /fg guide <name>   start a guide",
+    "/fg dungeons        list dungeon guides  |  /fg resume   back to your chapter",
     "/fg skip | back | step <n> | reset     move through the guide",
     "/fg quests          quest log with objectives and states",
     "/fg mode auto|guide   auto = navigate your quest log (no guide needed), guide = follow the active guide",
@@ -411,12 +412,31 @@ function handlers.guides()
     ns.Print("Guides:")
     for _, id in ipairs(G.list) do
         local g = G.registry[id]
-        local active = (G.active == g) and (OK .. " (active)" .. END) or ""
-        local usable = G:Applicable(g) and "" or (D .. " [not for this character]" .. END)
-        ns.Printf("  %s%s%s  %s  %s-%s  %d steps%s%s", C, id, END, g.name or "", tostring(g.minLevel or "?"),
-            tostring(g.maxLevel or "?"), ns.Guide.StepCount(g), active, usable)
+        if not G:IsDungeon(g) then
+            local active = (G.active == g) and (OK .. " (active)" .. END) or ""
+            local usable = G:Applicable(g) and "" or (D .. " [not for this character]" .. END)
+            ns.Printf("  %s%s%s  %s  %s-%s  %d steps%s%s", C, id, END, g.name or "", tostring(g.minLevel or "?"),
+                tostring(g.maxLevel or "?"), ns.Guide.StepCount(g), active, usable)
+        end
     end
-    ns.Print("start one with /fg guide <id or name>")
+    ns.Print("start one with /fg guide <id or name>; dungeons are listed with /fg dungeons")
+end
+
+function handlers.dungeons()
+    local G = ns.Guide
+    local list = G:Dungeons()
+    if #list == 0 then ns.Print("no dungeon guides for this character.") return end
+    ns.Print("Dungeons (all quests available from the first level; hand in by the second for full XP):")
+    for _, g in ipairs(list) do
+        local active = (G.active == g) and (OK .. " (active)" .. END) or ""
+        ns.Printf("  %s%s%s  %s-%s%s", C, g.name or g.id, END, tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), active)
+    end
+    ns.Print("open one with /fg guide <name> when you have a group; /fg resume goes back to your chapter")
+end
+
+function handlers.resume()
+    local back = ns.Guide:Resume()
+    if not back then ns.Print("no chapter to go back to (/fg path race picks your route).") end
 end
 
 function handlers.guide(rest)

@@ -30,9 +30,9 @@ Player.lua
 Quest.lua
 Navigation.lua
 Guide.lua
+Dungeons.lua
 Tracker.lua
 Corpse.lua
-Bags.lua
 ItemTips.lua
 Crowd.lua
 Ding.lua
@@ -51,6 +51,7 @@ UI\QuestGuideHeader.lua
 UI\QuestRow.lua
 UI\QuestList.lua
 UI\QuestGuideFrame.lua
+UI\DungeonPanel.lua
 UI\QuestWaypoint.lua
 UI\QuestRoute.lua
 UI\MobMarker.lua

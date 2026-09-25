@@ -16,6 +16,7 @@ guides-src/*.json  --compile_guides.py-->  Guides/<ID>.lua + Guides/Guides.xml
 | `id`       | string   | yes      | unique, `[A-Z0-9_]`, used as file name and saved-variable key |
 | `name`     | string   | yes      | shown in the UI |
 | `version`  | int      | no       | bump when steps are re-ordered; manual completions are reset |
+| `kind`     | string   | no       | `"dungeon"`: a dungeon's own guide, listed under Dungeons, never auto-picked; finishing it returns to the chapter you left. Its ACCEPT steps before the `NOTE` "Find a group for ..." are the quests to bring (the badge counts them); those after it are given inside |
 | `faction`  | string   | no       | `"Alliance"` / `"Horde"` |
 | `race`     | [string] | no       | English race file names: `"Human"`, `"Orc"`, `"NightElf"`, ... |
 | `class`    | [string] | no       | `"WARRIOR"`, `"MAGE"`, ... |

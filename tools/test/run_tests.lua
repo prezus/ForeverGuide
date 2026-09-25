@@ -32,6 +32,8 @@ for line in io.lines(root .. "ForeverGuide.toc") do
     end
 end
 for _, f in ipairs(order) do loadAddonFile(f) end
+-- the engine walkthrough plays a small hand-written guide that no longer ships with the addon
+loadAddonFile("tools/test/fixtures/HUMAN_NORTHSHIRE_1_6.lua")
 
 -- every error the addon swallows and reports must surface here
 local reportedErrors = {}
@@ -128,7 +130,7 @@ check(ns.db.ding.enabled == false and ns.db.nav.blizzardWaypoint == false
     and ns.db.nav.waypoint.enabled == false and ns.db.nav.waypoint.route == false
     and ns.db.ui.arrow.enabled == true, "quiet defaults: no ding, pin or dotted route; arrow on")
 MOCK_BAG(0, 0, 0); settle()
-check(rawget(_G, "ForeverGuideBagBanner") == nil and ns.db.bags.banners == false, "bag and gear alerts do not pop up by default")
+check(rawget(_G, "ForeverGuideBagBanner") == nil, "full bags raise no alert: the addon leaves bags alone")
 check(rawget(_G, "ForeverGuideCrowdBanner") == nil and (ns.db.crowd == nil or ns.db.crowd.enabled == false), "crowd reminders do not pop up by default")
 MOCK_BAG(16, 0, 0); settle()
 check(G.active and G.active.faction == "Alliance" and G.active.minLevel == 1 and ns.Contains(G.active.race, "Human"), "auto-picked a human 1-10 guide: " .. tostring(G.active and G.active.id))
@@ -732,30 +734,6 @@ do
     check(ns.Navigation.target and ns.Navigation.target.owner == "guide" and ns.Navigation.override == nil, "alive again: the guide's target returns (" .. tostring(ns.Navigation.target and ns.Navigation.target.owner) .. ")")
 end
 
--- ---- bag space --------------------------------------------------------------------------------
-do
-    MOCK_BAG(10, 2, 1); settle()
-    check(ns.Bags:Tag() == nil, "plenty of room: no bag tag")
-    MOCK_BAG(2, 4, 3); settle()
-    local tag, full = ns.Bags:Tag()
-    check(tag == "bags 2/16" and not full, "2 free slots: header tag (" .. tostring(tag) .. ")")
-    local advice = ns.Bags:Advice()
-    check(advice and advice:find("4 grey items", 1, true) and advice:find("never counted", 1, true), "advice counts grey items only, never quest items (" .. tostring(advice) .. ")")
-    MOCK_BAG(0, 0, 5); settle()
-    local _, full0 = ns.Bags:Tag()
-    local adv0 = ns.Bags:Advice()
-    check(full0 == true and adv0 and adv0:find("FULL", 1, true) and adv0:find("never quest items", 1, true), "full bags with only quest items: urgent, no sale suggested (" .. tostring(adv0) .. ")")
-    local mode = ns.char.mode
-    ns.char.mode = "guide"
-    ns.QuestGuide:Refresh()
-    check((ns.QuestGuide.frame.header.sub:GetText() or ""):find("|cffff5040bags 0/16|r", 1, true) ~= nil,
-        "full bags: guide header uses urgent red tag")
-    ns.char.mode = mode
-    check(rawget(_G, "ForeverGuideBagBanner") == nil, "full bags: no popup, header tag remains")
-    MOCK_BAG(16, 0, 0); settle()
-    check(ns.Bags:Tag() == nil, "room again: the header tag goes away")
-end
-
 -- ---- mob tooltips: live progress, only for objectives this mob actually serves ----------------
 do
     MOCK_ACCEPT(52, "Protect the Frontier", { { text = "Young Forest Bear slain: 2/5", finished = false, numFulfilled = 2, numRequired = 5 } }); settle()
@@ -791,18 +769,11 @@ do
     MOCK_ACCEPT(92, "Redridge Goulash", { { text = "Tough Condor Meat", finished = false, numFulfilled = 1, numRequired = 5 } }); settle()
     lines = ns.ItemTips:LinesFor(1080, "Tough Condor Meat")
     check(#lines >= 1 and lines[1][1]:find("Redridge Goulash (1/5)", 1, true), "an item named by a live objective is labelled from the log alone (" .. tostring(lines[1] and lines[1][1]) .. ")")
-    -- turned in: the meat is left over, the tooltip says so and the bag advice counts it
+    -- turned in: the meat is left over, and the tooltip says so
     MOCK_TURNIN(92); settle()
     check(ns.ItemTips:Leftover(1080, "Tough Condor Meat") == "Redridge Goulash", "after the turn-in the ingredient is known to be left over")
     lines = ns.ItemTips:LinesFor(1080, "Tough Condor Meat")
     check(#lines == 1 and lines[1][2] == "leftover" and lines[1][1]:find("safe to sell", 1, true), "tooltip: no longer needed, safe to sell (" .. tostring(lines[1] and lines[1][1]) .. ")")
-    MOCK_BAG(1, 0, 0)
-    MOCK.bags[0].items[1] = { quality = 1, hasNoValue = false, itemID = 1080, hyperlink = "|Hitem:1080|h[Tough Condor Meat]|h" }
-    MOCK.bags[0].items[2] = { quality = 1, hasNoValue = false, itemID = 1080, hyperlink = "|Hitem:1080|h[Tough Condor Meat]|h" }
-    local st = ns.Bags:Status()
-    check(st.leftover == 2 and st.leftoverNames[1] == "Tough Condor Meat", "bags: leftover ingredients are counted as sellable (" .. tostring(st.leftover) .. ")")
-    check((ns.Bags:Advice(true) or ""):find("leftover quest ingredients", 1, true) ~= nil, "bag advice names the leftover ingredients")
-    MOCK_BAG(16, 0, 0); settle()
     do local l = ns.ItemTips:LinesFor(999999, "Broken Sword") check(#l == 0, "an ordinary item gets no line (" .. tostring(l[1] and l[1][1]) .. ")") end
 end
 
@@ -1089,13 +1060,22 @@ do
     local hasDone = false
     for _, e in ipairs(f.list.entries) do if e.state == "done" then hasDone = true end end
     check(hasDone, "a completed step stays visible above the current one")
-    -- clicking a row jumps to that step
+    -- clicking a row jumps to that step; a turn-in whose quest is not picked up yet lands on its accept
     local target
     for _, e in ipairs(f.list.entries) do if e.state == "available" then target = e break end end
+    check(target ~= nil, "the list offers a step to jump to")
     if target then
+        local st = G.active.steps[target.index]
+        local expected = target.index
+        if st.type == "TURNIN" and not ns.Quest:IsOnQuest(st.quest) then
+            for k = target.index - 1, 1, -1 do
+                local s2 = G.active.steps[k]
+                if s2.type == "ACCEPT" and s2.quest == st.quest then expected = k break end
+            end
+        end
         f.list.rows[1].entry = target
         f.list.rows[1]:GetScript("OnClick")(f.list.rows[1], "LeftButton"); settle()
-        check(G.current == target.index, "clicking a row jumps to that step (" .. tostring(G.current) .. " vs " .. tostring(target.index) .. ")")
+        check(G.current == expected, "clicking a row jumps to that step (" .. tostring(G.current) .. " vs " .. tostring(expected) .. ")")
     end
     -- width grip: drag to resize, persist the new width, and reflow the list
     check(f.resizeGrip ~= nil and f.resizable == true, "guide has a resize grip")
@@ -1348,7 +1328,20 @@ end
 --  "Travel to Westfall - 640 yd" forever and every /fg resync answered "now at step 1")
 do
     local savedMap, savedZone = MOCK.mapID, MOCK.zone
-    G:Activate("GEN_ALLIANCE_DWARF_04_WESTFALL", true); settle()
+    -- a chapter that opens by travelling into its zone (the Westfall chapter as generated before
+    -- quests were added to it; live chapters change, the rule under test does not)
+    ns.RegisterGuide({ id = "TEST_ZONE_ENTRY", name = "zone entry", version = 1, faction = "Alliance", minLevel = 14, maxLevel = 17, map = 1436, zone = "Westfall",
+        steps = {
+            { type = "TRAVEL", map = 1436, zone = "Westfall", x = 56.2, y = 43.9, radius = 60, note = "travel to Westfall (Westfall)" },
+            { type = "NOTE", map = 1436, zone = "Westfall", x = 56.2, y = 43.9, text = "set your hearthstone at the inn in Westfall (if there is one)" },
+            { type = "ACCEPT", quest = 6181, questName = "A Swift Message", npc = 491, npcName = "Quartermaster Lewis", map = 1436, zone = "Westfall", x = 57, y = 47.2 },
+            { type = "ACCEPT", quest = 12, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 },
+            { type = "ACCEPT", quest = 102, questName = "Patrolling Westfall", npc = 821, npcName = "Captain Danuvin", map = 1436, zone = "Westfall", x = 56.4, y = 47.6 },
+            { type = "ACCEPT", quest = 65, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 },
+        } })
+    local savedLevel = ns.Player:GetLevel()
+    MOCK_LEVEL(14); settle()
+    G:Activate("TEST_ZONE_ENTRY", true); settle()
     local steps = G.active.steps
     check(steps[1].type == "TRAVEL" and steps[1].map == 1436, "Westfall chapter starts with a travel step")
     check(cur() == 1, "outside Westfall the guide holds the travel step (" .. tostring(cur()) .. ")")
@@ -1373,6 +1366,7 @@ do
     check(G.progress.done[1] == true, "the travel step is marked done by the resync")
     MOCK_ABANDON(12) MOCK_ABANDON(102)
     MOCK_ZONE(savedMap, savedZone, 48, 43); settle()
+    MOCK_LEVEL(savedLevel); settle()
     G:Activate("HUMAN_NORTHSHIRE_1_6", true); G:Reset(); settle()
 end
 
@@ -1539,38 +1533,6 @@ do
     for _, line in ipairs(lines) do check(type(line) == "string" and #line > 0, "each line is text") end
 end
 
--- ---- gear wear: the bags banner does the repair reminder too ---------------------------------
-do
-    local B = ns.Bags
-    MOCK_GEAR(nil)
-    check(B:Durability() == nil, "no gear that wears: nothing to say")
-    MOCK_BAG(10, 0, 0)          -- roomy bags, so only the gear can raise the banner
-    MOCK_GEAR(80)
-    B:Check("test")
-    check(B:GearLow() == nil, "gear at 80% is fine")
-    check(B:Tag() == nil, "and the header has no gear tag")
-    MOCK_GEAR(18)
-    B:Check("test")
-    local d = B:GearLow()
-    check(d ~= nil and math.abs(d.percent - 18) < 1, "gear at 18% is low (" .. tostring(d and math.floor(d.percent)) .. ")")
-    check((B:Advice() or ""):find("repair", 1, true) ~= nil, "the details still advise repair")
-    local tag = B:Tag()
-    check(tag == "gear 18%", "and the header tag reads " .. tostring(tag))
-    MOCK_GEAR(40, { [1] = 0 })
-    B:Check("test")
-    local broken = B:GearLow()
-    check(broken and broken.broken == 1 and broken.worst == "head", "a broken piece is named (" .. tostring(broken and broken.worst) .. ")")
-    check((B:Advice() or ""):find("broken", 1, true) ~= nil, "the details mention broken gear")
-    -- full bags win: one errand, the more urgent line
-    MOCK_BAG(0, 2, 0)
-    B:Check("test")
-    check(B:Tag() == "bags 0/16", "full bags take priority in the header tag")
-    MOCK_GEAR(nil)
-    MOCK_BAG(10, 0, 0)
-    B:Check("test")
-    check(B:Tag() == nil, "and everything settles down again")
-end
-
 -- ---- a chapter of another race's route ---------------------------------------------------------
 -- (seen live 2026-09-22: a level-20 dwarf in Duskwood was following "6. Ashenvale 19-22 (Night Elf)"
 --  while /fg path said the Dwarf route; the race-only quests in it are skipped, so say so)
@@ -1703,23 +1665,18 @@ end
 do
     local I = ns.Instance
     ns.UI:Show()
-    MOCK_BAG(0, 3, 0)            -- something that would raise a banner outside
-    ns.Bags:Check("test")
-    check(ns.Bags:Tag() == "bags 0/16", "outside, the full-bag header tag shows")
 
     MOCK_INSTANCE("party")
     check(I:Inside() == true, "the addon knows it is in a dungeon")
     check(ns.UI:AllHidden() == true and ns.UI:IsSuspended("dungeon"), "so everything is put away")
     check(ns.db.ui.hiddenAll ~= true, "without touching the hide-everything setting")
-    ns.Bags:Check("test")
     check(not ns.UI:Create():IsShown(), "the guide window stays down inside")
     ns.Crowd:Update()
     check(not ForeverGuideCrowdBanner:IsShown(), "the crowd banner too")
 
     MOCK_INSTANCE(nil)
     check(ns.UI:AllHidden() == false, "walking out brings it back")
-    ns.Bags:Check("test")
-    check(ns.UI:Create():IsShown() and ns.Bags:Tag() == "bags 0/16", "guide and bag tag return outside")
+    check(ns.UI:Create():IsShown(), "the guide window returns outside")
 
     -- a battleground counts, a city does not
     MOCK_INSTANCE("pvp")
@@ -1742,8 +1699,99 @@ do
     ns.Persist:DecodeAcct(acct)
     check(ns.db.instance.hide == false, "the dungeon switch is kept in the mirror")
     ns.Commands:Run("dungeon on")
-    MOCK_BAG(10, 0, 0)
-    ns.Bags:Check("test")
+end
+
+-- ---- a dungeon's own guide: listed apart, never auto-picked, back to the chapter afterwards ----
+do
+    local CHAPTER = "GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST"
+    local function dungeon(id, quest)
+        ns.RegisterGuide({ id = id, name = id, version = 1, kind = "dungeon", faction = "Alliance", minLevel = 1, maxLevel = 60, map = 1429, zone = "Elwynn Forest",
+            steps = {
+                { type = "ACCEPT", quest = quest, questName = "Into the Hold", map = 1429, x = 40, y = 40 },
+                { type = "TURNIN", quest = quest, questName = "Into the Hold", map = 1429, x = 40, y = 40 },
+            } })
+    end
+    dungeon("DUNGEON_ALLIANCE_TEST_HOLD", 99901)
+    dungeon("DUNGEON_ALLIANCE_TEST_DEEPS", 99902)
+
+    check(G:IsDungeon(G:Get("DUNGEON_ALLIANCE_TEST_HOLD")), "a guide of kind dungeon is a dungeon guide")
+    check(not G:IsDungeon(G:Get(CHAPTER)), "a levelling chapter is not")
+    local listed = {}
+    for _, g in ipairs(G:Dungeons()) do listed[g.id] = true end
+    check(listed.DUNGEON_ALLIANCE_TEST_HOLD and not listed[CHAPTER], "the Dungeons list holds dungeon guides only")
+    local pick = G:AutoPick()
+    check(pick ~= nil and not G:IsDungeon(pick), "auto-pick never lands on a dungeon guide, even one covering every level (" .. tostring(pick and pick.id) .. ")")
+
+    -- finishing the dungeon guide goes back to the chapter it was opened from
+    G:Activate(CHAPTER, true); settle()
+    G:Activate("DUNGEON_ALLIANCE_TEST_HOLD", true); settle()
+    MOCK_ACCEPT(99901, "Into the Hold", {}); settle()
+    MOCK_TURNIN(99901); settle()
+    check(G.active and G.active.id == CHAPTER, "finishing the dungeon guide returns to the chapter left (" .. tostring(G.active and G.active.id) .. ")")
+
+    -- /fg resume goes back before the run is done
+    G:Activate("DUNGEON_ALLIANCE_TEST_DEEPS", true); settle()
+    ns.Commands:Run("resume")
+    check(G.active and G.active.id == CHAPTER, "/fg resume returns to the chapter (" .. tostring(G.active and G.active.id) .. ")")
+
+    -- opening another chapter by hand forgets the way back
+    G:Activate("DUNGEON_ALLIANCE_TEST_DEEPS", true); settle()
+    G:Activate("GEN_ALLIANCE_HUMAN_03_WESTFALL", true); settle()
+    check(ns.char.returnGuide == nil, "choosing a chapter by hand clears the chapter to return to")
+    G:Activate(CHAPTER, true); settle()
+end
+
+-- ---- the dungeon badge: the next dungeon, how many of its quests are in the log, and a panel ----
+do
+    local D = ns.Dungeons
+    local levelBefore = ns.Player:GetLevel()
+    ns.RegisterGuide({ id = "DUNGEON_ALLIANCE_TEST_BADGE", name = "Test Badge 15-22", version = 1, kind = "dungeon", faction = "Alliance", minLevel = 15, maxLevel = 22, map = 1436, zone = "Westfall",
+        steps = {
+            { type = "ACCEPT", quest = 99911, questName = "Badge One", npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 },
+            { type = "ACCEPT", quest = 99912, questName = "Badge Two", npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2 },
+            { type = "NOTE", text = "Find a group for Test Badge", map = 1436, zone = "Westfall", x = 42.5, y = 71.7 },
+            { type = "ACCEPT", quest = 99913, questName = "Given Inside", map = 1436, zone = "Westfall", x = 42.5, y = 71.7 },
+            { type = "TURNIN", quest = 99911, questName = "Badge One", map = 1436, x = 56.2, y = 47.6 },
+            { type = "TURNIN", quest = 99912, questName = "Badge Two", map = 1453, x = 65.2, y = 21.2 },
+            { type = "TURNIN", quest = 99913, questName = "Given Inside", map = 1436, x = 56.2, y = 47.6 },
+        } })
+    local g = G:Get("DUNGEON_ALLIANCE_TEST_BADGE")
+
+    MOCK_LEVEL(10); settle()
+    check(D:Status(g).state == "later", "five levels short: not on the radar yet (" .. D:Status(g).state .. ")")
+    MOCK_LEVEL(14); settle()
+    local st = D:Status(g)
+    check(st.total == 2 and st.have == 0 and st.state == "upcoming", "a level short: upcoming, the two quests given outside counted (" .. st.have .. "/" .. st.total .. " " .. st.state .. ")")
+
+    MOCK_LEVEL(15); settle()
+    MOCK_ACCEPT(99911, "Badge One", {}); settle()
+    check(D:Status(g).have == 1 and D:Status(g).state == "gathering", "one picked up: gathering")
+    check(D:BadgeText() == "Test Badge 1/2", "the badge names the dungeon and the count (" .. tostring(D:BadgeText()) .. ")")
+    MOCK_ACCEPT(99912, "Badge Two", {}); settle()
+    check(D:Status(g).state == "ready" and D:BadgeText() == "Test Badge 2/2 - ready", "all picked up at the level: ready (" .. tostring(D:BadgeText()) .. ")")
+
+    local mode = ns.char.mode
+    ns.char.mode = "guide"
+    ns.QuestGuide:Refresh()
+    local button = ns.QuestGuide.frame.header.dungeon
+    check(button and button:IsShown() and (button.label:GetText() or "") == "Test Badge 2/2 - ready", "the header carries the badge as a button")
+    ns.char.mode = mode
+
+    local panel = D:ShowPanel(g)
+    local body = panel.body:GetText() or ""
+    check(panel:IsShown() and body:find("Badge One", 1, true) and body:find("in your log", 1, true), "the panel lists the quests and where they stand")
+    check(body:find("Given Inside", 1, true) and body:find("given inside", 1, true), "and the quests given inside the dungeon")
+    panel.waypoint:GetScript("OnClick")()
+    local t = ns.Navigation.target
+    check(t and t.owner == "dungeon" and math.abs(t.x - 42.5) < 0.01 and math.abs(t.y - 71.7) < 0.01, "Waypoint points at the entrance")
+    panel:Hide()
+
+    MOCK_LEVEL(22); settle()
+    check(D:BadgeText() == "Test Badge - hand in by 22", "at the full-XP limit the badge says to hand in (" .. tostring(D:BadgeText()) .. ")")
+
+    MOCK_TURNIN(99911); MOCK_TURNIN(99912); MOCK_ACCEPT(99913, "Given Inside", {}); MOCK_TURNIN(99913); settle()
+    check(D:Status(g).state == "done" and D:BadgeText() ~= "Test Badge - hand in by 22" and (D:BadgeText() or ""):find("Test Badge", 1, true) == nil, "a finished dungeon leaves the badge")
+    MOCK_LEVEL(levelBefore); settle()
 end
 
 -- ---- no swallowed errors anywhere -------------------------------------------------
