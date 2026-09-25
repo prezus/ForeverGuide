@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_02_DARKSHORE",
   "name": "2. Darkshore 13-18 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 13,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 2 of the Skyborne route: level 13 to 18, 146 steps, ~224 min of play in the model (20565 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 3841, "npcName": "Caylais Moonfeather", "map": 1439, "zone": "Darkshore", "x": 36.3, "y": 45.6},
     {"type": "ACCEPT", "quest": 1684, "questName": "Elanaria", "npc": 2151, "npcName": "Moon Priestess Amara", "map": 1438, "zone": "Teldrassil", "x": 55.6, "y": 58.4, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 1684, "questName": "Elanaria", "npc": 4088, "npcName": "Elanaria", "map": 1457, "zone": "Darnassus", "x": 57.4, "y": 34.8, "class": ["WARRIOR"]},
     {"type": "ACCEPT", "quest": 94792, "questName": "Taming the Beast", "npc": 251507, "npcName": "Josephine Carson", "map": 1429, "zone": "Elwynn Forest", "x": 41.2, "y": 66.2, "note": "New in Forever", "class": ["HUNTER"]},
