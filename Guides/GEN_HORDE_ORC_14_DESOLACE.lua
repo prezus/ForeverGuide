@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_14_DESOLACE",
     name = "14. Desolace 42-43 (Orc)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 42,
