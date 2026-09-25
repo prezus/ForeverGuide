@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_22_BLASTED_LANDS",
     name = "22. Blasted Lands 45-46 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 45,
