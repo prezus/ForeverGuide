@@ -123,8 +123,10 @@ function Theme.NewButton(parent, text, width, height, onClick, icon, opts)
         label:SetPoint("RIGHT", b, "RIGHT", -8, 0)
         b.icon = ic
     else
-        label:SetPoint("LEFT", b, "LEFT", 8, 0)
-        label:SetPoint("RIGHT", b, "RIGHT", -8, 0)
+        -- a narrow button (the header's R and !) keeps its label from being cut to ".."
+        local pad = width <= 32 and 2 or 8
+        label:SetPoint("LEFT", b, "LEFT", pad, 0)
+        label:SetPoint("RIGHT", b, "RIGHT", -pad, 0)
     end
     pcall(label.SetJustifyV, label, "MIDDLE")
     label:SetText(text)

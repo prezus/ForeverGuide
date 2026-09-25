@@ -54,6 +54,8 @@ class Layout:
         self.regions = {r["id"]: r for r in scene["regions"]}
         self.fonts = fonts
         self.rects = {}
+        # font strings sized to their own text: the client never cuts those
+        self.auto_width = set()
 
     def text_size(self, r, width=None):
         font = self.fonts(r.get("font") or 12)
@@ -86,6 +88,8 @@ class Layout:
         if "top" in edges and "bottom" in edges:
             h = edges["bottom"] - edges["top"]
         if r["kind"] == "FontString" and (w is None or h is None):
+            if w is None:
+                self.auto_width.add(rid)
             tw, th = self.text_size(r, w)
             w, h = (w if w is not None else tw), (h if h is not None else th)
         w, h = w or 0, h or 0
@@ -142,10 +146,10 @@ def wrap(text, font, width):
 
 
 def truncate(text, font, width):
-    """One line as the client draws it: cut with an ellipsis when it does not fit. A couple of
-    pixels over is font rounding (the stand-in font is not the game's), not a real overflow."""
+    """One line as the client draws it: cut with an ellipsis when it does not fit. No slack: a
+    label that only just overflows here is cut in the game too (the header's R once showed "..")."""
     line = text.split("\n")[0]
-    if width is None or font.getlength(plain(line)) <= width + 2 * font.size / 12:
+    if width is None or font.getlength(plain(line)) <= width:
         return line
     line = plain(line)
     while line and font.getlength(line + "\u2026") > width:
@@ -227,6 +231,7 @@ def render(scene, font_path, scale):
 
     layout = Layout(scene, fonts)
     skipped = set()
+    cut = set()
     regions = scene["regions"]
     by_id = {r["id"]: r for r in regions}
 
@@ -282,7 +287,13 @@ def render(scene, font_path, scale):
             return
         font = fonts(r.get("font") or 12, scale)
         width = (rect[2] - rect[0]) * scale
-        lines = [truncate(text, font, width if width > 0 else None)] if r.get("oneLine") else wrap(plain(text), font, width if width > 0 else None)
+        if r.get("oneLine"):
+            lines = [truncate(text, font, None if r["id"] in layout.auto_width or width <= 0 else width)]
+            if lines[0] != text.split("\n")[0]:
+                # a label the client would cut too: say so, a button showing ".." is a UI bug
+                cut.add(f"{plain(text)!r} shows as {plain(lines[0])!r}")
+        else:
+            lines = wrap(plain(text), font, width if width > 0 else None)
         lh = line_height(font)
         x0, y0, x1, y1 = box(rect)
         total = lh * len(lines)
@@ -354,6 +365,8 @@ def render(scene, font_path, scale):
         draw_tooltip(out, box(tip), m["tooltip"], lambda size: fonts(size, scale), scale)
     for name in sorted(skipped):
         print(f"  {scene['scene']}: skipped game texture {name}")
+    for label in sorted(cut):
+        print(f"  {scene['scene']}: truncated {label}")
     return out
 
 
