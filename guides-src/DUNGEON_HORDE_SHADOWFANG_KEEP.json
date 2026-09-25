@@ -1,0 +1,24 @@
+{
+  "id": "DUNGEON_HORDE_SHADOWFANG_KEEP",
+  "name": "Shadowfang Keep 18-30",
+  "version": 1,
+  "kind": "dungeon",
+  "faction": "Horde",
+  "minLevel": 18,
+  "maxLevel": 30,
+  "map": 1421,
+  "zone": "Silverpine Forest",
+  "author": "ForeverGuide route planner",
+  "notes": "Shadowfang Keep: the quests, the run and the turn-ins. Open it when you have a group.",
+  "steps": [
+    {"type": "ACCEPT", "quest": 1013, "questName": "The Book of Ur", "npc": 2934, "npcName": "Keeper Bel'dugur", "map": 1458, "zone": "Undercity", "x": 53.6, "y": 54},
+    {"type": "ACCEPT", "quest": 1014, "questName": "Arugal Must Die", "npc": 1938, "npcName": "Dalar Dawnweaver", "map": 1421, "zone": "Silverpine Forest", "x": 44.2, "y": 39.8},
+    {"type": "ACCEPT", "quest": 1098, "questName": "Deathstalkers in Shadowfang", "npc": 1952, "npcName": "High Executor Hadrec", "map": 1421, "zone": "Silverpine Forest", "x": 43.4, "y": 40.8},
+    {"type": "NOTE", "map": 1421, "zone": "Silverpine Forest", "x": 44.8, "y": 67.8, "note": "All quests available from level 18; hand them in by level 30 for full XP", "text": "Find a group for Shadowfang Keep"},
+    {"type": "COLLECT", "quest": 1013, "questName": "The Book of Ur", "target": "The Book of Ur", "count": 1, "map": 1421, "zone": "Silverpine Forest", "x": 44.8, "y": 67.8},
+    {"type": "COLLECT", "quest": 1014, "questName": "Arugal Must Die", "target": "Head of Arugal", "count": 1, "map": 1421, "zone": "Silverpine Forest", "x": 44.8, "y": 67.8},
+    {"type": "TURNIN", "quest": 1098, "questName": "Deathstalkers in Shadowfang", "map": 1421, "zone": "Silverpine Forest", "x": 44.8, "y": 67.8},
+    {"type": "TURNIN", "quest": 1014, "questName": "Arugal Must Die", "npc": 1938, "npcName": "Dalar Dawnweaver", "map": 1421, "zone": "Silverpine Forest", "x": 44.2, "y": 39.8},
+    {"type": "TURNIN", "quest": 1013, "questName": "The Book of Ur", "npc": 2934, "npcName": "Keeper Bel'dugur", "map": 1458, "zone": "Undercity", "x": 53.6, "y": 54}
+  ]
+}
