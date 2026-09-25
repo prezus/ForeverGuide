@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_16_DUSTWALLOW_MARSH",
     name = "16. Dustwallow Marsh 38-38 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 38,
