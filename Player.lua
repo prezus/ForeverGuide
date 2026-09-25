@@ -65,6 +65,25 @@ function Player:GetClass()
     return self.cache.class, self.cache.classFile, self.cache.classID
 end
 
+--- The character's rank in a profession or secondary skill by its English name ("Cooking"), 0 when
+--- the character does not have it, or nil when the client lists no skills (so nothing is hidden).
+--- Read from the skill lines and kept until they change.
+function Player:ProfessionRank(name)
+    local num = rawget(_G, "GetNumSkillLines")
+    local info = rawget(_G, "GetSkillLineInfo")
+    if type(num) ~= "function" or type(info) ~= "function" then return nil end
+    if not self.cache.skills then
+        local skills = {}
+        for i = 1, PlainNumber(Safe(num)) or 0 do
+            local skillName, isHeader, _, rank = Safe(info, i)
+            skillName = PlainString(skillName)
+            if skillName and not isHeader then skills[skillName] = PlainNumber(rank) or 0 end
+        end
+        self.cache.skills = skills
+    end
+    return self.cache.skills[name] or 0
+end
+
 function Player:GetRace()
     if not self.cache.raceFile then
         local name, file = Safe(UnitRace, "player")
@@ -195,6 +214,9 @@ end
 -- Events
 -- ------------------------------------------------------------
 function Player:OnInit()
+    -- professions learned, raised or dropped: read the skill lines again when next asked
+    ns.Events:RegisterMany({ "SKILL_LINES_CHANGED", "CHAT_MSG_SKILL" }, function() self.cache.skills = nil end)
+
     ns.Events:Register("PLAYER_LEVEL_UP", function(_, level)
         level = PlainNumber(level)
         if level then self.cache.level = level end

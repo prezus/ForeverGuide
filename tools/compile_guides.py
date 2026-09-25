@@ -32,7 +32,11 @@ STEP_FIELDS = {
     "npc": int, "npcName": str, "target": str, "count": int, "item": int, "itemName": str,
     "spell": int, "spellName": str, "level": int, "map": int, "zone": str, "x": (int, float),
     "y": (int, float), "radius": (int, float), "optional": bool, "near": bool, "faction": str,
-    "class": list, "race": list,
+    "class": list, "race": list, "profession": str, "skill": int,
+}
+PROFESSIONS = {
+    "Alchemy", "Blacksmithing", "Enchanting", "Engineering", "Herbalism", "Leatherworking", "Mining",
+    "Skinning", "Tailoring", "Cooking", "First Aid", "Fishing",
 }
 GUIDE_FIELDS = {
     "id": str, "name": str, "version": int, "kind": str, "faction": str, "race": list, "class": list,
@@ -101,6 +105,10 @@ def validate(guide, filename):
             raise GuideError(f"{where}: coordinates must be 0-100")
         if "x" in step and "map" not in step and "zone" not in step:
             raise GuideError(f"{where}: coordinates need 'map' or 'zone'")
+        if "profession" in step and step["profession"] not in PROFESSIONS:
+            raise GuideError(f"{where}: profession '{step['profession']}' must be one of {sorted(PROFESSIONS)}")
+        if "skill" in step and "profession" not in step:
+            raise GuideError(f"{where}: 'skill' needs a 'profession'")
         for listkey in ("class", "race"):
             if listkey in step and not all(isinstance(v, str) for v in step[listkey]):
                 raise GuideError(f"{where}: {listkey} must be a list of strings")
@@ -116,7 +124,7 @@ def validate(guide, filename):
 # ------------------------------------------------------------
 KEY_ORDER = ["type", "quest", "questName", "objective", "npc", "npcName", "target", "count", "item",
              "itemName", "spell", "spellName", "level", "map", "zone", "x", "y", "radius", "optional", "near",
-             "faction", "class", "race", "text", "note"]
+             "faction", "class", "race", "profession", "skill", "text", "note"]
 
 
 def lua_string(s):
