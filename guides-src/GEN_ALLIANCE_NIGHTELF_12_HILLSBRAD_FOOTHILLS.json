@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_12_HILLSBRAD_FOOTHILLS",
   "name": "12. Hillsbrad Foothills 29-30 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 29,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 12 of the NightElf route: level 29 to 30, 24 steps, ~94 min of play in the model (21764 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 2432, "npcName": "Darla Harris", "map": 1424, "zone": "Hillsbrad Foothills", "x": 49.3, "y": 52.3},
     {"type": "TURNIN", "quest": 269, "questName": "Seeking Wisdom", "npc": 1212, "npcName": "Bishop Farthing", "map": 1453, "zone": "Stormwind City", "x": 39.2, "y": 28},
     {"type": "ACCEPT", "quest": 631, "questName": "The Thandol Span", "npc": 1075, "npcName": "Rhag Garmason", "map": 1437, "zone": "Wetlands", "x": 49.8, "y": 18.2},
     {"type": "TURNIN", "quest": 631, "questName": "The Thandol Span", "map": 1437, "zone": "Wetlands", "x": 51.2, "y": 8},
