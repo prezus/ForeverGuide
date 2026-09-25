@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_26_FELWOOD",
     name = "26. Felwood 48-49 (Tauren)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 48,
