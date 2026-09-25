@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_17_DESOLACE",
   "name": "17. Desolace 38-40 (Skyborne)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 38,
