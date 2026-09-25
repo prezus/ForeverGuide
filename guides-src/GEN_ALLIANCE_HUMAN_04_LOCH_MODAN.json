@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_04_LOCH_MODAN",
   "name": "4. Loch Modan 15-17 (Human)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 15,
@@ -14,6 +14,8 @@
   "steps": [
     {"type": "FLIGHTPATH", "npc": 1572, "npcName": "Thorgrum Borrelson", "map": 1432, "zone": "Loch Modan", "x": 33.9, "y": 51},
     {"type": "TURNIN", "quest": 92748, "questName": "Explosive Consultation", "npc": 11026, "npcName": "Sprite Jumpsprocket", "map": 1453, "zone": "Stormwind City", "x": 54.6, "y": 8},
+    {"type": "ACCEPT", "quest": 86667, "questName": "Snowbound", "npc": 49808, "npcName": "Grenhild Darktalon", "map": 1432, "zone": "Loch Modan", "x": 36.4, "y": 48.2, "note": "New in Forever"},
+    {"type": "COLLECT", "quest": 86667, "questName": "Snowbound", "target": "Jar of Snow", "count": 1, "map": 1426, "zone": "Dun Morogh", "x": 39.3, "y": 48.1},
     {"type": "ACCEPT", "quest": 433, "questName": "The Public Servant", "npc": 1977, "npcName": "Senator Mehr Stonehallow", "map": 1426, "zone": "Dun Morogh", "x": 68.6, "y": 56},
     {"type": "KILL", "quest": 433, "questName": "The Public Servant", "npc": 1117, "target": "Rockjaw Bonesnapper", "count": 10, "map": 1426, "zone": "Dun Morogh", "x": 70.8, "y": 56},
     {"type": "TURNIN", "quest": 433, "questName": "The Public Servant", "npc": 1977, "npcName": "Senator Mehr Stonehallow", "map": 1426, "zone": "Dun Morogh", "x": 68.6, "y": 56},
@@ -84,6 +86,7 @@
     {"type": "TURNIN", "quest": 1339, "questName": "Mountaineer Stormpike's Task", "npc": 1343, "npcName": "Mountaineer Stormpike", "map": 1432, "zone": "Loch Modan", "x": 24.8, "y": 18.2},
     {"type": "COLLECT", "quest": 307, "questName": "Filthy Paws", "target": "Miners' Gear", "count": 4, "map": 1432, "zone": "Loch Modan", "x": 34.9, "y": 23.4, "near": true},
     {"type": "TURNIN", "quest": 307, "questName": "Filthy Paws", "npc": 1343, "npcName": "Mountaineer Stormpike", "map": 1432, "zone": "Loch Modan", "x": 24.8, "y": 18.4},
+    {"type": "TURNIN", "quest": 86667, "questName": "Snowbound", "npc": 258043, "npcName": "Norric Lochthane", "map": 1432, "zone": "Loch Modan", "x": 41.8, "y": 19},
     {"type": "ACCEPT", "quest": 1338, "questName": "Stormpike's Order", "npc": 1343, "npcName": "Mountaineer Stormpike", "map": 1432, "zone": "Loch Modan", "x": 24.8, "y": 18.2},
     {"type": "ACCEPT", "quest": 250, "questName": "A Dark Threat Looms", "npc": 1093, "npcName": "Chief Engineer Hinderweir VII", "map": 1432, "zone": "Loch Modan", "x": 46.1, "y": 13.6},
     {"type": "TURNIN", "quest": 250, "questName": "A Dark Threat Looms", "map": 1432, "zone": "Loch Modan", "x": 56.1, "y": 13.2},
