@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_04_ASHENVALE",
   "name": "4. Ashenvale 24-26 (Skyborne)",
-  "version": 2,
+  "version": 5,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 24,
@@ -12,7 +12,9 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 4 of the Skyborne route: level 24 to 26, 39 steps, ~120 min of play in the model (22816 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 12616, "npcName": "Vhulgra", "map": 1440, "zone": "Ashenvale", "x": 73.2, "y": 61.6},
     {"type": "TRAVEL", "map": 1440, "zone": "Ashenvale", "x": 72.6, "y": 63.9, "radius": 60, "note": "travel to Ashenvale (Ashenvale)"},
+    {"type": "TURNIN", "quest": 6382, "questName": "The Ashenvale Hunt", "npc": 12696, "npcName": "Senani Thunderheart", "map": 1440, "zone": "Ashenvale", "x": 73.6, "y": 61.4},
     {"type": "HEARTH", "npc": 12196, "npcName": "Innkeeper Kaylisk", "map": 1440, "zone": "Splintertree Post", "x": 74.0, "y": 60.6, "note": "talk to Innkeeper Kaylisk and make this inn your home"},
     {"type": "ACCEPT", "quest": 6383, "questName": "The Ashenvale Hunt", "npc": 12696, "npcName": "Senani Thunderheart", "map": 1440, "zone": "Ashenvale", "x": 73.8, "y": 61.5},
     {"type": "ACCEPT", "quest": 25, "questName": "Stonetalon Standstill", "npc": 12737, "npcName": "Mastok Wrilehiss", "map": 1440, "zone": "Ashenvale", "x": 73.7, "y": 60},
@@ -31,6 +33,10 @@
     {"type": "ACCEPT", "quest": 6544, "questName": "Torek's Assault", "npc": 12858, "npcName": "Torek", "map": 1440, "zone": "Ashenvale", "x": 68.3, "y": 75.3},
     {"type": "COMPLETE", "quest": 6544, "questName": "Torek's Assault", "target": "Take Silverwing Outpost.", "map": 1440, "zone": "Ashenvale", "x": 64.7, "y": 75.3, "note": "escort - stay close, it can fail: Take Silverwing Outpost."},
     {"type": "TURNIN", "quest": 6544, "questName": "Torek's Assault", "npc": 12877, "npcName": "Ertog Ragetusk", "map": 1440, "zone": "Ashenvale", "x": 73, "y": 62.5},
+    {"type": "FLIGHTPATH", "npc": 11901, "npcName": "Andruk", "map": 1440, "zone": "Ashenvale", "x": 12.2, "y": 33.8},
+    {"type": "TURNIN", "quest": 6562, "questName": "Trouble in the Deeps", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2, "optional": true},
+    {"type": "ACCEPT", "quest": 6563, "questName": "The Essence of Aku'Mai", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2, "note": "For Blackfathom Deeps (dungeon guide)", "optional": true},
+    {"type": "NOTE", "note": "Picked up: The Essence of Aku'Mai. When you have a group, open Blackfathom Deeps under Dungeons.", "text": "Ready for Blackfathom Deeps", "optional": true},
     {"type": "ACCEPT", "quest": 6442, "questName": "Naga at the Zoram Strand", "npc": 12719, "npcName": "Marukai", "map": 1440, "zone": "Ashenvale", "x": 11.7, "y": 34.9},
     {"type": "ACCEPT", "quest": 6641, "questName": "Vorsha the Lasher", "npc": 12717, "npcName": "Muglash", "map": 1440, "zone": "Ashenvale", "x": 12.1, "y": 34.6},
     {"type": "ACCEPT", "quest": 6462, "questName": "Troll Charm", "npc": 12721, "npcName": "Mitsuwa", "map": 1440, "zone": "Ashenvale", "x": 11.7, "y": 34.9},
@@ -50,6 +56,8 @@
     {"type": "TURNIN", "quest": 6462, "questName": "Troll Charm", "npc": 12721, "npcName": "Mitsuwa", "map": 1440, "zone": "Ashenvale", "x": 11.7, "y": 34.9},
     {"type": "COLLECT", "quest": 6621, "questName": "King of the Foulweald", "target": "Murgut's Totem", "map": 1440, "zone": "Ashenvale", "x": 56, "y": 63, "near": true},
     {"type": "TURNIN", "quest": 6621, "questName": "King of the Foulweald", "npc": 12757, "npcName": "Karang Amakkar", "map": 1440, "zone": "Ashenvale", "x": 11.9, "y": 34.5},
+    {"type": "TURNIN", "quest": 98340, "questName": "The Great Cat Spirit", "npc": 11802, "npcName": "Dendrite Starblaze", "map": 1450, "zone": "Moonglade", "x": 56.2, "y": 30.4, "class": ["DRUID"]},
+    {"type": "ACCEPT", "quest": 98362, "questName": "To Thunder Bluff", "npc": 11802, "npcName": "Dendrite Starblaze", "map": 1450, "zone": "Moonglade", "x": 56.2, "y": 30.4, "note": "New in Forever", "class": ["DRUID"]},
     {"type": "TURNIN", "quest": 6482, "questName": "Freedom to Ruul", "npc": 12837, "npcName": "Yama Snowhoof", "map": 1440, "zone": "Ashenvale", "x": 74.1, "y": 60.9}
   ]
 }
