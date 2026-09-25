@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_16_DESOLACE",
     name = "16. Desolace 42-43 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 42,
