@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_02_UNDERCITY",
   "name": "2. Undercity 12-12 (Undead)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 12,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 2 of the Scourge route: level 12 to 12, 7 steps, ~7 min of play in the model (26891 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 4551, "npcName": "Michael Garrett", "map": 1458, "zone": "Undercity", "x": 63.3, "y": 48.6},
     {"type": "TRAVEL", "map": 1458, "zone": "Undercity", "x": 59.8, "y": 66.3, "radius": 60, "note": "travel to Undercity (Undercity)"},
     {"type": "NOTE", "map": 1458, "zone": "Undercity", "x": 59.8, "y": 66.3, "text": "set your hearthstone at the inn in Undercity (if there is one)"},
     {"type": "ACCEPT", "quest": 5725, "questName": "The Power to Destroy...", "npc": 2425, "npcName": "Varimathras", "map": 1458, "zone": "Undercity", "x": 56.3, "y": 92.2},
