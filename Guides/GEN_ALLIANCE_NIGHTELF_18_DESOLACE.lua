@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_18_DESOLACE",
     name = "18. Desolace 38-40 (Night Elf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 38,
