@@ -683,6 +683,28 @@ do
     check(ns.Bags:Tag() == nil, "room again: the header tag goes away")
 end
 
+-- ---- mob tooltips: live progress, only for objectives this mob actually serves ----------------
+do
+    MOCK_ACCEPT(52, "Protect the Frontier", { { text = "Young Forest Bear slain: 2/5", finished = false, numFulfilled = 2, numRequired = 5 } }); settle()
+    local lines = ns.ItemTips:MobLinesFor("Young Forest Bear")
+    check(#lines == 1 and lines[1]:find("Protect the Frontier", 1, true) and lines[1]:find("2/5", 1, true), "hovering a kill mob shows its live quest progress")
+    check(#ns.ItemTips:MobLinesFor("Riverpaw Runt") == 0, "a mob not needed for a live objective gets no quest status")
+    MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Painted Gnoll Armband: 3/8", finished = false, numFulfilled = 3, numRequired = 8 } }); settle()
+    lines = ns.ItemTips:MobLinesFor("Riverpaw Runt")
+    check(#lines == 1 and lines[1]:find("Riverpaw Gnoll Bounty", 1, true) and lines[1]:find("3/8", 1, true), "hovering a drop mob shows gathered item progress")
+    GameTooltip.unitName, GameTooltip.lines = "Riverpaw Runt", {}
+    GameTooltip:GetScript("OnTooltipSetUnit")(GameTooltip)
+    check(#GameTooltip.lines == 2 and GameTooltip.lines[2]:find("3/8", 1, true), "the unit tooltip actually receives the current quest progress")
+    GameTooltip.unitName, GameTooltip.lines = "Unrelated Critter", {}
+    GameTooltip:GetScript("OnTooltipSetUnit")(GameTooltip)
+    check(#GameTooltip.lines == 0 and #ns.ItemTips:MobLinesFor("Unrelated Critter") == 0, "unrelated mobs have no quest lines")
+    MOCK_PROGRESS(52, 1, 5); settle()
+    lines = ns.ItemTips:MobLinesFor("Young Forest Bear")
+    check(#lines == 1 and lines[1]:find("5/5", 1, true), "completed kills show their final count until turn-in")
+    MOCK_ABANDON(52); MOCK_ABANDON(11); settle()
+    check(#ns.ItemTips:MobLinesFor("Riverpaw Runt") == 0, "abandoned quests no longer show mob progress")
+end
+
 -- ---- item tooltips ------------------------------------------------------------------------------
 do
     -- Riverpaw Gnoll Bounty (11) collects Painted Gnoll Armband (782)

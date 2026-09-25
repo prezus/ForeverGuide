@@ -145,6 +145,38 @@ function Tips:LinesFor(itemID, itemName)
     return out
 end
 
+--- Live quest progress for objectives served by this mob (kills or item drops).
+function Tips:MobLinesFor(mobName)
+    local out = {}
+    local name = ns.PlainString(mobName)
+    if not name or name == "" or not ns.MobMarker then return out end
+    name = string.lower(name)
+    for _, questID in ipairs(ns.Quest.order or {}) do
+        local entry = ns.Quest:GetEntry(questID)
+        local live = entry and entry.objectives or {}
+        for k, o in ipairs(live) do
+            if ns.MobMarker:ObjectiveNames(questID, k, live)[name] then
+                local text = (o.text or ""):gsub(":%s*%d+%s*/%s*%d+%s*$", "")
+                local progress = o.numRequired > 0 and string.format("%d/%d", o.numFulfilled, o.numRequired) or (o.finished and "complete" or "in progress")
+                out[#out + 1] = string.format("%s: %s (%s)", entry.title, text, progress)
+            end
+        end
+    end
+    return out
+end
+
+local function decorateMob(tooltip)
+    if not tooltip or not tooltip.GetUnit then return end
+    local ok, name, unit = pcall(tooltip.GetUnit, tooltip)
+    if not ok then return end
+    name = ns.PlainString(name) or (unit and ns.PlainString(ns.Safe(UnitName, unit)))
+    local lines = Tips:MobLinesFor(name)
+    if #lines == 0 then return end
+    pcall(tooltip.AddLine, tooltip, " ")
+    for _, line in ipairs(lines) do pcall(tooltip.AddLine, tooltip, line, 1, 0.82, 0.2, true) end
+    if tooltip.Show then pcall(tooltip.Show, tooltip) end
+end
+
 local COLORS = { log = { 1, 0.82, 0.2 }, done = { 0.6, 0.75, 0.5 }, route = { 1, 0.7, 0.3 }, other = { 0.8, 0.75, 0.6 }, starts = { 0.55, 0.85, 0.45 }, leftover = { 0.62, 0.62, 0.62 } }
 
 local function decorate(tooltip, itemID, itemName)
@@ -180,6 +212,14 @@ function Tips:OnEnable()
     self:RememberLog()
     local TDP = rawget(_G, "TooltipDataProcessor")
     local E = rawget(_G, "Enum")
+    local gt = rawget(_G, "GameTooltip")
+    if TDP and TDP.AddTooltipPostCall and E and E.TooltipDataType and E.TooltipDataType.Unit then
+        TDP.AddTooltipPostCall(E.TooltipDataType.Unit, function(tooltip)
+            if tooltip == gt then decorateMob(tooltip) end
+        end)
+    elseif gt and gt.HookScript then
+        pcall(gt.HookScript, gt, "OnTooltipSetUnit", decorateMob)
+    end
     if TDP and TDP.AddTooltipPostCall and E and E.TooltipDataType and E.TooltipDataType.Item then
         TDP.AddTooltipPostCall(E.TooltipDataType.Item, function(tooltip, data)
             if tooltip ~= rawget(_G, "GameTooltip") and tooltip ~= rawget(_G, "ItemRefTooltip") then return end
@@ -188,7 +228,6 @@ function Tips:OnEnable()
         end)
         self.hooked = "TooltipDataProcessor"
     else
-        local gt = rawget(_G, "GameTooltip")
         if gt and gt.HookScript then
             pcall(gt.HookScript, gt, "OnTooltipSetItem", function(tooltip)
                 local okn, name, link = pcall(tooltip.GetItem, tooltip)

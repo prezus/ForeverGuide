@@ -52,6 +52,7 @@ local function NewRegion(kind)
     function r:SetBackdropColor() end
     function r:SetBackdropBorderColor() end
     function r:SetScript(name, fn) self.scripts[name] = fn end
+    function r:HookScript(name, fn) self.scripts[name] = fn end
     function r:GetScript(name) return self.scripts[name] end
     function r:RegisterEvent(ev) self.events[ev] = true end
     function r:UnregisterEvent(ev) self.events[ev] = nil end
@@ -147,7 +148,8 @@ function _G.Minimap:GetEffectiveScale() return 1 end
 _G.GetCursorPosition = function() return 600, 500 end
 _G.GameTooltip = NewRegion("GameTooltip")
 function _G.GameTooltip:SetOwner() end
-function _G.GameTooltip:AddLine() end
+function _G.GameTooltip:GetUnit() return self.unitName, "mouseover" end
+function _G.GameTooltip:AddLine(text) self.lines = self.lines or {} self.lines[#self.lines + 1] = text end
 _G.IsShiftKeyDown = function() return world.shift == true end
 _G.IsAltKeyDown = function() return world.alt == true end
 _G.GetNumQuestChoices = function() return world.questChoices or 0 end

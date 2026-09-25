@@ -163,6 +163,24 @@ function MM:FinishedNames()
     return set
 end
 
+--- Mob names proven to serve one live quest objective (including completed ones).
+function MM:ObjectiveNames(questID, index, live)
+    local set = {}
+    local o = live and live[index]
+    if not o then return set end
+    local DB = ns.DB
+    if DB and DB:IsLoaded() then
+        local d = liveToDB(DB, questID, index, live)
+        if d then objectiveMobs(DB, d, set) end
+    end
+    -- Forever-only quests may not have database entries. Only kill wording names a mob.
+    if not next(set) and o.text then
+        local mob = o.text:match("^(.-)%s+slain") or o.text:match("^(.-)%s+defeated")
+        if mob then addName(set, mob) end
+    end
+    return set
+end
+
 -- ---- nameplates -----------------------------------------------------------------------
 local function plateUnit(plate)
     return plate.namePlateUnitToken or (plate.UnitFrame and plate.UnitFrame.unit)
