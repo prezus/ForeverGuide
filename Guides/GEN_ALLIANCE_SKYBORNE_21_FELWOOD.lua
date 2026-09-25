@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_21_FELWOOD",
     name = "21. Felwood 45-45 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 45,
