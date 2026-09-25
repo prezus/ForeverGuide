@@ -188,13 +188,13 @@ function Persist:DecodeChar(s)
 end
 
 -- ---- account settings + edits ----------------------------------------------------
-local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "h", "ht", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "e" }
+local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "sco", "hvo", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "h", "ht", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "e" }
 
 function Persist:EncodeAcct()
     local db = ns.db
     local ui, arrow, mm, nav, auto = db.ui, db.ui.arrow or {}, db.minimap or {}, db.nav, db.auto or {}
     local t = {
-        v = 1,
+        v = 2,
         shown = b01(ui.shown ~= false), locked = b01(ui.locked), scale = ui.scale, point = ui.point, x = ui.x, y = ui.y,
         hic = b01(ui.hideInCombat), fs = ui.fontSize, ha = b01(ui.hiddenAll),
         op = ui.opacity, rows = ui.maxRows, w = ui.width, h = ui.height, ht = b01(ui.hideTracker ~= false),
@@ -208,7 +208,7 @@ function Persist:EncodeAcct()
         mm = b01(mm.shown ~= false), ma = mm.angle,
         bliz = b01(nav.blizzardWaypoint), rad = nav.arrivalRadius,
         acc = auto.accept, ti = b01(auto.turnin), ann = b01(auto.announce),
-        rec = b01(db.recorder and db.recorder.enabled),
+        rec = b01(db.recorder and db.recorder.enabled), sco = b01(db.scanEnabled), hvo = b01(db.harvestEnabled),
         dg = b01(db.ding == nil or db.ding.enabled ~= false), dc = db.ding and db.ding.channel,
         rmf = b01(db.reminders == nil or db.reminders.flight ~= false), rmt = b01(db.reminders == nil or db.reminders.trainer ~= false),
         dn = b01(db.instance == nil or db.instance.hide ~= false),
@@ -272,7 +272,12 @@ function Persist:DecodeAcct(s)
     if t.acc and t.acc ~= "" then auto.accept = t.acc end
     if t.ti then auto.turnin = bool(t.ti) end
     if t.ann then auto.announce = bool(t.ann) end
-    if t.rec and db.recorder then db.recorder.enabled = bool(t.rec) end
+    -- The v1 mirror stored default-on recording, not the player's opt-in.
+    if t.v == "2" then
+        if t.rec and db.recorder then db.recorder.enabled = bool(t.rec) end
+        if t.sco then db.scanEnabled = bool(t.sco) end
+        if t.hvo then db.harvestEnabled = bool(t.hvo) end
+    end
     if t.dn then
         db.instance = db.instance or {}
         db.instance.hide = bool(t.dn)

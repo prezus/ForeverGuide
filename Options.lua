@@ -59,10 +59,16 @@ local ITEMS = {
     { key = "autopick", label = "Pick a fitting guide automatically when none is active",
       get = function() return Bool(ns.char.autoPickGuide) end,
       set = function(v) ns.char.autoPickGuide = v end },
-    { header = "Data" },
-    { key = "recorder", label = "Record quest / NPC / coordinate data while playing (helps map WoW Forever's new quests)",
+    { header = "Data collection (all off until you opt in)" },
+    { key = "recorder", label = "Recorder: save quest/NPC locations and addon errors while playing",
       get = function() return Bool(ns.db.recorder.enabled) end,
       set = function(v) ns.db.recorder.enabled = v end },
+    { key = "scanner", label = "Scanner: collect quest IDs; allow /fg scan to query the server",
+      get = function() return Bool(ns.db.scanEnabled) end,
+      set = function(v) ns.Scanner:SetEnabled(v) end },
+    { key = "harvest", label = "Harvest: collect quest info and request map quest lines",
+      get = function() return Bool(ns.db.harvestEnabled) end,
+      set = function(v) ns.Harvest:SetEnabled(v) end },
 }
 
 -- ---- widgets --------------------------------------------------------------------------
@@ -195,7 +201,7 @@ function Options:Create()
     sub:SetText("Free leveling guide engine for WoW Forever. Everything here is also available as /fg commands (/fg help).")
     local more = panel:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
     more:SetPoint("TOPLEFT", sub, "BOTTOMLEFT", 0, -2)
-    more:SetText("Scroll for the rest of the settings.")
+    more:SetText("Scroll for the rest of the settings. Data collection is off until you opt in.")
 
     local body, scroll = MakeScroller(panel, -80)
     panel.body, panel.scroll = body, scroll
@@ -231,7 +237,7 @@ function Options:Create()
     hint:SetPoint("TOPLEFT", 16, y)
     hint:SetWidth(560)
     hint:SetJustifyH("LEFT")
-    hint:SetText("Something wrong? Stand where it should be, then use Report wrong step or /fg wrong. /fg reports opens a copyable list for review.\nLook: /fg qg scale|opacity|width|rows|wpsize|arrowsize <value>   (e.g. /fg qg opacity 0.8, or /fg arrow size 1.5)\nKey bindings: Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
+    hint:SetText("Data collection switches stop future capture when off; they do not erase previously saved data.\nSomething wrong? Stand where it should be, then use Report wrong step or /fg wrong. /fg reports opens a copyable list for review.\nLook: /fg qg scale|opacity|width|rows|wpsize|arrowsize <value>   (e.g. /fg qg opacity 0.8, or /fg arrow size 1.5)\nKey bindings: Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
 
     -- the scrolling child is exactly as tall as what we put on it
     if body ~= panel then

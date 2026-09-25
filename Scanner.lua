@@ -1,10 +1,12 @@
 -- ============================================================
 -- ForeverGuide / Scanner.lua  (v3: rate based, canary throttled)
--- Quest ID scanner: asks the server for every quest ID in a range and
+-- Opt-in quest ID scanner: asks the server for every quest ID in a range and
 -- records which ones exist (and their titles). Questie's Classic DB has
 -- the vanilla quests; diffing against this scan reveals Forever's new
 -- quests and the vanilla ones that were removed.
 --
+--   /fg scan on              opt in (off by default)
+--   /fg scan off             stop scanning and collecting quest IDs
 --   /fg scan                 scan the default ranges (1-12000 and 80000-120000)
 --   /fg scan 1 20000         custom range
 --   /fg scan resume          continue a paused scan
@@ -35,6 +37,7 @@ local _, ns = ...
 local Scanner = ns:NewModule("Scanner")
 
 local PlainNumber, PlainString, PlainBool = ns.PlainNumber, ns.PlainString, ns.PlainBool
+local function Enabled() return ns.db and ns.db.scanEnabled == true end
 
 local DEFAULT_RANGES = { { 1, 12000 }, { 80000, 120000 } }
 local RATE_START, RATE_MIN, RATE_MAX = 8, 1, 40     -- requests per second
@@ -252,7 +255,7 @@ end
 
 local lastReport = 0
 local function Tick(gen)
-    if gen ~= Scanner.gen or not Scanner.running then return end   -- a stale chain (stop + quick restart) dies here
+    if gen ~= Scanner.gen or not Scanner.running or not Enabled() then return end   -- a stale chain (stop + quick restart) dies here
     local s = Store()
     local now = ns.Now()
     local dt = math.min(1, now - (Scanner.lastTick or now))
@@ -338,6 +341,7 @@ local function BuildCanaryPool(s)
 end
 
 function Scanner:Begin(retryQueue)
+    if not Enabled() then return end
     local s = Store()
     self.gen = (self.gen or 0) + 1
     self.running = true
@@ -356,6 +360,7 @@ function Scanner:Begin(retryQueue)
 end
 
 function Scanner:Start(from, to)
+    if not Enabled() then ns.Print("enable Scanner under /fg options (Data collection) or /fg scan on first.") return end
     if self.running then ns.Print("scan already running (/fg scan stop)") return end
     local s = Store()
     if from == "new" then
@@ -384,6 +389,7 @@ function Scanner:Start(from, to)
 end
 
 function Scanner:Resume()
+    if not Enabled() then ns.Print("enable Scanner under /fg options (Data collection) or /fg scan on first.") return end
     if self.running then ns.Print("scan already running") return end
     local s = Store()
     if not s.ranges or not s.cursor then ns.Print("nothing to resume - /fg scan to start") return end
@@ -401,6 +407,11 @@ function Scanner:Resume()
         ns.Printf("resuming scan at id %d (%d unanswered ids re-asked first).", s.cursor[2], #queue)
     end
     self:Begin(queue)
+end
+
+function Scanner:SetEnabled(on)
+    if not on then self:Stop() end
+    ns.db.scanEnabled = on and true or false
 end
 
 function Scanner:Stop()
@@ -458,6 +469,7 @@ end
 
 function Scanner:OnInit()
     ns.Events:Register("QUEST_DATA_LOAD_RESULT", function(_, questID, success)
+        if not Enabled() then return end
         questID = PlainNumber(questID)
         if not questID then return end
         local info = Remove(questID)
@@ -477,6 +489,7 @@ function Scanner:OnInit()
 
     -- quests seen in the log are free data
     ns.Events:Register("FG_QUEST_LOG_CHANGED", function()
+        if not Enabled() then return end
         local s = Store()
         for entry in ns.Quest:Iterate() do
             if entry.title and entry.title ~= "" then Record(s, entry.questID, entry.title) end

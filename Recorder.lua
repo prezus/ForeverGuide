@@ -1,6 +1,6 @@
 -- ============================================================
 -- ForeverGuide / Recorder.lua  (Phase 10 "debug mode", lite)
--- Quietly records the facts a guide database needs while you play:
+-- When opted in (/fg rec on), records facts a guide database needs while you play:
 --   quest accepted / turned in / abandoned  -> quest ID, title, NPC, map, coords, level
 --   quest offered / turn-in window          -> which NPC gives / ends which quest
 --   objective progress                      -> where objectives are completed and on what
@@ -9,7 +9,7 @@
 --   ForeverGuide Lua errors                 -> key, message, guide step, location
 -- Everything goes to ForeverGuideDB.recorder (account-wide SavedVariables):
 --   WTF\Account\<acct>\SavedVariables\ForeverGuide.lua
--- Nothing is sent anywhere. /fg rec off disables it.
+-- Nothing is sent anywhere by the addon. Off by default; /fg rec off disables it.
 -- ============================================================
 
 local _, ns = ...

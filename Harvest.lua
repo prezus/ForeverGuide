@@ -1,6 +1,6 @@
 -- ============================================================
 -- ForeverGuide / Harvest.lua
--- Passive quest discovery. The server does not answer standalone
+-- Opt-in quest discovery. The server does not answer standalone
 -- C_QuestLog.RequestLoadQuestByID calls on this beta (see Scanner.lua),
 -- but the client still loads quest data through its normal channels.
 -- This module collects it from three places:
@@ -14,6 +14,7 @@
 --      cached while you played (map pins, quest givers, tooltips) is read
 --      out with its title.                        /fg harvest sweep
 --
+-- Off by default; /fg harvest on enables passive discovery and map requests.
 -- Everything is stored next to the scanner's data so scan_diff.py sees it:
 --   ForeverGuideDB.scan.quests[id] = title
 --   ForeverGuideDB.harvest.lines[id] = { map, x, y, line, lineName, name }
@@ -24,6 +25,7 @@ local _, ns = ...
 local Harvest = ns:NewModule("Harvest")
 
 local PlainNumber, PlainString, PlainBool = ns.PlainNumber, ns.PlainString, ns.PlainBool
+local function Enabled() return ns.db and ns.db.harvestEnabled == true end
 
 local SWEEP_FROM, SWEEP_TO, SWEEP_CHUNK = 1, 120000, 3000
 local CONTINENTS = { 1414, 1415, 947 }   -- Kalimdor, Eastern Kingdoms, Azeroth (Classic Era uiMapIDs)
@@ -43,7 +45,7 @@ local function Store()
 end
 
 local function RecordQuest(id, title, source)
-    if not id or id <= 0 then return false end
+    if not Enabled() or not id or id <= 0 then return false end
     local s = Store()
     local isNew = s.quests[id] == nil
     if title and title ~= "" then
@@ -59,6 +61,7 @@ end
 -- 1. Quest lines per map
 -- ------------------------------------------------------------
 function Harvest:ReadMap(mapID)
+    if not Enabled() then return 0, 0 end
     local s, h = Store()
     local lines = ns.Call("C_QuestLine.GetAvailableQuestLines", mapID)
     if type(lines) ~= "table" then return 0, 0 end
@@ -98,6 +101,7 @@ function Harvest:ReadMap(mapID)
 end
 
 function Harvest:RequestMap(mapID)
+    if not Enabled() then return end
     self.pendingMaps[mapID] = true
     ns.Call("C_QuestLine.RequestQuestLinesForMap", mapID)
 end
@@ -121,20 +125,24 @@ function Harvest:AllZoneMaps()
 end
 
 function Harvest:HarvestAllMaps()
+    if not Enabled() then ns.Print("enable Harvest under /fg options (Data collection) or /fg harvest on first.") return end
     if self.harvesting then ns.Print("harvest: already running.") return end
     local maps = self:AllZoneMaps()
     if #maps == 0 then ns.Warn("harvest: no maps found (C_Map.GetMapChildrenInfo returned nothing)") return end
-    self.harvesting = true
+    local run = {}
+    self.harvesting = run
     ns.Printf("harvest: requesting quest lines for %d maps...", #maps)
     local i = 0
     local totalLines, totalNew = 0, 0
     local function step()
+        if not Enabled() or self.harvesting ~= run then return end
         for _ = 1, 4 do
             i = i + 1
             local mapID = maps[i]
             if not mapID then
                 -- give the last answers a moment, then read everything once more
                 ns.Events:After(3, function()
+                    if not Enabled() or Harvest.harvesting ~= run then return end
                     for _, m in ipairs(maps) do
                         local n, new = Harvest:ReadMap(m)
                         totalLines, totalNew = totalLines + n, totalNew + new
@@ -159,15 +167,16 @@ end
 -- 3. Cache sweep
 -- ------------------------------------------------------------
 function Harvest:Sweep(from, to)
+    if not Enabled() then ns.Print("enable Harvest under /fg options (Data collection) or /fg harvest on first.") return end
     if self.sweeping then ns.Print("sweep already running") return end
     local have = rawget(_G, "HaveQuestData")
     if type(have) ~= "function" then ns.Warn("HaveQuestData is not available on this client") return end
     from, to = tonumber(from) or SWEEP_FROM, tonumber(to) or SWEEP_TO
     self.sweeping = { id = from, to = to, found = 0, new = 0 }
+    local sw = self.sweeping
     ns.Printf("harvest: sweeping the client's quest cache for ids %d-%d...", from, to)
     local function step()
-        local sw = self.sweeping
-        if not sw then return end
+        if self.sweeping ~= sw or not Enabled() then return end
         local last = math.min(sw.to, sw.id + SWEEP_CHUNK - 1)
         for id = sw.id, last do
             local ok, cached = pcall(have, id)
@@ -191,9 +200,21 @@ end
 -- ------------------------------------------------------------
 -- Events
 -- ------------------------------------------------------------
+function Harvest:SetEnabled(on)
+    ns.db.harvestEnabled = on and true or false
+    if on then
+        local mapID = ns.Player:GetMapID()
+        if mapID then self:RequestMap(mapID) end
+    else
+        self.harvesting, self.sweeping = nil, nil
+        self.pendingMaps = {}
+    end
+end
+
 function Harvest:OnInit()
     -- 2. gossip windows: quests offered / active at this NPC
     ns.Events:Register("GOSSIP_SHOW", function()
+        if not Enabled() then return end
         local new = 0
         for _, fn in ipairs({ "C_GossipInfo.GetAvailableQuests", "C_GossipInfo.GetActiveQuests" }) do
             local list = ns.Call(fn)
@@ -208,6 +229,7 @@ function Harvest:OnInit()
 
     -- quest offer / turn-in windows
     ns.Events:RegisterMany({ "QUEST_DETAIL", "QUEST_PROGRESS", "QUEST_COMPLETE" }, function()
+        if not Enabled() then return end
         local id = PlainNumber(ns.Safe(rawget(_G, "GetQuestID")))
         local title = PlainString(ns.Safe(rawget(_G, "GetTitleText")))
         RecordQuest(id, title, "questframe")
@@ -215,6 +237,7 @@ function Harvest:OnInit()
 
     -- any quest data the client loads for whatever reason
     ns.Events:Register("QUEST_DATA_LOAD_RESULT", function(_, questID, success)
+        if not Enabled() then return end
         questID = PlainNumber(questID)
         if questID and PlainBool(success) then
             RecordQuest(questID, PlainString(ns.Call("C_QuestLog.GetTitleForQuestID", questID)), "load")
@@ -223,6 +246,7 @@ function Harvest:OnInit()
 
     -- quest lines answered
     ns.Events:Register("QUESTLINE_UPDATE", function()
+        if not Enabled() then return end
         for mapID in pairs(self.pendingMaps) do
             self:ReadMap(mapID)
         end
@@ -232,6 +256,7 @@ function Harvest:OnInit()
     -- every zone you enter gets its quest lines requested once per session
     local requested = {}
     ns.Events:Register("FG_ZONE_CHANGED", function(_, mapID)
+        if not Enabled() then return end
         if mapID and not requested[mapID] then
             requested[mapID] = true
             self:RequestMap(mapID)
@@ -240,6 +265,7 @@ function Harvest:OnInit()
 
     -- quests in the log
     ns.Events:Register("FG_QUEST_LOG_CHANGED", function()
+        if not Enabled() then return end
         for entry in ns.Quest:Iterate() do RecordQuest(entry.questID, entry.title, "log") end
     end)
 end

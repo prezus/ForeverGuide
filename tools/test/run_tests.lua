@@ -57,6 +57,55 @@ local function step() return G:GetCurrentStep() end
 local function settle() MOCK_ADVANCE(1) end
 
 print("guide active: " .. tostring(G.active and G.active.id))
+-- Collection is opt-in, independent, and old mirrors cannot silently restore consent.
+do
+    check(ns.db.recorder.enabled == false and ns.db.scanEnabled == false and ns.db.harvestEnabled == false,
+        "fresh login: recorder, scanner, and harvest all start off")
+    check(#ns.db.recorder.entries == 0 and ns.db.scan == nil and ns.db.harvest == nil and next(ns.db.recorder.maps) == nil,
+        "fresh login does not collect session data")
+    ns.Persist:DecodeAcct("v=1;rec=1;sco=1;hvo=1")
+    check(not ns.db.recorder.enabled and not ns.db.scanEnabled and not ns.db.harvestEnabled,
+        "legacy cvar mirror cannot silently opt the player in")
+    ns.db.version, ns.db.recorder.enabled = 1, true
+    ns.Database:Init()
+    check(not ns.db.recorder.enabled and not ns.db.scanEnabled and not ns.db.harvestEnabled,
+        "old SavedVariables default-on recorder is not treated as consent")
+    ns.Scanner:Start(1, 2)
+    check(not ns.Scanner.running and ns.db.scan == nil, "scanner refuses to run without opt-in")
+    local calls = 0
+    local priorQuestLine = rawget(_G, "C_QuestLine")
+    _G.C_QuestLine = { RequestQuestLinesForMap = function() calls = calls + 1 end }
+    ns.Harvest:OnEnterWorld()
+    ns.Events:Fire("FG_ZONE_CHANGED", MOCK.mapID)
+    ns.Harvest:HarvestAllMaps()
+    check(calls == 0 and ns.db.harvest == nil, "harvest does not request maps before opt-in")
+    ns.Harvest:Sweep(1, 5000)
+    check(not ns.Harvest.sweeping, "harvest sweep refuses to run before opt-in")
+    ns.Options:Create()
+    local rec, scan, harvest = ns.Options:GetWidget("recorder"), ns.Options:GetWidget("scanner"), ns.Options:GetWidget("harvest")
+    check(rec and scan and harvest, "data collection has three independent options (" .. tostring(rec) .. ", " .. tostring(scan) .. ", " .. tostring(harvest) .. ")")
+    if rec and scan and harvest then
+        rec:SetChecked(true); rec:GetScript("OnClick")(rec)
+        check(ns.db.recorder.enabled and not ns.db.scanEnabled and not ns.db.harvestEnabled, "recorder consent does not enable scanner or harvest")
+        scan:SetChecked(true); scan:GetScript("OnClick")(scan)
+        harvest:SetChecked(true); harvest:GetScript("OnClick")(harvest)
+        check(calls == 1, "harvest opt-in permits map requests without enabling scanner")
+        local have = rawget(_G, "HaveQuestData")
+        _G.HaveQuestData = function() return false end
+        ns.Harvest:Sweep(1, 5000)
+        check(ns.Harvest.sweeping ~= nil, "an opted-in harvest can start a sweep")
+        harvest:SetChecked(false); harvest:GetScript("OnClick")(harvest)
+        MOCK_ADVANCE(0.1)
+        ns.Harvest:OnEnterWorld()
+        check(not ns.Harvest.sweeping and not ns.db.harvestEnabled and calls == 1, "opting out cancels an active harvest sweep and map requests")
+        _G.HaveQuestData = have
+        harvest:SetChecked(true); harvest:GetScript("OnClick")(harvest)
+    end
+    _G.C_QuestLine = priorQuestLine
+    ns.Database:Init()
+    check(ns.db.recorder.enabled and ns.db.scanEnabled and ns.db.harvestEnabled,
+        "explicit v2 opt-ins survive a normal SavedVariables login")
+end
 -- Addon Lua errors join the session capture while the recorder is enabled.
 do
     local entries = ns.db.recorder.entries
@@ -552,6 +601,12 @@ do
     check(sc.quests[90104] == "Quest 90104" and sc.info[90104] and sc.info[90104].lvl == 7 and sc.info[90104].obj[1] == "Dark Iron Spy slain: 0/10",
         "scan new records title, level and objectives of a Forever quest")
     ns.ForeverNewQuestIDRanges = savedRanges
+    ns.Scanner:Start(1, 1000)
+    ns.Commands:Run("scan off")
+    local sent = requests
+    MOCK_ADVANCE(2)
+    check(not ns.Scanner.running and requests == sent, "opting out stops an in-progress server scan")
+    ns.Commands:Run("scan on")
     C_QuestLog.GetTitleForQuestID = realTitle
     C_QuestLog.GetQuestDifficultyLevel, C_QuestLog.GetQuestObjectives = realDifficulty, realObjectives
     ns.Quest:Refresh()
@@ -1265,6 +1320,7 @@ do
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[G.current] = { type = G:GetCurrentStep().type, quest = G:GetCurrentStep().quest, map = 1426, x = 12.5, y = 34.5, npc = 999 }
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[3] = { type = "ACCEPT", quest = 179, npc = 658 }
     ns.db.ui.width = 480; ns.db.ui.height = 280; ns.db.ui.hideTracker = false
+    ns.db.recorder.enabled, ns.db.scanEnabled, ns.db.harvestEnabled = true, false, true
     ns.Persist:Save()
     check(ns.Persist.lastSaveOK == true, "the cvar mirror verified its write")
     check(#(MOCK.cvars.ForeverGuideA0 or "") > 0 and #(MOCK.cvars.ForeverGuideCSniffClassicBetaPvE20 or MOCK.cvars["ForeverGuideC" .. ((UnitName("player") .. GetRealmName()):gsub("[^%w]", "")):sub(1, 24) .. "0"] or "") > 0, "cvar mirror written (account + character)")
@@ -1285,6 +1341,8 @@ do
     check(e2 and e2.npc == 658 and e2.quest == 179 and e and e.quest ~= nil, "a second step edit survives the mirror too (separator kept)")
     check(ns.db.ui.width == 480 and ns.db.ui.height == 280 and ns.db.ui.hideTracker == false,
         "window size and tracker switch are restored")
+    check(ns.db.recorder.enabled and not ns.db.scanEnabled and ns.db.harvestEnabled,
+        "each opt-in choice survives a beta login independently")
     ns.AutoQuest:Set("accept", "on")
     ns.db.edits = {}
     G:Activate(savedGuide, true); G:Reset(); settle()

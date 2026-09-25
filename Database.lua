@@ -12,7 +12,7 @@
 local _, ns = ...
 local Database = ns:NewModule("Database")
 
-local DB_VERSION = 1
+local DB_VERSION = 2
 
 local DEFAULTS = {
     version = DB_VERSION,
@@ -61,8 +61,10 @@ local DEFAULTS = {
         enabled = false,
         channel = "auto",         -- auto = party/raid when grouped, emote when solo
     },
+    scanEnabled = false,          -- explicit consent for quest ID collection / server scans
+    harvestEnabled = false,       -- explicit consent for passive quest discovery / map requests
     recorder = {
-        enabled = true,           -- Phase 10: quietly record quest/NPC/coordinate data
+        enabled = false,          -- explicit consent for quest/NPC/coordinate/error recording
         maxEntries = 4000,
         entries = {},
         maps = {},                -- [uiMapID] = { name = ..., zone = ... } seen during play
@@ -80,12 +82,18 @@ function Database:Init()
     -- the Forever beta writes SavedVariables but does not read them back (Persist.lua mirrors the essentials)
     Database.freshAccount = (ForeverGuideDB == nil)
     Database.freshChar = (ForeverGuideCharDB == nil)
+    local oldVersion = ForeverGuideDB and ForeverGuideDB.version
     ForeverGuideDB = ns.CopyDefaults(DEFAULTS, ForeverGuideDB)
     ForeverGuideCharDB = ns.CopyDefaults(CHAR_DEFAULTS, ForeverGuideCharDB)
     ns.db = ForeverGuideDB
     ns.char = ForeverGuideCharDB
 
-    -- migrations go here when DB_VERSION changes
+    -- Version 1 recorded by default: an old true value is not evidence of consent.
+    if oldVersion ~= DB_VERSION then
+        ns.db.recorder.enabled = false
+        ns.db.scanEnabled = false
+        ns.db.harvestEnabled = false
+    end
     ns.db.version = DB_VERSION
     ns.char.version = DB_VERSION
 end

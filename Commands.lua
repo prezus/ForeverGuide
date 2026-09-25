@@ -31,9 +31,9 @@ local HELP = {
     "/fg qg <scale|opacity|width|rows|wpsize> <value>   Quest Guide look  |  /fg qg completed|distances|subtitles on|off",
     "/fg minimap on|off  the minimap button",
     "/fg auto [accept on|off|guide] [turnin on|off]   auto-accept / auto-turn-in quests (hold SHIFT at an NPC to do it by hand)",
-    "/fg rec on|off|status|dump [n]|clear   data recorder (Phase 10)",
-    "/fg scan new | [from] [to] | stop | resume | status   ask the server for Forever's own quests (new = exactly the ids Questie lacks; titles, levels, objectives)",
-    "/fg harvest [sweep [from to] | status]   passive quest discovery: quest lines of every zone map / client cache sweep",
+    "/fg rec on|off|status|dump [n]|clear   opt-in data recorder (off by default)",
+    "/fg scan on|off | new | [from] [to] | stop | resume | status   opt in before requesting quest data from the server",
+    "/fg harvest on|off | sweep [from to] | status   opt in to quest discovery and map requests (off by default)",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
     "/fg dungeon on|off  put the guide away while you are in an instance (on by default)",
     "/fg fp              list / walk to the flight points in this zone you have not taken yet",
@@ -658,7 +658,8 @@ end
 function handlers.scan(rest)
     local S = ns.Scanner
     local a, b = rest:match("^(%S*)%s*(%S*)$")
-    if a == "stop" then S:Stop()
+    if a == "on" or a == "off" then S:SetEnabled(a == "on") ns.Print("scanner " .. a)
+    elseif a == "stop" then S:Stop()
     elseif a == "status" then S:Status()
     elseif a == "resume" then S:Resume()
     elseif a == "new" then S:Start("new")
@@ -668,7 +669,8 @@ end
 function handlers.harvest(rest)
     local H = ns.Harvest
     local a, b, c = rest:match("^(%S*)%s*(%S*)%s*(%S*)$")
-    if a == "sweep" then H:Sweep(tonumber(b), tonumber(c))
+    if a == "on" or a == "off" then H:SetEnabled(a == "on") ns.Print("harvest " .. a)
+    elseif a == "sweep" then H:Sweep(tonumber(b), tonumber(c))
     elseif a == "status" then H:Status()
     else H:HarvestAllMaps() end
 end
