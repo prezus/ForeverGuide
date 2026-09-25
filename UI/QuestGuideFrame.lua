@@ -13,8 +13,8 @@
 --   │       Find Hilary's Necklace │
 --   │ (7) ! A Little More Trouble  │
 --   │ ...                          │
---   │ [Unknown Quests][Dungeon Qs] │  <- each opens its panel below
 --   │ [ ◎ Guide ]     [ Guides → ] │
+--   │ [Unknown Quests][Dungeon Qs] │  <- each opens its panel below
 --   └──────────────────────────────┘
 -- ============================================================
 
@@ -142,15 +142,15 @@ function QG:Create()
 
     f.guideBtn = Theme.NewButton(f, "Details", 104, 24, function() QG:ToggleInfo() end, "compass")
     f.guidesBtn = Theme.NewButton(f, "Guides", 104, 24, function() ns.UI:TogglePicker() end, "current")
-    f.guideBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 9)
-    f.guidesBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 9)
+    f.guideBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 39)
+    f.guidesBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 39)
     -- the panels under the window
     f.unknownBtn = Theme.NewButton(f, "Unknown Quests", 104, 24, function() QG:ToggleDrawer("unknown") end)
     f.dungeonsBtn = Theme.NewButton(f, "Dungeon Quests", 104, 24, function() QG:ToggleDrawer("dungeons") end)
-    f.unknownBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 39)
-    f.unknownBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOM", -3, 39)
-    f.dungeonsBtn:SetPoint("BOTTOMLEFT", f, "BOTTOM", 3, 39)
-    f.dungeonsBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 39)
+    f.unknownBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 9)
+    f.unknownBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOM", -3, 9)
+    f.dungeonsBtn:SetPoint("BOTTOMLEFT", f, "BOTTOM", 3, 9)
+    f.dungeonsBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 9)
 
     -- the skull button: a secure button whose click runs "/targetexact <mob>" for the current kill
     -- step (the one way an addon may change the target). Secure frames cannot be moved or shown in
@@ -161,7 +161,7 @@ function QG:Create()
             tb:SetParent(f)
             tb:ClearAllPoints()
             tb:SetSize(30, 24)
-            tb:SetPoint("BOTTOM", f, "BOTTOM", 0, 9)
+            tb:SetPoint("BOTTOM", f, "BOTTOM", 0, 39)
             tb:SetFrameLevel(f:GetFrameLevel() + 5)
             local normal = tb:CreateTexture(nil, "BACKGROUND")
             normal:SetAllPoints()
@@ -462,7 +462,6 @@ function QG:Refresh()
     local g = G.active
     local level = ns.Player:GetLevel()
     local zone = ns.Player:GetMapName() or ns.Player:GetZone() or ""
-    f.header:SetDungeon(ns.Dungeons and ns.Dungeons:BadgeText())
 
     if T and T:IsActive() and (not g or ns.char.mode == "auto") then
         local entries = self:BuildTrackerEntries()

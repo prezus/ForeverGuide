@@ -118,19 +118,6 @@ function Dungeons:SetDrawerShown(on)
     self:RefreshPanel()
 end
 
---- Open the panel on a dungeon (the badge's, when none is given).
-function Dungeons:ShowPanel(g)
-    local d = Create()
-    d.guide = g or self:Next()
-    ns.QuestGuide:SetDrawer("dungeons")
-    return d
-end
-
-function Dungeons:TogglePanel(g)
-    if drawer and drawer:IsShown() then ns.QuestGuide:SetDrawer(nil) return end
-    self:ShowPanel(g)
-end
-
 function Dungeons:OnInit()
     ns.Events:RegisterMany({ "FG_GUIDE_CHANGED", "FG_QUEST_LOG_CHANGED", "FG_STEP_CHANGED", "FG_LEVEL_CHANGED" },
         function() if drawer and drawer:IsShown() then ns.Events:Debounce("dungeonpanel", 0.1, function() Dungeons:RefreshPanel() end) end end)

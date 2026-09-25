@@ -1,8 +1,8 @@
 -- ============================================================
 -- ForeverGuide / Dungeons.lua
 -- Dungeon guides ("kind": "dungeon") are opened when a group forms, not
--- followed like a chapter. This module answers what the badge and the
--- dungeon panel show: for each dungeon guide, how many of its quests the
+-- followed like a chapter. This module answers what the Dungeon Quests
+-- panel shows: for each dungeon guide, how many of its quests the
 -- character already has, and whether it is time to go.
 --
 -- A dungeon guide's ACCEPT steps before its "Find a group" note are the
@@ -70,41 +70,6 @@ function Dungeons:Status(g)
         state = "gathering"
     end
     return { state = state, have = have, total = #bring, bring = bring, inside = inside, minLevel = minL, maxLevel = maxL }
-end
-
---- How much the badge should show a dungeon: quests about to lose full XP first, then quests
---- carried and ready, then some carried, then one with nothing to bring, then one not started,
---- then an upcoming one. Nil for one not shown at all.
-local function rank(st)
-    if st.state == "late" then return 6 end
-    if st.state == "ready" then return st.total > 0 and 5 or 3 end
-    if st.state == "gathering" then return st.have > 0 and 4 or 2 end
-    if st.state == "upcoming" then return 1 end
-    return nil
-end
-
---- The dungeon the badge shows (see `rank`); the lowest first among equals.
-function Dungeons:Next()
-    local best, bestStatus, bestRank
-    for _, g in ipairs(ns.Guide:Dungeons()) do
-        local st = self:Status(g)
-        local r = rank(st)
-        if r and (not bestRank or r > bestRank) then best, bestStatus, bestRank = g, st, r end
-    end
-    return best, bestStatus
-end
-
---- The badge's text ("The Deadmines 3/5", "... - ready", "... - hand in by 22"), or nil.
-function Dungeons:BadgeText()
-    local g, st = self:Next()
-    if not g then return nil end
-    local name = self:Name(g)
-    if st.state == "ready" then
-        return st.total > 0 and string.format("%s %d/%d - ready", name, st.have, st.total) or (name .. " - ready")
-    end
-    if st.state == "late" then return string.format("%s - hand in by %d", name, st.maxLevel) end
-    if st.state == "upcoming" then return string.format("%s from %d", name, st.minLevel) end
-    return string.format("%s %d/%d", name, st.have, st.total)
 end
 
 --- One line per quest for the panel: where it stands for this character.

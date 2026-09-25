@@ -1764,7 +1764,7 @@ do
     G:Activate(CHAPTER, true); settle()
 end
 
--- ---- the dungeon badge: the next dungeon, how many of its quests are in the log, and a panel ----
+-- ---- dungeon status and the Dungeon Quests panel: each dungeon, its quests, and where they stand ----
 do
     local D = ns.Dungeons
     local levelBefore = ns.Player:GetLevel()
@@ -1789,16 +1789,11 @@ do
     MOCK_LEVEL(15); settle()
     MOCK_ACCEPT(99911, "Badge One", {}); settle()
     check(D:Status(g).have == 1 and D:Status(g).state == "gathering", "one picked up: gathering")
-    check(D:BadgeText() == "Test Badge 1/2", "the badge names the dungeon and the count (" .. tostring(D:BadgeText()) .. ")")
     MOCK_ACCEPT(99912, "Badge Two", {}); settle()
-    check(D:Status(g).state == "ready" and D:BadgeText() == "Test Badge 2/2 - ready", "all picked up at the level: ready (" .. tostring(D:BadgeText()) .. ")")
+    check(D:Status(g).state == "ready", "all picked up at the level: ready (" .. D:Status(g).state .. ")")
 
-    local mode = ns.char.mode
-    ns.char.mode = "guide"
     ns.QuestGuide:Refresh()
-    local button = ns.QuestGuide.frame.header.dungeon
-    check(button and button:IsShown() and (button.label:GetText() or "") == "Test Badge 2/2 - ready", "the header carries the badge as a button")
-    ns.char.mode = mode
+    check(ns.QuestGuide.frame.header.dungeon == nil, "the header carries no dungeon badge: Dungeon Quests is at the bottom")
 
     -- the Dungeon Quests button opens a panel under the guide: pick a dungeon, see its quests,
     -- and the guide stays on the step it was on
@@ -1808,9 +1803,11 @@ do
     f.dungeonsBtn:GetScript("OnClick")(f.dungeonsBtn)
     local drawer = f.dungeons
     check(drawer and drawer:IsShown() and not f.extra:IsShown(), "Dungeon Quests opens its panel and closes Unknown Quests")
-    local row
-    for i, e in ipairs(drawer.list.entries) do if e.guideID == g.id then row = drawer.list.rows[i] end end
-    check(row ~= nil and (row.entry.subtitle or ""):find("2/2", 1, true), "the panel lists the dungeons with their quest count")
+    local function dungeonRow()
+        for i, e in ipairs(drawer.list.entries) do if e.guideID == g.id then return drawer.list.rows[i] end end
+    end
+    local row = dungeonRow()
+    check(row ~= nil and (row.entry.subtitle or ""):find("2/2 quests  ·  ready", 1, true), "the panel lists the dungeons with their quest count and readiness")
     row:GetScript("OnClick")(row, "LeftButton")
     local lines = {}
     for _, e in ipairs(drawer.list.entries) do lines[#lines + 1] = (e.title or "") .. " - " .. (e.subtitle or "") end
@@ -1823,21 +1820,18 @@ do
     check(t and t.owner == "dungeon" and math.abs(t.x - 42.5) < 0.01 and math.abs(t.y - 71.7) < 0.01, "Waypoint points at the entrance")
     drawer.back:GetScript("OnClick")(drawer.back)
     check(drawer.guide == nil and drawer.list.entries[1] and drawer.list.entries[1].guideID ~= nil, "Back returns to the dungeon list")
+    MOCK_LEVEL(22); settle()
+    check(D:Status(g).state == "late" and (dungeonRow().entry.subtitle or ""):find("hand in by 22", 1, true),
+        "at the full-XP limit the panel says to hand in (" .. tostring(dungeonRow().entry.subtitle) .. ")")
+    MOCK_TURNIN(99911); MOCK_TURNIN(99912); MOCK_ACCEPT(99913, "Given Inside", {}); MOCK_TURNIN(99913); settle()
+    check(D:Status(g).state == "done" and dungeonRow().entry.state == "done", "a finished dungeon shows as done in the panel")
     f.dungeonsBtn:GetScript("OnClick")(f.dungeonsBtn)
     check(not drawer:IsShown(), "the Dungeon Quests button closes its panel again")
-    button:GetScript("OnClick")(button)
-    check(drawer:IsShown() and drawer.guide == g, "the header badge opens the panel on its dungeon")
-    f.dungeonsBtn:GetScript("OnClick")(f.dungeonsBtn)
     ns.UI:RefreshPicker()
     local pickerDungeon = false
     for _, r in ipairs(ForeverGuidePicker.rows) do if r:IsShown() and r.guideID and G:IsDungeon(G:Get(r.guideID)) then pickerDungeon = true end end
     check(not pickerDungeon, "the guide picker no longer switches to a dungeon guide")
 
-    MOCK_LEVEL(22); settle()
-    check(D:BadgeText() == "Test Badge - hand in by 22", "at the full-XP limit the badge says to hand in (" .. tostring(D:BadgeText()) .. ")")
-
-    MOCK_TURNIN(99911); MOCK_TURNIN(99912); MOCK_ACCEPT(99913, "Given Inside", {}); MOCK_TURNIN(99913); settle()
-    check(D:Status(g).state == "done" and D:BadgeText() ~= "Test Badge - hand in by 22" and (D:BadgeText() or ""):find("Test Badge", 1, true) == nil, "a finished dungeon leaves the badge")
     MOCK_LEVEL(levelBefore); settle()
 end
 
