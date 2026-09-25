@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_11_HILLSBRAD_FOOTHILLS",
     name = "11. Hillsbrad Foothills 29-29 (Human)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 29,
@@ -13,31 +13,42 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_12_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 11 of the Human route: level 29 to 29, 24 steps, ~76 min of play in the model (26930 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 24,
+    stepCount = 35,
     steps = function() return {
-        { type = "TRAVEL", map = 1437, zone = "Menethil Harbor", x = 10.7, y = 61.0, radius = 60, note = "use your hearthstone (Menethil Harbor)" }, -- 1
-        { type = "TRAVEL", map = 1424, zone = "Hillsbrad Foothills", x = 50.2, y = 58.1, radius = 60, note = "travel to Hillsbrad Foothills (Hillsbrad Foothills)" }, -- 2
-        { type = "HEARTH", npc = 2352, npcName = "Innkeeper Anderson", map = 1424, zone = "Southshore", x = 51.2, y = 58.9, note = "talk to Innkeeper Anderson and make this inn your home" }, -- 3
-        { type = "ACCEPT", quest = 536, questName = "Down the Coast", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 4
-        { type = "ACCEPT", quest = 555, questName = "Soothing Turtle Bisque", npc = 2430, npcName = "Chef Jessen", map = 1424, zone = "Hillsbrad Foothills", x = 51.9, y = 58.7 }, -- 5
-        { type = "ACCEPT", quest = 565, questName = "Bartolo's Yeti Fur Cloak", npc = 2438, npcName = "Bartolo Ginsetti", map = 1424, zone = "Hillsbrad Foothills", x = 49.4, y = 55.5 }, -- 6
-        { type = "KILL", quest = 536, questName = "Down the Coast", npc = 2377, target = "Torn Fin Tidehunter / Torn Fin Oracle", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 47.4, y = 64.7, near = true }, -- 7
-        { type = "COLLECT", quest = 565, questName = "Bartolo's Yeti Fur Cloak", target = "Bolt of Woolen Cloth", map = 1424, zone = "Hillsbrad Foothills", x = 44.9, y = 67.3, near = true }, -- 8
-        { type = "COLLECT", quest = 555, questName = "Soothing Turtle Bisque", target = "Turtle Meat", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 55.9, y = 57.1, near = true }, -- 9
-        { type = "TURNIN", quest = 555, questName = "Soothing Turtle Bisque", npc = 2430, npcName = "Chef Jessen", map = 1424, zone = "Hillsbrad Foothills", x = 51.9, y = 58.7 }, -- 10
-        { type = "TURNIN", quest = 536, questName = "Down the Coast", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 11
-        { type = "ACCEPT", quest = 559, questName = "Farren's Proof", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 12
-        { type = "COLLECT", quest = 559, questName = "Farren's Proof", target = "Murloc Head", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 47.4, y = 64.7, near = true }, -- 13
-        { type = "COLLECT", quest = 565, questName = "Bartolo's Yeti Fur Cloak", target = "Yeti Fur", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 45.4, y = 34, near = true }, -- 14
-        { type = "TURNIN", quest = 565, questName = "Bartolo's Yeti Fur Cloak", npc = 2438, npcName = "Bartolo Ginsetti", map = 1424, zone = "Hillsbrad Foothills", x = 49.4, y = 55.5 }, -- 15
-        { type = "TURNIN", quest = 559, questName = "Farren's Proof", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 16
-        { type = "ACCEPT", quest = 560, questName = "Farren's Proof", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 17
-        { type = "TURNIN", quest = 560, questName = "Farren's Proof", npc = 2263, npcName = "Marshal Redpath", map = 1424, zone = "Hillsbrad Foothills", x = 49.5, y = 58.7 }, -- 18
-        { type = "ACCEPT", quest = 561, questName = "Farren's Proof", npc = 2263, npcName = "Marshal Redpath", map = 1424, zone = "Hillsbrad Foothills", x = 49.5, y = 58.7 }, -- 19
-        { type = "TURNIN", quest = 561, questName = "Farren's Proof", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 20
-        { type = "ACCEPT", quest = 562, questName = "Stormwind Ho!", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 21
-        { type = "KILL", quest = 562, questName = "Stormwind Ho!", npc = 2371, target = "Daggerspine Siren", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 55.2, y = 61.4, near = true }, -- 22
-        { type = "KILL", quest = 562, questName = "Stormwind Ho!", npc = 2369, target = "Daggerspine Shorehunter", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 55.9, y = 66.6, near = true }, -- 23
-        { type = "TURNIN", quest = 562, questName = "Stormwind Ho!", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 24
+        { type = "COLLECT", quest = 474, questName = "Defeat Nek'rosh", target = "Nek'rosh's Head", count = 1, map = 1437, zone = "Wetlands", x = 53.4, y = 54.4, optional = true }, -- 1
+        { type = "TRAVEL", map = 1437, zone = "Menethil Harbor", x = 10.7, y = 61.0, radius = 60, note = "use your hearthstone (Menethil Harbor)" }, -- 2
+        { type = "FLIGHTPATH", npc = 2432, npcName = "Darla Harris", map = 1424, zone = "Hillsbrad Foothills", x = 49.3, y = 52.3 }, -- 3
+        { type = "TURNIN", quest = 474, questName = "Defeat Nek'rosh", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.8, y = 57.4, optional = true }, -- 4
+        { type = "ACCEPT", quest = 631, questName = "The Thandol Span", npc = 1075, npcName = "Rhag Garmason", map = 1437, zone = "Wetlands", x = 49.8, y = 18.2 }, -- 5
+        { type = "TURNIN", quest = 631, questName = "The Thandol Span", map = 1437, zone = "Wetlands", x = 51.2, y = 8 }, -- 6
+        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1051, target = "Dark Iron Dwarf", count = 15, map = 1437, zone = "Wetlands", x = 48, y = 16.8, optional = true }, -- 7
+        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1053, target = "Dark Iron Tunneler", count = 5, map = 1437, zone = "Wetlands", x = 47, y = 17.4, optional = true }, -- 8
+        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1052, target = "Dark Iron Saboteur", count = 5, map = 1437, zone = "Wetlands", x = 51.2, y = 8, optional = true, near = true }, -- 9
+        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1054, target = "Dark Iron Demolitionist", count = 5, map = 1437, zone = "Wetlands", x = 46.6, y = 18.6, optional = true }, -- 10
+        { type = "TURNIN", quest = 303, questName = "The Dark Iron War", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.6, y = 18.2, optional = true }, -- 11
+        { type = "TRAVEL", map = 1424, zone = "Hillsbrad Foothills", x = 50.2, y = 58.1, radius = 60, note = "travel to Hillsbrad Foothills (Hillsbrad Foothills)" }, -- 12
+        { type = "HEARTH", npc = 2352, npcName = "Innkeeper Anderson", map = 1424, zone = "Southshore", x = 51.2, y = 58.9, note = "talk to Innkeeper Anderson and make this inn your home" }, -- 13
+        { type = "ACCEPT", quest = 536, questName = "Down the Coast", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 14
+        { type = "ACCEPT", quest = 555, questName = "Soothing Turtle Bisque", npc = 2430, npcName = "Chef Jessen", map = 1424, zone = "Hillsbrad Foothills", x = 51.9, y = 58.7 }, -- 15
+        { type = "ACCEPT", quest = 565, questName = "Bartolo's Yeti Fur Cloak", npc = 2438, npcName = "Bartolo Ginsetti", map = 1424, zone = "Hillsbrad Foothills", x = 49.4, y = 55.5 }, -- 16
+        { type = "KILL", quest = 536, questName = "Down the Coast", npc = 2377, target = "Torn Fin Tidehunter / Torn Fin Oracle", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 47.4, y = 64.7, near = true }, -- 17
+        { type = "COLLECT", quest = 565, questName = "Bartolo's Yeti Fur Cloak", target = "Bolt of Woolen Cloth", map = 1424, zone = "Hillsbrad Foothills", x = 44.9, y = 67.3, near = true }, -- 18
+        { type = "COLLECT", quest = 555, questName = "Soothing Turtle Bisque", target = "Turtle Meat", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 55.9, y = 57.1, near = true }, -- 19
+        { type = "TURNIN", quest = 555, questName = "Soothing Turtle Bisque", npc = 2430, npcName = "Chef Jessen", map = 1424, zone = "Hillsbrad Foothills", x = 51.9, y = 58.7 }, -- 20
+        { type = "TURNIN", quest = 536, questName = "Down the Coast", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 21
+        { type = "ACCEPT", quest = 559, questName = "Farren's Proof", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 22
+        { type = "COLLECT", quest = 559, questName = "Farren's Proof", target = "Murloc Head", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 47.4, y = 64.7, near = true }, -- 23
+        { type = "COLLECT", quest = 565, questName = "Bartolo's Yeti Fur Cloak", target = "Yeti Fur", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 45.4, y = 34, near = true }, -- 24
+        { type = "TURNIN", quest = 565, questName = "Bartolo's Yeti Fur Cloak", npc = 2438, npcName = "Bartolo Ginsetti", map = 1424, zone = "Hillsbrad Foothills", x = 49.4, y = 55.5 }, -- 25
+        { type = "TURNIN", quest = 559, questName = "Farren's Proof", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 26
+        { type = "ACCEPT", quest = 560, questName = "Farren's Proof", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 27
+        { type = "TURNIN", quest = 560, questName = "Farren's Proof", npc = 2263, npcName = "Marshal Redpath", map = 1424, zone = "Hillsbrad Foothills", x = 49.5, y = 58.7 }, -- 28
+        { type = "ACCEPT", quest = 561, questName = "Farren's Proof", npc = 2263, npcName = "Marshal Redpath", map = 1424, zone = "Hillsbrad Foothills", x = 49.5, y = 58.7 }, -- 29
+        { type = "TURNIN", quest = 561, questName = "Farren's Proof", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 30
+        { type = "ACCEPT", quest = 562, questName = "Stormwind Ho!", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 31
+        { type = "KILL", quest = 562, questName = "Stormwind Ho!", npc = 2371, target = "Daggerspine Siren", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 55.2, y = 61.4, near = true }, -- 32
+        { type = "KILL", quest = 562, questName = "Stormwind Ho!", npc = 2369, target = "Daggerspine Shorehunter", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 55.9, y = 66.6, near = true }, -- 33
+        { type = "TURNIN", quest = 562, questName = "Stormwind Ho!", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 34
+        { type = "ACCEPT", quest = 563, questName = "Reassignment", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.4, y = 58.4 }, -- 35
     } end,
 })
