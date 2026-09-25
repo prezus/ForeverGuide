@@ -432,6 +432,7 @@ function QG:Refresh()
     local g = G.active
     local level = ns.Player:GetLevel()
     local zone = ns.Player:GetMapName() or ns.Player:GetZone() or ""
+    f.header:SetDungeon(ns.Dungeons and ns.Dungeons:BadgeText())
 
     if T and T:IsActive() and (not g or ns.char.mode == "auto") then
         local entries = self:BuildTrackerEntries()

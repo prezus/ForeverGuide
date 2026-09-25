@@ -54,6 +54,19 @@ function Header.Create(parent)
         if tt then tt:Hide() end
     end)
 
+    -- the dungeon badge: the next dungeon and how many of its quests are in the log; opens its panel
+    h.dungeon = Theme.NewButton(h, "", 170, 22, function() ns.Dungeons:TogglePanel() end)
+    h.dungeon:SetPoint("RIGHT", h.reports, "LEFT", -6, 0)
+    h.dungeon:SetScript("OnEnter", function(self)
+        local tt = rawget(_G, "GameTooltip")
+        if tt then tt:SetOwner(self, "ANCHOR_TOP") tt:AddLine("Dungeon: its quests and where they stand") tt:Show() end
+    end)
+    h.dungeon:SetScript("OnLeave", function()
+        local tt = rawget(_G, "GameTooltip")
+        if tt then tt:Hide() end
+    end)
+    h.dungeon:Hide()
+
     h.sub = Theme.NewText(h, { size = 10, color = Theme.C.textDim, oneLine = true })
     h.sub:SetPoint("TOPLEFT", h, "TOPLEFT", 14, -33)
     h.sub:SetPoint("TOPRIGHT", h, "TOPRIGHT", -12, -33)
@@ -66,6 +79,7 @@ function Header.Create(parent)
     h.line:SetVertexColor(0.3, 0.3, 0.3, 1)
 
     h.Set = Header.Set
+    h.SetDungeon = Header.SetDungeon
     return h
 end
 
@@ -74,4 +88,19 @@ function Header.Set(h, countText, subText, title)
     h.title:SetText(title or "QUEST GUIDE")
     h.count:SetText(countText or "")
     h.sub:SetText(subText or "")
+end
+
+--- the dungeon badge's text, or nil to hide it
+function Header.SetDungeon(h, text)
+    -- the title stops short of the badge while it shows
+    h.title:ClearAllPoints()
+    h.title:SetPoint("LEFT", h.icon, "RIGHT", 7, 0)
+    if text then
+        h.dungeon.label:SetText(text)
+        h.dungeon:Show()
+        h.title:SetPoint("RIGHT", h.dungeon, "LEFT", -6, 0)
+    else
+        h.dungeon:Hide()
+        h.title:SetPoint("RIGHT", h, "RIGHT", -140, 0)
+    end
 end
