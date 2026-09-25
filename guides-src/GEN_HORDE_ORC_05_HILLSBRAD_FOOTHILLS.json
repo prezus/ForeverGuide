@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_05_HILLSBRAD_FOOTHILLS",
   "name": "5. Hillsbrad Foothills 25-28 (Orc)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 25,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 5 of the Orc route: level 25 to 28, 64 steps, ~210 min of play in the model (18371 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 2389, "npcName": "Zarise", "map": 1424, "zone": "Hillsbrad Foothills", "x": 60.1, "y": 18.6},
     {"type": "ACCEPT", "quest": 92401, "questName": "A Frightened Request", "npc": 250686, "npcName": "Tabitha Heartweaver", "map": 1421, "zone": "Silverpine Forest", "x": 44.4, "y": 43, "note": "New in Forever"},
     {"type": "TURNIN", "quest": 92401, "questName": "A Frightened Request", "npc": 250686, "npcName": "Tabitha Heartweaver", "map": 1421, "zone": "Silverpine Forest", "x": 44.4, "y": 43},
     {"type": "ACCEPT", "quest": 493, "questName": "Journey to Hillsbrad Foothills", "npc": 1937, "npcName": "Apothecary Renferrel", "map": 1421, "zone": "Silverpine Forest", "x": 42.8, "y": 40.8},
