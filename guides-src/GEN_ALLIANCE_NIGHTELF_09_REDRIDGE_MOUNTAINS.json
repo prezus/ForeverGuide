@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_09_REDRIDGE_MOUNTAINS",
   "name": "9. Redridge Mountains 25-26 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 25,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 9 of the NightElf route: level 25 to 26, 45 steps, ~75 min of play in the model (30988 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (3 here).",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 931, "npcName": "Ariena Stormfeather", "map": 1433, "zone": "Redridge Mountains", "x": 25.5, "y": 59.4},
     {"type": "TURNIN", "quest": 1075, "questName": "A Scroll from Mauren", "npc": 4078, "npcName": "Collin Mauren", "map": 1453, "zone": "Stormwind City", "x": 43, "y": 80.2},
     {"type": "ACCEPT", "quest": 94, "questName": "A Watchful Eye", "npc": 313, "npcName": "Theocritus", "map": 1429, "zone": "Elwynn Forest", "x": 65.2, "y": 69.8},
     {"type": "TURNIN", "quest": 293, "questName": "Cleansing the Eye", "npc": 1284, "npcName": "Archbishop Benedictus", "map": 1453, "zone": "Stormwind City", "x": 39.6, "y": 27.4},
