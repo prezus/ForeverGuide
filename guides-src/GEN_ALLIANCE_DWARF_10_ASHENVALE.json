@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_10_ASHENVALE",
   "name": "10. Ashenvale 25-28 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 25,
@@ -32,6 +32,7 @@
     {"type": "TURNIN", "quest": 7863, "questName": "Sentinel Basic Care Package", "npc": 14753, "npcName": "Illiyana Moonblaze", "map": 1440, "zone": "Ashenvale", "x": 61.5, "y": 83.9},
     {"type": "ACCEPT", "quest": 1016, "questName": "Elemental Bracers", "npc": 3885, "npcName": "Sentinel Velene Starstrike", "map": 1440, "zone": "Ashenvale", "x": 49.8, "y": 67.2},
     {"type": "TURNIN", "quest": 1016, "questName": "Elemental Bracers", "npc": 3885, "npcName": "Sentinel Velene Starstrike", "map": 1440, "zone": "Ashenvale", "x": 49.8, "y": 67.2},
+    {"type": "FLIGHTPATH", "npc": 4267, "npcName": "Daelyshia", "map": 1440, "zone": "Ashenvale", "x": 34.4, "y": 48},
     {"type": "ACCEPT", "quest": 1008, "questName": "The Zoram Strand", "npc": 3845, "npcName": "Shindrell Swiftfire", "map": 1440, "zone": "Ashenvale", "x": 34.7, "y": 48.8},
     {"type": "ACCEPT", "quest": 991, "questName": "Raene's Cleansing", "npc": 3691, "npcName": "Raene Wolfrunner", "map": 1440, "zone": "Ashenvale", "x": 36.6, "y": 49.6},
     {"type": "ACCEPT", "quest": 1054, "questName": "Culling the Threat", "npc": 3691, "npcName": "Raene Wolfrunner", "map": 1440, "zone": "Ashenvale", "x": 36.6, "y": 49.6},
