@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_17_DUSTWALLOW_MARSH",
   "name": "17. Dustwallow Marsh 37-38 (Night Elf)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 37,
