@@ -63,70 +63,6 @@ function Crowd:Level()
     return tagged, free, n, crowded
 end
 
--- ---- zone population via /who ----------------------------------------------------------------
--- Addons may not target players to count them (TargetNearestFriendPlayer is protected), but a
--- /who query is allowed: same faction, this zone, levels around ours = the people competing for
--- the same mobs. Throttled hard (the server rate-limits /who); results capped at 49 by the client.
-local WHO_EVERY = 150        -- seconds between queries
-local WHO_BUSY = 25          -- this many level-band players in the zone = busy
-local whoAt, whoZone = 0, nil
-
-function Crowd:PollZone(force)
-    local FL = rawget(_G, "C_FriendList")
-    if not FL or type(FL.SendWho) ~= "function" then return false end
-    local now = ns.Now()
-    if not force and now - whoAt < WHO_EVERY then return false end
-    local zone = ns.Player:GetMapName() or ns.Player:GetZone()
-    if not zone or zone == "" then return false end
-    local L = ns.Player:GetLevel() or 1
-    whoAt, whoZone = now, zone
-    pcall(FL.SetWhoToUi, true)
-    local q = string.format('z-"%s" %d-%d', zone, math.max(1, L - 3), L + 4)
-    ns.Safe(FL.SendWho, q)
-    self.whoQuery = q
-    return true
-end
-
-function Crowd:OnWhoList()
-    local FL = rawget(_G, "C_FriendList")
-    if not FL then return end
-    local n = ns.PlainNumber(ns.Safe(FL.GetNumWhoResults)) or 0
-    self.zonePlayers = n
-    self.zoneCapped = n >= 49
-    self.zoneName = whoZone
-    self.zoneAt = ns.Now()
-    self:Update()
-end
-
---- Is the zone busy with players of our level band? count, capped, zone
-function Crowd:ZoneBusy()
-    if not self.zonePlayers or not self.zoneAt or ns.Now() - self.zoneAt > 600 then return false, self.zonePlayers, self.zoneName end
-    if self.zoneName ~= (ns.Player:GetMapName() or ns.Player:GetZone()) then return false, self.zonePlayers, self.zoneName end
-    return self.zonePlayers >= WHO_BUSY, self.zonePlayers, self.zoneName, self.zoneCapped
-end
-
---- A standalone zone guide of this faction for our level, not the zone we are in: guide or nil
-function Crowd:ZoneAlternative()
-    local G = ns.Guide
-    if not G or not G.list then return nil end
-    local L = ns.Player:GetLevel() or 1
-    local here = ns.Player:GetMapName() or ns.Player:GetZone()
-    local best
-    for _, id in ipairs(G.list) do
-        local g = G.registry[id]
-        local isZone, isChapter = id:find("^GEN_ZONE_") ~= nil, id:find("^GEN_%u+_%u+_%d+_") ~= nil
-        if g and (isZone or isChapter) and G:Applicable(g) and g.zone and g.zone ~= here
-            and (g.minLevel or 1) <= L and (g.maxLevel or 60) >= L and not (G.active and G.active.id == id) then
-            local mid = ((g.minLevel or 1) + (g.maxLevel or 60)) / 2
-            -- a standalone zone guide first (it has everything the zone offers); a route chapter of
-            -- another race is the fallback for the starter zones, which have no zone guide
-            local score = math.abs(mid - L) + (isZone and 0 or 10)
-            if not best or score < best.score then best = { guide = g, score = score } end
-        end
-    end
-    return best and best.guide or nil
-end
-
 -- ---- alternatives ---------------------------------------------------------------------------
 local function compass(dx, dy)
     -- world axes: +x north, +y west
@@ -310,13 +246,6 @@ end
 
 function Crowd:GoToAlternative()
     local alt = self.alt
-    if not alt and self.altZone then
-        ns.Guide:Activate(self.altZone.id)
-        ns.Printf("switched to the %s zone guide - the route chapters are still under Guides when you want them back.", self.altZone.zone or self.altZone.name)
-        if banner then banner:Hide() end
-        self.snoozedUntil = ns.Now() + 300
-        return
-    end
     if not alt then return end
     if alt.map then
         ns.Navigation.override = "crowd"
@@ -364,23 +293,10 @@ function Crowd:Update()
     if spawn then sub = spawn.label .. (stepAlt and ("  ·  or: " .. stepAlt.label) or "")
     elseif stepAlt then sub = "meanwhile: " .. stepAlt.label
     else sub = "no other spot known - grind nearby or come back in a few minutes" end
-    -- the whole zone is packed: say so, and name a zone guide for this level elsewhere
-    local busy, n, zname, capped = self:ZoneBusy()
-    if busy then
-        local altZone = self:ZoneAlternative()
-        sub = sub .. string.format("  ·  %s%d players of your level in %s", capped and "50+ " or "", capped and 49 or n, zname or "this zone")
-        if altZone then
-            sub = sub .. "  ·  quieter zone: " .. (altZone.zone or altZone.name)
-            self.altZone = altZone
-        end
-    else
-        self.altZone = nil
-    end
-    self:PollZone()
     if killShare then sub = "kill credit is shared in a group  ·  " .. sub end
     f.sub:SetText(sub)
-    f.go.label:SetText(self.alt and "Go there" or "Switch zone")
-    Layout(f, self.alt ~= nil or self.altZone ~= nil)
+    f.go.label:SetText("Go there")
+    Layout(f, self.alt ~= nil)
     if not f:IsShown() then
         f:Show()
         local now = ns.Now()
@@ -405,7 +321,6 @@ function Crowd:Preview()
 end
 
 function Crowd:OnInit()
-    ns.Events:Register("WHO_LIST_UPDATE", function() if Crowd.whoQuery then Crowd:OnWhoList() end end)
     ns.Events:Register("FG_NAV_ARRIVED", function(_, target) if target and target.owner == "crowd" then Crowd:ReleaseOverride() end end)
     ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_GUIDE_CHANGED" }, function() Crowd:ReleaseOverride() Crowd:Reset() Crowd:Update() end)
     ns.Events:Register("FG_HIDDEN_ALL_CHANGED", function() Crowd:Update() end)

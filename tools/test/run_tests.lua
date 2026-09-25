@@ -895,16 +895,11 @@ do
         MOCK_ABANDON(11); settle()
         if not ns.Quest:IsOnQuest(11) then MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 10 } }); settle() end
         G:Activate("AUDIT_SKULL", true); settle()
-        -- zone population via /who: 30 players of our level in the zone -> busy, and a zone guide elsewhere is named
-        MOCK.whoCount = 30
-        check(ns.Crowd:PollZone(true) and (MOCK.whoQuery or ""):find('z-"Elwynn Forest"', 1, true), "/who asks for this zone and our level band (" .. tostring(MOCK.whoQuery) .. ")")
-        local busy, n = ns.Crowd:ZoneBusy()
-        check(busy and n == 30, "30 same-level players in the zone counts as busy")
-        local alt = ns.Crowd:ZoneAlternative()
-        check(alt and alt.id:find("^GEN_") and alt.zone ~= "Elwynn Forest" and (alt.minLevel or 1) <= 5, "a guide for this level in another zone is offered (" .. tostring(alt and alt.id) .. ")")
-        MOCK.whoCount = 3
-        ns.Crowd:PollZone(true)
-        check(not ns.Crowd:ZoneBusy(), "3 players: not busy")
+        -- Crowd detection uses nearby nameplates, not background /who requests.
+        ns.Crowd:Update()
+        check(MOCK.whoQuery == nil, "crowd banner never sends a /who query")
+        ns.Commands:Run("who")
+        check(MOCK.whoQuery == nil, "the addon no longer offers a /who command")
     end
     -- in combat the nameplate frames cannot be measured (restricted regions): fall back to interact rings
     MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, restricted = true, dist = 25 })
