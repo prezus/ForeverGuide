@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Two new buttons at the bottom of the guide window, each opening a panel beneath it (one at a time):
+  - **Unknown Quests**: the quests in your log that no guide will take you through - not in any chapter of your route, nor in a dungeon guide. The button shows how many ("Unknown Quests (3)"). Left click one to open it in the quest log; right click still reports it as a missing route quest. The panel no longer pops up by itself, and a quest a later chapter handles is no longer listed.
+  - **Dungeon Quests**: your dungeons by level, with how many of their quests you carry. Pick one to see each of its quests and where it stands, and a Waypoint to the entrance. Looking never switches guides, so the chapter stays on the step you were on. The header's dungeon badge opens this panel on its dungeon, replacing the separate dungeon popup, and the guide picker no longer lists dungeon guides (`/fg dungeons` and `/fg guide <id>` still open one).
 - Guides can ask you to learn a flight path: the `FLIGHTPATH` step ("Get the flight path at Thor") finishes when you open that flight master's map, when "New flight path discovered!" comes up, or straight away if you already know that path. Like a travel step, it also finishes itself once you are past it, so skipping it never blocks the guide.
 
 - Dungeon guides: a guide with `"kind": "dungeon"` is a dungeon's own guide. `/fg dungeons` lists the ones your character can do, by level; auto-pick never lands on one. Opening one remembers the chapter you came from, and finishing it (or `/fg resume`) takes you back there. Opening another chapter by hand forgets the way back.

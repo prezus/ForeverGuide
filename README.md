@@ -109,7 +109,7 @@ In game:
 | `/fg resync` | levelled elsewhere? skips the quests that would give 20% xp or less and continues from the first open step |
 | `/fg edit here` / `npc` / `note <text>` / `radius <yd>` / `clear`, `/fg edits` | fix the current step in place (position = where you stand, npc = your target); saved per guide, `python tools/apply_edits.py` folds the edits into the guide source |
 
-The window and the floating arrow are draggable while unlocked (`/fg unlock` / `/fg lock`); `/fg arrow off` hides the arrow, `/fg bliz off` disables the Blizzard map-pin arrow. The **Guides** button opens a picker (auto mode or any installed guide); **Auto**/**Guide** switches modes.
+The window and the floating arrow are draggable while unlocked (`/fg unlock` / `/fg lock`); `/fg arrow off` hides the arrow, `/fg bliz off` disables the Blizzard map-pin arrow. The **Guides** button opens a picker (auto mode, a route or a chapter); **Auto**/**Guide** switches modes. Above them, **Unknown Quests** opens a panel under the window with the quests in your log that no guide covers (left click opens one in the quest log, right click reports it), and **Dungeon Quests** opens a panel listing your dungeons - pick one to see its quests and where each stands, with a Waypoint to the entrance, without moving the guide off its step.
 
 Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md) for bug reports, guide edits, and testing.
 

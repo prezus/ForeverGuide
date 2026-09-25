@@ -130,7 +130,7 @@ function Dungeons:QuestLines(g)
                 where = "pick up from " .. (step.npcName or "its giver") .. (step.zone and (", " .. step.zone) or "")
             end
         end
-        lines[#lines + 1] = { name = name, where = where }
+        lines[#lines + 1] = { quest = step.quest, name = name, where = where }
     end
     for _, s in ipairs(st.bring) do describe(s, false) end
     for _, s in ipairs(st.inside) do describe(s, true) end
