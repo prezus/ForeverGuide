@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_13_ARATHI_HIGHLANDS",
     name = "13. Arathi Highlands 30-31 (Night Elf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 30,
