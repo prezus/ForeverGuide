@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_29_UN_GORO_CRATER",
     name = "29. Un'Goro Crater 49-49 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 49,
