@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_07_WETLANDS",
   "name": "7. Wetlands 23-26 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 23,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 7 of the Human route: level 23 to 26, 70 steps, ~172 min of play in the model (28303 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 1571, "npcName": "Shellei Brondir", "map": 1437, "zone": "Wetlands", "x": 9.5, "y": 59.7},
     {"type": "ACCEPT", "quest": 386, "questName": "What Comes Around...", "npc": 859, "npcName": "Guard Berton", "map": 1433, "zone": "Redridge Mountains", "x": 26.4, "y": 46.6, "note": "For The Stockade (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 387, "questName": "Quell the Uprising", "npc": 1719, "npcName": "Warden Thelwater", "map": 1453, "zone": "Stormwind City", "x": 41.2, "y": 58, "note": "For The Stockade (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 388, "questName": "The Color of Blood", "npc": 1721, "npcName": "Nikova Raskol", "map": 1453, "zone": "Stormwind City", "x": 73.4, "y": 46.6, "note": "For The Stockade (dungeon guide)", "optional": true},

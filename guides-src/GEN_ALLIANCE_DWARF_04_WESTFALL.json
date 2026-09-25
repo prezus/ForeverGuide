@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_04_WESTFALL",
   "name": "4. Westfall 14-17 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 14,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 4 of the Dwarf route: level 14 to 17, 55 steps, ~149 min of play in the model (19430 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 523, "npcName": "Thor", "map": 1436, "zone": "Westfall", "x": 56.6, "y": 52.6},
     {"type": "ACCEPT", "quest": 92752, "questName": "Explosive Consultation", "npc": 11026, "npcName": "Sprite Jumpsprocket", "map": 1453, "zone": "Stormwind City", "x": 54.6, "y": 8, "note": "New in Forever"},
     {"type": "ACCEPT", "quest": 5545, "questName": "A Bundle of Trouble", "npc": 10616, "npcName": "Supervisor Raelen", "map": 1429, "zone": "Elwynn Forest", "x": 81.4, "y": 66},
     {"type": "COLLECT", "quest": 5545, "questName": "A Bundle of Trouble", "target": "Bundle of Wood", "count": 8, "map": 1429, "zone": "Elwynn Forest", "x": 80.5, "y": 55.2},

@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_04_LOCH_MODAN",
   "name": "4. Loch Modan 15-17 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 15,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 4 of the Human route: level 15 to 17, 51 steps, ~103 min of play in the model (20211 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 1572, "npcName": "Thorgrum Borrelson", "map": 1432, "zone": "Loch Modan", "x": 33.9, "y": 51},
     {"type": "TURNIN", "quest": 92748, "questName": "Explosive Consultation", "npc": 11026, "npcName": "Sprite Jumpsprocket", "map": 1453, "zone": "Stormwind City", "x": 54.6, "y": 8},
     {"type": "ACCEPT", "quest": 433, "questName": "The Public Servant", "npc": 1977, "npcName": "Senator Mehr Stonehallow", "map": 1426, "zone": "Dun Morogh", "x": 68.6, "y": 56},
     {"type": "KILL", "quest": 433, "questName": "The Public Servant", "npc": 1117, "target": "Rockjaw Bonesnapper", "count": 10, "map": 1426, "zone": "Dun Morogh", "x": 70.8, "y": 56},

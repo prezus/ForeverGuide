@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_01_TELDRASSIL",
   "name": "1. Teldrassil 1-10 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 1,
@@ -136,6 +136,7 @@
     {"type": "ACCEPT", "quest": 922, "questName": "Rellian Greenspyre", "npc": 2080, "npcName": "Denalan", "map": 1438, "zone": "Teldrassil", "x": 60.9, "y": 68.5},
     {"type": "COLLECT", "quest": 919, "questName": "Timberling Sprouts", "target": "Timberling Sprout", "count": 12, "map": 1438, "zone": "Teldrassil", "x": 62.2, "y": 68.5, "near": true},
     {"type": "TURNIN", "quest": 919, "questName": "Timberling Sprouts", "npc": 2080, "npcName": "Denalan", "map": 1438, "zone": "Teldrassil", "x": 60.9, "y": 68.5},
+    {"type": "FLIGHTPATH", "npc": 3838, "npcName": "Vesprystus", "map": 1438, "zone": "Teldrassil", "x": 58.4, "y": 94},
     {"type": "KILL", "quest": 486, "questName": "Ursal the Mauler", "npc": 2039, "target": "Ursal the Mauler", "count": 1, "map": 1438, "zone": "Teldrassil", "x": 39.4, "y": 80.2},
     {"type": "ACCEPT", "quest": 930, "questName": "The Glowing Fruit", "map": 1438, "zone": "Teldrassil", "x": 42.6, "y": 76.2},
     {"type": "TURNIN", "quest": 930, "questName": "The Glowing Fruit", "npc": 2080, "npcName": "Denalan", "map": 1438, "zone": "Teldrassil", "x": 60.9, "y": 68.5},

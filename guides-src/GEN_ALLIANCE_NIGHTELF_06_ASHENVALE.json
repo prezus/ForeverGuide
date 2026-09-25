@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_06_ASHENVALE",
   "name": "6. Ashenvale 19-22 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 19,
@@ -17,6 +17,7 @@
     {"type": "TURNIN", "quest": 94468, "questName": "Call of Fire", "npc": 257597, "npcName": "Bruegs Kindleborn", "map": 1426, "zone": "Dun Morogh", "x": 87.6, "y": 43.6, "class": ["SHAMAN"]},
     {"type": "TRAVEL", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8, "radius": 60, "note": "travel to Ashenvale (Ashenvale)"},
     {"type": "NOTE", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8, "text": "set your hearthstone at the inn in Ashenvale (if there is one)"},
+    {"type": "FLIGHTPATH", "npc": 4267, "npcName": "Daelyshia", "map": 1440, "zone": "Ashenvale", "x": 34.4, "y": 48},
     {"type": "TURNIN", "quest": 6121, "questName": "Lessons Anew", "npc": 11802, "npcName": "Dendrite Starblaze", "map": 1450, "zone": "Moonglade", "x": 56.2, "y": 30.4, "class": ["DRUID"]},
     {"type": "ACCEPT", "quest": 1008, "questName": "The Zoram Strand", "npc": 3845, "npcName": "Shindrell Swiftfire", "map": 1440, "zone": "Ashenvale", "x": 34.7, "y": 48.8},
     {"type": "TURNIN", "quest": 990, "questName": "Trek to Ashenvale", "npc": 3691, "npcName": "Raene Wolfrunner", "map": 1440, "zone": "Ashenvale", "x": 36.6, "y": 49.6},

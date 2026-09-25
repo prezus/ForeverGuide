@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_03_LOCH_MODAN",
   "name": "3. Loch Modan 10-14 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 10,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 3 of the Dwarf route: level 10 to 14, 43 steps, ~116 min of play in the model (17791 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 1572, "npcName": "Thorgrum Borrelson", "map": 1432, "zone": "Loch Modan", "x": 33.9, "y": 51},
     {"type": "COLLECT", "quest": 1678, "questName": "Vejrek", "target": "Vejrek's Head", "count": 1, "map": 1426, "zone": "Dun Morogh", "x": 27.8, "y": 58, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 6074, "questName": "The Hunter's Path", "npc": 1231, "npcName": "Grif Wildheart", "map": 1426, "zone": "Dun Morogh", "x": 45.8, "y": 53, "class": ["HUNTER"], "race": ["Dwarf"]},
     {"type": "TURNIN", "quest": 6075, "questName": "The Hunter's Path", "npc": 1231, "npcName": "Grif Wildheart", "map": 1426, "zone": "Dun Morogh", "x": 45.8, "y": 53, "class": ["HUNTER"], "race": ["Dwarf"]},

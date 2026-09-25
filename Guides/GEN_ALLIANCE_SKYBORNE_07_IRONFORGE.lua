@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_07_IRONFORGE",
     name = "7. Ironforge 25-25 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 25,
@@ -13,35 +13,36 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_08_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 7 of the Skyborne route: level 25 to 25, 11 steps, ~13 min of play in the model (43781 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 28,
+    stepCount = 29,
     steps = function() return {
-        { type = "ACCEPT", quest = 250, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46, y = 13.6 }, -- 1
-        { type = "TURNIN", quest = 250, questName = "A Dark Threat Looms", map = 1432, zone = "Loch Modan", x = 56.1, y = 13.3 }, -- 2
-        { type = "ACCEPT", quest = 96393, questName = "Old Ironforge Incursion", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 3
-        { type = "ACCEPT", quest = 96394, questName = "The Restless Dead", npc = 264943, npcName = "Afadra Dunwall", map = 1455, zone = "Ironforge", x = 33.2, y = 47.6, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 4
-        { type = "ACCEPT", quest = 96403, questName = "Important Heirlooms", npc = 265003, npcName = "Thom Filch", map = 1455, zone = "Ironforge", x = 32.4, y = 44.8, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 5
-        { type = "NOTE", optional = true, text = "Ready for The Hall of Thanes", note = "Picked up: Old Ironforge Incursion, The Restless Dead, Important Heirlooms. When you have a group, open The Hall of Thanes under Dungeons." }, -- 6
-        { type = "ACCEPT", quest = 2927, questName = "The Day After", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 7
-        { type = "ACCEPT", quest = 94495, questName = "Call of Water", npc = 258043, npcName = "Norric Lochthane", map = 1432, zone = "Loch Modan", x = 41.8, y = 19, class = { "SHAMAN" }, note = "New in Forever" }, -- 8
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.1, y = 46.6, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 9
-        { type = "NOTE", map = 1455, zone = "Ironforge", x = 61.1, y = 46.6, text = "set your hearthstone at the inn in Ironforge (if there is one)" }, -- 10
-        { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 11
-        { type = "ACCEPT", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 12
-        { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 13
-        { type = "TURNIN", quest = 1072, questName = "An Old Colleague", npc = 4081, npcName = "Lomac Gearstrip", map = 1455, zone = "Ironforge", x = 71.8, y = 51.6 }, -- 14
-        { type = "ACCEPT", quest = 467, questName = "Stonegear's Search", npc = 2092, npcName = "Pilot Longbeard", map = 1455, zone = "Ironforge", x = 72.4, y = 93.6 }, -- 15
-        { type = "TURNIN", quest = 467, questName = "Stonegear's Search", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.4 }, -- 16
-        { type = "ACCEPT", quest = 8384, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 69.8, y = 90 }, -- 17
-        { type = "TURNIN", quest = 8384, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 69.8, y = 90 }, -- 18
-        { type = "TURNIN", quest = 2927, questName = "The Day After", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true }, -- 19
-        { type = "ACCEPT", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 20
-        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" }, note = "reduced xp (10%) - you out-levelled it" }, -- 21
-        { type = "KILL", quest = 2922, questName = "Save Techbot's Brain!", npc = 6231, target = "Techbot", map = 1426, zone = "Dun Morogh", x = 19.8, y = 31.9, optional = true }, -- 22
-        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true }, -- 23
-        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 24
-        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 25
-        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 26
-        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 27
-        { type = "TURNIN", quest = 2923, questName = "Tinkmaster Overspark", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, optional = true }, -- 28
+        { type = "FLIGHTPATH", npc = 1573, npcName = "Gryth Thurden", map = 1455, zone = "Ironforge", x = 55.5, y = 47.7 }, -- 1
+        { type = "ACCEPT", quest = 250, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46, y = 13.6 }, -- 2
+        { type = "TURNIN", quest = 250, questName = "A Dark Threat Looms", map = 1432, zone = "Loch Modan", x = 56.1, y = 13.3 }, -- 3
+        { type = "ACCEPT", quest = 96393, questName = "Old Ironforge Incursion", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 4
+        { type = "ACCEPT", quest = 96394, questName = "The Restless Dead", npc = 264943, npcName = "Afadra Dunwall", map = 1455, zone = "Ironforge", x = 33.2, y = 47.6, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 5
+        { type = "ACCEPT", quest = 96403, questName = "Important Heirlooms", npc = 265003, npcName = "Thom Filch", map = 1455, zone = "Ironforge", x = 32.4, y = 44.8, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 6
+        { type = "NOTE", optional = true, text = "Ready for The Hall of Thanes", note = "Picked up: Old Ironforge Incursion, The Restless Dead, Important Heirlooms. When you have a group, open The Hall of Thanes under Dungeons." }, -- 7
+        { type = "ACCEPT", quest = 2927, questName = "The Day After", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 8
+        { type = "ACCEPT", quest = 94495, questName = "Call of Water", npc = 258043, npcName = "Norric Lochthane", map = 1432, zone = "Loch Modan", x = 41.8, y = 19, class = { "SHAMAN" }, note = "New in Forever" }, -- 9
+        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.1, y = 46.6, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 10
+        { type = "NOTE", map = 1455, zone = "Ironforge", x = 61.1, y = 46.6, text = "set your hearthstone at the inn in Ironforge (if there is one)" }, -- 11
+        { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 12
+        { type = "ACCEPT", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 13
+        { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 14
+        { type = "TURNIN", quest = 1072, questName = "An Old Colleague", npc = 4081, npcName = "Lomac Gearstrip", map = 1455, zone = "Ironforge", x = 71.8, y = 51.6 }, -- 15
+        { type = "ACCEPT", quest = 467, questName = "Stonegear's Search", npc = 2092, npcName = "Pilot Longbeard", map = 1455, zone = "Ironforge", x = 72.4, y = 93.6 }, -- 16
+        { type = "TURNIN", quest = 467, questName = "Stonegear's Search", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.4 }, -- 17
+        { type = "ACCEPT", quest = 8384, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 69.8, y = 90 }, -- 18
+        { type = "TURNIN", quest = 8384, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 69.8, y = 90 }, -- 19
+        { type = "TURNIN", quest = 2927, questName = "The Day After", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true }, -- 20
+        { type = "ACCEPT", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 21
+        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" }, note = "reduced xp (10%) - you out-levelled it" }, -- 22
+        { type = "KILL", quest = 2922, questName = "Save Techbot's Brain!", npc = 6231, target = "Techbot", map = 1426, zone = "Dun Morogh", x = 19.8, y = 31.9, optional = true }, -- 23
+        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true }, -- 24
+        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 25
+        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 26
+        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 27
+        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 28
+        { type = "TURNIN", quest = 2923, questName = "Tinkmaster Overspark", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, optional = true }, -- 29
     } end,
 })

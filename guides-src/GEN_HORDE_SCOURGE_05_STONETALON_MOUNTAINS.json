@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_05_STONETALON_MOUNTAINS",
   "name": "5. Stonetalon Mountains 23-25 (Undead)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 23,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 5 of the Scourge route: level 23 to 25, 44 steps, ~145 min of play in the model (22684 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 4312, "npcName": "Tharm", "map": 1442, "zone": "Stonetalon Mountains", "x": 45.1, "y": 59.8},
     {"type": "COLLECT", "quest": 1069, "questName": "Deepmoss Spider Eggs", "target": "Deepmoss Egg", "count": 15, "map": 1442, "zone": "Stonetalon Mountains", "x": 61, "y": 64.1},
     {"type": "ACCEPT", "quest": 6562, "questName": "Trouble in the Deeps", "npc": 11862, "npcName": "Tsunaman", "map": 1442, "zone": "Stonetalon Mountains", "x": 47.2, "y": 64.2, "note": "For Blackfathom Deeps (dungeon guide)", "optional": true},
     {"type": "TRAVEL", "map": 1442, "zone": "Stonetalon Mountains", "x": 46.9, "y": 61.0, "radius": 60, "note": "travel to Stonetalon Mountains (Stonetalon Mountains)"},

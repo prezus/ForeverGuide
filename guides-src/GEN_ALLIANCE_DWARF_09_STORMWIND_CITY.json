@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_09_STORMWIND_CITY",
   "name": "9. Stormwind City 25-25 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 25,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 9 of the Dwarf route: level 25 to 25, 7 steps, ~9 min of play in the model (22017 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 352, "npcName": "Dungar Longdrink", "map": 1453, "zone": "Stormwind City", "x": 71, "y": 72.5},
     {"type": "ACCEPT", "quest": 167, "questName": "Oh Brother. . .", "npc": 656, "npcName": "Wilder Thistlenettle", "map": 1453, "zone": "Stormwind City", "x": 65.2, "y": 21.2, "note": "For The Deadmines (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 168, "questName": "Collecting Memories", "npc": 656, "npcName": "Wilder Thistlenettle", "map": 1453, "zone": "Stormwind City", "x": 65.2, "y": 21.2, "note": "For The Deadmines (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 2040, "questName": "Underground Assault", "npc": 6579, "npcName": "Shoni the Shilent", "map": 1453, "zone": "Stormwind City", "x": 55.4, "y": 12.6, "note": "For The Deadmines (dungeon guide)", "optional": true},
