@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_08_IRONFORGE",
     name = "8. Ironforge 25-25 (Dwarf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 25,
@@ -13,17 +13,32 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_09_STORMWIND_CITY",
     author = "ForeverGuide route planner",
     notes = "Chapter 8 of the Dwarf route: level 25 to 25, 10 steps, ~13 min of play in the model (42055 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 10,
+    stepCount = 25,
     steps = function() return {
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.5, y = 48.2, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 1
-        { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 2
-        { type = "ACCEPT", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 3
-        { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 4
-        { type = "KILL", quest = 2922, questName = "Save Techbot's Brain!", npc = 6231, target = "Techbot", map = 1426, zone = "Dun Morogh", x = 19.8, y = 31.9, optional = true }, -- 5
-        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true }, -- 6
-        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 7
-        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 8
-        { type = "ACCEPT", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 9
-        { type = "TURNIN", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 10
+        { type = "TURNIN", quest = 6391, questName = "Ride to Ironforge", npc = 4256, npcName = "Golnir Bouldertoe", map = 1455, zone = "Ironforge", x = 51, y = 26, note = "reduced xp (10%) - you out-levelled it" }, -- 1
+        { type = "ACCEPT", quest = 2927, questName = "The Day After", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 2
+        { type = "TURNIN", quest = 2997, questName = "Tome of Divinity", npc = 6179, npcName = "Tiza Battleforge", map = 1455, zone = "Ironforge", x = 27.4, y = 12, class = { "PALADIN" }, race = { "Dwarf" }, note = "reduced xp (10%) - you out-levelled it" }, -- 3
+        { type = "TURNIN", quest = 3000, questName = "Tome of Divinity", npc = 6179, npcName = "Tiza Battleforge", map = 1455, zone = "Ironforge", x = 27.4, y = 12, class = { "PALADIN" }, race = { "Dwarf" }, note = "reduced xp (10%) - you out-levelled it" }, -- 4
+        { type = "ACCEPT", quest = 5641, questName = "A Lack of Fear", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" }, race = { "Dwarf" } }, -- 5
+        { type = "TURNIN", quest = 5641, questName = "A Lack of Fear", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" }, race = { "Dwarf" } }, -- 6
+        { type = "ACCEPT", quest = 5645, questName = "A Lack of Fear", npc = 5143, npcName = "Toldren Deepiron", map = 1455, zone = "Ironforge", x = 25.2, y = 10.2, class = { "PRIEST" }, race = { "Dwarf" } }, -- 7
+        { type = "TURNIN", quest = 5645, questName = "A Lack of Fear", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" }, race = { "Dwarf" } }, -- 8
+        { type = "TURNIN", quest = 5647, questName = "A Lack of Fear", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" }, race = { "Dwarf" } }, -- 9
+        { type = "ACCEPT", quest = 1717, questName = "Gakin's Summons", npc = 6120, npcName = "Lago Blackwrench", map = 1455, zone = "Ironforge", x = 47.6, y = 9.6, class = { "WARLOCK" }, race = { "Gnome" } }, -- 10
+        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.5, y = 48.2, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 11
+        { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 12
+        { type = "ACCEPT", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 13
+        { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 14
+        { type = "TURNIN", quest = 301, questName = "Report to Ironforge", npc = 1356, npcName = "Prospector Stormpike", map = 1455, zone = "Ironforge", x = 74.4, y = 12, note = "reduced xp (20%) - you out-levelled it" }, -- 15
+        { type = "ACCEPT", quest = 467, questName = "Stonegear's Search", npc = 2092, npcName = "Pilot Longbeard", map = 1455, zone = "Ironforge", x = 72.4, y = 93.6 }, -- 16
+        { type = "TURNIN", quest = 467, questName = "Stonegear's Search", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.4 }, -- 17
+        { type = "TURNIN", quest = 2927, questName = "The Day After", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true }, -- 18
+        { type = "ACCEPT", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 19
+        { type = "KILL", quest = 2922, questName = "Save Techbot's Brain!", npc = 6231, target = "Techbot", map = 1426, zone = "Dun Morogh", x = 19.8, y = 31.9, optional = true }, -- 20
+        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true }, -- 21
+        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 22
+        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 23
+        { type = "ACCEPT", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 24
+        { type = "TURNIN", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 25
     } end,
 })
