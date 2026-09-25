@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_27_UN_GORO_CRATER",
   "name": "27. Un'Goro Crater 49-49 (Orc)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 49,
