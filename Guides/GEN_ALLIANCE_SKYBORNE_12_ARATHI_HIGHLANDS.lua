@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_12_ARATHI_HIGHLANDS",
     name = "12. Arathi Highlands 30-31 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 30,
