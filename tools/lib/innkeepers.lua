@@ -4,8 +4,9 @@
 -- subname is "Innkeeper" in Questie's database (Questie/QuestieDB
 -- b6f5b07b), first spawn only.
 --   f     A / H / AH: the factions it serves
---   bind  the inn's name as GetBindLocation() reports it; a HEARTH step
---         compares against it
+--   bind  the inn's name as GetBindLocation() reports it. A HEARTH step
+--         completes on binding with its innkeeper; the name only covers a
+--         bind made before the step, and is unverified for the capitals
 -- Forever-only inns (Zephras Isle) are not in Questie yet; add them here by
 -- hand with a comment.
 -- Data (c) the Questie project, https://github.com/Questie/Questie.

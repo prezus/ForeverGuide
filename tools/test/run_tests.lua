@@ -241,11 +241,28 @@ MOCK_ACCEPT(54, "Report to Goldshire"); settle()
 MOCK_TURNIN(54); settle()
 check(cur() == 38 and step().quest == 2158 and step().type == "TURNIN", "turning in 54 auto-completes the TRAVEL before it (" .. tostring(cur()) .. ")")
 
--- HEARTH via GetBindLocation
+-- HEARTH: bound at the step's innkeeper (HEARTHSTONE_BOUND), or earlier (GetBindLocation)
 MOCK_TURNIN(2158); settle()
 check(cur() == 39 and step().type == "HEARTH", "hearth step (" .. tostring(cur()) .. ")")
-MOCK.bind = "Goldshire"; G:Evaluate("test")
-check(cur() == 40 and step().type == "NOTE", "bind location matched -> final NOTE (" .. tostring(cur()) .. ")")
+check(G:GetStepText(step()) == "Set your hearthstone at the Lion's Pride Inn", "a hand-written hearth step keeps its text")
+check(G:GetStepText({ type = "HEARTH", npc = 295, npcName = "Innkeeper Farley", zone = "Goldshire" }) == "Set your hearthstone with Innkeeper Farley (Goldshire)",
+    "a generated hearth step names the innkeeper")
+do
+    local function bindWith(npcID, name)
+        MOCK.npc = { npcID = npcID, name = name, level = 30 }
+        MOCK_FIRE("HEARTHSTONE_BOUND"); settle()
+        MOCK.npc = nil
+    end
+    bindWith(6727, "Innkeeper Brianna")
+    check(cur() == 39, "binding with another innkeeper leaves the hearth step open (" .. tostring(cur()) .. ")")
+    bindWith(295, "Innkeeper Farley")
+    check(cur() == 40 and step().type == "NOTE", "binding with the step's innkeeper completes it, whatever the inn is called (" .. tostring(cur()) .. ")")
+    -- a bind made before the step: the bind location stands in for the event
+    G.progress.done[39] = nil; G:SetStep(39); settle()
+    check(cur() == 39, "back on the hearth step (" .. tostring(cur()) .. ")")
+    MOCK.bind = "Goldshire"; G:Evaluate("test")
+    check(cur() == 40 and step().type == "NOTE", "bind location matched -> final NOTE (" .. tostring(cur()) .. ")")
+end
 G:Skip(); settle()
 check(step() == nil and G.active ~= nil, "guide complete")
 

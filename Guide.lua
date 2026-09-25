@@ -14,7 +14,8 @@
 --   GRIND    level           player level >= level
 --   BUY      item count      bag count >= count
 --   TRAIN    spell           spell known
---   HEARTH   zone            bind location == zone (GetBindLocation), else manual
+--   HEARTH   npc [zone]      hearthstone bound (HEARTHSTONE_BOUND) while talking to that innkeeper;
+--                            bind location == zone (GetBindLocation) for a bind made earlier; else manual
 --   TRAVEL   map x y [radius] arriving within radius (Navigation) — auto
 --   FLY      map x y         same as TRAVEL (flight path hint)
 --   TALK     npc             interacting with that NPC (gossip/quest/vendor/trainer windows)
@@ -975,6 +976,8 @@ function Guide:GetStepText(step)
     elseif t == "TRAVEL" or t == "FLY" then
         return verb .. " " .. tostring(step.zone or (step.x and step.y and string.format("%.1f, %.1f", step.x, step.y)) or "destination")
     elseif t == "HEARTH" then
+        local keeper = step.npcName or (step.npc and DB and DB:NPCName(step.npc))
+        if keeper then return "Set your hearthstone with " .. keeper .. (step.zone and (" (" .. step.zone .. ")") or "") end
         return verb .. " " .. tostring(step.zone or "the inn")
     end
     return step.note or t
@@ -1050,6 +1053,15 @@ function Guide:OnInit()
         if not step or step.type ~= "FLIGHTPATH" then return end
         local npc = ns.Player:GetInteractionNPC()
         if not step.npc or not npc or step.npc == npc.npcID then Guide:MarkDone(step.index, "flight path") end
+    end)
+    -- HEARTH steps complete when the hearthstone is bound while the step is the current one, unless
+    -- the NPC still open is another innkeeper. The inn's name does not matter here; GetBindLocation()
+    -- only covers a bind made before the step (see IsStepDone).
+    ns.Events:Register("HEARTHSTONE_BOUND", function()
+        local step = Guide:GetCurrentStep()
+        if not step or step.type ~= "HEARTH" then return end
+        local npc = ns.Player:GetInteractionNPC()
+        if not step.npc or not npc or step.npc == npc.npcID then Guide:MarkDone(step.index, "hearth bound") end
     end)
     ns.Events:Register("UI_INFO_MESSAGE", function(_, _, message)
         local step = Guide:GetCurrentStep()
