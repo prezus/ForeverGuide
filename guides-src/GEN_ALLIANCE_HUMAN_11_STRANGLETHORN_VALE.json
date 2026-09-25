@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_11_STRANGLETHORN_VALE",
   "name": "11. Stranglethorn Vale 29-32 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 29,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 11 of the Human route: level 29 to 32, 109 steps, ~384 min of play in the model (25987 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 2859, "npcName": "Gyll", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.5, "y": 77.8},
     {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.3, "y": 76.5, "radius": 60, "note": "travel to Stranglethorn Vale (Stranglethorn Vale)"},
     {"type": "NOTE", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.3, "y": 76.5, "text": "set your hearthstone at the inn in Stranglethorn Vale (if there is one)"},
     {"type": "ACCEPT", "quest": 575, "questName": "Supply and Demand", "npc": 2495, "npcName": "Drizzlik", "map": 1434, "zone": "Stranglethorn Vale", "x": 28.3, "y": 77.6},
