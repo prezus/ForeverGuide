@@ -1746,6 +1746,46 @@ do
     ns.Bags:Check("test")
 end
 
+-- ---- a dungeon's own guide: listed apart, never auto-picked, back to the chapter afterwards ----
+do
+    local CHAPTER = "GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST"
+    local function dungeon(id, quest)
+        ns.RegisterGuide({ id = id, name = id, version = 1, kind = "dungeon", faction = "Alliance", minLevel = 1, maxLevel = 60, map = 1429, zone = "Elwynn Forest",
+            steps = {
+                { type = "ACCEPT", quest = quest, questName = "Into the Hold", map = 1429, x = 40, y = 40 },
+                { type = "TURNIN", quest = quest, questName = "Into the Hold", map = 1429, x = 40, y = 40 },
+            } })
+    end
+    dungeon("DUNGEON_ALLIANCE_TEST_HOLD", 99901)
+    dungeon("DUNGEON_ALLIANCE_TEST_DEEPS", 99902)
+
+    check(G:IsDungeon(G:Get("DUNGEON_ALLIANCE_TEST_HOLD")), "a guide of kind dungeon is a dungeon guide")
+    check(not G:IsDungeon(G:Get(CHAPTER)), "a levelling chapter is not")
+    local listed = {}
+    for _, g in ipairs(G:Dungeons()) do listed[g.id] = true end
+    check(listed.DUNGEON_ALLIANCE_TEST_HOLD and not listed[CHAPTER], "the Dungeons list holds dungeon guides only")
+    local pick = G:AutoPick()
+    check(pick ~= nil and not G:IsDungeon(pick), "auto-pick never lands on a dungeon guide, even one covering every level (" .. tostring(pick and pick.id) .. ")")
+
+    -- finishing the dungeon guide goes back to the chapter it was opened from
+    G:Activate(CHAPTER, true); settle()
+    G:Activate("DUNGEON_ALLIANCE_TEST_HOLD", true); settle()
+    MOCK_ACCEPT(99901, "Into the Hold", {}); settle()
+    MOCK_TURNIN(99901); settle()
+    check(G.active and G.active.id == CHAPTER, "finishing the dungeon guide returns to the chapter left (" .. tostring(G.active and G.active.id) .. ")")
+
+    -- /fg resume goes back before the run is done
+    G:Activate("DUNGEON_ALLIANCE_TEST_DEEPS", true); settle()
+    ns.Commands:Run("resume")
+    check(G.active and G.active.id == CHAPTER, "/fg resume returns to the chapter (" .. tostring(G.active and G.active.id) .. ")")
+
+    -- opening another chapter by hand forgets the way back
+    G:Activate("DUNGEON_ALLIANCE_TEST_DEEPS", true); settle()
+    G:Activate("GEN_ALLIANCE_HUMAN_03_WESTFALL", true); settle()
+    check(ns.char.returnGuide == nil, "choosing a chapter by hand clears the chapter to return to")
+    G:Activate(CHAPTER, true); settle()
+end
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 do
     local expected = 0

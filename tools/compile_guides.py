@@ -35,11 +35,12 @@ STEP_FIELDS = {
     "class": list, "race": list,
 }
 GUIDE_FIELDS = {
-    "id": str, "name": str, "version": int, "faction": str, "race": list, "class": list,
+    "id": str, "name": str, "version": int, "kind": str, "faction": str, "race": list, "class": list,
     "minLevel": int, "maxLevel": int, "map": int, "zone": str, "next": str, "author": str, "notes": str,
     "modelMinutes": int, "modelXph": int, "steps": list,
 }
 ID_RE = re.compile(r"^[A-Z0-9_]+$")
+GUIDE_KINDS = {"dungeon"}
 
 
 class GuideError(Exception):
@@ -74,6 +75,8 @@ def validate(guide, filename):
         check_type(f"{filename}: {key}", value, GUIDE_FIELDS[key])
     if not ID_RE.match(guide["id"]):
         raise GuideError(f"{filename}: id '{guide['id']}' must match [A-Z0-9_]+")
+    if "kind" in guide and guide["kind"] not in GUIDE_KINDS:
+        raise GuideError(f"{filename}: kind '{guide['kind']}' must be one of {sorted(GUIDE_KINDS)}")
     if not guide["steps"]:
         raise GuideError(f"{filename}: no steps")
 
@@ -144,7 +147,7 @@ def compile_guide(guide):
         "local _, ns = ...",
         "ns.RegisterGuide({",
     ]
-    for key in ("id", "name", "version", "faction", "race", "class", "minLevel", "maxLevel", "map", "zone", "next", "author", "notes", "modelMinutes", "modelXph"):
+    for key in ("id", "name", "version", "kind", "faction", "race", "class", "minLevel", "maxLevel", "map", "zone", "next", "author", "notes", "modelMinutes", "modelXph"):
         if key in guide:
             lines.append(f"    {key} = {lua_value(guide[key])},")
     # steps are built on first use (a closure), not at login: 425 guides x ~40 steps as live

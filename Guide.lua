@@ -136,6 +136,35 @@ function Guide:Applicable(guide)
     return true
 end
 
+--- A dungeon's own guide (`kind = "dungeon"`): opened when a group forms, never auto-picked.
+function Guide:IsDungeon(guide)
+    return type(guide) == "table" and guide.kind == "dungeon"
+end
+
+--- The dungeon guides this character may follow, by level then name.
+function Guide:Dungeons()
+    local out = {}
+    for _, id in ipairs(self.list) do
+        local g = self.registry[id]
+        if self:IsDungeon(g) and self:Applicable(g) then out[#out + 1] = g end
+    end
+    table.sort(out, function(a, b)
+        if (a.minLevel or 1) ~= (b.minLevel or 1) then return (a.minLevel or 1) < (b.minLevel or 1) end
+        return (a.name or a.id) < (b.name or b.id)
+    end)
+    return out
+end
+
+--- Leave a dungeon guide for the chapter it was opened from (else the route's chapter for the
+--- level). Returns the guide activated, or nil when there is nowhere to go.
+function Guide:Resume()
+    local back = ns.char.returnGuide and self.registry[ns.char.returnGuide]
+    if not back then back = self:RouteChapterForLevel() end
+    if not back then return nil end
+    self:Activate(back.id)
+    return back
+end
+
 --- Does the guide's race list include this character?
 function Guide:ForMyRace(guide)
     local _, raceFile = ns.Player:GetRace()
@@ -252,7 +281,7 @@ function Guide:AutoPick()
     local best, bestScore = nil, nil
     for _, id in ipairs(self.list) do
         local g = self.registry[id]
-        if self:Applicable(g) then
+        if self:Applicable(g) and not self:IsDungeon(g) then
             local minL, maxL = g.minLevel or 1, g.maxLevel or 60
             local score = 0
             if level < minL or level > maxL then
@@ -644,7 +673,15 @@ function Guide:Evaluate(reason)
     self.current = i
 
     if not steps[i] then
-        -- guide finished
+        -- guide finished: a dungeon guide hands back to the chapter it was opened from
+        local back = self:IsDungeon(g) and ns.char.returnGuide and self.registry[ns.char.returnGuide]
+        if back and back ~= g and (self.chainDepth or 0) < 10 then
+            ns.Printf("%s done - back to '%s'.", g.name or g.id, back.name or back.id)
+            self.chainDepth = (self.chainDepth or 0) + 1
+            self:Activate(back.id)
+            self.chainDepth = self.chainDepth - 1
+            return
+        end
         if g.next and self.registry[g.next] and self.registry[g.next] ~= g and (self.chainDepth or 0) < 10 then
             ns.Printf("Guide '%s' complete - continuing with '%s'.", g.name or g.id, self.registry[g.next].name or g.next)
             self.chainDepth = (self.chainDepth or 0) + 1
@@ -695,6 +732,12 @@ function Guide:Activate(id, silent)
     if not g then
         ns.Error("unknown guide: " .. tostring(id))
         return false
+    end
+    -- a dungeon guide remembers the chapter it was opened from; opening a chapter forgets it
+    if self:IsDungeon(g) then
+        if self.active and not self:IsDungeon(self.active) then ns.char.returnGuide = self.active.id end
+    else
+        ns.char.returnGuide = nil
     end
     self.active = g
     self.progress = ns.Database:GuideProgress(g.id, g.version)
