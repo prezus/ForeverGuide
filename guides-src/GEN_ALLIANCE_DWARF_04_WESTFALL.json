@@ -52,6 +52,7 @@
     {"type": "ACCEPT", "quest": 94465, "questName": "Call of Fire", "npc": 257597, "npcName": "Bruegs Kindleborn", "map": 1426, "zone": "Dun Morogh", "x": 87.6, "y": 43.6, "note": "New in Forever", "class": ["SHAMAN"]},
     {"type": "ACCEPT", "quest": 1685, "questName": "Gakin's Summons", "npc": 6121, "npcName": "Remen Marcot", "map": 1429, "zone": "Elwynn Forest", "x": 44.4, "y": 66.2, "class": ["WARLOCK"], "race": ["Gnome"]},
     {"type": "TURNIN", "quest": 1685, "questName": "Gakin's Summons", "npc": 6122, "npcName": "Gakin the Darkbinder", "map": 1453, "zone": "Stormwind City", "x": 25.4, "y": 78.4, "class": ["WARLOCK"], "race": ["Gnome"]},
+    {"type": "TURNIN", "quest": 1715, "questName": "The Slaughtered Lamb", "npc": 6122, "npcName": "Gakin the Darkbinder", "map": 1453, "zone": "Stormwind City", "x": 25.4, "y": 78.4, "class": ["WARLOCK"], "race": ["Gnome"]},
     {"type": "TRAVEL", "map": 1436, "zone": "Westfall", "x": 56.1, "y": 43.1, "radius": 60, "note": "travel to Westfall (Westfall)"},
     {"type": "ACCEPT", "quest": 92744, "questName": "Murloc Gills", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53, "note": "New in Forever"},
     {"type": "TURNIN", "quest": 92752, "questName": "Explosive Consultation", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53},
