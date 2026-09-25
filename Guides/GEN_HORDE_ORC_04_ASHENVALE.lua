@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_04_ASHENVALE",
     name = "4. Ashenvale 24-25 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 24,
@@ -12,17 +12,17 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     next = "GEN_HORDE_ORC_05_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 4 of the Orc route: level 24 to 25, 39 steps, ~124 min of play in the model (22550 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 4 of the Orc route: level 24 to 25, 39 steps, ~124 min of play in the model (22497 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 46,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 12616, npcName = "Vhulgra", map = 1440, zone = "Ashenvale", x = 73.2, y = 61.6 }, -- 1
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 2
-        { type = "NOTE", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 3
-        { type = "ACCEPT", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 4
-        { type = "ACCEPT", quest = 25, questName = "Stonetalon Standstill", npc = 12737, npcName = "Mastok Wrilehiss", map = 1440, zone = "Ashenvale", x = 73.7, y = 60 }, -- 5
-        { type = "ACCEPT", quest = 6441, questName = "Satyr Horns", npc = 12724, npcName = "Pixel", map = 1440, zone = "Ashenvale", x = 73.1, y = 61.5 }, -- 6
-        { type = "TURNIN", quest = 6382, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 7
-        { type = "TURNIN", quest = 235, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 8
+        { type = "TURNIN", quest = 6382, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 3
+        { type = "TURNIN", quest = 235, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 4
+        { type = "HEARTH", npc = 12196, npcName = "Innkeeper Kaylisk", map = 1440, zone = "Splintertree Post", x = 74.0, y = 60.6, note = "talk to Innkeeper Kaylisk and make this inn your home" }, -- 5
+        { type = "ACCEPT", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 6
+        { type = "ACCEPT", quest = 25, questName = "Stonetalon Standstill", npc = 12737, npcName = "Mastok Wrilehiss", map = 1440, zone = "Ashenvale", x = 73.7, y = 60 }, -- 7
+        { type = "ACCEPT", quest = 6441, questName = "Satyr Horns", npc = 12724, npcName = "Pixel", map = 1440, zone = "Ashenvale", x = 73.1, y = 61.5 }, -- 8
         { type = "TURNIN", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 9
         { type = "ACCEPT", quest = 6503, questName = "Ashenvale Outrunners", npc = 12867, npcName = "Kuray'bin", map = 1440, zone = "Ashenvale", x = 71.1, y = 68.1 }, -- 10
         { type = "ACCEPT", quest = 6504, questName = "The Lost Pages", npc = 12718, npcName = "Gurda Ragescar", map = 1440, zone = "Ashenvale", x = 70, y = 71.2 }, -- 11

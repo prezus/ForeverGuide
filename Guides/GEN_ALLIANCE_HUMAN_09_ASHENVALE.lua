@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_09_ASHENVALE",
     name = "9. Ashenvale 26-28 (Human)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 26,
@@ -12,10 +12,10 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     next = "GEN_ALLIANCE_HUMAN_10_THOUSAND_NEEDLES",
     author = "ForeverGuide route planner",
-    notes = "Chapter 9 of the Human route: level 26 to 28, 82 steps, ~211 min of play in the model (23289 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 94,
+    notes = "Chapter 9 of the Human route: level 26 to 28, 81 steps, ~211 min of play in the model (23471 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 95,
     steps = function() return {
-        { type = "TRAVEL", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, radius = 60, note = "use your hearthstone (Wetlands)" }, -- 1
+        { type = "TRAVEL", map = 1437, zone = "Menethil Harbor", x = 10.7, y = 61.0, radius = 60, note = "use your hearthstone (Menethil Harbor)" }, -- 1
         { type = "ACCEPT", quest = 98461, questName = "Unrequited Love", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8, note = "New in Forever" }, -- 2
         { type = "TURNIN", quest = 98461, questName = "Unrequited Love", npc = 2096, npcName = "Tarrel Rockweaver", map = 1437, zone = "Wetlands", x = 11.4, y = 52.2 }, -- 3
         { type = "TURNIN", quest = 3765, questName = "The Corruption Abroad", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.4, y = 43 }, -- 4
@@ -23,10 +23,10 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1199, questName = "Twilight Falls", npc = 4784, npcName = "Argent Guard Manados", map = 1457, zone = "Darnassus", x = 55.2, y = 23.6, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 6
         { type = "ACCEPT", quest = 1275, questName = "Researching the Corruption", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.4, y = 43, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 7
         { type = "NOTE", optional = true, text = "Ready for Blackfathom Deeps", note = "Picked up: In Search of Thaelrid, Twilight Falls, Researching the Corruption. When you have a group, open Blackfathom Deeps under Dungeons." }, -- 8
-        { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 9
-        { type = "ACCEPT", quest = 8384, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8 }, -- 10
-        { type = "TURNIN", quest = 8384, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8 }, -- 11
-        { type = "NOTE", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 12
+        { type = "ACCEPT", quest = 2925, questName = "Klockmort's Essentials", npc = 6142, npcName = "Mathiel", map = 1457, zone = "Darnassus", x = 59.2, y = 45.4, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 9
+        { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 10
+        { type = "ACCEPT", quest = 8384, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8 }, -- 11
+        { type = "TURNIN", quest = 8384, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8 }, -- 12
         { type = "ACCEPT", quest = 7863, questName = "Sentinel Basic Care Package", npc = 14753, npcName = "Illiyana Moonblaze", map = 1440, zone = "Ashenvale", x = 61.5, y = 83.9 }, -- 13
         { type = "TURNIN", quest = 7863, questName = "Sentinel Basic Care Package", npc = 14753, npcName = "Illiyana Moonblaze", map = 1440, zone = "Ashenvale", x = 61.5, y = 83.9 }, -- 14
         { type = "ACCEPT", quest = 1016, questName = "Elemental Bracers", npc = 3885, npcName = "Sentinel Velene Starstrike", map = 1440, zone = "Ashenvale", x = 49.8, y = 67.2 }, -- 15
@@ -55,10 +55,10 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1020, questName = "Orendil's Cure", npc = 3847, npcName = "Orendil Broadleaf", map = 1440, zone = "Ashenvale", x = 26.4, y = 38.6 }, -- 38
         { type = "ACCEPT", quest = 4581, questName = "Kayneth Stillwind", npc = 3845, npcName = "Shindrell Swiftfire", map = 1440, zone = "Ashenvale", x = 34.6, y = 48.8 }, -- 39
         { type = "TURNIN", quest = 1008, questName = "The Zoram Strand", npc = 3845, npcName = "Shindrell Swiftfire", map = 1440, zone = "Ashenvale", x = 34.7, y = 48.8, note = "reduced xp (60%) - you out-levelled it" }, -- 40
-        { type = "TURNIN", quest = 1023, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6, note = "reduced xp (80%) - you out-levelled it" }, -- 41
+        { type = "TURNIN", quest = 1023, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 41
         { type = "ACCEPT", quest = 1024, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 42
         { type = "ACCEPT", quest = 1025, questName = "An Aggressive Defense", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 43
-        { type = "TURNIN", quest = 1020, questName = "Orendil's Cure", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8, note = "reduced xp (60%) - you out-levelled it" }, -- 44
+        { type = "TURNIN", quest = 1020, questName = "Orendil's Cure", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8, note = "reduced xp (80%) - you out-levelled it" }, -- 44
         { type = "ACCEPT", quest = 1033, questName = "Elune's Tear", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 45
         { type = "COLLECT", quest = 1033, questName = "Elune's Tear", target = "Elune's Tear", map = 1440, zone = "Ashenvale", x = 46.1, y = 46.6, near = true }, -- 46
         { type = "KILL", quest = 1025, questName = "An Aggressive Defense", npc = 3743, target = "Foulweald Warrior / Foulweald Totemic / Foulweald Den Watcher / Foulweald Ursa", count = 12, map = 1440, zone = "Ashenvale", x = 49.3, y = 60.5, near = true }, -- 47
@@ -105,9 +105,10 @@ ns.RegisterGuide({
         { type = "KILL", quest = 1012, questName = "Insane Druids", npc = 3941, target = "Uthil Mooncall / Taneel Darkwood", count = 1, map = 1440, zone = "Ashenvale", x = 78, y = 72.7 }, -- 88
         { type = "KILL", quest = 1012, questName = "Insane Druids", npc = 3942, target = "Mavoris Cloudsbreak", count = 1, map = 1440, zone = "Ashenvale", x = 75.1, y = 74.2 }, -- 89
         { type = "TURNIN", quest = 1012, questName = "Insane Druids", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 90
-        { type = "TURNIN", quest = 1031, questName = "The Branch of Cenarius", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 91
-        { type = "ACCEPT", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 92
-        { type = "COLLECT", quest = 1032, questName = "Satyr Slaying!", target = "Satyr Horns", count = 16, map = 1440, zone = "Ashenvale", x = 66.1, y = 53.4, near = true }, -- 93
-        { type = "TURNIN", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 94
+        { type = "ACCEPT", quest = 2931, questName = "Castpipe's Task", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.4, y = 67.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 91
+        { type = "TURNIN", quest = 1031, questName = "The Branch of Cenarius", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 92
+        { type = "ACCEPT", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 93
+        { type = "COLLECT", quest = 1032, questName = "Satyr Slaying!", target = "Satyr Horns", count = 16, map = 1440, zone = "Ashenvale", x = 66.1, y = 53.4, near = true }, -- 94
+        { type = "TURNIN", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 95
     } end,
 })

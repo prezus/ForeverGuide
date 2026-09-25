@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_19_TANARIS",
     name = "19. Tanaris 41-45 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 41,
@@ -12,11 +12,11 @@ ns.RegisterGuide({
     zone = "Tanaris",
     next = "GEN_ALLIANCE_SKYBORNE_20_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 19 of the Skyborne route: level 41 to 45, 70 steps, ~694 min of play in the model (11919 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
+    notes = "Chapter 19 of the Skyborne route: level 41 to 45, 70 steps, ~694 min of play in the model (11913 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
     stepCount = 70,
     steps = function() return {
         { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 51.8, y = 27.5, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 1
-        { type = "NOTE", map = 1446, zone = "Tanaris", x = 51.8, y = 27.5, text = "set your hearthstone at the inn in Tanaris (if there is one)" }, -- 2
+        { type = "HEARTH", npc = 7733, npcName = "Innkeeper Fizzgrimble", map = 1446, zone = "Gadgetzan", x = 52.5, y = 27.9, note = "talk to Innkeeper Fizzgrimble and make this inn your home" }, -- 2
         { type = "ACCEPT", quest = 1690, questName = "Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 3
         { type = "ACCEPT", quest = 1707, questName = "Water Pouch Bounty", npc = 7408, npcName = "Spigot Operator Luglunket", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 4
         { type = "ACCEPT", quest = 2875, questName = "WANTED: Andre Firebeard", map = 1446, zone = "Tanaris", x = 51.8, y = 27 }, -- 5

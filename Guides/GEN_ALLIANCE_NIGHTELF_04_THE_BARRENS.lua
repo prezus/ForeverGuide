@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_04_THE_BARRENS",
     name = "4. The Barrens 16-18 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 16,
@@ -12,22 +12,22 @@ ns.RegisterGuide({
     zone = "The Barrens",
     next = "GEN_ALLIANCE_NIGHTELF_05_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 4 of the NightElf route: level 16 to 18, 42 steps, ~93 min of play in the model (19229 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
-    stepCount = 66,
+    notes = "Chapter 4 of the NightElf route: level 16 to 18, 42 steps, ~95 min of play in the model (18989 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
+    stepCount = 65,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 16227, npcName = "Bragok", map = 1413, zone = "The Barrens", x = 63.1, y = 37.2 }, -- 1
         { type = "ACCEPT", quest = 94465, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 2
         { type = "TURNIN", quest = 94465, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" } }, -- 3
         { type = "TRAVEL", map = 1413, zone = "The Barrens", x = 62.8, y = 37.4, radius = 60, note = "travel to The Barrens (The Barrens)" }, -- 4
-        { type = "NOTE", map = 1413, zone = "The Barrens", x = 62.8, y = 37.4, text = "set your hearthstone at the inn in The Barrens (if there is one)" }, -- 5
-        { type = "ACCEPT", quest = 1483, questName = "Ziz Fizziks", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 6
-        { type = "ACCEPT", quest = 894, questName = "Samophlange", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 7
-        { type = "ACCEPT", quest = 887, questName = "Southsea Freebooters", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2 }, -- 8
-        { type = "ACCEPT", quest = 92706, questName = "WANTED: Bruuz", map = 1413, zone = "The Barrens", x = 62.6, y = 37.5, optional = true, note = "New in Forever; Elite - group up" }, -- 9
-        { type = "ACCEPT", quest = 895, questName = "WANTED: Baron Longshore", map = 1413, zone = "The Barrens", x = 62.6, y = 37.5 }, -- 10
-        { type = "ACCEPT", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 11
-        { type = "ACCEPT", quest = 865, questName = "Raptor Horns", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 12
-        { type = "ACCEPT", quest = 896, questName = "Miner's Fortune", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 13
+        { type = "HEARTH", npc = 6791, npcName = "Innkeeper Wiley", map = 1413, zone = "Ratchet", x = 62.0, y = 39.4, note = "talk to Innkeeper Wiley and make this inn your home" }, -- 5
+        { type = "ACCEPT", quest = 92706, questName = "WANTED: Bruuz", map = 1413, zone = "The Barrens", x = 62.6, y = 37.5, optional = true, note = "New in Forever; Elite - group up" }, -- 6
+        { type = "ACCEPT", quest = 895, questName = "WANTED: Baron Longshore", map = 1413, zone = "The Barrens", x = 62.6, y = 37.5 }, -- 7
+        { type = "ACCEPT", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 8
+        { type = "ACCEPT", quest = 865, questName = "Raptor Horns", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 9
+        { type = "ACCEPT", quest = 896, questName = "Miner's Fortune", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 10
+        { type = "ACCEPT", quest = 1483, questName = "Ziz Fizziks", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 11
+        { type = "ACCEPT", quest = 894, questName = "Samophlange", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 12
+        { type = "ACCEPT", quest = 887, questName = "Southsea Freebooters", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2 }, -- 13
         { type = "ACCEPT", quest = 959, questName = "Trouble at the Docks", npc = 3665, npcName = "Crane Operator Bigglefuzz", map = 1413, zone = "The Barrens", x = 63.1, y = 37.6, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 14
         { type = "KILL", quest = 959, questName = "Trouble at the Docks", npc = 3655, target = "Mad Magglish", map = 1413, zone = "The Barrens", x = 45.7, y = 33.6, optional = true }, -- 15
         { type = "TURNIN", quest = 959, questName = "Trouble at the Docks", npc = 3665, npcName = "Crane Operator Bigglefuzz", map = 1413, zone = "The Barrens", x = 63.1, y = 37.6, optional = true }, -- 16
@@ -72,14 +72,13 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Fire Tar", count = 1, map = 1432, zone = "Loch Modan", x = 35.6, y = 20, class = { "SHAMAN" } }, -- 55
         { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Reagent Pouch", count = 1, map = 1432, zone = "Loch Modan", x = 34.8, y = 84.4, class = { "SHAMAN" } }, -- 56
         { type = "TURNIN", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" } }, -- 57
-        { type = "ACCEPT", quest = 26, questName = "A Lesson to Learn", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.4, class = { "DRUID" } }, -- 58
-        { type = "TURNIN", quest = 902, questName = "Samophlange", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 59
-        { type = "TURNIN", quest = 896, questName = "Miner's Fortune", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 60
-        { type = "TURNIN", quest = 97005, questName = "Chol'aruk the Ravener", npc = 267309, npcName = "Bainham", map = 1413, zone = "The Barrens", x = 61.8, y = 39.4, optional = true }, -- 61
-        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Shipment of Boots", count = 1, map = 1413, zone = "The Barrens", x = 62.6, y = 49.6 }, -- 62
-        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Telescopic Lens", count = 1, map = 1413, zone = "The Barrens", x = 63.6, y = 49.3 }, -- 63
-        { type = "TURNIN", quest = 888, questName = "Stolen Booty", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 64
-        { type = "ACCEPT", quest = 79192, questName = "Stepping Stones", map = 1413, zone = "The Barrens", x = 46.4, y = 73.8 }, -- 65
-        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 66
+        { type = "TURNIN", quest = 902, questName = "Samophlange", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 58
+        { type = "TURNIN", quest = 896, questName = "Miner's Fortune", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 59
+        { type = "TURNIN", quest = 97005, questName = "Chol'aruk the Ravener", npc = 267309, npcName = "Bainham", map = 1413, zone = "The Barrens", x = 61.8, y = 39.4, optional = true }, -- 60
+        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Shipment of Boots", count = 1, map = 1413, zone = "The Barrens", x = 62.6, y = 49.6 }, -- 61
+        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Telescopic Lens", count = 1, map = 1413, zone = "The Barrens", x = 63.6, y = 49.3 }, -- 62
+        { type = "TURNIN", quest = 888, questName = "Stolen Booty", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 63
+        { type = "ACCEPT", quest = 79192, questName = "Stepping Stones", map = 1413, zone = "The Barrens", x = 46.4, y = 73.8 }, -- 64
+        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 65
     } end,
 })

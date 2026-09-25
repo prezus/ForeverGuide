@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_07_WETLANDS",
   "name": "7. Wetlands 22-24 (Night Elf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 22,
@@ -10,7 +10,7 @@
   "zone": "Wetlands",
   "next": "GEN_ALLIANCE_NIGHTELF_08_IRONFORGE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 7 of the NightElf route: level 22 to 24, 64 steps, ~174 min of play in the model (26942 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 7 of the NightElf route: level 22 to 24, 64 steps, ~174 min of play in the model (26887 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "FLIGHTPATH", "npc": 1571, "npcName": "Shellei Brondir", "map": 1437, "zone": "Wetlands", "x": 9.5, "y": 59.7},
     {"type": "ACCEPT", "quest": 98461, "questName": "Unrequited Love", "npc": 2913, "npcName": "Archaeologist Hollee", "map": 1439, "zone": "Darkshore", "x": 37.4, "y": 41.8, "note": "New in Forever"},
@@ -26,7 +26,7 @@
     {"type": "ACCEPT", "quest": 5675, "questName": "Elune's Grace", "npc": 11406, "npcName": "High Priest Rohan", "map": 1455, "zone": "Ironforge", "x": 25, "y": 8.4, "class": ["PRIEST"]},
     {"type": "TURNIN", "quest": 5675, "questName": "Elune's Grace", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
     {"type": "TRAVEL", "map": 1437, "zone": "Wetlands", "x": 10.3, "y": 58.9, "radius": 60, "note": "travel to Wetlands (Wetlands)"},
-    {"type": "NOTE", "map": 1437, "zone": "Wetlands", "x": 10.3, "y": 58.9, "text": "set your hearthstone at the inn in Wetlands (if there is one)"},
+    {"type": "HEARTH", "npc": 1464, "npcName": "Innkeeper Helbrek", "map": 1437, "zone": "Menethil Harbor", "x": 10.7, "y": 61.0, "note": "talk to Innkeeper Helbrek and make this inn your home"},
     {"type": "ACCEPT", "quest": 279, "questName": "Claws from the Deep", "npc": 1242, "npcName": "Karl Boran", "map": 1437, "zone": "Wetlands", "x": 8.3, "y": 58.6},
     {"type": "ACCEPT", "quest": 484, "questName": "Young Crocolisk Skins", "npc": 2094, "npcName": "James Halloran", "map": 1437, "zone": "Wetlands", "x": 8.6, "y": 55.7},
     {"type": "ACCEPT", "quest": 470, "questName": "Digging Through the Ooze", "npc": 2111, "npcName": "Sida", "map": 1437, "zone": "Wetlands", "x": 11.8, "y": 58},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_15_FERALAS",
     name = "15. Feralas 41-42 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 41,
@@ -12,14 +12,14 @@ ns.RegisterGuide({
     zone = "Feralas",
     next = "GEN_HORDE_SCOURGE_16_DESOLACE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 15 of the Scourge route: level 41 to 42, 44 steps, ~171 min of play in the model (39160 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 15 of the Scourge route: level 41 to 42, 44 steps, ~172 min of play in the model (39062 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 44,
     steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 75.0, y = 43.2, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
-        { type = "NOTE", map = 1444, zone = "Feralas", x = 75.0, y = 43.2, text = "set your hearthstone at the inn in Feralas (if there is one)" }, -- 2
+        { type = "HEARTH", npc = 7737, npcName = "Innkeeper Greul", map = 1444, zone = "Camp Mojache", x = 74.8, y = 45.2, note = "talk to Innkeeper Greul and make this inn your home" }, -- 2
         { type = "ACCEPT", quest = 2862, questName = "War on the Woodpaw", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 3
-        { type = "ACCEPT", quest = 2975, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 4
-        { type = "ACCEPT", quest = 2987, questName = "Gordunni Cobalt", npc = 8021, npcName = "Orwin Gizzmick", map = 1444, zone = "Feralas", x = 75.7, y = 44.3 }, -- 5
+        { type = "ACCEPT", quest = 2987, questName = "Gordunni Cobalt", npc = 8021, npcName = "Orwin Gizzmick", map = 1444, zone = "Feralas", x = 75.7, y = 44.3 }, -- 4
+        { type = "ACCEPT", quest = 2975, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 5
         { type = "ACCEPT", quest = 3121, questName = "A Strange Request", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4 }, -- 6
         { type = "ACCEPT", quest = 2973, questName = "A New Cloak's Sheen", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 7
         { type = "ACCEPT", quest = 2822, questName = "The Mark of Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 8

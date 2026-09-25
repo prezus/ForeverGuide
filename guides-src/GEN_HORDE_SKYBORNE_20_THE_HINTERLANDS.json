@@ -1,0 +1,30 @@
+{
+  "id": "GEN_HORDE_SKYBORNE_20_THE_HINTERLANDS",
+  "name": "20. The Hinterlands 46-46 (Skyborne)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Skyborne"],
+  "minLevel": 46,
+  "maxLevel": 46,
+  "map": 1425,
+  "zone": "The Hinterlands",
+  "next": "GEN_HORDE_SKYBORNE_21_AZSHARA",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 20 of the Skyborne route: level 46 to 46, 14 steps, ~12 min of play in the model (80265 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+  "steps": [
+    {"type": "TRAVEL", "map": 1425, "zone": "Revantusk Village", "x": 78.1, "y": 81.4, "radius": 60, "note": "use your hearthstone (Revantusk Village)"},
+    {"type": "TRAVEL", "map": 1425, "zone": "The Hinterlands", "x": 50.3, "y": 89.6, "radius": 60, "note": "travel to The Hinterlands (The Hinterlands)"},
+    {"type": "ACCEPT", "quest": 7845, "questName": "Kidnapped Elder Torntusk!", "npc": 14736, "npcName": "Primal Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 78.2, "y": 81.2},
+    {"type": "ACCEPT", "quest": 7850, "questName": "Dark Vessels", "npc": 14736, "npcName": "Primal Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 78.2, "y": 81.2},
+    {"type": "ACCEPT", "quest": 7849, "questName": "Separation Anxiety", "npc": 14741, "npcName": "Huntsman Markhor", "map": 1425, "zone": "The Hinterlands", "x": 79.2, "y": 79.5},
+    {"type": "ACCEPT", "quest": 7816, "questName": "Gammerita, Mon!", "npc": 14740, "npcName": "Katoom the Angler", "map": 1425, "zone": "The Hinterlands", "x": 80.3, "y": 81.5, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
+    {"type": "KILL", "quest": 7816, "questName": "Gammerita, Mon!", "npc": 7977, "target": "Gammerita", "map": 1425, "zone": "The Hinterlands", "x": 80.4, "y": 58.2, "optional": true},
+    {"type": "TURNIN", "quest": 7816, "questName": "Gammerita, Mon!", "npc": 14740, "npcName": "Katoom the Angler", "map": 1425, "zone": "The Hinterlands", "x": 80.3, "y": 81.5, "optional": true},
+    {"type": "COLLECT", "quest": 7850, "questName": "Dark Vessels", "target": "Vessel of Tainted Blood", "count": 10, "map": 1425, "zone": "The Hinterlands", "x": 67.9, "y": 75.8, "near": true},
+    {"type": "COLLECT", "quest": 7849, "questName": "Separation Anxiety", "target": "Huntsman Malkhor's Bones", "map": 1425, "zone": "The Hinterlands", "x": 62.1, "y": 75.4},
+    {"type": "TURNIN", "quest": 7845, "questName": "Kidnapped Elder Torntusk!", "npc": 14757, "npcName": "Elder Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 59.7, "y": 77.8},
+    {"type": "COLLECT", "quest": 7849, "questName": "Separation Anxiety", "target": "Huntsman Malkhor's Skull", "map": 1425, "zone": "The Hinterlands", "x": 58.6, "y": 64.8},
+    {"type": "TURNIN", "quest": 7850, "questName": "Dark Vessels", "npc": 14736, "npcName": "Primal Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 78.2, "y": 81.2},
+    {"type": "TURNIN", "quest": 7849, "questName": "Separation Anxiety", "npc": 14741, "npcName": "Huntsman Markhor", "map": 1425, "zone": "The Hinterlands", "x": 79.2, "y": 79.5}
+  ]
+}

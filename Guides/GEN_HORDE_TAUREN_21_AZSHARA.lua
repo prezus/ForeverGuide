@@ -2,43 +2,48 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_21_AZSHARA",
-    name = "21. Azshara 46-46 (Tauren)",
-    version = 2,
+    name = "21. Azshara 46-47 (Tauren)",
+    version = 3,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 46,
-    maxLevel = 46,
+    maxLevel = 47,
     map = 1447,
     zone = "Azshara",
     next = "GEN_HORDE_TAUREN_22_FELWOOD",
     author = "ForeverGuide route planner",
-    notes = "Chapter 21 of the Tauren route: level 46 to 46, 25 steps, ~97 min of play in the model (32412 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 25,
+    notes = "Chapter 21 of the Tauren route: level 46 to 47, 30 steps, ~129 min of play in the model (32492 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 30,
     steps = function() return {
         { type = "TRAVEL", map = 1447, zone = "Azshara", x = 22.5, y = 51.4, radius = 60, note = "travel to Azshara (Azshara)" }, -- 1
-        { type = "NOTE", map = 1447, zone = "Azshara", x = 22.5, y = 51.4, text = "set your hearthstone at the inn in Azshara (if there is one)" }, -- 2
-        { type = "ACCEPT", quest = 3517, questName = "Stealing Knowledge", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 3
-        { type = "TURNIN", quest = 3504, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 4
-        { type = "ACCEPT", quest = 3505, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 5
-        { type = "COLLECT", quest = 3517, questName = "Stealing Knowledge", target = "Tablet of Beth'Amara / Tablet of Jin'yael", map = 1447, zone = "Azshara", x = 34.1, y = 50.5, near = true }, -- 6
-        { type = "COLLECT", quest = 3517, questName = "Stealing Knowledge", target = "Tablet of Markri / Tablet of Sael'hai", map = 1447, zone = "Azshara", x = 36.2, y = 52.6, near = true }, -- 7
-        { type = "TURNIN", quest = 3517, questName = "Stealing Knowledge", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 8
-        { type = "ACCEPT", quest = 3561, questName = "Delivery to Archmage Xylem", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 9
-        { type = "TURNIN", quest = 3561, questName = "Delivery to Archmage Xylem", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.3, y = 40.2 }, -- 10
-        { type = "ACCEPT", quest = 3565, questName = "Xylem's Payment to Jediga", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.3, y = 40.2 }, -- 11
-        { type = "KILL", quest = 3505, questName = "Betrayed", npc = 6198, target = "Blood Elf Surveyor / Blood Elf Reclaimer", count = 10, map = 1447, zone = "Azshara", x = 55.5, y = 29.5, near = true }, -- 12
-        { type = "COMPLETE", quest = 3505, questName = "Betrayed", target = "Find Magus Rimtori's camp", map = 1447, zone = "Azshara", x = 59.5, y = 31.5, note = "Find Magus Rimtori's camp" }, -- 13
-        { type = "TURNIN", quest = 3505, questName = "Betrayed", map = 1447, zone = "Azshara", x = 59.5, y = 31.3 }, -- 14
-        { type = "ACCEPT", quest = 3506, questName = "Betrayed", map = 1447, zone = "Azshara", x = 59.5, y = 31.3 }, -- 15
-        { type = "KILL", quest = 3506, questName = "Betrayed", npc = 8578, target = "Magus Rimtori", map = 1447, zone = "Azshara", x = 59.5, y = 31.4, note = "loot Head of Magus Rimtori" }, -- 16
-        { type = "TURNIN", quest = 3565, questName = "Xylem's Payment to Jediga", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 17
-        { type = "TURNIN", quest = 3506, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 18
-        { type = "ACCEPT", quest = 3507, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 19
-        { type = "ACCEPT", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 20
-        { type = "ACCEPT", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 21
-        { type = "KILL", quest = 5535, questName = "Spiritual Unrest", npc = 6117, target = "Highborne Lichling / Highborne Apparition", count = 6, map = 1447, zone = "Azshara", x = 13.5, y = 73.2, near = true }, -- 22
-        { type = "TURNIN", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 23
-        { type = "KILL", quest = 5536, questName = "A Land Filled with Hatred", npc = 6127, target = "Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr", count = 6, map = 1447, zone = "Azshara", x = 19.1, y = 64, near = true }, -- 24
-        { type = "TURNIN", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 25
+        { type = "ACCEPT", quest = 3517, questName = "Stealing Knowledge", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 2
+        { type = "TURNIN", quest = 3504, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 3
+        { type = "ACCEPT", quest = 3505, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 4
+        { type = "COLLECT", quest = 3517, questName = "Stealing Knowledge", target = "Tablet of Beth'Amara / Tablet of Jin'yael", map = 1447, zone = "Azshara", x = 34.1, y = 50.5, near = true }, -- 5
+        { type = "COLLECT", quest = 3517, questName = "Stealing Knowledge", target = "Tablet of Markri / Tablet of Sael'hai", map = 1447, zone = "Azshara", x = 36.2, y = 52.6, near = true }, -- 6
+        { type = "TURNIN", quest = 3517, questName = "Stealing Knowledge", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 7
+        { type = "ACCEPT", quest = 3561, questName = "Delivery to Archmage Xylem", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 8
+        { type = "TURNIN", quest = 3561, questName = "Delivery to Archmage Xylem", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.3, y = 40.2 }, -- 9
+        { type = "ACCEPT", quest = 3565, questName = "Xylem's Payment to Jediga", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.3, y = 40.2 }, -- 10
+        { type = "KILL", quest = 3505, questName = "Betrayed", npc = 6198, target = "Blood Elf Surveyor / Blood Elf Reclaimer", count = 10, map = 1447, zone = "Azshara", x = 55.5, y = 29.5, near = true }, -- 11
+        { type = "COMPLETE", quest = 3505, questName = "Betrayed", target = "Find Magus Rimtori's camp", map = 1447, zone = "Azshara", x = 59.5, y = 31.5, note = "Find Magus Rimtori's camp" }, -- 12
+        { type = "TURNIN", quest = 3505, questName = "Betrayed", map = 1447, zone = "Azshara", x = 59.5, y = 31.3 }, -- 13
+        { type = "ACCEPT", quest = 3506, questName = "Betrayed", map = 1447, zone = "Azshara", x = 59.5, y = 31.3 }, -- 14
+        { type = "KILL", quest = 3506, questName = "Betrayed", npc = 8578, target = "Magus Rimtori", map = 1447, zone = "Azshara", x = 59.5, y = 31.4, note = "loot Head of Magus Rimtori" }, -- 15
+        { type = "TURNIN", quest = 3565, questName = "Xylem's Payment to Jediga", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 16
+        { type = "TURNIN", quest = 3506, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 17
+        { type = "ACCEPT", quest = 3507, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 18
+        { type = "ACCEPT", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 19
+        { type = "ACCEPT", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 20
+        { type = "KILL", quest = 5535, questName = "Spiritual Unrest", npc = 6117, target = "Highborne Lichling / Highborne Apparition", count = 6, map = 1447, zone = "Azshara", x = 13.5, y = 73.2, near = true }, -- 21
+        { type = "TURNIN", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 22
+        { type = "KILL", quest = 5536, questName = "A Land Filled with Hatred", npc = 6127, target = "Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr", count = 6, map = 1447, zone = "Azshara", x = 19.1, y = 64, near = true }, -- 23
+        { type = "TURNIN", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 24
+        { type = "ACCEPT", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 25
+        { type = "COLLECT", quest = 3601, questName = "Kim'jael Indeed!", target = "Kim'Jael's Compass / Kim'Jael's Scope / Kim'Jael's Stuffed Chicken / Kim'Jael's Wizzlegoober", map = 1447, zone = "Azshara", x = 56.4, y = 28.4, near = true }, -- 26
+        { type = "TURNIN", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 27
+        { type = "ACCEPT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 28
+        { type = "COLLECT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", target = "Some Rune", map = 1447, zone = "Azshara", x = 49.5, y = 42, near = true }, -- 29
+        { type = "TURNIN", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 30
     } end,
 })

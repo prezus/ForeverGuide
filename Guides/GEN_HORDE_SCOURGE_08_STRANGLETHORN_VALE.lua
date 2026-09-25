@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_08_STRANGLETHORN_VALE",
     name = "8. Stranglethorn Vale 28-29 (Undead)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 28,
@@ -12,12 +12,12 @@ ns.RegisterGuide({
     zone = "Stranglethorn Vale",
     next = "GEN_HORDE_SCOURGE_09_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 8 of the Scourge route: level 28 to 29, 37 steps, ~131 min of play in the model (21082 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 8 of the Scourge route: level 28 to 29, 37 steps, ~131 min of play in the model (21042 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 39,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2858, npcName = "Gringer", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.1 }, -- 1
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.4, y = 76.4, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 2
-        { type = "NOTE", map = 1434, zone = "Stranglethorn Vale", x = 27.4, y = 76.4, text = "set your hearthstone at the inn in Stranglethorn Vale (if there is one)" }, -- 3
+        { type = "HEARTH", npc = 6807, npcName = "Innkeeper Skindle", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, note = "talk to Innkeeper Skindle and make this inn your home" }, -- 3
         { type = "ACCEPT", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 4
         { type = "FLIGHTPATH", npc = 1387, npcName = "Thysta", map = 1434, zone = "Stranglethorn Vale", x = 32.5, y = 29.4 }, -- 5
         { type = "KILL", quest = 575, questName = "Supply and Demand", npc = 1150, target = "River Crocolisk", count = 2, map = 1434, zone = "Stranglethorn Vale", x = 39.9, y = 14.4, near = true, note = "loot Large River Crocolisk Skin" }, -- 6

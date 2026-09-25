@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_07_WETLANDS",
     name = "7. Wetlands 22-24 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 22,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Wetlands",
     next = "GEN_ALLIANCE_NIGHTELF_08_IRONFORGE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 7 of the NightElf route: level 22 to 24, 64 steps, ~174 min of play in the model (26942 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 7 of the NightElf route: level 22 to 24, 64 steps, ~174 min of play in the model (26887 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 90,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 1571, npcName = "Shellei Brondir", map = 1437, zone = "Wetlands", x = 9.5, y = 59.7 }, -- 1
@@ -29,7 +29,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5675, questName = "Elune's Grace", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" } }, -- 12
         { type = "TURNIN", quest = 5675, questName = "Elune's Grace", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 13
         { type = "TRAVEL", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, radius = 60, note = "travel to Wetlands (Wetlands)" }, -- 14
-        { type = "NOTE", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, text = "set your hearthstone at the inn in Wetlands (if there is one)" }, -- 15
+        { type = "HEARTH", npc = 1464, npcName = "Innkeeper Helbrek", map = 1437, zone = "Menethil Harbor", x = 10.7, y = 61.0, note = "talk to Innkeeper Helbrek and make this inn your home" }, -- 15
         { type = "ACCEPT", quest = 279, questName = "Claws from the Deep", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 16
         { type = "ACCEPT", quest = 484, questName = "Young Crocolisk Skins", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 17
         { type = "ACCEPT", quest = 470, questName = "Digging Through the Ooze", npc = 2111, npcName = "Sida", map = 1437, zone = "Wetlands", x = 11.8, y = 58 }, -- 18

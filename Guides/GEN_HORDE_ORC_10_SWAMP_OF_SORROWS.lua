@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_10_SWAMP_OF_SORROWS",
     name = "10. Swamp of Sorrows 38-38 (Orc)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 38,
@@ -12,15 +12,15 @@ ns.RegisterGuide({
     zone = "Swamp of Sorrows",
     next = "GEN_HORDE_ORC_11_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
-    notes = "Chapter 10 of the Orc route: level 38 to 38, 34 steps, ~125 min of play in the model (32862 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 10 of the Orc route: level 38 to 38, 34 steps, ~125 min of play in the model (32713 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 34,
     steps = function() return {
         { type = "TRAVEL", map = 1435, zone = "Swamp of Sorrows", x = 40.2, y = 60.6, radius = 60, note = "travel to Swamp of Sorrows (Swamp of Sorrows)" }, -- 1
-        { type = "NOTE", map = 1435, zone = "Swamp of Sorrows", x = 40.2, y = 60.6, text = "set your hearthstone at the inn in Swamp of Sorrows (if there is one)" }, -- 2
+        { type = "HEARTH", npc = 6930, npcName = "Innkeeper Karakul", map = 1435, zone = "Stonard", x = 45.2, y = 56.7, note = "talk to Innkeeper Karakul and make this inn your home" }, -- 2
         { type = "ACCEPT", quest = 698, questName = "Lack of Surplus", npc = 5591, npcName = "Dar", map = 1435, zone = "Swamp of Sorrows", x = 44.7, y = 57.2 }, -- 3
-        { type = "ACCEPT", quest = 1430, questName = "Fresh Meat", npc = 5591, npcName = "Dar", map = 1435, zone = "Swamp of Sorrows", x = 44.7, y = 57.2 }, -- 4
-        { type = "ACCEPT", quest = 1424, questName = "Pool of Tears", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 47.9, y = 54.8 }, -- 5
-        { type = "COLLECT", quest = 698, questName = "Lack of Surplus", target = "Unprepared Sawtooth Flank", count = 8, map = 1435, zone = "Swamp of Sorrows", x = 53.6, y = 55.7, near = true }, -- 6
+        { type = "ACCEPT", quest = 1424, questName = "Pool of Tears", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 47.9, y = 54.8 }, -- 4
+        { type = "ACCEPT", quest = 1430, questName = "Fresh Meat", npc = 5591, npcName = "Dar", map = 1435, zone = "Swamp of Sorrows", x = 44.7, y = 57.2 }, -- 5
+        { type = "COLLECT", quest = 698, questName = "Lack of Surplus", target = "Unprepared Sawtooth Flank", count = 8, map = 1435, zone = "Swamp of Sorrows", x = 53.6, y = 56, near = true }, -- 6
         { type = "COLLECT", quest = 1424, questName = "Pool of Tears", target = "Atal'ai Artifact", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 62.4, y = 52.9, near = true }, -- 7
         { type = "KILL", quest = 1430, questName = "Fresh Meat", npc = 1088, target = "Monstrous Crawler", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 95, y = 66.2, near = true, note = "loot Monstrous Crawler Leg" }, -- 8
         { type = "TURNIN", quest = 1424, questName = "Pool of Tears", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 47.9, y = 54.8 }, -- 9

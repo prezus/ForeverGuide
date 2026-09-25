@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_17_DUSTWALLOW_MARSH",
   "name": "17. Dustwallow Marsh 37-38 (Night Elf)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 37,
@@ -10,10 +10,10 @@
   "zone": "Dustwallow Marsh",
   "next": "GEN_ALLIANCE_NIGHTELF_18_DESOLACE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 17 of the NightElf route: level 37 to 38, 42 steps, ~110 min of play in the model (30710 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 17 of the NightElf route: level 37 to 38, 42 steps, ~110 min of play in the model (30635 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.0, "y": 48.1, "radius": 60, "note": "travel to Dustwallow Marsh (Dustwallow Marsh)"},
-    {"type": "NOTE", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.0, "y": 48.1, "text": "set your hearthstone at the inn in Dustwallow Marsh (if there is one)"},
+    {"type": "HEARTH", "npc": 6272, "npcName": "Innkeeper Janene", "map": 1445, "zone": "Theramore Isle", "x": 66.6, "y": 45.2, "note": "talk to Innkeeper Janene and make this inn your home"},
     {"type": "ACCEPT", "quest": 1282, "questName": "They Call Him Smiling Jim", "npc": 4921, "npcName": "Guard Byron", "map": 1445, "zone": "Dustwallow Marsh", "x": 66.2, "y": 46.1},
     {"type": "ACCEPT", "quest": 1204, "questName": "Mudrock Soup and Bugs", "npc": 4794, "npcName": "Morgan Stern", "map": 1445, "zone": "Dustwallow Marsh", "x": 66.3, "y": 45.5},
     {"type": "TURNIN", "quest": 1282, "questName": "They Call Him Smiling Jim", "npc": 4944, "npcName": "Captain Garran Vimes", "map": 1445, "zone": "Dustwallow Marsh", "x": 68.2, "y": 48.6},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_07_ARATHI_HIGHLANDS",
     name = "7. Arathi Highlands 29-30 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 29,
@@ -12,18 +12,18 @@ ns.RegisterGuide({
     zone = "Arathi Highlands",
     next = "GEN_HORDE_SKYBORNE_08_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 7 of the Skyborne route: level 29 to 30, 42 steps, ~185 min of play in the model (18684 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 7 of the Skyborne route: level 29 to 30, 42 steps, ~185 min of play in the model (18701 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 50,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2851, npcName = "Urda", map = 1417, zone = "Arathi Highlands", x = 73, y = 32.7 }, -- 1
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 31.8, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 2
-        { type = "NOTE", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 31.8, text = "set your hearthstone at the inn in Arathi Highlands (if there is one)" }, -- 3
+        { type = "HEARTH", npc = 9501, npcName = "Innkeeper Adegwa", map = 1417, zone = "Hammerfall", x = 73.8, y = 32.5, note = "talk to Innkeeper Adegwa and make this inn your home" }, -- 3
         { type = "ACCEPT", quest = 8171, questName = "The Battle for Arathi Basin!", npc = 15021, npcName = "Deathmaster Dwire", map = 1417, zone = "Arathi Highlands", x = 73.3, y = 29.7 }, -- 4
-        { type = "ACCEPT", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 5
-        { type = "ACCEPT", quest = 655, questName = "Hammerfall", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 6
-        { type = "TURNIN", quest = 655, questName = "Hammerfall", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 7
+        { type = "ACCEPT", quest = 655, questName = "Hammerfall", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 5
+        { type = "ACCEPT", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 6
+        { type = "TURNIN", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 7
         { type = "TURNIN", quest = 8171, questName = "The Battle for Arathi Basin!", npc = 15021, npcName = "Deathmaster Dwire", map = 1417, zone = "Arathi Highlands", x = 73.3, y = 29.7 }, -- 8
-        { type = "TURNIN", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 9
+        { type = "TURNIN", quest = 655, questName = "Hammerfall", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 9
         { type = "ACCEPT", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 10
         { type = "COLLECT", quest = 672, questName = "Raising Spirits", target = "Highland Raptor Eye", count = 10, map = 1417, zone = "Arathi Highlands", x = 64.4, y = 40.9, near = true }, -- 11
         { type = "TURNIN", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 12

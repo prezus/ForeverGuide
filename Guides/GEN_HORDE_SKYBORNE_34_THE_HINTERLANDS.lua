@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_34_THE_HINTERLANDS",
     name = "34. The Hinterlands 51-51 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 51,
@@ -15,7 +15,7 @@ ns.RegisterGuide({
     notes = "Chapter 34 of the Skyborne route: level 51 to 51, 6 steps, ~14 min of play in the model (70141 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 6,
     steps = function() return {
-        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, radius = 60, note = "use your hearthstone (Eastern Plaguelands)" }, -- 1
+        { type = "TRAVEL", map = 1423, zone = "Light's Hope Chapel", x = 71.8, y = 48.5, radius = 60, note = "use your hearthstone (Light's Hope Chapel)" }, -- 1
         { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 50.3, y = 89.6, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 2
         { type = "ACCEPT", quest = 8367, questName = "For Great Honor", npc = 15350, npcName = "Horde Warbringer", map = 1425, zone = "The Hinterlands", x = 50.3, y = 89.6 }, -- 3
         { type = "ACCEPT", quest = 8369, questName = "Invaders of Alterac Valley", npc = 15350, npcName = "Horde Warbringer", map = 1425, zone = "The Hinterlands", x = 50.3, y = 89.6 }, -- 4

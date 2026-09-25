@@ -185,6 +185,20 @@ local function inZone(locs, zone)
     for _, l in ipairs(locs or {}) do if l.zone == zone then return true end end
     return false
 end
+-- innkeepers as locations, per faction (tools/lib/innkeepers.lua)
+local INNS = { Alliance = {}, Horde = {} }
+for _, k in ipairs(require("innkeepers")) do
+    local loc = { zone = D.parentZone(k.area), area = k.area, map = Z.areaToMap[k.area], x = k.x, y = k.y,
+                  id = k.id, n = k.n, bind = k.bind }
+    if k.f:find("A") then table.insert(INNS.Alliance, loc) end
+    if k.f:find("H") then table.insert(INNS.Horde, loc) end
+end
+--- the innkeeper serving this hub (within hub reach), or nil when the town has no inn for us
+local function innkeeperAt(state, hub)
+    local inn, d = nearest(state, hub, INNS[state.faction])
+    if inn and d <= HUB_CLUSTER * 1.5 then return inn end
+    return nil
+end
 local function objDone(state, r, i) return r.objs[i].static or qstate(state, r.id).done[i] end
 local function questDone(state, r)
     for i in ipairs(r.objs) do if not objDone(state, r, i) then return false end end
@@ -373,8 +387,9 @@ local function runChapter(state, zone, emit)
         if from and hs and state.time >= (state.hearthReady or 0) then
             local viaHearth = 20 + travelZones(state, hs.zone, zone)
             if viaHearth + 60 < tt then
-                out({ type = "TRAVEL", map = hs.map, zone = Z.names[hs.area] or Z.names[hs.zone], x = hs.x, y = hs.y, radius = 60,
-                      note = "use your hearthstone (" .. (Z.names[hs.area] or Z.names[hs.zone] or "inn") .. ")" })
+                local home = hs.name or Z.names[hs.area] or Z.names[hs.zone] or "home"
+                out({ type = "TRAVEL", map = hs.map, zone = home, x = hs.x, y = hs.y, radius = 60,
+                      note = "use your hearthstone (" .. home .. ")" })
                 state.hearthReady = state.time + X.HEARTH_CD
                 tt = viaHearth
             end
@@ -386,11 +401,17 @@ local function runChapter(state, zone, emit)
         state.pos = pos
     end
     local currentHub = hubOf(pos)
-    -- a real town (4+ givers / turn-ins) we have just arrived at: set the hearthstone here
-    if currentHub and currentHub.n >= 4 and (not state.hearth or state.hearth.zone ~= zone) and visits == 0 then
-        state.hearth = { zone = zone, x = currentHub.x, y = currentHub.y, map = currentHub.map, area = currentHub.area }
-        out({ type = "NOTE", map = currentHub.map, zone = Z.names[currentHub.area] or Z.names[zone], x = currentHub.x, y = currentHub.y,
-              text = "set your hearthstone at the inn in " .. (Z.names[currentHub.area] or Z.names[zone] or "town") .. " (if there is one)" })
+    -- a real town (4+ givers / turn-ins) we have just arrived at, with an inn: bind the hearthstone
+    -- at its innkeeper. No inn, no step: the hearth stays where it was (at the start, the starting area).
+    local inn = currentHub and currentHub.n >= 4 and visits == 0 and (not state.hearth or state.hearth.zone ~= zone)
+                and innkeeperAt(state, currentHub) or nil
+    if inn then
+        state.time = state.time + secs(state, pos, inn) + X.TALK_TIME
+        pos = { zone = inn.zone, x = inn.x, y = inn.y, map = inn.map, area = inn.area }
+        state.pos = pos
+        state.hearth = { zone = inn.zone, x = inn.x, y = inn.y, map = inn.map, area = inn.area, name = inn.bind }
+        out({ type = "HEARTH", npc = inn.id, npcName = inn.n, map = inn.map, zone = inn.bind, x = inn.x, y = inn.y,
+              note = "talk to " .. inn.n .. " and make this inn your home" })
     end
 
     local function cur() return state.pos end
@@ -895,6 +916,8 @@ local function planRoute(startZone)
         end
         for _, l in ipairs(bestR.starts) do if l.zone == startZone.id then state.pos = { zone = l.zone, x = l.x, y = l.y, map = l.map, area = l.area } break end end
     end
+    -- a new character's hearthstone is already bound in its starting area (not at an inn: there is none)
+    state.hearth = { zone = state.pos.zone, x = state.pos.x, y = state.pos.y, map = state.pos.map, area = state.pos.area }
     local chapters = {}
     local zone = startZone.id
     local grinds = 0

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_33_BURNING_STEPPES",
     name = "33. Burning Steppes 50-51 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 50,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Burning Steppes",
     next = "GEN_HORDE_SKYBORNE_34_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 33 of the Skyborne route: level 50 to 51, 10 steps, ~160 min of play in the model (39833 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 33 of the Skyborne route: level 50 to 51, 10 steps, ~148 min of play in the model (40164 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 10,
     steps = function() return {
         { type = "GRIND", npc = 7033, target = "Firegut Ogre", level = 51, map = 1428, zone = "Burning Steppes", x = 75.2, y = 45.3, near = true, note = "grind Firegut Ogre (level 50-51) to level 51 - nothing worth questing at 50" }, -- 1

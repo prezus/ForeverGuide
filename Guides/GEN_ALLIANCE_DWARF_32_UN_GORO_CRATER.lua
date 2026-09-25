@@ -2,18 +2,18 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_32_UN_GORO_CRATER",
-    name = "32. Un'Goro Crater 48-49 (Dwarf)",
-    version = 2,
+    name = "32. Un'Goro Crater 48-48 (Dwarf)",
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 48,
-    maxLevel = 49,
+    maxLevel = 48,
     map = 1449,
     zone = "Un'Goro Crater",
-    next = "GEN_ALLIANCE_DWARF_33_FELWOOD",
+    next = "GEN_ALLIANCE_DWARF_33_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 32 of the Dwarf route: level 48 to 49, 32 steps, ~110 min of play in the model (41609 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 32,
+    notes = "Chapter 32 of the Dwarf route: level 48 to 48, 20 steps, ~62 min of play in the model (37767 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 20,
     steps = function() return {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 8.1, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "ACCEPT", quest = 3883, questName = "Alien Ecology", npc = 9271, npcName = "Hol'anyee Marshal", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 7.2 }, -- 2
@@ -35,17 +35,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 18
         { type = "KILL", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9684, target = "Lar'korwi", map = 1449, zone = "Un'Goro Crater", x = 79.7, y = 49.8, note = "loot Lar'korwi's Head" }, -- 19
         { type = "TURNIN", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 20
-        { type = "ACCEPT", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 21
-        { type = "ACCEPT", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 22
-        { type = "ACCEPT", quest = 3908, questName = "It's a Secret to Everybody", npc = 8737, npcName = "Linken", map = 1449, zone = "Un'Goro Crater", x = 44.7, y = 8.1 }, -- 23
-        { type = "ACCEPT", quest = 4501, questName = "Beware of Pterrordax", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 8.4 }, -- 24
-        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Pterrordax Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 50.6, y = 12, near = true }, -- 25
-        { type = "KILL", quest = 4501, questName = "Beware of Pterrordax", npc = 9166, target = "Pterrordax", count = 10, map = 1449, zone = "Un'Goro Crater", x = 50.6, y = 12, near = true }, -- 26
-        { type = "COLLECT", quest = 3882, questName = "Roll the Bones", target = "Dinosaur Bone", count = 8, map = 1449, zone = "Un'Goro Crater", x = 58.1, y = 33.9, near = true }, -- 27
-        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Diemetradon Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 58.1, y = 33.9, near = true }, -- 28
-        { type = "KILL", quest = 4501, questName = "Beware of Pterrordax", npc = 9167, target = "Frenzied Pterrordax", count = 10, map = 1449, zone = "Un'Goro Crater", x = 37.4, y = 40.4, near = true }, -- 29
-        { type = "TURNIN", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 30
-        { type = "TURNIN", quest = 4501, questName = "Beware of Pterrordax", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 31
-        { type = "TURNIN", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 32
     } end,
 })

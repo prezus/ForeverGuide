@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_05_HILLSBRAD_FOOTHILLS",
     name = "5. Hillsbrad Foothills 25-28 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 25,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Hillsbrad Foothills",
     next = "GEN_HORDE_ORC_06_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 5 of the Orc route: level 25 to 28, 64 steps, ~210 min of play in the model (18371 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 5 of the Orc route: level 25 to 28, 64 steps, ~210 min of play in the model (18317 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 87,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2389, npcName = "Zarise", map = 1424, zone = "Hillsbrad Foothills", x = 60.1, y = 18.6 }, -- 1
@@ -38,12 +38,12 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1530, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 21
         { type = "TURNIN", quest = 1530, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 22
         { type = "TRAVEL", map = 1424, zone = "Hillsbrad Foothills", x = 62.1, y = 20.0, radius = 60, note = "travel to Hillsbrad Foothills (Hillsbrad Foothills)" }, -- 23
-        { type = "NOTE", map = 1424, zone = "Hillsbrad Foothills", x = 62.1, y = 20.0, text = "set your hearthstone at the inn in Hillsbrad Foothills (if there is one)" }, -- 24
-        { type = "ACCEPT", quest = 549, questName = "WANTED: Syndicate Personnel", map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 20.8 }, -- 25
-        { type = "ACCEPT", quest = 496, questName = "Elixir of Suffering", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 26
-        { type = "ACCEPT", quest = 498, questName = "The Rescue", npc = 2229, npcName = "Krusk", map = 1424, zone = "Hillsbrad Foothills", x = 63.2, y = 20.7 }, -- 27
-        { type = "ACCEPT", quest = 527, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 28
-        { type = "TURNIN", quest = 493, questName = "Journey to Hillsbrad Foothills", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.2 }, -- 29
+        { type = "HEARTH", npc = 2388, npcName = "Innkeeper Shay", map = 1424, zone = "Tarren Mill", x = 62.8, y = 19.0, note = "talk to Innkeeper Shay and make this inn your home" }, -- 24
+        { type = "ACCEPT", quest = 498, questName = "The Rescue", npc = 2229, npcName = "Krusk", map = 1424, zone = "Hillsbrad Foothills", x = 63.2, y = 20.7 }, -- 25
+        { type = "ACCEPT", quest = 549, questName = "WANTED: Syndicate Personnel", map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 20.8 }, -- 26
+        { type = "ACCEPT", quest = 496, questName = "Elixir of Suffering", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 27
+        { type = "TURNIN", quest = 493, questName = "Journey to Hillsbrad Foothills", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.2 }, -- 28
+        { type = "ACCEPT", quest = 527, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 29
         { type = "ACCEPT", quest = 501, questName = "Elixir of Pain", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 30
         { type = "ACCEPT", quest = 567, questName = "Dangerous!", map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 19.7 }, -- 31
         { type = "ACCEPT", quest = 509, questName = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 32

@@ -78,7 +78,7 @@ Common fields (all optional unless the type needs them):
 | `GRIND`    | `level`              | player level >= level |
 | `BUY`      | `item`, `count`      | bag count >= count |
 | `TRAIN`    | `spell`              | spell known |
-| `HEARTH`   | `zone`               | hearthstone bound to that location name |
+| `HEARTH`   | `npc` (`zone`)       | hearthstone bound while talking to that innkeeper (`HEARTHSTONE_BOUND`); or, for a bind made earlier, `GetBindLocation()` equals `zone` |
 | `TRAVEL`   | `map`/`zone`, `x`, `y` | player within `radius` yards |
 | `FLY`      | like TRAVEL          | (display: "Fly to") |
 | `TALK`     | `npc`                | a gossip / quest / vendor / trainer window opens with that NPC |

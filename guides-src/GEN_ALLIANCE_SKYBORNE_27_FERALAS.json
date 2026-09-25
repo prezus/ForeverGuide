@@ -1,0 +1,22 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_27_FERALAS",
+  "name": "27. Feralas 47-48 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 47,
+  "maxLevel": 48,
+  "map": 1444,
+  "zone": "Feralas",
+  "next": "GEN_ALLIANCE_SKYBORNE_28_UN_GORO_CRATER",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 27 of the Skyborne route: level 47 to 48, 6 steps, ~65 min of play in the model (3507 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1446, "zone": "Gadgetzan", "x": 52.5, "y": 27.9, "radius": 60, "note": "use your hearthstone (Gadgetzan)"},
+    {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 31.8, "y": 44.8, "radius": 60, "note": "travel to Feralas (Feralas)"},
+    {"type": "ACCEPT", "quest": 3445, "questName": "The Sunken Temple", "npc": 7900, "npcName": "Angelas Moonbreeze", "map": 1444, "zone": "Feralas", "x": 31.8, "y": 45.6},
+    {"type": "TURNIN", "quest": 4142, "questName": "A Visit to Gregan", "npc": 7775, "npcName": "Gregan Brewspewer", "map": 1444, "zone": "Feralas", "x": 45.1, "y": 25.6},
+    {"type": "ACCEPT", "quest": 4143, "questName": "Haze of Evil", "npc": 7775, "npcName": "Gregan Brewspewer", "map": 1444, "zone": "Feralas", "x": 45.1, "y": 25.6},
+    {"type": "GRIND", "npc": 5462, "target": "Sea Spray", "level": 48, "map": 1444, "zone": "Feralas", "x": 41.6, "y": 38.8, "near": true, "note": "grind Sea Spray (level 47-48) to level 48 - nothing worth questing at 47"}
+  ]
+}

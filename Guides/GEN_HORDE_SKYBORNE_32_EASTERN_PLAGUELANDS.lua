@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_32_EASTERN_PLAGUELANDS",
     name = "32. Eastern Plaguelands 50-50 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 50,
@@ -12,11 +12,11 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     next = "GEN_HORDE_SKYBORNE_33_BURNING_STEPPES",
     author = "ForeverGuide route planner",
-    notes = "Chapter 32 of the Skyborne route: level 50 to 50, 14 steps, ~40 min of play in the model (44266 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 32 of the Skyborne route: level 50 to 50, 14 steps, ~54 min of play in the model (33163 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 14,
     steps = function() return {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
-        { type = "NOTE", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, text = "set your hearthstone at the inn in Eastern Plaguelands (if there is one)" }, -- 2
+        { type = "HEARTH", npc = 16256, npcName = "Jessica Chambers", map = 1423, zone = "Light's Hope Chapel", x = 71.8, y = 48.5, note = "talk to Jessica Chambers and make this inn your home" }, -- 2
         { type = "ACCEPT", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 3
         { type = "ACCEPT", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 4
         { type = "KILL", quest = 5211, questName = "Defenders of Darrowshire", npc = 11064, target = "Darrowshire Spirit", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 81.8, y = 42.1, near = true }, -- 5

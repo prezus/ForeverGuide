@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_03_STONETALON_MOUNTAINS",
     name = "3. Stonetalon Mountains 22-24 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 22,
@@ -12,22 +12,22 @@ ns.RegisterGuide({
     zone = "Stonetalon Mountains",
     next = "GEN_HORDE_ORC_04_ASHENVALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 3 of the Orc route: level 22 to 24, 44 steps, ~157 min of play in the model (21610 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 3 of the Orc route: level 22 to 24, 44 steps, ~157 min of play in the model (21569 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 55,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 4312, npcName = "Tharm", map = 1442, zone = "Stonetalon Mountains", x = 45.1, y = 59.8 }, -- 1
         { type = "COLLECT", quest = 1069, questName = "Deepmoss Spider Eggs", target = "Deepmoss Egg", count = 15, map = 1442, zone = "Stonetalon Mountains", x = 61, y = 64.1 }, -- 2
         { type = "ACCEPT", quest = 6562, questName = "Trouble in the Deeps", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64.2, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 3
         { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 46.9, y = 61.0, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 4
-        { type = "NOTE", map = 1442, zone = "Stonetalon Mountains", x = 46.9, y = 61.0, text = "set your hearthstone at the inn in Stonetalon Mountains (if there is one)" }, -- 5
+        { type = "HEARTH", npc = 7731, npcName = "Innkeeper Jayka", map = 1442, zone = "Sun Rock Retreat", x = 47.5, y = 62.1, note = "talk to Innkeeper Jayka and make this inn your home" }, -- 5
         { type = "ACCEPT", quest = 6421, questName = "Boulderslide Ravine", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64 }, -- 6
         { type = "ACCEPT", quest = 6301, questName = "Cycle of Rebirth", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 7
-        { type = "ACCEPT", quest = 1087, questName = "Cenarius' Legacy", npc = 4198, npcName = "Braelyn Firehand", map = 1442, zone = "Stonetalon Mountains", x = 45.9, y = 60.4 }, -- 8
-        { type = "ACCEPT", quest = 6283, questName = "Bloodfury Bloodline", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 9
-        { type = "KILL", quest = 6283, questName = "Bloodfury Bloodline", npc = 12579, target = "Bloodfury Ripper", map = 1442, zone = "Stonetalon Mountains", x = 30.8, y = 61.9, optional = true }, -- 10
-        { type = "TURNIN", quest = 6283, questName = "Bloodfury Bloodline", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2, optional = true }, -- 11
-        { type = "ACCEPT", quest = 6393, questName = "Elemental War", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.4, y = 64.3 }, -- 12
-        { type = "ACCEPT", quest = 6282, questName = "Harpies Threaten", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2 }, -- 13
+        { type = "ACCEPT", quest = 6393, questName = "Elemental War", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.4, y = 64.3 }, -- 8
+        { type = "ACCEPT", quest = 1087, questName = "Cenarius' Legacy", npc = 4198, npcName = "Braelyn Firehand", map = 1442, zone = "Stonetalon Mountains", x = 45.9, y = 60.4 }, -- 9
+        { type = "ACCEPT", quest = 6282, questName = "Harpies Threaten", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2 }, -- 10
+        { type = "ACCEPT", quest = 6283, questName = "Bloodfury Bloodline", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 11
+        { type = "KILL", quest = 6283, questName = "Bloodfury Bloodline", npc = 12579, target = "Bloodfury Ripper", map = 1442, zone = "Stonetalon Mountains", x = 30.8, y = 61.9, optional = true }, -- 12
+        { type = "TURNIN", quest = 6283, questName = "Bloodfury Bloodline", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2, optional = true }, -- 13
         { type = "COMPLETE", quest = 6421, questName = "Boulderslide Ravine", target = "Resonite Crystal / Investigate Cave in Boulderslide Ravine", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 57.3, y = 89.2, near = true }, -- 14
         { type = "COLLECT", quest = 6301, questName = "Cycle of Rebirth", target = "Gaea Seed", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 49.7, y = 45.1, near = true }, -- 15
         { type = "COLLECT", quest = 6393, questName = "Elemental War", target = "Incendrites", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 44, y = 41, near = true }, -- 16

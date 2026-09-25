@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_04_ASHENVALE",
   "name": "4. Ashenvale 19-22 (Skyborne)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 19,
@@ -10,11 +10,10 @@
   "zone": "Ashenvale",
   "next": "GEN_ALLIANCE_SKYBORNE_05_DARKSHORE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 4 of the Skyborne route: level 19 to 22, 77 steps, ~208 min of play in the model (23177 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 4 of the Skyborne route: level 19 to 22, 76 steps, ~208 min of play in the model (23177 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "ACCEPT", "quest": 1070, "questName": "On Guard in Stonetalon", "npc": 4079, "npcName": "Sentinel Thenysil", "map": 1440, "zone": "Ashenvale", "x": 34.8, "y": 49.8},
     {"type": "TRAVEL", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8, "radius": 60, "note": "travel to Ashenvale (Ashenvale)"},
-    {"type": "NOTE", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8, "text": "set your hearthstone at the inn in Ashenvale (if there is one)"},
     {"type": "ACCEPT", "quest": 8372, "questName": "Fight for Warsong Gulch", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1440, "zone": "Ashenvale", "x": 61.9, "y": 83.8},
     {"type": "TURNIN", "quest": 8372, "questName": "Fight for Warsong Gulch", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1440, "zone": "Ashenvale", "x": 61.9, "y": 83.8},
     {"type": "FLIGHTPATH", "npc": 4267, "npcName": "Daelyshia", "map": 1440, "zone": "Ashenvale", "x": 34.4, "y": 48},

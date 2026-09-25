@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_07_WETLANDS",
   "name": "7. Wetlands 23-26 (Human)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 23,
@@ -10,13 +10,15 @@
   "zone": "Wetlands",
   "next": "GEN_ALLIANCE_HUMAN_08_IRONFORGE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 7 of the Human route: level 23 to 26, 70 steps, ~172 min of play in the model (28303 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 7 of the Human route: level 23 to 26, 69 steps, ~171 min of play in the model (28275 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "FLIGHTPATH", "npc": 1571, "npcName": "Shellei Brondir", "map": 1437, "zone": "Wetlands", "x": 9.5, "y": 59.7},
+    {"type": "ACCEPT", "quest": 250, "questName": "A Dark Threat Looms", "npc": 1093, "npcName": "Chief Engineer Hinderweir VII", "map": 1432, "zone": "Loch Modan", "x": 46, "y": 13.6},
+    {"type": "TURNIN", "quest": 250, "questName": "A Dark Threat Looms", "map": 1432, "zone": "Loch Modan", "x": 56.1, "y": 13.3},
+    {"type": "ACCEPT", "quest": 3765, "questName": "The Corruption Abroad", "npc": 4984, "npcName": "Argos Nightwhisper", "map": 1453, "zone": "Stormwind City", "x": 21.4, "y": 55.6},
     {"type": "ACCEPT", "quest": 386, "questName": "What Comes Around...", "npc": 859, "npcName": "Guard Berton", "map": 1433, "zone": "Redridge Mountains", "x": 26.4, "y": 46.6, "note": "For The Stockade (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 387, "questName": "Quell the Uprising", "npc": 1719, "npcName": "Warden Thelwater", "map": 1453, "zone": "Stormwind City", "x": 41.2, "y": 58, "note": "For The Stockade (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 388, "questName": "The Color of Blood", "npc": 1721, "npcName": "Nikova Raskol", "map": 1453, "zone": "Stormwind City", "x": 73.4, "y": 46.6, "note": "For The Stockade (dungeon guide)", "optional": true},
-    {"type": "NOTE", "note": "Picked up: What Comes Around..., Quell the Uprising, The Color of Blood. When you have a group, open The Stockade under Dungeons.", "text": "Ready for The Stockade", "optional": true},
     {"type": "ACCEPT", "quest": 2923, "questName": "Tinkmaster Overspark", "npc": 7917, "npcName": "Brother Sarno", "map": 1453, "zone": "Stormwind City", "x": 40.6, "y": 30.8, "note": "For Gnomeregan (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 2928, "questName": "Gyrodrillmatic Excavationators", "npc": 6579, "npcName": "Shoni the Shilent", "map": 1453, "zone": "Stormwind City", "x": 55.4, "y": 12.6, "note": "For Gnomeregan (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 2360, "questName": "Mathias and the Defias", "npc": 332, "npcName": "Master Mathias Shaw", "map": 1453, "zone": "Stormwind City", "x": 75.8, "y": 59.8, "class": ["ROGUE"]},
@@ -31,7 +33,7 @@
     {"type": "ACCEPT", "quest": 1717, "questName": "Gakin's Summons", "npc": 6120, "npcName": "Lago Blackwrench", "map": 1455, "zone": "Ironforge", "x": 47.6, "y": 9.6, "class": ["WARLOCK"]},
     {"type": "TURNIN", "quest": 1717, "questName": "Gakin's Summons", "npc": 6122, "npcName": "Gakin the Darkbinder", "map": 1453, "zone": "Stormwind City", "x": 25.4, "y": 78.4, "class": ["WARLOCK"]},
     {"type": "TRAVEL", "map": 1437, "zone": "Wetlands", "x": 10.3, "y": 58.9, "radius": 60, "note": "travel to Wetlands (Wetlands)"},
-    {"type": "NOTE", "map": 1437, "zone": "Wetlands", "x": 10.3, "y": 58.9, "text": "set your hearthstone at the inn in Wetlands (if there is one)"},
+    {"type": "HEARTH", "npc": 1464, "npcName": "Innkeeper Helbrek", "map": 1437, "zone": "Menethil Harbor", "x": 10.7, "y": 61.0, "note": "talk to Innkeeper Helbrek and make this inn your home"},
     {"type": "ACCEPT", "quest": 279, "questName": "Claws from the Deep", "npc": 1242, "npcName": "Karl Boran", "map": 1437, "zone": "Wetlands", "x": 8.3, "y": 58.6},
     {"type": "ACCEPT", "quest": 484, "questName": "Young Crocolisk Skins", "npc": 2094, "npcName": "James Halloran", "map": 1437, "zone": "Wetlands", "x": 8.6, "y": 55.7},
     {"type": "ACCEPT", "quest": 473, "questName": "Report to Captain Stoutfist", "npc": 2086, "npcName": "Valstag Ironjaw", "map": 1437, "zone": "Wetlands", "x": 10, "y": 56.8},
@@ -74,7 +76,6 @@
     {"type": "ACCEPT", "quest": 275, "questName": "Blisters on The Land", "npc": 1244, "npcName": "Rethiel the Greenwarden", "map": 1437, "zone": "Wetlands", "x": 56.4, "y": 40.4},
     {"type": "KILL", "quest": 275, "questName": "Blisters on The Land", "npc": 1040, "target": "Fen Creeper", "count": 12, "map": 1437, "zone": "Wetlands", "x": 55, "y": 37.2, "near": true},
     {"type": "TURNIN", "quest": 275, "questName": "Blisters on The Land", "npc": 1244, "npcName": "Rethiel the Greenwarden", "map": 1437, "zone": "Wetlands", "x": 56.4, "y": 40.4},
-    {"type": "TURNIN", "quest": 161, "questName": "A Dark Threat Looms", "npc": 1073, "npcName": "Ashlan Stonesmirk", "map": 1437, "zone": "Wetlands", "x": 50.1, "y": 18.2, "note": "reduced xp (60%) - you out-levelled it"},
     {"type": "ACCEPT", "quest": 299, "questName": "Uncovering the Past", "npc": 1077, "npcName": "Prospector Whelgar", "map": 1437, "zone": "Wetlands", "x": 38.8, "y": 52.4},
     {"type": "COLLECT", "quest": 299, "questName": "Uncovering the Past", "target": "Ados Fragment / Modr Fragment / Golm Fragment / Neru Fragment", "count": 4, "map": 1437, "zone": "Wetlands", "x": 36.1, "y": 50, "near": true},
     {"type": "TURNIN", "quest": 299, "questName": "Uncovering the Past", "npc": 1077, "npcName": "Prospector Whelgar", "map": 1437, "zone": "Wetlands", "x": 38.8, "y": 52.4},
@@ -103,7 +104,10 @@
     {"type": "TURNIN", "quest": 471, "questName": "Apprentice's Duties", "npc": 2094, "npcName": "James Halloran", "map": 1437, "zone": "Wetlands", "x": 8.6, "y": 55.7},
     {"type": "TURNIN", "quest": 286, "questName": "Return the Statuette", "npc": 1242, "npcName": "Karl Boran", "map": 1437, "zone": "Wetlands", "x": 8.3, "y": 58.6},
     {"type": "TURNIN", "quest": 292, "questName": "The Eye of Paleth", "npc": 1217, "npcName": "Glorin Steelbrow", "map": 1437, "zone": "Wetlands", "x": 10.6, "y": 60.6},
+    {"type": "ACCEPT", "quest": 293, "questName": "Cleansing the Eye", "npc": 1217, "npcName": "Glorin Steelbrow", "map": 1437, "zone": "Wetlands", "x": 10.6, "y": 60.4},
     {"type": "TURNIN", "quest": 465, "questName": "Nek'rosh's Gambit", "map": 1437, "zone": "Wetlands", "x": 47.5, "y": 47},
-    {"type": "TURNIN", "quest": 472, "questName": "Fall of Dun Modr", "npc": 1071, "npcName": "Longbraid the Grim", "map": 1437, "zone": "Wetlands", "x": 49.8, "y": 18.3}
+    {"type": "ACCEPT", "quest": 474, "questName": "Defeat Nek'rosh", "map": 1437, "zone": "Wetlands", "x": 47.5, "y": 46.9, "note": "Elite - group up", "optional": true},
+    {"type": "TURNIN", "quest": 472, "questName": "Fall of Dun Modr", "npc": 1071, "npcName": "Longbraid the Grim", "map": 1437, "zone": "Wetlands", "x": 49.8, "y": 18.3},
+    {"type": "ACCEPT", "quest": 303, "questName": "The Dark Iron War", "npc": 1074, "npcName": "Motley Garmason", "map": 1437, "zone": "Wetlands", "x": 49.6, "y": 18.2, "note": "Elite - group up", "optional": true}
   ]
 }

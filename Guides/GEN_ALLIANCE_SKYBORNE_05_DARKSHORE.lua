@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_05_DARKSHORE",
     name = "5. Darkshore 22-22 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 22,
@@ -12,23 +12,24 @@ ns.RegisterGuide({
     zone = "Darkshore",
     next = "GEN_ALLIANCE_SKYBORNE_06_WETLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 5 of the Skyborne route: level 22 to 22, 6 steps, ~19 min of play in the model (20747 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 15,
+    notes = "Chapter 5 of the Skyborne route: level 22 to 22, 7 steps, ~12 min of play in the model (32310 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 16,
     steps = function() return {
         { type = "ACCEPT", quest = 1198, questName = "In Search of Thaelrid", npc = 4786, npcName = "Dawnwatcher Shaedlass", map = 1457, zone = "Darnassus", x = 55.4, y = 24.6, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 1
         { type = "ACCEPT", quest = 1199, questName = "Twilight Falls", npc = 4784, npcName = "Argent Guard Manados", map = 1457, zone = "Darnassus", x = 55.2, y = 23.6, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 2
         { type = "NOTE", optional = true, text = "Ready for Blackfathom Deeps", note = "Picked up: In Search of Thaelrid, Twilight Falls. When you have a group, open Blackfathom Deeps under Dungeons." }, -- 3
         { type = "TURNIN", quest = 98397, questName = "To Darnassus", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 4
-        { type = "TRAVEL", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9, radius = 60, note = "travel to Darkshore (Darkshore)" }, -- 5
-        { type = "TURNIN", quest = 1167, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 6
-        { type = "ACCEPT", quest = 1143, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 7
-        { type = "KILL", quest = 1143, questName = "The Tower of Althalaxx", npc = 3660, target = "Athrikus Narassin", map = 1439, zone = "Darkshore", x = 56, y = 26.3, note = "loot Athrikus Narassin's Head" }, -- 8
-        { type = "TURNIN", quest = 1143, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 9
-        { type = "ACCEPT", quest = 981, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 10
-        { type = "KILL", quest = 98013, questName = "Swelling Forces", npc = 2181, target = "Stormscale Myrmidon", count = 12, map = 1439, zone = "Darkshore", x = 58.4, y = 21.2 }, -- 11
-        { type = "KILL", quest = 98013, questName = "Swelling Forces", npc = 2182, target = "Stormscale Sorceress", count = 8, map = 1439, zone = "Darkshore", x = 58.6, y = 20.4 }, -- 12
-        { type = "KILL", quest = 98013, questName = "Swelling Forces", npc = 2183, target = "Stormscale Warrior", count = 6, map = 1439, zone = "Darkshore", x = 61.2, y = 19.8 }, -- 13
-        { type = "TURNIN", quest = 98013, questName = "Swelling Forces", npc = 270269, npcName = "Arbal", map = 1439, zone = "Darkshore", x = 43.6, y = 76.4 }, -- 14
-        { type = "ACCEPT", quest = 98461, questName = "Unrequited Love", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8, note = "New in Forever" }, -- 15
+        { type = "TRAVEL", map = 1439, zone = "Auberdine", x = 37.0, y = 44.1, radius = 60, note = "use your hearthstone (Auberdine)" }, -- 5
+        { type = "ACCEPT", quest = 98461, questName = "Unrequited Love", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8, note = "New in Forever" }, -- 6
+        { type = "TRAVEL", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9, radius = 60, note = "travel to Darkshore (Darkshore)" }, -- 7
+        { type = "TURNIN", quest = 1167, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 8
+        { type = "ACCEPT", quest = 1143, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 9
+        { type = "KILL", quest = 1143, questName = "The Tower of Althalaxx", npc = 3660, target = "Athrikus Narassin", map = 1439, zone = "Darkshore", x = 56, y = 26.3, note = "loot Athrikus Narassin's Head" }, -- 10
+        { type = "TURNIN", quest = 1143, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 11
+        { type = "ACCEPT", quest = 981, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 12
+        { type = "KILL", quest = 98013, questName = "Swelling Forces", npc = 2181, target = "Stormscale Myrmidon", count = 12, map = 1439, zone = "Darkshore", x = 58.4, y = 21.2 }, -- 13
+        { type = "KILL", quest = 98013, questName = "Swelling Forces", npc = 2182, target = "Stormscale Sorceress", count = 8, map = 1439, zone = "Darkshore", x = 58.6, y = 20.4 }, -- 14
+        { type = "KILL", quest = 98013, questName = "Swelling Forces", npc = 2183, target = "Stormscale Warrior", count = 6, map = 1439, zone = "Darkshore", x = 61.2, y = 19.8 }, -- 15
+        { type = "TURNIN", quest = 98013, questName = "Swelling Forces", npc = 270269, npcName = "Arbal", map = 1439, zone = "Darkshore", x = 43.6, y = 76.4 }, -- 16
     } end,
 })

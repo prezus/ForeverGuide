@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_09_DUSKWOOD",
     name = "9. Duskwood 26-28 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 26,
@@ -12,17 +12,17 @@ ns.RegisterGuide({
     zone = "Duskwood",
     next = "GEN_ALLIANCE_SKYBORNE_10_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 9 of the Skyborne route: level 26 to 28, 98 steps, ~168 min of play in the model (28564 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
+    notes = "Chapter 9 of the Skyborne route: level 26 to 28, 98 steps, ~168 min of play in the model (28535 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
     stepCount = 109,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2409, npcName = "Felicia Maline", map = 1431, zone = "Duskwood", x = 77.5, y = 44.3 }, -- 1
         { type = "TRAVEL", map = 1431, zone = "Duskwood", x = 74.9, y = 47.1, radius = 60, note = "travel to Duskwood (Duskwood)" }, -- 2
-        { type = "NOTE", map = 1431, zone = "Duskwood", x = 74.9, y = 47.1, text = "set your hearthstone at the inn in Duskwood (if there is one)" }, -- 3
-        { type = "ACCEPT", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 4
-        { type = "ACCEPT", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 5
-        { type = "ACCEPT", quest = 173, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 6
+        { type = "HEARTH", npc = 6790, npcName = "Innkeeper Trelayne", map = 1431, zone = "Darkshire", x = 73.9, y = 44.4, note = "talk to Innkeeper Trelayne and make this inn your home" }, -- 3
+        { type = "ACCEPT", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6 }, -- 4
+        { type = "ACCEPT", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 5
+        { type = "ACCEPT", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 6
         { type = "ACCEPT", quest = 66, questName = "The Legend of Stalvan", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 7
-        { type = "ACCEPT", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6 }, -- 8
+        { type = "ACCEPT", quest = 173, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 8
         { type = "TURNIN", quest = 66, questName = "The Legend of Stalvan", npc = 267, npcName = "Clerk Daltry", map = 1431, zone = "Duskwood", x = 72.5, y = 46.9 }, -- 9
         { type = "ACCEPT", quest = 163, questName = "Raven Hill", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 10
         { type = "ACCEPT", quest = 164, questName = "Deliveries to Sven", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 11

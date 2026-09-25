@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_11_STRANGLETHORN_VALE",
     name = "11. Stranglethorn Vale 28-29 (Night Elf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 28,
@@ -12,12 +12,12 @@ ns.RegisterGuide({
     zone = "Stranglethorn Vale",
     next = "GEN_ALLIANCE_NIGHTELF_12_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 11 of the NightElf route: level 28 to 29, 37 steps, ~116 min of play in the model (23668 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 11 of the NightElf route: level 28 to 29, 37 steps, ~116 min of play in the model (23621 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 38,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2859, npcName = "Gyll", map = 1434, zone = "Stranglethorn Vale", x = 27.5, y = 77.8 }, -- 1
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.5, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 2
-        { type = "NOTE", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.5, text = "set your hearthstone at the inn in Stranglethorn Vale (if there is one)" }, -- 3
+        { type = "HEARTH", npc = 6807, npcName = "Innkeeper Skindle", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, note = "talk to Innkeeper Skindle and make this inn your home" }, -- 3
         { type = "ACCEPT", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 4
         { type = "KILL", quest = 575, questName = "Supply and Demand", npc = 1150, target = "River Crocolisk", count = 2, map = 1434, zone = "Stranglethorn Vale", x = 39.9, y = 14.4, near = true, note = "loot Large River Crocolisk Skin" }, -- 5
         { type = "TURNIN", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 6

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_02_DARKSHORE",
     name = "2. Darkshore 13-18 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 13,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Darkshore",
     next = "GEN_ALLIANCE_SKYBORNE_03_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 2 of the Skyborne route: level 13 to 18, 146 steps, ~224 min of play in the model (20565 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 2 of the Skyborne route: level 13 to 18, 146 steps, ~224 min of play in the model (20586 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 185,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 3841, npcName = "Caylais Moonfeather", map = 1439, zone = "Darkshore", x = 36.3, y = 45.6 }, -- 1
@@ -23,21 +23,21 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 94449, questName = "Call of Fire", npc = 258113, npcName = "Ingrid Dunwald", map = 1426, zone = "Dun Morogh", x = 47.4, y = 52, class = { "SHAMAN" }, note = "New in Forever" }, -- 6
         { type = "TURNIN", quest = 94449, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" } }, -- 7
         { type = "TRAVEL", map = 1439, zone = "Darkshore", x = 37.6, y = 43.5, radius = 60, note = "travel to Darkshore (Darkshore)" }, -- 8
-        { type = "NOTE", map = 1439, zone = "Darkshore", x = 37.6, y = 43.5, text = "set your hearthstone at the inn in Darkshore (if there is one)" }, -- 9
+        { type = "HEARTH", npc = 6737, npcName = "Innkeeper Shaussiy", map = 1439, zone = "Auberdine", x = 37.0, y = 44.1, note = "talk to Innkeeper Shaussiy and make this inn your home" }, -- 9
         { type = "ACCEPT", quest = 983, questName = "Buzzbox 827", npc = 3666, npcName = "Wizbang Cranktoggle", map = 1439, zone = "Darkshore", x = 37.0, y = 44.1 }, -- 10
-        { type = "ACCEPT", quest = 954, questName = "Bashal'Aran", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 11
-        { type = "ACCEPT", quest = 958, questName = "Tools of the Highborne", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 12
-        { type = "ACCEPT", quest = 3524, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 13
+        { type = "ACCEPT", quest = 3524, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 11
+        { type = "ACCEPT", quest = 4811, questName = "The Red Crystal", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 12
+        { type = "ACCEPT", quest = 1141, questName = "The Family and the Fishing Pole", npc = 10216, npcName = "Gubber Blump", map = 1439, zone = "Darkshore", x = 36.1, y = 44.9 }, -- 13
         { type = "ACCEPT", quest = 98025, questName = "WANTED: Jai'vhanel", map = 1439, zone = "Darkshore", x = 37.2, y = 44.2, note = "New in Forever" }, -- 14
-        { type = "ACCEPT", quest = 4811, questName = "The Red Crystal", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 15
-        { type = "ACCEPT", quest = 2118, questName = "Plagued Lands", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 16
-        { type = "ACCEPT", quest = 984, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 17
-        { type = "ACCEPT", quest = 1141, questName = "The Family and the Fishing Pole", npc = 10216, npcName = "Gubber Blump", map = 1439, zone = "Darkshore", x = 36.1, y = 44.9 }, -- 18
-        { type = "ACCEPT", quest = 963, questName = "For Love Eternal", npc = 3644, npcName = "Cerellean Whiteclaw", map = 1439, zone = "Darkshore", x = 35.7, y = 43.7 }, -- 19
-        { type = "ACCEPT", quest = 947, questName = "Cave Mushrooms", npc = 3583, npcName = "Barithras Moonshade", map = 1439, zone = "Darkshore", x = 37.3, y = 43.6 }, -- 20
-        { type = "ACCEPT", quest = 982, questName = "Deep Ocean, Vast Sea", npc = 6301, npcName = "Gorbold Steelhand", map = 1439, zone = "Darkshore", x = 38.1, y = 41.2 }, -- 21
-        { type = "ACCEPT", quest = 965, questName = "The Tower of Althalaxx", npc = 3657, npcName = "Sentinel Elissa Starbreeze", map = 1439, zone = "Darkshore", x = 39.0, y = 43.5 }, -- 22
-        { type = "COLLECT", quest = 983, questName = "Buzzbox 827", target = "Crawler Leg", count = 6, map = 1439, zone = "Darkshore", x = 37.2, y = 40.6, near = true }, -- 23
+        { type = "ACCEPT", quest = 2118, questName = "Plagued Lands", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 15
+        { type = "ACCEPT", quest = 984, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 16
+        { type = "ACCEPT", quest = 963, questName = "For Love Eternal", npc = 3644, npcName = "Cerellean Whiteclaw", map = 1439, zone = "Darkshore", x = 35.7, y = 43.7 }, -- 17
+        { type = "ACCEPT", quest = 947, questName = "Cave Mushrooms", npc = 3583, npcName = "Barithras Moonshade", map = 1439, zone = "Darkshore", x = 37.3, y = 43.6 }, -- 18
+        { type = "ACCEPT", quest = 982, questName = "Deep Ocean, Vast Sea", npc = 6301, npcName = "Gorbold Steelhand", map = 1439, zone = "Darkshore", x = 38.1, y = 41.2 }, -- 19
+        { type = "ACCEPT", quest = 965, questName = "The Tower of Althalaxx", npc = 3657, npcName = "Sentinel Elissa Starbreeze", map = 1439, zone = "Darkshore", x = 39.0, y = 43.5 }, -- 20
+        { type = "COLLECT", quest = 983, questName = "Buzzbox 827", target = "Crawler Leg", count = 6, map = 1439, zone = "Darkshore", x = 37.2, y = 40.6, near = true }, -- 21
+        { type = "ACCEPT", quest = 954, questName = "Bashal'Aran", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 22
+        { type = "ACCEPT", quest = 958, questName = "Tools of the Highborne", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 23
         { type = "COLLECT", quest = 982, questName = "Deep Ocean, Vast Sea", target = "Silver Dawning's Lockbox / Mist Veil's Lockbox", map = 1439, zone = "Darkshore", x = 38.2, y = 28.8 }, -- 24
         { type = "KILL", quest = 2118, questName = "Plagued Lands", npc = 2164, target = "Rabid Thistle Bear", map = 1439, zone = "Darkshore", x = 44.7, y = 33, near = true }, -- 25
         { type = "COMPLETE", quest = 954, questName = "Bashal'Aran", target = "Find the source of the strange blue aura in the ruins of Bashal'Aran.", map = 1439, zone = "Darkshore", x = 44.3, y = 36.4, note = "Find the source of the strange blue aura in the ruins of Bashal'Aran." }, -- 26
