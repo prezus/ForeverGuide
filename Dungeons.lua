@@ -72,19 +72,24 @@ function Dungeons:Status(g)
     return { state = state, have = have, total = #bring, bring = bring, inside = inside, minLevel = minL, maxLevel = maxL }
 end
 
-local PRIORITY = { ready = 4, late = 3, gathering = 2, upcoming = 1 }
+--- How much the badge should show a dungeon: quests about to lose full XP first, then quests
+--- carried and ready, then some carried, then one with nothing to bring, then one not started,
+--- then an upcoming one. Nil for one not shown at all.
+local function rank(st)
+    if st.state == "late" then return 6 end
+    if st.state == "ready" then return st.total > 0 and 5 or 3 end
+    if st.state == "gathering" then return st.have > 0 and 4 or 2 end
+    if st.state == "upcoming" then return 1 end
+    return nil
+end
 
---- The dungeon the badge shows: ready first, then one to hand in, then one being gathered
---- (with something picked up before one without), then an upcoming one; the lowest first.
+--- The dungeon the badge shows (see `rank`); the lowest first among equals.
 function Dungeons:Next()
     local best, bestStatus, bestRank
     for _, g in ipairs(ns.Guide:Dungeons()) do
         local st = self:Status(g)
-        local rank = PRIORITY[st.state]
-        if rank then
-            rank = rank * 2 + ((st.state == "gathering" and st.have > 0) and 1 or 0)
-            if not bestRank or rank > bestRank then best, bestStatus, bestRank = g, st, rank end
-        end
+        local r = rank(st)
+        if r and (not bestRank or r > bestRank) then best, bestStatus, bestRank = g, st, r end
     end
     return best, bestStatus
 end
@@ -94,7 +99,9 @@ function Dungeons:BadgeText()
     local g, st = self:Next()
     if not g then return nil end
     local name = self:Name(g)
-    if st.state == "ready" then return string.format("%s %d/%d - ready", name, st.have, st.total) end
+    if st.state == "ready" then
+        return st.total > 0 and string.format("%s %d/%d - ready", name, st.have, st.total) or (name .. " - ready")
+    end
     if st.state == "late" then return string.format("%s - hand in by %d", name, st.maxLevel) end
     if st.state == "upcoming" then return string.format("%s from %d", name, st.minLevel) end
     return string.format("%s %d/%d", name, st.have, st.total)
