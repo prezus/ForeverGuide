@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_07_ARATHI_HIGHLANDS",
   "name": "7. Arathi Highlands 29-30 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 29,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 7 of the Skyborne route: level 29 to 30, 42 steps, ~185 min of play in the model (18684 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 2851, "npcName": "Urda", "map": 1417, "zone": "Arathi Highlands", "x": 73, "y": 32.7},
     {"type": "TRAVEL", "map": 1417, "zone": "Arathi Highlands", "x": 73.6, "y": 31.8, "radius": 60, "note": "travel to Arathi Highlands (Arathi Highlands)"},
     {"type": "NOTE", "map": 1417, "zone": "Arathi Highlands", "x": 73.6, "y": 31.8, "text": "set your hearthstone at the inn in Arathi Highlands (if there is one)"},
     {"type": "ACCEPT", "quest": 8171, "questName": "The Battle for Arathi Basin!", "npc": 15021, "npcName": "Deathmaster Dwire", "map": 1417, "zone": "Arathi Highlands", "x": 73.3, "y": 29.7},
