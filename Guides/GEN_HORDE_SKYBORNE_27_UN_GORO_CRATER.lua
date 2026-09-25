@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_27_UN_GORO_CRATER",
     name = "27. Un'Goro Crater 49-49 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 49,
