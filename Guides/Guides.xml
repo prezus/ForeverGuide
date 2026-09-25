@@ -12,6 +12,7 @@
     <Script file="DUNGEON_HORDE_RAGEFIRE_CHASM.lua"/>
     <Script file="DUNGEON_HORDE_RAZORFEN_KRAUL.lua"/>
     <Script file="DUNGEON_HORDE_RUINS_OF_LORDAERON.lua"/>
+    <Script file="DUNGEON_HORDE_SCARLET_MONASTERY.lua"/>
     <Script file="DUNGEON_HORDE_SHADOWFANG_KEEP.lua"/>
     <Script file="DUNGEON_HORDE_WAILING_CAVERNS.lua"/>
     <Script file="GEN_ALLIANCE_DWARF_01_DUN_MOROGH.lua"/>
