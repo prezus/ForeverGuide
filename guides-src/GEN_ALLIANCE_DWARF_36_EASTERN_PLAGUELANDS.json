@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_36_EASTERN_PLAGUELANDS",
   "name": "36. Eastern Plaguelands 50-51 (Dwarf)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 50,
