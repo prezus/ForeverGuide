@@ -265,8 +265,28 @@ do
     local f = ns.QuestGuide.frame
     MOCK_ACCEPT(999991, "Unplanned errand", { { text = "Gather 2 things", finished = false, numFulfilled = 1, numRequired = 2 } }); settle()
     local extra = f.extra
+    check(extra and not extra:IsShown(), "the Unknown Quests panel stays closed until its button is clicked")
+    check(f.unknownBtn and (f.unknownBtn.label:GetText() or ""):find("Unknown Quests (1)", 1, true),
+        "the Unknown Quests button counts the quests no guide covers (" .. tostring(f.unknownBtn and f.unknownBtn.label:GetText()) .. ")")
+    f.unknownBtn:GetScript("OnClick")(f.unknownBtn)
     check(extra and extra:IsShown() and extra.list.entries[1] and extra.list.entries[1].questID == 999991,
         "unrouted log quest appears in the panel below the guide")
+    local openedTo
+    local priorOpen = rawget(_G, "QuestMapFrame_OpenToQuestDetails")
+    _G.QuestMapFrame_OpenToQuestDetails = function(questID) openedTo = questID end
+    extra.list.rows[1]:GetScript("OnClick")(extra.list.rows[1], "LeftButton")
+    check(openedTo == 999991, "left click on an unknown quest opens it in the quest log (" .. tostring(openedTo) .. ")")
+    _G.QuestMapFrame_OpenToQuestDetails = priorOpen
+    -- a quest a later chapter of the route handles is not unknown, although the open guide lacks it
+    local later
+    for _, s in ipairs(G:Get("GEN_ALLIANCE_HUMAN_03_WESTFALL").steps) do
+        if s.type == "ACCEPT" and s.quest then later = s.quest break end
+    end
+    MOCK_ACCEPT(later, "Later chapter quest", {}); settle()
+    local listedLater = false
+    for _, e in ipairs(extra.list.entries) do if e.questID == later then listedLater = true end end
+    check(later and not listedLater and #extra.list.entries == 1, "a quest from another chapter of the route is not unknown")
+    MOCK_ABANDON(later); settle()
     check(extra and extra:GetParent() == f and extra.list.entries[1].subtitle:find("Gather 2 things", 1, true),
         "extra panel is attached to guide and shows objective progress")
     local reportsBefore = #(ns.db.reports or {})
@@ -292,6 +312,9 @@ do
     local remains = false
     for _, e in ipairs(extra.list.entries) do if e.questID == 999991 then remains = true end end
     check(not remains, "abandoned quest leaves the extra panel")
+    check((f.unknownBtn.label:GetText() or "") == "Unknown Quests", "no count on the button once every quest is covered")
+    f.unknownBtn:GetScript("OnClick")(f.unknownBtn)
+    check(not extra:IsShown(), "the Unknown Quests button closes its panel again")
     MOCK_ABANDON(783); settle()
 end
 
@@ -1085,7 +1108,7 @@ do
         f:SetWidth(360)
         f:SetHeight(160)
         f:GetScript("OnSizeChanged")(f, 360, 160)
-        check(f.list:GetWidth() == 348 and f.footerLine.points[1][5] == -120,
+        check(f.list:GetWidth() == 348 and f.footerLine.points[1][5] == -90,
             "quest list and footer follow the resize while the mouse is still down")
         f.resizeGrip:GetScript("OnMouseUp")(f.resizeGrip)
         check(ns.db.ui.width == 360 and f.sizing == false, "resize saves guide width")
@@ -1741,7 +1764,7 @@ do
     G:Activate(CHAPTER, true); settle()
 end
 
--- ---- the dungeon badge: the next dungeon, how many of its quests are in the log, and a panel ----
+-- ---- dungeon status and the Dungeon Quests panel: each dungeon, its quests, and where they stand ----
 do
     local D = ns.Dungeons
     local levelBefore = ns.Player:GetLevel()
@@ -1766,31 +1789,49 @@ do
     MOCK_LEVEL(15); settle()
     MOCK_ACCEPT(99911, "Badge One", {}); settle()
     check(D:Status(g).have == 1 and D:Status(g).state == "gathering", "one picked up: gathering")
-    check(D:BadgeText() == "Test Badge 1/2", "the badge names the dungeon and the count (" .. tostring(D:BadgeText()) .. ")")
     MOCK_ACCEPT(99912, "Badge Two", {}); settle()
-    check(D:Status(g).state == "ready" and D:BadgeText() == "Test Badge 2/2 - ready", "all picked up at the level: ready (" .. tostring(D:BadgeText()) .. ")")
+    check(D:Status(g).state == "ready", "all picked up at the level: ready (" .. D:Status(g).state .. ")")
 
-    local mode = ns.char.mode
-    ns.char.mode = "guide"
     ns.QuestGuide:Refresh()
-    local button = ns.QuestGuide.frame.header.dungeon
-    check(button and button:IsShown() and (button.label:GetText() or "") == "Test Badge 2/2 - ready", "the header carries the badge as a button")
-    ns.char.mode = mode
+    check(ns.QuestGuide.frame.header.dungeon == nil, "the header carries no dungeon badge: Dungeon Quests is at the bottom")
 
-    local panel = D:ShowPanel(g)
-    local body = panel.body:GetText() or ""
-    check(panel:IsShown() and body:find("Badge One", 1, true) and body:find("in your log", 1, true), "the panel lists the quests and where they stand")
-    check(body:find("Given Inside", 1, true) and body:find("given inside", 1, true), "and the quests given inside the dungeon")
-    panel.waypoint:GetScript("OnClick")()
+    -- the Dungeon Quests button opens a panel under the guide: pick a dungeon, see its quests,
+    -- and the guide stays on the step it was on
+    local f = ns.QuestGuide.frame
+    local activeBefore, stepBefore = G.active, G.current
+    f.unknownBtn:GetScript("OnClick")(f.unknownBtn)
+    f.dungeonsBtn:GetScript("OnClick")(f.dungeonsBtn)
+    local drawer = f.dungeons
+    check(drawer and drawer:IsShown() and not f.extra:IsShown(), "Dungeon Quests opens its panel and closes Unknown Quests")
+    local function dungeonRow()
+        for i, e in ipairs(drawer.list.entries) do if e.guideID == g.id then return drawer.list.rows[i] end end
+    end
+    local row = dungeonRow()
+    check(row ~= nil and (row.entry.subtitle or ""):find("2/2 quests  ·  ready", 1, true), "the panel lists the dungeons with their quest count and readiness")
+    row:GetScript("OnClick")(row, "LeftButton")
+    local lines = {}
+    for _, e in ipairs(drawer.list.entries) do lines[#lines + 1] = (e.title or "") .. " - " .. (e.subtitle or "") end
+    local body = table.concat(lines, "\n")
+    check(body:find("Badge One - in your log", 1, true), "picking a dungeon lists its quests and where they stand (" .. body .. ")")
+    check(body:find("Given Inside - given inside", 1, true), "and the quests given inside the dungeon")
+    check(G.active == activeBefore and G.current == stepBefore, "picking a dungeon leaves the guide where it was")
+    drawer.waypoint:GetScript("OnClick")(drawer.waypoint)
     local t = ns.Navigation.target
     check(t and t.owner == "dungeon" and math.abs(t.x - 42.5) < 0.01 and math.abs(t.y - 71.7) < 0.01, "Waypoint points at the entrance")
-    panel:Hide()
-
+    drawer.back:GetScript("OnClick")(drawer.back)
+    check(drawer.guide == nil and drawer.list.entries[1] and drawer.list.entries[1].guideID ~= nil, "Back returns to the dungeon list")
     MOCK_LEVEL(22); settle()
-    check(D:BadgeText() == "Test Badge - hand in by 22", "at the full-XP limit the badge says to hand in (" .. tostring(D:BadgeText()) .. ")")
-
+    check(D:Status(g).state == "late" and (dungeonRow().entry.subtitle or ""):find("hand in by 22", 1, true),
+        "at the full-XP limit the panel says to hand in (" .. tostring(dungeonRow().entry.subtitle) .. ")")
     MOCK_TURNIN(99911); MOCK_TURNIN(99912); MOCK_ACCEPT(99913, "Given Inside", {}); MOCK_TURNIN(99913); settle()
-    check(D:Status(g).state == "done" and D:BadgeText() ~= "Test Badge - hand in by 22" and (D:BadgeText() or ""):find("Test Badge", 1, true) == nil, "a finished dungeon leaves the badge")
+    check(D:Status(g).state == "done" and dungeonRow().entry.state == "done", "a finished dungeon shows as done in the panel")
+    f.dungeonsBtn:GetScript("OnClick")(f.dungeonsBtn)
+    check(not drawer:IsShown(), "the Dungeon Quests button closes its panel again")
+    ns.UI:RefreshPicker()
+    local pickerDungeon = false
+    for _, r in ipairs(ForeverGuidePicker.rows) do if r:IsShown() and r.guideID and G:IsDungeon(G:Get(r.guideID)) then pickerDungeon = true end end
+    check(not pickerDungeon, "the guide picker no longer switches to a dungeon guide")
+
     MOCK_LEVEL(levelBefore); settle()
 end
 

@@ -14,6 +14,7 @@
 --   │ (7) ! A Little More Trouble  │
 --   │ ...                          │
 --   │ [ ◎ Guide ]     [ Guides → ] │
+--   │ [Unknown Quests][Dungeon Qs] │  <- each opens its panel below
 --   └──────────────────────────────┘
 -- ============================================================
 
@@ -21,7 +22,8 @@ local _, ns = ...
 local Theme = ns.Theme
 local QG = ns:NewModule("QuestGuide")
 
-local FOOTER = 40
+local FOOTER = 70       -- two button rows
+local DRAWER_ROWS_HEIGHT = 180
 local frame
 
 local ICON_FOR = { ACCEPT = "accept", TURNIN = "turnin", KILL = "kill", COLLECT = "collect", COMPLETE = "collect",
@@ -29,6 +31,36 @@ local ICON_FOR = { ACCEPT = "accept", TURNIN = "turnin", KILL = "kill", COLLECT 
                    BUY = "collect", TRAIN = "accept" }
 
 -- ---- building ----------------------------------------------------------------------
+--- A panel that opens under the window (one at a time): a title and a scrolling list.
+function QG:NewDrawer(f, title)
+    local okD, d = pcall(CreateFrame, "Frame", nil, f, "BackdropTemplate")
+    if not okD or not d then d = CreateFrame("Frame", nil, f) end
+    d:SetPoint("TOPLEFT", f, "BOTTOMLEFT", 0, -8)
+    d:SetPoint("TOPRIGHT", f, "BOTTOMRIGHT", 0, -8)
+    Theme.Backdrop(d, "panel", ns.db.ui.opacity or 0.75)
+    d.title = Theme.NewText(d, { fancy = true, size = 13, color = Theme.C.goldLight, oneLine = true })
+    d.title:SetPoint("TOPLEFT", d, "TOPLEFT", 14, -10)
+    d.title:SetText(title)
+    local scroll = CreateFrame("ScrollFrame", nil, d)
+    scroll:SetPoint("TOPLEFT", d, "TOPLEFT", 6, -32)
+    scroll:SetPoint("BOTTOMRIGHT", d, "BOTTOMRIGHT", -6, 6)
+    scroll:EnableMouseWheel(true)
+    scroll:SetScript("OnMouseWheel", function(self, delta)
+        self:SetVerticalScroll(math.max(0, math.min(self:GetVerticalScrollRange(), self:GetVerticalScroll() - delta * 40)))
+    end)
+    d.list = ns.QuestList.Create(scroll)
+    d.list:SetSize(f:GetWidth() - 12, 40)
+    d.list:SetPoint("TOPLEFT", scroll, "TOPLEFT", 0, 0)
+    scroll:SetScrollChild(d.list)
+    d.scroll = scroll
+    d.top = 32
+    d.Fit = function(self) self:SetHeight(self.top + math.min(self.list.height, DRAWER_ROWS_HEIGHT) + 6) end
+    d:Hide()
+    f.drawers = f.drawers or {}
+    f.drawers[#f.drawers + 1] = d
+    return d
+end
+
 function QG:Create()
     if frame then return frame end
     local cfg = ns.db.ui
@@ -51,7 +83,7 @@ function QG:Create()
     end)
     Theme.Backdrop(f, "panel", cfg.opacity or 0.75)
     f:SetResizable(true)
-    pcall(f.SetResizeBounds, f, 240, 120, 520, 800)
+    pcall(f.SetResizeBounds, f, 240, 150, 520, 800)
     local grip = CreateFrame("Button", nil, f)
     grip:SetSize(20, 20)
     grip:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -1, 1)
@@ -66,7 +98,7 @@ function QG:Create()
         f.resizing = false
         f:StopMovingOrSizing()
         ns.db.ui.width = math.floor(math.max(240, math.min(520, f:GetWidth())) + 0.5)
-        ns.db.ui.height = math.floor(math.max(120, math.min(800, f:GetHeight())) + 0.5)
+        ns.db.ui.height = math.floor(math.max(150, math.min(800, f:GetHeight())) + 0.5)
         local rowHeight = ns.db.ui.showSubtitles ~= false and ns.QuestRow.HEIGHT_TWO + 3 or ns.QuestRow.HEIGHT_ONE + 3
         ns.db.ui.maxRows = math.max(3, math.min(15,
             math.floor((ns.db.ui.height - ns.QuestGuideHeader.HEIGHT - FOOTER - 6) / rowHeight)))
@@ -92,29 +124,8 @@ function QG:Create()
     f.list:SetPoint("TOPLEFT", scroll, "TOPLEFT", 0, 0)
     scroll:SetScrollChild(f.list)
 
-    -- Unrouted quests stay visible beneath the route, without entering its step order.
-    local okExtra, extra = pcall(CreateFrame, "Frame", nil, f, "BackdropTemplate")
-    if not okExtra or not extra then extra = CreateFrame("Frame", nil, f) end
-    extra:SetPoint("TOPLEFT", f, "BOTTOMLEFT", 0, -8)
-    extra:SetPoint("TOPRIGHT", f, "BOTTOMRIGHT", 0, -8)
-    Theme.Backdrop(extra, "panel", cfg.opacity or 0.75)
-    extra.title = Theme.NewText(extra, { fancy = true, size = 13, color = Theme.C.goldLight, oneLine = true })
-    extra.title:SetPoint("TOPLEFT", extra, "TOPLEFT", 14, -10)
-    extra.title:SetText("OTHER QUESTS")
-    local extraScroll = CreateFrame("ScrollFrame", nil, extra)
-    extraScroll:SetPoint("TOPLEFT", extra, "TOPLEFT", 6, -32)
-    extraScroll:SetPoint("BOTTOMRIGHT", extra, "BOTTOMRIGHT", -6, 6)
-    extraScroll:EnableMouseWheel(true)
-    extraScroll:SetScript("OnMouseWheel", function(self, delta)
-        self:SetVerticalScroll(math.max(0, math.min(self:GetVerticalScrollRange(), self:GetVerticalScroll() - delta * 40)))
-    end)
-    extra.list = ns.QuestList.Create(extraScroll)
-    extra.list:SetSize(cfg.width - 12, 40)
-    extra.list:SetPoint("TOPLEFT", extraScroll, "TOPLEFT", 0, 0)
-    extraScroll:SetScrollChild(extra.list)
-    extra.scroll = extraScroll
-    extra:Hide()
-    f.extra = extra
+    -- quests in the log that no guide covers, under the window while its button is on
+    f.extra = self:NewDrawer(f, "UNKNOWN QUESTS")
 
     f.footerLine = f:CreateTexture(nil, "ARTWORK")
     f.footerLine:SetHeight(1)
@@ -123,7 +134,7 @@ function QG:Create()
     f:SetScript("OnSizeChanged", function(self, width, height)
         if not self.resizing then return end
         self.list:SetWidth(width - 12)
-        self.extra.list:SetWidth(width - 12)
+        for _, d in ipairs(self.drawers) do d.list:SetWidth(width - 12) end
         self.footerLine:ClearAllPoints()
         self.footerLine:SetPoint("TOPLEFT", self, "TOPLEFT", 12, -(height - FOOTER))
         self.footerLine:SetPoint("TOPRIGHT", self, "TOPRIGHT", -12, -(height - FOOTER))
@@ -131,8 +142,15 @@ function QG:Create()
 
     f.guideBtn = Theme.NewButton(f, "Details", 104, 24, function() QG:ToggleInfo() end, "compass")
     f.guidesBtn = Theme.NewButton(f, "Guides", 104, 24, function() ns.UI:TogglePicker() end, "current")
-    f.guideBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 9)
-    f.guidesBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 9)
+    f.guideBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 39)
+    f.guidesBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 39)
+    -- the panels under the window
+    f.unknownBtn = Theme.NewButton(f, "Unknown Quests", 104, 24, function() QG:ToggleDrawer("unknown") end)
+    f.dungeonsBtn = Theme.NewButton(f, "Dungeon Quests", 104, 24, function() QG:ToggleDrawer("dungeons") end)
+    f.unknownBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 9)
+    f.unknownBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOM", -3, 9)
+    f.dungeonsBtn:SetPoint("BOTTOMLEFT", f, "BOTTOM", 3, 9)
+    f.dungeonsBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 9)
 
     -- the skull button: a secure button whose click runs "/targetexact <mob>" for the current kill
     -- step (the one way an addon may change the target). Secure frames cannot be moved or shown in
@@ -143,7 +161,7 @@ function QG:Create()
             tb:SetParent(f)
             tb:ClearAllPoints()
             tb:SetSize(30, 24)
-            tb:SetPoint("BOTTOM", f, "BOTTOM", 0, 9)
+            tb:SetPoint("BOTTOM", f, "BOTTOM", 0, 39)
             tb:SetFrameLevel(f:GetFrameLevel() + 5)
             local normal = tb:CreateTexture(nil, "BACKGROUND")
             normal:SetAllPoints()
@@ -226,8 +244,10 @@ function QG:Apply()
     pcall(frame.SetScale, frame, cfg.scale or 1)
     frame:SetWidth(math.max(cfg.width or 300, 240))
     frame.list:SetWidth(frame:GetWidth() - 12)
-    frame.extra.list:SetWidth(frame:GetWidth() - 12)
-    if frame.extra.SetBackdropColor then pcall(frame.extra.SetBackdropColor, frame.extra, 0, 0, 0, cfg.opacity or 0.75) end
+    for _, d in ipairs(frame.drawers) do
+        d.list:SetWidth(frame:GetWidth() - 12)
+        if d.SetBackdropColor then pcall(d.SetBackdropColor, d, 0, 0, 0, cfg.opacity or 0.75) end
+    end
     if frame.SetBackdropColor then pcall(frame.SetBackdropColor, frame, 0, 0, 0, cfg.opacity or 0.75) end
     self:Layout()
 end
@@ -236,7 +256,7 @@ function QG:Layout()
     if not frame then return end
     local f = frame
     local natural = ns.QuestGuideHeader.HEIGHT + 2 + (f.list.height or 40) + 4 + FOOTER
-    local height = math.max(120, math.min(800, ns.db.ui.height or natural))
+    local height = math.max(150, math.min(800, ns.db.ui.height or natural))
     f:SetHeight(height)
     f.footerLine:ClearAllPoints()
     f.footerLine:SetPoint("TOPLEFT", f, "TOPLEFT", 12, -(height - FOOTER))
@@ -391,20 +411,28 @@ function QG:BuildTrackerEntries()
     return entries
 end
 
+-- ---- the panels under the window: one open at a time ------------------------------------------
+--- Open the panel named `which` ("unknown" or "dungeons"), or close them all with nil.
+function QG:SetDrawer(which)
+    if not frame then return end
+    self.drawer = which
+    frame.extra:SetShown(which == "unknown")
+    if which == "unknown" then self:RefreshExtra() end
+    if ns.Dungeons.SetDrawerShown then ns.Dungeons:SetDrawerShown(which == "dungeons") end
+    for name, btn in pairs({ unknown = frame.unknownBtn, dungeons = frame.dungeonsBtn }) do
+        local on = which == name
+        pcall(btn.normal.SetVertexColor, btn.normal, on and 0.34 or 0.18, on and 0.28 or 0.18, on and 0.14 or 0.18, 1)
+    end
+end
+
+function QG:ToggleDrawer(which)
+    self:SetDrawer(self.drawer ~= which and which or nil)
+end
+
 -- ---- refresh -------------------------------------------------------------------------------
 function QG:RefreshExtra()
     local f = frame
-    local g = ns.Guide.active
-    if ns.char.mode == "auto" then
-        f.extra:Hide()
-        return
-    end
-    local covered = {}
-    if g then
-        for _, step in ipairs(g.steps) do
-            if step.quest then covered[step.quest] = true end
-        end
-    end
+    local covered = ns.Guide:CoveredQuests()
     local entries = {}
     for quest in ns.Quest:Iterate() do
         if not covered[quest.questID] then
@@ -413,14 +441,16 @@ function QG:RefreshExtra()
                 questID = quest.questID, title = ns.Quest:TitleWithLevel(quest.questID, quest.title),
                 subtitle = quest.ready and "Ready to turn in" or (objective and objective.text or "In progress"),
                 icon = quest.ready and "turnin" or "collect", state = quest.ready and "available" or "future",
-                tooltip = { "Right click: report missing route quest" },
+                tooltip = { "|cff8a8070Left click: open in the quest log.  Right click: report missing route quest.|r" },
+                onClick = function() ns.Quest:OpenInLog(quest.questID) end,
                 onRightClick = function() ns.Reports:MissingQuest(quest.questID) end,
             }
         end
     end
-    f.extra.list:Set(entries)
-    f.extra:SetHeight(32 + math.min(f.extra.list.height, 180) + 6)
-    f.extra:SetShown(#entries > 0)
+    f.unknownBtn.label:SetText(#entries > 0 and string.format("Unknown Quests (%d)", #entries) or "Unknown Quests")
+    if not f.extra:IsShown() then return end
+    f.extra.list:Set(entries, "Every quest in your log is in a guide.")
+    f.extra:Fit()
 end
 
 function QG:Refresh()
@@ -432,7 +462,6 @@ function QG:Refresh()
     local g = G.active
     local level = ns.Player:GetLevel()
     local zone = ns.Player:GetMapName() or ns.Player:GetZone() or ""
-    f.header:SetDungeon(ns.Dungeons and ns.Dungeons:BadgeText())
 
     if T and T:IsActive() and (not g or ns.char.mode == "auto") then
         local entries = self:BuildTrackerEntries()

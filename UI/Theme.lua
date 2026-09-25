@@ -105,6 +105,7 @@ function Theme.NewButton(parent, text, width, height, onClick, icon, opts)
     normal:SetAllPoints()
     pcall(normal.SetTexture, normal, Theme.TEX.button)
     normal:SetVertexColor(0.18, 0.18, 0.18, 1)
+    b.normal = normal
     local hl = b:CreateTexture(nil, "HIGHLIGHT")
     hl:SetAllPoints()
     pcall(hl.SetTexture, hl, Theme.TEX.buttonHl)

@@ -195,20 +195,7 @@ function UI:RefreshPicker()
             shown = shown + 1
         end
     end
-    -- dungeons near the level: each has its own guide, opened when a group forms
-    local dungeons = {}
-    for _, g in ipairs(G:Dungeons()) do
-        if (g.maxLevel or 60) >= level - 2 and (g.minLevel or 1) <= level + 6 then dungeons[#dungeons + 1] = g end
-    end
-    if #dungeons > 0 then
-        add("DUNGEONS", "", nil, false, false, true)
-        for k, g in ipairs(dungeons) do
-            if k > 7 then break end
-            local fits = (g.minLevel or 1) <= level and (g.maxLevel or 60) >= level
-            local active = G.active == g and ns.char.mode ~= "auto"
-            add(ns.Dungeons:Name(g), string.format("%s-%s  %d steps", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), ns.Guide.StepCount(g)), g.id, not fits, active)
-        end
-    end
+    -- dungeons live in the window's Dungeon Quests panel, which never moves the guide off its step
     if i == 0 then add("no guides installed", "", nil, true) end
     for j = i + 1, #p.rows do p.rows[j]:Hide() p.rows[j].sub:Hide() end
     p:SetHeight(y + PAD)

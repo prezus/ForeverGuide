@@ -280,6 +280,16 @@ function Quest:GreyWarning(questID)
 end
 
 --- "[6] Title" with the level coloured.
+--- Open the quest log on a quest (Camelot loads the mainline quest map). False when the
+--- client has no way to.
+function Quest:OpenInLog(questID)
+    local open = rawget(_G, "QuestMapFrame_OpenToQuestDetails")
+    if open then return (pcall(open, questID)) end
+    local toggle = rawget(_G, "ToggleQuestLog")
+    if toggle then return (pcall(toggle)) end
+    return false
+end
+
 function Quest:TitleWithLevel(questID, title)
     title = title or self:GetTitle(questID) or ("quest " .. tostring(questID))
     local tag = self:LevelTag(questID)

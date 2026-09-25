@@ -155,6 +155,26 @@ function Guide:Dungeons()
     return out
 end
 
+--- The quests some guide will take this character through: every chapter of the route it
+--- follows, every dungeon guide, and the open guide. Cached until one of those changes.
+local coveredCache, coveredKey
+function Guide:CoveredQuests()
+    local route = self:CurrentRoute()
+    local key = (route and route.key or "") .. "|" .. (self.active and self.active.id or "") .. "|" .. #self.list
+    if coveredKey == key then return coveredCache end
+    local covered = {}
+    local function add(g)
+        for _, step in ipairs(g and g.steps or {}) do
+            if step.quest then covered[step.quest] = true end
+        end
+    end
+    for _, g in ipairs(route and route.chapters or {}) do add(g) end
+    for _, g in ipairs(self:Dungeons()) do add(g) end
+    add(self.active)
+    coveredCache, coveredKey = covered, key
+    return covered
+end
+
 --- Leave a dungeon guide for the chapter it was opened from (else the route's chapter for the
 --- level). Returns the guide activated, or nil when there is nowhere to go.
 function Guide:Resume()
