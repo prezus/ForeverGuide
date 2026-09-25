@@ -1084,13 +1084,19 @@ do
     check(ns.Arrow.suppressedByWaypoint == false, "the chevron arrow is back when the waypoint is off")
     ns.Commands:Run("waypoint on"); ns.Waypoint:Tick()
     check(ns.db.nav.waypoint.enabled == true and ns.db.nav.blizzardWaypoint == true and ns.Waypoint.overlay:IsShown(), "/fg waypoint on brings the overlay back (engine mode is still on from above)")
-    -- the world map opens: nothing of ours floats over it; closes: back
+    -- Map stays behind the guide even with a saved legacy hideOnMap setting.
+    ns.db.ui.hideOnMap = true
     MOCK.mapOpen = true; WorldMapFrame.hooks.OnShow(); settle()
     check(not ns.Waypoint.overlay:IsShown() and not ns.Arrow:IsShown(), "world map open: waypoint and chevron hide")
-    check(not ForeverGuideFrame:IsShown(), "world map open: the Quest Guide window steps aside")
+    check(ForeverGuideFrame:IsShown() and ForeverGuideFrame:GetFrameStrata() == "FULLSCREEN_DIALOG", "world map open: the Quest Guide stays above the map")
     MOCK.mapOpen = false; WorldMapFrame.hooks.OnHide(); settle()
     check(ns.Waypoint.overlay:IsShown(), "world map closed: the waypoint is back")
-    check(ForeverGuideFrame:IsShown(), "world map closed: the window is back")
+    check(ForeverGuideFrame:IsShown() and ForeverGuideFrame:GetFrameStrata() == "HIGH", "world map closed: guide returns to its normal layer")
+    ns.UI:Hide()
+    MOCK.mapOpen = true; WorldMapFrame.hooks.OnShow(); settle()
+    MOCK.mapOpen = false; WorldMapFrame.hooks.OnHide(); settle()
+    check(not ForeverGuideFrame:IsShown(), "opening and closing the map does not reopen a manually hidden guide")
+    ns.UI:Show()
     do  -- BearingPosition is no longer reached from Tick() (engine mode required to show at
         -- all), but the projection geometry itself is still exercised directly since it is
         -- still around for possible future use (1280x720 mock screen, character at 640,288)
@@ -1218,7 +1224,7 @@ do
     ns.Commands:Run("edit note keep me")
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[G.current] = { type = G:GetCurrentStep().type, quest = G:GetCurrentStep().quest, map = 1426, x = 12.5, y = 34.5, npc = 999 }
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[3] = { type = "ACCEPT", quest = 179, npc = 658 }
-    ns.db.ui.width = 480; ns.db.ui.height = 280; ns.db.ui.hideTracker = false; ns.db.ui.hideOnMap = false
+    ns.db.ui.width = 480; ns.db.ui.height = 280; ns.db.ui.hideTracker = false
     ns.Persist:Save()
     check(ns.Persist.lastSaveOK == true, "the cvar mirror verified its write")
     check(#(MOCK.cvars.ForeverGuideA0 or "") > 0 and #(MOCK.cvars.ForeverGuideCSniffClassicBetaPvE20 or MOCK.cvars["ForeverGuideC" .. ((UnitName("player") .. GetRealmName()):gsub("[^%w]", "")):sub(1, 24) .. "0"] or "") > 0, "cvar mirror written (account + character)")
@@ -1237,8 +1243,8 @@ do
     check(e and e.x == 12.5 and e.npc == 999, "step edit restored")
     local e2 = ns.db.edits[savedGuide][3]
     check(e2 and e2.npc == 658 and e2.quest == 179 and e and e.quest ~= nil, "a second step edit survives the mirror too (separator kept)")
-    check(ns.db.ui.width == 480 and ns.db.ui.height == 280 and ns.db.ui.hideTracker == false and ns.db.ui.hideOnMap == false,
-        "window size and tracker/map switches are restored")
+    check(ns.db.ui.width == 480 and ns.db.ui.height == 280 and ns.db.ui.hideTracker == false,
+        "window size and tracker switch are restored")
     ns.AutoQuest:Set("accept", "on")
     ns.db.edits = {}
     G:Activate(savedGuide, true); G:Reset(); settle()

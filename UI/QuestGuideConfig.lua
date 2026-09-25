@@ -65,8 +65,6 @@ Config.TOGGLES = {
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().plates = v ns.MobMarker:Scan() end end },
     wpengine   = { label = "ride the client's own pin instead of the plain arrow (off by default - most Forever clients cannot project it, and guessing felt sluggish)", get = function() return Config.Waypoint().engine == true end,
                    set = function(v) Config.Waypoint().engine = v if ns.Waypoint then ns.Waypoint:Tick() end end },
-    map        = { label = "hide the Quest Guide while the world map is open", get = function() return ns.db.ui.hideOnMap ~= false end,
-                   set = function(v) ns.db.ui.hideOnMap = v end },
     tracker    = { label = "hide Blizzard's objective tracker while the Quest Guide shows", get = function() return ns.db.ui.hideTracker ~= false end,
                    set = function(v) ns.db.ui.hideTracker = v if ns.QuestGuide and ns.QuestGuide.ApplyTracker then ns.QuestGuide:ApplyTracker() end end },
     completed  = { label = "show completed steps", get = function() return ns.db.ui.showCompleted ~= false end,
@@ -96,7 +94,7 @@ end
 --- Option-panel items (same shape Options.lua uses)
 function Config.OptionItems()
     local items = { { header = "Quest Guide" } }
-    for _, key in ipairs({ "questguide", "tracker", "map", "completed", "distances", "subtitles" }) do
+    for _, key in ipairs({ "questguide", "tracker", "completed", "distances", "subtitles" }) do
         local t = Config.TOGGLES[key]
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end

@@ -37,7 +37,8 @@ local function NewRegion(kind)
     function r:SetShown(v) self.shown = v end
     function r:SetScale(v) self.scale = v end
     function r:GetScale() return self.scale or 1 end
-    function r:SetFrameStrata() end
+    function r:SetFrameStrata(strata) self.strata = strata end
+    function r:GetFrameStrata() return self.strata end
     function r:SetMovable() end
     function r:SetClampedToScreen() end
     function r:EnableMouse(on) self.mouse = on end

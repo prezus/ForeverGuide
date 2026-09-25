@@ -35,7 +35,6 @@ local DEFAULTS = {
         showDistances = true,
         showSubtitles = true,
         hideTracker = true,   -- Blizzard's objective tracker is hidden while the Quest Guide shows
-        hideOnMap = true,     -- the window steps aside while the world map is open
     },
     nav = {
         blizzardWaypoint = false, -- use the addon arrow without placing a map pin
