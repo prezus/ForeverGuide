@@ -318,6 +318,8 @@
     {"type": "ACCEPT", "quest": 914, "questName": "Leaders of the Fang", "npc": 5770, "npcName": "Nara Wildmane", "map": 1456, "zone": "Thunder Bluff", "x": 75.6, "y": 31.2, "note": "For Wailing Caverns (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 962, "questName": "Serpentbloom", "npc": 3419, "npcName": "Apothecary Zamah", "map": 1456, "zone": "Thunder Bluff", "x": 23, "y": 21, "note": "For Wailing Caverns (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: Leaders of the Fang, Serpentbloom. When you have a group, open Wailing Caverns under Dungeons.", "text": "Ready for Wailing Caverns", "optional": true},
+    {"type": "ACCEPT", "quest": 1823, "questName": "Speak with Ruga", "npc": 3354, "npcName": "Sorek", "map": 1454, "zone": "Orgrimmar", "x": 80.2, "y": 32.4, "class": ["WARRIOR"]},
+    {"type": "TURNIN", "quest": 1823, "questName": "Speak with Ruga", "npc": 6394, "npcName": "Ruga Ragetotem", "map": 1413, "zone": "The Barrens", "x": 44.6, "y": 59.4, "class": ["WARRIOR"]},
     {"type": "ACCEPT", "quest": 2460, "questName": "The Shattered Salute", "npc": 3401, "npcName": "Shenthul", "map": 1454, "zone": "Orgrimmar", "x": 43, "y": 53.4, "class": ["ROGUE"]},
     {"type": "TURNIN", "quest": 2460, "questName": "The Shattered Salute", "npc": 3401, "npcName": "Shenthul", "map": 1454, "zone": "Orgrimmar", "x": 43, "y": 53.4, "class": ["ROGUE"]},
     {"type": "ACCEPT", "quest": 5642, "questName": "Shadowguard", "npc": 3044, "npcName": "Miles Welsh", "map": 1456, "zone": "Thunder Bluff", "x": 25.4, "y": 15.4, "class": ["PRIEST"], "race": ["Troll"]},

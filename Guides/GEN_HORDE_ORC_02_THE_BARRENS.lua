@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_03_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Orc route: level 10 to 22, 185 steps, ~562 min of play in the model (20171 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
-    stepCount = 326,
+    stepCount = 328,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 3615, npcName = "Devrak", map = 1413, zone = "The Barrens", x = 51.5, y = 30.3 }, -- 1
         { type = "FLIGHTPATH", npc = 16227, npcName = "Bragok", map = 1413, zone = "The Barrens", x = 63.1, y = 37.2 }, -- 2
@@ -321,25 +321,27 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 914, questName = "Leaders of the Fang", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 304
         { type = "ACCEPT", quest = 962, questName = "Serpentbloom", npc = 3419, npcName = "Apothecary Zamah", map = 1456, zone = "Thunder Bluff", x = 23, y = 21, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 305
         { type = "NOTE", optional = true, text = "Ready for Wailing Caverns", note = "Picked up: Leaders of the Fang, Serpentbloom. When you have a group, open Wailing Caverns under Dungeons." }, -- 306
-        { type = "ACCEPT", quest = 2460, questName = "The Shattered Salute", npc = 3401, npcName = "Shenthul", map = 1454, zone = "Orgrimmar", x = 43, y = 53.4, class = { "ROGUE" } }, -- 307
-        { type = "TURNIN", quest = 2460, questName = "The Shattered Salute", npc = 3401, npcName = "Shenthul", map = 1454, zone = "Orgrimmar", x = 43, y = 53.4, class = { "ROGUE" } }, -- 308
-        { type = "ACCEPT", quest = 5642, questName = "Shadowguard", npc = 3044, npcName = "Miles Welsh", map = 1456, zone = "Thunder Bluff", x = 25.4, y = 15.4, class = { "PRIEST" }, race = { "Troll" } }, -- 309
-        { type = "TURNIN", quest = 5642, questName = "Shadowguard", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" } }, -- 310
-        { type = "ACCEPT", quest = 5643, questName = "Shadowguard", npc = 4606, npcName = "Aelthalyste", map = 1458, zone = "Undercity", x = 49.2, y = 18.2, class = { "PRIEST" }, race = { "Troll" } }, -- 311
-        { type = "TURNIN", quest = 5643, questName = "Shadowguard", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" } }, -- 312
-        { type = "ACCEPT", quest = 5680, questName = "Shadowguard", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" } }, -- 313
-        { type = "TURNIN", quest = 5680, questName = "Shadowguard", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" } }, -- 314
-        { type = "ACCEPT", quest = 1528, questName = "Call of Water", npc = 5892, npcName = "Searn Firewarder", map = 1454, zone = "Orgrimmar", x = 37.8, y = 37.4, class = { "SHAMAN" } }, -- 315
-        { type = "TURNIN", quest = 1528, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 316
-        { type = "ACCEPT", quest = 1529, questName = "Call of Water", npc = 5906, npcName = "Xanis Flameweaver", map = 1456, zone = "Thunder Bluff", x = 25.2, y = 21, class = { "SHAMAN" } }, -- 317
-        { type = "TURNIN", quest = 1529, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 318
-        { type = "ACCEPT", quest = 2985, questName = "Call of Water", npc = 3173, npcName = "Swart", map = 1411, zone = "Durotar", x = 54.4, y = 42.6, class = { "SHAMAN" } }, -- 319
-        { type = "TURNIN", quest = 2985, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 320
-        { type = "ACCEPT", quest = 2986, questName = "Call of Water", npc = 3066, npcName = "Narm Skychaser", map = 1412, zone = "Mulgore", x = 48.4, y = 59.2, class = { "SHAMAN" } }, -- 321
-        { type = "TURNIN", quest = 2986, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 322
-        { type = "ACCEPT", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 323
-        { type = "COLLECT", quest = 857, questName = "The Tear of the Moons", target = "Tear of the Moons", map = 1413, zone = "The Barrens", x = 49.1, y = 84.3 }, -- 324
-        { type = "TURNIN", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 325
-        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 326
+        { type = "ACCEPT", quest = 1823, questName = "Speak with Ruga", npc = 3354, npcName = "Sorek", map = 1454, zone = "Orgrimmar", x = 80.2, y = 32.4, class = { "WARRIOR" } }, -- 307
+        { type = "TURNIN", quest = 1823, questName = "Speak with Ruga", npc = 6394, npcName = "Ruga Ragetotem", map = 1413, zone = "The Barrens", x = 44.6, y = 59.4, class = { "WARRIOR" } }, -- 308
+        { type = "ACCEPT", quest = 2460, questName = "The Shattered Salute", npc = 3401, npcName = "Shenthul", map = 1454, zone = "Orgrimmar", x = 43, y = 53.4, class = { "ROGUE" } }, -- 309
+        { type = "TURNIN", quest = 2460, questName = "The Shattered Salute", npc = 3401, npcName = "Shenthul", map = 1454, zone = "Orgrimmar", x = 43, y = 53.4, class = { "ROGUE" } }, -- 310
+        { type = "ACCEPT", quest = 5642, questName = "Shadowguard", npc = 3044, npcName = "Miles Welsh", map = 1456, zone = "Thunder Bluff", x = 25.4, y = 15.4, class = { "PRIEST" }, race = { "Troll" } }, -- 311
+        { type = "TURNIN", quest = 5642, questName = "Shadowguard", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" } }, -- 312
+        { type = "ACCEPT", quest = 5643, questName = "Shadowguard", npc = 4606, npcName = "Aelthalyste", map = 1458, zone = "Undercity", x = 49.2, y = 18.2, class = { "PRIEST" }, race = { "Troll" } }, -- 313
+        { type = "TURNIN", quest = 5643, questName = "Shadowguard", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" } }, -- 314
+        { type = "ACCEPT", quest = 5680, questName = "Shadowguard", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" } }, -- 315
+        { type = "TURNIN", quest = 5680, questName = "Shadowguard", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" } }, -- 316
+        { type = "ACCEPT", quest = 1528, questName = "Call of Water", npc = 5892, npcName = "Searn Firewarder", map = 1454, zone = "Orgrimmar", x = 37.8, y = 37.4, class = { "SHAMAN" } }, -- 317
+        { type = "TURNIN", quest = 1528, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 318
+        { type = "ACCEPT", quest = 1529, questName = "Call of Water", npc = 5906, npcName = "Xanis Flameweaver", map = 1456, zone = "Thunder Bluff", x = 25.2, y = 21, class = { "SHAMAN" } }, -- 319
+        { type = "TURNIN", quest = 1529, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 320
+        { type = "ACCEPT", quest = 2985, questName = "Call of Water", npc = 3173, npcName = "Swart", map = 1411, zone = "Durotar", x = 54.4, y = 42.6, class = { "SHAMAN" } }, -- 321
+        { type = "TURNIN", quest = 2985, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 322
+        { type = "ACCEPT", quest = 2986, questName = "Call of Water", npc = 3066, npcName = "Narm Skychaser", map = 1412, zone = "Mulgore", x = 48.4, y = 59.2, class = { "SHAMAN" } }, -- 323
+        { type = "TURNIN", quest = 2986, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 324
+        { type = "ACCEPT", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 325
+        { type = "COLLECT", quest = 857, questName = "The Tear of the Moons", target = "Tear of the Moons", map = 1413, zone = "The Barrens", x = 49.1, y = 84.3 }, -- 326
+        { type = "TURNIN", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 327
+        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 328
     } end,
 })
