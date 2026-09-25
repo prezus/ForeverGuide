@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_17_STRANGLETHORN_VALE",
   "name": "17. Stranglethorn Vale 37-38 (Human)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 37,
