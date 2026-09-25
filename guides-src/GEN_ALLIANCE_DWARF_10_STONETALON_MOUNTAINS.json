@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_10_STONETALON_MOUNTAINS",
   "name": "10. Stonetalon Mountains 27-28 (Dwarf)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 27,
@@ -12,7 +12,9 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 10 of the Dwarf route: level 27 to 28, 20 steps, ~39 min of play in the model (19945 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "ACCEPT", "quest": 2931, "questName": "Castpipe's Task", "npc": 4077, "npcName": "Gaxim Rustfizzle", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.4, "y": 67.2, "note": "For Gnomeregan (dungeon guide)", "optional": true},
     {"type": "TRAVEL", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 65.9, "radius": 60, "note": "travel to Stonetalon Mountains (Stonetalon Mountains)"},
+    {"type": "TURNIN", "quest": 1070, "questName": "On Guard in Stonetalon", "npc": 4080, "npcName": "Kaela Shadowspear", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.8, "y": 66.8, "note": "reduced xp (80%) - you out-levelled it"},
     {"type": "ACCEPT", "quest": 1085, "questName": "On Guard in Stonetalon", "npc": 4080, "npcName": "Kaela Shadowspear", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.9, "y": 66.9},
     {"type": "ACCEPT", "quest": 1093, "questName": "Super Reaper 6000", "npc": 4201, "npcName": "Ziz Fizziks", "map": 1442, "zone": "Stonetalon Mountains", "x": 59, "y": 62.6},
     {"type": "TURNIN", "quest": 1085, "questName": "On Guard in Stonetalon", "npc": 4077, "npcName": "Gaxim Rustfizzle", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 67.2, "note": "reduced xp (80%) - you out-levelled it"},
@@ -27,10 +29,14 @@
     {"type": "TURNIN", "quest": 1090, "questName": "Gerenzo's Orders", "npc": 4276, "npcName": "Piznik", "map": 1442, "zone": "Stonetalon Mountains", "x": 71.9, "y": 60, "note": "reduced xp (80%) - you out-levelled it"},
     {"type": "ACCEPT", "quest": 1092, "questName": "Gerenzo's Orders", "npc": 4276, "npcName": "Piznik", "map": 1442, "zone": "Stonetalon Mountains", "x": 71.9, "y": 60},
     {"type": "TURNIN", "quest": 1092, "questName": "Gerenzo's Orders", "npc": 4201, "npcName": "Ziz Fizziks", "map": 1442, "zone": "Stonetalon Mountains", "x": 59, "y": 62.6, "note": "reduced xp (80%) - you out-levelled it"},
+    {"type": "FLIGHTPATH", "npc": 4407, "npcName": "Teloren", "map": 1442, "zone": "Stonetalon Mountains", "x": 36.4, "y": 7.2},
     {"type": "ACCEPT", "quest": 1057, "questName": "Reclaiming the Charred Vale", "npc": 3994, "npcName": "Keeper Albagorm", "map": 1442, "zone": "Stonetalon Mountains", "x": 37.1, "y": 8.1},
     {"type": "KILL", "quest": 1057, "questName": "Reclaiming the Charred Vale", "npc": 4022, "target": "Bloodfury Harpy", "count": 7, "map": 1442, "zone": "Stonetalon Mountains", "x": 37.8, "y": 44.1, "near": true},
     {"type": "KILL", "quest": 1057, "questName": "Reclaiming the Charred Vale", "npc": 4025, "target": "Bloodfury Ambusher", "count": 7, "map": 1442, "zone": "Stonetalon Mountains", "x": 31.1, "y": 58.6, "near": true},
     {"type": "KILL", "quest": 1057, "questName": "Reclaiming the Charred Vale", "npc": 4024, "target": "Bloodfury Slayer / Bloodfury Roguefeather", "count": 7, "map": 1442, "zone": "Stonetalon Mountains", "x": 30.1, "y": 67.5, "near": true},
-    {"type": "TURNIN", "quest": 1057, "questName": "Reclaiming the Charred Vale", "npc": 3994, "npcName": "Keeper Albagorm", "map": 1442, "zone": "Stonetalon Mountains", "x": 37.1, "y": 8.1}
+    {"type": "TURNIN", "quest": 79192, "questName": "Stepping Stones", "map": 1442, "zone": "Stonetalon Mountains", "x": 40.8, "y": 52.5},
+    {"type": "TURNIN", "quest": 1057, "questName": "Reclaiming the Charred Vale", "npc": 3994, "npcName": "Keeper Albagorm", "map": 1442, "zone": "Stonetalon Mountains", "x": 37.1, "y": 8.1},
+    {"type": "ACCEPT", "quest": 79980, "questName": "Scramble", "map": 1442, "zone": "Stonetalon Mountains", "x": 40.8, "y": 52.5},
+    {"type": "TURNIN", "quest": 79980, "questName": "Scramble", "map": 1442, "zone": "Stonetalon Mountains", "x": 39.6, "y": 49.9}
   ]
 }

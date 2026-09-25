@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_10_STONETALON_MOUNTAINS",
     name = "10. Stonetalon Mountains 27-28 (Dwarf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 27,
@@ -13,27 +13,33 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_11_THOUSAND_NEEDLES",
     author = "ForeverGuide route planner",
     notes = "Chapter 10 of the Dwarf route: level 27 to 28, 20 steps, ~39 min of play in the model (19945 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 20,
+    stepCount = 26,
     steps = function() return {
-        { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 1
-        { type = "ACCEPT", quest = 1085, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.9, y = 66.9 }, -- 2
-        { type = "ACCEPT", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 3
-        { type = "TURNIN", quest = 1085, questName = "On Guard in Stonetalon", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2, note = "reduced xp (80%) - you out-levelled it" }, -- 4
-        { type = "ACCEPT", quest = 1071, questName = "A Gnome's Respite", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 5
-        { type = "KILL", quest = 1071, questName = "A Gnome's Respite", npc = 3989, target = "Venture Co. Logger", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 62.7, y = 55.3, near = true }, -- 6
-        { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 62.6, y = 53.9, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 7
-        { type = "KILL", quest = 1071, questName = "A Gnome's Respite", npc = 3991, target = "Venture Co. Deforester", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 60.6, y = 52.1, near = true }, -- 8
-        { type = "TURNIN", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6, note = "reduced xp (60%) - you out-levelled it" }, -- 9
-        { type = "TURNIN", quest = 1071, questName = "A Gnome's Respite", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2, note = "reduced xp (60%) - you out-levelled it" }, -- 10
-        { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 11
-        { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 12
-        { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60, note = "reduced xp (80%) - you out-levelled it" }, -- 13
-        { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 14
-        { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6, note = "reduced xp (80%) - you out-levelled it" }, -- 15
-        { type = "ACCEPT", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 3994, npcName = "Keeper Albagorm", map = 1442, zone = "Stonetalon Mountains", x = 37.1, y = 8.1 }, -- 16
-        { type = "KILL", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 4022, target = "Bloodfury Harpy", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 37.8, y = 44.1, near = true }, -- 17
-        { type = "KILL", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 4025, target = "Bloodfury Ambusher", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 31.1, y = 58.6, near = true }, -- 18
-        { type = "KILL", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 4024, target = "Bloodfury Slayer / Bloodfury Roguefeather", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 30.1, y = 67.5, near = true }, -- 19
-        { type = "TURNIN", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 3994, npcName = "Keeper Albagorm", map = 1442, zone = "Stonetalon Mountains", x = 37.1, y = 8.1 }, -- 20
+        { type = "ACCEPT", quest = 2931, questName = "Castpipe's Task", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.4, y = 67.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 1
+        { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 2
+        { type = "TURNIN", quest = 1070, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.8, y = 66.8, note = "reduced xp (80%) - you out-levelled it" }, -- 3
+        { type = "ACCEPT", quest = 1085, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.9, y = 66.9 }, -- 4
+        { type = "ACCEPT", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 5
+        { type = "TURNIN", quest = 1085, questName = "On Guard in Stonetalon", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2, note = "reduced xp (80%) - you out-levelled it" }, -- 6
+        { type = "ACCEPT", quest = 1071, questName = "A Gnome's Respite", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 7
+        { type = "KILL", quest = 1071, questName = "A Gnome's Respite", npc = 3989, target = "Venture Co. Logger", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 62.7, y = 55.3, near = true }, -- 8
+        { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 62.6, y = 53.9, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 9
+        { type = "KILL", quest = 1071, questName = "A Gnome's Respite", npc = 3991, target = "Venture Co. Deforester", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 60.6, y = 52.1, near = true }, -- 10
+        { type = "TURNIN", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6, note = "reduced xp (60%) - you out-levelled it" }, -- 11
+        { type = "TURNIN", quest = 1071, questName = "A Gnome's Respite", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2, note = "reduced xp (60%) - you out-levelled it" }, -- 12
+        { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 13
+        { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 14
+        { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60, note = "reduced xp (80%) - you out-levelled it" }, -- 15
+        { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 16
+        { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6, note = "reduced xp (80%) - you out-levelled it" }, -- 17
+        { type = "FLIGHTPATH", npc = 4407, npcName = "Teloren", map = 1442, zone = "Stonetalon Mountains", x = 36.4, y = 7.2 }, -- 18
+        { type = "ACCEPT", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 3994, npcName = "Keeper Albagorm", map = 1442, zone = "Stonetalon Mountains", x = 37.1, y = 8.1 }, -- 19
+        { type = "KILL", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 4022, target = "Bloodfury Harpy", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 37.8, y = 44.1, near = true }, -- 20
+        { type = "KILL", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 4025, target = "Bloodfury Ambusher", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 31.1, y = 58.6, near = true }, -- 21
+        { type = "KILL", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 4024, target = "Bloodfury Slayer / Bloodfury Roguefeather", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 30.1, y = 67.5, near = true }, -- 22
+        { type = "TURNIN", quest = 79192, questName = "Stepping Stones", map = 1442, zone = "Stonetalon Mountains", x = 40.8, y = 52.5 }, -- 23
+        { type = "TURNIN", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 3994, npcName = "Keeper Albagorm", map = 1442, zone = "Stonetalon Mountains", x = 37.1, y = 8.1 }, -- 24
+        { type = "ACCEPT", quest = 79980, questName = "Scramble", map = 1442, zone = "Stonetalon Mountains", x = 40.8, y = 52.5 }, -- 25
+        { type = "TURNIN", quest = 79980, questName = "Scramble", map = 1442, zone = "Stonetalon Mountains", x = 39.6, y = 49.9 }, -- 26
     } end,
 })
