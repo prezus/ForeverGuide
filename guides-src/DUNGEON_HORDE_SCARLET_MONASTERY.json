@@ -1,0 +1,22 @@
+{
+  "id": "DUNGEON_HORDE_SCARLET_MONASTERY",
+  "name": "Scarlet Monastery 30-38",
+  "version": 1,
+  "kind": "dungeon",
+  "faction": "Horde",
+  "minLevel": 30,
+  "maxLevel": 38,
+  "map": 1420,
+  "zone": "Tirisfal Glades",
+  "author": "ForeverGuide route planner",
+  "notes": "Scarlet Monastery: the quests, the run and the turn-ins. Open it when you have a group.",
+  "steps": [
+    {"type": "ACCEPT", "quest": 1113, "questName": "Hearts of Zeal", "npc": 2055, "npcName": "Master Apothecary Faranell", "map": 1458, "zone": "Undercity", "x": 48.4, "y": 69.4},
+    {"type": "NOTE", "map": 1420, "zone": "Tirisfal Glades", "x": 82.6, "y": 33.8, "note": "All quests available from level 30; hand them in by level 38 for full XP", "text": "Find a group for Scarlet Monastery"},
+    {"type": "ACCEPT", "quest": 1051, "questName": "Vorrel's Revenge", "map": 1420, "zone": "Tirisfal Glades", "x": 82.6, "y": 33.8},
+    {"type": "COLLECT", "quest": 1113, "questName": "Hearts of Zeal", "target": "Heart of Zeal", "count": 20, "map": 1420, "zone": "Tirisfal Glades", "x": 82.6, "y": 33.8},
+    {"type": "COLLECT", "quest": 1051, "questName": "Vorrel's Revenge", "target": "Vorrel's Wedding Ring", "count": 1, "map": 1420, "zone": "Tirisfal Glades", "x": 82.6, "y": 33.8},
+    {"type": "TURNIN", "quest": 1113, "questName": "Hearts of Zeal", "npc": 2055, "npcName": "Master Apothecary Faranell", "map": 1458, "zone": "Undercity", "x": 48.4, "y": 69.4},
+    {"type": "TURNIN", "quest": 1051, "questName": "Vorrel's Revenge", "npc": 3982, "npcName": "Monika Sengutz", "map": 1424, "zone": "Hillsbrad Foothills", "x": 62.6, "y": 19}
+  ]
+}
