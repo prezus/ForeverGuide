@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_04_ASHENVALE",
   "name": "4. Ashenvale 19-22 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 19,
@@ -17,6 +17,7 @@
     {"type": "NOTE", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8, "text": "set your hearthstone at the inn in Ashenvale (if there is one)"},
     {"type": "ACCEPT", "quest": 8372, "questName": "Fight for Warsong Gulch", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1440, "zone": "Ashenvale", "x": 61.9, "y": 83.8},
     {"type": "TURNIN", "quest": 8372, "questName": "Fight for Warsong Gulch", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1440, "zone": "Ashenvale", "x": 61.9, "y": 83.8},
+    {"type": "FLIGHTPATH", "npc": 4267, "npcName": "Daelyshia", "map": 1440, "zone": "Ashenvale", "x": 34.4, "y": 48},
     {"type": "ACCEPT", "quest": 94467, "questName": "Call of Fire", "npc": 257808, "npcName": "Braldir Ashmantle", "map": 1432, "zone": "Loch Modan", "x": 32, "y": 66, "note": "New in Forever", "class": ["SHAMAN"]},
     {"type": "COLLECT", "quest": 94467, "questName": "Call of Fire", "target": "Glowing Ember", "count": 1, "map": 1411, "zone": "Durotar", "x": 38.7, "y": 58.3, "class": ["SHAMAN"]},
     {"type": "TURNIN", "quest": 94467, "questName": "Call of Fire", "map": 1411, "zone": "Durotar", "x": 38.9, "y": 58.2, "class": ["SHAMAN"]},
