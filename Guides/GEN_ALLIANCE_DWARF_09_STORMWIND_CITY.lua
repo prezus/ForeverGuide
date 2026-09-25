@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_09_STORMWIND_CITY",
     name = "9. Stormwind City 25-25 (Dwarf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 25,
@@ -13,14 +13,37 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_10_ASHENVALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 9 of the Dwarf route: level 25 to 25, 7 steps, ~9 min of play in the model (22017 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 7,
+    stepCount = 30,
     steps = function() return {
-        { type = "TRAVEL", map = 1453, zone = "Stormwind City", x = 75.0, y = 31.0, radius = 60, note = "travel to Stormwind City (Stormwind City)" }, -- 1
-        { type = "NOTE", map = 1453, zone = "Stormwind City", x = 75.0, y = 31.0, text = "set your hearthstone at the inn in Stormwind City (if there is one)" }, -- 2
-        { type = "ACCEPT", quest = 388, questName = "The Color of Blood", npc = 1721, npcName = "Nikova Raskol", map = 1453, zone = "Stormwind City", x = 73.3, y = 50.7 }, -- 3
-        { type = "TURNIN", quest = 388, questName = "The Color of Blood", npc = 1721, npcName = "Nikova Raskol", map = 1453, zone = "Stormwind City", x = 73.3, y = 50.7 }, -- 4
-        { type = "ACCEPT", quest = 343, questName = "Speaking of Fortitude", npc = 1444, npcName = "Brother Kristoff", map = 1453, zone = "Stormwind City", x = 45.7, y = 38.4 }, -- 5
-        { type = "TURNIN", quest = 269, questName = "Seeking Wisdom", npc = 1212, npcName = "Bishop Farthing", map = 1453, zone = "Stormwind City", x = 39.1, y = 27.9 }, -- 6
-        { type = "TURNIN", quest = 343, questName = "Speaking of Fortitude", npc = 1440, npcName = "Milton Sheaf", map = 1453, zone = "Stormwind City", x = 74.2, y = 7.5 }, -- 7
+        { type = "ACCEPT", quest = 167, questName = "Oh Brother. . .", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 1
+        { type = "ACCEPT", quest = 168, questName = "Collecting Memories", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 2
+        { type = "ACCEPT", quest = 2040, questName = "Underground Assault", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 3
+        { type = "NOTE", optional = true, text = "Ready for The Deadmines", note = "Picked up: The Defias Brotherhood, Oh Brother. . ., Collecting Memories, Red Silk Bandanas, Underground Assault. When you have a group, open The Deadmines under Dungeons." }, -- 4
+        { type = "ACCEPT", quest = 2928, questName = "Gyrodrillmatic Excavationators", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 5
+        { type = "NOTE", optional = true, text = "Ready for Gnomeregan", note = "Picked up: Gnogaine, Gyrodrillmatic Excavationators. When you have a group, open Gnomeregan under Dungeons." }, -- 6
+        { type = "TRAVEL", map = 1453, zone = "Stormwind City", x = 75.0, y = 31.0, radius = 60, note = "travel to Stormwind City (Stormwind City)" }, -- 7
+        { type = "NOTE", map = 1453, zone = "Stormwind City", x = 75.0, y = 31.0, text = "set your hearthstone at the inn in Stormwind City (if there is one)" }, -- 8
+        { type = "ACCEPT", quest = 388, questName = "The Color of Blood", npc = 1721, npcName = "Nikova Raskol", map = 1453, zone = "Stormwind City", x = 73.3, y = 50.7 }, -- 9
+        { type = "TURNIN", quest = 388, questName = "The Color of Blood", npc = 1721, npcName = "Nikova Raskol", map = 1453, zone = "Stormwind City", x = 73.3, y = 50.7 }, -- 10
+        { type = "TURNIN", quest = 120, questName = "Messenger to Stormwind", npc = 466, npcName = "General Marcus Jonathan", map = 1453, zone = "Stormwind City", x = 63.8, y = 75.4, note = "reduced xp (10%) - you out-levelled it" }, -- 11
+        { type = "ACCEPT", quest = 387, questName = "Quell the Uprising", npc = 1719, npcName = "Warden Thelwater", map = 1453, zone = "Stormwind City", x = 41.2, y = 58, optional = true, note = "For The Stockade (dungeon guide)" }, -- 12
+        { type = "NOTE", optional = true, text = "Ready for The Stockade", note = "Picked up: Crime and Punishment, What Comes Around..., Quell the Uprising. When you have a group, open The Stockade under Dungeons." }, -- 13
+        { type = "ACCEPT", quest = 2923, questName = "Tinkmaster Overspark", npc = 7917, npcName = "Brother Sarno", map = 1453, zone = "Stormwind City", x = 40.6, y = 30.8, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 14
+        { type = "ACCEPT", quest = 2360, questName = "Mathias and the Defias", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8, class = { "ROGUE" } }, -- 15
+        { type = "TURNIN", quest = 1717, questName = "Gakin's Summons", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" }, race = { "Gnome" } }, -- 16
+        { type = "ACCEPT", quest = 343, questName = "Speaking of Fortitude", npc = 1444, npcName = "Brother Kristoff", map = 1453, zone = "Stormwind City", x = 45.7, y = 38.4 }, -- 17
+        { type = "ACCEPT", quest = 3765, questName = "The Corruption Abroad", npc = 4984, npcName = "Argos Nightwhisper", map = 1453, zone = "Stormwind City", x = 21.4, y = 55.6 }, -- 18
+        { type = "TURNIN", quest = 269, questName = "Seeking Wisdom", npc = 1212, npcName = "Bishop Farthing", map = 1453, zone = "Stormwind City", x = 39.1, y = 27.9 }, -- 19
+        { type = "TURNIN", quest = 92748, questName = "Explosive Consultation", npc = 11026, npcName = "Sprite Jumpsprocket", map = 1453, zone = "Stormwind City", x = 54.6, y = 8, note = "reduced xp (20%) - you out-levelled it" }, -- 20
+        { type = "TURNIN", quest = 1097, questName = "Elmore's Task", npc = 1416, npcName = "Grimand Elmore", map = 1453, zone = "Stormwind City", x = 51.6, y = 12.2, note = "reduced xp (10%) - you out-levelled it" }, -- 21
+        { type = "TURNIN", quest = 293, questName = "Cleansing the Eye", npc = 1284, npcName = "Archbishop Benedictus", map = 1453, zone = "Stormwind City", x = 39.6, y = 27.4 }, -- 22
+        { type = "TURNIN", quest = 1338, questName = "Stormpike's Order", npc = 5413, npcName = "Furen Longbeard", map = 1453, zone = "Stormwind City", x = 58, y = 16.8, note = "reduced xp (10%) - you out-levelled it" }, -- 23
+        { type = "TURNIN", quest = 399, questName = "Humble Beginnings", npc = 1646, npcName = "Baros Alexston", map = 1453, zone = "Stormwind City", x = 49, y = 30.2, note = "reduced xp (10%) - you out-levelled it" }, -- 24
+        { type = "TURNIN", quest = 5635, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" }, race = { "Dwarf" }, note = "reduced xp (10%) - you out-levelled it" }, -- 25
+        { type = "TURNIN", quest = 5636, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" }, race = { "Dwarf" }, note = "reduced xp (10%) - you out-levelled it" }, -- 26
+        { type = "TURNIN", quest = 5637, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" }, race = { "Dwarf" }, note = "reduced xp (10%) - you out-levelled it" }, -- 27
+        { type = "TURNIN", quest = 5639, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" }, race = { "Dwarf" }, note = "reduced xp (10%) - you out-levelled it" }, -- 28
+        { type = "TURNIN", quest = 343, questName = "Speaking of Fortitude", npc = 1440, npcName = "Milton Sheaf", map = 1453, zone = "Stormwind City", x = 74.2, y = 7.5 }, -- 29
+        { type = "ACCEPT", quest = 344, questName = "Brother Paxton", npc = 1440, npcName = "Milton Sheaf", map = 1453, zone = "Stormwind City", x = 74, y = 7.6 }, -- 30
     } end,
 })

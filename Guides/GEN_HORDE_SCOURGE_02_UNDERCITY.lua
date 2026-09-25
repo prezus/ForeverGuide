@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_02_UNDERCITY",
     name = "2. Undercity 12-12 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 12,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_03_SILVERPINE_FOREST",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Scourge route: level 12 to 12, 7 steps, ~7 min of play in the model (26891 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 7,
+    stepCount = 16,
     steps = function() return {
         { type = "TRAVEL", map = 1458, zone = "Undercity", x = 59.8, y = 66.3, radius = 60, note = "travel to Undercity (Undercity)" }, -- 1
         { type = "NOTE", map = 1458, zone = "Undercity", x = 59.8, y = 66.3, text = "set your hearthstone at the inn in Undercity (if there is one)" }, -- 2
@@ -21,6 +21,15 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5725, questName = "The Power to Destroy...", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.3, y = 92.2 }, -- 4
         { type = "ACCEPT", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1458, zone = "Undercity", x = 58.3, y = 97.9 }, -- 5
         { type = "TURNIN", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1458, zone = "Undercity", x = 58.3, y = 97.9 }, -- 6
-        { type = "TURNIN", quest = 405, questName = "The Prodigal Lich", npc = 1498, npcName = "Bethor Iceshard", map = 1458, zone = "Undercity", x = 84.1, y = 17.5 }, -- 7
+        { type = "TURNIN", quest = 98545, questName = "Leonid's Letter", npc = 272526, npcName = "Glix Xizzix", map = 1458, zone = "Undercity", x = 69.8, y = 47 }, -- 7
+        { type = "ACCEPT", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" }, note = "New in Forever" }, -- 8
+        { type = "COLLECT", quest = 94434, questName = "A Lesson in Divinity", target = "Linen Cloth", count = 10, map = 1458, zone = "Undercity", x = 70, y = 38.2, near = true, class = { "PALADIN" } }, -- 9
+        { type = "TURNIN", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 10
+        { type = "TURNIN", quest = 5663, questName = "Touch of Weakness", npc = 4606, npcName = "Aelthalyste", map = 1458, zone = "Undercity", x = 49.2, y = 18.2, class = { "PRIEST" } }, -- 11
+        { type = "TURNIN", quest = 1478, questName = "Halgar's Summons", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 12
+        { type = "TURNIN", quest = 405, questName = "The Prodigal Lich", npc = 1498, npcName = "Bethor Iceshard", map = 1458, zone = "Undercity", x = 84.1, y = 17.5 }, -- 13
+        { type = "ACCEPT", quest = 94435, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" }, note = "New in Forever" }, -- 14
+        { type = "ACCEPT", quest = 1473, questName = "Creature of the Void", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 15
+        { type = "TURNIN", quest = 1473, questName = "Creature of the Void", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 16
     } end,
 })

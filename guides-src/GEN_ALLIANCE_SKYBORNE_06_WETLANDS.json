@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_06_WETLANDS",
   "name": "6. Wetlands 22-25 (Skyborne)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 22,
@@ -20,6 +20,7 @@
     {"type": "ACCEPT", "quest": 288, "questName": "The Third Fleet", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.9, "y": 59.6},
     {"type": "TURNIN", "quest": 288, "questName": "The Third Fleet", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.9, "y": 59.6},
     {"type": "ACCEPT", "quest": 289, "questName": "The Cursed Crew", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.9, "y": 59.6},
+    {"type": "TURNIN", "quest": 98461, "questName": "Unrequited Love", "npc": 2096, "npcName": "Tarrel Rockweaver", "map": 1437, "zone": "Wetlands", "x": 11.4, "y": 52.2},
     {"type": "ACCEPT", "quest": 305, "questName": "In Search of The Excavation Team", "npc": 2096, "npcName": "Tarrel Rockweaver", "map": 1437, "zone": "Wetlands", "x": 11.5, "y": 52.2},
     {"type": "KILL", "quest": 484, "questName": "Young Crocolisk Skins", "npc": 1417, "target": "Young Wetlands Crocolisk", "count": 4, "map": 1437, "zone": "Wetlands", "x": 14.4, "y": 51.6, "near": true, "note": "loot Young Crocolisk Skin"},
     {"type": "COLLECT", "quest": 470, "questName": "Digging Through the Ooze", "target": "Sida's Bag", "map": 1437, "zone": "Wetlands", "x": 21.3, "y": 52.2, "near": true},
@@ -29,6 +30,7 @@
     {"type": "ACCEPT", "quest": 471, "questName": "Apprentice's Duties", "npc": 2094, "npcName": "James Halloran", "map": 1437, "zone": "Wetlands", "x": 8.6, "y": 55.7},
     {"type": "ACCEPT", "quest": 464, "questName": "War Banners", "npc": 2104, "npcName": "Captain Stoutfist", "map": 1437, "zone": "Wetlands", "x": 9.9, "y": 57.5},
     {"type": "TURNIN", "quest": 289, "questName": "The Cursed Crew", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.9, "y": 59.6},
+    {"type": "ACCEPT", "quest": 463, "questName": "The Greenwarden", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.8, "y": 59.6},
     {"type": "TURNIN", "quest": 279, "questName": "Claws from the Deep", "npc": 1242, "npcName": "Karl Boran", "map": 1437, "zone": "Wetlands", "x": 8.3, "y": 58.6},
     {"type": "TURNIN", "quest": 470, "questName": "Digging Through the Ooze", "npc": 2111, "npcName": "Sida", "map": 1437, "zone": "Wetlands", "x": 11.8, "y": 58},
     {"type": "ACCEPT", "quest": 281, "questName": "Reclaiming Goods", "npc": 1242, "npcName": "Karl Boran", "map": 1437, "zone": "Wetlands", "x": 8.3, "y": 58.6},
@@ -61,6 +63,7 @@
     {"type": "KILL", "quest": 296, "questName": "Ormer's Revenge", "npc": 1353, "target": "Sarltooth", "map": 1437, "zone": "Wetlands", "x": 33.3, "y": 51.5, "note": "loot Sarltooth's Talon"},
     {"type": "TURNIN", "quest": 296, "questName": "Ormer's Revenge", "npc": 1078, "npcName": "Ormer Ironbraid", "map": 1437, "zone": "Wetlands", "x": 38.2, "y": 50.9},
     {"type": "ACCEPT", "quest": 469, "questName": "Daily Delivery", "npc": 2093, "npcName": "Einar Stonegrip", "map": 1437, "zone": "Wetlands", "x": 49.9, "y": 39.4},
+    {"type": "TURNIN", "quest": 463, "questName": "The Greenwarden", "npc": 1244, "npcName": "Rethiel the Greenwarden", "map": 1437, "zone": "Wetlands", "x": 56.2, "y": 40.4},
     {"type": "ACCEPT", "quest": 276, "questName": "Tramping Paws", "npc": 1244, "npcName": "Rethiel the Greenwarden", "map": 1437, "zone": "Wetlands", "x": 56.4, "y": 40.4},
     {"type": "KILL", "quest": 276, "questName": "Tramping Paws", "npc": 1008, "target": "Mosshide Mongrel", "count": 15, "map": 1437, "zone": "Wetlands", "x": 61.2, "y": 55.6, "near": true},
     {"type": "KILL", "quest": 276, "questName": "Tramping Paws", "npc": 1007, "target": "Mosshide Gnoll", "count": 15, "map": 1437, "zone": "Wetlands", "x": 60.5, "y": 63.7, "near": true},
@@ -76,10 +79,14 @@
     {"type": "TURNIN", "quest": 299, "questName": "Uncovering the Past", "npc": 1077, "npcName": "Prospector Whelgar", "map": 1437, "zone": "Wetlands", "x": 38.8, "y": 52.4},
     {"type": "TURNIN", "quest": 306, "questName": "In Search of The Excavation Team", "npc": 2096, "npcName": "Tarrel Rockweaver", "map": 1437, "zone": "Wetlands", "x": 11.5, "y": 52.2},
     {"type": "ACCEPT", "quest": 472, "questName": "Fall of Dun Modr", "npc": 2097, "npcName": "Harlo Barnaby", "map": 1437, "zone": "Wetlands", "x": 10.9, "y": 55.9},
+    {"type": "ACCEPT", "quest": 473, "questName": "Report to Captain Stoutfist", "npc": 2086, "npcName": "Valstag Ironjaw", "map": 1437, "zone": "Wetlands", "x": 10, "y": 56.8},
     {"type": "TURNIN", "quest": 464, "questName": "War Banners", "npc": 2104, "npcName": "Captain Stoutfist", "map": 1437, "zone": "Wetlands", "x": 9.9, "y": 57.5},
+    {"type": "TURNIN", "quest": 473, "questName": "Report to Captain Stoutfist", "npc": 2104, "npcName": "Captain Stoutfist", "map": 1437, "zone": "Wetlands", "x": 9.8, "y": 57.4},
     {"type": "TURNIN", "quest": 469, "questName": "Daily Delivery", "npc": 2094, "npcName": "James Halloran", "map": 1437, "zone": "Wetlands", "x": 8.6, "y": 55.7},
     {"type": "ACCEPT", "quest": 465, "questName": "Nek'rosh's Gambit", "npc": 2104, "npcName": "Captain Stoutfist", "map": 1437, "zone": "Wetlands", "x": 9.9, "y": 57.5},
+    {"type": "ACCEPT", "quest": 293, "questName": "Cleansing the Eye", "npc": 1217, "npcName": "Glorin Steelbrow", "map": 1437, "zone": "Wetlands", "x": 10.6, "y": 60.4},
     {"type": "TURNIN", "quest": 465, "questName": "Nek'rosh's Gambit", "map": 1437, "zone": "Wetlands", "x": 47.5, "y": 47},
-    {"type": "TURNIN", "quest": 472, "questName": "Fall of Dun Modr", "npc": 1071, "npcName": "Longbraid the Grim", "map": 1437, "zone": "Wetlands", "x": 49.8, "y": 18.3}
+    {"type": "TURNIN", "quest": 472, "questName": "Fall of Dun Modr", "npc": 1071, "npcName": "Longbraid the Grim", "map": 1437, "zone": "Wetlands", "x": 49.8, "y": 18.3},
+    {"type": "TURNIN", "quest": 94495, "questName": "Call of Water", "npc": 258203, "npcName": "Hervdana Saegrund", "map": 1437, "zone": "Wetlands", "x": 65.6, "y": 76.4, "class": ["SHAMAN"]}
   ]
 }

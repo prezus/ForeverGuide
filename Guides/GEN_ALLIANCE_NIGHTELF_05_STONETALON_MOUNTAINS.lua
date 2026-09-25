@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_05_STONETALON_MOUNTAINS",
     name = "5. Stonetalon Mountains 18-19 (Night Elf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 18,
@@ -13,24 +13,35 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_06_ASHENVALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 5 of the NightElf route: level 18 to 19, 17 steps, ~29 min of play in the model (25317 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 17,
+    stepCount = 28,
     steps = function() return {
-        { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 1
-        { type = "NOTE", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, text = "set your hearthstone at the inn in Stonetalon Mountains (if there is one)" }, -- 2
-        { type = "ACCEPT", quest = 1085, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.9, y = 66.9 }, -- 3
-        { type = "ACCEPT", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 4
-        { type = "TURNIN", quest = 1085, questName = "On Guard in Stonetalon", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 5
-        { type = "ACCEPT", quest = 1071, questName = "A Gnome's Respite", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 6
-        { type = "KILL", quest = 1071, questName = "A Gnome's Respite", npc = 3989, target = "Venture Co. Logger", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 62.7, y = 55.3, near = true }, -- 7
-        { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 62.6, y = 53.9, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 8
-        { type = "KILL", quest = 1071, questName = "A Gnome's Respite", npc = 3991, target = "Venture Co. Deforester", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 60.6, y = 52.1, near = true }, -- 9
-        { type = "TURNIN", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 10
-        { type = "ACCEPT", quest = 1094, questName = "Further Instructions", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 11
-        { type = "TURNIN", quest = 1071, questName = "A Gnome's Respite", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 12
-        { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 13
-        { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 14
-        { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 15
-        { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 16
-        { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 17
+        { type = "TURNIN", quest = 79192, questName = "Stepping Stones", map = 1442, zone = "Stonetalon Mountains", x = 40.8, y = 52.5 }, -- 1
+        { type = "COLLECT", quest = 1069, questName = "Deepmoss Spider Eggs", target = "Deepmoss Egg", count = 15, map = 1442, zone = "Stonetalon Mountains", x = 61, y = 64.1 }, -- 2
+        { type = "ACCEPT", quest = 94467, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" }, note = "New in Forever" }, -- 3
+        { type = "COLLECT", quest = 94467, questName = "Call of Fire", target = "Glowing Ember", count = 1, map = 1411, zone = "Durotar", x = 38.7, y = 58.3, class = { "SHAMAN" } }, -- 4
+        { type = "TURNIN", quest = 94467, questName = "Call of Fire", map = 1411, zone = "Durotar", x = 38.9, y = 58.2, class = { "SHAMAN" } }, -- 5
+        { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 6
+        { type = "NOTE", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, text = "set your hearthstone at the inn in Stonetalon Mountains (if there is one)" }, -- 7
+        { type = "ACCEPT", quest = 1085, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.9, y = 66.9 }, -- 8
+        { type = "ACCEPT", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 9
+        { type = "TURNIN", quest = 1085, questName = "On Guard in Stonetalon", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 10
+        { type = "ACCEPT", quest = 1071, questName = "A Gnome's Respite", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 11
+        { type = "KILL", quest = 1071, questName = "A Gnome's Respite", npc = 3989, target = "Venture Co. Logger", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 62.7, y = 55.3, near = true }, -- 12
+        { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 62.6, y = 53.9, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 13
+        { type = "KILL", quest = 1071, questName = "A Gnome's Respite", npc = 3991, target = "Venture Co. Deforester", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 60.6, y = 52.1, near = true }, -- 14
+        { type = "TURNIN", quest = 1483, questName = "Ziz Fizziks", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.4 }, -- 15
+        { type = "TURNIN", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 16
+        { type = "ACCEPT", quest = 1094, questName = "Further Instructions", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 17
+        { type = "TURNIN", quest = 1071, questName = "A Gnome's Respite", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 18
+        { type = "ACCEPT", quest = 1072, questName = "An Old Colleague", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.4, y = 67.2 }, -- 19
+        { type = "ACCEPT", quest = 1075, questName = "A Scroll from Mauren", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.4, y = 67.2 }, -- 20
+        { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 21
+        { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 22
+        { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 23
+        { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 24
+        { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 25
+        { type = "ACCEPT", quest = 79980, questName = "Scramble", map = 1442, zone = "Stonetalon Mountains", x = 40.8, y = 52.5 }, -- 26
+        { type = "TURNIN", quest = 79980, questName = "Scramble", map = 1442, zone = "Stonetalon Mountains", x = 39.6, y = 49.9 }, -- 27
+        { type = "TURNIN", quest = 1070, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.8, y = 66.8 }, -- 28
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_11_THOUSAND_NEEDLES",
     name = "11. Thousand Needles 28-29 (Dwarf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 28,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_12_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 11 of the Dwarf route: level 28 to 29, 17 steps, ~105 min of play in the model (15073 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 17,
+    stepCount = 18,
     steps = function() return {
         { type = "TRAVEL", map = 1441, zone = "Thousand Needles", x = 78.8, y = 76.7, radius = 60, note = "travel to Thousand Needles (Thousand Needles)" }, -- 1
         { type = "NOTE", map = 1441, zone = "Thousand Needles", x = 78.8, y = 76.7, text = "set your hearthstone at the inn in Thousand Needles (if there is one)" }, -- 2
@@ -29,8 +29,9 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1105, questName = "Hardened Shells", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 12
         { type = "TURNIN", quest = 1175, questName = "A Bump in the Road", npc = 4629, npcName = "Trackmaster Zherin", map = 1441, zone = "Thousand Needles", x = 81.6, y = 78 }, -- 13
         { type = "GRIND", npc = 4124, target = "Needles Cougar", level = 29, map = 1441, zone = "Thousand Needles", x = 63.6, y = 59.8, near = true, note = "grind Needles Cougar (level 27-28) to level 29 - nothing worth questing at 28" }, -- 14
-        { type = "ACCEPT", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 15
-        { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", count = 10, map = 1441, zone = "Thousand Needles", x = 83, y = 70.7, near = true }, -- 16
-        { type = "TURNIN", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 17
+        { type = "ACCEPT", quest = 5762, questName = "Hemet Nesingwary", npc = 4452, npcName = "Kravel Koalbeard", map = 1441, zone = "Thousand Needles", x = 77.8, y = 77.2 }, -- 15
+        { type = "ACCEPT", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 16
+        { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", count = 10, map = 1441, zone = "Thousand Needles", x = 83, y = 70.7, near = true }, -- 17
+        { type = "TURNIN", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 18
     } end,
 })
