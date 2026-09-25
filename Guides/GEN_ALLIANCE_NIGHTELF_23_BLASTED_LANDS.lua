@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_23_BLASTED_LANDS",
     name = "23. Blasted Lands 45-46 (Night Elf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 45,
