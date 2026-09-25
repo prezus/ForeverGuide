@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_38_IRONFORGE",
     name = "38. Ironforge 51-51 (Dwarf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 51,
