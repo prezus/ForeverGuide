@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_05_REDRIDGE_MOUNTAINS",
   "name": "5. Redridge Mountains 17-19 (Dwarf)",
-  "version": 2,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 17,
@@ -12,6 +12,15 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 5 of the Dwarf route: level 17 to 19, 46 steps, ~118 min of play in the model (23507 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 931, "npcName": "Ariena Stormfeather", "map": 1433, "zone": "Redridge Mountains", "x": 25.5, "y": 59.4},
+    {"type": "ACCEPT", "quest": 118, "questName": "The Price of Shoes", "npc": 415, "npcName": "Verner Osgood", "map": 1433, "zone": "Redridge Mountains", "x": 31, "y": 47.4},
+    {"type": "TURNIN", "quest": 118, "questName": "The Price of Shoes", "npc": 514, "npcName": "Smith Argus", "map": 1429, "zone": "Elwynn Forest", "x": 41.6, "y": 65.6},
+    {"type": "ACCEPT", "quest": 2041, "questName": "Speak with Shoni", "npc": 6569, "npcName": "Gnoarn", "map": 1455, "zone": "Ironforge", "x": 69.4, "y": 50.6},
+    {"type": "TURNIN", "quest": 2041, "questName": "Speak with Shoni", "npc": 6579, "npcName": "Shoni the Shilent", "map": 1453, "zone": "Stormwind City", "x": 55.4, "y": 12.6},
+    {"type": "ACCEPT", "quest": 94466, "questName": "Call of Fire", "npc": 257808, "npcName": "Braldir Ashmantle", "map": 1432, "zone": "Loch Modan", "x": 32, "y": 66, "note": "New in Forever", "class": ["SHAMAN"]},
+    {"type": "COLLECT", "quest": 94466, "questName": "Call of Fire", "target": "Fire Tar", "count": 1, "map": 1432, "zone": "Loch Modan", "x": 35.6, "y": 20, "class": ["SHAMAN"]},
+    {"type": "COLLECT", "quest": 94466, "questName": "Call of Fire", "target": "Reagent Pouch", "count": 1, "map": 1432, "zone": "Loch Modan", "x": 34.8, "y": 84.4, "class": ["SHAMAN"]},
+    {"type": "TURNIN", "quest": 94466, "questName": "Call of Fire", "npc": 257808, "npcName": "Braldir Ashmantle", "map": 1432, "zone": "Loch Modan", "x": 32, "y": 66, "class": ["SHAMAN"]},
     {"type": "TRAVEL", "map": 1433, "zone": "Redridge Mountains", "x": 29.0, "y": 48.0, "radius": 60, "note": "travel to Redridge Mountains (Redridge Mountains)"},
     {"type": "HEARTH", "npc": 6727, "npcName": "Innkeeper Brianna", "map": 1433, "zone": "Lakeshire", "x": 21.9, "y": 44.8, "note": "talk to Innkeeper Brianna and make this inn your home"},
     {"type": "ACCEPT", "quest": 129, "questName": "A Free Lunch", "npc": 379, "npcName": "Darcy", "map": 1433, "zone": "Redridge Mountains", "x": 26.6, "y": 44.3},
@@ -53,10 +62,17 @@
     {"type": "TURNIN", "quest": 131, "questName": "Delivering Daffodils", "npc": 379, "npcName": "Darcy", "map": 1433, "zone": "Redridge Mountains", "x": 26.6, "y": 44.3},
     {"type": "TURNIN", "quest": 244, "questName": "Encroaching Gnolls", "npc": 1070, "npcName": "Deputy Feldon", "map": 1433, "zone": "Redridge Mountains", "x": 30.7, "y": 60},
     {"type": "ACCEPT", "quest": 246, "questName": "Assessing the Threat", "npc": 1070, "npcName": "Deputy Feldon", "map": 1433, "zone": "Redridge Mountains", "x": 30.7, "y": 60},
+    {"type": "ACCEPT", "quest": 98407, "questName": "Show of Force", "npc": 1070, "npcName": "Deputy Feldon", "map": 1433, "zone": "Redridge Mountains", "x": 30.8, "y": 60, "note": "New in Forever"},
+    {"type": "COLLECT", "quest": 98407, "questName": "Show of Force", "target": "Spiked Collar", "count": 5, "map": 1433, "zone": "Redridge Mountains", "x": 30, "y": 81.2},
+    {"type": "TURNIN", "quest": 98407, "questName": "Show of Force", "npc": 1070, "npcName": "Deputy Feldon", "map": 1433, "zone": "Redridge Mountains", "x": 30.8, "y": 60},
     {"type": "KILL", "quest": 246, "questName": "Assessing the Threat", "npc": 424, "target": "Redridge Poacher / Redridge Mongrel", "count": 10, "map": 1433, "zone": "Redridge Mountains", "x": 31, "y": 79.5, "near": true},
     {"type": "TURNIN", "quest": 246, "questName": "Assessing the Threat", "npc": 1070, "npcName": "Deputy Feldon", "map": 1433, "zone": "Redridge Mountains", "x": 30.7, "y": 60},
     {"type": "ACCEPT", "quest": 219, "questName": "Missing In Action", "npc": 349, "npcName": "Corporal Keeshan", "map": 1433, "zone": "Redridge Mountains", "x": 28.4, "y": 12.6},
     {"type": "COMPLETE", "quest": 219, "questName": "Missing In Action", "target": "Escort Corporal Keeshan back to Redridge", "map": 1433, "zone": "Redridge Mountains", "x": 33.4, "y": 48.7, "note": "escort - stay close, it can fail: Escort Corporal Keeshan back to Redridge"},
-    {"type": "TURNIN", "quest": 219, "questName": "Missing In Action", "npc": 382, "npcName": "Marshal Marris", "map": 1433, "zone": "Redridge Mountains", "x": 33.5, "y": 49}
+    {"type": "ACCEPT", "quest": 115, "questName": "Shadow Magic", "npc": 382, "npcName": "Marshal Marris", "map": 1433, "zone": "Redridge Mountains", "x": 33.4, "y": 48.8, "note": "Elite - group up", "optional": true},
+    {"type": "TURNIN", "quest": 219, "questName": "Missing In Action", "npc": 382, "npcName": "Marshal Marris", "map": 1433, "zone": "Redridge Mountains", "x": 33.5, "y": 49},
+    {"type": "COLLECT", "quest": 115, "questName": "Shadow Magic", "target": "Midnight Orb", "count": 3, "map": 1433, "zone": "Redridge Mountains", "x": 68.4, "y": 54.6, "near": true, "optional": true},
+    {"type": "TURNIN", "quest": 115, "questName": "Shadow Magic", "npc": 382, "npcName": "Marshal Marris", "map": 1433, "zone": "Redridge Mountains", "x": 33.4, "y": 48.8, "optional": true},
+    {"type": "ACCEPT", "quest": 132, "questName": "The Defias Brotherhood", "npc": 266, "npcName": "Wiley the Black", "map": 1433, "zone": "Redridge Mountains", "x": 26.6, "y": 45.2}
   ]
 }
