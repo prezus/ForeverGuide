@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_14_ARATHI_HIGHLANDS",
     name = "14. Arathi Highlands 33-33 (Dwarf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 33,
