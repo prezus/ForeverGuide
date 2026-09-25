@@ -32,52 +32,11 @@ local function cfg()
     return ns.db.crowd
 end
 
-local seenNames = {}         -- player name -> last seen time (same faction, not grouped with us)
-
-local function noteUnit(u)
-    if ns.Plain(ns.Safe(UnitIsPlayer, u)) ~= true then return end
-    if ns.Plain(ns.Safe(UnitIsUnit, u, "player")) == true then return end
-    if ns.Plain(ns.Safe(UnitCanAttack, "player", u)) == true then return end      -- other faction
-    if ns.Plain(ns.Safe(UnitInParty, u)) == true or ns.Plain(ns.Safe(UnitInRaid, u)) == true then return end
-    local name = ns.PlainString(ns.Safe(UnitName, u))
-    if name and name ~= "" then seenNames[name] = ns.Now() end
-end
-Crowd.NoteUnit = noteUnit
-
 --- Called by the mob scan: counts of wanted mobs free / tagged, and player GUIDs seen.
-function Crowd:Observe(free, tagged, players, names, killFree, killTagged)
+function Crowd:Observe(free, tagged, players, killFree, killTagged)
     local now = ns.Now()
     samples[#samples + 1] = { t = now, free = free or 0, tagged = tagged or 0, players = players or {}, killFree = killFree or 0, killTagged = killTagged or 0 }
     while samples[1] and now - samples[1].t > WINDOW do table.remove(samples, 1) end
-    for name in pairs(names or {}) do seenNames[name] = now end
-end
-
---- Players seen around in the last 3 minutes, newest first (at most `max`).
-function Crowd:NearbyPlayers(max)
-    local now = ns.Now()
-    local out = {}
-    for name, t in pairs(seenNames) do
-        if now - t > 180 then seenNames[name] = nil else out[#out + 1] = { name = name, t = t } end
-    end
-    table.sort(out, function(a, b) return a.t > b.t end)
-    while #out > (max or 4) do table.remove(out) end
-    return out
-end
-
---- Invite the players seen around (kill credit is shared in a group). Player-initiated only.
-function Crowd:InviteNearby()
-    local PI = rawget(_G, "C_PartyInfo")
-    local invite = PI and PI.InviteUnit or rawget(_G, "InviteUnit")
-    if not invite then ns.Print("inviting is not available on this client.") return 0 end
-    local list = self:NearbyPlayers(4)
-    if #list == 0 then ns.Print("no one seen nearby to invite - target or mouse over a player first.") return 0 end
-    local n = 0
-    for _, p in ipairs(list) do
-        local ok = pcall(invite, p.name)
-        if ok then n = n + 1 end
-    end
-    ns.Printf("invited %d player%s to share kills: %s", n, n == 1 and "" or "s", table.concat((function() local t = {} for _, p in ipairs(list) do t[#t + 1] = p.name end return t end)(), ", "))
-    return n
 end
 
 function Crowd:Reset() samples = {} end
@@ -307,9 +266,8 @@ local function Banner()
     if not ok or not f then f = CreateFrame("Frame", "ForeverGuideCrowdBanner", UIParent) end
     banner = f
     --   ┌──────────────────────────────────────────────────────────────┐
-    --   │ [icon] Group up - kill credit is shared                    [x] │  title: one line, stops before the x
-    --   │        Invite the 3 players near you (or ask to join theirs)   │  sub: wraps to two lines, stops before
-    --   │        · quieter: north 80 yd              [Invite] [Go there] │       the buttons; the frame grows to fit
+    --   │ [icon] Crowded: quest mobs are taken                       [x] │
+    --   │        Quieter spawn to the north             [Go there]       │
     --   └──────────────────────────────────────────────────────────────┘
     f:SetSize(560, 58)
     f:SetPoint("TOP", UIParent, "TOP", 0, -210)
@@ -330,40 +288,15 @@ local function Banner()
     f.sub:SetPoint("RIGHT", f, "RIGHT", -12, 0)
     f.go = Theme and Theme.NewButton(f, "Go there", 84, 22, function() Crowd:GoToAlternative() end) or CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     f.go:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -10, 8)
-    f.invite = Theme and Theme.NewButton(f, "Invite", 64, 22, function() Crowd:InviteNearby() end) or CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    f.invite:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -10, 8)
-    f.invite:SetScript("OnEnter", function(self)
-        local tt = rawget(_G, "GameTooltip")
-        if not tt then return end
-        tt:SetOwner(self, "ANCHOR_TOP")
-        tt:AddLine("Invite the players seen around you", 1, 0.88, 0.55)
-        tt:AddLine("Kill credit is shared in a group, so a kill quest goes faster together. Drops are not shared.", 0.85, 0.82, 0.75, true)
-        local list = Crowd:NearbyPlayers(4)
-        if #list > 0 then
-            local names = {}
-            for _, p in ipairs(list) do names[#names + 1] = p.name end
-            tt:AddLine("Would invite: " .. table.concat(names, ", "), 0.66, 0.61, 0.52, true)
-        else
-            tt:AddLine("No one seen yet - target or mouse over a player.", 0.66, 0.61, 0.52, true)
-        end
-        tt:Show()
-    end)
-    f.invite:SetScript("OnLeave", function() local tt = rawget(_G, "GameTooltip") if tt then tt:Hide() end end)
     f:Hide()
     return f
 end
 
 -- Lay the banner out for the buttons that are showing: the buttons sit in a row at the bottom right,
 -- the sub text stops before the leftmost one, and the frame grows so two lines of sub text fit.
-local function Layout(f, showInvite, showGo)
-    f.invite:SetShown(showInvite)
+local function Layout(f, showGo)
     f.go:SetShown(showGo)
-    f.invite:ClearAllPoints()
-    f.go:ClearAllPoints()
-    f.go:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -10, 8)
-    if showGo then f.invite:SetPoint("RIGHT", f.go, "LEFT", -6, 0)
-    else f.invite:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -10, 8) end
-    local leftmost = (showInvite and f.invite) or (showGo and f.go) or nil
+    local leftmost = showGo and f.go or nil
     f.sub:ClearAllPoints()
     f.sub:SetPoint("TOPLEFT", f.title, "BOTTOMLEFT", 0, -3)
     if leftmost then f.sub:SetPoint("RIGHT", leftmost, "LEFT", -10, 0)
@@ -411,7 +344,6 @@ function Crowd:Update()
     if ns.UI and ns.UI.AllHidden and ns.UI:AllHidden() then f:Hide() return end
     local tagged, free, players, crowded = self:Level()
     if crowded then self:MaybePostpone() end
-    -- Offer invites only as part of an actual crowd warning, never as a standalone popup.
     local step = ns.Guide and ns.Guide:GetCurrentStep()
     local inGroup = ns.Plain(ns.Safe(rawget(_G, "IsInGroup"))) == true
     local stepKill = step and step.type == "KILL" and self:IsSharedKillOrLoot(step)
@@ -445,11 +377,10 @@ function Crowd:Update()
         self.altZone = nil
     end
     self:PollZone()
-    -- a shared kill step: a group shares kill credit, so offer to invite the people around
-    if killShare then sub = "kill credit is shared in a group - invite them  ·  " .. sub end
+    if killShare then sub = "kill credit is shared in a group  ·  " .. sub end
     f.sub:SetText(sub)
     f.go.label:SetText(self.alt and "Go there" or "Switch zone")
-    Layout(f, killShare == true, self.alt ~= nil or self.altZone ~= nil)
+    Layout(f, self.alt ~= nil or self.altZone ~= nil)
     if not f:IsShown() then
         f:Show()
         local now = ns.Now()
@@ -465,9 +396,9 @@ function Crowd:Preview()
     local f = Banner()
     f.title:SetText("Group up - kill credit is shared")
     if ns.Theme then ns.Theme.Color(f.title, { 0.55, 0.85, 0.45 }) end
-    f.sub:SetText("Invite the 3 players near you (or ask to join theirs)  ·  quieter: Redridge Mongrel also spawn 312 yd SW (13 spots)")
+    f.sub:SetText("Quieter: Redridge Mongrel also spawn 312 yd SW (13 spots)")
     f.go.label:SetText("Go there")
-    Layout(f, true, true)
+    Layout(f, true)
     f:Show()
     self.preview = true
     ns.Events:After(10, function() if Crowd.preview then Crowd.preview = nil f:Hide() Crowd:Update() end end)
@@ -475,8 +406,6 @@ end
 
 function Crowd:OnInit()
     ns.Events:Register("WHO_LIST_UPDATE", function() if Crowd.whoQuery then Crowd:OnWhoList() end end)
-    ns.Events:Register("PLAYER_TARGET_CHANGED", function() noteUnit("target") end)
-    ns.Events:Register("UPDATE_MOUSEOVER_UNIT", function() noteUnit("mouseover") end)
     ns.Events:Register("FG_NAV_ARRIVED", function(_, target) if target and target.owner == "crowd" then Crowd:ReleaseOverride() end end)
     ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_GUIDE_CHANGED" }, function() Crowd:ReleaseOverride() Crowd:Reset() Crowd:Update() end)
     ns.Events:Register("FG_HIDDEN_ALL_CHANGED", function() Crowd:Update() end)

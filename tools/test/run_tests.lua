@@ -876,8 +876,8 @@ do
             for i = 3, 5 do MOCK_PLATE("nameplate" .. (20 + i), { name = "Player" .. i, player = true, friendly = true, npcID = 0 }) end
             ns.MobMarker:Scan()
         end
-        check(ForeverGuideCrowdBanner.invite:IsShown() and (ForeverGuideCrowdBanner.sub:GetText() or ""):find("shared in a group", 1, true), "...instead the banner offers to invite the players around (shown=" .. tostring(ForeverGuideCrowdBanner:IsShown()) .. " sub=" .. tostring(ForeverGuideCrowdBanner.sub:GetText()) .. ")")
-        check(ns.Crowd:InviteNearby() == 4 and #MOCK.invited == 4, "Invite asks up to four of them into a group")
+        check(ForeverGuideCrowdBanner:IsShown() and not ForeverGuideCrowdBanner.invite and #MOCK.invited == 0,
+            "crowd advice never offers or sends bulk invitations")
         ns.RegisterGuide({ id = "AUDIT_CROWD2", name = "crowd2", steps = {
             { type = "ACCEPT", quest = 11 },
             { type = "KILL", quest = 11, target = "Hogger", npc = 448, count = 1 },
