@@ -66,7 +66,7 @@ local function NewRegion(kind)
     function r:SetTextColor(...) self.textColor = { ... } end
     function r:SetShadowOffset(x, y) self.shadowOffset = { x, y } end
     function r:SetShadowColor(...) self.shadowColor = { ... } end
-    function r:SetWordWrap() end
+    function r:SetWordWrap(on) self.wordWrap = on end
     function r:SetNonSpaceWrap() end
     function r:GetStringHeight() return 14 end
     function r:SetTexture(t) self.texture = t end
