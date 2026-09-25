@@ -1,0 +1,31 @@
+{
+  "id": "DUNGEON_HORDE_BLACKFATHOM_DEEPS",
+  "name": "Blackfathom Deeps 21-27",
+  "version": 1,
+  "kind": "dungeon",
+  "faction": "Horde",
+  "minLevel": 21,
+  "maxLevel": 27,
+  "map": 1440,
+  "zone": "Ashenvale",
+  "author": "ForeverGuide route planner",
+  "notes": "Blackfathom Deeps: the quests, the run and the turn-ins. Open it when you have a group.",
+  "steps": [
+    {"type": "ACCEPT", "quest": 6562, "questName": "Trouble in the Deeps", "npc": 11862, "npcName": "Tsunaman", "map": 1442, "zone": "Stonetalon Mountains", "x": 47.2, "y": 64.2},
+    {"type": "TURNIN", "quest": 6562, "questName": "Trouble in the Deeps", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2},
+    {"type": "ACCEPT", "quest": 6563, "questName": "The Essence of Aku'Mai", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2},
+    {"type": "ACCEPT", "quest": 6921, "questName": "Amongst the Ruins", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2},
+    {"type": "NOTE", "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2, "note": "All quests available from level 21; hand them in by level 27 for full XP", "text": "Find a group for Blackfathom Deeps"},
+    {"type": "ACCEPT", "quest": 6561, "questName": "Blackfathom Villainy", "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
+    {"type": "ACCEPT", "quest": 6564, "questName": "Allegiance to the Old Gods", "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
+    {"type": "COLLECT", "quest": 6563, "questName": "The Essence of Aku'Mai", "target": "Sapphire of Aku'Mai", "count": 20, "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
+    {"type": "COLLECT", "quest": 6921, "questName": "Amongst the Ruins", "target": "Fathom Core", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
+    {"type": "COLLECT", "quest": 6561, "questName": "Blackfathom Villainy", "target": "Head of Kelris", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
+    {"type": "TURNIN", "quest": 6563, "questName": "The Essence of Aku'Mai", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2},
+    {"type": "TURNIN", "quest": 6921, "questName": "Amongst the Ruins", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2},
+    {"type": "TURNIN", "quest": 6564, "questName": "Allegiance to the Old Gods", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2},
+    {"type": "TURNIN", "quest": 6561, "questName": "Blackfathom Villainy", "npc": 9087, "npcName": "Bashana Runetotem", "map": 1456, "zone": "Thunder Bluff", "x": 70.8, "y": 33.8},
+    {"type": "ACCEPT", "quest": 6565, "questName": "Allegiance to the Old Gods", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2},
+    {"type": "TURNIN", "quest": 6565, "questName": "Allegiance to the Old Gods", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2}
+  ]
+}
