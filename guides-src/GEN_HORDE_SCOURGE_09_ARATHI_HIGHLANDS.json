@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_09_ARATHI_HIGHLANDS",
   "name": "9. Arathi Highlands 29-30 (Undead)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 29,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 9 of the Scourge route: level 29 to 30, 42 steps, ~159 min of play in the model (21663 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 2851, "npcName": "Urda", "map": 1417, "zone": "Arathi Highlands", "x": 73, "y": 32.7},
     {"type": "ACCEPT", "quest": 2478, "questName": "Mission: Possible But Not Probable", "npc": 7233, "npcName": "Taskmaster Fizzule", "map": 1413, "zone": "The Barrens", "x": 55.4, "y": 5.6, "note": "Elite - group up", "optional": true, "class": ["ROGUE"]},
     {"type": "KILL", "quest": 2478, "questName": "Mission: Possible But Not Probable", "npc": 7310, "target": "Mutated Venture Co. Drone", "count": 2, "map": 1413, "zone": "The Barrens", "x": 54.8, "y": 5.8, "optional": true, "class": ["ROGUE"]},
     {"type": "KILL", "quest": 2478, "questName": "Mission: Possible But Not Probable", "npc": 7307, "target": "Venture Co. Lookout", "count": 2, "map": 1413, "zone": "The Barrens", "x": 54.6, "y": 5.6, "optional": true, "class": ["ROGUE"]},
