@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_03_WESTFALL",
   "name": "3. Westfall 11-15 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 11,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 3 of the Human route: level 11 to 15, 55 steps, ~164 min of play in the model (18078 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 523, "npcName": "Thor", "map": 1436, "zone": "Westfall", "x": 56.6, "y": 52.6},
     {"type": "ACCEPT", "quest": 1639, "questName": "Bartleby the Drunk", "npc": 6089, "npcName": "Harry Burlguard", "map": 1453, "zone": "Stormwind City", "x": 74, "y": 37.2, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 1639, "questName": "Bartleby the Drunk", "npc": 6090, "npcName": "Bartleby", "map": 1453, "zone": "Stormwind City", "x": 73.8, "y": 36.6, "class": ["WARRIOR"]},
     {"type": "COLLECT", "quest": 1678, "questName": "Vejrek", "target": "Vejrek's Head", "count": 1, "map": 1426, "zone": "Dun Morogh", "x": 27.8, "y": 58, "class": ["WARRIOR"]},

@@ -512,6 +512,22 @@ _G.C_TaxiMap.GetAllTaxiNodes = function() return world.taxiOpen end
 _G.Enum.FlightPathState = { Current = 0, Reachable = 1, Unreachable = 2 }
 _G.ERR_NEWTAXIPATH = "New flight path discovered!"
 
+-- the character's skill lines: { { name = "Cooking", rank = 1 }, ... } under one "Professions" header
+world.skills = {}
+_G.GetNumSkillLines = function() return #world.skills + 1 end
+_G.GetSkillLineInfo = function(i)
+    if i == 1 then return "Professions", true, true, 0 end
+    local sk = world.skills[i - 1]
+    if not sk then return nil end
+    return sk.name, false, false, sk.rank, 0, 0, sk.max or 300
+end
+
+--- the character learns or loses skills: MOCK_SKILLS({ { name = "Cooking", rank = 10 } })
+function _G.MOCK_SKILLS(skills)
+    world.skills = skills or {}
+    fire("SKILL_LINES_CHANGED")
+end
+
 --- walk into (or out of) an instance: MOCK_INSTANCE("party") / MOCK_INSTANCE(nil)
 function _G.MOCK_INSTANCE(kind)
     world.instanceType = kind

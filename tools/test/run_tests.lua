@@ -1876,6 +1876,32 @@ do
     G:Activate("HUMAN_NORTHSHIRE_1_6", true); G:Reset(); settle()
 end
 
+-- ---- profession steps: shown only to characters with that profession (and the skill) ----------
+do
+    ns.RegisterGuide({ id = "TEST_PROFESSION", name = "profession", version = 1, faction = "Alliance", minLevel = 1, maxLevel = 60, map = 1426, zone = "Dun Morogh",
+        steps = {
+            { type = "ACCEPT", quest = 384, questName = "Beer Basted Boar Ribs", profession = "Cooking", map = 1426, x = 46.8, y = 52.4 },
+            { type = "ACCEPT", quest = 1578, questName = "Supplying the Front", profession = "Blacksmithing", skill = 30, map = 1455, x = 50, y = 50 },
+            { type = "ACCEPT", quest = 99931, questName = "Everyone's quest", map = 1426, x = 46, y = 52 },
+        } })
+    local steps = G:Get("TEST_PROFESSION").steps
+    MOCK_SKILLS({}); settle()
+    check(G:StepApplies(steps[1]) == false and G:StepApplies(steps[2]) == false, "no professions: profession steps do not apply")
+    check(G:StepApplies(steps[3]) == true, "an ordinary step still does")
+    MOCK_SKILLS({ { name = "Cooking", rank = 1 }, { name = "Blacksmithing", rank = 12 } }); settle()
+    check(G:StepApplies(steps[1]) == true, "a cook sees the cooking step")
+    check(G:StepApplies(steps[2]) == false, "blacksmithing at 12 is short of the 30 the step needs")
+    MOCK_SKILLS({ { name = "Blacksmithing", rank = 30 } }); settle()
+    check(G:StepApplies(steps[2]) == true and G:StepApplies(steps[1]) == false, "at 30 it shows, and dropping cooking hides the cooking step")
+    -- a client that lists no skills at all: show the step rather than hide what the player may have
+    local num = _G.GetNumSkillLines
+    _G.GetNumSkillLines = nil
+    MOCK_SKILLS({}); settle()
+    check(G:StepApplies(steps[1]) == true, "without a skill list the step shows")
+    _G.GetNumSkillLines = num
+    MOCK_SKILLS({}); settle()
+end
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 do
     local expected = 0

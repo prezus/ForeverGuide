@@ -63,6 +63,8 @@ Common fields (all optional unless the type needs them):
 | `faction`   | string | step only for this faction |
 | `class`     | [string] | step only for these classes |
 | `race`      | [string] | step only for these races |
+| `profession` | string | step only for characters with this profession or secondary skill (English name: `"Cooking"`, `"First Aid"`, `"Blacksmithing"`, ...); shown when the client lists no skills |
+| `skill`     | int    | with `profession`: the rank the step needs (default 1) |
 
 ### Types and completion
 

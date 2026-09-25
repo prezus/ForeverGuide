@@ -347,6 +347,10 @@ function Guide:StepApplies(step)
         local _, raceFile = ns.Player:GetRace()
         if raceFile and not ns.Contains(step.race, raceFile) then return false end
     end
+    if step.profession then
+        local rank = ns.Player:ProfessionRank(step.profession)
+        if rank and rank < (step.skill or 1) then return false end
+    end
     return true
 end
 

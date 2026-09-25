@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_08_STRANGLETHORN_VALE",
   "name": "8. Stranglethorn Vale 28-29 (Undead)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 28,
@@ -12,9 +12,11 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 8 of the Scourge route: level 28 to 29, 37 steps, ~131 min of play in the model (21082 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 2858, "npcName": "Gringer", "map": 1434, "zone": "Stranglethorn Vale", "x": 26.9, "y": 77.1},
     {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.4, "y": 76.4, "radius": 60, "note": "travel to Stranglethorn Vale (Stranglethorn Vale)"},
     {"type": "NOTE", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.4, "y": 76.4, "text": "set your hearthstone at the inn in Stranglethorn Vale (if there is one)"},
     {"type": "ACCEPT", "quest": 575, "questName": "Supply and Demand", "npc": 2495, "npcName": "Drizzlik", "map": 1434, "zone": "Stranglethorn Vale", "x": 28.3, "y": 77.6},
+    {"type": "FLIGHTPATH", "npc": 1387, "npcName": "Thysta", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.5, "y": 29.4},
     {"type": "KILL", "quest": 575, "questName": "Supply and Demand", "npc": 1150, "target": "River Crocolisk", "count": 2, "map": 1434, "zone": "Stranglethorn Vale", "x": 39.9, "y": 14.4, "near": true, "note": "loot Large River Crocolisk Skin"},
     {"type": "TURNIN", "quest": 575, "questName": "Supply and Demand", "npc": 2495, "npcName": "Drizzlik", "map": 1434, "zone": "Stranglethorn Vale", "x": 28.3, "y": 77.6},
     {"type": "ACCEPT", "quest": 583, "questName": "Welcome to the Jungle", "npc": 716, "npcName": "Barnil Stonepot", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.7, "y": 10.5},

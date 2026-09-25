@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_05_REDRIDGE_MOUNTAINS",
   "name": "5. Redridge Mountains 17-19 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 17,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 5 of the Dwarf route: level 17 to 19, 46 steps, ~117 min of play in the model (23570 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 931, "npcName": "Ariena Stormfeather", "map": 1433, "zone": "Redridge Mountains", "x": 25.5, "y": 59.4},
     {"type": "ACCEPT", "quest": 118, "questName": "The Price of Shoes", "npc": 415, "npcName": "Verner Osgood", "map": 1433, "zone": "Redridge Mountains", "x": 31, "y": 47.4},
     {"type": "TURNIN", "quest": 118, "questName": "The Price of Shoes", "npc": 514, "npcName": "Smith Argus", "map": 1429, "zone": "Elwynn Forest", "x": 41.6, "y": 65.6},
     {"type": "ACCEPT", "quest": 2041, "questName": "Speak with Shoni", "npc": 6569, "npcName": "Gnoarn", "map": 1455, "zone": "Ironforge", "x": 69.4, "y": 50.6},

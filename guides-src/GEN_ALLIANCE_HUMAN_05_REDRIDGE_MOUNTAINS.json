@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_05_REDRIDGE_MOUNTAINS",
   "name": "5. Redridge Mountains 17-20 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 17,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 5 of the Human route: level 17 to 20, 55 steps, ~136 min of play in the model (23817 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 931, "npcName": "Ariena Stormfeather", "map": 1433, "zone": "Redridge Mountains", "x": 25.5, "y": 59.4},
     {"type": "TURNIN", "quest": 1338, "questName": "Stormpike's Order", "npc": 5413, "npcName": "Furen Longbeard", "map": 1453, "zone": "Stormwind City", "x": 58, "y": 16.8},
     {"type": "ACCEPT", "quest": 120, "questName": "Messenger to Stormwind", "npc": 344, "npcName": "Magistrate Solomon", "map": 1433, "zone": "Redridge Mountains", "x": 30, "y": 44.2},
     {"type": "TURNIN", "quest": 120, "questName": "Messenger to Stormwind", "npc": 466, "npcName": "General Marcus Jonathan", "map": 1453, "zone": "Stormwind City", "x": 63.8, "y": 75.4},
