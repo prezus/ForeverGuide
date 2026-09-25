@@ -22,6 +22,8 @@
     {"type": "ACCEPT", "quest": 5645, "questName": "A Lack of Fear", "npc": 5143, "npcName": "Toldren Deepiron", "map": 1455, "zone": "Ironforge", "x": 25.2, "y": 10.2, "class": ["PRIEST"], "race": ["Dwarf"]},
     {"type": "TURNIN", "quest": 5645, "questName": "A Lack of Fear", "npc": 11406, "npcName": "High Priest Rohan", "map": 1455, "zone": "Ironforge", "x": 25, "y": 8.4, "class": ["PRIEST"], "race": ["Dwarf"]},
     {"type": "TURNIN", "quest": 5647, "questName": "A Lack of Fear", "npc": 11406, "npcName": "High Priest Rohan", "map": 1455, "zone": "Ironforge", "x": 25, "y": 8.4, "class": ["PRIEST"], "race": ["Dwarf"]},
+    {"type": "ACCEPT", "quest": 94494, "questName": "Call of Water", "npc": 258098, "npcName": "Eldrun Stormbreaker", "map": 1455, "zone": "Ironforge", "x": 47.4, "y": 13.6, "note": "New in Forever", "class": ["SHAMAN"]},
+    {"type": "TURNIN", "quest": 94494, "questName": "Call of Water", "npc": 258043, "npcName": "Norric Lochthane", "map": 1432, "zone": "Loch Modan", "x": 41.8, "y": 19, "class": ["SHAMAN"]},
     {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 61.5, "y": 48.2, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
     {"type": "ACCEPT", "quest": 2924, "questName": "Essential Artificials", "npc": 6169, "npcName": "Klockmort Spannerspan", "map": 1455, "zone": "Ironforge", "x": 67.9, "y": 46.1},
     {"type": "ACCEPT", "quest": 2930, "questName": "Data Rescue", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.1},
