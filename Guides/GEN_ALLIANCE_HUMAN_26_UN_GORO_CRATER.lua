@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_26_UN_GORO_CRATER",
     name = "26. Un'Goro Crater 47-47 (Human)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 47,
