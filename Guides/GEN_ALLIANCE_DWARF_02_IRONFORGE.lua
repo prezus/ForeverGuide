@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_03_LOCH_MODAN",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Dwarf route: level 10 to 10, 6 steps, ~8 min of play in the model (32333 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 20,
+    stepCount = 24,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 1573, npcName = "Gryth Thurden", map = 1455, zone = "Ironforge", x = 55.5, y = 47.7 }, -- 1
         { type = "ACCEPT", quest = 96394, questName = "The Restless Dead", npc = 264943, npcName = "Afadra Dunwall", map = 1455, zone = "Ironforge", x = 33.2, y = 47.6, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 2
@@ -28,12 +28,16 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 94817, questName = "Confounding Flash", npc = 258785, npcName = "High Priestess Mims", map = 1455, zone = "Ironforge", x = 24.8, y = 10, class = { "PRIEST" }, race = { "Gnome" } }, -- 11
         { type = "TURNIN", quest = 94824, questName = "Confounding Flash", npc = 258785, npcName = "High Priestess Mims", map = 1455, zone = "Ironforge", x = 24.8, y = 10, class = { "PRIEST" }, race = { "Gnome" } }, -- 12
         { type = "ACCEPT", quest = 94449, questName = "Call of Fire", npc = 258098, npcName = "Eldrun Stormbreaker", map = 1455, zone = "Ironforge", x = 47.4, y = 13.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 13
-        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 14
-        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 15
-        { type = "ACCEPT", quest = 6074, questName = "The Hunter's Path", npc = 5116, npcName = "Olmin Burningbeard", map = 1455, zone = "Ironforge", x = 70.6, y = 83.8, class = { "HUNTER" }, race = { "Dwarf" } }, -- 16
-        { type = "ACCEPT", quest = 6075, questName = "The Hunter's Path", npc = 5117, npcName = "Regnus Thundergranite", map = 1455, zone = "Ironforge", x = 69.4, y = 84.4, class = { "HUNTER" }, race = { "Dwarf" } }, -- 17
-        { type = "ACCEPT", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 18
-        { type = "TURNIN", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 19
-        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 20
+        { type = "TURNIN", quest = 1879, questName = "Speak with Bink", npc = 5144, npcName = "Bink", map = 1455, zone = "Ironforge", x = 27, y = 8.2, class = { "MAGE" }, race = { "Gnome" } }, -- 14
+        { type = "ACCEPT", quest = 1715, questName = "The Slaughtered Lamb", npc = 6120, npcName = "Lago Blackwrench", map = 1455, zone = "Ironforge", x = 47.6, y = 9.6, class = { "WARLOCK" }, race = { "Gnome" } }, -- 15
+        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 16
+        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 17
+        { type = "ACCEPT", quest = 6074, questName = "The Hunter's Path", npc = 5116, npcName = "Olmin Burningbeard", map = 1455, zone = "Ironforge", x = 70.6, y = 83.8, class = { "HUNTER" }, race = { "Dwarf" } }, -- 18
+        { type = "ACCEPT", quest = 6075, questName = "The Hunter's Path", npc = 5117, npcName = "Regnus Thundergranite", map = 1455, zone = "Ironforge", x = 69.4, y = 84.4, class = { "HUNTER" }, race = { "Dwarf" } }, -- 19
+        { type = "TURNIN", quest = 2218, questName = "Road to Salvation", npc = 5165, npcName = "Hulfdan Blackbeard", map = 1455, zone = "Ironforge", x = 51.6, y = 14.8, class = { "ROGUE" } }, -- 20
+        { type = "ACCEPT", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 21
+        { type = "TURNIN", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 22
+        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 23
+        { type = "ACCEPT", quest = 2238, questName = "Simple Subterfugin'", npc = 5165, npcName = "Hulfdan Blackbeard", map = 1455, zone = "Ironforge", x = 51.6, y = 14.8, class = { "ROGUE" } }, -- 24
     } end,
 })
