@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_31_UNDERCITY",
     name = "31. Undercity 49-50 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 49,
