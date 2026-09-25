@@ -18,7 +18,9 @@ A `/fg wrong <description>` report is saved locally; it does not open a GitHub i
 
 ## Propose a change
 
-1. Branch from `main` and keep each pull request focused on one fix or guide correction.
+1. Branch from `main` and keep each pull request focused on one fix or guide correction. Read the
+   [client and player-control policy](COMPATIBILITY_POLICY.md) before changing runtime Lua, UI or loaded data.
+   In the PR, identify new game API calls, what triggers them, and whether they act on the player's behalf.
 2. Edit `guides-src/*.json`, **not** generated `Guides/*.lua` or `Guides/Guides.xml`.
    The step format is in [guides-src/SCHEMA.md](guides-src/SCHEMA.md).
 3. From the addon root, run the relevant checks:

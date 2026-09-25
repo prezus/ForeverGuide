@@ -1,8 +1,9 @@
 # ForeverGuide
 
 Free, data-driven leveling guide engine for **WoW Forever** (beta 1.60.x, Retail 12.x engine, TOC `16001`).
-It reads game state and shows you the next step. It never automates anything: no casting, no movement,
-no chat, no combat assistance.
+It reads game state and shows you the next step. It does not automate casting, movement, or combat.
+Auto-accept and auto-turn-in are enabled by default; other player-facing actions and existing exceptions
+are described in the [client and player-control policy](COMPATIBILITY_POLICY.md).
 
 ```
 ForeverGuide DB (JSON)  ->  tools/compile_guides.py  ->  Guides/*.lua  ->  addon engine  ->  WoW Forever
@@ -74,8 +75,10 @@ may become secret). Capture the **full first Lua error** from the client's error
 stack trace, and note the client build (`/fg`), what you clicked, and whether you were in combat.
 ForeverGuide also catches some callback errors with `pcall` and prints `ForeverGuide: error in
 <key>: <message>` in chat **once per key per reload**; capture those lines too. The popup will
-not show errors caught by the addon, and the addon does not save an error log. `/reload` resets the
-once-per-key reporting. Redact character, realm, account, and local path details before sharing.
+not show errors caught by the addon; while the recorder is enabled, ForeverGuide saves those errors
+locally in `ForeverGuideDB.recorder.entries` and shows them in `/fg rec dump`. `/reload` resets the
+once-per-key reporting. On this beta, recorder data may not be read back at login; collect the SavedVariables
+file before further reloads. Redact character, realm, account, and local path details before sharing.
 
 In game:
 
