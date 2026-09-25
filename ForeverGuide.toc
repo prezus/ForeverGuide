@@ -32,7 +32,6 @@ Navigation.lua
 Guide.lua
 Tracker.lua
 Corpse.lua
-Bags.lua
 ItemTips.lua
 Crowd.lua
 Ding.lua

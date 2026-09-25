@@ -447,13 +447,10 @@ function QG:Refresh()
         return
     end
     local entries, cur, total = self:BuildGuideEntries()
-    local bagTag, bagFull
-    if ns.Bags then bagTag, bagFull = ns.Bags:Tag() end
     local sub = string.format("%s  ·  Lv %d", g.name or g.id, level)
     -- "Lv 18 -> 19 in 1h 0m" while the pace is known
     local pace = ns.Pace and ns.Pace:Tag()
     if pace then sub = sub .. "  ·  " .. pace end
-    if bagTag then sub = (bagFull and "|cffff5040" or "|cffffa040") .. bagTag .. "|r  ·  " .. sub end
     f.header:Set(string.format("%d / %d", math.min(cur, total), total), sub)
     if cur > total then
         f.list:Set({}, "Guide complete!" .. (g.next and ("\nNext chapter: " .. g.next) or ""))
@@ -521,8 +518,6 @@ function QG:RefreshInfo()
             lines[#lines + 1] = "Guide complete!" .. (g.next and ("  Next: " .. g.next) or "")
         end
         if G.note then lines[#lines + 1] = "|cffff8040" .. G.note .. "|r" end
-        local bags = ns.Bags and ns.Bags:Advice()
-        if bags then lines[#lines + 1] = "|cffffa040" .. bags .. "|r" end
         if g.notes then lines[#lines + 1] = " " lines[#lines + 1] = "|cff8a8070" .. g.notes .. "|r" end
         info.auto:SetText(ns.char.mode == "auto" and "Guide" or "Auto")
         info.auto.label:SetText(ns.char.mode == "auto" and "Guide" or "Auto")

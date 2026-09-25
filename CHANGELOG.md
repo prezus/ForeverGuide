@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+- Dungeon guides: a guide with `"kind": "dungeon"` is a dungeon's own guide. `/fg dungeons` lists the ones your character can do, by level; auto-pick never lands on one. Opening one remembers the chapter you came from, and finishing it (or `/fg resume`) takes you back there. Opening another chapter by hand forgets the way back.
+- Removed the bag and gear reminders: no more "bags 2/16" or "gear 18%" tag in the header, and no bag or repair advice in the info popup.
+
 ## 0.3.10 - 2026-09-24
 - Fixed "Interface action failed because of an AddOn" firing during kill steps: switching enemy/friendly nameplates on or off is a protected action, and the code that does it was not checking for combat lockdown, so it kept retrying - and kept getting silently denied - on every 0.5s scan of a fight. It now skips that entirely while in combat and catches up the moment combat ends.
 

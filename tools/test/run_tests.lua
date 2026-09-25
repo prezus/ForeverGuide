@@ -128,7 +128,7 @@ check(ns.db.ding.enabled == false and ns.db.nav.blizzardWaypoint == false
     and ns.db.nav.waypoint.enabled == false and ns.db.nav.waypoint.route == false
     and ns.db.ui.arrow.enabled == true, "quiet defaults: no ding, pin or dotted route; arrow on")
 MOCK_BAG(0, 0, 0); settle()
-check(rawget(_G, "ForeverGuideBagBanner") == nil and ns.db.bags.banners == false, "bag and gear alerts do not pop up by default")
+check(rawget(_G, "ForeverGuideBagBanner") == nil, "full bags raise no alert: the addon leaves bags alone")
 check(rawget(_G, "ForeverGuideCrowdBanner") == nil and (ns.db.crowd == nil or ns.db.crowd.enabled == false), "crowd reminders do not pop up by default")
 MOCK_BAG(16, 0, 0); settle()
 check(G.active and G.active.faction == "Alliance" and G.active.minLevel == 1 and ns.Contains(G.active.race, "Human"), "auto-picked a human 1-10 guide: " .. tostring(G.active and G.active.id))
@@ -732,30 +732,6 @@ do
     check(ns.Navigation.target and ns.Navigation.target.owner == "guide" and ns.Navigation.override == nil, "alive again: the guide's target returns (" .. tostring(ns.Navigation.target and ns.Navigation.target.owner) .. ")")
 end
 
--- ---- bag space --------------------------------------------------------------------------------
-do
-    MOCK_BAG(10, 2, 1); settle()
-    check(ns.Bags:Tag() == nil, "plenty of room: no bag tag")
-    MOCK_BAG(2, 4, 3); settle()
-    local tag, full = ns.Bags:Tag()
-    check(tag == "bags 2/16" and not full, "2 free slots: header tag (" .. tostring(tag) .. ")")
-    local advice = ns.Bags:Advice()
-    check(advice and advice:find("4 grey items", 1, true) and advice:find("never counted", 1, true), "advice counts grey items only, never quest items (" .. tostring(advice) .. ")")
-    MOCK_BAG(0, 0, 5); settle()
-    local _, full0 = ns.Bags:Tag()
-    local adv0 = ns.Bags:Advice()
-    check(full0 == true and adv0 and adv0:find("FULL", 1, true) and adv0:find("never quest items", 1, true), "full bags with only quest items: urgent, no sale suggested (" .. tostring(adv0) .. ")")
-    local mode = ns.char.mode
-    ns.char.mode = "guide"
-    ns.QuestGuide:Refresh()
-    check((ns.QuestGuide.frame.header.sub:GetText() or ""):find("|cffff5040bags 0/16|r", 1, true) ~= nil,
-        "full bags: guide header uses urgent red tag")
-    ns.char.mode = mode
-    check(rawget(_G, "ForeverGuideBagBanner") == nil, "full bags: no popup, header tag remains")
-    MOCK_BAG(16, 0, 0); settle()
-    check(ns.Bags:Tag() == nil, "room again: the header tag goes away")
-end
-
 -- ---- mob tooltips: live progress, only for objectives this mob actually serves ----------------
 do
     MOCK_ACCEPT(52, "Protect the Frontier", { { text = "Young Forest Bear slain: 2/5", finished = false, numFulfilled = 2, numRequired = 5 } }); settle()
@@ -791,18 +767,11 @@ do
     MOCK_ACCEPT(92, "Redridge Goulash", { { text = "Tough Condor Meat", finished = false, numFulfilled = 1, numRequired = 5 } }); settle()
     lines = ns.ItemTips:LinesFor(1080, "Tough Condor Meat")
     check(#lines >= 1 and lines[1][1]:find("Redridge Goulash (1/5)", 1, true), "an item named by a live objective is labelled from the log alone (" .. tostring(lines[1] and lines[1][1]) .. ")")
-    -- turned in: the meat is left over, the tooltip says so and the bag advice counts it
+    -- turned in: the meat is left over, and the tooltip says so
     MOCK_TURNIN(92); settle()
     check(ns.ItemTips:Leftover(1080, "Tough Condor Meat") == "Redridge Goulash", "after the turn-in the ingredient is known to be left over")
     lines = ns.ItemTips:LinesFor(1080, "Tough Condor Meat")
     check(#lines == 1 and lines[1][2] == "leftover" and lines[1][1]:find("safe to sell", 1, true), "tooltip: no longer needed, safe to sell (" .. tostring(lines[1] and lines[1][1]) .. ")")
-    MOCK_BAG(1, 0, 0)
-    MOCK.bags[0].items[1] = { quality = 1, hasNoValue = false, itemID = 1080, hyperlink = "|Hitem:1080|h[Tough Condor Meat]|h" }
-    MOCK.bags[0].items[2] = { quality = 1, hasNoValue = false, itemID = 1080, hyperlink = "|Hitem:1080|h[Tough Condor Meat]|h" }
-    local st = ns.Bags:Status()
-    check(st.leftover == 2 and st.leftoverNames[1] == "Tough Condor Meat", "bags: leftover ingredients are counted as sellable (" .. tostring(st.leftover) .. ")")
-    check((ns.Bags:Advice(true) or ""):find("leftover quest ingredients", 1, true) ~= nil, "bag advice names the leftover ingredients")
-    MOCK_BAG(16, 0, 0); settle()
     do local l = ns.ItemTips:LinesFor(999999, "Broken Sword") check(#l == 0, "an ordinary item gets no line (" .. tostring(l[1] and l[1][1]) .. ")") end
 end
 
@@ -1539,38 +1508,6 @@ do
     for _, line in ipairs(lines) do check(type(line) == "string" and #line > 0, "each line is text") end
 end
 
--- ---- gear wear: the bags banner does the repair reminder too ---------------------------------
-do
-    local B = ns.Bags
-    MOCK_GEAR(nil)
-    check(B:Durability() == nil, "no gear that wears: nothing to say")
-    MOCK_BAG(10, 0, 0)          -- roomy bags, so only the gear can raise the banner
-    MOCK_GEAR(80)
-    B:Check("test")
-    check(B:GearLow() == nil, "gear at 80% is fine")
-    check(B:Tag() == nil, "and the header has no gear tag")
-    MOCK_GEAR(18)
-    B:Check("test")
-    local d = B:GearLow()
-    check(d ~= nil and math.abs(d.percent - 18) < 1, "gear at 18% is low (" .. tostring(d and math.floor(d.percent)) .. ")")
-    check((B:Advice() or ""):find("repair", 1, true) ~= nil, "the details still advise repair")
-    local tag = B:Tag()
-    check(tag == "gear 18%", "and the header tag reads " .. tostring(tag))
-    MOCK_GEAR(40, { [1] = 0 })
-    B:Check("test")
-    local broken = B:GearLow()
-    check(broken and broken.broken == 1 and broken.worst == "head", "a broken piece is named (" .. tostring(broken and broken.worst) .. ")")
-    check((B:Advice() or ""):find("broken", 1, true) ~= nil, "the details mention broken gear")
-    -- full bags win: one errand, the more urgent line
-    MOCK_BAG(0, 2, 0)
-    B:Check("test")
-    check(B:Tag() == "bags 0/16", "full bags take priority in the header tag")
-    MOCK_GEAR(nil)
-    MOCK_BAG(10, 0, 0)
-    B:Check("test")
-    check(B:Tag() == nil, "and everything settles down again")
-end
-
 -- ---- a chapter of another race's route ---------------------------------------------------------
 -- (seen live 2026-09-22: a level-20 dwarf in Duskwood was following "6. Ashenvale 19-22 (Night Elf)"
 --  while /fg path said the Dwarf route; the race-only quests in it are skipped, so say so)
@@ -1703,23 +1640,18 @@ end
 do
     local I = ns.Instance
     ns.UI:Show()
-    MOCK_BAG(0, 3, 0)            -- something that would raise a banner outside
-    ns.Bags:Check("test")
-    check(ns.Bags:Tag() == "bags 0/16", "outside, the full-bag header tag shows")
 
     MOCK_INSTANCE("party")
     check(I:Inside() == true, "the addon knows it is in a dungeon")
     check(ns.UI:AllHidden() == true and ns.UI:IsSuspended("dungeon"), "so everything is put away")
     check(ns.db.ui.hiddenAll ~= true, "without touching the hide-everything setting")
-    ns.Bags:Check("test")
     check(not ns.UI:Create():IsShown(), "the guide window stays down inside")
     ns.Crowd:Update()
     check(not ForeverGuideCrowdBanner:IsShown(), "the crowd banner too")
 
     MOCK_INSTANCE(nil)
     check(ns.UI:AllHidden() == false, "walking out brings it back")
-    ns.Bags:Check("test")
-    check(ns.UI:Create():IsShown() and ns.Bags:Tag() == "bags 0/16", "guide and bag tag return outside")
+    check(ns.UI:Create():IsShown(), "the guide window returns outside")
 
     -- a battleground counts, a city does not
     MOCK_INSTANCE("pvp")
@@ -1742,8 +1674,6 @@ do
     ns.Persist:DecodeAcct(acct)
     check(ns.db.instance.hide == false, "the dungeon switch is kept in the mirror")
     ns.Commands:Run("dungeon on")
-    MOCK_BAG(10, 0, 0)
-    ns.Bags:Check("test")
 end
 
 -- ---- a dungeon's own guide: listed apart, never auto-picked, back to the chapter afterwards ----
