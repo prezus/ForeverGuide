@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_02_IRONFORGE",
     name = "2. Ironforge 10-10 (Dwarf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 10,
@@ -13,30 +13,31 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_03_LOCH_MODAN",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Dwarf route: level 10 to 10, 6 steps, ~7 min of play in the model (38372 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 23,
+    stepCount = 24,
     steps = function() return {
-        { type = "ACCEPT", quest = 96394, questName = "The Restless Dead", npc = 264943, npcName = "Afadra Dunwall", map = 1455, zone = "Ironforge", x = 33.2, y = 47.6, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 1
-        { type = "ACCEPT", quest = 96403, questName = "Important Heirlooms", npc = 265003, npcName = "Thom Filch", map = 1455, zone = "Ironforge", x = 32.4, y = 44.8, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 2
-        { type = "NOTE", optional = true, text = "Ready for The Hall of Thanes", note = "Picked up: Old Ironforge Incursion, The Restless Dead, Important Heirlooms. When you have a group, open The Hall of Thanes under Dungeons." }, -- 3
-        { type = "ACCEPT", quest = 1684, questName = "Elanaria", npc = 2151, npcName = "Moon Priestess Amara", map = 1438, zone = "Teldrassil", x = 55.6, y = 58.4, class = { "WARRIOR" } }, -- 4
-        { type = "TURNIN", quest = 1684, questName = "Elanaria", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 5
-        { type = "ACCEPT", quest = 6076, questName = "The Hunter's Path", npc = 5515, npcName = "Einris Brightspear", map = 1453, zone = "Stormwind City", x = 61.6, y = 15.4, class = { "HUNTER" }, race = { "Dwarf" } }, -- 6
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.4, y = 48.2, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 7
-        { type = "NOTE", map = 1455, zone = "Ironforge", x = 61.4, y = 48.2, text = "set your hearthstone at the inn in Ironforge (if there is one)" }, -- 8
-        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 9
-        { type = "ACCEPT", quest = 6074, questName = "The Hunter's Path", npc = 5116, npcName = "Olmin Burningbeard", map = 1455, zone = "Ironforge", x = 70.6, y = 83.8, class = { "HUNTER" }, race = { "Dwarf" } }, -- 10
-        { type = "ACCEPT", quest = 6075, questName = "The Hunter's Path", npc = 5117, npcName = "Regnus Thundergranite", map = 1455, zone = "Ironforge", x = 69.4, y = 84.4, class = { "HUNTER" }, race = { "Dwarf" } }, -- 11
-        { type = "ACCEPT", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 12
-        { type = "TURNIN", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 13
-        { type = "TURNIN", quest = 291, questName = "The Reports", npc = 1274, npcName = "Senator Barin Redstone", map = 1455, zone = "Ironforge", x = 39.4, y = 57 }, -- 14
-        { type = "ACCEPT", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 15
-        { type = "ACCEPT", quest = 94449, questName = "Call of Fire", npc = 258098, npcName = "Eldrun Stormbreaker", map = 1455, zone = "Ironforge", x = 47.4, y = 13.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 16
-        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 17
-        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 18
-        { type = "TURNIN", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 19
-        { type = "ACCEPT", quest = 5639, questName = "Desperate Prayer", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" }, race = { "Dwarf" } }, -- 20
-        { type = "ACCEPT", quest = 94817, questName = "Confounding Flash", npc = 258785, npcName = "High Priestess Mims", map = 1455, zone = "Ironforge", x = 24.8, y = 10, class = { "PRIEST" }, race = { "Gnome" }, note = "New in Forever" }, -- 21
-        { type = "TURNIN", quest = 94817, questName = "Confounding Flash", npc = 258785, npcName = "High Priestess Mims", map = 1455, zone = "Ironforge", x = 24.8, y = 10, class = { "PRIEST" }, race = { "Gnome" } }, -- 22
-        { type = "TURNIN", quest = 94824, questName = "Confounding Flash", npc = 258785, npcName = "High Priestess Mims", map = 1455, zone = "Ironforge", x = 24.8, y = 10, class = { "PRIEST" }, race = { "Gnome" } }, -- 23
+        { type = "FLIGHTPATH", npc = 1573, npcName = "Gryth Thurden", map = 1455, zone = "Ironforge", x = 55.5, y = 47.7 }, -- 1
+        { type = "ACCEPT", quest = 96394, questName = "The Restless Dead", npc = 264943, npcName = "Afadra Dunwall", map = 1455, zone = "Ironforge", x = 33.2, y = 47.6, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 2
+        { type = "ACCEPT", quest = 96403, questName = "Important Heirlooms", npc = 265003, npcName = "Thom Filch", map = 1455, zone = "Ironforge", x = 32.4, y = 44.8, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 3
+        { type = "NOTE", optional = true, text = "Ready for The Hall of Thanes", note = "Picked up: Old Ironforge Incursion, The Restless Dead, Important Heirlooms. When you have a group, open The Hall of Thanes under Dungeons." }, -- 4
+        { type = "ACCEPT", quest = 1684, questName = "Elanaria", npc = 2151, npcName = "Moon Priestess Amara", map = 1438, zone = "Teldrassil", x = 55.6, y = 58.4, class = { "WARRIOR" } }, -- 5
+        { type = "TURNIN", quest = 1684, questName = "Elanaria", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 6
+        { type = "ACCEPT", quest = 6076, questName = "The Hunter's Path", npc = 5515, npcName = "Einris Brightspear", map = 1453, zone = "Stormwind City", x = 61.6, y = 15.4, class = { "HUNTER" }, race = { "Dwarf" } }, -- 7
+        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.4, y = 48.2, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 8
+        { type = "NOTE", map = 1455, zone = "Ironforge", x = 61.4, y = 48.2, text = "set your hearthstone at the inn in Ironforge (if there is one)" }, -- 9
+        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 10
+        { type = "ACCEPT", quest = 6074, questName = "The Hunter's Path", npc = 5116, npcName = "Olmin Burningbeard", map = 1455, zone = "Ironforge", x = 70.6, y = 83.8, class = { "HUNTER" }, race = { "Dwarf" } }, -- 11
+        { type = "ACCEPT", quest = 6075, questName = "The Hunter's Path", npc = 5117, npcName = "Regnus Thundergranite", map = 1455, zone = "Ironforge", x = 69.4, y = 84.4, class = { "HUNTER" }, race = { "Dwarf" } }, -- 12
+        { type = "ACCEPT", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 13
+        { type = "TURNIN", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 14
+        { type = "TURNIN", quest = 291, questName = "The Reports", npc = 1274, npcName = "Senator Barin Redstone", map = 1455, zone = "Ironforge", x = 39.4, y = 57 }, -- 15
+        { type = "ACCEPT", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 16
+        { type = "ACCEPT", quest = 94449, questName = "Call of Fire", npc = 258098, npcName = "Eldrun Stormbreaker", map = 1455, zone = "Ironforge", x = 47.4, y = 13.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 17
+        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 18
+        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 19
+        { type = "TURNIN", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 20
+        { type = "ACCEPT", quest = 5639, questName = "Desperate Prayer", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" }, race = { "Dwarf" } }, -- 21
+        { type = "ACCEPT", quest = 94817, questName = "Confounding Flash", npc = 258785, npcName = "High Priestess Mims", map = 1455, zone = "Ironforge", x = 24.8, y = 10, class = { "PRIEST" }, race = { "Gnome" }, note = "New in Forever" }, -- 22
+        { type = "TURNIN", quest = 94817, questName = "Confounding Flash", npc = 258785, npcName = "High Priestess Mims", map = 1455, zone = "Ironforge", x = 24.8, y = 10, class = { "PRIEST" }, race = { "Gnome" } }, -- 23
+        { type = "TURNIN", quest = 94824, questName = "Confounding Flash", npc = 258785, npcName = "High Priestess Mims", map = 1455, zone = "Ironforge", x = 24.8, y = 10, class = { "PRIEST" }, race = { "Gnome" } }, -- 24
     } end,
 })
