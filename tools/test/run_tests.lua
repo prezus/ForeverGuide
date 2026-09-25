@@ -1023,7 +1023,7 @@ do
     do
         ns.Commands:Run("edit clear")
         local near
-        for _, s in ipairs(G.active.steps) do if s.near then near = s break end end
+        for _, s in ipairs(G.active.steps) do if s.near and not G:IsStepDone(s, s.index) then near = s break end end
         G:SetStep(near.index); settle()
         near = G:GetCurrentStep()   -- Evaluate may have moved on; the note lands on the current step
         check(near and near.near == true, "the nearest-spawn step is current (" .. tostring(near and near.index) .. ")")
