@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_23_THE_HINTERLANDS",
     name = "23. The Hinterlands 42-45 (Dwarf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 42,
