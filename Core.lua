@@ -164,7 +164,15 @@ local reported = {}
 function ns.ReportOnce(key, err)
     if reported[key] then return end
     reported[key] = true
-    ns.Error("error in " .. tostring(key) .. ": " .. tostring(err))
+    local message = tostring(err)
+    if ns.Recorder then
+        pcall(ns.Recorder.Add, ns.Recorder, "ERROR", {
+            key = tostring(key), msg = message:sub(1, 2000),
+            guide = ns.Guide and ns.Guide.active and ns.Guide.active.id,
+            step = ns.Guide and ns.Guide.current,
+        })
+    end
+    ns.Error("error in " .. tostring(key) .. ": " .. message)
 end
 
 -- ------------------------------------------------------------

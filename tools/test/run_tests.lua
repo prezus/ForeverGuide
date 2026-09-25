@@ -57,6 +57,24 @@ local function step() return G:GetCurrentStep() end
 local function settle() MOCK_ADVANCE(1) end
 
 print("guide active: " .. tostring(G.active and G.active.id))
+-- Addon Lua errors join the session capture while the recorder is enabled.
+do
+    local entries = ns.db.recorder.entries
+    local before, errorsBefore = #entries, #reportedErrors
+    ns.ReportOnce("test:ui-error", "broken button")
+    local e = entries[#entries]
+    check(#entries == before + 1 and e.e == "ERROR" and e.key == "test:ui-error" and e.msg == "broken button" and e.m == MOCK.mapID
+        and e.guide == G.active.id and e.step == G.current,
+        "a reported UI Lua error is stored with session location and message")
+    ns.ReportOnce("test:ui-error", "broken button")
+    check(#entries == before + 1, "the same error does not flood the capture")
+    ns.db.recorder.enabled = false
+    ns.ReportOnce("test:ui-disabled", "not captured")
+    check(#entries == before + 1, "recording off skips Lua error capture")
+    ns.db.recorder.enabled = true
+    while #entries > before do table.remove(entries) end
+    while #reportedErrors > errorsBefore do table.remove(reportedErrors) end
+end
 check(ns.db.ding.enabled == false and ns.db.nav.blizzardWaypoint == false
     and ns.db.nav.waypoint.enabled == false and ns.db.nav.waypoint.route == false
     and ns.db.ui.arrow.enabled == true, "quiet defaults: no ding, pin or dotted route; arrow on")

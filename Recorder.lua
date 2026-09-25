@@ -6,6 +6,7 @@
 --   objective progress                      -> where objectives are completed and on what
 --   gossip windows                          -> NPC id/name + quests available there
 --   zone/map changes                        -> uiMapID <-> zone name table
+--   ForeverGuide Lua errors                 -> key, message, guide step, location
 -- Everything goes to ForeverGuideDB.recorder (account-wide SavedVariables):
 --   WTF\Account\<acct>\SavedVariables\ForeverGuide.lua
 -- Nothing is sent anywhere. /fg rec off disables it.
@@ -165,9 +166,14 @@ function Recorder:Dump(n)
     n = math.min(n or 10, #entries)
     for i = #entries - n + 1, #entries do
         local e = entries[i]
-        ns.Printf("%s %s q=%s npc=%s %s @ map %s (%s, %s) lvl %s %s",
-            e.e, e.n or e.txt or "", tostring(e.q or "-"), tostring(e.npc or "-"), e.npcName or "",
-            tostring(e.m or "?"), tostring(e.x or "?"), tostring(e.y or "?"), tostring(e.lvl), e.zone or "")
+        if e.e == "ERROR" then
+            ns.Printf("ERROR %s: %s (guide %s step %s @ map %s)", e.key or "?", e.msg or "?",
+                tostring(e.guide or "?"), tostring(e.step or "?"), tostring(e.m or "?"))
+        else
+            ns.Printf("%s %s q=%s npc=%s %s @ map %s (%s, %s) lvl %s %s",
+                e.e, e.n or e.txt or "", tostring(e.q or "-"), tostring(e.npc or "-"), e.npcName or "",
+                tostring(e.m or "?"), tostring(e.x or "?"), tostring(e.y or "?"), tostring(e.lvl), e.zone or "")
+        end
     end
     ns.Printf("%d entries recorded in total.", #entries)
 end

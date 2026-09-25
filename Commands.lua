@@ -790,7 +790,7 @@ function Commands:Run(msg)
         return
     end
     local ok, err = pcall(fn, rest)
-    if not ok then ns.Error("command failed: " .. tostring(err)) end
+    if not ok then ns.ReportOnce("command:" .. cmd, err) end
 end
 
 function Commands:OnInit()
