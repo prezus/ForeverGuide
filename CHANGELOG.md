@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Profession quests: a step can be marked with a profession (and the skill it needs); it shows only to characters who have that profession at that rank, read from your skill lines, and is skipped for everyone else like another class's step.
 - Guides can ask you to learn a flight path: the `FLIGHTPATH` step ("Get the flight path at Thor") finishes when you open that flight master's map, when "New flight path discovered!" comes up, or straight away if you already know that path. Like a travel step, it also finishes itself once you are past it, so skipping it never blocks the guide.
 
 - Dungeon guides: a guide with `"kind": "dungeon"` is a dungeon's own guide. `/fg dungeons` lists the ones your character can do, by level; auto-pick never lands on one. Opening one remembers the chapter you came from, and finishing it (or `/fg resume`) takes you back there. Opening another chapter by hand forgets the way back.
