@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_19_FERALAS",
     name = "19. Feralas 40-41 (Night Elf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 40,
