@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_34_THE_HINTERLANDS",
   "name": "34. The Hinterlands 51-51 (Skyborne)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 51,
