@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_02_DARNASSUS",
     author = "ForeverGuide route planner",
     notes = "Chapter 1 of the NightElf route: level 1 to 10, 100 steps, ~143 min of play in the model (11737 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 159,
+    stepCount = 172,
     steps = function() return {
         { type = "ACCEPT", quest = 458, questName = "The Woodland Protector", npc = 2077, npcName = "Melithar Staghelm", map = 1438, zone = "Teldrassil", x = 59.9, y = 42.5 }, -- 1
         { type = "ACCEPT", quest = 456, questName = "The Balance of Nature", npc = 2079, npcName = "Conservator Ilthalaine", map = 1438, zone = "Teldrassil", x = 58.7, y = 44.3 }, -- 2
@@ -28,151 +28,164 @@ ns.RegisterGuide({
         { type = "KILL", quest = 457, questName = "The Balance of Nature", npc = 2032, target = "Mangy Nightsaber / Thistle Boar", count = 7, map = 1438, zone = "Teldrassil", x = 61.3, y = 39.1, near = true }, -- 11
         { type = "COLLECT", quest = 459, questName = "The Woodland Protector", target = "Fel Moss", count = 8, map = 1438, zone = "Teldrassil", x = 64.2, y = 42.2, near = true }, -- 12
         { type = "TURNIN", quest = 457, questName = "The Balance of Nature", npc = 2079, npcName = "Conservator Ilthalaine", map = 1438, zone = "Teldrassil", x = 58.7, y = 44.3 }, -- 13
-        { type = "ACCEPT", quest = 916, questName = "Webwood Venom", npc = 2082, npcName = "Gilshalan Windwalker", map = 1438, zone = "Teldrassil", x = 57.8, y = 41.7 }, -- 14
-        { type = "TURNIN", quest = 459, questName = "The Woodland Protector", npc = 1992, npcName = "Tarindrella", map = 1438, zone = "Teldrassil", x = 57.8, y = 45.2 }, -- 15
-        { type = "KILL", quest = 916, questName = "Webwood Venom", npc = 1986, target = "Webwood Spider", count = 10, map = 1438, zone = "Teldrassil", x = 57.2, y = 33.9, near = true, note = "loot Webwood Venom Sac" }, -- 16
-        { type = "TURNIN", quest = 4495, questName = "A Good Friend", npc = 8584, npcName = "Iverron", map = 1438, zone = "Teldrassil", x = 54.6, y = 33 }, -- 17
-        { type = "ACCEPT", quest = 3519, questName = "A Friend in Need", npc = 8584, npcName = "Iverron", map = 1438, zone = "Teldrassil", x = 54.6, y = 33 }, -- 18
-        { type = "TURNIN", quest = 916, questName = "Webwood Venom", npc = 2082, npcName = "Gilshalan Windwalker", map = 1438, zone = "Teldrassil", x = 57.8, y = 41.7 }, -- 19
-        { type = "ACCEPT", quest = 917, questName = "Webwood Egg", npc = 2082, npcName = "Gilshalan Windwalker", map = 1438, zone = "Teldrassil", x = 57.8, y = 41.7 }, -- 20
-        { type = "TURNIN", quest = 3519, questName = "A Friend in Need", npc = 8583, npcName = "Dirania Silvershine", map = 1438, zone = "Teldrassil", x = 60.9, y = 42 }, -- 21
-        { type = "ACCEPT", quest = 3521, questName = "Iverron's Antidote", npc = 8583, npcName = "Dirania Silvershine", map = 1438, zone = "Teldrassil", x = 60.9, y = 42 }, -- 22
-        { type = "COLLECT", quest = 3521, questName = "Iverron's Antidote", target = "Hyacinth Mushroom", count = 7, map = 1438, zone = "Teldrassil", x = 62.3, y = 43.2, near = true }, -- 23
-        { type = "COLLECT", quest = 3521, questName = "Iverron's Antidote", target = "Moonpetal Lily", count = 4, map = 1438, zone = "Teldrassil", x = 58.8, y = 37.6, near = true }, -- 24
-        { type = "KILL", quest = 3521, questName = "Iverron's Antidote", npc = 1986, target = "Webwood Spider", count = 1, map = 1438, zone = "Teldrassil", x = 58.8, y = 33.4, near = true, note = "loot Webwood Ichor" }, -- 25
-        { type = "COLLECT", quest = 917, questName = "Webwood Egg", target = "Webwood Egg", map = 1438, zone = "Teldrassil", x = 57, y = 26.5, near = true }, -- 26
-        { type = "TURNIN", quest = 3521, questName = "Iverron's Antidote", npc = 8583, npcName = "Dirania Silvershine", map = 1438, zone = "Teldrassil", x = 60.9, y = 42 }, -- 27
-        { type = "ACCEPT", quest = 3522, questName = "Iverron's Antidote", npc = 8583, npcName = "Dirania Silvershine", map = 1438, zone = "Teldrassil", x = 60.9, y = 42 }, -- 28
-        { type = "TURNIN", quest = 917, questName = "Webwood Egg", npc = 2082, npcName = "Gilshalan Windwalker", map = 1438, zone = "Teldrassil", x = 57.8, y = 41.7 }, -- 29
-        { type = "ACCEPT", quest = 920, questName = "Tenaron's Summons", npc = 2082, npcName = "Gilshalan Windwalker", map = 1438, zone = "Teldrassil", x = 57.8, y = 41.7 }, -- 30
-        { type = "TURNIN", quest = 920, questName = "Tenaron's Summons", npc = 3514, npcName = "Tenaron Stormgrip", map = 1438, zone = "Teldrassil", x = 59.1, y = 39.5 }, -- 31
-        { type = "ACCEPT", quest = 921, questName = "Crown of the Earth", npc = 3514, npcName = "Tenaron Stormgrip", map = 1438, zone = "Teldrassil", x = 59.1, y = 39.5 }, -- 32
-        { type = "COLLECT", quest = 921, questName = "Crown of the Earth", target = "Filled Crystal Phial", map = 1438, zone = "Teldrassil", x = 60, y = 33.1 }, -- 33
-        { type = "TURNIN", quest = 921, questName = "Crown of the Earth", npc = 3514, npcName = "Tenaron Stormgrip", map = 1438, zone = "Teldrassil", x = 59.1, y = 39.5 }, -- 34
-        { type = "ACCEPT", quest = 928, questName = "Crown of the Earth", npc = 3514, npcName = "Tenaron Stormgrip", map = 1438, zone = "Teldrassil", x = 59.1, y = 39.5 }, -- 35
-        { type = "TURNIN", quest = 3522, questName = "Iverron's Antidote", npc = 8584, npcName = "Iverron", map = 1438, zone = "Teldrassil", x = 54.6, y = 33 }, -- 36
-        { type = "ACCEPT", quest = 488, questName = "Zenn's Bidding", npc = 2150, npcName = "Zenn Foulhoof", map = 1438, zone = "Teldrassil", x = 60.5, y = 56.3 }, -- 37
-        { type = "TURNIN", quest = 928, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 38
-        { type = "ACCEPT", quest = 929, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 39
-        { type = "ACCEPT", quest = 997, questName = "Denalan's Earth", npc = 2083, npcName = "Syral Bladeleaf", map = 1438, zone = "Teldrassil", x = 56.1, y = 57.7 }, -- 40
-        { type = "ACCEPT", quest = 475, questName = "A Troubling Breeze", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.3 }, -- 41
-        { type = "ACCEPT", quest = 2438, questName = "The Emerald Dreamcatcher", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 42
-        { type = "ACCEPT", quest = 932, questName = "Twisted Hatred", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 43
-        { type = "ACCEPT", quest = 87288, questName = "Soft Saber Pelts", npc = 3608, npcName = "Aldia", map = 1438, zone = "Teldrassil", x = 55.4, y = 57.2, note = "New in Forever" }, -- 44
-        { type = "TURNIN", quest = 2159, questName = "Dolanaar Delivery", npc = 6736, npcName = "Innkeeper Keldamyr", map = 1438, zone = "Teldrassil", x = 55.6, y = 59.8 }, -- 45
-        { type = "ACCEPT", quest = 487, questName = "The Road to Darnassus", npc = 2151, npcName = "Moon Priestess Amara", map = 1438, zone = "Teldrassil", x = 52.9, y = 57.2 }, -- 46
-        { type = "COLLECT", quest = 488, questName = "Zenn's Bidding", target = "Nightsaber Fang / Strigid Owl Feather", count = 3, map = 1438, zone = "Teldrassil", x = 52.9, y = 58.5, near = true }, -- 47
-        { type = "COLLECT", quest = 488, questName = "Zenn's Bidding", target = "Webwood Spider Silk", count = 3, map = 1438, zone = "Teldrassil", x = 53.6, y = 61.4, near = true }, -- 48
-        { type = "COLLECT", quest = 87288, questName = "Soft Saber Pelts", target = "Soft Nightsaber Pelt", count = 6, map = 1438, zone = "Teldrassil", x = 61.4, y = 58.8 }, -- 49
-        { type = "TURNIN", quest = 87288, questName = "Soft Saber Pelts", npc = 3608, npcName = "Aldia", map = 1438, zone = "Teldrassil", x = 55.4, y = 57.2 }, -- 50
-        { type = "ACCEPT", quest = 4161, questName = "Recipe of the Kaldorei", npc = 6286, npcName = "Zarrin", map = 1438, zone = "Teldrassil", x = 57, y = 61.2, profession = "Cooking" }, -- 51
-        { type = "COLLECT", quest = 4161, questName = "Recipe of the Kaldorei", target = "Small Spider Leg", count = 7, map = 1438, zone = "Teldrassil", x = 61.4, y = 58.8, near = true, profession = "Cooking" }, -- 52
-        { type = "TURNIN", quest = 4161, questName = "Recipe of the Kaldorei", npc = 6286, npcName = "Zarrin", map = 1438, zone = "Teldrassil", x = 57, y = 61.2, profession = "Cooking" }, -- 53
-        { type = "COLLECT", quest = 929, questName = "Crown of the Earth", target = "Filled Jade Phial", map = 1438, zone = "Teldrassil", x = 63.4, y = 58.1 }, -- 54
-        { type = "TURNIN", quest = 475, questName = "A Troubling Breeze", npc = 2107, npcName = "Gaerolas Talvethren", map = 1438, zone = "Teldrassil", x = 66.3, y = 58.5 }, -- 55
-        { type = "TURNIN", quest = 488, questName = "Zenn's Bidding", npc = 2150, npcName = "Zenn Foulhoof", map = 1438, zone = "Teldrassil", x = 60.5, y = 56.3 }, -- 56
-        { type = "COLLECT", quest = 2438, questName = "The Emerald Dreamcatcher", target = "Emerald Dreamcatcher", map = 1438, zone = "Teldrassil", x = 68, y = 59.7 }, -- 57
-        { type = "ACCEPT", quest = 476, questName = "Gnarlpine Corruption", npc = 2107, npcName = "Gaerolas Talvethren", map = 1438, zone = "Teldrassil", x = 66.3, y = 58.5 }, -- 58
-        { type = "KILL", quest = 932, questName = "Twisted Hatred", npc = 2038, target = "Lord Melenas", map = 1438, zone = "Teldrassil", x = 52.8, y = 50.2, near = true, note = "loot Melenas' Head" }, -- 59
-        { type = "KILL", quest = 487, questName = "The Road to Darnassus", npc = 2152, target = "Gnarlpine Ambusher", count = 6, map = 1438, zone = "Teldrassil", x = 48.5, y = 54.1, near = true }, -- 60
-        { type = "TURNIN", quest = 929, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 61
-        { type = "ACCEPT", quest = 489, questName = "Seek Redemption!", npc = 2081, npcName = "Sentinel Kyra Starsong", map = 1438, zone = "Teldrassil", x = 56, y = 59.5 }, -- 62
-        { type = "ACCEPT", quest = 933, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 63
-        { type = "TURNIN", quest = 476, questName = "Gnarlpine Corruption", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.3 }, -- 64
-        { type = "ACCEPT", quest = 483, questName = "The Relics of Wakening", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.4 }, -- 65
-        { type = "TURNIN", quest = 932, questName = "Twisted Hatred", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 66
-        { type = "TURNIN", quest = 2438, questName = "The Emerald Dreamcatcher", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 67
-        { type = "ACCEPT", quest = 2459, questName = "Ferocitas the Dream Eater", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 68
-        { type = "ACCEPT", quest = 99073, questName = "Easing Suffering", npc = 6094, npcName = "Byancie", map = 1438, zone = "Teldrassil", x = 55.2, y = 56.8, note = "New in Forever" }, -- 69
-        { type = "ACCEPT", quest = 98403, questName = "Twisted Hatred", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.4, y = 56.8, optional = true, note = "New in Forever; Elite - group up" }, -- 70
-        { type = "TURNIN", quest = 487, questName = "The Road to Darnassus", npc = 2151, npcName = "Moon Priestess Amara", map = 1438, zone = "Teldrassil", x = 52.9, y = 57.2 }, -- 71
-        { type = "COLLECT", quest = 489, questName = "Seek Redemption!", target = "Fel Cone", count = 3, map = 1438, zone = "Teldrassil", x = 50.5, y = 57.1, near = true }, -- 72
-        { type = "COLLECT", quest = 483, questName = "The Relics of Wakening", target = "Raven Claw Talisman", count = 1, map = 1438, zone = "Teldrassil", x = 45.7, y = 57.4 }, -- 73
-        { type = "COLLECT", quest = 483, questName = "The Relics of Wakening", target = "Black Feather Quill", count = 1, map = 1438, zone = "Teldrassil", x = 43.7, y = 61.2 }, -- 74
-        { type = "COLLECT", quest = 483, questName = "The Relics of Wakening", target = "Sapphire of Sky", count = 1, map = 1438, zone = "Teldrassil", x = 44.7, y = 62.4 }, -- 75
-        { type = "COLLECT", quest = 483, questName = "The Relics of Wakening", target = "Rune of Nesting", count = 1, map = 1438, zone = "Teldrassil", x = 44.4, y = 60.7 }, -- 76
-        { type = "COLLECT", quest = 933, questName = "Crown of the Earth", target = "Filled Tourmaline Phial", map = 1438, zone = "Teldrassil", x = 42.4, y = 67.1 }, -- 77
-        { type = "ACCEPT", quest = 99046, questName = "The Lost Runner", npc = 2081, npcName = "Sentinel Kyra Starsong", map = 1438, zone = "Teldrassil", x = 56, y = 59.4, note = "New in Forever" }, -- 78
-        { type = "TURNIN", quest = 483, questName = "The Relics of Wakening", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.4 }, -- 79
-        { type = "ACCEPT", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 80
-        { type = "COLLECT", quest = 94373, questName = "Call of Earth", target = "Iceclaw Bear Pendant", count = 2, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, near = true, class = { "SHAMAN" } }, -- 81
-        { type = "TURNIN", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 82
-        { type = "KILL", quest = 2459, questName = "Ferocitas the Dream Eater", npc = 7235, target = "Gnarlpine Mystic", count = 7, map = 1438, zone = "Teldrassil", x = 68.3, y = 52.2, near = true }, -- 83
-        { type = "TURNIN", quest = 489, questName = "Seek Redemption!", npc = 2150, npcName = "Zenn Foulhoof", map = 1438, zone = "Teldrassil", x = 60.5, y = 56.3 }, -- 84
-        { type = "ACCEPT", quest = 98391, questName = "The Sisterhood of Elune", npc = 3600, npcName = "Laurna Morninglight", map = 1438, zone = "Teldrassil", x = 55.6, y = 56.8, note = "New in Forever" }, -- 85
-        { type = "ACCEPT", quest = 486, questName = "Ursal the Mauler", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.4 }, -- 86
-        { type = "TURNIN", quest = 2459, questName = "Ferocitas the Dream Eater", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 87
-        { type = "TURNIN", quest = 933, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 88
-        { type = "ACCEPT", quest = 7383, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 89
-        { type = "KILL", quest = 98403, questName = "Twisted Hatred", npc = 272096, target = "Befouled Webwood", count = 8, map = 1438, zone = "Teldrassil", x = 49.2, y = 47.4, optional = true }, -- 90
-        { type = "COLLECT", quest = 98403, questName = "Twisted Hatred", target = "Mature Fel Moss", count = 1, map = 1438, zone = "Teldrassil", x = 51.4, y = 44.2, optional = true }, -- 91
-        { type = "TURNIN", quest = 98403, questName = "Twisted Hatred", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.4, y = 56.8, optional = true }, -- 92
-        { type = "ACCEPT", quest = 94374, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 93
-        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" } }, -- 94
-        { type = "COLLECT", quest = 7383, questName = "Crown of the Earth", target = "Filled Amethyst Phial", map = 1438, zone = "Teldrassil", x = 38.4, y = 34.1 }, -- 95
-        { type = "ACCEPT", quest = 937, questName = "The Enchanted Glade", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.3, y = 34.4 }, -- 96
-        { type = "COLLECT", quest = 937, questName = "The Enchanted Glade", target = "Bloodfeather Belt", count = 6, map = 1438, zone = "Teldrassil", x = 35.5, y = 35, near = true }, -- 97
-        { type = "TURNIN", quest = 937, questName = "The Enchanted Glade", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.3, y = 34.4 }, -- 98
-        { type = "ACCEPT", quest = 98392, questName = "Darkness in the Glade", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.2, y = 34.4, note = "New in Forever" }, -- 99
-        { type = "COLLECT", quest = 98392, questName = "Darkness in the Glade", target = "Hatescreech's Amulet", count = 1, map = 1438, zone = "Teldrassil", x = 35, y = 39.2 }, -- 100
-        { type = "COLLECT", quest = 98392, questName = "Darkness in the Glade", target = "Windmistress Gaedress' Amulet", count = 1, map = 1438, zone = "Teldrassil", x = 33.2, y = 36 }, -- 101
-        { type = "COLLECT", quest = 98392, questName = "Darkness in the Glade", target = "Witchmother Arysa's Amulet", count = 1, map = 1438, zone = "Teldrassil", x = 34.2, y = 28 }, -- 102
-        { type = "TURNIN", quest = 98392, questName = "Darkness in the Glade", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.2, y = 34.4 }, -- 103
-        { type = "ACCEPT", quest = 938, questName = "Mist", npc = 3568, npcName = "Mist", map = 1438, zone = "Teldrassil", x = 31.5, y = 31.6 }, -- 104
-        { type = "COMPLETE", quest = 938, questName = "Mist", target = "Lead Mist safely to Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.3, y = 34.4, note = "escort - stay close, it can fail: Lead Mist safely to Sentinel Arynia Cloudsbreak" }, -- 105
-        { type = "TURNIN", quest = 938, questName = "Mist", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.3, y = 34.4 }, -- 106
-        { type = "TURNIN", quest = 99046, questName = "The Lost Runner", npc = 275683, npcName = "Sentinel Eralya Leafshadow", map = 1438, zone = "Teldrassil", x = 37.6, y = 36.8 }, -- 107
-        { type = "TURNIN", quest = 99073, questName = "Easing Suffering", npc = 275683, npcName = "Sentinel Eralya Leafshadow", map = 1438, zone = "Teldrassil", x = 37.6, y = 36.8 }, -- 108
-        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" }, note = "New in Forever" }, -- 109
-        { type = "TURNIN", quest = 94375, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 110
-        { type = "ACCEPT", quest = 2541, questName = "The Sleeping Druid", npc = 7317, npcName = "Oben Rageclaw", map = 1438, zone = "Teldrassil", x = 44.9, y = 61.6 }, -- 111
-        { type = "KILL", quest = 2541, questName = "The Sleeping Druid", npc = 2009, target = "Gnarlpine Shaman", map = 1438, zone = "Teldrassil", x = 45.5, y = 59.9, near = true, note = "loot Shaman Voodoo Charm" }, -- 112
-        { type = "TURNIN", quest = 2541, questName = "The Sleeping Druid", npc = 7317, npcName = "Oben Rageclaw", map = 1438, zone = "Teldrassil", x = 44.9, y = 61.6 }, -- 113
-        { type = "ACCEPT", quest = 2561, questName = "Druid of the Claw", npc = 7317, npcName = "Oben Rageclaw", map = 1438, zone = "Teldrassil", x = 44.9, y = 61.6 }, -- 114
-        { type = "KILL", quest = 2561, questName = "Druid of the Claw", npc = 7318, target = "Rageclaw", count = 1, map = 1438, zone = "Teldrassil", x = 45.5, y = 58.6 }, -- 115
-        { type = "TURNIN", quest = 2561, questName = "Druid of the Claw", npc = 7317, npcName = "Oben Rageclaw", map = 1438, zone = "Teldrassil", x = 44.9, y = 61.6 }, -- 116
-        { type = "TURNIN", quest = 7383, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 117
-        { type = "ACCEPT", quest = 935, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 118
-        { type = "TURNIN", quest = 997, questName = "Denalan's Earth", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 119
-        { type = "ACCEPT", quest = 918, questName = "Timberling Seeds", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 120
-        { type = "ACCEPT", quest = 919, questName = "Timberling Sprouts", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 121
-        { type = "COLLECT", quest = 918, questName = "Timberling Seeds", target = "Timberling Seed", count = 8, map = 1438, zone = "Teldrassil", x = 61.5, y = 69.4, near = true }, -- 122
-        { type = "TURNIN", quest = 918, questName = "Timberling Seeds", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 123
-        { type = "ACCEPT", quest = 922, questName = "Rellian Greenspyre", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 124
-        { type = "COLLECT", quest = 919, questName = "Timberling Sprouts", target = "Timberling Sprout", count = 12, map = 1438, zone = "Teldrassil", x = 62.2, y = 68.5, near = true }, -- 125
-        { type = "TURNIN", quest = 919, questName = "Timberling Sprouts", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 126
-        { type = "FLIGHTPATH", npc = 3838, npcName = "Vesprystus", map = 1438, zone = "Teldrassil", x = 58.4, y = 94 }, -- 127
-        { type = "KILL", quest = 486, questName = "Ursal the Mauler", npc = 2039, target = "Ursal the Mauler", count = 1, map = 1438, zone = "Teldrassil", x = 39.4, y = 80.2 }, -- 128
-        { type = "ACCEPT", quest = 930, questName = "The Glowing Fruit", map = 1438, zone = "Teldrassil", x = 42.6, y = 76.2 }, -- 129
-        { type = "TURNIN", quest = 930, questName = "The Glowing Fruit", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 130
-        { type = "ACCEPT", quest = 99047, questName = "Not Dead Yet", npc = 275683, npcName = "Sentinel Eralya Leafshadow", map = 1438, zone = "Teldrassil", x = 37.6, y = 36.8, note = "New in Forever" }, -- 131
-        { type = "TURNIN", quest = 99047, questName = "Not Dead Yet", npc = 6094, npcName = "Byancie", map = 1438, zone = "Teldrassil", x = 55.2, y = 56.8 }, -- 132
-        { type = "TURNIN", quest = 486, questName = "Ursal the Mauler", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.4 }, -- 133
-        { type = "ACCEPT", quest = 940, questName = "Teldrassil", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.2, y = 34.4 }, -- 134
-        { type = "ACCEPT", quest = 6072, questName = "The Hunter's Path", npc = 3596, npcName = "Ayanna Everstride", map = 1438, zone = "Teldrassil", x = 58.4, y = 40.6, class = { "HUNTER" } }, -- 135
-        { type = "TURNIN", quest = 6072, questName = "The Hunter's Path", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 136
-        { type = "ACCEPT", quest = 6073, questName = "The Hunter's Path", npc = 4205, npcName = "Dorion", map = 1457, zone = "Darnassus", x = 42.2, y = 7.4, class = { "HUNTER" } }, -- 137
-        { type = "TURNIN", quest = 6073, questName = "The Hunter's Path", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 138
-        { type = "ACCEPT", quest = 6721, questName = "The Hunter's Path", npc = 5116, npcName = "Olmin Burningbeard", map = 1455, zone = "Ironforge", x = 70.6, y = 83.8, class = { "HUNTER" } }, -- 139
-        { type = "TURNIN", quest = 6721, questName = "The Hunter's Path", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 140
-        { type = "ACCEPT", quest = 6722, questName = "The Hunter's Path", npc = 1231, npcName = "Grif Wildheart", map = 1426, zone = "Dun Morogh", x = 45.8, y = 53, class = { "HUNTER" } }, -- 141
-        { type = "TURNIN", quest = 6722, questName = "The Hunter's Path", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 142
-        { type = "ACCEPT", quest = 5629, questName = "Returning Home", npc = 3600, npcName = "Laurna Morninglight", map = 1438, zone = "Teldrassil", x = 55.6, y = 56.8, class = { "PRIEST" } }, -- 143
-        { type = "ACCEPT", quest = 5630, questName = "Returning Home", npc = 1226, npcName = "Maxan Anvol", map = 1426, zone = "Dun Morogh", x = 47.2, y = 52.2, class = { "PRIEST" } }, -- 144
-        { type = "ACCEPT", quest = 5631, questName = "Returning Home", npc = 5489, npcName = "Brother Joshua", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.8, class = { "PRIEST" } }, -- 145
-        { type = "ACCEPT", quest = 5632, questName = "Returning Home", npc = 11397, npcName = "Nara Meideros", map = 1453, zone = "Stormwind City", x = 20.8, y = 50.2, class = { "PRIEST" } }, -- 146
-        { type = "ACCEPT", quest = 5633, questName = "Returning Home", npc = 5142, npcName = "Braenna Flintcrag", map = 1455, zone = "Ironforge", x = 24.6, y = 9.2, class = { "PRIEST" } }, -- 147
-        { type = "ACCEPT", quest = 5923, questName = "Heeding the Call", npc = 3602, npcName = "Kal", map = 1438, zone = "Teldrassil", x = 56, y = 61.4, class = { "DRUID" } }, -- 148
-        { type = "ACCEPT", quest = 5925, questName = "Heeding the Call", npc = 3602, npcName = "Kal", map = 1438, zone = "Teldrassil", x = 56, y = 61.6, class = { "DRUID" } }, -- 149
-        { type = "ACCEPT", quest = 931, questName = "The Shimmering Frond", map = 1438, zone = "Teldrassil", x = 34.6, y = 28.8 }, -- 150
-        { type = "ACCEPT", quest = 1684, questName = "Elanaria", npc = 2151, npcName = "Moon Priestess Amara", map = 1438, zone = "Teldrassil", x = 55.6, y = 58.4, class = { "WARRIOR" } }, -- 151
-        { type = "TURNIN", quest = 931, questName = "The Shimmering Frond", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 152
-        { type = "ACCEPT", quest = 2399, questName = "The Sprouted Fronds", map = 1438, zone = "Teldrassil", x = 60.8, y = 68.6 }, -- 153
-        { type = "TURNIN", quest = 2399, questName = "The Sprouted Fronds", map = 1438, zone = "Teldrassil", x = 60.8, y = 68.6 }, -- 154
-        { type = "ACCEPT", quest = 6341, questName = "The Bounty of Teldrassil", npc = 10118, npcName = "Nessa Shadowsong", map = 1438, zone = "Teldrassil", x = 56.3, y = 92.4 }, -- 155
-        { type = "TURNIN", quest = 6341, questName = "The Bounty of Teldrassil", npc = 3838, npcName = "Vesprystus", map = 1438, zone = "Teldrassil", x = 58.4, y = 94 }, -- 156
-        { type = "ACCEPT", quest = 6342, questName = "Flight to Auberdine", npc = 3838, npcName = "Vesprystus", map = 1438, zone = "Teldrassil", x = 58.4, y = 94 }, -- 157
-        { type = "TURNIN", quest = 6344, questName = "Nessa Shadowsong", npc = 10118, npcName = "Nessa Shadowsong", map = 1438, zone = "Teldrassil", x = 56.2, y = 92.4 }, -- 158
-        { type = "TURNIN", quest = 6071, questName = "The Hunter's Path", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 159
+        { type = "ACCEPT", quest = 3116, questName = "Simple Sigil", npc = 2079, npcName = "Conservator Ilthalaine", map = 1438, zone = "Teldrassil", x = 58.6, y = 44.2, class = { "WARRIOR" } }, -- 14
+        { type = "ACCEPT", quest = 3117, questName = "Etched Sigil", npc = 2079, npcName = "Conservator Ilthalaine", map = 1438, zone = "Teldrassil", x = 58.6, y = 44.2, class = { "HUNTER" } }, -- 15
+        { type = "ACCEPT", quest = 3118, questName = "Encrypted Sigil", npc = 2079, npcName = "Conservator Ilthalaine", map = 1438, zone = "Teldrassil", x = 58.6, y = 44.2, class = { "ROGUE" } }, -- 16
+        { type = "ACCEPT", quest = 3119, questName = "Hallowed Sigil", npc = 2079, npcName = "Conservator Ilthalaine", map = 1438, zone = "Teldrassil", x = 58.6, y = 44.2, class = { "PRIEST" } }, -- 17
+        { type = "ACCEPT", quest = 3120, questName = "Verdant Sigil", npc = 2079, npcName = "Conservator Ilthalaine", map = 1438, zone = "Teldrassil", x = 58.6, y = 44.2, class = { "DRUID" } }, -- 18
+        { type = "ACCEPT", quest = 916, questName = "Webwood Venom", npc = 2082, npcName = "Gilshalan Windwalker", map = 1438, zone = "Teldrassil", x = 57.8, y = 41.7 }, -- 19
+        { type = "TURNIN", quest = 459, questName = "The Woodland Protector", npc = 1992, npcName = "Tarindrella", map = 1438, zone = "Teldrassil", x = 57.8, y = 45.2 }, -- 20
+        { type = "KILL", quest = 916, questName = "Webwood Venom", npc = 1986, target = "Webwood Spider", count = 10, map = 1438, zone = "Teldrassil", x = 57.2, y = 33.9, near = true, note = "loot Webwood Venom Sac" }, -- 21
+        { type = "TURNIN", quest = 4495, questName = "A Good Friend", npc = 8584, npcName = "Iverron", map = 1438, zone = "Teldrassil", x = 54.6, y = 33 }, -- 22
+        { type = "ACCEPT", quest = 3519, questName = "A Friend in Need", npc = 8584, npcName = "Iverron", map = 1438, zone = "Teldrassil", x = 54.6, y = 33 }, -- 23
+        { type = "TURNIN", quest = 916, questName = "Webwood Venom", npc = 2082, npcName = "Gilshalan Windwalker", map = 1438, zone = "Teldrassil", x = 57.8, y = 41.7 }, -- 24
+        { type = "ACCEPT", quest = 917, questName = "Webwood Egg", npc = 2082, npcName = "Gilshalan Windwalker", map = 1438, zone = "Teldrassil", x = 57.8, y = 41.7 }, -- 25
+        { type = "TURNIN", quest = 3519, questName = "A Friend in Need", npc = 8583, npcName = "Dirania Silvershine", map = 1438, zone = "Teldrassil", x = 60.9, y = 42 }, -- 26
+        { type = "ACCEPT", quest = 3521, questName = "Iverron's Antidote", npc = 8583, npcName = "Dirania Silvershine", map = 1438, zone = "Teldrassil", x = 60.9, y = 42 }, -- 27
+        { type = "COLLECT", quest = 3521, questName = "Iverron's Antidote", target = "Hyacinth Mushroom", count = 7, map = 1438, zone = "Teldrassil", x = 62.3, y = 43.2, near = true }, -- 28
+        { type = "TURNIN", quest = 3116, questName = "Simple Sigil", npc = 3593, npcName = "Alyissia", map = 1438, zone = "Teldrassil", x = 59.6, y = 38.4, class = { "WARRIOR" } }, -- 29
+        { type = "TURNIN", quest = 3118, questName = "Encrypted Sigil", npc = 3594, npcName = "Frahun Shadewhisper", map = 1438, zone = "Teldrassil", x = 59.6, y = 38.6, class = { "ROGUE" } }, -- 30
+        { type = "COLLECT", quest = 3521, questName = "Iverron's Antidote", target = "Moonpetal Lily", count = 4, map = 1438, zone = "Teldrassil", x = 58.8, y = 37.6, near = true }, -- 31
+        { type = "KILL", quest = 3521, questName = "Iverron's Antidote", npc = 1986, target = "Webwood Spider", count = 1, map = 1438, zone = "Teldrassil", x = 58.8, y = 33.4, near = true, note = "loot Webwood Ichor" }, -- 32
+        { type = "COLLECT", quest = 917, questName = "Webwood Egg", target = "Webwood Egg", map = 1438, zone = "Teldrassil", x = 57, y = 26.5, near = true }, -- 33
+        { type = "TURNIN", quest = 3521, questName = "Iverron's Antidote", npc = 8583, npcName = "Dirania Silvershine", map = 1438, zone = "Teldrassil", x = 60.9, y = 42 }, -- 34
+        { type = "ACCEPT", quest = 3522, questName = "Iverron's Antidote", npc = 8583, npcName = "Dirania Silvershine", map = 1438, zone = "Teldrassil", x = 60.9, y = 42 }, -- 35
+        { type = "TURNIN", quest = 917, questName = "Webwood Egg", npc = 2082, npcName = "Gilshalan Windwalker", map = 1438, zone = "Teldrassil", x = 57.8, y = 41.7 }, -- 36
+        { type = "ACCEPT", quest = 920, questName = "Tenaron's Summons", npc = 2082, npcName = "Gilshalan Windwalker", map = 1438, zone = "Teldrassil", x = 57.8, y = 41.7 }, -- 37
+        { type = "TURNIN", quest = 3117, questName = "Etched Sigil", npc = 3596, npcName = "Ayanna Everstride", map = 1438, zone = "Teldrassil", x = 58.6, y = 40.4, class = { "HUNTER" } }, -- 38
+        { type = "TURNIN", quest = 3119, questName = "Hallowed Sigil", npc = 3595, npcName = "Shanda", map = 1438, zone = "Teldrassil", x = 59.2, y = 40.4, class = { "PRIEST" } }, -- 39
+        { type = "ACCEPT", quest = 5622, questName = "In Favor of Elune", npc = 3595, npcName = "Shanda", map = 1438, zone = "Teldrassil", x = 59.2, y = 40.4, class = { "PRIEST" } }, -- 40
+        { type = "TURNIN", quest = 3120, questName = "Verdant Sigil", npc = 3597, npcName = "Mardant Strongoak", map = 1438, zone = "Teldrassil", x = 58.6, y = 40.4, class = { "DRUID" } }, -- 41
+        { type = "TURNIN", quest = 920, questName = "Tenaron's Summons", npc = 3514, npcName = "Tenaron Stormgrip", map = 1438, zone = "Teldrassil", x = 59.1, y = 39.5 }, -- 42
+        { type = "ACCEPT", quest = 921, questName = "Crown of the Earth", npc = 3514, npcName = "Tenaron Stormgrip", map = 1438, zone = "Teldrassil", x = 59.1, y = 39.5 }, -- 43
+        { type = "COLLECT", quest = 921, questName = "Crown of the Earth", target = "Filled Crystal Phial", map = 1438, zone = "Teldrassil", x = 60, y = 33.1 }, -- 44
+        { type = "TURNIN", quest = 921, questName = "Crown of the Earth", npc = 3514, npcName = "Tenaron Stormgrip", map = 1438, zone = "Teldrassil", x = 59.1, y = 39.5 }, -- 45
+        { type = "ACCEPT", quest = 928, questName = "Crown of the Earth", npc = 3514, npcName = "Tenaron Stormgrip", map = 1438, zone = "Teldrassil", x = 59.1, y = 39.5 }, -- 46
+        { type = "TURNIN", quest = 3522, questName = "Iverron's Antidote", npc = 8584, npcName = "Iverron", map = 1438, zone = "Teldrassil", x = 54.6, y = 33 }, -- 47
+        { type = "ACCEPT", quest = 488, questName = "Zenn's Bidding", npc = 2150, npcName = "Zenn Foulhoof", map = 1438, zone = "Teldrassil", x = 60.5, y = 56.3 }, -- 48
+        { type = "TURNIN", quest = 928, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 49
+        { type = "ACCEPT", quest = 929, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 50
+        { type = "ACCEPT", quest = 997, questName = "Denalan's Earth", npc = 2083, npcName = "Syral Bladeleaf", map = 1438, zone = "Teldrassil", x = 56.1, y = 57.7 }, -- 51
+        { type = "ACCEPT", quest = 475, questName = "A Troubling Breeze", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.3 }, -- 52
+        { type = "TURNIN", quest = 5622, questName = "In Favor of Elune", npc = 3600, npcName = "Laurna Morninglight", map = 1438, zone = "Teldrassil", x = 55.6, y = 56.8, class = { "PRIEST" } }, -- 53
+        { type = "ACCEPT", quest = 2438, questName = "The Emerald Dreamcatcher", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 54
+        { type = "ACCEPT", quest = 932, questName = "Twisted Hatred", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 55
+        { type = "ACCEPT", quest = 87288, questName = "Soft Saber Pelts", npc = 3608, npcName = "Aldia", map = 1438, zone = "Teldrassil", x = 55.4, y = 57.2, note = "New in Forever" }, -- 56
+        { type = "TURNIN", quest = 2159, questName = "Dolanaar Delivery", npc = 6736, npcName = "Innkeeper Keldamyr", map = 1438, zone = "Teldrassil", x = 55.6, y = 59.8 }, -- 57
+        { type = "ACCEPT", quest = 487, questName = "The Road to Darnassus", npc = 2151, npcName = "Moon Priestess Amara", map = 1438, zone = "Teldrassil", x = 52.9, y = 57.2 }, -- 58
+        { type = "COLLECT", quest = 488, questName = "Zenn's Bidding", target = "Nightsaber Fang / Strigid Owl Feather", count = 3, map = 1438, zone = "Teldrassil", x = 52.9, y = 58.5, near = true }, -- 59
+        { type = "COLLECT", quest = 488, questName = "Zenn's Bidding", target = "Webwood Spider Silk", count = 3, map = 1438, zone = "Teldrassil", x = 53.6, y = 61.4, near = true }, -- 60
+        { type = "COLLECT", quest = 87288, questName = "Soft Saber Pelts", target = "Soft Nightsaber Pelt", count = 6, map = 1438, zone = "Teldrassil", x = 61.4, y = 58.8 }, -- 61
+        { type = "TURNIN", quest = 87288, questName = "Soft Saber Pelts", npc = 3608, npcName = "Aldia", map = 1438, zone = "Teldrassil", x = 55.4, y = 57.2 }, -- 62
+        { type = "ACCEPT", quest = 4161, questName = "Recipe of the Kaldorei", npc = 6286, npcName = "Zarrin", map = 1438, zone = "Teldrassil", x = 57, y = 61.2, profession = "Cooking" }, -- 63
+        { type = "COLLECT", quest = 4161, questName = "Recipe of the Kaldorei", target = "Small Spider Leg", count = 7, map = 1438, zone = "Teldrassil", x = 61.4, y = 58.8, near = true, profession = "Cooking" }, -- 64
+        { type = "TURNIN", quest = 4161, questName = "Recipe of the Kaldorei", npc = 6286, npcName = "Zarrin", map = 1438, zone = "Teldrassil", x = 57, y = 61.2, profession = "Cooking" }, -- 65
+        { type = "COLLECT", quest = 929, questName = "Crown of the Earth", target = "Filled Jade Phial", map = 1438, zone = "Teldrassil", x = 63.4, y = 58.1 }, -- 66
+        { type = "TURNIN", quest = 475, questName = "A Troubling Breeze", npc = 2107, npcName = "Gaerolas Talvethren", map = 1438, zone = "Teldrassil", x = 66.3, y = 58.5 }, -- 67
+        { type = "TURNIN", quest = 488, questName = "Zenn's Bidding", npc = 2150, npcName = "Zenn Foulhoof", map = 1438, zone = "Teldrassil", x = 60.5, y = 56.3 }, -- 68
+        { type = "COLLECT", quest = 2438, questName = "The Emerald Dreamcatcher", target = "Emerald Dreamcatcher", map = 1438, zone = "Teldrassil", x = 68, y = 59.7 }, -- 69
+        { type = "ACCEPT", quest = 476, questName = "Gnarlpine Corruption", npc = 2107, npcName = "Gaerolas Talvethren", map = 1438, zone = "Teldrassil", x = 66.3, y = 58.5 }, -- 70
+        { type = "KILL", quest = 932, questName = "Twisted Hatred", npc = 2038, target = "Lord Melenas", map = 1438, zone = "Teldrassil", x = 52.8, y = 50.2, near = true, note = "loot Melenas' Head" }, -- 71
+        { type = "KILL", quest = 487, questName = "The Road to Darnassus", npc = 2152, target = "Gnarlpine Ambusher", count = 6, map = 1438, zone = "Teldrassil", x = 48.5, y = 54.1, near = true }, -- 72
+        { type = "TURNIN", quest = 929, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 73
+        { type = "ACCEPT", quest = 489, questName = "Seek Redemption!", npc = 2081, npcName = "Sentinel Kyra Starsong", map = 1438, zone = "Teldrassil", x = 56, y = 59.5 }, -- 74
+        { type = "ACCEPT", quest = 933, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 75
+        { type = "TURNIN", quest = 476, questName = "Gnarlpine Corruption", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.3 }, -- 76
+        { type = "ACCEPT", quest = 483, questName = "The Relics of Wakening", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.4 }, -- 77
+        { type = "TURNIN", quest = 932, questName = "Twisted Hatred", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 78
+        { type = "TURNIN", quest = 2438, questName = "The Emerald Dreamcatcher", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 79
+        { type = "ACCEPT", quest = 2459, questName = "Ferocitas the Dream Eater", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 80
+        { type = "ACCEPT", quest = 99073, questName = "Easing Suffering", npc = 6094, npcName = "Byancie", map = 1438, zone = "Teldrassil", x = 55.2, y = 56.8, note = "New in Forever" }, -- 81
+        { type = "ACCEPT", quest = 98403, questName = "Twisted Hatred", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.4, y = 56.8, optional = true, note = "New in Forever; Elite - group up" }, -- 82
+        { type = "TURNIN", quest = 487, questName = "The Road to Darnassus", npc = 2151, npcName = "Moon Priestess Amara", map = 1438, zone = "Teldrassil", x = 52.9, y = 57.2 }, -- 83
+        { type = "COLLECT", quest = 489, questName = "Seek Redemption!", target = "Fel Cone", count = 3, map = 1438, zone = "Teldrassil", x = 50.5, y = 57.1, near = true }, -- 84
+        { type = "COLLECT", quest = 483, questName = "The Relics of Wakening", target = "Raven Claw Talisman", count = 1, map = 1438, zone = "Teldrassil", x = 45.7, y = 57.4 }, -- 85
+        { type = "COLLECT", quest = 483, questName = "The Relics of Wakening", target = "Black Feather Quill", count = 1, map = 1438, zone = "Teldrassil", x = 43.7, y = 61.2 }, -- 86
+        { type = "COLLECT", quest = 483, questName = "The Relics of Wakening", target = "Sapphire of Sky", count = 1, map = 1438, zone = "Teldrassil", x = 44.7, y = 62.4 }, -- 87
+        { type = "COLLECT", quest = 483, questName = "The Relics of Wakening", target = "Rune of Nesting", count = 1, map = 1438, zone = "Teldrassil", x = 44.4, y = 60.7 }, -- 88
+        { type = "COLLECT", quest = 933, questName = "Crown of the Earth", target = "Filled Tourmaline Phial", map = 1438, zone = "Teldrassil", x = 42.4, y = 67.1 }, -- 89
+        { type = "ACCEPT", quest = 99046, questName = "The Lost Runner", npc = 2081, npcName = "Sentinel Kyra Starsong", map = 1438, zone = "Teldrassil", x = 56, y = 59.4, note = "New in Forever" }, -- 90
+        { type = "TURNIN", quest = 483, questName = "The Relics of Wakening", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.4 }, -- 91
+        { type = "ACCEPT", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 92
+        { type = "COLLECT", quest = 94373, questName = "Call of Earth", target = "Iceclaw Bear Pendant", count = 2, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, near = true, class = { "SHAMAN" } }, -- 93
+        { type = "TURNIN", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 94
+        { type = "KILL", quest = 2459, questName = "Ferocitas the Dream Eater", npc = 7235, target = "Gnarlpine Mystic", count = 7, map = 1438, zone = "Teldrassil", x = 68.3, y = 52.2, near = true }, -- 95
+        { type = "TURNIN", quest = 489, questName = "Seek Redemption!", npc = 2150, npcName = "Zenn Foulhoof", map = 1438, zone = "Teldrassil", x = 60.5, y = 56.3 }, -- 96
+        { type = "ACCEPT", quest = 98391, questName = "The Sisterhood of Elune", npc = 3600, npcName = "Laurna Morninglight", map = 1438, zone = "Teldrassil", x = 55.6, y = 56.8, note = "New in Forever" }, -- 97
+        { type = "ACCEPT", quest = 486, questName = "Ursal the Mauler", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.4 }, -- 98
+        { type = "TURNIN", quest = 2459, questName = "Ferocitas the Dream Eater", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.6, y = 57 }, -- 99
+        { type = "TURNIN", quest = 933, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 100
+        { type = "ACCEPT", quest = 7383, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 101
+        { type = "KILL", quest = 98403, questName = "Twisted Hatred", npc = 272096, target = "Befouled Webwood", count = 8, map = 1438, zone = "Teldrassil", x = 49.2, y = 47.4, optional = true }, -- 102
+        { type = "COLLECT", quest = 98403, questName = "Twisted Hatred", target = "Mature Fel Moss", count = 1, map = 1438, zone = "Teldrassil", x = 51.4, y = 44.2, optional = true }, -- 103
+        { type = "TURNIN", quest = 98403, questName = "Twisted Hatred", npc = 3567, npcName = "Tallonkai Swiftroot", map = 1438, zone = "Teldrassil", x = 55.4, y = 56.8, optional = true }, -- 104
+        { type = "ACCEPT", quest = 94374, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 105
+        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" } }, -- 106
+        { type = "COLLECT", quest = 7383, questName = "Crown of the Earth", target = "Filled Amethyst Phial", map = 1438, zone = "Teldrassil", x = 38.4, y = 34.1 }, -- 107
+        { type = "ACCEPT", quest = 937, questName = "The Enchanted Glade", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.3, y = 34.4 }, -- 108
+        { type = "COLLECT", quest = 937, questName = "The Enchanted Glade", target = "Bloodfeather Belt", count = 6, map = 1438, zone = "Teldrassil", x = 35.5, y = 35, near = true }, -- 109
+        { type = "TURNIN", quest = 937, questName = "The Enchanted Glade", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.3, y = 34.4 }, -- 110
+        { type = "ACCEPT", quest = 98392, questName = "Darkness in the Glade", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.2, y = 34.4, note = "New in Forever" }, -- 111
+        { type = "COLLECT", quest = 98392, questName = "Darkness in the Glade", target = "Hatescreech's Amulet", count = 1, map = 1438, zone = "Teldrassil", x = 35, y = 39.2 }, -- 112
+        { type = "COLLECT", quest = 98392, questName = "Darkness in the Glade", target = "Windmistress Gaedress' Amulet", count = 1, map = 1438, zone = "Teldrassil", x = 33.2, y = 36 }, -- 113
+        { type = "COLLECT", quest = 98392, questName = "Darkness in the Glade", target = "Witchmother Arysa's Amulet", count = 1, map = 1438, zone = "Teldrassil", x = 34.2, y = 28 }, -- 114
+        { type = "TURNIN", quest = 98392, questName = "Darkness in the Glade", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.2, y = 34.4 }, -- 115
+        { type = "ACCEPT", quest = 938, questName = "Mist", npc = 3568, npcName = "Mist", map = 1438, zone = "Teldrassil", x = 31.5, y = 31.6 }, -- 116
+        { type = "COMPLETE", quest = 938, questName = "Mist", target = "Lead Mist safely to Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.3, y = 34.4, note = "escort - stay close, it can fail: Lead Mist safely to Sentinel Arynia Cloudsbreak" }, -- 117
+        { type = "TURNIN", quest = 938, questName = "Mist", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.3, y = 34.4 }, -- 118
+        { type = "TURNIN", quest = 99046, questName = "The Lost Runner", npc = 275683, npcName = "Sentinel Eralya Leafshadow", map = 1438, zone = "Teldrassil", x = 37.6, y = 36.8 }, -- 119
+        { type = "TURNIN", quest = 99073, questName = "Easing Suffering", npc = 275683, npcName = "Sentinel Eralya Leafshadow", map = 1438, zone = "Teldrassil", x = 37.6, y = 36.8 }, -- 120
+        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" }, note = "New in Forever" }, -- 121
+        { type = "TURNIN", quest = 94375, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 122
+        { type = "ACCEPT", quest = 2541, questName = "The Sleeping Druid", npc = 7317, npcName = "Oben Rageclaw", map = 1438, zone = "Teldrassil", x = 44.9, y = 61.6 }, -- 123
+        { type = "KILL", quest = 2541, questName = "The Sleeping Druid", npc = 2009, target = "Gnarlpine Shaman", map = 1438, zone = "Teldrassil", x = 45.5, y = 59.9, near = true, note = "loot Shaman Voodoo Charm" }, -- 124
+        { type = "TURNIN", quest = 2541, questName = "The Sleeping Druid", npc = 7317, npcName = "Oben Rageclaw", map = 1438, zone = "Teldrassil", x = 44.9, y = 61.6 }, -- 125
+        { type = "ACCEPT", quest = 2561, questName = "Druid of the Claw", npc = 7317, npcName = "Oben Rageclaw", map = 1438, zone = "Teldrassil", x = 44.9, y = 61.6 }, -- 126
+        { type = "KILL", quest = 2561, questName = "Druid of the Claw", npc = 7318, target = "Rageclaw", count = 1, map = 1438, zone = "Teldrassil", x = 45.5, y = 58.6 }, -- 127
+        { type = "TURNIN", quest = 2561, questName = "Druid of the Claw", npc = 7317, npcName = "Oben Rageclaw", map = 1438, zone = "Teldrassil", x = 44.9, y = 61.6 }, -- 128
+        { type = "TURNIN", quest = 7383, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 129
+        { type = "ACCEPT", quest = 935, questName = "Crown of the Earth", npc = 3515, npcName = "Corithras Moonrage", map = 1438, zone = "Teldrassil", x = 56.1, y = 61.7 }, -- 130
+        { type = "TURNIN", quest = 997, questName = "Denalan's Earth", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 131
+        { type = "ACCEPT", quest = 918, questName = "Timberling Seeds", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 132
+        { type = "ACCEPT", quest = 919, questName = "Timberling Sprouts", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 133
+        { type = "COLLECT", quest = 918, questName = "Timberling Seeds", target = "Timberling Seed", count = 8, map = 1438, zone = "Teldrassil", x = 61.5, y = 69.4, near = true }, -- 134
+        { type = "TURNIN", quest = 918, questName = "Timberling Seeds", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 135
+        { type = "ACCEPT", quest = 922, questName = "Rellian Greenspyre", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 136
+        { type = "COLLECT", quest = 919, questName = "Timberling Sprouts", target = "Timberling Sprout", count = 12, map = 1438, zone = "Teldrassil", x = 62.2, y = 68.5, near = true }, -- 137
+        { type = "TURNIN", quest = 919, questName = "Timberling Sprouts", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 138
+        { type = "FLIGHTPATH", npc = 3838, npcName = "Vesprystus", map = 1438, zone = "Teldrassil", x = 58.4, y = 94 }, -- 139
+        { type = "KILL", quest = 486, questName = "Ursal the Mauler", npc = 2039, target = "Ursal the Mauler", count = 1, map = 1438, zone = "Teldrassil", x = 39.4, y = 80.2 }, -- 140
+        { type = "ACCEPT", quest = 930, questName = "The Glowing Fruit", map = 1438, zone = "Teldrassil", x = 42.6, y = 76.2 }, -- 141
+        { type = "TURNIN", quest = 930, questName = "The Glowing Fruit", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 142
+        { type = "ACCEPT", quest = 99047, questName = "Not Dead Yet", npc = 275683, npcName = "Sentinel Eralya Leafshadow", map = 1438, zone = "Teldrassil", x = 37.6, y = 36.8, note = "New in Forever" }, -- 143
+        { type = "TURNIN", quest = 99047, questName = "Not Dead Yet", npc = 6094, npcName = "Byancie", map = 1438, zone = "Teldrassil", x = 55.2, y = 56.8 }, -- 144
+        { type = "TURNIN", quest = 486, questName = "Ursal the Mauler", npc = 2078, npcName = "Athridas Bearmantle", map = 1438, zone = "Teldrassil", x = 56, y = 57.4 }, -- 145
+        { type = "ACCEPT", quest = 940, questName = "Teldrassil", npc = 3519, npcName = "Sentinel Arynia Cloudsbreak", map = 1438, zone = "Teldrassil", x = 38.2, y = 34.4 }, -- 146
+        { type = "ACCEPT", quest = 6072, questName = "The Hunter's Path", npc = 3596, npcName = "Ayanna Everstride", map = 1438, zone = "Teldrassil", x = 58.4, y = 40.6, class = { "HUNTER" } }, -- 147
+        { type = "TURNIN", quest = 6072, questName = "The Hunter's Path", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 148
+        { type = "ACCEPT", quest = 6073, questName = "The Hunter's Path", npc = 4205, npcName = "Dorion", map = 1457, zone = "Darnassus", x = 42.2, y = 7.4, class = { "HUNTER" } }, -- 149
+        { type = "TURNIN", quest = 6073, questName = "The Hunter's Path", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 150
+        { type = "ACCEPT", quest = 6721, questName = "The Hunter's Path", npc = 5116, npcName = "Olmin Burningbeard", map = 1455, zone = "Ironforge", x = 70.6, y = 83.8, class = { "HUNTER" } }, -- 151
+        { type = "TURNIN", quest = 6721, questName = "The Hunter's Path", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 152
+        { type = "ACCEPT", quest = 6722, questName = "The Hunter's Path", npc = 1231, npcName = "Grif Wildheart", map = 1426, zone = "Dun Morogh", x = 45.8, y = 53, class = { "HUNTER" } }, -- 153
+        { type = "TURNIN", quest = 6722, questName = "The Hunter's Path", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 154
+        { type = "ACCEPT", quest = 2241, questName = "The Apple Falls", npc = 3599, npcName = "Jannok Breezesong", map = 1438, zone = "Teldrassil", x = 56.2, y = 60, class = { "ROGUE" } }, -- 155
+        { type = "ACCEPT", quest = 5629, questName = "Returning Home", npc = 3600, npcName = "Laurna Morninglight", map = 1438, zone = "Teldrassil", x = 55.6, y = 56.8, class = { "PRIEST" } }, -- 156
+        { type = "ACCEPT", quest = 5630, questName = "Returning Home", npc = 1226, npcName = "Maxan Anvol", map = 1426, zone = "Dun Morogh", x = 47.2, y = 52.2, class = { "PRIEST" } }, -- 157
+        { type = "ACCEPT", quest = 5631, questName = "Returning Home", npc = 5489, npcName = "Brother Joshua", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.8, class = { "PRIEST" } }, -- 158
+        { type = "ACCEPT", quest = 5632, questName = "Returning Home", npc = 11397, npcName = "Nara Meideros", map = 1453, zone = "Stormwind City", x = 20.8, y = 50.2, class = { "PRIEST" } }, -- 159
+        { type = "ACCEPT", quest = 5633, questName = "Returning Home", npc = 5142, npcName = "Braenna Flintcrag", map = 1455, zone = "Ironforge", x = 24.6, y = 9.2, class = { "PRIEST" } }, -- 160
+        { type = "ACCEPT", quest = 5923, questName = "Heeding the Call", npc = 3602, npcName = "Kal", map = 1438, zone = "Teldrassil", x = 56, y = 61.4, class = { "DRUID" } }, -- 161
+        { type = "ACCEPT", quest = 5925, questName = "Heeding the Call", npc = 3602, npcName = "Kal", map = 1438, zone = "Teldrassil", x = 56, y = 61.6, class = { "DRUID" } }, -- 162
+        { type = "ACCEPT", quest = 931, questName = "The Shimmering Frond", map = 1438, zone = "Teldrassil", x = 34.6, y = 28.8 }, -- 163
+        { type = "ACCEPT", quest = 1684, questName = "Elanaria", npc = 2151, npcName = "Moon Priestess Amara", map = 1438, zone = "Teldrassil", x = 55.6, y = 58.4, class = { "WARRIOR" } }, -- 164
+        { type = "TURNIN", quest = 931, questName = "The Shimmering Frond", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 165
+        { type = "ACCEPT", quest = 2399, questName = "The Sprouted Fronds", map = 1438, zone = "Teldrassil", x = 60.8, y = 68.6 }, -- 166
+        { type = "TURNIN", quest = 2399, questName = "The Sprouted Fronds", map = 1438, zone = "Teldrassil", x = 60.8, y = 68.6 }, -- 167
+        { type = "ACCEPT", quest = 6341, questName = "The Bounty of Teldrassil", npc = 10118, npcName = "Nessa Shadowsong", map = 1438, zone = "Teldrassil", x = 56.3, y = 92.4 }, -- 168
+        { type = "TURNIN", quest = 6341, questName = "The Bounty of Teldrassil", npc = 3838, npcName = "Vesprystus", map = 1438, zone = "Teldrassil", x = 58.4, y = 94 }, -- 169
+        { type = "ACCEPT", quest = 6342, questName = "Flight to Auberdine", npc = 3838, npcName = "Vesprystus", map = 1438, zone = "Teldrassil", x = 58.4, y = 94 }, -- 170
+        { type = "TURNIN", quest = 6344, questName = "Nessa Shadowsong", npc = 10118, npcName = "Nessa Shadowsong", map = 1438, zone = "Teldrassil", x = 56.2, y = 92.4 }, -- 171
+        { type = "TURNIN", quest = 6071, questName = "The Hunter's Path", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 172
     } end,
 })
