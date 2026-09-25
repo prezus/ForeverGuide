@@ -81,6 +81,8 @@
     {"type": "TURNIN", "quest": 1498, "questName": "Path of Defense", "npc": 5810, "npcName": "Uzzek", "map": 1413, "zone": "The Barrens", "x": 61.4, "y": 21, "class": ["WARRIOR"]},
     {"type": "KILL", "quest": 881, "questName": "Echeyakee", "npc": 3475, "target": "Echeyakee", "map": 1413, "zone": "The Barrens", "x": 55.9, "y": 17.2, "note": "loot Echeyakee's Hide"},
     {"type": "ACCEPT", "quest": 97003, "questName": "Chol'aruk the Ravener", "npc": 267310, "npcName": "Gur'ak", "map": 1413, "zone": "The Barrens", "x": 52.6, "y": 29, "note": "New in Forever; Elite - group up", "optional": true},
+    {"type": "ACCEPT", "quest": 1502, "questName": "Thun'grim Firegaze", "npc": 5810, "npcName": "Uzzek", "map": 1413, "zone": "The Barrens", "x": 61.4, "y": 21, "class": ["WARRIOR"]},
+    {"type": "TURNIN", "quest": 1502, "questName": "Thun'grim Firegaze", "npc": 5878, "npcName": "Thun'grim Firegaze", "map": 1413, "zone": "The Barrens", "x": 57.2, "y": 30.2, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 881, "questName": "Echeyakee", "npc": 3338, "npcName": "Sergra Darkthorn", "map": 1413, "zone": "The Barrens", "x": 52.2, "y": 31},
     {"type": "ACCEPT", "quest": 905, "questName": "The Angry Scytheclaws", "npc": 3338, "npcName": "Sergra Darkthorn", "map": 1413, "zone": "The Barrens", "x": 52.2, "y": 31},
     {"type": "COMPLETE", "quest": 905, "questName": "The Angry Scytheclaws", "target": "Blue Raptor Nest / Red Raptor Nest / Yellow Raptor Nest", "map": 1413, "zone": "The Barrens", "x": 52.6, "y": 46.1, "note": "Visit Blue Raptor Nest"},
