@@ -80,6 +80,7 @@ Common fields (all optional unless the type needs them):
 | `TRAVEL`   | `map`/`zone`, `x`, `y` | player within `radius` yards |
 | `FLY`      | like TRAVEL          | (display: "Fly to") |
 | `TALK`     | `npc`                | a gossip / quest / vendor / trainer window opens with that NPC |
+| `FLIGHTPATH` | `npc` (`map`, `x`, `y`) | that flight master's map opens, or "New flight path discovered!" comes up, or the flight node at `x`/`y` is already known (display: "Get the flight path at") |
 | `NOTE`     | `text`               | manual (`/fg skip`), or when the next automatic step completes |
 
 Any step with a `quest` counts as done once that quest is flagged completed,

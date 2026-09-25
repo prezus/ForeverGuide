@@ -42,9 +42,10 @@ local function myFlightFaction()
     return nil
 end
 
---- The continent map the character is on (taxi nodes are listed per continent).
-local function continentMap()
-    local mapID, tries = ns.Player:GetMapID(), 0
+--- The continent map a map belongs to, the character's own by default (taxi nodes are listed
+--- per continent).
+local function continentMap(fromMap)
+    local mapID, tries = fromMap or ns.Player:GetMapID(), 0
     while mapID and tries < 6 do
         local info = ns.Call("C_Map.GetMapInfo", mapID)
         if type(info) ~= "table" then return mapID end
@@ -54,7 +55,7 @@ local function continentMap()
         mapID = parent
         tries = tries + 1
     end
-    return ns.Player:GetMapID()
+    return fromMap or ns.Player:GetMapID()
 end
 
 --- Flight points this character has already taken. The Forever client does not fill in
@@ -133,6 +134,36 @@ function Rem:FlightPoints(mapID)
     end
     table.sort(out, function(a, b) return (a.distance or 1e9) < (b.distance or 1e9) end)
     return out
+end
+
+--- The flight node at a place (a flight master's spot), or nil: the node of that map's continent
+--- nearest to it, within 200 yd.
+function Rem:NodeAt(mapID, x, y)
+    local T = rawget(_G, "C_TaxiMap")
+    if not T or type(T.GetTaxiNodesForMap) ~= "function" or not mapID or not x or not y then return nil end
+    local continent = continentMap(mapID)
+    local nodes = continent and ns.Safe(T.GetTaxiNodesForMap, continent)
+    local inst, px, py = ns.Navigation:MapToWorld(mapID, x, y)
+    if type(nodes) ~= "table" or not inst then return nil end
+    local best, bestD
+    for _, node in ipairs(nodes) do
+        local name = ns.PlainString(type(node) == "table" and node.name)
+        local pos = type(node) == "table" and node.position
+        if name and type(pos) == "table" then
+            local nx, ny = ns.PlainNumber(pos.x), ns.PlainNumber(pos.y)
+            if type(pos.GetXY) == "function" then
+                local ok, a, b = pcall(pos.GetXY, pos)
+                if ok then nx, ny = ns.PlainNumber(a), ns.PlainNumber(b) end
+            end
+            local nInst, wx, wy
+            if nx and ny then nInst, wx, wy = ns.Navigation:MapToWorld(continent, nx * 100, ny * 100) end
+            if nInst == inst and wx then
+                local d = math.sqrt((wx - px) ^ 2 + (wy - py) ^ 2)
+                if d <= 200 and (not bestD or d < bestD) then best, bestD = name, d end
+            end
+        end
+    end
+    return best
 end
 
 --- What the client says about the continent's nodes: total, ours, and how many we know
