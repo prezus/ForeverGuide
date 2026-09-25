@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_06_DUSKWOOD",
   "name": "6. Duskwood 20-23 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 20,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 6 of the Human route: level 20 to 23, 95 steps, ~220 min of play in the model (24445 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 2409, "npcName": "Felicia Maline", "map": 1431, "zone": "Duskwood", "x": 77.5, "y": 44.3},
     {"type": "TURNIN", "quest": 132, "questName": "The Defias Brotherhood", "npc": 234, "npcName": "Gryan Stoutmantle", "map": 1436, "zone": "Westfall", "x": 56.2, "y": 47.6},
     {"type": "ACCEPT", "quest": 135, "questName": "The Defias Brotherhood", "npc": 234, "npcName": "Gryan Stoutmantle", "map": 1436, "zone": "Westfall", "x": 56.2, "y": 47.6},
     {"type": "TURNIN", "quest": 135, "questName": "The Defias Brotherhood", "npc": 332, "npcName": "Master Mathias Shaw", "map": 1453, "zone": "Stormwind City", "x": 75.8, "y": 59.8},
