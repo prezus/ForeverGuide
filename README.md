@@ -168,6 +168,9 @@ ForeverGuide/
     sync_to_github.cmd  commit + push this folder to github.com/RevoltLive85/ForeverGuide (double-click after editing)
     package.py          dist/ForeverGuide-<version>.zip (--dev includes tools and sources)
     test/               headless engine test: lua5.1 tools/test/run_tests.lua
+    screenshots/        addon windows as PNGs without the game: dump_ui.lua opens them headless and writes
+                        their frame trees, render.py paints them (luajit tools/screenshots/dump_ui.lua build/screenshots
+                        && uv run tools/screenshots/render.py build/screenshots)
 ```
 
 ## WoW Forever data (the ~1000 new quests)
