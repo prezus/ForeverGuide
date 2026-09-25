@@ -57,6 +57,10 @@ local G, Q = ns.Guide, ns.Quest
 local function cur() return G.current end
 local function step() return G:GetCurrentStep() end
 local function settle() MOCK_ADVANCE(1) end
+--- a generated chapter's id by its number prefix: the zone after it moves when the route is re-planned
+local function chapterId(prefix)
+    for _, id in ipairs(G.list) do if id:find("^" .. prefix) then return id end end
+end
 
 print("guide active: " .. tostring(G.active and G.active.id))
 -- Collection is opt-in, independent, and old mirrors cannot silently restore consent.
@@ -279,7 +283,7 @@ do
     _G.QuestMapFrame_OpenToQuestDetails = priorOpen
     -- a quest a later chapter of the route handles is not unknown, although the open guide lacks it
     local later
-    for _, s in ipairs(G:Get("GEN_ALLIANCE_HUMAN_03_WESTFALL").steps) do
+    for _, s in ipairs(G:Get(chapterId("GEN_ALLIANCE_HUMAN_03_")).steps) do
         if s.type == "ACCEPT" and s.quest then later = s.quest break end
     end
     MOCK_ACCEPT(later, "Later chapter quest", {}); settle()
@@ -1759,7 +1763,7 @@ do
 
     -- opening another chapter by hand forgets the way back
     G:Activate("DUNGEON_ALLIANCE_TEST_DEEPS", true); settle()
-    G:Activate("GEN_ALLIANCE_HUMAN_03_WESTFALL", true); settle()
+    G:Activate(chapterId("GEN_ALLIANCE_HUMAN_03_"), true); settle()
     check(ns.char.returnGuide == nil, "choosing a chapter by hand clears the chapter to return to")
     G:Activate(CHAPTER, true); settle()
 end
