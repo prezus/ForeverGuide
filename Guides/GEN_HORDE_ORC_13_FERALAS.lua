@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_13_FERALAS",
     name = "13. Feralas 41-42 (Orc)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 41,
