@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_21_AZSHARA",
     name = "21. Azshara 46-47 (Tauren)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 46,
