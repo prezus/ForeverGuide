@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_08_IRONFORGE",
   "name": "8. Ironforge 24-25 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 24,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 8 of the NightElf route: level 24 to 25, 11 steps, ~13 min of play in the model (43792 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 1573, "npcName": "Gryth Thurden", "map": 1455, "zone": "Ironforge", "x": 55.5, "y": 47.7},
     {"type": "ACCEPT", "quest": 250, "questName": "A Dark Threat Looms", "npc": 1093, "npcName": "Chief Engineer Hinderweir VII", "map": 1432, "zone": "Loch Modan", "x": 46, "y": 13.6},
     {"type": "TURNIN", "quest": 250, "questName": "A Dark Threat Looms", "map": 1432, "zone": "Loch Modan", "x": 56.1, "y": 13.3},
     {"type": "ACCEPT", "quest": 65, "questName": "The Defias Brotherhood", "npc": 234, "npcName": "Gryan Stoutmantle", "map": 1436, "zone": "Westfall", "x": 56.2, "y": 47.6},
