@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_03_THE_BARRENS",
     name = "3. The Barrens 11-22 (Tauren)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 11,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_04_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the Tauren route: level 11 to 22, 182 steps, ~534 min of play in the model (20591 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
-    stepCount = 308,
+    stepCount = 311,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 3615, npcName = "Devrak", map = 1413, zone = "The Barrens", x = 51.5, y = 30.3 }, -- 1
         { type = "FLIGHTPATH", npc = 16227, npcName = "Bragok", map = 1413, zone = "The Barrens", x = 63.1, y = 37.2 }, -- 2
@@ -290,38 +290,41 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2985, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 273
         { type = "ACCEPT", quest = 2986, questName = "Call of Water", npc = 3066, npcName = "Narm Skychaser", map = 1412, zone = "Mulgore", x = 48.4, y = 59.2, class = { "SHAMAN" } }, -- 274
         { type = "TURNIN", quest = 2986, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 275
-        { type = "KILL", quest = 876, questName = "Serena Bloodfeather", npc = 3452, target = "Serena Bloodfeather", map = 1413, zone = "The Barrens", x = 39.2, y = 12.2, note = "loot Serena's Head" }, -- 276
-        { type = "ACCEPT", quest = 95495, questName = "The Hermit Tanner", npc = 3682, npcName = "Vrang Wildgore", map = 1413, zone = "The Barrens", x = 43.8, y = 12.2, note = "New in Forever" }, -- 277
-        { type = "TURNIN", quest = 95495, questName = "The Hermit Tanner", npc = 261366, npcName = "Walton", map = 1413, zone = "The Barrens", x = 42, y = 11.4 }, -- 278
-        { type = "ACCEPT", quest = 868, questName = "Egg Hunt", npc = 3428, npcName = "Korran", map = 1413, zone = "The Barrens", x = 51, y = 29.6 }, -- 279
-        { type = "TURNIN", quest = 876, questName = "Serena Bloodfeather", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 280
-        { type = "COLLECT", quest = 95774, questName = "Her Name Is Olgra", target = "Olgra's Adornments", count = 4, map = 1413, zone = "The Barrens", x = 49.2, y = 50.4 }, -- 281
-        { type = "TURNIN", quest = 95774, questName = "Her Name Is Olgra", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 282
-        { type = "ACCEPT", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 5911, npcName = "Grunt Logmar", map = 1413, zone = "The Barrens", x = 44.6, y = 59.2, optional = true, note = "New in Forever; Elite - group up" }, -- 283
-        { type = "KILL", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 268622, target = "Encroaching Soldier", count = 2, map = 1413, zone = "The Barrens", x = 49, y = 77, optional = true, near = true }, -- 284
-        { type = "KILL", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 268623, target = "Outraged Pillager", count = 1, map = 1413, zone = "The Barrens", x = 49, y = 77, optional = true }, -- 285
-        { type = "TURNIN", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 5911, npcName = "Grunt Logmar", map = 1413, zone = "The Barrens", x = 44.6, y = 59.2, optional = true }, -- 286
-        { type = "ACCEPT", quest = 98093, questName = "Field to Clear", npc = 14242, npcName = "Sulhasa", map = 1413, zone = "The Barrens", x = 47.8, y = 77.6, note = "New in Forever" }, -- 287
-        { type = "KILL", quest = 98093, questName = "Field to Clear", npc = 4128, target = "Hecklefang Stalker", count = 7, map = 1413, zone = "The Barrens", x = 45.8, y = 82.8 }, -- 288
-        { type = "KILL", quest = 98093, questName = "Field to Clear", npc = 3238, target = "Stormhide", count = 7, map = 1413, zone = "The Barrens", x = 46.4, y = 79.8 }, -- 289
-        { type = "TURNIN", quest = 98093, questName = "Field to Clear", npc = 14242, npcName = "Sulhasa", map = 1413, zone = "The Barrens", x = 47.8, y = 77.6 }, -- 290
-        { type = "ACCEPT", quest = 1060, questName = "Letter to Jin'Zil", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.8 }, -- 291
-        { type = "COLLECT", quest = 868, questName = "Egg Hunt", target = "Silithid Egg", count = 12, map = 1413, zone = "The Barrens", x = 47.8, y = 70.2 }, -- 292
-        { type = "TURNIN", quest = 868, questName = "Egg Hunt", npc = 3428, npcName = "Korran", map = 1413, zone = "The Barrens", x = 51, y = 29.6 }, -- 293
-        { type = "TURNIN", quest = 1489, questName = "Hamuul Runetotem", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4, optional = true }, -- 294
-        { type = "ACCEPT", quest = 1490, questName = "Nara Wildmane", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 295
-        { type = "TURNIN", quest = 1490, questName = "Nara Wildmane", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true }, -- 296
-        { type = "ACCEPT", quest = 914, questName = "Leaders of the Fang", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 297
-        { type = "ACCEPT", quest = 962, questName = "Serpentbloom", npc = 3419, npcName = "Apothecary Zamah", map = 1456, zone = "Thunder Bluff", x = 23, y = 21, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 298
-        { type = "NOTE", optional = true, text = "Ready for Wailing Caverns", note = "Picked up: Leaders of the Fang, Serpentbloom. When you have a group, open Wailing Caverns under Dungeons." }, -- 299
-        { type = "ACCEPT", quest = 1530, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 300
-        { type = "TURNIN", quest = 1530, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 301
-        { type = "ACCEPT", quest = 27, questName = "A Lesson to Learn", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 302
-        { type = "TURNIN", quest = 27, questName = "A Lesson to Learn", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 303
-        { type = "ACCEPT", quest = 98340, questName = "The Great Cat Spirit", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" }, note = "New in Forever" }, -- 304
-        { type = "ACCEPT", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 305
-        { type = "COLLECT", quest = 857, questName = "The Tear of the Moons", target = "Tear of the Moons", map = 1413, zone = "The Barrens", x = 49.1, y = 84.3 }, -- 306
-        { type = "TURNIN", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 307
-        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 308
+        { type = "ACCEPT", quest = 862, questName = "Dig Rat Stew", npc = 3443, npcName = "Grub", map = 1413, zone = "The Barrens", x = 55.2, y = 31.8, profession = "Cooking" }, -- 276
+        { type = "KILL", quest = 876, questName = "Serena Bloodfeather", npc = 3452, target = "Serena Bloodfeather", map = 1413, zone = "The Barrens", x = 39.2, y = 12.2, note = "loot Serena's Head" }, -- 277
+        { type = "ACCEPT", quest = 95495, questName = "The Hermit Tanner", npc = 3682, npcName = "Vrang Wildgore", map = 1413, zone = "The Barrens", x = 43.8, y = 12.2, note = "New in Forever" }, -- 278
+        { type = "TURNIN", quest = 95495, questName = "The Hermit Tanner", npc = 261366, npcName = "Walton", map = 1413, zone = "The Barrens", x = 42, y = 11.4 }, -- 279
+        { type = "ACCEPT", quest = 868, questName = "Egg Hunt", npc = 3428, npcName = "Korran", map = 1413, zone = "The Barrens", x = 51, y = 29.6 }, -- 280
+        { type = "TURNIN", quest = 876, questName = "Serena Bloodfeather", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 281
+        { type = "COLLECT", quest = 95774, questName = "Her Name Is Olgra", target = "Olgra's Adornments", count = 4, map = 1413, zone = "The Barrens", x = 49.2, y = 50.4 }, -- 282
+        { type = "TURNIN", quest = 95774, questName = "Her Name Is Olgra", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 283
+        { type = "ACCEPT", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 5911, npcName = "Grunt Logmar", map = 1413, zone = "The Barrens", x = 44.6, y = 59.2, optional = true, note = "New in Forever; Elite - group up" }, -- 284
+        { type = "KILL", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 268622, target = "Encroaching Soldier", count = 2, map = 1413, zone = "The Barrens", x = 49, y = 77, optional = true, near = true }, -- 285
+        { type = "KILL", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 268623, target = "Outraged Pillager", count = 1, map = 1413, zone = "The Barrens", x = 49, y = 77, optional = true }, -- 286
+        { type = "TURNIN", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 5911, npcName = "Grunt Logmar", map = 1413, zone = "The Barrens", x = 44.6, y = 59.2, optional = true }, -- 287
+        { type = "ACCEPT", quest = 98093, questName = "Field to Clear", npc = 14242, npcName = "Sulhasa", map = 1413, zone = "The Barrens", x = 47.8, y = 77.6, note = "New in Forever" }, -- 288
+        { type = "KILL", quest = 98093, questName = "Field to Clear", npc = 4128, target = "Hecklefang Stalker", count = 7, map = 1413, zone = "The Barrens", x = 45.8, y = 82.8 }, -- 289
+        { type = "KILL", quest = 98093, questName = "Field to Clear", npc = 3238, target = "Stormhide", count = 7, map = 1413, zone = "The Barrens", x = 46.4, y = 79.8 }, -- 290
+        { type = "TURNIN", quest = 98093, questName = "Field to Clear", npc = 14242, npcName = "Sulhasa", map = 1413, zone = "The Barrens", x = 47.8, y = 77.6 }, -- 291
+        { type = "ACCEPT", quest = 1060, questName = "Letter to Jin'Zil", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.8 }, -- 292
+        { type = "COLLECT", quest = 868, questName = "Egg Hunt", target = "Silithid Egg", count = 12, map = 1413, zone = "The Barrens", x = 47.8, y = 70.2 }, -- 293
+        { type = "TURNIN", quest = 868, questName = "Egg Hunt", npc = 3428, npcName = "Korran", map = 1413, zone = "The Barrens", x = 51, y = 29.6 }, -- 294
+        { type = "TURNIN", quest = 1489, questName = "Hamuul Runetotem", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4, optional = true }, -- 295
+        { type = "ACCEPT", quest = 1490, questName = "Nara Wildmane", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 296
+        { type = "TURNIN", quest = 1490, questName = "Nara Wildmane", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true }, -- 297
+        { type = "ACCEPT", quest = 914, questName = "Leaders of the Fang", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 298
+        { type = "ACCEPT", quest = 962, questName = "Serpentbloom", npc = 3419, npcName = "Apothecary Zamah", map = 1456, zone = "Thunder Bluff", x = 23, y = 21, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 299
+        { type = "NOTE", optional = true, text = "Ready for Wailing Caverns", note = "Picked up: Leaders of the Fang, Serpentbloom. When you have a group, open Wailing Caverns under Dungeons." }, -- 300
+        { type = "ACCEPT", quest = 1530, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 301
+        { type = "TURNIN", quest = 1530, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 302
+        { type = "ACCEPT", quest = 27, questName = "A Lesson to Learn", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 303
+        { type = "TURNIN", quest = 27, questName = "A Lesson to Learn", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 304
+        { type = "ACCEPT", quest = 98340, questName = "The Great Cat Spirit", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" }, note = "New in Forever" }, -- 305
+        { type = "COLLECT", quest = 862, questName = "Dig Rat Stew", target = "Dig Rat", count = 8, map = 1413, zone = "The Barrens", x = 48.8, y = 84.8, profession = "Cooking" }, -- 306
+        { type = "TURNIN", quest = 862, questName = "Dig Rat Stew", npc = 3443, npcName = "Grub", map = 1413, zone = "The Barrens", x = 55.2, y = 31.8, profession = "Cooking" }, -- 307
+        { type = "ACCEPT", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 308
+        { type = "COLLECT", quest = 857, questName = "The Tear of the Moons", target = "Tear of the Moons", map = 1413, zone = "The Barrens", x = 49.1, y = 84.3 }, -- 309
+        { type = "TURNIN", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 310
+        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 311
     } end,
 })

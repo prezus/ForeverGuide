@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_01_TELDRASSIL",
   "name": "1. Teldrassil 1-10 (Night Elf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 1,
@@ -63,6 +63,9 @@
     {"type": "COLLECT", "quest": 488, "questName": "Zenn's Bidding", "target": "Webwood Spider Silk", "count": 3, "map": 1438, "zone": "Teldrassil", "x": 53.6, "y": 61.4, "near": true},
     {"type": "COLLECT", "quest": 87288, "questName": "Soft Saber Pelts", "target": "Soft Nightsaber Pelt", "count": 6, "map": 1438, "zone": "Teldrassil", "x": 61.4, "y": 58.8},
     {"type": "TURNIN", "quest": 87288, "questName": "Soft Saber Pelts", "npc": 3608, "npcName": "Aldia", "map": 1438, "zone": "Teldrassil", "x": 55.4, "y": 57.2},
+    {"type": "ACCEPT", "quest": 4161, "questName": "Recipe of the Kaldorei", "npc": 6286, "npcName": "Zarrin", "map": 1438, "zone": "Teldrassil", "x": 57, "y": 61.2, "profession": "Cooking"},
+    {"type": "COLLECT", "quest": 4161, "questName": "Recipe of the Kaldorei", "target": "Small Spider Leg", "count": 7, "map": 1438, "zone": "Teldrassil", "x": 61.4, "y": 58.8, "near": true, "profession": "Cooking"},
+    {"type": "TURNIN", "quest": 4161, "questName": "Recipe of the Kaldorei", "npc": 6286, "npcName": "Zarrin", "map": 1438, "zone": "Teldrassil", "x": 57, "y": 61.2, "profession": "Cooking"},
     {"type": "COLLECT", "quest": 929, "questName": "Crown of the Earth", "target": "Filled Jade Phial", "map": 1438, "zone": "Teldrassil", "x": 63.4, "y": 58.1},
     {"type": "TURNIN", "quest": 475, "questName": "A Troubling Breeze", "npc": 2107, "npcName": "Gaerolas Talvethren", "map": 1438, "zone": "Teldrassil", "x": 66.3, "y": 58.5},
     {"type": "TURNIN", "quest": 488, "questName": "Zenn's Bidding", "npc": 2150, "npcName": "Zenn Foulhoof", "map": 1438, "zone": "Teldrassil", "x": 60.5, "y": 56.3},

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: profession quests in the 1-30 chapters (Recipe of the Kaldorei, Easy Strider Living, Dig Rat Stew, Gathering Leather), shown only to characters with that profession, and Snowbound for the Human and Dwarf routes (the snow is in The Grizzled Den).
 - Profession quests: a step can be marked with a profession (and the skill it needs); it shows only to characters who have that profession at that rank, read from your skill lines, and is skipped for everyone else like another class's step.
 - Guides can ask you to learn a flight path: the `FLIGHTPATH` step ("Get the flight path at Thor") finishes when you open that flight master's map, when "New flight path discovered!" comes up, or straight away if you already know that path. Like a travel step, it also finishes itself once you are past it, so skipping it never blocks the guide.
 
