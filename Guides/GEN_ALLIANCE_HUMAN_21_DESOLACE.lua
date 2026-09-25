@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_21_DESOLACE",
     name = "21. Desolace 42-42 (Human)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 42,
