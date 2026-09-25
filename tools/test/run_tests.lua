@@ -32,6 +32,8 @@ for line in io.lines(root .. "ForeverGuide.toc") do
     end
 end
 for _, f in ipairs(order) do loadAddonFile(f) end
+-- the engine walkthrough plays a small hand-written guide that no longer ships with the addon
+loadAddonFile("tools/test/fixtures/HUMAN_NORTHSHIRE_1_6.lua")
 
 -- every error the addon swallows and reports must surface here
 local reportedErrors = {}
@@ -1058,13 +1060,22 @@ do
     local hasDone = false
     for _, e in ipairs(f.list.entries) do if e.state == "done" then hasDone = true end end
     check(hasDone, "a completed step stays visible above the current one")
-    -- clicking a row jumps to that step
+    -- clicking a row jumps to that step; a turn-in whose quest is not picked up yet lands on its accept
     local target
     for _, e in ipairs(f.list.entries) do if e.state == "available" then target = e break end end
+    check(target ~= nil, "the list offers a step to jump to")
     if target then
+        local st = G.active.steps[target.index]
+        local expected = target.index
+        if st.type == "TURNIN" and not ns.Quest:IsOnQuest(st.quest) then
+            for k = target.index - 1, 1, -1 do
+                local s2 = G.active.steps[k]
+                if s2.type == "ACCEPT" and s2.quest == st.quest then expected = k break end
+            end
+        end
         f.list.rows[1].entry = target
         f.list.rows[1]:GetScript("OnClick")(f.list.rows[1], "LeftButton"); settle()
-        check(G.current == target.index, "clicking a row jumps to that step (" .. tostring(G.current) .. " vs " .. tostring(target.index) .. ")")
+        check(G.current == expected, "clicking a row jumps to that step (" .. tostring(G.current) .. " vs " .. tostring(expected) .. ")")
     end
     -- width grip: drag to resize, persist the new width, and reflow the list
     check(f.resizeGrip ~= nil and f.resizable == true, "guide has a resize grip")
@@ -1317,7 +1328,20 @@ end
 --  "Travel to Westfall - 640 yd" forever and every /fg resync answered "now at step 1")
 do
     local savedMap, savedZone = MOCK.mapID, MOCK.zone
-    G:Activate("GEN_ALLIANCE_DWARF_04_WESTFALL", true); settle()
+    -- a chapter that opens by travelling into its zone (the Westfall chapter as generated before
+    -- quests were added to it; live chapters change, the rule under test does not)
+    ns.RegisterGuide({ id = "TEST_ZONE_ENTRY", name = "zone entry", version = 1, faction = "Alliance", minLevel = 14, maxLevel = 17, map = 1436, zone = "Westfall",
+        steps = {
+            { type = "TRAVEL", map = 1436, zone = "Westfall", x = 56.2, y = 43.9, radius = 60, note = "travel to Westfall (Westfall)" },
+            { type = "NOTE", map = 1436, zone = "Westfall", x = 56.2, y = 43.9, text = "set your hearthstone at the inn in Westfall (if there is one)" },
+            { type = "ACCEPT", quest = 6181, questName = "A Swift Message", npc = 491, npcName = "Quartermaster Lewis", map = 1436, zone = "Westfall", x = 57, y = 47.2 },
+            { type = "ACCEPT", quest = 12, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 },
+            { type = "ACCEPT", quest = 102, questName = "Patrolling Westfall", npc = 821, npcName = "Captain Danuvin", map = 1436, zone = "Westfall", x = 56.4, y = 47.6 },
+            { type = "ACCEPT", quest = 65, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 },
+        } })
+    local savedLevel = ns.Player:GetLevel()
+    MOCK_LEVEL(14); settle()
+    G:Activate("TEST_ZONE_ENTRY", true); settle()
     local steps = G.active.steps
     check(steps[1].type == "TRAVEL" and steps[1].map == 1436, "Westfall chapter starts with a travel step")
     check(cur() == 1, "outside Westfall the guide holds the travel step (" .. tostring(cur()) .. ")")
@@ -1342,6 +1366,7 @@ do
     check(G.progress.done[1] == true, "the travel step is marked done by the resync")
     MOCK_ABANDON(12) MOCK_ABANDON(102)
     MOCK_ZONE(savedMap, savedZone, 48, 43); settle()
+    MOCK_LEVEL(savedLevel); settle()
     G:Activate("HUMAN_NORTHSHIRE_1_6", true); G:Reset(); settle()
 end
 

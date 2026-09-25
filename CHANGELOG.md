@@ -3,6 +3,7 @@
 ## Unreleased
 - Dungeon guides: a guide with `"kind": "dungeon"` is a dungeon's own guide. `/fg dungeons` lists the ones your character can do, by level; auto-pick never lands on one. Opening one remembers the chapter you came from, and finishing it (or `/fg resume`) takes you back there. Opening another chapter by hand forgets the way back.
 - Dungeon badge: the guide window's header shows the next dungeon and how many of its quests you carry ("The Deadmines 3/5", "... - ready", "... - hand in by 22"). Click it for the dungeon's panel: its levels, each quest and where it stands (in your log, done, needs level N, pick up from whom, given inside), a Waypoint to the entrance, and buttons to open the dungeon's guide or go back to your chapter.
+- Removed the zone guides ("Zone: Westfall 10-20" and the rest) and the hand-written Northshire guide; the race routes cover them. The guide picker lists DUNGEONS in place of ZONE GUIDES and OTHER GUIDES.
 - Removed the bag and gear reminders: no more "bags 2/16" or "gear 18%" tag in the header, and no bag or repair advice in the info popup.
 
 ## 0.3.10 - 2026-09-24

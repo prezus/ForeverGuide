@@ -195,33 +195,18 @@ function UI:RefreshPicker()
             shown = shown + 1
         end
     end
-    -- zone guides near the level: quest a zone on its own, whatever the route says
-    local zones = {}
-    for _, id in ipairs(G.list) do
-        local g = G.registry[id]
-        if id:match("^GEN_ZONE_") and G:Applicable(g) and (g.maxLevel or 60) >= level - 2 and (g.minLevel or 1) <= level + 6 then zones[#zones + 1] = g end
+    -- dungeons near the level: each has its own guide, opened when a group forms
+    local dungeons = {}
+    for _, g in ipairs(G:Dungeons()) do
+        if (g.maxLevel or 60) >= level - 2 and (g.minLevel or 1) <= level + 6 then dungeons[#dungeons + 1] = g end
     end
-    table.sort(zones, function(a, b)
-        if (a.minLevel or 0) ~= (b.minLevel or 0) then return (a.minLevel or 0) < (b.minLevel or 0) end
-        return (a.name or a.id) < (b.name or b.id)
-    end)
-    if #zones > 0 then
-        add("ZONE GUIDES", "", nil, false, false, true)
-        for k, g in ipairs(zones) do
+    if #dungeons > 0 then
+        add("DUNGEONS", "", nil, false, false, true)
+        for k, g in ipairs(dungeons) do
             if k > 7 then break end
-            local fits = (g.minLevel or 1) <= level + 3 and (g.maxLevel or 60) >= level - 2
+            local fits = (g.minLevel or 1) <= level and (g.maxLevel or 60) >= level
             local active = G.active == g and ns.char.mode ~= "auto"
-            add((g.name or g.id):gsub("^Zone: ", ""), string.format("%s-%s  %d steps", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), ns.Guide.StepCount(g)), g.id, not fits, active)
-        end
-    end
-    -- hand-written guides (anything else registered)
-    local others = 0
-    for _, id in ipairs(G.list) do
-        local g = G.registry[id]
-        if not id:match("^GEN_") and G:Applicable(g) then
-            if others == 0 then add("OTHER GUIDES", "", nil, false, false, true) end
-            others = others + 1
-            if others <= 4 then add(g.name or g.id, string.format("%s-%s", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?")), g.id, false, G.active == g and ns.char.mode ~= "auto") end
+            add(ns.Dungeons:Name(g), string.format("%s-%s  %d steps", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), ns.Guide.StepCount(g)), g.id, not fits, active)
         end
     end
     if i == 0 then add("no guides installed", "", nil, true) end
