@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_24_SEARING_GORGE",
     name = "24. Searing Gorge 45-45 (Human)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 45,
