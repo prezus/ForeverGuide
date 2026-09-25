@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_10_SWAMP_OF_SORROWS",
     name = "10. Swamp of Sorrows 38-38 (Orc)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 38,
