@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_08_ARATHI_HIGHLANDS",
     name = "8. Arathi Highlands 29-30 (Tauren)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 29,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_09_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 8 of the Tauren route: level 29 to 30, 42 steps, ~185 min of play in the model (18684 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 42,
+    stepCount = 53,
     steps = function() return {
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 31.8, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 1
         { type = "NOTE", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 31.8, text = "set your hearthstone at the inn in Arathi Highlands (if there is one)" }, -- 2
@@ -44,18 +44,29 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 642, questName = "The Princess Trapped", target = "Mote of Myzrael", count = 12, map = 1417, zone = "Arathi Highlands", x = 78.3, y = 36.9, near = true }, -- 27
         { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2556, target = "Witherbark Headhunter", count = 10, map = 1417, zone = "Arathi Highlands", x = 72.7, y = 64.4, near = true }, -- 28
         { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2555, target = "Witherbark Witch Doctor / Witherbark Axe Thrower", count = 10, map = 1417, zone = "Arathi Highlands", x = 71.6, y = 61.8, near = true }, -- 29
-        { type = "COLLECT", quest = 671, questName = "Foul Magics", target = "Bloodstone Amulet", count = 10, map = 1417, zone = "Arathi Highlands", x = 33.9, y = 32.9, near = true }, -- 30
-        { type = "TURNIN", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 31
-        { type = "ACCEPT", quest = 678, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 32
-        { type = "TURNIN", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 33
-        { type = "KILL", quest = 678, questName = "Call to Arms", npc = 2567, target = "Boulderfist Magus", count = 10, map = 1417, zone = "Arathi Highlands", x = 54.1, y = 71.8, near = true }, -- 34
-        { type = "KILL", quest = 678, questName = "Call to Arms", npc = 2566, target = "Boulderfist Brute", count = 10, map = 1417, zone = "Arathi Highlands", x = 54.5, y = 73.8, near = true }, -- 35
-        { type = "TURNIN", quest = 678, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 36
-        { type = "TURNIN", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 37
-        { type = "ACCEPT", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 38
-        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Cresting Key", map = 1417, zone = "Arathi Highlands", x = 66.7, y = 29.7 }, -- 39
-        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Thundering Key", map = 1417, zone = "Arathi Highlands", x = 52, y = 50.7 }, -- 40
-        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Burning Key", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 30.1 }, -- 41
-        { type = "TURNIN", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 42
+        { type = "ACCEPT", quest = 1718, questName = "The Islander", npc = 4595, npcName = "Baltus Fowler", map = 1458, zone = "Undercity", x = 47.2, y = 17, class = { "WARRIOR" } }, -- 30
+        { type = "TURNIN", quest = 1718, questName = "The Islander", npc = 6236, npcName = "Klannoc Macleod", map = 1413, zone = "The Barrens", x = 68.6, y = 49, class = { "WARRIOR" } }, -- 31
+        { type = "ACCEPT", quest = 1531, questName = "Call of Air", npc = 5892, npcName = "Searn Firewarder", map = 1454, zone = "Orgrimmar", x = 37.8, y = 37.4, class = { "SHAMAN" } }, -- 32
+        { type = "TURNIN", quest = 1531, questName = "Call of Air", npc = 5905, npcName = "Prate Cloudseer", map = 1441, zone = "Thousand Needles", x = 53.6, y = 42.8, class = { "SHAMAN" } }, -- 33
+        { type = "ACCEPT", quest = 1532, questName = "Call of Air", npc = 5906, npcName = "Xanis Flameweaver", map = 1456, zone = "Thunder Bluff", x = 25.2, y = 21, class = { "SHAMAN" } }, -- 34
+        { type = "TURNIN", quest = 1532, questName = "Call of Air", npc = 5905, npcName = "Prate Cloudseer", map = 1441, zone = "Thousand Needles", x = 53.6, y = 42.8, class = { "SHAMAN" } }, -- 35
+        { type = "COLLECT", quest = 671, questName = "Foul Magics", target = "Bloodstone Amulet", count = 10, map = 1417, zone = "Arathi Highlands", x = 33.9, y = 32.9, near = true }, -- 36
+        { type = "ACCEPT", quest = 1719, questName = "The Affray", npc = 6236, npcName = "Klannoc Macleod", map = 1413, zone = "The Barrens", x = 68.6, y = 49, class = { "WARRIOR" } }, -- 37
+        { type = "KILL", quest = 1719, questName = "The Affray", npc = 6238, target = "Big Will", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 38
+        { type = "COMPLETE", quest = 1719, questName = "The Affray", target = "Explore Zone", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 39
+        { type = "COMPLETE", quest = 1719, questName = "The Affray", target = "Step on the grate to begin the Affray", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 40
+        { type = "TURNIN", quest = 1719, questName = "The Affray", npc = 6236, npcName = "Klannoc Macleod", map = 1413, zone = "The Barrens", x = 68.6, y = 49, class = { "WARRIOR" } }, -- 41
+        { type = "TURNIN", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 42
+        { type = "ACCEPT", quest = 678, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 43
+        { type = "TURNIN", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 44
+        { type = "KILL", quest = 678, questName = "Call to Arms", npc = 2567, target = "Boulderfist Magus", count = 10, map = 1417, zone = "Arathi Highlands", x = 54.1, y = 71.8, near = true }, -- 45
+        { type = "KILL", quest = 678, questName = "Call to Arms", npc = 2566, target = "Boulderfist Brute", count = 10, map = 1417, zone = "Arathi Highlands", x = 54.5, y = 73.8, near = true }, -- 46
+        { type = "TURNIN", quest = 678, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 47
+        { type = "TURNIN", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 48
+        { type = "ACCEPT", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 49
+        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Cresting Key", map = 1417, zone = "Arathi Highlands", x = 66.7, y = 29.7 }, -- 50
+        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Thundering Key", map = 1417, zone = "Arathi Highlands", x = 52, y = 50.7 }, -- 51
+        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Burning Key", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 30.1 }, -- 52
+        { type = "TURNIN", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 53
     } end,
 })
