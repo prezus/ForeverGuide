@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_32_UN_GORO_CRATER",
   "name": "32. Un'Goro Crater 48-48 (Dwarf)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 48,
