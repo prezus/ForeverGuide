@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_02_THUNDER_BLUFF",
     name = "2. Thunder Bluff 11-11 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 11,
@@ -13,26 +13,27 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_03_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Tauren route: level 11 to 11, 6 steps, ~6 min of play in the model (27823 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 19,
+    stepCount = 20,
     steps = function() return {
-        { type = "ACCEPT", quest = 5722, questName = "Searching for the Lost Satchel", npc = 11833, npcName = "Rahauro", map = 1456, zone = "Thunder Bluff", x = 70.4, y = 29.6, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 1
-        { type = "ACCEPT", quest = 5723, questName = "Testing an Enemy's Strength", npc = 11833, npcName = "Rahauro", map = 1456, zone = "Thunder Bluff", x = 70.4, y = 29.6, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 2
-        { type = "ACCEPT", quest = 6065, questName = "The Hunter's Path", npc = 3038, npcName = "Kary Thunderhorn", map = 1456, zone = "Thunder Bluff", x = 58.2, y = 87.8, class = { "HUNTER" } }, -- 3
-        { type = "ACCEPT", quest = 6067, questName = "The Hunter's Path", npc = 3171, npcName = "Thotar", map = 1411, zone = "Durotar", x = 51.8, y = 43.4, class = { "HUNTER" } }, -- 4
-        { type = "ACCEPT", quest = 1523, questName = "Call of Fire", npc = 5906, npcName = "Xanis Flameweaver", map = 1456, zone = "Thunder Bluff", x = 25.2, y = 21, class = { "SHAMAN" } }, -- 5
-        { type = "TRAVEL", map = 1456, zone = "Thunder Bluff", x = 54.2, y = 54.4, radius = 60, note = "travel to Thunder Bluff (Thunder Bluff)" }, -- 6
-        { type = "NOTE", map = 1456, zone = "Thunder Bluff", x = 54.2, y = 54.4, text = "set your hearthstone at the inn in Thunder Bluff (if there is one)" }, -- 7
-        { type = "ACCEPT", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1456, zone = "Thunder Bluff", x = 57.8, y = 76.4 }, -- 8
-        { type = "TURNIN", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1456, zone = "Thunder Bluff", x = 57.8, y = 76.4 }, -- 9
-        { type = "TURNIN", quest = 861, questName = "The Hunter's Way", npc = 3441, npcName = "Melor Stonehoof", map = 1456, zone = "Thunder Bluff", x = 61.5, y = 80.9 }, -- 10
-        { type = "ACCEPT", quest = 860, questName = "Sergra Darkthorn", npc = 3441, npcName = "Melor Stonehoof", map = 1456, zone = "Thunder Bluff", x = 61.4, y = 80.6 }, -- 11
-        { type = "TURNIN", quest = 775, questName = "Journey into Thunder Bluff", npc = 3057, npcName = "Cairne Bloodhoof", map = 1456, zone = "Thunder Bluff", x = 60.3, y = 51.7 }, -- 12
-        { type = "TURNIN", quest = 98430, questName = "The Longwalkers", npc = 3057, npcName = "Cairne Bloodhoof", map = 1456, zone = "Thunder Bluff", x = 59.8, y = 51.6 }, -- 13
-        { type = "TURNIN", quest = 98435, questName = "Thunderhorn's Report", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4 }, -- 14
-        { type = "ACCEPT", quest = 886, questName = "The Barrens Oases", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4 }, -- 15
-        { type = "TURNIN", quest = 99082, questName = "The High Chieftain", npc = 3057, npcName = "Cairne Bloodhoof", map = 1456, zone = "Thunder Bluff", x = 59.8, y = 51.6 }, -- 16
-        { type = "TURNIN", quest = 5926, questName = "Heeding the Call", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 17
-        { type = "TURNIN", quest = 5927, questName = "Heeding the Call", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 18
-        { type = "TURNIN", quest = 5928, questName = "Heeding the Call", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 19
+        { type = "FLIGHTPATH", npc = 2995, npcName = "Tal", map = 1456, zone = "Thunder Bluff", x = 47, y = 49.8 }, -- 1
+        { type = "ACCEPT", quest = 5722, questName = "Searching for the Lost Satchel", npc = 11833, npcName = "Rahauro", map = 1456, zone = "Thunder Bluff", x = 70.4, y = 29.6, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 2
+        { type = "ACCEPT", quest = 5723, questName = "Testing an Enemy's Strength", npc = 11833, npcName = "Rahauro", map = 1456, zone = "Thunder Bluff", x = 70.4, y = 29.6, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 3
+        { type = "ACCEPT", quest = 6065, questName = "The Hunter's Path", npc = 3038, npcName = "Kary Thunderhorn", map = 1456, zone = "Thunder Bluff", x = 58.2, y = 87.8, class = { "HUNTER" } }, -- 4
+        { type = "ACCEPT", quest = 6067, questName = "The Hunter's Path", npc = 3171, npcName = "Thotar", map = 1411, zone = "Durotar", x = 51.8, y = 43.4, class = { "HUNTER" } }, -- 5
+        { type = "ACCEPT", quest = 1523, questName = "Call of Fire", npc = 5906, npcName = "Xanis Flameweaver", map = 1456, zone = "Thunder Bluff", x = 25.2, y = 21, class = { "SHAMAN" } }, -- 6
+        { type = "TRAVEL", map = 1456, zone = "Thunder Bluff", x = 54.2, y = 54.4, radius = 60, note = "travel to Thunder Bluff (Thunder Bluff)" }, -- 7
+        { type = "NOTE", map = 1456, zone = "Thunder Bluff", x = 54.2, y = 54.4, text = "set your hearthstone at the inn in Thunder Bluff (if there is one)" }, -- 8
+        { type = "ACCEPT", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1456, zone = "Thunder Bluff", x = 57.8, y = 76.4 }, -- 9
+        { type = "TURNIN", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1456, zone = "Thunder Bluff", x = 57.8, y = 76.4 }, -- 10
+        { type = "TURNIN", quest = 861, questName = "The Hunter's Way", npc = 3441, npcName = "Melor Stonehoof", map = 1456, zone = "Thunder Bluff", x = 61.5, y = 80.9 }, -- 11
+        { type = "ACCEPT", quest = 860, questName = "Sergra Darkthorn", npc = 3441, npcName = "Melor Stonehoof", map = 1456, zone = "Thunder Bluff", x = 61.4, y = 80.6 }, -- 12
+        { type = "TURNIN", quest = 775, questName = "Journey into Thunder Bluff", npc = 3057, npcName = "Cairne Bloodhoof", map = 1456, zone = "Thunder Bluff", x = 60.3, y = 51.7 }, -- 13
+        { type = "TURNIN", quest = 98430, questName = "The Longwalkers", npc = 3057, npcName = "Cairne Bloodhoof", map = 1456, zone = "Thunder Bluff", x = 59.8, y = 51.6 }, -- 14
+        { type = "TURNIN", quest = 98435, questName = "Thunderhorn's Report", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4 }, -- 15
+        { type = "ACCEPT", quest = 886, questName = "The Barrens Oases", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4 }, -- 16
+        { type = "TURNIN", quest = 99082, questName = "The High Chieftain", npc = 3057, npcName = "Cairne Bloodhoof", map = 1456, zone = "Thunder Bluff", x = 59.8, y = 51.6 }, -- 17
+        { type = "TURNIN", quest = 5926, questName = "Heeding the Call", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 18
+        { type = "TURNIN", quest = 5927, questName = "Heeding the Call", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 19
+        { type = "TURNIN", quest = 5928, questName = "Heeding the Call", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 20
     } end,
 })

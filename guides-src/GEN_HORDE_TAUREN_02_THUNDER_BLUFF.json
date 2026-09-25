@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_02_THUNDER_BLUFF",
   "name": "2. Thunder Bluff 11-11 (Tauren)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 11,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 2 of the Tauren route: level 11 to 11, 6 steps, ~6 min of play in the model (27823 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 2995, "npcName": "Tal", "map": 1456, "zone": "Thunder Bluff", "x": 47, "y": 49.8},
     {"type": "ACCEPT", "quest": 5722, "questName": "Searching for the Lost Satchel", "npc": 11833, "npcName": "Rahauro", "map": 1456, "zone": "Thunder Bluff", "x": 70.4, "y": 29.6, "note": "For Ragefire Chasm (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 5723, "questName": "Testing an Enemy's Strength", "npc": 11833, "npcName": "Rahauro", "map": 1456, "zone": "Thunder Bluff", "x": 70.4, "y": 29.6, "note": "For Ragefire Chasm (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 6065, "questName": "The Hunter's Path", "npc": 3038, "npcName": "Kary Thunderhorn", "map": 1456, "zone": "Thunder Bluff", "x": 58.2, "y": 87.8, "class": ["HUNTER"]},
