@@ -21,6 +21,7 @@
     {"type": "TURNIN", "quest": 6074, "questName": "The Hunter's Path", "npc": 1231, "npcName": "Grif Wildheart", "map": 1426, "zone": "Dun Morogh", "x": 45.8, "y": 53, "class": ["HUNTER"], "race": ["Dwarf"]},
     {"type": "TURNIN", "quest": 6075, "questName": "The Hunter's Path", "npc": 1231, "npcName": "Grif Wildheart", "map": 1426, "zone": "Dun Morogh", "x": 45.8, "y": 53, "class": ["HUNTER"], "race": ["Dwarf"]},
     {"type": "TURNIN", "quest": 6076, "questName": "The Hunter's Path", "npc": 1231, "npcName": "Grif Wildheart", "map": 1426, "zone": "Dun Morogh", "x": 45.8, "y": 53, "class": ["HUNTER"], "race": ["Dwarf"]},
+    {"type": "TURNIN", "quest": 2238, "questName": "Simple Subterfugin'", "npc": 6886, "npcName": "Onin MacHammar", "map": 1426, "zone": "Dun Morogh", "x": 25.2, "y": 44.4, "class": ["ROGUE"]},
     {"type": "ACCEPT", "quest": 5635, "questName": "Desperate Prayer", "npc": 1226, "npcName": "Maxan Anvol", "map": 1426, "zone": "Dun Morogh", "x": 47.2, "y": 52.2, "class": ["PRIEST"], "race": ["Dwarf"]},
     {"type": "ACCEPT", "quest": 5637, "questName": "Desperate Prayer", "npc": 1226, "npcName": "Maxan Anvol", "map": 1426, "zone": "Dun Morogh", "x": 47.2, "y": 52.2, "class": ["PRIEST"], "race": ["Dwarf"]},
     {"type": "TURNIN", "quest": 94449, "questName": "Call of Fire", "npc": 257597, "npcName": "Bruegs Kindleborn", "map": 1426, "zone": "Dun Morogh", "x": 87.6, "y": 43.6, "class": ["SHAMAN"]},
