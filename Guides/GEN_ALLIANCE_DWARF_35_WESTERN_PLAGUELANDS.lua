@@ -12,11 +12,11 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     next = "GEN_ALLIANCE_DWARF_36_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 35 of the Dwarf route: level 50 to 50, 56 steps, ~133 min of play in the model (54007 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 35 of the Dwarf route: level 50 to 50, 56 steps, ~100 min of play in the model (71873 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 56,
     steps = function() return {
-        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 83.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
-        { type = "NOTE", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 83.7, text = "set your hearthstone at the inn in Western Plaguelands (if there is one)" }, -- 2
+        { type = "TRAVEL", map = 1425, zone = "Aerie Peak", x = 14.2, y = 41.6, radius = 60, note = "use your hearthstone (Aerie Peak)" }, -- 1
+        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 83.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 2
         { type = "ACCEPT", quest = 5092, questName = "Clear the Way", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 3
         { type = "ACCEPT", quest = 5401, questName = "Argent Dawn Commission", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 4
         { type = "TURNIN", quest = 5401, questName = "Argent Dawn Commission", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 5

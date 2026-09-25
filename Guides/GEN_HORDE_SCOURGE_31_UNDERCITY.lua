@@ -2,18 +2,18 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_31_UNDERCITY",
-    name = "31. Undercity 49-49 (Undead)",
+    name = "31. Undercity 49-50 (Undead)",
     version = 2,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 49,
-    maxLevel = 49,
+    maxLevel = 50,
     map = 1458,
     zone = "Undercity",
-    next = "GEN_HORDE_SCOURGE_32_THE_HINTERLANDS",
+    next = "GEN_HORDE_SCOURGE_32_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 31 of the Scourge route: level 49 to 49, 15 steps, ~21 min of play in the model (34904 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 15,
+    notes = "Chapter 31 of the Scourge route: level 49 to 50, 16 steps, ~80 min of play in the model (9155 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 16,
     steps = function() return {
         { type = "TRAVEL", map = 1458, zone = "Undercity", x = 59.4, y = 64.9, radius = 60, note = "travel to Undercity (Undercity)" }, -- 1
         { type = "ACCEPT", quest = 1109, questName = "Going, Going, Guano!", npc = 2055, npcName = "Master Apothecary Faranell", map = 1458, zone = "Undercity", x = 48.8, y = 69.3 }, -- 2
@@ -30,5 +30,6 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 4293, questName = "A Sample of Slime...", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 13
         { type = "COLLECT", quest = 4294, questName = "... and a Batch of Ooze", target = "Pure Un'Goro Sample", count = 5, map = 1458, zone = "Undercity", x = 47.7, y = 73.6 }, -- 14
         { type = "TURNIN", quest = 4294, questName = "... and a Batch of Ooze", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 15
+        { type = "GRIND", level = 50, note = "nothing worth questing at level 49 - grind to 50" }, -- 16
     } end,
 })

@@ -12,17 +12,17 @@ ns.RegisterGuide({
     zone = "The Hinterlands",
     next = "GEN_HORDE_SCOURGE_20_SEARING_GORGE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 19 of the Scourge route: level 44 to 45, 40 steps, ~187 min of play in the model (37693 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 19 of the Scourge route: level 44 to 45, 40 steps, ~187 min of play in the model (37631 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 40,
     steps = function() return {
         { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 78.9, y = 79.9, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 1
-        { type = "NOTE", map = 1425, zone = "The Hinterlands", x = 78.9, y = 79.9, text = "set your hearthstone at the inn in The Hinterlands (if there is one)" }, -- 2
-        { type = "ACCEPT", quest = 7828, questName = "Stalking the Stalkers", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 3
-        { type = "ACCEPT", quest = 7829, questName = "Hunt the Savages", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 4
-        { type = "ACCEPT", quest = 7830, questName = "Avenging the Fallen", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 5
-        { type = "ACCEPT", quest = 7841, questName = "Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 6
-        { type = "ACCEPT", quest = 7844, questName = "Cannibalistic Cousins", npc = 14739, npcName = "Mystic Yayo'jin", map = 1425, zone = "The Hinterlands", x = 78.8, y = 78.3 }, -- 7
-        { type = "ACCEPT", quest = 7839, questName = "Vilebranch Hooligans", npc = 14737, npcName = "Smith Slagtree", map = 1425, zone = "The Hinterlands", x = 77.2, y = 80.1 }, -- 8
+        { type = "HEARTH", npc = 14731, npcName = "Lard", map = 1425, zone = "Revantusk Village", x = 78.1, y = 81.4, note = "talk to Lard and make this inn your home" }, -- 2
+        { type = "ACCEPT", quest = 7839, questName = "Vilebranch Hooligans", npc = 14737, npcName = "Smith Slagtree", map = 1425, zone = "The Hinterlands", x = 77.2, y = 80.1 }, -- 3
+        { type = "ACCEPT", quest = 7828, questName = "Stalking the Stalkers", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 4
+        { type = "ACCEPT", quest = 7829, questName = "Hunt the Savages", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 5
+        { type = "ACCEPT", quest = 7830, questName = "Avenging the Fallen", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 6
+        { type = "ACCEPT", quest = 7841, questName = "Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 7
+        { type = "ACCEPT", quest = 7844, questName = "Cannibalistic Cousins", npc = 14739, npcName = "Mystic Yayo'jin", map = 1425, zone = "The Hinterlands", x = 78.8, y = 78.3 }, -- 8
         { type = "ACCEPT", quest = 7840, questName = "Lard Lost His Lunch", npc = 14731, npcName = "Lard", map = 1425, zone = "The Hinterlands", x = 78.1, y = 81.4 }, -- 9
         { type = "ACCEPT", quest = 7815, questName = "Snapjaws, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5 }, -- 10
         { type = "ACCEPT", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 11

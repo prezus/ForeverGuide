@@ -10,11 +10,9 @@
   "zone": "Badlands",
   "next": "GEN_ALLIANCE_NIGHTELF_16_STRANGLETHORN_VALE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 15 of the NightElf route: level 36 to 37, 42 steps, ~107 min of play in the model (43751 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 15 of the NightElf route: level 36 to 37, 40 steps, ~111 min of play in the model (42241 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
-    {"type": "TRAVEL", "map": 1417, "zone": "Arathi Highlands", "x": 45.9, "y": 46.0, "radius": 60, "note": "use your hearthstone (Arathi Highlands)"},
     {"type": "TRAVEL", "map": 1418, "zone": "Badlands", "x": 49.9, "y": 47.6, "radius": 60, "note": "travel to Badlands (Badlands)"},
-    {"type": "NOTE", "map": 1418, "zone": "Badlands", "x": 49.9, "y": 47.6, "text": "set your hearthstone at the inn in Badlands (if there is one)"},
     {"type": "ACCEPT", "quest": 719, "questName": "A Dwarf and His Tools", "npc": 2910, "npcName": "Prospector Ryedol", "map": 1418, "zone": "Badlands", "x": 53.4, "y": 43.4},
     {"type": "ACCEPT", "quest": 718, "questName": "Mirages", "npc": 2860, "npcName": "Sigrun Ironhew", "map": 1418, "zone": "Badlands", "x": 53.8, "y": 43.3},
     {"type": "ACCEPT", "quest": 720, "questName": "A Sign of Hope", "map": 1418, "zone": "Badlands", "x": 53, "y": 33.9},

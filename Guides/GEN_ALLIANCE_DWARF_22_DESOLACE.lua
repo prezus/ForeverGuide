@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Desolace",
     next = "GEN_ALLIANCE_DWARF_23_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 22 of the Dwarf route: level 42 to 42, 9 steps, ~40 min of play in the model (36987 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 22 of the Dwarf route: level 42 to 42, 9 steps, ~48 min of play in the model (30580 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 9,
     steps = function() return {
         { type = "TRAVEL", map = 1443, zone = "Desolace", x = 66.5, y = 9.4, radius = 60, note = "travel to Desolace (Desolace)" }, -- 1

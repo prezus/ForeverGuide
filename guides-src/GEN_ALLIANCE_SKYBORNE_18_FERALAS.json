@@ -10,10 +10,10 @@
   "zone": "Feralas",
   "next": "GEN_ALLIANCE_SKYBORNE_19_TANARIS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 18 of the Skyborne route: level 40 to 41, 52 steps, ~135 min of play in the model (41542 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 18 of the Skyborne route: level 40 to 41, 52 steps, ~135 min of play in the model (41443 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 31.2, "y": 45.0, "radius": 60, "note": "travel to Feralas (Feralas)"},
-    {"type": "NOTE", "map": 1444, "zone": "Feralas", "x": 31.2, "y": 45.0, "text": "set your hearthstone at the inn in Feralas (if there is one)"},
+    {"type": "HEARTH", "npc": 7736, "npcName": "Innkeeper Shyria", "map": 1444, "zone": "Feathermoon Stronghold", "x": 31.0, "y": 43.5, "note": "talk to Innkeeper Shyria and make this inn your home"},
     {"type": "ACCEPT", "quest": 4124, "questName": "The Missing Courier", "npc": 7877, "npcName": "Latronicus Moonspear", "map": 1444, "zone": "Feralas", "x": 30.4, "y": 46.2},
     {"type": "ACCEPT", "quest": 2866, "questName": "The Ruins of Solarsal", "npc": 3936, "npcName": "Shandris Feathermoon", "map": 1444, "zone": "Feralas", "x": 30.3, "y": 46.2},
     {"type": "ACCEPT", "quest": 2982, "questName": "The High Wilderness", "npc": 7900, "npcName": "Angelas Moonbreeze", "map": 1444, "zone": "Feralas", "x": 31.8, "y": 45.6},

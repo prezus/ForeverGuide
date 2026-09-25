@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     next = "GEN_ALLIANCE_DWARF_42_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 41 of the Dwarf route: level 52 to 53, 24 steps, ~212 min of play in the model (18103 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 41 of the Dwarf route: level 52 to 53, 24 steps, ~211 min of play in the model (18249 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 24,
     steps = function() return {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.0, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1

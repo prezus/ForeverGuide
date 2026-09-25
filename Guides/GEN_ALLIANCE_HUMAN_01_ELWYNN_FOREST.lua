@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST",
     name = "1. Elwynn Forest 1-11 (Human)",
-    version = 3,
+    version = 2,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 1,
@@ -12,170 +12,114 @@ ns.RegisterGuide({
     zone = "Elwynn Forest",
     next = "GEN_ALLIANCE_HUMAN_02_IRONFORGE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Human route: level 1 to 11, 107 steps, ~152 min of play in the model (13893 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 162,
+    notes = "Chapter 1 of the Human route: level 1 to 11, 106 steps, ~152 min of play in the model (13893 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    stepCount = 106,
     steps = function() return {
-        { type = "NOTE", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6, text = "set your hearthstone at the inn in Elwynn Forest (if there is one)" }, -- 1
-        { type = "ACCEPT", quest = 783, questName = "A Threat Within", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9 }, -- 2
-        { type = "ACCEPT", quest = 1598, questName = "The Stolen Tome", npc = 459, npcName = "Drusilla La Salle", map = 1429, zone = "Elwynn Forest", x = 49.8, y = 42.6, class = { "WARLOCK" } }, -- 3
-        { type = "COLLECT", quest = 1598, questName = "The Stolen Tome", target = "Powers of the Void", count = 1, map = 1429, zone = "Elwynn Forest", x = 56.7, y = 44, class = { "WARLOCK" } }, -- 4
-        { type = "TURNIN", quest = 1598, questName = "The Stolen Tome", npc = 459, npcName = "Drusilla La Salle", map = 1429, zone = "Elwynn Forest", x = 49.8, y = 42.6, class = { "WARLOCK" } }, -- 5
-        { type = "ACCEPT", quest = 33, questName = "Wolves Across the Border", npc = 196, npcName = "Eagan Peltskinner", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 40.2 }, -- 6
-        { type = "TURNIN", quest = 783, questName = "A Threat Within", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 7
-        { type = "ACCEPT", quest = 7, questName = "Kobold Camp Cleanup", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 8
-        { type = "ACCEPT", quest = 92124, questName = "Book Inventory", npc = 951, npcName = "Brother Paxton", map = 1429, zone = "Elwynn Forest", x = 49.4, y = 40.4, note = "New in Forever" }, -- 9
-        { type = "TURNIN", quest = 92124, questName = "Book Inventory", npc = 247229, npcName = "Daniel", map = 1429, zone = "Elwynn Forest", x = 49.4, y = 40.6 }, -- 10
-        { type = "ACCEPT", quest = 5261, questName = "Eagan Peltskinner", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.8 }, -- 11
-        { type = "TURNIN", quest = 5261, questName = "Eagan Peltskinner", npc = 196, npcName = "Eagan Peltskinner", map = 1429, zone = "Elwynn Forest", x = 48.8, y = 40.2 }, -- 12
-        { type = "ACCEPT", quest = 1599, questName = "Beginnings", npc = 460, npcName = "Alamar Grimm", map = 1426, zone = "Dun Morogh", x = 28.6, y = 66.2, class = { "WARLOCK" } }, -- 13
-        { type = "COLLECT", quest = 1599, questName = "Beginnings", target = "Feather Charm", count = 3, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, class = { "WARLOCK" } }, -- 14
-        { type = "TURNIN", quest = 1599, questName = "Beginnings", npc = 460, npcName = "Alamar Grimm", map = 1426, zone = "Dun Morogh", x = 28.6, y = 66.2, class = { "WARLOCK" } }, -- 15
-        { type = "KILL", quest = 7, questName = "Kobold Camp Cleanup", npc = 6, target = "Kobold Vermin", count = 10, map = 1429, zone = "Elwynn Forest", x = 49.3, y = 37.1, near = true }, -- 16
-        { type = "ACCEPT", quest = 18, questName = "Brotherhood of Thieves", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9 }, -- 17
-        { type = "TURNIN", quest = 7, questName = "Kobold Camp Cleanup", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 18
-        { type = "ACCEPT", quest = 15, questName = "Investigate Echo Ridge", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 19
-        { type = "COLLECT", quest = 33, questName = "Wolves Across the Border", target = "Tough Wolf Meat", count = 8, map = 1429, zone = "Elwynn Forest", x = 48, y = 39.6, near = true }, -- 20
-        { type = "TURNIN", quest = 33, questName = "Wolves Across the Border", npc = 196, npcName = "Eagan Peltskinner", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 40.2 }, -- 21
-        { type = "KILL", quest = 15, questName = "Investigate Echo Ridge", npc = 257, target = "Kobold Worker", count = 10, map = 1429, zone = "Elwynn Forest", x = 50.8, y = 37.9, near = true }, -- 22
-        { type = "ACCEPT", quest = 3903, questName = "Milly Osworth", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.8 }, -- 23
-        { type = "TURNIN", quest = 3903, questName = "Milly Osworth", npc = 9296, npcName = "Milly Osworth", map = 1429, zone = "Elwynn Forest", x = 50.6, y = 39.4 }, -- 24
-        { type = "TURNIN", quest = 15, questName = "Investigate Echo Ridge", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 25
-        { type = "ACCEPT", quest = 21, questName = "Skirmish at Echo Ridge", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 26
-        { type = "ACCEPT", quest = 3904, questName = "Milly's Harvest", npc = 9296, npcName = "Milly Osworth", map = 1429, zone = "Elwynn Forest", x = 50.6, y = 39.4 }, -- 27
-        { type = "COLLECT", quest = 3904, questName = "Milly's Harvest", target = "Milly's Harvest", count = 8, map = 1429, zone = "Elwynn Forest", x = 53.6, y = 50.4 }, -- 28
-        { type = "TURNIN", quest = 3904, questName = "Milly's Harvest", npc = 9296, npcName = "Milly Osworth", map = 1429, zone = "Elwynn Forest", x = 50.6, y = 39.4 }, -- 29
-        { type = "KILL", quest = 18, questName = "Brotherhood of Thieves", npc = 38, target = "Defias Thug", count = 12, map = 1429, zone = "Elwynn Forest", x = 53.2, y = 45.6, near = true, note = "loot Red Burlap Bandana" }, -- 30
-        { type = "ACCEPT", quest = 3905, questName = "Grape Manifest", npc = 9296, npcName = "Milly Osworth", map = 1429, zone = "Elwynn Forest", x = 50.6, y = 39.4 }, -- 31
-        { type = "KILL", quest = 21, questName = "Skirmish at Echo Ridge", npc = 80, target = "Kobold Laborer", count = 12, map = 1429, zone = "Elwynn Forest", x = 47.8, y = 31.6, near = true }, -- 32
-        { type = "TURNIN", quest = 18, questName = "Brotherhood of Thieves", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9 }, -- 33
-        { type = "ACCEPT", quest = 6, questName = "Bounty on Garrick Padfoot", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9 }, -- 34
-        { type = "TURNIN", quest = 21, questName = "Skirmish at Echo Ridge", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 35
-        { type = "ACCEPT", quest = 54, questName = "Report to Goldshire", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 36
-        { type = "TURNIN", quest = 3905, questName = "Grape Manifest", npc = 952, npcName = "Brother Neals", map = 1429, zone = "Elwynn Forest", x = 49.4, y = 41.4 }, -- 37
-        { type = "KILL", quest = 6, questName = "Bounty on Garrick Padfoot", npc = 103, target = "Garrick Padfoot", map = 1429, zone = "Elwynn Forest", x = 57.5, y = 48.3, note = "loot Garrick's Head" }, -- 38
-        { type = "TURNIN", quest = 6, questName = "Bounty on Garrick Padfoot", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9 }, -- 39
-        { type = "ACCEPT", quest = 2158, questName = "Rest and Relaxation", npc = 6774, npcName = "Falkhaan Isenstrider", map = 1429, zone = "Elwynn Forest", x = 45.6, y = 47.8 }, -- 40
-        { type = "ACCEPT", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 41
-        { type = "COLLECT", quest = 94373, questName = "Call of Earth", target = "Iceclaw Bear Pendant", count = 2, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, near = true, class = { "SHAMAN" } }, -- 42
-        { type = "TURNIN", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 43
-        { type = "TURNIN", quest = 54, questName = "Report to Goldshire", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 44
-        { type = "ACCEPT", quest = 62, questName = "The Fargodeep Mine", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 45
-        { type = "ACCEPT", quest = 99131, questName = "Baited for Success", npc = 241, npcName = "Remy \"Two Times\"", map = 1429, zone = "Elwynn Forest", x = 42.2, y = 67.2, note = "New in Forever" }, -- 46
-        { type = "ACCEPT", quest = 60, questName = "Kobold Candles", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 47
-        { type = "ACCEPT", quest = 99129, questName = "A Man About a Murloc", npc = 383, npcName = "Jason Mathers", map = 1429, zone = "Elwynn Forest", x = 47.4, y = 62.2, note = "New in Forever" }, -- 48
-        { type = "TURNIN", quest = 99131, questName = "Baited for Success", npc = 383, npcName = "Jason Mathers", map = 1429, zone = "Elwynn Forest", x = 47.4, y = 62.2 }, -- 49
-        { type = "TURNIN", quest = 2158, questName = "Rest and Relaxation", npc = 295, npcName = "Innkeeper Farley", map = 1429, zone = "Elwynn Forest", x = 43.8, y = 65.8 }, -- 50
-        { type = "ACCEPT", quest = 47, questName = "Gold Dust Exchange", npc = 241, npcName = "Remy \"Two Times\"", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 51
-        { type = "ACCEPT", quest = 99127, questName = "A Net Disaster", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 52
-        { type = "ACCEPT", quest = 99143, questName = "Bottles and Baubles", map = 1429, zone = "Elwynn Forest", x = 47.6, y = 62.3 }, -- 53
-        { type = "COLLECT", quest = 60, questName = "Kobold Candles", target = "Large Candle", count = 8, map = 1429, zone = "Elwynn Forest", x = 41.7, y = 78, near = true }, -- 54
-        { type = "COLLECT", quest = 47, questName = "Gold Dust Exchange", target = "Gold Dust", count = 10, map = 1429, zone = "Elwynn Forest", x = 41.7, y = 78, near = true }, -- 55
-        { type = "KILL", quest = 99143, questName = "Bottles and Baubles", target = "Murloc", map = 1429, zone = "Elwynn Forest", x = 50.8, y = 65.5, near = true, note = "Shiny Junk (6)" }, -- 56
-        { type = "TURNIN", quest = 99143, questName = "Bottles and Baubles", map = 1429, zone = "Elwynn Forest", x = 47.6, y = 62.3 }, -- 57
-        { type = "TURNIN", quest = 47, questName = "Gold Dust Exchange", npc = 241, npcName = "Remy \"Two Times\"", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 58
-        { type = "ACCEPT", quest = 40, questName = "A Fishy Peril", npc = 241, npcName = "Remy \"Two Times\"", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 59
-        { type = "TURNIN", quest = 60, questName = "Kobold Candles", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 60
-        { type = "ACCEPT", quest = 61, questName = "Shipment to Stormwind", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 61
-        { type = "TURNIN", quest = 40, questName = "A Fishy Peril", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 62
-        { type = "ACCEPT", quest = 35, questName = "Further Concerns", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 63
-        { type = "COMPLETE", quest = 99127, questName = "A Net Disaster", target = "Half-Eaten Fish (7)", map = 1429, zone = "Elwynn Forest", x = 47.7, y = 65.9, near = true, note = "Half-Eaten Fish (7)" }, -- 64
-        { type = "TURNIN", quest = 99127, questName = "A Net Disaster", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 65
-        { type = "ACCEPT", quest = 99128, questName = "Slimy Menace", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 66
-        { type = "KILL", quest = 99128, questName = "Slimy Menace", target = "Murloc / Murloc", map = 1429, zone = "Elwynn Forest", x = 50.8, y = 65.5, near = true, note = "Murloc Streamrunners slain (4)" }, -- 67
-        { type = "TURNIN", quest = 99128, questName = "Slimy Menace", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 68
-        { type = "COMPLETE", quest = 62, questName = "The Fargodeep Mine", target = "Scout through the Fargodeep Mine", map = 1429, zone = "Elwynn Forest", x = 40.6, y = 82.3, note = "Scout through the Fargodeep Mine" }, -- 69
-        { type = "TURNIN", quest = 62, questName = "The Fargodeep Mine", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 70
-        { type = "ACCEPT", quest = 76, questName = "The Jasperlode Mine", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 71
-        { type = "ACCEPT", quest = 91751, questName = "Rough Wolf Pelts", npc = 6306, npcName = "Helene Peltskinner", map = 1429, zone = "Elwynn Forest", x = 46.2, y = 62.2, note = "New in Forever" }, -- 72
-        { type = "ACCEPT", quest = 91723, questName = "Delicate Instruments", npc = 248242, npcName = "Hamish Bergwort", map = 1429, zone = "Elwynn Forest", x = 65, y = 69.8, note = "New in Forever" }, -- 73
-        { type = "KILL", quest = 91723, questName = "Delicate Instruments", npc = 476, target = "Kobold Geomancer", count = 8, map = 1429, zone = "Elwynn Forest", x = 60.6, y = 50.8 }, -- 74
-        { type = "COMPLETE", quest = 76, questName = "The Jasperlode Mine", target = "Scout through the Jasperlode Mine", map = 1429, zone = "Elwynn Forest", x = 60.2, y = 49.2, note = "Scout through the Jasperlode Mine" }, -- 75
-        { type = "TURNIN", quest = 76, questName = "The Jasperlode Mine", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 76
-        { type = "TURNIN", quest = 99129, questName = "A Man About a Murloc", npc = 241, npcName = "Remy \"Two Times\"", map = 1429, zone = "Elwynn Forest", x = 42.2, y = 67.2 }, -- 77
-        { type = "ACCEPT", quest = 239, questName = "Westbrook Garrison Needs Help!", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.2, y = 65.8 }, -- 78
-        { type = "ACCEPT", quest = 106, questName = "Young Lovers", npc = 251, npcName = "Maybell Maclure", map = 1429, zone = "Elwynn Forest", x = 43.2, y = 89.6 }, -- 79
-        { type = "ACCEPT", quest = 85, questName = "Lost Necklace", npc = 246, npcName = "\"Auntie\" Bernice Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.5, y = 84.3 }, -- 80
-        { type = "ACCEPT", quest = 88, questName = "Princess Must Die!", npc = 244, npcName = "Ma Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.7, y = 84.5 }, -- 81
-        { type = "TURNIN", quest = 106, questName = "Young Lovers", npc = 252, npcName = "Tommy Joe Stonefield", map = 1429, zone = "Elwynn Forest", x = 29.8, y = 86 }, -- 82
-        { type = "ACCEPT", quest = 111, questName = "Speak with Gramma", npc = 252, npcName = "Tommy Joe Stonefield", map = 1429, zone = "Elwynn Forest", x = 29.8, y = 86 }, -- 83
-        { type = "TURNIN", quest = 239, questName = "Westbrook Garrison Needs Help!", npc = 963, npcName = "Deputy Rainer", map = 1429, zone = "Elwynn Forest", x = 24.2, y = 74.6 }, -- 84
-        { type = "ACCEPT", quest = 11, questName = "Riverpaw Gnoll Bounty", npc = 963, npcName = "Deputy Rainer", map = 1429, zone = "Elwynn Forest", x = 24.2, y = 74.5 }, -- 85
-        { type = "ACCEPT", quest = 176, questName = "Wanted:  \"Hogger\"", map = 1429, zone = "Elwynn Forest", x = 24.6, y = 74.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 86
-        { type = "KILL", quest = 176, questName = "Wanted:  \"Hogger\"", npc = 448, target = "Hogger", map = 1429, zone = "Elwynn Forest", x = 25, y = 92.9, optional = true }, -- 87
-        { type = "TURNIN", quest = 176, questName = "Wanted:  \"Hogger\"", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9, optional = true }, -- 88
-        { type = "COLLECT", quest = 11, questName = "Riverpaw Gnoll Bounty", target = "Painted Gnoll Armband", count = 8, map = 1429, zone = "Elwynn Forest", x = 27.5, y = 79.9, near = true }, -- 89
-        { type = "TURNIN", quest = 11, questName = "Riverpaw Gnoll Bounty", npc = 963, npcName = "Deputy Rainer", map = 1429, zone = "Elwynn Forest", x = 24.2, y = 74.5 }, -- 90
-        { type = "TURNIN", quest = 111, questName = "Speak with Gramma", npc = 248, npcName = "Gramma Stonefield", map = 1429, zone = "Elwynn Forest", x = 35.0, y = 83.9 }, -- 91
-        { type = "ACCEPT", quest = 107, questName = "Note to William", npc = 248, npcName = "Gramma Stonefield", map = 1429, zone = "Elwynn Forest", x = 35.0, y = 83.9 }, -- 92
-        { type = "ACCEPT", quest = 91724, questName = "Delicate Instruments", npc = 248242, npcName = "Hamish Bergwort", map = 1429, zone = "Elwynn Forest", x = 65, y = 69.8, note = "New in Forever" }, -- 93
-        { type = "ACCEPT", quest = 94374, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 94
-        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" } }, -- 95
-        { type = "KILL", quest = 88, questName = "Princess Must Die!", npc = 330, target = "Princess", map = 1429, zone = "Elwynn Forest", x = 69.7, y = 79.3, note = "loot Brass Collar" }, -- 96
-        { type = "TURNIN", quest = 85, questName = "Lost Necklace", npc = 247, npcName = "Billy Maclure", map = 1429, zone = "Elwynn Forest", x = 43.1, y = 85.7 }, -- 97
-        { type = "ACCEPT", quest = 86, questName = "Pie for Billy", npc = 247, npcName = "Billy Maclure", map = 1429, zone = "Elwynn Forest", x = 43.1, y = 85.7 }, -- 98
-        { type = "COLLECT", quest = 86, questName = "Pie for Billy", target = "Chunk of Boar Meat", count = 4, map = 1429, zone = "Elwynn Forest", x = 41.8, y = 86.5, near = true }, -- 99
-        { type = "TURNIN", quest = 86, questName = "Pie for Billy", npc = 246, npcName = "\"Auntie\" Bernice Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.5, y = 84.3 }, -- 100
-        { type = "ACCEPT", quest = 84, questName = "Back to Billy", npc = 246, npcName = "\"Auntie\" Bernice Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.5, y = 84.3 }, -- 101
-        { type = "TURNIN", quest = 88, questName = "Princess Must Die!", npc = 244, npcName = "Ma Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.7, y = 84.5 }, -- 102
-        { type = "TURNIN", quest = 84, questName = "Back to Billy", npc = 247, npcName = "Billy Maclure", map = 1429, zone = "Elwynn Forest", x = 43.1, y = 85.7 }, -- 103
-        { type = "ACCEPT", quest = 87, questName = "Goldtooth", npc = 247, npcName = "Billy Maclure", map = 1429, zone = "Elwynn Forest", x = 43.1, y = 85.7 }, -- 104
-        { type = "KILL", quest = 87, questName = "Goldtooth", npc = 327, target = "Goldtooth", map = 1429, zone = "Elwynn Forest", x = 41.7, y = 78, note = "loot Bernice's Necklace" }, -- 105
-        { type = "TURNIN", quest = 87, questName = "Goldtooth", npc = 246, npcName = "\"Auntie\" Bernice Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.5, y = 84.3 }, -- 106
-        { type = "KILL", quest = 91724, questName = "Delicate Instruments", npc = 474, target = "Defias Rogue Wizard", count = 6, map = 1429, zone = "Elwynn Forest", x = 28.4, y = 59.6 }, -- 107
-        { type = "ACCEPT", quest = 1097, questName = "Elmore's Task", npc = 514, npcName = "Smith Argus", map = 1429, zone = "Elwynn Forest", x = 41.6, y = 65.6 }, -- 108
-        { type = "TURNIN", quest = 107, questName = "Note to William", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 109
-        { type = "ACCEPT", quest = 112, questName = "Collecting Kelp", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 110
-        { type = "COLLECT", quest = 112, questName = "Collecting Kelp", target = "Crystal Kelp Frond", count = 4, map = 1429, zone = "Elwynn Forest", x = 49.8, y = 66.4, near = true }, -- 111
-        { type = "TURNIN", quest = 112, questName = "Collecting Kelp", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 112
-        { type = "ACCEPT", quest = 114, questName = "The Escape", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 113
-        { type = "TURNIN", quest = 114, questName = "The Escape", npc = 251, npcName = "Maybell Maclure", map = 1429, zone = "Elwynn Forest", x = 43.2, y = 89.6 }, -- 114
-        { type = "TURNIN", quest = 91723, questName = "Delicate Instruments", npc = 248242, npcName = "Hamish Bergwort", map = 1429, zone = "Elwynn Forest", x = 65, y = 69.8 }, -- 115
-        { type = "TURNIN", quest = 91724, questName = "Delicate Instruments", npc = 248242, npcName = "Hamish Bergwort", map = 1429, zone = "Elwynn Forest", x = 65, y = 69.8 }, -- 116
-        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" }, note = "New in Forever" }, -- 117
-        { type = "TURNIN", quest = 94375, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 118
-        { type = "TURNIN", quest = 35, questName = "Further Concerns", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 119
-        { type = "ACCEPT", quest = 37, questName = "Find the Lost Guards", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 120
-        { type = "ACCEPT", quest = 52, questName = "Protect the Frontier", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 121
-        { type = "ACCEPT", quest = 91733, questName = "Downstream", map = 1429, zone = "Elwynn Forest", x = 76.5, y = 71.9 }, -- 122
-        { type = "ACCEPT", quest = 83, questName = "Red Linen Goods", npc = 278, npcName = "Sara Timberlain", map = 1429, zone = "Elwynn Forest", x = 79.5, y = 68.8 }, -- 123
-        { type = "ACCEPT", quest = 5545, questName = "A Bundle of Trouble", npc = 10616, npcName = "Supervisor Raelen", map = 1429, zone = "Elwynn Forest", x = 81.4, y = 66.1 }, -- 124
-        { type = "COLLECT", quest = 91751, questName = "Rough Wolf Pelts", target = "Rough Wolf Pelt", count = 7, map = 1429, zone = "Elwynn Forest", x = 84.2, y = 61.4, near = true }, -- 125
-        { type = "COLLECT", quest = 5545, questName = "A Bundle of Trouble", target = "Bundle of Wood", count = 8, map = 1429, zone = "Elwynn Forest", x = 81.6, y = 62.6, near = true }, -- 126
-        { type = "TURNIN", quest = 5545, questName = "A Bundle of Trouble", npc = 10616, npcName = "Supervisor Raelen", map = 1429, zone = "Elwynn Forest", x = 81.4, y = 66.1 }, -- 127
-        { type = "KILL", quest = 52, questName = "Protect the Frontier", npc = 822, target = "Young Forest Bear", count = 8, map = 1429, zone = "Elwynn Forest", x = 81.4, y = 58.4, near = true }, -- 128
-        { type = "COLLECT", quest = 83, questName = "Red Linen Goods", target = "Red Linen Bandana", count = 6, map = 1429, zone = "Elwynn Forest", x = 76.6, y = 53.4, near = true }, -- 129
-        { type = "KILL", quest = 52, questName = "Protect the Frontier", npc = 118, target = "Prowler", count = 8, map = 1429, zone = "Elwynn Forest", x = 78.9, y = 41.5, near = true }, -- 130
-        { type = "COMPLETE", quest = 91733, questName = "Downstream", target = "Waterlogged Saw 1/1", map = 1429, zone = "Elwynn Forest", x = 74.3, y = 76.4, note = "Waterlogged Saw 1/1" }, -- 131
-        { type = "TURNIN", quest = 52, questName = "Protect the Frontier", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 132
-        { type = "COMPLETE", quest = 91733, questName = "Downstream", target = "Waterlogged Axe 1/1", map = 1429, zone = "Elwynn Forest", x = 76.7, y = 82.5, note = "Waterlogged Axe 1/1" }, -- 133
-        { type = "COMPLETE", quest = 91733, questName = "Downstream", target = "Waterlogged Toolbox 1/1", map = 1429, zone = "Elwynn Forest", x = 77.3, y = 86.8, note = "Waterlogged Toolbox 1/1" }, -- 134
-        { type = "TURNIN", quest = 91733, questName = "Downstream", map = 1429, zone = "Elwynn Forest", x = 76.5, y = 71.9 }, -- 135
-        { type = "TURNIN", quest = 83, questName = "Red Linen Goods", npc = 278, npcName = "Sara Timberlain", map = 1429, zone = "Elwynn Forest", x = 79.5, y = 68.8 }, -- 136
-        { type = "TURNIN", quest = 37, questName = "Find the Lost Guards", map = 1429, zone = "Elwynn Forest", x = 72.7, y = 60.3 }, -- 137
-        { type = "ACCEPT", quest = 45, questName = "Discover Rolf's Fate", map = 1429, zone = "Elwynn Forest", x = 72.7, y = 60.3 }, -- 138
-        { type = "TURNIN", quest = 45, questName = "Discover Rolf's Fate", map = 1429, zone = "Elwynn Forest", x = 79.8, y = 55.5 }, -- 139
-        { type = "ACCEPT", quest = 71, questName = "Report to Thomas", map = 1429, zone = "Elwynn Forest", x = 79.8, y = 55.5 }, -- 140
-        { type = "TURNIN", quest = 71, questName = "Report to Thomas", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 141
-        { type = "ACCEPT", quest = 39, questName = "Deliver Thomas' Report", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 142
-        { type = "TURNIN", quest = 91751, questName = "Rough Wolf Pelts", npc = 6306, npcName = "Helene Peltskinner", map = 1429, zone = "Elwynn Forest", x = 46.2, y = 62.2 }, -- 143
-        { type = "ACCEPT", quest = 1638, questName = "A Warrior's Training", npc = 913, npcName = "Lyria Du Lac", map = 1429, zone = "Elwynn Forest", x = 41, y = 65.8, class = { "WARRIOR" } }, -- 144
-        { type = "ACCEPT", quest = 94792, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever" }, -- 145
-        { type = "TURNIN", quest = 94792, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" } }, -- 146
-        { type = "TURNIN", quest = 39, questName = "Deliver Thomas' Report", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 147
-        { type = "ACCEPT", quest = 94863, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever" }, -- 148
-        { type = "TURNIN", quest = 94863, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" } }, -- 149
-        { type = "ACCEPT", quest = 46, questName = "Bounty on Murlocs", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 150
-        { type = "COLLECT", quest = 46, questName = "Bounty on Murlocs", target = "Torn Murloc Fin", count = 8, map = 1429, zone = "Elwynn Forest", x = 76.5, y = 79.7, near = true }, -- 151
-        { type = "TURNIN", quest = 46, questName = "Bounty on Murlocs", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 152
-        { type = "ACCEPT", quest = 94864, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever" }, -- 153
-        { type = "TURNIN", quest = 94864, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" } }, -- 154
-        { type = "ACCEPT", quest = 59, questName = "Cloth and Leather Armor", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 155
-        { type = "ACCEPT", quest = 94793, questName = "Training the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever" }, -- 156
-        { type = "TURNIN", quest = 94793, questName = "Training the Beast", npc = 258930, npcName = "Isaac Chan", map = 1429, zone = "Elwynn Forest", x = 41.8, y = 66.4, class = { "HUNTER" } }, -- 157
-        { type = "ACCEPT", quest = 5635, questName = "Desperate Prayer", npc = 377, npcName = "Priestess Josetta", map = 1429, zone = "Elwynn Forest", x = 43.2, y = 65.6, class = { "PRIEST" } }, -- 158
-        { type = "ACCEPT", quest = 5637, questName = "Desperate Prayer", npc = 377, npcName = "Priestess Josetta", map = 1429, zone = "Elwynn Forest", x = 43.2, y = 65.6, class = { "PRIEST" } }, -- 159
-        { type = "ACCEPT", quest = 94774, questName = "Divine Grace", npc = 377, npcName = "Priestess Josetta", map = 1429, zone = "Elwynn Forest", x = 43.2, y = 65.6, class = { "PRIEST" }, note = "New in Forever" }, -- 160
-        { type = "ACCEPT", quest = 1685, questName = "Gakin's Summons", npc = 6121, npcName = "Remen Marcot", map = 1429, zone = "Elwynn Forest", x = 44.4, y = 66.2, class = { "WARLOCK" } }, -- 161
-        { type = "TURNIN", quest = 59, questName = "Cloth and Leather Armor", npc = 278, npcName = "Sara Timberlain", map = 1429, zone = "Elwynn Forest", x = 79.5, y = 68.8 }, -- 162
+        { type = "ACCEPT", quest = 783, questName = "A Threat Within", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9 }, -- 1
+        { type = "ACCEPT", quest = 33, questName = "Wolves Across the Border", npc = 196, npcName = "Eagan Peltskinner", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 40.2 }, -- 2
+        { type = "TURNIN", quest = 783, questName = "A Threat Within", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 3
+        { type = "ACCEPT", quest = 7, questName = "Kobold Camp Cleanup", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 4
+        { type = "KILL", quest = 7, questName = "Kobold Camp Cleanup", npc = 6, target = "Kobold Vermin", count = 10, map = 1429, zone = "Elwynn Forest", x = 49.3, y = 37.1, near = true }, -- 5
+        { type = "ACCEPT", quest = 18, questName = "Brotherhood of Thieves", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9 }, -- 6
+        { type = "TURNIN", quest = 7, questName = "Kobold Camp Cleanup", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 7
+        { type = "ACCEPT", quest = 15, questName = "Investigate Echo Ridge", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 8
+        { type = "COLLECT", quest = 33, questName = "Wolves Across the Border", target = "Tough Wolf Meat", count = 8, map = 1429, zone = "Elwynn Forest", x = 48, y = 39.6, near = true }, -- 9
+        { type = "TURNIN", quest = 33, questName = "Wolves Across the Border", npc = 196, npcName = "Eagan Peltskinner", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 40.2 }, -- 10
+        { type = "KILL", quest = 15, questName = "Investigate Echo Ridge", npc = 257, target = "Kobold Worker", count = 10, map = 1429, zone = "Elwynn Forest", x = 50.8, y = 37.9, near = true }, -- 11
+        { type = "TURNIN", quest = 15, questName = "Investigate Echo Ridge", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 12
+        { type = "ACCEPT", quest = 21, questName = "Skirmish at Echo Ridge", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 13
+        { type = "KILL", quest = 18, questName = "Brotherhood of Thieves", npc = 38, target = "Defias Thug", count = 12, map = 1429, zone = "Elwynn Forest", x = 53.2, y = 45.6, near = true, note = "loot Red Burlap Bandana" }, -- 14
+        { type = "KILL", quest = 21, questName = "Skirmish at Echo Ridge", npc = 80, target = "Kobold Laborer", count = 12, map = 1429, zone = "Elwynn Forest", x = 47.8, y = 31.6, near = true }, -- 15
+        { type = "TURNIN", quest = 18, questName = "Brotherhood of Thieves", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9 }, -- 16
+        { type = "ACCEPT", quest = 6, questName = "Bounty on Garrick Padfoot", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9 }, -- 17
+        { type = "TURNIN", quest = 21, questName = "Skirmish at Echo Ridge", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 18
+        { type = "ACCEPT", quest = 54, questName = "Report to Goldshire", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 19
+        { type = "KILL", quest = 6, questName = "Bounty on Garrick Padfoot", npc = 103, target = "Garrick Padfoot", map = 1429, zone = "Elwynn Forest", x = 57.5, y = 48.3, note = "loot Garrick's Head" }, -- 20
+        { type = "TURNIN", quest = 6, questName = "Bounty on Garrick Padfoot", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9 }, -- 21
+        { type = "TURNIN", quest = 54, questName = "Report to Goldshire", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 22
+        { type = "ACCEPT", quest = 62, questName = "The Fargodeep Mine", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 23
+        { type = "ACCEPT", quest = 60, questName = "Kobold Candles", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 24
+        { type = "ACCEPT", quest = 47, questName = "Gold Dust Exchange", npc = 241, npcName = "Remy \"Two Times\"", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 25
+        { type = "ACCEPT", quest = 99127, questName = "A Net Disaster", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 26
+        { type = "ACCEPT", quest = 99143, questName = "Bottles and Baubles", map = 1429, zone = "Elwynn Forest", x = 47.6, y = 62.3 }, -- 27
+        { type = "COLLECT", quest = 60, questName = "Kobold Candles", target = "Large Candle", count = 8, map = 1429, zone = "Elwynn Forest", x = 41.7, y = 78, near = true }, -- 28
+        { type = "COLLECT", quest = 47, questName = "Gold Dust Exchange", target = "Gold Dust", count = 10, map = 1429, zone = "Elwynn Forest", x = 41.7, y = 78, near = true }, -- 29
+        { type = "KILL", quest = 99143, questName = "Bottles and Baubles", target = "Murloc", map = 1429, zone = "Elwynn Forest", x = 50.8, y = 65.5, near = true, note = "Shiny Junk (6)" }, -- 30
+        { type = "TURNIN", quest = 99143, questName = "Bottles and Baubles", map = 1429, zone = "Elwynn Forest", x = 47.6, y = 62.3 }, -- 31
+        { type = "TURNIN", quest = 47, questName = "Gold Dust Exchange", npc = 241, npcName = "Remy \"Two Times\"", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 32
+        { type = "ACCEPT", quest = 40, questName = "A Fishy Peril", npc = 241, npcName = "Remy \"Two Times\"", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 33
+        { type = "TURNIN", quest = 60, questName = "Kobold Candles", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 34
+        { type = "ACCEPT", quest = 61, questName = "Shipment to Stormwind", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 35
+        { type = "TURNIN", quest = 40, questName = "A Fishy Peril", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 36
+        { type = "ACCEPT", quest = 35, questName = "Further Concerns", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 37
+        { type = "COMPLETE", quest = 99127, questName = "A Net Disaster", target = "Half-Eaten Fish (7)", map = 1429, zone = "Elwynn Forest", x = 47.7, y = 65.9, near = true, note = "Half-Eaten Fish (7)" }, -- 38
+        { type = "TURNIN", quest = 99127, questName = "A Net Disaster", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 39
+        { type = "ACCEPT", quest = 99128, questName = "Slimy Menace", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 40
+        { type = "KILL", quest = 99128, questName = "Slimy Menace", target = "Murloc / Murloc", map = 1429, zone = "Elwynn Forest", x = 50.8, y = 65.5, near = true, note = "Murloc Streamrunners slain (4)" }, -- 41
+        { type = "TURNIN", quest = 99128, questName = "Slimy Menace", map = 1429, zone = "Elwynn Forest", x = 47.5, y = 62.2 }, -- 42
+        { type = "COMPLETE", quest = 62, questName = "The Fargodeep Mine", target = "Scout through the Fargodeep Mine", map = 1429, zone = "Elwynn Forest", x = 40.6, y = 82.3, note = "Scout through the Fargodeep Mine" }, -- 43
+        { type = "TURNIN", quest = 62, questName = "The Fargodeep Mine", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 44
+        { type = "ACCEPT", quest = 76, questName = "The Jasperlode Mine", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 45
+        { type = "COMPLETE", quest = 76, questName = "The Jasperlode Mine", target = "Scout through the Jasperlode Mine", map = 1429, zone = "Elwynn Forest", x = 60.2, y = 49.2, note = "Scout through the Jasperlode Mine" }, -- 46
+        { type = "TURNIN", quest = 76, questName = "The Jasperlode Mine", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 47
+        { type = "ACCEPT", quest = 106, questName = "Young Lovers", npc = 251, npcName = "Maybell Maclure", map = 1429, zone = "Elwynn Forest", x = 43.2, y = 89.6 }, -- 48
+        { type = "ACCEPT", quest = 85, questName = "Lost Necklace", npc = 246, npcName = "\"Auntie\" Bernice Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.5, y = 84.3 }, -- 49
+        { type = "ACCEPT", quest = 88, questName = "Princess Must Die!", npc = 244, npcName = "Ma Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.7, y = 84.5 }, -- 50
+        { type = "TURNIN", quest = 106, questName = "Young Lovers", npc = 252, npcName = "Tommy Joe Stonefield", map = 1429, zone = "Elwynn Forest", x = 29.8, y = 86 }, -- 51
+        { type = "ACCEPT", quest = 111, questName = "Speak with Gramma", npc = 252, npcName = "Tommy Joe Stonefield", map = 1429, zone = "Elwynn Forest", x = 29.8, y = 86 }, -- 52
+        { type = "ACCEPT", quest = 11, questName = "Riverpaw Gnoll Bounty", npc = 963, npcName = "Deputy Rainer", map = 1429, zone = "Elwynn Forest", x = 24.2, y = 74.5 }, -- 53
+        { type = "ACCEPT", quest = 176, questName = "Wanted:  \"Hogger\"", map = 1429, zone = "Elwynn Forest", x = 24.6, y = 74.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 54
+        { type = "KILL", quest = 176, questName = "Wanted:  \"Hogger\"", npc = 448, target = "Hogger", map = 1429, zone = "Elwynn Forest", x = 25, y = 92.9, optional = true }, -- 55
+        { type = "TURNIN", quest = 176, questName = "Wanted:  \"Hogger\"", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9, optional = true }, -- 56
+        { type = "COLLECT", quest = 11, questName = "Riverpaw Gnoll Bounty", target = "Painted Gnoll Armband", count = 8, map = 1429, zone = "Elwynn Forest", x = 27.5, y = 79.9, near = true }, -- 57
+        { type = "TURNIN", quest = 11, questName = "Riverpaw Gnoll Bounty", npc = 963, npcName = "Deputy Rainer", map = 1429, zone = "Elwynn Forest", x = 24.2, y = 74.5 }, -- 58
+        { type = "TURNIN", quest = 111, questName = "Speak with Gramma", npc = 248, npcName = "Gramma Stonefield", map = 1429, zone = "Elwynn Forest", x = 35.0, y = 83.9 }, -- 59
+        { type = "ACCEPT", quest = 107, questName = "Note to William", npc = 248, npcName = "Gramma Stonefield", map = 1429, zone = "Elwynn Forest", x = 35.0, y = 83.9 }, -- 60
+        { type = "KILL", quest = 88, questName = "Princess Must Die!", npc = 330, target = "Princess", map = 1429, zone = "Elwynn Forest", x = 69.7, y = 79.3, note = "loot Brass Collar" }, -- 61
+        { type = "TURNIN", quest = 85, questName = "Lost Necklace", npc = 247, npcName = "Billy Maclure", map = 1429, zone = "Elwynn Forest", x = 43.1, y = 85.7 }, -- 62
+        { type = "ACCEPT", quest = 86, questName = "Pie for Billy", npc = 247, npcName = "Billy Maclure", map = 1429, zone = "Elwynn Forest", x = 43.1, y = 85.7 }, -- 63
+        { type = "COLLECT", quest = 86, questName = "Pie for Billy", target = "Chunk of Boar Meat", count = 4, map = 1429, zone = "Elwynn Forest", x = 41.8, y = 86.5, near = true }, -- 64
+        { type = "TURNIN", quest = 86, questName = "Pie for Billy", npc = 246, npcName = "\"Auntie\" Bernice Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.5, y = 84.3 }, -- 65
+        { type = "ACCEPT", quest = 84, questName = "Back to Billy", npc = 246, npcName = "\"Auntie\" Bernice Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.5, y = 84.3 }, -- 66
+        { type = "TURNIN", quest = 88, questName = "Princess Must Die!", npc = 244, npcName = "Ma Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.7, y = 84.5 }, -- 67
+        { type = "TURNIN", quest = 84, questName = "Back to Billy", npc = 247, npcName = "Billy Maclure", map = 1429, zone = "Elwynn Forest", x = 43.1, y = 85.7 }, -- 68
+        { type = "ACCEPT", quest = 87, questName = "Goldtooth", npc = 247, npcName = "Billy Maclure", map = 1429, zone = "Elwynn Forest", x = 43.1, y = 85.7 }, -- 69
+        { type = "KILL", quest = 87, questName = "Goldtooth", npc = 327, target = "Goldtooth", map = 1429, zone = "Elwynn Forest", x = 41.7, y = 78, note = "loot Bernice's Necklace" }, -- 70
+        { type = "TURNIN", quest = 87, questName = "Goldtooth", npc = 246, npcName = "\"Auntie\" Bernice Stonefield", map = 1429, zone = "Elwynn Forest", x = 34.5, y = 84.3 }, -- 71
+        { type = "TURNIN", quest = 107, questName = "Note to William", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 72
+        { type = "ACCEPT", quest = 112, questName = "Collecting Kelp", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 73
+        { type = "COLLECT", quest = 112, questName = "Collecting Kelp", target = "Crystal Kelp Frond", count = 4, map = 1429, zone = "Elwynn Forest", x = 49.8, y = 66.4, near = true }, -- 74
+        { type = "TURNIN", quest = 112, questName = "Collecting Kelp", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 75
+        { type = "ACCEPT", quest = 114, questName = "The Escape", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 76
+        { type = "TURNIN", quest = 114, questName = "The Escape", npc = 251, npcName = "Maybell Maclure", map = 1429, zone = "Elwynn Forest", x = 43.2, y = 89.6 }, -- 77
+        { type = "TURNIN", quest = 35, questName = "Further Concerns", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 78
+        { type = "ACCEPT", quest = 37, questName = "Find the Lost Guards", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 79
+        { type = "ACCEPT", quest = 52, questName = "Protect the Frontier", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 80
+        { type = "ACCEPT", quest = 91733, questName = "Downstream", map = 1429, zone = "Elwynn Forest", x = 76.5, y = 71.9 }, -- 81
+        { type = "ACCEPT", quest = 83, questName = "Red Linen Goods", npc = 278, npcName = "Sara Timberlain", map = 1429, zone = "Elwynn Forest", x = 79.5, y = 68.8 }, -- 82
+        { type = "ACCEPT", quest = 5545, questName = "A Bundle of Trouble", npc = 10616, npcName = "Supervisor Raelen", map = 1429, zone = "Elwynn Forest", x = 81.4, y = 66.1 }, -- 83
+        { type = "COLLECT", quest = 5545, questName = "A Bundle of Trouble", target = "Bundle of Wood", count = 8, map = 1429, zone = "Elwynn Forest", x = 81.6, y = 62.6, near = true }, -- 84
+        { type = "TURNIN", quest = 5545, questName = "A Bundle of Trouble", npc = 10616, npcName = "Supervisor Raelen", map = 1429, zone = "Elwynn Forest", x = 81.4, y = 66.1 }, -- 85
+        { type = "KILL", quest = 52, questName = "Protect the Frontier", npc = 822, target = "Young Forest Bear", count = 8, map = 1429, zone = "Elwynn Forest", x = 81.4, y = 58.4, near = true }, -- 86
+        { type = "COLLECT", quest = 83, questName = "Red Linen Goods", target = "Red Linen Bandana", count = 6, map = 1429, zone = "Elwynn Forest", x = 76.6, y = 53.4, near = true }, -- 87
+        { type = "KILL", quest = 52, questName = "Protect the Frontier", npc = 118, target = "Prowler", count = 8, map = 1429, zone = "Elwynn Forest", x = 78.9, y = 41.5, near = true }, -- 88
+        { type = "COMPLETE", quest = 91733, questName = "Downstream", target = "Waterlogged Saw 1/1", map = 1429, zone = "Elwynn Forest", x = 74.3, y = 76.4, note = "Waterlogged Saw 1/1" }, -- 89
+        { type = "TURNIN", quest = 52, questName = "Protect the Frontier", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 90
+        { type = "COMPLETE", quest = 91733, questName = "Downstream", target = "Waterlogged Axe 1/1", map = 1429, zone = "Elwynn Forest", x = 76.7, y = 82.5, note = "Waterlogged Axe 1/1" }, -- 91
+        { type = "COMPLETE", quest = 91733, questName = "Downstream", target = "Waterlogged Toolbox 1/1", map = 1429, zone = "Elwynn Forest", x = 77.3, y = 86.8, note = "Waterlogged Toolbox 1/1" }, -- 92
+        { type = "TURNIN", quest = 91733, questName = "Downstream", map = 1429, zone = "Elwynn Forest", x = 76.5, y = 71.9 }, -- 93
+        { type = "TURNIN", quest = 83, questName = "Red Linen Goods", npc = 278, npcName = "Sara Timberlain", map = 1429, zone = "Elwynn Forest", x = 79.5, y = 68.8 }, -- 94
+        { type = "TURNIN", quest = 37, questName = "Find the Lost Guards", map = 1429, zone = "Elwynn Forest", x = 72.7, y = 60.3 }, -- 95
+        { type = "ACCEPT", quest = 45, questName = "Discover Rolf's Fate", map = 1429, zone = "Elwynn Forest", x = 72.7, y = 60.3 }, -- 96
+        { type = "TURNIN", quest = 45, questName = "Discover Rolf's Fate", map = 1429, zone = "Elwynn Forest", x = 79.8, y = 55.5 }, -- 97
+        { type = "ACCEPT", quest = 71, questName = "Report to Thomas", map = 1429, zone = "Elwynn Forest", x = 79.8, y = 55.5 }, -- 98
+        { type = "TURNIN", quest = 71, questName = "Report to Thomas", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 99
+        { type = "ACCEPT", quest = 39, questName = "Deliver Thomas' Report", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 100
+        { type = "TURNIN", quest = 39, questName = "Deliver Thomas' Report", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 101
+        { type = "ACCEPT", quest = 46, questName = "Bounty on Murlocs", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 102
+        { type = "COLLECT", quest = 46, questName = "Bounty on Murlocs", target = "Torn Murloc Fin", count = 8, map = 1429, zone = "Elwynn Forest", x = 76.5, y = 79.7, near = true }, -- 103
+        { type = "TURNIN", quest = 46, questName = "Bounty on Murlocs", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 104
+        { type = "ACCEPT", quest = 59, questName = "Cloth and Leather Armor", npc = 240, npcName = "Marshal Dughan", map = 1429, zone = "Elwynn Forest", x = 42.1, y = 65.9 }, -- 105
+        { type = "TURNIN", quest = 59, questName = "Cloth and Leather Armor", npc = 278, npcName = "Sara Timberlain", map = 1429, zone = "Elwynn Forest", x = 79.5, y = 68.8 }, -- 106
     } end,
 })

@@ -10,7 +10,7 @@
   "zone": "Eastern Plaguelands",
   "next": "GEN_ALLIANCE_HUMAN_41_WESTERN_PLAGUELANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 40 of the Human route: level 52 to 53, 24 steps, ~212 min of play in the model (18103 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+  "notes": "Chapter 40 of the Human route: level 52 to 53, 24 steps, ~211 min of play in the model (18249 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.4, "y": 59.0, "radius": 60, "note": "travel to Eastern Plaguelands (Eastern Plaguelands)"},
     {"type": "TURNIN", "quest": 5210, "questName": "Brother Carlin", "npc": 11063, "npcName": "Carlin Redpath", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.5, "y": 59.8},

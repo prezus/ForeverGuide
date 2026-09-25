@@ -10,10 +10,9 @@
   "zone": "Felwood",
   "next": "GEN_ALLIANCE_NIGHTELF_23_BLASTED_LANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 22 of the NightElf route: level 45 to 45, 14 steps, ~64 min of play in the model (28315 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 22 of the NightElf route: level 45 to 45, 13 steps, ~64 min of play in the model (28315 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1448, "zone": "Felwood", "x": 51.6, "y": 82.7, "radius": 60, "note": "travel to Felwood (Felwood)"},
-    {"type": "NOTE", "map": 1448, "zone": "Felwood", "x": 51.6, "y": 82.7, "text": "set your hearthstone at the inn in Felwood (if there is one)"},
     {"type": "ACCEPT", "quest": 8460, "questName": "Timbermaw Ally", "npc": 11554, "npcName": "Grazle", "map": 1448, "zone": "Felwood", "x": 50.9, "y": 85},
     {"type": "KILL", "quest": 8460, "questName": "Timbermaw Ally", "npc": 7153, "target": "Deadwood Warrior / Deadwood Gardener / Deadwood Pathfinder", "count": 6, "map": 1448, "zone": "Felwood", "x": 49.7, "y": 88.2, "near": true},
     {"type": "TURNIN", "quest": 8460, "questName": "Timbermaw Ally", "npc": 11554, "npcName": "Grazle", "map": 1448, "zone": "Felwood", "x": 50.9, "y": 85},

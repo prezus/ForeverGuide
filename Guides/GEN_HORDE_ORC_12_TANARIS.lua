@@ -12,11 +12,11 @@ ns.RegisterGuide({
     zone = "Tanaris",
     next = "GEN_HORDE_ORC_13_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 12 of the Orc route: level 40 to 41, 52 steps, ~173 min of play in the model (39442 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 12 of the Orc route: level 40 to 41, 52 steps, ~173 min of play in the model (39407 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 52,
     steps = function() return {
         { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 51.8, y = 27.6, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 1
-        { type = "NOTE", map = 1446, zone = "Tanaris", x = 51.8, y = 27.6, text = "set your hearthstone at the inn in Tanaris (if there is one)" }, -- 2
+        { type = "HEARTH", npc = 7733, npcName = "Innkeeper Fizzgrimble", map = 1446, zone = "Gadgetzan", x = 52.5, y = 27.9, note = "talk to Innkeeper Fizzgrimble and make this inn your home" }, -- 2
         { type = "ACCEPT", quest = 1690, questName = "Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 3
         { type = "ACCEPT", quest = 1707, questName = "Water Pouch Bounty", npc = 7408, npcName = "Spigot Operator Luglunket", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 4
         { type = "ACCEPT", quest = 2875, questName = "WANTED: Andre Firebeard", map = 1446, zone = "Tanaris", x = 51.8, y = 27 }, -- 5

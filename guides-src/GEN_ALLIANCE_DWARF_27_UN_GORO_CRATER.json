@@ -10,10 +10,9 @@
   "zone": "Un'Goro Crater",
   "next": "GEN_ALLIANCE_DWARF_28_FERALAS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 27 of the Dwarf route: level 47 to 47, 27 steps, ~100 min of play in the model (29139 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 27 of the Dwarf route: level 47 to 47, 26 steps, ~100 min of play in the model (29139 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 43.2, "y": 6.6, "radius": 60, "note": "travel to Un'Goro Crater (Un'Goro Crater)"},
-    {"type": "NOTE", "map": 1449, "zone": "Un'Goro Crater", "x": 43.2, "y": 6.6, "text": "set your hearthstone at the inn in Un'Goro Crater (if there is one)"},
     {"type": "ACCEPT", "quest": 4141, "questName": "Muigin and Larion", "npc": 9119, "npcName": "Muigin", "map": 1449, "zone": "Un'Goro Crater", "x": 42.9, "y": 9.6},
     {"type": "ACCEPT", "quest": 4284, "questName": "Crystals of Power", "npc": 9117, "npcName": "J.D. Collie", "map": 1449, "zone": "Un'Goro Crater", "x": 41.9, "y": 2.7},
     {"type": "COLLECT", "quest": 4141, "questName": "Muigin and Larion", "target": "Bloodpetal", "count": 15, "map": 1449, "zone": "Un'Goro Crater", "x": 40.3, "y": 23.3, "near": true},

@@ -15,7 +15,7 @@ ns.RegisterGuide({
     notes = "Chapter 23 of the Human route: level 45 to 45, 9 steps, ~22 min of play in the model (42575 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 9,
     steps = function() return {
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.0, y = 47.4, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 1
+        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.2, y = 47.6, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 1
         { type = "ACCEPT", quest = 1050, questName = "Mythology of the Titans", npc = 3979, npcName = "Librarian Mae Paledust", map = 1455, zone = "Ironforge", x = 75, y = 12.5 }, -- 2
         { type = "ACCEPT", quest = 3448, questName = "Passing the Burden", npc = 2916, npcName = "Historian Karnik", map = 1455, zone = "Ironforge", x = 77.5, y = 11.8 }, -- 3
         { type = "TURNIN", quest = 1050, questName = "Mythology of the Titans", npc = 3979, npcName = "Librarian Mae Paledust", map = 1455, zone = "Ironforge", x = 75, y = 12.5, note = "reduced xp (60%) - you out-levelled it" }, -- 4

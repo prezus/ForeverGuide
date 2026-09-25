@@ -12,11 +12,11 @@ ns.RegisterGuide({
     zone = "Desolace",
     next = "GEN_ALLIANCE_NIGHTELF_19_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 18 of the NightElf route: level 38 to 40, 75 steps, ~220 min of play in the model (26891 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 18 of the NightElf route: level 38 to 40, 75 steps, ~221 min of play in the model (26814 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 75,
     steps = function() return {
         { type = "TRAVEL", map = 1443, zone = "Desolace", x = 66.5, y = 9.9, radius = 60, note = "travel to Desolace (Desolace)" }, -- 1
-        { type = "NOTE", map = 1443, zone = "Desolace", x = 66.5, y = 9.9, text = "set your hearthstone at the inn in Desolace (if there is one)" }, -- 2
+        { type = "HEARTH", npc = 11103, npcName = "Innkeeper Lyshaerya", map = 1443, zone = "Nijel's Point", x = 66.3, y = 6.5, note = "talk to Innkeeper Lyshaerya and make this inn your home" }, -- 2
         { type = "ACCEPT", quest = 1387, questName = "Centaur Bounty", npc = 5752, npcName = "Corporal Melkins", map = 1443, zone = "Desolace", x = 66.7, y = 10.9 }, -- 3
         { type = "ACCEPT", quest = 1437, questName = "Vahlarriel's Search", npc = 5642, npcName = "Vahlarriel Demonslayer", map = 1443, zone = "Desolace", x = 66.4, y = 11.8 }, -- 4
         { type = "ACCEPT", quest = 1382, questName = "Strange Alliance", npc = 5396, npcName = "Captain Pentigast", map = 1443, zone = "Desolace", x = 66.7, y = 10.9 }, -- 5

@@ -12,16 +12,17 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     next = "GEN_ALLIANCE_HUMAN_40_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 39 of the Human route: level 52 to 52, 8 steps, ~41 min of play in the model (39039 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 8,
+    notes = "Chapter 39 of the Human route: level 52 to 52, 9 steps, ~20 min of play in the model (80149 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 9,
     steps = function() return {
-        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.0, y = 84.1, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
-        { type = "ACCEPT", quest = 5343, questName = "Barov Family Fortune", npc = 11023, npcName = "Weldon Barov", map = 1422, zone = "Western Plaguelands", x = 43.5, y = 83.7 }, -- 2
-        { type = "TURNIN", quest = 5343, questName = "Barov Family Fortune", npc = 11023, npcName = "Weldon Barov", map = 1422, zone = "Western Plaguelands", x = 43.5, y = 83.7 }, -- 3
-        { type = "ACCEPT", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 4
-        { type = "TURNIN", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 5
-        { type = "ACCEPT", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 6
-        { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 7
-        { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 8
+        { type = "TRAVEL", map = 1423, zone = "Light's Hope Chapel", x = 71.8, y = 48.5, radius = 60, note = "use your hearthstone (Light's Hope Chapel)" }, -- 1
+        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.0, y = 84.1, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 2
+        { type = "ACCEPT", quest = 5343, questName = "Barov Family Fortune", npc = 11023, npcName = "Weldon Barov", map = 1422, zone = "Western Plaguelands", x = 43.5, y = 83.7 }, -- 3
+        { type = "TURNIN", quest = 5343, questName = "Barov Family Fortune", npc = 11023, npcName = "Weldon Barov", map = 1422, zone = "Western Plaguelands", x = 43.5, y = 83.7 }, -- 4
+        { type = "ACCEPT", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 5
+        { type = "TURNIN", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 6
+        { type = "ACCEPT", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 7
+        { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 8
+        { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 9
     } end,
 })

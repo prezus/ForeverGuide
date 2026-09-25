@@ -2,38 +2,38 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_38_EASTERN_PLAGUELANDS",
-    name = "38. Eastern Plaguelands 54-54 (Orc)",
+    name = "38. Eastern Plaguelands 52-53 (Orc)",
     version = 2,
     faction = "Horde",
     race = { "Orc", "Troll" },
-    minLevel = 54,
-    maxLevel = 54,
+    minLevel = 52,
+    maxLevel = 53,
     map = 1423,
     zone = "Eastern Plaguelands",
-    next = "GEN_HORDE_ORC_39_SILITHUS",
+    next = "GEN_HORDE_ORC_39_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 38 of the Orc route: level 54 to 54, 20 steps, ~81 min of play in the model (50154 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 38 of the Orc route: level 52 to 53, 20 steps, ~215 min of play in the model (15417 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 20,
     steps = function() return {
-        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, radius = 60, note = "use your hearthstone (Eastern Plaguelands)" }, -- 1
+        { type = "TRAVEL", map = 1423, zone = "Light's Hope Chapel", x = 71.8, y = 48.5, radius = 60, note = "use your hearthstone (Light's Hope Chapel)" }, -- 1
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.8, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 2
-        { type = "ACCEPT", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 3
-        { type = "TURNIN", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 4
-        { type = "ACCEPT", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 5
-        { type = "KILL", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 12247, target = "Scourge Structure", count = 8, map = 1423, zone = "Eastern Plaguelands", x = 40.7, y = 38.6, near = true, note = "Scourge Structures Destroyed" }, -- 6
-        { type = "TURNIN", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 7
-        { type = "ACCEPT", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 27.3, y = 85.2 }, -- 8
-        { type = "ACCEPT", quest = 6022, questName = "To Kill With Purpose", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 9
-        { type = "ACCEPT", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 10
-        { type = "ACCEPT", quest = 6133, questName = "The Ranger Lord's Behest", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 11
-        { type = "TURNIN", quest = 6022, questName = "To Kill With Purpose", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 12
-        { type = "KILL", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 8601, target = "Noxious Plaguebat", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 46.2, y = 65.8, near = true }, -- 13
-        { type = "KILL", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 8602, target = "Monstrous Plaguebat", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 43.5, y = 43, near = true }, -- 14
-        { type = "KILL", quest = 6133, questName = "The Ranger Lord's Behest", npc = 8564, target = "Ranger / Woodsman / Pathstrider", count = 8, map = 1423, zone = "Eastern Plaguelands", x = 51.4, y = 21.7, near = true }, -- 15
-        { type = "COLLECT", quest = 6133, questName = "The Ranger Lord's Behest", target = "Quel'Thalas Registry", map = 1423, zone = "Eastern Plaguelands", x = 52.1, y = 18.3 }, -- 16
-        { type = "TURNIN", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 17
-        { type = "TURNIN", quest = 6133, questName = "The Ranger Lord's Behest", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 18
-        { type = "KILL", quest = 6024, questName = "Hameya's Plea", npc = 12248, target = "Infiltrator Hameya", map = 1423, zone = "Eastern Plaguelands", x = 70.7, y = 16.5, note = "loot Hameya's Key" }, -- 19
-        { type = "TURNIN", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 28, y = 86.2 }, -- 20
+        { type = "ACCEPT", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 3
+        { type = "ACCEPT", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 4
+        { type = "ACCEPT", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 5
+        { type = "ACCEPT", quest = 5742, questName = "Redemption", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 6
+        { type = "KILL", quest = 5742, questName = "Redemption", npc = 1855, target = "Tirion Fordring", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true }, -- 7
+        { type = "TURNIN", quest = 5742, questName = "Redemption", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true }, -- 8
+        { type = "COLLECT", quest = 5544, questName = "Carrion Grubbage", target = "Slab of Carrion Worm Meat", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 6.8, y = 42.2, near = true }, -- 9
+        { type = "TURNIN", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 10
+        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8596, target = "Plaguehound Runt", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 7.7, y = 53.9, near = true }, -- 11
+        { type = "KILL", quest = 5543, questName = "Blood Tinged Skies", npc = 8600, target = "Plaguebat", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 15, y = 75.5, near = true }, -- 12
+        { type = "ACCEPT", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 13
+        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8598, target = "Frenzied Plaguehound", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 19.6, y = 25.9, near = true }, -- 14
+        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8597, target = "Plaguehound", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 53.1, y = 57.9, near = true }, -- 15
+        { type = "COLLECT", quest = 6164, questName = "Augustus' Receipt Book", target = "Augustus' Receipt Book", map = 1423, zone = "Eastern Plaguelands", x = 17.4, y = 31.1 }, -- 16
+        { type = "TURNIN", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 17
+        { type = "TURNIN", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 18
+        { type = "TURNIN", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 19
+        { type = "GRIND", npc = 8596, target = "Plaguehound Runt", level = 53, map = 1423, zone = "Eastern Plaguelands", x = 7.7, y = 53.9, near = true, note = "grind Plaguehound Runt (level 53-54) to level 53 - nothing worth questing at 52" }, -- 20
     } end,
 })

@@ -10,7 +10,7 @@ ns.RegisterGuide({
     maxLevel = 47,
     map = 1444,
     zone = "Feralas",
-    next = "GEN_ALLIANCE_HUMAN_28_TANARIS",
+    next = "GEN_ALLIANCE_HUMAN_28_FELWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 27 of the Human route: level 47 to 47, 16 steps, ~52 min of play in the model (39977 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 16,

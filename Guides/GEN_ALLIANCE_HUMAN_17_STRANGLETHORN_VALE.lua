@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Stranglethorn Vale",
     next = "GEN_ALLIANCE_HUMAN_18_SWAMP_OF_SORROWS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 17 of the Human route: level 37 to 38, 35 steps, ~141 min of play in the model (28388 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 17 of the Human route: level 37 to 38, 35 steps, ~139 min of play in the model (29036 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 35,
     steps = function() return {
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.2, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
