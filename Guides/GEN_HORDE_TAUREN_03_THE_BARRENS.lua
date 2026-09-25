@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_03_THE_BARRENS",
     name = "3. The Barrens 11-22 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 11,
@@ -13,312 +13,315 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_04_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the Tauren route: level 11 to 22, 182 steps, ~534 min of play in the model (20591 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
-    stepCount = 305,
+    stepCount = 308,
     steps = function() return {
-        { type = "ACCEPT", quest = 1818, questName = "Speak with Dillinger", npc = 2131, npcName = "Austil de Mon", map = 1420, zone = "Tirisfal Glades", x = 61.8, y = 52.4, class = { "WARRIOR" } }, -- 1
-        { type = "TURNIN", quest = 1818, questName = "Speak with Dillinger", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.4, class = { "WARRIOR" } }, -- 2
-        { type = "ACCEPT", quest = 6061, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 3
-        { type = "TURNIN", quest = 6061, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 4
-        { type = "TRAVEL", map = 1413, zone = "The Barrens", x = 51.8, y = 30.9, radius = 60, note = "travel to The Barrens (The Barrens)" }, -- 5
-        { type = "NOTE", map = 1413, zone = "The Barrens", x = 51.8, y = 30.9, text = "set your hearthstone at the inn in The Barrens (if there is one)" }, -- 6
-        { type = "ACCEPT", quest = 6365, questName = "Meats to Orgrimmar", npc = 3489, npcName = "Zargh", map = 1413, zone = "The Barrens", x = 52.6, y = 29.8 }, -- 7
-        { type = "ACCEPT", quest = 6361, questName = "A Bundle of Hides", npc = 3483, npcName = "Jahan Hawkwing", map = 1413, zone = "The Barrens", x = 51.2, y = 29.1 }, -- 8
-        { type = "ACCEPT", quest = 1492, questName = "Wharfmaster Dizzywig", npc = 3390, npcName = "Apothecary Helbrim", map = 1413, zone = "The Barrens", x = 51.4, y = 30.2 }, -- 9
-        { type = "ACCEPT", quest = 871, questName = "Disrupt the Attacks", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 10
-        { type = "TURNIN", quest = 860, questName = "Sergra Darkthorn", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 11
-        { type = "ACCEPT", quest = 844, questName = "Plainstrider Menace", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 12
-        { type = "ACCEPT", quest = 869, questName = "Raptor Thieves", npc = 3464, npcName = "Gazrog", map = 1413, zone = "The Barrens", x = 51.9, y = 30.3 }, -- 13
-        { type = "ACCEPT", quest = 870, questName = "The Forgotten Pools", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 14
-        { type = "TURNIN", quest = 886, questName = "The Barrens Oases", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.2, y = 31.8 }, -- 15
-        { type = "ACCEPT", quest = 5041, questName = "Supplies for the Crossroads", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 16
-        { type = "ACCEPT", quest = 848, questName = "Fungal Spores", npc = 3390, npcName = "Apothecary Helbrim", map = 1413, zone = "The Barrens", x = 51.4, y = 30.2 }, -- 17
-        { type = "TURNIN", quest = 6361, questName = "A Bundle of Hides", npc = 3615, npcName = "Devrak", map = 1413, zone = "The Barrens", x = 51.5, y = 30.3 }, -- 18
-        { type = "TURNIN", quest = 6365, questName = "Meats to Orgrimmar", npc = 3615, npcName = "Devrak", map = 1413, zone = "The Barrens", x = 51.5, y = 30.3 }, -- 19
-        { type = "COLLECT", quest = 844, questName = "Plainstrider Menace", target = "Plainstrider Beak", count = 7, map = 1413, zone = "The Barrens", x = 50.7, y = 27.8, near = true }, -- 20
-        { type = "KILL", quest = 871, questName = "Disrupt the Attacks", npc = 3267, target = "Razormane Water Seeker / Razormane Hunter / Razormane Thornweaver", map = 1413, zone = "The Barrens", x = 53.1, y = 25.1, near = true }, -- 21
-        { type = "COLLECT", quest = 869, questName = "Raptor Thieves", target = "Raptor Head", count = 12, map = 1413, zone = "The Barrens", x = 54.6, y = 23.2, near = true }, -- 22
-        { type = "TURNIN", quest = 1505, questName = "Veteran Uzzek", npc = 5810, npcName = "Uzzek", map = 1413, zone = "The Barrens", x = 61.4, y = 21, class = { "WARRIOR" } }, -- 23
-        { type = "COLLECT", quest = 5041, questName = "Supplies for the Crossroads", target = "Crossroads' Supply Crates", map = 1413, zone = "The Barrens", x = 58.6, y = 25.9, near = true }, -- 24
-        { type = "COLLECT", quest = 848, questName = "Fungal Spores", target = "Fungal Spores", count = 4, map = 1413, zone = "The Barrens", x = 56, y = 42.5, near = true }, -- 25
-        { type = "ACCEPT", quest = 1819, questName = "Ulag the Cleaver", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.4, class = { "WARRIOR" } }, -- 26
-        { type = "KILL", quest = 1819, questName = "Ulag the Cleaver", npc = 6390, target = "Ulag the Cleaver", count = 1, map = 1420, zone = "Tirisfal Glades", x = 59.4, y = 48.2, class = { "WARRIOR" } }, -- 27
-        { type = "TURNIN", quest = 1819, questName = "Ulag the Cleaver", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.4, class = { "WARRIOR" } }, -- 28
-        { type = "ACCEPT", quest = 6087, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 29
-        { type = "TURNIN", quest = 6087, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 30
-        { type = "COMPLETE", quest = 870, questName = "The Forgotten Pools", target = "Explore the waters of the Forgotten Pools", map = 1413, zone = "The Barrens", x = 45.1, y = 22.5, note = "Explore the waters of the Forgotten Pools" }, -- 31
-        { type = "TURNIN", quest = 871, questName = "Disrupt the Attacks", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 32
-        { type = "ACCEPT", quest = 872, questName = "The Disruption Ends", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 33
-        { type = "ACCEPT", quest = 867, questName = "Harpy Raiders", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 34
-        { type = "TURNIN", quest = 5041, questName = "Supplies for the Crossroads", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 35
-        { type = "TURNIN", quest = 869, questName = "Raptor Thieves", npc = 3464, npcName = "Gazrog", map = 1413, zone = "The Barrens", x = 51.9, y = 30.3 }, -- 36
-        { type = "TURNIN", quest = 848, questName = "Fungal Spores", npc = 3390, npcName = "Apothecary Helbrim", map = 1413, zone = "The Barrens", x = 51.4, y = 30.2 }, -- 37
-        { type = "TURNIN", quest = 844, questName = "Plainstrider Menace", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 38
-        { type = "TURNIN", quest = 870, questName = "The Forgotten Pools", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 39
-        { type = "ACCEPT", quest = 845, questName = "The Zhevra", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 40
-        { type = "ACCEPT", quest = 877, questName = "The Stagnant Oasis", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 41
-        { type = "ACCEPT", quest = 3281, questName = "Stolen Silver", npc = 3464, npcName = "Gazrog", map = 1413, zone = "The Barrens", x = 51.9, y = 30.3 }, -- 42
-        { type = "COLLECT", quest = 845, questName = "The Zhevra", target = "Zhevra Hooves", count = 4, map = 1413, zone = "The Barrens", x = 51.8, y = 35.6, near = true }, -- 43
-        { type = "COMPLETE", quest = 877, questName = "The Stagnant Oasis", target = "Bubbling Fissure", map = 1413, zone = "The Barrens", x = 55.6, y = 42.8, note = "Test the Dried Seeds" }, -- 44
-        { type = "KILL", quest = 872, questName = "The Disruption Ends", npc = 3266, target = "Razormane Defender / Kreenig Snarlsnout / Razormane Geomancer", count = 8, map = 1413, zone = "The Barrens", x = 58.9, y = 27.4, near = true }, -- 45
-        { type = "ACCEPT", quest = 1498, questName = "Path of Defense", npc = 5810, npcName = "Uzzek", map = 1413, zone = "The Barrens", x = 61.4, y = 21, class = { "WARRIOR" } }, -- 46
-        { type = "COLLECT", quest = 1498, questName = "Path of Defense", target = "Singed Scale", count = 5, map = 1411, zone = "Durotar", x = 40.5, y = 29.8, near = true, class = { "WARRIOR" } }, -- 47
-        { type = "TURNIN", quest = 1498, questName = "Path of Defense", npc = 5810, npcName = "Uzzek", map = 1413, zone = "The Barrens", x = 61.4, y = 21, class = { "WARRIOR" } }, -- 48
-        { type = "ACCEPT", quest = 6088, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 49
-        { type = "TURNIN", quest = 6088, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 50
-        { type = "ACCEPT", quest = 1522, questName = "Call of Fire", npc = 5892, npcName = "Searn Firewarder", map = 1454, zone = "Orgrimmar", x = 37.8, y = 37.4, class = { "SHAMAN" } }, -- 51
-        { type = "ACCEPT", quest = 2983, questName = "Call of Fire", npc = 3173, npcName = "Swart", map = 1411, zone = "Durotar", x = 54.4, y = 42.6, class = { "SHAMAN" } }, -- 52
-        { type = "ACCEPT", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" }, note = "New in Forever" }, -- 53
-        { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Fire Tar", count = 1, map = 1432, zone = "Loch Modan", x = 35.6, y = 20, class = { "SHAMAN" } }, -- 54
-        { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Reagent Pouch", count = 1, map = 1432, zone = "Loch Modan", x = 34.8, y = 84.4, class = { "SHAMAN" } }, -- 55
-        { type = "TURNIN", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" } }, -- 56
-        { type = "ACCEPT", quest = 5922, questName = "Moonglade", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 57
-        { type = "TURNIN", quest = 5922, questName = "Moonglade", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 58
-        { type = "COLLECT", quest = 867, questName = "Harpy Raiders", target = "Witchwing Talon", count = 8, map = 1413, zone = "The Barrens", x = 41.9, y = 19.3, near = true }, -- 59
-        { type = "TURNIN", quest = 845, questName = "The Zhevra", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 60
-        { type = "ACCEPT", quest = 903, questName = "Prowlers of the Barrens", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 61
-        { type = "TURNIN", quest = 867, questName = "Harpy Raiders", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 62
-        { type = "TURNIN", quest = 877, questName = "The Stagnant Oasis", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 63
-        { type = "TURNIN", quest = 872, questName = "The Disruption Ends", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 64
-        { type = "ACCEPT", quest = 875, questName = "Harpy Lieutenants", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 65
-        { type = "ACCEPT", quest = 880, questName = "Altered Beings", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 66
-        { type = "ACCEPT", quest = 899, questName = "Consumed by Hatred", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 67
-        { type = "ACCEPT", quest = 4921, questName = "Lost in Battle", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 68
-        { type = "KILL", quest = 903, questName = "Prowlers of the Barrens", npc = 3425, target = "Savannah Prowler", count = 7, map = 1413, zone = "The Barrens", x = 44.2, y = 32.8, near = true, note = "loot Prowler Claws" }, -- 69
-        { type = "KILL", quest = 880, questName = "Altered Beings", npc = 3461, target = "Oasis Snapjaw", count = 8, map = 1413, zone = "The Barrens", x = 46.1, y = 38.9, near = true, note = "loot Altered Snapjaw Shell" }, -- 70
-        { type = "KILL", quest = 4921, questName = "Lost in Battle", npc = 10668, target = "Beaten Corpse", count = 1, map = 1413, zone = "The Barrens", x = 49.3, y = 50.3 }, -- 71
-        { type = "ACCEPT", quest = 6089, questName = "Training the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 72
-        { type = "TURNIN", quest = 6089, questName = "Training the Beast", npc = 3039, npcName = "Holt Thunderhorn", map = 1456, zone = "Thunder Bluff", x = 57.4, y = 89.2, class = { "HUNTER" } }, -- 73
-        { type = "ACCEPT", quest = 5930, questName = "Great Bear Spirit", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 74
-        { type = "TURNIN", quest = 5930, questName = "Great Bear Spirit", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 75
-        { type = "TURNIN", quest = 903, questName = "Prowlers of the Barrens", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 76
-        { type = "ACCEPT", quest = 881, questName = "Echeyakee", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 77
-        { type = "TURNIN", quest = 4921, questName = "Lost in Battle", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 78
-        { type = "TURNIN", quest = 880, questName = "Altered Beings", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 79
-        { type = "ACCEPT", quest = 1489, questName = "Hamuul Runetotem", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.2, y = 31.8, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 80
-        { type = "TURNIN", quest = 1522, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 81
-        { type = "TURNIN", quest = 1523, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 82
-        { type = "TURNIN", quest = 2983, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 83
-        { type = "TURNIN", quest = 2984, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 84
-        { type = "KILL", quest = 881, questName = "Echeyakee", npc = 3475, target = "Echeyakee", map = 1413, zone = "The Barrens", x = 55.9, y = 17.2, note = "loot Echeyakee's Hide" }, -- 85
-        { type = "ACCEPT", quest = 1524, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 86
-        { type = "TURNIN", quest = 881, questName = "Echeyakee", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 87
-        { type = "ACCEPT", quest = 905, questName = "The Angry Scytheclaws", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 88
-        { type = "COMPLETE", quest = 905, questName = "The Angry Scytheclaws", target = "Blue Raptor Nest / Red Raptor Nest / Yellow Raptor Nest", map = 1413, zone = "The Barrens", x = 52.6, y = 46.1, note = "Visit Blue Raptor Nest" }, -- 89
-        { type = "TURNIN", quest = 905, questName = "The Angry Scytheclaws", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 90
-        { type = "ACCEPT", quest = 3261, questName = "Jorn Skyseer", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 91
-        { type = "ACCEPT", quest = 855, questName = "Centaur Bracers", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 92
-        { type = "ACCEPT", quest = 850, questName = "Kolkar Leaders", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 93
-        { type = "COLLECT", quest = 855, questName = "Centaur Bracers", target = "Centaur Bracers", count = 15, map = 1413, zone = "The Barrens", x = 44.6, y = 27.8, near = true }, -- 94
-        { type = "TURNIN", quest = 855, questName = "Centaur Bracers", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 95
-        { type = "KILL", quest = 850, questName = "Kolkar Leaders", npc = 3394, target = "Barak Kodobane", map = 1413, zone = "The Barrens", x = 42.8, y = 23.5, note = "loot Barak's Head" }, -- 96
-        { type = "KILL", quest = 875, questName = "Harpy Lieutenants", npc = 3278, target = "Witchwing Slayer", count = 6, map = 1413, zone = "The Barrens", x = 38.8, y = 17.6, near = true, note = "loot Harpy Lieutenant Ring" }, -- 97
-        { type = "TURNIN", quest = 850, questName = "Kolkar Leaders", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 98
-        { type = "ACCEPT", quest = 851, questName = "Verog the Dervish", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 99
-        { type = "ACCEPT", quest = 5932, questName = "Back to Thunder Bluff", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 100
-        { type = "TURNIN", quest = 5932, questName = "Back to Thunder Bluff", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 101
-        { type = "KILL", quest = 851, questName = "Verog the Dervish", npc = 3395, target = "Verog the Dervish", map = 1413, zone = "The Barrens", x = 53.1, y = 41.7, note = "loot Verog's Head" }, -- 102
-        { type = "ACCEPT", quest = 6002, questName = "Body and Heart", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 103
-        { type = "TURNIN", quest = 6002, questName = "Body and Heart", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 104
-        { type = "TURNIN", quest = 851, questName = "Verog the Dervish", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 105
-        { type = "ACCEPT", quest = 852, questName = "Hezrul Bloodmark", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 106
-        { type = "KILL", quest = 852, questName = "Hezrul Bloodmark", npc = 3396, target = "Hezrul Bloodmark", map = 1413, zone = "The Barrens", x = 46, y = 41.1, note = "loot Hezrul's Head" }, -- 107
-        { type = "TURNIN", quest = 852, questName = "Hezrul Bloodmark", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 108
-        { type = "ACCEPT", quest = 4021, questName = "Counterattack!", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 109
-        { type = "TURNIN", quest = 4021, questName = "Counterattack!", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 110
-        { type = "ACCEPT", quest = 1486, questName = "Deviate Hides", npc = 5767, npcName = "Nalpak", map = 1413, zone = "The Barrens", x = 46, y = 35.7 }, -- 111
-        { type = "ACCEPT", quest = 1487, questName = "Deviate Eradication", npc = 5768, npcName = "Ebru", map = 1413, zone = "The Barrens", x = 46, y = 35.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 112
-        { type = "TURNIN", quest = 1487, questName = "Deviate Eradication", npc = 5768, npcName = "Ebru", map = 1413, zone = "The Barrens", x = 46, y = 35.7, optional = true }, -- 113
-        { type = "COLLECT", quest = 1486, questName = "Deviate Hides", target = "Deviate Hide", count = 20, map = 1413, zone = "The Barrens", x = 45.9, y = 35.6, near = true }, -- 114
-        { type = "TURNIN", quest = 1486, questName = "Deviate Hides", npc = 5767, npcName = "Nalpak", map = 1413, zone = "The Barrens", x = 46, y = 35.7 }, -- 115
-        { type = "COLLECT", quest = 899, questName = "Consumed by Hatred", target = "Bristleback Quilboar Tusk", count = 60, map = 1413, zone = "The Barrens", x = 41.6, y = 44.9, near = true }, -- 116
-        { type = "ACCEPT", quest = 854, questName = "Journey to the Crossroads", npc = 3418, npcName = "Kirge Sternhorn", map = 1413, zone = "The Barrens", x = 44.8, y = 58.6 }, -- 117
-        { type = "TURNIN", quest = 3261, questName = "Jorn Skyseer", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 118
-        { type = "ACCEPT", quest = 882, questName = "Ishamuhale", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 119
-        { type = "ACCEPT", quest = 878, questName = "Tribes at War", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 120
-        { type = "ACCEPT", quest = 893, questName = "Weapons of Choice", npc = 3433, npcName = "Tatternack Steelforge", map = 1413, zone = "The Barrens", x = 45.1, y = 57.7 }, -- 121
-        { type = "KILL", quest = 878, questName = "Tribes at War", npc = 3260, target = "Bristleback Water Seeker", count = 6, map = 1413, zone = "The Barrens", x = 45.1, y = 55.3, near = true }, -- 122
-        { type = "KILL", quest = 878, questName = "Tribes at War", npc = 3261, target = "Bristleback Thornweaver", count = 6, map = 1413, zone = "The Barrens", x = 44.8, y = 51.5, near = true }, -- 123
-        { type = "KILL", quest = 878, questName = "Tribes at War", npc = 3263, target = "Bristleback Geomancer", count = 6, map = 1413, zone = "The Barrens", x = 42.8, y = 48.7, near = true }, -- 124
-        { type = "ACCEPT", quest = 5726, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 125
-        { type = "COLLECT", quest = 5726, questName = "Hidden Enemies", target = "Lieutenant's Insignia", count = 1, map = 1454, zone = "Orgrimmar", x = 49, y = 91.2 }, -- 126
-        { type = "TURNIN", quest = 5726, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 127
-        { type = "ACCEPT", quest = 5761, questName = "Slaying the Beast", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.6, y = 50.4, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 128
-        { type = "ACCEPT", quest = 5727, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 129
-        { type = "TURNIN", quest = 5727, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 130
-        { type = "ACCEPT", quest = 5728, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 131
-        { type = "TURNIN", quest = 1524, questName = "Call of Fire", npc = 5900, npcName = "Telf Joolam", map = 1411, zone = "Durotar", x = 38.6, y = 58.8, class = { "SHAMAN" } }, -- 132
-        { type = "COMPLETE", quest = 893, questName = "Weapons of Choice", npc = 3458, target = "Razormane Seer / Razormane Warfrenzy / Razormane Backstabber", map = 1413, zone = "The Barrens", x = 42.2, y = 78.3, near = true, note = "loot Charred Razormane Wand" }, -- 133
-        { type = "TURNIN", quest = 878, questName = "Tribes at War", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 134
-        { type = "ACCEPT", quest = 5052, questName = "Blood Shards of Agamaggan", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 135
-        { type = "TURNIN", quest = 893, questName = "Weapons of Choice", npc = 3433, npcName = "Tatternack Steelforge", map = 1413, zone = "The Barrens", x = 45.1, y = 57.7 }, -- 136
-        { type = "COLLECT", quest = 5052, questName = "Blood Shards of Agamaggan", target = "Blood Shard", map = 1413, zone = "The Barrens", x = 45.1, y = 55.3, near = true }, -- 137
-        { type = "TURNIN", quest = 5052, questName = "Blood Shards of Agamaggan", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 138
-        { type = "ACCEPT", quest = 879, questName = "Betrayal from Within", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 139
-        { type = "ACCEPT", quest = 1525, questName = "Call of Fire", npc = 5900, npcName = "Telf Joolam", map = 1411, zone = "Durotar", x = 38.6, y = 58.8, class = { "SHAMAN" } }, -- 140
-        { type = "COLLECT", quest = 1525, questName = "Call of Fire", target = "Fire Tar", count = 1, map = 1413, zone = "The Barrens", x = 54.4, y = 25, near = true, class = { "SHAMAN" } }, -- 141
-        { type = "COLLECT", quest = 1525, questName = "Call of Fire", target = "Reagent Pouch", count = 1, map = 1411, zone = "Durotar", x = 52.6, y = 26.6, class = { "SHAMAN" } }, -- 142
-        { type = "TURNIN", quest = 1525, questName = "Call of Fire", npc = 5900, npcName = "Telf Joolam", map = 1411, zone = "Durotar", x = 38.6, y = 58.8, class = { "SHAMAN" } }, -- 143
-        { type = "KILL", quest = 879, questName = "Betrayal from Within", npc = 3435, target = "Lok Orcbane", map = 1413, zone = "The Barrens", x = 40.2, y = 80.5, note = "loot Lok's Skull" }, -- 144
-        { type = "KILL", quest = 879, questName = "Betrayal from Within", npc = 3434, target = "Nak", map = 1413, zone = "The Barrens", x = 43.8, y = 83.3, note = "loot Nak's Skull" }, -- 145
-        { type = "KILL", quest = 879, questName = "Betrayal from Within", npc = 3436, target = "Kuz", map = 1413, zone = "The Barrens", x = 45.1, y = 80.1, note = "loot Kuz's Skull" }, -- 146
-        { type = "ACCEPT", quest = 843, questName = "Gann's Reclamation", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 147
-        { type = "KILL", quest = 843, questName = "Gann's Reclamation", npc = 3374, target = "Bael'dun Excavator / Bael'dun Foreman / Prospector Khazgorm", count = 15, map = 1413, zone = "The Barrens", x = 47.4, y = 84.1, near = true }, -- 148
-        { type = "TURNIN", quest = 843, questName = "Gann's Reclamation", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 149
-        { type = "ACCEPT", quest = 846, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 150
-        { type = "COLLECT", quest = 846, questName = "Revenge of Gann", target = "Nitroglycerin / Wood Pulp / Sodium Nitrate", count = 6, map = 1413, zone = "The Barrens", x = 48.5, y = 83.8, near = true }, -- 151
-        { type = "TURNIN", quest = 846, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 152
-        { type = "ACCEPT", quest = 849, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 153
-        { type = "COMPLETE", quest = 849, questName = "Revenge of Gann", target = "Bael Modan Flying Machine", map = 1413, zone = "The Barrens", x = 47, y = 85.6, note = "Bael Modan Flying Machine destroyed" }, -- 154
-        { type = "TURNIN", quest = 849, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 155
-        { type = "TURNIN", quest = 879, questName = "Betrayal from Within", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 156
-        { type = "ACCEPT", quest = 906, questName = "Betrayal from Within", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 157
-        { type = "COLLECT", quest = 3281, questName = "Stolen Silver", target = "Stolen Silver", map = 1413, zone = "The Barrens", x = 58, y = 53.9 }, -- 158
-        { type = "ACCEPT", quest = 898, questName = "Free From the Hold", npc = 3465, npcName = "Gilthares Firebough", map = 1413, zone = "The Barrens", x = 62, y = 55 }, -- 159
-        { type = "TURNIN", quest = 1492, questName = "Wharfmaster Dizzywig", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5, note = "reduced xp (40%) - you out-levelled it" }, -- 160
-        { type = "ACCEPT", quest = 1483, questName = "Ziz Fizziks", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 161
-        { type = "ACCEPT", quest = 894, questName = "Samophlange", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 162
-        { type = "ACCEPT", quest = 887, questName = "Southsea Freebooters", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2 }, -- 163
-        { type = "ACCEPT", quest = 92706, questName = "WANTED: Bruuz", map = 1413, zone = "The Barrens", x = 62.6, y = 37.5, optional = true, note = "New in Forever; Elite - group up" }, -- 164
-        { type = "ACCEPT", quest = 895, questName = "WANTED: Baron Longshore", map = 1413, zone = "The Barrens", x = 62.6, y = 37.5 }, -- 165
-        { type = "ACCEPT", quest = 896, questName = "Miner's Fortune", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 166
-        { type = "ACCEPT", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 167
-        { type = "ACCEPT", quest = 865, questName = "Raptor Horns", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 168
-        { type = "ACCEPT", quest = 891, questName = "The Guns of Northwatch", npc = 3339, npcName = "Captain Thalo'thas Brightsun", map = 1413, zone = "The Barrens", x = 62.3, y = 39 }, -- 169
-        { type = "ACCEPT", quest = 959, questName = "Trouble at the Docks", npc = 3665, npcName = "Crane Operator Bigglefuzz", map = 1413, zone = "The Barrens", x = 63.1, y = 37.6, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 170
-        { type = "TURNIN", quest = 854, questName = "Journey to the Crossroads", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.4, y = 30.8, note = "reduced xp (80%) - you out-levelled it" }, -- 171
-        { type = "ACCEPT", quest = 1526, questName = "Call of Fire", npc = 5900, npcName = "Telf Joolam", map = 1411, zone = "Durotar", x = 38.6, y = 58.8, class = { "SHAMAN" } }, -- 172
-        { type = "COLLECT", quest = 1526, questName = "Call of Fire", target = "Glowing Ember", count = 1, map = 1411, zone = "Durotar", x = 38.6, y = 58.2, class = { "SHAMAN" } }, -- 173
-        { type = "TURNIN", quest = 1526, questName = "Call of Fire", map = 1411, zone = "Durotar", x = 38.9, y = 58.2, class = { "SHAMAN" } }, -- 174
-        { type = "KILL", quest = 959, questName = "Trouble at the Docks", npc = 3655, target = "Mad Magglish", map = 1413, zone = "The Barrens", x = 45.7, y = 33.6, optional = true }, -- 175
-        { type = "ACCEPT", quest = 1527, questName = "Call of Fire", map = 1411, zone = "Durotar", x = 38.9, y = 58.2, class = { "SHAMAN" } }, -- 176
-        { type = "TURNIN", quest = 1527, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 177
-        { type = "TURNIN", quest = 959, questName = "Trouble at the Docks", npc = 3665, npcName = "Crane Operator Bigglefuzz", map = 1413, zone = "The Barrens", x = 63.1, y = 37.6, optional = true }, -- 178
-        { type = "KILL", quest = 887, questName = "Southsea Freebooters", npc = 3381, target = "Southsea Brigand / Southsea Cannoneer", count = 12, map = 1413, zone = "The Barrens", x = 63.6, y = 43.4, near = true }, -- 179
-        { type = "KILL", quest = 895, questName = "WANTED: Baron Longshore", npc = 3467, target = "Baron Longshore", map = 1413, zone = "The Barrens", x = 64.2, y = 47.1, near = true, note = "loot Baron Longshore's Head" }, -- 180
-        { type = "COLLECT", quest = 891, questName = "The Guns of Northwatch", target = "Theramore Medal", count = 10, map = 1413, zone = "The Barrens", x = 62, y = 51.7, near = true }, -- 181
-        { type = "KILL", quest = 891, questName = "The Guns of Northwatch", npc = 3454, target = "Cannoneer Smythe / Captain Fairmount", count = 1, map = 1413, zone = "The Barrens", x = 63.2, y = 56.6 }, -- 182
-        { type = "KILL", quest = 891, questName = "The Guns of Northwatch", npc = 3455, target = "Cannoneer Whessan", count = 1, map = 1413, zone = "The Barrens", x = 60.4, y = 54.8 }, -- 183
-        { type = "COLLECT", quest = 865, questName = "Raptor Horns", target = "Intact Raptor Horn", count = 5, map = 1413, zone = "The Barrens", x = 58, y = 53.9, near = true }, -- 184
-        { type = "COMPLETE", quest = 898, questName = "Free From the Hold", target = "Escort Gilthares Firebough back to Ratchet", map = 1413, zone = "The Barrens", x = 62.3, y = 39.1, note = "escort - stay close, it can fail: Escort Gilthares Firebough back to Ratchet" }, -- 185
-        { type = "ACCEPT", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 186
-        { type = "TURNIN", quest = 865, questName = "Raptor Horns", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 187
-        { type = "TURNIN", quest = 891, questName = "The Guns of Northwatch", npc = 3339, npcName = "Captain Thalo'thas Brightsun", map = 1413, zone = "The Barrens", x = 62.3, y = 39 }, -- 188
-        { type = "TURNIN", quest = 898, questName = "Free From the Hold", npc = 3339, npcName = "Captain Thalo'thas Brightsun", map = 1413, zone = "The Barrens", x = 62.3, y = 39 }, -- 189
-        { type = "TURNIN", quest = 887, questName = "Southsea Freebooters", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2, note = "reduced xp (80%) - you out-levelled it" }, -- 190
-        { type = "TURNIN", quest = 895, questName = "WANTED: Baron Longshore", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2 }, -- 191
-        { type = "ACCEPT", quest = 890, questName = "The Missing Shipment", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2 }, -- 192
-        { type = "ACCEPT", quest = 1491, questName = "Smart Drinks", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 193
-        { type = "TURNIN", quest = 890, questName = "The Missing Shipment", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5, note = "reduced xp (80%) - you out-levelled it" }, -- 194
-        { type = "ACCEPT", quest = 892, questName = "The Missing Shipment", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 195
-        { type = "TURNIN", quest = 892, questName = "The Missing Shipment", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2, note = "reduced xp (80%) - you out-levelled it" }, -- 196
-        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Crate With Holes / Snufflenose Owner's Manual / Snufflenose Command Stick", map = 1413, zone = "The Barrens", x = 62.3, y = 37.6, near = true }, -- 197
-        { type = "TURNIN", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 198
-        { type = "KILL", quest = 882, questName = "Ishamuhale", npc = 3257, target = "Ishamuhale", map = 1413, zone = "The Barrens", x = 59.8, y = 30.6, note = "loot Ishamuhale's Fang" }, -- 199
-        { type = "ACCEPT", quest = 6541, questName = "Report to Kadrak", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.4, y = 30.8 }, -- 200
-        { type = "COLLECT", quest = 1491, questName = "Smart Drinks", target = "Wailing Essence", count = 6, map = 1413, zone = "The Barrens", x = 49.3, y = 33.9, near = true }, -- 201
-        { type = "TURNIN", quest = 1491, questName = "Smart Drinks", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 202
-        { type = "ACCEPT", quest = 888, questName = "Stolen Booty", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 203
-        { type = "ACCEPT", quest = 6126, questName = "Lessons Anew", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 204
-        { type = "TURNIN", quest = 6126, questName = "Lessons Anew", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 205
-        { type = "COLLECT", quest = 896, questName = "Miner's Fortune", target = "Cats Eye Emerald", map = 1413, zone = "The Barrens", x = 62.2, y = 5.6, near = true }, -- 206
-        { type = "ACCEPT", quest = 858, questName = "Ignition", npc = 3439, npcName = "Wizzlecrank's Shredder", map = 1413, zone = "The Barrens", x = 56.5, y = 7.5 }, -- 207
-        { type = "KILL", quest = 858, questName = "Ignition", npc = 3445, target = "Supervisor Lugwizzle", map = 1413, zone = "The Barrens", x = 56.3, y = 8.6, note = "loot Ignition Key" }, -- 208
-        { type = "TURNIN", quest = 858, questName = "Ignition", npc = 3439, npcName = "Wizzlecrank's Shredder", map = 1413, zone = "The Barrens", x = 56.5, y = 7.5 }, -- 209
-        { type = "ACCEPT", quest = 863, questName = "The Escape", npc = 3439, npcName = "Wizzlecrank's Shredder", map = 1413, zone = "The Barrens", x = 56.4, y = 7.4 }, -- 210
-        { type = "TURNIN", quest = 894, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7, note = "reduced xp (80%) - you out-levelled it" }, -- 211
-        { type = "ACCEPT", quest = 900, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7 }, -- 212
-        { type = "COMPLETE", quest = 900, questName = "Samophlange", target = "Main Control Valve / Regulator Valve / Fuel Control Valve", map = 1413, zone = "The Barrens", x = 52.3, y = 11.6, note = "Shut off Main Control Valve" }, -- 213
-        { type = "TURNIN", quest = 900, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7, note = "reduced xp (80%) - you out-levelled it" }, -- 214
-        { type = "ACCEPT", quest = 901, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7 }, -- 215
-        { type = "KILL", quest = 901, questName = "Samophlange", npc = 3471, target = "Tinkerer Sniggles", map = 1413, zone = "The Barrens", x = 52.8, y = 10.4, note = "loot Console Key" }, -- 216
-        { type = "TURNIN", quest = 901, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7, note = "reduced xp (60%) - you out-levelled it" }, -- 217
-        { type = "ACCEPT", quest = 902, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7 }, -- 218
-        { type = "ACCEPT", quest = 6543, questName = "The Warsong Reports", npc = 8582, npcName = "Kadrak", map = 1413, zone = "The Barrens", x = 48.1, y = 5.4 }, -- 219
-        { type = "TURNIN", quest = 6543, questName = "The Warsong Reports", npc = 8582, npcName = "Kadrak", map = 1413, zone = "The Barrens", x = 48.1, y = 5.4 }, -- 220
-        { type = "TURNIN", quest = 6541, questName = "Report to Kadrak", npc = 8582, npcName = "Kadrak", map = 1413, zone = "The Barrens", x = 48, y = 5.4 }, -- 221
-        { type = "ACCEPT", quest = 8370, questName = "Conquering Arathi Basin", npc = 15350, npcName = "Horde Warbringer", map = 1413, zone = "The Barrens", x = 46.7, y = 8.7 }, -- 222
-        { type = "TURNIN", quest = 8370, questName = "Conquering Arathi Basin", npc = 15350, npcName = "Horde Warbringer", map = 1413, zone = "The Barrens", x = 46.7, y = 8.7 }, -- 223
-        { type = "TURNIN", quest = 875, questName = "Harpy Lieutenants", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 224
-        { type = "ACCEPT", quest = 876, questName = "Serena Bloodfeather", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 225
-        { type = "TURNIN", quest = 906, questName = "Betrayal from Within", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 226
-        { type = "TURNIN", quest = 3281, questName = "Stolen Silver", npc = 3464, npcName = "Gazrog", map = 1413, zone = "The Barrens", x = 51.9, y = 30.3 }, -- 227
-        { type = "ACCEPT", quest = 95774, questName = "Her Name Is Olgra", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6, note = "New in Forever" }, -- 228
-        { type = "TURNIN", quest = 899, questName = "Consumed by Hatred", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 229
-        { type = "TURNIN", quest = 863, questName = "The Escape", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 230
-        { type = "TURNIN", quest = 902, questName = "Samophlange", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 231
-        { type = "ACCEPT", quest = 3921, questName = "Wenikee Boltbucket", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 232
-        { type = "TURNIN", quest = 896, questName = "Miner's Fortune", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 233
-        { type = "TURNIN", quest = 3921, questName = "Wenikee Boltbucket", npc = 9316, npcName = "Wenikee Boltbucket", map = 1413, zone = "The Barrens", x = 49.1, y = 11.2, note = "reduced xp (60%) - you out-levelled it" }, -- 234
-        { type = "ACCEPT", quest = 3922, questName = "Nugget Slugs", npc = 9316, npcName = "Wenikee Boltbucket", map = 1413, zone = "The Barrens", x = 49, y = 11.2 }, -- 235
-        { type = "ACCEPT", quest = 6382, questName = "The Ashenvale Hunt", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.8, y = 59 }, -- 236
-        { type = "TURNIN", quest = 882, questName = "Ishamuhale", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 237
-        { type = "ACCEPT", quest = 907, questName = "Enraged Thunder Lizards", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 238
-        { type = "COLLECT", quest = 907, questName = "Enraged Thunder Lizards", target = "Thunder Lizard Blood", count = 3, map = 1413, zone = "The Barrens", x = 46.8, y = 55.8, near = true }, -- 239
-        { type = "TURNIN", quest = 907, questName = "Enraged Thunder Lizards", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 240
-        { type = "ACCEPT", quest = 913, questName = "Cry of the Thunderhawk", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 241
-        { type = "COLLECT", quest = 913, questName = "Cry of the Thunderhawk", target = "Thunderhawk Wings", map = 1413, zone = "The Barrens", x = 46.7, y = 61.5, near = true }, -- 242
-        { type = "TURNIN", quest = 913, questName = "Cry of the Thunderhawk", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 243
-        { type = "ACCEPT", quest = 874, questName = "Mahren Skyseer", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 244
-        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Shipment of Boots", count = 1, map = 1413, zone = "The Barrens", x = 62.6, y = 49.6 }, -- 245
-        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Telescopic Lens", count = 1, map = 1413, zone = "The Barrens", x = 63.6, y = 49.3 }, -- 246
-        { type = "TURNIN", quest = 874, questName = "Mahren Skyseer", npc = 3388, npcName = "Mahren Skyseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.9 }, -- 247
-        { type = "ACCEPT", quest = 873, questName = "Isha Awak", npc = 3388, npcName = "Mahren Skyseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.9 }, -- 248
-        { type = "KILL", quest = 873, questName = "Isha Awak", npc = 3476, target = "Isha Awak", map = 1413, zone = "The Barrens", x = 65.6, y = 46.8, near = true, note = "loot Heart of Isha Awak" }, -- 249
-        { type = "TURNIN", quest = 873, questName = "Isha Awak", npc = 3388, npcName = "Mahren Skyseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.9 }, -- 250
-        { type = "ACCEPT", quest = 95494, questName = "Bruised Pride and Lion Hides", npc = 3682, npcName = "Vrang Wildgore", map = 1413, zone = "The Barrens", x = 43.8, y = 12.2, note = "New in Forever" }, -- 251
-        { type = "COLLECT", quest = 95494, questName = "Bruised Pride and Lion Hides", target = "Savannah Lion Hide", count = 6, map = 1413, zone = "The Barrens", x = 60.4, y = 33.6, near = true }, -- 252
-        { type = "TURNIN", quest = 95494, questName = "Bruised Pride and Lion Hides", npc = 3682, npcName = "Vrang Wildgore", map = 1413, zone = "The Barrens", x = 43.8, y = 12.2 }, -- 253
-        { type = "ACCEPT", quest = 95508, questName = "Unwelcome Guests", npc = 261366, npcName = "Walton", map = 1413, zone = "The Barrens", x = 42, y = 11.4, note = "New in Forever" }, -- 254
-        { type = "KILL", quest = 95508, questName = "Unwelcome Guests", npc = 261367, target = "Assist Walton", count = 1, map = 1413, zone = "The Barrens", x = 41.8, y = 11.4 }, -- 255
-        { type = "TURNIN", quest = 95508, questName = "Unwelcome Guests", npc = 261366, npcName = "Walton", map = 1413, zone = "The Barrens", x = 42, y = 11.4 }, -- 256
-        { type = "COLLECT", quest = 92706, questName = "WANTED: Bruuz", target = "Bruuz's Dorsal Fin", count = 1, map = 1413, zone = "The Barrens", x = 64.4, y = 39, optional = true }, -- 257
-        { type = "TURNIN", quest = 92706, questName = "WANTED: Bruuz", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2, optional = true }, -- 258
-        { type = "ACCEPT", quest = 97003, questName = "Chol'aruk the Ravener", npc = 267310, npcName = "Gur'ak", map = 1413, zone = "The Barrens", x = 52.6, y = 29, optional = true, note = "New in Forever; Elite - group up" }, -- 259
-        { type = "COLLECT", quest = 97003, questName = "Chol'aruk the Ravener", target = "Chol'aruk's Head", count = 1, map = 1413, zone = "The Barrens", x = 57.4, y = 27.2, optional = true }, -- 260
-        { type = "TURNIN", quest = 97003, questName = "Chol'aruk the Ravener", npc = 267310, npcName = "Gur'ak", map = 1413, zone = "The Barrens", x = 52.6, y = 29, optional = true }, -- 261
-        { type = "TURNIN", quest = 888, questName = "Stolen Booty", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 262
-        { type = "COLLECT", quest = 3922, questName = "Nugget Slugs", target = "Nugget Slug", count = 15, map = 1413, zone = "The Barrens", x = 55.9, y = 6.8 }, -- 263
-        { type = "TURNIN", quest = 3922, questName = "Nugget Slugs", npc = 9316, npcName = "Wenikee Boltbucket", map = 1413, zone = "The Barrens", x = 49, y = 11.2 }, -- 264
-        { type = "ACCEPT", quest = 1528, questName = "Call of Water", npc = 5892, npcName = "Searn Firewarder", map = 1454, zone = "Orgrimmar", x = 37.8, y = 37.4, class = { "SHAMAN" } }, -- 265
-        { type = "TURNIN", quest = 1528, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 266
-        { type = "ACCEPT", quest = 1529, questName = "Call of Water", npc = 5906, npcName = "Xanis Flameweaver", map = 1456, zone = "Thunder Bluff", x = 25.2, y = 21, class = { "SHAMAN" } }, -- 267
-        { type = "TURNIN", quest = 1529, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 268
-        { type = "ACCEPT", quest = 2985, questName = "Call of Water", npc = 3173, npcName = "Swart", map = 1411, zone = "Durotar", x = 54.4, y = 42.6, class = { "SHAMAN" } }, -- 269
-        { type = "TURNIN", quest = 2985, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 270
-        { type = "ACCEPT", quest = 2986, questName = "Call of Water", npc = 3066, npcName = "Narm Skychaser", map = 1412, zone = "Mulgore", x = 48.4, y = 59.2, class = { "SHAMAN" } }, -- 271
-        { type = "TURNIN", quest = 2986, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 272
-        { type = "KILL", quest = 876, questName = "Serena Bloodfeather", npc = 3452, target = "Serena Bloodfeather", map = 1413, zone = "The Barrens", x = 39.2, y = 12.2, note = "loot Serena's Head" }, -- 273
-        { type = "ACCEPT", quest = 95495, questName = "The Hermit Tanner", npc = 3682, npcName = "Vrang Wildgore", map = 1413, zone = "The Barrens", x = 43.8, y = 12.2, note = "New in Forever" }, -- 274
-        { type = "TURNIN", quest = 95495, questName = "The Hermit Tanner", npc = 261366, npcName = "Walton", map = 1413, zone = "The Barrens", x = 42, y = 11.4 }, -- 275
-        { type = "ACCEPT", quest = 868, questName = "Egg Hunt", npc = 3428, npcName = "Korran", map = 1413, zone = "The Barrens", x = 51, y = 29.6 }, -- 276
-        { type = "TURNIN", quest = 876, questName = "Serena Bloodfeather", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 277
-        { type = "COLLECT", quest = 95774, questName = "Her Name Is Olgra", target = "Olgra's Adornments", count = 4, map = 1413, zone = "The Barrens", x = 49.2, y = 50.4 }, -- 278
-        { type = "TURNIN", quest = 95774, questName = "Her Name Is Olgra", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 279
-        { type = "ACCEPT", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 5911, npcName = "Grunt Logmar", map = 1413, zone = "The Barrens", x = 44.6, y = 59.2, optional = true, note = "New in Forever; Elite - group up" }, -- 280
-        { type = "KILL", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 268622, target = "Encroaching Soldier", count = 2, map = 1413, zone = "The Barrens", x = 49, y = 77, optional = true, near = true }, -- 281
-        { type = "KILL", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 268623, target = "Outraged Pillager", count = 1, map = 1413, zone = "The Barrens", x = 49, y = 77, optional = true }, -- 282
-        { type = "TURNIN", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 5911, npcName = "Grunt Logmar", map = 1413, zone = "The Barrens", x = 44.6, y = 59.2, optional = true }, -- 283
-        { type = "ACCEPT", quest = 98093, questName = "Field to Clear", npc = 14242, npcName = "Sulhasa", map = 1413, zone = "The Barrens", x = 47.8, y = 77.6, note = "New in Forever" }, -- 284
-        { type = "KILL", quest = 98093, questName = "Field to Clear", npc = 4128, target = "Hecklefang Stalker", count = 7, map = 1413, zone = "The Barrens", x = 45.8, y = 82.8 }, -- 285
-        { type = "KILL", quest = 98093, questName = "Field to Clear", npc = 3238, target = "Stormhide", count = 7, map = 1413, zone = "The Barrens", x = 46.4, y = 79.8 }, -- 286
-        { type = "TURNIN", quest = 98093, questName = "Field to Clear", npc = 14242, npcName = "Sulhasa", map = 1413, zone = "The Barrens", x = 47.8, y = 77.6 }, -- 287
-        { type = "ACCEPT", quest = 1060, questName = "Letter to Jin'Zil", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.8 }, -- 288
-        { type = "COLLECT", quest = 868, questName = "Egg Hunt", target = "Silithid Egg", count = 12, map = 1413, zone = "The Barrens", x = 47.8, y = 70.2 }, -- 289
-        { type = "TURNIN", quest = 868, questName = "Egg Hunt", npc = 3428, npcName = "Korran", map = 1413, zone = "The Barrens", x = 51, y = 29.6 }, -- 290
-        { type = "TURNIN", quest = 1489, questName = "Hamuul Runetotem", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4, optional = true }, -- 291
-        { type = "ACCEPT", quest = 1490, questName = "Nara Wildmane", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 292
-        { type = "TURNIN", quest = 1490, questName = "Nara Wildmane", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true }, -- 293
-        { type = "ACCEPT", quest = 914, questName = "Leaders of the Fang", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 294
-        { type = "ACCEPT", quest = 962, questName = "Serpentbloom", npc = 3419, npcName = "Apothecary Zamah", map = 1456, zone = "Thunder Bluff", x = 23, y = 21, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 295
-        { type = "NOTE", optional = true, text = "Ready for Wailing Caverns", note = "Picked up: Leaders of the Fang, Serpentbloom. When you have a group, open Wailing Caverns under Dungeons." }, -- 296
-        { type = "ACCEPT", quest = 1530, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 297
-        { type = "TURNIN", quest = 1530, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 298
-        { type = "ACCEPT", quest = 27, questName = "A Lesson to Learn", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 299
-        { type = "TURNIN", quest = 27, questName = "A Lesson to Learn", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 300
-        { type = "ACCEPT", quest = 98340, questName = "The Great Cat Spirit", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" }, note = "New in Forever" }, -- 301
-        { type = "ACCEPT", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 302
-        { type = "COLLECT", quest = 857, questName = "The Tear of the Moons", target = "Tear of the Moons", map = 1413, zone = "The Barrens", x = 49.1, y = 84.3 }, -- 303
-        { type = "TURNIN", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 304
-        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 305
+        { type = "FLIGHTPATH", npc = 3615, npcName = "Devrak", map = 1413, zone = "The Barrens", x = 51.5, y = 30.3 }, -- 1
+        { type = "FLIGHTPATH", npc = 16227, npcName = "Bragok", map = 1413, zone = "The Barrens", x = 63.1, y = 37.2 }, -- 2
+        { type = "ACCEPT", quest = 1818, questName = "Speak with Dillinger", npc = 2131, npcName = "Austil de Mon", map = 1420, zone = "Tirisfal Glades", x = 61.8, y = 52.4, class = { "WARRIOR" } }, -- 3
+        { type = "TURNIN", quest = 1818, questName = "Speak with Dillinger", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.4, class = { "WARRIOR" } }, -- 4
+        { type = "ACCEPT", quest = 6061, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 5
+        { type = "TURNIN", quest = 6061, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 6
+        { type = "TRAVEL", map = 1413, zone = "The Barrens", x = 51.8, y = 30.9, radius = 60, note = "travel to The Barrens (The Barrens)" }, -- 7
+        { type = "NOTE", map = 1413, zone = "The Barrens", x = 51.8, y = 30.9, text = "set your hearthstone at the inn in The Barrens (if there is one)" }, -- 8
+        { type = "ACCEPT", quest = 6365, questName = "Meats to Orgrimmar", npc = 3489, npcName = "Zargh", map = 1413, zone = "The Barrens", x = 52.6, y = 29.8 }, -- 9
+        { type = "ACCEPT", quest = 6361, questName = "A Bundle of Hides", npc = 3483, npcName = "Jahan Hawkwing", map = 1413, zone = "The Barrens", x = 51.2, y = 29.1 }, -- 10
+        { type = "ACCEPT", quest = 1492, questName = "Wharfmaster Dizzywig", npc = 3390, npcName = "Apothecary Helbrim", map = 1413, zone = "The Barrens", x = 51.4, y = 30.2 }, -- 11
+        { type = "ACCEPT", quest = 871, questName = "Disrupt the Attacks", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 12
+        { type = "TURNIN", quest = 860, questName = "Sergra Darkthorn", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 13
+        { type = "ACCEPT", quest = 844, questName = "Plainstrider Menace", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 14
+        { type = "ACCEPT", quest = 869, questName = "Raptor Thieves", npc = 3464, npcName = "Gazrog", map = 1413, zone = "The Barrens", x = 51.9, y = 30.3 }, -- 15
+        { type = "ACCEPT", quest = 870, questName = "The Forgotten Pools", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 16
+        { type = "TURNIN", quest = 886, questName = "The Barrens Oases", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.2, y = 31.8 }, -- 17
+        { type = "ACCEPT", quest = 5041, questName = "Supplies for the Crossroads", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 18
+        { type = "ACCEPT", quest = 848, questName = "Fungal Spores", npc = 3390, npcName = "Apothecary Helbrim", map = 1413, zone = "The Barrens", x = 51.4, y = 30.2 }, -- 19
+        { type = "TURNIN", quest = 6361, questName = "A Bundle of Hides", npc = 3615, npcName = "Devrak", map = 1413, zone = "The Barrens", x = 51.5, y = 30.3 }, -- 20
+        { type = "TURNIN", quest = 6365, questName = "Meats to Orgrimmar", npc = 3615, npcName = "Devrak", map = 1413, zone = "The Barrens", x = 51.5, y = 30.3 }, -- 21
+        { type = "COLLECT", quest = 844, questName = "Plainstrider Menace", target = "Plainstrider Beak", count = 7, map = 1413, zone = "The Barrens", x = 50.7, y = 27.8, near = true }, -- 22
+        { type = "KILL", quest = 871, questName = "Disrupt the Attacks", npc = 3267, target = "Razormane Water Seeker / Razormane Hunter / Razormane Thornweaver", map = 1413, zone = "The Barrens", x = 53.1, y = 25.1, near = true }, -- 23
+        { type = "COLLECT", quest = 869, questName = "Raptor Thieves", target = "Raptor Head", count = 12, map = 1413, zone = "The Barrens", x = 54.6, y = 23.2, near = true }, -- 24
+        { type = "TURNIN", quest = 1505, questName = "Veteran Uzzek", npc = 5810, npcName = "Uzzek", map = 1413, zone = "The Barrens", x = 61.4, y = 21, class = { "WARRIOR" } }, -- 25
+        { type = "COLLECT", quest = 5041, questName = "Supplies for the Crossroads", target = "Crossroads' Supply Crates", map = 1413, zone = "The Barrens", x = 58.6, y = 25.9, near = true }, -- 26
+        { type = "COLLECT", quest = 848, questName = "Fungal Spores", target = "Fungal Spores", count = 4, map = 1413, zone = "The Barrens", x = 56, y = 42.5, near = true }, -- 27
+        { type = "ACCEPT", quest = 1819, questName = "Ulag the Cleaver", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.4, class = { "WARRIOR" } }, -- 28
+        { type = "KILL", quest = 1819, questName = "Ulag the Cleaver", npc = 6390, target = "Ulag the Cleaver", count = 1, map = 1420, zone = "Tirisfal Glades", x = 59.4, y = 48.2, class = { "WARRIOR" } }, -- 29
+        { type = "TURNIN", quest = 1819, questName = "Ulag the Cleaver", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.4, class = { "WARRIOR" } }, -- 30
+        { type = "ACCEPT", quest = 6087, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 31
+        { type = "TURNIN", quest = 6087, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 32
+        { type = "COMPLETE", quest = 870, questName = "The Forgotten Pools", target = "Explore the waters of the Forgotten Pools", map = 1413, zone = "The Barrens", x = 45.1, y = 22.5, note = "Explore the waters of the Forgotten Pools" }, -- 33
+        { type = "TURNIN", quest = 871, questName = "Disrupt the Attacks", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 34
+        { type = "ACCEPT", quest = 872, questName = "The Disruption Ends", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 35
+        { type = "ACCEPT", quest = 867, questName = "Harpy Raiders", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 36
+        { type = "TURNIN", quest = 5041, questName = "Supplies for the Crossroads", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 37
+        { type = "TURNIN", quest = 869, questName = "Raptor Thieves", npc = 3464, npcName = "Gazrog", map = 1413, zone = "The Barrens", x = 51.9, y = 30.3 }, -- 38
+        { type = "TURNIN", quest = 848, questName = "Fungal Spores", npc = 3390, npcName = "Apothecary Helbrim", map = 1413, zone = "The Barrens", x = 51.4, y = 30.2 }, -- 39
+        { type = "TURNIN", quest = 844, questName = "Plainstrider Menace", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 40
+        { type = "TURNIN", quest = 870, questName = "The Forgotten Pools", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 41
+        { type = "ACCEPT", quest = 845, questName = "The Zhevra", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 42
+        { type = "ACCEPT", quest = 877, questName = "The Stagnant Oasis", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 43
+        { type = "ACCEPT", quest = 3281, questName = "Stolen Silver", npc = 3464, npcName = "Gazrog", map = 1413, zone = "The Barrens", x = 51.9, y = 30.3 }, -- 44
+        { type = "COLLECT", quest = 845, questName = "The Zhevra", target = "Zhevra Hooves", count = 4, map = 1413, zone = "The Barrens", x = 51.8, y = 35.6, near = true }, -- 45
+        { type = "COMPLETE", quest = 877, questName = "The Stagnant Oasis", target = "Bubbling Fissure", map = 1413, zone = "The Barrens", x = 55.6, y = 42.8, note = "Test the Dried Seeds" }, -- 46
+        { type = "KILL", quest = 872, questName = "The Disruption Ends", npc = 3266, target = "Razormane Defender / Kreenig Snarlsnout / Razormane Geomancer", count = 8, map = 1413, zone = "The Barrens", x = 58.9, y = 27.4, near = true }, -- 47
+        { type = "ACCEPT", quest = 1498, questName = "Path of Defense", npc = 5810, npcName = "Uzzek", map = 1413, zone = "The Barrens", x = 61.4, y = 21, class = { "WARRIOR" } }, -- 48
+        { type = "COLLECT", quest = 1498, questName = "Path of Defense", target = "Singed Scale", count = 5, map = 1411, zone = "Durotar", x = 40.5, y = 29.8, near = true, class = { "WARRIOR" } }, -- 49
+        { type = "TURNIN", quest = 1498, questName = "Path of Defense", npc = 5810, npcName = "Uzzek", map = 1413, zone = "The Barrens", x = 61.4, y = 21, class = { "WARRIOR" } }, -- 50
+        { type = "ACCEPT", quest = 6088, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 51
+        { type = "TURNIN", quest = 6088, questName = "Taming the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 52
+        { type = "ACCEPT", quest = 1522, questName = "Call of Fire", npc = 5892, npcName = "Searn Firewarder", map = 1454, zone = "Orgrimmar", x = 37.8, y = 37.4, class = { "SHAMAN" } }, -- 53
+        { type = "ACCEPT", quest = 2983, questName = "Call of Fire", npc = 3173, npcName = "Swart", map = 1411, zone = "Durotar", x = 54.4, y = 42.6, class = { "SHAMAN" } }, -- 54
+        { type = "ACCEPT", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" }, note = "New in Forever" }, -- 55
+        { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Fire Tar", count = 1, map = 1432, zone = "Loch Modan", x = 35.6, y = 20, class = { "SHAMAN" } }, -- 56
+        { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Reagent Pouch", count = 1, map = 1432, zone = "Loch Modan", x = 34.8, y = 84.4, class = { "SHAMAN" } }, -- 57
+        { type = "TURNIN", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" } }, -- 58
+        { type = "ACCEPT", quest = 5922, questName = "Moonglade", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 59
+        { type = "TURNIN", quest = 5922, questName = "Moonglade", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 60
+        { type = "COLLECT", quest = 867, questName = "Harpy Raiders", target = "Witchwing Talon", count = 8, map = 1413, zone = "The Barrens", x = 41.9, y = 19.3, near = true }, -- 61
+        { type = "TURNIN", quest = 845, questName = "The Zhevra", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 62
+        { type = "ACCEPT", quest = 903, questName = "Prowlers of the Barrens", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 63
+        { type = "TURNIN", quest = 867, questName = "Harpy Raiders", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 64
+        { type = "TURNIN", quest = 877, questName = "The Stagnant Oasis", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 65
+        { type = "TURNIN", quest = 872, questName = "The Disruption Ends", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 66
+        { type = "ACCEPT", quest = 875, questName = "Harpy Lieutenants", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 67
+        { type = "ACCEPT", quest = 880, questName = "Altered Beings", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 68
+        { type = "ACCEPT", quest = 899, questName = "Consumed by Hatred", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 69
+        { type = "ACCEPT", quest = 4921, questName = "Lost in Battle", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 70
+        { type = "KILL", quest = 903, questName = "Prowlers of the Barrens", npc = 3425, target = "Savannah Prowler", count = 7, map = 1413, zone = "The Barrens", x = 44.2, y = 32.8, near = true, note = "loot Prowler Claws" }, -- 71
+        { type = "KILL", quest = 880, questName = "Altered Beings", npc = 3461, target = "Oasis Snapjaw", count = 8, map = 1413, zone = "The Barrens", x = 46.1, y = 38.9, near = true, note = "loot Altered Snapjaw Shell" }, -- 72
+        { type = "KILL", quest = 4921, questName = "Lost in Battle", npc = 10668, target = "Beaten Corpse", count = 1, map = 1413, zone = "The Barrens", x = 49.3, y = 50.3 }, -- 73
+        { type = "ACCEPT", quest = 6089, questName = "Training the Beast", npc = 3065, npcName = "Yaw Sharpmane", map = 1412, zone = "Mulgore", x = 47.8, y = 55.6, class = { "HUNTER" } }, -- 74
+        { type = "TURNIN", quest = 6089, questName = "Training the Beast", npc = 3039, npcName = "Holt Thunderhorn", map = 1456, zone = "Thunder Bluff", x = 57.4, y = 89.2, class = { "HUNTER" } }, -- 75
+        { type = "ACCEPT", quest = 5930, questName = "Great Bear Spirit", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 76
+        { type = "TURNIN", quest = 5930, questName = "Great Bear Spirit", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 77
+        { type = "TURNIN", quest = 903, questName = "Prowlers of the Barrens", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 78
+        { type = "ACCEPT", quest = 881, questName = "Echeyakee", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 79
+        { type = "TURNIN", quest = 4921, questName = "Lost in Battle", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 80
+        { type = "TURNIN", quest = 880, questName = "Altered Beings", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.3, y = 31.9 }, -- 81
+        { type = "ACCEPT", quest = 1489, questName = "Hamuul Runetotem", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.2, y = 31.8, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 82
+        { type = "TURNIN", quest = 1522, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 83
+        { type = "TURNIN", quest = 1523, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 84
+        { type = "TURNIN", quest = 2983, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 85
+        { type = "TURNIN", quest = 2984, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 86
+        { type = "KILL", quest = 881, questName = "Echeyakee", npc = 3475, target = "Echeyakee", map = 1413, zone = "The Barrens", x = 55.9, y = 17.2, note = "loot Echeyakee's Hide" }, -- 87
+        { type = "ACCEPT", quest = 1524, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 88
+        { type = "TURNIN", quest = 881, questName = "Echeyakee", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 89
+        { type = "ACCEPT", quest = 905, questName = "The Angry Scytheclaws", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 90
+        { type = "COMPLETE", quest = 905, questName = "The Angry Scytheclaws", target = "Blue Raptor Nest / Red Raptor Nest / Yellow Raptor Nest", map = 1413, zone = "The Barrens", x = 52.6, y = 46.1, note = "Visit Blue Raptor Nest" }, -- 91
+        { type = "TURNIN", quest = 905, questName = "The Angry Scytheclaws", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 92
+        { type = "ACCEPT", quest = 3261, questName = "Jorn Skyseer", npc = 3338, npcName = "Sergra Darkthorn", map = 1413, zone = "The Barrens", x = 52.2, y = 31 }, -- 93
+        { type = "ACCEPT", quest = 855, questName = "Centaur Bracers", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 94
+        { type = "ACCEPT", quest = 850, questName = "Kolkar Leaders", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 95
+        { type = "COLLECT", quest = 855, questName = "Centaur Bracers", target = "Centaur Bracers", count = 15, map = 1413, zone = "The Barrens", x = 44.6, y = 27.8, near = true }, -- 96
+        { type = "TURNIN", quest = 855, questName = "Centaur Bracers", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 97
+        { type = "KILL", quest = 850, questName = "Kolkar Leaders", npc = 3394, target = "Barak Kodobane", map = 1413, zone = "The Barrens", x = 42.8, y = 23.5, note = "loot Barak's Head" }, -- 98
+        { type = "KILL", quest = 875, questName = "Harpy Lieutenants", npc = 3278, target = "Witchwing Slayer", count = 6, map = 1413, zone = "The Barrens", x = 38.8, y = 17.6, near = true, note = "loot Harpy Lieutenant Ring" }, -- 99
+        { type = "TURNIN", quest = 850, questName = "Kolkar Leaders", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 100
+        { type = "ACCEPT", quest = 851, questName = "Verog the Dervish", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 101
+        { type = "ACCEPT", quest = 5932, questName = "Back to Thunder Bluff", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 102
+        { type = "TURNIN", quest = 5932, questName = "Back to Thunder Bluff", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 103
+        { type = "KILL", quest = 851, questName = "Verog the Dervish", npc = 3395, target = "Verog the Dervish", map = 1413, zone = "The Barrens", x = 53.1, y = 41.7, note = "loot Verog's Head" }, -- 104
+        { type = "ACCEPT", quest = 6002, questName = "Body and Heart", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 105
+        { type = "TURNIN", quest = 6002, questName = "Body and Heart", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 106
+        { type = "TURNIN", quest = 851, questName = "Verog the Dervish", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 107
+        { type = "ACCEPT", quest = 852, questName = "Hezrul Bloodmark", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 108
+        { type = "KILL", quest = 852, questName = "Hezrul Bloodmark", npc = 3396, target = "Hezrul Bloodmark", map = 1413, zone = "The Barrens", x = 46, y = 41.1, note = "loot Hezrul's Head" }, -- 109
+        { type = "TURNIN", quest = 852, questName = "Hezrul Bloodmark", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 110
+        { type = "ACCEPT", quest = 4021, questName = "Counterattack!", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 111
+        { type = "TURNIN", quest = 4021, questName = "Counterattack!", npc = 3389, npcName = "Regthar Deathgate", map = 1413, zone = "The Barrens", x = 45.3, y = 28.4 }, -- 112
+        { type = "ACCEPT", quest = 1486, questName = "Deviate Hides", npc = 5767, npcName = "Nalpak", map = 1413, zone = "The Barrens", x = 46, y = 35.7 }, -- 113
+        { type = "ACCEPT", quest = 1487, questName = "Deviate Eradication", npc = 5768, npcName = "Ebru", map = 1413, zone = "The Barrens", x = 46, y = 35.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 114
+        { type = "TURNIN", quest = 1487, questName = "Deviate Eradication", npc = 5768, npcName = "Ebru", map = 1413, zone = "The Barrens", x = 46, y = 35.7, optional = true }, -- 115
+        { type = "COLLECT", quest = 1486, questName = "Deviate Hides", target = "Deviate Hide", count = 20, map = 1413, zone = "The Barrens", x = 45.9, y = 35.6, near = true }, -- 116
+        { type = "TURNIN", quest = 1486, questName = "Deviate Hides", npc = 5767, npcName = "Nalpak", map = 1413, zone = "The Barrens", x = 46, y = 35.7 }, -- 117
+        { type = "COLLECT", quest = 899, questName = "Consumed by Hatred", target = "Bristleback Quilboar Tusk", count = 60, map = 1413, zone = "The Barrens", x = 41.6, y = 44.9, near = true }, -- 118
+        { type = "FLIGHTPATH", npc = 10378, npcName = "Omusa Thunderhorn", map = 1413, zone = "The Barrens", x = 44.5, y = 59.2 }, -- 119
+        { type = "ACCEPT", quest = 854, questName = "Journey to the Crossroads", npc = 3418, npcName = "Kirge Sternhorn", map = 1413, zone = "The Barrens", x = 44.8, y = 58.6 }, -- 120
+        { type = "TURNIN", quest = 3261, questName = "Jorn Skyseer", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 121
+        { type = "ACCEPT", quest = 882, questName = "Ishamuhale", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 122
+        { type = "ACCEPT", quest = 878, questName = "Tribes at War", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 123
+        { type = "ACCEPT", quest = 893, questName = "Weapons of Choice", npc = 3433, npcName = "Tatternack Steelforge", map = 1413, zone = "The Barrens", x = 45.1, y = 57.7 }, -- 124
+        { type = "KILL", quest = 878, questName = "Tribes at War", npc = 3260, target = "Bristleback Water Seeker", count = 6, map = 1413, zone = "The Barrens", x = 45.1, y = 55.3, near = true }, -- 125
+        { type = "KILL", quest = 878, questName = "Tribes at War", npc = 3261, target = "Bristleback Thornweaver", count = 6, map = 1413, zone = "The Barrens", x = 44.8, y = 51.5, near = true }, -- 126
+        { type = "KILL", quest = 878, questName = "Tribes at War", npc = 3263, target = "Bristleback Geomancer", count = 6, map = 1413, zone = "The Barrens", x = 42.8, y = 48.7, near = true }, -- 127
+        { type = "ACCEPT", quest = 5726, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 128
+        { type = "COLLECT", quest = 5726, questName = "Hidden Enemies", target = "Lieutenant's Insignia", count = 1, map = 1454, zone = "Orgrimmar", x = 49, y = 91.2 }, -- 129
+        { type = "TURNIN", quest = 5726, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 130
+        { type = "ACCEPT", quest = 5761, questName = "Slaying the Beast", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.6, y = 50.4, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 131
+        { type = "ACCEPT", quest = 5727, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 132
+        { type = "TURNIN", quest = 5727, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 133
+        { type = "ACCEPT", quest = 5728, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 134
+        { type = "TURNIN", quest = 1524, questName = "Call of Fire", npc = 5900, npcName = "Telf Joolam", map = 1411, zone = "Durotar", x = 38.6, y = 58.8, class = { "SHAMAN" } }, -- 135
+        { type = "COMPLETE", quest = 893, questName = "Weapons of Choice", npc = 3458, target = "Razormane Seer / Razormane Warfrenzy / Razormane Backstabber", map = 1413, zone = "The Barrens", x = 42.2, y = 78.3, near = true, note = "loot Charred Razormane Wand" }, -- 136
+        { type = "TURNIN", quest = 878, questName = "Tribes at War", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 137
+        { type = "ACCEPT", quest = 5052, questName = "Blood Shards of Agamaggan", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 138
+        { type = "TURNIN", quest = 893, questName = "Weapons of Choice", npc = 3433, npcName = "Tatternack Steelforge", map = 1413, zone = "The Barrens", x = 45.1, y = 57.7 }, -- 139
+        { type = "COLLECT", quest = 5052, questName = "Blood Shards of Agamaggan", target = "Blood Shard", map = 1413, zone = "The Barrens", x = 45.1, y = 55.3, near = true }, -- 140
+        { type = "TURNIN", quest = 5052, questName = "Blood Shards of Agamaggan", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 141
+        { type = "ACCEPT", quest = 879, questName = "Betrayal from Within", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 142
+        { type = "ACCEPT", quest = 1525, questName = "Call of Fire", npc = 5900, npcName = "Telf Joolam", map = 1411, zone = "Durotar", x = 38.6, y = 58.8, class = { "SHAMAN" } }, -- 143
+        { type = "COLLECT", quest = 1525, questName = "Call of Fire", target = "Fire Tar", count = 1, map = 1413, zone = "The Barrens", x = 54.4, y = 25, near = true, class = { "SHAMAN" } }, -- 144
+        { type = "COLLECT", quest = 1525, questName = "Call of Fire", target = "Reagent Pouch", count = 1, map = 1411, zone = "Durotar", x = 52.6, y = 26.6, class = { "SHAMAN" } }, -- 145
+        { type = "TURNIN", quest = 1525, questName = "Call of Fire", npc = 5900, npcName = "Telf Joolam", map = 1411, zone = "Durotar", x = 38.6, y = 58.8, class = { "SHAMAN" } }, -- 146
+        { type = "KILL", quest = 879, questName = "Betrayal from Within", npc = 3435, target = "Lok Orcbane", map = 1413, zone = "The Barrens", x = 40.2, y = 80.5, note = "loot Lok's Skull" }, -- 147
+        { type = "KILL", quest = 879, questName = "Betrayal from Within", npc = 3434, target = "Nak", map = 1413, zone = "The Barrens", x = 43.8, y = 83.3, note = "loot Nak's Skull" }, -- 148
+        { type = "KILL", quest = 879, questName = "Betrayal from Within", npc = 3436, target = "Kuz", map = 1413, zone = "The Barrens", x = 45.1, y = 80.1, note = "loot Kuz's Skull" }, -- 149
+        { type = "ACCEPT", quest = 843, questName = "Gann's Reclamation", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 150
+        { type = "KILL", quest = 843, questName = "Gann's Reclamation", npc = 3374, target = "Bael'dun Excavator / Bael'dun Foreman / Prospector Khazgorm", count = 15, map = 1413, zone = "The Barrens", x = 47.4, y = 84.1, near = true }, -- 151
+        { type = "TURNIN", quest = 843, questName = "Gann's Reclamation", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 152
+        { type = "ACCEPT", quest = 846, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 153
+        { type = "COLLECT", quest = 846, questName = "Revenge of Gann", target = "Nitroglycerin / Wood Pulp / Sodium Nitrate", count = 6, map = 1413, zone = "The Barrens", x = 48.5, y = 83.8, near = true }, -- 154
+        { type = "TURNIN", quest = 846, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 155
+        { type = "ACCEPT", quest = 849, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 156
+        { type = "COMPLETE", quest = 849, questName = "Revenge of Gann", target = "Bael Modan Flying Machine", map = 1413, zone = "The Barrens", x = 47, y = 85.6, note = "Bael Modan Flying Machine destroyed" }, -- 157
+        { type = "TURNIN", quest = 849, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 158
+        { type = "TURNIN", quest = 879, questName = "Betrayal from Within", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 159
+        { type = "ACCEPT", quest = 906, questName = "Betrayal from Within", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 160
+        { type = "COLLECT", quest = 3281, questName = "Stolen Silver", target = "Stolen Silver", map = 1413, zone = "The Barrens", x = 58, y = 53.9 }, -- 161
+        { type = "ACCEPT", quest = 898, questName = "Free From the Hold", npc = 3465, npcName = "Gilthares Firebough", map = 1413, zone = "The Barrens", x = 62, y = 55 }, -- 162
+        { type = "TURNIN", quest = 1492, questName = "Wharfmaster Dizzywig", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5, note = "reduced xp (40%) - you out-levelled it" }, -- 163
+        { type = "ACCEPT", quest = 1483, questName = "Ziz Fizziks", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 164
+        { type = "ACCEPT", quest = 894, questName = "Samophlange", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 165
+        { type = "ACCEPT", quest = 887, questName = "Southsea Freebooters", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2 }, -- 166
+        { type = "ACCEPT", quest = 92706, questName = "WANTED: Bruuz", map = 1413, zone = "The Barrens", x = 62.6, y = 37.5, optional = true, note = "New in Forever; Elite - group up" }, -- 167
+        { type = "ACCEPT", quest = 895, questName = "WANTED: Baron Longshore", map = 1413, zone = "The Barrens", x = 62.6, y = 37.5 }, -- 168
+        { type = "ACCEPT", quest = 896, questName = "Miner's Fortune", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 169
+        { type = "ACCEPT", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 170
+        { type = "ACCEPT", quest = 865, questName = "Raptor Horns", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 171
+        { type = "ACCEPT", quest = 891, questName = "The Guns of Northwatch", npc = 3339, npcName = "Captain Thalo'thas Brightsun", map = 1413, zone = "The Barrens", x = 62.3, y = 39 }, -- 172
+        { type = "ACCEPT", quest = 959, questName = "Trouble at the Docks", npc = 3665, npcName = "Crane Operator Bigglefuzz", map = 1413, zone = "The Barrens", x = 63.1, y = 37.6, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 173
+        { type = "TURNIN", quest = 854, questName = "Journey to the Crossroads", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.4, y = 30.8, note = "reduced xp (80%) - you out-levelled it" }, -- 174
+        { type = "ACCEPT", quest = 1526, questName = "Call of Fire", npc = 5900, npcName = "Telf Joolam", map = 1411, zone = "Durotar", x = 38.6, y = 58.8, class = { "SHAMAN" } }, -- 175
+        { type = "COLLECT", quest = 1526, questName = "Call of Fire", target = "Glowing Ember", count = 1, map = 1411, zone = "Durotar", x = 38.6, y = 58.2, class = { "SHAMAN" } }, -- 176
+        { type = "TURNIN", quest = 1526, questName = "Call of Fire", map = 1411, zone = "Durotar", x = 38.9, y = 58.2, class = { "SHAMAN" } }, -- 177
+        { type = "KILL", quest = 959, questName = "Trouble at the Docks", npc = 3655, target = "Mad Magglish", map = 1413, zone = "The Barrens", x = 45.7, y = 33.6, optional = true }, -- 178
+        { type = "ACCEPT", quest = 1527, questName = "Call of Fire", map = 1411, zone = "Durotar", x = 38.9, y = 58.2, class = { "SHAMAN" } }, -- 179
+        { type = "TURNIN", quest = 1527, questName = "Call of Fire", npc = 5907, npcName = "Kranal Fiss", map = 1413, zone = "The Barrens", x = 55.8, y = 20, class = { "SHAMAN" } }, -- 180
+        { type = "TURNIN", quest = 959, questName = "Trouble at the Docks", npc = 3665, npcName = "Crane Operator Bigglefuzz", map = 1413, zone = "The Barrens", x = 63.1, y = 37.6, optional = true }, -- 181
+        { type = "KILL", quest = 887, questName = "Southsea Freebooters", npc = 3381, target = "Southsea Brigand / Southsea Cannoneer", count = 12, map = 1413, zone = "The Barrens", x = 63.6, y = 43.4, near = true }, -- 182
+        { type = "KILL", quest = 895, questName = "WANTED: Baron Longshore", npc = 3467, target = "Baron Longshore", map = 1413, zone = "The Barrens", x = 64.2, y = 47.1, near = true, note = "loot Baron Longshore's Head" }, -- 183
+        { type = "COLLECT", quest = 891, questName = "The Guns of Northwatch", target = "Theramore Medal", count = 10, map = 1413, zone = "The Barrens", x = 62, y = 51.7, near = true }, -- 184
+        { type = "KILL", quest = 891, questName = "The Guns of Northwatch", npc = 3454, target = "Cannoneer Smythe / Captain Fairmount", count = 1, map = 1413, zone = "The Barrens", x = 63.2, y = 56.6 }, -- 185
+        { type = "KILL", quest = 891, questName = "The Guns of Northwatch", npc = 3455, target = "Cannoneer Whessan", count = 1, map = 1413, zone = "The Barrens", x = 60.4, y = 54.8 }, -- 186
+        { type = "COLLECT", quest = 865, questName = "Raptor Horns", target = "Intact Raptor Horn", count = 5, map = 1413, zone = "The Barrens", x = 58, y = 53.9, near = true }, -- 187
+        { type = "COMPLETE", quest = 898, questName = "Free From the Hold", target = "Escort Gilthares Firebough back to Ratchet", map = 1413, zone = "The Barrens", x = 62.3, y = 39.1, note = "escort - stay close, it can fail: Escort Gilthares Firebough back to Ratchet" }, -- 188
+        { type = "ACCEPT", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 189
+        { type = "TURNIN", quest = 865, questName = "Raptor Horns", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 190
+        { type = "TURNIN", quest = 891, questName = "The Guns of Northwatch", npc = 3339, npcName = "Captain Thalo'thas Brightsun", map = 1413, zone = "The Barrens", x = 62.3, y = 39 }, -- 191
+        { type = "TURNIN", quest = 898, questName = "Free From the Hold", npc = 3339, npcName = "Captain Thalo'thas Brightsun", map = 1413, zone = "The Barrens", x = 62.3, y = 39 }, -- 192
+        { type = "TURNIN", quest = 887, questName = "Southsea Freebooters", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2, note = "reduced xp (80%) - you out-levelled it" }, -- 193
+        { type = "TURNIN", quest = 895, questName = "WANTED: Baron Longshore", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2 }, -- 194
+        { type = "ACCEPT", quest = 890, questName = "The Missing Shipment", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2 }, -- 195
+        { type = "ACCEPT", quest = 1491, questName = "Smart Drinks", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 196
+        { type = "TURNIN", quest = 890, questName = "The Missing Shipment", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5, note = "reduced xp (80%) - you out-levelled it" }, -- 197
+        { type = "ACCEPT", quest = 892, questName = "The Missing Shipment", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 198
+        { type = "TURNIN", quest = 892, questName = "The Missing Shipment", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.7, y = 36.2, note = "reduced xp (80%) - you out-levelled it" }, -- 199
+        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Crate With Holes / Snufflenose Owner's Manual / Snufflenose Command Stick", map = 1413, zone = "The Barrens", x = 62.3, y = 37.6, near = true }, -- 200
+        { type = "TURNIN", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 201
+        { type = "KILL", quest = 882, questName = "Ishamuhale", npc = 3257, target = "Ishamuhale", map = 1413, zone = "The Barrens", x = 59.8, y = 30.6, note = "loot Ishamuhale's Fang" }, -- 202
+        { type = "ACCEPT", quest = 6541, questName = "Report to Kadrak", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.4, y = 30.8 }, -- 203
+        { type = "COLLECT", quest = 1491, questName = "Smart Drinks", target = "Wailing Essence", count = 6, map = 1413, zone = "The Barrens", x = 49.3, y = 33.9, near = true }, -- 204
+        { type = "TURNIN", quest = 1491, questName = "Smart Drinks", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 205
+        { type = "ACCEPT", quest = 888, questName = "Stolen Booty", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 206
+        { type = "ACCEPT", quest = 6126, questName = "Lessons Anew", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 207
+        { type = "TURNIN", quest = 6126, questName = "Lessons Anew", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 208
+        { type = "COLLECT", quest = 896, questName = "Miner's Fortune", target = "Cats Eye Emerald", map = 1413, zone = "The Barrens", x = 62.2, y = 5.6, near = true }, -- 209
+        { type = "ACCEPT", quest = 858, questName = "Ignition", npc = 3439, npcName = "Wizzlecrank's Shredder", map = 1413, zone = "The Barrens", x = 56.5, y = 7.5 }, -- 210
+        { type = "KILL", quest = 858, questName = "Ignition", npc = 3445, target = "Supervisor Lugwizzle", map = 1413, zone = "The Barrens", x = 56.3, y = 8.6, note = "loot Ignition Key" }, -- 211
+        { type = "TURNIN", quest = 858, questName = "Ignition", npc = 3439, npcName = "Wizzlecrank's Shredder", map = 1413, zone = "The Barrens", x = 56.5, y = 7.5 }, -- 212
+        { type = "ACCEPT", quest = 863, questName = "The Escape", npc = 3439, npcName = "Wizzlecrank's Shredder", map = 1413, zone = "The Barrens", x = 56.4, y = 7.4 }, -- 213
+        { type = "TURNIN", quest = 894, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7, note = "reduced xp (80%) - you out-levelled it" }, -- 214
+        { type = "ACCEPT", quest = 900, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7 }, -- 215
+        { type = "COMPLETE", quest = 900, questName = "Samophlange", target = "Main Control Valve / Regulator Valve / Fuel Control Valve", map = 1413, zone = "The Barrens", x = 52.3, y = 11.6, note = "Shut off Main Control Valve" }, -- 216
+        { type = "TURNIN", quest = 900, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7, note = "reduced xp (80%) - you out-levelled it" }, -- 217
+        { type = "ACCEPT", quest = 901, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7 }, -- 218
+        { type = "KILL", quest = 901, questName = "Samophlange", npc = 3471, target = "Tinkerer Sniggles", map = 1413, zone = "The Barrens", x = 52.8, y = 10.4, note = "loot Console Key" }, -- 219
+        { type = "TURNIN", quest = 901, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7, note = "reduced xp (60%) - you out-levelled it" }, -- 220
+        { type = "ACCEPT", quest = 902, questName = "Samophlange", map = 1413, zone = "The Barrens", x = 52.4, y = 11.7 }, -- 221
+        { type = "ACCEPT", quest = 6543, questName = "The Warsong Reports", npc = 8582, npcName = "Kadrak", map = 1413, zone = "The Barrens", x = 48.1, y = 5.4 }, -- 222
+        { type = "TURNIN", quest = 6543, questName = "The Warsong Reports", npc = 8582, npcName = "Kadrak", map = 1413, zone = "The Barrens", x = 48.1, y = 5.4 }, -- 223
+        { type = "TURNIN", quest = 6541, questName = "Report to Kadrak", npc = 8582, npcName = "Kadrak", map = 1413, zone = "The Barrens", x = 48, y = 5.4 }, -- 224
+        { type = "ACCEPT", quest = 8370, questName = "Conquering Arathi Basin", npc = 15350, npcName = "Horde Warbringer", map = 1413, zone = "The Barrens", x = 46.7, y = 8.7 }, -- 225
+        { type = "TURNIN", quest = 8370, questName = "Conquering Arathi Basin", npc = 15350, npcName = "Horde Warbringer", map = 1413, zone = "The Barrens", x = 46.7, y = 8.7 }, -- 226
+        { type = "TURNIN", quest = 875, questName = "Harpy Lieutenants", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 227
+        { type = "ACCEPT", quest = 876, questName = "Serena Bloodfeather", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 228
+        { type = "TURNIN", quest = 906, questName = "Betrayal from Within", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 229
+        { type = "TURNIN", quest = 3281, questName = "Stolen Silver", npc = 3464, npcName = "Gazrog", map = 1413, zone = "The Barrens", x = 51.9, y = 30.3 }, -- 230
+        { type = "ACCEPT", quest = 95774, questName = "Her Name Is Olgra", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6, note = "New in Forever" }, -- 231
+        { type = "TURNIN", quest = 899, questName = "Consumed by Hatred", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 232
+        { type = "TURNIN", quest = 863, questName = "The Escape", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 233
+        { type = "TURNIN", quest = 902, questName = "Samophlange", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 234
+        { type = "ACCEPT", quest = 3921, questName = "Wenikee Boltbucket", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 235
+        { type = "TURNIN", quest = 896, questName = "Miner's Fortune", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 236
+        { type = "TURNIN", quest = 3921, questName = "Wenikee Boltbucket", npc = 9316, npcName = "Wenikee Boltbucket", map = 1413, zone = "The Barrens", x = 49.1, y = 11.2, note = "reduced xp (60%) - you out-levelled it" }, -- 237
+        { type = "ACCEPT", quest = 3922, questName = "Nugget Slugs", npc = 9316, npcName = "Wenikee Boltbucket", map = 1413, zone = "The Barrens", x = 49, y = 11.2 }, -- 238
+        { type = "ACCEPT", quest = 6382, questName = "The Ashenvale Hunt", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.8, y = 59 }, -- 239
+        { type = "TURNIN", quest = 882, questName = "Ishamuhale", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 240
+        { type = "ACCEPT", quest = 907, questName = "Enraged Thunder Lizards", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 241
+        { type = "COLLECT", quest = 907, questName = "Enraged Thunder Lizards", target = "Thunder Lizard Blood", count = 3, map = 1413, zone = "The Barrens", x = 46.8, y = 55.8, near = true }, -- 242
+        { type = "TURNIN", quest = 907, questName = "Enraged Thunder Lizards", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 243
+        { type = "ACCEPT", quest = 913, questName = "Cry of the Thunderhawk", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 244
+        { type = "COLLECT", quest = 913, questName = "Cry of the Thunderhawk", target = "Thunderhawk Wings", map = 1413, zone = "The Barrens", x = 46.7, y = 61.5, near = true }, -- 245
+        { type = "TURNIN", quest = 913, questName = "Cry of the Thunderhawk", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 246
+        { type = "ACCEPT", quest = 874, questName = "Mahren Skyseer", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.9, y = 59.1 }, -- 247
+        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Shipment of Boots", count = 1, map = 1413, zone = "The Barrens", x = 62.6, y = 49.6 }, -- 248
+        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Telescopic Lens", count = 1, map = 1413, zone = "The Barrens", x = 63.6, y = 49.3 }, -- 249
+        { type = "TURNIN", quest = 874, questName = "Mahren Skyseer", npc = 3388, npcName = "Mahren Skyseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.9 }, -- 250
+        { type = "ACCEPT", quest = 873, questName = "Isha Awak", npc = 3388, npcName = "Mahren Skyseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.9 }, -- 251
+        { type = "KILL", quest = 873, questName = "Isha Awak", npc = 3476, target = "Isha Awak", map = 1413, zone = "The Barrens", x = 65.6, y = 46.8, near = true, note = "loot Heart of Isha Awak" }, -- 252
+        { type = "TURNIN", quest = 873, questName = "Isha Awak", npc = 3388, npcName = "Mahren Skyseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.9 }, -- 253
+        { type = "ACCEPT", quest = 95494, questName = "Bruised Pride and Lion Hides", npc = 3682, npcName = "Vrang Wildgore", map = 1413, zone = "The Barrens", x = 43.8, y = 12.2, note = "New in Forever" }, -- 254
+        { type = "COLLECT", quest = 95494, questName = "Bruised Pride and Lion Hides", target = "Savannah Lion Hide", count = 6, map = 1413, zone = "The Barrens", x = 60.4, y = 33.6, near = true }, -- 255
+        { type = "TURNIN", quest = 95494, questName = "Bruised Pride and Lion Hides", npc = 3682, npcName = "Vrang Wildgore", map = 1413, zone = "The Barrens", x = 43.8, y = 12.2 }, -- 256
+        { type = "ACCEPT", quest = 95508, questName = "Unwelcome Guests", npc = 261366, npcName = "Walton", map = 1413, zone = "The Barrens", x = 42, y = 11.4, note = "New in Forever" }, -- 257
+        { type = "KILL", quest = 95508, questName = "Unwelcome Guests", npc = 261367, target = "Assist Walton", count = 1, map = 1413, zone = "The Barrens", x = 41.8, y = 11.4 }, -- 258
+        { type = "TURNIN", quest = 95508, questName = "Unwelcome Guests", npc = 261366, npcName = "Walton", map = 1413, zone = "The Barrens", x = 42, y = 11.4 }, -- 259
+        { type = "COLLECT", quest = 92706, questName = "WANTED: Bruuz", target = "Bruuz's Dorsal Fin", count = 1, map = 1413, zone = "The Barrens", x = 64.4, y = 39, optional = true }, -- 260
+        { type = "TURNIN", quest = 92706, questName = "WANTED: Bruuz", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2, optional = true }, -- 261
+        { type = "ACCEPT", quest = 97003, questName = "Chol'aruk the Ravener", npc = 267310, npcName = "Gur'ak", map = 1413, zone = "The Barrens", x = 52.6, y = 29, optional = true, note = "New in Forever; Elite - group up" }, -- 262
+        { type = "COLLECT", quest = 97003, questName = "Chol'aruk the Ravener", target = "Chol'aruk's Head", count = 1, map = 1413, zone = "The Barrens", x = 57.4, y = 27.2, optional = true }, -- 263
+        { type = "TURNIN", quest = 97003, questName = "Chol'aruk the Ravener", npc = 267310, npcName = "Gur'ak", map = 1413, zone = "The Barrens", x = 52.6, y = 29, optional = true }, -- 264
+        { type = "TURNIN", quest = 888, questName = "Stolen Booty", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 265
+        { type = "COLLECT", quest = 3922, questName = "Nugget Slugs", target = "Nugget Slug", count = 15, map = 1413, zone = "The Barrens", x = 55.9, y = 6.8 }, -- 266
+        { type = "TURNIN", quest = 3922, questName = "Nugget Slugs", npc = 9316, npcName = "Wenikee Boltbucket", map = 1413, zone = "The Barrens", x = 49, y = 11.2 }, -- 267
+        { type = "ACCEPT", quest = 1528, questName = "Call of Water", npc = 5892, npcName = "Searn Firewarder", map = 1454, zone = "Orgrimmar", x = 37.8, y = 37.4, class = { "SHAMAN" } }, -- 268
+        { type = "TURNIN", quest = 1528, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 269
+        { type = "ACCEPT", quest = 1529, questName = "Call of Water", npc = 5906, npcName = "Xanis Flameweaver", map = 1456, zone = "Thunder Bluff", x = 25.2, y = 21, class = { "SHAMAN" } }, -- 270
+        { type = "TURNIN", quest = 1529, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 271
+        { type = "ACCEPT", quest = 2985, questName = "Call of Water", npc = 3173, npcName = "Swart", map = 1411, zone = "Durotar", x = 54.4, y = 42.6, class = { "SHAMAN" } }, -- 272
+        { type = "TURNIN", quest = 2985, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 273
+        { type = "ACCEPT", quest = 2986, questName = "Call of Water", npc = 3066, npcName = "Narm Skychaser", map = 1412, zone = "Mulgore", x = 48.4, y = 59.2, class = { "SHAMAN" } }, -- 274
+        { type = "TURNIN", quest = 2986, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 275
+        { type = "KILL", quest = 876, questName = "Serena Bloodfeather", npc = 3452, target = "Serena Bloodfeather", map = 1413, zone = "The Barrens", x = 39.2, y = 12.2, note = "loot Serena's Head" }, -- 276
+        { type = "ACCEPT", quest = 95495, questName = "The Hermit Tanner", npc = 3682, npcName = "Vrang Wildgore", map = 1413, zone = "The Barrens", x = 43.8, y = 12.2, note = "New in Forever" }, -- 277
+        { type = "TURNIN", quest = 95495, questName = "The Hermit Tanner", npc = 261366, npcName = "Walton", map = 1413, zone = "The Barrens", x = 42, y = 11.4 }, -- 278
+        { type = "ACCEPT", quest = 868, questName = "Egg Hunt", npc = 3428, npcName = "Korran", map = 1413, zone = "The Barrens", x = 51, y = 29.6 }, -- 279
+        { type = "TURNIN", quest = 876, questName = "Serena Bloodfeather", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.9 }, -- 280
+        { type = "COLLECT", quest = 95774, questName = "Her Name Is Olgra", target = "Olgra's Adornments", count = 4, map = 1413, zone = "The Barrens", x = 49.2, y = 50.4 }, -- 281
+        { type = "TURNIN", quest = 95774, questName = "Her Name Is Olgra", npc = 3432, npcName = "Mankrik", map = 1413, zone = "The Barrens", x = 52, y = 31.6 }, -- 282
+        { type = "ACCEPT", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 5911, npcName = "Grunt Logmar", map = 1413, zone = "The Barrens", x = 44.6, y = 59.2, optional = true, note = "New in Forever; Elite - group up" }, -- 283
+        { type = "KILL", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 268622, target = "Encroaching Soldier", count = 2, map = 1413, zone = "The Barrens", x = 49, y = 77, optional = true, near = true }, -- 284
+        { type = "KILL", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 268623, target = "Outraged Pillager", count = 1, map = 1413, zone = "The Barrens", x = 49, y = 77, optional = true }, -- 285
+        { type = "TURNIN", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 5911, npcName = "Grunt Logmar", map = 1413, zone = "The Barrens", x = 44.6, y = 59.2, optional = true }, -- 286
+        { type = "ACCEPT", quest = 98093, questName = "Field to Clear", npc = 14242, npcName = "Sulhasa", map = 1413, zone = "The Barrens", x = 47.8, y = 77.6, note = "New in Forever" }, -- 287
+        { type = "KILL", quest = 98093, questName = "Field to Clear", npc = 4128, target = "Hecklefang Stalker", count = 7, map = 1413, zone = "The Barrens", x = 45.8, y = 82.8 }, -- 288
+        { type = "KILL", quest = 98093, questName = "Field to Clear", npc = 3238, target = "Stormhide", count = 7, map = 1413, zone = "The Barrens", x = 46.4, y = 79.8 }, -- 289
+        { type = "TURNIN", quest = 98093, questName = "Field to Clear", npc = 14242, npcName = "Sulhasa", map = 1413, zone = "The Barrens", x = 47.8, y = 77.6 }, -- 290
+        { type = "ACCEPT", quest = 1060, questName = "Letter to Jin'Zil", npc = 3449, npcName = "Darsok Swiftdagger", map = 1413, zone = "The Barrens", x = 51.6, y = 30.8 }, -- 291
+        { type = "COLLECT", quest = 868, questName = "Egg Hunt", target = "Silithid Egg", count = 12, map = 1413, zone = "The Barrens", x = 47.8, y = 70.2 }, -- 292
+        { type = "TURNIN", quest = 868, questName = "Egg Hunt", npc = 3428, npcName = "Korran", map = 1413, zone = "The Barrens", x = 51, y = 29.6 }, -- 293
+        { type = "TURNIN", quest = 1489, questName = "Hamuul Runetotem", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4, optional = true }, -- 294
+        { type = "ACCEPT", quest = 1490, questName = "Nara Wildmane", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 295
+        { type = "TURNIN", quest = 1490, questName = "Nara Wildmane", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true }, -- 296
+        { type = "ACCEPT", quest = 914, questName = "Leaders of the Fang", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 297
+        { type = "ACCEPT", quest = 962, questName = "Serpentbloom", npc = 3419, npcName = "Apothecary Zamah", map = 1456, zone = "Thunder Bluff", x = 23, y = 21, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 298
+        { type = "NOTE", optional = true, text = "Ready for Wailing Caverns", note = "Picked up: Leaders of the Fang, Serpentbloom. When you have a group, open Wailing Caverns under Dungeons." }, -- 299
+        { type = "ACCEPT", quest = 1530, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 300
+        { type = "TURNIN", quest = 1530, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 301
+        { type = "ACCEPT", quest = 27, questName = "A Lesson to Learn", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" } }, -- 302
+        { type = "TURNIN", quest = 27, questName = "A Lesson to Learn", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 303
+        { type = "ACCEPT", quest = 98340, questName = "The Great Cat Spirit", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" }, note = "New in Forever" }, -- 304
+        { type = "ACCEPT", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 305
+        { type = "COLLECT", quest = 857, questName = "The Tear of the Moons", target = "Tear of the Moons", map = 1413, zone = "The Barrens", x = 49.1, y = 84.3 }, -- 306
+        { type = "TURNIN", quest = 857, questName = "The Tear of the Moons", npc = 3421, npcName = "Feegly the Exiled", map = 1413, zone = "The Barrens", x = 49, y = 86.3 }, -- 307
+        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 308
     } end,
 })
