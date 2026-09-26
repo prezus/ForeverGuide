@@ -339,8 +339,14 @@ function MM:UpdateTargetMacro(names)
     local key = table.concat(list, "|")
     if key == macroNames then return end
     if inCombat() then macroPending = names return end
+    -- /targetexact may land on a corpse. Each name is tried only while there is no target or it is
+    -- dead, so a later name cannot replace a living one, and a corpse left at the end is dropped.
     local lines = {}
-    for _, name in ipairs(list) do lines[#lines + 1] = "/targetexact " .. name end
+    if #list > 0 then
+        lines[1] = "/cleartarget"
+        for _, name in ipairs(list) do lines[#lines + 1] = "/targetexact [noexists][dead] " .. name end
+        lines[#lines + 1] = "/cleartarget [dead]"
+    end
     pcall(b.SetAttribute, b, "macrotext", table.concat(lines, "\n"))
     macroNames, macroPending = key, nil
     ns.Events:Fire("FG_TARGET_MACRO_CHANGED", list)

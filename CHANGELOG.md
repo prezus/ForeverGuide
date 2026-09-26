@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- The target-next-quest-mob key (and the skull button) no longer leaves you on a corpse: it passes over dead quest mobs to a living one, or clears the target if only corpses are around.
 - Mob tooltips list just the objective and its count ("Bear Fur: 0/8"): no quest title, and the count only once.
 - Crowd detection is gone: no "Crowded" / "Group up" banner, no steps postponed because a spot is busy, and other players' nameplates are no longer switched on during kill steps. `/fg crowd` and `/fg skull friends` are removed.
 - The **R** button at the top of the guide window (your saved reports) showed ".." instead of R: its label was squeezed between the same margins as the wide buttons. Narrow buttons now keep their label.
