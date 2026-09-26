@@ -1509,6 +1509,32 @@ do
     if ns.Quest:IsOnQuest(4010) then MOCK_ABANDON(4010); settle() end
 end
 
+-- class-only WoW Forever quests: the class comes from the Forever overlay, not the Classic database
+do
+    check(ns.QuestDB[76156] and ns.QuestDB[76156].forever and ns.QuestDB[76156].classes == 64, "the overlay marks Forever's Stalk With The Earthmother as shaman-only")
+    local mine = MOCK.class
+    MOCK.class = { "Warrior", "WARRIOR", 1 }; ns.Player.cache = {}
+    check(ns.DB:RaceClassOK(76156) == false, "a warrior cannot take the shaman quest")
+    check(G:StepApplies({ type = "ACCEPT", quest = 76156 }) == false, "...so its step is not in a warrior's route")
+    MOCK.class = { "Shaman", "SHAMAN", 7 }; ns.Player.cache = {}
+    check(ns.DB:RaceClassOK(76156) == true and G:StepApplies({ type = "ACCEPT", quest = 76156 }) == true, "a shaman gets it")
+    MOCK.class = { "Mage", "MAGE", 8 }; ns.Player.cache = {}
+    check(G:StepApplies({ type = "ACCEPT", quest = 7, class = { "WARRIOR" } }) == false, "a warrior-only guide step is not a mage's")
+    MOCK.class = mine; ns.Player.cache = {}
+end
+
+-- Skyborne (WoW Forever's race, file name "Skyborne", on both factions) has no bit in the Classic
+-- race masks: it takes what every race of its faction can take, and nothing race-specific
+do
+    local mine, faction = MOCK.race, MOCK.faction
+    MOCK.race, MOCK.faction = { "Skyborne", "Skyborne" }, "Alliance"; ns.Player.cache = {}
+    check(ns.DB:RaceClassOK(6181) == false, "a Skyborne cannot take the Human-only 6181")
+    check(ns.DB:RaceClassOK(5) == true, "an Alliance Skyborne takes an all-Alliance quest (5)")
+    check(ns.DB:RaceClassOK(2) == false, "an Alliance Skyborne cannot take a Horde quest (2)")
+    MOCK.faction = "Horde"; ns.Player.cache = {}
+    check(ns.DB:RaceClassOK(2) == true and ns.DB:RaceClassOK(5) == false, "a Horde Skyborne: the Horde quest yes, the Alliance one no")
+    MOCK.race, MOCK.faction = mine, faction; ns.Player.cache = {}
+end
 
 -- ---- level-up announcement ------------------------------------------------------------------
 -- (Ilya, 2026-09-21: "when we level up there should be a party message/emote message ...")
