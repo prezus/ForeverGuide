@@ -34,7 +34,7 @@ local HELP = {
     "/fg auto [accept on|off|guide] [turnin on|off]   auto-accept / auto-turn-in quests (hold SHIFT at an NPC to do it by hand)",
     "/fg rec on|off|status|dump [n]|clear   opt-in data recorder (off by default)",
     "/fg scan on|off | new | [from] [to] | stop | resume | status   opt in before requesting quest data from the server",
-    "/fg harvest on|off | sweep [from to] | status   opt in to quest discovery and map requests (off by default)",
+    "/fg harvest on|off | sweep [from to] | probe | status   opt in to quest discovery and map requests (off by default)",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
     "/fg dungeon on|off  put the guide away while you are in an instance (on by default)",
     "/fg fp              list / walk to the flight points in this zone you have not taken yet",
@@ -671,6 +671,7 @@ function handlers.harvest(rest)
     if a == "on" or a == "off" then H:SetEnabled(a == "on") ns.Print("harvest " .. a)
     elseif a == "sweep" then H:Sweep(tonumber(b), tonumber(c))
     elseif a == "status" then H:Status()
+    elseif a == "probe" then H:Probe()
     else H:HarvestAllMaps() end
 end
 

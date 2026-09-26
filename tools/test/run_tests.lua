@@ -106,6 +106,25 @@ do
         check(not ns.Harvest.sweeping and not ns.db.harvestEnabled and calls == 1, "opting out cancels an active harvest sweep and map requests")
         _G.HaveQuestData = have
         harvest:SetChecked(true); harvest:GetScript("OnClick")(harvest)
+        -- probe: raw answers of the map APIs that place things without the player there
+        local taxi, areaPoi = C_TaxiMap.GetTaxiNodesForMap, rawget(_G, "C_AreaPoiInfo")
+        C_TaxiMap.GetTaxiNodesForMap = function(mapID)
+            if mapID ~= MOCK.mapID then return {} end
+            return { { nodeID = 7, name = "Thor", isUndiscovered = true, position = { x = 0.335, y = 0.62 } } }
+        end
+        _G.C_AreaPoiInfo = {
+            GetQuestHubsForMap = function(mapID) return mapID == MOCK.mapID and { 42 } or {} end,
+            GetAreaPOIInfo = function(_, id) return { areaPoiID = id, name = "Quest hub", position = { x = 0.5, y = 0.25 } } end,
+        }
+        local probe = ns.Harvest:Probe()
+        local m = probe and probe.maps[MOCK.mapID] or {}
+        local node = (m["C_TaxiMap.GetTaxiNodesForMap"] or {})[1]
+        local hub = (m["C_AreaPoiInfo.GetQuestHubsForMap"] or {})[1]
+        check(node and node.name == "Thor" and math.abs(node.x - 33.5) < 0.01 and node.isUndiscovered == "true", "probe stores flight nodes on the map with their position")
+        check(hub and hub.areaPoiID == 42 and hub.name == "Quest hub" and math.abs(hub.y - 25) < 0.01, "probe looks up quest hub details by id")
+        check(probe.apis["C_AreaPoiInfo.GetQuestHubsForMap"] == 1 and probe.apis["C_AreaPoiInfo.GetAreaPOIForMap"] == "missing", "probe counts answers and marks APIs this client lacks")
+        check(ns.db.harvest.probe == probe, "probe results are saved with the harvest data")
+        C_TaxiMap.GetTaxiNodesForMap, _G.C_AreaPoiInfo = taxi, areaPoi
     end
     _G.C_QuestLine = priorQuestLine
     ns.Database:Init()
