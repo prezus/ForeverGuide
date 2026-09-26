@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- The arrow no longer sends you to stray positions for four Dun Morogh NPCs: Rudra Amberstill, Tundra MacGrann, Mountaineer Barleybrew and Pilot Hammerfoot each had an imported position far from where they stand.
+- Collect steps can name the creatures that drop the item, so the mob skulls and the target key work for new Forever items the quest database does not know yet.
 - Guides: quests started by an item are now in the guides when the item comes from one place - a named creature (Croaky's Head, Lakota'mani's hoof, Sharptalon's Claw) or a chest or object (Benedict's Chest, Chen's Empty Keg). The accept step tells you to loot the item and use it; an elite that drops it makes it an optional group step.
 - Guides (Human and Dwarf): the Cozy Sleeping Bag chain from "... and that note you found" in Westfall is taken to the end, each step marked "Cozy Sleeping Bag chain: keep it going".
 - `/fg rec dump [n]` opens the recorded entries in a window, already selected, so Ctrl+C copies them for pasting into feedback (it used to print them to chat, where they cannot be copied).

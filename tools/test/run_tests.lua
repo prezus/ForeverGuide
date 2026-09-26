@@ -863,6 +863,19 @@ do
     do local l = ns.ItemTips:LinesFor(999999, "Broken Sword") check(#l == 0, "an ordinary item gets no line (" .. tostring(l[1] and l[1][1]) .. ")") end
 end
 
+-- ---- a COLLECT step names the creatures that drop its item --------------------------------------
+do
+    ns.RegisterGuide({ id = "AUDIT_MOBS", name = "mobs", steps = {
+        { type = "ACCEPT", quest = 990700 },
+        { type = "COLLECT", quest = 990700, target = "Pristine Leopard Pelt", count = 6, mobs = "Elder Snow Leopard / Snow Leopard" },
+        { type = "TURNIN", quest = 990700 } } })
+    G:Activate("AUDIT_MOBS", true); settle()
+    MOCK_ACCEPT(990700, "Never Saddle on Quality", { { text = "Pristine Leopard Pelt: 0/6", finished = false, numFulfilled = 0, numRequired = 6 } }); settle()
+    local names = ns.MobMarker:WantedNames()
+    check(step().type == "COLLECT" and names["elder snow leopard"] == "Elder Snow Leopard" and names["snow leopard"] == "Snow Leopard", "a COLLECT step's mobs are the creatures the marker and target key look for")
+    check(names["pristine leopard pelt"] == nil, "the item itself is not a creature to look for")
+end
+
 -- ---- skulls over quest mobs ----------------------------------------------------------------
 do
     ns.RegisterGuide({ id = "AUDIT_SKULL", name = "skull", steps = {

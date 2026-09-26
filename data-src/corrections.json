@@ -1,7 +1,86 @@
 {
  "_comment": "Hand-written fixes for WoW Forever data. Applied last, so they win over recorded / imported values. See tools/foreverdb.py apply_corrections() for the shape. Keys are ids as strings.",
  "quests": {},
- "npcs": {},
+ "npcs": {
+  "1265": {
+   "spw": {
+    "1426": [
+     [
+      0,
+      -5513.86,
+      -1304.71
+     ],
+     [
+      0,
+      -5513.82,
+      -1304.61
+     ],
+     [
+      0,
+      -5512.18,
+      -1305.59
+     ]
+    ]
+   },
+   "_note": "Stray imported positions dropped (1426: 60.0,52.6 (4.1% off)): more than 2.5% of the map from every spawn Wowhead records for Rudra Amberstill."
+  },
+  "1266": {
+   "spw": {
+    "1426": [
+     [
+      0,
+      -5572.99,
+      99.17
+     ],
+     [
+      0,
+      -5573.25,
+      99.51
+     ],
+     [
+      0,
+      -5574.57,
+      98.03
+     ]
+    ]
+   },
+   "_note": "Stray imported positions dropped (1426: 42.9,47.4 (9.3% off); 1426: 35.1,56.4 (4.8% off)): more than 2.5% of the map from every spawn Wowhead records for Tundra MacGrann."
+  },
+  "1959": {
+   "spw": {
+    "1426": [
+     [
+      0,
+      -5479.74,
+      -2447.11
+     ]
+    ]
+   },
+   "_note": "Stray imported positions dropped (1426: 79.5,50.7 (6.9% off)): more than 2.5% of the map from every spawn Wowhead records for Mountaineer Barleybrew."
+  },
+  "1960": {
+   "spw": {
+    "1426": [
+     [
+      0,
+      -5163.76,
+      -2329.6
+     ],
+     [
+      0,
+      -5163.82,
+      -2329.5
+     ],
+     [
+      0,
+      -5164.15,
+      -2325.07
+     ]
+    ]
+   },
+   "_note": "Stray imported positions dropped (1426: 81.1,42.7 (4.4% off)): more than 2.5% of the map from every spawn Wowhead records for Pilot Hammerfoot."
+  }
+ },
  "objects": {},
  "maps": {}
 }
