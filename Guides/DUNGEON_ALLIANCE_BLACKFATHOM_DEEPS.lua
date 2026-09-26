@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_ALLIANCE_BLACKFATHOM_DEEPS",
     name = "Blackfathom Deeps 20-28",
-    version = 1,
+    version = 2,
     kind = "dungeon",
     faction = "Alliance",
     minLevel = 20,
@@ -12,21 +12,22 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     author = "ForeverGuide route planner",
     notes = "Blackfathom Deeps: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 14,
+    stepCount = 15,
     steps = function() return {
         { type = "ACCEPT", quest = 1275, questName = "Researching the Corruption", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.4, y = 43 }, -- 1
         { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.4, y = 6 }, -- 2
         { type = "ACCEPT", quest = 1198, questName = "In Search of Thaelrid", npc = 4786, npcName = "Dawnwatcher Shaedlass", map = 1457, zone = "Darnassus", x = 55.4, y = 24.6 }, -- 3
         { type = "ACCEPT", quest = 1199, questName = "Twilight Falls", npc = 4784, npcName = "Argent Guard Manados", map = 1457, zone = "Darnassus", x = 55.2, y = 23.6 }, -- 4
         { type = "NOTE", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2, text = "Find a group for Blackfathom Deeps", note = "All quests available from level 20; hand them in by level 28 for full XP" }, -- 5
-        { type = "COLLECT", quest = 971, questName = "Knowledge in the Deeps", target = "Lorgalis Manuscript", count = 1, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 6
-        { type = "COLLECT", quest = 1199, questName = "Twilight Falls", target = "Twilight Pendant", count = 10, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 7
-        { type = "COLLECT", quest = 1275, questName = "Researching the Corruption", target = "Corrupted Brain Stem", count = 8, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 8
-        { type = "TURNIN", quest = 1198, questName = "In Search of Thaelrid", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 9
-        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.4, y = 6 }, -- 10
-        { type = "TURNIN", quest = 1199, questName = "Twilight Falls", npc = 4784, npcName = "Argent Guard Manados", map = 1457, zone = "Darnassus", x = 55.2, y = 23.6 }, -- 11
-        { type = "TURNIN", quest = 1275, questName = "Researching the Corruption", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.4, y = 43 }, -- 12
-        { type = "ACCEPT", quest = 1200, questName = "Blackfathom Villainy", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 13
-        { type = "TURNIN", quest = 1200, questName = "Blackfathom Villainy", npc = 4783, npcName = "Dawnwatcher Selgorm", map = 1457, zone = "Darnassus", x = 55.8, y = 24.2 }, -- 14
+        { type = "ACCEPT", quest = 1200, questName = "Blackfathom Villainy", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 6
+        { type = "COLLECT", quest = 971, questName = "Knowledge in the Deeps", target = "Lorgalis Manuscript", count = 1, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 7
+        { type = "COLLECT", quest = 1199, questName = "Twilight Falls", target = "Twilight Pendant", count = 10, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 8
+        { type = "COLLECT", quest = 1275, questName = "Researching the Corruption", target = "Corrupted Brain Stem", count = 8, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 9
+        { type = "COLLECT", quest = 1200, questName = "Blackfathom Villainy", target = "Head of Kelris", count = 1, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 10
+        { type = "TURNIN", quest = 1198, questName = "In Search of Thaelrid", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 11
+        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.4, y = 6 }, -- 12
+        { type = "TURNIN", quest = 1199, questName = "Twilight Falls", npc = 4784, npcName = "Argent Guard Manados", map = 1457, zone = "Darnassus", x = 55.2, y = 23.6 }, -- 13
+        { type = "TURNIN", quest = 1275, questName = "Researching the Corruption", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.4, y = 43 }, -- 14
+        { type = "TURNIN", quest = 1200, questName = "Blackfathom Villainy", npc = 4783, npcName = "Dawnwatcher Selgorm", map = 1457, zone = "Darnassus", x = 55.8, y = 24.2 }, -- 15
     } end,
 })
