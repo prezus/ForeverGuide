@@ -21,7 +21,7 @@ jobs:
           git init -q "$source"
           git -C "$source" remote add origin https://github.com/Gethe/wow-ui-source.git
           git -C "$source" sparse-checkout set Interface/AddOns/Blizzard_APIDocumentationGenerated
-          git -C "$source" fetch -q --depth 1 --filter=blob:none origin c6e89983189e4f626f549204a23c2d2bea93080a
+          git -C "$source" fetch -q --depth 1 --filter=blob:none origin bd2470aed543f72697a044e989285b6c83e63f73
           git -C "$source" checkout -q --detach FETCH_HEAD
           FOREVER_UI_SOURCE="$source" python3 tools/test/test_forever_api.py
           python3 tools/check_forever_api.py "$source"

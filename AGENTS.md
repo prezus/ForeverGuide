@@ -18,12 +18,12 @@ Verify client-dependent behavior in-game; the headless mock is not the client.
 
 Forever is its own flavor ("Camelot"): Classic and Retail docs and memory are wrong about its API.
 Before using or debugging any game function, event, or template, look it up in the pinned
-[Gethe/wow-ui-source](https://github.com/Gethe/wow-ui-source) `forever` branch, commit
-`bd2470aed543f72697a044e989285b6c83e63f73` (the build `tools/check_forever_api.py` pins):
+[Gethe/wow-ui-source](https://github.com/Gethe/wow-ui-source) `forever` branch, at the commit
+CI fetches in `.github/workflows/check.yml`:
 
 ```text
 git clone --branch forever https://github.com/Gethe/wow-ui-source.git <dir>
-git -C <dir> checkout bd2470aed543f72697a044e989285b6c83e63f73
+git -C <dir> checkout <commit from check.yml>
 ```
 
 - Namespaced calls (`C_*`): `Interface/AddOns/Blizzard_APIDocumentationGenerated/`.
@@ -32,7 +32,7 @@ git -C <dir> checkout bd2470aed543f72697a044e989285b6c83e63f73
   `Blizzard_UIPanels_Game/Camelot/SkillsFrame.lua`).
 - After adding calls: `python3 tools/check_forever_api.py <dir>`.
 
-When Forever ships a new build, move the pin (commit here, `VERSION` in the checker) together.
+When Forever ships a new build, move the pin (the commit in `check.yml`, `VERSION` in the checker) together.
 
 ## Test the contract, not your code
 
