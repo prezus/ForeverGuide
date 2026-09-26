@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_16_DUSTWALLOW_MARSH",
   "name": "16. Dustwallow Marsh 36-37 (Human)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 36,
@@ -12,6 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 16 of the Human route: level 36 to 37, 43 steps, ~114 min of play in the model (30425 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "ACCEPT", "quest": 79975, "questName": "Eagle's Fist", "map": 1432, "zone": "Loch Modan", "x": 49.5, "y": 12.8, "note": "Cozy Sleeping Bag chain: keep it going"},
+    {"type": "TURNIN", "quest": 79975, "questName": "Eagle's Fist", "map": 1417, "zone": "Arathi Highlands", "x": 22.5, "y": 24.2},
     {"type": "TRAVEL", "map": 1443, "zone": "Nijel's Point", "x": 66.3, "y": 6.5, "radius": 60, "note": "use your hearthstone (Nijel's Point)"},
     {"type": "TRAVEL", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.0, "y": 48.1, "radius": 60, "note": "travel to Dustwallow Marsh (Dustwallow Marsh)"},
     {"type": "HEARTH", "npc": 6272, "npcName": "Innkeeper Janene", "map": 1445, "zone": "Theramore Isle", "x": 66.6, "y": 45.2, "note": "talk to Innkeeper Janene and make this inn your home"},
