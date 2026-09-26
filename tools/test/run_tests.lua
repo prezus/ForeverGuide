@@ -839,7 +839,56 @@ do
     check(names["kobold vermin"] == "Kobold Vermin", "the kill step wants Kobold Vermin")
     ns.MobMarker:Scan()
     local macro = ForeverGuideTargetButton and ForeverGuideTargetButton:GetAttribute("macrotext") or ""
-    check(macro:find("/targetexact Kobold Vermin", 1, true) ~= nil, "the secure target button carries a /targetexact macro for the step's mobs (" .. macro:gsub("\n", " | ") .. ")")
+    check(macro:find("/targetexact", 1, true) ~= nil and macro:find("Kobold Vermin", 1, true) ~= nil, "the secure target button carries a /targetexact macro for the step's mobs (" .. macro:gsub("\n", " | ") .. ")")
+    -- The mock cannot run macros, so this runs the macro text by the client's rules for the three
+    -- commands it may use: [conditions] test the current target, the first true group runs;
+    -- /targetexact finds a unit by name and (pessimistically) returns a corpse whenever there is one.
+    do
+        local function press(text, units, target)
+            local function holds(conds)
+                for c in (conds .. ","):gmatch("%s*([^,]-)%s*,") do
+                    if c == "dead" and not (target and target.dead) then return false end
+                    if c == "nodead" and (target and target.dead) then return false end
+                    if c == "exists" and not target then return false end
+                    if c == "noexists" and target then return false end
+                end
+                return true
+            end
+            for line in (text .. "\n"):gmatch("([^\n]*)\n") do
+                local cmd, rest = line:match("^(/%a+)%s*(.-)%s*$")
+                local groups, arg = {}, rest or ""
+                while arg:sub(1, 1) == "[" do
+                    local g, after = arg:match("^%[(.-)%]%s*(.*)$")
+                    groups[#groups + 1] = g
+                    arg = after
+                end
+                local run = #groups == 0
+                for _, g in ipairs(groups) do if holds(g) then run = true break end end
+                if run and cmd == "/cleartarget" then target = nil
+                elseif run and cmd == "/targetexact" then
+                    local pick
+                    for _, u in ipairs(units) do if u.name == arg and (u.dead or not pick) then pick = u end end
+                    if pick then target = pick end
+                end
+            end
+            return target
+        end
+        local corpse, live = { name = "Kobold Vermin", dead = true }, { name = "Kobold Worker" }
+        ns.MobMarker:UpdateTargetMacro({ ["kobold vermin"] = "Kobold Vermin", ["kobold worker"] = "Kobold Worker" })
+        local text = ForeverGuideTargetButton:GetAttribute("macrotext") or ""
+        check(press(text, { corpse, live }) == live, "the target key passes over a quest mob's corpse to a living quest mob (" .. text:gsub("\n", " | ") .. ")")
+        local workerCorpse, liveVermin0 = { name = "Kobold Worker", dead = true }, { name = "Kobold Vermin" }
+        check(press(text, { liveVermin0, workerCorpse }) == liveVermin0, "a corpse whose name comes later in the macro does not replace a living target")
+        check(press(text, { corpse }) == nil, "only corpses around: the key leaves you with no target rather than a dead one")
+        local liveVermin = { name = "Kobold Vermin" }
+        check(press(text, { liveVermin, live }) ~= nil and not press(text, { liveVermin, live }).dead, "living quest mobs: the key targets one")
+        local unrelated = { name = "Stray Cat" }
+        check(press(text, { live }, unrelated) == live, "with something else targeted, the key still switches to the quest mob")
+        check(press(text, { corpse, live }, live) == live, "already on a living quest mob: it stays on a living one")
+        ns.MobMarker:UpdateTargetMacro({})
+        check(press(ForeverGuideTargetButton:GetAttribute("macrotext") or "", { corpse, live }, unrelated) == unrelated, "no quest mobs wanted: the key leaves your target alone")
+        ns.MobMarker:UpdateTargetMacro(names)
+    end
     ns.MobMarker:UpdateTargetMacro({ ["young wolf"] = "Young Wolf" })   -- stale macro from an earlier step
     MOCK.inCombat = true
     ns.MobMarker:Scan()
