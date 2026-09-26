@@ -1,7 +1,7 @@
 {
   "id": "DUNGEON_ALLIANCE_THE_DEADMINES",
   "name": "The Deadmines 15-22",
-  "version": 1,
+  "version": 2,
   "kind": "dungeon",
   "faction": "Alliance",
   "minLevel": 15,
@@ -11,20 +11,20 @@
   "author": "ForeverGuide route planner",
   "notes": "The Deadmines: the quests, the run and the turn-ins. Open it when you have a group.",
   "steps": [
-    {"type": "ACCEPT", "quest": 167, "questName": "Oh Brother. . .", "npc": 656, "npcName": "Wilder Thistlenettle", "map": 1453, "zone": "Stormwind City", "x": 65.2, "y": 21.2},
+    {"type": "ACCEPT", "quest": 167, "questName": "Oh Brother...", "npc": 656, "npcName": "Wilder Thistlenettle", "map": 1453, "zone": "Stormwind City", "x": 65.2, "y": 21.2},
     {"type": "ACCEPT", "quest": 168, "questName": "Collecting Memories", "npc": 656, "npcName": "Wilder Thistlenettle", "map": 1453, "zone": "Stormwind City", "x": 65.2, "y": 21.2},
     {"type": "ACCEPT", "quest": 2040, "questName": "Underground Assault", "npc": 6579, "npcName": "Shoni the Shilent", "map": 1453, "zone": "Stormwind City", "x": 55.4, "y": 12.6},
     {"type": "ACCEPT", "quest": 166, "questName": "The Defias Brotherhood", "npc": 234, "npcName": "Gryan Stoutmantle", "map": 1436, "zone": "Westfall", "x": 56.2, "y": 47.6},
     {"type": "ACCEPT", "quest": 214, "questName": "Red Silk Bandanas", "npc": 820, "npcName": "Scout Riell", "map": 1436, "zone": "Westfall", "x": 56.6, "y": 47.4},
     {"type": "NOTE", "map": 1436, "zone": "Westfall", "x": 42.5, "y": 71.7, "note": "All quests available from level 15; hand them in by level 22 for full XP", "text": "Find a group for The Deadmines"},
     {"type": "COLLECT", "quest": 166, "questName": "The Defias Brotherhood", "target": "Head of VanCleef", "count": 1, "map": 1436, "zone": "Westfall", "x": 42.5, "y": 71.7},
-    {"type": "COLLECT", "quest": 167, "questName": "Oh Brother. . .", "target": "Thistlenettle's Badge", "count": 1, "map": 1436, "zone": "Westfall", "x": 42.5, "y": 71.7},
+    {"type": "COLLECT", "quest": 167, "questName": "Oh Brother...", "target": "Thistlenettle's Badge", "count": 1, "map": 1436, "zone": "Westfall", "x": 42.5, "y": 71.7},
     {"type": "COLLECT", "quest": 168, "questName": "Collecting Memories", "target": "Miners' Union Card", "count": 4, "map": 1436, "zone": "Westfall", "x": 42.5, "y": 71.7},
     {"type": "COLLECT", "quest": 214, "questName": "Red Silk Bandanas", "target": "Red Silk Bandana", "count": 10, "map": 1436, "zone": "Westfall", "x": 42.5, "y": 71.7},
     {"type": "COLLECT", "quest": 2040, "questName": "Underground Assault", "target": "Gnoam Sprecklesprocket", "count": 1, "map": 1436, "zone": "Westfall", "x": 42.5, "y": 71.7},
     {"type": "TURNIN", "quest": 166, "questName": "The Defias Brotherhood", "npc": 234, "npcName": "Gryan Stoutmantle", "map": 1436, "zone": "Westfall", "x": 56.2, "y": 47.6},
     {"type": "TURNIN", "quest": 214, "questName": "Red Silk Bandanas", "npc": 820, "npcName": "Scout Riell", "map": 1436, "zone": "Westfall", "x": 56.6, "y": 47.4},
-    {"type": "TURNIN", "quest": 167, "questName": "Oh Brother. . .", "npc": 656, "npcName": "Wilder Thistlenettle", "map": 1453, "zone": "Stormwind City", "x": 65.2, "y": 21.2},
+    {"type": "TURNIN", "quest": 167, "questName": "Oh Brother...", "npc": 656, "npcName": "Wilder Thistlenettle", "map": 1453, "zone": "Stormwind City", "x": 65.2, "y": 21.2},
     {"type": "TURNIN", "quest": 168, "questName": "Collecting Memories", "npc": 656, "npcName": "Wilder Thistlenettle", "map": 1453, "zone": "Stormwind City", "x": 65.2, "y": 21.2},
     {"type": "TURNIN", "quest": 2040, "questName": "Underground Assault", "npc": 6579, "npcName": "Shoni the Shilent", "map": 1453, "zone": "Stormwind City", "x": 55.4, "y": 12.6}
   ]
