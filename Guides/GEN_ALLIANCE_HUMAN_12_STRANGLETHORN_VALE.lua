@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_12_STRANGLETHORN_VALE",
     name = "12. Stranglethorn Vale 29-33 (Human)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 29,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_13_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 12 of the Human route: level 29 to 33, 108 steps, ~374 min of play in the model (26592 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 141,
+    stepCount = 144,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2859, npcName = "Gyll", map = 1434, zone = "Stranglethorn Vale", x = 27.5, y = 77.8 }, -- 1
         { type = "TURNIN", quest = 293, questName = "Cleansing the Eye", npc = 1284, npcName = "Archbishop Benedictus", map = 1453, zone = "Stormwind City", x = 39.6, y = 27.4 }, -- 2
@@ -51,21 +51,21 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 600, questName = "Venture Company Mining", target = "Singing Blue Crystal", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 42, y = 46.3, near = true }, -- 34
         { type = "COLLECT", quest = 613, questName = "Cracking Maury's Foot", target = "Maury's Key", map = 1434, zone = "Stranglethorn Vale", x = 48.1, y = 30.9, near = true }, -- 35
         { type = "COLLECT", quest = 189, questName = "Bloodscalp Ears", target = "Bloodscalp Ear", count = 15, map = 1434, zone = "Stranglethorn Vale", x = 34.6, y = 16, near = true }, -- 36
-        { type = "ACCEPT", quest = 583, questName = "Welcome to the Jungle", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.5 }, -- 37
-        { type = "TURNIN", quest = 583, questName = "Welcome to the Jungle", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 38
-        { type = "ACCEPT", quest = 185, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 39
-        { type = "ACCEPT", quest = 190, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 40
-        { type = "ACCEPT", quest = 194, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 41
-        { type = "ACCEPT", quest = 338, questName = "The Green Hills of Stranglethorn", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.5 }, -- 42
-        { type = "TURNIN", quest = 338, questName = "The Green Hills of Stranglethorn", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.5 }, -- 43
-        { type = "KILL", quest = 185, questName = "Tiger Mastery", npc = 681, target = "Young Stranglethorn Tiger", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 36, y = 12.9, near = true }, -- 44
-        { type = "TURNIN", quest = 185, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 45
-        { type = "ACCEPT", quest = 186, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 46
-        { type = "KILL", quest = 190, questName = "Panther Mastery", npc = 683, target = "Young Panther", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 37.3, y = 8.3, near = true }, -- 47
-        { type = "TURNIN", quest = 190, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 48
-        { type = "ACCEPT", quest = 191, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 49
-        { type = "TURNIN", quest = 93928, questName = "Of Mice and Milk", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8, note = "reduced xp (10%) - you out-levelled it" }, -- 50
-        { type = "TURNIN", quest = 5762, questName = "Hemet Nesingwary", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8 }, -- 51
+        { type = "TURNIN", quest = 93928, questName = "Of Mice and Milk", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8, note = "reduced xp (10%) - you out-levelled it" }, -- 37
+        { type = "TURNIN", quest = 5762, questName = "Hemet Nesingwary", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8 }, -- 38
+        { type = "ACCEPT", quest = 583, questName = "Welcome to the Jungle", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.5 }, -- 39
+        { type = "TURNIN", quest = 583, questName = "Welcome to the Jungle", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 40
+        { type = "ACCEPT", quest = 185, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 41
+        { type = "ACCEPT", quest = 190, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 42
+        { type = "ACCEPT", quest = 194, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 43
+        { type = "ACCEPT", quest = 338, questName = "The Green Hills of Stranglethorn", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.5 }, -- 44
+        { type = "TURNIN", quest = 338, questName = "The Green Hills of Stranglethorn", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.5 }, -- 45
+        { type = "KILL", quest = 185, questName = "Tiger Mastery", npc = 681, target = "Young Stranglethorn Tiger", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 36, y = 12.9, near = true }, -- 46
+        { type = "TURNIN", quest = 185, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 47
+        { type = "ACCEPT", quest = 186, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 48
+        { type = "KILL", quest = 190, questName = "Panther Mastery", npc = 683, target = "Young Panther", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 37.3, y = 8.3, near = true }, -- 49
+        { type = "TURNIN", quest = 190, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 50
+        { type = "ACCEPT", quest = 191, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 51
         { type = "KILL", quest = 186, questName = "Tiger Mastery", npc = 682, target = "Stranglethorn Tiger", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 35.4, y = 15, near = true }, -- 52
         { type = "KILL", quest = 191, questName = "Panther Mastery", npc = 736, target = "Panther", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 31, y = 14.6, near = true }, -- 53
         { type = "KILL", quest = 194, questName = "Raptor Mastery", npc = 685, target = "Stranglethorn Raptor", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 27.4, y = 15.5, near = true }, -- 54
@@ -120,41 +120,44 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 205, questName = "Troll Witchery", npc = 739, npcName = "Brother Nimetz", map = 1434, zone = "Stranglethorn Vale", x = 37.8, y = 3.6 }, -- 103
         { type = "ACCEPT", quest = 1718, questName = "The Islander", npc = 5479, npcName = "Wu Shen", map = 1453, zone = "Stormwind City", x = 78.8, y = 45.6, class = { "WARRIOR" } }, -- 104
         { type = "TURNIN", quest = 1718, questName = "The Islander", npc = 6236, npcName = "Klannoc Macleod", map = 1413, zone = "The Barrens", x = 68.6, y = 49, class = { "WARRIOR" } }, -- 105
-        { type = "ACCEPT", quest = 1798, questName = "Seeking Strahad", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 106
-        { type = "TURNIN", quest = 1798, questName = "Seeking Strahad", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 107
-        { type = "ACCEPT", quest = 198, questName = "Supplies to Private Thorsen", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.2 }, -- 108
-        { type = "ACCEPT", quest = 213, questName = "Hostile Takeover", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 109
-        { type = "ACCEPT", quest = 577, questName = "Some Assembly Required", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 110
-        { type = "ACCEPT", quest = 616, questName = "The Haunted Isle", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.2 }, -- 111
-        { type = "TURNIN", quest = 210, questName = "Krazek's Cookery", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.2 }, -- 112
-        { type = "TURNIN", quest = 189, questName = "Bloodscalp Ears", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 113
-        { type = "TURNIN", quest = 600, questName = "Venture Company Mining", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 114
-        { type = "TURNIN", quest = 616, questName = "The Haunted Isle", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 115
-        { type = "TURNIN", quest = 613, questName = "Cracking Maury's Foot", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 116
-        { type = "ACCEPT", quest = 578, questName = "The Stone of the Tides", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 117
-        { type = "COMPLETE", quest = 578, questName = "The Stone of the Tides", target = "Locate the haunted island", map = 1434, zone = "Stranglethorn Vale", x = 20.8, y = 23.1, note = "Locate the haunted island" }, -- 118
-        { type = "KILL", quest = 213, questName = "Hostile Takeover", npc = 1096, target = "Venture Co. Geologist", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 8.1, near = true, note = "loot Tumbled Crystal" }, -- 119
-        { type = "TURNIN", quest = 198, questName = "Supplies to Private Thorsen", npc = 738, npcName = "Private Thorsen", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3.4 }, -- 120
-        { type = "KILL", quest = 577, questName = "Some Assembly Required", npc = 1152, target = "Snapjaw Crocolisk", count = 5, map = 1434, zone = "Stranglethorn Vale", x = 39.8, y = 16, near = true, note = "loot Snapjaw Crocolisk Skin" }, -- 121
-        { type = "ACCEPT", quest = 1719, questName = "The Affray", npc = 6236, npcName = "Klannoc Macleod", map = 1413, zone = "The Barrens", x = 68.6, y = 49, class = { "WARRIOR" } }, -- 122
-        { type = "KILL", quest = 1719, questName = "The Affray", npc = 6238, target = "Big Will", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 123
-        { type = "COMPLETE", quest = 1719, questName = "The Affray", target = "Explore Zone", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 124
-        { type = "COMPLETE", quest = 1719, questName = "The Affray", target = "Step on the grate to begin the Affray", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 125
-        { type = "TURNIN", quest = 1719, questName = "The Affray", npc = 6236, npcName = "Klannoc Macleod", map = 1413, zone = "The Barrens", x = 68.6, y = 49, class = { "WARRIOR" } }, -- 126
-        { type = "ACCEPT", quest = 1758, questName = "Tome of the Cabal", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 127
-        { type = "TURNIN", quest = 1758, questName = "Tome of the Cabal", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, class = { "WARLOCK" } }, -- 128
-        { type = "TURNIN", quest = 578, questName = "The Stone of the Tides", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 129
-        { type = "ACCEPT", quest = 601, questName = "Water Elementals", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 130
-        { type = "TURNIN", quest = 213, questName = "Hostile Takeover", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 131
-        { type = "TURNIN", quest = 577, questName = "Some Assembly Required", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 132
-        { type = "ACCEPT", quest = 1802, questName = "Tome of the Cabal", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, class = { "WARLOCK" } }, -- 133
-        { type = "COLLECT", quest = 1802, questName = "Tome of the Cabal", target = "Moldy Tome", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 27.8, y = 72.8, class = { "WARLOCK" } }, -- 134
-        { type = "COLLECT", quest = 1802, questName = "Tome of the Cabal", target = "Tattered Manuscript", count = 1, map = 1441, zone = "Thousand Needles", x = 43.4, y = 32.7, class = { "WARLOCK" } }, -- 135
-        { type = "TURNIN", quest = 1802, questName = "Tome of the Cabal", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, class = { "WARLOCK" } }, -- 136
-        { type = "KILL", quest = 601, questName = "Water Elementals", npc = 691, target = "Lesser Water Elemental", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 21.9, y = 23.9, near = true, note = "loot Water Elemental Bracers" }, -- 137
-        { type = "ACCEPT", quest = 1804, questName = "Tome of the Cabal", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, class = { "WARLOCK" } }, -- 138
-        { type = "COLLECT", quest = 1804, questName = "Tome of the Cabal", target = "Rod of Channeling", count = 3, map = 1437, zone = "Wetlands", x = 49.6, y = 46.4, near = true, class = { "WARLOCK" } }, -- 139
-        { type = "TURNIN", quest = 1804, questName = "Tome of the Cabal", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 140
-        { type = "TURNIN", quest = 601, questName = "Water Elementals", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 141
+        { type = "ACCEPT", quest = 1758, questName = "Tome of the Cabal", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 106
+        { type = "TURNIN", quest = 1758, questName = "Tome of the Cabal", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, class = { "WARLOCK" } }, -- 107
+        { type = "ACCEPT", quest = 1798, questName = "Seeking Strahad", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 108
+        { type = "TURNIN", quest = 1798, questName = "Seeking Strahad", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 109
+        { type = "ACCEPT", quest = 198, questName = "Supplies to Private Thorsen", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.2 }, -- 110
+        { type = "ACCEPT", quest = 213, questName = "Hostile Takeover", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 111
+        { type = "ACCEPT", quest = 577, questName = "Some Assembly Required", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 112
+        { type = "ACCEPT", quest = 616, questName = "The Haunted Isle", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.2 }, -- 113
+        { type = "TURNIN", quest = 210, questName = "Krazek's Cookery", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.2 }, -- 114
+        { type = "TURNIN", quest = 189, questName = "Bloodscalp Ears", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 115
+        { type = "TURNIN", quest = 600, questName = "Venture Company Mining", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 116
+        { type = "TURNIN", quest = 616, questName = "The Haunted Isle", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 117
+        { type = "TURNIN", quest = 613, questName = "Cracking Maury's Foot", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 118
+        { type = "ACCEPT", quest = 578, questName = "The Stone of the Tides", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 119
+        { type = "COMPLETE", quest = 578, questName = "The Stone of the Tides", target = "Locate the haunted island", map = 1434, zone = "Stranglethorn Vale", x = 20.8, y = 23.1, note = "Locate the haunted island" }, -- 120
+        { type = "KILL", quest = 213, questName = "Hostile Takeover", npc = 1096, target = "Venture Co. Geologist", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 8.1, near = true, note = "loot Tumbled Crystal" }, -- 121
+        { type = "TURNIN", quest = 198, questName = "Supplies to Private Thorsen", npc = 738, npcName = "Private Thorsen", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3.4 }, -- 122
+        { type = "KILL", quest = 577, questName = "Some Assembly Required", npc = 1152, target = "Snapjaw Crocolisk", count = 5, map = 1434, zone = "Stranglethorn Vale", x = 39.8, y = 16, near = true, note = "loot Snapjaw Crocolisk Skin" }, -- 123
+        { type = "ACCEPT", quest = 1719, questName = "The Affray", npc = 6236, npcName = "Klannoc Macleod", map = 1413, zone = "The Barrens", x = 68.6, y = 49, class = { "WARRIOR" } }, -- 124
+        { type = "KILL", quest = 1719, questName = "The Affray", npc = 6238, target = "Big Will", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 125
+        { type = "COMPLETE", quest = 1719, questName = "The Affray", target = "Explore Zone", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 126
+        { type = "COMPLETE", quest = 1719, questName = "The Affray", target = "Step on the grate to begin the Affray", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 127
+        { type = "TURNIN", quest = 1719, questName = "The Affray", npc = 6236, npcName = "Klannoc Macleod", map = 1413, zone = "The Barrens", x = 68.6, y = 49, class = { "WARRIOR" } }, -- 128
+        { type = "ACCEPT", quest = 1802, questName = "Tome of the Cabal", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, class = { "WARLOCK" } }, -- 129
+        { type = "COLLECT", quest = 1802, questName = "Tome of the Cabal", target = "Moldy Tome", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 27.8, y = 72.8, class = { "WARLOCK" } }, -- 130
+        { type = "COLLECT", quest = 1802, questName = "Tome of the Cabal", target = "Tattered Manuscript", count = 1, map = 1441, zone = "Thousand Needles", x = 43.4, y = 32.7, class = { "WARLOCK" } }, -- 131
+        { type = "TURNIN", quest = 1802, questName = "Tome of the Cabal", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, class = { "WARLOCK" } }, -- 132
+        { type = "TURNIN", quest = 578, questName = "The Stone of the Tides", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 133
+        { type = "ACCEPT", quest = 601, questName = "Water Elementals", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 134
+        { type = "TURNIN", quest = 213, questName = "Hostile Takeover", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 135
+        { type = "TURNIN", quest = 577, questName = "Some Assembly Required", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 136
+        { type = "ACCEPT", quest = 1804, questName = "Tome of the Cabal", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, class = { "WARLOCK" } }, -- 137
+        { type = "COLLECT", quest = 1804, questName = "Tome of the Cabal", target = "Rod of Channeling", count = 3, map = 1437, zone = "Wetlands", x = 49.6, y = 46.4, near = true, class = { "WARLOCK" } }, -- 138
+        { type = "TURNIN", quest = 1804, questName = "Tome of the Cabal", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 139
+        { type = "KILL", quest = 601, questName = "Water Elementals", npc = 691, target = "Lesser Water Elemental", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 21.9, y = 23.9, near = true, note = "loot Water Elemental Bracers" }, -- 140
+        { type = "ACCEPT", quest = 1795, questName = "The Binding", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 141
+        { type = "KILL", quest = 1795, questName = "The Binding", npc = 6268, target = "Summoned Felhunter", count = 1, map = 1413, zone = "The Barrens", x = 62.6, y = 35.2, class = { "WARLOCK" } }, -- 142
+        { type = "TURNIN", quest = 1795, questName = "The Binding", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 143
+        { type = "TURNIN", quest = 601, questName = "Water Elementals", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 144
     } end,
 })
