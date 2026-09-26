@@ -110,29 +110,39 @@ local function Export(reports)
 end
 Reports.Export = Export
 
+-- A window with a scrolling, selectable text box (the only way to copy text out of the game).
+local function CopyWindow(name, title)
+    local f = Window(name, 660, 400, title)
+    local scroll = CreateFrame("ScrollFrame", nil, f)
+    scroll:SetPoint("TOPLEFT", f, "TOPLEFT", 16, -44)
+    scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -16, 14)
+    pcall(scroll.SetClipsChildren, scroll, true)
+    scroll:EnableMouseWheel(true)
+    local text = CreateFrame("EditBox", nil, scroll)
+    text:SetMultiLine(true)
+    text:SetAutoFocus(false)
+    text:SetFont(Theme.FONT, 12, "")
+    text:SetTextColor(1, 1, 1)
+    text:SetWidth(620)
+    text:SetScript("OnEscapePressed", function() f:Hide() end)
+    text:SetScript("OnTextChanged", function(self)
+        local ok, height = pcall(self.GetStringHeight, self)
+        self:SetHeight(math.max(330, (ok and height or 0) + 20))
+    end)
+    text:SetHeight(330)
+    scroll:SetScrollChild(text)
+    local selectAll = Theme.NewButton(f, "Select all", 86, 22, function() text:SetFocus() text:HighlightText() end)
+    selectAll:SetPoint("TOPRIGHT", f, "TOPRIGHT", -42, -8)
+    scroll:SetScript("OnMouseWheel", function(self, delta)
+        self:SetVerticalScroll(math.max(0, math.min(self:GetVerticalScrollRange(), self:GetVerticalScroll() - delta * 60)))
+    end)
+    f.text, f.scroll, f.selectAll = text, scroll, selectAll
+    return f
+end
+
 function Reports:ShowList()
     if not list then
-        local f = Window("ForeverGuideReports", 660, 400, "Reports (select text and copy)")
-        local scroll = CreateFrame("ScrollFrame", nil, f)
-        scroll:SetPoint("TOPLEFT", f, "TOPLEFT", 16, -44)
-        scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -16, 14)
-        pcall(scroll.SetClipsChildren, scroll, true)
-        scroll:EnableMouseWheel(true)
-        local text = CreateFrame("EditBox", nil, scroll)
-        text:SetMultiLine(true)
-        text:SetAutoFocus(false)
-        text:SetFont(Theme.FONT, 12, "")
-        text:SetTextColor(1, 1, 1)
-        text:SetWidth(620)
-        text:SetScript("OnEscapePressed", function() f:Hide() end)
-        text:SetScript("OnTextChanged", function(self)
-            local ok, height = pcall(self.GetStringHeight, self)
-            self:SetHeight(math.max(330, (ok and height or 0) + 20))
-        end)
-        text:SetHeight(330)
-        scroll:SetScrollChild(text)
-        local selectAll = Theme.NewButton(f, "Select all", 86, 22, function() text:SetFocus() text:HighlightText() end)
-        selectAll:SetPoint("TOPRIGHT", f, "TOPRIGHT", -42, -8)
+        local f = CopyWindow("ForeverGuideReports", "Reports (select text and copy)")
         local clear = Theme.NewButton(f, "Clear all", 92, 22, function()
             if not f.confirmClear then
                 f.confirmClear = true
@@ -144,17 +154,29 @@ function Reports:ShowList()
             f.clear.label:SetText("Clear all")
             Reports:ShowList()
         end)
-        clear:SetPoint("RIGHT", selectAll, "LEFT", -8, 0)
+        clear:SetPoint("RIGHT", f.selectAll, "LEFT", -8, 0)
         f.clear = clear
         f:SetScript("OnHide", function() f.confirmClear = false clear.label:SetText("Clear all") end)
-        scroll:SetScript("OnMouseWheel", function(self, delta)
-            self:SetVerticalScroll(math.max(0, math.min(self:GetVerticalScrollRange(), self:GetVerticalScroll() - delta * 60)))
-        end)
-        f.text, f.scroll = text, scroll
         list = f
     end
     local reports = ns.db.reports or {}
     list.text:SetText(#reports > 0 and Export(reports) or "No reports yet. Use /fg wrong to add one.")
     list.scroll:SetVerticalScroll(0)
     list:Show()
+end
+
+--- Show text in a copy window, already selected so Ctrl+C copies it. One window per name.
+local copyWindows = {}
+function Reports:ShowText(name, title, text)
+    local f = copyWindows[name]
+    if not f then
+        f = CopyWindow(name, title)
+        copyWindows[name] = f
+    end
+    f.text:SetText(text or "")
+    f.scroll:SetVerticalScroll(0)
+    f:Show()
+    f.text:SetFocus()
+    f.text:HighlightText()
+    return f
 end

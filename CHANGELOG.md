@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- `/fg rec dump [n]` opens the recorded entries in a window, already selected, so Ctrl+C copies them for pasting into feedback (it used to print them to chat, where they cannot be copied).
 - Packaging: the release zip is built from the last commit only, never from files on disk, so local reports, SavedVariables copies, debug files and uncommitted edits cannot ship. Contributor docs (AGENTS.md, CONTRIBUTING.md, COMPATIBILITY_POLICY.md, Data/README.md) are no longer in the release zip. `.gitignore` also covers OS/editor files, zips, logs and SavedVariables copies.
 - The arrow on an accept or turn-in step now points at the NPC the step names. When an NPC has more than one known position, it used to point at the one nearest you, which could send you to the wrong place (Tundra MacGrann in Dun Morogh).
 - Guides: more quests in the 1-30 chapters - WoW Forever quests not yet sorted into a zone (Zephras Isle, the Camping 101 series with The Adventurer and The Great Outdoors), the Horde shaman Call of Earth and Call of Fire steps, the rogue Deep Cover follow-ups, the warlock Tome of the Cabal chain, and Beer Basted Boar Ribs in Dun Morogh. Secure the Mountain is no longer a step: its objective, finding Mountaineer Cornelius in the Grizzled Den, has no known position yet. Alliance-only shaman quests are no longer in the Horde guides.
