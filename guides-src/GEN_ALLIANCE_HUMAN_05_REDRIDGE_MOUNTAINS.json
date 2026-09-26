@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_05_REDRIDGE_MOUNTAINS",
   "name": "5. Redridge Mountains 17-20 (Human)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 17,
@@ -15,6 +15,8 @@
     {"type": "FLIGHTPATH", "npc": 931, "npcName": "Ariena Stormfeather", "map": 1433, "zone": "Redridge Mountains", "x": 25.5, "y": 59.4},
     {"type": "ACCEPT", "quest": 118, "questName": "The Price of Shoes", "npc": 415, "npcName": "Verner Osgood", "map": 1433, "zone": "Redridge Mountains", "x": 31, "y": 47.4},
     {"type": "TURNIN", "quest": 118, "questName": "The Price of Shoes", "npc": 514, "npcName": "Smith Argus", "map": 1429, "zone": "Elwynn Forest", "x": 41.6, "y": 65.6},
+    {"type": "ACCEPT", "quest": 2041, "questName": "Speak with Shoni", "npc": 6569, "npcName": "Gnoarn", "map": 1455, "zone": "Ironforge", "x": 69.4, "y": 50.6},
+    {"type": "TURNIN", "quest": 2041, "questName": "Speak with Shoni", "npc": 6579, "npcName": "Shoni the Shilent", "map": 1453, "zone": "Stormwind City", "x": 55.4, "y": 12.6},
     {"type": "ACCEPT", "quest": 94467, "questName": "Call of Fire", "npc": 257808, "npcName": "Braldir Ashmantle", "map": 1432, "zone": "Loch Modan", "x": 32, "y": 66, "note": "New in Forever", "class": ["SHAMAN"]},
     {"type": "COLLECT", "quest": 94467, "questName": "Call of Fire", "target": "Glowing Ember", "count": 1, "map": 1411, "zone": "Durotar", "x": 38.7, "y": 58.3, "class": ["SHAMAN"]},
     {"type": "TURNIN", "quest": 94467, "questName": "Call of Fire", "map": 1411, "zone": "Durotar", "x": 38.9, "y": 58.2, "class": ["SHAMAN"]},
