@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_02_DARNASSUS",
   "name": "2. Darnassus 10-10 (Night Elf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 10,
@@ -12,12 +12,17 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 2 of the NightElf route: level 10 to 10, 6 steps, ~7 min of play in the model (26062 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TURNIN", "quest": 97943, "questName": "Camping 101: Fishing", "npc": 4156, "npcName": "Astaia", "map": 1457, "zone": "Darnassus", "x": 47.6, "y": 56.8},
     {"type": "ACCEPT", "quest": 6344, "questName": "Nessa Shadowsong", "npc": 4241, "npcName": "Mydrannul", "map": 1457, "zone": "Darnassus", "x": 70.6, "y": 45},
     {"type": "ACCEPT", "quest": 6071, "questName": "The Hunter's Path", "npc": 4146, "npcName": "Jocaste", "map": 1457, "zone": "Darnassus", "x": 40.2, "y": 8.8, "class": ["HUNTER"]},
     {"type": "TURNIN", "quest": 5629, "questName": "Returning Home", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
+    {"type": "ACCEPT", "quest": 5630, "questName": "Returning Home", "npc": 1226, "npcName": "Maxan Anvol", "map": 1426, "zone": "Dun Morogh", "x": 47.2, "y": 52.2, "class": ["PRIEST"]},
     {"type": "TURNIN", "quest": 5630, "questName": "Returning Home", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
+    {"type": "ACCEPT", "quest": 5631, "questName": "Returning Home", "npc": 5489, "npcName": "Brother Joshua", "map": 1453, "zone": "Stormwind City", "x": 38.8, "y": 26.8, "class": ["PRIEST"]},
     {"type": "TURNIN", "quest": 5631, "questName": "Returning Home", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
+    {"type": "ACCEPT", "quest": 5632, "questName": "Returning Home", "npc": 11397, "npcName": "Nara Meideros", "map": 1453, "zone": "Stormwind City", "x": 20.8, "y": 50.2, "class": ["PRIEST"]},
     {"type": "TURNIN", "quest": 5632, "questName": "Returning Home", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39, "y": 80.2, "class": ["PRIEST"]},
+    {"type": "ACCEPT", "quest": 5633, "questName": "Returning Home", "npc": 5142, "npcName": "Braenna Flintcrag", "map": 1455, "zone": "Ironforge", "x": 24.6, "y": 9.2, "class": ["PRIEST"]},
     {"type": "TURNIN", "quest": 5633, "questName": "Returning Home", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
     {"type": "TRAVEL", "map": 1457, "zone": "Darnassus", "x": 52.2, "y": 27.4, "radius": 60, "note": "travel to Darnassus (Darnassus)"},
     {"type": "HEARTH", "npc": 6735, "npcName": "Innkeeper Saelienne", "map": 1457, "zone": "Darnassus", "x": 67.4, "y": 15.7, "note": "talk to Innkeeper Saelienne and make this inn your home"},
@@ -36,10 +41,8 @@
     {"type": "ACCEPT", "quest": 1683, "questName": "Vorlus Vilehoof", "npc": 4088, "npcName": "Elanaria", "map": 1457, "zone": "Darnassus", "x": 57.4, "y": 34.8, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 1683, "questName": "Vorlus Vilehoof", "npc": 4088, "npcName": "Elanaria", "map": 1457, "zone": "Darnassus", "x": 57.4, "y": 34.8, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 5628, "questName": "Returning Home", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
-    {"type": "ACCEPT", "quest": 5627, "questName": "Stars of Elune", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
-    {"type": "TURNIN", "quest": 5627, "questName": "Stars of Elune", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
+    {"type": "ACCEPT", "quest": 5923, "questName": "Heeding the Call", "npc": 4218, "npcName": "Denatharion", "map": 1457, "zone": "Darnassus", "x": 34.8, "y": 7.8, "class": ["DRUID"]},
     {"type": "TURNIN", "quest": 5923, "questName": "Heeding the Call", "npc": 4217, "npcName": "Mathrengyl Bearwalker", "map": 1457, "zone": "Darnassus", "x": 35.2, "y": 8, "class": ["DRUID"]},
-    {"type": "ACCEPT", "quest": 5924, "questName": "Heeding the Call", "npc": 4219, "npcName": "Fylerian Nightwing", "map": 1457, "zone": "Darnassus", "x": 33.4, "y": 8.4, "class": ["DRUID"]},
     {"type": "TURNIN", "quest": 5924, "questName": "Heeding the Call", "npc": 4217, "npcName": "Mathrengyl Bearwalker", "map": 1457, "zone": "Darnassus", "x": 35.2, "y": 8, "class": ["DRUID"]},
     {"type": "TURNIN", "quest": 5925, "questName": "Heeding the Call", "npc": 4217, "npcName": "Mathrengyl Bearwalker", "map": 1457, "zone": "Darnassus", "x": 35.2, "y": 8, "class": ["DRUID"]}
   ]

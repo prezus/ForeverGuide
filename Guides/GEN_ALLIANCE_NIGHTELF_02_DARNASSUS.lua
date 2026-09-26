@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_02_DARNASSUS",
     name = "2. Darnassus 10-10 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 10,
@@ -13,37 +13,40 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_03_DARKSHORE",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the NightElf route: level 10 to 10, 6 steps, ~7 min of play in the model (26062 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 30,
+    stepCount = 33,
     steps = function() return {
-        { type = "ACCEPT", quest = 6344, questName = "Nessa Shadowsong", npc = 4241, npcName = "Mydrannul", map = 1457, zone = "Darnassus", x = 70.6, y = 45 }, -- 1
-        { type = "ACCEPT", quest = 6071, questName = "The Hunter's Path", npc = 4146, npcName = "Jocaste", map = 1457, zone = "Darnassus", x = 40.2, y = 8.8, class = { "HUNTER" } }, -- 2
-        { type = "TURNIN", quest = 5629, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 3
-        { type = "TURNIN", quest = 5630, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 4
-        { type = "TURNIN", quest = 5631, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 5
-        { type = "TURNIN", quest = 5632, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39, y = 80.2, class = { "PRIEST" } }, -- 6
-        { type = "TURNIN", quest = 5633, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 7
-        { type = "TRAVEL", map = 1457, zone = "Darnassus", x = 52.2, y = 27.4, radius = 60, note = "travel to Darnassus (Darnassus)" }, -- 8
-        { type = "HEARTH", npc = 6735, npcName = "Innkeeper Saelienne", map = 1457, zone = "Darnassus", x = 67.4, y = 15.7, note = "talk to Innkeeper Saelienne and make this inn your home" }, -- 9
-        { type = "ACCEPT", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1457, zone = "Darnassus", x = 58, y = 34.5 }, -- 10
-        { type = "TURNIN", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1457, zone = "Darnassus", x = 58, y = 34.5 }, -- 11
-        { type = "TURNIN", quest = 1684, questName = "Elanaria", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 12
-        { type = "TURNIN", quest = 922, questName = "Rellian Greenspyre", npc = 3517, npcName = "Rellian Greenspyre", map = 1457, zone = "Darnassus", x = 38.2, y = 21.6 }, -- 13
-        { type = "TURNIN", quest = 2241, questName = "The Apple Falls", npc = 4163, npcName = "Syurna", map = 1457, zone = "Darnassus", x = 36.8, y = 21.8, class = { "ROGUE" } }, -- 14
-        { type = "TURNIN", quest = 935, questName = "Crown of the Earth", npc = 3516, npcName = "Arch Druid Fandral Staghelm", map = 1457, zone = "Darnassus", x = 34.8, y = 9.3 }, -- 15
-        { type = "ACCEPT", quest = 98046, questName = "Crown of the Earth", npc = 3516, npcName = "Arch Druid Fandral Staghelm", map = 1457, zone = "Darnassus", x = 34.8, y = 8.8, note = "New in Forever" }, -- 16
-        { type = "TURNIN", quest = 98046, questName = "Crown of the Earth", npc = 4092, npcName = "Lariia", map = 1457, zone = "Darnassus", x = 40, y = 87.4 }, -- 17
-        { type = "TURNIN", quest = 98391, questName = "The Sisterhood of Elune", npc = 7316, npcName = "Sister Aquinne", map = 1457, zone = "Darnassus", x = 29, y = 45.4 }, -- 18
-        { type = "ACCEPT", quest = 2519, questName = "The Temple of the Moon", npc = 7316, npcName = "Sister Aquinne", map = 1457, zone = "Darnassus", x = 29, y = 45.4 }, -- 19
-        { type = "TURNIN", quest = 2519, questName = "The Temple of the Moon", npc = 7313, npcName = "Priestess A'moora", map = 1457, zone = "Darnassus", x = 36.4, y = 86 }, -- 20
-        { type = "TURNIN", quest = 940, questName = "Teldrassil", npc = 3516, npcName = "Arch Druid Fandral Staghelm", map = 1457, zone = "Darnassus", x = 34.8, y = 8.8 }, -- 21
-        { type = "ACCEPT", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 22
-        { type = "TURNIN", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 23
-        { type = "TURNIN", quest = 5628, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 24
-        { type = "ACCEPT", quest = 5627, questName = "Stars of Elune", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 25
-        { type = "TURNIN", quest = 5627, questName = "Stars of Elune", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 26
-        { type = "TURNIN", quest = 5923, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 27
-        { type = "ACCEPT", quest = 5924, questName = "Heeding the Call", npc = 4219, npcName = "Fylerian Nightwing", map = 1457, zone = "Darnassus", x = 33.4, y = 8.4, class = { "DRUID" } }, -- 28
-        { type = "TURNIN", quest = 5924, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 29
-        { type = "TURNIN", quest = 5925, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 30
+        { type = "TURNIN", quest = 97943, questName = "Camping 101: Fishing", npc = 4156, npcName = "Astaia", map = 1457, zone = "Darnassus", x = 47.6, y = 56.8 }, -- 1
+        { type = "ACCEPT", quest = 6344, questName = "Nessa Shadowsong", npc = 4241, npcName = "Mydrannul", map = 1457, zone = "Darnassus", x = 70.6, y = 45 }, -- 2
+        { type = "ACCEPT", quest = 6071, questName = "The Hunter's Path", npc = 4146, npcName = "Jocaste", map = 1457, zone = "Darnassus", x = 40.2, y = 8.8, class = { "HUNTER" } }, -- 3
+        { type = "TURNIN", quest = 5629, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 4
+        { type = "ACCEPT", quest = 5630, questName = "Returning Home", npc = 1226, npcName = "Maxan Anvol", map = 1426, zone = "Dun Morogh", x = 47.2, y = 52.2, class = { "PRIEST" } }, -- 5
+        { type = "TURNIN", quest = 5630, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 6
+        { type = "ACCEPT", quest = 5631, questName = "Returning Home", npc = 5489, npcName = "Brother Joshua", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.8, class = { "PRIEST" } }, -- 7
+        { type = "TURNIN", quest = 5631, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 8
+        { type = "ACCEPT", quest = 5632, questName = "Returning Home", npc = 11397, npcName = "Nara Meideros", map = 1453, zone = "Stormwind City", x = 20.8, y = 50.2, class = { "PRIEST" } }, -- 9
+        { type = "TURNIN", quest = 5632, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39, y = 80.2, class = { "PRIEST" } }, -- 10
+        { type = "ACCEPT", quest = 5633, questName = "Returning Home", npc = 5142, npcName = "Braenna Flintcrag", map = 1455, zone = "Ironforge", x = 24.6, y = 9.2, class = { "PRIEST" } }, -- 11
+        { type = "TURNIN", quest = 5633, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 12
+        { type = "TRAVEL", map = 1457, zone = "Darnassus", x = 52.2, y = 27.4, radius = 60, note = "travel to Darnassus (Darnassus)" }, -- 13
+        { type = "HEARTH", npc = 6735, npcName = "Innkeeper Saelienne", map = 1457, zone = "Darnassus", x = 67.4, y = 15.7, note = "talk to Innkeeper Saelienne and make this inn your home" }, -- 14
+        { type = "ACCEPT", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1457, zone = "Darnassus", x = 58, y = 34.5 }, -- 15
+        { type = "TURNIN", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1457, zone = "Darnassus", x = 58, y = 34.5 }, -- 16
+        { type = "TURNIN", quest = 1684, questName = "Elanaria", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 17
+        { type = "TURNIN", quest = 922, questName = "Rellian Greenspyre", npc = 3517, npcName = "Rellian Greenspyre", map = 1457, zone = "Darnassus", x = 38.2, y = 21.6 }, -- 18
+        { type = "TURNIN", quest = 2241, questName = "The Apple Falls", npc = 4163, npcName = "Syurna", map = 1457, zone = "Darnassus", x = 36.8, y = 21.8, class = { "ROGUE" } }, -- 19
+        { type = "TURNIN", quest = 935, questName = "Crown of the Earth", npc = 3516, npcName = "Arch Druid Fandral Staghelm", map = 1457, zone = "Darnassus", x = 34.8, y = 9.3 }, -- 20
+        { type = "ACCEPT", quest = 98046, questName = "Crown of the Earth", npc = 3516, npcName = "Arch Druid Fandral Staghelm", map = 1457, zone = "Darnassus", x = 34.8, y = 8.8, note = "New in Forever" }, -- 21
+        { type = "TURNIN", quest = 98046, questName = "Crown of the Earth", npc = 4092, npcName = "Lariia", map = 1457, zone = "Darnassus", x = 40, y = 87.4 }, -- 22
+        { type = "TURNIN", quest = 98391, questName = "The Sisterhood of Elune", npc = 7316, npcName = "Sister Aquinne", map = 1457, zone = "Darnassus", x = 29, y = 45.4 }, -- 23
+        { type = "ACCEPT", quest = 2519, questName = "The Temple of the Moon", npc = 7316, npcName = "Sister Aquinne", map = 1457, zone = "Darnassus", x = 29, y = 45.4 }, -- 24
+        { type = "TURNIN", quest = 2519, questName = "The Temple of the Moon", npc = 7313, npcName = "Priestess A'moora", map = 1457, zone = "Darnassus", x = 36.4, y = 86 }, -- 25
+        { type = "TURNIN", quest = 940, questName = "Teldrassil", npc = 3516, npcName = "Arch Druid Fandral Staghelm", map = 1457, zone = "Darnassus", x = 34.8, y = 8.8 }, -- 26
+        { type = "ACCEPT", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 27
+        { type = "TURNIN", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 28
+        { type = "TURNIN", quest = 5628, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 29
+        { type = "ACCEPT", quest = 5923, questName = "Heeding the Call", npc = 4218, npcName = "Denatharion", map = 1457, zone = "Darnassus", x = 34.8, y = 7.8, class = { "DRUID" } }, -- 30
+        { type = "TURNIN", quest = 5923, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 31
+        { type = "TURNIN", quest = 5924, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 32
+        { type = "TURNIN", quest = 5925, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 33
     } end,
 })
