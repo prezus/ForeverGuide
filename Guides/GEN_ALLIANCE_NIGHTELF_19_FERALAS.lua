@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_19_FERALAS",
     name = "19. Feralas 40-41 (Night Elf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 40,
@@ -12,11 +12,11 @@ ns.RegisterGuide({
     zone = "Feralas",
     next = "GEN_ALLIANCE_NIGHTELF_20_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 19 of the NightElf route: level 40 to 41, 52 steps, ~135 min of play in the model (41542 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 19 of the NightElf route: level 40 to 41, 52 steps, ~135 min of play in the model (41443 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 52,
     steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.2, y = 45.0, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
-        { type = "NOTE", map = 1444, zone = "Feralas", x = 31.2, y = 45.0, text = "set your hearthstone at the inn in Feralas (if there is one)" }, -- 2
+        { type = "HEARTH", npc = 7736, npcName = "Innkeeper Shyria", map = 1444, zone = "Feathermoon Stronghold", x = 31.0, y = 43.5, note = "talk to Innkeeper Shyria and make this inn your home" }, -- 2
         { type = "ACCEPT", quest = 4124, questName = "The Missing Courier", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 3
         { type = "ACCEPT", quest = 2866, questName = "The Ruins of Solarsal", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 4
         { type = "ACCEPT", quest = 2982, questName = "The High Wilderness", npc = 7900, npcName = "Angelas Moonbreeze", map = 1444, zone = "Feralas", x = 31.8, y = 45.6 }, -- 5

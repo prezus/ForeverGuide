@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_18_ORGRIMMAR",
     name = "18. Orgrimmar 43-44 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 43,
@@ -12,18 +12,18 @@ ns.RegisterGuide({
     zone = "Orgrimmar",
     next = "GEN_HORDE_SCOURGE_19_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 18 of the Scourge route: level 43 to 44, 10 steps, ~18 min of play in the model (56149 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 18 of the Scourge route: level 43 to 44, 10 steps, ~18 min of play in the model (55483 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 10,
     steps = function() return {
-        { type = "TRAVEL", map = 1454, zone = "Orgrimmar", x = 60.0, y = 40.2, radius = 60, note = "travel to Orgrimmar (Orgrimmar)" }, -- 1
-        { type = "NOTE", map = 1454, zone = "Orgrimmar", x = 60.0, y = 40.2, text = "set your hearthstone at the inn in Orgrimmar (if there is one)" }, -- 2
-        { type = "ACCEPT", quest = 649, questName = "Ripple Recovery", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.5, y = 36.6 }, -- 3
-        { type = "TURNIN", quest = 649, questName = "Ripple Recovery", npc = 6987, npcName = "Malton Droffers", map = 1454, zone = "Orgrimmar", x = 59.7, y = 36.9 }, -- 4
-        { type = "TURNIN", quest = 32, questName = "Rise of the Silithid", npc = 7010, npcName = "Zilzibin Drumlore", map = 1454, zone = "Orgrimmar", x = 56.3, y = 46.7 }, -- 5
-        { type = "TURNIN", quest = 7732, questName = "Zukk'ash Report", npc = 7010, npcName = "Zilzibin Drumlore", map = 1454, zone = "Orgrimmar", x = 56.3, y = 46.7 }, -- 6
-        { type = "TURNIN", quest = 3121, questName = "A Strange Request", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.5, y = 50.6 }, -- 7
-        { type = "TURNIN", quest = 2976, questName = "A Grim Discovery", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 8
-        { type = "ACCEPT", quest = 3504, questName = "Betrayed", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 9
-        { type = "ACCEPT", quest = 3122, questName = "Return to Witch Doctor Uzer'i", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.5, y = 50.6 }, -- 10
+        { type = "TRAVEL", map = 1454, zone = "Orgrimmar", x = 60.5, y = 39.2, radius = 60, note = "travel to Orgrimmar (Orgrimmar)" }, -- 1
+        { type = "HEARTH", npc = 6929, npcName = "Innkeeper Gryshka", map = 1454, zone = "Orgrimmar", x = 54.1, y = 68.4, note = "talk to Innkeeper Gryshka and make this inn your home" }, -- 2
+        { type = "TURNIN", quest = 3121, questName = "A Strange Request", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.5, y = 50.6 }, -- 3
+        { type = "TURNIN", quest = 32, questName = "Rise of the Silithid", npc = 7010, npcName = "Zilzibin Drumlore", map = 1454, zone = "Orgrimmar", x = 56.3, y = 46.7 }, -- 4
+        { type = "TURNIN", quest = 7732, questName = "Zukk'ash Report", npc = 7010, npcName = "Zilzibin Drumlore", map = 1454, zone = "Orgrimmar", x = 56.3, y = 46.7 }, -- 5
+        { type = "ACCEPT", quest = 3122, questName = "Return to Witch Doctor Uzer'i", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.5, y = 50.6 }, -- 6
+        { type = "ACCEPT", quest = 649, questName = "Ripple Recovery", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.5, y = 36.6 }, -- 7
+        { type = "TURNIN", quest = 649, questName = "Ripple Recovery", npc = 6987, npcName = "Malton Droffers", map = 1454, zone = "Orgrimmar", x = 59.7, y = 36.9 }, -- 8
+        { type = "TURNIN", quest = 2976, questName = "A Grim Discovery", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 9
+        { type = "ACCEPT", quest = 3504, questName = "Betrayed", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 10
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_09_BADLANDS",
     name = "9. Badlands 36-38 (Orc)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 36,
@@ -12,12 +12,12 @@ ns.RegisterGuide({
     zone = "Badlands",
     next = "GEN_HORDE_ORC_10_SWAMP_OF_SORROWS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 9 of the Orc route: level 36 to 38, 42 steps, ~145 min of play in the model (39902 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 9 of the Orc route: level 36 to 38, 42 steps, ~145 min of play in the model (39862 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 42,
     steps = function() return {
-        { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 31.8, radius = 60, note = "use your hearthstone (Arathi Highlands)" }, -- 1
+        { type = "TRAVEL", map = 1417, zone = "Hammerfall", x = 73.8, y = 32.5, radius = 60, note = "use your hearthstone (Hammerfall)" }, -- 1
         { type = "TRAVEL", map = 1418, zone = "Badlands", x = 3.5, y = 47.0, radius = 60, note = "travel to Badlands (Badlands)" }, -- 2
-        { type = "NOTE", map = 1418, zone = "Badlands", x = 3.5, y = 47.0, text = "set your hearthstone at the inn in Badlands (if there is one)" }, -- 3
+        { type = "HEARTH", npc = 9356, npcName = "Innkeeper Shul'kar", map = 1418, zone = "Kargath", x = 2.8, y = 45.9, note = "talk to Innkeeper Shul'kar and make this inn your home" }, -- 3
         { type = "ACCEPT", quest = 2258, questName = "Badlands Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 4
         { type = "ACCEPT", quest = 1419, questName = "Coyote Thieves", npc = 5394, npcName = "Neeka Bloodscar", map = 1418, zone = "Badlands", x = 6.5, y = 47.2 }, -- 5
         { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Rock Elemental Shard", count = 5, map = 1418, zone = "Badlands", x = 14.7, y = 41.8, near = true }, -- 6

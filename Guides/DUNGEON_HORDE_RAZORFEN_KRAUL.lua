@@ -2,26 +2,29 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_RAZORFEN_KRAUL",
-    name = "Razorfen Kraul 22-31",
-    version = 1,
+    name = "Razorfen Kraul 30-31",
+    version = 2,
     kind = "dungeon",
     faction = "Horde",
-    minLevel = 22,
+    minLevel = 30,
     maxLevel = 31,
     map = 1413,
     zone = "The Barrens",
     author = "ForeverGuide route planner",
     notes = "Razorfen Kraul: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 9,
+    stepCount = 12,
     steps = function() return {
-        { type = "ACCEPT", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 1
-        { type = "NOTE", map = 1413, zone = "The Barrens", x = 42.9, y = 90.2, text = "Find a group for Razorfen Kraul", note = "All quests available from level 22; hand them in by level 31 for full XP" }, -- 2
-        { type = "ACCEPT", quest = 1144, questName = "Willix the Importer", map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 3
-        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Blueleaf Tuber", count = 6, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 4
-        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Crate With Holes", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 5
-        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Snufflenose Owner's Manual", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 6
-        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Snufflenose Command Stick", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 7
-        { type = "TURNIN", quest = 1144, questName = "Willix the Importer", map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 8
-        { type = "TURNIN", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 9
+        { type = "ACCEPT", quest = 1109, questName = "Going, Going, Guano!", npc = 2055, npcName = "Master Apothecary Faranell", map = 1458, zone = "Undercity", x = 48.4, y = 69.4 }, -- 1
+        { type = "ACCEPT", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 2
+        { type = "NOTE", map = 1413, zone = "The Barrens", x = 42.9, y = 90.2, text = "Find a group for Razorfen Kraul", note = "All quests available from level 30; hand them in by level 31 for full XP" }, -- 3
+        { type = "ACCEPT", quest = 1144, questName = "Willix the Importer", map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 4
+        { type = "COLLECT", quest = 1109, questName = "Going, Going, Guano!", target = "Kraul Guano", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 5
+        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Blueleaf Tuber", count = 6, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 6
+        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Crate With Holes", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 7
+        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Snufflenose Owner's Manual", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 8
+        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Snufflenose Command Stick", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 9
+        { type = "TURNIN", quest = 1144, questName = "Willix the Importer", map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 10
+        { type = "TURNIN", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 11
+        { type = "TURNIN", quest = 1109, questName = "Going, Going, Guano!", npc = 2055, npcName = "Master Apothecary Faranell", map = 1458, zone = "Undercity", x = 48.4, y = 69.4 }, -- 12
     } end,
 })

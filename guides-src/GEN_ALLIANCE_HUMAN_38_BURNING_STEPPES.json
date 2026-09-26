@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_38_BURNING_STEPPES",
   "name": "38. Burning Steppes 51-52 (Human)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 51,
@@ -10,10 +10,9 @@
   "zone": "Burning Steppes",
   "next": "GEN_ALLIANCE_HUMAN_39_WESTERN_PLAGUELANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 38 of the Human route: level 51 to 52, 36 steps, ~138 min of play in the model (40141 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (3 here).",
+  "notes": "Chapter 38 of the Human route: level 51 to 52, 34 steps, ~123 min of play in the model (44930 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (3 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1428, "zone": "Burning Steppes", "x": 65.3, "y": 23.5, "radius": 60, "note": "travel to Burning Steppes (Burning Steppes)"},
-    {"type": "NOTE", "map": 1428, "zone": "Burning Steppes", "x": 65.3, "y": 23.5, "text": "set your hearthstone at the inn in Burning Steppes (if there is one)"},
     {"type": "ACCEPT", "quest": 4296, "questName": "Tablet of the Seven", "npc": 9536, "npcName": "Maxwort Uberglint", "map": 1428, "zone": "Burning Steppes", "x": 65.2, "y": 23.9},
     {"type": "ACCEPT", "quest": 4726, "questName": "Broodling Essence", "npc": 10267, "npcName": "Tinkee Steamboil", "map": 1428, "zone": "Burning Steppes", "x": 65.2, "y": 24},
     {"type": "ACCEPT", "quest": 4123, "questName": "The Heart of the Mountain", "npc": 9536, "npcName": "Maxwort Uberglint", "map": 1428, "zone": "Burning Steppes", "x": 65.2, "y": 23.9},
@@ -46,7 +45,6 @@
     {"type": "TURNIN", "quest": 3824, "questName": "Gor'tesh the Brute Lord", "npc": 9177, "npcName": "Oralius", "map": 1428, "zone": "Burning Steppes", "x": 84.6, "y": 68.7},
     {"type": "ACCEPT", "quest": 3825, "questName": "Ogre Head On A Stick = Party", "npc": 9177, "npcName": "Oralius", "map": 1428, "zone": "Burning Steppes", "x": 84.6, "y": 68.7},
     {"type": "COMPLETE", "quest": 3825, "questName": "Ogre Head On A Stick = Party", "target": "Soft Dirt Mound", "map": 1428, "zone": "Burning Steppes", "x": 81, "y": 46.8, "note": "Gor'tesh Head Planted"},
-    {"type": "TURNIN", "quest": 3825, "questName": "Ogre Head On A Stick = Party", "npc": 9177, "npcName": "Oralius", "map": 1428, "zone": "Burning Steppes", "x": 84.6, "y": 68.7},
-    {"type": "GRIND", "npc": 7033, "target": "Firegut Ogre", "level": 52, "map": 1428, "zone": "Burning Steppes", "x": 78.7, "y": 55.5, "near": true, "note": "grind Firegut Ogre (level 50-51) to level 52 - nothing worth questing at 51"}
+    {"type": "TURNIN", "quest": 3825, "questName": "Ogre Head On A Stick = Party", "npc": 9177, "npcName": "Oralius", "map": 1428, "zone": "Burning Steppes", "x": 84.6, "y": 68.7}
   ]
 }

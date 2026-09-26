@@ -48,9 +48,10 @@ local function NewRegion(kind)
     function r:StopMovingOrSizing() self.moving = false self.sizing = false end
     function r:SetResizable(on) self.resizable = on end
     function r:SetResizeBounds(minW, minH, maxW, maxH) self.resizeBounds = {minW, minH, maxW, maxH} end
-    function r:SetBackdrop() end
-    function r:SetBackdropColor() end
-    function r:SetBackdropBorderColor() end
+    -- visual calls are recorded for tools/screenshots (the tests never read them)
+    function r:SetBackdrop(b) self.backdrop = b end
+    function r:SetBackdropColor(...) self.backdropColor = { ... } end
+    function r:SetBackdropBorderColor(...) self.backdropBorder = { ... } end
     function r:SetScript(name, fn) self.scripts[name] = fn end
     function r:HookScript(name, fn) self.scripts[name] = fn end
     function r:GetScript(name) return self.scripts[name] end
@@ -58,15 +59,18 @@ local function NewRegion(kind)
     function r:UnregisterEvent(ev) self.events[ev] = nil end
     function r:SetText(t) self.text = t or "" end
     function r:GetText() return self.text end
-    function r:SetFont() end
-    function r:SetJustifyH() end
-    function r:SetJustifyV() end
-    function r:SetTextColor() end
-    function r:SetWordWrap() end
+    function r:SetFont(face, size, flags) self.font = { face = face, size = size, flags = flags } return true end
+    function r:GetFont() return self.font and self.font.face, self.font and self.font.size, self.font and self.font.flags end
+    function r:SetJustifyH(j) self.justifyH = j end
+    function r:SetJustifyV(j) self.justifyV = j end
+    function r:SetTextColor(...) self.textColor = { ... } end
+    function r:SetShadowOffset(x, y) self.shadowOffset = { x, y } end
+    function r:SetShadowColor(...) self.shadowColor = { ... } end
+    function r:SetWordWrap(on) self.wordWrap = on end
     function r:SetNonSpaceWrap() end
     function r:GetStringHeight() return 14 end
-    function r:SetTexture() end
-    function r:SetColorTexture() end
+    function r:SetTexture(t) self.texture = t end
+    function r:SetColorTexture(...) self.colorTexture = { ... } end
     -- ---- slider (base widget type, not a named template - see Options.lua's MakeSlider) ----
     function r:SetOrientation(o) self.orientation = o end
     function r:SetMinMaxValues(lo, hi) self.vmin, self.vmax = lo, hi end
@@ -94,12 +98,12 @@ local function NewRegion(kind)
     function r:SetEnabled(e) self.enabled = e end
     function r:SetMaxLines(n) self.maxLines = n end
     function r:SetMaxLetters() end
-    function r:SetMultiLine() end
+    function r:SetMultiLine(on) self.multiLine = on end
     function r:SetAutoFocus() end
     function r:SetFocus() end
     function r:ClearFocus() end
     function r:HighlightText() end
-    function r:SetTexCoord() end
+    function r:SetTexCoord(...) self.texCoord = { ... } end
     function r:SetFrameLevel() end
     function r:RegisterForClicks() end
     function r:SetBlendMode() end
@@ -110,7 +114,7 @@ local function NewRegion(kind)
         return 0, 0
     end
     function r:GetEffectiveScale() return 1 end
-    function r:SetAllPoints() end
+    function r:SetAllPoints(rel) self.allPoints = rel or true end
     function r:SetNormalFontObject() end
     function r:SetHighlightFontObject() end
     function r:SetNormalTexture() end
@@ -128,14 +132,21 @@ local function NewRegion(kind)
     function r:GetVerticalScrollRange() return math.max(0, (self.scrollChild and self.scrollChild:GetHeight() or 0) - self:GetHeight()) end
     function r:EnableMouseWheel() end
     function r:SetClipsChildren() end
-    function r:CreateTexture() return NewRegion("Texture") end
-    function r:CreateFontString() return NewRegion("FontString") end
+    local function child(parent, c, layer)
+        c.parent, c.layer = parent, layer
+        parent.children = parent.children or {}
+        parent.children[#parent.children + 1] = c
+        return c
+    end
+    function r:CreateTexture(_, layer) return child(self, NewRegion("Texture"), layer) end
+    function r:CreateFontString(_, layer, template) local fs = child(self, NewRegion("FontString"), layer) fs.template = template return fs end
     return r
 end
 
 function _G.CreateFrame(kind, name, parent, template)
     local f = NewRegion(kind)
     f.name, f.template, f.parent = name, template, parent
+    if parent then parent.children = parent.children or {} parent.children[#parent.children + 1] = f end
     if name then _G[name] = f end
     frames[#frames + 1] = f
     return f

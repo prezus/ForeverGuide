@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_27_UN_GORO_CRATER",
   "name": "27. Un'Goro Crater 49-49 (Skyborne)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 49,
@@ -10,9 +10,8 @@
   "zone": "Un'Goro Crater",
   "next": "GEN_HORDE_SKYBORNE_28_ORGRIMMAR",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 27 of the Skyborne route: level 49 to 49, 14 steps, ~45 min of play in the model (49486 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 27 of the Skyborne route: level 49 to 49, 13 steps, ~67 min of play in the model (33176 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
-    {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 43.6, "y": 6.6, "radius": 60, "note": "use your hearthstone (Un'Goro Crater)"},
     {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 44.0, "y": 8.0, "radius": 60, "note": "travel to Un'Goro Crater (Un'Goro Crater)"},
     {"type": "ACCEPT", "quest": 3882, "questName": "Roll the Bones", "npc": 9272, "npcName": "Spark Nilminer", "map": 1449, "zone": "Un'Goro Crater", "x": 43.5, "y": 7.4},
     {"type": "ACCEPT", "quest": 4503, "questName": "Shizzle's Flyer", "npc": 9998, "npcName": "Shizzle", "map": 1449, "zone": "Un'Goro Crater", "x": 44.2, "y": 11.6},

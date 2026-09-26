@@ -325,7 +325,6 @@ local function rowTitle(G, step)
     if t == "NOTE" then return step.text or "Note" end
     if t == "GRIND" then return "Grind to level " .. tostring(step.level) end
     if t == "TRAVEL" or t == "FLY" then return (step.zone and ("Travel to " .. step.zone)) or "Travel" end
-    if t == "HEARTH" then return "Set your hearthstone" end
     return G:GetStepText(step)
 end
 

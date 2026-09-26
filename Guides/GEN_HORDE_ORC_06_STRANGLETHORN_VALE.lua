@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_06_STRANGLETHORN_VALE",
     name = "6. Stranglethorn Vale 28-29 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 28,
@@ -12,14 +12,14 @@ ns.RegisterGuide({
     zone = "Stranglethorn Vale",
     next = "GEN_HORDE_ORC_07_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 6 of the Orc route: level 28 to 29, 37 steps, ~131 min of play in the model (20962 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 6 of the Orc route: level 28 to 29, 37 steps, ~132 min of play in the model (20923 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 41,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2858, npcName = "Gringer", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.1 }, -- 1
-        { type = "ACCEPT", quest = 201, questName = "Investigate the Camp", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 2
-        { type = "TURNIN", quest = 201, questName = "Investigate the Camp", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 3
-        { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.4, y = 76.4, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 4
-        { type = "NOTE", map = 1434, zone = "Stranglethorn Vale", x = 27.4, y = 76.4, text = "set your hearthstone at the inn in Stranglethorn Vale (if there is one)" }, -- 5
+        { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.4, y = 76.4, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 2
+        { type = "ACCEPT", quest = 201, questName = "Investigate the Camp", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 3
+        { type = "TURNIN", quest = 201, questName = "Investigate the Camp", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 4
+        { type = "HEARTH", npc = 6807, npcName = "Innkeeper Skindle", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, note = "talk to Innkeeper Skindle and make this inn your home" }, -- 5
         { type = "ACCEPT", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 6
         { type = "FLIGHTPATH", npc = 1387, npcName = "Thysta", map = 1434, zone = "Stranglethorn Vale", x = 32.5, y = 29.4 }, -- 7
         { type = "KILL", quest = 575, questName = "Supply and Demand", npc = 1150, target = "River Crocolisk", count = 2, map = 1434, zone = "Stranglethorn Vale", x = 39.9, y = 14.4, near = true, note = "loot Large River Crocolisk Skin" }, -- 8

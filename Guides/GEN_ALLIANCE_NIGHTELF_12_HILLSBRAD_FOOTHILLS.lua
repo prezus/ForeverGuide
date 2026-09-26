@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_12_HILLSBRAD_FOOTHILLS",
     name = "12. Hillsbrad Foothills 29-30 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 29,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Hillsbrad Foothills",
     next = "GEN_ALLIANCE_NIGHTELF_13_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 12 of the NightElf route: level 29 to 30, 24 steps, ~94 min of play in the model (21764 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 12 of the NightElf route: level 29 to 30, 24 steps, ~95 min of play in the model (21729 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 40,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2432, npcName = "Darla Harris", map = 1424, zone = "Hillsbrad Foothills", x = 49.3, y = 52.3 }, -- 1
@@ -32,7 +32,7 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Defias Tower Key", count = 1, map = 1436, zone = "Westfall", x = 69.4, y = 74.4, optional = true, class = { "ROGUE" } }, -- 15
         { type = "TURNIN", quest = 2359, questName = "Klaven's Tower", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8, optional = true, class = { "ROGUE" } }, -- 16
         { type = "TRAVEL", map = 1424, zone = "Hillsbrad Foothills", x = 50.2, y = 58.1, radius = 60, note = "travel to Hillsbrad Foothills (Hillsbrad Foothills)" }, -- 17
-        { type = "NOTE", map = 1424, zone = "Hillsbrad Foothills", x = 50.2, y = 58.1, text = "set your hearthstone at the inn in Hillsbrad Foothills (if there is one)" }, -- 18
+        { type = "HEARTH", npc = 2352, npcName = "Innkeeper Anderson", map = 1424, zone = "Southshore", x = 51.2, y = 58.9, note = "talk to Innkeeper Anderson and make this inn your home" }, -- 18
         { type = "ACCEPT", quest = 536, questName = "Down the Coast", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 19
         { type = "ACCEPT", quest = 555, questName = "Soothing Turtle Bisque", npc = 2430, npcName = "Chef Jessen", map = 1424, zone = "Hillsbrad Foothills", x = 51.9, y = 58.7 }, -- 20
         { type = "ACCEPT", quest = 565, questName = "Bartolo's Yeti Fur Cloak", npc = 2438, npcName = "Bartolo Ginsetti", map = 1424, zone = "Hillsbrad Foothills", x = 49.4, y = 55.5 }, -- 21

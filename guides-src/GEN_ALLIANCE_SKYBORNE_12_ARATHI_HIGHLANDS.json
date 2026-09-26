@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_12_ARATHI_HIGHLANDS",
   "name": "12. Arathi Highlands 30-31 (Skyborne)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 30,
@@ -10,10 +10,9 @@
   "zone": "Arathi Highlands",
   "next": "GEN_ALLIANCE_SKYBORNE_13_STRANGLETHORN_VALE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 12 of the Skyborne route: level 30 to 31, 39 steps, ~125 min of play in the model (30066 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 12 of the Skyborne route: level 30 to 31, 38 steps, ~125 min of play in the model (30066 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1417, "zone": "Arathi Highlands", "x": 45.9, "y": 46.0, "radius": 60, "note": "travel to Arathi Highlands (Arathi Highlands)"},
-    {"type": "NOTE", "map": 1417, "zone": "Arathi Highlands", "x": 45.9, "y": 46.0, "text": "set your hearthstone at the inn in Arathi Highlands (if there is one)"},
     {"type": "ACCEPT", "quest": 8168, "questName": "The Battle for Arathi Basin!", "npc": 14983, "npcName": "Field Marshal Oslight", "map": 1417, "zone": "Arathi Highlands", "x": 45.8, "y": 45.5},
     {"type": "ACCEPT", "quest": 681, "questName": "Northfold Manor", "npc": 2700, "npcName": "Captain Nials", "map": 1417, "zone": "Arathi Highlands", "x": 45.8, "y": 47.6},
     {"type": "ACCEPT", "quest": 8260, "questName": "Arathor Basic Care Package", "npc": 15127, "npcName": "Samuel Hawke", "map": 1417, "zone": "Arathi Highlands", "x": 46, "y": 45.2},

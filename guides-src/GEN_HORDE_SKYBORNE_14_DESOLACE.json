@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_14_DESOLACE",
   "name": "14. Desolace 42-43 (Skyborne)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 42,
@@ -10,10 +10,9 @@
   "zone": "Desolace",
   "next": "GEN_HORDE_SKYBORNE_15_STRANGLETHORN_VALE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 14 of the Skyborne route: level 42 to 43, 59 steps, ~111 min of play in the model (40803 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "notes": "Chapter 14 of the Skyborne route: level 42 to 43, 58 steps, ~111 min of play in the model (40803 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1443, "zone": "Desolace", "x": 54.2, "y": 57.2, "radius": 60, "note": "travel to Desolace (Desolace)"},
-    {"type": "NOTE", "map": 1443, "zone": "Desolace", "x": 54.2, "y": 57.2, "text": "set your hearthstone at the inn in Desolace (if there is one)"},
     {"type": "ACCEPT", "quest": 1368, "questName": "Gelkis Alliance", "npc": 5412, "npcName": "Gurda Wildmane", "map": 1443, "zone": "Desolace", "x": 56.3, "y": 59.7},
     {"type": "ACCEPT", "quest": 1365, "questName": "Khan Dez'hepah", "npc": 5395, "npcName": "Felgur Twocuts", "map": 1443, "zone": "Desolace", "x": 56.2, "y": 59.6},
     {"type": "ACCEPT", "quest": 5386, "questName": "Catch of the Day", "npc": 11259, "npcName": "Nataka Longhorn", "map": 1443, "zone": "Desolace", "x": 55.4, "y": 55.8},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_06_WETLANDS",
     name = "6. Wetlands 22-25 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 22,
@@ -12,12 +12,12 @@ ns.RegisterGuide({
     zone = "Wetlands",
     next = "GEN_ALLIANCE_SKYBORNE_07_IRONFORGE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 6 of the Skyborne route: level 22 to 25, 69 steps, ~176 min of play in the model (27594 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 6 of the Skyborne route: level 22 to 25, 69 steps, ~177 min of play in the model (27538 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 77,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 1571, npcName = "Shellei Brondir", map = 1437, zone = "Wetlands", x = 9.5, y = 59.7 }, -- 1
         { type = "TRAVEL", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, radius = 60, note = "travel to Wetlands (Wetlands)" }, -- 2
-        { type = "NOTE", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, text = "set your hearthstone at the inn in Wetlands (if there is one)" }, -- 3
+        { type = "HEARTH", npc = 1464, npcName = "Innkeeper Helbrek", map = 1437, zone = "Menethil Harbor", x = 10.7, y = 61.0, note = "talk to Innkeeper Helbrek and make this inn your home" }, -- 3
         { type = "ACCEPT", quest = 279, questName = "Claws from the Deep", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 4
         { type = "ACCEPT", quest = 484, questName = "Young Crocolisk Skins", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 5
         { type = "ACCEPT", quest = 470, questName = "Digging Through the Ooze", npc = 2111, npcName = "Sida", map = 1437, zone = "Wetlands", x = 11.8, y = 58 }, -- 6

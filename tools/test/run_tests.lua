@@ -57,6 +57,10 @@ local G, Q = ns.Guide, ns.Quest
 local function cur() return G.current end
 local function step() return G:GetCurrentStep() end
 local function settle() MOCK_ADVANCE(1) end
+--- a generated chapter's id by its number prefix: the zone after it moves when the route is re-planned
+local function chapterId(prefix)
+    for _, id in ipairs(G.list) do if id:find("^" .. prefix) then return id end end
+end
 
 print("guide active: " .. tostring(G.active and G.active.id))
 -- Collection is opt-in, independent, and old mirrors cannot silently restore consent.
@@ -237,11 +241,28 @@ MOCK_ACCEPT(54, "Report to Goldshire"); settle()
 MOCK_TURNIN(54); settle()
 check(cur() == 38 and step().quest == 2158 and step().type == "TURNIN", "turning in 54 auto-completes the TRAVEL before it (" .. tostring(cur()) .. ")")
 
--- HEARTH via GetBindLocation
+-- HEARTH: bound at the step's innkeeper (HEARTHSTONE_BOUND), or earlier (GetBindLocation)
 MOCK_TURNIN(2158); settle()
 check(cur() == 39 and step().type == "HEARTH", "hearth step (" .. tostring(cur()) .. ")")
-MOCK.bind = "Goldshire"; G:Evaluate("test")
-check(cur() == 40 and step().type == "NOTE", "bind location matched -> final NOTE (" .. tostring(cur()) .. ")")
+check(G:GetStepText(step()) == "Set your hearthstone at the Lion's Pride Inn", "a hand-written hearth step keeps its text")
+check(G:GetStepText({ type = "HEARTH", npc = 295, npcName = "Innkeeper Farley", zone = "Goldshire" }) == "Set your hearthstone with Innkeeper Farley (Goldshire)",
+    "a generated hearth step names the innkeeper")
+do
+    local function bindWith(npcID, name)
+        MOCK.npc = { npcID = npcID, name = name, level = 30 }
+        MOCK_FIRE("HEARTHSTONE_BOUND"); settle()
+        MOCK.npc = nil
+    end
+    bindWith(6727, "Innkeeper Brianna")
+    check(cur() == 39, "binding with another innkeeper leaves the hearth step open (" .. tostring(cur()) .. ")")
+    bindWith(295, "Innkeeper Farley")
+    check(cur() == 40 and step().type == "NOTE", "binding with the step's innkeeper completes it, whatever the inn is called (" .. tostring(cur()) .. ")")
+    -- a bind made before the step: the bind location stands in for the event
+    G.progress.done[39] = nil; G:SetStep(39); settle()
+    check(cur() == 39, "back on the hearth step (" .. tostring(cur()) .. ")")
+    MOCK.bind = "Goldshire"; G:Evaluate("test")
+    check(cur() == 40 and step().type == "NOTE", "bind location matched -> final NOTE (" .. tostring(cur()) .. ")")
+end
 G:Skip(); settle()
 check(step() == nil and G.active ~= nil, "guide complete")
 
@@ -279,7 +300,7 @@ do
     _G.QuestMapFrame_OpenToQuestDetails = priorOpen
     -- a quest a later chapter of the route handles is not unknown, although the open guide lacks it
     local later
-    for _, s in ipairs(G:Get("GEN_ALLIANCE_HUMAN_03_WESTFALL").steps) do
+    for _, s in ipairs(G:Get(chapterId("GEN_ALLIANCE_HUMAN_03_")).steps) do
         if s.type == "ACCEPT" and s.quest then later = s.quest break end
     end
     MOCK_ACCEPT(later, "Later chapter quest", {}); settle()
@@ -978,7 +999,7 @@ do
     do
         ns.Commands:Run("edit clear")
         local near
-        for _, s in ipairs(G.active.steps) do if s.near then near = s break end end
+        for _, s in ipairs(G.active.steps) do if s.near and not G:IsStepDone(s, s.index) then near = s break end end
         G:SetStep(near.index); settle()
         near = G:GetCurrentStep()   -- Evaluate may have moved on; the note lands on the current step
         check(near and near.near == true, "the nearest-spawn step is current (" .. tostring(near and near.index) .. ")")
@@ -1716,7 +1737,7 @@ do
 
     -- opening another chapter by hand forgets the way back
     G:Activate("DUNGEON_ALLIANCE_TEST_DEEPS", true); settle()
-    G:Activate("GEN_ALLIANCE_HUMAN_03_WESTFALL", true); settle()
+    G:Activate(chapterId("GEN_ALLIANCE_HUMAN_03_"), true); settle()
     check(ns.char.returnGuide == nil, "choosing a chapter by hand clears the chapter to return to")
     G:Activate(CHAPTER, true); settle()
 end
