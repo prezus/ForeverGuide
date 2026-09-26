@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_01_MULGORE",
     name = "1. Mulgore 1-11 (Tauren)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 1,
@@ -35,11 +35,11 @@ ns.RegisterGuide({
         { type = "KILL", quest = 750, questName = "The Hunt Continues", npc = 2961, target = "Mountain Cougar", count = 10, map = 1412, zone = "Mulgore", x = 40.9, y = 82.1, near = true, note = "loot Mountain Cougar Pelt" }, -- 18
         { type = "COLLECT", quest = 753, questName = "A Humble Task", target = "Water Pitcher", map = 1412, zone = "Mulgore", x = 50.2, y = 81.5, near = true }, -- 19
         { type = "ACCEPT", quest = 781, questName = "Attack on Camp Narache", map = 1412, zone = "Mulgore", x = 59.8, y = 82.2, note = "Take Dirt-stained Map from the Dirt-stained Map and use it to start the quest" }, -- 20
-        { type = "COLLECT", quest = 1519, questName = "Call of Earth", target = "Ritual Salve", count = 2, map = 1412, zone = "Mulgore", x = 64.6, y = 77.8, class = { "SHAMAN" } }, -- 21
+        { type = "COLLECT", quest = 1519, questName = "Call of Earth", target = "Ritual Salve", count = 2, map = 1412, zone = "Mulgore", x = 64.6, y = 77.8, class = { "SHAMAN" }, mobs = "Bristleback Shaman" }, -- 21
         { type = "KILL", quest = 3376, questName = "Break Sharptusk!", npc = 8554, target = "Chief Sharptusk Thornmantle", map = 1412, zone = "Mulgore", x = 64.7, y = 77.7, note = "loot Chief Sharptusk Thornmantle's Head" }, -- 22
         { type = "TURNIN", quest = 781, questName = "Attack on Camp Narache", npc = 2981, npcName = "Chief Hawkwind", map = 1412, zone = "Mulgore", x = 44.2, y = 76 }, -- 23
         { type = "ACCEPT", quest = 1516, questName = "Call of Earth", npc = 5887, npcName = "Canaga Earthcaller", map = 1411, zone = "Durotar", x = 42.4, y = 69, class = { "SHAMAN" } }, -- 24
-        { type = "COLLECT", quest = 1516, questName = "Call of Earth", target = "Felstalker Hoof", count = 2, map = 1411, zone = "Durotar", x = 45.2, y = 55, class = { "SHAMAN" } }, -- 25
+        { type = "COLLECT", quest = 1516, questName = "Call of Earth", target = "Felstalker Hoof", count = 2, map = 1411, zone = "Durotar", x = 45.2, y = 55, class = { "SHAMAN" }, mobs = "Felstalker" }, -- 25
         { type = "TURNIN", quest = 1516, questName = "Call of Earth", npc = 5887, npcName = "Canaga Earthcaller", map = 1411, zone = "Durotar", x = 42.4, y = 69, class = { "SHAMAN" } }, -- 26
         { type = "TURNIN", quest = 1519, questName = "Call of Earth", npc = 5888, npcName = "Seer Ravenfeather", map = 1412, zone = "Mulgore", x = 44.8, y = 76.2, class = { "SHAMAN" } }, -- 27
         { type = "TURNIN", quest = 750, questName = "The Hunt Continues", npc = 2980, npcName = "Grull Hawkwind", map = 1412, zone = "Mulgore", x = 44.9, y = 77.1 }, -- 28
@@ -126,7 +126,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 97932, questName = "Camping 101: Fishing", npc = 5938, npcName = "Uthan Stillwater", map = 1412, zone = "Mulgore", x = 44.4, y = 60.6 }, -- 109
         { type = "ACCEPT", quest = 99101, questName = "Our Ancient Enemy", npc = 3222, npcName = "Brave Wildrunner", map = 1412, zone = "Mulgore", x = 47.2, y = 59.6, note = "New in Forever" }, -- 110
         { type = "TURNIN", quest = 99101, questName = "Our Ancient Enemy", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.4, y = 60.2 }, -- 111
-        { type = "COLLECT", quest = 96130, questName = "Chakuyak", target = "Chakuyak's Pelt", count = 1, map = 1412, zone = "Mulgore", x = 39.4, y = 65.2 }, -- 112
+        { type = "COLLECT", quest = 96130, questName = "Chakuyak", target = "Chakuyak's Pelt", count = 1, map = 1412, zone = "Mulgore", x = 39.4, y = 65.2, mobs = "Chakuyak" }, -- 112
         { type = "TURNIN", quest = 1518, questName = "Call of Earth", npc = 5887, npcName = "Canaga Earthcaller", map = 1411, zone = "Durotar", x = 42.4, y = 69, class = { "SHAMAN" } }, -- 113
         { type = "COLLECT", quest = 746, questName = "Dwarven Digging", target = "Broken Tools", count = 5, map = 1412, zone = "Mulgore", x = 31.3, y = 49.9 }, -- 114
         { type = "ACCEPT", quest = 770, questName = "The Demon Scarred Cloak", npc = 3056, npcName = "Ghost Howl", map = 1412, zone = "Mulgore", x = 34.7, y = 34.2, note = "Loot Demon Scarred Cloak from Ghost Howl and use it to start the quest" }, -- 115
@@ -150,7 +150,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 759, questName = "Wildmane Totem", npc = 2960, target = "Prairie Wolf Alpha", count = 8, map = 1412, zone = "Mulgore", x = 62.1, y = 56.2, near = true, note = "loot Prairie Alpha Tooth" }, -- 133
         { type = "KILL", quest = 99080, questName = "Drive Them Out", npc = 2967, target = "Galak Centaur", count = 6, map = 1412, zone = "Mulgore", x = 67.2, y = 59.4 }, -- 134
         { type = "KILL", quest = 99080, questName = "Drive Them Out", npc = 2968, target = "Galak Outrunner", count = 4, map = 1412, zone = "Mulgore", x = 60.2, y = 60.6 }, -- 135
-        { type = "COLLECT", quest = 99080, questName = "Drive Them Out", target = "Herak's Head", count = 1, map = 1412, zone = "Mulgore", x = 60.4, y = 59.8 }, -- 136
+        { type = "COLLECT", quest = 99080, questName = "Drive Them Out", target = "Herak's Head", count = 1, map = 1412, zone = "Mulgore", x = 60.4, y = 59.8, mobs = "Herak the Pillager" }, -- 136
         { type = "TURNIN", quest = 759, questName = "Wildmane Totem", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 137
         { type = "ACCEPT", quest = 760, questName = "Wildmane Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 138
         { type = "TURNIN", quest = 99080, questName = "Drive Them Out", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.4, y = 60.2 }, -- 139
