@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_09_ARATHI_HIGHLANDS",
     name = "9. Arathi Highlands 29-30 (Undead)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 29,
@@ -20,9 +20,9 @@ ns.RegisterGuide({
         { type = "KILL", quest = 2478, questName = "Mission: Possible But Not Probable", npc = 7310, target = "Mutated Venture Co. Drone", count = 2, map = 1413, zone = "The Barrens", x = 54.8, y = 5.8, optional = true, class = { "ROGUE" } }, -- 3
         { type = "KILL", quest = 2478, questName = "Mission: Possible But Not Probable", npc = 7307, target = "Venture Co. Lookout", count = 2, map = 1413, zone = "The Barrens", x = 54.6, y = 5.6, optional = true, class = { "ROGUE" } }, -- 4
         { type = "KILL", quest = 2478, questName = "Mission: Possible But Not Probable", npc = 7308, target = "Venture Co. Patroller", count = 2, map = 1413, zone = "The Barrens", x = 54.6, y = 5.6, optional = true, class = { "ROGUE" } }, -- 5
-        { type = "COLLECT", quest = 2478, questName = "Mission: Possible But Not Probable", target = "Gallywix's Head", count = 1, map = 1413, zone = "The Barrens", x = 54.8, y = 5.6, optional = true, class = { "ROGUE" } }, -- 6
-        { type = "COLLECT", quest = 2478, questName = "Mission: Possible But Not Probable", target = "Silixiz's Tower Key", count = 1, map = 1413, zone = "The Barrens", x = 54.8, y = 6, optional = true, class = { "ROGUE" } }, -- 7
-        { type = "COLLECT", quest = 2478, questName = "Mission: Possible But Not Probable", target = "Cache of Zanzil's Altered Mixture", count = 1, map = 1413, zone = "The Barrens", x = 54.7, y = 5.6, optional = true, near = true, class = { "ROGUE" } }, -- 8
+        { type = "COLLECT", quest = 2478, questName = "Mission: Possible But Not Probable", target = "Gallywix's Head", count = 1, map = 1413, zone = "The Barrens", x = 54.8, y = 5.6, optional = true, class = { "ROGUE" }, mobs = "Grand Foreman Puzik Gallywix" }, -- 6
+        { type = "COLLECT", quest = 2478, questName = "Mission: Possible But Not Probable", target = "Silixiz's Tower Key", count = 1, map = 1413, zone = "The Barrens", x = 54.8, y = 6, optional = true, class = { "ROGUE" }, mobs = "Foreman Silixiz" }, -- 7
+        { type = "COLLECT", quest = 2478, questName = "Mission: Possible But Not Probable", target = "Cache of Zanzil's Altered Mixture", count = 1, map = 1413, zone = "The Barrens", x = 54.7, y = 5.6, optional = true, near = true, class = { "ROGUE" }, mobs = "Taskmaster Fizzule" }, -- 8
         { type = "TURNIN", quest = 2478, questName = "Mission: Possible But Not Probable", npc = 3401, npcName = "Shenthul", map = 1454, zone = "Orgrimmar", x = 43, y = 53.4, optional = true, class = { "ROGUE" } }, -- 9
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 31.8, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 10
         { type = "HEARTH", npc = 9501, npcName = "Innkeeper Adegwa", map = 1417, zone = "Hammerfall", x = 73.8, y = 32.5, note = "talk to Innkeeper Adegwa and make this inn your home" }, -- 11
@@ -79,7 +79,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 678, questName = "Call to Arms", npc = 2567, target = "Boulderfist Magus", count = 10, map = 1417, zone = "Arathi Highlands", x = 54.1, y = 71.8, near = true }, -- 62
         { type = "KILL", quest = 678, questName = "Call to Arms", npc = 2566, target = "Boulderfist Brute", count = 10, map = 1417, zone = "Arathi Highlands", x = 54.5, y = 73.8, near = true }, -- 63
         { type = "ACCEPT", quest = 1805, questName = "Tome of the Cabal", npc = 6293, npcName = "Jorah Annison", map = 1458, zone = "Undercity", x = 76, y = 37.6, class = { "WARLOCK" } }, -- 64
-        { type = "COLLECT", quest = 1805, questName = "Tome of the Cabal", target = "Rod of Channeling", count = 3, map = 1437, zone = "Wetlands", x = 49.6, y = 46.4, near = true, class = { "WARLOCK" } }, -- 65
+        { type = "COLLECT", quest = 1805, questName = "Tome of the Cabal", target = "Rod of Channeling", count = 3, map = 1437, zone = "Wetlands", x = 49.6, y = 46.4, near = true, class = { "WARLOCK" }, mobs = "Dragonmaw Shadowwarder / Dragonmaw Bonewarder" }, -- 65
         { type = "TURNIN", quest = 1805, questName = "Tome of the Cabal", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 66
         { type = "TURNIN", quest = 678, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 67
         { type = "TURNIN", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 68
