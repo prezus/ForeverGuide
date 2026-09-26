@@ -1,18 +1,22 @@
 -- ============================================================
 -- ForeverGuide / AutoQuest.lua
--- Auto-accept and auto-turn-in through the normal quest windows.
--- Uses only the regular, non-protected quest-frame calls (the same ones
--- the Blizzard buttons run): SelectAvailableQuest / SelectActiveQuest,
--- AcceptQuest, CompleteQuest, GetQuestReward.
+-- Auto-accept and auto-turn-in through the normal quest windows, and
+-- quest sharing with the group. Uses only the regular, non-protected
+-- calls the Blizzard buttons run: SelectAvailableQuest / SelectActiveQuest,
+-- AcceptQuest, CompleteQuest, GetQuestReward, QuestLogPushQuest (Share),
+-- ConfirmAcceptQuest (the group-escort popup's Yes).
 --
 --   /fg auto                      status
 --   /fg auto accept on|off|guide  accept every offered quest / only quests in the active guide
 --   /fg auto turnin on|off        complete quests at the turn-in NPC
+--   /fg auto share on|off         share every quest you accept while grouped
+--   /fg auto shared on|off        accept quests (and join escorts) a group member shares
 --   Hold SHIFT while talking to an NPC to do it by hand.
 --
 -- Rewards: a turn-in with more than one reward to choose from is left
 -- open for you to pick. Trivial (grey) and repeatable quests are only
--- auto-accepted when the active guide asks for them.
+-- auto-accepted when the active guide asks for them - shared ones too.
+-- A quest that came from another player is never shared back.
 -- ============================================================
 
 local _, ns = ...
@@ -26,6 +30,8 @@ local function Cfg()
     if a.accept == nil then a.accept = "on" end        -- "on" | "off" | "guide"
     if a.turnin == nil then a.turnin = true end
     if a.announce == nil then a.announce = true end
+    if a.share == nil then a.share = true end
+    if a.shared == nil then a.shared = true end
     return a
 end
 Auto.Cfg = Cfg
@@ -44,15 +50,19 @@ local function InGuide(questID)
     return false
 end
 
---- Should we auto-accept this offered quest?
-local function WantAccept(questID, title, trivial, repeatable)
-    local a = Cfg()
-    if a.accept == "off" then return false end
+--- Should we auto-accept this offered quest? `mode` is the accept setting that applies
+--- ("on" | "off" | "guide"); a quest shared by a group member is judged as "on".
+local function WantAccept(questID, title, trivial, repeatable, mode)
+    mode = mode or Cfg().accept
+    if mode == "off" then return false end
     if InGuide(questID) then return true end
-    if a.accept == "guide" then return false end
+    if mode == "guide" then return false end
     if trivial or repeatable then return false end
     return true
 end
+
+-- quests offered by another player (a share or an escort) this session: never shared back
+local fromPlayer = {}
 
 local function Announce(fmt, ...)
     if Cfg().announce then ns.Printf(fmt, ...) end
@@ -130,16 +140,18 @@ end
 -- Quest frames: accept / complete / reward
 -- ------------------------------------------------------------
 local function HandleDetail()
-    if Bypass() then return end
     local questID = PlainNumber(Safe(rawget(_G, "GetQuestID")))
     if not questID or questID == 0 then return end            -- the window is already gone
-    -- a quest shared by another player (or an escort started by one) is never auto-accepted
+    -- a quest shared by a group member: accepted only with the "shared" option.
+    -- The latest offer decides: the same quest taken later from its NPC is shared again.
     local UnitIsPlayer = rawget(_G, "UnitIsPlayer")
-    if Safe(UnitIsPlayer, "questnpc") == true or Safe(UnitIsPlayer, "npc") == true then return end
+    local shared = PlainBool(Safe(UnitIsPlayer, "questnpc")) == true or PlainBool(Safe(UnitIsPlayer, "npc")) == true
+    fromPlayer[questID] = shared or nil
+    if Bypass() or (shared and not Cfg().shared) then return end
     local title = PlainString(Safe(rawget(_G, "GetTitleText")))
     local trivial = PlainBool(ns.Call("C_QuestLog.IsQuestTrivial", questID)) == true
     local repeatable = PlainBool(ns.Call("C_QuestLog.IsRepeatableQuest", questID)) == true
-    if not WantAccept(questID, title, trivial, repeatable) then return end
+    if not WantAccept(questID, title, trivial, repeatable, shared and "on" or nil) then return end
     if Safe(rawget(_G, "QuestGetAutoAccept")) == true then
         Safe(rawget(_G, "AcknowledgeAutoAcceptQuest"))
     else
@@ -169,6 +181,30 @@ local function HandleComplete()
     Announce("turned in %s", ns.Quest:TitleWithLevel(questID, title))
 end
 
+--- A group member started an escort: join it.
+local function HandleEscort(_, name, questTitle, questID)
+    questID = PlainNumber(questID)
+    if questID then fromPlayer[questID] = true end
+    if Bypass() or not Cfg().shared then return end
+    -- a full log gets the client's log-full popup, whose Yes is disabled: leave that to the player
+    local have, max = ns.Quest:GetNumQuests()
+    if max > 0 and have >= max then return end
+    Safe(rawget(_G, "ConfirmAcceptQuest"))
+    Safe(rawget(_G, "StaticPopup_Hide"), "QUEST_ACCEPT")
+    Announce("joined %s (started by %s)", PlainString(questTitle) or "the escort", PlainString(name) or "a group member")
+end
+
+--- Share a quest we just accepted with the group, as the quest log's Share button does.
+local function ShareAccepted(questID)
+    if not questID or fromPlayer[questID] or not Cfg().share then return end
+    if PlainBool(Safe(rawget(_G, "IsInGroup"))) ~= true then return end
+    if PlainBool(ns.Call("C_QuestLog.IsPushableQuest", questID)) ~= true then return end
+    local index = PlainNumber(ns.Call("C_QuestLog.GetLogIndexForQuestID", questID))
+    if not index then return end
+    Safe(rawget(_G, "QuestLogPushQuest"), index)
+    Announce("shared %s with your group", ns.Quest:TitleWithLevel(questID))
+end
+
 function Auto:OnInit()
     Cfg()   -- materialise the defaults so the options panel shows the real state
     local E = ns.Events
@@ -177,12 +213,18 @@ function Auto:OnInit()
     E:Register("QUEST_DETAIL", function() E:After(0.05, HandleDetail) end)
     E:Register("QUEST_PROGRESS", function() E:After(0.05, HandleProgress) end)
     E:Register("QUEST_COMPLETE", function() E:After(0.05, HandleComplete) end)
+    E:Register("QUEST_ACCEPT_CONFIRM", HandleEscort)
+    -- share a moment later, once the quest log lists the new quest
+    E:Register("QUEST_ACCEPTED", function(_, questID)
+        questID = PlainNumber(questID)
+        E:After(0.2, function() ShareAccepted(questID) end)
+    end)
 end
 
 function Auto:Status()
     local a = Cfg()
-    return string.format("auto-accept: %s, auto-turn-in: %s (hold SHIFT at an NPC to do it by hand)",
-        a.accept, a.turnin and "on" or "off")
+    return string.format("auto-accept: %s, auto-turn-in: %s, share with group: %s, accept shared: %s (hold SHIFT at an NPC to do it by hand)",
+        a.accept, a.turnin and "on" or "off", a.share and "on" or "off", a.shared and "on" or "off")
 end
 
 function Auto:Set(what, value)
@@ -191,6 +233,8 @@ function Auto:Set(what, value)
         if value == "on" or value == "off" or value == "guide" then a.accept = value else return false end
     elseif what == "turnin" then
         if value == "on" then a.turnin = true elseif value == "off" then a.turnin = false else return false end
+    elseif what == "share" or what == "shared" then
+        if value == "on" then a[what] = true elseif value == "off" then a[what] = false else return false end
     elseif what == "announce" then
         a.announce = (value ~= "off")
     else

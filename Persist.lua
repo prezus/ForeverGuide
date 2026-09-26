@@ -188,7 +188,7 @@ function Persist:DecodeChar(s)
 end
 
 -- ---- account settings + edits ----------------------------------------------------
-local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "sco", "hvo", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "su", "w", "h", "ht", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "e" }
+local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "sco", "hvo", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "su", "w", "h", "ht", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "sq", "sa", "e" }
 
 function Persist:EncodeAcct()
     local db = ns.db
@@ -207,7 +207,7 @@ function Persist:EncodeAcct()
         ar = b01(arrow.enabled ~= false), ap = arrow.point, ax = arrow.x, ay = arrow.y, as = arrow.scale,
         mm = b01(mm.shown ~= false), ma = mm.angle,
         bliz = b01(nav.blizzardWaypoint), rad = nav.arrivalRadius,
-        acc = auto.accept, ti = b01(auto.turnin), ann = b01(auto.announce),
+        acc = auto.accept, ti = b01(auto.turnin), ann = b01(auto.announce), sq = b01(auto.share), sa = b01(auto.shared),
         rec = b01(db.recorder and db.recorder.enabled), sco = b01(db.scanEnabled), hvo = b01(db.harvestEnabled),
         dg = b01(db.ding == nil or db.ding.enabled ~= false), dc = db.ding and db.ding.channel,
         rmf = b01(db.reminders == nil or db.reminders.flight ~= false), rmt = b01(db.reminders == nil or db.reminders.trainer ~= false),
@@ -273,6 +273,8 @@ function Persist:DecodeAcct(s)
     if t.acc and t.acc ~= "" then auto.accept = t.acc end
     if t.ti then auto.turnin = bool(t.ti) end
     if t.ann then auto.announce = bool(t.ann) end
+    if t.sq then auto.share = bool(t.sq) end
+    if t.sa then auto.shared = bool(t.sa) end
     -- The v1 mirror stored default-on recording, not the player's opt-in.
     if t.v == "2" then
         if t.rec and db.recorder then db.recorder.enabled = bool(t.rec) end

@@ -17,9 +17,11 @@ class InterfaceTest(unittest.TestCase):
     def test_interface_matches_client_version(self):
         with tempfile.TemporaryDirectory() as directory:
             toc = Path(directory) / "ForeverGuide.toc"
-            toc.write_text("## Interface: 16001\n")
+            major, minor, patch = map(int, check_forever_api.VERSION.split(".")[:3])
+            expected = major * 10000 + minor * 100 + patch
+            toc.write_text("## Interface: %d\n" % expected)
             check_forever_api.check_interface(toc)
-            toc.write_text("## Interface: 16000\n")
+            toc.write_text("## Interface: %d\n" % (expected - 1))
             with self.assertRaises(SystemExit):
                 check_forever_api.check_interface(toc)
 

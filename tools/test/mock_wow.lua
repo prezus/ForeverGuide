@@ -350,7 +350,21 @@ _G.C_QuestLog = {
     GetNextWaypoint = function() return nil end,
     GetMaxNumQuestsCanAccept = function() return world.logCap or 40 end,
     UnitIsRelatedToActiveQuest = function(unit) local p = world.plates and world.plates[unit] return p and p.quest == true or false end,
+    IsPushableQuest = function(qid) return world.log[qid] ~= nil and not (world.unpushable and world.unpushable[qid]) end,
+    GetLogIndexForQuestID = function(qid)
+        for i, id in ipairs(world.logOrder) do if id == qid then return i + 1 end end   -- 1 is the header
+        return nil
+    end,
 }
+-- sharing a quest with the group: world.pushed lists the shared quest ids
+world.pushed = {}
+_G.QuestLogPushQuest = function(index)
+    local qid = world.logOrder[(index or 0) - 1]
+    if qid then world.pushed[#world.pushed + 1] = qid end
+end
+-- the "<name> is starting <quest>. Would you like to join?" prompt (group escorts)
+_G.ConfirmAcceptQuest = function() world.confirmedEscort = (world.confirmedEscort or 0) + 1 end
+_G.StaticPopup_Hide = function(which) world.popupHidden = which end
 _G.C_Item = {
     GetItemCount = function(id) return world.items[id] or 0 end,
     -- items with a "Use:" effect: itemID -> spell name
