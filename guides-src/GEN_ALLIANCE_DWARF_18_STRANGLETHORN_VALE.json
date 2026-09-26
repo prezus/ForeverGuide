@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_18_STRANGLETHORN_VALE",
   "name": "18. Stranglethorn Vale 37-38 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 37,
@@ -12,6 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 18 of the Dwarf route: level 37 to 38, 35 steps, ~139 min of play in the model (29030 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
+    {"type": "ACCEPT", "quest": 79976, "questName": "This Must Be The Place", "map": 1417, "zone": "Arathi Highlands", "x": 22.5, "y": 24.2, "note": "Cozy Sleeping Bag chain: keep it going"},
+    {"type": "TURNIN", "quest": 79976, "questName": "This Must Be The Place", "map": 1417, "zone": "Arathi Highlands", "x": 22.5, "y": 24.2},
     {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.3, "y": 76.2, "radius": 60, "note": "travel to Stranglethorn Vale (Stranglethorn Vale)"},
     {"type": "ACCEPT", "quest": 595, "questName": "The Bloodsail Buccaneers", "npc": 2490, "npcName": "First Mate Crazz", "map": 1434, "zone": "Stranglethorn Vale", "x": 28.1, "y": 76.2},
     {"type": "ACCEPT", "quest": 209, "questName": "Skullsplitter Tusks", "npc": 737, "npcName": "Kebok", "map": 1434, "zone": "Stranglethorn Vale", "x": 27, "y": 77.1},

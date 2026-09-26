@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_04_WESTFALL",
   "name": "4. Westfall 14-17 (Dwarf)",
-  "version": 6,
+  "version": 7,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 14,
@@ -15,6 +15,8 @@
     {"type": "FLIGHTPATH", "npc": 523, "npcName": "Thor", "map": 1436, "zone": "Westfall", "x": 56.6, "y": 52.6},
     {"type": "ACCEPT", "quest": 91738, "questName": "An Apple Treat", "npc": 955, "npcName": "Sergeant De Vries", "map": 1429, "zone": "Elwynn Forest", "x": 24, "y": 73, "note": "New in Forever"},
     {"type": "TURNIN", "quest": 91738, "questName": "An Apple Treat", "npc": 955, "npcName": "Sergeant De Vries", "map": 1429, "zone": "Elwynn Forest", "x": 24, "y": 73},
+    {"type": "ACCEPT", "quest": 91740, "questName": "Croaky's Head", "npc": 248278, "npcName": "Croaky", "map": 1429, "zone": "Elwynn Forest", "x": 74.4, "y": 86, "note": "Loot Croaky's Head from Croaky and use it to start the quest; New in Forever; Elite - group up", "optional": true},
+    {"type": "TURNIN", "quest": 91740, "questName": "Croaky's Head", "npc": 248277, "npcName": "Merell Ross", "map": 1429, "zone": "Elwynn Forest", "x": 84.6, "y": 79.2, "optional": true},
     {"type": "ACCEPT", "quest": 92748, "questName": "Explosive Consultation", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53, "note": "New in Forever"},
     {"type": "TURNIN", "quest": 92748, "questName": "Explosive Consultation", "npc": 11026, "npcName": "Sprite Jumpsprocket", "map": 1453, "zone": "Stormwind City", "x": 54.6, "y": 8},
     {"type": "ACCEPT", "quest": 92752, "questName": "Explosive Consultation", "npc": 11026, "npcName": "Sprite Jumpsprocket", "map": 1453, "zone": "Stormwind City", "x": 54.6, "y": 8, "note": "New in Forever"},
@@ -130,13 +132,13 @@
     {"type": "KILL", "quest": 104, "questName": "The Coastal Menace", "npc": 391, "target": "Old Murk-Eye", "map": 1436, "zone": "Westfall", "x": 29.3, "y": 76, "note": "loot Scale of Old Murk-Eye"},
     {"type": "KILL", "quest": 152, "questName": "The Coast Isn't Clear", "npc": 171, "target": "Murloc Warrior", "map": 1436, "zone": "Westfall", "x": 25.2, "y": 49.8, "near": true},
     {"type": "TURNIN", "quest": 104, "questName": "The Coastal Menace", "npc": 392, "npcName": "Captain Grayson", "map": 1436, "zone": "Westfall", "x": 30, "y": 86},
-    {"type": "ACCEPT", "quest": 79008, "questName": "... and that note you found", "map": 1436, "zone": "Westfall", "x": 37.5, "y": 50.7},
+    {"type": "ACCEPT", "quest": 79008, "questName": "... and that note you found", "map": 1436, "zone": "Westfall", "x": 37.5, "y": 50.7, "note": "Cozy Sleeping Bag chain: keep it going"},
     {"type": "TURNIN", "quest": 79008, "questName": "... and that note you found", "map": 1436, "zone": "Westfall", "x": 37.5, "y": 50.7},
     {"type": "KILL", "quest": 152, "questName": "The Coast Isn't Clear", "npc": 126, "target": "Murloc Coastrunner", "map": 1436, "zone": "Westfall", "x": 42.5, "y": 12.3, "near": true},
+    {"type": "ACCEPT", "quest": 79192, "questName": "Stepping Stones", "map": 1436, "zone": "Westfall", "x": 37.5, "y": 50.7, "note": "Cozy Sleeping Bag chain: keep it going"},
     {"type": "KILL", "quest": 92745, "questName": "The State of the Mines", "npc": 1236, "target": "Kobold Digger", "count": 4, "map": 1436, "zone": "Westfall", "x": 44.6, "y": 23.4},
     {"type": "KILL", "quest": 92745, "questName": "The State of the Mines", "npc": 1426, "target": "Riverpaw Miner", "count": 6, "map": 1436, "zone": "Westfall", "x": 30, "y": 47.4},
     {"type": "TURNIN", "quest": 92745, "questName": "The State of the Mines", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53},
-    {"type": "ACCEPT", "quest": 79192, "questName": "Stepping Stones", "map": 1436, "zone": "Westfall", "x": 37.5, "y": 50.7},
     {"type": "TURNIN", "quest": 152, "questName": "The Coast Isn't Clear", "npc": 392, "npcName": "Captain Grayson", "map": 1436, "zone": "Westfall", "x": 30, "y": 86}
   ]
 }

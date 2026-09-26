@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_06_ASHENVALE",
   "name": "6. Ashenvale 25-26 (Undead)",
-  "version": 5,
+  "version": 6,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 25,
@@ -30,10 +30,14 @@
     {"type": "COMPLETE", "quest": 25, "questName": "Stonetalon Standstill", "target": "Scout the gazebo on Mystral Lake that overlooks the nearby Alliance outpost.", "map": 1440, "zone": "Ashenvale", "x": 48.9, "y": 69.6, "note": "Scout the gazebo on Mystral Lake that overlooks the nearby Alliance outpost."},
     {"type": "TURNIN", "quest": 25, "questName": "Stonetalon Standstill", "npc": 12737, "npcName": "Mastok Wrilehiss", "map": 1440, "zone": "Ashenvale", "x": 73.7, "y": 60},
     {"type": "TURNIN", "quest": 6441, "questName": "Satyr Horns", "npc": 12724, "npcName": "Pixel", "map": 1440, "zone": "Ashenvale", "x": 73.1, "y": 61.5},
+    {"type": "ACCEPT", "quest": 2, "questName": "Sharptalon's Claw", "npc": 12676, "npcName": "Sharptalon", "map": 1440, "zone": "Ashenvale", "x": 75, "y": 70.1, "note": "Loot Sharptalon's Claw from Sharptalon and use it to start the quest"},
+    {"type": "TURNIN", "quest": 2, "questName": "Sharptalon's Claw", "npc": 12696, "npcName": "Senani Thunderheart", "map": 1440, "zone": "Ashenvale", "x": 73.6, "y": 61.4},
     {"type": "ACCEPT", "quest": 6544, "questName": "Torek's Assault", "npc": 12858, "npcName": "Torek", "map": 1440, "zone": "Ashenvale", "x": 68.3, "y": 75.3},
     {"type": "COMPLETE", "quest": 6544, "questName": "Torek's Assault", "target": "Take Silverwing Outpost.", "map": 1440, "zone": "Ashenvale", "x": 64.7, "y": 75.3, "note": "escort - stay close, it can fail: Take Silverwing Outpost."},
     {"type": "TURNIN", "quest": 6544, "questName": "Torek's Assault", "npc": 12877, "npcName": "Ertog Ragetusk", "map": 1440, "zone": "Ashenvale", "x": 73, "y": 62.5},
     {"type": "FLIGHTPATH", "npc": 11901, "npcName": "Andruk", "map": 1440, "zone": "Ashenvale", "x": 12.2, "y": 33.8},
+    {"type": "ACCEPT", "quest": 24, "questName": "Shadumbra's Head", "npc": 12677, "npcName": "Shadumbra", "map": 1440, "zone": "Ashenvale", "x": 57.5, "y": 56.1, "note": "Loot Shadumbra's Head from Shadumbra and use it to start the quest"},
+    {"type": "TURNIN", "quest": 24, "questName": "Shadumbra's Head", "npc": 12696, "npcName": "Senani Thunderheart", "map": 1440, "zone": "Ashenvale", "x": 73.6, "y": 61.4},
     {"type": "TURNIN", "quest": 6562, "questName": "Trouble in the Deeps", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2, "optional": true},
     {"type": "ACCEPT", "quest": 6563, "questName": "The Essence of Aku'Mai", "npc": 12736, "npcName": "Je'neu Sancrea", "map": 1440, "zone": "Ashenvale", "x": 11.6, "y": 34.2, "note": "For Blackfathom Deeps (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: The Essence of Aku'Mai. When you have a group, open Blackfathom Deeps under Dungeons.", "text": "Ready for Blackfathom Deeps", "optional": true},
@@ -54,8 +58,14 @@
     {"type": "ACCEPT", "quest": 6482, "questName": "Freedom to Ruul", "npc": 12818, "npcName": "Ruul Snowhoof", "map": 1440, "zone": "Ashenvale", "x": 41.5, "y": 34.5},
     {"type": "COMPLETE", "quest": 6482, "questName": "Freedom to Ruul", "target": "Escort Ruul from the Thistlefurs.", "map": 1440, "zone": "Ashenvale", "x": 38.5, "y": 37.3, "note": "escort - stay close, it can fail: Escort Ruul from the Thistlefurs."},
     {"type": "TURNIN", "quest": 6462, "questName": "Troll Charm", "npc": 12721, "npcName": "Mitsuwa", "map": 1440, "zone": "Ashenvale", "x": 11.7, "y": 34.9},
+    {"type": "ACCEPT", "quest": 23, "questName": "Ursangous's Paw", "npc": 12678, "npcName": "Ursangous", "map": 1440, "zone": "Ashenvale", "x": 39.8, "y": 65.2, "note": "Loot Ursangous's Paw from Ursangous and use it to start the quest"},
+    {"type": "ACCEPT", "quest": 1918, "questName": "The Befouled Element", "npc": 12759, "npcName": "Tideress", "map": 1440, "zone": "Ashenvale", "x": 46, "y": 70, "note": "Loot Befouled Water Globe from Tideress and use it to start the quest"},
     {"type": "COLLECT", "quest": 6621, "questName": "King of the Foulweald", "target": "Murgut's Totem", "map": 1440, "zone": "Ashenvale", "x": 56, "y": 63, "near": true},
     {"type": "TURNIN", "quest": 6621, "questName": "King of the Foulweald", "npc": 12757, "npcName": "Karang Amakkar", "map": 1440, "zone": "Ashenvale", "x": 11.9, "y": 34.5},
-    {"type": "TURNIN", "quest": 6482, "questName": "Freedom to Ruul", "npc": 12837, "npcName": "Yama Snowhoof", "map": 1440, "zone": "Ashenvale", "x": 74.1, "y": 60.9}
+    {"type": "TURNIN", "quest": 23, "questName": "Ursangous's Paw", "npc": 12696, "npcName": "Senani Thunderheart", "map": 1440, "zone": "Ashenvale", "x": 73.6, "y": 61.4},
+    {"type": "TURNIN", "quest": 1918, "questName": "The Befouled Element", "npc": 12737, "npcName": "Mastok Wrilehiss", "map": 1440, "zone": "Ashenvale", "x": 73.6, "y": 60},
+    {"type": "TURNIN", "quest": 6482, "questName": "Freedom to Ruul", "npc": 12837, "npcName": "Yama Snowhoof", "map": 1440, "zone": "Ashenvale", "x": 74.1, "y": 60.9},
+    {"type": "ACCEPT", "quest": 247, "questName": "The Hunt Completed", "npc": 12696, "npcName": "Senani Thunderheart", "map": 1440, "zone": "Ashenvale", "x": 73.6, "y": 61.4},
+    {"type": "TURNIN", "quest": 247, "questName": "The Hunt Completed", "npc": 12696, "npcName": "Senani Thunderheart", "map": 1440, "zone": "Ashenvale", "x": 73.6, "y": 61.4}
   ]
 }

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_10_STONETALON_MOUNTAINS",
     name = "10. Stonetalon Mountains 27-28 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 27,
@@ -40,7 +40,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 4024, target = "Bloodfury Slayer / Bloodfury Roguefeather", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 30.1, y = 67.5, near = true }, -- 23
         { type = "TURNIN", quest = 79192, questName = "Stepping Stones", map = 1442, zone = "Stonetalon Mountains", x = 40.8, y = 52.5 }, -- 24
         { type = "TURNIN", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 3994, npcName = "Keeper Albagorm", map = 1442, zone = "Stonetalon Mountains", x = 37.1, y = 8.1 }, -- 25
-        { type = "ACCEPT", quest = 79980, questName = "Scramble", map = 1442, zone = "Stonetalon Mountains", x = 40.8, y = 52.5 }, -- 26
+        { type = "ACCEPT", quest = 79980, questName = "Scramble", map = 1442, zone = "Stonetalon Mountains", x = 40.8, y = 52.5, note = "Cozy Sleeping Bag chain: keep it going" }, -- 26
         { type = "TURNIN", quest = 79980, questName = "Scramble", map = 1442, zone = "Stonetalon Mountains", x = 39.6, y = 49.9 }, -- 27
     } end,
 })

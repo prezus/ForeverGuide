@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_09_ASHENVALE",
   "name": "9. Ashenvale 26-28 (Human)",
-  "version": 6,
+  "version": 7,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 26,
@@ -109,6 +109,7 @@
     {"type": "KILL", "quest": 1012, "questName": "Insane Druids", "npc": 3941, "target": "Uthil Mooncall / Taneel Darkwood", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 78, "y": 72.7},
     {"type": "KILL", "quest": 1012, "questName": "Insane Druids", "npc": 3942, "target": "Mavoris Cloudsbreak", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 75.1, "y": 74.2},
     {"type": "TURNIN", "quest": 1012, "questName": "Insane Druids", "npc": 3848, "npcName": "Kayneth Stillwind", "map": 1440, "zone": "Ashenvale", "x": 85.2, "y": 44.7},
+    {"type": "TURNIN", "quest": 79192, "questName": "Stepping Stones", "map": 1442, "zone": "Stonetalon Mountains", "x": 40.8, "y": 52.5},
     {"type": "ACCEPT", "quest": 2931, "questName": "Castpipe's Task", "npc": 4077, "npcName": "Gaxim Rustfizzle", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.4, "y": 67.2, "note": "For Gnomeregan (dungeon guide)", "optional": true},
     {"type": "TURNIN", "quest": 1031, "questName": "The Branch of Cenarius", "npc": 3901, "npcName": "Illiyana", "map": 1440, "zone": "Ashenvale", "x": 21.7, "y": 53.3},
     {"type": "ACCEPT", "quest": 1032, "questName": "Satyr Slaying!", "npc": 3901, "npcName": "Illiyana", "map": 1440, "zone": "Ashenvale", "x": 21.7, "y": 53.3},

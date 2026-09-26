@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_17_DUSTWALLOW_MARSH",
     name = "17. Dustwallow Marsh 36-37 (Dwarf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 36,
@@ -13,50 +13,52 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_18_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 17 of the Dwarf route: level 36 to 37, 43 steps, ~114 min of play in the model (30425 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 43,
+    stepCount = 45,
     steps = function() return {
-        { type = "TRAVEL", map = 1443, zone = "Nijel's Point", x = 66.3, y = 6.5, radius = 60, note = "use your hearthstone (Nijel's Point)" }, -- 1
-        { type = "TRAVEL", map = 1445, zone = "Dustwallow Marsh", x = 67.0, y = 48.1, radius = 60, note = "travel to Dustwallow Marsh (Dustwallow Marsh)" }, -- 2
-        { type = "HEARTH", npc = 6272, npcName = "Innkeeper Janene", map = 1445, zone = "Theramore Isle", x = 66.6, y = 45.2, note = "talk to Innkeeper Janene and make this inn your home" }, -- 3
-        { type = "ACCEPT", quest = 1282, questName = "They Call Him Smiling Jim", npc = 4921, npcName = "Guard Byron", map = 1445, zone = "Dustwallow Marsh", x = 66.2, y = 46.1 }, -- 4
-        { type = "ACCEPT", quest = 1204, questName = "Mudrock Soup and Bugs", npc = 4794, npcName = "Morgan Stern", map = 1445, zone = "Dustwallow Marsh", x = 66.3, y = 45.5 }, -- 5
-        { type = "TURNIN", quest = 1282, questName = "They Call Him Smiling Jim", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 6
-        { type = "COLLECT", quest = 1204, questName = "Mudrock Soup and Bugs", target = "Forked Mudrock Tongue", count = 8, map = 1445, zone = "Dustwallow Marsh", x = 64.6, y = 40, near = true }, -- 7
-        { type = "TURNIN", quest = 1204, questName = "Mudrock Soup and Bugs", npc = 4794, npcName = "Morgan Stern", map = 1445, zone = "Dustwallow Marsh", x = 66.3, y = 45.5 }, -- 8
-        { type = "ACCEPT", quest = 1218, questName = "Soothing Spices", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 9
-        { type = "ACCEPT", quest = 1219, questName = "The Orc Report", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 25.9 }, -- 10
-        { type = "TURNIN", quest = 1218, questName = "Soothing Spices", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 11
-        { type = "ACCEPT", quest = 1206, questName = "Jarl Needs Eyes", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 12
-        { type = "COLLECT", quest = 1206, questName = "Jarl Needs Eyes", target = "Unpopped Darkmist Eye", count = 40, map = 1445, zone = "Dustwallow Marsh", x = 35.1, y = 24.3, near = true }, -- 13
-        { type = "TURNIN", quest = 1206, questName = "Jarl Needs Eyes", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 14
-        { type = "ACCEPT", quest = 1203, questName = "Jarl Needs a Blade", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 15
-        { type = "TURNIN", quest = 1203, questName = "Jarl Needs a Blade", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 16
-        { type = "ACCEPT", quest = 1222, questName = "Stinky's Escape", npc = 4880, npcName = "\"Stinky\" Ignatz", map = 1445, zone = "Dustwallow Marsh", x = 46.9, y = 17.5 }, -- 17
-        { type = "COMPLETE", quest = 1222, questName = "Stinky's Escape", target = "Help Stinky find Bogbean Leaves", map = 1445, zone = "Dustwallow Marsh", x = 48.9, y = 24.6, note = "escort - stay close, it can fail: Help Stinky find Bogbean Leaves" }, -- 18
-        { type = "ACCEPT", quest = 1177, questName = "Hungry!", npc = 4503, npcName = "Mudcrush Durtfeet", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 38.3 }, -- 19
-        { type = "COLLECT", quest = 1177, questName = "Hungry!", target = "Mirefin Head", count = 12, map = 1445, zone = "Dustwallow Marsh", x = 56.2, y = 23, near = true }, -- 20
-        { type = "TURNIN", quest = 1177, questName = "Hungry!", npc = 4503, npcName = "Mudcrush Durtfeet", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 38.3 }, -- 21
-        { type = "ACCEPT", quest = 1284, questName = "Suspicious Hoofprints", map = 1445, zone = "Dustwallow Marsh", x = 29.7, y = 47.6 }, -- 22
-        { type = "ACCEPT", quest = 1253, questName = "The Black Shield", map = 1445, zone = "Dustwallow Marsh", x = 29.6, y = 48.6 }, -- 23
-        { type = "ACCEPT", quest = 1252, questName = "Lieutenant Paval Reethe", map = 1445, zone = "Dustwallow Marsh", x = 29.8, y = 48.2 }, -- 24
-        { type = "TURNIN", quest = 1219, questName = "The Orc Report", npc = 4947, npcName = "Theramore Lieutenant", map = 1445, zone = "Dustwallow Marsh", x = 65, y = 47 }, -- 25
-        { type = "ACCEPT", quest = 1220, questName = "Captain Vimes", npc = 4947, npcName = "Theramore Lieutenant", map = 1445, zone = "Dustwallow Marsh", x = 65, y = 47 }, -- 26
-        { type = "TURNIN", quest = 1222, questName = "Stinky's Escape", npc = 4794, npcName = "Morgan Stern", map = 1445, zone = "Dustwallow Marsh", x = 66.3, y = 45.5 }, -- 27
-        { type = "TURNIN", quest = 1220, questName = "Captain Vimes", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 28
-        { type = "TURNIN", quest = 1252, questName = "Lieutenant Paval Reethe", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 29
-        { type = "TURNIN", quest = 1253, questName = "The Black Shield", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 30
-        { type = "TURNIN", quest = 1284, questName = "Suspicious Hoofprints", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 31
-        { type = "ACCEPT", quest = 1319, questName = "The Black Shield", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 32
-        { type = "ACCEPT", quest = 1259, questName = "Lieutenant Paval Reethe", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 33
-        { type = "TURNIN", quest = 1259, questName = "Lieutenant Paval Reethe", npc = 4948, npcName = "Adjutant Tesoran", map = 1445, zone = "Dustwallow Marsh", x = 68.1, y = 48.1 }, -- 34
-        { type = "ACCEPT", quest = 1285, questName = "Daelin's Men", npc = 4948, npcName = "Adjutant Tesoran", map = 1445, zone = "Dustwallow Marsh", x = 68.1, y = 48.1 }, -- 35
-        { type = "TURNIN", quest = 1285, questName = "Daelin's Men", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 36
-        { type = "ACCEPT", quest = 1286, questName = "The Deserters", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 37
-        { type = "TURNIN", quest = 1319, questName = "The Black Shield", npc = 4941, npcName = "Caz Twosprocket", map = 1445, zone = "Dustwallow Marsh", x = 64.8, y = 50.4 }, -- 38
-        { type = "ACCEPT", quest = 1320, questName = "The Black Shield", npc = 4941, npcName = "Caz Twosprocket", map = 1445, zone = "Dustwallow Marsh", x = 64.8, y = 50.4 }, -- 39
-        { type = "TURNIN", quest = 1320, questName = "The Black Shield", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 40
-        { type = "TURNIN", quest = 1286, questName = "The Deserters", npc = 5089, npcName = "Balos Jacken", map = 1445, zone = "Dustwallow Marsh", x = 36.1, y = 54.3 }, -- 41
-        { type = "ACCEPT", quest = 1287, questName = "The Deserters", npc = 5089, npcName = "Balos Jacken", map = 1445, zone = "Dustwallow Marsh", x = 36.1, y = 54.3 }, -- 42
-        { type = "TURNIN", quest = 1287, questName = "The Deserters", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 43
+        { type = "ACCEPT", quest = 79975, questName = "Eagle's Fist", map = 1432, zone = "Loch Modan", x = 49.5, y = 12.8, note = "Cozy Sleeping Bag chain: keep it going" }, -- 1
+        { type = "TURNIN", quest = 79975, questName = "Eagle's Fist", map = 1417, zone = "Arathi Highlands", x = 22.5, y = 24.2 }, -- 2
+        { type = "TRAVEL", map = 1443, zone = "Nijel's Point", x = 66.3, y = 6.5, radius = 60, note = "use your hearthstone (Nijel's Point)" }, -- 3
+        { type = "TRAVEL", map = 1445, zone = "Dustwallow Marsh", x = 67.0, y = 48.1, radius = 60, note = "travel to Dustwallow Marsh (Dustwallow Marsh)" }, -- 4
+        { type = "HEARTH", npc = 6272, npcName = "Innkeeper Janene", map = 1445, zone = "Theramore Isle", x = 66.6, y = 45.2, note = "talk to Innkeeper Janene and make this inn your home" }, -- 5
+        { type = "ACCEPT", quest = 1282, questName = "They Call Him Smiling Jim", npc = 4921, npcName = "Guard Byron", map = 1445, zone = "Dustwallow Marsh", x = 66.2, y = 46.1 }, -- 6
+        { type = "ACCEPT", quest = 1204, questName = "Mudrock Soup and Bugs", npc = 4794, npcName = "Morgan Stern", map = 1445, zone = "Dustwallow Marsh", x = 66.3, y = 45.5 }, -- 7
+        { type = "TURNIN", quest = 1282, questName = "They Call Him Smiling Jim", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 8
+        { type = "COLLECT", quest = 1204, questName = "Mudrock Soup and Bugs", target = "Forked Mudrock Tongue", count = 8, map = 1445, zone = "Dustwallow Marsh", x = 64.6, y = 40, near = true }, -- 9
+        { type = "TURNIN", quest = 1204, questName = "Mudrock Soup and Bugs", npc = 4794, npcName = "Morgan Stern", map = 1445, zone = "Dustwallow Marsh", x = 66.3, y = 45.5 }, -- 10
+        { type = "ACCEPT", quest = 1218, questName = "Soothing Spices", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 11
+        { type = "ACCEPT", quest = 1219, questName = "The Orc Report", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 25.9 }, -- 12
+        { type = "TURNIN", quest = 1218, questName = "Soothing Spices", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 13
+        { type = "ACCEPT", quest = 1206, questName = "Jarl Needs Eyes", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 14
+        { type = "COLLECT", quest = 1206, questName = "Jarl Needs Eyes", target = "Unpopped Darkmist Eye", count = 40, map = 1445, zone = "Dustwallow Marsh", x = 35.1, y = 24.3, near = true }, -- 15
+        { type = "TURNIN", quest = 1206, questName = "Jarl Needs Eyes", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 16
+        { type = "ACCEPT", quest = 1203, questName = "Jarl Needs a Blade", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 17
+        { type = "TURNIN", quest = 1203, questName = "Jarl Needs a Blade", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 18
+        { type = "ACCEPT", quest = 1222, questName = "Stinky's Escape", npc = 4880, npcName = "\"Stinky\" Ignatz", map = 1445, zone = "Dustwallow Marsh", x = 46.9, y = 17.5 }, -- 19
+        { type = "COMPLETE", quest = 1222, questName = "Stinky's Escape", target = "Help Stinky find Bogbean Leaves", map = 1445, zone = "Dustwallow Marsh", x = 48.9, y = 24.6, note = "escort - stay close, it can fail: Help Stinky find Bogbean Leaves" }, -- 20
+        { type = "ACCEPT", quest = 1177, questName = "Hungry!", npc = 4503, npcName = "Mudcrush Durtfeet", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 38.3 }, -- 21
+        { type = "COLLECT", quest = 1177, questName = "Hungry!", target = "Mirefin Head", count = 12, map = 1445, zone = "Dustwallow Marsh", x = 56.2, y = 23, near = true }, -- 22
+        { type = "TURNIN", quest = 1177, questName = "Hungry!", npc = 4503, npcName = "Mudcrush Durtfeet", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 38.3 }, -- 23
+        { type = "ACCEPT", quest = 1284, questName = "Suspicious Hoofprints", map = 1445, zone = "Dustwallow Marsh", x = 29.7, y = 47.6 }, -- 24
+        { type = "ACCEPT", quest = 1253, questName = "The Black Shield", map = 1445, zone = "Dustwallow Marsh", x = 29.6, y = 48.6 }, -- 25
+        { type = "ACCEPT", quest = 1252, questName = "Lieutenant Paval Reethe", map = 1445, zone = "Dustwallow Marsh", x = 29.8, y = 48.2 }, -- 26
+        { type = "TURNIN", quest = 1219, questName = "The Orc Report", npc = 4947, npcName = "Theramore Lieutenant", map = 1445, zone = "Dustwallow Marsh", x = 65, y = 47 }, -- 27
+        { type = "ACCEPT", quest = 1220, questName = "Captain Vimes", npc = 4947, npcName = "Theramore Lieutenant", map = 1445, zone = "Dustwallow Marsh", x = 65, y = 47 }, -- 28
+        { type = "TURNIN", quest = 1222, questName = "Stinky's Escape", npc = 4794, npcName = "Morgan Stern", map = 1445, zone = "Dustwallow Marsh", x = 66.3, y = 45.5 }, -- 29
+        { type = "TURNIN", quest = 1220, questName = "Captain Vimes", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 30
+        { type = "TURNIN", quest = 1252, questName = "Lieutenant Paval Reethe", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 31
+        { type = "TURNIN", quest = 1253, questName = "The Black Shield", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 32
+        { type = "TURNIN", quest = 1284, questName = "Suspicious Hoofprints", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 33
+        { type = "ACCEPT", quest = 1319, questName = "The Black Shield", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 34
+        { type = "ACCEPT", quest = 1259, questName = "Lieutenant Paval Reethe", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 35
+        { type = "TURNIN", quest = 1259, questName = "Lieutenant Paval Reethe", npc = 4948, npcName = "Adjutant Tesoran", map = 1445, zone = "Dustwallow Marsh", x = 68.1, y = 48.1 }, -- 36
+        { type = "ACCEPT", quest = 1285, questName = "Daelin's Men", npc = 4948, npcName = "Adjutant Tesoran", map = 1445, zone = "Dustwallow Marsh", x = 68.1, y = 48.1 }, -- 37
+        { type = "TURNIN", quest = 1285, questName = "Daelin's Men", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 38
+        { type = "ACCEPT", quest = 1286, questName = "The Deserters", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 39
+        { type = "TURNIN", quest = 1319, questName = "The Black Shield", npc = 4941, npcName = "Caz Twosprocket", map = 1445, zone = "Dustwallow Marsh", x = 64.8, y = 50.4 }, -- 40
+        { type = "ACCEPT", quest = 1320, questName = "The Black Shield", npc = 4941, npcName = "Caz Twosprocket", map = 1445, zone = "Dustwallow Marsh", x = 64.8, y = 50.4 }, -- 41
+        { type = "TURNIN", quest = 1320, questName = "The Black Shield", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 42
+        { type = "TURNIN", quest = 1286, questName = "The Deserters", npc = 5089, npcName = "Balos Jacken", map = 1445, zone = "Dustwallow Marsh", x = 36.1, y = 54.3 }, -- 43
+        { type = "ACCEPT", quest = 1287, questName = "The Deserters", npc = 5089, npcName = "Balos Jacken", map = 1445, zone = "Dustwallow Marsh", x = 36.1, y = 54.3 }, -- 44
+        { type = "TURNIN", quest = 1287, questName = "The Deserters", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 45
     } end,
 })

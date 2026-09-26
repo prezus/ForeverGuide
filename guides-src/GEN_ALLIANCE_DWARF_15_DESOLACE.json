@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_15_DESOLACE",
   "name": "15. Desolace 33-35 (Dwarf)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 33,
@@ -13,6 +13,7 @@
   "notes": "Chapter 15 of the Dwarf route: level 33 to 35, 70 steps, ~237 min of play in the model (27574 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1434, "zone": "Booty Bay", "x": 27.0, "y": 77.3, "radius": 60, "note": "use your hearthstone (Booty Bay)"},
+    {"type": "ACCEPT", "quest": 79974, "questName": "Wet Job", "map": 1442, "zone": "Stonetalon Mountains", "x": 39.6, "y": 49.9, "note": "Cozy Sleeping Bag chain: keep it going"},
     {"type": "TRAVEL", "map": 1443, "zone": "Desolace", "x": 66.5, "y": 9.9, "radius": 60, "note": "travel to Desolace (Desolace)"},
     {"type": "HEARTH", "npc": 11103, "npcName": "Innkeeper Lyshaerya", "map": 1443, "zone": "Nijel's Point", "x": 66.3, "y": 6.5, "note": "talk to Innkeeper Lyshaerya and make this inn your home"},
     {"type": "ACCEPT", "quest": 1387, "questName": "Centaur Bounty", "npc": 5752, "npcName": "Corporal Melkins", "map": 1443, "zone": "Desolace", "x": 66.7, "y": 10.9},

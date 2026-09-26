@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_10_THOUSAND_NEEDLES",
   "name": "10. Thousand Needles 28-29 (Human)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 28,
@@ -12,6 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 10 of the Human route: level 28 to 29, 15 steps, ~60 min of play in the model (26341 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "ACCEPT", "quest": 79980, "questName": "Scramble", "map": 1442, "zone": "Stonetalon Mountains", "x": 40.8, "y": 52.5, "note": "Cozy Sleeping Bag chain: keep it going"},
+    {"type": "TURNIN", "quest": 79980, "questName": "Scramble", "map": 1442, "zone": "Stonetalon Mountains", "x": 39.6, "y": 49.9},
     {"type": "ACCEPT", "quest": 959, "questName": "Trouble at the Docks", "npc": 3665, "npcName": "Crane Operator Bigglefuzz", "map": 1413, "zone": "The Barrens", "x": 63, "y": 37.6, "note": "For Wailing Caverns (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 1486, "questName": "Deviate Hides", "npc": 5767, "npcName": "Nalpak", "map": 1413, "zone": "The Barrens", "x": 46, "y": 35.7, "note": "For Wailing Caverns (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 1487, "questName": "Deviate Eradication", "npc": 5768, "npcName": "Ebru", "map": 1413, "zone": "The Barrens", "x": 46, "y": 35.7, "note": "For Wailing Caverns (dungeon guide)", "optional": true},
