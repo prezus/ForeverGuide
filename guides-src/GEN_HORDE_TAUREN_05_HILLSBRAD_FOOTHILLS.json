@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_05_HILLSBRAD_FOOTHILLS",
   "name": "5. Hillsbrad Foothills 25-28 (Tauren)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 25,
@@ -15,6 +15,7 @@
     {"type": "FLIGHTPATH", "npc": 2389, "npcName": "Zarise", "map": 1424, "zone": "Hillsbrad Foothills", "x": 60.1, "y": 18.6},
     {"type": "ACCEPT", "quest": 92401, "questName": "A Frightened Request", "npc": 250686, "npcName": "Tabitha Heartweaver", "map": 1421, "zone": "Silverpine Forest", "x": 44.4, "y": 43, "note": "New in Forever"},
     {"type": "TURNIN", "quest": 92401, "questName": "A Frightened Request", "npc": 250686, "npcName": "Tabitha Heartweaver", "map": 1421, "zone": "Silverpine Forest", "x": 44.4, "y": 43},
+    {"type": "TURNIN", "quest": 6542, "questName": "Report to Kadrak", "npc": 8582, "npcName": "Kadrak", "map": 1413, "zone": "The Barrens", "x": 48, "y": 5.4},
     {"type": "ACCEPT", "quest": 493, "questName": "Journey to Hillsbrad Foothills", "npc": 1937, "npcName": "Apothecary Renferrel", "map": 1421, "zone": "Silverpine Forest", "x": 42.8, "y": 40.8},
     {"type": "ACCEPT", "quest": 5725, "questName": "The Power to Destroy...", "npc": 2425, "npcName": "Varimathras", "map": 1458, "zone": "Undercity", "x": 56.2, "y": 92.6, "note": "For Ragefire Chasm (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: Searching for the Lost Satchel, Testing an Enemy's Strength, The Power to Destroy..., Hidden Enemies, Slaying the Beast. When you have a group, open Ragefire Chasm under Dungeons.", "text": "Ready for Ragefire Chasm", "optional": true},
@@ -94,8 +95,18 @@
     {"type": "KILL", "quest": 539, "questName": "Battle of Hillsbrad", "npc": 2269, "target": "Hillsbrad Miner", "count": 10, "map": 1424, "zone": "Hillsbrad Foothills", "x": 32.4, "y": 52.1, "near": true},
     {"type": "KILL", "quest": 539, "questName": "Battle of Hillsbrad", "npc": 2305, "target": "Foreman Bonds", "count": 1, "map": 1424, "zone": "Hillsbrad Foothills", "x": 31.2, "y": 56},
     {"type": "TURNIN", "quest": 539, "questName": "Battle of Hillsbrad", "npc": 2215, "npcName": "High Executor Darthalia", "map": 1424, "zone": "Hillsbrad Foothills", "x": 62.3, "y": 20.5},
+    {"type": "ACCEPT", "quest": 1535, "questName": "Call of Water", "npc": 5899, "npcName": "Brine", "map": 1413, "zone": "The Barrens", "x": 43.4, "y": 77.4, "class": ["SHAMAN"]},
+    {"type": "COLLECT", "quest": 1535, "questName": "Call of Water", "target": "Filled Brown Waterskin", "count": 1, "map": 1413, "zone": "The Barrens", "x": 44.3, "y": 76.8, "class": ["SHAMAN"]},
+    {"type": "TURNIN", "quest": 1535, "questName": "Call of Water", "npc": 5899, "npcName": "Brine", "map": 1413, "zone": "The Barrens", "x": 43.4, "y": 77.4, "class": ["SHAMAN"]},
     {"type": "ACCEPT", "quest": 494, "questName": "Time To Strike", "npc": 2214, "npcName": "Deathstalker Lesh", "map": 1424, "zone": "Hillsbrad Foothills", "x": 20.8, "y": 47.4},
+    {"type": "ACCEPT", "quest": 1536, "questName": "Call of Water", "npc": 5899, "npcName": "Brine", "map": 1413, "zone": "The Barrens", "x": 43.4, "y": 77.4, "class": ["SHAMAN"]},
+    {"type": "COLLECT", "quest": 1536, "questName": "Call of Water", "target": "Filled Red Waterskin", "count": 1, "map": 1424, "zone": "Hillsbrad Foothills", "x": 62.2, "y": 20.8, "class": ["SHAMAN"]},
+    {"type": "TURNIN", "quest": 1536, "questName": "Call of Water", "npc": 5899, "npcName": "Brine", "map": 1413, "zone": "The Barrens", "x": 43.4, "y": 77.4, "class": ["SHAMAN"]},
     {"type": "TURNIN", "quest": 494, "questName": "Time To Strike", "npc": 2215, "npcName": "High Executor Darthalia", "map": 1424, "zone": "Hillsbrad Foothills", "x": 62.3, "y": 20.5, "note": "reduced xp (60%) - you out-levelled it"},
-    {"type": "GRIND", "npc": 2269, "target": "Hillsbrad Miner", "level": 28, "map": 1424, "zone": "Hillsbrad Foothills", "x": 32.4, "y": 52.1, "near": true, "note": "grind Hillsbrad Miner (level 26-27) to level 28 - nothing worth questing at 27"}
+    {"type": "GRIND", "npc": 2269, "target": "Hillsbrad Miner", "level": 28, "map": 1424, "zone": "Hillsbrad Foothills", "x": 32.4, "y": 52.1, "near": true, "note": "grind Hillsbrad Miner (level 26-27) to level 28 - nothing worth questing at 27"},
+    {"type": "ACCEPT", "quest": 7321, "questName": "Soothing Turtle Bisque", "npc": 2393, "npcName": "Christoph Jeffcoat", "map": 1424, "zone": "Hillsbrad Foothills", "x": 62.2, "y": 19, "profession": "Cooking"},
+    {"type": "COLLECT", "quest": 7321, "questName": "Soothing Turtle Bisque", "target": "Turtle Meat", "count": 10, "map": 1424, "zone": "Hillsbrad Foothills", "x": 65.8, "y": 38, "profession": "Cooking"},
+    {"type": "COLLECT", "quest": 7321, "questName": "Soothing Turtle Bisque", "target": "Soothing Spices", "count": 1, "map": 1424, "zone": "Hillsbrad Foothills", "x": 63.1, "y": 19.4, "near": true, "profession": "Cooking"},
+    {"type": "TURNIN", "quest": 7321, "questName": "Soothing Turtle Bisque", "npc": 2393, "npcName": "Christoph Jeffcoat", "map": 1424, "zone": "Hillsbrad Foothills", "x": 62.2, "y": 19, "profession": "Cooking"}
   ]
 }
