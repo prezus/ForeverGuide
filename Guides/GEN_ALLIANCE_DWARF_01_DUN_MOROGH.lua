@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_01_DUN_MOROGH",
     name = "1. Dun Morogh 1-10 (Dwarf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 1,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_02_IRONFORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 1 of the Dwarf route: level 1 to 10, 75 steps, ~123 min of play in the model (14119 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 172,
+    stepCount = 177,
     steps = function() return {
         { type = "ACCEPT", quest = 179, questName = "Dwarven Outfitters", npc = 658, npcName = "Sten Stoutarm", map = 1426, zone = "Dun Morogh", x = 29.9, y = 71.2 }, -- 1
         { type = "COLLECT", quest = 179, questName = "Dwarven Outfitters", target = "Tough Wolf Meat", count = 8, map = 1426, zone = "Dun Morogh", x = 28.7, y = 72.4, near = true }, -- 2
@@ -49,7 +49,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 182, questName = "The Troll Cave", npc = 706, target = "Frostmane Troll Whelp", count = 14, map = 1426, zone = "Dun Morogh", x = 26.8, y = 79, near = true }, -- 32
         { type = "TURNIN", quest = 182, questName = "The Troll Cave", npc = 786, npcName = "Grelin Whitebeard", map = 1426, zone = "Dun Morogh", x = 25.1, y = 75.7 }, -- 33
         { type = "ACCEPT", quest = 218, questName = "The Stolen Journal", npc = 786, npcName = "Grelin Whitebeard", map = 1426, zone = "Dun Morogh", x = 25.1, y = 75.7 }, -- 34
-        { type = "COLLECT", quest = 1599, questName = "Beginnings", target = "Feather Charm", count = 3, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, class = { "WARLOCK" }, race = { "Gnome" } }, -- 35
+        { type = "COLLECT", quest = 1599, questName = "Beginnings", target = "Feather Charm", count = 3, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, class = { "WARLOCK" }, race = { "Gnome" }, mobs = "Frostmane Novice" }, -- 35
         { type = "KILL", quest = 218, questName = "The Stolen Journal", npc = 808, target = "Grik'nir the Cold", map = 1426, zone = "Dun Morogh", x = 30.5, y = 80.2, note = "loot Grelin Whitebeard's Journal" }, -- 36
         { type = "TURNIN", quest = 218, questName = "The Stolen Journal", npc = 786, npcName = "Grelin Whitebeard", map = 1426, zone = "Dun Morogh", x = 25.1, y = 75.7 }, -- 37
         { type = "ACCEPT", quest = 282, questName = "Senir's Observations", npc = 786, npcName = "Grelin Whitebeard", map = 1426, zone = "Dun Morogh", x = 25.1, y = 75.7 }, -- 38
@@ -74,13 +74,13 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 420, questName = "Senir's Observations", npc = 1965, npcName = "Mountaineer Thalos", map = 1426, zone = "Dun Morogh", x = 33.5, y = 71.8 }, -- 57
         { type = "ACCEPT", quest = 96628, questName = "The Adventurer", npc = 1965, npcName = "Mountaineer Thalos", map = 1426, zone = "Dun Morogh", x = 33.4, y = 71.8, note = "New in Forever" }, -- 58
         { type = "ACCEPT", quest = 2160, questName = "Supplies to Tannok", npc = 6782, npcName = "Hands Springsprocket", map = 1426, zone = "Dun Morogh", x = 33.8, y = 72.2 }, -- 59
-        { type = "COLLECT", quest = 94373, questName = "Call of Earth", target = "Iceclaw Bear Pendant", count = 2, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, near = true, class = { "SHAMAN" } }, -- 60
+        { type = "COLLECT", quest = 94373, questName = "Call of Earth", target = "Iceclaw Bear Pendant", count = 2, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, near = true, class = { "SHAMAN" }, mobs = "Frostmane Troll Whelp / Frostmane Novice" }, -- 60
         { type = "TURNIN", quest = 3365, questName = "Bring Back the Mug", npc = 12738, npcName = "Nori Pridedrift", map = 1426, zone = "Dun Morogh", x = 25, y = 76 }, -- 61
         { type = "TURNIN", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 62
         { type = "ACCEPT", quest = 310, questName = "Bitter Rivals", npc = 1375, npcName = "Marleth Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.5 }, -- 63
         { type = "ACCEPT", quest = 315, questName = "The Perfect Stout", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 64
         { type = "ACCEPT", quest = 98326, questName = "Frosthowl", npc = 8508, npcName = "Gretta Ganter", map = 1426, zone = "Dun Morogh", x = 31.4, y = 44.6, note = "New in Forever" }, -- 65
-        { type = "COLLECT", quest = 98326, questName = "Frosthowl", target = "Sack of Fish", count = 1, map = 1426, zone = "Dun Morogh", x = 39.8, y = 48.6 }, -- 66
+        { type = "COLLECT", quest = 98326, questName = "Frosthowl", target = "Sack of Fish", count = 1, map = 1426, zone = "Dun Morogh", x = 39.8, y = 48.6, mobs = "Frosthowl" }, -- 66
         { type = "TURNIN", quest = 98326, questName = "Frosthowl", npc = 8508, npcName = "Gretta Ganter", map = 1426, zone = "Dun Morogh", x = 31.4, y = 44.6 }, -- 67
         { type = "COLLECT", quest = 315, questName = "The Perfect Stout", target = "Shimmerweed", count = 6, map = 1426, zone = "Dun Morogh", x = 40.3, y = 42.9, near = true }, -- 68
         { type = "TURNIN", quest = 315, questName = "The Perfect Stout", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 69
@@ -96,8 +96,8 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 96629, questName = "Camping 101: Cooking", npc = 265813, npcName = "Eric Brighthammer", map = 1426, zone = "Dun Morogh", x = 46.6, y = 53.8, note = "New in Forever" }, -- 79
         { type = "ACCEPT", quest = 98322, questName = "Secure the Mountain", npc = 1252, npcName = "Senir Whitebeard", map = 1426, zone = "Dun Morogh", x = 46.6, y = 53.8, note = "New in Forever" }, -- 80
         { type = "ACCEPT", quest = 384, questName = "Beer Basted Boar Ribs", npc = 1267, npcName = "Ragnar Thunderbrew", map = 1426, zone = "Dun Morogh", x = 46.8, y = 52.4, profession = "Cooking" }, -- 81
-        { type = "COLLECT", quest = 384, questName = "Beer Basted Boar Ribs", target = "Crag Boar Rib", count = 6, map = 1426, zone = "Dun Morogh", x = 29.2, y = 38.8, near = true, profession = "Cooking" }, -- 82
-        { type = "COLLECT", quest = 384, questName = "Beer Basted Boar Ribs", target = "Rhapsody Malt", count = 1, map = 1426, zone = "Dun Morogh", x = 47.4, y = 52.5, near = true, profession = "Cooking" }, -- 83
+        { type = "COLLECT", quest = 384, questName = "Beer Basted Boar Ribs", target = "Crag Boar Rib", count = 6, map = 1426, zone = "Dun Morogh", x = 29.2, y = 38.8, near = true, profession = "Cooking", mobs = "Rockjaw Skullthumper / Rockjaw Bonesnapper / Crag Boar / Large Crag Boar" }, -- 82
+        { type = "COLLECT", quest = 384, questName = "Beer Basted Boar Ribs", target = "Rhapsody Malt", count = 1, map = 1426, zone = "Dun Morogh", x = 47.4, y = 52.5, near = true, profession = "Cooking", mobs = "Innkeeper Belm / Yanni Stoutheart / Innkeeper Thulfram" }, -- 83
         { type = "TURNIN", quest = 420, questName = "Senir's Observations", npc = 1252, npcName = "Senir Whitebeard", map = 1426, zone = "Dun Morogh", x = 46.7, y = 53.8 }, -- 84
         { type = "ACCEPT", quest = 400, questName = "Tools for Steelgrill", npc = 1872, npcName = "Tharek Blackstone", map = 1426, zone = "Dun Morogh", x = 46, y = 51.7 }, -- 85
         { type = "TURNIN", quest = 96047, questName = "Camping 101: First Aid", npc = 2326, npcName = "Thamner Pol", map = 1426, zone = "Dun Morogh", x = 47.2, y = 52.6 }, -- 86
@@ -154,15 +154,15 @@ ns.RegisterGuide({
         { type = "KILL", quest = 99160, questName = "Rime's Wrath", npc = 276003, target = "Minor Ice Elemental", count = 10, map = 1426, zone = "Dun Morogh", x = 57, y = 45.2 }, -- 137
         { type = "TURNIN", quest = 99160, questName = "Rime's Wrath", npc = 1253, npcName = "Father Gavin", map = 1426, zone = "Dun Morogh", x = 57.6, y = 44.8 }, -- 138
         { type = "ACCEPT", quest = 99161, questName = "Rime's Wrath", npc = 1253, npcName = "Father Gavin", map = 1426, zone = "Dun Morogh", x = 57.6, y = 44.8, note = "New in Forever" }, -- 139
-        { type = "COLLECT", quest = 99161, questName = "Rime's Wrath", target = "Avala's Core", count = 1, map = 1426, zone = "Dun Morogh", x = 58.2, y = 42 }, -- 140
+        { type = "COLLECT", quest = 99161, questName = "Rime's Wrath", target = "Avala's Core", count = 1, map = 1426, zone = "Dun Morogh", x = 58.2, y = 42, mobs = "Avala" }, -- 140
         { type = "TURNIN", quest = 99161, questName = "Rime's Wrath", npc = 1253, npcName = "Father Gavin", map = 1426, zone = "Dun Morogh", x = 57.6, y = 44.8 }, -- 141
         { type = "ACCEPT", quest = 95212, questName = "Never Saddle on Quality", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, note = "New in Forever" }, -- 142
-        { type = "COLLECT", quest = 95212, questName = "Never Saddle on Quality", target = "Pristine Leopard Pelt", count = 6, map = 1426, zone = "Dun Morogh", x = 71.4, y = 62 }, -- 143
+        { type = "COLLECT", quest = 95212, questName = "Never Saddle on Quality", target = "Pristine Leopard Pelt", count = 6, map = 1426, zone = "Dun Morogh", x = 71.4, y = 62, mobs = "Elder Snow Leopard" }, -- 143
         { type = "TURNIN", quest = 95212, questName = "Never Saddle on Quality", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8 }, -- 144
         { type = "ACCEPT", quest = 96408, questName = "A Visitor to Dun Morogh", npc = 1376, npcName = "Beldin Steelgrill", map = 1426, zone = "Dun Morogh", x = 50.4, y = 49, note = "New in Forever" }, -- 145
         { type = "TURNIN", quest = 96408, questName = "A Visitor to Dun Morogh", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4 }, -- 146
         { type = "ACCEPT", quest = 314, questName = "Protecting the Herd", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, optional = true, note = "Elite - group up" }, -- 147
-        { type = "COLLECT", quest = 314, questName = "Protecting the Herd", target = "Fang of Vagash", count = 1, map = 1426, zone = "Dun Morogh", x = 62.4, y = 46.2, optional = true }, -- 148
+        { type = "COLLECT", quest = 314, questName = "Protecting the Herd", target = "Fang of Vagash", count = 1, map = 1426, zone = "Dun Morogh", x = 62.4, y = 46.2, optional = true, mobs = "Vagash" }, -- 148
         { type = "TURNIN", quest = 314, questName = "Protecting the Herd", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, optional = true }, -- 149
         { type = "ACCEPT", quest = 96393, questName = "Old Ironforge Incursion", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 150
         { type = "ACCEPT", quest = 432, questName = "Those Blasted Troggs!", npc = 1254, npcName = "Foreman Stonebrow", map = 1426, zone = "Dun Morogh", x = 69.1, y = 56.3 }, -- 151
@@ -175,17 +175,22 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 432, questName = "Those Blasted Troggs!", npc = 1254, npcName = "Foreman Stonebrow", map = 1426, zone = "Dun Morogh", x = 69.1, y = 56.3 }, -- 158
         { type = "KILL", quest = 433, questName = "The Public Servant", npc = 1117, target = "Rockjaw Bonesnapper", count = 10, map = 1426, zone = "Dun Morogh", x = 70.6, y = 55.3, near = true }, -- 159
         { type = "TURNIN", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.7, y = 56 }, -- 160
-        { type = "ACCEPT", quest = 95214, questName = "Stolen Blasting Powder", npc = 1256, npcName = "Quarrymaster Thesten", map = 1426, zone = "Dun Morogh", x = 69, y = 54.8, note = "New in Forever" }, -- 161
-        { type = "COLLECT", quest = 95214, questName = "Stolen Blasting Powder", target = "Stolen Blasting Powder", count = 16, map = 1426, zone = "Dun Morogh", x = 73.8, y = 51.2, near = true }, -- 162
-        { type = "TURNIN", quest = 95214, questName = "Stolen Blasting Powder", npc = 1256, npcName = "Quarrymaster Thesten", map = 1426, zone = "Dun Morogh", x = 69, y = 54.8 }, -- 163
-        { type = "KILL", quest = 96390, questName = "Nip 'Em in the Bud", npc = 6123, target = "Dark Iron Spy", count = 10, map = 1426, zone = "Dun Morogh", x = 77.8, y = 62.4 }, -- 164
-        { type = "TURNIN", quest = 96390, questName = "Nip 'Em in the Bud", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4 }, -- 165
-        { type = "TURNIN", quest = 413, questName = "Shimmer Stout", npc = 1959, npcName = "Mountaineer Barleybrew", map = 1426, zone = "Dun Morogh", x = 86.3, y = 48.8 }, -- 166
-        { type = "ACCEPT", quest = 414, questName = "Stout to Kadrell", npc = 1959, npcName = "Mountaineer Barleybrew", map = 1426, zone = "Dun Morogh", x = 86.2, y = 48.8 }, -- 167
-        { type = "ACCEPT", quest = 419, questName = "The Lost Pilot", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.9, y = 39.2 }, -- 168
-        { type = "TURNIN", quest = 419, questName = "The Lost Pilot", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 169
-        { type = "ACCEPT", quest = 417, questName = "A Pilot's Revenge", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 170
-        { type = "KILL", quest = 417, questName = "A Pilot's Revenge", npc = 1961, target = "Mangeclaw", map = 1426, zone = "Dun Morogh", x = 78.3, y = 37.8, note = "loot Mangy Claw" }, -- 171
-        { type = "TURNIN", quest = 417, questName = "A Pilot's Revenge", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.9, y = 39.2 }, -- 172
+        { type = "ACCEPT", quest = 95213, questName = "Stolen Blasting Powder", npc = 1116, npcName = "Rockjaw Ambusher", map = 1426, zone = "Dun Morogh", x = 73.8, y = 51.2, optional = true, note = "If you looted Empty Powder Keg from Rockjaw Ambusher / Rockjaw Backbreaker, use it to start the quest; New in Forever" }, -- 161
+        { type = "COLLECT", quest = 95213, questName = "Stolen Blasting Powder", target = "Empty Powder Keg", count = 1, map = 1426, zone = "Dun Morogh", x = 73.8, y = 51.2, optional = true, near = true, mobs = "Rockjaw Ambusher / Rockjaw Backbreaker" }, -- 162
+        { type = "TURNIN", quest = 95213, questName = "Stolen Blasting Powder", npc = 1256, npcName = "Quarrymaster Thesten", map = 1426, zone = "Dun Morogh", x = 69, y = 54.8, optional = true }, -- 163
+        { type = "ACCEPT", quest = 96391, questName = "Underground Map", npc = 6123, npcName = "Dark Iron Spy", map = 1426, zone = "Dun Morogh", x = 76.6, y = 61, optional = true, note = "If you looted Dark Iron Map from Captain Beld / Dark Iron Spy, use it to start the quest; New in Forever" }, -- 164
+        { type = "TURNIN", quest = 96391, questName = "Underground Map", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true }, -- 165
+        { type = "KILL", quest = 96390, questName = "Nip 'Em in the Bud", npc = 6123, target = "Dark Iron Spy", count = 10, map = 1426, zone = "Dun Morogh", x = 77.8, y = 62.4 }, -- 166
+        { type = "TURNIN", quest = 96390, questName = "Nip 'Em in the Bud", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4 }, -- 167
+        { type = "TURNIN", quest = 413, questName = "Shimmer Stout", npc = 1959, npcName = "Mountaineer Barleybrew", map = 1426, zone = "Dun Morogh", x = 86.3, y = 48.8 }, -- 168
+        { type = "ACCEPT", quest = 414, questName = "Stout to Kadrell", npc = 1959, npcName = "Mountaineer Barleybrew", map = 1426, zone = "Dun Morogh", x = 86.2, y = 48.8 }, -- 169
+        { type = "ACCEPT", quest = 419, questName = "The Lost Pilot", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.9, y = 39.2 }, -- 170
+        { type = "TURNIN", quest = 419, questName = "The Lost Pilot", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 171
+        { type = "ACCEPT", quest = 417, questName = "A Pilot's Revenge", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 172
+        { type = "KILL", quest = 417, questName = "A Pilot's Revenge", npc = 1961, target = "Mangeclaw", map = 1426, zone = "Dun Morogh", x = 78.3, y = 37.8, note = "loot Mangy Claw" }, -- 173
+        { type = "TURNIN", quest = 417, questName = "A Pilot's Revenge", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.9, y = 39.2 }, -- 174
+        { type = "ACCEPT", quest = 95214, questName = "Stolen Blasting Powder", npc = 1256, npcName = "Quarrymaster Thesten", map = 1426, zone = "Dun Morogh", x = 69, y = 54.8, optional = true, note = "New in Forever" }, -- 175
+        { type = "COLLECT", quest = 95214, questName = "Stolen Blasting Powder", target = "Stolen Blasting Powder", count = 16, map = 1426, zone = "Dun Morogh", x = 73.8, y = 51.2, optional = true, near = true, mobs = "Rockjaw Ambusher / Rockjaw Backbreaker" }, -- 176
+        { type = "TURNIN", quest = 95214, questName = "Stolen Blasting Powder", npc = 1256, npcName = "Quarrymaster Thesten", map = 1426, zone = "Dun Morogh", x = 69, y = 54.8, optional = true }, -- 177
     } end,
 })
