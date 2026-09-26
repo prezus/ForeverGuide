@@ -32,6 +32,7 @@ local HELP = {
     "/fg qg <scale|opacity|width|rows|wpsize> <value>   Quest Guide look  |  /fg qg completed|distances|subtitles on|off",
     "/fg minimap on|off  the minimap button",
     "/fg auto [accept on|off|guide] [turnin on|off]   auto-accept / auto-turn-in quests (hold SHIFT at an NPC to do it by hand)",
+    "/fg auto share|shared on|off   share quests you accept with your group / accept quests (and escorts) your group shares",
     "/fg rec on|off|status|dump [n]|clear   opt-in data recorder (off by default)",
     "/fg scan on|off | new | [from] [to] | stop | resume | status   opt in before requesting quest data from the server",
     "/fg harvest on|off | sweep [from to] | probe | status   opt in to quest discovery and map requests (off by default)",
@@ -597,7 +598,7 @@ function handlers.auto(rest)
     local what, value = rest:match("^(%S*)%s*(%S*)$")
     if what == "" then ns.Print(ns.AutoQuest:Status()) return end
     if not ns.AutoQuest:Set(what, value) then
-        ns.Print("usage: /fg auto accept on|off|guide  |  /fg auto turnin on|off  |  /fg auto announce on|off")
+        ns.Print("usage: /fg auto accept on|off|guide  |  /fg auto turnin on|off  |  /fg auto share on|off  |  /fg auto shared on|off  |  /fg auto announce on|off")
         return
     end
     ns.Print(ns.AutoQuest:Status())
