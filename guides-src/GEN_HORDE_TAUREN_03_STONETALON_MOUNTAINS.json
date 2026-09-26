@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_03_STONETALON_MOUNTAINS",
   "name": "3. Stonetalon Mountains 22-24 (Tauren)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 22,
@@ -43,6 +43,7 @@
     {"type": "ACCEPT", "quest": 6461, "questName": "Blood Feeders", "npc": 12816, "npcName": "Xen'Zilla", "map": 1442, "zone": "Stonetalon Mountains", "x": 71.3, "y": 95},
     {"type": "TURNIN", "quest": 1060, "questName": "Letter to Jin'Zil", "npc": 3995, "npcName": "Witch Doctor Jin'Zil", "map": 1442, "zone": "Stonetalon Mountains", "x": 74.4, "y": 97.8},
     {"type": "ACCEPT", "quest": 1058, "questName": "Jin'Zil's Forest Magic", "npc": 3995, "npcName": "Witch Doctor Jin'Zil", "map": 1442, "zone": "Stonetalon Mountains", "x": 74.5, "y": 97.9},
+    {"type": "ACCEPT", "quest": 6542, "questName": "Report to Kadrak", "npc": 11821, "npcName": "Darn Talongrip", "map": 1442, "zone": "Stonetalon Mountains", "x": 73.2, "y": 94.8},
     {"type": "KILL", "quest": 6461, "questName": "Blood Feeders", "npc": 4005, "target": "Deepmoss Creeper", "count": 10, "map": 1442, "zone": "Stonetalon Mountains", "x": 67.3, "y": 87.7, "near": true},
     {"type": "KILL", "quest": 6461, "questName": "Blood Feeders", "npc": 4007, "target": "Deepmoss Venomspitter", "count": 10, "map": 1442, "zone": "Stonetalon Mountains", "x": 61.6, "y": 66.4, "near": true},
     {"type": "TURNIN", "quest": 6461, "questName": "Blood Feeders", "npc": 12816, "npcName": "Xen'Zilla", "map": 1442, "zone": "Stonetalon Mountains", "x": 71.3, "y": 95},
