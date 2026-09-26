@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_05_HILLSBRAD_FOOTHILLS",
     name = "5. Hillsbrad Foothills 26-28 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 26,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_06_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 5 of the Skyborne route: level 26 to 28, 64 steps, ~152 min of play in the model (24620 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 88,
+    stepCount = 92,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2389, npcName = "Zarise", map = 1424, zone = "Hillsbrad Foothills", x = 60.1, y = 18.6 }, -- 1
         { type = "ACCEPT", quest = 92401, questName = "A Frightened Request", npc = 250686, npcName = "Tabitha Heartweaver", map = 1421, zone = "Silverpine Forest", x = 44.4, y = 43, note = "New in Forever" }, -- 2
@@ -103,5 +103,9 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 494, questName = "Time To Strike", npc = 2214, npcName = "Deathstalker Lesh", map = 1424, zone = "Hillsbrad Foothills", x = 20.8, y = 47.4 }, -- 86
         { type = "TURNIN", quest = 494, questName = "Time To Strike", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, note = "reduced xp (60%) - you out-levelled it" }, -- 87
         { type = "GRIND", npc = 2269, target = "Hillsbrad Miner", level = 28, map = 1424, zone = "Hillsbrad Foothills", x = 32.4, y = 52.1, near = true, note = "grind Hillsbrad Miner (level 26-27) to level 28 - nothing worth questing at 27" }, -- 88
+        { type = "ACCEPT", quest = 7321, questName = "Soothing Turtle Bisque", npc = 2393, npcName = "Christoph Jeffcoat", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 19, profession = "Cooking" }, -- 89
+        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Turtle Meat", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 65.8, y = 38, profession = "Cooking" }, -- 90
+        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Soothing Spices", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 63.1, y = 19.4, near = true, profession = "Cooking" }, -- 91
+        { type = "TURNIN", quest = 7321, questName = "Soothing Turtle Bisque", npc = 2393, npcName = "Christoph Jeffcoat", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 19, profession = "Cooking" }, -- 92
     } end,
 })
