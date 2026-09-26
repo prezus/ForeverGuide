@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_11_THOUSAND_NEEDLES",
   "name": "11. Thousand Needles 28-29 (Dwarf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 28,
@@ -30,8 +30,8 @@
     {"type": "TURNIN", "quest": 1104, "questName": "Salt Flat Venom", "npc": 4454, "npcName": "Fizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
     {"type": "TURNIN", "quest": 1105, "questName": "Hardened Shells", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
     {"type": "TURNIN", "quest": 1175, "questName": "A Bump in the Road", "npc": 4629, "npcName": "Trackmaster Zherin", "map": 1441, "zone": "Thousand Needles", "x": 81.6, "y": 78},
-    {"type": "ACCEPT", "quest": 5762, "questName": "Hemet Nesingwary", "npc": 4452, "npcName": "Kravel Koalbeard", "map": 1441, "zone": "Thousand Needles", "x": 77.8, "y": 77.2},
     {"type": "GRIND", "npc": 4124, "target": "Needles Cougar", "level": 29, "map": 1441, "zone": "Thousand Needles", "x": 63.6, "y": 59.8, "near": true, "note": "grind Needles Cougar (level 27-28) to level 29 - nothing worth questing at 28"},
+    {"type": "ACCEPT", "quest": 5762, "questName": "Hemet Nesingwary", "npc": 4452, "npcName": "Kravel Koalbeard", "map": 1441, "zone": "Thousand Needles", "x": 77.8, "y": 77.2},
     {"type": "ACCEPT", "quest": 1176, "questName": "Load Lightening", "npc": 4630, "npcName": "Pozzik", "map": 1441, "zone": "Thousand Needles", "x": 80.2, "y": 75.9},
     {"type": "COLLECT", "quest": 1176, "questName": "Load Lightening", "target": "Hollow Vulture Bone", "count": 10, "map": 1441, "zone": "Thousand Needles", "x": 83, "y": 70.7, "near": true},
     {"type": "TURNIN", "quest": 1176, "questName": "Load Lightening", "npc": 4630, "npcName": "Pozzik", "map": 1441, "zone": "Thousand Needles", "x": 80.2, "y": 75.9}
