@@ -145,20 +145,27 @@ function Tips:LinesFor(itemID, itemName)
     return out
 end
 
---- Live quest progress for objectives served by this mob (kills or item drops).
+--- Live progress for objectives served by this mob (kills or item drops): one
+--- "Objective: n/m" line per objective, without the quest title.
 function Tips:MobLinesFor(mobName)
     local out = {}
     local name = ns.PlainString(mobName)
     if not name or name == "" or not ns.MobMarker then return out end
     name = string.lower(name)
+    local seen = {}
     for _, questID in ipairs(ns.Quest.order or {}) do
         local entry = ns.Quest:GetEntry(questID)
         local live = entry and entry.objectives or {}
         for k, o in ipairs(live) do
             if ns.MobMarker:ObjectiveNames(questID, k, live)[name] then
-                local text = (o.text or ""):gsub(":%s*%d+%s*/%s*%d+%s*$", "")
+                -- objective text carries its own counter, either "Bear Fur: 0/8" or "0/8 Bear Fur"
+                local text = (o.text or ""):gsub("%s*:?%s*%d+%s*/%s*%d+%s*$", ""):gsub("^%s*%d+%s*/%s*%d+%s*", "")
                 local progress = o.numRequired > 0 and string.format("%d/%d", o.numFulfilled, o.numRequired) or (o.finished and "complete" or "in progress")
-                out[#out + 1] = string.format("%s: %s (%s)", entry.title, text, progress)
+                local line = string.format("%s: %s", text, progress)
+                if not seen[line] then
+                    seen[line] = true
+                    out[#out + 1] = line
+                end
             end
         end
     end

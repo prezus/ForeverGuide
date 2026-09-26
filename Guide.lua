@@ -39,7 +39,6 @@ Guide.list = {}          -- ordered ids (registration order)
 Guide.active = nil       -- guide table
 Guide.progress = nil     -- ns.char.guides[id]
 Guide.current = nil      -- current step index
-Guide.postponed = {}     -- step index -> time until which it is walked past (crowd postponement)
 Guide.note = nil         -- recovery note shown in UI
 Guide.blocked = nil      -- current step is blocked (quest missing, no accept step)
 
@@ -613,10 +612,6 @@ function Guide:Evaluate(reason)
                 done = true      -- an objective / turn-in of a quest we could not take yet
             end
         end
-        -- a step postponed for a while (crowded spot, see Crowd.lua) is walked past until its time is up
-        if not done and self.postponed[i] then
-            if ns.Now() < self.postponed[i] then done = true else self.postponed[i] = nil end
-        end
         -- optional quest steps (group / elite quests the route only offers) are walked past unless the
         -- player opted in by taking the quest: then its objectives and turn-in are guided like any other
         if not done and step.optional and step.quest then
@@ -771,7 +766,6 @@ function Guide:Activate(id, silent)
     end
     self.active = g
     self.progress = ns.Database:GuideProgress(g.id, g.version)
-    self.postponed = {}
     self.current = nil
     self.hold, self.recovery = nil, nil
     ns.char.activeGuide = g.id
@@ -792,38 +786,6 @@ function Guide:WarnOffRoute()
     self.warnedOffRoute = self.active and self.active.id
     ns.Printf("this is the %s route's chapter - your own route has %s for level %d. /fg path race goes back to it (or /fg guide %s).",
         ROUTE_LABEL[race] or race, mine.name or mine.id, ns.Player:GetLevel(), mine.id)
-end
-
---- Walk past a step for `seconds` (it returns on its own); the guide moves on to the next one.
-function Guide:Postpone(idx, seconds, why)
-    if not self.active or not self.active.steps[idx] then return false end
-    local step_guide = self.active
-    self.postponed[idx] = ns.Now() + (seconds or 600)
-    if self.hold == idx then self.hold = nil end
-    self.current = nil
-    self:Evaluate("postpone")
-    local step = self.active.steps[idx]
-    ns.Printf("Postponed step %d (%s) for %d min%s.", idx, self:GetStepText(step), math.floor((seconds or 600) / 60 + 0.5), why and (" - " .. why) or "")
-    -- come back to it when the time is up
-    ns.Events:After((seconds or 600) + 1, function() if Guide.active == step_guide then Guide:Unpostpone(idx) end end)
-    return true
-end
-
---- Bring a postponed step back (the persisted step index only moves forward on its own, so it is
---- pulled back here); no index = every postponed step.
-function Guide:Unpostpone(idx)
-    if not self.active or not self.progress then return end
-    local lowest
-    if idx then
-        if self.postponed[idx] then lowest = idx end
-        self.postponed[idx] = nil
-    else
-        for i in pairs(self.postponed) do if not lowest or i < lowest then lowest = i end end
-        self.postponed = {}
-    end
-    if lowest and self.progress.step > lowest then self.progress.step = lowest end
-    self.current = nil
-    self:Evaluate("unpostpone")
 end
 
 --- Number of steps without forcing a lazy guide to load its steps.

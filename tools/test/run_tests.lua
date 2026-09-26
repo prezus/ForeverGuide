@@ -782,11 +782,15 @@ end
 do
     MOCK_ACCEPT(52, "Protect the Frontier", { { text = "Young Forest Bear slain: 2/5", finished = false, numFulfilled = 2, numRequired = 5 } }); settle()
     local lines = ns.ItemTips:MobLinesFor("Young Forest Bear")
-    check(#lines == 1 and lines[1]:find("Protect the Frontier", 1, true) and lines[1]:find("2/5", 1, true), "hovering a kill mob shows its live quest progress")
+    check(#lines == 1 and lines[1] == "Young Forest Bear slain: 2/5", "hovering a kill mob shows only its objective and live progress (" .. tostring(lines[1]) .. ")")
     check(#ns.ItemTips:MobLinesFor("Riverpaw Runt") == 0, "a mob not needed for a live objective gets no quest status")
     MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Painted Gnoll Armband: 3/8", finished = false, numFulfilled = 3, numRequired = 8 } }); settle()
     lines = ns.ItemTips:MobLinesFor("Riverpaw Runt")
-    check(#lines == 1 and lines[1]:find("Riverpaw Gnoll Bounty", 1, true) and lines[1]:find("3/8", 1, true), "hovering a drop mob shows gathered item progress")
+    check(#lines == 1 and lines[1] == "Painted Gnoll Armband: 3/8", "hovering a drop mob shows only the gathered item objective (" .. tostring(lines[1]) .. ")")
+    MOCK_ABANDON(11); settle()
+    MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "3/8 Painted Gnoll Armband", finished = false, numFulfilled = 3, numRequired = 8 } }); settle()
+    lines = ns.ItemTips:MobLinesFor("Riverpaw Runt")
+    check(#lines == 1 and lines[1] == "Painted Gnoll Armband: 3/8", "a counter-first objective shows its count once, with no quest title (" .. tostring(lines[1]) .. ")")
     GameTooltip.unitName, GameTooltip.lines = "Riverpaw Runt", {}
     GameTooltip:GetScript("OnTooltipSetUnit")(GameTooltip)
     check(#GameTooltip.lines == 2 and GameTooltip.lines[2]:find("3/8", 1, true), "the unit tooltip actually receives the current quest progress")
@@ -858,61 +862,16 @@ do
     check(ns.MobMarker.primaryUnit == "nameplate1" and ns.MobMarker.markedCount == 2, "a tagged mob loses its skull entirely, the next one gets the big skull (" .. tostring(ns.MobMarker.primaryUnit) .. ", " .. tostring(ns.MobMarker.markedCount) .. ")")
     MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, scale = 0.8, y = 500, tagged = true }); ns.MobMarker:Scan()
     check(ns.MobMarker.primaryUnit == nil and ns.MobMarker.markedCount == 1, "all wanted mobs tagged: no big skull, only the other quest's mob keeps a small one")
-    -- crowd: most wanted mobs tagged by others -> banner with a quieter spawn cluster / another step
+    -- no crowd detection: a busy spot raises no group / crowd popup and postpones nothing
     do
-        ns.db.crowd = { enabled = true } -- opt into crowd behavior for its existing checks
         for i = 1, 6 do MOCK_PLATE("nameplate" .. (10 + i), { name = "Kobold Vermin", npcID = 6, scale = 1.0, y = 300, tagged = i <= 5 }) end
-        ns.MobMarker:Scan()
-        local tg, fr, pl, crowded = ns.Crowd:Level()
-        check(crowded and tg >= 5, "five of six quest mobs taken: crowded (" .. tostring(tg) .. "/" .. tostring(tg + fr) .. ")")
-        check(ForeverGuideCrowdBanner and ForeverGuideCrowdBanner:IsShown() and (ForeverGuideCrowdBanner.title:GetText() or ""):find("Crowded", 1, true), "the crowd banner shows")
-        local alts = ns.Crowd:SpawnAlternatives()
-        check(#alts >= 1 and alts[1].dist >= 150 and alts[1].map == 1429, "another Kobold Vermin spawn cluster at least 150 yd away is offered (" .. tostring(alts[1] and alts[1].label) .. ")")
-        ns.Crowd:GoToAlternative()
-        check(ns.Navigation.override == "crowd" and ns.Navigation.target and ns.Navigation.target.owner == "crowd", "Go there navigates to the quieter spot")
-        ns.Crowd:ReleaseOverride()
-        check(ns.Navigation.override == nil and ns.Navigation.target and ns.Navigation.target.owner == "guide", "arrival hands navigation back to the guide")
-        for i = 1, 6 do MOCK_PLATE("nameplate" .. (10 + i), nil) end
-        ns.Crowd.snoozedUntil = nil
-        -- more than 4 players around: a single-target step is postponed, a shared kill step stays and offers a group
         for i = 1, 5 do MOCK_PLATE("nameplate" .. (20 + i), { name = "Player" .. i, player = true, friendly = true, npcID = 0 }) end
-        ns.MobMarker:Scan()
-        local _, _, pl = ns.Crowd:Level()
-        check(pl >= 5, "five players seen on nameplates (" .. tostring(pl) .. ")")
-        check(ns.Crowd:IsSharedKillOrLoot(step()) == true and G.postponed[cur()] == nil, "a kill-x-mobs step is not postponed by the crowd")
-        do
-            -- only two players around, nothing tagged: not crowded, but a kill step still gets the group-up reminder
-            for i = 3, 5 do MOCK_PLATE("nameplate" .. (20 + i), nil) end
-            ns.Crowd.snoozedUntil = nil
-            ns.Crowd:Reset()
-            ns.MobMarker:Scan()
-            local _, _, _, cr = ns.Crowd:Level()
-            check(not cr and (not ForeverGuideCrowdBanner or not ForeverGuideCrowdBanner:IsShown()), "two players on a kill step: no group-up popup without a crowd")
-            for i = 3, 5 do MOCK_PLATE("nameplate" .. (20 + i), { name = "Player" .. i, player = true, friendly = true, npcID = 0 }) end
-            ns.MobMarker:Scan()
-        end
-        check(ForeverGuideCrowdBanner:IsShown() and not ForeverGuideCrowdBanner.invite and #MOCK.invited == 0,
-            "crowd advice never offers or sends bulk invitations")
-        ns.RegisterGuide({ id = "AUDIT_CROWD2", name = "crowd2", steps = {
-            { type = "ACCEPT", quest = 11 },
-            { type = "KILL", quest = 11, target = "Hogger", npc = 448, count = 1 },
-            { type = "KILL", quest = 11, target = "Kobold Vermin", npc = 6, near = true },
-            { type = "TURNIN", quest = 11 } } })
-        if not ns.Quest:IsOnQuest(11) then MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Hogger slain", finished = false, numFulfilled = 0, numRequired = 1 }, { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 6 } }); settle() end
-        G:Activate("AUDIT_CROWD2", true)
-        check(not ns.Crowd:IsSharedKillOrLoot(G.active.steps[2]), "a named single mob is not a shared kill")
-        settle()
-        ns.MobMarker:Scan()
-        check(G.postponed[2] ~= nil and cur() == 3, "with more than 4 players around the named-mob step is postponed and the guide moves on (" .. tostring(cur()) .. ")")
-        G:Unpostpone(2)
-        check(cur() == 2, "unpostpone brings it back (cur=" .. tostring(cur()) .. " postponed=" .. tostring(G.postponed[2]) .. ")")
+        local before = cur()
+        ns.MobMarker:Scan(); settle()
+        check(ns.Crowd == nil and rawget(_G, "ForeverGuideCrowdBanner") == nil, "five of six quest mobs taken and five players around: no crowd / group-up popup")
+        check(cur() == before and G.Postpone == nil, "a crowded spot never postpones the step")
+        for i = 1, 6 do MOCK_PLATE("nameplate" .. (10 + i), nil) end
         for i = 1, 5 do MOCK_PLATE("nameplate" .. (20 + i), nil) end
-        MOCK_ABANDON(11); settle()
-        if not ns.Quest:IsOnQuest(11) then MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 10 } }); settle() end
-        G:Activate("AUDIT_SKULL", true); settle()
-        -- Crowd detection uses nearby nameplates, not background /who requests.
-        ns.Crowd:Update()
-        check(MOCK.whoQuery == nil, "crowd banner never sends a /who query")
         ns.Commands:Run("who")
         check(MOCK.whoQuery == nil, "the addon no longer offers a /who command")
     end
@@ -1715,8 +1674,6 @@ do
     check(ns.UI:AllHidden() == true and ns.UI:IsSuspended("dungeon"), "so everything is put away")
     check(ns.db.ui.hiddenAll ~= true, "without touching the hide-everything setting")
     check(not ns.UI:Create():IsShown(), "the guide window stays down inside")
-    ns.Crowd:Update()
-    check(not ForeverGuideCrowdBanner:IsShown(), "the crowd banner too")
 
     MOCK_INSTANCE(nil)
     check(ns.UI:AllHidden() == false, "walking out brings it back")

@@ -22,11 +22,10 @@ ForeverGuide targets WoW Forever's beta client, not stock Classic or Retail. Thi
 
 The following current paths cross or approach the boundary. They are recorded here for review, **not** declared policy-compliant by virtue of already shipping:
 
-- `UI/MobMarker.lua`: automatically writes enemy/friendly nameplate CVars, and prepares a `/targetexact` secure macro (targeting requires the player's click/key).
+- `UI/MobMarker.lua`: automatically writes the enemy nameplate CVar, and prepares a `/targetexact` secure macro (targeting requires the player's click/key).
 - `UI/QuestGuideFrame.lua`: fades Blizzard's objective tracker and disables its mouse input by default. `UI.lua` also moves the guide above the world map.
 - `Navigation.lua`: optional engine waypoint sets/super-tracks and later clears a map point.
 - `Ding.lua`: optional level-up chat/emote; even when off, login requests played time and installs chat suppression hooks.
-- `Crowd.lua`: opt-in crowd detection can automatically postpone a guide step; its Go there button changes the navigation target on click.
 - `Commands.lua`: `/fg npdbg mark` attempts `SetRaidTarget` on explicit command (reported blocked on this client).
 - `Persist.lua`: writes ForeverGuide-prefixed CVars to work around the beta SavedVariables bug; preserve this workaround until client persistence is verified fixed.
 

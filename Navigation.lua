@@ -197,8 +197,8 @@ function Nav:Update(allowCached)
         -- FG_NAV_TARGET_CHANGED). A target that is already within radius the moment it
         -- is set - standing right next to the flight point you just asked to walk to,
         -- say - used to fire FG_NAV_ARRIVED from inside that same SetTarget call, and a
-        -- handler reacting to arrival (Reminders releasing the flight-point override,
-        -- Crowd releasing its override) would reassign the navigation target while the
+        -- handler reacting to arrival (Reminders releasing the flight-point override)
+        -- would reassign the navigation target while the
         -- original caller had not finished setting it up. One tick later costs nothing
         -- a player would notice and closes that reentrancy off.
         ns.Events:After(0, function()

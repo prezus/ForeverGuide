@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Mob tooltips list just the objective and its count ("Bear Fur: 0/8"): no quest title, and the count only once.
+- Crowd detection is gone: no "Crowded" / "Group up" banner, no steps postponed because a spot is busy, and other players' nameplates are no longer switched on during kill steps. `/fg crowd` and `/fg skull friends` are removed.
 - The **R** button at the top of the guide window (your saved reports) showed ".." instead of R: its label was squeezed between the same margins as the wide buttons. Narrow buttons now keep their label.
 - Hearthstone: the guides no longer tell you to "set your hearthstone at the inn (if there is one)" in your starting area, where there is no inn - a new character's hearthstone is already bound there. In a town with an inn the step now names the innkeeper ("Set your hearthstone with Innkeeper Heather (Sentinel Hill)"), the arrow points at them, and the step finishes the moment you make the inn your home with them. Binding with a different innkeeper leaves it open.
 - Guides: the routes were re-planned around the hearthstone (Human does Loch Modan before Westfall, Dwarf goes to Stonetalon rather than Stormwind), so chapter numbers after the first few changed. If the addon says no guide is active after updating, pick yours with `/fg guides`.
