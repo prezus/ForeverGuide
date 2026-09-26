@@ -84,6 +84,10 @@ function MM:WantedNames()
     if step.type == "KILL" and step.target then
         for part in string.gmatch(step.target, "[^/]+") do addName(set, ns.Trim(part)) end
     end
+    -- a COLLECT step names the creatures that drop its item when the quest database does not know them
+    if step.mobs then
+        for part in string.gmatch(step.mobs, "[^/]+") do addName(set, ns.Trim(part)) end
+    end
     if step.quest and DB and DB:IsLoaded() then
         local objIdx = ns.Guide:StepObjectiveIndex(step)
         local live = ns.Quest:GetObjectives(step.quest) or {}

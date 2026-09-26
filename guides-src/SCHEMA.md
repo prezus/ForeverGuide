@@ -48,6 +48,7 @@ Common fields (all optional unless the type needs them):
 | `npc`       | int    | creature ID |
 | `npcName`   | string | |
 | `target`    | string | mob name for KILL/COLLECT display |
+| `mobs`      | string | creatures that drop a COLLECT item, `/`-separated; the mob marker and target key look for them |
 | `count`     | int    | amount for KILL/COLLECT/BUY display |
 | `item`      | int    | item ID (BUY) |
 | `itemName`  | string | |

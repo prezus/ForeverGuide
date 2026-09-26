@@ -32,7 +32,7 @@ STEP_FIELDS = {
     "npc": int, "npcName": str, "target": str, "count": int, "item": int, "itemName": str,
     "spell": int, "spellName": str, "level": int, "map": int, "zone": str, "x": (int, float),
     "y": (int, float), "radius": (int, float), "optional": bool, "near": bool, "faction": str,
-    "class": list, "race": list, "profession": str, "skill": int,
+    "class": list, "race": list, "profession": str, "skill": int, "mobs": str,
 }
 PROFESSIONS = {
     "Alchemy", "Blacksmithing", "Enchanting", "Engineering", "Herbalism", "Leatherworking", "Mining",
