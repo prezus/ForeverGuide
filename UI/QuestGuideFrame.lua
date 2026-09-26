@@ -117,6 +117,7 @@ function QG:Create()
         local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
         local range = math.max(self:GetVerticalScrollRange(), f.list.height - viewport, 0)
         self:SetVerticalScroll(math.max(0, math.min(range, self:GetVerticalScroll() - delta * 40)))
+        QG:PlaceItemButton()
     end)
     f.scroll = scroll
     f.list = ns.QuestList.Create(scroll)
@@ -191,6 +192,7 @@ function QG:Create()
             f.targetBtn = tb
         end
     end
+    f.itemBtn = self:CreateItemButton(f)
 
     f.elapsed = 0
     f:SetScript("OnUpdate", function(self, elapsed)
@@ -275,6 +277,112 @@ function QG:Layout()
         end
         f.scroll:SetVerticalScroll(math.max(0, math.min(at, math.max(0, f.list.height - viewport))))
     end
+    self:PlaceItemButton()
+end
+
+-- ---- the quest item button ------------------------------------------------------------------
+-- A secure button that uses the current step's quest item (the one way an addon may use an item:
+-- the PLAYER clicks it). Secure frames cannot be moved, shown, hidden or re-pointed in combat, so
+-- it is set up out of combat only and left as it is during a fight. It hangs off the window, not
+-- off the row: rows are re-laid out in combat, which they could not be with a secure frame on them.
+local ITEM_SIZE = 22
+
+local function inCombat()
+    return ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true
+end
+
+function QG:CreateItemButton(f)
+    local ok, b = pcall(CreateFrame, "Button", "ForeverGuideItemButton", f, "SecureActionButtonTemplate")
+    if not ok or not b then return nil end
+    pcall(b.SetAttribute, b, "type", "item")
+    pcall(b.RegisterForClicks, b, "AnyDown", "AnyUp")
+    b:SetSize(ITEM_SIZE, ITEM_SIZE)
+    b:SetFrameLevel(f:GetFrameLevel() + 6)
+    b.icon = b:CreateTexture(nil, "ARTWORK")
+    b.icon:SetAllPoints()
+    local hl = b:CreateTexture(nil, "HIGHLIGHT")
+    hl:SetAllPoints()
+    pcall(hl.SetTexture, hl, Theme.TEX.buttonHl)
+    pcall(hl.SetBlendMode, hl, "ADD")
+    pcall(hl.SetAlpha, hl, 0.4)
+    b.count = Theme.NewText(b, { size = 9, justify = "RIGHT", color = Theme.C.text, oneLine = true, outline = "OUTLINE" })
+    b.count:SetPoint("BOTTOMRIGHT", b, "BOTTOMRIGHT", 1, -1)
+    local okC, cd = pcall(CreateFrame, "Cooldown", nil, b, "CooldownFrameTemplate")
+    if okC and cd then cd:SetAllPoints() b.cooldown = cd end
+    b:SetScript("OnEnter", function(self)
+        local tt = rawget(_G, "GameTooltip")
+        if not tt or not self.itemID then return end
+        tt:SetOwner(self, "ANCHOR_LEFT")
+        if not pcall(tt.SetItemByID, tt, self.itemID) then tt:AddLine("Quest item", 1, 0.88, 0.55) end
+        local key = ns.MobMarker and ns.MobMarker:TargetKey()
+        if key and ns.MobMarker.Cfg().useItem ~= false then
+            tt:AddLine("Click to use.  " .. key .. " targets the quest mob and uses it too.", 0.66, 0.61, 0.52, true)
+        else
+            tt:AddLine("Click to use.", 0.66, 0.61, 0.52, true)
+        end
+        tt:Show()
+    end)
+    b:SetScript("OnLeave", function() local tt = rawget(_G, "GameTooltip") if tt then tt:Hide() end end)
+    b:SetScript("OnUpdate", function(self, elapsed)
+        self.elapsed = (self.elapsed or 0) + (elapsed or 0)
+        if self.elapsed < 0.25 then return end
+        self.elapsed = 0
+        QG:UpdateItemButtonState()
+    end)
+    b:Hide()
+    return b
+end
+
+--- Count and cooldown: plain textures, fine to change in combat.
+function QG:UpdateItemButtonState()
+    local b = frame and frame.itemBtn
+    if not b or not b.itemID then return end
+    local n = ns.PlainNumber(ns.Call("C_Item.GetItemCount", b.itemID)) or 0
+    b.count:SetText(n > 1 and tostring(n) or "")
+    pcall(b.icon.SetDesaturated, b.icon, n == 0)
+    if b.cooldown then
+        local start, duration, enable = ns.Call("C_Container.GetItemCooldown", b.itemID)
+        if start == nil then start, duration, enable = ns.Safe(rawget(_G, "GetItemCooldown"), b.itemID) end
+        start, duration = ns.PlainNumber(start), ns.PlainNumber(duration)
+        if start and duration and duration > 0 and ns.Plain(enable) ~= 0 then
+            pcall(b.cooldown.SetCooldown, b.cooldown, start, duration)
+        else
+            pcall(b.cooldown.Clear, b.cooldown)
+        end
+    end
+end
+
+--- Put the button on the row of the step that has an item (out of combat; deferred otherwise).
+function QG:PlaceItemButton()
+    local f = frame
+    local b = f and f.itemBtn
+    if not b then return end
+    if inCombat() then self.itemPending = true return end
+    self.itemPending = nil
+    local top, idx, itemID = 4, nil, nil
+    for i, e in ipairs(f.list.entries or {}) do
+        if e.useItem then idx, itemID = i, e.useItem break end
+        top = top + f.list.rows[i]:GetHeight() + 3
+    end
+    local row = idx and f.list.rows[idx]
+    local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
+    local y = row and (top - (f.scroll and f.scroll:GetVerticalScroll() or 0))
+    if not row or y < 0 or y + row:GetHeight() > viewport + 1 then
+        b:Hide()
+        b.itemID = nil
+        return
+    end
+    if b.itemID ~= itemID then
+        pcall(b.SetAttribute, b, "item", "item:" .. itemID)
+        local icon = ns.Call("C_Item.GetItemIconByID", itemID)
+        if icon == nil then icon = ns.Safe(rawget(_G, "GetItemIcon"), itemID) end
+        pcall(b.icon.SetTexture, b.icon, ns.Plain(icon) or "Interface\\Icons\\INV_Misc_QuestionMark")
+        b.itemID = itemID
+    end
+    b:ClearAllPoints()
+    b:SetPoint("TOPRIGHT", f, "TOPRIGHT", -14, -(ns.QuestGuideHeader.HEIGHT + 2 + y + (row:GetHeight() - ITEM_SIZE) / 2))
+    b:Show()
+    self:UpdateItemButtonState()
 end
 
 -- ---- entries ---------------------------------------------------------------------------
@@ -376,6 +484,7 @@ function QG:BuildGuideEntries()
         local e = {
             number = idx, index = idx, step = s, icon = ICON_FOR[s.type] or "accept", state = state,
             title = rowTitle(G, s), subtitle = sub, questID = s.quest,
+            useItem = idx == cur and G:StepUseItem(s) or nil,
             onClick = function() G:SetStep(idx) end,
             onRightClick = function() if idx == G.current then G:Skip() end end,
         }
@@ -401,6 +510,7 @@ function QG:BuildTrackerEntries()
         entries[#entries + 1] = {
             number = i, icon = c.kind == "turnin" and "turnin" or (c.kind == "kill" and "kill" or "collect"), state = i == 1 and "active" or (i <= 3 and "available" or "future"),
             title = ns.Quest:TitleWithLevel(c.questID, c.title), subtitle = c.what, loc = c.loc, questID = c.questID,
+            useItem = i == 1 and c.kind ~= "turnin" and ns.Quest:UsableItem(c.questID) or nil,
             tooltip = { c.loc and ns.DB:DescribeLocation(c.loc) or "", c.grey and ("|cffff8040" .. c.grey .. "|r") or nil },
         }
     end
@@ -568,6 +678,7 @@ function QG:ToggleInfo()
 end
 
 function QG:OnInit()
+    ns.Events:Register("PLAYER_REGEN_ENABLED", function() if QG.itemPending then QG:PlaceItemButton() end end)
     ns.Events:Register("FG_LOCK_CHANGED", function(_, locked)
         if frame and frame.resizeGrip then frame.resizeGrip:SetShown(not locked) end
     end)

@@ -793,6 +793,18 @@ function Guide.StepCount(g)
     return g and (rawget(g, "stepCount") or (rawget(g, "steps") and #g.steps) or 0) or 0
 end
 
+local USE_ITEM_STEP = { KILL = true, COLLECT = true, COMPLETE = true }
+
+--- The item the player clicks for this step, or nil: the quest's usable item while its objectives
+--- are open, or on an accept step the item in your bags that starts the quest.
+---@return number?
+function Guide:StepUseItem(step)
+    if not step or not step.quest then return nil end
+    if step.type == "ACCEPT" then return ns.Quest:StarterItem(step.quest) end
+    if not USE_ITEM_STEP[step.type] then return nil end
+    return ns.Quest:UsableItem(step.quest)
+end
+
 function Guide:GetCurrentStep()
     if not self.active or not self.current then return nil end
     return self.active.steps[self.current]

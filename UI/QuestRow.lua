@@ -140,6 +140,13 @@ function Row.Set(r, entry, showSubtitle)
     Theme.Color(r.sub, st.sub)
     if sub and sub ~= "" then r.sub:Show() r:SetHeight(Row.HEIGHT_TWO) else r.sub:Hide() r:SetHeight(Row.HEIGHT_ONE) end
     r.bar:SetHeight(r:GetHeight() - 6)
+    -- room on the right for the quest item button (QuestGuideFrame places it over the row)
+    local right = entry.useItem and 34 or 8
+    r.dist:ClearAllPoints()
+    r.dist:SetPoint("TOPRIGHT", r, "TOPRIGHT", -right, -5)
+    r.sub:ClearAllPoints()
+    r.sub:SetPoint("TOPLEFT", r, "TOPLEFT", LEFT + 8, -19)
+    r.sub:SetPoint("RIGHT", r, "RIGHT", -right, 0)
     Theme.Color(r.dist, st.dist)
     r:SetDistance(entry.distance)
     pcall(r.SetAlpha, r, st.alpha)

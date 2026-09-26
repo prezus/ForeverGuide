@@ -14,6 +14,26 @@ Verify client-dependent behavior in-game; the headless mock is not the client.
 - Engine: follow the existing `ns` module convention and `.toc` load order. Add a new
   file to the `.toc` only if the feature actually needs it.
 
+## Look up Forever's API
+
+Forever is its own flavor ("Camelot"): Classic and Retail docs and memory are wrong about its API.
+Before using or debugging any game function, event, or template, look it up in the pinned
+[Gethe/wow-ui-source](https://github.com/Gethe/wow-ui-source) `forever` branch, at the commit
+CI fetches in `.github/workflows/check.yml`:
+
+```text
+git clone --branch forever https://github.com/Gethe/wow-ui-source.git <dir>
+git -C <dir> checkout <commit from check.yml>
+```
+
+- Namespaced calls (`C_*`): `Interface/AddOns/Blizzard_APIDocumentationGenerated/`.
+- Globals, return shapes, and how a feature is really read: grep Blizzard's own code, preferring
+  `*/Camelot/` files (e.g. skills come from `C_SkillInfo`, one table per line, in
+  `Blizzard_UIPanels_Game/Camelot/SkillsFrame.lua`).
+- After adding calls: `python3 tools/check_forever_api.py <dir>`.
+
+When Forever ships a new build, move the pin (the commit in `check.yml`, `VERSION` in the checker) together.
+
 ## Test the contract, not your code
 
 1. For a bug, reproduce it with a check that fails **before** changing production code.

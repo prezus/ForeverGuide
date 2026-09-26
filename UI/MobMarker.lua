@@ -333,16 +333,17 @@ function MM:TargetButton()
     return b
 end
 
---- Point the button's macro at the current step's mobs (deferred while in combat).
-function MM:UpdateTargetMacro(names)
+--- Point the button's macro at the current step's mobs, then the step's quest item when there is
+--- one (deferred while in combat).
+function MM:UpdateTargetMacro(names, itemID)
     local b = self:TargetButton()
     if not b then return end
     local list = {}
     for _, name in pairs(names or {}) do list[#list + 1] = name end
     table.sort(list)
-    local key = table.concat(list, "|")
+    local key = table.concat(list, "|") .. "#" .. tostring(itemID)
     if key == macroNames then return end
-    if inCombat() then macroPending = names return end
+    if inCombat() then macroPending = { names = names, item = itemID } return end
     -- /targetexact may land on a corpse. Each name is tried only while there is no target or it is
     -- dead, so a later name cannot replace a living one, and a corpse left at the end is dropped.
     local lines = {}
@@ -351,9 +352,11 @@ function MM:UpdateTargetMacro(names)
         for _, name in ipairs(list) do lines[#lines + 1] = "/targetexact [noexists][dead] " .. name end
         lines[#lines + 1] = "/cleartarget [dead]"
     end
+    -- after the targeting, so an item used on a mob lands on the one just picked
+    if itemID then lines[#lines + 1] = "/use item:" .. itemID end
     pcall(b.SetAttribute, b, "macrotext", table.concat(lines, "\n"))
     macroNames, macroPending = key, nil
-    ns.Events:Fire("FG_TARGET_MACRO_CHANGED", list)
+    ns.Events:Fire("FG_TARGET_MACRO_CHANGED", list, itemID)
 end
 
 function MM:TargetKey()
@@ -375,7 +378,8 @@ function MM:Scan()
     -- player picked up on their own
     local anyKill = killStep or next(openKills) ~= nil
     forcePlates(anyKill)
-    self:UpdateTargetMacro(names)
+    local current = ns.Guide and ns.Guide:GetCurrentStep()
+    self:UpdateTargetMacro(names, c.useItem ~= false and current and ns.Guide:StepUseItem(current) or nil)
     local NP = rawget(_G, "C_NamePlate")
     if not NP or type(NP.GetNamePlates) ~= "function" then return end
     local plates = ns.Safe(NP.GetNamePlates) or {}
@@ -444,8 +448,8 @@ end
 function MM:OnInit()
     ns.Events:RegisterMany({ "NAME_PLATE_UNIT_ADDED", "NAME_PLATE_UNIT_REMOVED", "PLAYER_TARGET_CHANGED", "UNIT_FLAGS", "PLAYER_REGEN_ENABLED" },
         function() ns.Events:Debounce("mobmarker", 0.1, function() MM:Scan() end) end)
-    ns.Events:Register("PLAYER_REGEN_ENABLED", function() if macroPending then MM:UpdateTargetMacro(macroPending) end end)
-    ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_GUIDE_CHANGED", "FG_MODE_CHANGED", "FG_QUEST_LOG_CHANGED", "FG_HIDDEN_ALL_CHANGED" },
+    ns.Events:Register("PLAYER_REGEN_ENABLED", function() if macroPending then MM:UpdateTargetMacro(macroPending.names, macroPending.item) end end)
+    ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_GUIDE_CHANGED", "FG_MODE_CHANGED", "FG_QUEST_LOG_CHANGED", "FG_HIDDEN_ALL_CHANGED", "BAG_UPDATE_DELAYED" },
         function() ns.Events:Debounce("mobmarker", 0.1, function() MM:Scan() end) end)
 end
 

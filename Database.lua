@@ -52,6 +52,7 @@ local DEFAULTS = {
             enabled = true,
             others = true,        -- small skulls over the other quest mobs around
             plates = true,        -- switch enemy nameplates on during kill steps
+            useItem = true,       -- the target key also uses the step's quest item
         },
     },
     instance = {                  -- step aside inside dungeons (Instance.lua)

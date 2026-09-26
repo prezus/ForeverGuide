@@ -455,6 +455,20 @@ function DB:QuestFaction(questID)
     return nil
 end
 
+local FACTION_RACES = { Alliance = 77, Horde = 178 }
+
+--- May this race take a quest with this Classic race mask? A race without a Classic bit (WoW
+--- Forever's Skyborne, on both factions) takes what every race of its faction can take, nothing
+--- race-specific. Unknown race and faction: not ours to judge.
+local function RaceAllowed(races, raceFile)
+    if not races or races == 0 or not raceFile then return true end
+    local rbit = RACE_BIT[raceFile]
+    if rbit then return band(races, rbit) ~= 0 end
+    local all = FACTION_RACES[ns.Player:GetFaction() or ""]
+    if not all then return true end
+    return band(races, all) == all
+end
+
 --- The part of availability that can never change for this character: its race and class.
 --- (Level, prerequisites and completion all change with play; race and class do not, so a step
 --- whose quest fails this one is not for this character at all - the Dwarf route carrying the
@@ -463,15 +477,14 @@ local raceClassCache, raceClassWhy, raceClassFor = {}, {}, nil
 function DB:RaceClassOK(questID)
     local _, raceFile = ns.Player:GetRace()
     local _, classFile = ns.Player:GetClass()
-    local who = tostring(raceFile) .. "/" .. tostring(classFile)
+    local who = tostring(raceFile) .. "/" .. tostring(classFile) .. "/" .. tostring(ns.Player:GetFaction())
     if who ~= raceClassFor then raceClassCache, raceClassWhy, raceClassFor = {}, {}, who end
     local cached = raceClassCache[questID]
     if cached ~= nil then return cached, raceClassWhy[questID] end
     local q = self:GetQuest(questID)
     if not q then return true end        -- unknown quest: not ours to judge
     local ok, why = true, nil
-    local rbit = raceFile and RACE_BIT[raceFile]
-    if q.races and q.races ~= 0 and rbit and band(q.races, rbit) == 0 then ok, why = false, "wrong race/faction" end
+    if not RaceAllowed(q.races, raceFile) then ok, why = false, "wrong race/faction" end
     if ok then
         local cbit = classFile and CLASS_BIT[classFile]
         if q.classes and q.classes ~= 0 and cbit and band(q.classes, cbit) == 0 then ok, why = false, "wrong class" end
@@ -493,8 +506,7 @@ function DB:IsAvailable(questID)
     if q.req and level < q.req then return false, "requires level " .. q.req end
     if q.maxlvl and level > q.maxlvl then return false, "too high level" end
     local _, raceFile = ns.Player:GetRace()
-    local rbit = raceFile and RACE_BIT[raceFile]
-    if q.races and q.races ~= 0 and rbit and band(q.races, rbit) == 0 then return false, "wrong race/faction" end
+    if not RaceAllowed(q.races, raceFile) then return false, "wrong race/faction" end
     local _, classFile = ns.Player:GetClass()
     local cbit = classFile and CLASS_BIT[classFile]
     if q.classes and q.classes ~= 0 and cbit and band(q.classes, cbit) == 0 then return false, "wrong class" end

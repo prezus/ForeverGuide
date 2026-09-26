@@ -305,6 +305,58 @@ function Quest:GetWaypoint(questID)
     return nil
 end
 
+-- ------------------------------------------------------------
+-- Items the player clicks for a quest
+-- ------------------------------------------------------------
+local function InBags(itemID)
+    return (PlainNumber(ns.Call("C_Item.GetItemCount", itemID)) or 0) > 0
+end
+
+--- Does the item have a "Use:" effect? (A letter or a deed the quest hands you does not.)
+local function HasUse(itemID)
+    local spell = ns.Call("C_Item.GetItemSpell", itemID)
+    if spell == nil then spell = Safe(rawget(_G, "GetItemSpell"), itemID) end
+    return PlainString(spell) ~= nil
+end
+
+--- The item the client itself attaches to a quest in the log (retail's quest item button), or nil.
+local function SpecialItem(entry)
+    if not entry or not entry.logIndex then return nil end
+    local link = PlainString(Safe(rawget(_G, "GetQuestLogSpecialItemInfo"), entry.logIndex))
+    return link and tonumber(link:match("item:(%d+)")) or nil
+end
+
+--- The item in your bags to click for a quest's objectives, or nil: the quest log's own quest item,
+--- else an item the quest gives you or needs (database) that has a Use effect.
+---@param questID number
+---@return number?
+function Quest:UsableItem(questID)
+    local entry = self.log[questID]
+    if not entry or entry.ready then return nil end
+    local special = SpecialItem(entry)
+    if special and InBags(special) then return special end
+    local q = ns.DB and ns.DB:GetQuest(questID)
+    if not q then return nil end
+    local candidates = { q.srcitem }
+    for _, id in ipairs(q.reqitems or {}) do candidates[#candidates + 1] = id end
+    for _, id in ipairs(candidates) do
+        if InBags(id) and HasUse(id) then return id end
+    end
+    return nil
+end
+
+--- An item in your bags that starts the quest (right-click to be offered it), or nil.
+---@param questID number
+---@return number?
+function Quest:StarterItem(questID)
+    if self:IsOnQuest(questID) or self:IsCompleted(questID) then return nil end
+    local q = ns.DB and ns.DB:GetQuest(questID)
+    for _, id in ipairs(q and q.sitem or {}) do
+        if InBags(id) then return id end
+    end
+    return nil
+end
+
 function Quest:GetNumQuests()
     local shown, num = ns.Call("C_QuestLog.GetNumQuestLogEntries")
     return PlainNumber(num) or #self.order, PlainNumber(ns.Call("C_QuestLog.GetMaxNumQuestsCanAccept")) or 0

@@ -1509,6 +1509,33 @@ do
     if ns.Quest:IsOnQuest(4010) then MOCK_ABANDON(4010); settle() end
 end
 
+-- class-only WoW Forever quests: the class comes from the Forever overlay, not the Classic database
+do
+    check(ns.QuestDB[76156] and ns.QuestDB[76156].forever and ns.QuestDB[76156].classes == 64, "the overlay marks Forever's Stalk With The Earthmother as shaman-only")
+    local mine = MOCK.class
+    MOCK.class = { "Warrior", "WARRIOR", 1 }; ns.Player.cache = {}
+    check(ns.DB:RaceClassOK(76156) == false, "a warrior cannot take the shaman quest")
+    check(G:StepApplies({ type = "ACCEPT", quest = 76156 }) == false, "...so its step is not in a warrior's route")
+    MOCK.class = { "Shaman", "SHAMAN", 7 }; ns.Player.cache = {}
+    check(ns.DB:RaceClassOK(76156) == true and G:StepApplies({ type = "ACCEPT", quest = 76156 }) == true, "a shaman gets it")
+    MOCK.class = { "Mage", "MAGE", 8 }; ns.Player.cache = {}
+    check(G:StepApplies({ type = "ACCEPT", quest = 7, class = { "WARRIOR" } }) == false, "a warrior-only guide step is not a mage's")
+    MOCK.class = mine; ns.Player.cache = {}
+end
+
+-- Skyborne (WoW Forever's race, file name "Skyborne", on both factions) has no bit in the Classic
+-- race masks: it takes what every race of its faction can take, and nothing race-specific
+do
+    local mine, faction = MOCK.race, MOCK.faction
+    MOCK.race, MOCK.faction = { "Skyborne", "Skyborne" }, "Alliance"; ns.Player.cache = {}
+    check(ns.DB:RaceClassOK(6181) == false, "a Skyborne cannot take the Human-only 6181")
+    check(ns.DB:RaceClassOK(5) == true, "an Alliance Skyborne takes an all-Alliance quest (5)")
+    check(ns.DB:RaceClassOK(2) == false, "an Alliance Skyborne cannot take a Horde quest (2)")
+    MOCK.faction = "Horde"; ns.Player.cache = {}
+    check(ns.DB:RaceClassOK(2) == true and ns.DB:RaceClassOK(5) == false, "a Horde Skyborne: the Horde quest yes, the Alliance one no")
+    MOCK.race, MOCK.faction = mine, faction; ns.Player.cache = {}
+end
+
 -- ---- level-up announcement ------------------------------------------------------------------
 -- (Ilya, 2026-09-21: "when we level up there should be a party message/emote message ...")
 do
@@ -1991,8 +2018,127 @@ do
     _G.GetNumSkillLines = nil
     MOCK_SKILLS({}); settle()
     check(G:StepApplies(steps[1]) == true, "without a skill list the step shows")
-    _G.GetNumSkillLines = num
+    -- WoW Forever: C_SkillInfo, one table per skill line (Blizzard_UIPanels_Game/Camelot/SkillsFrame.lua)
+    local lines = {}
+    _G.C_SkillInfo = {
+        GetNumSkillLines = function() return #lines end,
+        GetSkillLineInfo = function(i) return lines[i] end,
+    }
+    local info = _G.GetSkillLineInfo
+    _G.GetNumSkillLines, _G.GetSkillLineInfo = nil, nil
+    lines = { { skillID = 0, name = "Professions", isHeader = true, isCollapsed = false, rank = 0, maxRank = 0 } }
     MOCK_SKILLS({}); settle()
+    check(G:StepApplies(steps[1]) == false and G:StepApplies(steps[2]) == false, "Forever skill info, no professions: profession steps do not apply")
+    lines[2] = { skillID = 185, name = "Kochkunst", isHeader = false, isCollapsed = false, rank = 15, maxRank = 75 }   -- Cooking, German client
+    MOCK_SKILLS({}); settle()
+    check(G:StepApplies(steps[1]) == true and G:StepApplies(steps[2]) == false, "Forever skill info: a cook sees the cooking step (matched by skill ID, whatever the name)")
+    lines[3] = { skillID = 164, name = "Blacksmithing", isHeader = false, isCollapsed = false, rank = 29, maxRank = 75 }
+    MOCK_SKILLS({}); settle()
+    check(G:StepApplies(steps[2]) == false, "Forever skill info: blacksmithing at 29 is short of 30")
+    lines[3].rank = 30
+    MOCK_SKILLS({}); settle()
+    check(G:StepApplies(steps[2]) == true, "Forever skill info: at 30 the step shows")
+    _G.C_SkillInfo = nil
+    _G.GetNumSkillLines, _G.GetSkillLineInfo = num, info
+    MOCK_SKILLS({}); settle()
+end
+
+-- ---- quest items you click: a button on the step's row, and the target key uses them ------------
+do
+    MOCK_LEVEL(40); settle()
+    MOCK.itemSpells = MOCK.itemSpells or {}
+    ns.RegisterGuide({ id = "AUDIT_USEITEM", name = "use item", steps = {
+        { type = "ACCEPT", quest = 992 },
+        { type = "COMPLETE", quest = 992 },     -- Gadgetzan Water Survey: use the widget at the pool
+        { type = "TURNIN", quest = 992 },
+        { type = "ACCEPT", quest = 55 },
+        { type = "KILL", quest = 55 },          -- Morbent Fel: use Morbent's Bane on him, then kill him
+        { type = "TURNIN", quest = 55 },
+        { type = "NOTE", text = "filler" },
+        { type = "ACCEPT", quest = 123 },       -- The Collector: started by right-clicking the schedule
+        { type = "TURNIN", quest = 123 },
+        { type = "ACCEPT", quest = 99931 },     -- a Forever quest the database does not know
+        { type = "COMPLETE", quest = 99931 } } })
+    for _, q in ipairs({ 992, 55, 123, 99931 }) do if ns.Quest:IsOnQuest(q) then MOCK_ABANDON(q) end end
+    settle()
+    G:Activate("AUDIT_USEITEM", true); settle()
+    local function macro() return ForeverGuideTargetButton:GetAttribute("macrotext") or "" end
+    local function refresh() ns.MobMarker:Scan() ns.QuestGuide:Refresh() end
+    local btn = function() return rawget(_G, "ForeverGuideItemButton") end
+    local function activeEntry()
+        for _, e in ipairs(ns.QuestGuide.frame.list.entries) do if e.state == "active" then return e end end
+    end
+    local function where() return " (" .. tostring(G.active and G.active.id) .. " step " .. tostring(cur()) .. " " .. tostring(step() and step().type) .. " note=" .. tostring(G.note) .. ")" end
+
+    -- use it at a place: the widget at the pool
+    MOCK_ACCEPT(992, "Gadgetzan Water Survey", { { text = "Tapped Dowsing Widget: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } }); settle()
+    G:SetStep(2); settle(); refresh()
+    check(step().type == "COMPLETE" and step().quest == 992, "use-item test: on the survey step" .. where())
+    check(G:StepUseItem(step()) == nil, "the widget is not in the bags: nothing to click")
+    check(not macro():find("/use", 1, true), "...and the target key uses nothing (" .. macro():gsub("\n", " | ") .. ")")
+    check(not (btn() and btn():IsShown()), "...and no item button shows")
+
+    MOCK.items[8584] = 1; MOCK.itemSpells[8584] = "Collect Sample"
+    MOCK_FIRE("BAG_UPDATE_DELAYED"); settle(); refresh()
+    check(G:StepUseItem(step()) == 8584, "the widget is in the bags and has a Use effect: it is the step's item (" .. tostring(G:StepUseItem(step())) .. ")")
+    check(activeEntry() and activeEntry().useItem == 8584, "the step's row carries the item")
+    check(btn() and btn():IsShown() and btn():GetAttribute("type") == "item" and btn():GetAttribute("item") == "item:8584",
+        "a secure item button on the row uses the widget (" .. tostring(btn() and btn():GetAttribute("item")) .. ")")
+    check(macro() == "/use item:8584", "no mobs to target: the target key just uses the item (" .. macro():gsub("\n", " | ") .. ")")
+
+    -- the option: the key goes back to targeting only; the row button stays
+    ns.QuestGuideConfig.SetToggle("skulluse", false); refresh()
+    check(not macro():find("/use", 1, true), "with the option off the target key does not use the item")
+    check(btn():IsShown(), "...the row button is still there")
+    ns.QuestGuideConfig.SetToggle("skulluse", true); refresh()
+    check(macro():find("/use item:8584", 1, true) ~= nil, "option back on: the key uses it again")
+
+    -- combat locks secure buttons: nothing changes until it ends
+    MOCK.inCombat = true
+    MOCK_PROGRESS(992, 1, 1); settle(); refresh()
+    check(btn():GetAttribute("item") == "item:8584" and btn():IsShown(), "in combat the item button is left alone")
+    MOCK.inCombat = false
+    MOCK_FIRE("PLAYER_REGEN_ENABLED"); settle(); refresh()
+    check(G:StepUseItem(G:Get("AUDIT_USEITEM").steps[2]) == nil, "the objective is done: the widget is no longer the step's item")
+    check(not btn():IsShown(), "...and once combat ends the button goes away")
+    check(not macro():find("/use", 1, true), "...and so does the /use in the target key")
+
+    -- use it on a mob: target first, then use
+    MOCK_TURNIN(992); settle()
+    MOCK.items[7297] = 1; MOCK.itemSpells[7297] = "Morbent's Bane"
+    MOCK_ACCEPT(55, "Morbent Fel", { { text = "Morbent Fel slain: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } }); settle()
+    G:SetStep(5); settle(); refresh()
+    check(step().type == "KILL" and step().quest == 55, "on the Morbent step" .. where())
+    local m = macro()
+    local t, u = m:find("/targetexact", 1, true), m:find("/use item:7297", 1, true)
+    check(t and u and u > t and m:find("Morbent Fel", 1, true), "a use-on-mob item: the key targets the mob, then uses the item (" .. m:gsub("\n", " | ") .. ")")
+    check(btn():IsShown() and btn():GetAttribute("item") == "item:7297", "the row button uses Morbent's Bane")
+
+    -- the same item without a Use effect (a letter, a deed): nothing to click
+    MOCK.itemSpells[7297] = nil
+    MOCK_FIRE("BAG_UPDATE_DELAYED"); settle(); refresh()
+    check(G:StepUseItem(step()) == nil and not btn():IsShown(), "an item with no Use effect gets no button")
+    MOCK_TURNIN(55); settle()
+
+    -- an item that starts a quest: clicking it offers the quest
+    G:SetStep(8); settle(); refresh()
+    check(step().type == "ACCEPT" and step().quest == 123 and G:StepUseItem(step()) == nil, "the schedule is not looted yet: nothing to click" .. where())
+    MOCK.items[1307] = 1
+    MOCK_FIRE("BAG_UPDATE_DELAYED"); settle(); refresh()
+    check(G:StepUseItem(step()) == 1307 and btn():IsShown() and btn():GetAttribute("item") == "item:1307", "the schedule is in the bags: the accept step's button starts the quest")
+    MOCK.items[1307] = nil
+
+    -- a Forever quest: the client's own quest item is trusted
+    MOCK_ACCEPT(99931, "Snowbound Test", { { text = "Snow gathered: 0/5", finished = false, numFulfilled = 0, numRequired = 5 } })
+    MOCK.log[99931].specialItem = 99932
+    MOCK.items[99932] = 1
+    settle(); G:SetStep(11); settle(); refresh()
+    check(step().quest == 99931, "on the Forever quest's step" .. where())
+    check(G:StepUseItem(step()) == 99932, "the quest log's own item for a quest the database lacks (" .. tostring(G:StepUseItem(step())) .. ")")
+    check(macro():find("/use item:99932", 1, true) ~= nil, "...is used by the target key too")
+    MOCK_ABANDON(99931); settle(); refresh()
+    check(not btn():IsShown(), "quest dropped: the button goes")
+    MOCK.items[8584], MOCK.items[7297], MOCK.items[99932] = nil, nil, nil
 end
 
 -- ---- no swallowed errors anywhere -------------------------------------------------
