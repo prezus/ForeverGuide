@@ -291,7 +291,9 @@ function Nav:ResolveStep(step)
     if step.npc and (step.type == "ACCEPT" or step.type == "TURNIN" or step.type == "TALK") and not step.edited and ns.DB and ns.DB:IsLoaded() then
         local locs = ns.DB:NPCLocations(step.npc)
         if locs[1] and locs[1].forever then
-            local loc = ns.DB:Nearest(locs) or locs[1]
+            -- the Forever point by the step's own spot: a stray point (RestedXP lists some NPCs twice)
+            -- must not win just because the player happens to stand near it
+            local loc = (step.x and step.y and self:ClosestTo(locs, step.map, step.x, step.y)) or ns.DB:Nearest(locs) or locs[1]
             return loc.map, loc.x, loc.y, step.text or loc.name, loc
         end
     end
@@ -319,6 +321,19 @@ function Nav:ResolveStep(step)
         if mapID then return mapID, x, y, step.text end
     end
     return nil
+end
+
+--- The location on `mapID` closest to (x, y) in map percent, or nil when none is on that map.
+function Nav:ClosestTo(locs, mapID, x, y)
+    local best, bestD
+    for _, loc in ipairs(locs) do
+        if loc.map == mapID then
+            local dx, dy = loc.x - x, loc.y - y
+            local d = dx * dx + dy * dy
+            if not bestD or d < bestD then best, bestD = loc, d end
+        end
+    end
+    return best
 end
 
 --- Nearest database location that makes progress on a step, or nil.

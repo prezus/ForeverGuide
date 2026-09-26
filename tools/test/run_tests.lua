@@ -985,6 +985,21 @@ do
     MOCK_ABANDON(990010); settle()
 end
 
+-- ---- a stray Forever position must not pull a giver step away from its own spot ---------
+do
+    -- Tundra MacGrann (1266): four Forever points at the giver, one stray far off. A player standing
+    -- by the stray one was sent there instead of to the step's giver.
+    ns.NpcDB[990501] = { n = "Stray Giver", spm = { [1429] = { { 34.6, 51.7 }, { 34.7, 51.6 }, { 43.0, 47.4 } } } }
+    local step = { type = "ACCEPT", quest = 990501, npc = 990501, map = 1429, zone = "Elwynn Forest", x = 34.6, y = 51.7 }
+    MOCK_MOVE(43.5, 47.4)
+    local map, x, y = ns.Navigation:ResolveStep(step)
+    check(map == 1429 and math.abs(x - 34.6) < 0.2 and math.abs(y - 51.7) < 0.2, "a giver step keeps the Forever point at its own spot, not the one nearest the player (" .. tostring(x) .. "," .. tostring(y) .. ")")
+    local bare = { type = "ACCEPT", quest = 990501, npc = 990501 }
+    local _, bx, by = ns.Navigation:ResolveStep(bare)
+    check(math.abs(bx - 43.0) < 0.2 and math.abs(by - 47.4) < 0.2, "a giver step without coordinates still takes the Forever point nearest the player")
+    ns.NpcDB[990501] = nil
+end
+
 -- ---- editor + resync -------------------------------------------------------------------
 do
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
