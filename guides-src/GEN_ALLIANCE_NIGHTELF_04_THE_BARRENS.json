@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_04_THE_BARRENS",
   "name": "4. The Barrens 16-18 (Night Elf)",
-  "version": 7,
+  "version": 8,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 16,
@@ -62,6 +62,7 @@
     {"type": "COLLECT", "quest": 97005, "questName": "Chol'aruk the Ravener", "target": "Chol'aruk's Head", "count": 1, "mobs": "Chol'aruk", "map": 1413, "zone": "The Barrens", "x": 57.4, "y": 27.2, "optional": true},
     {"type": "ACCEPT", "quest": 863, "questName": "The Escape", "npc": 3439, "npcName": "Wizzlecrank's Shredder", "map": 1413, "zone": "The Barrens", "x": 56.4, "y": 7.4},
     {"type": "TURNIN", "quest": 863, "questName": "The Escape", "npc": 3442, "npcName": "Sputtervalve", "map": 1413, "zone": "The Barrens", "x": 63, "y": 37.2},
+    {"type": "ACCEPT", "quest": 94375, "questName": "Call of Earth", "npc": 5891, "npcName": "Minor Manifestation of Earth", "map": 1411, "zone": "Durotar", "x": 44, "y": 76, "note": "New in Forever", "class": ["SHAMAN"]},
     {"type": "ACCEPT", "quest": 94466, "questName": "Call of Fire", "npc": 257808, "npcName": "Braldir Ashmantle", "map": 1432, "zone": "Loch Modan", "x": 32, "y": 66, "note": "New in Forever", "class": ["SHAMAN"]},
     {"type": "COLLECT", "quest": 94466, "questName": "Call of Fire", "target": "Fire Tar", "count": 1, "mobs": "Tunnel Rat Geomancer", "map": 1432, "zone": "Loch Modan", "x": 35.6, "y": 20, "class": ["SHAMAN"]},
     {"type": "COLLECT", "quest": 94466, "questName": "Call of Fire", "target": "Reagent Pouch", "count": 1, "mobs": "Stonesplinter Seer", "map": 1432, "zone": "Loch Modan", "x": 34.8, "y": 84.4, "class": ["SHAMAN"]},
