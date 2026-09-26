@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Guides: an item that starts a quest and drops from the creatures of one camp (the Dark Iron Map at Ironband's Compound, the Empty Powder Keg in Gol'Bolar Quarry) gets an optional step there - "If you looted ..., use it to start the quest" - and the quests that follow it are optional too. Stolen Blasting Powder now comes after the keg quest, as the game offers it.
+- Guides: collect steps name the creatures that drop the item (Elder Snow Leopards for Never Saddle on Quality), so the skulls and the target key find them.
 - The arrow no longer sends you to stray positions for four Dun Morogh NPCs: Rudra Amberstill, Tundra MacGrann, Mountaineer Barleybrew and Pilot Hammerfoot each had an imported position far from where they stand.
 - Collect steps can name the creatures that drop the item, so the mob skulls and the target key work for new Forever items the quest database does not know yet.
 - Guides: quests started by an item are now in the guides when the item comes from one place - a named creature (Croaky's Head, Lakota'mani's hoof, Sharptalon's Claw) or a chest or object (Benedict's Chest, Chen's Empty Keg). The accept step tells you to loot the item and use it; an elite that drops it makes it an optional group step.
