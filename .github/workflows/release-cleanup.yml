@@ -1,6 +1,8 @@
-name: Keep only the latest release
+name: Keep the latest release and the one before it
 
-# Publishing a release deletes every other release, so the releases page holds one build.
+# Publishing a release deletes every other release except the one published just before it, so a
+# download link someone was given keeps working through the next build. Ordered by publish time
+# (a release's createdAt is its commit's date). Drafts are deleted too.
 # Tags of test builds (build-<commit>) go with their release; version tags (v*) stay in git.
 
 on:
@@ -18,15 +20,15 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
-      - name: Delete older releases
+      - name: Delete releases older than the previous one
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           KEEP: ${{ github.event.release.tag_name }}
         run: |
-          gh release list --limit 1000 --json tagName --jq '.[].tagName' |
+          gh release list --limit 1000 --json tagName,publishedAt |
+          jq -r --arg keep "$KEEP" '[.[] | select(.tagName != $keep)] | sort_by(.publishedAt // "") | reverse | .[1:] | .[].tagName' |
           while read -r tag; do
-            [ "$tag" = "$KEEP" ] && continue
             case "$tag" in
               build-*) gh release delete "$tag" --yes --cleanup-tag ;;
               *)       gh release delete "$tag" --yes ;;
