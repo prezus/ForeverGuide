@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_05_HILLSBRAD_FOOTHILLS",
     name = "5. Hillsbrad Foothills 25-28 (Orc)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 25,
@@ -60,8 +60,8 @@ ns.RegisterGuide({
         { type = "KILL", quest = 541, questName = "Battle of Hillsbrad", npc = 2346, target = "Dun Garok Priest", map = 1424, zone = "Hillsbrad Foothills", x = 70.7, y = 75.8, optional = true, near = true }, -- 43
         { type = "KILL", quest = 541, questName = "Battle of Hillsbrad", npc = 2304, target = "Captain Ironhill", count = 2, map = 1424, zone = "Hillsbrad Foothills", x = 71.5, y = 79.8, optional = true, near = true }, -- 44
         { type = "ACCEPT", quest = 1476, questName = "Hearts of the Pure", npc = 5693, npcName = "Godrick Farsan", map = 1458, zone = "Undercity", x = 85, y = 14.8, class = { "WARLOCK" }, race = { "Orc" } }, -- 45
-        { type = "COLLECT", quest = 1476, questName = "Hearts of the Pure", target = "Dalin's Heart", count = 1, map = 1421, zone = "Silverpine Forest", x = 47.6, y = 85.7, class = { "WARLOCK" }, race = { "Orc" } }, -- 46
-        { type = "COLLECT", quest = 1476, questName = "Hearts of the Pure", target = "Corma's Heart", count = 1, map = 1437, zone = "Wetlands", x = 49.9, y = 12.6, class = { "WARLOCK" }, race = { "Orc" } }, -- 47
+        { type = "COLLECT", quest = 1476, questName = "Hearts of the Pure", target = "Dalin's Heart", count = 1, map = 1421, zone = "Silverpine Forest", x = 47.6, y = 85.7, class = { "WARLOCK" }, race = { "Orc" }, mobs = "Dalin Forgewright" }, -- 46
+        { type = "COLLECT", quest = 1476, questName = "Hearts of the Pure", target = "Corma's Heart", count = 1, map = 1437, zone = "Wetlands", x = 49.9, y = 12.6, class = { "WARLOCK" }, race = { "Orc" }, mobs = "Comar Villard" }, -- 47
         { type = "TURNIN", quest = 1476, questName = "Hearts of the Pure", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" }, race = { "Orc" } }, -- 48
         { type = "TURNIN", quest = 541, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, optional = true }, -- 49
         { type = "COLLECT", quest = 496, questName = "Elixir of Suffering", target = "Creeper Ichor", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 13.7, near = true }, -- 50
@@ -120,8 +120,8 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 494, questName = "Time To Strike", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, note = "reduced xp (60%) - you out-levelled it" }, -- 103
         { type = "GRIND", npc = 2269, target = "Hillsbrad Miner", level = 28, map = 1424, zone = "Hillsbrad Foothills", x = 32.4, y = 52.1, near = true, note = "grind Hillsbrad Miner (level 26-27) to level 28 - nothing worth questing at 27" }, -- 104
         { type = "ACCEPT", quest = 7321, questName = "Soothing Turtle Bisque", npc = 2393, npcName = "Christoph Jeffcoat", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 19, profession = "Cooking" }, -- 105
-        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Turtle Meat", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 65.8, y = 38, profession = "Cooking" }, -- 106
-        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Soothing Spices", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 63.1, y = 19.4, near = true, profession = "Cooking" }, -- 107
+        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Turtle Meat", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 65.8, y = 38, profession = "Cooking", mobs = "Snapjaw" }, -- 106
+        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Soothing Spices", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 63.1, y = 19.4, near = true, profession = "Cooking", mobs = "Gunder Thornbush / Banalash / Nerrist / Edna Mullby" }, -- 107
         { type = "TURNIN", quest = 7321, questName = "Soothing Turtle Bisque", npc = 2393, npcName = "Christoph Jeffcoat", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 19, profession = "Cooking" }, -- 108
     } end,
 })
