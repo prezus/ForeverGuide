@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_10_DUSKWOOD",
     name = "10. Duskwood 26-28 (Night Elf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 26,
@@ -18,7 +18,7 @@ ns.RegisterGuide({
         { type = "FLIGHTPATH", npc = 2409, npcName = "Felicia Maline", map = 1431, zone = "Duskwood", x = 77.5, y = 44.3 }, -- 1
         { type = "TRAVEL", map = 1431, zone = "Duskwood", x = 74.9, y = 47.1, radius = 60, note = "travel to Duskwood (Duskwood)" }, -- 2
         { type = "HEARTH", npc = 6790, npcName = "Innkeeper Trelayne", map = 1431, zone = "Darkshire", x = 73.9, y = 44.4, note = "talk to Innkeeper Trelayne and make this inn your home" }, -- 3
-        { type = "ACCEPT", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6 }, -- 4
+        { type = "ACCEPT", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6, profession = "Cooking", skill = 50 }, -- 4
         { type = "ACCEPT", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 5
         { type = "ACCEPT", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 6
         { type = "ACCEPT", quest = 66, questName = "The Legend of Stalvan", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 7
@@ -37,7 +37,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 20
         { type = "TURNIN", quest = 165, questName = "The Hermit", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28, y = 31.4 }, -- 21
         { type = "KILL", quest = 253, questName = "Bride of the Embalmer", npc = 314, target = "Eliza", map = 1431, zone = "Duskwood", x = 28.8, y = 30.9, optional = true }, -- 22
-        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 33.8, y = 29.8, near = true }, -- 23
+        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 33.8, y = 29.8, near = true, profession = "Cooking", skill = 50 }, -- 23
         { type = "TURNIN", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4, optional = true }, -- 24
         { type = "ACCEPT", quest = 377, questName = "Crime and Punishment", npc = 270, npcName = "Councilman Millstipe", map = 1431, zone = "Duskwood", x = 71.9, y = 47.8, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 25
         { type = "TURNIN", quest = 377, questName = "Crime and Punishment", npc = 270, npcName = "Councilman Millstipe", map = 1431, zone = "Duskwood", x = 71.9, y = 47.8, optional = true }, -- 26
@@ -67,17 +67,17 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 230, questName = "Sven's Camp", map = 1431, zone = "Duskwood", x = 49.9, y = 77.7 }, -- 50
         { type = "KILL", quest = 245, questName = "Eight-Legged Menaces", npc = 539, target = "Pygmy Venom Web Spider", count = 15, map = 1431, zone = "Duskwood", x = 40.1, y = 21.8, near = true }, -- 51
         { type = "TURNIN", quest = 245, questName = "Eight-Legged Menaces", npc = 888, npcName = "Watcher Dodds", map = 1431, zone = "Duskwood", x = 45.1, y = 67, note = "reduced xp (80%) - you out-levelled it" }, -- 52
-        { type = "TURNIN", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6 }, -- 53
-        { type = "TURNIN", quest = 148, questName = "Supplies from Darkshire", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 54
-        { type = "ACCEPT", quest = 149, questName = "Ghost Hair Thread", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 55
-        { type = "TURNIN", quest = 222, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 56
-        { type = "TURNIN", quest = 58, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 57
-        { type = "ACCEPT", quest = 223, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 58
-        { type = "TURNIN", quest = 223, questName = "Worgen in the Woods", npc = 661, npcName = "Jonathan Carevin", map = 1431, zone = "Duskwood", x = 75.3, y = 49 }, -- 59
-        { type = "TURNIN", quest = 149, questName = "Ghost Hair Thread", npc = 302, npcName = "Blind Mary", map = 1431, zone = "Duskwood", x = 82, y = 59.1 }, -- 60
-        { type = "ACCEPT", quest = 154, questName = "Return the Comb", npc = 302, npcName = "Blind Mary", map = 1431, zone = "Duskwood", x = 82, y = 59.1 }, -- 61
-        { type = "TURNIN", quest = 154, questName = "Return the Comb", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 62
-        { type = "ACCEPT", quest = 157, questName = "Deliver the Thread", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 63
+        { type = "TURNIN", quest = 148, questName = "Supplies from Darkshire", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 53
+        { type = "ACCEPT", quest = 149, questName = "Ghost Hair Thread", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 54
+        { type = "TURNIN", quest = 222, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 55
+        { type = "TURNIN", quest = 58, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 56
+        { type = "ACCEPT", quest = 223, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 57
+        { type = "TURNIN", quest = 223, questName = "Worgen in the Woods", npc = 661, npcName = "Jonathan Carevin", map = 1431, zone = "Duskwood", x = 75.3, y = 49 }, -- 58
+        { type = "TURNIN", quest = 149, questName = "Ghost Hair Thread", npc = 302, npcName = "Blind Mary", map = 1431, zone = "Duskwood", x = 82, y = 59.1 }, -- 59
+        { type = "ACCEPT", quest = 154, questName = "Return the Comb", npc = 302, npcName = "Blind Mary", map = 1431, zone = "Duskwood", x = 82, y = 59.1 }, -- 60
+        { type = "TURNIN", quest = 154, questName = "Return the Comb", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 61
+        { type = "ACCEPT", quest = 157, questName = "Deliver the Thread", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 62
+        { type = "TURNIN", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6, profession = "Cooking", skill = 50 }, -- 63
         { type = "TURNIN", quest = 157, questName = "Deliver the Thread", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 64
         { type = "ACCEPT", quest = 158, questName = "Zombie Juice", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 65
         { type = "TURNIN", quest = 230, questName = "Sven's Camp", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 66
