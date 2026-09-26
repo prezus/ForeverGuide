@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- The arrow on an accept or turn-in step now points at the NPC the step names. When an NPC has more than one known position, it used to point at the one nearest you, which could send you to the wrong place (Tundra MacGrann in Dun Morogh).
+- Guides: more quests in the 1-30 chapters - WoW Forever quests not yet sorted into a zone (Zephras Isle, the Camping 101 series with The Adventurer and The Great Outdoors), the Horde shaman Call of Earth and Call of Fire steps, the rogue Deep Cover follow-ups, the warlock Tome of the Cabal chain, and Beer Basted Boar Ribs in Dun Morogh. Secure the Mountain is no longer a step: its objective, finding Mountaineer Cornelius in the Grizzled Den, has no known position yet. Alliance-only shaman quests are no longer in the Horde guides.
 - The target-next-quest-mob key (and the skull button) no longer leaves you on a corpse: it passes over dead quest mobs to a living one, or clears the target if only corpses are around.
 - Mob tooltips list just the objective and its count ("Bear Fur: 0/8"): no quest title, and the count only once.
 - Crowd detection is gone: no "Crowded" / "Group up" banner, no steps postponed because a spot is busy, and other players' nameplates are no longer switched on during kill steps. `/fg crowd` and `/fg skull friends` are removed.
