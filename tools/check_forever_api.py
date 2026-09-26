@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-VERSION = "1.60.1.69977"
+VERSION = "1.60.1.70009"
 DOCS = Path("Interface/AddOns/Blizzard_APIDocumentationGenerated")
 FUNCTION = re.compile(r'^\t\t\{\s*\n\t\t\tName = "([^"]+)",\s*\n\t\t\tType = "Function"', re.M)
 NAMESPACE = re.compile(r'^\s*Namespace = "([^"]+)"', re.M)
