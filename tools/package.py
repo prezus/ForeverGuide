@@ -4,7 +4,7 @@ Zip the addon for distribution.
 
     python tools/package.py            -> dist/ForeverGuide-<version>.zip   (runtime files only)
     python tools/package.py --dev      -> also tools/, guides-src/, data-src/ (for contributors)
-    python tools/package.py --test     -> checked, hash-named private test ZIP (runtime files only)
+    python tools/package.py --test     -> dist/ForeverGuide-<commit>.zip, checked test build (runtime files only)
 
 Files come from the last commit (git HEAD), never from the folder on disk: this folder is
 also the live addon the game loads, so it holds local files that must not ship - player
@@ -73,6 +73,12 @@ def version(files=None):
     return m.group(1) if m else "0.0.0"
 
 
+def head_commit():
+    """Short hash of HEAD, the commit the zip is built from."""
+    return subprocess.run(["git", "-C", ROOT, "rev-parse", "--short=7", "HEAD"],
+                          check=True, capture_output=True, text=True).stdout.strip()
+
+
 def main():
     dev = "--dev" in sys.argv
     test = "--test" in sys.argv
@@ -82,7 +88,8 @@ def main():
     ver = version(files)
     out_dir = os.path.join(ROOT, "dist")
     os.makedirs(out_dir, exist_ok=True)
-    out = os.path.join(out_dir, "%s-%s%s.zip" % (NAME, ver, "-test" if test else "-dev" if dev else ""))
+    tag = head_commit() if test else ver + ("-dev" if dev else "")
+    out = os.path.join(out_dir, "%s-%s.zip" % (NAME, tag))
     n = 0
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for path in sorted(files):
@@ -97,9 +104,6 @@ def main():
         subprocess.run([sys.executable, os.path.join(HERE, "check_package.py"), out], check=True)
         with open(out, "rb") as fh:
             digest = hashlib.sha256(fh.read()).hexdigest()
-        named = os.path.join(out_dir, "%s-%s-test-%s.zip" % (NAME, ver, digest[:12]))
-        os.replace(out, named)
-        out = named
         print("SHA-256: %s" % digest)
     print("wrote %s (%d files, %.1f KB)" % (os.path.relpath(out, ROOT), n, os.path.getsize(out) / 1024))
     return 0

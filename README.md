@@ -33,7 +33,7 @@ SavedVariables file and can be lost - `tools/apply_edits.py` folds them into the
 Developers: the addon folder doubles as the repo (`tools/`, `guides-src/`, `data-src/` are not loaded by the game);
 `python tools/package.py` builds the release zip. For a private Mac-to-Windows test build, run
 `python3 tools/package.py --test`: it validates a runtime-only ZIP in ignored `dist/`, names it
-with its hash, and prints the full SHA-256. Send that same ZIP to the Windows tester; it extracts
+after the commit (`ForeverGuide-<commit>.zip`), and prints its SHA-256. Send that same ZIP to the Windows tester; it extracts
 into `_classic_beta_\Interface\AddOns\ForeverGuide\`. No Python is needed on Windows to install it.
 The ZIP holds only files from the last commit (any branch), never the folder on disk: this folder is
 also the live addon, so it collects player reports, SavedVariables copies and local edits that must

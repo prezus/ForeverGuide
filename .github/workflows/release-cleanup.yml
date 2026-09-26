@@ -1,0 +1,35 @@
+name: Keep only the latest release
+
+# Publishing a release deletes every other release, so the releases page holds one build.
+# Tags of test builds (build-<commit>) go with their release; version tags (v*) stay in git.
+
+on:
+  release:
+    types: [published]
+
+concurrency:
+  group: release-cleanup
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete older releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          KEEP: ${{ github.event.release.tag_name }}
+        run: |
+          gh release list --limit 1000 --json tagName --jq '.[].tagName' |
+          while read -r tag; do
+            [ "$tag" = "$KEEP" ] && continue
+            case "$tag" in
+              build-*) gh release delete "$tag" --yes --cleanup-tag ;;
+              *)       gh release delete "$tag" --yes ;;
+            esac
+            echo "deleted release $tag"
+          done

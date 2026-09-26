@@ -84,6 +84,12 @@ class PackageTest(unittest.TestCase):
             self.assertNotIn(p + leaked, files)
         self.assertFalse([f for f in files if "/WTF/" in f])
 
+    def test_test_zip_is_named_after_the_commit_only(self):
+        head = subprocess.run(["git", "-C", str(self.repo), "rev-parse", "--short=7", "HEAD"],
+                              check=True, capture_output=True, text=True).stdout.strip()
+        subprocess.run([sys.executable, "tools/package.py", "--test"], cwd=self.repo, check=True, capture_output=True)
+        self.assertEqual(sorted(p.name for p in (self.repo / "dist").iterdir()), ["%s-%s.zip" % (NAME, head)])
+
     def test_check_rejects_a_zip_with_an_uncommitted_file(self):
         self.build()
         archive = self.repo / "dist" / (NAME + "-9.9.9.zip")
