@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_02_DARKSHORE",
   "name": "2. Darkshore 13-18 (Skyborne)",
-  "version": 7,
+  "version": 8,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 13,
@@ -206,6 +206,7 @@
     {"type": "ACCEPT", "quest": 990, "questName": "Trek to Ashenvale", "npc": 3694, "npcName": "Sentinel Selarin", "map": 1439, "zone": "Darkshore", "x": 39.2, "y": 43.4},
     {"type": "COLLECT", "quest": 1275, "questName": "Researching the Corruption", "target": "Corrupted Brain Stem", "map": 1439, "zone": "Darkshore", "x": 31.9, "y": 91.4, "near": true},
     {"type": "TURNIN", "quest": 1275, "questName": "Researching the Corruption", "npc": 8997, "npcName": "Gershala Nightwhisper", "map": 1439, "zone": "Darkshore", "x": 38.3, "y": 43.0},
+    {"type": "ACCEPT", "quest": 98028, "questName": "Baron Marinous", "npc": 270294, "npcName": "Baron Marinous", "map": 1439, "zone": "Darkshore", "x": 59.2, "y": 22.6, "note": "Loot Clouded Water Globe from Baron Marinous and use it to start the quest; New in Forever; Elite - group up", "optional": true},
     {"type": "COLLECT", "quest": 951, "questName": "Mathystra Relics", "target": "Mathystra Relic", "count": 6, "map": 1439, "zone": "Darkshore", "x": 58, "y": 25.9, "near": true},
     {"type": "KILL", "quest": 98013, "questName": "Swelling Forces", "npc": 2181, "target": "Stormscale Myrmidon", "count": 12, "map": 1439, "zone": "Darkshore", "x": 58.4, "y": 21.2},
     {"type": "KILL", "quest": 98013, "questName": "Swelling Forces", "npc": 2182, "target": "Stormscale Sorceress", "count": 8, "map": 1439, "zone": "Darkshore", "x": 58.6, "y": 20.4},
@@ -216,6 +217,7 @@
     {"type": "COLLECT", "quest": 94466, "questName": "Call of Fire", "target": "Reagent Pouch", "count": 1, "map": 1432, "zone": "Loch Modan", "x": 34.8, "y": 84.4, "class": ["SHAMAN"]},
     {"type": "TURNIN", "quest": 94466, "questName": "Call of Fire", "npc": 257808, "npcName": "Braldir Ashmantle", "map": 1432, "zone": "Loch Modan", "x": 32, "y": 66, "class": ["SHAMAN"]},
     {"type": "TURNIN", "quest": 951, "questName": "Mathystra Relics", "npc": 3616, "npcName": "Onu", "map": 1439, "zone": "Darkshore", "x": 43.5, "y": 76.3},
-    {"type": "TURNIN", "quest": 98013, "questName": "Swelling Forces", "npc": 270269, "npcName": "Arbal", "map": 1439, "zone": "Darkshore", "x": 43.6, "y": 76.4}
+    {"type": "TURNIN", "quest": 98013, "questName": "Swelling Forces", "npc": 270269, "npcName": "Arbal", "map": 1439, "zone": "Darkshore", "x": 43.6, "y": 76.4},
+    {"type": "TURNIN", "quest": 98028, "questName": "Baron Marinous", "npc": 3616, "npcName": "Onu", "map": 1439, "zone": "Darkshore", "x": 43.6, "y": 76.4, "optional": true}
   ]
 }
