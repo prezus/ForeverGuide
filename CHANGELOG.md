@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Guides: quests started by an item are now in the guides when the item comes from one place - a named creature (Croaky's Head, Lakota'mani's hoof, Sharptalon's Claw) or a chest or object (Benedict's Chest, Chen's Empty Keg). The accept step tells you to loot the item and use it; an elite that drops it makes it an optional group step.
+- Guides (Human and Dwarf): the Cozy Sleeping Bag chain from "... and that note you found" in Westfall is taken to the end, each step marked "Cozy Sleeping Bag chain: keep it going".
 - `/fg rec dump [n]` opens the recorded entries in a window, already selected, so Ctrl+C copies them for pasting into feedback (it used to print them to chat, where they cannot be copied).
 - Packaging: the release zip is built from the last commit only, never from files on disk, so local reports, SavedVariables copies, debug files and uncommitted edits cannot ship. Contributor docs (AGENTS.md, CONTRIBUTING.md, COMPATIBILITY_POLICY.md, Data/README.md) are no longer in the release zip. `.gitignore` also covers OS/editor files, zips, logs and SavedVariables copies.
 - The arrow on an accept or turn-in step now points at the NPC the step names. When an NPC has more than one known position, it used to point at the one nearest you, which could send you to the wrong place (Tundra MacGrann in Dun Morogh).
