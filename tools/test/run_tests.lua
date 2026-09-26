@@ -1509,6 +1509,7 @@ do
     if ns.Quest:IsOnQuest(4010) then MOCK_ABANDON(4010); settle() end
 end
 
+
 -- ---- level-up announcement ------------------------------------------------------------------
 -- (Ilya, 2026-09-21: "when we level up there should be a party message/emote message ...")
 do
@@ -1991,7 +1992,28 @@ do
     _G.GetNumSkillLines = nil
     MOCK_SKILLS({}); settle()
     check(G:StepApplies(steps[1]) == true, "without a skill list the step shows")
-    _G.GetNumSkillLines = num
+    -- WoW Forever: C_SkillInfo, one table per skill line (Blizzard_UIPanels_Game/Camelot/SkillsFrame.lua)
+    local lines = {}
+    _G.C_SkillInfo = {
+        GetNumSkillLines = function() return #lines end,
+        GetSkillLineInfo = function(i) return lines[i] end,
+    }
+    local info = _G.GetSkillLineInfo
+    _G.GetNumSkillLines, _G.GetSkillLineInfo = nil, nil
+    lines = { { skillID = 0, name = "Professions", isHeader = true, isCollapsed = false, rank = 0, maxRank = 0 } }
+    MOCK_SKILLS({}); settle()
+    check(G:StepApplies(steps[1]) == false and G:StepApplies(steps[2]) == false, "Forever skill info, no professions: profession steps do not apply")
+    lines[2] = { skillID = 185, name = "Kochkunst", isHeader = false, isCollapsed = false, rank = 15, maxRank = 75 }   -- Cooking, German client
+    MOCK_SKILLS({}); settle()
+    check(G:StepApplies(steps[1]) == true and G:StepApplies(steps[2]) == false, "Forever skill info: a cook sees the cooking step (matched by skill ID, whatever the name)")
+    lines[3] = { skillID = 164, name = "Blacksmithing", isHeader = false, isCollapsed = false, rank = 29, maxRank = 75 }
+    MOCK_SKILLS({}); settle()
+    check(G:StepApplies(steps[2]) == false, "Forever skill info: blacksmithing at 29 is short of 30")
+    lines[3].rank = 30
+    MOCK_SKILLS({}); settle()
+    check(G:StepApplies(steps[2]) == true, "Forever skill info: at 30 the step shows")
+    _G.C_SkillInfo = nil
+    _G.GetNumSkillLines, _G.GetSkillLineInfo = num, info
     MOCK_SKILLS({}); settle()
 end
 

@@ -65,19 +65,41 @@ function Player:GetClass()
     return self.cache.class, self.cache.classFile, self.cache.classID
 end
 
+-- skill line IDs of the professions and secondary skills, so a non-English client matches too
+local SKILL_IDS = {
+    [164] = "Blacksmithing", [165] = "Leatherworking", [171] = "Alchemy", [182] = "Herbalism",
+    [185] = "Cooking", [186] = "Mining", [197] = "Tailoring", [202] = "Engineering",
+    [333] = "Enchanting", [356] = "Fishing", [393] = "Skinning", [129] = "First Aid",
+}
+
 --- The character's rank in a profession or secondary skill by its English name ("Cooking"), 0 when
 --- the character does not have it, or nil when the client lists no skills (so nothing is hidden).
---- Read from the skill lines and kept until they change.
+--- Read from the skill lines and kept until they change: WoW Forever's C_SkillInfo (one table per
+--- line, as its own Skills window reads them), else the Classic globals (several values per line).
 function Player:ProfessionRank(name)
-    local num = rawget(_G, "GetNumSkillLines")
-    local info = rawget(_G, "GetSkillLineInfo")
-    if type(num) ~= "function" or type(info) ~= "function" then return nil end
     if not self.cache.skills then
         local skills = {}
-        for i = 1, PlainNumber(Safe(num)) or 0 do
-            local skillName, isHeader, _, rank = Safe(info, i)
+        local function add(skillName, isHeader, rank, skillID)
+            if isHeader == true then return end
+            rank = PlainNumber(rank) or 0
             skillName = PlainString(skillName)
-            if skillName and not isHeader then skills[skillName] = PlainNumber(rank) or 0 end
+            if skillName then skills[skillName] = rank end
+            local english = SKILL_IDS[PlainNumber(skillID) or 0]
+            if english then skills[english] = rank end
+        end
+        local num, info = ns.API("C_SkillInfo.GetNumSkillLines"), ns.API("C_SkillInfo.GetSkillLineInfo")
+        if num and info then
+            for i = 1, PlainNumber(Safe(num)) or 0 do
+                local line = Safe(info, i)
+                if type(line) == "table" then add(line.name, Plain(line.isHeader), line.rank, line.skillID) end
+            end
+        else
+            num, info = rawget(_G, "GetNumSkillLines"), rawget(_G, "GetSkillLineInfo")
+            if type(num) ~= "function" or type(info) ~= "function" then return nil end
+            for i = 1, PlainNumber(Safe(num)) or 0 do
+                local skillName, isHeader, _, rank = Safe(info, i)
+                add(skillName, Plain(isHeader) and true or false, rank)
+            end
         end
         self.cache.skills = skills
     end
