@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_09_ARATHI_HIGHLANDS",
   "name": "9. Arathi Highlands 29-30 (Undead)",
-  "version": 7,
+  "version": 8,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 29,
@@ -66,6 +66,8 @@
     {"type": "COMPLETE", "quest": 1719, "questName": "The Affray", "target": "Explore Zone", "count": 1, "map": 1413, "zone": "The Barrens", "x": 68.6, "y": 48.6, "class": ["WARRIOR"]},
     {"type": "COMPLETE", "quest": 1719, "questName": "The Affray", "target": "Step on the grate to begin the Affray", "count": 1, "map": 1413, "zone": "The Barrens", "x": 68.6, "y": 48.6, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 1719, "questName": "The Affray", "npc": 6236, "npcName": "Klannoc Macleod", "map": 1413, "zone": "The Barrens", "x": 68.6, "y": 49, "class": ["WARRIOR"]},
+    {"type": "ACCEPT", "quest": 2480, "questName": "Hinott's Assistance", "npc": 2391, "npcName": "Serge Hinott", "map": 1424, "zone": "Hillsbrad Foothills", "x": 61.6, "y": 19.2, "class": ["ROGUE"]},
+    {"type": "TURNIN", "quest": 2480, "questName": "Hinott's Assistance", "npc": 2391, "npcName": "Serge Hinott", "map": 1424, "zone": "Hillsbrad Foothills", "x": 61.6, "y": 19.2, "note": "reduced xp (10%) - you out-levelled it", "class": ["ROGUE"]},
     {"type": "ACCEPT", "quest": 1803, "questName": "Tome of the Cabal", "npc": 6293, "npcName": "Jorah Annison", "map": 1458, "zone": "Undercity", "x": 76, "y": 37.6, "class": ["WARLOCK"]},
     {"type": "COLLECT", "quest": 1803, "questName": "Tome of the Cabal", "target": "Moldy Tome", "count": 1, "map": 1424, "zone": "Hillsbrad Foothills", "x": 27.8, "y": 72.8, "class": ["WARLOCK"]},
     {"type": "COLLECT", "quest": 1803, "questName": "Tome of the Cabal", "target": "Tattered Manuscript", "count": 1, "map": 1441, "zone": "Thousand Needles", "x": 43.4, "y": 32.7, "class": ["WARLOCK"]},
