@@ -198,6 +198,112 @@ function Harvest:Sweep(from, to)
 end
 
 -- ------------------------------------------------------------
+-- 4. API probe: which map and quest APIs answer on this server
+-- ------------------------------------------------------------
+-- Calls every API that can place an NPC, object or quest on a map without the
+-- player standing there, for every zone map, and stores what comes back raw in
+-- ForeverGuideDB.harvest.probe. Nothing is interpreted: the point is to learn
+-- which of them the Forever server fills in. Quest lines (1.) came back empty.
+local PROBE_MAP_APIS = {
+    "C_AreaPoiInfo.GetQuestHubsForMap", "C_AreaPoiInfo.GetAreaPOIForMap", "C_TaxiMap.GetTaxiNodesForMap",
+    "C_QuestLog.GetQuestsOnMap", "C_GossipInfo.GetPoiForUiMapID", "C_QuestLine.GetForceVisibleQuests",
+}
+
+-- XP spells whose effect depends on the server: the kill-XP aura Forever's Well Fed foods read
+-- (1243969), the sleeping bag's Well-Rested (429959) and faster rested XP (1225478).
+local PROBE_SPELLS = { 1243969, 429959, 1225478 }
+
+-- Where an id list's details come from.
+local PROBE_DETAILS = {
+    ["C_AreaPoiInfo.GetQuestHubsForMap"] = "C_AreaPoiInfo.GetAreaPOIInfo",
+    ["C_AreaPoiInfo.GetAreaPOIForMap"] = "C_AreaPoiInfo.GetAreaPOIInfo",
+    ["C_GossipInfo.GetPoiForUiMapID"] = "C_GossipInfo.GetPoiInfo",
+}
+
+--- x, y (0-100) of a position that is a vector or an {x, y} table.
+local function XY(pos)
+    if type(pos) ~= "table" then return nil end
+    if type(pos.GetXY) == "function" then
+        local ok, px, py = pcall(pos.GetXY, pos)
+        px, py = PlainNumber(px), PlainNumber(py)
+        if ok and px and py then return px * 100, py * 100 end
+    end
+    local px, py = PlainNumber(pos.x), PlainNumber(pos.y)
+    if px and py then return px * 100, py * 100 end
+    return nil
+end
+
+--- One answer row as plain values: ids, names and a position; anything else is dropped.
+local function Row(r)
+    if type(r) ~= "table" then return PlainNumber(r) or PlainString(r) end
+    local out = {}
+    for _, k in ipairs({ "areaPoiID", "nodeID", "questID", "gossipPoiID", "name", "description", "state", "type", "atlasName", "textureIndex", "isUndiscovered" }) do
+        local v = r[k]
+        local b = PlainBool(v)
+        out[k] = PlainNumber(v) or PlainString(v) or (b ~= nil and tostring(b) or nil)
+    end
+    local x, y = XY(r.position or r)
+    if x then out.x, out.y = x, y end
+    return out
+end
+
+--- Rows for a list answer, with details looked up for APIs that return only ids.
+local function Rows(path, mapID, value)
+    if type(value) ~= "table" then return nil end
+    local detail = PROBE_DETAILS[path]
+    local out = {}
+    for _, r in ipairs(value) do
+        local id = type(r) == "table" and r or PlainNumber(r)
+        out[#out + 1] = Row(detail and ns.Call(detail, mapID, id) or r) or id
+    end
+    return out
+end
+
+function Harvest:Probe()
+    if not Enabled() then ns.Print("enable Harvest under /fg options (Data collection) or /fg harvest on first.") return end
+    local _, h = Store()
+    local probe = { at = PlainNumber(ns.Safe(GetServerTime)) or 0, map = ns.Player:GetMapID(), apis = {}, maps = {}, log = {} }
+    h.probe = probe
+    local answered = {}
+    for _, path in ipairs(PROBE_MAP_APIS) do probe.apis[path] = ns.API(path) and "empty" or "missing" end
+    for _, mapID in ipairs(self:AllZoneMaps()) do
+        local m = {}
+        for _, path in ipairs(PROBE_MAP_APIS) do
+            if probe.apis[path] ~= "missing" then
+                local rows = Rows(path, mapID, ns.Call(path, mapID))
+                if rows and #rows > 0 then
+                    m[path] = rows
+                    answered[path] = (answered[path] or 0) + #rows
+                end
+            end
+        end
+        if next(m) then probe.maps[mapID] = m end
+    end
+    for path, n in pairs(answered) do probe.apis[path] = n end
+    -- quests in the log: where the client would send you next, if it knows
+    local count = PlainNumber(ns.Call("C_QuestLog.GetNumQuestLogEntries")) or 0
+    for i = 1, count do
+        local id = PlainNumber(ns.Call("C_QuestLog.GetQuestIDForLogIndex", i))
+        if id and id > 0 then
+            local map, x, y = ns.Call("C_QuestLog.GetNextWaypoint", id)
+            local entry = { title = PlainString(ns.Call("C_QuestLog.GetTitleForQuestID", id)), waypointText = PlainString(ns.Call("C_QuestLog.GetNextWaypointText", id)) }
+            if PlainNumber(map) then entry.waypoint = { map = PlainNumber(map), x = (PlainNumber(x) or 0) * 100, y = (PlainNumber(y) or 0) * 100 } end
+            probe.log[id] = entry
+        end
+    end
+    -- XP spells: does this character have the aura, and how does the client word it
+    probe.spells = {}
+    for _, id in ipairs(PROBE_SPELLS) do
+        local aura = ns.Call("C_UnitAuras.GetPlayerAuraBySpellID", id)
+        probe.spells[id] = { aura = type(aura) == "table", description = PlainString(ns.Call("C_Spell.GetSpellDescription", id)) }
+    end
+    local parts = {}
+    for _, path in ipairs(PROBE_MAP_APIS) do parts[#parts + 1] = path:match("%.(%w+)$") .. " " .. tostring(probe.apis[path]) end
+    ns.Printf("probe: %s. /reload to save.", table.concat(parts, ", "))
+    return probe
+end
+
+-- ------------------------------------------------------------
 -- Events
 -- ------------------------------------------------------------
 function Harvest:SetEnabled(on)
