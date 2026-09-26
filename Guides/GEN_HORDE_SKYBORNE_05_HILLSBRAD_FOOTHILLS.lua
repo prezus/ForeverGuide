@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_05_HILLSBRAD_FOOTHILLS",
     name = "5. Hillsbrad Foothills 26-28 (Skyborne)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 26,
@@ -104,8 +104,8 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 494, questName = "Time To Strike", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, note = "reduced xp (60%) - you out-levelled it" }, -- 87
         { type = "GRIND", npc = 2269, target = "Hillsbrad Miner", level = 28, map = 1424, zone = "Hillsbrad Foothills", x = 32.4, y = 52.1, near = true, note = "grind Hillsbrad Miner (level 26-27) to level 28 - nothing worth questing at 27" }, -- 88
         { type = "ACCEPT", quest = 7321, questName = "Soothing Turtle Bisque", npc = 2393, npcName = "Christoph Jeffcoat", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 19, profession = "Cooking" }, -- 89
-        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Turtle Meat", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 65.8, y = 38, profession = "Cooking" }, -- 90
-        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Soothing Spices", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 63.1, y = 19.4, near = true, profession = "Cooking" }, -- 91
+        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Turtle Meat", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 65.8, y = 38, profession = "Cooking", mobs = "Snapjaw" }, -- 90
+        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Soothing Spices", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 63.1, y = 19.4, near = true, profession = "Cooking", mobs = "Gunder Thornbush / Banalash / Nerrist / Edna Mullby" }, -- 91
         { type = "TURNIN", quest = 7321, questName = "Soothing Turtle Bisque", npc = 2393, npcName = "Christoph Jeffcoat", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 19, profession = "Cooking" }, -- 92
     } end,
 })
