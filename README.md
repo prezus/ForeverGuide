@@ -35,7 +35,9 @@ Developers: the addon folder doubles as the repo (`tools/`, `guides-src/`, `data
 `python3 tools/package.py --test`: it validates a runtime-only ZIP in ignored `dist/`, names it
 with its hash, and prints the full SHA-256. Send that same ZIP to the Windows tester; it extracts
 into `_classic_beta_\Interface\AddOns\ForeverGuide\`. No Python is needed on Windows to install it.
-The ZIP reflects the current files on disk, including uncommitted changes; it does not go into Git.
+The ZIP holds only files from the last commit (any branch), never the folder on disk: this folder is
+also the live addon, so it collects player reports, SavedVariables copies and local edits that must
+not ship. Commit what you want in a build first; the ZIP itself does not go into Git.
 For local checks, install Lua 5.1 or LuaJIT,
 [Luacheck](https://github.com/lunarmodules/luacheck), and optionally Lua Language Server, then run:
 

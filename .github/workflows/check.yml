@@ -27,5 +27,6 @@ jobs:
           python3 tools/check_forever_api.py "$source"
       - name: Check release ZIP
         run: |
+          python3 tools/test/test_package.py
           python3 tools/package.py
           python3 tools/check_package.py

@@ -6,34 +6,71 @@ Zip the addon for distribution.
     python tools/package.py --dev      -> also tools/, guides-src/, data-src/ (for contributors)
     python tools/package.py --test     -> checked, hash-named private test ZIP (runtime files only)
 
-The version comes from ## Version in ForeverGuide.toc. The zip unpacks to
+Files come from the last commit (git HEAD), never from the folder on disk: this folder is
+also the live addon the game loads, so it holds local files that must not ship - player
+reports, SavedVariables copies, debug dumps, uncommitted edits. Commit what should ship.
+
+The version comes from ## Version in the committed ForeverGuide.toc. The zip unpacks to
 Interface\\AddOns\\ForeverGuide\\.
 """
 
 import hashlib
+import io
 import os
 import re
 import subprocess
 import sys
+import tarfile
 import zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 NAME = os.path.basename(ROOT)
 
-RUNTIME_EXT = {".lua", ".xml", ".toc", ".tga", ".blp", ".md", ".txt"}
+RUNTIME_EXT = {".lua", ".xml", ".toc", ".tga", ".blp"}
 RUNTIME_DIRS = {"", "Data", "Guides", "Textures", "UI"}
-DEV_DIRS = {"tools", "tools/test", "guides-src", "data-src"}
-SKIP = {"dist", "__pycache__", ".git", "WTF"}
+RELEASE_DOCS = {"LICENSE", "README.md", "CHANGELOG.md"}
+DEV_DIRS = {"tools", "guides-src", "data-src"}
 
 
-def version():
-    with open(os.path.join(ROOT, NAME + ".toc"), "r", encoding="utf-8") as fh:
-        for line in fh:
-            m = re.match(r"##\s*Version:\s*(\S+)", line)
-            if m:
-                return m.group(1)
-    return "0.0.0"
+def committed():
+    """{path: bytes} of every file in HEAD."""
+    try:
+        tar = subprocess.run(["git", "-C", ROOT, "archive", "--format=tar", "HEAD"],
+                             check=True, capture_output=True).stdout
+    except (OSError, subprocess.CalledProcessError) as err:
+        raise SystemExit("package.py builds from git HEAD; run it inside the addon's git checkout (%s)" % err)
+    files = {}
+    with tarfile.open(fileobj=io.BytesIO(tar)) as t:
+        for m in t.getmembers():
+            if m.isfile():
+                files[m.name] = t.extractfile(m).read()
+    return files
+
+
+def ships(path, dev=False):
+    """True when a committed path belongs in the release (or, with dev, the contributor) zip."""
+    folder, fn = posix_split(path)
+    if fn.startswith("."):
+        return False
+    if folder in RUNTIME_DIRS and os.path.splitext(fn)[1].lower() in RUNTIME_EXT:
+        return True
+    if folder == "" and fn in RELEASE_DOCS:
+        return True
+    if dev:
+        return path.split("/")[0] in DEV_DIRS or (folder == "" and fn.endswith(".md"))
+    return False
+
+
+def posix_split(path):
+    folder, _, fn = path.rpartition("/")
+    return folder, fn
+
+
+def version(files=None):
+    text = (files or committed()).get(NAME + ".toc", b"").decode("utf-8")
+    m = re.search(r"##\s*Version:\s*(\S+)", text)
+    return m.group(1) if m else "0.0.0"
 
 
 def main():
@@ -41,28 +78,21 @@ def main():
     test = "--test" in sys.argv
     if dev and test:
         raise SystemExit("--test packages runtime files only; do not combine it with --dev")
-    ver = version()
+    files = committed()
+    ver = version(files)
     out_dir = os.path.join(ROOT, "dist")
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, "%s-%s%s.zip" % (NAME, ver, "-test" if test else "-dev" if dev else ""))
     n = 0
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
-        for dirpath, dirnames, filenames in os.walk(ROOT):
-            rel = os.path.relpath(dirpath, ROOT).replace("\\", "/")
-            rel = "" if rel == "." else rel
-            dirnames[:] = [d for d in dirnames if d not in SKIP and not d.startswith(".")]
-            allowed = rel in RUNTIME_DIRS or (dev and (rel in DEV_DIRS or rel.split("/")[0] in DEV_DIRS))
-            if not allowed:
-                continue
-            for fn in sorted(filenames):
-                ext = os.path.splitext(fn)[1].lower()
-                if rel in RUNTIME_DIRS and ext not in RUNTIME_EXT and fn != "LICENSE" and not dev:
-                    continue
-                if fn.endswith(".pyc"):
-                    continue
-                src = os.path.join(dirpath, fn)
-                z.write(src, NAME + "/" + (rel + "/" if rel else "") + fn)
+        for path in sorted(files):
+            if ships(path, dev):
+                z.writestr(NAME + "/" + path, files[path])
                 n += 1
+    dirty = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--untracked-files=no"],
+                           capture_output=True, text=True).stdout.strip()
+    if dirty:
+        print("note: packaged the last commit; %d uncommitted change(s) are not in the zip" % len(dirty.splitlines()))
     if test:
         subprocess.run([sys.executable, os.path.join(HERE, "check_package.py"), out], check=True)
         with open(out, "rb") as fh:
