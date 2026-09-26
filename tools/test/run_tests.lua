@@ -127,8 +127,26 @@ do
     ns.ReportOnce("test:ui-disabled", "not captured")
     check(#entries == before + 1, "recording off skips Lua error capture")
     ns.db.recorder.enabled = true
+    -- /fg rec dump opens a copyable window (for pasting into feedback) instead of printing to chat
+    ns.Recorder:Add("ACCEPT", { q = 7001, n = "Dump Test Quest", npc = 1234, npcName = "Dump Test Giver" })
+    ns.Commands:Run("rec dump")
+    local dump = rawget(_G, "ForeverGuideRecorderDump")
+    local text = dump and dump.text and dump.text:GetText() or ""
+    check(dump and dump:IsShown() and text:find("Dump Test Quest", 1, true) and text:find("Dump Test Giver", 1, true)
+        and text:find("ERROR test:ui-error: broken button", 1, true), "/fg rec dump opens a window with the recorded entries (" .. text:gsub("\n", " | ") .. ")")
+    dump:Hide()
+    ns.Commands:Run("rec dump 1")
+    text = dump.text:GetText() or ""
+    check(dump:IsShown() and text:find("Dump Test Quest", 1, true) and not text:find("broken button", 1, true),
+        "/fg rec dump 1 shows only the latest entry")
     while #entries > before do table.remove(entries) end
     while #reportedErrors > errorsBefore do table.remove(reportedErrors) end
+    local saved = ns.db.recorder.entries
+    ns.db.recorder.entries = {}
+    ns.Commands:Run("rec dump")
+    check(dump:IsShown() and (dump.text:GetText() or ""):find("Nothing recorded", 1, true), "an empty recorder says so in the window")
+    ns.db.recorder.entries = saved
+    dump:Hide()
 end
 check(ns.db.ding.enabled == false and ns.db.nav.blizzardWaypoint == false
     and ns.db.nav.waypoint.enabled == false and ns.db.nav.waypoint.route == false

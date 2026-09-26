@@ -160,20 +160,34 @@ function Recorder:Clear()
     if ns.db then ns.db.recorder.entries = {} end
 end
 
---- Print the last n entries to chat.
-function Recorder:Dump(n)
+--- The last n entries as text, one line each.
+function Recorder:DumpText(n)
     local entries = ns.db.recorder.entries
     n = math.min(n or 10, #entries)
+    local lines = {}
     for i = #entries - n + 1, #entries do
         local e = entries[i]
         if e.e == "ERROR" then
-            ns.Printf("ERROR %s: %s (guide %s step %s @ map %s)", e.key or "?", e.msg or "?",
+            lines[#lines + 1] = string.format("ERROR %s: %s (guide %s step %s @ map %s)", e.key or "?", e.msg or "?",
                 tostring(e.guide or "?"), tostring(e.step or "?"), tostring(e.m or "?"))
         else
-            ns.Printf("%s %s q=%s npc=%s %s @ map %s (%s, %s) lvl %s %s",
+            lines[#lines + 1] = string.format("%s %s q=%s npc=%s %s @ map %s (%s, %s) lvl %s %s",
                 e.e, e.n or e.txt or "", tostring(e.q or "-"), tostring(e.npc or "-"), e.npcName or "",
                 tostring(e.m or "?"), tostring(e.x or "?"), tostring(e.y or "?"), tostring(e.lvl), e.zone or "")
         end
     end
-    ns.Printf("%d entries recorded in total.", #entries)
+    lines[#lines + 1] = string.format("(last %d of %d entries recorded)", n, #entries)
+    return table.concat(lines, "\n"), n
+end
+
+--- Open the last n entries in a copy window, to paste into feedback.
+function Recorder:Dump(n)
+    if #ns.db.recorder.entries == 0 then
+        ns.Reports:ShowText("ForeverGuideRecorderDump", "Recorder data (select all and copy)",
+            "Nothing recorded yet. Turn the recorder on with /fg rec on, play for a while, then /fg rec dump again.")
+        return
+    end
+    local text, shown = self:DumpText(n)
+    ns.Reports:ShowText("ForeverGuideRecorderDump", "Recorder data (select all and copy)", text)
+    ns.Printf("recorder: %d entries opened in a window - Ctrl+C copies them (/fg rec dump <n> for more).", shown)
 end
