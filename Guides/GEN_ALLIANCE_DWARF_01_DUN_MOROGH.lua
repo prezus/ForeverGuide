@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_01_DUN_MOROGH",
     name = "1. Dun Morogh 1-10 (Dwarf)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 1,
@@ -129,8 +129,8 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 94374, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 112
         { type = "TURNIN", quest = 313, questName = "The Grizzled Den", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.6 }, -- 113
         { type = "TURNIN", quest = 287, questName = "Frostmane Hold", npc = 1252, npcName = "Senir Whitebeard", map = 1426, zone = "Dun Morogh", x = 46.7, y = 53.8 }, -- 114
-        { type = "ACCEPT", quest = 415, questName = "Rejold's New Brew", npc = 1872, npcName = "Tharek Blackstone", map = 1426, zone = "Dun Morogh", x = 46, y = 51.6 }, -- 115
-        { type = "TURNIN", quest = 412, questName = "Operation Recombobulation", npc = 1269, npcName = "Razzle Sprysprocket", map = 1426, zone = "Dun Morogh", x = 45.9, y = 49.3 }, -- 116
+        { type = "TURNIN", quest = 412, questName = "Operation Recombobulation", npc = 1269, npcName = "Razzle Sprysprocket", map = 1426, zone = "Dun Morogh", x = 45.9, y = 49.3 }, -- 115
+        { type = "ACCEPT", quest = 415, questName = "Rejold's New Brew", npc = 1872, npcName = "Tharek Blackstone", map = 1426, zone = "Dun Morogh", x = 46, y = 51.6 }, -- 116
         { type = "TURNIN", quest = 311, questName = "Return to Marleth", npc = 1375, npcName = "Marleth Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.5 }, -- 117
         { type = "ACCEPT", quest = 413, questName = "Shimmer Stout", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 118
         { type = "TURNIN", quest = 318, questName = "Evershine", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 119
