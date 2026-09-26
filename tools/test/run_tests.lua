@@ -820,15 +820,15 @@ end
 do
     MOCK_ACCEPT(52, "Protect the Frontier", { { text = "Young Forest Bear slain: 2/5", finished = false, numFulfilled = 2, numRequired = 5 } }); settle()
     local lines = ns.ItemTips:MobLinesFor("Young Forest Bear")
-    check(#lines == 1 and lines[1] == "Young Forest Bear slain: 2/5", "hovering a kill mob shows only its objective and live progress (" .. tostring(lines[1]) .. ")")
+    check(#lines == 1 and lines[1] == "2/5 Young Forest Bear slain", "hovering a kill mob shows the count, then its objective (" .. tostring(lines[1]) .. ")")
     check(#ns.ItemTips:MobLinesFor("Riverpaw Runt") == 0, "a mob not needed for a live objective gets no quest status")
     MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Painted Gnoll Armband: 3/8", finished = false, numFulfilled = 3, numRequired = 8 } }); settle()
     lines = ns.ItemTips:MobLinesFor("Riverpaw Runt")
-    check(#lines == 1 and lines[1] == "Painted Gnoll Armband: 3/8", "hovering a drop mob shows only the gathered item objective (" .. tostring(lines[1]) .. ")")
+    check(#lines == 1 and lines[1] == "3/8 Painted Gnoll Armband", "a count-last objective (\"Armband: 3/8\") is shown count first (" .. tostring(lines[1]) .. ")")
     MOCK_ABANDON(11); settle()
     MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "3/8 Painted Gnoll Armband", finished = false, numFulfilled = 3, numRequired = 8 } }); settle()
     lines = ns.ItemTips:MobLinesFor("Riverpaw Runt")
-    check(#lines == 1 and lines[1] == "Painted Gnoll Armband: 3/8", "a counter-first objective shows its count once, with no quest title (" .. tostring(lines[1]) .. ")")
+    check(#lines == 1 and lines[1] == "3/8 Painted Gnoll Armband", "a counter-first objective shows its count once, with no quest title (" .. tostring(lines[1]) .. ")")
     GameTooltip.unitName, GameTooltip.lines = "Riverpaw Runt", {}
     GameTooltip:GetScript("OnTooltipSetUnit")(GameTooltip)
     check(#GameTooltip.lines == 2 and GameTooltip.lines[2]:find("3/8", 1, true), "the unit tooltip actually receives the current quest progress")
