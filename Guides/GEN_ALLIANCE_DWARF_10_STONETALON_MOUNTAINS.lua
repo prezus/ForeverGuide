@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_10_STONETALON_MOUNTAINS",
     name = "10. Stonetalon Mountains 27-28 (Dwarf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 27,
@@ -15,7 +15,7 @@ ns.RegisterGuide({
     notes = "Chapter 10 of the Dwarf route: level 27 to 28, 20 steps, ~39 min of play in the model (19945 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 27,
     steps = function() return {
-        { type = "COLLECT", quest = 1134, questName = "Pridewings of Stonetalon", target = "Pridewing Venom Sac", count = 12, map = 1442, zone = "Stonetalon Mountains", x = 77.7, y = 54.1, near = true }, -- 1
+        { type = "COLLECT", quest = 1134, questName = "Pridewings of Stonetalon", target = "Pridewing Venom Sac", count = 12, map = 1442, zone = "Stonetalon Mountains", x = 77.7, y = 54.1, near = true, mobs = "Young Pridewing / Pridewing Wyvern / Pridewing Skyhunter / Pridewing Consort" }, -- 1
         { type = "ACCEPT", quest = 2931, questName = "Castpipe's Task", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.4, y = 67.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 2
         { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 3
         { type = "TURNIN", quest = 1070, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.8, y = 66.8 }, -- 4
