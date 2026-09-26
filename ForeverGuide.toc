@@ -34,7 +34,6 @@ Dungeons.lua
 Tracker.lua
 Corpse.lua
 ItemTips.lua
-Crowd.lua
 Ding.lua
 Pace.lua
 Reminders.lua

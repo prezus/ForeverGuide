@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Mob tooltips list just the objective and its count ("Bear Fur: 0/8"): no quest title, and the count only once.
+- Crowd detection is gone: no "Crowded" / "Group up" banner, no steps postponed because a spot is busy, and other players' nameplates are no longer switched on during kill steps. `/fg crowd` and `/fg skull friends` are removed.
 - Two new buttons along the bottom edge of the guide window, under Details and Guides, each opening a panel beneath it (one at a time):
   - **Unknown Quests**: the quests in your log that no guide will take you through - not in any chapter of your route, nor in a dungeon guide. The button shows how many ("Unknown Quests (3)"). Left click one to open it in the quest log; right click still reports it as a missing route quest. The panel no longer pops up by itself, and a quest a later chapter handles is no longer listed.
   - **Dungeon Quests**: your dungeons by level, with how many of their quests you carry. Pick one to see each of its quests and where it stands, and a Waypoint to the entrance. Looking never switches guides, so the chapter stays on the step you were on. It replaces the dungeon badge in the header and its popup, and the guide picker no longer lists dungeon guides (`/fg dungeons` and `/fg guide <id>` still open one).

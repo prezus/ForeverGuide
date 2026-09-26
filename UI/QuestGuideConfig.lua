@@ -59,8 +59,6 @@ Config.TOGGLES = {
                    set = function(v) if ns.MobMarker then ns.MobMarker:SetEnabled(v) end end },
     skullothers = { label = "small skulls over the other quest mobs around", get = function() return ns.MobMarker and ns.MobMarker.Cfg().others ~= false end,
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().others = v ns.MobMarker:Scan() end end },
-    skullfriends = { label = "show other players' nameplates during kill steps (crowd detection)", get = function() return ns.MobMarker and ns.MobMarker.Cfg().friendplates ~= false end,
-                   set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().friendplates = v ns.MobMarker:Scan() end end },
     skullplates = { label = "switch enemy nameplates on during kill steps (needed for the skulls)", get = function() return ns.MobMarker and ns.MobMarker.Cfg().plates ~= false end,
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().plates = v ns.MobMarker:Scan() end end },
     wpengine   = { label = "ride the client's own pin instead of the plain arrow (off by default - most Forever clients cannot project it, and guessing felt sluggish)", get = function() return Config.Waypoint().engine == true end,
@@ -109,7 +107,7 @@ function Config.OptionItems()
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end
     items[#items + 1] = { header = "Quest mobs" }
-    for _, key in ipairs({ "skull", "skullothers", "skullplates", "skullfriends" }) do
+    for _, key in ipairs({ "skull", "skullothers", "skullplates" }) do
         local t = Config.TOGGLES[key]
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end

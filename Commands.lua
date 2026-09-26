@@ -28,7 +28,7 @@ local HELP = {
     "/fg path [name|race] follow another race's leveling route (any of your faction's)",
     "/fg waypoint on|off  the in-world gold waypoint diamond (advanced)  |  /fg waypoint engine on|off  ride the client's own pin instead of the arrow  |  /fg route on|off  its dotted path",
     "/fg skull on|off  skull over the nearest quest mob  |  /fg skull others|plates on|off",
-    "/fg crowd on|off|test  the crowd safeguard; /fg perf  what the addon costs per frame",
+    "/fg perf  what the addon costs per frame",
     "/fg qg <scale|opacity|width|rows|wpsize> <value>   Quest Guide look  |  /fg qg completed|distances|subtitles on|off",
     "/fg minimap on|off  the minimap button",
     "/fg auto [accept on|off|guide] [turnin on|off]   auto-accept / auto-turn-in quests (hold SHIFT at an NPC to do it by hand)",
@@ -221,8 +221,7 @@ function handlers.skull(rest)
     rest = (rest or ""):lower()
     local key = "skull"
     if rest:match("^plates") then key = "skullplates" rest = rest:gsub("^plates%s*", "")
-    elseif rest:match("^others") then key = "skullothers" rest = rest:gsub("^others%s*", "")
-    elseif rest:match("^friends") then key = "skullfriends" rest = rest:gsub("^friends%s*", "") end
+    elseif rest:match("^others") then key = "skullothers" rest = rest:gsub("^others%s*", "") end
     local on
     if rest == "on" then on = true elseif rest == "off" then on = false end
     local ok, msg = ns.QuestGuideConfig.SetToggle(key, on)
@@ -345,17 +344,6 @@ function handlers.ding(rest)
         c.channel == "auto" and ("auto - " .. string.lower(D:Channel())) or c.channel,
         ns.Ding.Message(ns.Player:GetLevel() + 1, sec),
         sec and "" or "  (time played not known yet - /fg ding time)")
-end
-
---- /fg crowd test - preview the crowd / group-up banner; /fg crowd on|off - the safeguard itself
-function handlers.crowd(rest)
-    if not ns.Crowd then return end
-    rest = (rest or ""):lower()
-    if rest == "test" or rest == "preview" then ns.Crowd:Preview() ns.Print("crowd banner preview for 10 s.") return end
-    ns.db.crowd = ns.db.crowd or {}
-    if rest == "on" then ns.db.crowd.enabled = true elseif rest == "off" then ns.db.crowd.enabled = false end
-    ns.Printf("crowd safeguard %s (/fg crowd on|off|test).", ns.db.crowd.enabled == false and "off" or "on")
-    ns.Crowd:Update()
 end
 
 function handlers.perf()

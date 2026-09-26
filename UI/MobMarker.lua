@@ -289,12 +289,6 @@ local function inCombat()
     return ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true
 end
 
--- Friendly PLAYER nameplates (not npcs / pets / totems) during kill steps: the one way to see who
--- is hunting next to you (the crowd rules and the group-up reminder count them). Restored after.
-local FRIEND_CVARS = { nameplateShowFriends = "1", nameplateShowFriendlyNPCs = "0", nameplateShowFriendlyPets = "0",
-                       nameplateShowFriendlyGuardians = "0", nameplateShowFriendlyTotems = "0", nameplateShowFriendlyMinions = "0" }
-local forcedFriends = nil
-
 --- nameplateShowEnemies/nameplateShowFriends* are protected cvars: setting them from combat lockdown
 --- is silently denied by the client (Ilya, 2026-09-24: "Interface action failed because of an AddOn" -
 --- firing live, right as a kill step started mid-fight) and, since Scan() retries every 0.5s while a
@@ -309,21 +303,10 @@ local function forcePlates(want)
             forcedPlates = getCVar("nameplateShowEnemies") or "0"
             setCVar("nameplateShowEnemies", "1")
         end
-        if cfg().friendplates ~= false and forcedFriends == nil then
-            forcedFriends = {}
-            for k, v in pairs(FRIEND_CVARS) do
-                forcedFriends[k] = getCVar(k) or "0"
-                if forcedFriends[k] ~= v then setCVar(k, v) end
-            end
-        end
     else
         if forcedPlates ~= nil then
             setCVar("nameplateShowEnemies", forcedPlates)
             forcedPlates = nil
-        end
-        if forcedFriends ~= nil then
-            for k, v in pairs(forcedFriends) do setCVar(k, v) end
-            forcedFriends = nil
         end
     end
 end
@@ -378,7 +361,7 @@ function MM:Scan()
     local finished = self:FinishedNames()
     local openKills, openLoot = self:OpenKillNames()
     local killStep = step ~= nil
-    -- plates (and the crowd watch) also while an off-guide kill objective is open, e.g. a quest the
+    -- plates also while an off-guide kill objective is open, e.g. a quest the
     -- player picked up on their own
     local anyKill = killStep or next(openKills) ~= nil
     forcePlates(anyKill)
@@ -389,20 +372,12 @@ function MM:Scan()
     local best, bestScore, mine
     local others = {}
     local targetGUID = ns.PlainString(ns.Safe(UnitGUID, "target"))
-    local seenFree, seenTagged, seenPlayers = 0, 0, {}
-    local killFree, killTagged = 0, 0      -- mobs of any open kill objective in the log
     for _, plate in ipairs(plates) do
         local u = plateUnit(plate)
-        if u and ns.Plain(ns.Safe(UnitIsPlayer, u)) == true then
-            local g = ns.PlainString(ns.Safe(UnitGUID, u))
-            if g and g ~= ns.PlainString(ns.Safe(UnitGUID, "player")) then seenPlayers[g] = true end
-        end
         if u and isMob(u) then
             local name = ns.PlainString(ns.Safe(UnitName, u))
             local lower = name and string.lower(name)
             local isWanted = lower and names[lower] ~= nil
-            if isWanted then if tagged(u) then seenTagged = seenTagged + 1 else seenFree = seenFree + 1 end end
-            if lower and openKills[lower] then if tagged(u) then killTagged = killTagged + 1 else killFree = killFree + 1 end end
             -- Only proven open objectives (or the current step) earn skulls; the client's
             -- quest-related flag stays true for quests already ready to turn in.
             local open = lower and (openKills[lower] or openLoot[lower])
@@ -444,10 +419,6 @@ function MM:Scan()
         end
     end
     if not targetGUID or self.taggedWarned ~= targetGUID then self.taggedWarned = nil end
-    if anyKill and ns.Crowd then
-        ns.Crowd:Observe(seenFree, seenTagged, seenPlayers, killFree, killTagged)
-        ns.Crowd:Update()
-    end
     local guid = best and ns.PlainString(ns.Safe(UnitGUID, plateUnit(best)))
     if guid ~= lastPrimary then
         lastPrimary = guid
