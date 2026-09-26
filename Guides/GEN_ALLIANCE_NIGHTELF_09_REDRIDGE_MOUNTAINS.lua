@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_09_REDRIDGE_MOUNTAINS",
     name = "9. Redridge Mountains 25-26 (Night Elf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 25,
@@ -74,7 +74,7 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 91, questName = "Solomon's Law", target = "Shadowhide Pendant", count = 10, map = 1433, zone = "Redridge Mountains", x = 68.7, y = 45.7, near = true }, -- 57
         { type = "TURNIN", quest = 94, questName = "A Watchful Eye", map = 1433, zone = "Redridge Mountains", x = 84.3, y = 46.9 }, -- 58
         { type = "KILL", quest = 180, questName = "Wanted: Lieutenant Fangore", npc = 703, target = "Lieutenant Fangore", map = 1433, zone = "Redridge Mountains", x = 80.2, y = 37.1, note = "loot Fangore's Paw" }, -- 59
-        { type = "COLLECT", quest = 115, questName = "Shadow Magic", target = "Midnight Orb", count = 3, map = 1433, zone = "Redridge Mountains", x = 68.4, y = 54.6, optional = true, near = true }, -- 60
+        { type = "COLLECT", quest = 115, questName = "Shadow Magic", target = "Midnight Orb", count = 3, map = 1433, zone = "Redridge Mountains", x = 68.4, y = 54.6, optional = true, near = true, mobs = "Blackrock Shadowcaster / Incinerator Gar'im" }, -- 60
         { type = "TURNIN", quest = 115, questName = "Shadow Magic", npc = 382, npcName = "Marshal Marris", map = 1433, zone = "Redridge Mountains", x = 33.4, y = 48.8, optional = true }, -- 61
         { type = "TURNIN", quest = 91, questName = "Solomon's Law", npc = 900, npcName = "Bailiff Conacher", map = 1433, zone = "Redridge Mountains", x = 29.7, y = 44.3 }, -- 62
         { type = "TURNIN", quest = 180, questName = "Wanted: Lieutenant Fangore", npc = 344, npcName = "Magistrate Solomon", map = 1433, zone = "Redridge Mountains", x = 30, y = 44.5 }, -- 63
