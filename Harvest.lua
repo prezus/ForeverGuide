@@ -209,6 +209,10 @@ local PROBE_MAP_APIS = {
     "C_QuestLog.GetQuestsOnMap", "C_GossipInfo.GetPoiForUiMapID", "C_QuestLine.GetForceVisibleQuests",
 }
 
+-- XP spells whose effect depends on the server: the kill-XP aura Forever's Well Fed foods read
+-- (1243969), the sleeping bag's Well-Rested (429959) and faster rested XP (1225478).
+local PROBE_SPELLS = { 1243969, 429959, 1225478 }
+
 -- Where an id list's details come from.
 local PROBE_DETAILS = {
     ["C_AreaPoiInfo.GetQuestHubsForMap"] = "C_AreaPoiInfo.GetAreaPOIInfo",
@@ -286,6 +290,12 @@ function Harvest:Probe()
             if PlainNumber(map) then entry.waypoint = { map = PlainNumber(map), x = (PlainNumber(x) or 0) * 100, y = (PlainNumber(y) or 0) * 100 } end
             probe.log[id] = entry
         end
+    end
+    -- XP spells: does this character have the aura, and how does the client word it
+    probe.spells = {}
+    for _, id in ipairs(PROBE_SPELLS) do
+        local aura = ns.Call("C_UnitAuras.GetPlayerAuraBySpellID", id)
+        probe.spells[id] = { aura = type(aura) == "table", description = PlainString(ns.Call("C_Spell.GetSpellDescription", id)) }
     end
     local parts = {}
     for _, path in ipairs(PROBE_MAP_APIS) do parts[#parts + 1] = path:match("%.(%w+)$") .. " " .. tostring(probe.apis[path]) end

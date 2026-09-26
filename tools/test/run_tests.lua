@@ -124,6 +124,7 @@ do
         check(hub and hub.areaPoiID == 42 and hub.name == "Quest hub" and math.abs(hub.y - 25) < 0.01, "probe looks up quest hub details by id")
         check(probe.apis["C_AreaPoiInfo.GetQuestHubsForMap"] == 1 and probe.apis["C_AreaPoiInfo.GetAreaPOIForMap"] == "missing", "probe counts answers and marks APIs this client lacks")
         check(ns.db.harvest.probe == probe, "probe results are saved with the harvest data")
+        check(probe.spells[1243969] ~= nil and probe.spells[1243969].aura == false, "probe records whether the character has the kill-XP aura")
         C_TaxiMap.GetTaxiNodesForMap, _G.C_AreaPoiInfo = taxi, areaPoi
     end
     _G.C_QuestLine = priorQuestLine
