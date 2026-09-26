@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_08_IRONFORGE",
     name = "8. Ironforge 24-25 (Night Elf)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 24,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_09_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 8 of the NightElf route: level 24 to 25, 11 steps, ~15 min of play in the model (38801 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 48,
+    stepCount = 49,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 1573, npcName = "Gryth Thurden", map = 1455, zone = "Ironforge", x = 55.5, y = 47.7 }, -- 1
         { type = "ACCEPT", quest = 250, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46, y = 13.6 }, -- 2
@@ -30,7 +30,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 141, questName = "The Defias Brotherhood", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8 }, -- 13
         { type = "TURNIN", quest = 141, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 14
         { type = "ACCEPT", quest = 142, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 15
-        { type = "COLLECT", quest = 142, questName = "The Defias Brotherhood", target = "A Mysterious Message", count = 1, map = 1436, zone = "Westfall", x = 44.4, y = 69.6 }, -- 16
+        { type = "COLLECT", quest = 142, questName = "The Defias Brotherhood", target = "A Mysterious Message", count = 1, map = 1436, zone = "Westfall", x = 44.4, y = 69.6, mobs = "Defias Messenger" }, -- 16
         { type = "TURNIN", quest = 142, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 17
         { type = "ACCEPT", quest = 155, questName = "The Defias Brotherhood", npc = 467, npcName = "The Defias Traitor", map = 1436, zone = "Westfall", x = 55.6, y = 47.4 }, -- 18
         { type = "TURNIN", quest = 155, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 19
@@ -47,21 +47,22 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 94495, questName = "Call of Water", npc = 258043, npcName = "Norric Lochthane", map = 1432, zone = "Loch Modan", x = 41.8, y = 19, class = { "SHAMAN" }, note = "New in Forever" }, -- 30
         { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.3, y = 46.8, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 31
         { type = "HEARTH", npc = 5111, npcName = "Innkeeper Firebrew", map = 1455, zone = "Ironforge", x = 18.1, y = 51.5, note = "talk to Innkeeper Firebrew and make this inn your home" }, -- 32
-        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 33
-        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 34
-        { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 35
-        { type = "ACCEPT", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 36
-        { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 37
-        { type = "TURNIN", quest = 1072, questName = "An Old Colleague", npc = 4081, npcName = "Lomac Gearstrip", map = 1455, zone = "Ironforge", x = 71.8, y = 51.6 }, -- 38
-        { type = "ACCEPT", quest = 467, questName = "Stonegear's Search", npc = 2092, npcName = "Pilot Longbeard", map = 1455, zone = "Ironforge", x = 72.4, y = 93.6 }, -- 39
-        { type = "TURNIN", quest = 467, questName = "Stonegear's Search", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.4 }, -- 40
-        { type = "ACCEPT", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 41
-        { type = "TURNIN", quest = 2927, questName = "The Day After", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true }, -- 42
-        { type = "ACCEPT", quest = 1698, questName = "Yorus Barleybrew", npc = 5113, npcName = "Kelv Sternhammer", map = 1455, zone = "Ironforge", x = 70, y = 90.6, class = { "WARRIOR" } }, -- 43
-        { type = "KILL", quest = 2922, questName = "Save Techbot's Brain!", npc = 6231, target = "Techbot", map = 1426, zone = "Dun Morogh", x = 19.8, y = 31.9, optional = true }, -- 44
-        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true }, -- 45
-        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 46
-        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 47
-        { type = "TURNIN", quest = 2923, questName = "Tinkmaster Overspark", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, optional = true }, -- 48
+        { type = "TURNIN", quest = 968, questName = "The Powers Below", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.4, y = 6, optional = true }, -- 33
+        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 34
+        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 35
+        { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 36
+        { type = "ACCEPT", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 37
+        { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 38
+        { type = "TURNIN", quest = 1072, questName = "An Old Colleague", npc = 4081, npcName = "Lomac Gearstrip", map = 1455, zone = "Ironforge", x = 71.8, y = 51.6 }, -- 39
+        { type = "ACCEPT", quest = 467, questName = "Stonegear's Search", npc = 2092, npcName = "Pilot Longbeard", map = 1455, zone = "Ironforge", x = 72.4, y = 93.6 }, -- 40
+        { type = "TURNIN", quest = 467, questName = "Stonegear's Search", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.4 }, -- 41
+        { type = "ACCEPT", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 42
+        { type = "TURNIN", quest = 2927, questName = "The Day After", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true }, -- 43
+        { type = "ACCEPT", quest = 1698, questName = "Yorus Barleybrew", npc = 5113, npcName = "Kelv Sternhammer", map = 1455, zone = "Ironforge", x = 70, y = 90.6, class = { "WARRIOR" } }, -- 44
+        { type = "KILL", quest = 2922, questName = "Save Techbot's Brain!", npc = 6231, target = "Techbot", map = 1426, zone = "Dun Morogh", x = 19.8, y = 31.9, optional = true }, -- 45
+        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true }, -- 46
+        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 47
+        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 48
+        { type = "TURNIN", quest = 2923, questName = "Tinkmaster Overspark", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, optional = true }, -- 49
     } end,
 })

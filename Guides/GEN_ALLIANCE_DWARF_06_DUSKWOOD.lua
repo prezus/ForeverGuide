@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_06_DUSKWOOD",
     name = "6. Duskwood 19-22 (Dwarf)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 19,
@@ -25,7 +25,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 141, questName = "The Defias Brotherhood", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8 }, -- 8
         { type = "TURNIN", quest = 141, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 9
         { type = "ACCEPT", quest = 142, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 10
-        { type = "COLLECT", quest = 142, questName = "The Defias Brotherhood", target = "A Mysterious Message", count = 1, map = 1436, zone = "Westfall", x = 44.4, y = 69.6 }, -- 11
+        { type = "COLLECT", quest = 142, questName = "The Defias Brotherhood", target = "A Mysterious Message", count = 1, map = 1436, zone = "Westfall", x = 44.4, y = 69.6, mobs = "Defias Messenger" }, -- 11
         { type = "TURNIN", quest = 142, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 12
         { type = "ACCEPT", quest = 155, questName = "The Defias Brotherhood", npc = 467, npcName = "The Defias Traitor", map = 1436, zone = "Westfall", x = 55.6, y = 47.4 }, -- 13
         { type = "TURNIN", quest = 155, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 14
@@ -33,7 +33,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 214, questName = "Red Silk Bandanas", npc = 820, npcName = "Scout Riell", map = 1436, zone = "Westfall", x = 56.6, y = 47.4, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 16
         { type = "NOTE", optional = true, text = "Ready for The Deadmines", note = "Picked up: The Defias Brotherhood, Oh Brother..., Collecting Memories, Red Silk Bandanas, Underground Assault. When you have a group, open The Deadmines under Dungeons." }, -- 17
         { type = "ACCEPT", quest = 94467, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" }, note = "New in Forever" }, -- 18
-        { type = "COLLECT", quest = 94467, questName = "Call of Fire", target = "Glowing Ember", count = 1, map = 1411, zone = "Durotar", x = 38.7, y = 58.3, class = { "SHAMAN" } }, -- 19
+        { type = "COLLECT", quest = 94467, questName = "Call of Fire", target = "Glowing Ember", count = 1, map = 1411, zone = "Durotar", x = 38.7, y = 58.3, class = { "SHAMAN" }, mobs = "Minor Manifestation of Fire" }, -- 19
         { type = "TURNIN", quest = 94467, questName = "Call of Fire", map = 1411, zone = "Durotar", x = 38.9, y = 58.2, class = { "SHAMAN" } }, -- 20
         { type = "TRAVEL", map = 1431, zone = "Duskwood", x = 74.9, y = 47.1, radius = 60, note = "travel to Duskwood (Duskwood)" }, -- 21
         { type = "HEARTH", npc = 6790, npcName = "Innkeeper Trelayne", map = 1431, zone = "Darkshire", x = 73.9, y = 44.4, note = "talk to Innkeeper Trelayne and make this inn your home" }, -- 22
@@ -115,7 +115,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 323, questName = "Proving Your Worth", npc = 787, target = "Skeletal Healer / Skeletal Raider / Skeletal Warder", count = 15, map = 1431, zone = "Duskwood", x = 13.5, y = 36.3, near = true }, -- 98
         { type = "TURNIN", quest = 323, questName = "Proving Your Worth", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 99
         { type = "ACCEPT", quest = 269, questName = "Seeking Wisdom", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 100
-        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 10.8, y = 32.2, near = true, profession = "Cooking", skill = 50 }, -- 101
+        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 10.8, y = 32.2, near = true, profession = "Cooking", skill = 50, mobs = "Starving Dire Wolf / Lupos / Rabid Dire Wolf / Black Ravager" }, -- 101
         { type = "TURNIN", quest = 160, questName = "Note to the Mayor", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 102
         { type = "TURNIN", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6, profession = "Cooking", skill = 50 }, -- 103
         { type = "ACCEPT", quest = 66, questName = "The Legend of Stalvan", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 104

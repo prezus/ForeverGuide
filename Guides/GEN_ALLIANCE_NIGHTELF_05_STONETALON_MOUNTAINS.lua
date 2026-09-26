@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_05_STONETALON_MOUNTAINS",
     name = "5. Stonetalon Mountains 18-19 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 18,
@@ -18,7 +18,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 79192, questName = "Stepping Stones", map = 1442, zone = "Stonetalon Mountains", x = 40.8, y = 52.5 }, -- 1
         { type = "COLLECT", quest = 1069, questName = "Deepmoss Spider Eggs", target = "Deepmoss Egg", count = 15, map = 1442, zone = "Stonetalon Mountains", x = 61, y = 64.1 }, -- 2
         { type = "ACCEPT", quest = 94467, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" }, note = "New in Forever" }, -- 3
-        { type = "COLLECT", quest = 94467, questName = "Call of Fire", target = "Glowing Ember", count = 1, map = 1411, zone = "Durotar", x = 38.7, y = 58.3, class = { "SHAMAN" } }, -- 4
+        { type = "COLLECT", quest = 94467, questName = "Call of Fire", target = "Glowing Ember", count = 1, map = 1411, zone = "Durotar", x = 38.7, y = 58.3, class = { "SHAMAN" }, mobs = "Minor Manifestation of Fire" }, -- 4
         { type = "TURNIN", quest = 94467, questName = "Call of Fire", map = 1411, zone = "Durotar", x = 38.9, y = 58.2, class = { "SHAMAN" } }, -- 5
         { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 6
         { type = "ACCEPT", quest = 1085, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.9, y = 66.9 }, -- 7

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_02_UNDERCITY",
     name = "2. Undercity 12-12 (Undead)",
-    version = 7,
+    version = 8,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 12,
@@ -34,7 +34,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 95328, questName = "Whispering Horror Residue", npc = 4607, npcName = "Father Lankester", map = 1458, zone = "Undercity", x = 49.6, y = 15.6, optional = true }, -- 17
         { type = "TURNIN", quest = 94427, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 18
         { type = "ACCEPT", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" }, note = "New in Forever" }, -- 19
-        { type = "COLLECT", quest = 94434, questName = "A Lesson in Divinity", target = "Linen Cloth", count = 10, map = 1458, zone = "Undercity", x = 70, y = 38.2, near = true, class = { "PALADIN" } }, -- 20
+        { type = "COLLECT", quest = 94434, questName = "A Lesson in Divinity", target = "Linen Cloth", count = 10, map = 1458, zone = "Undercity", x = 70, y = 38.2, near = true, class = { "PALADIN" }, mobs = "Lordaeron Citizen" }, -- 20
         { type = "TURNIN", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 21
         { type = "ACCEPT", quest = 1886, questName = "The Deathstalkers", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 22
         { type = "TURNIN", quest = 1886, questName = "The Deathstalkers", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 23

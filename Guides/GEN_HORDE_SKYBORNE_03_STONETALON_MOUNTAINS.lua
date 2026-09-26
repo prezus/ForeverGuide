@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_03_STONETALON_MOUNTAINS",
     name = "3. Stonetalon Mountains 23-24 (Skyborne)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 23,
@@ -67,7 +67,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 6481, questName = "Earthen Arise", npc = 11920, target = "Goggeroc", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 57.6, y = 89.4, optional = true }, -- 50
         { type = "TURNIN", quest = 6481, questName = "Earthen Arise", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64, optional = true }, -- 51
         { type = "ACCEPT", quest = 6284, questName = "Arachnophobia", map = 1442, zone = "Stonetalon Mountains", x = 59.1, y = 75.8, optional = true, note = "Elite - group up" }, -- 52
-        { type = "COLLECT", quest = 6284, questName = "Arachnophobia", target = "Besseleth's Fang", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 52, y = 73.8, optional = true }, -- 53
+        { type = "COLLECT", quest = 6284, questName = "Arachnophobia", target = "Besseleth's Fang", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 52, y = 73.8, optional = true, mobs = "Besseleth" }, -- 53
         { type = "TURNIN", quest = 6284, questName = "Arachnophobia", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61, optional = true }, -- 54
         { type = "TURNIN", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 55
     } end,

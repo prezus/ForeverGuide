@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_07_HILLSBRAD_FOOTHILLS",
     name = "7. Hillsbrad Foothills 26-28 (Undead)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 26,
@@ -36,7 +36,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 91859, questName = "A Curious Pair", npc = 248840, npcName = "Trevan Rol", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 41, class = { "PALADIN" }, note = "New in Forever" }, -- 19
         { type = "TURNIN", quest = 91859, questName = "A Curious Pair", npc = 259611, npcName = "Deathguard Baldren", map = 1421, zone = "Silverpine Forest", x = 45.8, y = 41.8, class = { "PALADIN" } }, -- 20
         { type = "ACCEPT", quest = 91862, questName = "Lumina Windsinger", npc = 248755, npcName = "Lumina Windsinger", map = 1421, zone = "Silverpine Forest", x = 65.6, y = 23.2, class = { "PALADIN" }, note = "New in Forever" }, -- 21
-        { type = "COLLECT", quest = 91862, questName = "Lumina Windsinger", target = "Fenris Isle Key", count = 1, map = 1421, zone = "Silverpine Forest", x = 65.6, y = 23.6, near = true, class = { "PALADIN" } }, -- 22
+        { type = "COLLECT", quest = 91862, questName = "Lumina Windsinger", target = "Fenris Isle Key", count = 1, map = 1421, zone = "Silverpine Forest", x = 65.6, y = 23.6, near = true, class = { "PALADIN" }, mobs = "Rot Hide Savage / Raging Rot Hide / Rot Hide Bruiser / Snarlmane" }, -- 22
         { type = "TURNIN", quest = 91862, questName = "Lumina Windsinger", npc = 248755, npcName = "Lumina Windsinger", map = 1421, zone = "Silverpine Forest", x = 65.6, y = 23.2, class = { "PALADIN" } }, -- 23
         { type = "ACCEPT", quest = 95034, questName = "The Debt", npc = 259620, npcName = "Lumina Windsinger", map = 1421, zone = "Silverpine Forest", x = 43.2, y = 40.8, class = { "PALADIN" }, note = "New in Forever" }, -- 24
         { type = "KILL", quest = 95034, questName = "The Debt", npc = 259620, target = "Speak with Lumina Windsinger", count = 1, map = 1421, zone = "Silverpine Forest", x = 43.2, y = 40.8, class = { "PALADIN" } }, -- 25
@@ -73,8 +73,8 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 2458, questName = "Deep Cover", npc = 3401, npcName = "Shenthul", map = 1454, zone = "Orgrimmar", x = 43, y = 53.4, class = { "ROGUE" } }, -- 56
         { type = "TURNIN", quest = 2458, questName = "Deep Cover", npc = 7233, npcName = "Taskmaster Fizzule", map = 1413, zone = "The Barrens", x = 55.4, y = 5.6, class = { "ROGUE" } }, -- 57
         { type = "ACCEPT", quest = 1476, questName = "Hearts of the Pure", npc = 5693, npcName = "Godrick Farsan", map = 1458, zone = "Undercity", x = 85, y = 14.8, class = { "WARLOCK" } }, -- 58
-        { type = "COLLECT", quest = 1476, questName = "Hearts of the Pure", target = "Dalin's Heart", count = 1, map = 1421, zone = "Silverpine Forest", x = 47.6, y = 85.7, class = { "WARLOCK" } }, -- 59
-        { type = "COLLECT", quest = 1476, questName = "Hearts of the Pure", target = "Corma's Heart", count = 1, map = 1437, zone = "Wetlands", x = 49.9, y = 12.6, class = { "WARLOCK" } }, -- 60
+        { type = "COLLECT", quest = 1476, questName = "Hearts of the Pure", target = "Dalin's Heart", count = 1, map = 1421, zone = "Silverpine Forest", x = 47.6, y = 85.7, class = { "WARLOCK" }, mobs = "Dalin Forgewright" }, -- 59
+        { type = "COLLECT", quest = 1476, questName = "Hearts of the Pure", target = "Corma's Heart", count = 1, map = 1437, zone = "Wetlands", x = 49.9, y = 12.6, class = { "WARLOCK" }, mobs = "Comar Villard" }, -- 60
         { type = "TURNIN", quest = 1476, questName = "Hearts of the Pure", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 61
         { type = "TURNIN", quest = 541, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, optional = true }, -- 62
         { type = "COLLECT", quest = 496, questName = "Elixir of Suffering", target = "Gray Bear Tongue", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 66.1, y = 23.1, near = true }, -- 63

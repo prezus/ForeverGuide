@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_06_DUSKWOOD",
     name = "6. Duskwood 20-23 (Human)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 20,
@@ -25,7 +25,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 141, questName = "The Defias Brotherhood", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8 }, -- 8
         { type = "TURNIN", quest = 141, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 9
         { type = "ACCEPT", quest = 142, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 10
-        { type = "COLLECT", quest = 142, questName = "The Defias Brotherhood", target = "A Mysterious Message", count = 1, map = 1436, zone = "Westfall", x = 44.4, y = 69.6 }, -- 11
+        { type = "COLLECT", quest = 142, questName = "The Defias Brotherhood", target = "A Mysterious Message", count = 1, map = 1436, zone = "Westfall", x = 44.4, y = 69.6, mobs = "Defias Messenger" }, -- 11
         { type = "TURNIN", quest = 142, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 12
         { type = "ACCEPT", quest = 155, questName = "The Defias Brotherhood", npc = 467, npcName = "The Defias Traitor", map = 1436, zone = "Westfall", x = 55.6, y = 47.4 }, -- 13
         { type = "TURNIN", quest = 155, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 14
@@ -115,7 +115,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 323, questName = "Proving Your Worth", npc = 787, target = "Skeletal Healer / Skeletal Raider / Skeletal Warder", count = 15, map = 1431, zone = "Duskwood", x = 13.5, y = 36.3, near = true }, -- 98
         { type = "TURNIN", quest = 323, questName = "Proving Your Worth", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 99
         { type = "ACCEPT", quest = 269, questName = "Seeking Wisdom", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 100
-        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 10.8, y = 32.2, near = true, profession = "Cooking", skill = 50 }, -- 101
+        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 10.8, y = 32.2, near = true, profession = "Cooking", skill = 50, mobs = "Starving Dire Wolf / Lupos / Rabid Dire Wolf / Black Ravager" }, -- 101
         { type = "TURNIN", quest = 160, questName = "Note to the Mayor", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 102
         { type = "ACCEPT", quest = 173, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 103
         { type = "ACCEPT", quest = 251, questName = "Translate Abercrombie's Note", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 104

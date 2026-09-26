@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_07_IRONFORGE",
   "name": "7. Ironforge 25-25 (Skyborne)",
-  "version": 6,
+  "version": 7,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 25,
@@ -23,6 +23,7 @@
     {"type": "ACCEPT", "quest": 94495, "questName": "Call of Water", "npc": 258043, "npcName": "Norric Lochthane", "map": 1432, "zone": "Loch Modan", "x": 41.8, "y": 19, "note": "New in Forever", "class": ["SHAMAN"]},
     {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 61.1, "y": 46.6, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
     {"type": "HEARTH", "npc": 5111, "npcName": "Innkeeper Firebrew", "map": 1455, "zone": "Ironforge", "x": 18.1, "y": 51.5, "note": "talk to Innkeeper Firebrew and make this inn your home"},
+    {"type": "TURNIN", "quest": 968, "questName": "The Powers Below", "npc": 2786, "npcName": "Gerrig Bonegrip", "map": 1455, "zone": "Ironforge", "x": 50.4, "y": 6, "optional": true},
     {"type": "ACCEPT", "quest": 971, "questName": "Knowledge in the Deeps", "npc": 2786, "npcName": "Gerrig Bonegrip", "map": 1455, "zone": "Ironforge", "x": 50.8, "y": 5.6},
     {"type": "TURNIN", "quest": 971, "questName": "Knowledge in the Deeps", "npc": 2786, "npcName": "Gerrig Bonegrip", "map": 1455, "zone": "Ironforge", "x": 50.8, "y": 5.6},
     {"type": "ACCEPT", "quest": 2924, "questName": "Essential Artificials", "npc": 6169, "npcName": "Klockmort Spannerspan", "map": 1455, "zone": "Ironforge", "x": 67.9, "y": 46.1},

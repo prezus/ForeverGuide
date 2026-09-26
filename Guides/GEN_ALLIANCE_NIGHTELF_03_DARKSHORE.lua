@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_03_DARKSHORE",
     name = "3. Darkshore 10-16 (Night Elf)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 10,
@@ -13,14 +13,14 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_04_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the NightElf route: level 10 to 16, 140 steps, ~225 min of play in the model (19667 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 207,
+    stepCount = 208,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 3841, npcName = "Caylais Moonfeather", map = 1439, zone = "Darkshore", x = 36.3, y = 45.6 }, -- 1
         { type = "ACCEPT", quest = 1638, questName = "A Warrior's Training", npc = 5480, npcName = "Ilsa Corbin", map = 1453, zone = "Stormwind City", x = 78.6, y = 45.6, class = { "WARRIOR" } }, -- 2
         { type = "TURNIN", quest = 1638, questName = "A Warrior's Training", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 3
         { type = "ACCEPT", quest = 1679, questName = "Muren Stormpike", npc = 1229, npcName = "Granis Swiftaxe", map = 1426, zone = "Dun Morogh", x = 47.2, y = 52.6, class = { "WARRIOR" } }, -- 4
         { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 5
-        { type = "COLLECT", quest = 1683, questName = "Vorlus Vilehoof", target = "Horn of Vorlus", count = 1, map = 1438, zone = "Teldrassil", x = 47.3, y = 63.6, class = { "WARRIOR" } }, -- 6
+        { type = "COLLECT", quest = 1683, questName = "Vorlus Vilehoof", target = "Horn of Vorlus", count = 1, map = 1438, zone = "Teldrassil", x = 47.3, y = 63.6, class = { "WARRIOR" }, mobs = "Vorlus Vilehoof" }, -- 6
         { type = "ACCEPT", quest = 94792, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever" }, -- 7
         { type = "TURNIN", quest = 94792, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" } }, -- 8
         { type = "ACCEPT", quest = 6063, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 9
@@ -52,11 +52,11 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 957, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 35
         { type = "KILL", quest = 2118, questName = "Plagued Lands", npc = 2164, target = "Rabid Thistle Bear", map = 1439, zone = "Darkshore", x = 44.7, y = 33, near = true }, -- 36
         { type = "COMPLETE", quest = 984, questName = "How Big a Threat?", target = "Find a corrupt furbolg camp", map = 1439, zone = "Darkshore", x = 50.9, y = 34.7, near = true, note = "Find a corrupt furbolg camp" }, -- 37
-        { type = "COLLECT", quest = 98025, questName = "WANTED: Jai'vhanel", target = "Feather of Jai'vhanel", count = 1, map = 1439, zone = "Darkshore", x = 45, y = 58.2 }, -- 38
+        { type = "COLLECT", quest = 98025, questName = "WANTED: Jai'vhanel", target = "Feather of Jai'vhanel", count = 1, map = 1439, zone = "Darkshore", x = 45, y = 58.2, mobs = "Jai'vhanel" }, -- 38
         { type = "ACCEPT", quest = 1639, questName = "Bartleby the Drunk", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 39
         { type = "TURNIN", quest = 1639, questName = "Bartleby the Drunk", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 40
         { type = "ACCEPT", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 41
-        { type = "COLLECT", quest = 1678, questName = "Vejrek", target = "Vejrek's Head", count = 1, map = 1426, zone = "Dun Morogh", x = 27.8, y = 58, class = { "WARRIOR" } }, -- 42
+        { type = "COLLECT", quest = 1678, questName = "Vejrek", target = "Vejrek's Head", count = 1, map = 1426, zone = "Dun Morogh", x = 27.8, y = 58, class = { "WARRIOR" }, mobs = "Vejrek" }, -- 42
         { type = "TURNIN", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 43
         { type = "ACCEPT", quest = 94863, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever" }, -- 44
         { type = "TURNIN", quest = 94863, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" } }, -- 45
@@ -128,7 +128,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 2098, questName = "Gyromast's Retrieval", npc = 6667, npcName = "Gelkak Gyromast", map = 1439, zone = "Darkshore", x = 56.6, y = 13.5 }, -- 111
         { type = "COLLECT", quest = 2098, questName = "Gyromast's Retrieval", target = "Middle of Gelkak's Key / Bottom of Gelkak's Key", map = 1439, zone = "Darkshore", x = 55.5, y = 12.6, near = true }, -- 112
         { type = "KILL", quest = 2098, questName = "Gyromast's Retrieval", npc = 2323, target = "Giant Foreststrider", map = 1439, zone = "Darkshore", x = 61.6, y = 12.3, near = true, note = "loot Top of Gelkak's Key" }, -- 113
-        { type = "COLLECT", quest = 2178, questName = "Easy Strider Living", target = "Strider Meat", count = 5, map = 1439, zone = "Darkshore", x = 59.2, y = 13, near = true, profession = "Cooking", skill = 10 }, -- 114
+        { type = "COLLECT", quest = 2178, questName = "Easy Strider Living", target = "Strider Meat", count = 5, map = 1439, zone = "Darkshore", x = 59.2, y = 13, near = true, profession = "Cooking", skill = 10, mobs = "Strider Clutchmother / Foreststrider Fledgling / Foreststrider / Giant Foreststrider" }, -- 114
         { type = "TURNIN", quest = 2098, questName = "Gyromast's Retrieval", npc = 6667, npcName = "Gelkak Gyromast", map = 1439, zone = "Darkshore", x = 56.6, y = 13.5 }, -- 115
         { type = "ACCEPT", quest = 2078, questName = "Gyromast's Revenge", npc = 6667, npcName = "Gelkak Gyromast", map = 1439, zone = "Darkshore", x = 56.6, y = 13.4, optional = true, note = "Elite - group up" }, -- 116
         { type = "ACCEPT", quest = 4725, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 44.2, y = 20.6 }, -- 117
@@ -148,7 +148,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 87760, questName = "Holy Diver", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.4, note = "New in Forever" }, -- 131
         { type = "ACCEPT", quest = 4740, questName = "WANTED: Murkdeep!", map = 1439, zone = "Darkshore", x = 37.2, y = 44.2 }, -- 132
         { type = "ACCEPT", quest = 993, questName = "A Lost Master", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 133
-        { type = "COLLECT", quest = 87760, questName = "Holy Diver", target = "Rod of Deep Dominion", count = 1, map = 1439, zone = "Darkshore", x = 49.2, y = 11.6 }, -- 134
+        { type = "COLLECT", quest = 87760, questName = "Holy Diver", target = "Rod of Deep Dominion", count = 1, map = 1439, zone = "Darkshore", x = 49.2, y = 11.6, mobs = "Stormscale Beastmistress" }, -- 134
         { type = "COLLECT", quest = 1138, questName = "Fruit of the Sea", target = "Fine Crab Chunks", count = 6, map = 1439, zone = "Darkshore", x = 45.5, y = 20.7, near = true }, -- 135
         { type = "TURNIN", quest = 1138, questName = "Fruit of the Sea", npc = 10216, npcName = "Gubber Blump", map = 1439, zone = "Darkshore", x = 36.1, y = 44.9 }, -- 136
         { type = "TURNIN", quest = 87760, questName = "Holy Diver", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.4 }, -- 137
@@ -191,36 +191,37 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 948, questName = "Onu", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 174
         { type = "ACCEPT", quest = 944, questName = "The Master's Glaive", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 175
         { type = "ACCEPT", quest = 98042, questName = "It's All Fun and Games Until...", map = 1439, zone = "Darkshore", x = 38.6, y = 86.1, note = "New in Forever" }, -- 176
-        { type = "COLLECT", quest = 98042, questName = "It's All Fun and Games Until...", target = "Peerless Eye", count = 1, map = 1439, zone = "Darkshore", x = 38.6, y = 87.4, near = true }, -- 177
+        { type = "COLLECT", quest = 98042, questName = "It's All Fun and Games Until...", target = "Peerless Eye", count = 1, map = 1439, zone = "Darkshore", x = 38.6, y = 87.4, near = true, mobs = "Twilight Disciple / Twilight Thug" }, -- 177
         { type = "ACCEPT", quest = 945, questName = "Therylune's Escape", npc = 3584, npcName = "Therylune", map = 1439, zone = "Darkshore", x = 38.6, y = 87.2 }, -- 178
-        { type = "COMPLETE", quest = 944, questName = "The Master's Glaive", target = "Enter the Master's Glaive", map = 1439, zone = "Darkshore", x = 38.5, y = 86.5, note = "Enter the Master's Glaive" }, -- 179
-        { type = "TURNIN", quest = 944, questName = "The Master's Glaive", map = 1439, zone = "Darkshore", x = 38.6, y = 86.2 }, -- 180
-        { type = "ACCEPT", quest = 949, questName = "The Twilight Camp", map = 1439, zone = "Darkshore", x = 38.6, y = 86.2 }, -- 181
-        { type = "TURNIN", quest = 949, questName = "The Twilight Camp", map = 1439, zone = "Darkshore", x = 38.5, y = 86.1 }, -- 182
-        { type = "ACCEPT", quest = 950, questName = "Return to Onu", map = 1439, zone = "Darkshore", x = 38.5, y = 86.1 }, -- 183
-        { type = "TURNIN", quest = 950, questName = "Return to Onu", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 184
-        { type = "ACCEPT", quest = 951, questName = "Mathystra Relics", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 185
-        { type = "ACCEPT", quest = 5931, questName = "Back to Darnassus", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 186
-        { type = "TURNIN", quest = 5931, questName = "Back to Darnassus", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 187
-        { type = "TURNIN", quest = 4722, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 188
-        { type = "ACCEPT", quest = 6001, questName = "Body and Heart", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 189
-        { type = "TURNIN", quest = 6001, questName = "Body and Heart", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 190
-        { type = "TURNIN", quest = 4728, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 191
-        { type = "TURNIN", quest = 4730, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 192
-        { type = "TURNIN", quest = 4731, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 193
-        { type = "TURNIN", quest = 4732, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 194
-        { type = "TURNIN", quest = 4733, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 195
-        { type = "TURNIN", quest = 731, questName = "The Absent Minded Prospector", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8 }, -- 196
-        { type = "ACCEPT", quest = 741, questName = "The Absent Minded Prospector", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8 }, -- 197
-        { type = "TURNIN", quest = 98042, questName = "It's All Fun and Games Until...", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.2 }, -- 198
-        { type = "TURNIN", quest = 994, questName = "Escape Through Force", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.2, y = 43.4 }, -- 199
-        { type = "TURNIN", quest = 995, questName = "Escape Through Stealth", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 200
-        { type = "KILL", quest = 2078, questName = "Gyromast's Revenge", npc = 6669, target = "Gelkak's First Mate", count = 1, map = 1439, zone = "Darkshore", x = 55.8, y = 18.2, optional = true }, -- 201
-        { type = "TURNIN", quest = 2078, questName = "Gyromast's Revenge", npc = 6667, npcName = "Gelkak Gyromast", map = 1439, zone = "Darkshore", x = 56.6, y = 13.4, optional = true }, -- 202
-        { type = "ACCEPT", quest = 990, questName = "Trek to Ashenvale", npc = 3694, npcName = "Sentinel Selarin", map = 1439, zone = "Darkshore", x = 39.2, y = 43.4 }, -- 203
-        { type = "COLLECT", quest = 951, questName = "Mathystra Relics", target = "Mathystra Relic", count = 6, map = 1439, zone = "Darkshore", x = 58, y = 25.9, near = true }, -- 204
-        { type = "ACCEPT", quest = 6121, questName = "Lessons Anew", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 205
-        { type = "ACCEPT", quest = 26, questName = "A Lesson to Learn", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 206
-        { type = "TURNIN", quest = 951, questName = "Mathystra Relics", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 207
+        { type = "ACCEPT", quest = 968, questName = "The Powers Below", npc = 2339, npcName = "Twilight Thug", map = 1439, zone = "Darkshore", x = 38.1, y = 86.9, optional = true, note = "If you looted Book: The Powers Below from Twilight Disciple / Twilight Thug, use it to start the quest" }, -- 179
+        { type = "COMPLETE", quest = 944, questName = "The Master's Glaive", target = "Enter the Master's Glaive", map = 1439, zone = "Darkshore", x = 38.5, y = 86.5, note = "Enter the Master's Glaive" }, -- 180
+        { type = "TURNIN", quest = 944, questName = "The Master's Glaive", map = 1439, zone = "Darkshore", x = 38.6, y = 86.2 }, -- 181
+        { type = "ACCEPT", quest = 949, questName = "The Twilight Camp", map = 1439, zone = "Darkshore", x = 38.6, y = 86.2 }, -- 182
+        { type = "TURNIN", quest = 949, questName = "The Twilight Camp", map = 1439, zone = "Darkshore", x = 38.5, y = 86.1 }, -- 183
+        { type = "ACCEPT", quest = 950, questName = "Return to Onu", map = 1439, zone = "Darkshore", x = 38.5, y = 86.1 }, -- 184
+        { type = "TURNIN", quest = 950, questName = "Return to Onu", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 185
+        { type = "ACCEPT", quest = 951, questName = "Mathystra Relics", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 186
+        { type = "ACCEPT", quest = 5931, questName = "Back to Darnassus", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 187
+        { type = "TURNIN", quest = 5931, questName = "Back to Darnassus", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 188
+        { type = "TURNIN", quest = 4722, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 189
+        { type = "ACCEPT", quest = 6001, questName = "Body and Heart", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 190
+        { type = "TURNIN", quest = 6001, questName = "Body and Heart", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 191
+        { type = "TURNIN", quest = 4728, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 192
+        { type = "TURNIN", quest = 4730, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 193
+        { type = "TURNIN", quest = 4731, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 194
+        { type = "TURNIN", quest = 4732, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 195
+        { type = "TURNIN", quest = 4733, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 196
+        { type = "TURNIN", quest = 731, questName = "The Absent Minded Prospector", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8 }, -- 197
+        { type = "ACCEPT", quest = 741, questName = "The Absent Minded Prospector", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8 }, -- 198
+        { type = "TURNIN", quest = 98042, questName = "It's All Fun and Games Until...", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.2 }, -- 199
+        { type = "TURNIN", quest = 994, questName = "Escape Through Force", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.2, y = 43.4 }, -- 200
+        { type = "TURNIN", quest = 995, questName = "Escape Through Stealth", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 201
+        { type = "KILL", quest = 2078, questName = "Gyromast's Revenge", npc = 6669, target = "Gelkak's First Mate", count = 1, map = 1439, zone = "Darkshore", x = 55.8, y = 18.2, optional = true }, -- 202
+        { type = "TURNIN", quest = 2078, questName = "Gyromast's Revenge", npc = 6667, npcName = "Gelkak Gyromast", map = 1439, zone = "Darkshore", x = 56.6, y = 13.4, optional = true }, -- 203
+        { type = "ACCEPT", quest = 990, questName = "Trek to Ashenvale", npc = 3694, npcName = "Sentinel Selarin", map = 1439, zone = "Darkshore", x = 39.2, y = 43.4 }, -- 204
+        { type = "COLLECT", quest = 951, questName = "Mathystra Relics", target = "Mathystra Relic", count = 6, map = 1439, zone = "Darkshore", x = 58, y = 25.9, near = true }, -- 205
+        { type = "ACCEPT", quest = 6121, questName = "Lessons Anew", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 206
+        { type = "ACCEPT", quest = 26, questName = "A Lesson to Learn", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 207
+        { type = "TURNIN", quest = 951, questName = "Mathystra Relics", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 208
     } end,
 })

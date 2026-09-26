@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_13_STRANGLETHORN_VALE",
     name = "13. Stranglethorn Vale 29-33 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 29,
@@ -23,8 +23,8 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2925, questName = "Klockmort's Essentials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2, optional = true }, -- 6
         { type = "TURNIN", quest = 2931, questName = "Castpipe's Task", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.4, optional = true }, -- 7
         { type = "ACCEPT", quest = 2359, questName = "Klaven's Tower", npc = 7024, npcName = "Agent Kearnen", map = 1436, zone = "Westfall", x = 68.4, y = 70, optional = true, class = { "ROGUE" }, note = "Elite - group up" }, -- 8
-        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Klaven Mortwake's Journal", count = 1, map = 1436, zone = "Westfall", x = 70.4, y = 74.2, optional = true, class = { "ROGUE" } }, -- 9
-        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Defias Tower Key", count = 1, map = 1436, zone = "Westfall", x = 69.4, y = 74.4, optional = true, class = { "ROGUE" } }, -- 10
+        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Klaven Mortwake's Journal", count = 1, map = 1436, zone = "Westfall", x = 70.4, y = 74.2, optional = true, class = { "ROGUE" }, mobs = "Klaven Mortwake" }, -- 9
+        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Defias Tower Key", count = 1, map = 1436, zone = "Westfall", x = 69.4, y = 74.4, optional = true, class = { "ROGUE" }, mobs = "Malformed Defias Drone" }, -- 10
         { type = "TURNIN", quest = 2359, questName = "Klaven's Tower", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8, optional = true, class = { "ROGUE" } }, -- 11
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.5, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 12
         { type = "ACCEPT", quest = 201, questName = "Investigate the Camp", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 13
@@ -153,7 +153,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 210, questName = "Krazek's Cookery", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.2 }, -- 136
         { type = "ACCEPT", quest = 601, questName = "Water Elementals", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 137
         { type = "ACCEPT", quest = 1804, questName = "Tome of the Cabal", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, class = { "WARLOCK" }, race = { "Gnome" } }, -- 138
-        { type = "COLLECT", quest = 1804, questName = "Tome of the Cabal", target = "Rod of Channeling", count = 3, map = 1437, zone = "Wetlands", x = 49.6, y = 46.4, near = true, class = { "WARLOCK" }, race = { "Gnome" } }, -- 139
+        { type = "COLLECT", quest = 1804, questName = "Tome of the Cabal", target = "Rod of Channeling", count = 3, map = 1437, zone = "Wetlands", x = 49.6, y = 46.4, near = true, class = { "WARLOCK" }, race = { "Gnome" }, mobs = "Dragonmaw Shadowwarder / Dragonmaw Bonewarder" }, -- 139
         { type = "TURNIN", quest = 1804, questName = "Tome of the Cabal", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" }, race = { "Gnome" } }, -- 140
         { type = "KILL", quest = 601, questName = "Water Elementals", npc = 691, target = "Lesser Water Elemental", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 19.9, y = 24.5, near = true, note = "loot Water Elemental Bracers" }, -- 141
         { type = "ACCEPT", quest = 1795, questName = "The Binding", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 142

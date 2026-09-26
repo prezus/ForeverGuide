@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_12_HILLSBRAD_FOOTHILLS",
     name = "12. Hillsbrad Foothills 29-29 (Dwarf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 29,
@@ -15,7 +15,7 @@ ns.RegisterGuide({
     notes = "Chapter 12 of the Dwarf route: level 29 to 29, 24 steps, ~76 min of play in the model (26930 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 36,
     steps = function() return {
-        { type = "COLLECT", quest = 474, questName = "Defeat Nek'rosh", target = "Nek'rosh's Head", count = 1, map = 1437, zone = "Wetlands", x = 53.4, y = 54.4, optional = true }, -- 1
+        { type = "COLLECT", quest = 474, questName = "Defeat Nek'rosh", target = "Nek'rosh's Head", count = 1, map = 1437, zone = "Wetlands", x = 53.4, y = 54.4, optional = true, mobs = "Chieftain Nek'rosh" }, -- 1
         { type = "ACCEPT", quest = 303, questName = "The Dark Iron War", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.6, y = 18.2, optional = true, note = "Elite - group up" }, -- 2
         { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1051, target = "Dark Iron Dwarf", count = 15, map = 1437, zone = "Wetlands", x = 48, y = 16.8, optional = true }, -- 3
         { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1053, target = "Dark Iron Tunneler", count = 5, map = 1437, zone = "Wetlands", x = 47, y = 17.4, optional = true }, -- 4

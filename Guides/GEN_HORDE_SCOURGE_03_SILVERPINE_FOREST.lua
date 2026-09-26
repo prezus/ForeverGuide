@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_03_SILVERPINE_FOREST",
     name = "3. Silverpine Forest 12-15 (Undead)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 12,
@@ -13,13 +13,13 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_04_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the Scourge route: level 12 to 15, 61 steps, ~123 min of play in the model (17463 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 79,
+    stepCount = 83,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2226, npcName = "Karos Razok", map = 1421, zone = "Silverpine Forest", x = 45.6, y = 42.6 }, -- 1
         { type = "ACCEPT", quest = 95328, questName = "Whispering Horror Residue", npc = 260396, npcName = "Whispering Horror", map = 1420, zone = "Tirisfal Glades", x = 8.6, y = 59.8, optional = true, note = "Loot Whispering Horror Residue from Whispering Horror and use it to start the quest; New in Forever; Elite - group up" }, -- 2
-        { type = "COLLECT", quest = 95328, questName = "Whispering Horror Residue", target = "Whispering Horror Residue", count = 1, map = 1420, zone = "Tirisfal Glades", x = 8.6, y = 59.8, optional = true }, -- 3
+        { type = "COLLECT", quest = 95328, questName = "Whispering Horror Residue", target = "Whispering Horror Residue", count = 1, map = 1420, zone = "Tirisfal Glades", x = 8.6, y = 59.8, optional = true, mobs = "Whispering Horror" }, -- 3
         { type = "ACCEPT", quest = 94427, questName = "A Lesson in Divinity", npc = 246378, npcName = "Danitha Morr", map = 1420, zone = "Tirisfal Glades", x = 22, y = 44.8, class = { "PALADIN" }, note = "New in Forever" }, -- 4
-        { type = "COLLECT", quest = 1886, questName = "The Deathstalkers", target = "Astor's Letter of Introduction", count = 1, map = 1421, zone = "Silverpine Forest", x = 49.7, y = 32.2, class = { "ROGUE" } }, -- 5
+        { type = "COLLECT", quest = 1886, questName = "The Deathstalkers", target = "Astor's Letter of Introduction", count = 1, map = 1421, zone = "Silverpine Forest", x = 49.7, y = 32.2, class = { "ROGUE" }, mobs = "Astor Hadren" }, -- 5
         { type = "COLLECT", quest = 1473, questName = "Creature of the Void", target = "Egalin's Grimoire", count = 1, map = 1420, zone = "Tirisfal Glades", x = 51.1, y = 67.6, class = { "WARLOCK" } }, -- 6
         { type = "TRAVEL", map = 1421, zone = "Silverpine Forest", x = 43.7, y = 40.7, radius = 60, note = "travel to Silverpine Forest (Silverpine Forest)" }, -- 7
         { type = "HEARTH", npc = 6739, npcName = "Innkeeper Bates", map = 1421, zone = "The Sepulcher", x = 43.2, y = 41.3, note = "talk to Innkeeper Bates and make this inn your home" }, -- 8
@@ -48,7 +48,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 424, questName = "Arugal's Folly", npc = 1972, target = "Grimson the Pale", map = 1421, zone = "Silverpine Forest", x = 58.6, y = 44.9, note = "loot Head of Grimson" }, -- 31
         { type = "TURNIN", quest = 424, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 32
         { type = "ACCEPT", quest = 99, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 33
-        { type = "COLLECT", quest = 98298, questName = "Arugal's Folly", target = "Worgen Bits", count = 6, map = 1421, zone = "Silverpine Forest", x = 50, y = 74 }, -- 34
+        { type = "COLLECT", quest = 98298, questName = "Arugal's Folly", target = "Worgen Bits", count = 6, map = 1421, zone = "Silverpine Forest", x = 50, y = 74, mobs = "Moonrage Bloodhowler" }, -- 34
         { type = "TURNIN", quest = 98298, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 35
         { type = "ACCEPT", quest = 452, questName = "Pyrewood Ambush", npc = 2058, npcName = "Deathstalker Faerleia", map = 1421, zone = "Silverpine Forest", x = 46.4, y = 74.2 }, -- 36
         { type = "TURNIN", quest = 452, questName = "Pyrewood Ambush", npc = 2058, npcName = "Deathstalker Faerleia", map = 1421, zone = "Silverpine Forest", x = 46.4, y = 74.2 }, -- 37
@@ -71,28 +71,32 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 439, questName = "Rot Hide Clues", map = 1421, zone = "Silverpine Forest", x = 58.4, y = 34.9 }, -- 54
         { type = "TURNIN", quest = 439, questName = "Rot Hide Clues", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 55
         { type = "ACCEPT", quest = 443, questName = "Rot Hide Ichor", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 56
-        { type = "COLLECT", quest = 443, questName = "Rot Hide Ichor", target = "Rot Hide Ichor", count = 8, map = 1421, zone = "Silverpine Forest", x = 65.1, y = 32, near = true }, -- 57
-        { type = "ACCEPT", quest = 428, questName = "Lost Deathstalkers", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.8 }, -- 58
-        { type = "ACCEPT", quest = 440, questName = "The Engraved Ring", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.8 }, -- 59
-        { type = "TURNIN", quest = 443, questName = "Rot Hide Ichor", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 60
-        { type = "ACCEPT", quest = 429, questName = "Wild Hearts", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 61
-        { type = "ACCEPT", quest = 435, questName = "Escorting Erland", npc = 1978, npcName = "Deathstalker Erland", map = 1421, zone = "Silverpine Forest", x = 56.2, y = 9.2 }, -- 62
-        { type = "COLLECT", quest = 429, questName = "Wild Hearts", target = "Discolored Worg Heart", count = 6, map = 1421, zone = "Silverpine Forest", x = 56.2, y = 10.2, near = true }, -- 63
-        { type = "COMPLETE", quest = 435, questName = "Escorting Erland", target = "Erland must reach Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 54.4, y = 13.4, note = "escort - stay close, it can fail: Erland must reach Rane Yorick" }, -- 64
-        { type = "TURNIN", quest = 435, questName = "Escorting Erland", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 65
-        { type = "ACCEPT", quest = 449, questName = "The Deathstalkers' Report", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 66
-        { type = "TURNIN", quest = 449, questName = "The Deathstalkers' Report", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 67
-        { type = "ACCEPT", quest = 3221, questName = "Speak with Renferrel", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 68
-        { type = "TURNIN", quest = 429, questName = "Wild Hearts", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 69
-        { type = "TURNIN", quest = 3221, questName = "Speak with Renferrel", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 70
-        { type = "ACCEPT", quest = 430, questName = "Return to Quinn", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 71
-        { type = "TURNIN", quest = 430, questName = "Return to Quinn", npc = 1951, npcName = "Quinn Yorick", map = 1421, zone = "Silverpine Forest", x = 53.4, y = 12.6 }, -- 72
-        { type = "ACCEPT", quest = 91920, questName = "Wild Eyes", npc = 1951, npcName = "Quinn Yorick", map = 1421, zone = "Silverpine Forest", x = 53.4, y = 12.6, note = "New in Forever" }, -- 73
-        { type = "ACCEPT", quest = 425, questName = "Ivar the Foul", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 74
-        { type = "TURNIN", quest = 428, questName = "Lost Deathstalkers", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.4, y = 13.4 }, -- 75
-        { type = "KILL", quest = 425, questName = "Ivar the Foul", npc = 1971, target = "Ivar the Foul", map = 1421, zone = "Silverpine Forest", x = 51.5, y = 13.9, note = "loot Ivar's Head" }, -- 76
-        { type = "TURNIN", quest = 425, questName = "Ivar the Foul", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 77
-        { type = "COLLECT", quest = 91920, questName = "Wild Eyes", target = "Murloc Eye", count = 3, map = 1421, zone = "Silverpine Forest", x = 59.8, y = 15.4, near = true }, -- 78
-        { type = "TURNIN", quest = 91920, questName = "Wild Eyes", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.8 }, -- 79
+        { type = "ACCEPT", quest = 460, questName = "Resting in Pieces", npc = 1939, npcName = "Rot Hide Brute", map = 1421, zone = "Silverpine Forest", x = 63.7, y = 22.9, optional = true, note = "If you looted A Talking Head from Rot Hide Brute / Rot Hide Plague Weaver / Rot Hide Savage / Raging Rot Hide, use it to start the quest" }, -- 57
+        { type = "TURNIN", quest = 460, questName = "Resting in Pieces", map = 1421, zone = "Silverpine Forest", x = 67.8, y = 24.8, optional = true }, -- 58
+        { type = "COLLECT", quest = 443, questName = "Rot Hide Ichor", target = "Rot Hide Ichor", count = 8, map = 1421, zone = "Silverpine Forest", x = 65.1, y = 32, near = true }, -- 59
+        { type = "ACCEPT", quest = 428, questName = "Lost Deathstalkers", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.8 }, -- 60
+        { type = "ACCEPT", quest = 461, questName = "The Hidden Niche", map = 1421, zone = "Silverpine Forest", x = 67.8, y = 24.8, optional = true }, -- 61
+        { type = "TURNIN", quest = 461, questName = "The Hidden Niche", map = 1421, zone = "Silverpine Forest", x = 65.3, y = 24.8, optional = true }, -- 62
+        { type = "ACCEPT", quest = 440, questName = "The Engraved Ring", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.8 }, -- 63
+        { type = "TURNIN", quest = 443, questName = "Rot Hide Ichor", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 64
+        { type = "ACCEPT", quest = 429, questName = "Wild Hearts", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 65
+        { type = "ACCEPT", quest = 435, questName = "Escorting Erland", npc = 1978, npcName = "Deathstalker Erland", map = 1421, zone = "Silverpine Forest", x = 56.2, y = 9.2 }, -- 66
+        { type = "COLLECT", quest = 429, questName = "Wild Hearts", target = "Discolored Worg Heart", count = 6, map = 1421, zone = "Silverpine Forest", x = 56.2, y = 10.2, near = true }, -- 67
+        { type = "COMPLETE", quest = 435, questName = "Escorting Erland", target = "Erland must reach Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 54.4, y = 13.4, note = "escort - stay close, it can fail: Erland must reach Rane Yorick" }, -- 68
+        { type = "TURNIN", quest = 435, questName = "Escorting Erland", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 69
+        { type = "ACCEPT", quest = 449, questName = "The Deathstalkers' Report", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 70
+        { type = "TURNIN", quest = 449, questName = "The Deathstalkers' Report", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 71
+        { type = "ACCEPT", quest = 3221, questName = "Speak with Renferrel", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 72
+        { type = "TURNIN", quest = 429, questName = "Wild Hearts", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 73
+        { type = "TURNIN", quest = 3221, questName = "Speak with Renferrel", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 74
+        { type = "ACCEPT", quest = 430, questName = "Return to Quinn", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 75
+        { type = "TURNIN", quest = 430, questName = "Return to Quinn", npc = 1951, npcName = "Quinn Yorick", map = 1421, zone = "Silverpine Forest", x = 53.4, y = 12.6 }, -- 76
+        { type = "ACCEPT", quest = 91920, questName = "Wild Eyes", npc = 1951, npcName = "Quinn Yorick", map = 1421, zone = "Silverpine Forest", x = 53.4, y = 12.6, note = "New in Forever" }, -- 77
+        { type = "ACCEPT", quest = 425, questName = "Ivar the Foul", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 78
+        { type = "TURNIN", quest = 428, questName = "Lost Deathstalkers", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.4, y = 13.4 }, -- 79
+        { type = "KILL", quest = 425, questName = "Ivar the Foul", npc = 1971, target = "Ivar the Foul", map = 1421, zone = "Silverpine Forest", x = 51.5, y = 13.9, note = "loot Ivar's Head" }, -- 80
+        { type = "TURNIN", quest = 425, questName = "Ivar the Foul", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 81
+        { type = "COLLECT", quest = 91920, questName = "Wild Eyes", target = "Murloc Eye", count = 3, map = 1421, zone = "Silverpine Forest", x = 59.8, y = 15.4, near = true, mobs = "Vile Fin Shredder / Vile Fin Tidehunter / Vile Fin Oracle / Vile Fin Lakestalker" }, -- 82
+        { type = "TURNIN", quest = 91920, questName = "Wild Eyes", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.8 }, -- 83
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_06_STRANGLETHORN_VALE",
     name = "6. Stranglethorn Vale 28-29 (Tauren)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 28,
@@ -60,7 +60,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 188, questName = "Tiger Mastery", npc = 729, target = "Sin'Dall", map = 1434, zone = "Stranglethorn Vale", x = 31.5, y = 15.5, near = true, note = "loot Paw of Sin'Dall" }, -- 43
         { type = "KILL", quest = 196, questName = "Raptor Mastery", npc = 687, target = "Jungle Stalker", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 32.6, y = 37.2, near = true }, -- 44
         { type = "ACCEPT", quest = 63, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 45
-        { type = "COLLECT", quest = 63, questName = "Call of Water", target = "Corrupt Manifestation's Bracers", count = 1, map = 1421, zone = "Silverpine Forest", x = 38.8, y = 44.3, class = { "SHAMAN" } }, -- 46
+        { type = "COLLECT", quest = 63, questName = "Call of Water", target = "Corrupt Manifestation's Bracers", count = 1, map = 1421, zone = "Silverpine Forest", x = 38.8, y = 44.3, class = { "SHAMAN" }, mobs = "Corrupt Minor Manifestation of Water" }, -- 46
         { type = "TURNIN", quest = 63, questName = "Call of Water", map = 1421, zone = "Silverpine Forest", x = 38.2, y = 44.5, class = { "SHAMAN" } }, -- 47
         { type = "TURNIN", quest = 196, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 48
         { type = "ACCEPT", quest = 100, questName = "Call of Water", map = 1421, zone = "Silverpine Forest", x = 38.2, y = 44.5, class = { "SHAMAN" } }, -- 49

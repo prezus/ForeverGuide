@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_11_HILLSBRAD_FOOTHILLS",
     name = "11. Hillsbrad Foothills 29-29 (Human)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 29,
@@ -15,7 +15,7 @@ ns.RegisterGuide({
     notes = "Chapter 11 of the Human route: level 29 to 29, 24 steps, ~76 min of play in the model (26930 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 35,
     steps = function() return {
-        { type = "COLLECT", quest = 474, questName = "Defeat Nek'rosh", target = "Nek'rosh's Head", count = 1, map = 1437, zone = "Wetlands", x = 53.4, y = 54.4, optional = true }, -- 1
+        { type = "COLLECT", quest = 474, questName = "Defeat Nek'rosh", target = "Nek'rosh's Head", count = 1, map = 1437, zone = "Wetlands", x = 53.4, y = 54.4, optional = true, mobs = "Chieftain Nek'rosh" }, -- 1
         { type = "TRAVEL", map = 1437, zone = "Menethil Harbor", x = 10.7, y = 61.0, radius = 60, note = "use your hearthstone (Menethil Harbor)" }, -- 2
         { type = "FLIGHTPATH", npc = 2432, npcName = "Darla Harris", map = 1424, zone = "Hillsbrad Foothills", x = 49.3, y = 52.3 }, -- 3
         { type = "TURNIN", quest = 474, questName = "Defeat Nek'rosh", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.8, y = 57.4, optional = true }, -- 4

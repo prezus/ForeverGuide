@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_12_HILLSBRAD_FOOTHILLS",
     name = "12. Hillsbrad Foothills 29-30 (Night Elf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 29,
@@ -28,8 +28,8 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 378, questName = "The Fury Runs Deep", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.6, y = 18.2, optional = true, note = "For The Stockade (dungeon guide)" }, -- 11
         { type = "NOTE", optional = true, text = "Ready for The Stockade", note = "Picked up: The Fury Runs Deep, Quell the Uprising, The Color of Blood. When you have a group, open The Stockade under Dungeons." }, -- 12
         { type = "ACCEPT", quest = 2359, questName = "Klaven's Tower", npc = 7024, npcName = "Agent Kearnen", map = 1436, zone = "Westfall", x = 68.4, y = 70, optional = true, class = { "ROGUE" }, note = "Elite - group up" }, -- 13
-        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Klaven Mortwake's Journal", count = 1, map = 1436, zone = "Westfall", x = 70.4, y = 74.2, optional = true, class = { "ROGUE" } }, -- 14
-        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Defias Tower Key", count = 1, map = 1436, zone = "Westfall", x = 69.4, y = 74.4, optional = true, class = { "ROGUE" } }, -- 15
+        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Klaven Mortwake's Journal", count = 1, map = 1436, zone = "Westfall", x = 70.4, y = 74.2, optional = true, class = { "ROGUE" }, mobs = "Klaven Mortwake" }, -- 14
+        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Defias Tower Key", count = 1, map = 1436, zone = "Westfall", x = 69.4, y = 74.4, optional = true, class = { "ROGUE" }, mobs = "Malformed Defias Drone" }, -- 15
         { type = "TURNIN", quest = 2359, questName = "Klaven's Tower", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8, optional = true, class = { "ROGUE" } }, -- 16
         { type = "TRAVEL", map = 1424, zone = "Hillsbrad Foothills", x = 50.2, y = 58.1, radius = 60, note = "travel to Hillsbrad Foothills (Hillsbrad Foothills)" }, -- 17
         { type = "HEARTH", npc = 2352, npcName = "Innkeeper Anderson", map = 1424, zone = "Southshore", x = 51.2, y = 58.9, note = "talk to Innkeeper Anderson and make this inn your home" }, -- 18

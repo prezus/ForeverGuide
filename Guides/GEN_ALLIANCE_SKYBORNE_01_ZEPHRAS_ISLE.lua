@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_01_ZEPHRAS_ISLE",
     name = "1. Zephras Isle 1-13 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 1,
@@ -56,7 +56,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 92465, questName = "Agitators", npc = 251143, target = "Roiling Winds destroyed", count = 6, map = 2521, zone = "Zephras Isle", x = 47, y = 21.4 }, -- 39
         { type = "TURNIN", quest = 92465, questName = "Agitators", npc = 249363, npcName = "Yala Windwatcher", map = 2521, zone = "Zephras Isle", x = 47.2, y = 21.8 }, -- 40
         { type = "KILL", quest = 92470, questName = "Foul Matriarch", npc = 250937, target = "Ursera Scavenger", count = 8, map = 2521, zone = "Zephras Isle", x = 35.8, y = 23.2 }, -- 41
-        { type = "COLLECT", quest = 92470, questName = "Foul Matriarch", target = "Head of Urs'anah", count = 1, map = 2521, zone = "Zephras Isle", x = 35.6, y = 25.4 }, -- 42
+        { type = "COLLECT", quest = 92470, questName = "Foul Matriarch", target = "Head of Urs'anah", count = 1, map = 2521, zone = "Zephras Isle", x = 35.6, y = 25.4, mobs = "Urs'anah" }, -- 42
         { type = "TURNIN", quest = 92470, questName = "Foul Matriarch", npc = 251366, npcName = "Aetheen of the Gales", map = 2521, zone = "Zephras Isle", x = 42.6, y = 23.6 }, -- 43
         { type = "KILL", quest = 92544, questName = "Al'Aketh Thugs", npc = 251145, target = "Al'Aketh Brute / Al'Aketh Brute / Malduko Cloudcrush", count = 6, map = 2521, zone = "Zephras Isle", x = 37.3, y = 32.9, near = true, note = "Al'Aketh Brute slain" }, -- 44
         { type = "TURNIN", quest = 92544, questName = "Al'Aketh Thugs", map = 2521, zone = "Zephras Isle", x = 38.3, y = 30.2 }, -- 45
@@ -86,7 +86,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 98286, questName = "Camping 101: Enchanting", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 69
         { type = "TURNIN", quest = 98286, questName = "Camping 101: Enchanting", npc = 257020, npcName = "Nasalanna Windsinger", map = 2521, zone = "Zephras Isle", x = 43.2, y = 43.2 }, -- 70
         { type = "ACCEPT", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 71
-        { type = "COLLECT", quest = 94373, questName = "Call of Earth", target = "Iceclaw Bear Pendant", count = 2, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, near = true, class = { "SHAMAN" } }, -- 72
+        { type = "COLLECT", quest = 94373, questName = "Call of Earth", target = "Iceclaw Bear Pendant", count = 2, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, near = true, class = { "SHAMAN" }, mobs = "Frostmane Troll Whelp / Frostmane Novice" }, -- 72
         { type = "TURNIN", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 73
         { type = "ACCEPT", quest = 92553, questName = "Restocking the Larders", npc = 251905, npcName = "Zerril Softbreeze", map = 2521, zone = "Zephras Isle", x = 43.9, y = 43.8 }, -- 74
         { type = "ACCEPT", quest = 92595, questName = "The Windshapers", map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8 }, -- 75
@@ -222,7 +222,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 92679, questName = "Blood Tithe", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 46.7, y = 81.9 }, -- 205
         { type = "ACCEPT", quest = 92703, questName = "Deliver the News", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 46.6, y = 81.8, note = "New in Forever" }, -- 206
         { type = "COMPLETE", quest = 92840, questName = "Catching Wind", target = "Protect the Index", count = 1, map = 2521, zone = "Zephras Isle", x = 47.9, y = 69.0, note = "Protect the Index" }, -- 207
-        { type = "COLLECT", quest = 93317, questName = "Crab Season", target = "Windsong Crawler Meat", count = 6, map = 2521, zone = "Zephras Isle", x = 51.2, y = 69.6 }, -- 208
+        { type = "COLLECT", quest = 93317, questName = "Crab Season", target = "Windsong Crawler Meat", count = 6, map = 2521, zone = "Zephras Isle", x = 51.2, y = 69.6, mobs = "Windsong Crawler" }, -- 208
         { type = "TURNIN", quest = 92727, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 53.3, y = 72.2 }, -- 209
         { type = "ACCEPT", quest = 92849, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 53.3, y = 72.2 }, -- 210
         { type = "COMPLETE", quest = 92849, questName = "The Missing Scholar", target = "Carry Fillion Flamebreeze to safety while avoiding enemies", count = 1, map = 2521, zone = "Zephras Isle", x = 52.0, y = 69.4, note = "Carry Fillion Flamebreeze to safety while avoiding enemies" }, -- 211
@@ -232,7 +232,7 @@ ns.RegisterGuide({
         { type = "COMPLETE", quest = 92850, questName = "The Missing Scholar", target = "Shriekling Matriarch's Head", count = 1, map = 2521, zone = "Zephras Isle", x = 52.0, y = 65.5, note = "Shriekling Matriarch's Head" }, -- 215
         { type = "ACCEPT", quest = 98512, questName = "Al'Aketh Assassins", map = 2521, zone = "Zephras Isle", x = 56.8, y = 61.1 }, -- 216
         { type = "ACCEPT", quest = 94491, questName = "The Fate of the Den", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2, note = "New in Forever" }, -- 217
-        { type = "COLLECT", quest = 94003, questName = "The Skybreaker Bulwark", target = "Skybreaker Bulwark", count = 1, map = 2521, zone = "Zephras Isle", x = 56.6, y = 50.4, class = { "WARRIOR" } }, -- 218
+        { type = "COLLECT", quest = 94003, questName = "The Skybreaker Bulwark", target = "Skybreaker Bulwark", count = 1, map = 2521, zone = "Zephras Isle", x = 56.6, y = 50.4, class = { "WARRIOR" }, mobs = "Zaal Stormshield" }, -- 218
         { type = "COMPLETE", quest = 94897, questName = "The Fate of a Loved One", target = "Resaan's Heirloom", count = 1, map = 2521, zone = "Zephras Isle", x = 57.0, y = 29.4, note = "Resaan's Heirloom" }, -- 219
         { type = "ACCEPT", quest = 98285, questName = "Camping 101: Engineering", npc = 251684, npcName = "Strange Hermit", map = 2521, zone = "Zephras Isle", x = 54, y = 39, note = "New in Forever" }, -- 220
         { type = "TURNIN", quest = 98285, questName = "Camping 101: Engineering", npc = 251684, npcName = "Strange Hermit", map = 2521, zone = "Zephras Isle", x = 54, y = 39 }, -- 221
@@ -276,16 +276,16 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 94490, questName = "Ripped Missive", map = 2521, zone = "Zephras Isle", x = 64.8, y = 37.1 }, -- 259
         { type = "ACCEPT", quest = 94487, questName = "Unwanted and Unworthy", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 260
         { type = "ACCEPT", quest = 94485, questName = "Tears of the Lady", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 261
-        { type = "COLLECT", quest = 92834, questName = "Avenged Tenfold", target = "Al'Aketh Windstone Charm", count = 10, map = 2521, zone = "Zephras Isle", x = 62.2, y = 38.6, near = true }, -- 262
+        { type = "COLLECT", quest = 92834, questName = "Avenged Tenfold", target = "Al'Aketh Windstone Charm", count = 10, map = 2521, zone = "Zephras Isle", x = 62.2, y = 38.6, near = true, mobs = "Al'Aketh Stormchaser / Al'Aketh Footsoldier / Al'Aketh Guardian / Al'Aketh Spiritcaller" }, -- 262
         { type = "ACCEPT", quest = 93165, questName = "Mercy Falls on Deaf Ears", map = 2521, zone = "Zephras Isle", x = 63.8, y = 36.0 }, -- 263
         { type = "TURNIN", quest = 94490, questName = "Ripped Missive", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 264
         { type = "TURNIN", quest = 94484, questName = "Unnerving Silence", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2 }, -- 265
         { type = "ACCEPT", quest = 94486, questName = "Feathers for Binding", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2, note = "New in Forever" }, -- 266
-        { type = "COLLECT", quest = 94486, questName = "Feathers for Binding", target = "Pristine Shriekling Feather", count = 20, map = 2521, zone = "Zephras Isle", x = 62.2, y = 38.2 }, -- 267
+        { type = "COLLECT", quest = 94486, questName = "Feathers for Binding", target = "Pristine Shriekling Feather", count = 20, map = 2521, zone = "Zephras Isle", x = 62.2, y = 38.2, mobs = "Shadowgale Shriekling" }, -- 267
         { type = "TURNIN", quest = 94486, questName = "Feathers for Binding", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2 }, -- 268
         { type = "ACCEPT", quest = 94493, questName = "A Sacrifice in Vain", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2, note = "New in Forever" }, -- 269
         { type = "TURNIN", quest = 94493, questName = "A Sacrifice in Vain", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2 }, -- 270
-        { type = "COLLECT", quest = 92741, questName = "Unwelcome Visitors", target = "Shriekling Talons", count = 8, map = 2521, zone = "Zephras Isle", x = 62.2, y = 38.2 }, -- 271
+        { type = "COLLECT", quest = 92741, questName = "Unwelcome Visitors", target = "Shriekling Talons", count = 8, map = 2521, zone = "Zephras Isle", x = 62.2, y = 38.2, mobs = "Shadowgale Shriekling" }, -- 271
         { type = "COMPLETE", quest = 94487, questName = "Unwanted and Unworthy", target = "Bloody Heirloom", count = 10, map = 2521, zone = "Zephras Isle", x = 62.7, y = 36.5, note = "Bloody Heirloom" }, -- 272
         { type = "TURNIN", quest = 94487, questName = "Unwanted and Unworthy", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 273
         { type = "ACCEPT", quest = 94488, questName = "The Ties That Bind", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 274

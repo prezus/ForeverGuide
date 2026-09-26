@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_10_DUSKWOOD",
     name = "10. Duskwood 26-28 (Night Elf)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 26,
@@ -37,7 +37,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 20
         { type = "TURNIN", quest = 165, questName = "The Hermit", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28, y = 31.4 }, -- 21
         { type = "KILL", quest = 253, questName = "Bride of the Embalmer", npc = 314, target = "Eliza", map = 1431, zone = "Duskwood", x = 28.8, y = 30.9, optional = true }, -- 22
-        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 33.8, y = 29.8, near = true, profession = "Cooking", skill = 50 }, -- 23
+        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 33.8, y = 29.8, near = true, profession = "Cooking", skill = 50, mobs = "Starving Dire Wolf / Lupos / Rabid Dire Wolf / Black Ravager" }, -- 23
         { type = "TURNIN", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4, optional = true }, -- 24
         { type = "ACCEPT", quest = 377, questName = "Crime and Punishment", npc = 270, npcName = "Councilman Millstipe", map = 1431, zone = "Duskwood", x = 71.9, y = 47.8, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 25
         { type = "TURNIN", quest = 377, questName = "Crime and Punishment", npc = 270, npcName = "Councilman Millstipe", map = 1431, zone = "Duskwood", x = 71.9, y = 47.8, optional = true }, -- 26
