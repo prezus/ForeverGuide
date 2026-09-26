@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_08_IRONFORGE",
     name = "8. Ironforge 24-25 (Night Elf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 24,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_09_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 8 of the NightElf route: level 24 to 25, 11 steps, ~15 min of play in the model (38801 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 49,
+    stepCount = 48,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 1573, npcName = "Gryth Thurden", map = 1455, zone = "Ironforge", x = 55.5, y = 47.7 }, -- 1
         { type = "ACCEPT", quest = 250, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46, y = 13.6 }, -- 2
@@ -24,7 +24,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 132, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 7
         { type = "ACCEPT", quest = 135, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 8
         { type = "TURNIN", quest = 135, questName = "The Defias Brotherhood", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8 }, -- 9
-        { type = "ACCEPT", quest = 167, questName = "Oh Brother. . .", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 10
+        { type = "ACCEPT", quest = 167, questName = "Oh Brother...", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 10
         { type = "ACCEPT", quest = 168, questName = "Collecting Memories", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 11
         { type = "ACCEPT", quest = 2040, questName = "Underground Assault", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 12
         { type = "ACCEPT", quest = 141, questName = "The Defias Brotherhood", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8 }, -- 13
@@ -36,7 +36,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 155, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 19
         { type = "ACCEPT", quest = 166, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 20
         { type = "ACCEPT", quest = 214, questName = "Red Silk Bandanas", npc = 820, npcName = "Scout Riell", map = 1436, zone = "Westfall", x = 56.6, y = 47.4, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 21
-        { type = "NOTE", optional = true, text = "Ready for The Deadmines", note = "Picked up: The Defias Brotherhood, Oh Brother. . ., Collecting Memories, Red Silk Bandanas, Underground Assault. When you have a group, open The Deadmines under Dungeons." }, -- 22
+        { type = "NOTE", optional = true, text = "Ready for The Deadmines", note = "Picked up: The Defias Brotherhood, Oh Brother..., Collecting Memories, Red Silk Bandanas, Underground Assault. When you have a group, open The Deadmines under Dungeons." }, -- 22
         { type = "ACCEPT", quest = 96393, questName = "Old Ironforge Incursion", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 23
         { type = "ACCEPT", quest = 96394, questName = "The Restless Dead", npc = 264943, npcName = "Afadra Dunwall", map = 1455, zone = "Ironforge", x = 33.2, y = 47.6, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 24
         { type = "ACCEPT", quest = 96403, questName = "Important Heirlooms", npc = 265003, npcName = "Thom Filch", map = 1455, zone = "Ironforge", x = 32.4, y = 44.8, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 25
@@ -55,14 +55,13 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1072, questName = "An Old Colleague", npc = 4081, npcName = "Lomac Gearstrip", map = 1455, zone = "Ironforge", x = 71.8, y = 51.6 }, -- 38
         { type = "ACCEPT", quest = 467, questName = "Stonegear's Search", npc = 2092, npcName = "Pilot Longbeard", map = 1455, zone = "Ironforge", x = 72.4, y = 93.6 }, -- 39
         { type = "TURNIN", quest = 467, questName = "Stonegear's Search", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.4 }, -- 40
-        { type = "TURNIN", quest = 2927, questName = "The Day After", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true }, -- 41
-        { type = "ACCEPT", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 42
-        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" }, note = "reduced xp (10%) - you out-levelled it" }, -- 43
-        { type = "ACCEPT", quest = 1698, questName = "Yorus Barleybrew", npc = 5113, npcName = "Kelv Sternhammer", map = 1455, zone = "Ironforge", x = 70, y = 90.6, class = { "WARRIOR" } }, -- 44
-        { type = "KILL", quest = 2922, questName = "Save Techbot's Brain!", npc = 6231, target = "Techbot", map = 1426, zone = "Dun Morogh", x = 19.8, y = 31.9, optional = true }, -- 45
-        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true }, -- 46
-        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 47
-        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 48
-        { type = "TURNIN", quest = 2923, questName = "Tinkmaster Overspark", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, optional = true }, -- 49
+        { type = "ACCEPT", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 41
+        { type = "TURNIN", quest = 2927, questName = "The Day After", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2, optional = true }, -- 42
+        { type = "ACCEPT", quest = 1698, questName = "Yorus Barleybrew", npc = 5113, npcName = "Kelv Sternhammer", map = 1455, zone = "Ironforge", x = 70, y = 90.6, class = { "WARRIOR" } }, -- 43
+        { type = "KILL", quest = 2922, questName = "Save Techbot's Brain!", npc = 6231, target = "Techbot", map = 1426, zone = "Dun Morogh", x = 19.8, y = 31.9, optional = true }, -- 44
+        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true }, -- 45
+        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 46
+        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 47
+        { type = "TURNIN", quest = 2923, questName = "Tinkmaster Overspark", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, optional = true }, -- 48
     } end,
 })

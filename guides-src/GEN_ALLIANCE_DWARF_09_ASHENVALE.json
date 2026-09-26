@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_09_ASHENVALE",
   "name": "9. Ashenvale 25-27 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 25,
@@ -21,6 +21,7 @@
     {"type": "ACCEPT", "quest": 1275, "questName": "Researching the Corruption", "npc": 8997, "npcName": "Gershala Nightwhisper", "map": 1439, "zone": "Darkshore", "x": 38.4, "y": 43, "note": "For Blackfathom Deeps (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: In Search of Thaelrid, Twilight Falls, Researching the Corruption. When you have a group, open Blackfathom Deeps under Dungeons.", "text": "Ready for Blackfathom Deeps", "optional": true},
     {"type": "ACCEPT", "quest": 2925, "questName": "Klockmort's Essentials", "npc": 6142, "npcName": "Mathiel", "map": 1457, "zone": "Darnassus", "x": 59.2, "y": 45.4, "note": "For Gnomeregan (dungeon guide)", "optional": true},
+    {"type": "TURNIN", "quest": 1716, "questName": "Devourer of Souls", "npc": 6244, "npcName": "Takar the Seer", "map": 1413, "zone": "The Barrens", "x": 49.2, "y": 57, "class": ["WARLOCK"], "race": ["Gnome"]},
     {"type": "TRAVEL", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8, "radius": 60, "note": "travel to Ashenvale (Ashenvale)"},
     {"type": "ACCEPT", "quest": 8384, "questName": "Claiming Arathi Basin", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8},
     {"type": "TURNIN", "quest": 8384, "questName": "Claiming Arathi Basin", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8},
@@ -51,7 +52,13 @@
     {"type": "TURNIN", "quest": 1010, "questName": "Bathran's Hair", "npc": 3847, "npcName": "Orendil Broadleaf", "map": 1440, "zone": "Ashenvale", "x": 26.4, "y": 38.6, "note": "reduced xp (80%) - you out-levelled it"},
     {"type": "ACCEPT", "quest": 1020, "questName": "Orendil's Cure", "npc": 3847, "npcName": "Orendil Broadleaf", "map": 1440, "zone": "Ashenvale", "x": 26.4, "y": 38.6},
     {"type": "ACCEPT", "quest": 1021, "questName": "Vile Satyr! Dryads in Danger!", "npc": 3901, "npcName": "Illiyana", "map": 1440, "zone": "Ashenvale", "x": 21.7, "y": 53.3},
+    {"type": "ACCEPT", "quest": 1738, "questName": "Heartswood", "npc": 6244, "npcName": "Takar the Seer", "map": 1413, "zone": "The Barrens", "x": 49.2, "y": 57, "class": ["WARLOCK"], "race": ["Gnome"]},
+    {"type": "COLLECT", "quest": 1738, "questName": "Heartswood", "target": "Heartswood", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 31.6, "y": 31.6, "class": ["WARLOCK"], "race": ["Gnome"]},
+    {"type": "TURNIN", "quest": 1738, "questName": "Heartswood", "npc": 6122, "npcName": "Gakin the Darkbinder", "map": 1453, "zone": "Stormwind City", "x": 25.4, "y": 78.4, "class": ["WARLOCK"], "race": ["Gnome"]},
     {"type": "COMPLETE", "quest": 1022, "questName": "The Howling Vale", "target": "Tome of Mel'Thandris", "map": 1440, "zone": "Ashenvale", "x": 50.5, "y": 39.1, "note": "View the Tome of Mel'Thandris"},
+    {"type": "ACCEPT", "quest": 1739, "questName": "The Binding", "npc": 6122, "npcName": "Gakin the Darkbinder", "map": 1453, "zone": "Stormwind City", "x": 25.4, "y": 78.4, "class": ["WARLOCK"], "race": ["Gnome"]},
+    {"type": "KILL", "quest": 1739, "questName": "The Binding", "npc": 5677, "target": "Summoned Succubus", "count": 1, "map": 1453, "zone": "Stormwind City", "x": 25.2, "y": 77.4, "near": true, "class": ["WARLOCK"], "race": ["Gnome"]},
+    {"type": "TURNIN", "quest": 1739, "questName": "The Binding", "npc": 6122, "npcName": "Gakin the Darkbinder", "map": 1453, "zone": "Stormwind City", "x": 25.4, "y": 78.4, "class": ["WARLOCK"], "race": ["Gnome"]},
     {"type": "TURNIN", "quest": 1022, "questName": "The Howling Vale", "npc": 3880, "npcName": "Sentinel Melyria Frostshadow", "map": 1440, "zone": "Ashenvale", "x": 22.2, "y": 53},
     {"type": "ACCEPT", "quest": 4581, "questName": "Kayneth Stillwind", "npc": 3845, "npcName": "Shindrell Swiftfire", "map": 1440, "zone": "Ashenvale", "x": 34.6, "y": 48.8},
     {"type": "TURNIN", "quest": 1008, "questName": "The Zoram Strand", "npc": 3845, "npcName": "Shindrell Swiftfire", "map": 1440, "zone": "Ashenvale", "x": 34.7, "y": 48.8, "note": "reduced xp (60%) - you out-levelled it"},
@@ -103,9 +110,11 @@
     {"type": "KILL", "quest": 1012, "questName": "Insane Druids", "npc": 3941, "target": "Uthil Mooncall / Taneel Darkwood", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 78, "y": 72.7},
     {"type": "KILL", "quest": 1012, "questName": "Insane Druids", "npc": 3942, "target": "Mavoris Cloudsbreak", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 75.1, "y": 74.2},
     {"type": "TURNIN", "quest": 1012, "questName": "Insane Druids", "npc": 3848, "npcName": "Kayneth Stillwind", "map": 1440, "zone": "Ashenvale", "x": 85.2, "y": 44.7},
+    {"type": "ACCEPT", "quest": 1134, "questName": "Pridewings of Stonetalon", "npc": 3845, "npcName": "Shindrell Swiftfire", "map": 1440, "zone": "Ashenvale", "x": 34.6, "y": 48.8},
     {"type": "TURNIN", "quest": 1031, "questName": "The Branch of Cenarius", "npc": 3901, "npcName": "Illiyana", "map": 1440, "zone": "Ashenvale", "x": 21.7, "y": 53.3},
     {"type": "ACCEPT", "quest": 1032, "questName": "Satyr Slaying!", "npc": 3901, "npcName": "Illiyana", "map": 1440, "zone": "Ashenvale", "x": 21.7, "y": 53.3},
     {"type": "COLLECT", "quest": 1032, "questName": "Satyr Slaying!", "target": "Satyr Horns", "count": 16, "map": 1440, "zone": "Ashenvale", "x": 66.1, "y": 53.4, "near": true},
-    {"type": "TURNIN", "quest": 1032, "questName": "Satyr Slaying!", "npc": 3901, "npcName": "Illiyana", "map": 1440, "zone": "Ashenvale", "x": 21.7, "y": 53.3}
+    {"type": "TURNIN", "quest": 1032, "questName": "Satyr Slaying!", "npc": 3901, "npcName": "Illiyana", "map": 1440, "zone": "Ashenvale", "x": 21.7, "y": 53.3},
+    {"type": "TURNIN", "quest": 1134, "questName": "Pridewings of Stonetalon", "npc": 3845, "npcName": "Shindrell Swiftfire", "map": 1440, "zone": "Ashenvale", "x": 34.6, "y": 48.8}
   ]
 }

@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_06_ASHENVALE",
   "name": "6. Ashenvale 19-22 (Night Elf)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 19,
@@ -60,6 +60,9 @@
     {"type": "ACCEPT", "quest": 1035, "questName": "Fallen Sky Lake", "npc": 3894, "npcName": "Pelturas Whitemoon", "map": 1440, "zone": "Ashenvale", "x": 37.4, "y": 51.8},
     {"type": "ACCEPT", "quest": 1016, "questName": "Elemental Bracers", "npc": 3885, "npcName": "Sentinel Velene Starstrike", "map": 1440, "zone": "Ashenvale", "x": 49.8, "y": 67.2},
     {"type": "TURNIN", "quest": 1016, "questName": "Elemental Bracers", "npc": 3885, "npcName": "Sentinel Velene Starstrike", "map": 1440, "zone": "Ashenvale", "x": 49.8, "y": 67.2},
+    {"type": "ACCEPT", "quest": 6122, "questName": "The Principal Source", "npc": 11802, "npcName": "Dendrite Starblaze", "map": 1450, "zone": "Moonglade", "x": 56.2, "y": 30.4, "class": ["DRUID"]},
+    {"type": "COLLECT", "quest": 6122, "questName": "The Principal Source", "target": "Filled Cliffspring Falls Sampler", "count": 1, "map": 1439, "zone": "Darkshore", "x": 54.9, "y": 33.3, "class": ["DRUID"]},
+    {"type": "TURNIN", "quest": 6122, "questName": "The Principal Source", "npc": 3702, "npcName": "Alanndarian Nightsong", "map": 1439, "zone": "Darkshore", "x": 37.6, "y": 40.6, "class": ["DRUID"]},
     {"type": "KILL", "quest": 1035, "questName": "Fallen Sky Lake", "npc": 3931, "target": "Shadethicket Oracle", "map": 1440, "zone": "Ashenvale", "x": 66.7, "y": 82.2, "note": "loot Fallen Moonstone"},
     {"type": "ACCEPT", "quest": 8374, "questName": "Claiming Arathi Basin", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1440, "zone": "Ashenvale", "x": 61.9, "y": 83.8},
     {"type": "TURNIN", "quest": 8374, "questName": "Claiming Arathi Basin", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1440, "zone": "Ashenvale", "x": 61.9, "y": 83.8},

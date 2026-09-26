@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_06_DUSKWOOD",
     name = "6. Duskwood 19-22 (Dwarf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 19,
@@ -19,7 +19,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 132, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 2
         { type = "ACCEPT", quest = 135, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 3
         { type = "TURNIN", quest = 135, questName = "The Defias Brotherhood", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8 }, -- 4
-        { type = "ACCEPT", quest = 167, questName = "Oh Brother. . .", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 5
+        { type = "ACCEPT", quest = 167, questName = "Oh Brother...", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 5
         { type = "ACCEPT", quest = 168, questName = "Collecting Memories", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 6
         { type = "ACCEPT", quest = 2040, questName = "Underground Assault", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 7
         { type = "ACCEPT", quest = 141, questName = "The Defias Brotherhood", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8 }, -- 8
@@ -31,7 +31,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 155, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 14
         { type = "ACCEPT", quest = 166, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 15
         { type = "ACCEPT", quest = 214, questName = "Red Silk Bandanas", npc = 820, npcName = "Scout Riell", map = 1436, zone = "Westfall", x = 56.6, y = 47.4, optional = true, note = "For The Deadmines (dungeon guide)" }, -- 16
-        { type = "NOTE", optional = true, text = "Ready for The Deadmines", note = "Picked up: The Defias Brotherhood, Oh Brother. . ., Collecting Memories, Red Silk Bandanas, Underground Assault. When you have a group, open The Deadmines under Dungeons." }, -- 17
+        { type = "NOTE", optional = true, text = "Ready for The Deadmines", note = "Picked up: The Defias Brotherhood, Oh Brother..., Collecting Memories, Red Silk Bandanas, Underground Assault. When you have a group, open The Deadmines under Dungeons." }, -- 17
         { type = "ACCEPT", quest = 94467, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" }, note = "New in Forever" }, -- 18
         { type = "COLLECT", quest = 94467, questName = "Call of Fire", target = "Glowing Ember", count = 1, map = 1411, zone = "Durotar", x = 38.7, y = 58.3, class = { "SHAMAN" } }, -- 19
         { type = "TURNIN", quest = 94467, questName = "Call of Fire", map = 1411, zone = "Durotar", x = 38.9, y = 58.2, class = { "SHAMAN" } }, -- 20
@@ -40,14 +40,14 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 23
         { type = "ACCEPT", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 24
         { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Ghoul Fang", count = 10, map = 1431, zone = "Duskwood", x = 76.3, y = 37.2, near = true }, -- 25
-        { type = "ACCEPT", quest = 94468, questName = "Call of Fire", map = 1432, zone = "Loch Modan", x = 31.9, y = 64.5, class = { "SHAMAN" }, note = "New in Forever" }, -- 26
-        { type = "TURNIN", quest = 94468, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" } }, -- 27
-        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Vial of Spider Venom", count = 10, map = 1431, zone = "Duskwood", x = 79.3, y = 51.4, near = true }, -- 28
-        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Skeleton Finger", count = 10, map = 1431, zone = "Duskwood", x = 81.1, y = 56.2, near = true }, -- 29
-        { type = "KILL", quest = 56, questName = "The Night Watch", npc = 203, target = "Skeletal Mage / Skeletal Warrior", count = 8, map = 1431, zone = "Duskwood", x = 79.8, y = 66.1, near = true }, -- 30
-        { type = "ACCEPT", quest = 163, questName = "Raven Hill", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 31
-        { type = "ACCEPT", quest = 164, questName = "Deliveries to Sven", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 32
-        { type = "ACCEPT", quest = 165, questName = "The Hermit", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 33
+        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Vial of Spider Venom", count = 10, map = 1431, zone = "Duskwood", x = 79.3, y = 51.4, near = true }, -- 26
+        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Skeleton Finger", count = 10, map = 1431, zone = "Duskwood", x = 81.1, y = 56.2, near = true }, -- 27
+        { type = "KILL", quest = 56, questName = "The Night Watch", npc = 203, target = "Skeletal Mage / Skeletal Warrior", count = 8, map = 1431, zone = "Duskwood", x = 79.8, y = 66.1, near = true }, -- 28
+        { type = "ACCEPT", quest = 163, questName = "Raven Hill", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 29
+        { type = "ACCEPT", quest = 164, questName = "Deliveries to Sven", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 30
+        { type = "ACCEPT", quest = 165, questName = "The Hermit", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 31
+        { type = "ACCEPT", quest = 94468, questName = "Call of Fire", map = 1432, zone = "Loch Modan", x = 31.9, y = 64.5, class = { "SHAMAN" }, note = "New in Forever" }, -- 32
+        { type = "TURNIN", quest = 94468, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" } }, -- 33
         { type = "TURNIN", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 34
         { type = "ACCEPT", quest = 57, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 35
         { type = "TURNIN", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 36
@@ -73,7 +73,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 245, questName = "Eight-Legged Menaces", npc = 888, npcName = "Watcher Dodds", map = 1431, zone = "Duskwood", x = 45.1, y = 67 }, -- 56
         { type = "TURNIN", quest = 5, questName = "Jitters' Growling Gut", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 57
         { type = "ACCEPT", quest = 93, questName = "Dusky Crab Cakes", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 58
-        { type = "ACCEPT", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6 }, -- 59
+        { type = "ACCEPT", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6, profession = "Cooking", skill = 50 }, -- 59
         { type = "TURNIN", quest = 58, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 60
         { type = "TURNIN", quest = 148, questName = "Supplies from Darkshire", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 61
         { type = "ACCEPT", quest = 149, questName = "Ghost Hair Thread", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 62
@@ -115,14 +115,14 @@ ns.RegisterGuide({
         { type = "KILL", quest = 323, questName = "Proving Your Worth", npc = 787, target = "Skeletal Healer / Skeletal Raider / Skeletal Warder", count = 15, map = 1431, zone = "Duskwood", x = 13.5, y = 36.3, near = true }, -- 98
         { type = "TURNIN", quest = 323, questName = "Proving Your Worth", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 99
         { type = "ACCEPT", quest = 269, questName = "Seeking Wisdom", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 100
-        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 10.8, y = 32.2, near = true }, -- 101
-        { type = "ACCEPT", quest = 377, questName = "Crime and Punishment", npc = 270, npcName = "Councilman Millstipe", map = 1431, zone = "Duskwood", x = 72, y = 47.8, optional = true, note = "For The Stockade (dungeon guide)" }, -- 102
-        { type = "TURNIN", quest = 160, questName = "Note to the Mayor", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 103
-        { type = "TURNIN", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6 }, -- 104
-        { type = "ACCEPT", quest = 66, questName = "The Legend of Stalvan", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 105
-        { type = "ACCEPT", quest = 251, questName = "Translate Abercrombie's Note", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 106
-        { type = "TURNIN", quest = 66, questName = "The Legend of Stalvan", npc = 267, npcName = "Clerk Daltry", map = 1431, zone = "Duskwood", x = 72.5, y = 46.9 }, -- 107
-        { type = "TURNIN", quest = 251, questName = "Translate Abercrombie's Note", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 108
+        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 10.8, y = 32.2, near = true, profession = "Cooking", skill = 50 }, -- 101
+        { type = "TURNIN", quest = 160, questName = "Note to the Mayor", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 102
+        { type = "TURNIN", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6, profession = "Cooking", skill = 50 }, -- 103
+        { type = "ACCEPT", quest = 66, questName = "The Legend of Stalvan", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 104
+        { type = "ACCEPT", quest = 251, questName = "Translate Abercrombie's Note", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 105
+        { type = "TURNIN", quest = 66, questName = "The Legend of Stalvan", npc = 267, npcName = "Clerk Daltry", map = 1431, zone = "Duskwood", x = 72.5, y = 46.9 }, -- 106
+        { type = "TURNIN", quest = 251, questName = "Translate Abercrombie's Note", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 107
+        { type = "ACCEPT", quest = 377, questName = "Crime and Punishment", npc = 270, npcName = "Councilman Millstipe", map = 1431, zone = "Duskwood", x = 72, y = 47.8, optional = true, note = "For The Stockade (dungeon guide)" }, -- 108
         { type = "ACCEPT", quest = 67, questName = "The Legend of Stalvan", npc = 267, npcName = "Clerk Daltry", map = 1431, zone = "Duskwood", x = 72.5, y = 46.9 }, -- 109
         { type = "ACCEPT", quest = 401, questName = "Wait for Sirra to Finish", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 110
         { type = "TURNIN", quest = 401, questName = "Wait for Sirra to Finish", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 111

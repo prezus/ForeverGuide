@@ -1,7 +1,7 @@
 {
   "id": "DUNGEON_ALLIANCE_BLACKFATHOM_DEEPS",
   "name": "Blackfathom Deeps 20-28",
-  "version": 1,
+  "version": 2,
   "kind": "dungeon",
   "faction": "Alliance",
   "minLevel": 20,
@@ -16,14 +16,15 @@
     {"type": "ACCEPT", "quest": 1198, "questName": "In Search of Thaelrid", "npc": 4786, "npcName": "Dawnwatcher Shaedlass", "map": 1457, "zone": "Darnassus", "x": 55.4, "y": 24.6},
     {"type": "ACCEPT", "quest": 1199, "questName": "Twilight Falls", "npc": 4784, "npcName": "Argent Guard Manados", "map": 1457, "zone": "Darnassus", "x": 55.2, "y": 23.6},
     {"type": "NOTE", "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2, "note": "All quests available from level 20; hand them in by level 28 for full XP", "text": "Find a group for Blackfathom Deeps"},
+    {"type": "ACCEPT", "quest": 1200, "questName": "Blackfathom Villainy", "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
     {"type": "COLLECT", "quest": 971, "questName": "Knowledge in the Deeps", "target": "Lorgalis Manuscript", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
     {"type": "COLLECT", "quest": 1199, "questName": "Twilight Falls", "target": "Twilight Pendant", "count": 10, "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
     {"type": "COLLECT", "quest": 1275, "questName": "Researching the Corruption", "target": "Corrupted Brain Stem", "count": 8, "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
+    {"type": "COLLECT", "quest": 1200, "questName": "Blackfathom Villainy", "target": "Head of Kelris", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
     {"type": "TURNIN", "quest": 1198, "questName": "In Search of Thaelrid", "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
     {"type": "TURNIN", "quest": 971, "questName": "Knowledge in the Deeps", "npc": 2786, "npcName": "Gerrig Bonegrip", "map": 1455, "zone": "Ironforge", "x": 50.4, "y": 6},
     {"type": "TURNIN", "quest": 1199, "questName": "Twilight Falls", "npc": 4784, "npcName": "Argent Guard Manados", "map": 1457, "zone": "Darnassus", "x": 55.2, "y": 23.6},
     {"type": "TURNIN", "quest": 1275, "questName": "Researching the Corruption", "npc": 8997, "npcName": "Gershala Nightwhisper", "map": 1439, "zone": "Darkshore", "x": 38.4, "y": 43},
-    {"type": "ACCEPT", "quest": 1200, "questName": "Blackfathom Villainy", "map": 1440, "zone": "Ashenvale", "x": 14.5, "y": 14.2},
     {"type": "TURNIN", "quest": 1200, "questName": "Blackfathom Villainy", "npc": 4783, "npcName": "Dawnwatcher Selgorm", "map": 1457, "zone": "Darnassus", "x": 55.8, "y": 24.2}
   ]
 }

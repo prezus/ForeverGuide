@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_01_ZEPHRAS_ISLE",
     name = "1. Zephras Isle 1-13 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 1,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_02_DARKSHORE",
     author = "ForeverGuide route planner",
     notes = "Chapter 1 of the Skyborne route: level 1 to 13, 207 steps, ~182 min of play in the model (19955 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 244,
+    stepCount = 316,
     steps = function() return {
         { type = "ACCEPT", quest = 92474, questName = "Falling With Style", map = 2521, zone = "Zephras Isle", x = 43.6, y = 24.0 }, -- 1
         { type = "ACCEPT", quest = 94414, questName = "The Anchors of Zephras", map = 2521, zone = "Zephras Isle", x = 43.5, y = 24.3 }, -- 2
@@ -26,238 +26,310 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 92463, questName = "The Cirrusfly Queen", map = 2521, zone = "Zephras Isle", x = 43.4, y = 24.8 }, -- 9
         { type = "COMPLETE", quest = 94414, questName = "The Anchors of Zephras", target = "View the Anchor Pylon", map = 2521, zone = "Zephras Isle", x = 43.8, y = 24.1, note = "View the Anchor Pylon" }, -- 10
         { type = "TURNIN", quest = 94414, questName = "The Anchors of Zephras", map = 2521, zone = "Zephras Isle", x = 43.8, y = 24.1 }, -- 11
-        { type = "COMPLETE", quest = 92474, questName = "Falling With Style", target = "Use Walk on Air", map = 2521, zone = "Zephras Isle", x = 42.1, y = 23.5, note = "Use Walk on Air" }, -- 12
-        { type = "TURNIN", quest = 92474, questName = "Falling With Style", map = 2521, zone = "Zephras Isle", x = 42.1, y = 23.5 }, -- 13
-        { type = "KILL", quest = 92473, questName = "Aggressive Encroachment", target = "Scrawny Ursera", count = 6, map = 2521, zone = "Zephras Isle", x = 41.0, y = 25.7, near = true, note = "loot Scrawny Ursera Claw" }, -- 14
-        { type = "ACCEPT", quest = 92544, questName = "Al'Aketh Thugs", map = 2521, zone = "Zephras Isle", x = 38.3, y = 30.2 }, -- 15
-        { type = "KILL", quest = 92463, questName = "The Cirrusfly Queen", target = "Cirrusfly Queen", count = 1, map = 2521, zone = "Zephras Isle", x = 48.4, y = 28.4, note = "Cirrusfly Queen slain" }, -- 16
-        { type = "COMPLETE", quest = 92598, questName = "The Gift of Skysight", target = "Use your Skysight ability near the Elemental Convergence", map = 2521, zone = "Zephras Isle", x = 48.4, y = 20.4, note = "Use your Skysight ability near the Elemental Convergence" }, -- 17
-        { type = "COMPLETE", quest = 92597, questName = "Reading the Ley Lines", target = "Use your Read Ley Line ability near the Thendal Grove Ley Line", map = 2521, zone = "Zephras Isle", x = 46.3, y = 17.9, note = "Use your Read Ley Line ability near the Thendal Grove Ley Line" }, -- 18
-        { type = "KILL", quest = 92544, questName = "Al'Aketh Thugs", npc = 251145, target = "Al'Aketh Brute / Al'Aketh Brute / Malduko Cloudcrush", count = 6, map = 2521, zone = "Zephras Isle", x = 37.3, y = 32.9, near = true, note = "Al'Aketh Brute slain" }, -- 19
-        { type = "TURNIN", quest = 92544, questName = "Al'Aketh Thugs", map = 2521, zone = "Zephras Isle", x = 38.3, y = 30.2 }, -- 20
-        { type = "ACCEPT", quest = 92532, questName = "The Warrior's Path", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "WARRIOR" }, note = "New in Forever" }, -- 21
-        { type = "TURNIN", quest = 92532, questName = "The Warrior's Path", npc = 251964, npcName = "Blademaster Ren", map = 2521, zone = "Zephras Isle", x = 43.6, y = 24.2, class = { "WARRIOR" } }, -- 22
-        { type = "ACCEPT", quest = 92482, questName = "The Way of the Hunter", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "HUNTER" }, note = "New in Forever" }, -- 23
-        { type = "TURNIN", quest = 92482, questName = "The Way of the Hunter", npc = 251376, npcName = "Tai'ree Farsight", map = 2521, zone = "Zephras Isle", x = 42.4, y = 23.6, class = { "HUNTER" } }, -- 24
-        { type = "ACCEPT", quest = 92483, questName = "At Home in the Shadows", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "ROGUE" }, note = "New in Forever" }, -- 25
-        { type = "TURNIN", quest = 92483, questName = "At Home in the Shadows", npc = 251389, npcName = "Akeri Duskblade", map = 2521, zone = "Zephras Isle", x = 43.6, y = 24.2, class = { "ROGUE" } }, -- 26
-        { type = "ACCEPT", quest = 92484, questName = "Embracing the Elements", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "SHAMAN" }, note = "New in Forever" }, -- 27
-        { type = "TURNIN", quest = 92484, questName = "Embracing the Elements", npc = 251374, npcName = "Windshaper Boro", map = 2521, zone = "Zephras Isle", x = 42.8, y = 23.6, class = { "SHAMAN" } }, -- 28
-        { type = "ACCEPT", quest = 92481, questName = "A Student of the Arcane", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "MAGE" }, note = "New in Forever" }, -- 29
-        { type = "TURNIN", quest = 92481, questName = "A Student of the Arcane", npc = 251379, npcName = "Dorii Brightwhisper", map = 2521, zone = "Zephras Isle", x = 41.6, y = 23.6, class = { "MAGE" } }, -- 30
-        { type = "ACCEPT", quest = 92485, questName = "A Student of Nature", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "DRUID" }, note = "New in Forever" }, -- 31
-        { type = "TURNIN", quest = 92485, questName = "A Student of Nature", npc = 251373, npcName = "Xyton Silverwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 23.4, class = { "DRUID" } }, -- 32
-        { type = "TURNIN", quest = 92463, questName = "The Cirrusfly Queen", map = 2521, zone = "Zephras Isle", x = 43.4, y = 24.8 }, -- 33
-        { type = "TURNIN", quest = 92597, questName = "Reading the Ley Lines", map = 2521, zone = "Zephras Isle", x = 43.3, y = 24.9 }, -- 34
-        { type = "TURNIN", quest = 92598, questName = "The Gift of Skysight", npc = 251487, npcName = "Ventaari Brightwish", map = 2521, zone = "Zephras Isle", x = 42.6, y = 24.4 }, -- 35
-        { type = "TURNIN", quest = 92473, questName = "Aggressive Encroachment", map = 2521, zone = "Zephras Isle", x = 42.4, y = 25.1 }, -- 36
-        { type = "ACCEPT", quest = 92553, questName = "Restocking the Larders", npc = 251905, npcName = "Zerril Softbreeze", map = 2521, zone = "Zephras Isle", x = 43.9, y = 43.8 }, -- 37
-        { type = "ACCEPT", quest = 92595, questName = "The Windshapers", map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8 }, -- 38
-        { type = "ACCEPT", quest = 92515, questName = "The Problem With Prideclaws", map = 2521, zone = "Zephras Isle", x = 44.7, y = 44.5 }, -- 39
-        { type = "ACCEPT", quest = 92596, questName = "The High Order", map = 2521, zone = "Zephras Isle", x = 45.0, y = 46.5 }, -- 40
-        { type = "ACCEPT", quest = 92514, questName = "Welcome to Shen'dar Village", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 41
-        { type = "ACCEPT", quest = 93461, questName = "Welcome to Shen'dar Village", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 42
-        { type = "COMPLETE", quest = 92596, questName = "The High Order", target = "Listen to Rathiril Sunlance", count = 1, map = 2521, zone = "Zephras Isle", x = 45.0, y = 46.5, note = "Listen to Rathiril Sunlance" }, -- 43
-        { type = "TURNIN", quest = 92596, questName = "The High Order", map = 2521, zone = "Zephras Isle", x = 45.0, y = 46.4 }, -- 44
-        { type = "ACCEPT", quest = 94413, questName = "A Magical Affront", map = 2521, zone = "Zephras Isle", x = 45.0, y = 46.4 }, -- 45
-        { type = "KILL", quest = 92553, questName = "Restocking the Larders", npc = 251661, target = "Galestrider / Galestrider", count = 8, map = 2521, zone = "Zephras Isle", x = 43.1, y = 46.3, near = true, note = "loot Strider Meat" }, -- 46
-        { type = "ACCEPT", quest = 92516, questName = "Hippogryph Harrassment", map = 2521, zone = "Zephras Isle", x = 44.5, y = 45.0 }, -- 47
-        { type = "ACCEPT", quest = 93319, questName = "Pilfered Windstones", map = 2521, zone = "Zephras Isle", x = 44.5, y = 45.0 }, -- 48
-        { type = "ACCEPT", quest = 93951, questName = "A Little Beauty", map = 2521, zone = "Zephras Isle", x = 44.9, y = 44.2 }, -- 49
-        { type = "TURNIN", quest = 92553, questName = "Restocking the Larders", npc = 251905, npcName = "Zerril Softbreeze", map = 2521, zone = "Zephras Isle", x = 43.9, y = 43.8 }, -- 50
-        { type = "COMPLETE", quest = 92514, questName = "Welcome to Shen'dar Village", target = "Speak with the Innkeeper", map = 2521, zone = "Zephras Isle", x = 43.0, y = 43.2, note = "Speak with the Innkeeper" }, -- 51
-        { type = "TURNIN", quest = 92514, questName = "Welcome to Shen'dar Village", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 52
-        { type = "ACCEPT", quest = 92517, questName = "The Criminal Element", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 53
-        { type = "COMPLETE", quest = 93461, questName = "Welcome to Shen'dar Village", target = "Speak with the Innkeeper", map = 2521, zone = "Zephras Isle", x = 43.0, y = 43.2, note = "Speak with the Innkeeper" }, -- 54
-        { type = "TURNIN", quest = 93461, questName = "Welcome to Shen'dar Village", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 55
-        { type = "COMPLETE", quest = 92595, questName = "The Windshapers", target = "Listen to Illaya", count = 1, map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8, note = "Listen to Illaya" }, -- 56
-        { type = "TURNIN", quest = 92595, questName = "The Windshapers", map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8 }, -- 57
-        { type = "ACCEPT", quest = 94411, questName = "Meddlesome Mages", map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8 }, -- 58
-        { type = "KILL", quest = 92515, questName = "The Problem With Prideclaws", npc = 251245, target = "Prideclaw", count = 10, map = 2521, zone = "Zephras Isle", x = 43.1, y = 46.3, near = true, note = "loot Prideclaw Pelt" }, -- 59
-        { type = "ACCEPT", quest = 92551, questName = "Stolen Supplies", map = 2521, zone = "Zephras Isle", x = 45.2, y = 45.2 }, -- 60
-        { type = "TURNIN", quest = 92515, questName = "The Problem With Prideclaws", npc = 251993, npcName = "Indari Sunseam", map = 2521, zone = "Zephras Isle", x = 44.7, y = 44.5 }, -- 61
-        { type = "KILL", quest = 94411, questName = "Meddlesome Mages", npc = 257521, target = "High Order Apprentice", count = 6, map = 2521, zone = "Zephras Isle", x = 46.4, y = 38.6, note = "High Order Apprentice defeated" }, -- 62
-        { type = "KILL", quest = 92517, questName = "The Criminal Element", npc = 251918, target = "Highlands Bandit / \"Badwind\" Bennic", count = 10, map = 2521, zone = "Zephras Isle", x = 46.4, y = 38.6, near = true, note = "Highlands Bandit slain" }, -- 63
-        { type = "TURNIN", quest = 92517, questName = "The Criminal Element", npc = 251523, npcName = "Constable Aonda", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 64
-        { type = "ACCEPT", quest = 93036, questName = "Infiltrating the Cult", npc = 251523, npcName = "Constable Aonda", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 65
-        { type = "TURNIN", quest = 93036, questName = "Infiltrating the Cult", npc = 251904, npcName = "Sania Silverstream", map = 2521, zone = "Zephras Isle", x = 44.8, y = 45.5 }, -- 66
-        { type = "TURNIN", quest = 94411, questName = "Meddlesome Mages", npc = 251902, npcName = "Illaya Amberwind", map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8 }, -- 67
-        { type = "ACCEPT", quest = 92529, questName = "Falaath Village", npc = 251904, npcName = "Sania Silverstream", map = 2521, zone = "Zephras Isle", x = 44.8, y = 45.5 }, -- 68
-        { type = "KILL", quest = 94413, questName = "A Magical Affront", target = "Windshaper Novice Seer", count = 6, map = 2521, zone = "Zephras Isle", x = 39.6, y = 47.2, near = true, note = "Windshaper Novice Seer defeated" }, -- 69
-        { type = "KILL", quest = 92516, questName = "Hippogryph Harrassment", npc = 251261, target = "Hippogryph Matriarch / Hippogryph Matriarch / Hippogryph Matriarch", count = 8, map = 2521, zone = "Zephras Isle", x = 36.4, y = 50.9, near = true, note = "Hippogryph Youth slain" }, -- 70
-        { type = "COLLECT", quest = 93951, questName = "A Little Beauty", target = "Hippogryph Down", count = 8, map = 2521, zone = "Zephras Isle", x = 36.4, y = 50.9, near = true, note = "Hippogryph Down" }, -- 71
-        { type = "KILL", quest = 92551, questName = "Stolen Supplies", target = "Al'Aketh Stormcaller", count = 10, map = 2521, zone = "Zephras Isle", x = 41.0, y = 64.1, near = true, note = "Stolen Shen'dar Supplies" }, -- 72
-        { type = "ACCEPT", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 73
-        { type = "COLLECT", quest = 94373, questName = "Call of Earth", target = "Iceclaw Bear Pendant", count = 2, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, near = true, class = { "SHAMAN" } }, -- 74
-        { type = "TURNIN", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 75
-        { type = "KILL", quest = 93319, questName = "Pilfered Windstones", npc = 251918, target = "Highlands Bandit", count = 10, map = 2521, zone = "Zephras Isle", x = 46.4, y = 38.6, near = true, note = "Pilfered Windstone" }, -- 76
-        { type = "TURNIN", quest = 93951, questName = "A Little Beauty", npc = 251991, npcName = "Taleen Shimmerthread", map = 2521, zone = "Zephras Isle", x = 44.9, y = 44.2 }, -- 77
-        { type = "TURNIN", quest = 92516, questName = "Hippogryph Harrassment", npc = 251906, npcName = "Teeri Wellwind", map = 2521, zone = "Zephras Isle", x = 44.5, y = 45.0 }, -- 78
-        { type = "TURNIN", quest = 93319, questName = "Pilfered Windstones", npc = 251906, npcName = "Teeri Wellwind", map = 2521, zone = "Zephras Isle", x = 44.5, y = 45.0 }, -- 79
-        { type = "ACCEPT", quest = 93318, questName = "WANTED: Vulgara the Insatiable", map = 2521, zone = "Zephras Isle", x = 43.4, y = 45.9 }, -- 80
-        { type = "TURNIN", quest = 94413, questName = "A Magical Affront", npc = 251903, npcName = "Rathiril Sunlance", map = 2521, zone = "Zephras Isle", x = 45.0, y = 46.4 }, -- 81
-        { type = "KILL", quest = 93318, questName = "WANTED: Vulgara the Insatiable", target = "Vulgara", count = 1, map = 2521, zone = "Zephras Isle", x = 43.1, y = 51.0, near = true, note = "loot Vulgara's Head" }, -- 82
-        { type = "TURNIN", quest = 93318, questName = "WANTED: Vulgara the Insatiable", npc = 252172, npcName = "Danarii Bellowveil", map = 2521, zone = "Zephras Isle", x = 45.2, y = 45.2 }, -- 83
-        { type = "TURNIN", quest = 92529, questName = "Falaath Village", npc = 257065, npcName = "Missionary Jasaan", map = 2521, zone = "Zephras Isle", x = 46.9, y = 56.2 }, -- 84
-        { type = "ACCEPT", quest = 92528, questName = "Among the Faithful", npc = 257065, npcName = "Missionary Jasaan", map = 2521, zone = "Zephras Isle", x = 46.9, y = 56.2 }, -- 85
-        { type = "TURNIN", quest = 92551, questName = "Stolen Supplies", map = 2521, zone = "Zephras Isle", x = 49.8, y = 57.2 }, -- 86
-        { type = "COMPLETE", quest = 92528, questName = "Among the Faithful", target = "Learn about the cultists' plans", count = 1, map = 2521, zone = "Zephras Isle", x = 48.8, y = 53.9, near = true, note = "Learn about the cultists' plans" }, -- 87
-        { type = "TURNIN", quest = 92528, questName = "Among the Faithful", map = 2521, zone = "Zephras Isle", x = 46.4, y = 51.3 }, -- 88
-        { type = "ACCEPT", quest = 92550, questName = "Havoc in the Highlands", map = 2521, zone = "Zephras Isle", x = 46.4, y = 51.3 }, -- 89
-        { type = "ACCEPT", quest = 93926, questName = "The Western Watch", map = 2521, zone = "Zephras Isle", x = 46.4, y = 51.3 }, -- 90
-        { type = "KILL", quest = 92550, questName = "Havoc in the Highlands", target = "Al'Aketh Stormcaller / Living Lightning", count = 6, map = 2521, zone = "Zephras Isle", x = 47.6, y = 54.1, near = true, note = "Al'Aketh Stormcaller slain" }, -- 91
-        { type = "COMPLETE", quest = 92550, questName = "Havoc in the Highlands", target = "Commander Cyclas's Head", count = 1, map = 2521, zone = "Zephras Isle", x = 50.3, y = 57.0, note = "Commander Cyclas's Head" }, -- 92
-        { type = "COMPLETE", quest = 93926, questName = "The Western Watch", target = "Check in on the Western Watchtower in the Shen'dar Highlands", count = 1, map = 2521, zone = "Zephras Isle", x = 42.3, y = 62.0, note = "Check in on the Western Watchtower in the Shen'dar Highlands" }, -- 93
-        { type = "TURNIN", quest = 93926, questName = "The Western Watch", npc = 252155, npcName = "Piecekeeper Vaniel", map = 2521, zone = "Zephras Isle", x = 42.3, y = 62.0 }, -- 94
-        { type = "ACCEPT", quest = 93927, questName = "A Last Request", npc = 252155, npcName = "Piecekeeper Vaniel", map = 2521, zone = "Zephras Isle", x = 42.3, y = 62.0 }, -- 95
-        { type = "COLLECT", quest = 93927, questName = "A Last Request", target = "Collect and read the note", count = 1, map = 2521, zone = "Zephras Isle", x = 42.4, y = 62.1, note = "Collect and read the note" }, -- 96
-        { type = "COMPLETE", quest = 93927, questName = "A Last Request", target = "Raani's Favorite Feather / Skypriest Aanders / Shadowsong Family Signet", count = 1, map = 2521, zone = "Zephras Isle", x = 41.1, y = 64.1, note = "Raani's Favorite Feather" }, -- 97
-        { type = "TURNIN", quest = 92550, questName = "Havoc in the Highlands", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 98
-        { type = "ACCEPT", quest = 92579, questName = "To Valanaar", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 99
-        { type = "ACCEPT", quest = 92701, questName = "To Valanaar", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 100
-        { type = "TURNIN", quest = 93927, questName = "A Last Request", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 101
-        { type = "ACCEPT", quest = 94374, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 102
-        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" } }, -- 103
-        { type = "ACCEPT", quest = 92698, questName = "What Is My Purpose?", npc = 250929, npcName = "Malfunctioning Cyclone Construct", map = 2521, zone = "Zephras Isle", x = 49.1, y = 78.4 }, -- 104
-        { type = "TURNIN", quest = 92698, questName = "What Is My Purpose?", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 105
-        { type = "ACCEPT", quest = 92682, questName = "Make Yourself Useful", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 106
-        { type = "ACCEPT", quest = 92683, questName = "Flutterfly Dust", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 107
-        { type = "ACCEPT", quest = 92684, questName = "Ornery Ornery Galestriders", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 108
-        { type = "ACCEPT", quest = 92685, questName = "The Hills Have Eyes", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 109
-        { type = "KILL", quest = 92683, questName = "Flutterfly Dust", npc = 251622, target = "Flutterfly", count = 5, map = 2521, zone = "Zephras Isle", x = 46.7, y = 77.0, near = true, note = "Flutterfly Dust" }, -- 110
-        { type = "TURNIN", quest = 92683, questName = "Flutterfly Dust", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 111
-        { type = "KILL", quest = 92682, questName = "Make Yourself Useful", npc = 252802, target = "Hungry Bandit / Hungry Bandit", count = 10, map = 2521, zone = "Zephras Isle", x = 46.2, y = 78.0, near = true, note = "Ripe Stormapple" }, -- 112
-        { type = "TURNIN", quest = 92682, questName = "Make Yourself Useful", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 113
-        { type = "KILL", quest = 92684, questName = "Ornery Ornery Galestriders", npc = 251707, target = "Ornery Galestrider", count = 7, map = 2521, zone = "Zephras Isle", x = 46.2, y = 78.0, near = true, note = "Lowlands Galestrider Tenderloin" }, -- 114
-        { type = "TURNIN", quest = 92684, questName = "Ornery Ornery Galestriders", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 115
-        { type = "KILL", quest = 92685, questName = "The Hills Have Eyes", npc = 252820, target = "Bandit Highwayman", count = 7, map = 2521, zone = "Zephras Isle", x = 45.8, y = 78.4, near = true, note = "loot Blood-Stained Bandit Mask" }, -- 116
-        { type = "TURNIN", quest = 92685, questName = "The Hills Have Eyes", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 117
-        { type = "ACCEPT", quest = 92693, questName = "Standing Our Ground", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 118
-        { type = "COMPLETE", quest = 92693, questName = "Standing Our Ground", target = "Follow Aamelia and make your final stand", count = 1, map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.4, note = "Follow Aamelia and make your final stand" }, -- 119
-        { type = "COMPLETE", quest = 92693, questName = "Standing Our Ground", target = "Speak with Aamelia Windfield", count = 1, map = 2521, zone = "Zephras Isle", x = 46.7, y = 81.9, note = "Speak with Aamelia Windfield" }, -- 120
-        { type = "TURNIN", quest = 92693, questName = "Standing Our Ground", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 46.7, y = 81.9 }, -- 121
-        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" }, note = "New in Forever" }, -- 122
-        { type = "TURNIN", quest = 94375, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 123
-        { type = "TURNIN", quest = 92579, questName = "To Valanaar", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 124
-        { type = "ACCEPT", quest = 92699, questName = "The Supreme Magister", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 125
-        { type = "ACCEPT", quest = 92700, questName = "The Grand Skyseer", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 126
-        { type = "ACCEPT", quest = 92679, questName = "Blood Tithe", npc = 252448, npcName = "Alvarion Windfield", map = 2521, zone = "Zephras Isle", x = 62.1, y = 73.3 }, -- 127
-        { type = "ACCEPT", quest = 94897, questName = "The Fate of a Loved One", npc = 259012, npcName = "Ealaane Nimbuswalker", map = 2521, zone = "Zephras Isle", x = 66.0, y = 74.3 }, -- 128
-        { type = "ACCEPT", quest = 92840, questName = "Catching Wind", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 129
-        { type = "TURNIN", quest = 92699, questName = "The Supreme Magister", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 130
-        { type = "TURNIN", quest = 92701, questName = "To Valanaar", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 131
-        { type = "ACCEPT", quest = 92727, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 132
-        { type = "ACCEPT", quest = 92709, questName = "A Grand Adventure", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 133
-        { type = "COMPLETE", quest = 92709, questName = "A Grand Adventure", target = "Listen to Elaadrin", count = 1, map = 2521, zone = "Zephras Isle", x = 64.2, y = 79.4, note = "Listen to Elaadrin" }, -- 134
-        { type = "ACCEPT", quest = 93791, questName = "Speak with Belann", map = 2521, zone = "Zephras Isle", x = 62.9, y = 77.5 }, -- 135
-        { type = "TURNIN", quest = 93791, questName = "Speak with Belann", map = 2521, zone = "Zephras Isle", x = 62.9, y = 77.5 }, -- 136
-        { type = "TURNIN", quest = 92700, questName = "The Grand Skyseer", npc = 251968, npcName = "Ayessa Dawnsinger", map = 2521, zone = "Zephras Isle", x = 61.5, y = 76.9 }, -- 137
-        { type = "TURNIN", quest = 92709, questName = "A Grand Adventure", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 138
-        { type = "ACCEPT", quest = 93735, questName = "The Broken Construct", npc = 251968, npcName = "Ayessa Dawnsinger", map = 2521, zone = "Zephras Isle", x = 61.5, y = 76.9 }, -- 139
-        { type = "ACCEPT", quest = 92708, questName = "A Grand Adventure", npc = 251968, npcName = "Ayessa Dawnsinger", map = 2521, zone = "Zephras Isle", x = 61.5, y = 76.9 }, -- 140
-        { type = "TURNIN", quest = 93735, questName = "The Broken Construct", npc = 256083, npcName = "Riaani Nightwind", map = 2521, zone = "Zephras Isle", x = 59.1, y = 73.0 }, -- 141
-        { type = "COMPLETE", quest = 92708, questName = "A Grand Adventure", target = "Listen to Ayessa", count = 1, map = 2521, zone = "Zephras Isle", x = 59.3, y = 80.0, note = "Listen to Ayessa" }, -- 142
-        { type = "TURNIN", quest = 92708, questName = "A Grand Adventure", npc = 251968, npcName = "Ayessa Dawnsinger", map = 2521, zone = "Zephras Isle", x = 59.1, y = 79.8 }, -- 143
-        { type = "COMPLETE", quest = 92679, questName = "Blood Tithe", target = "Find Aamelia Windfield", count = 1, map = 2521, zone = "Zephras Isle", x = 46.7, y = 82.0, note = "Find Aamelia Windfield" }, -- 144
-        { type = "TURNIN", quest = 92679, questName = "Blood Tithe", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 46.7, y = 81.9 }, -- 145
-        { type = "COMPLETE", quest = 92840, questName = "Catching Wind", target = "Protect the Index", count = 1, map = 2521, zone = "Zephras Isle", x = 47.9, y = 69.0, note = "Protect the Index" }, -- 146
-        { type = "TURNIN", quest = 92727, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 53.3, y = 72.2 }, -- 147
-        { type = "ACCEPT", quest = 92849, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 53.3, y = 72.2 }, -- 148
-        { type = "COMPLETE", quest = 92849, questName = "The Missing Scholar", target = "Carry Fillion Flamebreeze to safety while avoiding enemies", count = 1, map = 2521, zone = "Zephras Isle", x = 52.0, y = 69.4, note = "Carry Fillion Flamebreeze to safety while avoiding enemies" }, -- 149
-        { type = "COMPLETE", quest = 92849, questName = "The Missing Scholar", target = "Find Fillion Flamebreeze", count = 1, map = 2521, zone = "Zephras Isle", x = 50.7, y = 65.4, note = "Find Fillion Flamebreeze" }, -- 150
-        { type = "TURNIN", quest = 92849, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 52.1, y = 69.4 }, -- 151
-        { type = "ACCEPT", quest = 92850, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 52.1, y = 69.4 }, -- 152
-        { type = "COMPLETE", quest = 92850, questName = "The Missing Scholar", target = "Shriekling Matriarch's Head", count = 1, map = 2521, zone = "Zephras Isle", x = 52.0, y = 65.5, note = "Shriekling Matriarch's Head" }, -- 153
-        { type = "ACCEPT", quest = 98512, questName = "Al'Aketh Assassins", map = 2521, zone = "Zephras Isle", x = 56.8, y = 61.1 }, -- 154
-        { type = "COMPLETE", quest = 94897, questName = "The Fate of a Loved One", target = "Resaan's Heirloom", count = 1, map = 2521, zone = "Zephras Isle", x = 57.0, y = 29.4, note = "Resaan's Heirloom" }, -- 155
-        { type = "KILL", quest = 98512, questName = "Al'Aketh Assassins", target = "Al'Aketh Assassin", count = 10, map = 2521, zone = "Zephras Isle", x = 55.7, y = 59.9, note = "Al'Aketh Assassin slain" }, -- 156
-        { type = "TURNIN", quest = 98512, questName = "Al'Aketh Assassins", map = 2521, zone = "Zephras Isle", x = 56.8, y = 61.1 }, -- 157
-        { type = "TURNIN", quest = 92850, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 66.3, y = 79.9 }, -- 158
-        { type = "TURNIN", quest = 92840, questName = "Catching Wind", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 159
-        { type = "TURNIN", quest = 94897, questName = "The Fate of a Loved One", map = 2521, zone = "Zephras Isle", x = 66.0, y = 74.3 }, -- 160
-        { type = "ACCEPT", quest = 92860, questName = "In Service of Zephras", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 161
-        { type = "TURNIN", quest = 92860, questName = "In Service of Zephras", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 162
-        { type = "ACCEPT", quest = 93320, questName = "Tower Defense", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 163
-        { type = "TURNIN", quest = 93320, questName = "Tower Defense", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 164
-        { type = "ACCEPT", quest = 92642, questName = "Disrupting Logistics", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 165
-        { type = "ACCEPT", quest = 92645, questName = "Breaking the Breaker", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 166
-        { type = "KILL", quest = 92642, questName = "Disrupting Logistics", target = "Al'Aketh Healer / Al'Aketh Brawler", count = 4, map = 2521, zone = "Zephras Isle", x = 66.1, y = 67.7, note = "Al'Aketh Healer slain" }, -- 167
-        { type = "TURNIN", quest = 92642, questName = "Disrupting Logistics", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 168
-        { type = "ACCEPT", quest = 92880, questName = "Return to Valanaar", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 169
-        { type = "KILL", quest = 92645, questName = "Breaking the Breaker", target = "Commander Belguilos", count = 1, map = 2521, zone = "Zephras Isle", x = 65.7, y = 65.6, note = "Commander Belguilos slain" }, -- 170
-        { type = "TURNIN", quest = 92645, questName = "Breaking the Breaker", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 171
-        { type = "TURNIN", quest = 92880, questName = "Return to Valanaar", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 172
-        { type = "ACCEPT", quest = 92881, questName = "The High Elder's Request", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 173
-        { type = "TURNIN", quest = 92881, questName = "The High Elder's Request", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 174
-        { type = "ACCEPT", quest = 92643, questName = "The Turncoat", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 175
-        { type = "COMPLETE", quest = 92643, questName = "The Turncoat", target = "Find the Al'Aketh Turncoat / Find the secluded house in Shen'dar Highlands", count = 1, map = 2521, zone = "Zephras Isle", x = 56.5, y = 60.9, note = "Find the Al'Aketh Turncoat" }, -- 176
-        { type = "TURNIN", quest = 92643, questName = "The Turncoat", map = 2521, zone = "Zephras Isle", x = 56.0, y = 58.8 }, -- 177
-        { type = "ACCEPT", quest = 92644, questName = "Unfortunate News", map = 2521, zone = "Zephras Isle", x = 56.0, y = 58.8 }, -- 178
-        { type = "ACCEPT", quest = 93835, questName = "Confront Lorthuna", map = 2521, zone = "Zephras Isle", x = 65.2, y = 50.4 }, -- 179
-        { type = "ACCEPT", quest = 94490, questName = "Ripped Missive", map = 2521, zone = "Zephras Isle", x = 64.8, y = 37.1 }, -- 180
-        { type = "ACCEPT", quest = 94487, questName = "Unwanted and Unworthy", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 181
-        { type = "ACCEPT", quest = 94485, questName = "Tears of the Lady", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 182
-        { type = "ACCEPT", quest = 93165, questName = "Mercy Falls on Deaf Ears", map = 2521, zone = "Zephras Isle", x = 63.8, y = 36.0 }, -- 183
-        { type = "TURNIN", quest = 94490, questName = "Ripped Missive", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 184
-        { type = "COMPLETE", quest = 94487, questName = "Unwanted and Unworthy", target = "Bloody Heirloom", count = 10, map = 2521, zone = "Zephras Isle", x = 62.7, y = 36.5, note = "Bloody Heirloom" }, -- 185
-        { type = "TURNIN", quest = 94487, questName = "Unwanted and Unworthy", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 186
-        { type = "ACCEPT", quest = 94488, questName = "The Ties That Bind", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 187
-        { type = "ACCEPT", quest = 94489, questName = "The Wounds of Betrayal", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 188
-        { type = "COMPLETE", quest = 93835, questName = "Confront Lorthuna", target = "Confront Lorthuna", count = 1, map = 2521, zone = "Zephras Isle", x = 75.3, y = 53.3, note = "Confront Lorthuna" }, -- 189
-        { type = "COMPLETE", quest = 94488, questName = "The Ties That Bind", target = "Commander Haalien's Severed Head", count = 1, map = 2521, zone = "Zephras Isle", x = 65.0, y = 36.7, note = "Commander Haalien's Severed Head" }, -- 190
-        { type = "TURNIN", quest = 94488, questName = "The Ties That Bind", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 191
-        { type = "COMPLETE", quest = 94489, questName = "The Wounds of Betrayal", target = "Find Jorel Windsinger / Injured Druids healed", count = 1, map = 2521, zone = "Zephras Isle", x = 64.5, y = 34.7, note = "Find Jorel Windsinger" }, -- 192
-        { type = "COMPLETE", quest = 93165, questName = "Mercy Falls on Deaf Ears", target = "Al'Alketh Cultist's Ear", count = 10, map = 2521, zone = "Zephras Isle", x = 63.9, y = 37.2, note = "Al'Alketh Cultist's Ear" }, -- 193
-        { type = "TURNIN", quest = 93165, questName = "Mercy Falls on Deaf Ears", map = 2521, zone = "Zephras Isle", x = 63.8, y = 36 }, -- 194
-        { type = "TURNIN", quest = 94489, questName = "The Wounds of Betrayal", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 195
-        { type = "COMPLETE", quest = 94485, questName = "Tears of the Lady", target = "Lady's Tear Moss", count = 8, map = 2521, zone = "Zephras Isle", x = 59.8, y = 40.4, note = "Lady's Tear Moss" }, -- 196
-        { type = "TURNIN", quest = 94485, questName = "Tears of the Lady", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 197
-        { type = "ACCEPT", quest = 93159, questName = "The Strange Hermit", map = 2521, zone = "Zephras Isle", x = 54.0, y = 38.9 }, -- 198
-        { type = "COMPLETE", quest = 93159, questName = "The Strange Hermit", target = "Learn more about the Strange Hermit", count = 1, map = 2521, zone = "Zephras Isle", x = 54.0, y = 38.9, note = "Learn more about the Strange Hermit" }, -- 199
-        { type = "TURNIN", quest = 93159, questName = "The Strange Hermit", map = 2521, zone = "Zephras Isle", x = 54.0, y = 38.9 }, -- 200
-        { type = "ACCEPT", quest = 93160, questName = "The Forest's Bounty", map = 2521, zone = "Zephras Isle", x = 54.0, y = 38.9 }, -- 201
-        { type = "COMPLETE", quest = 93160, questName = "The Forest's Bounty", target = "Zephyrseed", count = 8, map = 2521, zone = "Zephras Isle", x = 56.8, y = 38.0, note = "Zephyrseed" }, -- 202
-        { type = "TURNIN", quest = 93160, questName = "The Forest's Bounty", map = 2521, zone = "Zephras Isle", x = 54.0, y = 38.9 }, -- 203
-        { type = "ACCEPT", quest = 94003, questName = "The Skybreaker Bulwark", npc = 252377, npcName = "Seena Skybreaker", map = 2521, zone = "Zephras Isle", x = 59.8, y = 72.8, class = { "WARRIOR" }, note = "New in Forever" }, -- 204
-        { type = "COLLECT", quest = 94003, questName = "The Skybreaker Bulwark", target = "Skybreaker Bulwark", count = 1, map = 2521, zone = "Zephras Isle", x = 56.6, y = 50.4, class = { "WARRIOR" } }, -- 205
-        { type = "TURNIN", quest = 94003, questName = "The Skybreaker Bulwark", npc = 252377, npcName = "Seena Skybreaker", map = 2521, zone = "Zephras Isle", x = 59.8, y = 72.8, class = { "WARRIOR" } }, -- 206
-        { type = "ACCEPT", quest = 94007, questName = "Taming the Beast", npc = 254084, npcName = "Elayaa Easewind", map = 2521, zone = "Zephras Isle", x = 45.2, y = 44.2, class = { "HUNTER" }, note = "New in Forever" }, -- 207
-        { type = "TURNIN", quest = 94007, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" } }, -- 208
-        { type = "ACCEPT", quest = 94013, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" }, note = "New in Forever" }, -- 209
-        { type = "TURNIN", quest = 94013, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" } }, -- 210
-        { type = "ACCEPT", quest = 94050, questName = "Training the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" }, note = "New in Forever" }, -- 211
-        { type = "TURNIN", quest = 94050, questName = "Training the Beast", npc = 254411, npcName = "Quel'dora Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" } }, -- 212
-        { type = "ACCEPT", quest = 94978, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" }, note = "New in Forever" }, -- 213
-        { type = "TURNIN", quest = 94978, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" } }, -- 214
-        { type = "ACCEPT", quest = 94979, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" }, note = "New in Forever" }, -- 215
-        { type = "TURNIN", quest = 94979, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" } }, -- 216
-        { type = "ACCEPT", quest = 94006, questName = "The Great Ursera Spirit", npc = 252359, npcName = "Lotheluum Starbreeze", map = 2521, zone = "Zephras Isle", x = 64, y = 75, class = { "DRUID" }, note = "New in Forever" }, -- 217
-        { type = "TURNIN", quest = 94006, questName = "The Great Ursera Spirit", npc = 255853, npcName = "Urs'endris", map = 2521, zone = "Zephras Isle", x = 69.8, y = 61.6, class = { "DRUID" } }, -- 218
-        { type = "ACCEPT", quest = 94638, questName = "Strength and Mercy", npc = 255853, npcName = "Urs'endris", map = 2521, zone = "Zephras Isle", x = 69.8, y = 61.6, class = { "DRUID" }, note = "New in Forever" }, -- 219
-        { type = "KILL", quest = 94638, questName = "Strength and Mercy", npc = 258443, target = "Ur'endra", count = 1, map = 2521, zone = "Zephras Isle", x = 54, y = 65.4, class = { "DRUID" } }, -- 220
-        { type = "TURNIN", quest = 94638, questName = "Strength and Mercy", npc = 255853, npcName = "Urs'endris", map = 2521, zone = "Zephras Isle", x = 69.8, y = 61.6, class = { "DRUID" } }, -- 221
-        { type = "TURNIN", quest = 92644, questName = "Unfortunate News", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 222
-        { type = "ACCEPT", quest = 94568, questName = "The Cult's True Plans", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 223
-        { type = "TURNIN", quest = 94568, questName = "The Cult's True Plans", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 224
-        { type = "TURNIN", quest = 93835, questName = "Confront Lorthuna", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 225
-        { type = "ACCEPT", quest = 92640, questName = "Desperate Times", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 226
-        { type = "ACCEPT", quest = 94369, questName = "The Fate of Zephras", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 227
-        { type = "COMPLETE", quest = 92640, questName = "Desperate Times", target = "Recruit the High Order", count = 1, map = 2521, zone = "Zephras Isle", x = 66.5, y = 79.9, note = "Recruit the High Order" }, -- 228
-        { type = "COMPLETE", quest = 92640, questName = "Desperate Times", target = "Speak with Valennia Stormfist", count = 1, map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7, note = "Speak with Valennia Stormfist" }, -- 229
-        { type = "COMPLETE", quest = 94369, questName = "The Fate of Zephras", target = "Speak with Talaanis Shadowsong", count = 1, map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5, note = "Speak with Talaanis Shadowsong" }, -- 230
-        { type = "TURNIN", quest = 94369, questName = "The Fate of Zephras", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 231
-        { type = "ACCEPT", quest = 93089, questName = "What Comes Next", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 232
-        { type = "TURNIN", quest = 93089, questName = "What Comes Next", map = 2521, zone = "Zephras Isle", x = 66.6, y = 80.0 }, -- 233
-        { type = "COMPLETE", quest = 92640, questName = "Desperate Times", target = "Recruit the Windshapers", count = 1, map = 2521, zone = "Zephras Isle", x = 59.1, y = 79.8, note = "Recruit the Windshapers" }, -- 234
-        { type = "TURNIN", quest = 92640, questName = "Desperate Times", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 235
-        { type = "ACCEPT", quest = 93065, questName = "Prepare for Battle", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 236
-        { type = "COMPLETE", quest = 93065, questName = "Prepare for Battle", target = "Find Valennia on the Road", count = 1, map = 2521, zone = "Zephras Isle", x = 61.1, y = 70.9, note = "Find Valennia on the Road" }, -- 237
-        { type = "TURNIN", quest = 93065, questName = "Prepare for Battle", map = 2521, zone = "Zephras Isle", x = 61.1, y = 70.9 }, -- 238
-        { type = "ACCEPT", quest = 92947, questName = "Making Our Move", map = 2521, zone = "Zephras Isle", x = 61.1, y = 70.9 }, -- 239
-        { type = "COMPLETE", quest = 92947, questName = "Making Our Move", target = "Report to Hyusaa Quickbreeze", count = 1, map = 2521, zone = "Zephras Isle", x = 63.8, y = 50.5, note = "Report to Hyusaa Quickbreeze" }, -- 240
-        { type = "KILL", quest = 92947, questName = "Making Our Move", target = "Al'Aketh Guardian / Al'Aketh Guardian / Al'Aketh Guardian", count = 8, map = 2521, zone = "Zephras Isle", x = 61.3, y = 49.5, note = "Al'Aketh Guardian slain" }, -- 241
-        { type = "TURNIN", quest = 92947, questName = "Making Our Move", map = 2521, zone = "Zephras Isle", x = 63.8, y = 50.5 }, -- 242
-        { type = "ACCEPT", quest = 93958, questName = "The Inner Sanctum", map = 2521, zone = "Zephras Isle", x = 63.8, y = 50.5 }, -- 243
-        { type = "TURNIN", quest = 93958, questName = "The Inner Sanctum", map = 2521, zone = "Zephras Isle", x = 65.2, y = 50.4 }, -- 244
+        { type = "ACCEPT", quest = 92460, questName = "Coming of Age", npc = 251362, npcName = "Ailee Farheart", map = 2521, zone = "Zephras Isle", x = 42.8, y = 23.4, note = "New in Forever" }, -- 12
+        { type = "ACCEPT", quest = 92470, questName = "Foul Matriarch", npc = 251366, npcName = "Aetheen of the Gales", map = 2521, zone = "Zephras Isle", x = 42.6, y = 23.6, note = "New in Forever" }, -- 13
+        { type = "ACCEPT", quest = 92532, questName = "The Warrior's Path", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "WARRIOR" }, note = "New in Forever" }, -- 14
+        { type = "TURNIN", quest = 92532, questName = "The Warrior's Path", npc = 251964, npcName = "Blademaster Ren", map = 2521, zone = "Zephras Isle", x = 43.6, y = 24.2, class = { "WARRIOR" } }, -- 15
+        { type = "ACCEPT", quest = 92482, questName = "The Way of the Hunter", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "HUNTER" }, note = "New in Forever" }, -- 16
+        { type = "TURNIN", quest = 92482, questName = "The Way of the Hunter", npc = 251376, npcName = "Tai'ree Farsight", map = 2521, zone = "Zephras Isle", x = 42.4, y = 23.6, class = { "HUNTER" } }, -- 17
+        { type = "ACCEPT", quest = 92483, questName = "At Home in the Shadows", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "ROGUE" }, note = "New in Forever" }, -- 18
+        { type = "TURNIN", quest = 92483, questName = "At Home in the Shadows", npc = 251389, npcName = "Akeri Duskblade", map = 2521, zone = "Zephras Isle", x = 43.6, y = 24.2, class = { "ROGUE" } }, -- 19
+        { type = "COMPLETE", quest = 92474, questName = "Falling With Style", target = "Use Walk on Air", map = 2521, zone = "Zephras Isle", x = 42.1, y = 23.5, note = "Use Walk on Air" }, -- 20
+        { type = "TURNIN", quest = 92474, questName = "Falling With Style", map = 2521, zone = "Zephras Isle", x = 42.1, y = 23.5 }, -- 21
+        { type = "TURNIN", quest = 92460, questName = "Coming of Age", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4 }, -- 22
+        { type = "ACCEPT", quest = 92464, questName = "Elemental Unrest", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, note = "New in Forever" }, -- 23
+        { type = "ACCEPT", quest = 92481, questName = "A Student of the Arcane", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "MAGE" }, note = "New in Forever" }, -- 24
+        { type = "TURNIN", quest = 92481, questName = "A Student of the Arcane", npc = 251379, npcName = "Dorii Brightwhisper", map = 2521, zone = "Zephras Isle", x = 41.6, y = 23.6, class = { "MAGE" } }, -- 25
+        { type = "ACCEPT", quest = 92485, questName = "A Student of Nature", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, class = { "DRUID" }, note = "New in Forever" }, -- 26
+        { type = "TURNIN", quest = 92485, questName = "A Student of Nature", npc = 251373, npcName = "Xyton Silverwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 23.4, class = { "DRUID" } }, -- 27
+        { type = "KILL", quest = 92473, questName = "Aggressive Encroachment", target = "Scrawny Ursera", count = 6, map = 2521, zone = "Zephras Isle", x = 41.0, y = 25.7, near = true, note = "loot Scrawny Ursera Claw" }, -- 28
+        { type = "ACCEPT", quest = 92544, questName = "Al'Aketh Thugs", map = 2521, zone = "Zephras Isle", x = 38.3, y = 30.2 }, -- 29
+        { type = "KILL", quest = 92463, questName = "The Cirrusfly Queen", target = "Cirrusfly Queen", count = 1, map = 2521, zone = "Zephras Isle", x = 48.4, y = 28.4, note = "Cirrusfly Queen slain" }, -- 30
+        { type = "TURNIN", quest = 92464, questName = "Elemental Unrest", npc = 249363, npcName = "Yala Windwatcher", map = 2521, zone = "Zephras Isle", x = 47.2, y = 21.8 }, -- 31
+        { type = "COMPLETE", quest = 92598, questName = "The Gift of Skysight", target = "Use your Skysight ability near the Elemental Convergence", map = 2521, zone = "Zephras Isle", x = 48.4, y = 20.4, note = "Use your Skysight ability near the Elemental Convergence" }, -- 32
+        { type = "ACCEPT", quest = 92465, questName = "Agitators", npc = 249363, npcName = "Yala Windwatcher", map = 2521, zone = "Zephras Isle", x = 47.2, y = 21.8, note = "New in Forever" }, -- 33
+        { type = "COMPLETE", quest = 92597, questName = "Reading the Ley Lines", target = "Use your Read Ley Line ability near the Thendal Grove Ley Line", map = 2521, zone = "Zephras Isle", x = 46.3, y = 17.9, note = "Use your Read Ley Line ability near the Thendal Grove Ley Line" }, -- 34
+        { type = "ACCEPT", quest = 92461, questName = "Harmony in Balance", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, note = "New in Forever" }, -- 35
+        { type = "KILL", quest = 92461, questName = "Harmony in Balance", npc = 250873, target = "Juvenile Vuldren", count = 8, map = 2521, zone = "Zephras Isle", x = 43.2, y = 25.6 }, -- 36
+        { type = "TURNIN", quest = 92461, questName = "Harmony in Balance", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4 }, -- 37
+        { type = "KILL", quest = 92465, questName = "Agitators", npc = 251160, target = "Al'Aketh Convert", count = 7, map = 2521, zone = "Zephras Isle", x = 46.4, y = 18 }, -- 38
+        { type = "KILL", quest = 92465, questName = "Agitators", npc = 251143, target = "Roiling Winds destroyed", count = 6, map = 2521, zone = "Zephras Isle", x = 47, y = 21.4 }, -- 39
+        { type = "TURNIN", quest = 92465, questName = "Agitators", npc = 249363, npcName = "Yala Windwatcher", map = 2521, zone = "Zephras Isle", x = 47.2, y = 21.8 }, -- 40
+        { type = "KILL", quest = 92470, questName = "Foul Matriarch", npc = 250937, target = "Ursera Scavenger", count = 8, map = 2521, zone = "Zephras Isle", x = 35.8, y = 23.2 }, -- 41
+        { type = "COLLECT", quest = 92470, questName = "Foul Matriarch", target = "Head of Urs'anah", count = 1, map = 2521, zone = "Zephras Isle", x = 35.6, y = 25.4 }, -- 42
+        { type = "TURNIN", quest = 92470, questName = "Foul Matriarch", npc = 251366, npcName = "Aetheen of the Gales", map = 2521, zone = "Zephras Isle", x = 42.6, y = 23.6 }, -- 43
+        { type = "KILL", quest = 92544, questName = "Al'Aketh Thugs", npc = 251145, target = "Al'Aketh Brute / Al'Aketh Brute / Malduko Cloudcrush", count = 6, map = 2521, zone = "Zephras Isle", x = 37.3, y = 32.9, near = true, note = "Al'Aketh Brute slain" }, -- 44
+        { type = "TURNIN", quest = 92544, questName = "Al'Aketh Thugs", map = 2521, zone = "Zephras Isle", x = 38.3, y = 30.2 }, -- 45
+        { type = "ACCEPT", quest = 92471, questName = "Aetheen of the Gales", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4, note = "New in Forever" }, -- 46
+        { type = "TURNIN", quest = 92471, questName = "Aetheen of the Gales", npc = 251366, npcName = "Aetheen of the Gales", map = 2521, zone = "Zephras Isle", x = 42.6, y = 23.6 }, -- 47
+        { type = "TURNIN", quest = 92463, questName = "The Cirrusfly Queen", map = 2521, zone = "Zephras Isle", x = 43.4, y = 24.8 }, -- 48
+        { type = "TURNIN", quest = 92597, questName = "Reading the Ley Lines", map = 2521, zone = "Zephras Isle", x = 43.3, y = 24.9 }, -- 49
+        { type = "ACCEPT", quest = 92469, questName = "Return to Rorian", npc = 249363, npcName = "Yala Windwatcher", map = 2521, zone = "Zephras Isle", x = 47.2, y = 21.8, note = "New in Forever" }, -- 50
+        { type = "TURNIN", quest = 92469, questName = "Return to Rorian", npc = 251361, npcName = "Rorian the Dayseeker", map = 2521, zone = "Zephras Isle", x = 42, y = 23.4 }, -- 51
+        { type = "ACCEPT", quest = 92472, questName = "The Next Step", npc = 251366, npcName = "Aetheen of the Gales", map = 2521, zone = "Zephras Isle", x = 42.6, y = 23.6, note = "New in Forever" }, -- 52
+        { type = "ACCEPT", quest = 96638, questName = "The Adventurer", npc = 251366, npcName = "Aetheen of the Gales", map = 2521, zone = "Zephras Isle", x = 42.6, y = 23.6, note = "New in Forever" }, -- 53
+        { type = "TURNIN", quest = 92598, questName = "The Gift of Skysight", npc = 251487, npcName = "Ventaari Brightwish", map = 2521, zone = "Zephras Isle", x = 42.6, y = 24.4 }, -- 54
+        { type = "TURNIN", quest = 92473, questName = "Aggressive Encroachment", map = 2521, zone = "Zephras Isle", x = 42.4, y = 25.1 }, -- 55
+        { type = "TURNIN", quest = 96638, questName = "The Adventurer", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8 }, -- 56
+        { type = "ACCEPT", quest = 96646, questName = "Camping 101: Cooking", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 57
+        { type = "TURNIN", quest = 96646, questName = "Camping 101: Cooking", npc = 251905, npcName = "Zerril Softbreeze", map = 2521, zone = "Zephras Isle", x = 43.8, y = 43.8 }, -- 58
+        { type = "ACCEPT", quest = 97963, questName = "Camping 101: Alchemy", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 59
+        { type = "TURNIN", quest = 97963, questName = "Camping 101: Alchemy", npc = 257019, npcName = "Nyassa Swiftdraught", map = 2521, zone = "Zephras Isle", x = 43.6, y = 43.4 }, -- 60
+        { type = "ACCEPT", quest = 97964, questName = "Camping 101: Blacksmithing", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 61
+        { type = "ACCEPT", quest = 97965, questName = "Camping 101: First Aid", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 62
+        { type = "ACCEPT", quest = 97967, questName = "Camping 101: Fishing", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 63
+        { type = "ACCEPT", quest = 97969, questName = "Camping 101: Leatherworking", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 64
+        { type = "ACCEPT", quest = 97970, questName = "Camping 101: Mining", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 65
+        { type = "ACCEPT", quest = 97971, questName = "Camping 101: Skinning", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 66
+        { type = "TURNIN", quest = 97971, questName = "Camping 101: Skinning", npc = 257024, npcName = "Mendalass Tattermend", map = 2521, zone = "Zephras Isle", x = 43.2, y = 43.4 }, -- 67
+        { type = "ACCEPT", quest = 97973, questName = "Camping 101: Tailoring", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 68
+        { type = "ACCEPT", quest = 98286, questName = "Camping 101: Enchanting", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 69
+        { type = "TURNIN", quest = 98286, questName = "Camping 101: Enchanting", npc = 257020, npcName = "Nasalanna Windsinger", map = 2521, zone = "Zephras Isle", x = 43.2, y = 43.2 }, -- 70
+        { type = "ACCEPT", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 71
+        { type = "COLLECT", quest = 94373, questName = "Call of Earth", target = "Iceclaw Bear Pendant", count = 2, map = 1426, zone = "Dun Morogh", x = 30.4, y = 79.4, near = true, class = { "SHAMAN" } }, -- 72
+        { type = "TURNIN", quest = 94373, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 73
+        { type = "ACCEPT", quest = 92553, questName = "Restocking the Larders", npc = 251905, npcName = "Zerril Softbreeze", map = 2521, zone = "Zephras Isle", x = 43.9, y = 43.8 }, -- 74
+        { type = "ACCEPT", quest = 92595, questName = "The Windshapers", map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8 }, -- 75
+        { type = "TURNIN", quest = 97969, questName = "Camping 101: Leatherworking", npc = 251993, npcName = "Indari Sunseam", map = 2521, zone = "Zephras Isle", x = 44.6, y = 44.4 }, -- 76
+        { type = "TURNIN", quest = 97973, questName = "Camping 101: Tailoring", npc = 251991, npcName = "Taleen Shimmerthread", map = 2521, zone = "Zephras Isle", x = 44.8, y = 44.2 }, -- 77
+        { type = "ACCEPT", quest = 92515, questName = "The Problem With Prideclaws", map = 2521, zone = "Zephras Isle", x = 44.7, y = 44.5 }, -- 78
+        { type = "TURNIN", quest = 97964, questName = "Camping 101: Blacksmithing", npc = 251913, npcName = "Aedi Thriceforged", map = 2521, zone = "Zephras Isle", x = 44.8, y = 44.4 }, -- 79
+        { type = "TURNIN", quest = 97970, questName = "Camping 101: Mining", npc = 257022, npcName = "Messana Crestwind", map = 2521, zone = "Zephras Isle", x = 44.8, y = 44.4 }, -- 80
+        { type = "ACCEPT", quest = 92596, questName = "The High Order", map = 2521, zone = "Zephras Isle", x = 45.0, y = 46.5 }, -- 81
+        { type = "TURNIN", quest = 92472, questName = "The Next Step", npc = 251523, npcName = "Constable Aonda", map = 2521, zone = "Zephras Isle", x = 45.6, y = 45.4 }, -- 82
+        { type = "ACCEPT", quest = 92514, questName = "Welcome to Shen'dar Village", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 83
+        { type = "ACCEPT", quest = 93461, questName = "Welcome to Shen'dar Village", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 84
+        { type = "COMPLETE", quest = 92596, questName = "The High Order", target = "Listen to Rathiril Sunlance", count = 1, map = 2521, zone = "Zephras Isle", x = 45.0, y = 46.5, note = "Listen to Rathiril Sunlance" }, -- 85
+        { type = "TURNIN", quest = 92596, questName = "The High Order", map = 2521, zone = "Zephras Isle", x = 45.0, y = 46.4 }, -- 86
+        { type = "ACCEPT", quest = 94413, questName = "A Magical Affront", map = 2521, zone = "Zephras Isle", x = 45.0, y = 46.4 }, -- 87
+        { type = "TURNIN", quest = 97965, questName = "Camping 101: First Aid", npc = 257018, npcName = "Naleeia Tattermend", map = 2521, zone = "Zephras Isle", x = 43, y = 46.2 }, -- 88
+        { type = "TURNIN", quest = 97967, questName = "Camping 101: Fishing", npc = 251992, npcName = "Fenn Fairweather", map = 2521, zone = "Zephras Isle", x = 45, y = 48.4 }, -- 89
+        { type = "ACCEPT", quest = 96101, questName = "The Great Outdoors", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 90
+        { type = "TURNIN", quest = 96101, questName = "The Great Outdoors", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8 }, -- 91
+        { type = "KILL", quest = 92553, questName = "Restocking the Larders", npc = 251661, target = "Galestrider / Galestrider", count = 8, map = 2521, zone = "Zephras Isle", x = 43.1, y = 46.3, near = true, note = "loot Strider Meat" }, -- 92
+        { type = "ACCEPT", quest = 92516, questName = "Hippogryph Harrassment", map = 2521, zone = "Zephras Isle", x = 44.5, y = 45.0 }, -- 93
+        { type = "ACCEPT", quest = 93319, questName = "Pilfered Windstones", map = 2521, zone = "Zephras Isle", x = 44.5, y = 45.0 }, -- 94
+        { type = "ACCEPT", quest = 93951, questName = "A Little Beauty", map = 2521, zone = "Zephras Isle", x = 44.9, y = 44.2 }, -- 95
+        { type = "TURNIN", quest = 92553, questName = "Restocking the Larders", npc = 251905, npcName = "Zerril Softbreeze", map = 2521, zone = "Zephras Isle", x = 43.9, y = 43.8 }, -- 96
+        { type = "COMPLETE", quest = 92514, questName = "Welcome to Shen'dar Village", target = "Speak with the Innkeeper", map = 2521, zone = "Zephras Isle", x = 43.0, y = 43.2, note = "Speak with the Innkeeper" }, -- 97
+        { type = "TURNIN", quest = 92514, questName = "Welcome to Shen'dar Village", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 98
+        { type = "ACCEPT", quest = 92517, questName = "The Criminal Element", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 99
+        { type = "COMPLETE", quest = 93461, questName = "Welcome to Shen'dar Village", target = "Speak with the Innkeeper", map = 2521, zone = "Zephras Isle", x = 43.0, y = 43.2, note = "Speak with the Innkeeper" }, -- 100
+        { type = "TURNIN", quest = 93461, questName = "Welcome to Shen'dar Village", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 101
+        { type = "COMPLETE", quest = 92595, questName = "The Windshapers", target = "Listen to Illaya", count = 1, map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8, note = "Listen to Illaya" }, -- 102
+        { type = "TURNIN", quest = 92595, questName = "The Windshapers", map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8 }, -- 103
+        { type = "ACCEPT", quest = 94411, questName = "Meddlesome Mages", map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8 }, -- 104
+        { type = "KILL", quest = 92515, questName = "The Problem With Prideclaws", npc = 251245, target = "Prideclaw", count = 10, map = 2521, zone = "Zephras Isle", x = 43.1, y = 46.3, near = true, note = "loot Prideclaw Pelt" }, -- 105
+        { type = "ACCEPT", quest = 92551, questName = "Stolen Supplies", map = 2521, zone = "Zephras Isle", x = 45.2, y = 45.2 }, -- 106
+        { type = "TURNIN", quest = 92515, questName = "The Problem With Prideclaws", npc = 251993, npcName = "Indari Sunseam", map = 2521, zone = "Zephras Isle", x = 44.7, y = 44.5 }, -- 107
+        { type = "KILL", quest = 94411, questName = "Meddlesome Mages", npc = 257521, target = "High Order Apprentice", count = 6, map = 2521, zone = "Zephras Isle", x = 46.4, y = 38.6, note = "High Order Apprentice defeated" }, -- 108
+        { type = "KILL", quest = 92517, questName = "The Criminal Element", npc = 251918, target = "Highlands Bandit / \"Badwind\" Bennic", count = 10, map = 2521, zone = "Zephras Isle", x = 46.4, y = 38.6, near = true, note = "Highlands Bandit slain" }, -- 109
+        { type = "TURNIN", quest = 92517, questName = "The Criminal Element", npc = 251523, npcName = "Constable Aonda", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 110
+        { type = "ACCEPT", quest = 93036, questName = "Infiltrating the Cult", npc = 251523, npcName = "Constable Aonda", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 111
+        { type = "ACCEPT", quest = 93948, questName = "Deliver the Signet", npc = 251523, npcName = "Constable Aonda", map = 2521, zone = "Zephras Isle", x = 45.6, y = 45.4, note = "New in Forever" }, -- 112
+        { type = "TURNIN", quest = 93036, questName = "Infiltrating the Cult", npc = 251904, npcName = "Sania Silverstream", map = 2521, zone = "Zephras Isle", x = 44.8, y = 45.5 }, -- 113
+        { type = "TURNIN", quest = 94411, questName = "Meddlesome Mages", npc = 251902, npcName = "Illaya Amberwind", map = 2521, zone = "Zephras Isle", x = 43.5, y = 44.8 }, -- 114
+        { type = "ACCEPT", quest = 92529, questName = "Falaath Village", npc = 251904, npcName = "Sania Silverstream", map = 2521, zone = "Zephras Isle", x = 44.8, y = 45.5 }, -- 115
+        { type = "ACCEPT", quest = 97968, questName = "Camping 101: Herbalism", npc = 263664, npcName = "Raan Wildwind", map = 2521, zone = "Zephras Isle", x = 41.6, y = 44.8, note = "New in Forever" }, -- 116
+        { type = "KILL", quest = 94413, questName = "A Magical Affront", target = "Windshaper Novice Seer", count = 6, map = 2521, zone = "Zephras Isle", x = 39.6, y = 47.2, near = true, note = "Windshaper Novice Seer defeated" }, -- 117
+        { type = "KILL", quest = 92516, questName = "Hippogryph Harrassment", npc = 251261, target = "Hippogryph Matriarch / Hippogryph Matriarch / Hippogryph Matriarch", count = 8, map = 2521, zone = "Zephras Isle", x = 36.4, y = 50.9, near = true, note = "Hippogryph Youth slain" }, -- 118
+        { type = "COLLECT", quest = 93951, questName = "A Little Beauty", target = "Hippogryph Down", count = 8, map = 2521, zone = "Zephras Isle", x = 36.4, y = 50.9, near = true, note = "Hippogryph Down" }, -- 119
+        { type = "KILL", quest = 92551, questName = "Stolen Supplies", target = "Al'Aketh Stormcaller", count = 10, map = 2521, zone = "Zephras Isle", x = 41.0, y = 64.1, near = true, note = "Stolen Shen'dar Supplies" }, -- 120
+        { type = "ACCEPT", quest = 94374, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 121
+        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" } }, -- 122
+        { type = "KILL", quest = 93319, questName = "Pilfered Windstones", npc = 251918, target = "Highlands Bandit", count = 10, map = 2521, zone = "Zephras Isle", x = 46.4, y = 38.6, near = true, note = "Pilfered Windstone" }, -- 123
+        { type = "TURNIN", quest = 93951, questName = "A Little Beauty", npc = 251991, npcName = "Taleen Shimmerthread", map = 2521, zone = "Zephras Isle", x = 44.9, y = 44.2 }, -- 124
+        { type = "TURNIN", quest = 92516, questName = "Hippogryph Harrassment", npc = 251906, npcName = "Teeri Wellwind", map = 2521, zone = "Zephras Isle", x = 44.5, y = 45.0 }, -- 125
+        { type = "TURNIN", quest = 93319, questName = "Pilfered Windstones", npc = 251906, npcName = "Teeri Wellwind", map = 2521, zone = "Zephras Isle", x = 44.5, y = 45.0 }, -- 126
+        { type = "ACCEPT", quest = 93318, questName = "WANTED: Vulgara the Insatiable", map = 2521, zone = "Zephras Isle", x = 43.4, y = 45.9 }, -- 127
+        { type = "TURNIN", quest = 94413, questName = "A Magical Affront", npc = 251903, npcName = "Rathiril Sunlance", map = 2521, zone = "Zephras Isle", x = 45.0, y = 46.4 }, -- 128
+        { type = "KILL", quest = 93318, questName = "WANTED: Vulgara the Insatiable", target = "Vulgara", count = 1, map = 2521, zone = "Zephras Isle", x = 43.1, y = 51.0, near = true, note = "loot Vulgara's Head" }, -- 129
+        { type = "TURNIN", quest = 93318, questName = "WANTED: Vulgara the Insatiable", npc = 252172, npcName = "Danarii Bellowveil", map = 2521, zone = "Zephras Isle", x = 45.2, y = 45.2 }, -- 130
+        { type = "TURNIN", quest = 92529, questName = "Falaath Village", npc = 257065, npcName = "Missionary Jasaan", map = 2521, zone = "Zephras Isle", x = 46.9, y = 56.2 }, -- 131
+        { type = "ACCEPT", quest = 92528, questName = "Among the Faithful", npc = 257065, npcName = "Missionary Jasaan", map = 2521, zone = "Zephras Isle", x = 46.9, y = 56.2 }, -- 132
+        { type = "TURNIN", quest = 92551, questName = "Stolen Supplies", map = 2521, zone = "Zephras Isle", x = 49.8, y = 57.2 }, -- 133
+        { type = "COMPLETE", quest = 92528, questName = "Among the Faithful", target = "Learn about the cultists' plans", count = 1, map = 2521, zone = "Zephras Isle", x = 48.8, y = 53.9, near = true, note = "Learn about the cultists' plans" }, -- 134
+        { type = "TURNIN", quest = 92528, questName = "Among the Faithful", map = 2521, zone = "Zephras Isle", x = 46.4, y = 51.3 }, -- 135
+        { type = "ACCEPT", quest = 92550, questName = "Havoc in the Highlands", map = 2521, zone = "Zephras Isle", x = 46.4, y = 51.3 }, -- 136
+        { type = "ACCEPT", quest = 93926, questName = "The Western Watch", map = 2521, zone = "Zephras Isle", x = 46.4, y = 51.3 }, -- 137
+        { type = "KILL", quest = 92550, questName = "Havoc in the Highlands", target = "Al'Aketh Stormcaller / Living Lightning", count = 6, map = 2521, zone = "Zephras Isle", x = 47.6, y = 54.1, near = true, note = "Al'Aketh Stormcaller slain" }, -- 138
+        { type = "COMPLETE", quest = 92550, questName = "Havoc in the Highlands", target = "Commander Cyclas's Head", count = 1, map = 2521, zone = "Zephras Isle", x = 50.3, y = 57.0, note = "Commander Cyclas's Head" }, -- 139
+        { type = "COMPLETE", quest = 93926, questName = "The Western Watch", target = "Check in on the Western Watchtower in the Shen'dar Highlands", count = 1, map = 2521, zone = "Zephras Isle", x = 42.3, y = 62.0, note = "Check in on the Western Watchtower in the Shen'dar Highlands" }, -- 140
+        { type = "TURNIN", quest = 93926, questName = "The Western Watch", npc = 252155, npcName = "Piecekeeper Vaniel", map = 2521, zone = "Zephras Isle", x = 42.3, y = 62.0 }, -- 141
+        { type = "ACCEPT", quest = 93927, questName = "A Last Request", npc = 252155, npcName = "Piecekeeper Vaniel", map = 2521, zone = "Zephras Isle", x = 42.3, y = 62.0 }, -- 142
+        { type = "COLLECT", quest = 93927, questName = "A Last Request", target = "Collect and read the note", count = 1, map = 2521, zone = "Zephras Isle", x = 42.4, y = 62.1, note = "Collect and read the note" }, -- 143
+        { type = "COMPLETE", quest = 93927, questName = "A Last Request", target = "Raani's Favorite Feather / Skypriest Aanders / Shadowsong Family Signet", count = 1, map = 2521, zone = "Zephras Isle", x = 41.1, y = 64.1, note = "Raani's Favorite Feather" }, -- 144
+        { type = "TURNIN", quest = 92550, questName = "Havoc in the Highlands", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 145
+        { type = "ACCEPT", quest = 92579, questName = "To Valanaar", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 146
+        { type = "ACCEPT", quest = 92701, questName = "To Valanaar", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 147
+        { type = "TURNIN", quest = 93927, questName = "A Last Request", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 148
+        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" }, note = "New in Forever" }, -- 149
+        { type = "TURNIN", quest = 94375, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 150
+        { type = "ACCEPT", quest = 92698, questName = "What Is My Purpose?", npc = 250929, npcName = "Malfunctioning Cyclone Construct", map = 2521, zone = "Zephras Isle", x = 49.1, y = 78.4 }, -- 151
+        { type = "TURNIN", quest = 92698, questName = "What Is My Purpose?", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 152
+        { type = "ACCEPT", quest = 92682, questName = "Make Yourself Useful", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 153
+        { type = "ACCEPT", quest = 92683, questName = "Flutterfly Dust", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 154
+        { type = "ACCEPT", quest = 92684, questName = "Ornery Ornery Galestriders", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 155
+        { type = "ACCEPT", quest = 92685, questName = "The Hills Have Eyes", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 156
+        { type = "KILL", quest = 92683, questName = "Flutterfly Dust", npc = 251622, target = "Flutterfly", count = 5, map = 2521, zone = "Zephras Isle", x = 46.7, y = 77.0, near = true, note = "Flutterfly Dust" }, -- 157
+        { type = "TURNIN", quest = 92683, questName = "Flutterfly Dust", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 158
+        { type = "KILL", quest = 92682, questName = "Make Yourself Useful", npc = 252802, target = "Hungry Bandit / Hungry Bandit", count = 10, map = 2521, zone = "Zephras Isle", x = 46.2, y = 78.0, near = true, note = "Ripe Stormapple" }, -- 159
+        { type = "TURNIN", quest = 92682, questName = "Make Yourself Useful", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 160
+        { type = "KILL", quest = 92684, questName = "Ornery Ornery Galestriders", npc = 251707, target = "Ornery Galestrider", count = 7, map = 2521, zone = "Zephras Isle", x = 46.2, y = 78.0, near = true, note = "Lowlands Galestrider Tenderloin" }, -- 161
+        { type = "TURNIN", quest = 92684, questName = "Ornery Ornery Galestriders", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 162
+        { type = "KILL", quest = 92685, questName = "The Hills Have Eyes", npc = 252820, target = "Bandit Highwayman", count = 7, map = 2521, zone = "Zephras Isle", x = 45.8, y = 78.4, near = true, note = "loot Blood-Stained Bandit Mask" }, -- 163
+        { type = "TURNIN", quest = 92685, questName = "The Hills Have Eyes", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 164
+        { type = "ACCEPT", quest = 92693, questName = "Standing Our Ground", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 165
+        { type = "COMPLETE", quest = 92693, questName = "Standing Our Ground", target = "Follow Aamelia and make your final stand", count = 1, map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.4, note = "Follow Aamelia and make your final stand" }, -- 166
+        { type = "COMPLETE", quest = 92693, questName = "Standing Our Ground", target = "Speak with Aamelia Windfield", count = 1, map = 2521, zone = "Zephras Isle", x = 46.7, y = 81.9, note = "Speak with Aamelia Windfield" }, -- 167
+        { type = "TURNIN", quest = 92693, questName = "Standing Our Ground", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 46.7, y = 81.9 }, -- 168
+        { type = "TURNIN", quest = 97968, questName = "Camping 101: Herbalism", npc = 254345, npcName = "Syriel Nightrain", map = 2521, zone = "Zephras Isle", x = 57.8, y = 75.4 }, -- 169
+        { type = "TURNIN", quest = 92579, questName = "To Valanaar", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 170
+        { type = "ACCEPT", quest = 92699, questName = "The Supreme Magister", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 171
+        { type = "ACCEPT", quest = 92700, questName = "The Grand Skyseer", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 172
+        { type = "ACCEPT", quest = 94484, questName = "Unnerving Silence", npc = 252359, npcName = "Lotheluum Starbreeze", map = 2521, zone = "Zephras Isle", x = 64, y = 75, note = "New in Forever" }, -- 173
+        { type = "ACCEPT", quest = 94006, questName = "The Great Ursera Spirit", npc = 252359, npcName = "Lotheluum Starbreeze", map = 2521, zone = "Zephras Isle", x = 64, y = 75, class = { "DRUID" }, note = "New in Forever" }, -- 174
+        { type = "ACCEPT", quest = 92679, questName = "Blood Tithe", npc = 252448, npcName = "Alvarion Windfield", map = 2521, zone = "Zephras Isle", x = 62.1, y = 73.3 }, -- 175
+        { type = "ACCEPT", quest = 94897, questName = "The Fate of a Loved One", npc = 259012, npcName = "Ealaane Nimbuswalker", map = 2521, zone = "Zephras Isle", x = 66.0, y = 74.3 }, -- 176
+        { type = "TURNIN", quest = 93948, questName = "Deliver the Signet", npc = 252476, npcName = "Talaanis Shadowsong", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.6 }, -- 177
+        { type = "ACCEPT", quest = 92840, questName = "Catching Wind", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 178
+        { type = "TURNIN", quest = 92699, questName = "The Supreme Magister", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 179
+        { type = "TURNIN", quest = 92701, questName = "To Valanaar", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 180
+        { type = "ACCEPT", quest = 92727, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 181
+        { type = "ACCEPT", quest = 92709, questName = "A Grand Adventure", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 182
+        { type = "COMPLETE", quest = 92709, questName = "A Grand Adventure", target = "Listen to Elaadrin", count = 1, map = 2521, zone = "Zephras Isle", x = 64.2, y = 79.4, note = "Listen to Elaadrin" }, -- 183
+        { type = "ACCEPT", quest = 93791, questName = "Speak with Belann", map = 2521, zone = "Zephras Isle", x = 62.9, y = 77.5 }, -- 184
+        { type = "TURNIN", quest = 93791, questName = "Speak with Belann", map = 2521, zone = "Zephras Isle", x = 62.9, y = 77.5 }, -- 185
+        { type = "TURNIN", quest = 92700, questName = "The Grand Skyseer", npc = 251968, npcName = "Ayessa Dawnsinger", map = 2521, zone = "Zephras Isle", x = 61.5, y = 76.9 }, -- 186
+        { type = "ACCEPT", quest = 92741, questName = "Unwelcome Visitors", npc = 253004, npcName = "Iaadaria Bitterwind", map = 2521, zone = "Zephras Isle", x = 66.2, y = 79.6, note = "New in Forever" }, -- 187
+        { type = "TURNIN", quest = 92709, questName = "A Grand Adventure", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 188
+        { type = "ACCEPT", quest = 93735, questName = "The Broken Construct", npc = 251968, npcName = "Ayessa Dawnsinger", map = 2521, zone = "Zephras Isle", x = 61.5, y = 76.9 }, -- 189
+        { type = "ACCEPT", quest = 92708, questName = "A Grand Adventure", npc = 251968, npcName = "Ayessa Dawnsinger", map = 2521, zone = "Zephras Isle", x = 61.5, y = 76.9 }, -- 190
+        { type = "ACCEPT", quest = 93317, questName = "Crab Season", npc = 257006, npcName = "Nyalah Brightfire", map = 2521, zone = "Zephras Isle", x = 60.6, y = 72.6, note = "New in Forever" }, -- 191
+        { type = "ACCEPT", quest = 94003, questName = "The Skybreaker Bulwark", npc = 252377, npcName = "Seena Skybreaker", map = 2521, zone = "Zephras Isle", x = 59.8, y = 72.8, class = { "WARRIOR" }, note = "New in Forever" }, -- 192
+        { type = "ACCEPT", quest = 94013, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" }, note = "New in Forever" }, -- 193
+        { type = "TURNIN", quest = 94013, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" } }, -- 194
+        { type = "ACCEPT", quest = 94050, questName = "Training the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" }, note = "New in Forever" }, -- 195
+        { type = "TURNIN", quest = 94050, questName = "Training the Beast", npc = 254411, npcName = "Quel'dora Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" } }, -- 196
+        { type = "ACCEPT", quest = 94978, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" }, note = "New in Forever" }, -- 197
+        { type = "TURNIN", quest = 94978, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" } }, -- 198
+        { type = "ACCEPT", quest = 94979, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" }, note = "New in Forever" }, -- 199
+        { type = "TURNIN", quest = 94979, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" } }, -- 200
+        { type = "TURNIN", quest = 93735, questName = "The Broken Construct", npc = 256083, npcName = "Riaani Nightwind", map = 2521, zone = "Zephras Isle", x = 59.1, y = 73.0 }, -- 201
+        { type = "COMPLETE", quest = 92708, questName = "A Grand Adventure", target = "Listen to Ayessa", count = 1, map = 2521, zone = "Zephras Isle", x = 59.3, y = 80.0, note = "Listen to Ayessa" }, -- 202
+        { type = "TURNIN", quest = 92708, questName = "A Grand Adventure", npc = 251968, npcName = "Ayessa Dawnsinger", map = 2521, zone = "Zephras Isle", x = 59.1, y = 79.8 }, -- 203
+        { type = "COMPLETE", quest = 92679, questName = "Blood Tithe", target = "Find Aamelia Windfield", count = 1, map = 2521, zone = "Zephras Isle", x = 46.7, y = 82.0, note = "Find Aamelia Windfield" }, -- 204
+        { type = "TURNIN", quest = 92679, questName = "Blood Tithe", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 46.7, y = 81.9 }, -- 205
+        { type = "ACCEPT", quest = 92703, questName = "Deliver the News", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 46.6, y = 81.8, note = "New in Forever" }, -- 206
+        { type = "COMPLETE", quest = 92840, questName = "Catching Wind", target = "Protect the Index", count = 1, map = 2521, zone = "Zephras Isle", x = 47.9, y = 69.0, note = "Protect the Index" }, -- 207
+        { type = "COLLECT", quest = 93317, questName = "Crab Season", target = "Windsong Crawler Meat", count = 6, map = 2521, zone = "Zephras Isle", x = 51.2, y = 69.6 }, -- 208
+        { type = "TURNIN", quest = 92727, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 53.3, y = 72.2 }, -- 209
+        { type = "ACCEPT", quest = 92849, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 53.3, y = 72.2 }, -- 210
+        { type = "COMPLETE", quest = 92849, questName = "The Missing Scholar", target = "Carry Fillion Flamebreeze to safety while avoiding enemies", count = 1, map = 2521, zone = "Zephras Isle", x = 52.0, y = 69.4, note = "Carry Fillion Flamebreeze to safety while avoiding enemies" }, -- 211
+        { type = "COMPLETE", quest = 92849, questName = "The Missing Scholar", target = "Find Fillion Flamebreeze", count = 1, map = 2521, zone = "Zephras Isle", x = 50.7, y = 65.4, note = "Find Fillion Flamebreeze" }, -- 212
+        { type = "TURNIN", quest = 92849, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 52.1, y = 69.4 }, -- 213
+        { type = "ACCEPT", quest = 92850, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 52.1, y = 69.4 }, -- 214
+        { type = "COMPLETE", quest = 92850, questName = "The Missing Scholar", target = "Shriekling Matriarch's Head", count = 1, map = 2521, zone = "Zephras Isle", x = 52.0, y = 65.5, note = "Shriekling Matriarch's Head" }, -- 215
+        { type = "ACCEPT", quest = 98512, questName = "Al'Aketh Assassins", map = 2521, zone = "Zephras Isle", x = 56.8, y = 61.1 }, -- 216
+        { type = "ACCEPT", quest = 94491, questName = "The Fate of the Den", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2, note = "New in Forever" }, -- 217
+        { type = "COLLECT", quest = 94003, questName = "The Skybreaker Bulwark", target = "Skybreaker Bulwark", count = 1, map = 2521, zone = "Zephras Isle", x = 56.6, y = 50.4, class = { "WARRIOR" } }, -- 218
+        { type = "COMPLETE", quest = 94897, questName = "The Fate of a Loved One", target = "Resaan's Heirloom", count = 1, map = 2521, zone = "Zephras Isle", x = 57.0, y = 29.4, note = "Resaan's Heirloom" }, -- 219
+        { type = "ACCEPT", quest = 98285, questName = "Camping 101: Engineering", npc = 251684, npcName = "Strange Hermit", map = 2521, zone = "Zephras Isle", x = 54, y = 39, note = "New in Forever" }, -- 220
+        { type = "TURNIN", quest = 98285, questName = "Camping 101: Engineering", npc = 251684, npcName = "Strange Hermit", map = 2521, zone = "Zephras Isle", x = 54, y = 39 }, -- 221
+        { type = "ACCEPT", quest = 93172, questName = "Free the Hollows", npc = 251684, npcName = "Strange Hermit", map = 2521, zone = "Zephras Isle", x = 54, y = 39, note = "New in Forever" }, -- 222
+        { type = "KILL", quest = 93172, questName = "Free the Hollows", npc = 251676, target = "Wind Hollow freed", count = 10, map = 2521, zone = "Zephras Isle", x = 57, y = 29.4 }, -- 223
+        { type = "TURNIN", quest = 93172, questName = "Free the Hollows", npc = 251684, npcName = "Strange Hermit", map = 2521, zone = "Zephras Isle", x = 54, y = 39 }, -- 224
+        { type = "ACCEPT", quest = 94007, questName = "Taming the Beast", npc = 254084, npcName = "Elayaa Easewind", map = 2521, zone = "Zephras Isle", x = 45.2, y = 44.2, class = { "HUNTER" }, note = "New in Forever" }, -- 225
+        { type = "KILL", quest = 98512, questName = "Al'Aketh Assassins", target = "Al'Aketh Assassin", count = 10, map = 2521, zone = "Zephras Isle", x = 55.7, y = 59.9, note = "Al'Aketh Assassin slain" }, -- 226
+        { type = "TURNIN", quest = 98512, questName = "Al'Aketh Assassins", map = 2521, zone = "Zephras Isle", x = 56.8, y = 61.1 }, -- 227
+        { type = "TURNIN", quest = 93317, questName = "Crab Season", npc = 257006, npcName = "Nyalah Brightfire", map = 2521, zone = "Zephras Isle", x = 60.6, y = 72.6 }, -- 228
+        { type = "TURNIN", quest = 92703, questName = "Deliver the News", npc = 252448, npcName = "Alvarion Windfield", map = 2521, zone = "Zephras Isle", x = 62, y = 73.2 }, -- 229
+        { type = "TURNIN", quest = 94491, questName = "The Fate of the Den", npc = 252359, npcName = "Lotheluum Starbreeze", map = 2521, zone = "Zephras Isle", x = 64, y = 75 }, -- 230
+        { type = "TURNIN", quest = 94003, questName = "The Skybreaker Bulwark", npc = 252377, npcName = "Seena Skybreaker", map = 2521, zone = "Zephras Isle", x = 59.8, y = 72.8, class = { "WARRIOR" } }, -- 231
+        { type = "TURNIN", quest = 94007, questName = "Taming the Beast", npc = 252389, npcName = "Quel'ana Quickgale", map = 2521, zone = "Zephras Isle", x = 59.6, y = 72.6, class = { "HUNTER" } }, -- 232
+        { type = "TURNIN", quest = 92850, questName = "The Missing Scholar", map = 2521, zone = "Zephras Isle", x = 66.3, y = 79.9 }, -- 233
+        { type = "TURNIN", quest = 92840, questName = "Catching Wind", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 234
+        { type = "ACCEPT", quest = 92834, questName = "Avenged Tenfold", npc = 252475, npcName = "Elaadrin Evengale", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.8, note = "New in Forever" }, -- 235
+        { type = "TURNIN", quest = 94897, questName = "The Fate of a Loved One", map = 2521, zone = "Zephras Isle", x = 66.0, y = 74.3 }, -- 236
+        { type = "ACCEPT", quest = 92860, questName = "In Service of Zephras", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 237
+        { type = "TURNIN", quest = 92860, questName = "In Service of Zephras", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 238
+        { type = "ACCEPT", quest = 93320, questName = "Tower Defense", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 239
+        { type = "TURNIN", quest = 93320, questName = "Tower Defense", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 240
+        { type = "ACCEPT", quest = 92642, questName = "Disrupting Logistics", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 241
+        { type = "ACCEPT", quest = 92645, questName = "Breaking the Breaker", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 242
+        { type = "KILL", quest = 92642, questName = "Disrupting Logistics", target = "Al'Aketh Healer / Al'Aketh Brawler", count = 4, map = 2521, zone = "Zephras Isle", x = 66.1, y = 67.7, note = "Al'Aketh Healer slain" }, -- 243
+        { type = "TURNIN", quest = 92642, questName = "Disrupting Logistics", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 244
+        { type = "ACCEPT", quest = 92880, questName = "Return to Valanaar", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 245
+        { type = "TURNIN", quest = 94006, questName = "The Great Ursera Spirit", npc = 255853, npcName = "Urs'endris", map = 2521, zone = "Zephras Isle", x = 69.8, y = 61.6, class = { "DRUID" } }, -- 246
+        { type = "ACCEPT", quest = 94638, questName = "Strength and Mercy", npc = 255853, npcName = "Urs'endris", map = 2521, zone = "Zephras Isle", x = 69.8, y = 61.6, class = { "DRUID" }, note = "New in Forever" }, -- 247
+        { type = "KILL", quest = 92645, questName = "Breaking the Breaker", target = "Commander Belguilos", count = 1, map = 2521, zone = "Zephras Isle", x = 65.7, y = 65.6, note = "Commander Belguilos slain" }, -- 248
+        { type = "TURNIN", quest = 92645, questName = "Breaking the Breaker", map = 2521, zone = "Zephras Isle", x = 69.6, y = 67.1 }, -- 249
+        { type = "TURNIN", quest = 92880, questName = "Return to Valanaar", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 250
+        { type = "ACCEPT", quest = 92881, questName = "The High Elder's Request", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 251
+        { type = "TURNIN", quest = 92881, questName = "The High Elder's Request", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 252
+        { type = "ACCEPT", quest = 92643, questName = "The Turncoat", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 253
+        { type = "KILL", quest = 94638, questName = "Strength and Mercy", npc = 258443, target = "Ur'endra", count = 1, map = 2521, zone = "Zephras Isle", x = 54, y = 65.4, class = { "DRUID" } }, -- 254
+        { type = "COMPLETE", quest = 92643, questName = "The Turncoat", target = "Find the Al'Aketh Turncoat / Find the secluded house in Shen'dar Highlands", count = 1, map = 2521, zone = "Zephras Isle", x = 56.5, y = 60.9, note = "Find the Al'Aketh Turncoat" }, -- 255
+        { type = "TURNIN", quest = 92643, questName = "The Turncoat", map = 2521, zone = "Zephras Isle", x = 56.0, y = 58.8 }, -- 256
+        { type = "ACCEPT", quest = 92644, questName = "Unfortunate News", map = 2521, zone = "Zephras Isle", x = 56.0, y = 58.8 }, -- 257
+        { type = "ACCEPT", quest = 93835, questName = "Confront Lorthuna", map = 2521, zone = "Zephras Isle", x = 65.2, y = 50.4 }, -- 258
+        { type = "ACCEPT", quest = 94490, questName = "Ripped Missive", map = 2521, zone = "Zephras Isle", x = 64.8, y = 37.1 }, -- 259
+        { type = "ACCEPT", quest = 94487, questName = "Unwanted and Unworthy", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 260
+        { type = "ACCEPT", quest = 94485, questName = "Tears of the Lady", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 261
+        { type = "COLLECT", quest = 92834, questName = "Avenged Tenfold", target = "Al'Aketh Windstone Charm", count = 10, map = 2521, zone = "Zephras Isle", x = 62.2, y = 38.6, near = true }, -- 262
+        { type = "ACCEPT", quest = 93165, questName = "Mercy Falls on Deaf Ears", map = 2521, zone = "Zephras Isle", x = 63.8, y = 36.0 }, -- 263
+        { type = "TURNIN", quest = 94490, questName = "Ripped Missive", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 264
+        { type = "TURNIN", quest = 94484, questName = "Unnerving Silence", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2 }, -- 265
+        { type = "ACCEPT", quest = 94486, questName = "Feathers for Binding", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2, note = "New in Forever" }, -- 266
+        { type = "COLLECT", quest = 94486, questName = "Feathers for Binding", target = "Pristine Shriekling Feather", count = 20, map = 2521, zone = "Zephras Isle", x = 62.2, y = 38.2 }, -- 267
+        { type = "TURNIN", quest = 94486, questName = "Feathers for Binding", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2 }, -- 268
+        { type = "ACCEPT", quest = 94493, questName = "A Sacrifice in Vain", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2, note = "New in Forever" }, -- 269
+        { type = "TURNIN", quest = 94493, questName = "A Sacrifice in Vain", npc = 257944, npcName = "Elegael Thornpaw", map = 2521, zone = "Zephras Isle", x = 61.6, y = 39.2 }, -- 270
+        { type = "COLLECT", quest = 92741, questName = "Unwelcome Visitors", target = "Shriekling Talons", count = 8, map = 2521, zone = "Zephras Isle", x = 62.2, y = 38.2 }, -- 271
+        { type = "COMPLETE", quest = 94487, questName = "Unwanted and Unworthy", target = "Bloody Heirloom", count = 10, map = 2521, zone = "Zephras Isle", x = 62.7, y = 36.5, note = "Bloody Heirloom" }, -- 272
+        { type = "TURNIN", quest = 94487, questName = "Unwanted and Unworthy", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 273
+        { type = "ACCEPT", quest = 94488, questName = "The Ties That Bind", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 274
+        { type = "ACCEPT", quest = 94489, questName = "The Wounds of Betrayal", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 275
+        { type = "COMPLETE", quest = 93835, questName = "Confront Lorthuna", target = "Confront Lorthuna", count = 1, map = 2521, zone = "Zephras Isle", x = 75.3, y = 53.3, note = "Confront Lorthuna" }, -- 276
+        { type = "COMPLETE", quest = 94488, questName = "The Ties That Bind", target = "Commander Haalien's Severed Head", count = 1, map = 2521, zone = "Zephras Isle", x = 65.0, y = 36.7, note = "Commander Haalien's Severed Head" }, -- 277
+        { type = "TURNIN", quest = 94488, questName = "The Ties That Bind", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 278
+        { type = "COMPLETE", quest = 94489, questName = "The Wounds of Betrayal", target = "Find Jorel Windsinger / Injured Druids healed", count = 1, map = 2521, zone = "Zephras Isle", x = 64.5, y = 34.7, note = "Find Jorel Windsinger" }, -- 279
+        { type = "COMPLETE", quest = 93165, questName = "Mercy Falls on Deaf Ears", target = "Al'Alketh Cultist's Ear", count = 10, map = 2521, zone = "Zephras Isle", x = 63.9, y = 37.2, note = "Al'Alketh Cultist's Ear" }, -- 280
+        { type = "TURNIN", quest = 93165, questName = "Mercy Falls on Deaf Ears", map = 2521, zone = "Zephras Isle", x = 63.8, y = 36 }, -- 281
+        { type = "TURNIN", quest = 94489, questName = "The Wounds of Betrayal", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 282
+        { type = "COMPLETE", quest = 94485, questName = "Tears of the Lady", target = "Lady's Tear Moss", count = 8, map = 2521, zone = "Zephras Isle", x = 59.8, y = 40.4, note = "Lady's Tear Moss" }, -- 283
+        { type = "TURNIN", quest = 94485, questName = "Tears of the Lady", map = 2521, zone = "Zephras Isle", x = 61.8, y = 39.1 }, -- 284
+        { type = "ACCEPT", quest = 93159, questName = "The Strange Hermit", map = 2521, zone = "Zephras Isle", x = 54.0, y = 38.9 }, -- 285
+        { type = "COMPLETE", quest = 93159, questName = "The Strange Hermit", target = "Learn more about the Strange Hermit", count = 1, map = 2521, zone = "Zephras Isle", x = 54.0, y = 38.9, note = "Learn more about the Strange Hermit" }, -- 286
+        { type = "TURNIN", quest = 93159, questName = "The Strange Hermit", map = 2521, zone = "Zephras Isle", x = 54.0, y = 38.9 }, -- 287
+        { type = "ACCEPT", quest = 93160, questName = "The Forest's Bounty", map = 2521, zone = "Zephras Isle", x = 54.0, y = 38.9 }, -- 288
+        { type = "COMPLETE", quest = 93160, questName = "The Forest's Bounty", target = "Zephyrseed", count = 8, map = 2521, zone = "Zephras Isle", x = 56.8, y = 38.0, note = "Zephyrseed" }, -- 289
+        { type = "TURNIN", quest = 93160, questName = "The Forest's Bounty", map = 2521, zone = "Zephras Isle", x = 54.0, y = 38.9 }, -- 290
+        { type = "TURNIN", quest = 94638, questName = "Strength and Mercy", npc = 255853, npcName = "Urs'endris", map = 2521, zone = "Zephras Isle", x = 69.8, y = 61.6, class = { "DRUID" } }, -- 291
+        { type = "TURNIN", quest = 92644, questName = "Unfortunate News", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 292
+        { type = "ACCEPT", quest = 94568, questName = "The Cult's True Plans", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 293
+        { type = "TURNIN", quest = 94568, questName = "The Cult's True Plans", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 294
+        { type = "TURNIN", quest = 92834, questName = "Avenged Tenfold", npc = 252475, npcName = "Elaadrin Evengale", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.8 }, -- 295
+        { type = "TURNIN", quest = 93835, questName = "Confront Lorthuna", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 296
+        { type = "ACCEPT", quest = 92640, questName = "Desperate Times", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 297
+        { type = "ACCEPT", quest = 94369, questName = "The Fate of Zephras", map = 2521, zone = "Zephras Isle", x = 66.6, y = 79.9 }, -- 298
+        { type = "COMPLETE", quest = 92640, questName = "Desperate Times", target = "Recruit the High Order", count = 1, map = 2521, zone = "Zephras Isle", x = 66.5, y = 79.9, note = "Recruit the High Order" }, -- 299
+        { type = "COMPLETE", quest = 92640, questName = "Desperate Times", target = "Speak with Valennia Stormfist", count = 1, map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7, note = "Speak with Valennia Stormfist" }, -- 300
+        { type = "COMPLETE", quest = 94369, questName = "The Fate of Zephras", target = "Speak with Talaanis Shadowsong", count = 1, map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5, note = "Speak with Talaanis Shadowsong" }, -- 301
+        { type = "TURNIN", quest = 94369, questName = "The Fate of Zephras", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 302
+        { type = "ACCEPT", quest = 93089, questName = "What Comes Next", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.5 }, -- 303
+        { type = "TURNIN", quest = 93089, questName = "What Comes Next", map = 2521, zone = "Zephras Isle", x = 66.6, y = 80.0 }, -- 304
+        { type = "TURNIN", quest = 92741, questName = "Unwelcome Visitors", npc = 253004, npcName = "Iaadaria Bitterwind", map = 2521, zone = "Zephras Isle", x = 66.2, y = 79.6 }, -- 305
+        { type = "COMPLETE", quest = 92640, questName = "Desperate Times", target = "Recruit the Windshapers", count = 1, map = 2521, zone = "Zephras Isle", x = 59.1, y = 79.8, note = "Recruit the Windshapers" }, -- 306
+        { type = "TURNIN", quest = 92640, questName = "Desperate Times", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 307
+        { type = "ACCEPT", quest = 93065, questName = "Prepare for Battle", map = 2521, zone = "Zephras Isle", x = 66.2, y = 76.7 }, -- 308
+        { type = "COMPLETE", quest = 93065, questName = "Prepare for Battle", target = "Find Valennia on the Road", count = 1, map = 2521, zone = "Zephras Isle", x = 61.1, y = 70.9, note = "Find Valennia on the Road" }, -- 309
+        { type = "TURNIN", quest = 93065, questName = "Prepare for Battle", map = 2521, zone = "Zephras Isle", x = 61.1, y = 70.9 }, -- 310
+        { type = "ACCEPT", quest = 92947, questName = "Making Our Move", map = 2521, zone = "Zephras Isle", x = 61.1, y = 70.9 }, -- 311
+        { type = "COMPLETE", quest = 92947, questName = "Making Our Move", target = "Report to Hyusaa Quickbreeze", count = 1, map = 2521, zone = "Zephras Isle", x = 63.8, y = 50.5, note = "Report to Hyusaa Quickbreeze" }, -- 312
+        { type = "KILL", quest = 92947, questName = "Making Our Move", target = "Al'Aketh Guardian / Al'Aketh Guardian / Al'Aketh Guardian", count = 8, map = 2521, zone = "Zephras Isle", x = 61.3, y = 49.5, note = "Al'Aketh Guardian slain" }, -- 313
+        { type = "TURNIN", quest = 92947, questName = "Making Our Move", map = 2521, zone = "Zephras Isle", x = 63.8, y = 50.5 }, -- 314
+        { type = "ACCEPT", quest = 93958, questName = "The Inner Sanctum", map = 2521, zone = "Zephras Isle", x = 63.8, y = 50.5 }, -- 315
+        { type = "TURNIN", quest = 93958, questName = "The Inner Sanctum", map = 2521, zone = "Zephras Isle", x = 65.2, y = 50.4 }, -- 316
     } end,
 })

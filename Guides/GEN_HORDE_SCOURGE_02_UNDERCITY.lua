@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_02_UNDERCITY",
     name = "2. Undercity 12-12 (Undead)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 12,
@@ -13,29 +13,31 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_03_SILVERPINE_FOREST",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Scourge route: level 12 to 12, 7 steps, ~8 min of play in the model (24306 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 22,
+    stepCount = 24,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 4551, npcName = "Michael Garrett", map = 1458, zone = "Undercity", x = 63.3, y = 48.6 }, -- 1
         { type = "TRAVEL", map = 1458, zone = "Undercity", x = 59.8, y = 66.3, radius = 60, note = "travel to Undercity (Undercity)" }, -- 2
         { type = "HEARTH", npc = 6741, npcName = "Innkeeper Norman", map = 1458, zone = "Undercity", x = 67.7, y = 37.9, note = "talk to Innkeeper Norman and make this inn your home" }, -- 3
         { type = "TURNIN", quest = 1881, questName = "Speak with Anastasia", npc = 4568, npcName = "Anastasia Hartwell", map = 1458, zone = "Undercity", x = 85, y = 10.2, class = { "MAGE" } }, -- 4
         { type = "TURNIN", quest = 405, questName = "The Prodigal Lich", npc = 1498, npcName = "Bethor Iceshard", map = 1458, zone = "Undercity", x = 84.1, y = 17.5 }, -- 5
-        { type = "TURNIN", quest = 98545, questName = "Leonid's Letter", npc = 272526, npcName = "Glix Xizzix", map = 1458, zone = "Undercity", x = 69.8, y = 47 }, -- 6
-        { type = "TURNIN", quest = 95803, questName = "A Token of Good Faith", npc = 10181, npcName = "Lady Sylvanas Windrunner", map = 1458, zone = "Undercity", x = 57.8, y = 91.8, class = { "PALADIN" } }, -- 7
-        { type = "TURNIN", quest = 1885, questName = "Mennet Carkad", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 8
-        { type = "TURNIN", quest = 5663, questName = "Touch of Weakness", npc = 4606, npcName = "Aelthalyste", map = 1458, zone = "Undercity", x = 49.2, y = 18.2, class = { "PRIEST" } }, -- 9
-        { type = "TURNIN", quest = 1478, questName = "Halgar's Summons", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 10
-        { type = "ACCEPT", quest = 5725, questName = "The Power to Destroy...", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.3, y = 92.2 }, -- 11
-        { type = "ACCEPT", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1458, zone = "Undercity", x = 58.3, y = 97.9 }, -- 12
-        { type = "TURNIN", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1458, zone = "Undercity", x = 58.3, y = 97.9 }, -- 13
-        { type = "TURNIN", quest = 5725, questName = "The Power to Destroy...", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.3, y = 92.2 }, -- 14
-        { type = "TURNIN", quest = 94427, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 15
-        { type = "ACCEPT", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" }, note = "New in Forever" }, -- 16
-        { type = "COLLECT", quest = 94434, questName = "A Lesson in Divinity", target = "Linen Cloth", count = 10, map = 1458, zone = "Undercity", x = 70, y = 38.2, near = true, class = { "PALADIN" } }, -- 17
-        { type = "TURNIN", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 18
-        { type = "ACCEPT", quest = 1886, questName = "The Deathstalkers", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 19
-        { type = "TURNIN", quest = 1886, questName = "The Deathstalkers", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 20
-        { type = "ACCEPT", quest = 1473, questName = "Creature of the Void", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 21
-        { type = "TURNIN", quest = 1473, questName = "Creature of the Void", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 22
+        { type = "TURNIN", quest = 97952, questName = "Camping 101: Blacksmithing", npc = 4605, npcName = "Basil Frye", map = 1458, zone = "Undercity", x = 60, y = 28.6 }, -- 6
+        { type = "TURNIN", quest = 97954, questName = "Camping 101: Engineering", npc = 4586, npcName = "Graham Van Talen", map = 1458, zone = "Undercity", x = 75.6, y = 73.2 }, -- 7
+        { type = "TURNIN", quest = 97959, questName = "Camping 101: Mining", npc = 4598, npcName = "Brom Killian", map = 1458, zone = "Undercity", x = 56, y = 37 }, -- 8
+        { type = "TURNIN", quest = 98545, questName = "Leonid's Letter", npc = 272526, npcName = "Glix Xizzix", map = 1458, zone = "Undercity", x = 69.8, y = 47 }, -- 9
+        { type = "TURNIN", quest = 95803, questName = "A Token of Good Faith", npc = 10181, npcName = "Lady Sylvanas Windrunner", map = 1458, zone = "Undercity", x = 57.8, y = 91.8, class = { "PALADIN" } }, -- 10
+        { type = "TURNIN", quest = 1885, questName = "Mennet Carkad", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 11
+        { type = "TURNIN", quest = 1478, questName = "Halgar's Summons", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 12
+        { type = "ACCEPT", quest = 5725, questName = "The Power to Destroy...", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.3, y = 92.2 }, -- 13
+        { type = "ACCEPT", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1458, zone = "Undercity", x = 58.3, y = 97.9 }, -- 14
+        { type = "TURNIN", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1458, zone = "Undercity", x = 58.3, y = 97.9 }, -- 15
+        { type = "TURNIN", quest = 5725, questName = "The Power to Destroy...", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.3, y = 92.2 }, -- 16
+        { type = "TURNIN", quest = 94427, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 17
+        { type = "ACCEPT", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" }, note = "New in Forever" }, -- 18
+        { type = "COLLECT", quest = 94434, questName = "A Lesson in Divinity", target = "Linen Cloth", count = 10, map = 1458, zone = "Undercity", x = 70, y = 38.2, near = true, class = { "PALADIN" } }, -- 19
+        { type = "TURNIN", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 20
+        { type = "ACCEPT", quest = 1886, questName = "The Deathstalkers", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 21
+        { type = "TURNIN", quest = 1886, questName = "The Deathstalkers", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 22
+        { type = "ACCEPT", quest = 1473, questName = "Creature of the Void", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 23
+        { type = "TURNIN", quest = 1473, questName = "Creature of the Void", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 24
     } end,
 })
