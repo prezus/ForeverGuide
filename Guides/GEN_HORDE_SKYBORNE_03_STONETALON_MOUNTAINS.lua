@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_03_STONETALON_MOUNTAINS",
     name = "3. Stonetalon Mountains 23-24 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 23,
@@ -42,22 +42,22 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 6381, questName = "New Life", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 25
         { type = "COMPLETE", quest = 6381, questName = "New Life", target = "Gaea Dirt Mound", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 35.8, y = 66.1, near = true, note = "Gaea seed planted" }, -- 26
         { type = "TURNIN", quest = 6381, questName = "New Life", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 27
-        { type = "ACCEPT", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 28
-        { type = "ACCEPT", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 29
-        { type = "TURNIN", quest = 1060, questName = "Letter to Jin'Zil", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 30
-        { type = "ACCEPT", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 31
-        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4005, target = "Deepmoss Creeper", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 67.3, y = 87.7, near = true }, -- 32
-        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4007, target = "Deepmoss Venomspitter", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 61.6, y = 66.4, near = true }, -- 33
-        { type = "TURNIN", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 34
-        { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 75.7, y = 56.6, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 35
-        { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 36
-        { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 37
-        { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 38
-        { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 39
-        { type = "TURNIN", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 40
-        { type = "ACCEPT", quest = 1094, questName = "Further Instructions", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 41
-        { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 42
-        { type = "TURNIN", quest = 1483, questName = "Ziz Fizziks", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.4 }, -- 43
+        { type = "TURNIN", quest = 1483, questName = "Ziz Fizziks", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.4 }, -- 28
+        { type = "ACCEPT", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 29
+        { type = "ACCEPT", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 30
+        { type = "TURNIN", quest = 1060, questName = "Letter to Jin'Zil", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 31
+        { type = "ACCEPT", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 32
+        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4005, target = "Deepmoss Creeper", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 67.3, y = 87.7, near = true }, -- 33
+        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4007, target = "Deepmoss Venomspitter", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 61.6, y = 66.4, near = true }, -- 34
+        { type = "TURNIN", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 35
+        { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 75.7, y = 56.6, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 36
+        { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 37
+        { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 38
+        { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 39
+        { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 40
+        { type = "TURNIN", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 41
+        { type = "ACCEPT", quest = 1094, questName = "Further Instructions", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 42
+        { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 43
         { type = "COLLECT", quest = 1058, questName = "Jin'Zil's Forest Magic", target = "Courser Eye", count = 30, map = 1442, zone = "Stonetalon Mountains", x = 50.4, y = 36.6, near = true }, -- 44
         { type = "KILL", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 4020, target = "Sap Beast", count = 5, map = 1442, zone = "Stonetalon Mountains", x = 46.8, y = 29.5, near = true, note = "loot Stonetalon Sap" }, -- 45
         { type = "KILL", quest = 1087, questName = "Cenarius' Legacy", npc = 4053, target = "Daughter of Cenarius / Cenarion Botanist", count = 4, map = 1442, zone = "Stonetalon Mountains", x = 36.7, y = 15.6, near = true }, -- 46
