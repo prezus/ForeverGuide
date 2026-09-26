@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_05_HILLSBRAD_FOOTHILLS",
   "name": "5. Hillsbrad Foothills 26-28 (Skyborne)",
-  "version": 7,
+  "version": 8,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 26,
@@ -15,6 +15,7 @@
     {"type": "FLIGHTPATH", "npc": 2389, "npcName": "Zarise", "map": 1424, "zone": "Hillsbrad Foothills", "x": 60.1, "y": 18.6},
     {"type": "ACCEPT", "quest": 92401, "questName": "A Frightened Request", "npc": 250686, "npcName": "Tabitha Heartweaver", "map": 1421, "zone": "Silverpine Forest", "x": 44.4, "y": 43, "note": "New in Forever"},
     {"type": "TURNIN", "quest": 92401, "questName": "A Frightened Request", "npc": 250686, "npcName": "Tabitha Heartweaver", "map": 1421, "zone": "Silverpine Forest", "x": 44.4, "y": 43},
+    {"type": "TURNIN", "quest": 6542, "questName": "Report to Kadrak", "npc": 8582, "npcName": "Kadrak", "map": 1413, "zone": "The Barrens", "x": 48, "y": 5.4},
     {"type": "ACCEPT", "quest": 493, "questName": "Journey to Hillsbrad Foothills", "npc": 1937, "npcName": "Apothecary Renferrel", "map": 1421, "zone": "Silverpine Forest", "x": 42.8, "y": 40.8},
     {"type": "ACCEPT", "quest": 5725, "questName": "The Power to Destroy...", "npc": 2425, "npcName": "Varimathras", "map": 1458, "zone": "Undercity", "x": 56.2, "y": 92.6, "note": "For Ragefire Chasm (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: Searching for the Lost Satchel, Testing an Enemy's Strength, The Power to Destroy..., Hidden Enemies, Slaying the Beast. When you have a group, open Ragefire Chasm under Dungeons.", "text": "Ready for Ragefire Chasm", "optional": true},

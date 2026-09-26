@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_07_ARATHI_HIGHLANDS",
   "name": "7. Arathi Highlands 29-30 (Tauren)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 29,
@@ -13,6 +13,8 @@
   "notes": "Chapter 7 of the Tauren route: level 29 to 30, 42 steps, ~185 min of play in the model (18701 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "FLIGHTPATH", "npc": 2851, "npcName": "Urda", "map": 1417, "zone": "Arathi Highlands", "x": 73, "y": 32.7},
+    {"type": "ACCEPT", "quest": 96, "questName": "Call of Water", "npc": 5895, "npcName": "Minor Manifestation of Water", "map": 1421, "zone": "Silverpine Forest", "x": 38.6, "y": 44.6, "class": ["SHAMAN"]},
+    {"type": "TURNIN", "quest": 96, "questName": "Call of Water", "npc": 5901, "npcName": "Islen Waterseer", "map": 1413, "zone": "The Barrens", "x": 65.8, "y": 43.8, "note": "reduced xp (80%) - you out-levelled it", "class": ["SHAMAN"]},
     {"type": "TRAVEL", "map": 1417, "zone": "Arathi Highlands", "x": 73.6, "y": 31.8, "radius": 60, "note": "travel to Arathi Highlands (Arathi Highlands)"},
     {"type": "HEARTH", "npc": 9501, "npcName": "Innkeeper Adegwa", "map": 1417, "zone": "Hammerfall", "x": 73.8, "y": 32.5, "note": "talk to Innkeeper Adegwa and make this inn your home"},
     {"type": "ACCEPT", "quest": 8171, "questName": "The Battle for Arathi Basin!", "npc": 15021, "npcName": "Deathmaster Dwire", "map": 1417, "zone": "Arathi Highlands", "x": 73.3, "y": 29.7},

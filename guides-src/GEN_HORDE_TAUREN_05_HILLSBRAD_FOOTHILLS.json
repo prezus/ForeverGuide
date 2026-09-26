@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_05_HILLSBRAD_FOOTHILLS",
   "name": "5. Hillsbrad Foothills 25-28 (Tauren)",
-  "version": 5,
+  "version": 6,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 25,
@@ -33,6 +33,7 @@
     {"type": "NOTE", "note": "Picked up: The Book of Ur, Arugal Must Die, Deathstalkers in Shadowfang. When you have a group, open Shadowfang Keep under Dungeons.", "text": "Ready for Shadowfang Keep", "optional": true},
     {"type": "ACCEPT", "quest": 1530, "questName": "Call of Water", "npc": 5901, "npcName": "Islen Waterseer", "map": 1413, "zone": "The Barrens", "x": 65.8, "y": 43.8, "class": ["SHAMAN"]},
     {"type": "TURNIN", "quest": 1530, "questName": "Call of Water", "npc": 5899, "npcName": "Brine", "map": 1413, "zone": "The Barrens", "x": 43.4, "y": 77.4, "class": ["SHAMAN"]},
+    {"type": "TURNIN", "quest": 6130, "questName": "Power over Poison", "npc": 3033, "npcName": "Turak Runetotem", "map": 1456, "zone": "Thunder Bluff", "x": 76.4, "y": 27.6, "note": "reduced xp (10%) - you out-levelled it", "class": ["DRUID"]},
     {"type": "TRAVEL", "map": 1424, "zone": "Hillsbrad Foothills", "x": 62.1, "y": 20.0, "radius": 60, "note": "travel to Hillsbrad Foothills (Hillsbrad Foothills)"},
     {"type": "HEARTH", "npc": 2388, "npcName": "Innkeeper Shay", "map": 1424, "zone": "Tarren Mill", "x": 62.8, "y": 19.0, "note": "talk to Innkeeper Shay and make this inn your home"},
     {"type": "ACCEPT", "quest": 498, "questName": "The Rescue", "npc": 2229, "npcName": "Krusk", "map": 1424, "zone": "Hillsbrad Foothills", "x": 63.2, "y": 20.7},

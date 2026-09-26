@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_07_HILLSBRAD_FOOTHILLS",
   "name": "7. Hillsbrad Foothills 26-28 (Undead)",
-  "version": 7,
+  "version": 8,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 26,
@@ -46,6 +46,8 @@
     {"type": "TURNIN", "quest": 5646, "questName": "Dark Sacrifice", "npc": 4606, "npcName": "Aelthalyste", "map": 1458, "zone": "Undercity", "x": 49.2, "y": 18.2, "class": ["PRIEST"]},
     {"type": "ACCEPT", "quest": 5679, "questName": "Dark Sacrifice", "npc": 4606, "npcName": "Aelthalyste", "map": 1458, "zone": "Undercity", "x": 49.2, "y": 18.2, "class": ["PRIEST"]},
     {"type": "TURNIN", "quest": 5679, "questName": "Dark Sacrifice", "npc": 4606, "npcName": "Aelthalyste", "map": 1458, "zone": "Undercity", "x": 49.2, "y": 18.2, "class": ["PRIEST"]},
+    {"type": "ACCEPT", "quest": 2985, "questName": "Call of Water", "npc": 3173, "npcName": "Swart", "map": 1411, "zone": "Durotar", "x": 54.4, "y": 42.6, "class": ["SHAMAN"]},
+    {"type": "TURNIN", "quest": 2985, "questName": "Call of Water", "npc": 5901, "npcName": "Islen Waterseer", "map": 1413, "zone": "The Barrens", "x": 65.8, "y": 43.8, "class": ["SHAMAN"]},
     {"type": "ACCEPT", "quest": 1472, "questName": "Devourer of Souls", "npc": 5675, "npcName": "Carendin Halgar", "map": 1458, "zone": "Undercity", "x": 85, "y": 25.6, "class": ["WARLOCK"]},
     {"type": "TURNIN", "quest": 1472, "questName": "Devourer of Souls", "npc": 5693, "npcName": "Godrick Farsan", "map": 1458, "zone": "Undercity", "x": 85, "y": 14.8, "class": ["WARLOCK"]},
     {"type": "ACCEPT", "quest": 1507, "questName": "Devourer of Souls", "npc": 5875, "npcName": "Gan'rul Bloodeye", "map": 1454, "zone": "Orgrimmar", "x": 48.2, "y": 45.6, "class": ["WARLOCK"]},

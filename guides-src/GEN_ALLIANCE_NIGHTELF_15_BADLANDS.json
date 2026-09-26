@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_15_BADLANDS",
   "name": "15. Badlands 36-37 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 36,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 15 of the NightElf route: level 36 to 37, 40 steps, ~111 min of play in the model (42241 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "ACCEPT", "quest": 1718, "questName": "The Islander", "npc": 5479, "npcName": "Wu Shen", "map": 1453, "zone": "Stormwind City", "x": 78.8, "y": 45.6, "class": ["WARRIOR"]},
     {"type": "TRAVEL", "map": 1418, "zone": "Badlands", "x": 49.9, "y": 47.6, "radius": 60, "note": "travel to Badlands (Badlands)"},
     {"type": "ACCEPT", "quest": 719, "questName": "A Dwarf and His Tools", "npc": 2910, "npcName": "Prospector Ryedol", "map": 1418, "zone": "Badlands", "x": 53.4, "y": 43.4},
     {"type": "ACCEPT", "quest": 718, "questName": "Mirages", "npc": 2860, "npcName": "Sigrun Ironhew", "map": 1418, "zone": "Badlands", "x": 53.8, "y": 43.3},

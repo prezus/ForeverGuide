@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_06_ASHENVALE",
     name = "6. Ashenvale 25-26 (Undead)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 25,
@@ -23,18 +23,18 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 25, questName = "Stonetalon Standstill", npc = 12737, npcName = "Mastok Wrilehiss", map = 1440, zone = "Ashenvale", x = 73.7, y = 60 }, -- 6
         { type = "ACCEPT", quest = 6441, questName = "Satyr Horns", npc = 12724, npcName = "Pixel", map = 1440, zone = "Ashenvale", x = 73.1, y = 61.5 }, -- 7
         { type = "TURNIN", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 8
-        { type = "ACCEPT", quest = 6503, questName = "Ashenvale Outrunners", npc = 12867, npcName = "Kuray'bin", map = 1440, zone = "Ashenvale", x = 71.1, y = 68.1 }, -- 9
-        { type = "ACCEPT", quest = 6504, questName = "The Lost Pages", npc = 12718, npcName = "Gurda Ragescar", map = 1440, zone = "Ashenvale", x = 70, y = 71.2 }, -- 10
-        { type = "TURNIN", quest = 6504, questName = "The Lost Pages", npc = 12718, npcName = "Gurda Ragescar", map = 1440, zone = "Ashenvale", x = 70, y = 71.2 }, -- 11
-        { type = "KILL", quest = 6503, questName = "Ashenvale Outrunners", npc = 12856, target = "Ashenvale Outrunner", count = 9, map = 1440, zone = "Ashenvale", x = 71, y = 72.6, near = true }, -- 12
-        { type = "TURNIN", quest = 6503, questName = "Ashenvale Outrunners", npc = 12867, npcName = "Kuray'bin", map = 1440, zone = "Ashenvale", x = 71.1, y = 68.1 }, -- 13
-        { type = "COLLECT", quest = 6441, questName = "Satyr Horns", target = "Satyr Horns", count = 16, map = 1440, zone = "Ashenvale", x = 66.7, y = 57.2, near = true }, -- 14
-        { type = "KILL", quest = 25, questName = "Stonetalon Standstill", npc = 3917, target = "Befouled Water Elemental", count = 12, map = 1440, zone = "Ashenvale", x = 51.6, y = 69.5, near = true }, -- 15
-        { type = "COMPLETE", quest = 25, questName = "Stonetalon Standstill", target = "Scout the gazebo on Mystral Lake that overlooks the nearby Alliance outpost.", map = 1440, zone = "Ashenvale", x = 48.9, y = 69.6, note = "Scout the gazebo on Mystral Lake that overlooks the nearby Alliance outpost." }, -- 16
-        { type = "TURNIN", quest = 25, questName = "Stonetalon Standstill", npc = 12737, npcName = "Mastok Wrilehiss", map = 1440, zone = "Ashenvale", x = 73.7, y = 60 }, -- 17
-        { type = "TURNIN", quest = 6441, questName = "Satyr Horns", npc = 12724, npcName = "Pixel", map = 1440, zone = "Ashenvale", x = 73.1, y = 61.5 }, -- 18
-        { type = "ACCEPT", quest = 2, questName = "Sharptalon's Claw", npc = 12676, npcName = "Sharptalon", map = 1440, zone = "Ashenvale", x = 75, y = 70.1, note = "Loot Sharptalon's Claw from Sharptalon and use it to start the quest" }, -- 19
-        { type = "TURNIN", quest = 2, questName = "Sharptalon's Claw", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 20
+        { type = "ACCEPT", quest = 2, questName = "Sharptalon's Claw", npc = 12676, npcName = "Sharptalon", map = 1440, zone = "Ashenvale", x = 75, y = 70.1, note = "Loot Sharptalon's Claw from Sharptalon and use it to start the quest" }, -- 9
+        { type = "TURNIN", quest = 2, questName = "Sharptalon's Claw", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 10
+        { type = "ACCEPT", quest = 6503, questName = "Ashenvale Outrunners", npc = 12867, npcName = "Kuray'bin", map = 1440, zone = "Ashenvale", x = 71.1, y = 68.1 }, -- 11
+        { type = "ACCEPT", quest = 6504, questName = "The Lost Pages", npc = 12718, npcName = "Gurda Ragescar", map = 1440, zone = "Ashenvale", x = 70, y = 71.2 }, -- 12
+        { type = "TURNIN", quest = 6504, questName = "The Lost Pages", npc = 12718, npcName = "Gurda Ragescar", map = 1440, zone = "Ashenvale", x = 70, y = 71.2 }, -- 13
+        { type = "KILL", quest = 6503, questName = "Ashenvale Outrunners", npc = 12856, target = "Ashenvale Outrunner", count = 9, map = 1440, zone = "Ashenvale", x = 71, y = 72.6, near = true }, -- 14
+        { type = "TURNIN", quest = 6503, questName = "Ashenvale Outrunners", npc = 12867, npcName = "Kuray'bin", map = 1440, zone = "Ashenvale", x = 71.1, y = 68.1 }, -- 15
+        { type = "COLLECT", quest = 6441, questName = "Satyr Horns", target = "Satyr Horns", count = 16, map = 1440, zone = "Ashenvale", x = 66.7, y = 57.2, near = true }, -- 16
+        { type = "KILL", quest = 25, questName = "Stonetalon Standstill", npc = 3917, target = "Befouled Water Elemental", count = 12, map = 1440, zone = "Ashenvale", x = 51.6, y = 69.5, near = true }, -- 17
+        { type = "COMPLETE", quest = 25, questName = "Stonetalon Standstill", target = "Scout the gazebo on Mystral Lake that overlooks the nearby Alliance outpost.", map = 1440, zone = "Ashenvale", x = 48.9, y = 69.6, note = "Scout the gazebo on Mystral Lake that overlooks the nearby Alliance outpost." }, -- 18
+        { type = "TURNIN", quest = 25, questName = "Stonetalon Standstill", npc = 12737, npcName = "Mastok Wrilehiss", map = 1440, zone = "Ashenvale", x = 73.7, y = 60 }, -- 19
+        { type = "TURNIN", quest = 6441, questName = "Satyr Horns", npc = 12724, npcName = "Pixel", map = 1440, zone = "Ashenvale", x = 73.1, y = 61.5 }, -- 20
         { type = "ACCEPT", quest = 6544, questName = "Torek's Assault", npc = 12858, npcName = "Torek", map = 1440, zone = "Ashenvale", x = 68.3, y = 75.3 }, -- 21
         { type = "COMPLETE", quest = 6544, questName = "Torek's Assault", target = "Take Silverwing Outpost.", map = 1440, zone = "Ashenvale", x = 64.7, y = 75.3, note = "escort - stay close, it can fail: Take Silverwing Outpost." }, -- 22
         { type = "TURNIN", quest = 6544, questName = "Torek's Assault", npc = 12877, npcName = "Ertog Ragetusk", map = 1440, zone = "Ashenvale", x = 73, y = 62.5 }, -- 23
