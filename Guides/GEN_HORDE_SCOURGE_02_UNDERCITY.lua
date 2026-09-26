@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_02_UNDERCITY",
     name = "2. Undercity 12-12 (Undead)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 12,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_03_SILVERPINE_FOREST",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Scourge route: level 12 to 12, 7 steps, ~8 min of play in the model (24306 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 24,
+    stepCount = 25,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 4551, npcName = "Michael Garrett", map = 1458, zone = "Undercity", x = 63.3, y = 48.6 }, -- 1
         { type = "TRAVEL", map = 1458, zone = "Undercity", x = 59.8, y = 66.3, radius = 60, note = "travel to Undercity (Undercity)" }, -- 2
@@ -31,13 +31,14 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1458, zone = "Undercity", x = 58.3, y = 97.9 }, -- 14
         { type = "TURNIN", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1458, zone = "Undercity", x = 58.3, y = 97.9 }, -- 15
         { type = "TURNIN", quest = 5725, questName = "The Power to Destroy...", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.3, y = 92.2 }, -- 16
-        { type = "TURNIN", quest = 94427, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 17
-        { type = "ACCEPT", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" }, note = "New in Forever" }, -- 18
-        { type = "COLLECT", quest = 94434, questName = "A Lesson in Divinity", target = "Linen Cloth", count = 10, map = 1458, zone = "Undercity", x = 70, y = 38.2, near = true, class = { "PALADIN" } }, -- 19
-        { type = "TURNIN", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 20
-        { type = "ACCEPT", quest = 1886, questName = "The Deathstalkers", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 21
-        { type = "TURNIN", quest = 1886, questName = "The Deathstalkers", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 22
-        { type = "ACCEPT", quest = 1473, questName = "Creature of the Void", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 23
-        { type = "TURNIN", quest = 1473, questName = "Creature of the Void", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 24
+        { type = "TURNIN", quest = 95328, questName = "Whispering Horror Residue", npc = 4607, npcName = "Father Lankester", map = 1458, zone = "Undercity", x = 49.6, y = 15.6, optional = true }, -- 17
+        { type = "TURNIN", quest = 94427, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 18
+        { type = "ACCEPT", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" }, note = "New in Forever" }, -- 19
+        { type = "COLLECT", quest = 94434, questName = "A Lesson in Divinity", target = "Linen Cloth", count = 10, map = 1458, zone = "Undercity", x = 70, y = 38.2, near = true, class = { "PALADIN" } }, -- 20
+        { type = "TURNIN", quest = 94434, questName = "A Lesson in Divinity", npc = 257648, npcName = "Tanis Alderwood", map = 1458, zone = "Undercity", x = 65.6, y = 37.8, class = { "PALADIN" } }, -- 21
+        { type = "ACCEPT", quest = 1886, questName = "The Deathstalkers", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 22
+        { type = "TURNIN", quest = 1886, questName = "The Deathstalkers", npc = 6467, npcName = "Mennet Carkad", map = 1458, zone = "Undercity", x = 83.2, y = 69, class = { "ROGUE" } }, -- 23
+        { type = "ACCEPT", quest = 1473, questName = "Creature of the Void", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 24
+        { type = "TURNIN", quest = 1473, questName = "Creature of the Void", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 25
     } end,
 })
