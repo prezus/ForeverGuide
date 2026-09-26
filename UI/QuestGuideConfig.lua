@@ -61,6 +61,8 @@ Config.TOGGLES = {
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().others = v ns.MobMarker:Scan() end end },
     skullplates = { label = "switch enemy nameplates on during kill steps (needed for the skulls)", get = function() return ns.MobMarker and ns.MobMarker.Cfg().plates ~= false end,
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().plates = v ns.MobMarker:Scan() end end },
+    skulluse   = { label = "the target-quest-mob key also uses the step's quest item", get = function() return ns.MobMarker and ns.MobMarker.Cfg().useItem ~= false end,
+                   set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().useItem = v ns.MobMarker:Scan() end end },
     wpengine   = { label = "ride the client's own pin instead of the plain arrow (off by default - most Forever clients cannot project it, and guessing felt sluggish)", get = function() return Config.Waypoint().engine == true end,
                    set = function(v) Config.Waypoint().engine = v if ns.Waypoint then ns.Waypoint:Tick() end end },
     tracker    = { label = "hide Blizzard's objective tracker while the Quest Guide shows", get = function() return ns.db.ui.hideTracker ~= false end,
@@ -107,7 +109,7 @@ function Config.OptionItems()
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end
     items[#items + 1] = { header = "Quest mobs" }
-    for _, key in ipairs({ "skull", "skullothers", "skullplates" }) do
+    for _, key in ipairs({ "skull", "skullothers", "skullplates", "skulluse" }) do
         local t = Config.TOGGLES[key]
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end

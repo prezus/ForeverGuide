@@ -188,7 +188,7 @@ function Persist:DecodeChar(s)
 end
 
 -- ---- account settings + edits ----------------------------------------------------
-local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "sco", "hvo", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "h", "ht", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "e" }
+local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "sco", "hvo", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "su", "w", "h", "ht", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "e" }
 
 function Persist:EncodeAcct()
     local db = ns.db
@@ -203,7 +203,7 @@ function Persist:EncodeAcct()
         wa = b01(nav.waypoint == nil or nav.waypoint.animate ~= false), ws = nav.waypoint and nav.waypoint.size,
         we = b01(nav.waypoint ~= nil and nav.waypoint.engine == true),
         sk = b01(nav.skull == nil or nav.skull.enabled ~= false), so = b01(nav.skull == nil or nav.skull.others ~= false),
-        sp = b01(nav.skull == nil or nav.skull.plates ~= false),
+        sp = b01(nav.skull == nil or nav.skull.plates ~= false), su = b01(nav.skull == nil or nav.skull.useItem ~= false),
         ar = b01(arrow.enabled ~= false), ap = arrow.point, ax = arrow.x, ay = arrow.y, as = arrow.scale,
         mm = b01(mm.shown ~= false), ma = mm.angle,
         bliz = b01(nav.blizzardWaypoint), rad = nav.arrivalRadius,
@@ -259,6 +259,7 @@ function Persist:DecodeAcct(s)
     if t.sk then nav.skull.enabled = bool(t.sk) end
     if t.so then nav.skull.others = bool(t.so) end
     if t.sp then nav.skull.plates = bool(t.sp) end
+    if t.su then nav.skull.useItem = bool(t.su) end
     if num(t.fs) then ui.fontSize = num(t.fs) end
     if t.ar then arrow.enabled = bool(t.ar) end
     if t.ap and t.ap ~= "" then arrow.point = t.ap end

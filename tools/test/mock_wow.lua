@@ -351,7 +351,19 @@ _G.C_QuestLog = {
     GetMaxNumQuestsCanAccept = function() return world.logCap or 40 end,
     UnitIsRelatedToActiveQuest = function(unit) local p = world.plates and world.plates[unit] return p and p.quest == true or false end,
 }
-_G.C_Item = { GetItemCount = function(id) return world.items[id] or 0 end }
+_G.C_Item = {
+    GetItemCount = function(id) return world.items[id] or 0 end,
+    -- items with a "Use:" effect: itemID -> spell name
+    GetItemSpell = function(id) local s = world.itemSpells and world.itemSpells[id] if s then return s, 1000 + id end return nil end,
+    GetItemIconByID = function(id) return "icon:" .. tostring(id) end,
+}
+-- the quest log's own "use this item" (log index as C_QuestLog.GetInfo counts it: 1 is the header)
+_G.GetQuestLogSpecialItemInfo = function(i)
+    local qid = world.logOrder[i - 1]
+    local q = qid and world.log[qid]
+    if not q or not q.specialItem then return nil end
+    return "|cffffffff|Hitem:" .. q.specialItem .. "::::::::1:::::::|h[Quest Thing]|h|r", "icon:" .. q.specialItem, 1, false
+end
 _G.C_SpellBook = { IsSpellKnown = function(id) return world.spells[id] == true end }
 _G.C_GossipInfo = { GetAvailableQuests = function() return {} end, GetActiveQuests = function() return {} end }
 _G.C_AddOns = { GetAddOnMetadata = function() return "0.1.0-test" end }

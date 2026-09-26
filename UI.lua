@@ -327,7 +327,7 @@ function UI:OnInit()
     ns.Events:RegisterMany({
         "FG_STEP_CHANGED", "FG_STEP_UPDATED", "FG_GUIDE_CHANGED", "FG_QUEST_LOG_CHANGED",
         "FG_LEVEL_CHANGED", "FG_ZONE_CHANGED", "FG_QUEST_TITLE_LOADED", "FG_NAV_TARGET_CHANGED",
-        "FG_TRACKER_CHANGED", "FG_MODE_CHANGED",
+        "FG_TRACKER_CHANGED", "FG_MODE_CHANGED", "BAG_UPDATE_DELAYED",
     }, function() ns.Events:Debounce("ui", 0.05, refresh) end)
 end
 
