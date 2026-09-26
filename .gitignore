@@ -1,12 +1,25 @@
 # build output
 dist/
 build/
+*.zip
 __pycache__/
 *.pyc
 # scratch
 *.bak
 *.tmp
+*.log
+# OS and editor files
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
 # local player data: never commit harvested reports or SavedVariables snapshots
 WTF/
+SavedVariables/
+ForeverGuide.lua
+ForeverGuide.lua.bak
 data-src/reports.json
 data-src/sv/
