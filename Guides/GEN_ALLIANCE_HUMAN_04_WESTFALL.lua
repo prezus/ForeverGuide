@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_04_WESTFALL",
     name = "4. Westfall 14-17 (Human)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 14,
@@ -60,18 +60,18 @@ ns.RegisterGuide({
         { type = "KILL", quest = 12, questName = "The People's Militia", npc = 504, target = "Defias Trapper", count = 15, map = 1436, zone = "Westfall", x = 51.4, y = 46.8, near = true }, -- 43
         { type = "KILL", quest = 12, questName = "The People's Militia", npc = 95, target = "Defias Smuggler", count = 15, map = 1436, zone = "Westfall", x = 48.2, y = 46.6, near = true }, -- 44
         { type = "ACCEPT", quest = 92909, questName = "Harvesting the Harvesters", npc = 253395, npcName = "Ozwin Ironsprocket", map = 1436, zone = "Westfall", x = 51.6, y = 32.2, note = "New in Forever" }, -- 45
-        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Golem Isospring", count = 14, map = 1436, zone = "Westfall", x = 57.6, y = 19.4, near = true, mobs = "Rusty Harvest Golem / Decrepit Harvester" }, -- 46
-        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Harvester Gyrostabilizer", count = 5, map = 1436, zone = "Westfall", x = 54.2, y = 30.8, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper" }, -- 47
-        { type = "ACCEPT", quest = 109, questName = "Report to Gryan Stoutmantle", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 48
-        { type = "ACCEPT", quest = 22, questName = "Goretusk Liver Pie", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 49
-        { type = "ACCEPT", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 50
-        { type = "COLLECT", quest = 22, questName = "Goretusk Liver Pie", target = "Goretusk Liver", count = 8, map = 1436, zone = "Westfall", x = 57.1, y = 39.2, near = true }, -- 51
-        { type = "KILL", quest = 9, questName = "The Killing Fields", npc = 114, target = "Harvest Watcher", count = 20, map = 1436, zone = "Westfall", x = 53.9, y = 35.2, near = true }, -- 52
-        { type = "TURNIN", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 53
-        { type = "TURNIN", quest = 22, questName = "Goretusk Liver Pie", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 54
-        { type = "ACCEPT", quest = 36, questName = "Westfall Stew", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 55
-        { type = "ACCEPT", quest = 64, questName = "The Forgotten Heirloom", npc = 237, npcName = "Farmer Furlbrow", map = 1436, zone = "Westfall", x = 60, y = 19.4 }, -- 56
-        { type = "ACCEPT", quest = 151, questName = "Poor Old Blanchy", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 57
+        { type = "ACCEPT", quest = 109, questName = "Report to Gryan Stoutmantle", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 46
+        { type = "ACCEPT", quest = 22, questName = "Goretusk Liver Pie", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 47
+        { type = "ACCEPT", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 48
+        { type = "COLLECT", quest = 22, questName = "Goretusk Liver Pie", target = "Goretusk Liver", count = 8, map = 1436, zone = "Westfall", x = 57.1, y = 39.2, near = true }, -- 49
+        { type = "KILL", quest = 9, questName = "The Killing Fields", npc = 114, target = "Harvest Watcher", count = 20, map = 1436, zone = "Westfall", x = 53.9, y = 35.2, near = true }, -- 50
+        { type = "TURNIN", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 51
+        { type = "TURNIN", quest = 22, questName = "Goretusk Liver Pie", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 52
+        { type = "ACCEPT", quest = 36, questName = "Westfall Stew", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 53
+        { type = "ACCEPT", quest = 64, questName = "The Forgotten Heirloom", npc = 237, npcName = "Farmer Furlbrow", map = 1436, zone = "Westfall", x = 60, y = 19.4 }, -- 54
+        { type = "ACCEPT", quest = 151, questName = "Poor Old Blanchy", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 55
+        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Golem Isospring", count = 14, map = 1436, zone = "Westfall", x = 57.6, y = 19.4, near = true, mobs = "Rusty Harvest Golem / Decrepit Harvester" }, -- 56
+        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Harvester Gyrostabilizer", count = 5, map = 1436, zone = "Westfall", x = 54.2, y = 30.8, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper" }, -- 57
         { type = "COLLECT", quest = 151, questName = "Poor Old Blanchy", target = "Handful of Oats", count = 8, map = 1436, zone = "Westfall", x = 54, y = 25, near = true }, -- 58
         { type = "TURNIN", quest = 36, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 59
         { type = "ACCEPT", quest = 38, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 60

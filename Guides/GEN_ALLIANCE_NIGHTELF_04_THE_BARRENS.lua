@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_04_THE_BARRENS",
     name = "4. The Barrens 16-18 (Night Elf)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 16,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_05_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 4 of the NightElf route: level 16 to 18, 42 steps, ~95 min of play in the model (18989 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
-    stepCount = 62,
+    stepCount = 63,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 16227, npcName = "Bragok", map = 1413, zone = "The Barrens", x = 63.1, y = 37.2 }, -- 1
         { type = "ACCEPT", quest = 94465, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 2
@@ -65,17 +65,18 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 97005, questName = "Chol'aruk the Ravener", target = "Chol'aruk's Head", count = 1, map = 1413, zone = "The Barrens", x = 57.4, y = 27.2, optional = true, mobs = "Chol'aruk" }, -- 48
         { type = "ACCEPT", quest = 863, questName = "The Escape", npc = 3439, npcName = "Wizzlecrank's Shredder", map = 1413, zone = "The Barrens", x = 56.4, y = 7.4 }, -- 49
         { type = "TURNIN", quest = 863, questName = "The Escape", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 50
-        { type = "ACCEPT", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" }, note = "New in Forever" }, -- 51
-        { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Fire Tar", count = 1, map = 1432, zone = "Loch Modan", x = 35.6, y = 20, class = { "SHAMAN" }, mobs = "Tunnel Rat Geomancer" }, -- 52
-        { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Reagent Pouch", count = 1, map = 1432, zone = "Loch Modan", x = 34.8, y = 84.4, class = { "SHAMAN" }, mobs = "Stonesplinter Seer" }, -- 53
-        { type = "TURNIN", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" } }, -- 54
-        { type = "TURNIN", quest = 902, questName = "Samophlange", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 55
-        { type = "TURNIN", quest = 896, questName = "Miner's Fortune", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 56
-        { type = "TURNIN", quest = 97005, questName = "Chol'aruk the Ravener", npc = 267309, npcName = "Bainham", map = 1413, zone = "The Barrens", x = 61.8, y = 39.4, optional = true }, -- 57
-        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Shipment of Boots", count = 1, map = 1413, zone = "The Barrens", x = 62.6, y = 49.6 }, -- 58
-        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Telescopic Lens", count = 1, map = 1413, zone = "The Barrens", x = 63.6, y = 49.3 }, -- 59
-        { type = "TURNIN", quest = 888, questName = "Stolen Booty", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 60
-        { type = "ACCEPT", quest = 79192, questName = "Stepping Stones", map = 1413, zone = "The Barrens", x = 46.4, y = 73.8 }, -- 61
-        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 62
+        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" }, note = "New in Forever" }, -- 51
+        { type = "ACCEPT", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" }, note = "New in Forever" }, -- 52
+        { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Fire Tar", count = 1, map = 1432, zone = "Loch Modan", x = 35.6, y = 20, class = { "SHAMAN" }, mobs = "Tunnel Rat Geomancer" }, -- 53
+        { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Reagent Pouch", count = 1, map = 1432, zone = "Loch Modan", x = 34.8, y = 84.4, class = { "SHAMAN" }, mobs = "Stonesplinter Seer" }, -- 54
+        { type = "TURNIN", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" } }, -- 55
+        { type = "TURNIN", quest = 902, questName = "Samophlange", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 56
+        { type = "TURNIN", quest = 896, questName = "Miner's Fortune", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.4, y = 38.5 }, -- 57
+        { type = "TURNIN", quest = 97005, questName = "Chol'aruk the Ravener", npc = 267309, npcName = "Bainham", map = 1413, zone = "The Barrens", x = 61.8, y = 39.4, optional = true }, -- 58
+        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Shipment of Boots", count = 1, map = 1413, zone = "The Barrens", x = 62.6, y = 49.6 }, -- 59
+        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Telescopic Lens", count = 1, map = 1413, zone = "The Barrens", x = 63.6, y = 49.3 }, -- 60
+        { type = "TURNIN", quest = 888, questName = "Stolen Booty", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 61
+        { type = "ACCEPT", quest = 79192, questName = "Stepping Stones", map = 1413, zone = "The Barrens", x = 46.4, y = 73.8 }, -- 62
+        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 63
     } end,
 })

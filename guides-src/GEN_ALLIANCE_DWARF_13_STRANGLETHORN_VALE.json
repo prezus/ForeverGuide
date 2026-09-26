@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_13_STRANGLETHORN_VALE",
   "name": "13. Stranglethorn Vale 29-33 (Dwarf)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 29,
@@ -19,6 +19,8 @@
     {"type": "NOTE", "note": "Picked up: Crime and Punishment, The Fury Runs Deep, What Comes Around..., Quell the Uprising, The Color of Blood. When you have a group, open The Stockade under Dungeons.", "text": "Ready for The Stockade", "optional": true},
     {"type": "TURNIN", "quest": 2925, "questName": "Klockmort's Essentials", "npc": 6169, "npcName": "Klockmort Spannerspan", "map": 1455, "zone": "Ironforge", "x": 68.2, "y": 46.2, "optional": true},
     {"type": "TURNIN", "quest": 2931, "questName": "Castpipe's Task", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.4, "optional": true},
+    {"type": "ACCEPT", "quest": 1665, "questName": "Bartleby's Mug", "npc": 6090, "npcName": "Bartleby", "map": 1453, "zone": "Stormwind City", "x": 73.8, "y": 36.6, "class": ["WARRIOR"]},
+    {"type": "TURNIN", "quest": 1665, "questName": "Bartleby's Mug", "npc": 6089, "npcName": "Harry Burlguard", "map": 1453, "zone": "Stormwind City", "x": 74, "y": 37.2, "note": "reduced xp (10%) - you out-levelled it", "class": ["WARRIOR"]},
     {"type": "ACCEPT", "quest": 2359, "questName": "Klaven's Tower", "npc": 7024, "npcName": "Agent Kearnen", "map": 1436, "zone": "Westfall", "x": 68.4, "y": 70, "note": "Elite - group up", "optional": true, "class": ["ROGUE"]},
     {"type": "COLLECT", "quest": 2359, "questName": "Klaven's Tower", "target": "Klaven Mortwake's Journal", "count": 1, "mobs": "Klaven Mortwake", "map": 1436, "zone": "Westfall", "x": 70.4, "y": 74.2, "optional": true, "class": ["ROGUE"]},
     {"type": "COLLECT", "quest": 2359, "questName": "Klaven's Tower", "target": "Defias Tower Key", "count": 1, "mobs": "Malformed Defias Drone", "map": 1436, "zone": "Westfall", "x": 69.4, "y": 74.4, "optional": true, "class": ["ROGUE"]},

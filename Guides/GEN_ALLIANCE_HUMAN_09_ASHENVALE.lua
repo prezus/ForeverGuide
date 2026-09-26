@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_09_ASHENVALE",
     name = "9. Ashenvale 26-28 (Human)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 26,
@@ -39,13 +39,13 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1008, questName = "The Zoram Strand", npc = 3845, npcName = "Shindrell Swiftfire", map = 1440, zone = "Ashenvale", x = 34.7, y = 48.8 }, -- 22
         { type = "ACCEPT", quest = 991, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 23
         { type = "ACCEPT", quest = 1054, questName = "Culling the Threat", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 24
-        { type = "ACCEPT", quest = 1739, questName = "The Binding", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 25
-        { type = "KILL", quest = 1739, questName = "The Binding", npc = 5677, target = "Summoned Succubus", count = 1, map = 1453, zone = "Stormwind City", x = 25.2, y = 77.4, near = true, class = { "WARLOCK" } }, -- 26
-        { type = "TURNIN", quest = 1739, questName = "The Binding", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 27
-        { type = "KILL", quest = 1054, questName = "Culling the Threat", npc = 3987, target = "Dal Bloodclaw", map = 1440, zone = "Ashenvale", x = 39.6, y = 36.3, note = "loot Dal Bloodclaw's Skull" }, -- 28
-        { type = "TURNIN", quest = 1054, questName = "Culling the Threat", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 29
-        { type = "ACCEPT", quest = 1022, questName = "The Howling Vale", npc = 3880, npcName = "Sentinel Melyria Frostshadow", map = 1440, zone = "Ashenvale", x = 22.2, y = 53 }, -- 30
-        { type = "ACCEPT", quest = 1021, questName = "Vile Satyr! Dryads in Danger!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 31
+        { type = "KILL", quest = 1054, questName = "Culling the Threat", npc = 3987, target = "Dal Bloodclaw", map = 1440, zone = "Ashenvale", x = 39.6, y = 36.3, note = "loot Dal Bloodclaw's Skull" }, -- 25
+        { type = "TURNIN", quest = 1054, questName = "Culling the Threat", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 26
+        { type = "ACCEPT", quest = 1022, questName = "The Howling Vale", npc = 3880, npcName = "Sentinel Melyria Frostshadow", map = 1440, zone = "Ashenvale", x = 22.2, y = 53 }, -- 27
+        { type = "ACCEPT", quest = 1021, questName = "Vile Satyr! Dryads in Danger!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 28
+        { type = "ACCEPT", quest = 1739, questName = "The Binding", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 29
+        { type = "KILL", quest = 1739, questName = "The Binding", npc = 5677, target = "Summoned Succubus", count = 1, map = 1453, zone = "Stormwind City", x = 25.2, y = 77.4, near = true, class = { "WARLOCK" } }, -- 30
+        { type = "TURNIN", quest = 1739, questName = "The Binding", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 31
         { type = "COLLECT", quest = 1008, questName = "The Zoram Strand", target = "Wrathtail Head", count = 20, map = 1440, zone = "Ashenvale", x = 13.7, y = 30.9, near = true }, -- 32
         { type = "ACCEPT", quest = 1007, questName = "The Ancient Statuette", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 33
         { type = "COLLECT", quest = 1007, questName = "The Ancient Statuette", target = "Ancient Statuette", map = 1440, zone = "Ashenvale", x = 14.2, y = 20.6 }, -- 34

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_10_STRANGLETHORN_VALE",
     name = "10. Stranglethorn Vale 28-29 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 28,
@@ -17,12 +17,12 @@ ns.RegisterGuide({
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2859, npcName = "Gyll", map = 1434, zone = "Stranglethorn Vale", x = 27.5, y = 77.8 }, -- 1
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.5, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 2
-        { type = "ACCEPT", quest = 201, questName = "Investigate the Camp", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 3
-        { type = "TURNIN", quest = 201, questName = "Investigate the Camp", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 4
-        { type = "HEARTH", npc = 6807, npcName = "Innkeeper Skindle", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, note = "talk to Innkeeper Skindle and make this inn your home" }, -- 5
-        { type = "ACCEPT", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 6
-        { type = "KILL", quest = 575, questName = "Supply and Demand", npc = 1150, target = "River Crocolisk", count = 2, map = 1434, zone = "Stranglethorn Vale", x = 39.9, y = 14.4, near = true, note = "loot Large River Crocolisk Skin" }, -- 7
-        { type = "TURNIN", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 8
+        { type = "HEARTH", npc = 6807, npcName = "Innkeeper Skindle", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, note = "talk to Innkeeper Skindle and make this inn your home" }, -- 3
+        { type = "ACCEPT", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 4
+        { type = "KILL", quest = 575, questName = "Supply and Demand", npc = 1150, target = "River Crocolisk", count = 2, map = 1434, zone = "Stranglethorn Vale", x = 39.9, y = 14.4, near = true, note = "loot Large River Crocolisk Skin" }, -- 5
+        { type = "TURNIN", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 6
+        { type = "ACCEPT", quest = 201, questName = "Investigate the Camp", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 7
+        { type = "TURNIN", quest = 201, questName = "Investigate the Camp", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 8
         { type = "ACCEPT", quest = 583, questName = "Welcome to the Jungle", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.5 }, -- 9
         { type = "TURNIN", quest = 583, questName = "Welcome to the Jungle", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 10
         { type = "ACCEPT", quest = 185, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 11

@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_05_REDRIDGE_MOUNTAINS",
   "name": "5. Redridge Mountains 17-19 (Dwarf)",
-  "version": 6,
+  "version": 7,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 17,
@@ -17,6 +17,8 @@
     {"type": "TURNIN", "quest": 118, "questName": "The Price of Shoes", "npc": 514, "npcName": "Smith Argus", "map": 1429, "zone": "Elwynn Forest", "x": 41.6, "y": 65.6},
     {"type": "ACCEPT", "quest": 2041, "questName": "Speak with Shoni", "npc": 6569, "npcName": "Gnoarn", "map": 1455, "zone": "Ironforge", "x": 69.4, "y": 50.6},
     {"type": "TURNIN", "quest": 2041, "questName": "Speak with Shoni", "npc": 6579, "npcName": "Shoni the Shilent", "map": 1453, "zone": "Stormwind City", "x": 55.4, "y": 12.6},
+    {"type": "ACCEPT", "quest": 94864, "questName": "Taming the Beast", "npc": 251507, "npcName": "Josephine Carson", "map": 1429, "zone": "Elwynn Forest", "x": 41.2, "y": 66.2, "note": "New in Forever", "class": ["HUNTER"]},
+    {"type": "TURNIN", "quest": 94864, "questName": "Taming the Beast", "npc": 251507, "npcName": "Josephine Carson", "map": 1429, "zone": "Elwynn Forest", "x": 41.2, "y": 66.2, "note": "reduced xp (60%) - you out-levelled it", "class": ["HUNTER"]},
     {"type": "ACCEPT", "quest": 94466, "questName": "Call of Fire", "npc": 257808, "npcName": "Braldir Ashmantle", "map": 1432, "zone": "Loch Modan", "x": 32, "y": 66, "note": "New in Forever", "class": ["SHAMAN"]},
     {"type": "COLLECT", "quest": 94466, "questName": "Call of Fire", "target": "Fire Tar", "count": 1, "mobs": "Tunnel Rat Geomancer", "map": 1432, "zone": "Loch Modan", "x": 35.6, "y": 20, "class": ["SHAMAN"]},
     {"type": "COLLECT", "quest": 94466, "questName": "Call of Fire", "target": "Reagent Pouch", "count": 1, "mobs": "Stonesplinter Seer", "map": 1432, "zone": "Loch Modan", "x": 34.8, "y": 84.4, "class": ["SHAMAN"]},

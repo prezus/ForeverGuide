@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_01_TIRISFAL_GLADES",
     name = "1. Tirisfal Glades 1-12 (Undead)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 1,
@@ -49,15 +49,15 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 3099, questName = "Tainted Scroll", npc = 2126, npcName = "Maximillion", map = 1420, zone = "Tirisfal Glades", x = 30.8, y = 66.2, class = { "WARLOCK" } }, -- 32
         { type = "ACCEPT", quest = 3901, questName = "Rattling the Rattlecages", npc = 1569, npcName = "Shadow Priest Sarvis", map = 1420, zone = "Tirisfal Glades", x = 30.8, y = 66.2 }, -- 33
         { type = "TURNIN", quest = 3097, questName = "Hallowed Scroll", npc = 2123, npcName = "Dark Cleric Duesten", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66, class = { "PRIEST" } }, -- 34
-        { type = "COLLECT", quest = 3902, questName = "Scavenging Deathknell", target = "Scavenged Goods", count = 6, map = 1420, zone = "Tirisfal Glades", x = 32.5, y = 64.3, near = true }, -- 35
-        { type = "TURNIN", quest = 3902, questName = "Scavenging Deathknell", npc = 1740, npcName = "Deathguard Saltain", map = 1420, zone = "Tirisfal Glades", x = 31.6, y = 65.6 }, -- 36
-        { type = "KILL", quest = 3901, questName = "Rattling the Rattlecages", npc = 1890, target = "Rattlecage Skeleton", count = 12, map = 1420, zone = "Tirisfal Glades", x = 34.2, y = 64.7, near = true }, -- 37
-        { type = "ACCEPT", quest = 96656, questName = "The Adventurer", npc = 1570, npcName = "Executor Arren", map = 1420, zone = "Tirisfal Glades", x = 32, y = 66, note = "New in Forever" }, -- 38
-        { type = "TURNIN", quest = 3095, questName = "Simple Scroll", npc = 2119, npcName = "Dannal Stern", map = 1420, zone = "Tirisfal Glades", x = 32.6, y = 65.6, class = { "WARRIOR" } }, -- 39
-        { type = "ACCEPT", quest = 91208, questName = "Coming to Terms", npc = 244808, npcName = "Aramis Hammerhand", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66.2, class = { "PALADIN" }, note = "New in Forever" }, -- 40
-        { type = "TURNIN", quest = 3096, questName = "Encrypted Scroll", npc = 2122, npcName = "David Trias", map = 1420, zone = "Tirisfal Glades", x = 32.4, y = 65.6, class = { "ROGUE" } }, -- 41
-        { type = "TURNIN", quest = 3901, questName = "Rattling the Rattlecages", npc = 1569, npcName = "Shadow Priest Sarvis", map = 1420, zone = "Tirisfal Glades", x = 30.8, y = 66.2 }, -- 42
-        { type = "TURNIN", quest = 3098, questName = "Glyphic Scroll", npc = 2124, npcName = "Isabella", map = 1420, zone = "Tirisfal Glades", x = 30.8, y = 66, class = { "MAGE" } }, -- 43
+        { type = "TURNIN", quest = 3098, questName = "Glyphic Scroll", npc = 2124, npcName = "Isabella", map = 1420, zone = "Tirisfal Glades", x = 30.8, y = 66, class = { "MAGE" } }, -- 35
+        { type = "COLLECT", quest = 3902, questName = "Scavenging Deathknell", target = "Scavenged Goods", count = 6, map = 1420, zone = "Tirisfal Glades", x = 32.5, y = 64.3, near = true }, -- 36
+        { type = "TURNIN", quest = 3902, questName = "Scavenging Deathknell", npc = 1740, npcName = "Deathguard Saltain", map = 1420, zone = "Tirisfal Glades", x = 31.6, y = 65.6 }, -- 37
+        { type = "KILL", quest = 3901, questName = "Rattling the Rattlecages", npc = 1890, target = "Rattlecage Skeleton", count = 12, map = 1420, zone = "Tirisfal Glades", x = 34.2, y = 64.7, near = true }, -- 38
+        { type = "ACCEPT", quest = 96656, questName = "The Adventurer", npc = 1570, npcName = "Executor Arren", map = 1420, zone = "Tirisfal Glades", x = 32, y = 66, note = "New in Forever" }, -- 39
+        { type = "TURNIN", quest = 3095, questName = "Simple Scroll", npc = 2119, npcName = "Dannal Stern", map = 1420, zone = "Tirisfal Glades", x = 32.6, y = 65.6, class = { "WARRIOR" } }, -- 40
+        { type = "ACCEPT", quest = 91208, questName = "Coming to Terms", npc = 244808, npcName = "Aramis Hammerhand", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66.2, class = { "PALADIN" }, note = "New in Forever" }, -- 41
+        { type = "TURNIN", quest = 3096, questName = "Encrypted Scroll", npc = 2122, npcName = "David Trias", map = 1420, zone = "Tirisfal Glades", x = 32.4, y = 65.6, class = { "ROGUE" } }, -- 42
+        { type = "TURNIN", quest = 3901, questName = "Rattling the Rattlecages", npc = 1569, npcName = "Shadow Priest Sarvis", map = 1420, zone = "Tirisfal Glades", x = 30.8, y = 66.2 }, -- 43
         { type = "COMPLETE", quest = 6395, questName = "Marla's Last Wish", target = "Marla's Grave", map = 1420, zone = "Tirisfal Glades", x = 31.2, y = 65.1, note = "Samuel's Remains Buried" }, -- 44
         { type = "TURNIN", quest = 6395, questName = "Marla's Last Wish", npc = 1661, npcName = "Novice Elreth", map = 1420, zone = "Tirisfal Glades", x = 30.9, y = 66.1 }, -- 45
         { type = "ACCEPT", quest = 5651, questName = "In Favor of Darkness", npc = 2123, npcName = "Dark Cleric Duesten", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66, class = { "PRIEST" } }, -- 46
