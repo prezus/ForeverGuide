@@ -1248,7 +1248,20 @@ end
 
 -- ---- the Quest Guide window: rows, header, states, settings, waypoint fallback ----------
 do
-    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(5); settle()
+    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true)
+    -- a step this character follows and has not done, with a done step before it and an undone one
+    -- soon after: placed class steps come and go, and earlier tests have finished much of Northshire
+    local steps = G.active.steps
+    local function open(k) return steps[k] and G:StepApplies(steps[k]) and not steps[k].optional and not G:IsStepDone(steps[k], k) end
+    local start = 5
+    while steps[start] do
+        local doneBefore, openAfter = false, false
+        for k = 1, start - 1 do if G:StepApplies(steps[k]) and G:IsStepDone(steps[k], k) then doneBefore = true end end
+        for k = start + 1, start + 4 do if open(k) then openAfter = true end end
+        if open(start) and doneBefore and openAfter then break end
+        start = start + 1
+    end
+    G:SetStep(start); settle()
     ns.Tracker:SetMode("guide"); settle()
     ns.UI:Show(); settle()
     local f = ForeverGuideFrame
