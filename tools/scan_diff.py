@@ -72,7 +72,7 @@ def main():
     ranges = [(r.get(1), r.get(2)) if isinstance(r, dict) else (r[0], r[1]) for r in ranges]
     missing = {int(k) for k in (scan.get("missing") or {}) if isinstance(k, (int, float))}
     unanswered = {int(k) for k in (scan.get("unanswered") or {}) if isinstance(k, (int, float))}
-    print(f"scan from {sv}: build {scan.get('build')}, ranges {ranges}, {len(server)} quests exist, "
+    print(f"scan from {os.path.basename(sv)}: build {scan.get('build')}, ranges {ranges}, {len(server)} quests exist, "
           f"{len(missing)} ids do not, {len(unanswered)} unanswered, done={scan.get('done')}")
 
     questie = load_db(os.path.join(args.questie, "Database", "Classic", "classicQuestDB.lua"), QUEST_KEYS)

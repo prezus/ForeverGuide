@@ -32,8 +32,18 @@ where python >nul 2>nul && (
 set MSG=%~1
 if "%MSG%"=="" set MSG=update %date% %time%
 git add -A
-git -c user.name="%USERNAME%" -c user.email="%USERNAME%@users.noreply.github.com" commit -m "%MSG%" >nul 2>nul && echo committed: %MSG% || echo nothing new to commit
+rem commit as the identity you set in git, never the Windows login name
+git config user.name >nul 2>nul || goto noidentity
+git commit -m "%MSG%" >nul 2>nul && echo committed: %MSG% || echo nothing new to commit
 git pull --rebase origin main
 git push -u origin main || (echo push failed - see the message above & pause & exit /b 1)
 echo done.
 timeout /t 3 >nul
+exit /b 0
+
+:noidentity
+echo Set a git identity first (it is shown on every commit):
+echo     git config --global user.name "your GitHub name"
+echo     git config --global user.email "you@users.noreply.github.com"
+pause
+exit /b 1

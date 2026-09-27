@@ -228,6 +228,7 @@ _G.UnitExists = function(unit)
 end
 _G.UnitGUID = function(unit)
     if unit == "player" then return "Player-1-000001" end
+    if unit == "npc" and world.offerFromPlayer then return "Player-1-000002" end
     if world.plates and world.plates[unit] then return world.plates[unit].guid end
     local u = unit == "npc" and world.npc or world.target
     return u and ("Creature-0-1-1-1-" .. u.npcID .. "-0000000001")

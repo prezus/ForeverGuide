@@ -188,7 +188,7 @@ def main():
     known = vanilla_ids()
     stats = {"npc_points": 0, "starts": 0, "ends": 0, "obj_points": 0, "titles": 0}
     for f in files:
-        print("reading", f)
+        print("reading", os.path.basename(f))  # the full path names the account folder
         merge_file(f, db, known, stats)
     # drop entries that carry nothing useful
     for qid in list(db["quests"].keys()):

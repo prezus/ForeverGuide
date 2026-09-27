@@ -26,19 +26,23 @@ local function Window(name, width, height, title)
 end
 
 local prompt, list
+-- short on purpose: the less free text a report carries, the less it can identify anyone
+local REPORT_TEXT_MAX = 200
+Reports.TEXT_MAX = REPORT_TEXT_MAX
 function Reports:Prompt()
     if not prompt then
         local f = Window("ForeverGuideReportPrompt", 420, 170, "Report a wrong step")
-        local hint = Theme.NewText(f, { size = 11, color = Theme.C.textDim, maxLines = 2 })
+        local hint = Theme.NewText(f, { size = 11, color = Theme.C.textDim, maxLines = 3 })
         hint:SetPoint("TOPLEFT", f, "TOPLEFT", 14, -42)
         hint:SetPoint("TOPRIGHT", f, "TOPRIGHT", -14, -42)
-        hint:SetText("What is wrong? Stand at the correct location or target the correct NPC first.")
+        hint:SetText("What is wrong? Stand at the correct location or target the correct NPC first. Leave out names of players, characters and realms.")
+        f.hint = hint
         local input = CreateFrame("EditBox", nil, f, "InputBoxTemplate")
         input:SetSize(376, 26)
         input:SetPoint("TOPLEFT", f, "TOPLEFT", 22, -90)
         input:SetAutoFocus(false)
-        input:SetMaxLetters(500)
-        input:SetScript("OnEscapePressed", function(self) self:ClearFocus() f:Hide() end)
+        input:SetMaxLetters(REPORT_TEXT_MAX)
+        input:SetScript("OnEscapePressed", function(box) box:ClearFocus() f:Hide() end)
         f.input = input
         local save = Theme.NewButton(f, "Save report", 110, 24, function()
             local text = ns.Trim(input:GetText() or "")

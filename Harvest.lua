@@ -18,7 +18,7 @@
 -- Everything is stored next to the scanner's data so scan_diff.py sees it:
 --   ForeverGuideDB.scan.quests[id] = title
 --   ForeverGuideDB.harvest.lines[id] = { map, x, y, line, lineName, name }
---   ForeverGuideDB.harvest.maps[uiMapID] = { name, lines = n, at = time }
+--   ForeverGuideDB.harvest.maps[uiMapID] = { name, lines = n }
 -- ============================================================
 
 local _, ns = ...
@@ -62,7 +62,7 @@ end
 -- ------------------------------------------------------------
 function Harvest:ReadMap(mapID)
     if not Enabled() then return 0, 0 end
-    local s, h = Store()
+    local _, h = Store()
     local lines = ns.Call("C_QuestLine.GetAvailableQuestLines", mapID)
     if type(lines) ~= "table" then return 0, 0 end
     local n, new = 0, 0
@@ -95,8 +95,7 @@ function Harvest:ReadMap(mapID)
         end
     end
     local info = ns.Call("C_Map.GetMapInfo", mapID)
-    h.maps[mapID] = { name = type(info) == "table" and PlainString(info.name) or nil, lines = n,
-                      at = PlainNumber(ns.Safe(GetServerTime)) or 0 }
+    h.maps[mapID] = { name = type(info) == "table" and PlainString(info.name) or nil, lines = n }
     return n, new
 end
 
@@ -262,7 +261,7 @@ end
 function Harvest:Probe()
     if not Enabled() then ns.Print("enable Harvest under /fg options (Data collection) or /fg harvest on first.") return end
     local _, h = Store()
-    local probe = { at = PlainNumber(ns.Safe(GetServerTime)) or 0, map = ns.Player:GetMapID(), apis = {}, maps = {}, log = {} }
+    local probe = { map = ns.Player:GetMapID(), apis = {}, maps = {}, log = {} }
     h.probe = probe
     local answered = {}
     for _, path in ipairs(PROBE_MAP_APIS) do probe.apis[path] = ns.API(path) and "empty" or "missing" end

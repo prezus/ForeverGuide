@@ -124,6 +124,7 @@ do
         check(hub and hub.areaPoiID == 42 and hub.name == "Quest hub" and math.abs(hub.y - 25) < 0.01, "probe looks up quest hub details by id")
         check(probe.apis["C_AreaPoiInfo.GetQuestHubsForMap"] == 1 and probe.apis["C_AreaPoiInfo.GetAreaPOIForMap"] == "missing", "probe counts answers and marks APIs this client lacks")
         check(ns.db.harvest.probe == probe, "probe results are saved with the harvest data")
+        check(probe.at == nil, "probe stores no wall-clock time")
         check(probe.spells[1243969] ~= nil and probe.spells[1243969].aura == false, "probe records whether the character has the kill-XP aura")
         C_TaxiMap.GetTaxiNodesForMap, _G.C_AreaPoiInfo = taxi, areaPoi
     end
@@ -167,6 +168,59 @@ do
     check(dump:IsShown() and (dump.text:GetText() or ""):find("Nothing recorded", 1, true), "an empty recorder says so in the window")
     ns.db.recorder.entries = saved
     dump:Hide()
+end
+-- The recorder never keeps another player's identity or the wall-clock time.
+do
+    local function mentions(t, needle, seen)
+        seen = seen or {}
+        if type(t) == "string" then return t:find(needle, 1, true) ~= nil end
+        if type(t) ~= "table" or seen[t] then return false end
+        seen[t] = true
+        for k, v in pairs(t) do
+            if mentions(k, needle, seen) or mentions(v, needle, seen) then return true end
+        end
+        return false
+    end
+    local entries = ns.db.recorder.entries
+    local before = #entries
+    local npc, offered, fromPlayer = MOCK.npc, MOCK.offeredQuest, MOCK.offerFromPlayer
+    local autoShared = ns.AutoQuest.Cfg().shared
+    ns.AutoQuest.Cfg().shared = false
+    MOCK.npc = { name = "Partymate", npcID = 424242, level = 12 }
+    MOCK.offerFromPlayer = true
+    MOCK.offeredQuest = 5005
+    MOCK.log[5005] = { title = "Shared Privacy", level = 10, objectives = {} }
+    MOCK_FIRE("QUEST_DETAIL"); settle()
+    local offer = entries[#entries]
+    check(#entries == before + 1 and offer.e == "OFFER" and offer.q == 5005 and offer.shared == true,
+        "a quest shared by a player is recorded as shared")
+    check(not mentions(ns.db, "Partymate") and offer.npc == nil and offer.npcLevel == nil,
+        "a sharing player's name, level and id are not stored anywhere")
+    ns.Events:Fire("FG_QUEST_ACCEPTED", 5005, "Shared Privacy")
+    check(not mentions(ns.db, "Partymate") and entries[#entries].shared == true,
+        "accepting a shared quest does not store the sharing player")
+    -- the share's window has no "npc" unit: the targeted mob nearby is not the quest's giver
+    MOCK.npc, MOCK.target = nil, { name = "Hostile Wolf", npcID = 777, level = 5 }
+    MOCK_FIRE("QUEST_DETAIL"); settle()
+    local fallback = entries[#entries]
+    check(fallback.e == "OFFER" and fallback.shared == true and fallback.npc == nil and fallback.npcName == nil,
+        "a shared quest window is not credited to the player's target")
+    MOCK.target = nil
+    for i = before + 1, #entries do
+        check(entries[i].t == nil or entries[i].t < 1000000, "recorder entries carry no wall-clock time")
+    end
+    -- data saved by older versions: player names (entries without an npc id) and clock times go
+    entries[#entries + 1] = { e = "OFFER", q = 5005, npcName = "OldPartymate", npcLevel = 9, t = 1700000123 }
+    entries[#entries + 1] = { e = "GOSSIP", npc = 1234, npcName = "Old Giver", npcLevel = 5, t = 1700000124 }
+    ns.Recorder:Scrub()
+    local old1, old2 = entries[#entries - 1], entries[#entries]
+    check(not mentions(ns.db, "OldPartymate") and old1.npcLevel == nil and old1.t == nil,
+        "old entries lose a sharing player's name, level and clock time")
+    check(old2.npc == 1234 and old2.npcName == "Old Giver" and old2.t == nil, "old creature entries keep the creature")
+    while #entries > before do table.remove(entries) end
+    MOCK.log[5005] = nil
+    MOCK.npc, MOCK.offeredQuest, MOCK.offerFromPlayer = npc, offered, fromPlayer
+    ns.AutoQuest.Cfg().shared = autoShared
 end
 check(ns.db.ding.enabled == false and ns.db.nav.blizzardWaypoint == false
     and ns.db.nav.waypoint.enabled == false and ns.db.nav.waypoint.route == false
@@ -813,6 +867,11 @@ do
     ForeverGuideReportPrompt.input:SetText("giver moved east")
     ForeverGuideReportPrompt.save:GetScript("OnClick")()
     check(not ForeverGuideReportPrompt:IsShown() and ns.db.reports[2].text == "giver moved east", "Save records dialog feedback and closes it")
+    check((ForeverGuideReportPrompt.hint:GetText() or ""):find("names", 1, true),
+        "the feedback dialog asks players to leave names out")
+    ns.Commands:Run("wrong " .. string.rep("x", 300))
+    check(#ns.db.reports[3].text == 200, "report text is capped at 200 characters")
+    table.remove(ns.db.reports, 3)
     ns.Commands:Run("reports")
     check(ForeverGuideReports and ForeverGuideReports:IsShown() and ForeverGuideReports.text:GetText():find("giver moved east", 1, true)
         and ForeverGuideReports.text:GetText():find("expected map", 1, true), "/fg reports shows copyable full feedback")
