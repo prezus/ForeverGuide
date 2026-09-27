@@ -445,7 +445,7 @@ function M.questObjectives(q)
                 if n then lo, hi = math.min(lo or 99, n.min or 99), math.max(hi or 0, n.max or 0) end
             end
             out[#out + 1] = { kind = "COLLECT", name = itemName, text = e[2], locs = locs, count = countIn(texts, itemName),
-                drop = fromMobs, mob = fromMobs and { min = lo or q.lvl or 1, max = hi or q.lvl or 1 } or nil }
+                drop = fromMobs, mob = fromMobs and { min = lo or q.lvl or 1, max = hi or q.lvl or 1 } or nil, item = e[1] }
         end
     end
     if q.credit and q.credit[1] then
