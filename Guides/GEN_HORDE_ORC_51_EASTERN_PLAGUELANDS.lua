@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_51_EASTERN_PLAGUELANDS",
     name = "51. Eastern Plaguelands 57-60 (Orc)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 57,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Chapter 51 of the Orc route: level 57 to 60, 30 steps, ~815 min of play in the model (9572 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 78,
+    stepCount = 80,
     steps = function() return {
         { type = "TURNIN", quest = 6029, questName = "The Everlook Report", npc = 10839, npcName = "Argent Officer Garush", map = 1420, zone = "Tirisfal Glades", x = 83.2, y = 68.4 }, -- 1
         { type = "ACCEPT", quest = 1805, questName = "Tome of the Cabal", npc = 6293, npcName = "Jorah Annison", map = 1458, zone = "Undercity", x = 76, y = 37.6, class = { "WARLOCK" }, race = { "Orc" } }, -- 2
@@ -34,7 +34,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 8859, questName = "Secrets of the Colossus - Zora", npc = 11034, npcName = "Lord Maxwell Tyrosus", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 58 }, -- 18
         { type = "ACCEPT", quest = 9200, questName = "Craftsman's Writ - Major Mana Potion", npc = 16131, npcName = "Rohan the Assassin", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.4, optional = true, note = "Loot Craftsman's Writ - Major Mana Potion from Rohan the Assassin and use it to start the quest; Elite - group up" }, -- 19
         { type = "COLLECT", quest = 9124, questName = "Cryptstalker Armor Doesn't Make Itself...", target = "Crypt Fiend Parts", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 83, y = 43.1, near = true }, -- 20
-        { type = "COLLECT", quest = 9200, questName = "Craftsman's Writ - Major Mana Potion", target = "Major Mana Potion", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 75.4, y = 37, optional = true, near = true, mobs = "Grimtooth / Red Dragonspawn / Red Wyrmkin / Red Scalebane" }, -- 21
+        { type = "COLLECT", quest = 9200, questName = "Craftsman's Writ - Major Mana Potion", target = "Major Mana Potion", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 75.4, y = 37, optional = true, near = true, mobs = "Red Dragonspawn / Red Wyrmkin / Red Scalebane / Scalebane Lieutenant" }, -- 21
         { type = "COLLECT", quest = 9128, questName = "The Elemental Equation", target = "Core of Elements", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 72.8, y = 35.2, near = true }, -- 22
         { type = "KILL", quest = 9665, questName = "Bolstering Our Defenses", npc = 17690, target = "<TXT>Eastwall Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 67.5, y = 48, note = "Capture Eastwall Tower" }, -- 23
         { type = "KILL", quest = 9665, questName = "Bolstering Our Defenses", npc = 17696, target = "<TXT>Northpass Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 56.6, y = 24.4, note = "Capture Northpass Tower" }, -- 24
@@ -82,15 +82,17 @@ ns.RegisterGuide({
         { type = "GRIND", npc = 8532, target = "Diseased Flayer", level = 60, map = 1423, zone = "Eastern Plaguelands", x = 33.6, y = 61.4, near = true, note = "grind Diseased Flayer (level 57-59) to level 60 - nothing worth questing at 59" }, -- 66
         { type = "ACCEPT", quest = 9123, questName = "The Dread Citadel - Naxxramas", npc = 16116, npcName = "Archmage Angela Dosantos", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.2, note = "Objectives: Argent Dawn" }, -- 67
         { type = "TURNIN", quest = 9123, questName = "The Dread Citadel - Naxxramas", npc = 16116, npcName = "Archmage Angela Dosantos", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.2 }, -- 68
-        { type = "ACCEPT", quest = 9362, questName = "Warlord Krellian", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 69
-        { type = "COLLECT", quest = 9362, questName = "Warlord Krellian", target = "Prismatic Shell", count = 1, map = 1447, zone = "Azshara", x = 40.4, y = 53, near = true, class = { "MAGE" }, mobs = "Warlord Krellian / Scalebeard" }, -- 70
-        { type = "TURNIN", quest = 9362, questName = "Warlord Krellian", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 71
-        { type = "ACCEPT", quest = 7562, questName = "Mor'zul Bloodbringer", npc = 5753, npcName = "Martha Strain", map = 1458, zone = "Undercity", x = 85.8, y = 15.8, class = { "WARLOCK" } }, -- 72
-        { type = "TURNIN", quest = 7562, questName = "Mor'zul Bloodbringer", npc = 14436, npcName = "Mor'zul Bloodbringer", map = 1428, zone = "Burning Steppes", x = 12.6, y = 31.6, class = { "WARLOCK" } }, -- 73
-        { type = "ACCEPT", quest = 7623, questName = "Lord Banehollow", npc = 14437, npcName = "Gorzeeki Wildeyes", map = 1428, zone = "Burning Steppes", x = 12.4, y = 31.6, class = { "WARLOCK" } }, -- 74
-        { type = "TURNIN", quest = 7623, questName = "Lord Banehollow", npc = 9516, npcName = "Lord Banehollow", map = 1448, zone = "Felwood", x = 36, y = 44.6, class = { "WARLOCK" } }, -- 75
-        { type = "ACCEPT", quest = 7582, questName = "The Prison's Casing", npc = 14463, npcName = "Daio the Decrepit", map = 1419, zone = "Blasted Lands", x = 34, y = 50.2, optional = true, class = { "WARLOCK" }, note = "Elite - group up" }, -- 76
-        { type = "COLLECT", quest = 7582, questName = "The Prison's Casing", target = "Tears of the Hederine", count = 5, map = 1452, zone = "Winterspring", x = 55.5, y = 84.2, optional = true, near = true, class = { "WARLOCK" }, mobs = "Hederine Initiate / Hederine Manastalker / Hederine Slayer" }, -- 77
-        { type = "TURNIN", quest = 7582, questName = "The Prison's Casing", npc = 14463, npcName = "Daio the Decrepit", map = 1419, zone = "Blasted Lands", x = 34, y = 50.2, optional = true, class = { "WARLOCK" } }, -- 78
+        { type = "ACCEPT", quest = 9033, questName = "Echoes of War", npc = 16115, npcName = "Commander Eligor Dawnbringer", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 58.2, optional = true, note = "For Naxxramas (dungeon guide)" }, -- 69
+        { type = "NOTE", optional = true, text = "Ready for Naxxramas", note = "Picked up: Echoes of War. When you have a group, open Naxxramas under Dungeons." }, -- 70
+        { type = "ACCEPT", quest = 9362, questName = "Warlord Krellian", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 71
+        { type = "COLLECT", quest = 9362, questName = "Warlord Krellian", target = "Prismatic Shell", count = 1, map = 1447, zone = "Azshara", x = 40.4, y = 53, near = true, class = { "MAGE" }, mobs = "Warlord Krellian / Scalebeard" }, -- 72
+        { type = "TURNIN", quest = 9362, questName = "Warlord Krellian", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 73
+        { type = "ACCEPT", quest = 7562, questName = "Mor'zul Bloodbringer", npc = 5753, npcName = "Martha Strain", map = 1458, zone = "Undercity", x = 85.8, y = 15.8, class = { "WARLOCK" } }, -- 74
+        { type = "TURNIN", quest = 7562, questName = "Mor'zul Bloodbringer", npc = 14436, npcName = "Mor'zul Bloodbringer", map = 1428, zone = "Burning Steppes", x = 12.6, y = 31.6, class = { "WARLOCK" } }, -- 75
+        { type = "ACCEPT", quest = 7623, questName = "Lord Banehollow", npc = 14437, npcName = "Gorzeeki Wildeyes", map = 1428, zone = "Burning Steppes", x = 12.4, y = 31.6, class = { "WARLOCK" } }, -- 76
+        { type = "TURNIN", quest = 7623, questName = "Lord Banehollow", npc = 9516, npcName = "Lord Banehollow", map = 1448, zone = "Felwood", x = 36, y = 44.6, class = { "WARLOCK" } }, -- 77
+        { type = "ACCEPT", quest = 7582, questName = "The Prison's Casing", npc = 14463, npcName = "Daio the Decrepit", map = 1419, zone = "Blasted Lands", x = 34, y = 50.2, optional = true, class = { "WARLOCK" }, note = "Elite - group up" }, -- 78
+        { type = "COLLECT", quest = 7582, questName = "The Prison's Casing", target = "Tears of the Hederine", count = 5, map = 1452, zone = "Winterspring", x = 55.5, y = 84.2, optional = true, near = true, class = { "WARLOCK" }, mobs = "Hederine Initiate / Hederine Manastalker / Hederine Slayer" }, -- 79
+        { type = "TURNIN", quest = 7582, questName = "The Prison's Casing", npc = 14463, npcName = "Daio the Decrepit", map = 1419, zone = "Blasted Lands", x = 34, y = 50.2, optional = true, class = { "WARLOCK" } }, -- 80
     } end,
 })
