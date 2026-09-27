@@ -1,0 +1,23 @@
+{
+  "id": "GEN_HORDE_TAUREN_38_AZSHARA",
+  "name": "38. Azshara 51-52 (Tauren)",
+  "version": 3,
+  "faction": "Horde",
+  "race": ["Tauren"],
+  "minLevel": 51,
+  "maxLevel": 52,
+  "map": 1447,
+  "zone": "Azshara",
+  "next": "GEN_HORDE_TAUREN_39_FELWOOD",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 38 of the Tauren route: level 51 to 52, 1 steps, ~129 min of play in the model (36303 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "steps": [
+    {"type": "ACCEPT", "quest": 7028, "questName": "Twisted Evils", "npc": 13656, "npcName": "Willow", "map": 1443, "zone": "Desolace", "x": 62.2, "y": 39.6, "note": "For Maraudon (dungeon guide)", "optional": true},
+    {"type": "ACCEPT", "quest": 7029, "questName": "Vyletongue Corruption", "npc": 11823, "npcName": "Vark Battlescar", "map": 1443, "zone": "Desolace", "x": 23.2, "y": 70.2, "note": "For Maraudon (dungeon guide)", "optional": true},
+    {"type": "ACCEPT", "quest": 7044, "questName": "Legends of Maraudon", "npc": 13697, "npcName": "Cavindra", "map": 1443, "zone": "Desolace", "x": 31.9, "y": 63.8, "note": "For Maraudon (dungeon guide)", "optional": true},
+    {"type": "ACCEPT", "quest": 7064, "questName": "Corruption of Earth and Seed", "npc": 13699, "npcName": "Selendra", "map": 1443, "zone": "Desolace", "x": 26.8, "y": 77.6, "note": "For Maraudon (dungeon guide)", "optional": true},
+    {"type": "NOTE", "note": "Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons.", "text": "Ready for Maraudon", "optional": true},
+    {"type": "GRIND", "npc": 8761, "target": "Mosshoof Courser", "level": 52, "map": 1447, "zone": "Azshara", "x": 66.4, "y": 27.4, "near": true, "note": "grind Mosshoof Courser (level 52-53) to level 52 - nothing worth questing at 51"},
+    {"type": "COLLECT", "quest": 8419, "questName": "An Imp's Request", "target": "Felcloth", "count": 1, "mobs": "Felguard Sentry / Legashi Satyr / Legashi Rogue / Legashi Hellcaller", "map": 1447, "zone": "Azshara", "x": 62.8, "y": 25.5, "near": true, "class": ["WARLOCK"]}
+  ]
+}

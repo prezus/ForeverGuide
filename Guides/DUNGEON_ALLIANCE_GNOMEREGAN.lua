@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_ALLIANCE_GNOMEREGAN",
-    name = "Gnomeregan 25-31",
-    version = 1,
+    name = "Gnomeregan 28-31",
+    version = 2,
     kind = "dungeon",
     faction = "Alliance",
-    minLevel = 25,
+    minLevel = 28,
     maxLevel = 31,
     map = 1426,
     zone = "Dun Morogh",
     author = "ForeverGuide route planner",
     notes = "Gnomeregan: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 43,
+    stepCount = 50,
     steps = function() return {
         { type = "ACCEPT", quest = 2923, questName = "Tinkmaster Overspark", npc = 7917, npcName = "Brother Sarno", map = 1453, zone = "Stormwind City", x = 40.6, y = 30.8 }, -- 1
         { type = "TURNIN", quest = 2923, questName = "Tinkmaster Overspark", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2 }, -- 2
@@ -25,37 +25,44 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 2928, questName = "Gyrodrillmatic Excavationators", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6 }, -- 9
         { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2 }, -- 10
         { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2 }, -- 11
-        { type = "ACCEPT", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.4 }, -- 12
-        { type = "ACCEPT", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 13
-        { type = "NOTE", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8, text = "Find a group for Gnomeregan", note = "All quests available from level 25; hand them in by level 31 for full XP" }, -- 14
-        { type = "ACCEPT", quest = 2904, questName = "A Fine Mess", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 15
-        { type = "ACCEPT", quest = 2951, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 16
-        { type = "ACCEPT", quest = 4601, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 17
-        { type = "ACCEPT", quest = 4602, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 18
-        { type = "COLLECT", quest = 2922, questName = "Save Techbot's Brain!", target = "Techbot's Memory Core", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 19
-        { type = "COLLECT", quest = 2924, questName = "Essential Artificials", target = "Essential Artificial", count = 12, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 20
-        { type = "COLLECT", quest = 2926, questName = "Gnogaine", target = "Full Leaden Collection Phial", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 21
-        { type = "COLLECT", quest = 2928, questName = "Gyrodrillmatic Excavationators", target = "Robo-mechanical Guts", count = 24, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 22
-        { type = "COLLECT", quest = 2930, questName = "Data Rescue", target = "Prismatic Punch Card", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 23
-        { type = "COLLECT", quest = 2951, questName = "The Sparklematic 5200!", target = "Grime-Encrusted Object", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 24
-        { type = "COLLECT", quest = 4601, questName = "The Sparklematic 5200!", target = "Grime-Encrusted Object", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 25
-        { type = "COLLECT", quest = 4602, questName = "The Sparklematic 5200!", target = "Grime-Encrusted Object", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 26
-        { type = "TURNIN", quest = 2951, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 27
-        { type = "TURNIN", quest = 4601, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 28
-        { type = "TURNIN", quest = 4602, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 29
-        { type = "TURNIN", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 30
-        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2 }, -- 31
-        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2 }, -- 32
-        { type = "TURNIN", quest = 2928, questName = "Gyrodrillmatic Excavationators", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6 }, -- 33
-        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.4 }, -- 34
-        { type = "TURNIN", quest = 2904, questName = "A Fine Mess", npc = 7853, npcName = "Scooty", map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 77.4 }, -- 35
-        { type = "ACCEPT", quest = 2952, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 36
-        { type = "TURNIN", quest = 2952, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 37
-        { type = "ACCEPT", quest = 2962, questName = "The Only Cure is More Green Glow", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 38
-        { type = "TURNIN", quest = 2962, questName = "The Only Cure is More Green Glow", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 39
-        { type = "ACCEPT", quest = 4605, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 40
-        { type = "TURNIN", quest = 4605, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 41
-        { type = "ACCEPT", quest = 4606, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 42
-        { type = "TURNIN", quest = 4606, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 43
+        { type = "ACCEPT", quest = 2929, questName = "The Grand Betrayal", npc = 7937, npcName = "High Tinker Mekkatorque", map = 1455, zone = "Ironforge", x = 69, y = 49 }, -- 12
+        { type = "ACCEPT", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.4 }, -- 13
+        { type = "ACCEPT", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 14
+        { type = "NOTE", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8, text = "Find a group for Gnomeregan", note = "All quests available from level 28; hand them in by level 31 for full XP" }, -- 15
+        { type = "ACCEPT", quest = 2904, questName = "A Fine Mess", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 16
+        { type = "ACCEPT", quest = 2945, questName = "Grime-Encrusted Ring", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 17
+        { type = "ACCEPT", quest = 2951, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 18
+        { type = "ACCEPT", quest = 4601, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 19
+        { type = "ACCEPT", quest = 4602, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 20
+        { type = "COLLECT", quest = 2922, questName = "Save Techbot's Brain!", target = "Techbot's Memory Core", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 21
+        { type = "COLLECT", quest = 2924, questName = "Essential Artificials", target = "Essential Artificial", count = 12, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 22
+        { type = "COLLECT", quest = 2926, questName = "Gnogaine", target = "Full Leaden Collection Phial", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 23
+        { type = "COLLECT", quest = 2928, questName = "Gyrodrillmatic Excavationators", target = "Robo-mechanical Guts", count = 24, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 24
+        { type = "KILL", quest = 2929, questName = "The Grand Betrayal", npc = 7800, target = "Mekgineer Thermaplugg", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 25
+        { type = "COLLECT", quest = 2930, questName = "Data Rescue", target = "Prismatic Punch Card", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 26
+        { type = "COLLECT", quest = 2951, questName = "The Sparklematic 5200!", target = "Grime-Encrusted Object", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 27
+        { type = "COLLECT", quest = 4601, questName = "The Sparklematic 5200!", target = "Grime-Encrusted Object", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 28
+        { type = "COLLECT", quest = 4602, questName = "The Sparklematic 5200!", target = "Grime-Encrusted Object", count = 1, map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 29
+        { type = "TURNIN", quest = 2945, questName = "Grime-Encrusted Ring", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 30
+        { type = "TURNIN", quest = 2951, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 31
+        { type = "TURNIN", quest = 4601, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 32
+        { type = "TURNIN", quest = 4602, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 33
+        { type = "TURNIN", quest = 2926, questName = "Gnogaine", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 34
+        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2 }, -- 35
+        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2 }, -- 36
+        { type = "TURNIN", quest = 2928, questName = "Gyrodrillmatic Excavationators", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6 }, -- 37
+        { type = "TURNIN", quest = 2929, questName = "The Grand Betrayal", npc = 7937, npcName = "High Tinker Mekkatorque", map = 1455, zone = "Ironforge", x = 69, y = 49 }, -- 38
+        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.4 }, -- 39
+        { type = "TURNIN", quest = 2904, questName = "A Fine Mess", npc = 7853, npcName = "Scooty", map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 77.4 }, -- 40
+        { type = "ACCEPT", quest = 2947, questName = "Return of the Ring", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 41
+        { type = "TURNIN", quest = 2947, questName = "Return of the Ring", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 42
+        { type = "ACCEPT", quest = 2952, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 43
+        { type = "TURNIN", quest = 2952, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 44
+        { type = "ACCEPT", quest = 2962, questName = "The Only Cure is More Green Glow", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 45
+        { type = "TURNIN", quest = 2962, questName = "The Only Cure is More Green Glow", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 46
+        { type = "ACCEPT", quest = 4605, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 47
+        { type = "TURNIN", quest = 4605, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 48
+        { type = "ACCEPT", quest = 4606, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 49
+        { type = "TURNIN", quest = 4606, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 50
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_40_EASTERN_PLAGUELANDS",
     name = "40. Eastern Plaguelands 52-53 (Human)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 52,
@@ -12,32 +12,19 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     next = "GEN_ALLIANCE_HUMAN_41_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 40 of the Human route: level 52 to 53, 24 steps, ~211 min of play in the model (18249 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 24,
+    notes = "Chapter 40 of the Human route: level 52 to 53, 10 steps, ~179 min of play in the model (7920 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 11,
     steps = function() return {
-        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.0, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
-        { type = "TURNIN", quest = 5210, questName = "Brother Carlin", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 2
-        { type = "ACCEPT", quest = 5181, questName = "Villains of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 3
-        { type = "COLLECT", quest = 5181, questName = "Villains of Darrowshire", target = "Shattered Sword of Marduk", map = 1423, zone = "Eastern Plaguelands", x = 53.9, y = 65.8 }, -- 4
-        { type = "COLLECT", quest = 5181, questName = "Villains of Darrowshire", target = "Skull of Horgus", map = 1423, zone = "Eastern Plaguelands", x = 51.1, y = 49.9 }, -- 5
-        { type = "TURNIN", quest = 5181, questName = "Villains of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 6
-        { type = "ACCEPT", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 7
-        { type = "ACCEPT", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 8
-        { type = "ACCEPT", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 9
-        { type = "ACCEPT", quest = 5742, questName = "Redemption", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 10
-        { type = "KILL", quest = 5742, questName = "Redemption", npc = 1855, target = "Tirion Fordring", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true }, -- 11
-        { type = "TURNIN", quest = 5742, questName = "Redemption", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true }, -- 12
-        { type = "COLLECT", quest = 5544, questName = "Carrion Grubbage", target = "Slab of Carrion Worm Meat", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 6.8, y = 42.2, near = true }, -- 13
-        { type = "TURNIN", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 14
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8596, target = "Plaguehound Runt", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 7.7, y = 53.9, near = true }, -- 15
-        { type = "KILL", quest = 5543, questName = "Blood Tinged Skies", npc = 8600, target = "Plaguebat", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 15, y = 75.5, near = true }, -- 16
-        { type = "ACCEPT", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 17
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8598, target = "Frenzied Plaguehound", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 19.6, y = 25.9, near = true }, -- 18
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8597, target = "Plaguehound", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 53.1, y = 57.9, near = true }, -- 19
-        { type = "COLLECT", quest = 6164, questName = "Augustus' Receipt Book", target = "Augustus' Receipt Book", map = 1423, zone = "Eastern Plaguelands", x = 17.4, y = 31.1 }, -- 20
-        { type = "TURNIN", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 21
-        { type = "TURNIN", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 22
-        { type = "TURNIN", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 23
-        { type = "GRIND", npc = 8596, target = "Plaguehound Runt", level = 53, map = 1423, zone = "Eastern Plaguelands", x = 7.7, y = 53.9, near = true, note = "grind Plaguehound Runt (level 53-54) to level 53 - nothing worth questing at 52" }, -- 24
+        { type = "FLIGHTPATH", npc = 12617, npcName = "Khaelyn Steelwing", map = 1423, zone = "Eastern Plaguelands", x = 71.8, y = 49.6 }, -- 1
+        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.3, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 2
+        { type = "HEARTH", npc = 16256, npcName = "Jessica Chambers", map = 1423, zone = "Light's Hope Chapel", x = 71.8, y = 48.5, note = "talk to Jessica Chambers and make this inn your home" }, -- 3
+        { type = "ACCEPT", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 4
+        { type = "ACCEPT", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 5
+        { type = "KILL", quest = 5211, questName = "Defenders of Darrowshire", npc = 11064, target = "Darrowshire Spirit", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 81.8, y = 42.1, near = true }, -- 6
+        { type = "TURNIN", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 7
+        { type = "TURNIN", quest = 5142, questName = "Little Pamela", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 8
+        { type = "KILL", quest = 6021, questName = "Zaeldarr the Outcast", npc = 12250, target = "Zaeldarr the Outcast", map = 1423, zone = "Eastern Plaguelands", x = 27.5, y = 84.9, note = "loot Zaeldarr's Head" }, -- 9
+        { type = "TURNIN", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 10
+        { type = "GRIND", npc = 8596, target = "Plaguehound Runt", level = 53, map = 1423, zone = "Eastern Plaguelands", x = 52.8, y = 78.3, near = true, note = "grind Plaguehound Runt (level 53-54) to level 53 - nothing worth questing at 52" }, -- 11
     } end,
 })

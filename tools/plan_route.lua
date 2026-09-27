@@ -69,6 +69,9 @@ local GRIND_FACTOR = env("FG_GRINDF", 0.7)   -- grind instead when the best chap
 local ZONE_SWITCH = env("FG_SWITCH", 180)    -- fixed cost of changing zones (orientation, flight master, loading)
 local MIN_CHAPTER = env("FG_MINCH", 600)     -- a trip to another zone must be worth at least this many seconds of play
 local CROSS_SEA = env("FG_CROSSSEA", 0.85)   -- rate factor for a chapter on the other continent
+local AHEAD = env("FG_AHEAD", 3)             -- a quest is taken at most this many levels above the player
+local STRAY = env("FG_STRAY", 3)             -- a spawn with no other within this many map percent is a stray
+local MIN_GRIND = env("FG_MINGRIND", 6)      -- below this level the route quests whenever it can: starting zones are built for it
 local MAX_CHAPTERS = 150
 local REMOTE = 1e6                           -- "in another zone" marker distance
 
@@ -81,6 +84,23 @@ local function classesOf(mask)
     return #out > 0 and out or nil
 end
 
+--- An objective's spawns without the strays: a spawn with no other spawn of it within STRAY map
+--- percent, when most spawns have one (16 Frostmane Headhunters at Frostmane Hold, and two lone
+--- records at Shimmer Ridge that nearest() would otherwise send the player to).
+local function withoutStrays(locs)
+    if #locs < 4 then return locs end
+    local kept = {}
+    for i, a in ipairs(locs) do
+        for j, b in ipairs(locs) do
+            if i ~= j and a.zone == b.zone and math.abs(a.x - b.x) <= STRAY and math.abs(a.y - b.y) <= STRAY then
+                kept[#kept + 1] = a
+                break
+            end
+        end
+    end
+    return #kept * 2 >= #locs and kept or locs
+end
+
 local recCache = {}
 local function rec(id)
     local r = recCache[id]
@@ -90,7 +110,12 @@ local function rec(id)
           escort = D.isEscort(q), classes = classesOf(q.classes) }
     for _, o in ipairs(r.objs) do
         if o.elite then r.elite = true end
+        o.locs = withoutStrays(o.locs)
         o.static = (#o.locs == 0)     -- no known place: counts as done when accepted (talk / use item)
+        -- ...unless it is something to kill or loot: then the place is unknown (inside a dungeon,
+        -- a battleground mark), not nowhere. Knowledge in the Deeps (971) is not free xp at level 10.
+        -- The item the giver hands over is the exception: delivering it is the objective.
+        if o.static and (o.kind == "KILL" or (o.kind == "COLLECT" and o.item ~= q.srcitem)) then r.unplaced = true end
     end
     -- quests other quests need (chain links)
     recCache[id] = r
@@ -140,7 +165,7 @@ local function questOK(id, factionMask, allowElite)
     if ok and q.classes and q.classes ~= 0 then ok = false end                                   -- class quests: not modelled
     if ok then
         local r = rec(id)
-        if #r.starts == 0 or #r.ends == 0 then ok = false end
+        if #r.starts == 0 or #r.ends == 0 or r.unplaced then ok = false end
         if ok and r.elite and not allowElite and not os.getenv("FG_ELITE") then ok = false end
     end
     baseOK[key] = ok and true or false
@@ -265,6 +290,7 @@ local function eligible(state, r, zone)
     if s and (s.accepted or s.turnedIn) then return false end
     if not prereqsDone(state, r) then return false end
     if (r.q.req or 0) > level(state) then return false end
+    if (r.q.lvl or 0) > level(state) + AHEAD then return false end
     if not inZone(r.starts, zone) then return false end
     -- objectives must be in this zone (or nowhere in particular)
     for i, o in ipairs(r.objs) do
@@ -928,7 +954,10 @@ local function planRoute(startZone)
         for _, zd in ipairs(D.ZONES) do
             if (not zd.faction or zd.faction == faction) and not (zd.races and zd.id ~= startZone.id) then
                 local fits = (zd.city or (zd.min <= L + 4 and zd.max >= L - 2))
-                if fits and zonePromising(state, zd) >= (zd.city and 1 or 3) then cands[#cands + 1] = zd end
+                -- the starting zone is enough with one quest below MIN_GRIND: Tirisfal at level 1 has only
+                -- The Mindless Ones, and a new character quests there rather than grinding
+                local startHere = L < MIN_GRIND and zd.id == startZone.id
+                if fits and zonePromising(state, zd) >= ((zd.city or startHere) and 1 or 3) then cands[#cands + 1] = zd end
             end
         end
         local best
@@ -990,7 +1019,9 @@ local function planRoute(startZone)
                 end
             end
         end
-        if not best or best.rate < GRIND_FACTOR * grindRate then
+        -- Below MIN_GRIND a starting zone's quests win whenever there are any: the kill model
+        -- overrates grinding at levels 1-5, and a guide that opens with "grind to 2" is wrong.
+        if not best or (best.rate < GRIND_FACTOR * grindRate and L >= MIN_GRIND) then
             -- grind a level where we stand, then look again
             grinds = grinds + 1
             if grinds > 30 then break end

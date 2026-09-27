@@ -1248,7 +1248,20 @@ end
 
 -- ---- the Quest Guide window: rows, header, states, settings, waypoint fallback ----------
 do
-    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(5); settle()
+    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true)
+    -- a step this character follows and has not done, with a done step before it and an undone one
+    -- soon after: placed class steps come and go, and earlier tests have finished much of Northshire
+    local steps = G.active.steps
+    local function open(k) return steps[k] and G:StepApplies(steps[k]) and not steps[k].optional and not G:IsStepDone(steps[k], k) end
+    local start = 5
+    while steps[start] do
+        local doneBefore, openAfter = false, false
+        for k = 1, start - 1 do if G:StepApplies(steps[k]) and G:IsStepDone(steps[k], k) then doneBefore = true end end
+        for k = start + 1, start + 4 do if open(k) then openAfter = true end end
+        if open(start) and doneBefore and openAfter then break end
+        start = start + 1
+    end
+    G:SetStep(start); settle()
     ns.Tracker:SetMode("guide"); settle()
     ns.UI:Show(); settle()
     local f = ForeverGuideFrame
@@ -1742,7 +1755,7 @@ do
     check(P.Number(19600) == "19 600" and P.Number(940) == "940", "numbers are grouped for reading (" .. P.Number(19600) .. ")")
 
     -- a chapter's model comes from the planner, through the notes of the guides already generated
-    local g = ns.Guide.registry["GEN_ALLIANCE_DWARF_04_WESTFALL"]
+    local g = ns.Guide.registry[chapterId("GEN_ALLIANCE_DWARF_0[2-9]_")]
     local minutes, xph = P.Model(g)
     check(minutes and minutes > 0 and xph and xph > 0, "the model minutes / xp-h are read off a generated chapter (" .. tostring(minutes) .. ", " .. tostring(xph) .. ")")
     check(P.Model({ modelMinutes = 90, modelXph = 12000 }) == 90, "a guide that carries the numbers is used directly")
@@ -1794,7 +1807,7 @@ do
     check(route ~= nil and mine ~= nil, "the followed route has a chapter for level 20 (" .. tostring(mine and mine.id) .. ")")
     check(ns.Guide:ForMyRace(mine) == true, "and it is one for this character's race")
 
-    ns.Guide:Activate("GEN_ALLIANCE_NIGHTELF_06_ASHENVALE", true); settle()
+    ns.Guide:Activate(chapterId("GEN_ALLIANCE_NIGHTELF_06_"), true); settle()
     local race, instead = ns.Guide:OffRouteChapter()
     check(race == "NIGHTELF" and instead ~= nil, "a night elf chapter is spotted as off-route (" .. tostring(race) .. " -> " .. tostring(instead and instead.id) .. ")")
 
@@ -1807,7 +1820,7 @@ do
 
     -- asking for another route by hand is not second-guessed
     ns.char.route = "GEN_ALLIANCE_NIGHTELF"
-    ns.Guide:Activate("GEN_ALLIANCE_NIGHTELF_06_ASHENVALE", true); settle()
+    ns.Guide:Activate(chapterId("GEN_ALLIANCE_NIGHTELF_06_"), true); settle()
     check(ns.Guide:OffRouteChapter() == nil, "a route the player chose is left alone")
     ns.char.route = mineBefore
     ns.Guide:Activate("HUMAN_NORTHSHIRE_1_6", true); ns.Guide:Reset(); settle()
