@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_02_WESTFALL",
     name = "2. Westfall 11-14 (Human)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 11,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_03_LOCH_MODAN",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Human route: level 11 to 14, 45 steps, ~136 min of play in the model (17747 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 68,
+    stepCount = 72,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 523, npcName = "Thor", map = 1436, zone = "Westfall", x = 56.6, y = 52.6 }, -- 1
         { type = "TRAVEL", map = 1436, zone = "Westfall", x = 56.2, y = 43.9, radius = 60, note = "travel to Westfall (Westfall)" }, -- 2
@@ -78,10 +78,14 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 103, questName = "Keeper of the Flame", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 61
         { type = "ACCEPT", quest = 79008, questName = "... and that note you found", map = 1436, zone = "Westfall", x = 37.5, y = 50.7, note = "Cozy Sleeping Bag chain: keep it going" }, -- 62
         { type = "TURNIN", quest = 92744, questName = "Murloc Gills", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 63
-        { type = "ACCEPT", quest = 65, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 64
-        { type = "ACCEPT", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 65
-        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 121, target = "Defias Pathstalker / Defias Highwayman", count = 15, map = 1436, zone = "Westfall", x = 52.8, y = 73.5, near = true }, -- 66
-        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 449, target = "Defias Knuckleduster", count = 15, map = 1436, zone = "Westfall", x = 51.6, y = 78.2, near = true }, -- 67
-        { type = "TURNIN", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 68
+        { type = "ACCEPT", quest = 92747, questName = "Moonbrook Espionage", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 64
+        { type = "COLLECT", quest = 92747, questName = "Moonbrook Espionage", target = "Suspicious Industrial Supplies", count = 8, map = 1436, zone = "Westfall", x = 42.5, y = 71.7 }, -- 65
+        { type = "TURNIN", quest = 92747, questName = "Moonbrook Espionage", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 66
+        { type = "ACCEPT", quest = 65, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 67
+        { type = "ACCEPT", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 68
+        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 121, target = "Defias Pathstalker / Defias Highwayman", count = 15, map = 1436, zone = "Westfall", x = 52.8, y = 73.5, near = true }, -- 69
+        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 449, target = "Defias Knuckleduster", count = 15, map = 1436, zone = "Westfall", x = 51.6, y = 78.2, near = true }, -- 70
+        { type = "ACCEPT", quest = 92748, questName = "Explosive Consultation", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 71
+        { type = "TURNIN", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 72
     } end,
 })
