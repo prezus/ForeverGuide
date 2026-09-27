@@ -7,10 +7,12 @@ contract between the addon (`Share.lua`) and the code that reads the string on o
 
 ## Privacy
 
-The addon writes the JSON by walking the allowlist below. It never reads anything else, so no
-other field can reach the string. A reader must reject a share that contains a field missing
-from this page. The tests check that this page and the allowlist in `Share.lua` list exactly
-the same fields.
+The addon makes a copy of the data by walking the allowlist below. It never reads anything
+else, so no other field can reach the string. The string, the in-game **JSON** view and the
+**Readable** summary are all made from that copy. A reader must reject a share that contains a
+field missing from this page. The allowlist is also published as a JSON Schema,
+[`share-format.schema.json`](share-format.schema.json). The tests check that this page, the
+schema and the allowlist in `Share.lua` list exactly the same fields.
 
 A share never contains:
 
@@ -31,13 +33,53 @@ addon asks players to leave names out, but readers should still flag text that l
 FG2:<part>/<parts>:<payload>
 ```
 
-- `payload` is the JSON, compressed with zlib (RFC 1950, which carries its own Adler-32
-  checksum) and then encoded as standard base64. To read it, decode the base64 and inflate.
-  Python: `zlib.decompress(base64.b64decode(p))`. Browser: `DecompressionStream("deflate")`.
-- A share longer than 50,000 characters is split into numbered parts, each pasted
-  separately. Join the payloads of parts `1..parts` in order before decoding.
+The string uses only standard formats, so anyone can read it without ForeverGuide's code:
+
+- `payload` is the JSON (UTF-8), compressed with zlib (RFC 1950, which carries its own Adler-32
+  checksum) and then encoded as standard base64 (RFC 4648). Base64 and zlib only make the text
+  shorter and safe to paste. They hide nothing: anyone can reverse them.
+- A share longer than 50,000 characters is split into numbered parts, each pasted separately.
+  Join the payloads of parts `1..parts` in order, then decode. A payload never contains a line
+  break, so it runs to the end of its line.
 - A client without `C_EncodingUtil` writes `FG2J:<part>/<parts>:<json>`, where the payload
   is the JSON itself.
+
+## Check a share yourself
+
+**In the game.** `/fg share` has three views:
+- **Share string**: the text to paste.
+- **Readable**: everything in the string, in words: quests, NPCs, spots, reports, and what is
+  never included.
+- **JSON**: the same data as indented JSON, exactly what the string decodes to.
+
+**Decode it.** Copy the string into a file, `share.txt`, one part per line. Any of these
+recipes decodes a one-part share. For several parts, join the payloads first.
+
+- **In a browser, offline:** [CyberChef](https://gchq.github.io/CyberChef/), an open-source
+  tool that runs entirely in your browser. Paste only the text after the second `:`, then apply
+  the recipe **From Base64** followed by **Zlib Inflate**.
+- **Python 3**, standard library only:
+
+  ```sh
+  python3 -c "import sys,base64,zlib; print(zlib.decompress(base64.b64decode(sys.stdin.read().split(':',2)[2].strip())).decode())" < share.txt
+  ```
+
+- **A shell:** `cut -d: -f3- share.txt | base64 -d > share.zlib`, then inflate `share.zlib`
+  with any zlib tool, for example `python3 -c "import sys,zlib; sys.stdout.write(zlib.decompress(sys.stdin.buffer.read()).decode())" < share.zlib`.
+- **JavaScript** (browsers and Node 18+): `DecompressionStream("deflate")` reads zlib data.
+
+**Validate it.** Check the decoded JSON against
+[`share-format.schema.json`](share-format.schema.json) with any JSON Schema (draft 2020-12)
+validator, for example `check-jsonschema --schemafile share-format.schema.json share.json`.
+It fails on any field outside the allowlist, a wrong type or a value over its limit.
+
+**Or both at once:** [`tools/decode_share.py`](../tools/decode_share.py) needs only Python 3.
+It joins the parts in any order, ignores other text around them, decodes the string, checks the
+zlib checksum and validates the result against the schema:
+
+```sh
+python3 tools/decode_share.py share.txt
+```
 
 ## The JSON
 

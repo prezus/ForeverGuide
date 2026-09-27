@@ -4,13 +4,15 @@
 -- reports) into one string to paste into the ForeverGuide feedback form. No script, no
 -- file hunting, nothing sent by the addon.
 --
--- Only fields on the allowlist below leave the game: the JSON is written by walking the
--- allowlist, so anything else in the store (or planted in it) is never read. The allowlist
--- is documented field by field in docs/SHARE-FORMAT.md; the tests keep the two in step.
+-- Only fields on the allowlist below leave the game: a filtered copy is made by walking the
+-- allowlist, so anything else in the store (or planted in it) is never read, and the string,
+-- the JSON view and the readable summary are all made from that copy. The allowlist is
+-- documented in docs/SHARE-FORMAT.md and published as docs/share-format.schema.json (JSON
+-- Schema); the tests keep all three in step.
 --
 -- The string: "FG2:<part>/<parts>:<base64 of the zlib-compressed JSON>", split into parts
--- of at most PART_MAX characters. A client without C_EncodingUtil gives "FG2J:..." with
--- the JSON itself. Preview shows the readable JSON the string holds.
+-- of at most PART_MAX characters: standard formats, so anyone can decode it without our
+-- code. A client without C_EncodingUtil gives "FG2J:..." with the JSON itself.
 -- ============================================================
 
 local _, ns = ...
@@ -75,6 +77,8 @@ local SCHEMA = Obj {
     }, 300) },
 }
 
+Share.SCHEMA = SCHEMA   -- tools/share_schema.lua turns it into docs/share-format.schema.json
+
 --- Every allowlisted field as a path ("quests.*.givers[]"), in schema order.
 function Share:Paths()
     local out = {}
@@ -93,12 +97,7 @@ function Share:Paths()
     return out
 end
 
--- ---- JSON, written by walking the allowlist -----------------------------------------
-local ESCAPES = { ['"'] = '\\"', ["\\"] = "\\\\", ["\n"] = "\\n", ["\r"] = "\\r", ["\t"] = "\\t" }
-local function Quote(s)
-    return '"' .. s:gsub('[%c"\\]', function(c) return ESCAPES[c] or string.format("\\u%04x", c:byte()) end) .. '"'
-end
-
+-- ---- filtering: the allowlisted copy ---------------------------------------------------
 local function Finite(n) return n == n and n ~= math.huge and n ~= -math.huge end
 
 local function IntKey(k)
@@ -106,27 +105,27 @@ local function IntKey(k)
     return k and Finite(k) and k == math.floor(k) and k or nil
 end
 
--- JSON text for value under spec, or nil when nothing allowed is there. indent: nil = compact.
-local function Write(value, spec, indent, depth)
+-- The part of value that spec allows, as a fresh table; nil when nothing allowed is there.
+-- The JSON and the readable summary are both made from this copy, never from the store.
+local function Filter(value, spec)
     if spec == "int" then
         local n = PlainNumber(value)
-        return n and Finite(n) and n == math.floor(n) and string.format("%d", n) or nil
+        return n and Finite(n) and n == math.floor(n) and n or nil
     elseif spec == "num" then
         local n = PlainNumber(value)
-        return n and Finite(n) and string.format("%.14g", n) or nil
+        return n and Finite(n) and n or nil
     elseif spec == "bool" then
-        local b = PlainBool(value)
-        return b ~= nil and tostring(b) or nil
+        return PlainBool(value)
     elseif spec.kind == "str" then
-        local s = PlainString(value)
-        return s and Quote(s:sub(1, spec.max)) or nil
+        local str = PlainString(value)
+        return str and ns.Utf8Sub(str, spec.max) or nil
     end
     if type(value) ~= "table" then return nil end
-    local items, keys = {}, {}
+    local out, n = {}, 0
     if spec.kind == "list" then
         for i = 1, math.min(#value, spec.max) do
-            local v = Write(value[i], spec.of, indent, depth + 1)
-            if v then items[#items + 1] = v end
+            local v = Filter(value[i], spec.of)
+            if v ~= nil then n = n + 1 out[n] = v end
         end
     elseif spec.kind == "map" then
         local ids = {}
@@ -136,28 +135,65 @@ local function Write(value, spec, indent, depth)
         end
         table.sort(ids)
         for _, id in ipairs(ids) do
-            if #items >= spec.max then break end
-            local v = Write(value[id], spec.of, indent, depth + 1)
-            if v then items[#items + 1] = v keys[#items] = string.format("%d", id) end
+            if n >= spec.max then break end
+            local v = Filter(value[id], spec.of)
+            if v ~= nil then n = n + 1 out[id] = v end
         end
     else -- obj
         for _, f in ipairs(spec.fields) do
-            local v = Write(value[f[1]], f[2], indent, depth + 1)
-            if v then items[#items + 1] = v keys[#items] = f[1] end
+            local v = Filter(value[f[1]], f[2])
+            if v ~= nil then n = n + 1 out[f[1]] = v end
         end
     end
-    if #items == 0 then return nil end
+    return n > 0 and out or nil
+end
+
+-- ---- JSON --------------------------------------------------------------------------
+local ESCAPES = { ['"'] = '\\"', ["\\"] = "\\\\", ["\n"] = "\\n", ["\r"] = "\\r", ["\t"] = "\\t" }
+local function Quote(str)
+    return '"' .. str:gsub('[%c"\\]', function(c) return ESCAPES[c] or string.format("\\u%04x", c:byte()) end) .. '"'
+end
+
+local function SortedIds(t)
+    local ids = {}
+    for id in pairs(t) do ids[#ids + 1] = id end
+    table.sort(ids)
+    return ids
+end
+
+-- JSON text of an already filtered value. indent: nil = compact.
+local function Encode(value, spec, indent, depth)
+    if spec == "int" then return string.format("%d", value) end
+    if spec == "num" then return string.format("%.14g", value) end
+    if spec == "bool" then return tostring(value) end
+    if spec.kind == "str" then return Quote(value) end
+    local items, keys = {}, {}
+    if spec.kind == "list" then
+        for i, v in ipairs(value) do items[i] = Encode(v, spec.of, indent, depth + 1) end
+    elseif spec.kind == "map" then
+        for _, id in ipairs(SortedIds(value)) do
+            items[#items + 1] = Encode(value[id], spec.of, indent, depth + 1)
+            keys[#items] = string.format("%d", id)
+        end
+    else -- obj
+        for _, f in ipairs(spec.fields) do
+            if value[f[1]] ~= nil then
+                items[#items + 1] = Encode(value[f[1]], f[2], indent, depth + 1)
+                keys[#items] = f[1]
+            end
+        end
+    end
     local open, close = spec.kind == "list" and "[" or "{", spec.kind == "list" and "]" or "}"
-    local sep, pad, endpad, colon = ",", "", "", ":"
+    local pad, endpad, colon = "", "", ":"
     if indent then
         pad = "\n" .. string.rep(indent, depth + 1)
         endpad = "\n" .. string.rep(indent, depth)
-        sep, colon = ",", ": "
+        colon = ": "
     end
     for i, v in ipairs(items) do
         items[i] = pad .. (keys[i] and (Quote(keys[i]) .. colon) or "") .. v
     end
-    return open .. table.concat(items, sep) .. endpad .. close
+    return open .. table.concat(items, ",") .. endpad .. close
 end
 
 -- ---- what is shared -----------------------------------------------------------------
@@ -190,14 +226,19 @@ local function Build()
     }
 end
 
---- The share as JSON (pretty = readable, for the preview).
-function Share:Json(pretty)
-    return Write(Build(), SCHEMA, pretty and "  " or nil, 0) or "{}"
+--- The allowlisted copy of what would be shared.
+function Share:Doc()
+    return Filter(Build(), SCHEMA) or {}
+end
+
+--- The share as JSON (pretty = indented, for the JSON view).
+function Share:Json(pretty, doc)
+    return Encode(doc or self:Doc(), SCHEMA, pretty and "  " or nil, 0)
 end
 
 --- The share strings to paste, one per part.
-function Share:Strings()
-    local json = self:Json()
+function Share:Strings(doc)
+    local json = self:Json(false, doc)
     local tag, payload = "FG2J", json
     local E = rawget(_G, "C_EncodingUtil")
     if E and type(E.CompressString) == "function" and type(E.EncodeBase64) == "function" then
@@ -217,42 +258,196 @@ function Share:Strings()
     return parts
 end
 
--- ---- the window ---------------------------------------------------------------------
-local WINDOW = "ForeverGuideShare"
+-- ---- the readable summary -----------------------------------------------------------
+local function Num(n) return string.format("%.14g", n) end
 
-local function Title(win)
-    if win.showPreview then return "Share data: preview" end
-    return #win.parts == 1 and "Share data" or string.format("Share data (part %d/%d)", win.part, #win.parts)
+local function MapName(doc, mapID)
+    local m = doc.maps and doc.maps[mapID]
+    return m and m.name and (m.name .. " (" .. mapID .. ")") or ("map " .. mapID)
 end
 
+local function NpcName(doc, npcID)
+    local n = doc.npcs and doc.npcs[npcID]
+    return (n and n.name or "creature") .. " (" .. npcID .. ")"
+end
+
+-- "Elwynn Forest (1429) 48.5, 41.5; 49, 40 (+3 more)" for { [mapID] = { {x, y}, ... } }
+local function Spots(doc, cells)
+    local out = {}
+    for _, mapID in ipairs(SortedIds(cells)) do
+        local list, shown = cells[mapID], {}
+        for i = 1, math.min(#list, 3) do shown[i] = Num(list[i][1]) .. ", " .. Num(list[i][2]) end
+        out[#out + 1] = MapName(doc, mapID) .. " " .. table.concat(shown, "; ")
+            .. (#list > 3 and string.format(" (+%d more)", #list - 3) or "")
+    end
+    return table.concat(out, " | ")
+end
+
+local function Count(t)
+    local n = 0
+    for _ in pairs(t or {}) do n = n + 1 end
+    return n
+end
+
+--- What the share holds, in words: built from the allowlisted copy, so it shows exactly the
+--- string's content and nothing else.
+function Share:Summary(doc)
+    doc = doc or self:Doc()
+    local L = {}
+    local function add(fmt, ...) L[#L + 1] = select("#", ...) > 0 and string.format(fmt, ...) or fmt end
+    local function names(ids)
+        local out = {}
+        for i, id in ipairs(ids) do out[i] = NpcName(doc, id) end
+        return table.concat(out, ", ")
+    end
+    add("WHAT THIS SHARE CONTAINS")
+    add("Everything below is in the share string, and nothing else is.")
+    add("Never included: other players, your character name, realm or account, GUIDs, chat, or the time.")
+    add("To check it yourself: the string is base64 of zlib-compressed JSON. docs/SHARE-FORMAT.md in the")
+    add("ForeverGuide repository shows how to decode it with common tools and validate it against its schema.")
+    add("")
+    local p = doc.profile or {}
+    local class = p.class and (p.class:sub(1, 1) .. p.class:sub(2):lower())
+    add("About you: %s %s, %s. ForeverGuide %s, game build %s.", p.race or "?", class or "?", p.faction or "?",
+        doc.addon or "?", doc.build or "?")
+    local function section(title, n, what)
+        add("")
+        add("%s (%d) - %s", title, n, what)
+    end
+    local quests = doc.quests or {}
+    section("QUESTS", Count(quests), "who gives and takes each quest, and where its objectives moved")
+    for _, id in ipairs(SortedIds(quests)) do
+        local q = quests[id]
+        add("[%d] %s%s", id, q.name or "(no title)", q.level and (" (level " .. q.level .. ")") or "")
+        if q.givers then add("  Given by: %s", names(q.givers)) end
+        if q.enders then add("  Turned in to: %s", names(q.enders)) end
+        if q.startItem then add("  Started from item %d", q.startItem) end
+        if q.offeredAt then
+            local lo, hi = q.offeredAt[1], q.offeredAt[2] or q.offeredAt[1]
+            add("  Offered to you at level %s", lo == hi and lo or (lo .. "-" .. hi))
+        end
+        if q.shared then add("  Shared with you by a group member (who is not recorded)") end
+        for _, idx in ipairs(SortedIds(q.objectives or {})) do
+            local o = q.objectives[idx]
+            add("  Objective %d: %s", idx, o.text or "(no text)")
+            if o.cells then add("    Where it moved: %s", Spots(doc, o.cells)) end
+            if o.targets then
+                local votes = {}
+                for _, npcID in ipairs(SortedIds(o.targets)) do
+                    votes[#votes + 1] = NpcName(doc, npcID) .. " x" .. o.targets[npcID]
+                end
+                add("    Targeted when it moved: %s", table.concat(votes, ", "))
+            end
+        end
+    end
+    local npcs = doc.npcs or {}
+    section("NPCS", Count(npcs), "creatures you talked to or targeted, and where you met them")
+    for _, id in ipairs(SortedIds(npcs)) do
+        local n = npcs[id]
+        add("%s%s%s", NpcName(doc, id), n.level and (", level " .. n.level) or "", n.cells and (": " .. Spots(doc, n.cells)) or "")
+    end
+    if doc.order then
+        local steps = {}
+        for i, v in ipairs(doc.order) do steps[i] = (v < 0 and "turned in " or "accepted ") .. math.abs(v) end
+        section("ORDER THIS SESSION", #steps, "the order you took and handed in quests, without times")
+        add(table.concat(steps, ", "))
+    end
+    if doc.maps then
+        section("MAPS", Count(doc.maps), "the maps you were on")
+        for _, id in ipairs(SortedIds(doc.maps)) do
+            local m = doc.maps[id]
+            add("%s%s", MapName(doc, id), m.parent and (", inside " .. MapName(doc, m.parent)) or "")
+        end
+    end
+    if doc.starts then
+        section("QUEST STARTS", Count(doc.starts), "quest markers your world map showed")
+        for _, id in ipairs(SortedIds(doc.starts)) do
+            local st = doc.starts[id]
+            add("[%d] %s %s, %s%s", id, st.map and MapName(doc, st.map) or "?", st.x and Num(st.x) or "?",
+                st.y and Num(st.y) or "?", st.line and (" (quest line " .. st.line .. ")") or "")
+        end
+    end
+    if doc.titles then
+        section("QUEST TITLES", Count(doc.titles), "names of quests the addon's database does not know yet")
+        for _, id in ipairs(SortedIds(doc.titles)) do add("[%d] %s", id, doc.titles[id]) end
+    end
+    if doc.errors then
+        section("ADDON ERRORS", #doc.errors, "ForeverGuide errors, so they can be fixed")
+        for _, e in ipairs(doc.errors) do
+            add("%s: %s (guide %s, step %s, map %s)", e.key or "?", e.message or "?", e.guide or "-",
+                tostring(e.step or "-"), tostring(e.map or "-"))
+        end
+    end
+    if doc.reports then
+        section("YOUR REPORTS", #doc.reports, "what you reported with /fg wrong")
+        for i, r in ipairs(doc.reports) do
+            add("%d. %s", i, r.text and ('"' .. r.text .. '"') or (r.title or r.type or "report"))
+            local parts = {}
+            if r.guide then parts[#parts + 1] = "guide " .. r.guide .. " step " .. tostring(r.step or "?") end
+            if r.type then parts[#parts + 1] = r.type end
+            if r.q then parts[#parts + 1] = "quest " .. r.q end
+            if r.m then parts[#parts + 1] = "at " .. MapName(doc, r.m) .. " " .. Num(r.x or 0) .. ", " .. Num(r.y or 0) end
+            if r.lvl then parts[#parts + 1] = "level " .. r.lvl end
+            if r.npc then parts[#parts + 1] = "target " .. (r.npcName or "creature") .. " (" .. r.npc .. ")" end
+            add("   %s", table.concat(parts, ", "))
+        end
+    end
+    return table.concat(L, "\n")
+end
+
+-- ---- the window ---------------------------------------------------------------------
+local WINDOW = "ForeverGuideShare"
+local VIEWS = {   -- button order, right to left from "Select all"
+    { key = "json", label = "JSON", width = 60 },
+    { key = "readable", label = "Readable", width = 80 },
+    { key = "string", label = "Share string", width = 96 },
+}
+
 local function Render(win)
-    local text = win.showPreview and win.preview.json or win.parts[win.part]
+    local text, title
+    if win.view == "readable" then
+        text, title = win.summary, "Share data: what it holds"
+    elseif win.view == "json" then
+        text, title = win.json, "Share data: JSON"
+    else
+        text = win.parts[win.part]
+        title = #win.parts == 1 and "Share data" or string.format("Share data (part %d/%d)", win.part, #win.parts)
+    end
     ns.Reports:ShowText(WINDOW, "Share data", text)
-    win.heading:SetText(Title(win))
-    win.preview.label:SetText(win.showPreview and "Share string" or "Preview")
-    if #win.parts > 1 and not win.showPreview then win.nextPart:Show() else win.nextPart:Hide() end
+    win.heading:SetText(title)
+    for key, button in pairs(win.views) do
+        button.label:SetText((key == win.view and "> " or "") .. button.plainLabel)
+    end
+    if #win.parts > 1 and win.view == "string" then win.nextPart:Show() else win.nextPart:Hide() end
 end
 
 --- Open the share window with a fresh string.
 function Share:Show()
     local win = ns.Reports:ShowText(WINDOW, "Share data", "")
-    if not win.preview then
+    if not win.views then
         local Theme = ns.Theme
-        win.preview = Theme.NewButton(win, "Preview", 96, 22, function()
-            win.showPreview = not win.showPreview
-            Render(win)
-        end)
-        win.preview:SetPoint("RIGHT", win.selectAll, "LEFT", -8, 0)
-        win.nextPart = Theme.NewButton(win, "Next part", 86, 22, function()
+        win.views = {}
+        local anchor = win.selectAll
+        for _, v in ipairs(VIEWS) do
+            local button = Theme.NewButton(win, v.label, v.width, 22, function()
+                win.view = v.key
+                Render(win)
+            end)
+            button.plainLabel = v.label
+            button:SetPoint("RIGHT", anchor, "LEFT", -6, 0)
+            win.views[v.key], anchor = button, button
+        end
+        win.nextPart = Theme.NewButton(win, "Next part", 80, 22, function()
             win.part = win.part % #win.parts + 1
             Render(win)
         end)
-        win.nextPart:SetPoint("RIGHT", win.preview, "LEFT", -8, 0)
+        win.nextPart:SetPoint("RIGHT", anchor, "LEFT", -6, 0)
     end
-    win.parts, win.part, win.showPreview = self:Strings(), 1, false
-    win.preview.json = self:Json(true)
+    local doc = self:Doc()
+    win.parts, win.part, win.view = self:Strings(doc), 1, "string"
+    win.summary, win.json = self:Summary(doc), self:Json(true, doc)
     Render(win)
     local quests, npcs = ns.Recorder:Counts()
-    ns.Printf("share: %d quests, %d NPCs, %d reports in %d part%s. Copy each part (Ctrl+C) into the feedback form.",
-        quests, npcs, #(ns.db.reports or {}), #win.parts, #win.parts == 1 and "" or "s")
+    ns.Printf("share: %d quests, %d NPCs, %d reports in %d part%s. Copy each part (Ctrl+C) into the feedback form; "
+        .. "Readable shows what it holds.", quests, npcs, #(ns.db.reports or {}), #win.parts, #win.parts == 1 and "" or "s")
 end

@@ -1,0 +1,391 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ForeverGuide /fg share, format 2",
+  "description": "The decoded JSON of a ForeverGuide share string (FG2). Only these fields may appear; see docs/SHARE-FORMAT.md. Generated from Share.lua by tools/share_schema.lua.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format"],
+  "properties": {
+    "format": {
+      "const": 2
+    },
+    "addon": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "build": {
+      "type": "string",
+      "maxLength": 30
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "race": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "class": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "faction": {
+          "type": "string",
+          "maxLength": 20
+        }
+      }
+    },
+    "quests": {
+      "type": "object",
+      "maxProperties": 2000,
+      "propertyNames": {
+        "pattern": "^-?[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "level": {
+            "type": "integer"
+          },
+          "givers": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "type": "integer"
+            }
+          },
+          "enders": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "type": "integer"
+            }
+          },
+          "startItem": {
+            "type": "integer"
+          },
+          "offeredAt": {
+            "type": "array",
+            "maxItems": 2,
+            "items": {
+              "type": "integer"
+            }
+          },
+          "shared": {
+            "type": "boolean"
+          },
+          "objectives": {
+            "type": "object",
+            "maxProperties": 20,
+            "propertyNames": {
+              "pattern": "^-?[0-9]+$"
+            },
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "maxLength": 160
+                },
+                "cells": {
+                  "type": "object",
+                  "maxProperties": 20,
+                  "propertyNames": {
+                    "pattern": "^-?[0-9]+$"
+                  },
+                  "additionalProperties": {
+                    "type": "array",
+                    "maxItems": 24,
+                    "items": {
+                      "type": "array",
+                      "maxItems": 2,
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                },
+                "targets": {
+                  "type": "object",
+                  "maxProperties": 20,
+                  "propertyNames": {
+                    "pattern": "^-?[0-9]+$"
+                  },
+                  "additionalProperties": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "npcs": {
+      "type": "object",
+      "maxProperties": 2000,
+      "propertyNames": {
+        "pattern": "^-?[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "level": {
+            "type": "integer"
+          },
+          "cells": {
+            "type": "object",
+            "maxProperties": 20,
+            "propertyNames": {
+              "pattern": "^-?[0-9]+$"
+            },
+            "additionalProperties": {
+              "type": "array",
+              "maxItems": 12,
+              "items": {
+                "type": "array",
+                "maxItems": 2,
+                "items": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "order": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": {
+        "type": "integer"
+      }
+    },
+    "maps": {
+      "type": "object",
+      "maxProperties": 500,
+      "propertyNames": {
+        "pattern": "^-?[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "parent": {
+            "type": "integer"
+          },
+          "bounds": {
+            "type": "array",
+            "maxItems": 5,
+            "items": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "starts": {
+      "type": "object",
+      "maxProperties": 3000,
+      "propertyNames": {
+        "pattern": "^-?[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "map": {
+            "type": "integer"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "line": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "titles": {
+      "type": "object",
+      "maxProperties": 3000,
+      "propertyNames": {
+        "pattern": "^-?[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "maxLength": 120
+      }
+    },
+    "errors": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "guide": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "step": {
+            "type": "integer"
+          },
+          "map": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "reports": {
+      "type": "array",
+      "maxItems": 300,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "mode": {
+            "type": "string",
+            "maxLength": 20
+          },
+          "what": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "guide": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "step": {
+            "type": "integer"
+          },
+          "q": {
+            "type": "integer"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "questLevel": {
+            "type": "integer"
+          },
+          "ready": {
+            "type": "boolean"
+          },
+          "failed": {
+            "type": "boolean"
+          },
+          "m": {
+            "type": "integer"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "zone": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "sub": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "lvl": {
+            "type": "integer"
+          },
+          "npc": {
+            "type": "integer"
+          },
+          "npcName": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "npcStep": {
+            "type": "integer"
+          },
+          "loc": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "m": {
+                "type": "integer"
+              },
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "id": {
+                "type": "integer"
+              },
+              "kind": {
+                "type": "string",
+                "maxLength": 20
+              }
+            }
+          },
+          "objectives": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "maxLength": 160
+                },
+                "numFulfilled": {
+                  "type": "integer"
+                },
+                "numRequired": {
+                  "type": "integer"
+                },
+                "finished": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

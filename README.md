@@ -93,7 +93,7 @@ In game:
 | `/fg pos` | your uiMapID + coordinates, printed as a ready-to-paste TRAVEL step |
 | `/fg target` | npc id, level, reaction of your target |
 | `/fg way 42.3 71.8` | point the arrow at a coordinate on your current map |
-| `/fg share on` / `/fg share` | opt in to contributing quest data (off by default) / copy it, with your reports, as one string for the feedback form (Preview shows exactly what it holds) |
+| `/fg share on` / `/fg share` | opt in to contributing quest data (off by default) / copy it, with your reports, as one string for the feedback form (**Readable** shows what it holds in words, **JSON** as data) |
 | `/fg mode auto` | navigate your quest log directly (nearest objective / turn-in), no guide needed; `/fg mode guide` to follow the guide |
 | `/fg quest 783` / `/fg quest kobold` | everything the database knows: giver, objectives with coordinates, turn-in, prerequisites |
 | `/fg avail` | quests you could pick up in the current zone, with their givers and distances |
@@ -164,6 +164,8 @@ ForeverGuide/
     import_rxp.py       factual quest positions from RestedXP's free Forever guides -> overlay
     questie_lookup.py   quest/NPC/object/item facts + step JSON from the Questie DB
     scan_diff.py        /fg scan results vs Questie: new / removed / renamed quests
+    decode_share.py     decode + validate a /fg share string with only Python's standard library (docs/SHARE-FORMAT.md)
+    share_schema.lua    writes docs/share-format.schema.json (the share allowlist as JSON Schema) from Share.lua
     merge_recorded.py   SavedVariables (contributed facts/harvest/scan, incl. .bak, every account) -> data-src/forever.json -> Data/ForeverDB.lua
     import_db2.py       wago.tools CSV exports of Forever's own quest tables (QuestV2, QuestObjective, QuestPOI*) -> same overlay
     collect_reports.py  "/fg wrong" reports -> local-only data-src/reports.json + review list

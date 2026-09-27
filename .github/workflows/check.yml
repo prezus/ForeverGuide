@@ -16,7 +16,9 @@ jobs:
       - name: Validate guide sources
         run: python3 tools/compile_guides.py --check
       - name: Test data tools
-        run: python3 tools/test/test_merge_recorded.py
+        run: |
+          python3 tools/test/test_merge_recorded.py
+          python3 tools/test/test_decode_share.py
       - name: Check Forever API paths
         run: |
           source="$RUNNER_TEMP/forever-ui-source"
