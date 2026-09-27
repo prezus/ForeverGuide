@@ -71,6 +71,7 @@ local MIN_CHAPTER = env("FG_MINCH", 600)     -- a trip to another zone must be w
 local CROSS_SEA = env("FG_CROSSSEA", 0.85)   -- rate factor for a chapter on the other continent
 local AHEAD = env("FG_AHEAD", 3)             -- a quest is taken at most this many levels above the player
 local STRAY = env("FG_STRAY", 3)             -- a spawn with no other within this many map percent is a stray
+local MIN_GRIND = env("FG_MINGRIND", 6)      -- below this level the route quests whenever it can: starting zones are built for it
 local MAX_CHAPTERS = 150
 local REMOTE = 1e6                           -- "in another zone" marker distance
 
@@ -953,7 +954,10 @@ local function planRoute(startZone)
         for _, zd in ipairs(D.ZONES) do
             if (not zd.faction or zd.faction == faction) and not (zd.races and zd.id ~= startZone.id) then
                 local fits = (zd.city or (zd.min <= L + 4 and zd.max >= L - 2))
-                if fits and zonePromising(state, zd) >= (zd.city and 1 or 3) then cands[#cands + 1] = zd end
+                -- the starting zone is enough with one quest below MIN_GRIND: Tirisfal at level 1 has only
+                -- The Mindless Ones, and a new character quests there rather than grinding
+                local startHere = L < MIN_GRIND and zd.id == startZone.id
+                if fits and zonePromising(state, zd) >= ((zd.city or startHere) and 1 or 3) then cands[#cands + 1] = zd end
             end
         end
         local best
@@ -1015,7 +1019,9 @@ local function planRoute(startZone)
                 end
             end
         end
-        if not best or best.rate < GRIND_FACTOR * grindRate then
+        -- Below MIN_GRIND a starting zone's quests win whenever there are any: the kill model
+        -- overrates grinding at levels 1-5, and a guide that opens with "grind to 2" is wrong.
+        if not best or (best.rate < GRIND_FACTOR * grindRate and L >= MIN_GRIND) then
             -- grind a level where we stand, then look again
             grinds = grinds + 1
             if grinds > 30 then break end
