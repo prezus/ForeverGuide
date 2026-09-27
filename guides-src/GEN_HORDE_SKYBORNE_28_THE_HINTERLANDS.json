@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_28_THE_HINTERLANDS",
   "name": "28. The Hinterlands 47-47 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 47,
@@ -63,7 +63,6 @@
     {"type": "TURNIN", "quest": 2935, "questName": "Consult Master Gadrin", "npc": 3188, "npcName": "Master Gadrin", "map": 1411, "zone": "Durotar", "x": 56, "y": 74.6},
     {"type": "ACCEPT", "quest": 2936, "questName": "The Spider God", "npc": 3188, "npcName": "Master Gadrin", "map": 1411, "zone": "Durotar", "x": 56, "y": 74.6, "note": "For Zul'Farrak (dungeon guide); Objectives: Find the Spider God's Name", "optional": true},
     {"type": "TURNIN", "quest": 2936, "questName": "The Spider God", "npc": 3188, "npcName": "Master Gadrin", "map": 1411, "zone": "Durotar", "x": 56, "y": 74.6, "optional": true},
-    {"type": "ACCEPT", "quest": 1445, "questName": "The Temple of Atal'Hakkar", "npc": 1443, "npcName": "Fel'zerul", "map": 1435, "zone": "Swamp of Sorrows", "x": 48, "y": 55, "note": "For The Temple of Atal'Hakkar (dungeon guide)", "optional": true},
-    {"type": "NOTE", "note": "Picked up: The Temple of Atal'Hakkar, Jammal'an the Prophet. When you have a group, open The Temple of Atal'Hakkar under Dungeons.", "text": "Ready for The Temple of Atal'Hakkar", "optional": true}
+    {"type": "ACCEPT", "quest": 1445, "questName": "The Temple of Atal'Hakkar", "npc": 1443, "npcName": "Fel'zerul", "map": 1435, "zone": "Swamp of Sorrows", "x": 48, "y": 55, "note": "For The Temple of Atal'Hakkar (dungeon guide)", "optional": true}
   ]
 }
