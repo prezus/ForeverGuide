@@ -206,7 +206,11 @@ _G.GetServerTime = function() return 1700000000 + world.time end
 _G.GetBuildInfo = function() return "1.60.1", "69913", "Sep 17 2026", 16001 end
 
 -- ---- player -------------------------------------------------------------
-_G.UnitLevel = function(unit) if unit == "player" then return world.level end return world.target and world.target.level end
+_G.UnitLevel = function(unit)
+    if unit == "player" then return world.level end
+    local u = unit == "npc" and world.npc or world.target
+    return u and u.level
+end
 world.xp, world.xpMax = 100, 400
 _G.UnitXP = function() return world.xp end
 _G.UnitXPMax = function() return world.xpMax end

@@ -63,19 +63,23 @@ local function chapterId(prefix)
 end
 
 print("guide active: " .. tostring(G.active and G.active.id))
--- Collection is opt-in, independent, and old mirrors cannot silently restore consent.
+-- Contributing data is one opt-in; old switches, mirrors and SavedVariables cannot opt anyone in.
 do
-    check(ns.db.recorder.enabled == false and ns.db.scanEnabled == false and ns.db.harvestEnabled == false,
-        "fresh login: recorder, scanner, and harvest all start off")
-    check(#ns.db.recorder.entries == 0 and ns.db.scan == nil and ns.db.harvest == nil and next(ns.db.recorder.maps) == nil,
-        "fresh login does not collect session data")
-    ns.Persist:DecodeAcct("v=1;rec=1;sco=1;hvo=1")
-    check(not ns.db.recorder.enabled and not ns.db.scanEnabled and not ns.db.harvestEnabled,
-        "legacy cvar mirror cannot silently opt the player in")
-    ns.db.version, ns.db.recorder.enabled = 1, true
+    check(ns.db.contribute == false and ns.db.scanEnabled == false, "fresh login: contributing and the scanner start off")
+    check(next(ns.db.contrib.quests) == nil and next(ns.db.contrib.npcs) == nil and #ns.db.contrib.order == 0
+        and ns.db.scan == nil and ns.db.harvest == nil, "fresh login does not collect session data")
+    ns.Persist:DecodeAcct("v=2;rec=1;hvo=1")
+    check(not ns.db.contribute, "the old recorder and harvest switches do not opt in to contributing")
+    ns.Persist:DecodeAcct("v=1;con=1;sco=1")
+    check(not ns.db.contribute and not ns.db.scanEnabled, "legacy cvar mirror cannot silently opt the player in")
+    ns.db.version, ns.db.contribute = 1, true
     ns.Database:Init()
-    check(not ns.db.recorder.enabled and not ns.db.scanEnabled and not ns.db.harvestEnabled,
-        "old SavedVariables default-on recorder is not treated as consent")
+    check(not ns.db.contribute and not ns.db.scanEnabled, "old SavedVariables are not treated as consent")
+    -- the old recorder log and harvest switch are dropped with what they held (player names included)
+    ForeverGuideDB.recorder = { enabled = true, entries = { { e = "OFFER", npcName = "OldPartymate" } }, maps = {} }
+    ForeverGuideDB.harvestEnabled = true
+    ns.Database:Init()
+    check(ns.db.recorder == nil and ns.db.harvestEnabled == nil, "the old recorder log and harvest switch are removed")
     ns.Scanner:Start(1, 2)
     check(not ns.Scanner.running and ns.db.scan == nil, "scanner refuses to run without opt-in")
     local calls = 0
@@ -84,28 +88,28 @@ do
     ns.Harvest:OnEnterWorld()
     ns.Events:Fire("FG_ZONE_CHANGED", MOCK.mapID)
     ns.Harvest:HarvestAllMaps()
-    check(calls == 0 and ns.db.harvest == nil, "harvest does not request maps before opt-in")
+    check(calls == 0 and ns.db.harvest == nil, "no map requests before opting in to contributing")
     ns.Harvest:Sweep(1, 5000)
     check(not ns.Harvest.sweeping, "harvest sweep refuses to run before opt-in")
     ns.Options:Create()
-    local rec, scan, harvest = ns.Options:GetWidget("recorder"), ns.Options:GetWidget("scanner"), ns.Options:GetWidget("harvest")
-    check(rec and scan and harvest, "data collection has three independent options (" .. tostring(rec) .. ", " .. tostring(scan) .. ", " .. tostring(harvest) .. ")")
-    if rec and scan and harvest then
-        rec:SetChecked(true); rec:GetScript("OnClick")(rec)
-        check(ns.db.recorder.enabled and not ns.db.scanEnabled and not ns.db.harvestEnabled, "recorder consent does not enable scanner or harvest")
+    local contribute, scan = ns.Options:GetWidget("contribute"), ns.Options:GetWidget("scanner")
+    check(contribute and scan and not ns.Options:GetWidget("recorder") and not ns.Options:GetWidget("harvest"),
+        "data collection has two options: contribute and scanner")
+    if contribute and scan then
+        contribute:SetChecked(true); contribute:GetScript("OnClick")(contribute)
+        check(ns.db.contribute and not ns.db.scanEnabled, "contributing does not enable the scanner")
+        check(calls == 1, "contributing permits map quest-line requests")
         scan:SetChecked(true); scan:GetScript("OnClick")(scan)
-        harvest:SetChecked(true); harvest:GetScript("OnClick")(harvest)
-        check(calls == 1, "harvest opt-in permits map requests without enabling scanner")
         local have = rawget(_G, "HaveQuestData")
         _G.HaveQuestData = function() return false end
         ns.Harvest:Sweep(1, 5000)
         check(ns.Harvest.sweeping ~= nil, "an opted-in harvest can start a sweep")
-        harvest:SetChecked(false); harvest:GetScript("OnClick")(harvest)
+        contribute:SetChecked(false); contribute:GetScript("OnClick")(contribute)
         MOCK_ADVANCE(0.1)
         ns.Harvest:OnEnterWorld()
-        check(not ns.Harvest.sweeping and not ns.db.harvestEnabled and calls == 1, "opting out cancels an active harvest sweep and map requests")
+        check(not ns.Harvest.sweeping and not ns.db.contribute and calls == 1, "opting out cancels an active harvest sweep and map requests")
         _G.HaveQuestData = have
-        harvest:SetChecked(true); harvest:GetScript("OnClick")(harvest)
+        contribute:SetChecked(true); contribute:GetScript("OnClick")(contribute)
         -- probe: raw answers of the map APIs that place things without the player there
         local taxi, areaPoi = C_TaxiMap.GetTaxiNodesForMap, rawget(_G, "C_AreaPoiInfo")
         C_TaxiMap.GetTaxiNodesForMap = function(mapID)
@@ -130,97 +134,190 @@ do
     end
     _G.C_QuestLine = priorQuestLine
     ns.Database:Init()
-    check(ns.db.recorder.enabled and ns.db.scanEnabled and ns.db.harvestEnabled,
-        "explicit v2 opt-ins survive a normal SavedVariables login")
+    check(ns.db.contribute and ns.db.scanEnabled, "explicit v2 opt-ins survive a normal SavedVariables login")
 end
--- Addon Lua errors join the session capture while the recorder is enabled.
+-- Addon Lua errors join the contribution while contributing is on.
 do
-    local entries = ns.db.recorder.entries
-    local before, errorsBefore = #entries, #reportedErrors
+    local errors = ns.db.contrib.errors
+    local before, errorsBefore = #errors, #reportedErrors
     ns.ReportOnce("test:ui-error", "broken button")
-    local e = entries[#entries]
-    check(#entries == before + 1 and e.e == "ERROR" and e.key == "test:ui-error" and e.msg == "broken button" and e.m == MOCK.mapID
-        and e.guide == G.active.id and e.step == G.current,
-        "a reported UI Lua error is stored with session location and message")
+    local e = errors[#errors]
+    check(#errors == before + 1 and e.key == "test:ui-error" and e.message == "broken button" and e.map == MOCK.mapID
+        and e.guide == G.active.id and e.step == G.current, "a reported UI Lua error is kept with its map, guide and step")
     ns.ReportOnce("test:ui-error", "broken button")
-    check(#entries == before + 1, "the same error does not flood the capture")
-    ns.db.recorder.enabled = false
+    check(#errors == before + 1, "the same error does not flood the contribution")
+    ns.db.contribute = false
     ns.ReportOnce("test:ui-disabled", "not captured")
-    check(#entries == before + 1, "recording off skips Lua error capture")
-    ns.db.recorder.enabled = true
-    -- /fg rec dump opens a copyable window (for pasting into feedback) instead of printing to chat
-    ns.Recorder:Add("ACCEPT", { q = 7001, n = "Dump Test Quest", npc = 1234, npcName = "Dump Test Giver" })
-    ns.Commands:Run("rec dump")
-    local dump = rawget(_G, "ForeverGuideRecorderDump")
-    local text = dump and dump.text and dump.text:GetText() or ""
-    check(dump and dump:IsShown() and text:find("Dump Test Quest", 1, true) and text:find("Dump Test Giver", 1, true)
-        and text:find("ERROR test:ui-error: broken button", 1, true), "/fg rec dump opens a window with the recorded entries (" .. text:gsub("\n", " | ") .. ")")
-    dump:Hide()
-    ns.Commands:Run("rec dump 1")
-    text = dump.text:GetText() or ""
-    check(dump:IsShown() and text:find("Dump Test Quest", 1, true) and not text:find("broken button", 1, true),
-        "/fg rec dump 1 shows only the latest entry")
-    while #entries > before do table.remove(entries) end
+    check(#errors == before + 1, "contributing off skips Lua error capture")
+    ns.db.contribute = true
+    while #errors > before do table.remove(errors) end
     while #reportedErrors > errorsBefore do table.remove(reportedErrors) end
-    local saved = ns.db.recorder.entries
-    ns.db.recorder.entries = {}
-    ns.Commands:Run("rec dump")
-    check(dump:IsShown() and (dump.text:GetText() or ""):find("Nothing recorded", 1, true), "an empty recorder says so in the window")
-    ns.db.recorder.entries = saved
-    dump:Hide()
 end
--- The recorder never keeps another player's identity or the wall-clock time.
-do
-    local function mentions(t, needle, seen)
-        seen = seen or {}
-        if type(t) == "string" then return t:find(needle, 1, true) ~= nil end
-        if type(t) ~= "table" or seen[t] then return false end
-        seen[t] = true
-        for k, v in pairs(t) do
-            if mentions(k, needle, seen) or mentions(v, needle, seen) then return true end
-        end
-        return false
+-- Contributing keeps facts, not an event log: who gives and ends a quest, where, at what level,
+-- and what was targeted when an objective moved. Never another player, never the time.
+local function mentions(t, needle, seen)
+    seen = seen or {}
+    if type(t) == "string" then return t:find(needle, 1, true) ~= nil end
+    if type(t) ~= "table" or seen[t] then return false end
+    seen[t] = true
+    for k, v in pairs(t) do
+        if mentions(k, needle, seen) or mentions(v, needle, seen) then return true end
     end
-    local entries = ns.db.recorder.entries
-    local before = #entries
-    local npc, offered, fromPlayer = MOCK.npc, MOCK.offeredQuest, MOCK.offerFromPlayer
+    return false
+end
+do
+    local c = ns.db.contrib
+    local npc, offered, fromPlayer, target = MOCK.npc, MOCK.offeredQuest, MOCK.offerFromPlayer, MOCK.target
     local autoShared = ns.AutoQuest.Cfg().shared
     ns.AutoQuest.Cfg().shared = false
+    MOCK.npc = { name = "Marshal Test", npcID = 9001, level = 20 }
+    MOCK.offeredQuest = 5010
+    MOCK.log[5010] = { title = "Fact Quest", level = 5, objectives = {} }
+    MOCK_FIRE("QUEST_DETAIL", 4242); settle()
+    MOCK_FIRE("QUEST_DETAIL", 4242); settle()
+    local q = c.quests[5010]
+    check(q and q.name == "Fact Quest" and #q.givers == 1 and q.givers[1] == 9001 and q.startItem == 4242,
+        "the offer window records the quest's giver and the item that starts it, once")
+    check(q and q.offeredAt and q.offeredAt[1] == MOCK.level and q.offeredAt[2] == MOCK.level, "the player level at the offer is kept")
+    local n = c.npcs[9001]
+    local cells = n and n.cells[MOCK.mapID]
+    check(n and n.name == "Marshal Test" and n.level == 20 and cells and #cells == 1
+        and cells[1][1] * 2 == math.floor(cells[1][1] * 2) and cells[1][2] * 2 == math.floor(cells[1][2] * 2),
+        "the giver's spot is kept once, on a half-unit map cell")
+    ns.Events:Fire("FG_QUEST_ACCEPTED", 5010, "Fact Quest")
+    check(c.order[#c.order] == 5010, "accepting adds the quest to the session's order")
+    -- an objective moves while a hostile mob is targeted
+    MOCK.target = { name = "Test Wolf", npcID = 321, level = 3, hostile = true }
+    ns.Events:Fire("FG_TARGET_CHANGED", { npcID = 321, name = "Test Wolf", level = 3, reaction = "hostile", isPlayer = false })
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 5010, 1, 1, 5, false, "Test Wolf slain: 1/5")
+    local o = q.objectives and q.objectives[1]
+    check(o and o.text == "Test Wolf slain: 1/5" and o.targets and o.targets[321] == 1 and o.cells[MOCK.mapID] and #o.cells[MOCK.mapID] == 1,
+        "objective progress keeps its text, spot, and a vote for the targeted mob")
+    -- a player target is never a vote
+    MOCK.target = nil
+    ns.Events:Fire("FG_TARGET_CHANGED", { name = "Somebody", level = 30, reaction = "hostile", isPlayer = true })
+    MOCK_ADVANCE(30)
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 5010, 1, 2, 5, false, "Test Wolf slain: 2/5")
+    check(o.targets[321] == 1 and not mentions(c, "Somebody"), "a player target is never kept, and an old target gets no vote")
+    -- turn-in
+    MOCK.npc = { name = "Ender Test", npcID = 9002, level = 20 }
+    MOCK_FIRE("QUEST_COMPLETE"); settle()
+    ns.Events:Fire("FG_QUEST_TURNED_IN", 5010, "Fact Quest")
+    check(#q.enders == 1 and q.enders[1] == 9002 and c.order[#c.order] == -5010, "the turn-in NPC and the turn-in order are kept")
+    -- a quest shared by a party member: flagged, never who
     MOCK.npc = { name = "Partymate", npcID = 424242, level = 12 }
     MOCK.offerFromPlayer = true
     MOCK.offeredQuest = 5005
     MOCK.log[5005] = { title = "Shared Privacy", level = 10, objectives = {} }
     MOCK_FIRE("QUEST_DETAIL"); settle()
-    local offer = entries[#entries]
-    check(#entries == before + 1 and offer.e == "OFFER" and offer.q == 5005 and offer.shared == true,
-        "a quest shared by a player is recorded as shared")
-    check(not mentions(ns.db, "Partymate") and offer.npc == nil and offer.npcLevel == nil,
-        "a sharing player's name, level and id are not stored anywhere")
     ns.Events:Fire("FG_QUEST_ACCEPTED", 5005, "Shared Privacy")
-    check(not mentions(ns.db, "Partymate") and entries[#entries].shared == true,
-        "accepting a shared quest does not store the sharing player")
+    check(c.quests[5005] and c.quests[5005].shared == true and #(c.quests[5005].givers or {}) == 0,
+        "a quest shared by a player is flagged shared, with no giver")
+    check(not mentions(ns.db, "Partymate") and c.npcs[424242] == nil, "a sharing player's name, level and id are not stored anywhere")
     -- the share's window has no "npc" unit: the targeted mob nearby is not the quest's giver
-    MOCK.npc, MOCK.target = nil, { name = "Hostile Wolf", npcID = 777, level = 5 }
+    MOCK.npc, MOCK.target = nil, { name = "Hostile Wolf", npcID = 777, level = 5, hostile = true }
     MOCK_FIRE("QUEST_DETAIL"); settle()
-    local fallback = entries[#entries]
-    check(fallback.e == "OFFER" and fallback.shared == true and fallback.npc == nil and fallback.npcName == nil,
-        "a shared quest window is not credited to the player's target")
-    MOCK.target = nil
-    for i = before + 1, #entries do
-        check(entries[i].t == nil or entries[i].t < 1000000, "recorder entries carry no wall-clock time")
-    end
-    -- data saved by older versions: player names (entries without an npc id) and clock times go
-    entries[#entries + 1] = { e = "OFFER", q = 5005, npcName = "OldPartymate", npcLevel = 9, t = 1700000123 }
-    entries[#entries + 1] = { e = "GOSSIP", npc = 1234, npcName = "Old Giver", npcLevel = 5, t = 1700000124 }
-    ns.Recorder:Scrub()
-    local old1, old2 = entries[#entries - 1], entries[#entries]
-    check(not mentions(ns.db, "OldPartymate") and old1.npcLevel == nil and old1.t == nil,
-        "old entries lose a sharing player's name, level and clock time")
-    check(old2.npc == 1234 and old2.npcName == "Old Giver" and old2.t == nil, "old creature entries keep the creature")
-    while #entries > before do table.remove(entries) end
-    MOCK.log[5005] = nil
-    MOCK.npc, MOCK.offeredQuest, MOCK.offerFromPlayer = npc, offered, fromPlayer
+    check(#(c.quests[5005].givers or {}) == 0 and c.npcs[777] == nil, "a shared quest window is not credited to the player's target")
+    check(not mentions(c, "Tester") and not mentions(c, "Classic Beta PvE 2"), "the player's own name and realm are never kept")
+    MOCK.log[5005], MOCK.log[5010] = nil, nil
+    MOCK.npc, MOCK.offeredQuest, MOCK.offerFromPlayer, MOCK.target = npc, offered, fromPlayer, target
     ns.AutoQuest.Cfg().shared = autoShared
+    -- contributing off: windows record nothing
+    ns.db.contribute = false
+    MOCK.npc = { name = "Off Giver", npcID = 9003, level = 20 }
+    MOCK_FIRE("GOSSIP_SHOW"); settle()
+    check(c.npcs[9003] == nil, "with contributing off nothing is kept")
+    MOCK.npc = npc
+    ns.db.contribute = true
+end
+-- /fg share: one string for the feedback form, holding only allowlisted fields.
+do
+    local json = dofile(root .. "tools/test/json.lua")
+    local c = ns.db.contrib
+    -- data that must never leave, planted where the store could hold it
+    c.quests[5010].sharer = "Partymate"
+    c.npcs[9001].guid = "Player-1-000001"
+    ns.db.reports = { { t = 1234.5, text = "giver moved", q = 5010, m = MOCK.mapID, x = 40.1, y = 50.2, lvl = 5,
+        npc = 9001, npcName = "Marshal Test", secret = "Tester" } }
+    local doc = json.decode(ns.Share:Json())
+    local q = doc.quests and doc.quests["5010"]
+    check(doc.format == 2 and doc.addon == ns.version and doc.profile and doc.profile.race and doc.profile.class
+        and doc.profile.faction, "the share carries the format, addon version and race/class/faction")
+    check(q and q.name == "Fact Quest" and q.givers[1] == 9001 and q.enders[1] == 9002 and q.startItem == 4242
+        and q.objectives["1"].targets["321"] == 1, "the share carries the quest facts")
+    local order = doc.order or {}
+    check(order[#order - 2] == 5010 and order[#order - 1] == -5010 and order[#order] == 5005, "the share carries the session order")
+    local r = doc.reports and doc.reports[1]
+    check(r and r.text == "giver moved" and r.npc == 9001 and r.t == nil and r.secret == nil, "reports are shared without their time or unknown fields")
+    local raw = ns.Share:Json()
+    check(not raw:find("Partymate", 1, true) and not raw:find("Player-", 1, true) and not raw:find("Tester", 1, true)
+        and not raw:find("Classic Beta PvE 2", 1, true) and not raw:find("sharer", 1, true) and not raw:find("guid", 1, true),
+        "fields outside the allowlist never reach the share")
+    c.quests[5010].sharer, c.npcs[9001].guid = nil, nil
+    -- the share string: zlib + base64 when the client has C_EncodingUtil, plain JSON otherwise
+    local enc = rawget(_G, "C_EncodingUtil")
+    _G.C_EncodingUtil = nil
+    local parts = ns.Share:Strings()
+    check(#parts == 1 and parts[1] == "FG2J:1/1:" .. raw, "without C_EncodingUtil the share is the JSON itself")
+    local method
+    _G.C_EncodingUtil = {
+        CompressString = function(s, m) method = m return "z(" .. s .. ")" end,
+        EncodeBase64 = function(s) return "b64<" .. s .. ">" end,
+    }
+    parts = ns.Share:Strings()
+    check(#parts == 1 and parts[1] == "FG2:1/1:b64<z(" .. raw .. ")>" and method == 1, "the share is zlib-compressed, then base64")
+    -- long shares split into numbered parts that join back into the payload
+    for id = 90001, 90900 do c.quests[id] = { name = string.rep("Q", 60), givers = { 1 }, enders = { 2 } } end
+    _G.C_EncodingUtil = nil
+    parts = ns.Share:Strings()
+    local joined, ok = {}, #parts > 1
+    for i, p in ipairs(parts) do
+        local head, body = p:match("^(FG2J:" .. i .. "/" .. #parts .. ":)(.*)$")
+        ok = ok and head ~= nil and #p <= ns.Share.PART_MAX
+        joined[#joined + 1] = body or ""
+    end
+    check(ok and table.concat(joined) == ns.Share:Json(), "a long share splits into numbered parts that join back ("
+        .. #parts .. " parts)")
+    for id = 90001, 90900 do c.quests[id] = nil end
+    _G.C_EncodingUtil = enc
+    -- /fg share opens a copy window; Preview shows the readable JSON the string holds
+    ns.Commands:Run("share")
+    local win = rawget(_G, "ForeverGuideShare")
+    local text = win and win.text:GetText() or ""
+    check(win and win:IsShown() and text:find("^FG2J?:1/1:"), "/fg share opens the share string, selected for copying")
+    win.preview:GetScript("OnClick")()
+    text = win.text:GetText() or ""
+    check(text:find('"format": 2', 1, true) and text:find("Fact Quest", 1, true), "Preview shows the readable JSON")
+    win.preview:GetScript("OnClick")()
+    check((win.text:GetText() or ""):find("^FG2J?:1/1:"), "Preview toggles back to the share string")
+    win:Hide()
+    -- the allowlist and its documentation agree
+    local documented = {}
+    for line in io.lines(root .. "docs/SHARE-FORMAT.md") do
+        local path = line:match("^| `([^`]+)` |")
+        if path then documented[path] = true end
+    end
+    local missing, extra = {}, {}
+    for _, path in ipairs(ns.Share:Paths()) do
+        if not documented[path] then missing[#missing + 1] = path end
+        documented[path] = nil
+    end
+    for path in pairs(documented) do extra[#extra + 1] = path end
+    check(#missing == 0 and #extra == 0, "docs/SHARE-FORMAT.md documents exactly the allowlist (missing: "
+        .. table.concat(missing, ", ") .. "; extra: " .. table.concat(extra, ", ") .. ")")
+    -- the session reminder: once per threshold, pointing at /fg share
+    local printed = {}
+    local realPrint = ns.Print
+    ns.Print = function(msg) printed[#printed + 1] = tostring(msg) end
+    ns.Commands:Run("share clear")
+    check(next(c.quests) == nil and next(c.npcs) == nil and #c.order == 0, "/fg share clear empties the collected facts")
+    for i = 1, 60 do ns.Events:Fire("FG_QUEST_ACCEPTED", 60000 + i, "Filler " .. i) end
+    local reminders = 0
+    for _, m in ipairs(printed) do if m:find("/fg share", 1, true) then reminders = reminders + 1 end end
+    check(reminders == 1, "a reminder to share before logging out comes once when facts pile up (" .. reminders .. ")")
+    ns.Print = realPrint
+    ns.Commands:Run("share clear")
+    ns.db.reports = {}
 end
 check(ns.db.ding.enabled == false and ns.db.nav.blizzardWaypoint == false
     and ns.db.nav.waypoint.enabled == false and ns.db.nav.waypoint.route == false
@@ -1512,7 +1609,7 @@ do
         "", "help", "show", "hide", "toggle", "show", "guides", "guide GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", "skip", "back", "next", "step 3",
         "quests", "mode auto", "track", "mode guide", "quest 783", "quest kobold", "avail", "avail 5", "pos", "target", "nav",
         "way 40 60", "lock", "unlock", "resetpos", "auto", "auto accept guide", "auto turnin off", "auto accept on", "auto turnin on",
-        "minimap off", "minimap on", "arrow off", "arrow on", "scale 1.2", "scale 1", "rec status", "rec dump 3", "scan status",
+        "minimap off", "minimap on", "arrow off", "arrow on", "scale 1.2", "scale 1", "share status", "share", "scan status",
         "harvest status", "bliz off", "bliz on", "wrong", "wrong test text", "reports", "options", "debug", "debug", "eval",
         "reports clear", "bogus", "reset",
     }
@@ -1574,7 +1671,7 @@ do
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[G.current] = { type = G:GetCurrentStep().type, quest = G:GetCurrentStep().quest, map = 1426, x = 12.5, y = 34.5, npc = 999 }
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[3] = { type = "ACCEPT", quest = 179, npc = 658 }
     ns.db.ui.width = 480; ns.db.ui.height = 280; ns.db.ui.hideTracker = false
-    ns.db.recorder.enabled, ns.db.scanEnabled, ns.db.harvestEnabled = true, false, true
+    ns.db.contribute, ns.db.scanEnabled = true, false
     ns.Persist:Save()
     check(ns.Persist.lastSaveOK == true, "the cvar mirror verified its write")
     local savedStep, savedGuide = G.progress.step, ns.char.activeGuide
@@ -1594,8 +1691,7 @@ do
     check(e2 and e2.npc == 658 and e2.quest == 179 and e and e.quest ~= nil, "a second step edit survives the mirror too (separator kept)")
     check(ns.db.ui.width == 480 and ns.db.ui.height == 280 and ns.db.ui.hideTracker == false,
         "window size and tracker switch are restored")
-    check(ns.db.recorder.enabled and not ns.db.scanEnabled and ns.db.harvestEnabled,
-        "each opt-in choice survives a beta login independently")
+    check(ns.db.contribute and not ns.db.scanEnabled, "each opt-in choice survives a beta login independently")
     ns.AutoQuest:Set("accept", "on")
     ns.db.edits = {}
     G:Activate(savedGuide, true); G:Reset(); settle()

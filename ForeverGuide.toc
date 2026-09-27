@@ -42,6 +42,7 @@ Recorder.lua
 Data\VanillaQuestIDs.lua
 Scanner.lua
 Harvest.lua
+Share.lua
 # ---- the Quest Guide interface (UI\*.lua: theme, window, list, waypoint; UI.lua coordinates) ----
 UI\Theme.lua
 UI\Reports.lua

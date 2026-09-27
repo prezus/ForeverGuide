@@ -4,7 +4,7 @@ Shared code for the Forever data overlay.
 
 Vanilla data lives in Data/QuestDB.lua etc. (built from Questie). Everything
 Forever adds or changes is accumulated in data-src/forever.json by two tools
-    tools/merge_recorded.py   evidence collected in-game by the addon (recorder / harvest / scan)
+    tools/merge_recorded.py   evidence collected in-game by the addon (contributed facts / harvest / scan)
     tools/import_db2.py       the client's own DB2 tables (CSV exports from wago.tools)
 and emitted to Data/ForeverDB.lua, which DB.lua merges over the vanilla tables at load.
 
@@ -180,7 +180,7 @@ def load_saved_variables(path):
             try:
                 out[name] = LuaParser(text[m.end():]).value()
             except Exception as e:  # noqa: BLE001
-                print("could not parse %s in %s: %s" % (name, path, e))
+                print("could not parse %s in %s: %s" % (name, os.path.basename(path), e))
     return out.get("ForeverGuideDB") or {}, out.get("ForeverGuideCharDB") or {}
 
 

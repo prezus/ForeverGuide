@@ -77,10 +77,10 @@ may become secret). Capture the **full first Lua error** from the client's error
 stack trace, and note the client build (`/fg`), what you clicked, and whether you were in combat.
 ForeverGuide also catches some callback errors with `pcall` and prints `ForeverGuide: error in
 <key>: <message>` in chat **once per key per reload**; capture those lines too. The popup will
-not show errors caught by the addon; while the recorder is enabled, ForeverGuide saves those errors
-locally in `ForeverGuideDB.recorder.entries` and shows them in `/fg rec dump`. `/reload` resets the
-once-per-key reporting. On this beta, recorder data may not be read back at login; collect the SavedVariables
-file before further reloads. Redact character, realm, account, and local path details before sharing.
+not show errors caught by the addon; while Contribute data is on, ForeverGuide keeps those errors
+with the guide step and map, and `/fg share` includes them in the string for the feedback form.
+`/reload` resets the once-per-key reporting. Redact character, realm, account, and local path
+details before sharing anything you copy by hand.
 
 In game:
 
@@ -93,7 +93,7 @@ In game:
 | `/fg pos` | your uiMapID + coordinates, printed as a ready-to-paste TRAVEL step |
 | `/fg target` | npc id, level, reaction of your target |
 | `/fg way 42.3 71.8` | point the arrow at a coordinate on your current map |
-| `/fg rec on` / `/fg rec dump 20` | opt in to local recording (off by default) / show the last 20 recorded facts |
+| `/fg share on` / `/fg share` | opt in to contributing quest data (off by default) / copy it, with your reports, as one string for the feedback form (Preview shows exactly what it holds) |
 | `/fg mode auto` | navigate your quest log directly (nearest objective / turn-in), no guide needed; `/fg mode guide` to follow the guide |
 | `/fg quest 783` / `/fg quest kobold` | everything the database knows: giver, objectives with coordinates, turn-in, prerequisites |
 | `/fg avail` | quests you could pick up in the current zone, with their givers and distances |
@@ -130,7 +130,8 @@ ForeverGuide/
   Guide.lua         guide registry + the step interpreter (advance / recovery / skip)
   DB.lua            access to the bundled quest database (where does a quest start / end / its objectives)
   Tracker.lua       auto mode: navigates the quest log using the database
-  Recorder.lua      Phase 10 data recorder (quest -> npc -> coords -> level) into SavedVariables
+  Recorder.lua      Contribute data: quest givers / enders, NPC and objective spots, target votes (opt-in, no names or times)
+  Share.lua         /fg share: the allowlisted export string for the feedback form (docs/SHARE-FORMAT.md)
   Scanner.lua       quest id scanner (/fg scan) -> which quest ids exist on Forever's server
   UI.lua            coordinator of the interface + the guide picker
   UI/Theme.lua      textures, colours, fonts, backdrops, buttons, pulse ticker (Textures/*.tga from tools/make_textures.py)
@@ -163,7 +164,7 @@ ForeverGuide/
     import_rxp.py       factual quest positions from RestedXP's free Forever guides -> overlay
     questie_lookup.py   quest/NPC/object/item facts + step JSON from the Questie DB
     scan_diff.py        /fg scan results vs Questie: new / removed / renamed quests
-    merge_recorded.py   SavedVariables (recorder/harvest/scan, incl. .bak, every account) -> data-src/forever.json -> Data/ForeverDB.lua
+    merge_recorded.py   SavedVariables (contributed facts/harvest/scan, incl. .bak, every account) -> data-src/forever.json -> Data/ForeverDB.lua
     import_db2.py       wago.tools CSV exports of Forever's own quest tables (QuestV2, QuestObjective, QuestPOI*) -> same overlay
     collect_reports.py  "/fg wrong" reports -> local-only data-src/reports.json + review list
     apply_edits.py      "/fg edit" corrections -> guides-src/*.json (then compile_guides.py)
@@ -181,11 +182,14 @@ Vanilla quests come from Questie. Everything Forever adds is collected into `dat
 and shipped as `Data/ForeverDB.lua`, which `DB.lua` merges over the vanilla tables at load (vanilla
 records only gain what they lack; unknown ids become new records flagged `forever`). Two sources:
 
-* **Playing with the recorder on** (opt in under Options → Data collection or `/fg rec on`): quest accepts / turn-ins with NPC id + coordinates,
-  objective progress with position, gossip lists, zone maps. Only creatures are recorded: a quest
-  shared by another player is flagged `shared`, never with who shared it, and entry times count
-  seconds within the session, not the clock. After a session:
-  `python tools/merge_recorded.py` (reads every `WTF\Account\*\SavedVariables\ForeverGuide.lua` and `.bak`).
+* **Players contributing data** (opt in under Options → Data collection or `/fg share on`): the
+  creatures that give and end each quest, where NPCs stand and objectives progress (rounded to half
+  a map unit), which mobs were targeted when an objective moved, the player level a quest was
+  offered at, and zone maps. Only creatures are kept: a quest shared by another player is flagged
+  `shared`, never with who shared it, and nothing records the time. `/fg share` turns it into one
+  string for the feedback form ([format](docs/SHARE-FORMAT.md)). On your own machine,
+  `python tools/merge_recorded.py` reads the same facts from every
+  `WTF\Account\*\SavedVariables\ForeverGuide.lua` and `.bak`.
 * **The client's own tables**: export `QuestV2`, `QuestV2CliTask`, `QuestObjective`, `QuestPOIBlob`,
   `QuestPOIPoint` as CSV from `https://wago.tools/db2/<Table>?build=1.60.1.69913` into a folder, then
   `python tools/import_db2.py <folder>`. Objective positions are world coordinates (`spw`) and are
@@ -209,7 +213,7 @@ Opt in to Scanner under Options → Data collection (or `/fg scan on`) first.
 **`/fg scan new`** asks the server for exactly those ids and records title, level and objective texts
 as they arrive (the server throttles; run it in the background over a few sessions, `/fg scan status`
 shows progress), then `tools\sync_to_github.cmd` / `merge_recorded.py` folds them in. Positions of
-the new quests come from the recorder while you play them.
+the new quests come from contributed data while you play them.
 
 ## Route logic (the planner)
 
@@ -261,7 +265,7 @@ Names and coordinates come from the database at runtime (explicit `x`/`y` overri
 
 Coordinates use `map` (uiMapID) plus a `zone` name as fallback: if Forever does not know the Classic
 Era uiMapID, the engine matches the zone by name against the player's current map. Run `/fg pos` in
-each zone to learn Forever's real IDs; when opted in, the recorder also stores every map it sees.
+each zone to learn Forever's real IDs; while contributing data, the addon also keeps every map it sees.
 
 ## Beta caveats (1.60.1)
 
@@ -269,9 +273,9 @@ each zone to learn Forever's real IDs; when opted in, the recorder also stores e
   every session started from scratch). `Persist.lua` works around it: the active guide, step, progress,
   mode, settings and step edits are mirrored into addon-registered CVars (which the client does persist)
   and restored when the SavedVariables come back empty. `/fg persist` shows the state. Big data
-  (opted-in recorder/scan/harvest entries, `/fg wrong` reports) still only lives in the SavedVariables *files*, which are
-  overwritten at every reload - `tools\sync_to_github.cmd` harvests them (merge_recorded / collect_reports)
-  before committing, so run it regularly.
+  (contributed facts, scan/harvest data, `/fg wrong` reports) still only lives in the SavedVariables *files*, which are
+  overwritten at every reload: `/fg share` copies facts and reports out before you log out, and on your
+  own machine `tools\sync_to_github.cmd` harvests the files (merge_recorded / collect_reports) before committing.
 * Everything from the game can be a secret value in combat. All reads go through `ns.Plain*` helpers.
 * The classic quest IDs / NPC IDs in the sample guide come from Questie's Classic Era data and must be
-  verified on Forever (`/fg rec dump`).
+  verified on Forever (`/fg quest <id>`, contributed data).

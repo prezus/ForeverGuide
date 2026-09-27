@@ -33,9 +33,9 @@ local HELP = {
     "/fg minimap on|off  the minimap button",
     "/fg auto [accept on|off|guide] [turnin on|off]   auto-accept / auto-turn-in quests (hold SHIFT at an NPC to do it by hand)",
     "/fg auto share|shared on|off   share quests you accept with your group / accept quests (and escorts) your group shares",
-    "/fg rec on|off|status|dump [n]|clear   opt-in data recorder (off by default)",
+    "/fg share [on|off|status|clear]   contribute quest data (off by default): /fg share copies it for the feedback form",
     "/fg scan on|off | new | [from] [to] | stop | resume | status   opt in before requesting quest data from the server",
-    "/fg harvest on|off | sweep [from to] | probe | status   opt in to quest discovery and map requests (off by default)",
+    "/fg harvest | sweep [from to] | probe | status   quest discovery and map requests (needs /fg share on)",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
     "/fg dungeon on|off  put the guide away while you are in an instance (on by default)",
     "/fg fp              list / walk to the flight points in this zone you have not taken yet",
@@ -643,16 +643,20 @@ function handlers.scale(rest)
     ns.UI:SetScale(v)
 end
 
-function handlers.rec(rest)
-    local cmd, arg = rest:match("^(%S*)%s*(.*)$")
+function handlers.share(rest)
     local R = ns.Recorder
-    if cmd == "on" then ns.db.recorder.enabled = true ns.Print("recorder on.")
-    elseif cmd == "off" then ns.db.recorder.enabled = false ns.Print("recorder off.")
-    elseif cmd == "clear" then R:Clear() ns.Print("recorder cleared.")
-    elseif cmd == "dump" then R:Dump(tonumber(arg) or 10)
+    if rest == "on" or rest == "off" then
+        R:SetEnabled(rest == "on")
+        ns.Printf("contributing data %s.", rest)
+    elseif rest == "clear" then
+        R:Clear()
+        ns.Print("collected facts cleared.")
+    elseif rest == "status" then
+        local quests, npcs, errors = R:Counts()
+        ns.Printf("contributing %s: %d quests, %d NPCs, %d addon errors collected; /fg share copies them.",
+            ns.db.contribute and "on" or "off", quests, npcs, errors)
     else
-        ns.Printf("recorder %s, %d entries, %d maps seen. Saved to WTF\\...\\SavedVariables\\ForeverGuide.lua on logout.",
-            ns.db.recorder.enabled and "ON" or "OFF", R:Count(), (function() local n = 0 for _ in pairs(ns.db.recorder.maps) do n = n + 1 end return n end)())
+        ns.Share:Show()
     end
 end
 
@@ -670,8 +674,7 @@ end
 function handlers.harvest(rest)
     local H = ns.Harvest
     local a, b, c = rest:match("^(%S*)%s*(%S*)%s*(%S*)$")
-    if a == "on" or a == "off" then H:SetEnabled(a == "on") ns.Print("harvest " .. a)
-    elseif a == "sweep" then H:Sweep(tonumber(b), tonumber(c))
+    if a == "sweep" then H:Sweep(tonumber(b), tonumber(c))
     elseif a == "status" then H:Status()
     elseif a == "probe" then H:Probe()
     else H:HarvestAllMaps() end

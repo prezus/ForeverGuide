@@ -19,6 +19,7 @@ local function Window(name, width, height, title)
     local heading = Theme.NewText(f, { size = 15, oneLine = true })
     heading:SetPoint("TOPLEFT", f, "TOPLEFT", 14, -14)
     heading:SetText(title)
+    f.heading = heading
     local close = Theme.NewButton(f, "x", 26, 22, function() f:Hide() end)
     close:SetPoint("TOPRIGHT", f, "TOPRIGHT", -8, -8)
     f:Hide()

@@ -309,8 +309,8 @@ function Nav:ResolveStep(step)
             local curMap = ns.Player:GetMapID()
             local curName = ns.Player:GetMapName(curMap)
             if curName and curName == step.zone then mapID = curMap end
-            if not mapID and ns.db and ns.db.recorder.maps then
-                for id, info in pairs(ns.db.recorder.maps) do
+            if not mapID and ns.db and ns.db.contrib then
+                for id, info in pairs(ns.db.contrib.maps) do
                     if info.name == step.zone then mapID = id break end
                 end
             end
