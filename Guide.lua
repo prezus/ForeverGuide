@@ -382,6 +382,15 @@ function Guide:IsStepDone(step, idx)
         ns.Debug(string.format("completion flag set for %s (%d) although it is still in the log - ignoring it", ns.Quest:GetTitle(step.quest) or "?", step.quest))
     end
 
+    -- A breadcrumb whose quest the player already has, or has done, is never offered again:
+    -- Rejold's New Brew (415) after Shimmer Stout (413) was taken at Rejold's first. Its steps
+    -- are passed, not waited on (seen live, 2026-09-27).
+    if step.quest and (t == "ACCEPT" or t == "TURNIN") and not Q:IsOnQuest(step.quest) and ns.DB and ns.DB:IsLoaded() then
+        local q = ns.DB:GetQuest(step.quest)
+        local target = q and q.breadcrumb
+        if target and (Q:IsOnQuest(target) or Q:IsCompleted(target)) then return true, "breadcrumb passed" end
+    end
+
     if t == "ACCEPT" then
         return Q:IsOnQuest(step.quest), nil
     elseif t == "TURNIN" then
