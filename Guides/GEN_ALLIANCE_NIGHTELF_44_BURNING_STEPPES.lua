@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_44_BURNING_STEPPES",
     name = "44. Burning Steppes 53-53 (Night Elf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 53,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_45_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 44 of the NightElf route: level 53 to 53, 23 steps, ~125 min of play in the model (35015 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 56,
+    stepCount = 60,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2299, npcName = "Borgus Stoutarm", map = 1428, zone = "Burning Steppes", x = 84.3, y = 68.3 }, -- 1
         { type = "TURNIN", quest = 5781, questName = "Of Forgotten Memories", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.4, y = 43.6 }, -- 2
@@ -32,44 +32,48 @@ ns.RegisterGuide({
         { type = "TRAVEL", map = 1428, zone = "Burning Steppes", x = 84.7, y = 68.8, radius = 60, note = "travel to Burning Steppes (Burning Steppes)" }, -- 15
         { type = "ACCEPT", quest = 3823, questName = "Extinguish the Firegut", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 16
         { type = "ACCEPT", quest = 4283, questName = "FIFTY! YEP!", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 17
-        { type = "ACCEPT", quest = 4182, questName = "Dragonkin Menace", npc = 9562, npcName = "Helendis Riverhorn", map = 1428, zone = "Burning Steppes", x = 85.8, y = 69, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 18
-        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7047, target = "Black Broodling", count = 15, map = 1428, zone = "Burning Steppes", x = 90.6, y = 47.4, optional = true, near = true }, -- 19
-        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7040, target = "Black Dragonspawn", count = 15, map = 1428, zone = "Burning Steppes", x = 92.8, y = 57.5, optional = true, near = true }, -- 20
-        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7044, target = "Black Drake", count = 15, map = 1428, zone = "Burning Steppes", x = 89.5, y = 57, optional = true, near = true }, -- 21
-        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7041, target = "Black Wyrmkin", count = 15, map = 1428, zone = "Burning Steppes", x = 77.9, y = 62.2, optional = true, near = true }, -- 22
-        { type = "TURNIN", quest = 4182, questName = "Dragonkin Menace", npc = 9562, npcName = "Helendis Riverhorn", map = 1428, zone = "Burning Steppes", x = 85.8, y = 69, optional = true }, -- 23
-        { type = "ACCEPT", quest = 4183, questName = "The True Masters", npc = 9562, npcName = "Helendis Riverhorn", map = 1428, zone = "Burning Steppes", x = 85.6, y = 69 }, -- 24
-        { type = "KILL", quest = 3823, questName = "Extinguish the Firegut", npc = 7033, target = "Firegut Ogre", count = 15, map = 1428, zone = "Burning Steppes", x = 78.7, y = 55.5, near = true }, -- 25
-        { type = "KILL", quest = 3823, questName = "Extinguish the Firegut", npc = 7035, target = "Firegut Brute / Firegut Ogre Mage", count = 15, map = 1428, zone = "Burning Steppes", x = 80.4, y = 48.3, near = true }, -- 26
-        { type = "COLLECT", quest = 4283, questName = "FIFTY! YEP!", target = "Blackrock Medallion", count = 50, map = 1428, zone = "Burning Steppes", x = 87.4, y = 50.5, near = true }, -- 27
-        { type = "TURNIN", quest = 3823, questName = "Extinguish the Firegut", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 28
-        { type = "ACCEPT", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 29
-        { type = "TURNIN", quest = 4283, questName = "FIFTY! YEP!", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 30
-        { type = "ACCEPT", quest = 3801, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 31
-        { type = "TURNIN", quest = 3801, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9, optional = true }, -- 32
-        { type = "ACCEPT", quest = 3802, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 33
-        { type = "COLLECT", quest = 8419, questName = "An Imp's Request", target = "Felcloth", count = 1, map = 1428, zone = "Burning Steppes", x = 41.9, y = 46.5, near = true, class = { "WARLOCK" }, mobs = "Felguard Sentry / Legashi Satyr / Legashi Rogue / Legashi Hellcaller" }, -- 34
-        { type = "KILL", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9176, target = "Gor'tesh", map = 1428, zone = "Burning Steppes", x = 39.3, y = 55.3, note = "loot Gor'tesh's Lopped Off Head" }, -- 35
-        { type = "TURNIN", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 36
-        { type = "ACCEPT", quest = 3825, questName = "Ogre Head On A Stick = Party", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 37
-        { type = "COMPLETE", quest = 3825, questName = "Ogre Head On A Stick = Party", target = "Soft Dirt Mound", map = 1428, zone = "Burning Steppes", x = 81, y = 46.8, note = "Gor'tesh Head Planted" }, -- 38
-        { type = "TURNIN", quest = 3825, questName = "Ogre Head On A Stick = Party", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 39
-        { type = "ACCEPT", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.8 }, -- 40
-        { type = "COLLECT", quest = 4726, questName = "Broodling Essence", target = "Broodling Essence", count = 8, map = 1428, zone = "Burning Steppes", x = 86.9, y = 30.6 }, -- 41
-        { type = "ACCEPT", quest = 4023, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6, optional = true, note = "Elite - group up" }, -- 42
-        { type = "COLLECT", quest = 4023, questName = "A Taste of Flame", target = "Black Dragonflight Molt", count = 1, map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6, optional = true, near = true, mobs = "Cyrus Therepentous / Frenzied Black Drake" }, -- 43
-        { type = "TURNIN", quest = 4023, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6, optional = true }, -- 44
-        { type = "ACCEPT", quest = 4024, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 45
-        { type = "ACCEPT", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 46
-        { type = "NOTE", optional = true, text = "Ready for Blackrock Depths", note = "Picked up: Dark Iron Legacy, A Taste of Flame, Hurley Blackbreath, Ribbly Screwspigot, The Good Stuff, Kharan Mighthammer. When you have a group, open Blackrock Depths under Dungeons." }, -- 47
-        { type = "TURNIN", quest = 4324, questName = "Yuka Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22, optional = true }, -- 48
-        { type = "ACCEPT", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 49
-        { type = "COLLECT", quest = 4296, questName = "Tablet of the Seven", target = "Tablet Transcript", map = 1428, zone = "Burning Steppes", x = 54.1, y = 40.8 }, -- 50
-        { type = "TURNIN", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 51
-        { type = "TURNIN", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.8 }, -- 52
-        { type = "TURNIN", quest = 4183, questName = "The True Masters", npc = 344, npcName = "Magistrate Solomon", map = 1433, zone = "Redridge Mountains", x = 30, y = 44.2 }, -- 53
-        { type = "ACCEPT", quest = 3454, questName = "The Torch of Retribution", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39 }, -- 54
-        { type = "TURNIN", quest = 3454, questName = "The Torch of Retribution", map = 1427, zone = "Searing Gorge", x = 39, y = 39.1 }, -- 55
-        { type = "ACCEPT", quest = 7494, questName = "Feathermoon Stronghold", npc = 2198, npcName = "Crier Goodman", map = 1453, zone = "Stormwind City", x = 55, y = 62.8, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 56
+        { type = "ACCEPT", quest = 4262, questName = "Overmaster Pyron", npc = 9561, npcName = "Jalinda Sprig", map = 1428, zone = "Burning Steppes", x = 85.4, y = 70, optional = true, note = "Elite - group up" }, -- 18
+        { type = "ACCEPT", quest = 4182, questName = "Dragonkin Menace", npc = 9562, npcName = "Helendis Riverhorn", map = 1428, zone = "Burning Steppes", x = 85.8, y = 69, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 19
+        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7047, target = "Black Broodling", count = 15, map = 1428, zone = "Burning Steppes", x = 90.6, y = 47.4, optional = true, near = true }, -- 20
+        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7040, target = "Black Dragonspawn", count = 15, map = 1428, zone = "Burning Steppes", x = 92.8, y = 57.5, optional = true, near = true }, -- 21
+        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7044, target = "Black Drake", count = 15, map = 1428, zone = "Burning Steppes", x = 89.5, y = 57, optional = true, near = true }, -- 22
+        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7041, target = "Black Wyrmkin", count = 15, map = 1428, zone = "Burning Steppes", x = 77.9, y = 62.2, optional = true, near = true }, -- 23
+        { type = "TURNIN", quest = 4182, questName = "Dragonkin Menace", npc = 9562, npcName = "Helendis Riverhorn", map = 1428, zone = "Burning Steppes", x = 85.8, y = 69, optional = true }, -- 24
+        { type = "ACCEPT", quest = 4183, questName = "The True Masters", npc = 9562, npcName = "Helendis Riverhorn", map = 1428, zone = "Burning Steppes", x = 85.6, y = 69 }, -- 25
+        { type = "KILL", quest = 3823, questName = "Extinguish the Firegut", npc = 7033, target = "Firegut Ogre", count = 15, map = 1428, zone = "Burning Steppes", x = 78.7, y = 55.5, near = true }, -- 26
+        { type = "KILL", quest = 3823, questName = "Extinguish the Firegut", npc = 7035, target = "Firegut Brute / Firegut Ogre Mage", count = 15, map = 1428, zone = "Burning Steppes", x = 80.4, y = 48.3, near = true }, -- 27
+        { type = "COLLECT", quest = 4283, questName = "FIFTY! YEP!", target = "Blackrock Medallion", count = 50, map = 1428, zone = "Burning Steppes", x = 87.4, y = 50.5, near = true }, -- 28
+        { type = "TURNIN", quest = 3823, questName = "Extinguish the Firegut", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 29
+        { type = "ACCEPT", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 30
+        { type = "TURNIN", quest = 4283, questName = "FIFTY! YEP!", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 31
+        { type = "KILL", quest = 4262, questName = "Overmaster Pyron", npc = 9026, target = "Overmaster Pyron", count = 1, map = 1428, zone = "Burning Steppes", x = 29.4, y = 38.3, optional = true, near = true, note = "Inside Blackrock Mountain" }, -- 32
+        { type = "TURNIN", quest = 4262, questName = "Overmaster Pyron", npc = 9561, npcName = "Jalinda Sprig", map = 1428, zone = "Burning Steppes", x = 85.4, y = 70, optional = true }, -- 33
+        { type = "ACCEPT", quest = 3801, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 34
+        { type = "TURNIN", quest = 3801, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9, optional = true }, -- 35
+        { type = "ACCEPT", quest = 3802, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 36
+        { type = "ACCEPT", quest = 4263, questName = "Incendius!", npc = 9561, npcName = "Jalinda Sprig", map = 1428, zone = "Burning Steppes", x = 85.4, y = 70, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 37
+        { type = "COLLECT", quest = 8419, questName = "An Imp's Request", target = "Felcloth", count = 1, map = 1428, zone = "Burning Steppes", x = 41.9, y = 46.5, near = true, class = { "WARLOCK" }, mobs = "Felguard Sentry / Legashi Satyr / Legashi Rogue / Legashi Hellcaller" }, -- 38
+        { type = "KILL", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9176, target = "Gor'tesh", map = 1428, zone = "Burning Steppes", x = 39.3, y = 55.3, note = "loot Gor'tesh's Lopped Off Head" }, -- 39
+        { type = "TURNIN", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 40
+        { type = "ACCEPT", quest = 3825, questName = "Ogre Head On A Stick = Party", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 41
+        { type = "COMPLETE", quest = 3825, questName = "Ogre Head On A Stick = Party", target = "Soft Dirt Mound", map = 1428, zone = "Burning Steppes", x = 81, y = 46.8, note = "Gor'tesh Head Planted" }, -- 42
+        { type = "TURNIN", quest = 3825, questName = "Ogre Head On A Stick = Party", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 43
+        { type = "ACCEPT", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.8 }, -- 44
+        { type = "COLLECT", quest = 4726, questName = "Broodling Essence", target = "Broodling Essence", count = 8, map = 1428, zone = "Burning Steppes", x = 86.9, y = 30.6 }, -- 45
+        { type = "ACCEPT", quest = 4023, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6, optional = true, note = "Elite - group up" }, -- 46
+        { type = "COLLECT", quest = 4023, questName = "A Taste of Flame", target = "Black Dragonflight Molt", count = 1, map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6, optional = true, near = true, mobs = "Cyrus Therepentous / Frenzied Black Drake" }, -- 47
+        { type = "TURNIN", quest = 4023, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6, optional = true }, -- 48
+        { type = "ACCEPT", quest = 4024, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 49
+        { type = "ACCEPT", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 50
+        { type = "NOTE", optional = true, text = "Ready for Blackrock Depths", note = "Picked up: Dark Iron Legacy, A Taste of Flame, Hurley Blackbreath, Ribbly Screwspigot, Incendius!, The Good Stuff, Kharan Mighthammer. When you have a group, open Blackrock Depths under Dungeons." }, -- 51
+        { type = "TURNIN", quest = 4324, questName = "Yuka Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22, optional = true }, -- 52
+        { type = "ACCEPT", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 53
+        { type = "COLLECT", quest = 4296, questName = "Tablet of the Seven", target = "Tablet Transcript", map = 1428, zone = "Burning Steppes", x = 54.1, y = 40.8 }, -- 54
+        { type = "TURNIN", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 55
+        { type = "TURNIN", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.8 }, -- 56
+        { type = "TURNIN", quest = 4183, questName = "The True Masters", npc = 344, npcName = "Magistrate Solomon", map = 1433, zone = "Redridge Mountains", x = 30, y = 44.2 }, -- 57
+        { type = "ACCEPT", quest = 3454, questName = "The Torch of Retribution", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39 }, -- 58
+        { type = "TURNIN", quest = 3454, questName = "The Torch of Retribution", map = 1427, zone = "Searing Gorge", x = 39, y = 39.1 }, -- 59
+        { type = "ACCEPT", quest = 7494, questName = "Feathermoon Stronghold", npc = 2198, npcName = "Crier Goodman", map = 1453, zone = "Stormwind City", x = 55, y = 62.8, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 60
     } end,
 })
