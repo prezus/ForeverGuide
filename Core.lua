@@ -205,6 +205,24 @@ function ns.Now()
     return PlainNumber(Safe(GetTime)) or 0
 end
 
+--- s cut to at most maxBytes bytes without splitting a UTF-8 character.
+function ns.Utf8Sub(s, maxBytes)
+    if #s <= maxBytes then return s end
+    s = s:sub(1, maxBytes)
+    -- step back over a trailing sequence the cut left incomplete
+    local i = #s
+    while i > 0 and i > #s - 3 do
+        local b = s:byte(i)
+        if b < 0x80 then return s end                       -- ASCII: complete
+        if b >= 0xC0 then                                    -- lead byte of an n-byte character
+            local n = b >= 0xF0 and 4 or b >= 0xE0 and 3 or 2
+            return (#s - i + 1 >= n) and s or s:sub(1, i - 1)
+        end
+        i = i - 1                                            -- continuation byte
+    end
+    return s
+end
+
 -- ------------------------------------------------------------
 -- Module registry + lifecycle
 -- ------------------------------------------------------------

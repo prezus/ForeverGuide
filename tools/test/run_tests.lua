@@ -280,17 +280,39 @@ do
         .. #parts .. " parts)")
     for id = 90001, 90900 do c.quests[id] = nil end
     _G.C_EncodingUtil = enc
-    -- /fg share opens a copy window; Preview shows the readable JSON the string holds
+    -- /fg share opens the string to copy; Readable explains it in words, JSON shows it as data
     ns.Commands:Run("share")
     local win = rawget(_G, "ForeverGuideShare")
     local text = win and win.text:GetText() or ""
     check(win and win:IsShown() and text:find("^FG2J?:1/1:"), "/fg share opens the share string, selected for copying")
-    win.preview:GetScript("OnClick")()
+    win.views.readable:GetScript("OnClick")()
     text = win.text:GetText() or ""
-    check(text:find('"format": 2', 1, true) and text:find("Fact Quest", 1, true), "Preview shows the readable JSON")
-    win.preview:GetScript("OnClick")()
-    check((win.text:GetText() or ""):find("^FG2J?:1/1:"), "Preview toggles back to the share string")
+    check(text:find("WHAT THIS SHARE CONTAINS", 1, true) and text:find("[5010] Fact Quest", 1, true)
+        and text:find("Given by: Marshal Test (9001)", 1, true) and text:find("Turned in to: Ender Test (9002)", 1, true)
+        and text:find("Started from item 4242", 1, true) and text:find("Targeted when it moved: Test Wolf (321) x1", 1, true)
+        and text:find("Never included:", 1, true) and text:find("SHARE-FORMAT.md", 1, true),
+        "Readable lists the quests, NPCs and what is never included, in words (" .. text:sub(1, 300):gsub("\n", " | ") .. ")")
+    check(not text:find("Partymate", 1, true) and not text:find("Tester", 1, true), "Readable shows only what the string holds")
+    win.views.json:GetScript("OnClick")()
+    text = win.text:GetText() or ""
+    check(text:find('"format": 2', 1, true) and text:find("Fact Quest", 1, true), "JSON shows the data the string holds")
+    win.views.string:GetScript("OnClick")()
+    check((win.text:GetText() or ""):find("^FG2J?:1/1:"), "Share string switches back to the string")
     win:Hide()
+    -- anyone can validate a share without our code: the published JSON Schema is the allowlist
+    local schemaFile = io.open(root .. "docs/share-format.schema.json")
+    local committed = schemaFile and schemaFile:read("*a") or ""
+    if schemaFile then schemaFile:close() end
+    local generate = dofile(root .. "tools/lib/share_schema.lua")
+    check(committed == generate(ns.Share.SCHEMA), "docs/share-format.schema.json is generated from the allowlist "
+        .. "(regenerate: lua5.1 tools/share_schema.lua > docs/share-format.schema.json)")
+    -- capped text never cuts a character in half (a cut UTF-8 sequence is not valid JSON)
+    check(ns.Utf8Sub("abc\195\169", 4) == "abc" and ns.Utf8Sub("abc\195\169", 5) == "abc\195\169"
+        and ns.Utf8Sub("\226\130\172x", 2) == "" and ns.Utf8Sub("plain", 3) == "pla", "text is cut on whole UTF-8 characters")
+    c.quests[5010].name = string.rep("a", 119) .. "\195\169"
+    local cut = json.decode(ns.Share:Json()).quests["5010"].name
+    check(cut == string.rep("a", 119), "a quest title capped mid-character loses the whole character")
+    c.quests[5010].name = "Fact Quest"
     -- the allowlist and its documentation agree
     local documented = {}
     for line in io.lines(root .. "docs/SHARE-FORMAT.md") do
@@ -968,6 +990,9 @@ do
         "the feedback dialog asks players to leave names out")
     ns.Commands:Run("wrong " .. string.rep("x", 300))
     check(#ns.db.reports[3].text == 200, "report text is capped at 200 characters")
+    table.remove(ns.db.reports, 3)
+    ns.Commands:Run("wrong " .. string.rep("x", 199) .. "\195\169")
+    check(ns.db.reports[3].text == string.rep("x", 199), "a report capped mid-character loses the whole character")
     table.remove(ns.db.reports, 3)
     ns.Commands:Run("reports")
     check(ForeverGuideReports and ForeverGuideReports:IsShown() and ForeverGuideReports.text:GetText():find("giver moved east", 1, true)
