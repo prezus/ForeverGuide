@@ -9,12 +9,12 @@
 --      available quests. Gives quest ID, title AND start position for
 --      every zone map, without visiting it.       /fg harvest
 --   2. NPC gossip windows: quest IDs + titles offered / turned in there,
---      with the NPC id and your position (recorder already logs the NPC).
+--      with the NPC id and your position (Recorder.lua keeps the NPC).
 --   3. A sweep of HaveQuestData over the id space: anything the client
 --      cached while you played (map pins, quest givers, tooltips) is read
 --      out with its title.                        /fg harvest sweep
 --
--- Off by default; /fg harvest on enables passive discovery and map requests.
+-- Runs only while contributing data is on (Options -> Data collection, or /fg share on).
 -- Everything is stored next to the scanner's data so scan_diff.py sees it:
 --   ForeverGuideDB.scan.quests[id] = title
 --   ForeverGuideDB.harvest.lines[id] = { map, x, y, line, lineName, name }
@@ -25,7 +25,7 @@ local _, ns = ...
 local Harvest = ns:NewModule("Harvest")
 
 local PlainNumber, PlainString, PlainBool = ns.PlainNumber, ns.PlainString, ns.PlainBool
-local function Enabled() return ns.db and ns.db.harvestEnabled == true end
+local function Enabled() return ns.db and ns.db.contribute == true end
 
 local SWEEP_FROM, SWEEP_TO, SWEEP_CHUNK = 1, 120000, 3000
 local CONTINENTS = { 1414, 1415, 947 }   -- Kalimdor, Eastern Kingdoms, Azeroth (Classic Era uiMapIDs)
@@ -124,7 +124,7 @@ function Harvest:AllZoneMaps()
 end
 
 function Harvest:HarvestAllMaps()
-    if not Enabled() then ns.Print("enable Harvest under /fg options (Data collection) or /fg harvest on first.") return end
+    if not Enabled() then ns.Print("turn on Contribute data under /fg options (Data collection) or /fg share on first.") return end
     if self.harvesting then ns.Print("harvest: already running.") return end
     local maps = self:AllZoneMaps()
     if #maps == 0 then ns.Warn("harvest: no maps found (C_Map.GetMapChildrenInfo returned nothing)") return end
@@ -166,7 +166,7 @@ end
 -- 3. Cache sweep
 -- ------------------------------------------------------------
 function Harvest:Sweep(from, to)
-    if not Enabled() then ns.Print("enable Harvest under /fg options (Data collection) or /fg harvest on first.") return end
+    if not Enabled() then ns.Print("turn on Contribute data under /fg options (Data collection) or /fg share on first.") return end
     if self.sweeping then ns.Print("sweep already running") return end
     local have = rawget(_G, "HaveQuestData")
     if type(have) ~= "function" then ns.Warn("HaveQuestData is not available on this client") return end
@@ -259,7 +259,7 @@ local function Rows(path, mapID, value)
 end
 
 function Harvest:Probe()
-    if not Enabled() then ns.Print("enable Harvest under /fg options (Data collection) or /fg harvest on first.") return end
+    if not Enabled() then ns.Print("turn on Contribute data under /fg options (Data collection) or /fg share on first.") return end
     local _, h = Store()
     local probe = { map = ns.Player:GetMapID(), apis = {}, maps = {}, log = {} }
     h.probe = probe
@@ -305,8 +305,8 @@ end
 -- ------------------------------------------------------------
 -- Events
 -- ------------------------------------------------------------
-function Harvest:SetEnabled(on)
-    ns.db.harvestEnabled = on and true or false
+--- Contributing was switched on or off (Recorder:SetEnabled).
+function Harvest:OnContributeChanged(on)
     if on then
         local mapID = ns.Player:GetMapID()
         if mapID then self:RequestMap(mapID) end

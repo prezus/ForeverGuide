@@ -1,7 +1,7 @@
 -- ============================================================
 -- ForeverGuide / Database.lua
 -- Saved variables.
---   ForeverGuideDB      account-wide: settings, UI position, recorder data
+--   ForeverGuideDB      account-wide: settings, UI position, contributed facts
 --   ForeverGuideCharDB  per character: active guide + progress per guide
 --
 -- Beta note (1.60.1): SavedVariables are written on logout; public
@@ -63,12 +63,13 @@ local DEFAULTS = {
         channel = "auto",         -- auto = party/raid when grouped, emote when solo
     },
     scanEnabled = false,          -- explicit consent for quest ID collection / server scans
-    harvestEnabled = false,       -- explicit consent for passive quest discovery / map requests
-    recorder = {
-        enabled = false,          -- explicit consent for quest/NPC/coordinate/error recording
-        maxEntries = 4000,
-        entries = {},
-        maps = {},                -- [uiMapID] = { name = ..., zone = ... } seen during play
+    contribute = false,           -- explicit consent for collecting quest facts (Recorder.lua, Harvest.lua)
+    contrib = {                   -- the facts; /fg share exports them (Share.lua, docs/SHARE-FORMAT.md)
+        quests = {},
+        npcs = {},
+        order = {},
+        maps = {},
+        errors = {},
     },
 }
 
@@ -91,10 +92,11 @@ function Database:Init()
 
     -- Version 1 recorded by default: an old true value is not evidence of consent.
     if oldVersion ~= DB_VERSION then
-        ns.db.recorder.enabled = false
+        ns.db.contribute = false
         ns.db.scanEnabled = false
-        ns.db.harvestEnabled = false
     end
+    -- the old recorder event log (it could hold a quest sharer's name) and harvest switch
+    ns.db.recorder, ns.db.harvestEnabled = nil, nil
     ns.db.version = DB_VERSION
     ns.char.version = DB_VERSION
 end

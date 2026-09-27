@@ -25,7 +25,7 @@ if not exist ".git" (
 
 rem the beta overwrites SavedVariables at every reload: harvest what the addon recorded first
 where python >nul 2>nul && (
-    python tools\merge_recorded.py >nul 2>nul && echo recorder data merged into data-src\forever.json
+    python tools\merge_recorded.py >nul 2>nul && echo contributed data merged into data-src\forever.json
     python tools\collect_reports.py >nul 2>nul
 )
 

@@ -5,11 +5,13 @@ Fold what the addon recorded in-game into the Forever data overlay.
     python tools/merge_recorded.py                 # every ForeverGuide.lua(.bak) under WTF\\Account
     python tools/merge_recorded.py <file> [...]    # specific SavedVariables files
 
-Reads ForeverGuideDB.recorder.entries (quest accepts / turn-ins / offers /
-objective progress with NPC ids and coordinates), .harvest.lines, .scan.quests
-and .recorder.maps, merges them into data-src/forever.json and rewrites
-Data/ForeverDB.lua. Vanilla quests only gain what the database lacks (Forever
-moved or renamed some NPCs); unknown quests become full new entries.
+Reads ForeverGuideDB.contrib (the facts Contribute data keeps: quest givers and
+enders, NPC spots, objective spots and target votes, maps), .harvest.lines and
+.scan.quests / .scan.info, merges them into data-src/forever.json and rewrites
+Data/ForeverDB.lua. merge_share() takes the same facts in the /fg share JSON shape
+(docs/SHARE-FORMAT.md). Vanilla quests only gain what the database lacks (Forever
+moved or renamed some NPCs); unknown quests become full new entries. Merging the
+same facts twice changes nothing.
 
 Because the beta sometimes fails to load SavedVariables on login and then
 overwrites them, the .bak files and every account/character are read too,
@@ -54,113 +56,133 @@ def vanilla_ids():
     return ids
 
 
-def merge_file(path, db, known, stats):
-    sv, _ = foreverdb.load_saved_variables(path)
-    if not sv:
-        return
-    rec = sv.get("recorder") or {}
-    for mid, info in (rec.get("maps") or {}).items():
-        if isinstance(mid, (int, float)) and isinstance(info, dict) and info.get("name"):
-            m = db["maps"].setdefault(str(int(mid)), {})
+def ids(v):
+    """Integer ids from a Lua/JSON map key or list entry; None when it is not one."""
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    return int(f) if f == int(f) else None
+
+
+def items(v):
+    """(id, value) pairs of a map keyed by id: JSON string keys or Lua integer keys."""
+    if not isinstance(v, dict):
+        return []
+    return [(ids(k), x) for k, x in v.items() if ids(k) is not None]
+
+
+def cells(v):
+    """[x, y] pairs from a list of cells."""
+    out = []
+    for c in foreverdb.as_list(v):
+        c = foreverdb.as_list(c)
+        if len(c) == 2 and all(isinstance(n, (int, float)) for n in c):
+            out.append([c[0], c[1]])
+    return out
+
+
+def merge_share(share, db, stats):
+    """Fold one contribution into the overlay. `share` has the /fg share JSON shape
+    (docs/SHARE-FORMAT.md); SavedVariables' ForeverGuideDB.contrib is read the same way."""
+    for mid, info in items(share.get("maps")):
+        if isinstance(info, dict) and info.get("name"):
+            m = db["maps"].setdefault(str(mid), {})
             m["name"] = info["name"]
-            if info.get("parent"):
-                m["parent"] = int(info["parent"])
+            if ids(info.get("parent")):
+                m["parent"] = ids(info["parent"])
             b = foreverdb.as_list(info.get("bounds"))
             if len(b) == 5 and all(isinstance(v, (int, float)) for v in b):
-                stats.setdefault("bounds", {})[str(int(mid))] = {"inst": int(b[0]), "x0": b[1], "y0": b[2], "x1": b[3], "y1": b[4]}
-    for e in foreverdb.as_list(rec.get("entries")):
-        if not isinstance(e, dict):
+                stats.setdefault("bounds", {})[str(mid)] = {"inst": int(b[0]), "x0": b[1], "y0": b[2], "x1": b[3], "y1": b[4]}
+    names = {}
+    for nid, info in items(share.get("npcs")):
+        if not isinstance(info, dict):
             continue
-        kind = e.get("e")
-        qid = e.get("q")
-        npc = e.get("npc")
-        mid = e.get("m")
-        x, y = e.get("x"), e.get("y")
-        title = e.get("n")
-        if npc and e.get("npcName") and mid and x is not None:
-            n = db["npcs"].setdefault(str(int(npc)), {})
-            n["n"] = e["npcName"]
-            if "rec" not in (n.get("src") or []):
-                # first position seen in this game: it replaces anything a guide source said
-                n.pop("spw", None)
-                n["spm"] = {}
-            if e.get("npcLevel"):
-                n["lvl"] = int(e["npcLevel"])
-            if foreverdb.add_point(n.setdefault("spm", {}), int(mid), [x, y]):
+        n = db["npcs"].setdefault(str(nid), {})
+        if info.get("name"):
+            n["n"] = names[nid] = info["name"]
+        if ids(info.get("level")):
+            n["lvl"] = ids(info["level"])
+        spots = [(mid, c) for mid, cl in items(info.get("cells")) for c in cells(cl)]
+        if spots and "rec" not in (n.get("src") or []):
+            # first position seen in this game: it replaces anything a guide source said
+            n.pop("spw", None)
+            n["spm"] = {}
+        for mid, c in spots:
+            if foreverdb.add_point(n.setdefault("spm", {}), mid, c):
                 stats["npc_points"] += 1
-            foreverdb.note_source(n, "rec")
-        if qid and kind in ("ACCEPT", "OFFER", "TURNIN", "ENDNPC", "PROGRESS", "ABANDON", "OBJ"):
-            q = db["quests"].setdefault(str(int(qid)), {})
-            if title and not PLACEHOLDER.match(title):
-                q["n"] = title
-            foreverdb.note_source(q, "rec")
-            q["seen"] = int(q.get("seen", 0)) + 1
-            if kind in ("ACCEPT", "OFFER") and npc:
-                foreverdb.add_unique(q.setdefault("snpc", []), int(npc))
-                n = db["npcs"].setdefault(str(int(npc)), {})
-                foreverdb.add_unique(n.setdefault("starts", []), int(qid))
-                stats["starts"] += 1
-            if kind in ("TURNIN", "ENDNPC", "PROGRESS") and npc:
-                foreverdb.add_unique(q.setdefault("enpc", []), int(npc))
-                n = db["npcs"].setdefault(str(int(npc)), {})
-                foreverdb.add_unique(n.setdefault("ends", []), int(qid))
-                stats["ends"] += 1
-            if kind == "ACCEPT" and e.get("lvl"):
-                q.setdefault("seenlvl", int(e["lvl"]))
-            if kind == "OBJ" and mid and x is not None:
-                idx = int(e.get("obj") or 1)
-                objs = q.setdefault("obj", [])
-                while len(objs) < idx:
-                    objs.append({})
-                o = objs[idx - 1]
-                txt = e.get("txt")
-                clean = clean_objective(txt)
-                if clean:
-                    o["text"] = clean
-                # the npc is the last hostile target when progress happened; only trust it as
-                # the kill target when the objective text names it (else it is just a hint)
-                npc_name = e.get("npcName")
-                if npc and npc_name and txt and npc_name.lower() in txt.lower():
-                    o["kind"] = "kill"
-                    o["id"] = int(npc)
-                    o["name"] = npc_name
-                elif not o.get("kind"):
-                    o["kind"] = "item" if txt and re.search(r"^\s*\d+\s*/\s*\d+", txt) else "event"
-                if npc and not o.get("id"):
-                    foreverdb.add_unique(o.setdefault("near", []), int(npc))
-                if foreverdb.add_point(o.setdefault("spm", {}), int(mid), [x, y]):
-                    stats["obj_points"] += 1
-        if kind == "GOSSIP" and npc:
-            for k, field in (("avail", "starts"), ("active", "ends")):
-                for q2 in foreverdb.as_list(e.get(k)):
-                    if isinstance(q2, (int, float)):
-                        n = db["npcs"].setdefault(str(int(npc)), {})
-                        foreverdb.add_unique(n.setdefault(field, []), int(q2))
-                        q = db["quests"].setdefault(str(int(q2)), {})
-                        foreverdb.add_unique(q.setdefault("snpc" if field == "starts" else "enpc", []), int(npc))
-                        foreverdb.note_source(q, "rec")
-    # harvest: titles + quest line positions
-    harvest = sv.get("harvest") or {}
-    for qid, info in (harvest.get("lines") or {}).items():
-        if isinstance(qid, (int, float)) and isinstance(info, dict):
-            q = db["quests"].setdefault(str(int(qid)), {})
-            if info.get("name") and not PLACEHOLDER.match(info["name"]):
-                q["n"] = info["name"]
-            if info.get("map") and info.get("x") is not None:
-                q.setdefault("start", {})
-                foreverdb.add_point(q["start"].setdefault("spm", {}), int(info["map"]), [info["x"], info["y"]])
+        foreverdb.note_source(n, "rec")
+    for qid, info in items(share.get("quests")):
+        if not isinstance(info, dict):
+            continue
+        q = db["quests"].setdefault(str(qid), {})
+        title = info.get("name")
+        if isinstance(title, str) and title and not PLACEHOLDER.match(title):
+            q["n"] = title
+        if ids(info.get("level")):
+            q["lvl"] = ids(info["level"])
+        foreverdb.note_source(q, "rec")
+        for field, qkey, nkey in (("givers", "snpc", "starts"), ("enders", "enpc", "ends")):
+            for nid in (ids(v) for v in foreverdb.as_list(info.get(field))):
+                if nid is None:
+                    continue
+                foreverdb.add_unique(q.setdefault(qkey, []), nid)
+                foreverdb.add_unique(db["npcs"].setdefault(str(nid), {}).setdefault(nkey, []), qid)
+                stats["starts" if field == "givers" else "ends"] += 1
+        for idx, o_in in sorted(items(info.get("objectives"))):
+            if not isinstance(o_in, dict) or idx < 1:
+                continue
+            objs = q.setdefault("obj", [])
+            while len(objs) < idx:
+                objs.append({})
+            o = objs[idx - 1]
+            txt = o_in.get("text")
+            clean = clean_objective(txt)
+            if clean:
+                o["text"] = clean
+            # the most-voted target is the kill target only when the objective text names it;
+            # otherwise the targets are just hints
+            votes = sorted(((v, nid) for nid, v in items(o_in.get("targets")) if isinstance(v, (int, float))), reverse=True)
+            top = votes[0][1] if votes else None
+            top_name = names.get(top) or (db["npcs"].get(str(top)) or {}).get("n") if top else None
+            if top and top_name and isinstance(txt, str) and top_name.lower() in txt.lower():
+                o["kind"], o["id"], o["name"] = "kill", top, top_name
+            elif not o.get("kind"):
+                o["kind"] = "item" if isinstance(txt, str) and re.search(r"^\s*\d+\s*/\s*\d+", txt) else "event"
+            for _, nid in votes:
+                if nid != o.get("id"):
+                    foreverdb.add_unique(o.setdefault("near", []), nid)
+            for mid, cl in items(o_in.get("cells")):
+                for c in cells(cl):
+                    if foreverdb.add_point(o.setdefault("spm", {}), mid, c):
+                        stats["obj_points"] += 1
+    for qid, info in items(share.get("starts")):
+        if isinstance(info, dict) and ids(info.get("map")) and info.get("x") is not None:
+            q = db["quests"].setdefault(str(qid), {})
+            q.setdefault("start", {})
+            foreverdb.add_point(q["start"].setdefault("spm", {}), ids(info["map"]), [info["x"], info["y"]])
             foreverdb.note_source(q, "harvest")
-    # scan / harvest quest titles (+ level and objective texts when the scanner saw the data)
-    scan = sv.get("scan") or {}
-    for qid, title in (scan.get("quests") or {}).items():
-        if isinstance(qid, (int, float)) and isinstance(title, str) and title and not PLACEHOLDER.match(title):
-            q = db["quests"].setdefault(str(int(qid)), {})
+    for qid, title in items(share.get("titles")):
+        if isinstance(title, str) and title and not PLACEHOLDER.match(title):
+            q = db["quests"].setdefault(str(qid), {})
             q.setdefault("n", title)
             foreverdb.note_source(q, "scan")
             stats["titles"] += 1
-    for qid, info in (scan.get("info") or {}).items():
-        if isinstance(qid, (int, float)) and isinstance(info, dict):
-            q = db["quests"].setdefault(str(int(qid)), {})
+
+
+def merge_file(path, db, stats):
+    sv, _ = foreverdb.load_saved_variables(path)
+    if not sv:
+        return
+    harvest, scan = sv.get("harvest") or {}, sv.get("scan") or {}
+    share = dict(sv.get("contrib") or {})
+    share["starts"] = harvest.get("lines") or {}
+    share["titles"] = scan.get("quests") or {}
+    merge_share(share, db, stats)
+    # scanner: level and objective texts of quests it loaded
+    for qid, info in items(scan.get("info")):
+        if isinstance(info, dict):
+            q = db["quests"].setdefault(str(qid), {})
             if info.get("lvl"):
                 q["lvl"] = int(info["lvl"])
             texts = [clean_objective(t) for t in foreverdb.as_list(info.get("obj"))]
@@ -189,7 +211,7 @@ def main():
     stats = {"npc_points": 0, "starts": 0, "ends": 0, "obj_points": 0, "titles": 0}
     for f in files:
         print("reading", os.path.basename(f))  # the full path names the account folder
-        merge_file(f, db, known, stats)
+        merge_file(f, db, stats)
     # drop entries that carry nothing useful
     for qid in list(db["quests"].keys()):
         q = db["quests"][qid]
