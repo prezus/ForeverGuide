@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_05_REDRIDGE_MOUNTAINS",
   "name": "5. Redridge Mountains 16-20 (Dwarf)",
-  "version": 8,
+  "version": 9,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 16,
@@ -13,6 +13,9 @@
   "notes": "Chapter 5 of the Dwarf route: level 16 to 20, 48 steps, ~187 min of play in the model (11966 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TURNIN", "quest": 92744, "questName": "Murloc Gills", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53},
+    {"type": "ACCEPT", "quest": 92747, "questName": "Moonbrook Espionage", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53, "note": "New in Forever"},
+    {"type": "COLLECT", "quest": 92747, "questName": "Moonbrook Espionage", "target": "Suspicious Industrial Supplies", "count": 8, "map": 1436, "zone": "Westfall", "x": 42.5, "y": 71.7},
+    {"type": "TURNIN", "quest": 92747, "questName": "Moonbrook Espionage", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53},
     {"type": "ACCEPT", "quest": 104, "questName": "The Coastal Menace", "npc": 392, "npcName": "Captain Grayson", "map": 1436, "zone": "Westfall", "x": 30, "y": 86},
     {"type": "COLLECT", "quest": 104, "questName": "The Coastal Menace", "target": "Scale of Old Murk-Eye", "count": 1, "mobs": "Old Murk-Eye", "map": 1436, "zone": "Westfall", "x": 34.2, "y": 83.8},
     {"type": "TURNIN", "quest": 104, "questName": "The Coastal Menace", "npc": 392, "npcName": "Captain Grayson", "map": 1436, "zone": "Westfall", "x": 30, "y": 86},
@@ -41,6 +44,7 @@
     {"type": "KILL", "quest": 152, "questName": "The Coast Isn't Clear", "npc": 127, "target": "Murloc Tidehunter", "count": 7, "map": 1436, "zone": "Westfall", "x": 33.8, "y": 84.8},
     {"type": "KILL", "quest": 152, "questName": "The Coast Isn't Clear", "npc": 517, "target": "Murloc Oracle", "count": 7, "map": 1436, "zone": "Westfall", "x": 33.8, "y": 84.6},
     {"type": "TURNIN", "quest": 152, "questName": "The Coast Isn't Clear", "npc": 392, "npcName": "Captain Grayson", "map": 1436, "zone": "Westfall", "x": 30, "y": 86},
+    {"type": "ACCEPT", "quest": 92748, "questName": "Explosive Consultation", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53, "note": "New in Forever"},
     {"type": "ACCEPT", "quest": 118, "questName": "The Price of Shoes", "npc": 415, "npcName": "Verner Osgood", "map": 1433, "zone": "Redridge Mountains", "x": 31, "y": 47.4},
     {"type": "TURNIN", "quest": 118, "questName": "The Price of Shoes", "npc": 514, "npcName": "Smith Argus", "map": 1429, "zone": "Elwynn Forest", "x": 41.6, "y": 65.6},
     {"type": "ACCEPT", "quest": 94467, "questName": "Call of Fire", "npc": 257808, "npcName": "Braldir Ashmantle", "map": 1432, "zone": "Loch Modan", "x": 32, "y": 66, "note": "New in Forever", "class": ["SHAMAN"]},
