@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_04_LOCH_MODAN",
   "name": "4. Loch Modan 16-18 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 16,
@@ -23,6 +23,9 @@
     {"type": "COLLECT", "quest": 312, "questName": "Tundra MacGrann's Stolen Stash", "target": "MacGrann's Dried Meats", "count": 1, "map": 1426, "zone": "Dun Morogh", "x": 38.5, "y": 53.9},
     {"type": "TURNIN", "quest": 312, "questName": "Tundra MacGrann's Stolen Stash", "npc": 1266, "npcName": "Tundra MacGrann", "map": 1426, "zone": "Dun Morogh", "x": 34.6, "y": 51.6},
     {"type": "ACCEPT", "quest": 353, "questName": "Stormpike's Delivery", "npc": 1416, "npcName": "Grimand Elmore", "map": 1453, "zone": "Stormwind City", "x": 51.6, "y": 12.2},
+    {"type": "ACCEPT", "quest": 6661, "questName": "Deeprun Rat Roundup", "npc": 12997, "npcName": "Monty", "map": 1453, "zone": "Stormwind City", "x": 72, "y": 27.6, "note": "Inside Deeprun Tram"},
+    {"type": "KILL", "quest": 6661, "questName": "Deeprun Rat Roundup", "npc": 13017, "target": "Rats captured", "count": 5, "map": 1453, "zone": "Stormwind City", "x": 72, "y": 27.6, "near": true, "note": "Inside Deeprun Tram"},
+    {"type": "TURNIN", "quest": 6661, "questName": "Deeprun Rat Roundup", "npc": 12997, "npcName": "Monty", "map": 1453, "zone": "Stormwind City", "x": 72, "y": 27.6, "note": "Inside Deeprun Tram"},
     {"type": "ACCEPT", "quest": 2039, "questName": "Find Bingles", "npc": 6569, "npcName": "Gnoarn", "map": 1455, "zone": "Ironforge", "x": 69.4, "y": 50.6},
     {"type": "ACCEPT", "quest": 2041, "questName": "Speak with Shoni", "npc": 6569, "npcName": "Gnoarn", "map": 1455, "zone": "Ironforge", "x": 69.4, "y": 50.6},
     {"type": "ACCEPT", "quest": 96391, "questName": "Underground Map", "npc": 6124, "npcName": "Captain Beld", "map": 1426, "zone": "Dun Morogh", "x": 77.8, "y": 62.4, "note": "If you looted Dark Iron Map from Captain Beld / Dark Iron Spy, use it to start the quest; New in Forever", "optional": true},

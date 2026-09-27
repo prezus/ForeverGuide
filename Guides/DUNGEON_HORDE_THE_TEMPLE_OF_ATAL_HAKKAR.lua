@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_THE_TEMPLE_OF_ATAL_HAKKAR",
     name = "The Temple of Atal'Hakkar 60-60",
-    version = 1,
+    version = 2,
     kind = "dungeon",
     faction = "Horde",
     minLevel = 60,
@@ -12,28 +12,32 @@ ns.RegisterGuide({
     zone = "Swamp of Sorrows",
     author = "ForeverGuide route planner",
     notes = "The Temple of Atal'Hakkar: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 21,
+    stepCount = 25,
     steps = function() return {
         { type = "ACCEPT", quest = 3380, questName = "The Sunken Temple", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4 }, -- 1
         { type = "TURNIN", quest = 3380, questName = "The Sunken Temple", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8 }, -- 2
-        { type = "ACCEPT", quest = 1446, questName = "Jammal'an the Prophet", npc = 5598, npcName = "Atal'ai Exile", map = 1425, zone = "The Hinterlands", x = 33.6, y = 75.2 }, -- 3
-        { type = "ACCEPT", quest = 3446, questName = "Into the Depths", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8 }, -- 4
-        { type = "ACCEPT", quest = 3447, questName = "Secret of the Circle", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8 }, -- 5
-        { type = "ACCEPT", quest = 3528, questName = "The God Hakkar", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 6
-        { type = "ACCEPT", quest = 1445, questName = "The Temple of Atal'Hakkar", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 48, y = 55 }, -- 7
-        { type = "NOTE", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5, text = "Find a group for The Temple of Atal'Hakkar", note = "All quests available from level 60; hand them in by level 60 for full XP" }, -- 8
-        { type = "ACCEPT", quest = 3373, questName = "The Essence of Eranikus", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 9
-        { type = "ACCEPT", quest = 8733, questName = "Eranikus, Tyrant of the Dream", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 10
-        { type = "COLLECT", quest = 1445, questName = "The Temple of Atal'Hakkar", target = "Fetish of Hakkar", count = 20, map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 11
-        { type = "COLLECT", quest = 1446, questName = "Jammal'an the Prophet", target = "Head of Jammal'an", count = 1, map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 12
-        { type = "COLLECT", quest = 3528, questName = "The God Hakkar", target = "Filled Egg of Hakkar", count = 1, map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 13
-        { type = "COLLECT", quest = 3528, questName = "The God Hakkar", target = "Essence of Hakkar", count = 1, map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 14
-        { type = "TURNIN", quest = 3446, questName = "Into the Depths", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 15
-        { type = "TURNIN", quest = 3447, questName = "Secret of the Circle", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 16
-        { type = "TURNIN", quest = 3373, questName = "The Essence of Eranikus", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 17
-        { type = "TURNIN", quest = 1445, questName = "The Temple of Atal'Hakkar", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 48, y = 55 }, -- 18
-        { type = "TURNIN", quest = 1446, questName = "Jammal'an the Prophet", npc = 5598, npcName = "Atal'ai Exile", map = 1425, zone = "The Hinterlands", x = 33.6, y = 75.2 }, -- 19
-        { type = "TURNIN", quest = 3528, questName = "The God Hakkar", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 20
-        { type = "TURNIN", quest = 8733, questName = "Eranikus, Tyrant of the Dream", npc = 15624, npcName = "Forest Wisp", map = 1438, zone = "Teldrassil", x = 37.6, y = 48 }, -- 21
+        { type = "ACCEPT", quest = 4146, questName = "Zapper Fuel", npc = 8496, npcName = "Liv Rizzlefix", map = 1413, zone = "The Barrens", x = 62.4, y = 38.6 }, -- 3
+        { type = "ACCEPT", quest = 1446, questName = "Jammal'an the Prophet", npc = 5598, npcName = "Atal'ai Exile", map = 1425, zone = "The Hinterlands", x = 33.6, y = 75.2 }, -- 4
+        { type = "ACCEPT", quest = 3446, questName = "Into the Depths", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8 }, -- 5
+        { type = "ACCEPT", quest = 3447, questName = "Secret of the Circle", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8 }, -- 6
+        { type = "ACCEPT", quest = 3528, questName = "The God Hakkar", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 7
+        { type = "ACCEPT", quest = 1445, questName = "The Temple of Atal'Hakkar", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 48, y = 55 }, -- 8
+        { type = "NOTE", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5, text = "Find a group for The Temple of Atal'Hakkar", note = "All quests available from level 60; hand them in by level 60 for full XP" }, -- 9
+        { type = "ACCEPT", quest = 3373, questName = "The Essence of Eranikus", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 10
+        { type = "ACCEPT", quest = 8733, questName = "Eranikus, Tyrant of the Dream", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 11
+        { type = "COLLECT", quest = 1445, questName = "The Temple of Atal'Hakkar", target = "Fetish of Hakkar", count = 20, map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 12
+        { type = "COLLECT", quest = 1446, questName = "Jammal'an the Prophet", target = "Head of Jammal'an", count = 1, map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 13
+        { type = "COLLECT", quest = 3528, questName = "The God Hakkar", target = "Filled Egg of Hakkar", count = 1, map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 14
+        { type = "COLLECT", quest = 3528, questName = "The God Hakkar", target = "Essence of Hakkar", count = 1, map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 15
+        { type = "COMPLETE", quest = 4146, questName = "Zapper Fuel", target = "Unloaded Zapper", count = 1, map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 16
+        { type = "COLLECT", quest = 4146, questName = "Zapper Fuel", target = "Atal'ai Haze", count = 5, map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 17
+        { type = "TURNIN", quest = 3446, questName = "Into the Depths", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 18
+        { type = "TURNIN", quest = 3447, questName = "Secret of the Circle", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 19
+        { type = "TURNIN", quest = 3373, questName = "The Essence of Eranikus", map = 1435, zone = "Swamp of Sorrows", x = 69.9, y = 53.5 }, -- 20
+        { type = "TURNIN", quest = 1445, questName = "The Temple of Atal'Hakkar", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 48, y = 55 }, -- 21
+        { type = "TURNIN", quest = 1446, questName = "Jammal'an the Prophet", npc = 5598, npcName = "Atal'ai Exile", map = 1425, zone = "The Hinterlands", x = 33.6, y = 75.2 }, -- 22
+        { type = "TURNIN", quest = 3528, questName = "The God Hakkar", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 23
+        { type = "TURNIN", quest = 4146, questName = "Zapper Fuel", npc = 9118, npcName = "Larion", map = 1449, zone = "Un'Goro Crater", x = 45.6, y = 8.6 }, -- 24
+        { type = "TURNIN", quest = 8733, questName = "Eranikus, Tyrant of the Dream", npc = 15624, npcName = "Forest Wisp", map = 1438, zone = "Teldrassil", x = 37.6, y = 48 }, -- 25
     } end,
 })

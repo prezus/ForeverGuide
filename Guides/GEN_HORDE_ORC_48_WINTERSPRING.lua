@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_48_WINTERSPRING",
     name = "48. Winterspring 55-55 (Orc)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 55,
@@ -33,7 +33,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7442, target = "Winterfall Pathfinder / Winterfall Totemic", count = 8, map = 1452, zone = "Winterspring", x = 33.4, y = 37.7, near = true }, -- 16
         { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.5, y = 36.9, near = true }, -- 17
         { type = "ACCEPT", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 18
-        { type = "COLLECT", quest = 9202, questName = "Craftsman's Writ - Major Healing Potion", target = "Major Healing Potion", count = 20, map = 1452, zone = "Winterspring", x = 28, y = 34.5, optional = true, near = true, mobs = "Blue Dragonspawn / Grimtooth / Wyrmkin Dreamwalker / Stonard Shaman" }, -- 19
+        { type = "COLLECT", quest = 9202, questName = "Craftsman's Writ - Major Healing Potion", target = "Major Healing Potion", count = 20, map = 1452, zone = "Winterspring", x = 28, y = 34.5, optional = true, near = true, mobs = "Blue Dragonspawn / Wyrmkin Dreamwalker / Stonard Shaman / Swamp Talker" }, -- 19
         { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.3, y = 36.3, near = true }, -- 20
         { type = "TURNIN", quest = 3908, questName = "It's a Secret to Everybody", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2 }, -- 21
         { type = "TURNIN", quest = 980, questName = "The New Springs", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2 }, -- 22

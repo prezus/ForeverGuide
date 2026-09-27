@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_03_LOCH_MODAN",
   "name": "3. Loch Modan 14-17 (Human)",
-  "version": 6,
+  "version": 7,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 14,
@@ -30,6 +30,9 @@
     {"type": "ACCEPT", "quest": 353, "questName": "Stormpike's Delivery", "npc": 1416, "npcName": "Grimand Elmore", "map": 1453, "zone": "Stormwind City", "x": 51.6, "y": 12.2},
     {"type": "TURNIN", "quest": 1097, "questName": "Elmore's Task", "npc": 1416, "npcName": "Grimand Elmore", "map": 1453, "zone": "Stormwind City", "x": 51.6, "y": 12.2},
     {"type": "TURNIN", "quest": 6281, "questName": "Continue to Stormwind", "npc": 1323, "npcName": "Osric Strang", "map": 1453, "zone": "Stormwind City", "x": 74.2, "y": 47.4},
+    {"type": "ACCEPT", "quest": 6661, "questName": "Deeprun Rat Roundup", "npc": 12997, "npcName": "Monty", "map": 1453, "zone": "Stormwind City", "x": 72, "y": 27.6, "note": "Inside Deeprun Tram"},
+    {"type": "KILL", "quest": 6661, "questName": "Deeprun Rat Roundup", "npc": 13017, "target": "Rats captured", "count": 5, "map": 1453, "zone": "Stormwind City", "x": 72, "y": 27.6, "near": true, "note": "Inside Deeprun Tram"},
+    {"type": "TURNIN", "quest": 6661, "questName": "Deeprun Rat Roundup", "npc": 12997, "npcName": "Monty", "map": 1453, "zone": "Stormwind City", "x": 72, "y": 27.6, "note": "Inside Deeprun Tram"},
     {"type": "ACCEPT", "quest": 2039, "questName": "Find Bingles", "npc": 6569, "npcName": "Gnoarn", "map": 1455, "zone": "Ironforge", "x": 69.4, "y": 50.6},
     {"type": "ACCEPT", "quest": 7791, "questName": "A Donation of Wool", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
     {"type": "TURNIN", "quest": 7791, "questName": "A Donation of Wool", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
