@@ -1,0 +1,28 @@
+{
+  "id": "DUNGEON_ALLIANCE_RUINS_OF_AHN_QIRAJ",
+  "name": "Ruins of Ahn'Qiraj 60-60",
+  "version": 1,
+  "kind": "dungeon",
+  "faction": "Alliance",
+  "minLevel": 60,
+  "maxLevel": 60,
+  "map": 1451,
+  "zone": "Silithus",
+  "author": "ForeverGuide route planner",
+  "notes": "Ruins of Ahn'Qiraj: the quests, the run and the turn-ins. Open it when you have a group.",
+  "steps": [
+    {"type": "ACCEPT", "quest": 9023, "questName": "The Perfect Poison", "npc": 16091, "npcName": "Dirk Thunderwood", "map": 1451, "zone": "Silithus", "x": 52, "y": 39},
+    {"type": "NOTE", "map": 1451, "zone": "Silithus", "x": 28.6, "y": 92.3, "note": "All quests available from level 60; hand them in by level 60 for full XP", "text": "Find a group for Ruins of Ahn'Qiraj"},
+    {"type": "ACCEPT", "quest": 8496, "questName": "Bandages for the Field", "map": 1451, "zone": "Silithus", "x": 28.6, "y": 92.3},
+    {"type": "ACCEPT", "quest": 8791, "questName": "The Fall of Ossirian", "map": 1451, "zone": "Silithus", "x": 28.6, "y": 92.3},
+    {"type": "COLLECT", "quest": 9023, "questName": "The Perfect Poison", "target": "Venoxis's Venom Sac", "count": 1, "map": 1451, "zone": "Silithus", "x": 28.6, "y": 92.3},
+    {"type": "COLLECT", "quest": 9023, "questName": "The Perfect Poison", "target": "Kurinnaxx's Venom Sac", "count": 1, "map": 1451, "zone": "Silithus", "x": 28.6, "y": 92.3},
+    {"type": "COLLECT", "quest": 8496, "questName": "Bandages for the Field", "target": "Heavy Runecloth Bandage", "count": 30, "map": 1451, "zone": "Silithus", "x": 28.6, "y": 92.3},
+    {"type": "COLLECT", "quest": 8496, "questName": "Bandages for the Field", "target": "Heavy Mageweave Bandage", "count": 30, "map": 1451, "zone": "Silithus", "x": 28.6, "y": 92.3},
+    {"type": "COLLECT", "quest": 8496, "questName": "Bandages for the Field", "target": "Heavy Silk Bandage", "count": 30, "map": 1451, "zone": "Silithus", "x": 28.6, "y": 92.3},
+    {"type": "COMPLETE", "quest": 8496, "questName": "Bandages for the Field", "target": "Logistics Task Briefing X", "count": 1, "map": 1451, "zone": "Silithus", "x": 28.6, "y": 92.3},
+    {"type": "TURNIN", "quest": 9023, "questName": "The Perfect Poison", "npc": 16091, "npcName": "Dirk Thunderwood", "map": 1451, "zone": "Silithus", "x": 52, "y": 39},
+    {"type": "TURNIN", "quest": 8496, "questName": "Bandages for the Field", "npc": 15191, "npcName": "Windcaller Proudhorn", "map": 1451, "zone": "Silithus", "x": 51, "y": 38.2},
+    {"type": "TURNIN", "quest": 8791, "questName": "The Fall of Ossirian", "npc": 15181, "npcName": "Commander Mar'alith", "map": 1451, "zone": "Silithus", "x": 49.2, "y": 34.2}
+  ]
+}

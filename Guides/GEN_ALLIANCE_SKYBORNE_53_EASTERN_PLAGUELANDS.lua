@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_53_EASTERN_PLAGUELANDS",
     name = "53. Eastern Plaguelands 57-57 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 57,
@@ -49,8 +49,8 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 9200, questName = "Craftsman's Writ - Major Mana Potion", npc = 16131, npcName = "Rohan the Assassin", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.4, optional = true, note = "Loot Craftsman's Writ - Major Mana Potion from Rohan the Assassin and use it to start the quest; Elite - group up" }, -- 32
         { type = "ACCEPT", quest = 9202, questName = "Craftsman's Writ - Major Healing Potion", npc = 16131, npcName = "Rohan the Assassin", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.4, optional = true, note = "Loot Craftsman's Writ - Major Healing Potion from Rohan the Assassin and use it to start the quest; Elite - group up" }, -- 33
         { type = "COLLECT", quest = 9124, questName = "Cryptstalker Armor Doesn't Make Itself...", target = "Crypt Fiend Parts", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 83, y = 43.1, near = true }, -- 34
-        { type = "COLLECT", quest = 9200, questName = "Craftsman's Writ - Major Mana Potion", target = "Major Mana Potion", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 75.4, y = 37, optional = true, near = true, mobs = "Grimtooth / Red Dragonspawn / Red Wyrmkin / Red Scalebane" }, -- 35
-        { type = "COLLECT", quest = 9202, questName = "Craftsman's Writ - Major Healing Potion", target = "Major Healing Potion", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 75.4, y = 37, optional = true, near = true, mobs = "Blue Dragonspawn / Grimtooth / Wyrmkin Dreamwalker / Stonard Shaman" }, -- 36
+        { type = "COLLECT", quest = 9200, questName = "Craftsman's Writ - Major Mana Potion", target = "Major Mana Potion", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 75.4, y = 37, optional = true, near = true, mobs = "Red Dragonspawn / Red Wyrmkin / Red Scalebane / Scalebane Lieutenant" }, -- 35
+        { type = "COLLECT", quest = 9202, questName = "Craftsman's Writ - Major Healing Potion", target = "Major Healing Potion", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 75.4, y = 37, optional = true, near = true, mobs = "Blue Dragonspawn / Wyrmkin Dreamwalker / Stonard Shaman / Swamp Talker" }, -- 36
         { type = "COLLECT", quest = 9128, questName = "The Elemental Equation", target = "Core of Elements", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 72.8, y = 35.2, near = true }, -- 37
         { type = "KILL", quest = 9664, questName = "Establishing New Outposts", npc = 17690, target = "<TXT>Eastwall Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 67.5, y = 48, note = "Capture Eastwall Tower" }, -- 38
         { type = "KILL", quest = 9664, questName = "Establishing New Outposts", npc = 17696, target = "<TXT>Northpass Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 56.6, y = 24.4, note = "Capture Northpass Tower" }, -- 39

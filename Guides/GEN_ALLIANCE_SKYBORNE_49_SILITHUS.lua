@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_49_SILITHUS",
     name = "49. Silithus 55-55 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 55,
@@ -20,7 +20,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 7482, questName = "Elven Legends", npc = 14374, npcName = "Scholar Runethorn", map = 1444, zone = "Feralas", x = 31.2, y = 43.4, optional = true, note = "For Dire Maul (dungeon guide); Objectives: Master Kariel Winthalus Found" }, -- 3
         { type = "TURNIN", quest = 7482, questName = "Elven Legends", npc = 14374, npcName = "Scholar Runethorn", map = 1444, zone = "Feralas", x = 31.2, y = 43.4, optional = true }, -- 4
         { type = "ACCEPT", quest = 7488, questName = "Lethtendris's Web", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 5
-        { type = "NOTE", optional = true, text = "Ready for Dire Maul", note = "Picked up: Pusillin and the Elder Azj'Tordin, Lethtendris's Web. When you have a group, open Dire Maul under Dungeons." }, -- 6
+        { type = "NOTE", optional = true, text = "Ready for Dire Maul", note = "Picked up: The Third Fleet, Pusillin and the Elder Azj'Tordin, Lethtendris's Web. When you have a group, open Dire Maul under Dungeons." }, -- 6
         { type = "TURNIN", quest = 7494, questName = "Feathermoon Stronghold", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46, optional = true }, -- 7
         { type = "TRAVEL", map = 1451, zone = "Silithus", x = 49.9, y = 37.4, radius = 60, note = "travel to Silithus (Silithus)" }, -- 8
         { type = "HEARTH", npc = 15174, npcName = "Calandrath", map = 1451, zone = "Cenarion Hold", x = 51.9, y = 39.2, note = "talk to Calandrath and make this inn your home" }, -- 9

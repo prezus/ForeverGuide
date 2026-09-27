@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_31_THE_HINTERLANDS",
     name = "31. The Hinterlands 47-47 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 47,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_32_BLASTED_LANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 31 of the Tauren route: level 47 to 47, 21 steps, ~37 min of play in the model (56705 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 53,
+    stepCount = 52,
     steps = function() return {
         { type = "TRAVEL", map = 1425, zone = "Revantusk Village", x = 78.1, y = 81.4, radius = 60, note = "use your hearthstone (Revantusk Village)" }, -- 1
         { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 78.9, y = 80.7, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 2
@@ -67,6 +67,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 2936, questName = "The Spider God", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.6, optional = true, note = "For Zul'Farrak (dungeon guide); Objectives: Find the Spider God's Name" }, -- 50
         { type = "TURNIN", quest = 2936, questName = "The Spider God", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.6, optional = true }, -- 51
         { type = "ACCEPT", quest = 1445, questName = "The Temple of Atal'Hakkar", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 48, y = 55, optional = true, note = "For The Temple of Atal'Hakkar (dungeon guide)" }, -- 52
-        { type = "NOTE", optional = true, text = "Ready for The Temple of Atal'Hakkar", note = "Picked up: The Temple of Atal'Hakkar, Jammal'an the Prophet. When you have a group, open The Temple of Atal'Hakkar under Dungeons." }, -- 53
     } end,
 })
