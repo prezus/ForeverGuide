@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_24_ARATHI_HIGHLANDS",
     name = "24. Arathi Highlands 39-39 (Night Elf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 39,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_25_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
     notes = "Chapter 24 of the NightElf route: level 39 to 39, 37 steps, ~74 min of play in the model (24350 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (3 here).",
-    stepCount = 37,
+    stepCount = 60,
     steps = function() return {
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 33.1, y = 81.1, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 1
         { type = "ACCEPT", quest = 663, questName = "Land Ho!", npc = 2766, npcName = "Lolo the Lookout", map = 1417, zone = "Arathi Highlands", x = 31.8, y = 82.7 }, -- 2
@@ -34,23 +34,46 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 664, questName = "Drowned Sorrows", npc = 2769, npcName = "Captain Steelgut", map = 1417, zone = "Arathi Highlands", x = 34, y = 80.8 }, -- 17
         { type = "ACCEPT", quest = 668, questName = "Sunken Treasure", npc = 2774, npcName = "Doctor Draxlegauge", map = 1417, zone = "Arathi Highlands", x = 33.9, y = 80.5 }, -- 18
         { type = "TURNIN", quest = 668, questName = "Sunken Treasure", npc = 2610, npcName = "Shakes O'Breen", map = 1417, zone = "Arathi Highlands", x = 32.3, y = 81.4 }, -- 19
-        { type = "ACCEPT", quest = 693, questName = "Wand over Fist", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47 }, -- 20
-        { type = "ACCEPT", quest = 684, questName = "Wanted!  Marez Cowl", map = 1417, zone = "Arathi Highlands", x = 46, y = 47.8, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 21
-        { type = "KILL", quest = 684, questName = "Wanted!  Marez Cowl", npc = 2783, target = "Marez Cowl", map = 1417, zone = "Arathi Highlands", x = 29.6, y = 63, optional = true, near = true }, -- 22
-        { type = "TURNIN", quest = 684, questName = "Wanted!  Marez Cowl", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6, optional = true }, -- 23
-        { type = "ACCEPT", quest = 685, questName = "Wanted!  Otto and Falconcrest", map = 1417, zone = "Arathi Highlands", x = 46, y = 47.8, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 24
-        { type = "KILL", quest = 685, questName = "Wanted!  Otto and Falconcrest", npc = 2599, target = "Otto", map = 1417, zone = "Arathi Highlands", x = 26.2, y = 65.6, optional = true }, -- 25
-        { type = "KILL", quest = 685, questName = "Wanted!  Otto and Falconcrest", npc = 2597, target = "Lord Falconcrest", map = 1417, zone = "Arathi Highlands", x = 26, y = 65.7, optional = true }, -- 26
-        { type = "TURNIN", quest = 685, questName = "Wanted!  Otto and Falconcrest", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6, optional = true }, -- 27
-        { type = "ACCEPT", quest = 694, questName = "Trelane's Defenses", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 28
-        { type = "KILL", quest = 694, questName = "Trelane's Defenses", npc = 2570, target = "Boulderfist Shaman", map = 1417, zone = "Arathi Highlands", x = 20.9, y = 65.7, optional = true, near = true }, -- 29
-        { type = "TURNIN", quest = 694, questName = "Trelane's Defenses", npc = 2788, npcName = "Apprentice Kryten", map = 1417, zone = "Arathi Highlands", x = 46.2, y = 47.8, optional = true }, -- 30
-        { type = "KILL", quest = 693, questName = "Wand over Fist", npc = 2793, target = "Kor'gresh Coldrage", map = 1417, zone = "Arathi Highlands", x = 54.8, y = 81.9, note = "loot Trelane's Wand of Invocation" }, -- 31
-        { type = "TURNIN", quest = 693, questName = "Wand over Fist", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47 }, -- 32
-        { type = "ACCEPT", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 33
-        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Cresting Key", map = 1417, zone = "Arathi Highlands", x = 66.7, y = 29.7 }, -- 34
-        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Thundering Key", map = 1417, zone = "Arathi Highlands", x = 52, y = 50.7 }, -- 35
-        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Burning Key", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 30.1 }, -- 36
-        { type = "TURNIN", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 37
+        { type = "ACCEPT", quest = 669, questName = "Sunken Treasure", npc = 2610, npcName = "Shakes O'Breen", map = 1417, zone = "Arathi Highlands", x = 32.2, y = 81.4 }, -- 20
+        { type = "ACCEPT", quest = 693, questName = "Wand over Fist", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47 }, -- 21
+        { type = "ACCEPT", quest = 684, questName = "Wanted!  Marez Cowl", map = 1417, zone = "Arathi Highlands", x = 46, y = 47.8, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 22
+        { type = "KILL", quest = 684, questName = "Wanted!  Marez Cowl", npc = 2783, target = "Marez Cowl", map = 1417, zone = "Arathi Highlands", x = 29.6, y = 63, optional = true, near = true }, -- 23
+        { type = "TURNIN", quest = 684, questName = "Wanted!  Marez Cowl", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6, optional = true }, -- 24
+        { type = "ACCEPT", quest = 685, questName = "Wanted!  Otto and Falconcrest", map = 1417, zone = "Arathi Highlands", x = 46, y = 47.8, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 25
+        { type = "KILL", quest = 685, questName = "Wanted!  Otto and Falconcrest", npc = 2599, target = "Otto", map = 1417, zone = "Arathi Highlands", x = 26.2, y = 65.6, optional = true }, -- 26
+        { type = "KILL", quest = 685, questName = "Wanted!  Otto and Falconcrest", npc = 2597, target = "Lord Falconcrest", map = 1417, zone = "Arathi Highlands", x = 26, y = 65.7, optional = true }, -- 27
+        { type = "TURNIN", quest = 685, questName = "Wanted!  Otto and Falconcrest", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6, optional = true }, -- 28
+        { type = "ACCEPT", quest = 694, questName = "Trelane's Defenses", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 29
+        { type = "KILL", quest = 694, questName = "Trelane's Defenses", npc = 2570, target = "Boulderfist Shaman", map = 1417, zone = "Arathi Highlands", x = 20.9, y = 65.7, optional = true, near = true }, -- 30
+        { type = "TURNIN", quest = 694, questName = "Trelane's Defenses", npc = 2788, npcName = "Apprentice Kryten", map = 1417, zone = "Arathi Highlands", x = 46.2, y = 47.8, optional = true }, -- 31
+        { type = "KILL", quest = 693, questName = "Wand over Fist", npc = 2793, target = "Kor'gresh Coldrage", map = 1417, zone = "Arathi Highlands", x = 54.8, y = 81.9, note = "loot Trelane's Wand of Invocation" }, -- 32
+        { type = "TURNIN", quest = 693, questName = "Wand over Fist", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47 }, -- 33
+        { type = "COLLECT", quest = 627, questName = "Favor for Krazek", target = "Lesser Bloodstone Ore", count = 4, map = 1417, zone = "Arathi Highlands", x = 83.5, y = 35.5 }, -- 34
+        { type = "ACCEPT", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 35
+        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Cresting Key", map = 1417, zone = "Arathi Highlands", x = 66.7, y = 29.7 }, -- 36
+        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Thundering Key", map = 1417, zone = "Arathi Highlands", x = 52, y = 50.7 }, -- 37
+        { type = "ACCEPT", quest = 695, questName = "An Apprentice's Enchantment", npc = 2788, npcName = "Apprentice Kryten", map = 1417, zone = "Arathi Highlands", x = 46.2, y = 47.6 }, -- 38
+        { type = "TURNIN", quest = 695, questName = "An Apprentice's Enchantment", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.6, y = 47 }, -- 39
+        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Burning Key", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 30.1 }, -- 40
+        { type = "TURNIN", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 41
+        { type = "ACCEPT", quest = 696, questName = "Attack on the Tower", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.6, y = 47 }, -- 42
+        { type = "COLLECT", quest = 696, questName = "Attack on the Tower", target = "Trelane's Phylactery", count = 1, map = 1417, zone = "Arathi Highlands", x = 18.2, y = 68.1 }, -- 43
+        { type = "COLLECT", quest = 696, questName = "Attack on the Tower", target = "Trelane's Orb", count = 1, map = 1417, zone = "Arathi Highlands", x = 18.2, y = 69.2 }, -- 44
+        { type = "COLLECT", quest = 696, questName = "Attack on the Tower", target = "Trelane's Ember Agate", count = 1, map = 1417, zone = "Arathi Highlands", x = 18, y = 67.9 }, -- 45
+        { type = "TURNIN", quest = 696, questName = "Attack on the Tower", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.6, y = 47 }, -- 46
+        { type = "ACCEPT", quest = 652, questName = "Breaking the Keystone", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.5, optional = true, note = "Elite - group up" }, -- 47
+        { type = "COLLECT", quest = 652, questName = "Breaking the Keystone", target = "Rod of Order", count = 1, map = 1417, zone = "Arathi Highlands", x = 43, y = 53.8, optional = true, mobs = "Fozruk" }, -- 48
+        { type = "TURNIN", quest = 652, questName = "Breaking the Keystone", map = 1417, zone = "Arathi Highlands", x = 36.1, y = 57.9, optional = true }, -- 49
+        { type = "TURNIN", quest = 627, questName = "Favor for Krazek", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 50
+        { type = "TURNIN", quest = 669, questName = "Sunken Treasure", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 51
+        { type = "ACCEPT", quest = 1363, questName = "Mazen's Behest", npc = 338, npcName = "Mazen Mac'Nadir", map = 1453, zone = "Stormwind City", x = 41.4, y = 64.2 }, -- 52
+        { type = "TURNIN", quest = 1363, questName = "Mazen's Behest", npc = 5386, npcName = "Acolyte Dellis", map = 1453, zone = "Stormwind City", x = 40.8, y = 64 }, -- 53
+        { type = "ACCEPT", quest = 1448, questName = "In Search of The Temple", npc = 5384, npcName = "Brohann Caskbelly", map = 1453, zone = "Stormwind City", x = 64.2, y = 20.8, note = "Objectives: Explore Zone, Search for the Temple of Atal'Hakkar" }, -- 54
+        { type = "TURNIN", quest = 1448, questName = "In Search of The Temple", npc = 5384, npcName = "Brohann Caskbelly", map = 1453, zone = "Stormwind City", x = 64.2, y = 20.8 }, -- 55
+        { type = "ACCEPT", quest = 3636, questName = "Bring the Light", npc = 1284, npcName = "Archbishop Benedictus", map = 1453, zone = "Stormwind City", x = 39.6, y = 27.4, optional = true, note = "For Razorfen Downs (dungeon guide)" }, -- 56
+        { type = "NOTE", optional = true, text = "Ready for Razorfen Downs", note = "Picked up: Bring the Light, A Host of Evil. When you have a group, open Razorfen Downs under Dungeons." }, -- 57
+        { type = "ACCEPT", quest = 6609, questName = "I Got Nothin' Left!", npc = 5161, npcName = "Grimnur Stonebrand", map = 1455, zone = "Ironforge", x = 48.2, y = 6.6, profession = "Fishing", skill = 225 }, -- 58
+        { type = "ACCEPT", quest = 6612, questName = "I Know A Guy...", npc = 5159, npcName = "Daryl Riknussun", map = 1455, zone = "Ironforge", x = 60, y = 36.8, profession = "Cooking", skill = 225 }, -- 59
+        { type = "ACCEPT", quest = 6625, questName = "Alliance Trauma", npc = 5150, npcName = "Nissa Firestone", map = 1455, zone = "Ironforge", x = 54.8, y = 58.6, profession = "First Aid", skill = 225 }, -- 60
     } end,
 })

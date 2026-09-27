@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_27_FERALAS",
     name = "27. Feralas 41-41 (Night Elf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 41,
@@ -13,34 +13,51 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_28_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 27 of the NightElf route: level 41 to 41, 27 steps, ~54 min of play in the model (34132 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 27,
+    stepCount = 44,
     steps = function() return {
-        { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.2, y = 45.1, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
-        { type = "HEARTH", npc = 7736, npcName = "Innkeeper Shyria", map = 1444, zone = "Feathermoon Stronghold", x = 31.0, y = 43.5, note = "talk to Innkeeper Shyria and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 4124, questName = "The Missing Courier", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 3
-        { type = "ACCEPT", quest = 2866, questName = "The Ruins of Solarsal", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 4
-        { type = "ACCEPT", quest = 2982, questName = "The High Wilderness", npc = 7900, npcName = "Angelas Moonbreeze", map = 1444, zone = "Feralas", x = 31.8, y = 45.6 }, -- 5
-        { type = "TURNIN", quest = 4124, questName = "The Missing Courier", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 6
-        { type = "ACCEPT", quest = 4125, questName = "The Missing Courier", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 7
-        { type = "KILL", quest = 2982, questName = "The High Wilderness", npc = 5240, target = "Gordunni Warlock / Gordunni Brute", count = 8, map = 1444, zone = "Feralas", x = 59.5, y = 57, near = true }, -- 8
-        { type = "KILL", quest = 2982, questName = "The High Wilderness", npc = 5236, target = "Gordunni Shaman", count = 8, map = 1444, zone = "Feralas", x = 60.4, y = 64.8, near = true }, -- 9
-        { type = "TURNIN", quest = 2982, questName = "The High Wilderness", npc = 7900, npcName = "Angelas Moonbreeze", map = 1444, zone = "Feralas", x = 31.8, y = 45.6 }, -- 10
-        { type = "TURNIN", quest = 2866, questName = "The Ruins of Solarsal", map = 1444, zone = "Feralas", x = 26.3, y = 52.3 }, -- 11
-        { type = "ACCEPT", quest = 2867, questName = "Return to Feathermoon Stronghold", map = 1444, zone = "Feralas", x = 26.3, y = 52.3 }, -- 12
-        { type = "TURNIN", quest = 2867, questName = "Return to Feathermoon Stronghold", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 13
-        { type = "ACCEPT", quest = 3130, questName = "Against the Hatecrest", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 14
-        { type = "TURNIN", quest = 3130, questName = "Against the Hatecrest", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 15
-        { type = "ACCEPT", quest = 2869, questName = "Against the Hatecrest", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 16
-        { type = "COLLECT", quest = 2869, questName = "Against the Hatecrest", target = "Hatecrest Naga Scale", count = 10, map = 1444, zone = "Feralas", x = 28.5, y = 50.6, near = true }, -- 17
-        { type = "TURNIN", quest = 2869, questName = "Against the Hatecrest", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 18
-        { type = "TURNIN", quest = 4125, questName = "The Missing Courier", map = 1444, zone = "Feralas", x = 45.4, y = 65 }, -- 19
-        { type = "ACCEPT", quest = 4127, questName = "Boat Wreckage", map = 1444, zone = "Feralas", x = 45.4, y = 65 }, -- 20
-        { type = "TURNIN", quest = 4127, questName = "Boat Wreckage", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 21
-        { type = "ACCEPT", quest = 4129, questName = "The Knife Revealed", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 22
-        { type = "TURNIN", quest = 4129, questName = "The Knife Revealed", npc = 7879, npcName = "Quintis Jonespyre", map = 1444, zone = "Feralas", x = 32.5, y = 43.8 }, -- 23
-        { type = "ACCEPT", quest = 4130, questName = "Psychometric Reading", npc = 7879, npcName = "Quintis Jonespyre", map = 1444, zone = "Feralas", x = 32.5, y = 43.8 }, -- 24
-        { type = "TURNIN", quest = 4130, questName = "Psychometric Reading", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 25
-        { type = "ACCEPT", quest = 4131, questName = "The Woodpaw Gnolls", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 26
-        { type = "TURNIN", quest = 4131, questName = "The Woodpaw Gnolls", map = 1444, zone = "Feralas", x = 73.3, y = 56.3 }, -- 27
+        { type = "FLIGHTPATH", npc = 8019, npcName = "Fyldren Moonfeather", map = 1444, zone = "Feralas", x = 30.2, y = 43.3 }, -- 1
+        { type = "ACCEPT", quest = 1374, questName = "Khan Jehn", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.2, note = "Objectives: Gelkis Clan Centaur" }, -- 2
+        { type = "COLLECT", quest = 1374, questName = "Khan Jehn", target = "Khan Jehn's Head", count = 1, map = 1443, zone = "Desolace", x = 66, y = 80.4, mobs = "Khan Jehn" }, -- 3
+        { type = "TURNIN", quest = 1374, questName = "Khan Jehn", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.2 }, -- 4
+        { type = "ACCEPT", quest = 7028, questName = "Twisted Evils", npc = 13656, npcName = "Willow", map = 1443, zone = "Desolace", x = 62.2, y = 39.6, optional = true, note = "For Maraudon (dungeon guide)" }, -- 5
+        { type = "ACCEPT", quest = 7041, questName = "Vyletongue Corruption", npc = 11715, npcName = "Talendria", map = 1443, zone = "Desolace", x = 68.4, y = 8.8, optional = true, note = "For Maraudon (dungeon guide)" }, -- 6
+        { type = "ACCEPT", quest = 7044, questName = "Legends of Maraudon", npc = 13697, npcName = "Cavindra", map = 1443, zone = "Desolace", x = 31.9, y = 63.8, optional = true, note = "For Maraudon (dungeon guide)" }, -- 7
+        { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.2, y = 45.1, radius = 60, note = "travel to Feralas (Feralas)" }, -- 8
+        { type = "HEARTH", npc = 7736, npcName = "Innkeeper Shyria", map = 1444, zone = "Feathermoon Stronghold", x = 31.0, y = 43.5, note = "talk to Innkeeper Shyria and make this inn your home" }, -- 9
+        { type = "ACCEPT", quest = 2847, questName = "Wild Leather Armor", npc = 7852, npcName = "Pratt McGrubben", map = 1444, zone = "Feralas", x = 30.6, y = 42.6, profession = "Leatherworking", skill = 200 }, -- 10
+        { type = "COLLECT", quest = 2847, questName = "Wild Leather Armor", target = "Thick Leather", count = 10, map = 1444, zone = "Feralas", x = 30.2, y = 43.2, near = true, profession = "Leatherworking", skill = 200, mobs = "Groddoc Ape / Groddoc Thunderer / Ironfur Bear / Grizzled Ironfur Bear" }, -- 11
+        { type = "TURNIN", quest = 2847, questName = "Wild Leather Armor", npc = 7852, npcName = "Pratt McGrubben", map = 1444, zone = "Feralas", x = 30.6, y = 42.6, profession = "Leatherworking", skill = 200 }, -- 12
+        { type = "ACCEPT", quest = 4124, questName = "The Missing Courier", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 13
+        { type = "ACCEPT", quest = 2866, questName = "The Ruins of Solarsal", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 14
+        { type = "ACCEPT", quest = 2982, questName = "The High Wilderness", npc = 7900, npcName = "Angelas Moonbreeze", map = 1444, zone = "Feralas", x = 31.8, y = 45.6 }, -- 15
+        { type = "TURNIN", quest = 4124, questName = "The Missing Courier", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 16
+        { type = "ACCEPT", quest = 4125, questName = "The Missing Courier", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 17
+        { type = "KILL", quest = 2982, questName = "The High Wilderness", npc = 5240, target = "Gordunni Warlock / Gordunni Brute", count = 8, map = 1444, zone = "Feralas", x = 59.5, y = 57, near = true }, -- 18
+        { type = "KILL", quest = 2982, questName = "The High Wilderness", npc = 5236, target = "Gordunni Shaman", count = 8, map = 1444, zone = "Feralas", x = 60.4, y = 64.8, near = true }, -- 19
+        { type = "TURNIN", quest = 2982, questName = "The High Wilderness", npc = 7900, npcName = "Angelas Moonbreeze", map = 1444, zone = "Feralas", x = 31.8, y = 45.6 }, -- 20
+        { type = "TURNIN", quest = 2866, questName = "The Ruins of Solarsal", map = 1444, zone = "Feralas", x = 26.3, y = 52.3 }, -- 21
+        { type = "ACCEPT", quest = 2867, questName = "Return to Feathermoon Stronghold", map = 1444, zone = "Feralas", x = 26.3, y = 52.3 }, -- 22
+        { type = "TURNIN", quest = 2867, questName = "Return to Feathermoon Stronghold", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 23
+        { type = "ACCEPT", quest = 3130, questName = "Against the Hatecrest", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 24
+        { type = "TURNIN", quest = 3130, questName = "Against the Hatecrest", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 25
+        { type = "ACCEPT", quest = 2869, questName = "Against the Hatecrest", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 26
+        { type = "COLLECT", quest = 2869, questName = "Against the Hatecrest", target = "Hatecrest Naga Scale", count = 10, map = 1444, zone = "Feralas", x = 28.5, y = 50.6, near = true }, -- 27
+        { type = "TURNIN", quest = 2869, questName = "Against the Hatecrest", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 28
+        { type = "TURNIN", quest = 4125, questName = "The Missing Courier", map = 1444, zone = "Feralas", x = 45.4, y = 65 }, -- 29
+        { type = "ACCEPT", quest = 4127, questName = "Boat Wreckage", map = 1444, zone = "Feralas", x = 45.4, y = 65 }, -- 30
+        { type = "TURNIN", quest = 4127, questName = "Boat Wreckage", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 31
+        { type = "ACCEPT", quest = 4129, questName = "The Knife Revealed", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 32
+        { type = "TURNIN", quest = 4129, questName = "The Knife Revealed", npc = 7879, npcName = "Quintis Jonespyre", map = 1444, zone = "Feralas", x = 32.5, y = 43.8 }, -- 33
+        { type = "ACCEPT", quest = 4130, questName = "Psychometric Reading", npc = 7879, npcName = "Quintis Jonespyre", map = 1444, zone = "Feralas", x = 32.5, y = 43.8 }, -- 34
+        { type = "TURNIN", quest = 4130, questName = "Psychometric Reading", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 35
+        { type = "ACCEPT", quest = 4131, questName = "The Woodpaw Gnolls", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 36
+        { type = "TURNIN", quest = 4131, questName = "The Woodpaw Gnolls", map = 1444, zone = "Feralas", x = 73.3, y = 56.3 }, -- 37
+        { type = "FLIGHTPATH", npc = 4319, npcName = "Thyssiana", map = 1444, zone = "Feralas", x = 89.5, y = 45.9 }, -- 38
+        { type = "ACCEPT", quest = 4281, questName = "Thalanaar Delivery", map = 1444, zone = "Feralas", x = 73.3, y = 56.3, note = "Take Undelivered Parcel from the Large Leather Backpacks and use it to start the quest" }, -- 39
+        { type = "TURNIN", quest = 4281, questName = "Thalanaar Delivery", npc = 4048, npcName = "Falfindel Waywarder", map = 1444, zone = "Feralas", x = 89.6, y = 46.4 }, -- 40
+        { type = "TURNIN", quest = 1137, questName = "News for Fizzle", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78, y = 77 }, -- 41
+        { type = "ACCEPT", quest = 2770, questName = "Gahz'rilla", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78, y = 77, optional = true, note = "For Zul'Farrak (dungeon guide)" }, -- 42
+        { type = "ACCEPT", quest = 2864, questName = "Tran'rek", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2, optional = true, note = "For Zul'Farrak (dungeon guide)" }, -- 43
+        { type = "TURNIN", quest = 1949, questName = "Hidden Secrets", npc = 6548, npcName = "Magus Tirth", map = 1441, zone = "Thousand Needles", x = 78.2, y = 75.8, class = { "MAGE" } }, -- 44
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_37_FERALAS",
     name = "37. Feralas 51-51 (Tauren)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 51,
@@ -13,22 +13,24 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_38_AZSHARA",
     author = "ForeverGuide route planner",
     notes = "Chapter 37 of the Tauren route: level 51 to 51, 15 steps, ~57 min of play in the model (39422 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 15,
+    stepCount = 17,
     steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 74.9, y = 43.5, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
-        { type = "ACCEPT", quest = 3063, questName = "Vengeance on the Northspring", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76.2, y = 43.8 }, -- 2
-        { type = "ACCEPT", quest = 3380, questName = "The Sunken Temple", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4 }, -- 3
-        { type = "ACCEPT", quest = 3062, questName = "Dark Heart", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76.2, y = 43.8, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 4
-        { type = "KILL", quest = 3062, questName = "Dark Heart", npc = 8075, target = "Edana Hatetalon", map = 1444, zone = "Feralas", x = 40.6, y = 8.6, optional = true }, -- 5
-        { type = "TURNIN", quest = 3062, questName = "Dark Heart", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76.2, y = 43.8, optional = true }, -- 6
-        { type = "TURNIN", quest = 3122, questName = "Return to Witch Doctor Uzer'i", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4, note = "reduced xp (80%) - you out-levelled it" }, -- 7
-        { type = "ACCEPT", quest = 3128, questName = "Natural Materials", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4 }, -- 8
-        { type = "KILL", quest = 3128, questName = "Natural Materials", npc = 7584, target = "Wandering Forest Walker", count = 2, map = 1444, zone = "Feralas", x = 73.9, y = 38.8, near = true, note = "loot Splintered Log" }, -- 9
-        { type = "COLLECT", quest = 3128, questName = "Natural Materials", target = "Encrusted Minerals", count = 6, map = 1444, zone = "Feralas", x = 70.2, y = 46.6, near = true }, -- 10
-        { type = "COLLECT", quest = 3128, questName = "Natural Materials", target = "Resilient Sinew / Metallic Fragments", count = 20, map = 1444, zone = "Feralas", x = 58, y = 62.8, near = true }, -- 11
-        { type = "TURNIN", quest = 3128, questName = "Natural Materials", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4 }, -- 12
-        { type = "KILL", quest = 3063, questName = "Vengeance on the Northspring", npc = 5363, target = "Northspring Roguefeather / Northspring Harpy / Northspring Windcaller", count = 4, map = 1444, zone = "Feralas", x = 41.6, y = 14.4, near = true }, -- 13
-        { type = "KILL", quest = 3063, questName = "Vengeance on the Northspring", npc = 5364, target = "Northspring Slayer", count = 4, map = 1444, zone = "Feralas", x = 38.9, y = 14.6, near = true }, -- 14
-        { type = "TURNIN", quest = 3063, questName = "Vengeance on the Northspring", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76.2, y = 43.8 }, -- 15
+        { type = "ACCEPT", quest = 3002, questName = "The Gordunni Orb", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.4, y = 43.6 }, -- 2
+        { type = "ACCEPT", quest = 3063, questName = "Vengeance on the Northspring", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76.2, y = 43.8 }, -- 3
+        { type = "ACCEPT", quest = 4120, questName = "The Strength of Corruption", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76, y = 43.8 }, -- 4
+        { type = "ACCEPT", quest = 3380, questName = "The Sunken Temple", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4 }, -- 5
+        { type = "ACCEPT", quest = 3062, questName = "Dark Heart", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76.2, y = 43.8, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 6
+        { type = "KILL", quest = 3062, questName = "Dark Heart", npc = 8075, target = "Edana Hatetalon", map = 1444, zone = "Feralas", x = 40.6, y = 8.6, optional = true }, -- 7
+        { type = "TURNIN", quest = 3062, questName = "Dark Heart", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76.2, y = 43.8, optional = true }, -- 8
+        { type = "TURNIN", quest = 3122, questName = "Return to Witch Doctor Uzer'i", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4, note = "reduced xp (80%) - you out-levelled it" }, -- 9
+        { type = "ACCEPT", quest = 3128, questName = "Natural Materials", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4 }, -- 10
+        { type = "KILL", quest = 3128, questName = "Natural Materials", npc = 7584, target = "Wandering Forest Walker", count = 2, map = 1444, zone = "Feralas", x = 73.9, y = 38.8, near = true, note = "loot Splintered Log" }, -- 11
+        { type = "COLLECT", quest = 3128, questName = "Natural Materials", target = "Encrusted Minerals", count = 6, map = 1444, zone = "Feralas", x = 70.2, y = 46.6, near = true }, -- 12
+        { type = "COLLECT", quest = 3128, questName = "Natural Materials", target = "Resilient Sinew / Metallic Fragments", count = 20, map = 1444, zone = "Feralas", x = 58, y = 62.8, near = true }, -- 13
+        { type = "TURNIN", quest = 3128, questName = "Natural Materials", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4 }, -- 14
+        { type = "KILL", quest = 3063, questName = "Vengeance on the Northspring", npc = 5363, target = "Northspring Roguefeather / Northspring Harpy / Northspring Windcaller", count = 4, map = 1444, zone = "Feralas", x = 41.6, y = 14.4, near = true }, -- 15
+        { type = "KILL", quest = 3063, questName = "Vengeance on the Northspring", npc = 5364, target = "Northspring Slayer", count = 4, map = 1444, zone = "Feralas", x = 38.9, y = 14.6, near = true }, -- 16
+        { type = "TURNIN", quest = 3063, questName = "Vengeance on the Northspring", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76.2, y = 43.8 }, -- 17
     } end,
 })

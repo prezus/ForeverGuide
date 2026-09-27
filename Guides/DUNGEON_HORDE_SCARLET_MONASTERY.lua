@@ -2,24 +2,36 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_SCARLET_MONASTERY",
-    name = "Scarlet Monastery 30-38",
-    version = 1,
+    name = "Scarlet Monastery 33-38",
+    version = 2,
     kind = "dungeon",
     faction = "Horde",
-    minLevel = 30,
+    minLevel = 33,
     maxLevel = 38,
     map = 1420,
     zone = "Tirisfal Glades",
     author = "ForeverGuide route planner",
     notes = "Scarlet Monastery: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 7,
+    stepCount = 19,
     steps = function() return {
-        { type = "ACCEPT", quest = 1113, questName = "Hearts of Zeal", npc = 2055, npcName = "Master Apothecary Faranell", map = 1458, zone = "Undercity", x = 48.4, y = 69.4 }, -- 1
-        { type = "NOTE", map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8, text = "Find a group for Scarlet Monastery", note = "All quests available from level 30; hand them in by level 38 for full XP" }, -- 2
-        { type = "ACCEPT", quest = 1051, questName = "Vorrel's Revenge", map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 3
-        { type = "COLLECT", quest = 1113, questName = "Hearts of Zeal", target = "Heart of Zeal", count = 20, map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 4
-        { type = "COLLECT", quest = 1051, questName = "Vorrel's Revenge", target = "Vorrel's Wedding Ring", count = 1, map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 5
-        { type = "TURNIN", quest = 1113, questName = "Hearts of Zeal", npc = 2055, npcName = "Master Apothecary Faranell", map = 1458, zone = "Undercity", x = 48.4, y = 69.4 }, -- 6
-        { type = "TURNIN", quest = 1051, questName = "Vorrel's Revenge", npc = 3982, npcName = "Monika Sengutz", map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 19 }, -- 7
+        { type = "ACCEPT", quest = 1048, questName = "Into The Scarlet Monastery", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.2, y = 92.6 }, -- 1
+        { type = "ACCEPT", quest = 1113, questName = "Hearts of Zeal", npc = 2055, npcName = "Master Apothecary Faranell", map = 1458, zone = "Undercity", x = 48.4, y = 69.4 }, -- 2
+        { type = "ACCEPT", quest = 1160, questName = "Test of Lore", npc = 4488, npcName = "Parqual Fintallas", map = 1458, zone = "Undercity", x = 57.8, y = 65 }, -- 3
+        { type = "ACCEPT", quest = 1049, questName = "Compendium of the Fallen", npc = 3978, npcName = "Sage Truthseeker", map = 1456, zone = "Thunder Bluff", x = 34.6, y = 47.2, race = { "Orc", "Tauren", "Troll" } }, -- 4
+        { type = "NOTE", map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8, text = "Find a group for Scarlet Monastery", note = "All quests available from level 33; hand them in by level 38 for full XP" }, -- 5
+        { type = "ACCEPT", quest = 1051, questName = "Vorrel's Revenge", map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 6
+        { type = "KILL", quest = 1048, questName = "Into The Scarlet Monastery", npc = 3977, target = "High Inquisitor Whitemane", count = 1, map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 7
+        { type = "KILL", quest = 1048, questName = "Into The Scarlet Monastery", npc = 3976, target = "Scarlet Commander Mograine", count = 1, map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 8
+        { type = "KILL", quest = 1048, questName = "Into The Scarlet Monastery", npc = 3975, target = "Herod", count = 1, map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 9
+        { type = "KILL", quest = 1048, questName = "Into The Scarlet Monastery", npc = 3974, target = "Houndmaster Loksey", count = 1, map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 10
+        { type = "COLLECT", quest = 1049, questName = "Compendium of the Fallen", target = "Compendium of the Fallen", count = 1, map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8, race = { "Orc", "Tauren", "Troll" } }, -- 11
+        { type = "COLLECT", quest = 1113, questName = "Hearts of Zeal", target = "Heart of Zeal", count = 20, map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 12
+        { type = "COLLECT", quest = 1160, questName = "Test of Lore", target = "Beginnings of the Undead Threat", count = 1, map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 13
+        { type = "COLLECT", quest = 1051, questName = "Vorrel's Revenge", target = "Vorrel's Wedding Ring", count = 1, map = 1420, zone = "Tirisfal Glades", x = 82.6, y = 33.8 }, -- 14
+        { type = "TURNIN", quest = 1048, questName = "Into The Scarlet Monastery", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.2, y = 92.6 }, -- 15
+        { type = "TURNIN", quest = 1049, questName = "Compendium of the Fallen", npc = 3978, npcName = "Sage Truthseeker", map = 1456, zone = "Thunder Bluff", x = 34.6, y = 47.2, race = { "Orc", "Tauren", "Troll" } }, -- 16
+        { type = "TURNIN", quest = 1113, questName = "Hearts of Zeal", npc = 2055, npcName = "Master Apothecary Faranell", map = 1458, zone = "Undercity", x = 48.4, y = 69.4 }, -- 17
+        { type = "TURNIN", quest = 1160, questName = "Test of Lore", npc = 4488, npcName = "Parqual Fintallas", map = 1458, zone = "Undercity", x = 57.8, y = 65 }, -- 18
+        { type = "TURNIN", quest = 1051, questName = "Vorrel's Revenge", npc = 3982, npcName = "Monika Sengutz", map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 19 }, -- 19
     } end,
 })

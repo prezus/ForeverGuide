@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_31_TANARIS",
     name = "31. Tanaris 45-46 (Dwarf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 45,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_32_SEARING_GORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 31 of the Dwarf route: level 45 to 46, 26 steps, ~151 min of play in the model (14556 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 26,
+    stepCount = 31,
     steps = function() return {
         { type = "TRAVEL", map = 1446, zone = "Gadgetzan", x = 52.5, y = 27.9, radius = 60, note = "use your hearthstone (Gadgetzan)" }, -- 1
         { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 51.7, y = 27.4, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 2
@@ -33,13 +33,18 @@ ns.RegisterGuide({
         { type = "GRIND", npc = 5426, target = "Blisterpaw Hyena", level = 46, map = 1446, zone = "Tanaris", x = 48.8, y = 45, near = true, note = "grind Blisterpaw Hyena (level 44-45) to level 46 - nothing worth questing at 45" }, -- 16
         { type = "ACCEPT", quest = 2605, questName = "The Thirsty Goblin", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 17
         { type = "ACCEPT", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 18
-        { type = "ACCEPT", quest = 162, questName = "Rise of the Silithid", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 19
-        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 5472, target = "Dunemaul Enforcer / Dunemaul Brute", count = 10, map = 1446, zone = "Tanaris", x = 39.9, y = 50.9, near = true }, -- 20
-        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 12046, target = "Gor'marok the Ravager", count = 1, map = 1446, zone = "Tanaris", x = 41.5, y = 57.8 }, -- 21
-        { type = "KILL", quest = 2605, questName = "The Thirsty Goblin", npc = 5481, target = "Thistleshrub Dew Collector", map = 1446, zone = "Tanaris", x = 31.2, y = 64.7, near = true, note = "loot Laden Dew Gland" }, -- 22
-        { type = "TURNIN", quest = 2605, questName = "The Thirsty Goblin", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 23
-        { type = "ACCEPT", quest = 2606, questName = "In Good Taste", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 24
-        { type = "TURNIN", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 25
-        { type = "TURNIN", quest = 2606, questName = "In Good Taste", npc = 7583, npcName = "Sprinkle", map = 1446, zone = "Tanaris", x = 51.1, y = 26.9 }, -- 26
+        { type = "ACCEPT", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 19
+        { type = "ACCEPT", quest = 162, questName = "Rise of the Silithid", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 20
+        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 5472, target = "Dunemaul Enforcer / Dunemaul Brute", count = 10, map = 1446, zone = "Tanaris", x = 39.9, y = 50.9, near = true }, -- 21
+        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 12046, target = "Gor'marok the Ravager", count = 1, map = 1446, zone = "Tanaris", x = 41.5, y = 57.8 }, -- 22
+        { type = "KILL", quest = 2605, questName = "The Thirsty Goblin", npc = 5481, target = "Thistleshrub Dew Collector", map = 1446, zone = "Tanaris", x = 31.2, y = 64.7, near = true, note = "loot Laden Dew Gland" }, -- 23
+        { type = "ACCEPT", quest = 1560, questName = "Tooga's Quest", npc = 5955, npcName = "Tooga", map = 1446, zone = "Tanaris", x = 29.6, y = 60.6, note = "Objectives: Lead Tooga to Torta" }, -- 24
+        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5490, target = "Gnarled Thistleshrub", count = 8, map = 1446, zone = "Tanaris", x = 28, y = 65.4 }, -- 25
+        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5485, target = "Thistleshrub Rootshaper", count = 8, map = 1446, zone = "Tanaris", x = 27.4, y = 65.6 }, -- 26
+        { type = "TURNIN", quest = 2605, questName = "The Thirsty Goblin", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 27
+        { type = "ACCEPT", quest = 2606, questName = "In Good Taste", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 28
+        { type = "TURNIN", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 29
+        { type = "TURNIN", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 30
+        { type = "TURNIN", quest = 2606, questName = "In Good Taste", npc = 7583, npcName = "Sprinkle", map = 1446, zone = "Tanaris", x = 51.1, y = 26.9 }, -- 31
     } end,
 })

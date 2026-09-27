@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_11_THOUSAND_NEEDLES",
     name = "11. Thousand Needles 30-31 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 30,
@@ -13,21 +13,33 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_12_DESOLACE",
     author = "ForeverGuide route planner",
     notes = "Chapter 11 of the Skyborne route: level 30 to 31, 14 steps, ~64 min of play in the model (24250 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 14,
+    stepCount = 26,
     steps = function() return {
-        { type = "TRAVEL", map = 1441, zone = "Thousand Needles", x = 78.8, y = 76.8, radius = 60, note = "travel to Thousand Needles (Thousand Needles)" }, -- 1
-        { type = "ACCEPT", quest = 1104, questName = "Salt Flat Venom", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 2
-        { type = "ACCEPT", quest = 1105, questName = "Hardened Shells", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 3
-        { type = "ACCEPT", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 4
-        { type = "ACCEPT", quest = 1175, questName = "A Bump in the Road", npc = 4629, npcName = "Trackmaster Zherin", map = 1441, zone = "Thousand Needles", x = 81.6, y = 78 }, -- 5
-        { type = "COLLECT", quest = 1104, questName = "Salt Flat Venom", target = "Salty Scorpid Venom", count = 6, map = 1441, zone = "Thousand Needles", x = 82.8, y = 79.7, near = true }, -- 6
-        { type = "COLLECT", quest = 1105, questName = "Hardened Shells", target = "Hardened Tortoise Shell", count = 9, map = 1441, zone = "Thousand Needles", x = 84.8, y = 81.8, near = true }, -- 7
-        { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", count = 10, map = 1441, zone = "Thousand Needles", x = 79.3, y = 89.2, near = true }, -- 8
-        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4151, target = "Saltstone Crystalhide / Saltstone Gazer", count = 10, map = 1441, zone = "Thousand Needles", x = 79.5, y = 88.9, near = true }, -- 9
-        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4147, target = "Saltstone Basilisk", count = 10, map = 1441, zone = "Thousand Needles", x = 71.3, y = 67.7, near = true }, -- 10
-        { type = "TURNIN", quest = 1104, questName = "Salt Flat Venom", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 11
-        { type = "TURNIN", quest = 1105, questName = "Hardened Shells", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 12
-        { type = "TURNIN", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 13
-        { type = "TURNIN", quest = 1175, questName = "A Bump in the Road", npc = 4629, npcName = "Trackmaster Zherin", map = 1441, zone = "Thousand Needles", x = 81.6, y = 78 }, -- 14
+        { type = "ACCEPT", quest = 1111, questName = "Wharfmaster Dizzywig", npc = 4452, npcName = "Kravel Koalbeard", map = 1441, zone = "Thousand Needles", x = 77.8, y = 77.2 }, -- 1
+        { type = "TURNIN", quest = 1111, questName = "Wharfmaster Dizzywig", npc = 3453, npcName = "Wharfmaster Dizzywig", map = 1413, zone = "The Barrens", x = 63.2, y = 38.4 }, -- 2
+        { type = "ACCEPT", quest = 1100, questName = "Lonebrow's Journal", map = 1441, zone = "Thousand Needles", x = 30.7, y = 24.4, note = "Take Henrig Lonebrow's Journal from the Henrig Lonebrow's Journal and use it to start the quest" }, -- 3
+        { type = "ACCEPT", quest = 6626, questName = "A Host of Evil", npc = 12866, npcName = "Myriam Moonsinger", map = 1413, zone = "The Barrens", x = 49, y = 94.8, optional = true, note = "For Razorfen Downs (dungeon guide)" }, -- 4
+        { type = "ACCEPT", quest = 3633, questName = "Goblin Engineering", npc = 3494, npcName = "Tinkerwiz", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2, profession = "Engineering", skill = 200 }, -- 5
+        { type = "ACCEPT", quest = 3634, questName = "Gnome Engineering", npc = 3494, npcName = "Tinkerwiz", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2, profession = "Engineering", skill = 200 }, -- 6
+        { type = "TRAVEL", map = 1441, zone = "Thousand Needles", x = 78.8, y = 76.8, radius = 60, note = "travel to Thousand Needles (Thousand Needles)" }, -- 7
+        { type = "ACCEPT", quest = 1104, questName = "Salt Flat Venom", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 8
+        { type = "ACCEPT", quest = 1105, questName = "Hardened Shells", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 9
+        { type = "ACCEPT", quest = 1191, questName = "Zamek's Distraction", npc = 4709, npcName = "Zamek", map = 1441, zone = "Thousand Needles", x = 79.8, y = 77 }, -- 10
+        { type = "TURNIN", quest = 1191, questName = "Zamek's Distraction", npc = 4709, npcName = "Zamek", map = 1441, zone = "Thousand Needles", x = 79.8, y = 77 }, -- 11
+        { type = "ACCEPT", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 12
+        { type = "ACCEPT", quest = 1175, questName = "A Bump in the Road", npc = 4629, npcName = "Trackmaster Zherin", map = 1441, zone = "Thousand Needles", x = 81.6, y = 78 }, -- 13
+        { type = "COLLECT", quest = 1104, questName = "Salt Flat Venom", target = "Salty Scorpid Venom", count = 6, map = 1441, zone = "Thousand Needles", x = 82.8, y = 79.7, near = true }, -- 14
+        { type = "COLLECT", quest = 1105, questName = "Hardened Shells", target = "Hardened Tortoise Shell", count = 9, map = 1441, zone = "Thousand Needles", x = 84.8, y = 81.8, near = true }, -- 15
+        { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", count = 10, map = 1441, zone = "Thousand Needles", x = 79.3, y = 89.2, near = true }, -- 16
+        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4151, target = "Saltstone Crystalhide / Saltstone Gazer", count = 10, map = 1441, zone = "Thousand Needles", x = 79.5, y = 88.9, near = true }, -- 17
+        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4147, target = "Saltstone Basilisk", count = 10, map = 1441, zone = "Thousand Needles", x = 71.3, y = 67.7, near = true }, -- 18
+        { type = "ACCEPT", quest = 5762, questName = "Hemet Nesingwary", npc = 4452, npcName = "Kravel Koalbeard", map = 1441, zone = "Thousand Needles", x = 77.8, y = 77.2 }, -- 19
+        { type = "TURNIN", quest = 1179, questName = "The Brassbolts Brothers", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78, y = 77 }, -- 20
+        { type = "TURNIN", quest = 1104, questName = "Salt Flat Venom", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 21
+        { type = "TURNIN", quest = 1105, questName = "Hardened Shells", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 22
+        { type = "ACCEPT", quest = 1106, questName = "Martek the Exiled", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78, y = 77 }, -- 23
+        { type = "TURNIN", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 24
+        { type = "ACCEPT", quest = 1178, questName = "Goblin Sponsorship", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80, y = 75.8 }, -- 25
+        { type = "TURNIN", quest = 1175, questName = "A Bump in the Road", npc = 4629, npcName = "Trackmaster Zherin", map = 1441, zone = "Thousand Needles", x = 81.6, y = 78 }, -- 26
     } end,
 })

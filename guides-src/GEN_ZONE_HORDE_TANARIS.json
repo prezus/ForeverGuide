@@ -1,7 +1,7 @@
 {
   "id": "GEN_ZONE_HORDE_TANARIS",
   "name": "Zone: Tanaris 40-50 (Horde)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "minLevel": 40,
   "maxLevel": 50,

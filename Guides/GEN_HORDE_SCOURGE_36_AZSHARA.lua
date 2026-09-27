@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_36_AZSHARA",
     name = "36. Azshara 51-52 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 51,
@@ -13,8 +13,14 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_37_FELWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 36 of the Scourge route: level 51 to 52, 1 steps, ~129 min of play in the model (36303 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 1,
+    stepCount = 7,
     steps = function() return {
-        { type = "GRIND", npc = 8761, target = "Mosshoof Courser", level = 52, map = 1447, zone = "Azshara", x = 66.4, y = 27.4, near = true, note = "grind Mosshoof Courser (level 52-53) to level 52 - nothing worth questing at 51" }, -- 1
+        { type = "ACCEPT", quest = 7028, questName = "Twisted Evils", npc = 13656, npcName = "Willow", map = 1443, zone = "Desolace", x = 62.2, y = 39.6, optional = true, note = "For Maraudon (dungeon guide)" }, -- 1
+        { type = "ACCEPT", quest = 7029, questName = "Vyletongue Corruption", npc = 11823, npcName = "Vark Battlescar", map = 1443, zone = "Desolace", x = 23.2, y = 70.2, optional = true, note = "For Maraudon (dungeon guide)" }, -- 2
+        { type = "ACCEPT", quest = 7044, questName = "Legends of Maraudon", npc = 13697, npcName = "Cavindra", map = 1443, zone = "Desolace", x = 31.9, y = 63.8, optional = true, note = "For Maraudon (dungeon guide)" }, -- 3
+        { type = "ACCEPT", quest = 7064, questName = "Corruption of Earth and Seed", npc = 13699, npcName = "Selendra", map = 1443, zone = "Desolace", x = 26.8, y = 77.6, optional = true, note = "For Maraudon (dungeon guide)" }, -- 4
+        { type = "NOTE", optional = true, text = "Ready for Maraudon", note = "Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons." }, -- 5
+        { type = "GRIND", npc = 8761, target = "Mosshoof Courser", level = 52, map = 1447, zone = "Azshara", x = 66.4, y = 27.4, near = true, note = "grind Mosshoof Courser (level 52-53) to level 52 - nothing worth questing at 51" }, -- 6
+        { type = "COLLECT", quest = 8419, questName = "An Imp's Request", target = "Felcloth", count = 1, map = 1447, zone = "Azshara", x = 62.8, y = 25.5, near = true, class = { "WARLOCK" }, mobs = "Felguard Sentry / Legashi Satyr / Legashi Rogue / Legashi Hellcaller" }, -- 7
     } end,
 })

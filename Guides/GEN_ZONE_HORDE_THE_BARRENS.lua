@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_HORDE_THE_BARRENS",
     name = "Zone: The Barrens 10-25 (Horde)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     minLevel = 10,
     maxLevel = 25,

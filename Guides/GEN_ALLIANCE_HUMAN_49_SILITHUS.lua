@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_49_SILITHUS",
     name = "49. Silithus 57-57 (Human)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 57,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_50_WINTERSPRING",
     author = "ForeverGuide route planner",
     notes = "Chapter 49 of the Human route: level 57 to 57, 22 steps, ~71 min of play in the model (66582 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 22,
+    stepCount = 27,
     steps = function() return {
         { type = "TRAVEL", map = 1451, zone = "Cenarion Hold", x = 51.9, y = 39.2, radius = 60, note = "use your hearthstone (Cenarion Hold)" }, -- 1
         { type = "TRAVEL", map = 1451, zone = "Silithus", x = 49.4, y = 37.1, radius = 60, note = "travel to Silithus (Silithus)" }, -- 2
@@ -22,20 +22,25 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 9415, questName = "Report to Marshal Bluewall", npc = 17082, npcName = "Rifleman Torrig", map = 1451, zone = "Silithus", x = 50.7, y = 34.7 }, -- 5
         { type = "COLLECT", quest = 8318, questName = "Secret Communication", target = "Encrypted Twilight Text", count = 10, map = 1451, zone = "Silithus", x = 40.9, y = 42.2, near = true }, -- 6
         { type = "TURNIN", quest = 8318, questName = "Secret Communication", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 7
-        { type = "TURNIN", quest = 9415, questName = "Report to Marshal Bluewall", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 8
-        { type = "ACCEPT", quest = 9419, questName = "Scouring the Desert", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 9
-        { type = "KILL", quest = 9419, questName = "Scouring the Desert", npc = 17090, target = "Silithus Dust Turnin Quest Doodad", count = 1, map = 1451, zone = "Silithus", x = 33, y = 50.8 }, -- 10
-        { type = "TURNIN", quest = 9419, questName = "Scouring the Desert", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 11
-        { type = "TURNIN", quest = 8285, questName = "The Deserter", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 12
-        { type = "ACCEPT", quest = 8279, questName = "The Twilight Lexicon", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 13
-        { type = "KILL", quest = 8279, questName = "The Twilight Lexicon", npc = 11804, target = "Twilight Keeper Havunth", map = 1451, zone = "Silithus", x = 40.9, y = 42.2, note = "loot Twilight Lexicon - Chapter 3" }, -- 14
-        { type = "KILL", quest = 8279, questName = "The Twilight Lexicon", npc = 15200, target = "Twilight Keeper Mayna", map = 1451, zone = "Silithus", x = 26.4, y = 36.6, note = "loot Twilight Lexicon - Chapter 1" }, -- 15
-        { type = "KILL", quest = 8279, questName = "The Twilight Lexicon", npc = 11803, target = "Twilight Keeper Exeter", map = 1451, zone = "Silithus", x = 16.1, y = 86.4, note = "loot Twilight Lexicon - Chapter 2" }, -- 16
-        { type = "TURNIN", quest = 8279, questName = "The Twilight Lexicon", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 17
-        { type = "ACCEPT", quest = 8323, questName = "True Believers", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 18
-        { type = "ACCEPT", quest = 8287, questName = "A Terrible Purpose", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 19
-        { type = "COLLECT", quest = 8323, questName = "True Believers", target = "Encrypted Twilight Text", count = 10, map = 1451, zone = "Silithus", x = 41.5, y = 45.2, near = true }, -- 20
-        { type = "TURNIN", quest = 8323, questName = "True Believers", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 21
-        { type = "TURNIN", quest = 8287, questName = "A Terrible Purpose", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 22
+        { type = "TURNIN", quest = 8307, questName = "Desert Recipe", map = 1451, zone = "Silithus", x = 38, y = 45.3, profession = "Cooking", skill = 285 }, -- 8
+        { type = "TURNIN", quest = 9415, questName = "Report to Marshal Bluewall", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 9
+        { type = "ACCEPT", quest = 9419, questName = "Scouring the Desert", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 10
+        { type = "KILL", quest = 9419, questName = "Scouring the Desert", npc = 17090, target = "Silithus Dust Turnin Quest Doodad", count = 1, map = 1451, zone = "Silithus", x = 33, y = 50.8 }, -- 11
+        { type = "TURNIN", quest = 9419, questName = "Scouring the Desert", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 12
+        { type = "TURNIN", quest = 8285, questName = "The Deserter", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 13
+        { type = "ACCEPT", quest = 8279, questName = "The Twilight Lexicon", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 14
+        { type = "KILL", quest = 8279, questName = "The Twilight Lexicon", npc = 11804, target = "Twilight Keeper Havunth", map = 1451, zone = "Silithus", x = 40.9, y = 42.2, note = "loot Twilight Lexicon - Chapter 3" }, -- 15
+        { type = "ACCEPT", quest = 8313, questName = "Sharing the Knowledge", map = 1451, zone = "Silithus", x = 38, y = 45.3, profession = "Cooking", skill = 285 }, -- 16
+        { type = "KILL", quest = 8279, questName = "The Twilight Lexicon", npc = 15200, target = "Twilight Keeper Mayna", map = 1451, zone = "Silithus", x = 26.4, y = 36.6, note = "loot Twilight Lexicon - Chapter 1" }, -- 17
+        { type = "KILL", quest = 8279, questName = "The Twilight Lexicon", npc = 11803, target = "Twilight Keeper Exeter", map = 1451, zone = "Silithus", x = 16.1, y = 86.4, note = "loot Twilight Lexicon - Chapter 2" }, -- 18
+        { type = "COLLECT", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", target = "Deathclasp's Pincer", count = 1, map = 1451, zone = "Silithus", x = 44.8, y = 90.8, optional = true, mobs = "Deathclasp" }, -- 19
+        { type = "TURNIN", quest = 8279, questName = "The Twilight Lexicon", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 20
+        { type = "ACCEPT", quest = 8323, questName = "True Believers", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 21
+        { type = "ACCEPT", quest = 8287, questName = "A Terrible Purpose", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 22
+        { type = "COLLECT", quest = 8323, questName = "True Believers", target = "Encrypted Twilight Text", count = 10, map = 1451, zone = "Silithus", x = 41.5, y = 45.2, near = true }, -- 23
+        { type = "TURNIN", quest = 8323, questName = "True Believers", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 24
+        { type = "TURNIN", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", npc = 15182, npcName = "Vish Kozus", map = 1451, zone = "Silithus", x = 50.8, y = 33.6, optional = true }, -- 25
+        { type = "TURNIN", quest = 8313, questName = "Sharing the Knowledge", npc = 15174, npcName = "Calandrath", map = 1451, zone = "Silithus", x = 51.8, y = 39, profession = "Cooking", skill = 285 }, -- 26
+        { type = "TURNIN", quest = 8287, questName = "A Terrible Purpose", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 27
     } end,
 })

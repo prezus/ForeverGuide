@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_32_THE_HINTERLANDS",
     name = "32. The Hinterlands 46-47 (Human)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 46,
@@ -13,24 +13,36 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_33_BLASTED_LANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 32 of the Human route: level 46 to 47, 17 steps, ~67 min of play in the model (22566 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 17,
+    stepCount = 29,
     steps = function() return {
-        { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 12.0, y = 44.5, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 1
-        { type = "HEARTH", npc = 7744, npcName = "Innkeeper Thulfram", map = 1425, zone = "Aerie Peak", x = 14.2, y = 41.6, note = "talk to Innkeeper Thulfram and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 2880, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 3
-        { type = "ACCEPT", quest = 2988, questName = "Witherbark Cages", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 4
-        { type = "ACCEPT", quest = 2877, questName = "Skulk Rock Clean-up", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 5
-        { type = "COLLECT", quest = 2880, questName = "Troll Necklace Bounty", target = "Troll Tribal Necklace", count = 5, map = 1425, zone = "The Hinterlands", x = 22, y = 55.2, near = true }, -- 6
-        { type = "COMPLETE", quest = 2988, questName = "Witherbark Cages", target = "Second Witherbark Cage / First Witherbark Cage", map = 1425, zone = "The Hinterlands", x = 23.1, y = 58.8, note = "Check Second Cage" }, -- 7
-        { type = "COMPLETE", quest = 2988, questName = "Witherbark Cages", target = "Third Witherbark Cage", map = 1425, zone = "The Hinterlands", x = 32, y = 57.3, note = "Check Third Cage" }, -- 8
-        { type = "KILL", quest = 2877, questName = "Skulk Rock Clean-up", npc = 2655, target = "Green Sludge", count = 10, map = 1425, zone = "The Hinterlands", x = 47.7, y = 53.8, near = true }, -- 9
-        { type = "KILL", quest = 2877, questName = "Skulk Rock Clean-up", npc = 2656, target = "Jade Ooze", count = 10, map = 1425, zone = "The Hinterlands", x = 56.6, y = 44.7, near = true }, -- 10
-        { type = "TURNIN", quest = 2880, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 11
-        { type = "TURNIN", quest = 2877, questName = "Skulk Rock Clean-up", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 12
-        { type = "TURNIN", quest = 2988, questName = "Witherbark Cages", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 13
-        { type = "ACCEPT", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 14
-        { type = "COMPLETE", quest = 2989, questName = "The Altar of Zul", target = "Search the Altar of Zul", map = 1425, zone = "The Hinterlands", x = 49.0, y = 68.7, note = "Search the Altar of Zul" }, -- 15
-        { type = "TURNIN", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 16
-        { type = "GRIND", npc = 2659, target = "Razorbeak Skylord", level = 47, map = 1425, zone = "The Hinterlands", x = 47.8, y = 43.6, near = true, note = "grind Razorbeak Skylord (level 46-48) to level 47 - nothing worth questing at 46" }, -- 17
+        { type = "FLIGHTPATH", npc = 8018, npcName = "Guthrum Thunderfist", map = 1425, zone = "The Hinterlands", x = 11.1, y = 46.2 }, -- 1
+        { type = "ACCEPT", quest = 3452, questName = "The Flame's Casing", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39, optional = true, note = "Elite - group up" }, -- 2
+        { type = "COLLECT", quest = 3452, questName = "The Flame's Casing", target = "Symbol of Ragnaros", count = 1, map = 1427, zone = "Searing Gorge", x = 30.4, y = 26.8, optional = true, near = true, mobs = "Twilight Dark Shaman / Twilight Fire Guard / Twilight Geomancer / Twilight Idolater" }, -- 3
+        { type = "TURNIN", quest = 3452, questName = "The Flame's Casing", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39, optional = true }, -- 4
+        { type = "ACCEPT", quest = 3181, questName = "The Horn of the Beast", npc = 5833, npcName = "Margol the Rager", map = 1427, zone = "Searing Gorge", x = 73.5, y = 82.3, optional = true, note = "Loot Margol's Horn from Margol the Rager and use it to start the quest; Elite - group up" }, -- 5
+        { type = "TURNIN", quest = 3181, questName = "The Horn of the Beast", npc = 3836, npcName = "Mountaineer Pebblebitty", map = 1432, zone = "Loch Modan", x = 18.2, y = 83.8, optional = true }, -- 6
+        { type = "TURNIN", quest = 3379, questName = "Shadoweaver", npc = 8439, npcName = "Nilith Lokrav", map = 1427, zone = "Searing Gorge", x = 41, y = 74.8, profession = "Tailoring", skill = 230 }, -- 7
+        { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 12.0, y = 44.5, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 8
+        { type = "HEARTH", npc = 7744, npcName = "Innkeeper Thulfram", map = 1425, zone = "Aerie Peak", x = 14.2, y = 41.6, note = "talk to Innkeeper Thulfram and make this inn your home" }, -- 9
+        { type = "ACCEPT", quest = 2880, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 10
+        { type = "ACCEPT", quest = 2988, questName = "Witherbark Cages", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 11
+        { type = "ACCEPT", quest = 2877, questName = "Skulk Rock Clean-up", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 12
+        { type = "COLLECT", quest = 2880, questName = "Troll Necklace Bounty", target = "Troll Tribal Necklace", count = 5, map = 1425, zone = "The Hinterlands", x = 22, y = 55.2, near = true }, -- 13
+        { type = "COMPLETE", quest = 2988, questName = "Witherbark Cages", target = "Second Witherbark Cage / First Witherbark Cage", map = 1425, zone = "The Hinterlands", x = 23.1, y = 58.8, note = "Check Second Cage" }, -- 14
+        { type = "COMPLETE", quest = 2988, questName = "Witherbark Cages", target = "Third Witherbark Cage", map = 1425, zone = "The Hinterlands", x = 32, y = 57.3, note = "Check Third Cage" }, -- 15
+        { type = "ACCEPT", quest = 1446, questName = "Jammal'an the Prophet", npc = 5598, npcName = "Atal'ai Exile", map = 1425, zone = "The Hinterlands", x = 33.6, y = 75.2, optional = true, note = "For The Temple of Atal'Hakkar (dungeon guide)" }, -- 16
+        { type = "KILL", quest = 2877, questName = "Skulk Rock Clean-up", npc = 2655, target = "Green Sludge", count = 10, map = 1425, zone = "The Hinterlands", x = 47.7, y = 53.8, near = true }, -- 17
+        { type = "KILL", quest = 2877, questName = "Skulk Rock Clean-up", npc = 2656, target = "Jade Ooze", count = 10, map = 1425, zone = "The Hinterlands", x = 56.6, y = 44.7, near = true }, -- 18
+        { type = "TURNIN", quest = 2880, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 19
+        { type = "TURNIN", quest = 2877, questName = "Skulk Rock Clean-up", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 20
+        { type = "TURNIN", quest = 2988, questName = "Witherbark Cages", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 21
+        { type = "ACCEPT", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 22
+        { type = "COLLECT", quest = 2641, questName = "Sprinkle's Secret Ingredient", target = "Violet Tragan", count = 1, map = 1425, zone = "The Hinterlands", x = 41.6, y = 58.9 }, -- 23
+        { type = "COMPLETE", quest = 2989, questName = "The Altar of Zul", target = "Search the Altar of Zul", map = 1425, zone = "The Hinterlands", x = 49.0, y = 68.7, note = "Search the Altar of Zul" }, -- 24
+        { type = "TURNIN", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 25
+        { type = "ACCEPT", quest = 2881, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.4 }, -- 26
+        { type = "TURNIN", quest = 2881, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.4 }, -- 27
+        { type = "ACCEPT", quest = 2990, questName = "Thadius Grimshade", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.4 }, -- 28
+        { type = "GRIND", npc = 2659, target = "Razorbeak Skylord", level = 47, map = 1425, zone = "The Hinterlands", x = 47.8, y = 43.6, near = true, note = "grind Razorbeak Skylord (level 46-48) to level 47 - nothing worth questing at 46" }, -- 29
     } end,
 })

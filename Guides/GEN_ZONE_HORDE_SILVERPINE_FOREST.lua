@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_HORDE_SILVERPINE_FOREST",
     name = "Zone: Silverpine Forest 10-20 (Horde)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     minLevel = 10,
     maxLevel = 20,

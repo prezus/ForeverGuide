@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_ALLIANCE_LOCH_MODAN",
     name = "Zone: Loch Modan 10-20 (Alliance)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 10,
     maxLevel = 20,

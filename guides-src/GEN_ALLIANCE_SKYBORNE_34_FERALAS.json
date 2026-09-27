@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_34_FERALAS",
   "name": "34. Feralas 48-48 (Skyborne)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 48,
@@ -14,6 +14,7 @@
   "steps": [
     {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 31.5, "y": 45.0, "radius": 60, "note": "travel to Feralas (Feralas)"},
     {"type": "ACCEPT", "quest": 3445, "questName": "The Sunken Temple", "npc": 7900, "npcName": "Angelas Moonbreeze", "map": 1444, "zone": "Feralas", "x": 31.8, "y": 45.6},
+    {"type": "KILL", "quest": 3520, "questName": "Screecher Spirits", "npc": 8612, "target": "Screecher Spirits Collected", "count": 3, "map": 1444, "zone": "Feralas", "x": 46.4, "y": 40.6},
     {"type": "ACCEPT", "quest": 2844, "questName": "The Giant Guardian", "npc": 7765, "npcName": "Rockbiter", "map": 1444, "zone": "Feralas", "x": 42.4, "y": 22},
     {"type": "TURNIN", "quest": 2844, "questName": "The Giant Guardian", "npc": 7774, "npcName": "Shay Leafrunner", "map": 1444, "zone": "Feralas", "x": 38.2, "y": 10.3},
     {"type": "ACCEPT", "quest": 2845, "questName": "Wandering Shay", "npc": 7774, "npcName": "Shay Leafrunner", "map": 1444, "zone": "Feralas", "x": 38.2, "y": 10.3},

@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_26_DESOLACE",
   "name": "26. Desolace 40-41 (Dwarf)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 40,
@@ -16,6 +16,8 @@
     {"type": "ACCEPT", "quest": 261, "questName": "Down the Scarlet Path", "npc": 1182, "npcName": "Brother Anton", "map": 1443, "zone": "Desolace", "x": 66.5, "y": 7.9},
     {"type": "KILL", "quest": 261, "questName": "Down the Scarlet Path", "npc": 11561, "target": "Undead Ravager", "count": 30, "map": 1443, "zone": "Desolace", "x": 64, "y": 81.5, "near": true},
     {"type": "TURNIN", "quest": 261, "questName": "Down the Scarlet Path", "npc": 1182, "npcName": "Brother Anton", "map": 1443, "zone": "Desolace", "x": 66.5, "y": 7.9},
+    {"type": "TURNIN", "quest": 1453, "questName": "Reclaimers' Business in Desolace", "npc": 5638, "npcName": "Kreldig Ungor", "map": 1443, "zone": "Desolace", "x": 66.2, "y": 9.6, "note": "reduced xp (60%) - you out-levelled it"},
+    {"type": "TURNIN", "quest": 6141, "questName": "Brother Anton", "npc": 1182, "npcName": "Brother Anton", "map": 1443, "zone": "Desolace", "x": 66.4, "y": 7.8},
     {"type": "ACCEPT", "quest": 5501, "questName": "Bone Collector", "npc": 11438, "npcName": "Bibbly F'utzbuckle", "map": 1443, "zone": "Desolace", "x": 62.3, "y": 39},
     {"type": "COLLECT", "quest": 5501, "questName": "Bone Collector", "target": "Kodo Bone", "count": 10, "map": 1443, "zone": "Desolace", "x": 53.9, "y": 58.1, "near": true},
     {"type": "TURNIN", "quest": 5501, "questName": "Bone Collector", "npc": 11438, "npcName": "Bibbly F'utzbuckle", "map": 1443, "zone": "Desolace", "x": 62.3, "y": 39},
@@ -35,6 +37,7 @@
     {"type": "KILL", "quest": 6027, "questName": "Book of the Ancients", "npc": 12369, "target": "Lord Kragaru", "map": 1443, "zone": "Desolace", "x": 28.2, "y": 6.7, "note": "loot Book of the Ancients"},
     {"type": "TURNIN", "quest": 6161, "questName": "Claim Rackmore's Treasure!", "map": 1443, "zone": "Desolace", "x": 30, "y": 8.7},
     {"type": "TURNIN", "quest": 6027, "questName": "Book of the Ancients", "npc": 11863, "npcName": "Azore Aldamort", "map": 1443, "zone": "Desolace", "x": 38.9, "y": 27.2},
+    {"type": "TURNIN", "quest": 1373, "questName": "Ongeku", "npc": 5397, "npcName": "Uthek the Wise", "map": 1443, "zone": "Desolace", "x": 36.2, "y": 79.2},
     {"type": "GRIND", "npc": 4694, "target": "Dread Ripper", "level": 41, "map": 1443, "zone": "Desolace", "x": 29.8, "y": 81.2, "near": true, "note": "grind Dread Ripper (level 39-40) to level 41 - nothing worth questing at 40"}
   ]
 }

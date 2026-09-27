@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_02_SILVERPINE_FOREST",
     name = "2. Silverpine Forest 12-15 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 12,
@@ -13,65 +13,85 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_03_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Scourge route: level 12 to 15, 58 steps, ~110 min of play in the model (17526 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 58,
+    stepCount = 78,
     steps = function() return {
-        { type = "TRAVEL", map = 1421, zone = "Silverpine Forest", x = 43.7, y = 40.7, radius = 60, note = "travel to Silverpine Forest (Silverpine Forest)" }, -- 1
-        { type = "HEARTH", npc = 6739, npcName = "Innkeeper Bates", map = 1421, zone = "The Sepulcher", x = 43.2, y = 41.3, note = "talk to Innkeeper Bates and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 6321, questName = "Supplying the Sepulcher", npc = 6389, npcName = "Deathguard Podrig", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 41.7 }, -- 3
-        { type = "ACCEPT", quest = 421, questName = "Prove Your Worth", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 4
-        { type = "ACCEPT", quest = 447, questName = "A Recipe For Death", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 5
-        { type = "ACCEPT", quest = 437, questName = "The Dead Fields", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 6
-        { type = "ACCEPT", quest = 477, questName = "Border Crossings", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 7
-        { type = "TURNIN", quest = 6321, questName = "Supplying the Sepulcher", npc = 2226, npcName = "Karos Razok", map = 1421, zone = "Silverpine Forest", x = 45.6, y = 42.6 }, -- 8
-        { type = "KILL", quest = 421, questName = "Prove Your Worth", npc = 1769, target = "Moonrage Whitescalp", count = 5, map = 1421, zone = "Silverpine Forest", x = 47.8, y = 34.1, near = true }, -- 9
-        { type = "COLLECT", quest = 447, questName = "A Recipe For Death", target = "Grizzled Bear Heart", count = 6, map = 1421, zone = "Silverpine Forest", x = 48.8, y = 26.3, near = true }, -- 10
-        { type = "COMPLETE", quest = 437, questName = "The Dead Fields", target = "Enter the Dead Fields / Nightlash", map = 1421, zone = "Silverpine Forest", x = 45.9, y = 21.3, note = "Enter the Dead Fields" }, -- 11
-        { type = "COLLECT", quest = 447, questName = "A Recipe For Death", target = "Skittering Blood", count = 6, map = 1421, zone = "Silverpine Forest", x = 36.4, y = 15, near = true }, -- 12
-        { type = "TURNIN", quest = 421, questName = "Prove Your Worth", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 13
-        { type = "ACCEPT", quest = 422, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 14
-        { type = "TURNIN", quest = 437, questName = "The Dead Fields", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 15
-        { type = "COLLECT", quest = 422, questName = "Arugal's Folly", target = "Remedy of Arugal", map = 1421, zone = "Silverpine Forest", x = 52.8, y = 28.6 }, -- 16
-        { type = "TURNIN", quest = 422, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 17
-        { type = "ACCEPT", quest = 423, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 18
-        { type = "ACCEPT", quest = 438, questName = "The Decrepit Ferry", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 19
-        { type = "KILL", quest = 423, questName = "Arugal's Folly", npc = 1779, target = "Moonrage Glutton / Moonrage Darksoul", count = 6, map = 1421, zone = "Silverpine Forest", x = 42.9, y = 32.7, near = true, note = "loot Glutton Shackle" }, -- 20
-        { type = "TURNIN", quest = 423, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 21
-        { type = "ACCEPT", quest = 424, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 22
-        { type = "KILL", quest = 424, questName = "Arugal's Folly", npc = 1972, target = "Grimson the Pale", map = 1421, zone = "Silverpine Forest", x = 58.6, y = 44.9, note = "loot Head of Grimson" }, -- 23
-        { type = "TURNIN", quest = 424, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 24
-        { type = "ACCEPT", quest = 99, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 25
-        { type = "COLLECT", quest = 99, questName = "Arugal's Folly", target = "Pyrewood Shackle", count = 6, map = 1421, zone = "Silverpine Forest", x = 45.2, y = 71.1, near = true }, -- 26
-        { type = "TURNIN", quest = 99, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 27
-        { type = "TURNIN", quest = 477, questName = "Border Crossings", map = 1421, zone = "Silverpine Forest", x = 49.9, y = 60.3 }, -- 28
-        { type = "ACCEPT", quest = 478, questName = "Maps and Runes", map = 1421, zone = "Silverpine Forest", x = 49.9, y = 60.3 }, -- 29
-        { type = "TURNIN", quest = 478, questName = "Maps and Runes", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 30
-        { type = "ACCEPT", quest = 481, questName = "Dalar's Analysis", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 31
-        { type = "TURNIN", quest = 481, questName = "Dalar's Analysis", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 32
-        { type = "ACCEPT", quest = 482, questName = "Dalaran's Intentions", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 33
-        { type = "TURNIN", quest = 482, questName = "Dalaran's Intentions", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 34
-        { type = "ACCEPT", quest = 479, questName = "Ambermill Investigations", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 35
-        { type = "COLLECT", quest = 479, questName = "Ambermill Investigations", target = "Dalaran Pendant", count = 8, map = 1421, zone = "Silverpine Forest", x = 55.5, y = 56.3, near = true }, -- 36
-        { type = "TURNIN", quest = 479, questName = "Ambermill Investigations", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 37
-        { type = "TURNIN", quest = 438, questName = "The Decrepit Ferry", map = 1421, zone = "Silverpine Forest", x = 58.4, y = 34.9 }, -- 38
-        { type = "ACCEPT", quest = 439, questName = "Rot Hide Clues", map = 1421, zone = "Silverpine Forest", x = 58.4, y = 34.9 }, -- 39
-        { type = "TURNIN", quest = 439, questName = "Rot Hide Clues", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 40
-        { type = "ACCEPT", quest = 443, questName = "Rot Hide Ichor", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 41
-        { type = "COLLECT", quest = 443, questName = "Rot Hide Ichor", target = "Rot Hide Ichor", count = 8, map = 1421, zone = "Silverpine Forest", x = 65.1, y = 32, near = true }, -- 42
-        { type = "TURNIN", quest = 443, questName = "Rot Hide Ichor", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 43
-        { type = "ACCEPT", quest = 429, questName = "Wild Hearts", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 44
-        { type = "ACCEPT", quest = 435, questName = "Escorting Erland", npc = 1978, npcName = "Deathstalker Erland", map = 1421, zone = "Silverpine Forest", x = 56.2, y = 9.2 }, -- 45
-        { type = "COLLECT", quest = 429, questName = "Wild Hearts", target = "Discolored Worg Heart", count = 6, map = 1421, zone = "Silverpine Forest", x = 56.2, y = 10.2, near = true }, -- 46
-        { type = "COMPLETE", quest = 435, questName = "Escorting Erland", target = "Erland must reach Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 54.4, y = 13.4, note = "escort - stay close, it can fail: Erland must reach Rane Yorick" }, -- 47
-        { type = "TURNIN", quest = 435, questName = "Escorting Erland", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 48
-        { type = "ACCEPT", quest = 449, questName = "The Deathstalkers' Report", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 49
-        { type = "TURNIN", quest = 449, questName = "The Deathstalkers' Report", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 50
-        { type = "ACCEPT", quest = 3221, questName = "Speak with Renferrel", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 51
-        { type = "TURNIN", quest = 429, questName = "Wild Hearts", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 52
-        { type = "TURNIN", quest = 3221, questName = "Speak with Renferrel", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 53
-        { type = "ACCEPT", quest = 430, questName = "Return to Quinn", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 54
-        { type = "TURNIN", quest = 430, questName = "Return to Quinn", npc = 1951, npcName = "Quinn Yorick", map = 1421, zone = "Silverpine Forest", x = 53.4, y = 12.6 }, -- 55
-        { type = "ACCEPT", quest = 425, questName = "Ivar the Foul", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 56
-        { type = "KILL", quest = 425, questName = "Ivar the Foul", npc = 1971, target = "Ivar the Foul", map = 1421, zone = "Silverpine Forest", x = 51.5, y = 13.9, note = "loot Ivar's Head" }, -- 57
-        { type = "TURNIN", quest = 425, questName = "Ivar the Foul", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 58
+        { type = "FLIGHTPATH", npc = 2226, npcName = "Karos Razok", map = 1421, zone = "Silverpine Forest", x = 45.6, y = 42.6 }, -- 1
+        { type = "ACCEPT", quest = 98545, questName = "Leonid's Letter", npc = 267008, npcName = "Leonid Barthalomew the Revered", map = 1420, zone = "Tirisfal Glades", x = 22, y = 44.8, note = "New in Forever" }, -- 2
+        { type = "TURNIN", quest = 1820, questName = "Speak with Coleman", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.8, y = 52.4, class = { "WARRIOR" } }, -- 3
+        { type = "TRAVEL", map = 1421, zone = "Silverpine Forest", x = 43.7, y = 40.7, radius = 60, note = "travel to Silverpine Forest (Silverpine Forest)" }, -- 4
+        { type = "HEARTH", npc = 6739, npcName = "Innkeeper Bates", map = 1421, zone = "The Sepulcher", x = 43.2, y = 41.3, note = "talk to Innkeeper Bates and make this inn your home" }, -- 5
+        { type = "ACCEPT", quest = 6321, questName = "Supplying the Sepulcher", npc = 6389, npcName = "Deathguard Podrig", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 41.7 }, -- 6
+        { type = "ACCEPT", quest = 98298, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8, note = "New in Forever" }, -- 7
+        { type = "ACCEPT", quest = 421, questName = "Prove Your Worth", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 8
+        { type = "TURNIN", quest = 445, questName = "Delivery to Silverpine Forest", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.8 }, -- 9
+        { type = "ACCEPT", quest = 447, questName = "A Recipe For Death", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 10
+        { type = "ACCEPT", quest = 437, questName = "The Dead Fields", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 11
+        { type = "ACCEPT", quest = 477, questName = "Border Crossings", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 12
+        { type = "TURNIN", quest = 6321, questName = "Supplying the Sepulcher", npc = 2226, npcName = "Karos Razok", map = 1421, zone = "Silverpine Forest", x = 45.6, y = 42.6 }, -- 13
+        { type = "ACCEPT", quest = 6323, questName = "Ride to the Undercity", npc = 2226, npcName = "Karos Razok", map = 1421, zone = "Silverpine Forest", x = 45.6, y = 42.4 }, -- 14
+        { type = "KILL", quest = 421, questName = "Prove Your Worth", npc = 1769, target = "Moonrage Whitescalp", count = 5, map = 1421, zone = "Silverpine Forest", x = 47.8, y = 34.1, near = true }, -- 15
+        { type = "COLLECT", quest = 447, questName = "A Recipe For Death", target = "Grizzled Bear Heart", count = 6, map = 1421, zone = "Silverpine Forest", x = 48.8, y = 26.3, near = true }, -- 16
+        { type = "COMPLETE", quest = 437, questName = "The Dead Fields", target = "Enter the Dead Fields / Nightlash", map = 1421, zone = "Silverpine Forest", x = 45.9, y = 21.3, note = "Enter the Dead Fields" }, -- 17
+        { type = "COLLECT", quest = 447, questName = "A Recipe For Death", target = "Skittering Blood", count = 6, map = 1421, zone = "Silverpine Forest", x = 36.4, y = 15, near = true }, -- 18
+        { type = "TURNIN", quest = 421, questName = "Prove Your Worth", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 19
+        { type = "ACCEPT", quest = 422, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 20
+        { type = "TURNIN", quest = 437, questName = "The Dead Fields", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 21
+        { type = "COLLECT", quest = 422, questName = "Arugal's Folly", target = "Remedy of Arugal", map = 1421, zone = "Silverpine Forest", x = 52.8, y = 28.6 }, -- 22
+        { type = "TURNIN", quest = 422, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 23
+        { type = "ACCEPT", quest = 423, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 24
+        { type = "ACCEPT", quest = 438, questName = "The Decrepit Ferry", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 25
+        { type = "ACCEPT", quest = 428, questName = "Lost Deathstalkers", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.8 }, -- 26
+        { type = "KILL", quest = 423, questName = "Arugal's Folly", npc = 1779, target = "Moonrage Glutton / Moonrage Darksoul", count = 6, map = 1421, zone = "Silverpine Forest", x = 42.9, y = 32.7, near = true, note = "loot Glutton Shackle" }, -- 27
+        { type = "TURNIN", quest = 423, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 28
+        { type = "ACCEPT", quest = 424, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 29
+        { type = "KILL", quest = 424, questName = "Arugal's Folly", npc = 1972, target = "Grimson the Pale", map = 1421, zone = "Silverpine Forest", x = 58.6, y = 44.9, note = "loot Head of Grimson" }, -- 30
+        { type = "TURNIN", quest = 424, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 31
+        { type = "ACCEPT", quest = 99, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 32
+        { type = "COLLECT", quest = 98298, questName = "Arugal's Folly", target = "Worgen Bits", count = 6, map = 1421, zone = "Silverpine Forest", x = 50, y = 74, mobs = "Moonrage Bloodhowler" }, -- 33
+        { type = "TURNIN", quest = 98298, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 34
+        { type = "ACCEPT", quest = 452, questName = "Pyrewood Ambush", npc = 2058, npcName = "Deathstalker Faerleia", map = 1421, zone = "Silverpine Forest", x = 46.4, y = 74.2, note = "Objectives: Aid Faerleia in killing the Pyrewood Council" }, -- 35
+        { type = "TURNIN", quest = 452, questName = "Pyrewood Ambush", npc = 2058, npcName = "Deathstalker Faerleia", map = 1421, zone = "Silverpine Forest", x = 46.4, y = 74.2 }, -- 36
+        { type = "COLLECT", quest = 99, questName = "Arugal's Folly", target = "Pyrewood Shackle", count = 6, map = 1421, zone = "Silverpine Forest", x = 45.2, y = 71.1, near = true }, -- 37
+        { type = "TURNIN", quest = 99, questName = "Arugal's Folly", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 38
+        { type = "TURNIN", quest = 477, questName = "Border Crossings", map = 1421, zone = "Silverpine Forest", x = 49.9, y = 60.3 }, -- 39
+        { type = "ACCEPT", quest = 478, questName = "Maps and Runes", map = 1421, zone = "Silverpine Forest", x = 49.9, y = 60.3 }, -- 40
+        { type = "TURNIN", quest = 478, questName = "Maps and Runes", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 41
+        { type = "ACCEPT", quest = 481, questName = "Dalar's Analysis", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 42
+        { type = "TURNIN", quest = 481, questName = "Dalar's Analysis", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 43
+        { type = "ACCEPT", quest = 482, questName = "Dalaran's Intentions", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 44
+        { type = "TURNIN", quest = 482, questName = "Dalaran's Intentions", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 45
+        { type = "ACCEPT", quest = 479, questName = "Ambermill Investigations", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 46
+        { type = "COLLECT", quest = 479, questName = "Ambermill Investigations", target = "Dalaran Pendant", count = 8, map = 1421, zone = "Silverpine Forest", x = 55.5, y = 56.3, near = true }, -- 47
+        { type = "TURNIN", quest = 479, questName = "Ambermill Investigations", npc = 2121, npcName = "Shadow Priest Allister", map = 1421, zone = "Silverpine Forest", x = 44, y = 40.9 }, -- 48
+        { type = "TURNIN", quest = 438, questName = "The Decrepit Ferry", map = 1421, zone = "Silverpine Forest", x = 58.4, y = 34.9 }, -- 49
+        { type = "ACCEPT", quest = 439, questName = "Rot Hide Clues", map = 1421, zone = "Silverpine Forest", x = 58.4, y = 34.9 }, -- 50
+        { type = "TURNIN", quest = 439, questName = "Rot Hide Clues", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 51
+        { type = "ACCEPT", quest = 443, questName = "Rot Hide Ichor", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 52
+        { type = "ACCEPT", quest = 460, questName = "Resting in Pieces", npc = 1939, npcName = "Rot Hide Brute", map = 1421, zone = "Silverpine Forest", x = 63.7, y = 22.9, optional = true, note = "If you looted A Talking Head from Rot Hide Brute / Rot Hide Plague Weaver / Rot Hide Savage / Raging Rot Hide, use it to start the quest" }, -- 53
+        { type = "TURNIN", quest = 460, questName = "Resting in Pieces", map = 1421, zone = "Silverpine Forest", x = 67.8, y = 24.8, optional = true }, -- 54
+        { type = "COLLECT", quest = 443, questName = "Rot Hide Ichor", target = "Rot Hide Ichor", count = 8, map = 1421, zone = "Silverpine Forest", x = 65.1, y = 32, near = true }, -- 55
+        { type = "ACCEPT", quest = 461, questName = "The Hidden Niche", map = 1421, zone = "Silverpine Forest", x = 67.8, y = 24.8, optional = true }, -- 56
+        { type = "TURNIN", quest = 461, questName = "The Hidden Niche", map = 1421, zone = "Silverpine Forest", x = 65.3, y = 24.8, optional = true }, -- 57
+        { type = "ACCEPT", quest = 440, questName = "The Engraved Ring", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.8 }, -- 58
+        { type = "TURNIN", quest = 443, questName = "Rot Hide Ichor", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 59
+        { type = "TURNIN", quest = 428, questName = "Lost Deathstalkers", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.4, y = 13.4 }, -- 60
+        { type = "ACCEPT", quest = 429, questName = "Wild Hearts", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 61
+        { type = "ACCEPT", quest = 435, questName = "Escorting Erland", npc = 1978, npcName = "Deathstalker Erland", map = 1421, zone = "Silverpine Forest", x = 56.2, y = 9.2 }, -- 62
+        { type = "COLLECT", quest = 429, questName = "Wild Hearts", target = "Discolored Worg Heart", count = 6, map = 1421, zone = "Silverpine Forest", x = 56.2, y = 10.2, near = true }, -- 63
+        { type = "COMPLETE", quest = 435, questName = "Escorting Erland", target = "Erland must reach Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 54.4, y = 13.4, note = "escort - stay close, it can fail: Erland must reach Rane Yorick" }, -- 64
+        { type = "TURNIN", quest = 435, questName = "Escorting Erland", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 65
+        { type = "ACCEPT", quest = 449, questName = "The Deathstalkers' Report", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 66
+        { type = "TURNIN", quest = 449, questName = "The Deathstalkers' Report", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 67
+        { type = "ACCEPT", quest = 3221, questName = "Speak with Renferrel", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.9 }, -- 68
+        { type = "TURNIN", quest = 429, questName = "Wild Hearts", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 69
+        { type = "TURNIN", quest = 3221, questName = "Speak with Renferrel", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 70
+        { type = "ACCEPT", quest = 430, questName = "Return to Quinn", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.9 }, -- 71
+        { type = "ACCEPT", quest = 1359, questName = "Zinge's Delivery", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.8 }, -- 72
+        { type = "ACCEPT", quest = 444, questName = "Rot Hide Origins", npc = 1937, npcName = "Apothecary Renferrel", map = 1421, zone = "Silverpine Forest", x = 42.8, y = 40.8 }, -- 73
+        { type = "TURNIN", quest = 430, questName = "Return to Quinn", npc = 1951, npcName = "Quinn Yorick", map = 1421, zone = "Silverpine Forest", x = 53.4, y = 12.6 }, -- 74
+        { type = "ACCEPT", quest = 91920, questName = "Wild Eyes", npc = 1951, npcName = "Quinn Yorick", map = 1421, zone = "Silverpine Forest", x = 53.4, y = 12.6, note = "New in Forever" }, -- 75
+        { type = "ACCEPT", quest = 425, questName = "Ivar the Foul", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 76
+        { type = "KILL", quest = 425, questName = "Ivar the Foul", npc = 1971, target = "Ivar the Foul", map = 1421, zone = "Silverpine Forest", x = 51.5, y = 13.9, note = "loot Ivar's Head" }, -- 77
+        { type = "TURNIN", quest = 425, questName = "Ivar the Foul", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 78
     } end,
 })

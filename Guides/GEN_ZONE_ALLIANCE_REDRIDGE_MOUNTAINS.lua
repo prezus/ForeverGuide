@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_ALLIANCE_REDRIDGE_MOUNTAINS",
     name = "Zone: Redridge Mountains 15-25 (Alliance)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 15,
     maxLevel = 25,

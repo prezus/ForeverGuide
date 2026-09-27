@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_HORDE_DESOLACE",
     name = "Zone: Desolace 30-40 (Horde)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     minLevel = 30,
     maxLevel = 40,

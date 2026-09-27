@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_14_DESOLACE",
     name = "14. Desolace 32-34 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 32,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_15_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 14 of the Skyborne route: level 32 to 34, 28 steps, ~162 min of play in the model (12842 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 28,
+    stepCount = 29,
     steps = function() return {
         { type = "TRAVEL", map = 1443, zone = "Nijel's Point", x = 66.3, y = 6.5, radius = 60, note = "use your hearthstone (Nijel's Point)" }, -- 1
         { type = "TRAVEL", map = 1443, zone = "Desolace", x = 66.3, y = 9.5, radius = 60, note = "travel to Desolace (Desolace)" }, -- 2
@@ -38,10 +38,11 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 21
         { type = "COLLECT", quest = 1370, questName = "Stealing Supplies", target = "Crudely Dried Meat", count = 6, map = 1443, zone = "Desolace", x = 65.8, y = 80.5, near = true }, -- 22
         { type = "TURNIN", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 23
-        { type = "ACCEPT", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 36.1, y = 30.4 }, -- 24
-        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Golden Key", map = 1443, zone = "Desolace", x = 35.9, y = 28.8, near = true }, -- 25
-        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Silver Key", map = 1443, zone = "Desolace", x = 33, y = 31.1, near = true }, -- 26
-        { type = "TURNIN", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 30, y = 8.7 }, -- 27
-        { type = "GRIND", npc = 4692, target = "Dread Swoop", level = 34, map = 1443, zone = "Desolace", x = 46.7, y = 14.7, near = true, note = "grind Dread Swoop (level 32-33) to level 34 - nothing worth questing at 33" }, -- 28
+        { type = "ACCEPT", quest = 1373, questName = "Ongeku", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.2, note = "Objectives: Gelkis Clan Centaur" }, -- 24
+        { type = "ACCEPT", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 36.1, y = 30.4 }, -- 25
+        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Golden Key", map = 1443, zone = "Desolace", x = 35.9, y = 28.8, near = true }, -- 26
+        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Silver Key", map = 1443, zone = "Desolace", x = 33, y = 31.1, near = true }, -- 27
+        { type = "TURNIN", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 30, y = 8.7 }, -- 28
+        { type = "GRIND", npc = 4692, target = "Dread Swoop", level = 34, map = 1443, zone = "Desolace", x = 46.7, y = 14.7, near = true, note = "grind Dread Swoop (level 32-33) to level 34 - nothing worth questing at 33" }, -- 29
     } end,
 })

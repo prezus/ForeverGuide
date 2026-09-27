@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_ALLIANCE_SILITHUS",
     name = "Zone: Silithus 55-60 (Alliance)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 55,
     maxLevel = 60,

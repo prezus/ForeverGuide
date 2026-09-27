@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_32_STRANGLETHORN_VALE",
     name = "32. Stranglethorn Vale 47-47 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 47,
@@ -13,16 +13,27 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_33_TANARIS",
     author = "ForeverGuide route planner",
     notes = "Chapter 32 of the Skyborne route: level 47 to 47, 9 steps, ~25 min of play in the model (34971 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 9,
+    stepCount = 20,
     steps = function() return {
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.4, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
         { type = "ACCEPT", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 2
         { type = "ACCEPT", quest = 348, questName = "Stranglethorn Fever", npc = 2486, npcName = "Fin Fizracket", map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 76.7 }, -- 3
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2548, target = "Captain Keelhaul", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 29.3, y = 88.3 }, -- 4
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2546, target = "Fleet Master Firallon", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 30.6, y = 90.6 }, -- 5
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2550, target = "Captain Stillwater", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 32.9, y = 88.2 }, -- 6
-        { type = "KILL", quest = 348, questName = "Stranglethorn Fever", npc = 1514, target = "Mokk the Savage", map = 1434, zone = "Stranglethorn Vale", x = 35.1, y = 60.9, note = "loot Heart of Mokk" }, -- 7
-        { type = "TURNIN", quest = 348, questName = "Stranglethorn Fever", npc = 2486, npcName = "Fin Fizracket", map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 76.7 }, -- 8
-        { type = "TURNIN", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 9
+        { type = "TURNIN", quest = 2874, questName = "Deliver to MacKinley", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77 }, -- 4
+        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2548, target = "Captain Keelhaul", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 29.3, y = 88.3 }, -- 5
+        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2546, target = "Fleet Master Firallon", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 30.6, y = 90.6 }, -- 6
+        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2550, target = "Captain Stillwater", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 32.9, y = 88.2 }, -- 7
+        { type = "COLLECT", quest = 8551, questName = "The Captain's Chest", target = "Smotts' Chest", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 36.4, y = 69.6, optional = true, mobs = "Gorlash" }, -- 8
+        { type = "ACCEPT", quest = 594, questName = "Message in a Bottle", map = 1434, zone = "Stranglethorn Vale", x = 36.3, y = 70.6, note = "Take Carefully Folded Note from the Half-Buried Bottle and use it to start the quest" }, -- 9
+        { type = "TURNIN", quest = 594, questName = "Message in a Bottle", npc = 2634, npcName = "Princess Poobah", map = 1434, zone = "Stranglethorn Vale", x = 38.4, y = 80.6 }, -- 10
+        { type = "KILL", quest = 348, questName = "Stranglethorn Fever", npc = 1514, target = "Mokk the Savage", map = 1434, zone = "Stranglethorn Vale", x = 35.1, y = 60.9, note = "loot Heart of Mokk" }, -- 11
+        { type = "TURNIN", quest = 8551, questName = "The Captain's Chest", npc = 2500, npcName = "Captain Hecklebury Smotts", map = 1434, zone = "Stranglethorn Vale", x = 26.6, y = 73.6, optional = true }, -- 12
+        { type = "TURNIN", quest = 348, questName = "Stranglethorn Fever", npc = 2486, npcName = "Fin Fizracket", map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 76.7 }, -- 13
+        { type = "TURNIN", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 14
+        { type = "COLLECT", quest = 206, questName = "Mai'Zoth", target = "Mind's Eye", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 52.8, y = 27.8, optional = true, mobs = "Mai'Zoth" }, -- 15
+        { type = "TURNIN", quest = 206, questName = "Mai'Zoth", npc = 739, npcName = "Brother Nimetz", map = 1434, zone = "Stranglethorn Vale", x = 37.8, y = 3.6, optional = true }, -- 16
+        { type = "TURNIN", quest = 580, questName = "Whiskey Slim's Lost Grog", npc = 2491, npcName = "Whiskey Slim", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.4, optional = true }, -- 17
+        { type = "ACCEPT", quest = 630, questName = "Message in a Bottle", npc = 2634, npcName = "Princess Poobah", map = 1434, zone = "Stranglethorn Vale", x = 38.4, y = 80.6, optional = true, note = "Elite - group up" }, -- 18
+        { type = "COLLECT", quest = 630, questName = "Message in a Bottle", target = "Shackle Key", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 40.6, y = 83.2, optional = true, mobs = "King Mukla" }, -- 19
+        { type = "TURNIN", quest = 630, questName = "Message in a Bottle", npc = 2634, npcName = "Princess Poobah", map = 1434, zone = "Stranglethorn Vale", x = 38.4, y = 80.6, optional = true }, -- 20
     } end,
 })

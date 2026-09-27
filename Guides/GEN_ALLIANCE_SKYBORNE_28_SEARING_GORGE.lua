@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_28_SEARING_GORGE",
     name = "28. Searing Gorge 46-46 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 46,
@@ -13,33 +13,48 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_29_BADLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 28 of the Skyborne route: level 46 to 46, 26 steps, ~120 min of play in the model (34200 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 26,
+    stepCount = 41,
     steps = function() return {
-        { type = "TRAVEL", map = 1427, zone = "Searing Gorge", x = 38.1, y = 32.5, radius = 60, note = "travel to Searing Gorge (Searing Gorge)" }, -- 1
-        { type = "ACCEPT", quest = 7728, questName = "STOLEN: Smithing Tuyere and Lookout's Spyglass", map = 1427, zone = "Searing Gorge", x = 37.7, y = 26.5 }, -- 2
-        { type = "ACCEPT", quest = 7729, questName = "JOB OPPORTUNITY: Culling the Competition", map = 1427, zone = "Searing Gorge", x = 37.7, y = 26.5 }, -- 3
-        { type = "ACCEPT", quest = 7723, questName = "Curse These Fat Fingers", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 4
-        { type = "ACCEPT", quest = 7724, questName = "Fiery Menace!", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 5
-        { type = "ACCEPT", quest = 7727, questName = "Incendosaurs? Whateverosaur is More Like It", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 6
-        { type = "KILL", quest = 7729, questName = "JOB OPPORTUNITY: Culling the Competition", npc = 5846, target = "Dark Iron Taskmaster", count = 15, map = 1427, zone = "Searing Gorge", x = 38, y = 32, near = true }, -- 7
-        { type = "KILL", quest = 7729, questName = "JOB OPPORTUNITY: Culling the Competition", npc = 5844, target = "Dark Iron Slaver", count = 15, map = 1427, zone = "Searing Gorge", x = 38.4, y = 38, near = true }, -- 8
-        { type = "TURNIN", quest = 7729, questName = "JOB OPPORTUNITY: Culling the Competition", npc = 14626, npcName = "Taskmaster Scrange", map = 1427, zone = "Searing Gorge", x = 39, y = 27.5 }, -- 9
-        { type = "KILL", quest = 7728, questName = "STOLEN: Smithing Tuyere and Lookout's Spyglass", npc = 5840, target = "Dark Iron Steamsmith", map = 1427, zone = "Searing Gorge", x = 40, y = 48.3, near = true, note = "loot Smithing Tuyere" }, -- 10
-        { type = "KILL", quest = 7728, questName = "STOLEN: Smithing Tuyere and Lookout's Spyglass", npc = 8566, target = "Dark Iron Lookout", map = 1427, zone = "Searing Gorge", x = 33.7, y = 51.9, near = true, note = "loot Lookout's Spyglass" }, -- 11
-        { type = "KILL", quest = 7723, questName = "Curse These Fat Fingers", npc = 5854, target = "Heavy War Golem", count = 20, map = 1427, zone = "Searing Gorge", x = 32.5, y = 45.9, near = true }, -- 12
-        { type = "KILL", quest = 7724, questName = "Fiery Menace!", npc = 5858, target = "Greater Lava Spider", count = 20, map = 1427, zone = "Searing Gorge", x = 29.5, y = 43.8, near = true }, -- 13
-        { type = "KILL", quest = 7727, questName = "Incendosaurs? Whateverosaur is More Like It", npc = 9318, target = "Incendosaur", count = 20, map = 1427, zone = "Searing Gorge", x = 49.9, y = 39, near = true }, -- 14
-        { type = "TURNIN", quest = 7728, questName = "STOLEN: Smithing Tuyere and Lookout's Spyglass", npc = 14626, npcName = "Taskmaster Scrange", map = 1427, zone = "Searing Gorge", x = 39, y = 27.5 }, -- 15
-        { type = "TURNIN", quest = 7723, questName = "Curse These Fat Fingers", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 16
-        { type = "TURNIN", quest = 7724, questName = "Fiery Menace!", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 17
-        { type = "TURNIN", quest = 7727, questName = "Incendosaurs? Whateverosaur is More Like It", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 18
-        { type = "ACCEPT", quest = 4449, questName = "Caught!", map = 1427, zone = "Searing Gorge", x = 65.6, y = 62.2 }, -- 19
-        { type = "ACCEPT", quest = 3367, questName = "Suntara Stones", npc = 8284, npcName = "Dorius Stonetender", map = 1427, zone = "Searing Gorge", x = 63.9, y = 61 }, -- 20
-        { type = "KILL", quest = 4449, questName = "Caught!", npc = 5839, target = "Dark Iron Geologist", count = 8, map = 1427, zone = "Searing Gorge", x = 63.9, y = 60.4, near = true }, -- 21
-        { type = "COLLECT", quest = 4449, questName = "Caught!", target = "Silk Cloth", count = 8, map = 1427, zone = "Searing Gorge", x = 40.1, y = 41.5, near = true }, -- 22
-        { type = "COMPLETE", quest = 3367, questName = "Suntara Stones", target = "Dorius Escort", map = 1427, zone = "Searing Gorge", x = 74.5, y = 19.4, note = "escort - stay close, it can fail: Dorius Escort" }, -- 23
-        { type = "TURNIN", quest = 3367, questName = "Suntara Stones", map = 1427, zone = "Searing Gorge", x = 74.5, y = 19.3 }, -- 24
-        { type = "ACCEPT", quest = 3368, questName = "Suntara Stones", map = 1427, zone = "Searing Gorge", x = 74.5, y = 19.3 }, -- 25
-        { type = "TURNIN", quest = 4449, questName = "Caught!", map = 1427, zone = "Searing Gorge", x = 65.6, y = 62.2 }, -- 26
+        { type = "FLIGHTPATH", npc = 2941, npcName = "Lanie Reed", map = 1427, zone = "Searing Gorge", x = 37.9, y = 30.9 }, -- 1
+        { type = "ACCEPT", quest = 2641, questName = "Sprinkle's Secret Ingredient", npc = 7583, npcName = "Sprinkle", map = 1446, zone = "Tanaris", x = 51, y = 26.8 }, -- 2
+        { type = "TRAVEL", map = 1427, zone = "Searing Gorge", x = 38.1, y = 32.5, radius = 60, note = "travel to Searing Gorge (Searing Gorge)" }, -- 3
+        { type = "ACCEPT", quest = 7728, questName = "STOLEN: Smithing Tuyere and Lookout's Spyglass", map = 1427, zone = "Searing Gorge", x = 37.7, y = 26.5 }, -- 4
+        { type = "ACCEPT", quest = 7729, questName = "JOB OPPORTUNITY: Culling the Competition", map = 1427, zone = "Searing Gorge", x = 37.7, y = 26.5 }, -- 5
+        { type = "ACCEPT", quest = 7723, questName = "Curse These Fat Fingers", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 6
+        { type = "ACCEPT", quest = 7724, questName = "Fiery Menace!", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 7
+        { type = "ACCEPT", quest = 7727, questName = "Incendosaurs? Whateverosaur is More Like It", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 8
+        { type = "KILL", quest = 7729, questName = "JOB OPPORTUNITY: Culling the Competition", npc = 5846, target = "Dark Iron Taskmaster", count = 15, map = 1427, zone = "Searing Gorge", x = 38, y = 32, near = true }, -- 9
+        { type = "KILL", quest = 7729, questName = "JOB OPPORTUNITY: Culling the Competition", npc = 5844, target = "Dark Iron Slaver", count = 15, map = 1427, zone = "Searing Gorge", x = 38.4, y = 38, near = true }, -- 10
+        { type = "TURNIN", quest = 7729, questName = "JOB OPPORTUNITY: Culling the Competition", npc = 14626, npcName = "Taskmaster Scrange", map = 1427, zone = "Searing Gorge", x = 39, y = 27.5 }, -- 11
+        { type = "ACCEPT", quest = 3441, questName = "Divine Retribution", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39, note = "Objectives: Velarok Story" }, -- 12
+        { type = "TURNIN", quest = 3441, questName = "Divine Retribution", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39 }, -- 13
+        { type = "KILL", quest = 7728, questName = "STOLEN: Smithing Tuyere and Lookout's Spyglass", npc = 5840, target = "Dark Iron Steamsmith", map = 1427, zone = "Searing Gorge", x = 40, y = 48.3, near = true, note = "loot Smithing Tuyere" }, -- 14
+        { type = "KILL", quest = 7728, questName = "STOLEN: Smithing Tuyere and Lookout's Spyglass", npc = 8566, target = "Dark Iron Lookout", map = 1427, zone = "Searing Gorge", x = 33.7, y = 51.9, near = true, note = "loot Lookout's Spyglass" }, -- 15
+        { type = "KILL", quest = 7723, questName = "Curse These Fat Fingers", npc = 5854, target = "Heavy War Golem", count = 20, map = 1427, zone = "Searing Gorge", x = 32.5, y = 45.9, near = true }, -- 16
+        { type = "KILL", quest = 7724, questName = "Fiery Menace!", npc = 5858, target = "Greater Lava Spider", count = 20, map = 1427, zone = "Searing Gorge", x = 29.5, y = 43.8, near = true }, -- 17
+        { type = "ACCEPT", quest = 3442, questName = "The Flawless Flame", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39 }, -- 18
+        { type = "COLLECT", quest = 3442, questName = "The Flawless Flame", target = "Heart of Flame", count = 4, map = 1427, zone = "Searing Gorge", x = 40.4, y = 34.2, near = true, mobs = "Blazing Elemental / Inferno Elemental / Scald" }, -- 19
+        { type = "COLLECT", quest = 3442, questName = "The Flawless Flame", target = "Golem Oil", count = 4, map = 1427, zone = "Searing Gorge", x = 47, y = 36.4, near = true, mobs = "Tempered War Golem / Heavy War Golem / Magma Elemental" }, -- 20
+        { type = "TURNIN", quest = 3442, questName = "The Flawless Flame", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39 }, -- 21
+        { type = "KILL", quest = 7727, questName = "Incendosaurs? Whateverosaur is More Like It", npc = 9318, target = "Incendosaur", count = 20, map = 1427, zone = "Searing Gorge", x = 49.9, y = 39, near = true }, -- 22
+        { type = "TURNIN", quest = 7728, questName = "STOLEN: Smithing Tuyere and Lookout's Spyglass", npc = 14626, npcName = "Taskmaster Scrange", map = 1427, zone = "Searing Gorge", x = 39, y = 27.5 }, -- 23
+        { type = "TURNIN", quest = 7723, questName = "Curse These Fat Fingers", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 24
+        { type = "TURNIN", quest = 7724, questName = "Fiery Menace!", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 25
+        { type = "TURNIN", quest = 7727, questName = "Incendosaurs? Whateverosaur is More Like It", npc = 14627, npcName = "Hansel Heavyhands", map = 1427, zone = "Searing Gorge", x = 38.6, y = 27.8 }, -- 26
+        { type = "ACCEPT", quest = 3443, questName = "Forging the Shaft", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39 }, -- 27
+        { type = "ACCEPT", quest = 4449, questName = "Caught!", map = 1427, zone = "Searing Gorge", x = 65.6, y = 62.2 }, -- 28
+        { type = "ACCEPT", quest = 3367, questName = "Suntara Stones", npc = 8284, npcName = "Dorius Stonetender", map = 1427, zone = "Searing Gorge", x = 63.9, y = 61 }, -- 29
+        { type = "KILL", quest = 4449, questName = "Caught!", npc = 5839, target = "Dark Iron Geologist", count = 8, map = 1427, zone = "Searing Gorge", x = 63.9, y = 60.4, near = true }, -- 30
+        { type = "COLLECT", quest = 3443, questName = "Forging the Shaft", target = "Thorium Plated Dagger", count = 8, map = 1427, zone = "Searing Gorge", x = 63.2, y = 60, near = true, mobs = "Dark Iron Geologist / Dark Iron Steamsmith / Slave Worker / Dark Iron Slaver" }, -- 31
+        { type = "ACCEPT", quest = 3379, questName = "Shadoweaver", npc = 8439, npcName = "Nilith Lokrav", map = 1427, zone = "Searing Gorge", x = 41, y = 74.8, profession = "Tailoring", skill = 230 }, -- 32
+        { type = "COLLECT", quest = 4449, questName = "Caught!", target = "Silk Cloth", count = 8, map = 1427, zone = "Searing Gorge", x = 40.1, y = 41.5, near = true }, -- 33
+        { type = "TURNIN", quest = 3443, questName = "Forging the Shaft", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39 }, -- 34
+        { type = "KILL", quest = 3379, questName = "Shadoweaver", npc = 8442, target = "Shadowsilk Poacher", count = 5, map = 1427, zone = "Searing Gorge", x = 58.6, y = 27.4, profession = "Tailoring", skill = 230 }, -- 35
+        { type = "COMPLETE", quest = 3367, questName = "Suntara Stones", target = "Dorius Escort", map = 1427, zone = "Searing Gorge", x = 74.5, y = 19.4, note = "escort - stay close, it can fail: Dorius Escort" }, -- 36
+        { type = "TURNIN", quest = 3367, questName = "Suntara Stones", map = 1427, zone = "Searing Gorge", x = 74.5, y = 19.3 }, -- 37
+        { type = "ACCEPT", quest = 3368, questName = "Suntara Stones", map = 1427, zone = "Searing Gorge", x = 74.5, y = 19.3 }, -- 38
+        { type = "TURNIN", quest = 4449, questName = "Caught!", map = 1427, zone = "Searing Gorge", x = 65.6, y = 62.2 }, -- 39
+        { type = "ACCEPT", quest = 3181, questName = "The Horn of the Beast", npc = 5833, npcName = "Margol the Rager", map = 1427, zone = "Searing Gorge", x = 73.5, y = 82.3, optional = true, note = "Loot Margol's Horn from Margol the Rager and use it to start the quest; Elite - group up" }, -- 40
+        { type = "TURNIN", quest = 3379, questName = "Shadoweaver", npc = 8439, npcName = "Nilith Lokrav", map = 1427, zone = "Searing Gorge", x = 41, y = 74.8, profession = "Tailoring", skill = 230 }, -- 41
     } end,
 })

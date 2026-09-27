@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_HORDE_THOUSAND_NEEDLES",
     name = "Zone: Thousand Needles 25-35 (Horde)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     minLevel = 25,
     maxLevel = 35,

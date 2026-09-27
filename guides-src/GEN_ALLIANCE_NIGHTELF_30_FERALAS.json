@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_30_FERALAS",
   "name": "30. Feralas 43-45 (Night Elf)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 43,
@@ -45,6 +45,11 @@
     {"type": "TURNIN", "quest": 7721, "questName": "Fuel for the Zapping", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
     {"type": "ACCEPT", "quest": 7733, "questName": "Improved Quality", "npc": 7852, "npcName": "Pratt McGrubben", "map": 1444, "zone": "Feralas", "x": 30.6, "y": 42.7},
     {"type": "COLLECT", "quest": 7733, "questName": "Improved Quality", "target": "Rage Scar Yeti Hide", "count": 10, "map": 1444, "zone": "Feralas", "x": 51.8, "y": 30.8, "near": true},
-    {"type": "TURNIN", "quest": 7733, "questName": "Improved Quality", "npc": 7852, "npcName": "Pratt McGrubben", "map": 1444, "zone": "Feralas", "x": 30.6, "y": 42.7}
+    {"type": "ACCEPT", "quest": 2844, "questName": "The Giant Guardian", "npc": 7765, "npcName": "Rockbiter", "map": 1444, "zone": "Feralas", "x": 42.4, "y": 22},
+    {"type": "TURNIN", "quest": 2844, "questName": "The Giant Guardian", "npc": 7774, "npcName": "Shay Leafrunner", "map": 1444, "zone": "Feralas", "x": 38.2, "y": 10.2},
+    {"type": "TURNIN", "quest": 7733, "questName": "Improved Quality", "npc": 7852, "npcName": "Pratt McGrubben", "map": 1444, "zone": "Feralas", "x": 30.6, "y": 42.7},
+    {"type": "ACCEPT", "quest": 2845, "questName": "Wandering Shay", "npc": 7774, "npcName": "Shay Leafrunner", "map": 1444, "zone": "Feralas", "x": 38.2, "y": 10.2, "note": "Objectives: Take Shay Leafrunner to Rockbiter's camp"},
+    {"type": "COLLECT", "quest": 2845, "questName": "Wandering Shay", "target": "Shay's Bell", "count": 1, "map": 1444, "zone": "Feralas", "x": 38.3, "y": 10.3},
+    {"type": "TURNIN", "quest": 2845, "questName": "Wandering Shay", "npc": 7765, "npcName": "Rockbiter", "map": 1444, "zone": "Feralas", "x": 42.4, "y": 22}
   ]
 }

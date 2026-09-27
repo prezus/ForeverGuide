@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_49_SILITHUS",
     name = "49. Silithus 55-55 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 55,
@@ -13,30 +13,40 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_50_FELWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 49 of the Skyborne route: level 55 to 55, 23 steps, ~110 min of play in the model (35254 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 23,
+    stepCount = 33,
     steps = function() return {
-        { type = "TRAVEL", map = 1451, zone = "Silithus", x = 49.9, y = 37.4, radius = 60, note = "travel to Silithus (Silithus)" }, -- 1
-        { type = "HEARTH", npc = 15174, npcName = "Calandrath", map = 1451, zone = "Cenarion Hold", x = 51.9, y = 39.2, note = "talk to Calandrath and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 8277, questName = "Deadly Desert Venom", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 3
-        { type = "ACCEPT", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 4
-        { type = "ACCEPT", quest = 8284, questName = "The Twilight Mystery", npc = 15183, npcName = "Geologist Larksbane", map = 1451, zone = "Silithus", x = 49.7, y = 37.5 }, -- 5
-        { type = "KILL", quest = 8277, questName = "Deadly Desert Venom", npc = 11735, target = "Stonelash Scorpid", count = 8, map = 1451, zone = "Silithus", x = 43, y = 41.2, near = true, note = "loot Stonelash Scorpid Stinger" }, -- 6
-        { type = "KILL", quest = 8280, questName = "Securing the Supply Lines", npc = 11740, target = "Dredge Striker", count = 15, map = 1451, zone = "Silithus", x = 38.2, y = 34.3, near = true }, -- 7
-        { type = "KILL", quest = 8277, questName = "Deadly Desert Venom", npc = 11738, target = "Sand Skitterer", count = 8, map = 1451, zone = "Silithus", x = 39, y = 33.2, near = true, note = "loot Sand Skitterer Fang" }, -- 8
-        { type = "COLLECT", quest = 8284, questName = "The Twilight Mystery", target = "Twilight Tablet Fragment", count = 8, map = 1451, zone = "Silithus", x = 26.4, y = 15.9, near = true }, -- 9
-        { type = "TURNIN", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 10
-        { type = "ACCEPT", quest = 8281, questName = "Stepping Up Security", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 11
-        { type = "TURNIN", quest = 8277, questName = "Deadly Desert Venom", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 12
-        { type = "TURNIN", quest = 8284, questName = "The Twilight Mystery", npc = 15183, npcName = "Geologist Larksbane", map = 1451, zone = "Silithus", x = 49.7, y = 37.5 }, -- 13
-        { type = "ACCEPT", quest = 8278, questName = "Noggle's Last Hope", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 14
-        { type = "KILL", quest = 8281, questName = "Stepping Up Security", npc = 11741, target = "Dredge Crusher", count = 20, map = 1451, zone = "Silithus", x = 51.9, y = 57.2, near = true }, -- 15
-        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11736, target = "Stonelash Pincer", count = 3, map = 1451, zone = "Silithus", x = 51.4, y = 62.3, near = true, note = "loot Stonelash Pincer Stinger" }, -- 16
-        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11737, target = "Stonelash Flayer", count = 3, map = 1451, zone = "Silithus", x = 49.5, y = 66.6, near = true, note = "loot Stonelash Flayer Stinger" }, -- 17
-        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11739, target = "Rock Stalker", count = 3, map = 1451, zone = "Silithus", x = 50.4, y = 69.8, near = true, note = "loot Rock Stalker Fang" }, -- 18
-        { type = "TURNIN", quest = 8278, questName = "Noggle's Last Hope", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 19
-        { type = "ACCEPT", quest = 8282, questName = "Noggle's Lost Satchel", npc = 15190, npcName = "Noggle Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.5 }, -- 20
-        { type = "TURNIN", quest = 8281, questName = "Stepping Up Security", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 21
-        { type = "COLLECT", quest = 8282, questName = "Noggle's Lost Satchel", target = "Noggle's Satchel", map = 1451, zone = "Silithus", x = 44.6, y = 91.4 }, -- 22
-        { type = "TURNIN", quest = 8282, questName = "Noggle's Lost Satchel", npc = 15190, npcName = "Noggle Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.5 }, -- 23
+        { type = "FLIGHTPATH", npc = 15177, npcName = "Cloud Skydancer", map = 1451, zone = "Silithus", x = 50.6, y = 34.5 }, -- 1
+        { type = "ACCEPT", quest = 7441, questName = "Pusillin and the Elder Azj'Tordin", npc = 14355, npcName = "Azj'Tordin", map = 1444, zone = "Feralas", x = 76.8, y = 37.4, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 2
+        { type = "ACCEPT", quest = 7482, questName = "Elven Legends", npc = 14374, npcName = "Scholar Runethorn", map = 1444, zone = "Feralas", x = 31.2, y = 43.4, optional = true, note = "For Dire Maul (dungeon guide); Objectives: Master Kariel Winthalus Found" }, -- 3
+        { type = "TURNIN", quest = 7482, questName = "Elven Legends", npc = 14374, npcName = "Scholar Runethorn", map = 1444, zone = "Feralas", x = 31.2, y = 43.4, optional = true }, -- 4
+        { type = "ACCEPT", quest = 7488, questName = "Lethtendris's Web", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 5
+        { type = "NOTE", optional = true, text = "Ready for Dire Maul", note = "Picked up: Pusillin and the Elder Azj'Tordin, Lethtendris's Web. When you have a group, open Dire Maul under Dungeons." }, -- 6
+        { type = "TURNIN", quest = 7494, questName = "Feathermoon Stronghold", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46, optional = true }, -- 7
+        { type = "TRAVEL", map = 1451, zone = "Silithus", x = 49.9, y = 37.4, radius = 60, note = "travel to Silithus (Silithus)" }, -- 8
+        { type = "HEARTH", npc = 15174, npcName = "Calandrath", map = 1451, zone = "Cenarion Hold", x = 51.9, y = 39.2, note = "talk to Calandrath and make this inn your home" }, -- 9
+        { type = "ACCEPT", quest = 8307, questName = "Desert Recipe", npc = 15174, npcName = "Calandrath", map = 1451, zone = "Silithus", x = 51.8, y = 39, profession = "Cooking", skill = 285 }, -- 10
+        { type = "ACCEPT", quest = 8277, questName = "Deadly Desert Venom", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 11
+        { type = "ACCEPT", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 12
+        { type = "ACCEPT", quest = 8284, questName = "The Twilight Mystery", npc = 15183, npcName = "Geologist Larksbane", map = 1451, zone = "Silithus", x = 49.7, y = 37.5 }, -- 13
+        { type = "KILL", quest = 8277, questName = "Deadly Desert Venom", npc = 11735, target = "Stonelash Scorpid", count = 8, map = 1451, zone = "Silithus", x = 43, y = 41.2, near = true, note = "loot Stonelash Scorpid Stinger" }, -- 14
+        { type = "KILL", quest = 8280, questName = "Securing the Supply Lines", npc = 11740, target = "Dredge Striker", count = 15, map = 1451, zone = "Silithus", x = 38.2, y = 34.3, near = true }, -- 15
+        { type = "KILL", quest = 8277, questName = "Deadly Desert Venom", npc = 11738, target = "Sand Skitterer", count = 8, map = 1451, zone = "Silithus", x = 39, y = 33.2, near = true, note = "loot Sand Skitterer Fang" }, -- 16
+        { type = "COLLECT", quest = 8284, questName = "The Twilight Mystery", target = "Twilight Tablet Fragment", count = 8, map = 1451, zone = "Silithus", x = 26.4, y = 15.9, near = true }, -- 17
+        { type = "ACCEPT", quest = 8859, questName = "Secrets of the Colossus - Zora", npc = 15797, npcName = "Colossus Researcher Sophia", map = 1451, zone = "Silithus", x = 49.4, y = 37.2 }, -- 18
+        { type = "TURNIN", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 19
+        { type = "ACCEPT", quest = 8281, questName = "Stepping Up Security", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 20
+        { type = "TURNIN", quest = 8277, questName = "Deadly Desert Venom", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 21
+        { type = "ACCEPT", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", map = 1451, zone = "Silithus", x = 51.3, y = 38.2, optional = true, note = "Elite - group up" }, -- 22
+        { type = "TURNIN", quest = 8284, questName = "The Twilight Mystery", npc = 15183, npcName = "Geologist Larksbane", map = 1451, zone = "Silithus", x = 49.7, y = 37.5 }, -- 23
+        { type = "ACCEPT", quest = 8278, questName = "Noggle's Last Hope", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 24
+        { type = "KILL", quest = 8281, questName = "Stepping Up Security", npc = 11741, target = "Dredge Crusher", count = 20, map = 1451, zone = "Silithus", x = 51.9, y = 57.2, near = true }, -- 25
+        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11736, target = "Stonelash Pincer", count = 3, map = 1451, zone = "Silithus", x = 51.4, y = 62.3, near = true, note = "loot Stonelash Pincer Stinger" }, -- 26
+        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11737, target = "Stonelash Flayer", count = 3, map = 1451, zone = "Silithus", x = 49.5, y = 66.6, near = true, note = "loot Stonelash Flayer Stinger" }, -- 27
+        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11739, target = "Rock Stalker", count = 3, map = 1451, zone = "Silithus", x = 50.4, y = 69.8, near = true, note = "loot Rock Stalker Fang" }, -- 28
+        { type = "TURNIN", quest = 8278, questName = "Noggle's Last Hope", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 29
+        { type = "ACCEPT", quest = 8282, questName = "Noggle's Lost Satchel", npc = 15190, npcName = "Noggle Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.5 }, -- 30
+        { type = "TURNIN", quest = 8281, questName = "Stepping Up Security", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 31
+        { type = "COLLECT", quest = 8282, questName = "Noggle's Lost Satchel", target = "Noggle's Satchel", map = 1451, zone = "Silithus", x = 44.6, y = 91.4 }, -- 32
+        { type = "TURNIN", quest = 8282, questName = "Noggle's Lost Satchel", npc = 15190, npcName = "Noggle Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.5 }, -- 33
     } end,
 })

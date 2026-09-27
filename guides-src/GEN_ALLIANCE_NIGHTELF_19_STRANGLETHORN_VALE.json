@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_19_STRANGLETHORN_VALE",
   "name": "19. Stranglethorn Vale 34-35 (Night Elf)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 34,
@@ -12,6 +12,9 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 19 of the NightElf route: level 34 to 35, 40 steps, ~121 min of play in the model (18773 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
+    {"type": "TURNIN", "quest": 633, "questName": "The Thandol Span", "npc": 1075, "npcName": "Rhag Garmason", "map": 1437, "zone": "Wetlands", "x": 49.8, "y": 18.2},
+    {"type": "ACCEPT", "quest": 6141, "questName": "Brother Anton", "npc": 12336, "npcName": "Brother Crowley", "map": 1453, "zone": "Stormwind City", "x": 42.4, "y": 24.4},
+    {"type": "ACCEPT", "quest": 738, "questName": "Find Agmond", "npc": 1344, "npcName": "Prospector Ironband", "map": 1432, "zone": "Loch Modan", "x": 65.8, "y": 65.6},
     {"type": "TRAVEL", "map": 1434, "zone": "Booty Bay", "x": 27.0, "y": 77.3, "radius": 60, "note": "use your hearthstone (Booty Bay)"},
     {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.3, "y": 76.3, "radius": 60, "note": "travel to Stranglethorn Vale (Stranglethorn Vale)"},
     {"type": "ACCEPT", "quest": 616, "questName": "The Haunted Isle", "npc": 773, "npcName": "Krazek", "map": 1434, "zone": "Stranglethorn Vale", "x": 26.9, "y": 77.2},
@@ -22,6 +25,9 @@
     {"type": "ACCEPT", "quest": 578, "questName": "The Stone of the Tides", "npc": 2496, "npcName": "Baron Revilgaz", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.2, "y": 76.9},
     {"type": "COMPLETE", "quest": 578, "questName": "The Stone of the Tides", "target": "Locate the haunted island", "map": 1434, "zone": "Stranglethorn Vale", "x": 20.8, "y": 23.1, "note": "Locate the haunted island"},
     {"type": "ACCEPT", "quest": 188, "questName": "Tiger Mastery", "npc": 717, "npcName": "Ajeck Rouack", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.6},
+    {"type": "ACCEPT", "quest": 340, "questName": "Chapter II", "npc": 716, "npcName": "Barnil Stonepot", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.4},
+    {"type": "ACCEPT", "quest": 341, "questName": "Chapter III", "npc": 716, "npcName": "Barnil Stonepot", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.4},
+    {"type": "ACCEPT", "quest": 342, "questName": "Chapter IV", "npc": 716, "npcName": "Barnil Stonepot", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.4},
     {"type": "ACCEPT", "quest": 210, "questName": "Krazek's Cookery", "npc": 770, "npcName": "Corporal Kaleb", "map": 1434, "zone": "Stranglethorn Vale", "x": 37.7, "y": 3.3},
     {"type": "KILL", "quest": 188, "questName": "Tiger Mastery", "npc": 729, "target": "Sin'Dall", "map": 1434, "zone": "Stranglethorn Vale", "x": 31.5, "y": 15.5, "near": true, "note": "loot Paw of Sin'Dall"},
     {"type": "TURNIN", "quest": 188, "questName": "Tiger Mastery", "npc": 717, "npcName": "Ajeck Rouack", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.6},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_22_DUSTWALLOW_MARSH",
     name = "22. Dustwallow Marsh 40-41 (Orc)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 40,
@@ -13,24 +13,37 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_23_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 22 of the Orc route: level 40 to 41, 17 steps, ~73 min of play in the model (31757 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 17,
+    stepCount = 30,
     steps = function() return {
-        { type = "TRAVEL", map = 1445, zone = "Dustwallow Marsh", x = 36.8, y = 32.1, radius = 60, note = "travel to Dustwallow Marsh (Dustwallow Marsh)" }, -- 1
-        { type = "ACCEPT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 2
-        { type = "ACCEPT", quest = 1169, questName = "Identifying the Brood", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 3
-        { type = "ACCEPT", quest = 1168, questName = "Army of the Black Dragon", npc = 4502, npcName = "Tharg", map = 1445, zone = "Dustwallow Marsh", x = 37.4, y = 31.4 }, -- 4
-        { type = "KILL", quest = 1168, questName = "Army of the Black Dragon", npc = 4329, target = "Firemane Scout", count = 10, map = 1445, zone = "Dustwallow Marsh", x = 39, y = 64.6, near = true }, -- 5
-        { type = "COLLECT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", target = "Mok'Morokk's Grog", map = 1445, zone = "Dustwallow Marsh", x = 38.7, y = 65.6 }, -- 6
-        { type = "KILL", quest = 1168, questName = "Army of the Black Dragon", npc = 4331, target = "Firemane Ash Tail / Firemane Scalebane", count = 10, map = 1445, zone = "Dustwallow Marsh", x = 39.4, y = 66.6, near = true }, -- 7
-        { type = "COLLECT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", target = "Mok'Morokk's Strongbox", map = 1445, zone = "Dustwallow Marsh", x = 36.6, y = 69.6 }, -- 8
-        { type = "COLLECT", quest = 1169, questName = "Identifying the Brood", target = "Searing Tongue / Searing Heart", count = 15, map = 1445, zone = "Dustwallow Marsh", x = 37.4, y = 74.2, near = true }, -- 9
-        { type = "COLLECT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", target = "Mok'Morokk's Snuff", map = 1445, zone = "Dustwallow Marsh", x = 44.5, y = 66 }, -- 10
-        { type = "TURNIN", quest = 1169, questName = "Identifying the Brood", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 11
-        { type = "ACCEPT", quest = 1170, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 12
-        { type = "TURNIN", quest = 1168, questName = "Army of the Black Dragon", npc = 4502, npcName = "Tharg", map = 1445, zone = "Dustwallow Marsh", x = 37.4, y = 31.4 }, -- 13
-        { type = "TURNIN", quest = 1166, questName = "Overlord Mok'Morokk's Concern", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 14
-        { type = "TURNIN", quest = 1170, questName = "The Brood of Onyxia", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 15
-        { type = "ACCEPT", quest = 1171, questName = "The Brood of Onyxia", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 16
-        { type = "TURNIN", quest = 1171, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 17
+        { type = "COLLECT", quest = 1206, questName = "Jarl Needs Eyes", target = "Unpopped Darkmist Eye", count = 40, map = 1445, zone = "Dustwallow Marsh", x = 34.2, y = 22.6, near = true, mobs = "Darkmist Spider / Darkmist Lurker / Darkmist Recluse / Darkmist Silkspinner" }, -- 1
+        { type = "TURNIN", quest = 1206, questName = "Jarl Needs Eyes", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.2 }, -- 2
+        { type = "ACCEPT", quest = 4490, questName = "Summon Felsteed", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 3
+        { type = "TURNIN", quest = 4490, questName = "Summon Felsteed", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" } }, -- 4
+        { type = "TRAVEL", map = 1445, zone = "Dustwallow Marsh", x = 36.8, y = 32.1, radius = 60, note = "travel to Dustwallow Marsh (Dustwallow Marsh)" }, -- 5
+        { type = "ACCEPT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 6
+        { type = "ACCEPT", quest = 1169, questName = "Identifying the Brood", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 7
+        { type = "ACCEPT", quest = 1168, questName = "Army of the Black Dragon", npc = 4502, npcName = "Tharg", map = 1445, zone = "Dustwallow Marsh", x = 37.4, y = 31.4 }, -- 8
+        { type = "COLLECT", quest = 1261, questName = "Marg Speaks", target = "Jeweled Pendant", count = 1, map = 1445, zone = "Dustwallow Marsh", x = 49.3, y = 37.3, near = true, mobs = "Muckshell Razorclaw / Muckshell Clacker / Muckshell Scrabbler / Muckshell Snapclaw" }, -- 9
+        { type = "TURNIN", quest = 1261, questName = "Marg Speaks", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.6 }, -- 10
+        { type = "TURNIN", quest = 625, questName = "Cortello's Riddle", map = 1445, zone = "Dustwallow Marsh", x = 31.1, y = 66.1 }, -- 11
+        { type = "ACCEPT", quest = 2846, questName = "Tiara of the Deep", npc = 6546, npcName = "Tabetha", map = 1445, zone = "Dustwallow Marsh", x = 46, y = 57, optional = true, note = "For Zul'Farrak (dungeon guide)" }, -- 12
+        { type = "KILL", quest = 1168, questName = "Army of the Black Dragon", npc = 4329, target = "Firemane Scout", count = 10, map = 1445, zone = "Dustwallow Marsh", x = 39, y = 64.6, near = true }, -- 13
+        { type = "COLLECT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", target = "Mok'Morokk's Grog", map = 1445, zone = "Dustwallow Marsh", x = 38.7, y = 65.6 }, -- 14
+        { type = "KILL", quest = 1168, questName = "Army of the Black Dragon", npc = 4331, target = "Firemane Ash Tail / Firemane Scalebane", count = 10, map = 1445, zone = "Dustwallow Marsh", x = 39.4, y = 66.6, near = true }, -- 15
+        { type = "ACCEPT", quest = 626, questName = "Cortello's Riddle", map = 1445, zone = "Dustwallow Marsh", x = 31.1, y = 66.1 }, -- 16
+        { type = "COLLECT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", target = "Mok'Morokk's Strongbox", map = 1445, zone = "Dustwallow Marsh", x = 36.6, y = 69.6 }, -- 17
+        { type = "COLLECT", quest = 1169, questName = "Identifying the Brood", target = "Searing Tongue / Searing Heart", count = 15, map = 1445, zone = "Dustwallow Marsh", x = 37.4, y = 74.2, near = true }, -- 18
+        { type = "COLLECT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", target = "Mok'Morokk's Snuff", map = 1445, zone = "Dustwallow Marsh", x = 44.5, y = 66 }, -- 19
+        { type = "TURNIN", quest = 1169, questName = "Identifying the Brood", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 20
+        { type = "ACCEPT", quest = 1170, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 21
+        { type = "TURNIN", quest = 1168, questName = "Army of the Black Dragon", npc = 4502, npcName = "Tharg", map = 1445, zone = "Dustwallow Marsh", x = 37.4, y = 31.4 }, -- 22
+        { type = "TURNIN", quest = 1166, questName = "Overlord Mok'Morokk's Concern", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 23
+        { type = "TURNIN", quest = 1170, questName = "The Brood of Onyxia", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 24
+        { type = "ACCEPT", quest = 1171, questName = "The Brood of Onyxia", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 25
+        { type = "ACCEPT", quest = 1262, questName = "Report to Zor", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.6 }, -- 26
+        { type = "TURNIN", quest = 1171, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 27
+        { type = "ACCEPT", quest = 1172, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37, y = 33 }, -- 28
+        { type = "COMPLETE", quest = 1172, questName = "The Brood of Onyxia", target = "Egg of Onyxia destroyed", count = 5, map = 1445, zone = "Dustwallow Marsh", x = 56.7, y = 75.4 }, -- 29
+        { type = "TURNIN", quest = 1172, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37, y = 33 }, -- 30
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_ALLIANCE_WESTFALL",
     name = "Zone: Westfall 10-20 (Alliance)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 10,
     maxLevel = 20,

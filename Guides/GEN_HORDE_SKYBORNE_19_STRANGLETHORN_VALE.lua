@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_19_STRANGLETHORN_VALE",
     name = "19. Stranglethorn Vale 41-42 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 41,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_20_SWAMP_OF_SORROWS",
     author = "ForeverGuide route planner",
     notes = "Chapter 19 of the Skyborne route: level 41 to 42, 15 steps, ~149 min of play in the model (16911 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 15,
+    stepCount = 24,
     steps = function() return {
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.5, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
         { type = "ACCEPT", quest = 621, questName = "Zanzil's Secret", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 2
@@ -21,14 +21,23 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 621, questName = "Zanzil's Secret", target = "Zanzil's Mixture", count = 12, map = 1434, zone = "Stranglethorn Vale", x = 38.7, y = 59.8, near = true }, -- 4
         { type = "KILL", quest = 609, questName = "Voodoo Dues", npc = 2537, target = "Chucky \"Ten Thumbs\"", map = 1434, zone = "Stranglethorn Vale", x = 40, y = 58.2, note = "loot Chucky's Huge Ring" }, -- 5
         { type = "KILL", quest = 609, questName = "Voodoo Dues", npc = 2535, target = "Maury \"Club Foot\" Wilkins / Jon-Jon the Crow", map = 1434, zone = "Stranglethorn Vale", x = 35.3, y = 51.3, note = "loot Maury's Clubbed Foot" }, -- 6
-        { type = "TURNIN", quest = 609, questName = "Voodoo Dues", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 7
-        { type = "ACCEPT", quest = 613, questName = "Cracking Maury's Foot", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 8
-        { type = "TURNIN", quest = 621, questName = "Zanzil's Secret", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 9
-        { type = "ACCEPT", quest = 573, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 10
-        { type = "COLLECT", quest = 613, questName = "Cracking Maury's Foot", target = "Maury's Key", map = 1434, zone = "Stranglethorn Vale", x = 46.4, y = 25.3, near = true }, -- 11
-        { type = "COMPLETE", quest = 573, questName = "Mok'thardin's Enchantment", target = "Holy Spring Water / Naga Explorer", map = 1434, zone = "Stranglethorn Vale", x = 29, y = 61.9 }, -- 12
-        { type = "TURNIN", quest = 573, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 13
-        { type = "TURNIN", quest = 613, questName = "Cracking Maury's Foot", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 14
-        { type = "GRIND", npc = 687, target = "Jungle Stalker", level = 42, map = 1434, zone = "Stranglethorn Vale", x = 24.9, y = 51.2, near = true, note = "grind Jungle Stalker (level 40-41) to level 42 - nothing worth questing at 41" }, -- 15
+        { type = "COLLECT", quest = 340, questName = "Chapter II", target = "Green Hills of Stranglethorn - Page 10", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 35.3, y = 51.3, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 7
+        { type = "COLLECT", quest = 340, questName = "Chapter II", target = "Green Hills of Stranglethorn - Page 11", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 35.3, y = 51.3, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 8
+        { type = "COLLECT", quest = 340, questName = "Chapter II", target = "Green Hills of Stranglethorn - Page 14", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 28.6, y = 62.2, mobs = "Lord Sakrasis" }, -- 9
+        { type = "COLLECT", quest = 340, questName = "Chapter II", target = "Green Hills of Stranglethorn - Page 16", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 63, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 10
+        { type = "TURNIN", quest = 609, questName = "Voodoo Dues", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 11
+        { type = "ACCEPT", quest = 613, questName = "Cracking Maury's Foot", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 12
+        { type = "TURNIN", quest = 621, questName = "Zanzil's Secret", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 13
+        { type = "ACCEPT", quest = 573, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 14
+        { type = "COLLECT", quest = 613, questName = "Cracking Maury's Foot", target = "Maury's Key", map = 1434, zone = "Stranglethorn Vale", x = 46.4, y = 25.3, near = true }, -- 15
+        { type = "COMPLETE", quest = 573, questName = "Mok'thardin's Enchantment", target = "Holy Spring Water / Naga Explorer", map = 1434, zone = "Stranglethorn Vale", x = 29, y = 61.9 }, -- 16
+        { type = "TURNIN", quest = 573, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 17
+        { type = "COLLECT", quest = 339, questName = "Chapter I", target = "Green Hills of Stranglethorn - Page 1", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 36.8, y = 26.8, mobs = "Roloch" }, -- 18
+        { type = "COLLECT", quest = 339, questName = "Chapter I", target = "Green Hills of Stranglethorn - Page 4", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 43.8, y = 9.4, mobs = "Bookie Herod" }, -- 19
+        { type = "COLLECT", quest = 339, questName = "Chapter I", target = "Green Hills of Stranglethorn - Page 6", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 36.8, y = 56, near = true, mobs = "Lord Sakrasis / Verifonix" }, -- 20
+        { type = "COLLECT", quest = 339, questName = "Chapter I", target = "Green Hills of Stranglethorn - Page 8", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 39, y = 58.2, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 21
+        { type = "ACCEPT", quest = 2872, questName = "Stoley's Debt", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77 }, -- 22
+        { type = "TURNIN", quest = 613, questName = "Cracking Maury's Foot", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 23
+        { type = "GRIND", npc = 687, target = "Jungle Stalker", level = 42, map = 1434, zone = "Stranglethorn Vale", x = 24.9, y = 51.2, near = true, note = "grind Jungle Stalker (level 40-41) to level 42 - nothing worth questing at 41" }, -- 24
     } end,
 })

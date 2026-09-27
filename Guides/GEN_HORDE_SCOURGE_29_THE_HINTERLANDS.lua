@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_29_THE_HINTERLANDS",
     name = "29. The Hinterlands 47-47 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 47,
@@ -13,28 +13,60 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_30_BLASTED_LANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 29 of the Scourge route: level 47 to 47, 21 steps, ~37 min of play in the model (56705 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 21,
+    stepCount = 53,
     steps = function() return {
         { type = "TRAVEL", map = 1425, zone = "Revantusk Village", x = 78.1, y = 81.4, radius = 60, note = "use your hearthstone (Revantusk Village)" }, -- 1
         { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 78.9, y = 80.7, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 2
         { type = "ACCEPT", quest = 7840, questName = "Lard Lost His Lunch", npc = 14731, npcName = "Lard", map = 1425, zone = "The Hinterlands", x = 78.1, y = 81.4 }, -- 3
-        { type = "ACCEPT", quest = 7850, questName = "Dark Vessels", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2 }, -- 4
-        { type = "ACCEPT", quest = 7849, questName = "Separation Anxiety", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 5
-        { type = "ACCEPT", quest = 7843, questName = "The Final Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 6
-        { type = "ACCEPT", quest = 7815, questName = "Snapjaws, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5 }, -- 7
-        { type = "ACCEPT", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 8
-        { type = "KILL", quest = 7816, questName = "Gammerita, Mon!", npc = 7977, target = "Gammerita", map = 1425, zone = "The Hinterlands", x = 80.4, y = 58.2, optional = true }, -- 9
-        { type = "TURNIN", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true }, -- 10
-        { type = "KILL", quest = 7815, questName = "Snapjaws, Mon!", npc = 2505, target = "Saltwater Snapjaw", count = 15, map = 1425, zone = "The Hinterlands", x = 80.6, y = 77.3, near = true }, -- 11
-        { type = "TURNIN", quest = 7815, questName = "Snapjaws, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5 }, -- 12
-        { type = "COLLECT", quest = 7850, questName = "Dark Vessels", target = "Vessel of Tainted Blood", count = 10, map = 1425, zone = "The Hinterlands", x = 67.9, y = 75.8, near = true }, -- 13
-        { type = "COLLECT", quest = 7849, questName = "Separation Anxiety", target = "Huntsman Malkhor's Bones", map = 1425, zone = "The Hinterlands", x = 62.1, y = 75.4 }, -- 14
-        { type = "COLLECT", quest = 7849, questName = "Separation Anxiety", target = "Huntsman Malkhor's Skull", map = 1425, zone = "The Hinterlands", x = 58.6, y = 64.8 }, -- 15
-        { type = "COLLECT", quest = 7840, questName = "Lard Lost His Lunch", target = "Lard's Lunch", map = 1425, zone = "The Hinterlands", x = 84.5, y = 41.2, near = true }, -- 16
-        { type = "TURNIN", quest = 7840, questName = "Lard Lost His Lunch", npc = 14731, npcName = "Lard", map = 1425, zone = "The Hinterlands", x = 78.1, y = 81.4 }, -- 17
-        { type = "TURNIN", quest = 7850, questName = "Dark Vessels", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2 }, -- 18
-        { type = "TURNIN", quest = 7849, questName = "Separation Anxiety", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 19
-        { type = "COMPLETE", quest = 7843, questName = "The Final Message to the Wildhammer", target = "Message to the Wildhammer Delivered", map = 1425, zone = "The Hinterlands", x = 14.3, y = 48.1, note = "Message to the Wildhammer Delivered" }, -- 20
-        { type = "TURNIN", quest = 7843, questName = "The Final Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 21
+        { type = "ACCEPT", quest = 7845, questName = "Kidnapped Elder Torntusk!", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2 }, -- 4
+        { type = "ACCEPT", quest = 7850, questName = "Dark Vessels", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2 }, -- 5
+        { type = "ACCEPT", quest = 7849, questName = "Separation Anxiety", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 6
+        { type = "ACCEPT", quest = 7843, questName = "The Final Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 7
+        { type = "ACCEPT", quest = 7815, questName = "Snapjaws, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5 }, -- 8
+        { type = "ACCEPT", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 9
+        { type = "KILL", quest = 7816, questName = "Gammerita, Mon!", npc = 7977, target = "Gammerita", map = 1425, zone = "The Hinterlands", x = 80.4, y = 58.2, optional = true }, -- 10
+        { type = "TURNIN", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true }, -- 11
+        { type = "KILL", quest = 7815, questName = "Snapjaws, Mon!", npc = 2505, target = "Saltwater Snapjaw", count = 15, map = 1425, zone = "The Hinterlands", x = 80.6, y = 77.3, near = true }, -- 12
+        { type = "TURNIN", quest = 7815, questName = "Snapjaws, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5 }, -- 13
+        { type = "COLLECT", quest = 7850, questName = "Dark Vessels", target = "Vessel of Tainted Blood", count = 10, map = 1425, zone = "The Hinterlands", x = 67.9, y = 75.8, near = true }, -- 14
+        { type = "COLLECT", quest = 7849, questName = "Separation Anxiety", target = "Huntsman Malkhor's Bones", map = 1425, zone = "The Hinterlands", x = 62.1, y = 75.4 }, -- 15
+        { type = "COLLECT", quest = 7849, questName = "Separation Anxiety", target = "Huntsman Malkhor's Skull", map = 1425, zone = "The Hinterlands", x = 58.6, y = 64.8 }, -- 16
+        { type = "TURNIN", quest = 626, questName = "Cortello's Riddle", map = 1425, zone = "The Hinterlands", x = 80.8, y = 46.8 }, -- 17
+        { type = "COLLECT", quest = 7840, questName = "Lard Lost His Lunch", target = "Lard's Lunch", map = 1425, zone = "The Hinterlands", x = 84.5, y = 41.2, near = true }, -- 18
+        { type = "ACCEPT", quest = 7861, questName = "Wanted: Vile Priestess Hexx and Her Minions", map = 1425, zone = "The Hinterlands", x = 79, y = 79, optional = true, note = "Elite - group up" }, -- 19
+        { type = "ACCEPT", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", map = 1425, zone = "The Hinterlands", x = 79, y = 79, optional = true, note = "Elite - group up" }, -- 20
+        { type = "TURNIN", quest = 7840, questName = "Lard Lost His Lunch", npc = 14731, npcName = "Lard", map = 1425, zone = "The Hinterlands", x = 78.1, y = 81.4 }, -- 21
+        { type = "TURNIN", quest = 7850, questName = "Dark Vessels", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2 }, -- 22
+        { type = "TURNIN", quest = 7849, questName = "Separation Anxiety", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 23
+        { type = "TURNIN", quest = 1429, questName = "The Atal'ai Exile", npc = 5598, npcName = "Atal'ai Exile", map = 1425, zone = "The Hinterlands", x = 33.6, y = 75.2 }, -- 24
+        { type = "TURNIN", quest = 7845, questName = "Kidnapped Elder Torntusk!", npc = 14757, npcName = "Elder Torntusk", map = 1425, zone = "The Hinterlands", x = 59.6, y = 77.8 }, -- 25
+        { type = "KILL", quest = 7861, questName = "Wanted: Vile Priestess Hexx and Her Minions", npc = 7995, target = "Vile Priestess Hexx", count = 1, map = 1425, zone = "The Hinterlands", x = 58.4, y = 79.4, optional = true }, -- 26
+        { type = "KILL", quest = 7861, questName = "Wanted: Vile Priestess Hexx and Her Minions", npc = 2648, target = "Vilebranch Aman'zasi Guard", count = 20, map = 1425, zone = "The Hinterlands", x = 58, y = 79.6, optional = true }, -- 27
+        { type = "TURNIN", quest = 7861, questName = "Wanted: Vile Priestess Hexx and Her Minions", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2, optional = true }, -- 28
+        { type = "KILL", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", npc = 2643, target = "Vilebranch Berserker", count = 20, map = 1425, zone = "The Hinterlands", x = 63.8, y = 70.4, optional = true }, -- 29
+        { type = "KILL", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", npc = 2645, target = "Vilebranch Shadow Hunter", count = 20, map = 1425, zone = "The Hinterlands", x = 63.8, y = 73.8, optional = true }, -- 30
+        { type = "KILL", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", npc = 2646, target = "Vilebranch Blood Drinker", count = 20, map = 1425, zone = "The Hinterlands", x = 60.6, y = 69.4, optional = true }, -- 31
+        { type = "KILL", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", npc = 2647, target = "Vilebranch Soul Eater", count = 20, map = 1425, zone = "The Hinterlands", x = 60.2, y = 71.4, optional = true }, -- 32
+        { type = "TURNIN", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2, optional = true }, -- 33
+        { type = "COMPLETE", quest = 7843, questName = "The Final Message to the Wildhammer", target = "Message to the Wildhammer Delivered", map = 1425, zone = "The Hinterlands", x = 14.3, y = 48.1, note = "Message to the Wildhammer Delivered" }, -- 34
+        { type = "ACCEPT", quest = 7846, questName = "Recover the Key!", npc = 14757, npcName = "Elder Torntusk", map = 1425, zone = "The Hinterlands", x = 59.6, y = 77.8, optional = true, note = "Elite - group up" }, -- 35
+        { type = "COLLECT", quest = 7846, questName = "Recover the Key!", target = "Shackle Key", count = 1, map = 1425, zone = "The Hinterlands", x = 57.4, y = 86.4, optional = true, mobs = "Hitah'ya the Keeper" }, -- 36
+        { type = "TURNIN", quest = 7846, questName = "Recover the Key!", npc = 14757, npcName = "Elder Torntusk", map = 1425, zone = "The Hinterlands", x = 59.6, y = 77.8, optional = true }, -- 37
+        { type = "ACCEPT", quest = 1444, questName = "Return to Fel'Zerul", npc = 5598, npcName = "Atal'ai Exile", map = 1425, zone = "The Hinterlands", x = 33.6, y = 75.2 }, -- 38
+        { type = "TURNIN", quest = 7843, questName = "The Final Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 39
+        { type = "ACCEPT", quest = 7847, questName = "Return to Primal Torntusk", npc = 14757, npcName = "Elder Torntusk", map = 1425, zone = "The Hinterlands", x = 59.6, y = 77.8 }, -- 40
+        { type = "TURNIN", quest = 7847, questName = "Return to Primal Torntusk", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2 }, -- 41
+        { type = "TURNIN", quest = 1444, questName = "Return to Fel'Zerul", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 48, y = 55 }, -- 42
+        { type = "ACCEPT", quest = 2784, questName = "Fall From Grace", npc = 7572, npcName = "Fallen Hero of the Horde", map = 1435, zone = "Swamp of Sorrows", x = 34.2, y = 66, note = "Objectives: The Tale of Sorrow" }, -- 43
+        { type = "TURNIN", quest = 2784, questName = "Fall From Grace", npc = 7572, npcName = "Fallen Hero of the Horde", map = 1435, zone = "Swamp of Sorrows", x = 34.2, y = 66 }, -- 44
+        { type = "ACCEPT", quest = 2934, questName = "Undamaged Venom Sac", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.2 }, -- 45
+        { type = "COLLECT", quest = 2934, questName = "Undamaged Venom Sac", target = "Undamaged Venom Sac", count = 1, map = 1425, zone = "The Hinterlands", x = 30.7, y = 69.7, mobs = "Witherbark Broodguard" }, -- 46
+        { type = "TURNIN", quest = 2934, questName = "Undamaged Venom Sac", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.2 }, -- 47
+        { type = "ACCEPT", quest = 2935, questName = "Consult Master Gadrin", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.2 }, -- 48
+        { type = "TURNIN", quest = 2935, questName = "Consult Master Gadrin", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.6 }, -- 49
+        { type = "ACCEPT", quest = 2936, questName = "The Spider God", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.6, optional = true, note = "For Zul'Farrak (dungeon guide); Objectives: Find the Spider God's Name" }, -- 50
+        { type = "TURNIN", quest = 2936, questName = "The Spider God", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.6, optional = true }, -- 51
+        { type = "ACCEPT", quest = 1445, questName = "The Temple of Atal'Hakkar", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 48, y = 55, optional = true, note = "For The Temple of Atal'Hakkar (dungeon guide)" }, -- 52
+        { type = "NOTE", optional = true, text = "Ready for The Temple of Atal'Hakkar", note = "Picked up: The Temple of Atal'Hakkar, Jammal'an the Prophet. When you have a group, open The Temple of Atal'Hakkar under Dungeons." }, -- 53
     } end,
 })

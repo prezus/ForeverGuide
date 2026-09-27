@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_44_WESTERN_PLAGUELANDS",
     name = "44. Western Plaguelands 53-53 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 53,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_45_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 44 of the Scourge route: level 53 to 53, 15 steps, ~39 min of play in the model (47801 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 15,
+    stepCount = 19,
     steps = function() return {
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 39.3, y = 66.0, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
         { type = "ACCEPT", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 2
@@ -30,5 +30,9 @@ ns.RegisterGuide({
         { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1826, target = "Scarlet Mage", count = 2, map = 1422, zone = "Western Plaguelands", x = 52.8, y = 36.7, near = true }, -- 13
         { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1831, target = "Scarlet Hunter / Scarlet Medic", count = 2, map = 1422, zone = "Western Plaguelands", x = 52.2, y = 44, near = true }, -- 14
         { type = "TURNIN", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 15
+        { type = "ACCEPT", quest = 6023, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 52, y = 28 }, -- 16
+        { type = "KILL", quest = 6023, questName = "Unfinished Business", npc = 11613, target = "Huntsman Radley", count = 1, map = 1422, zone = "Western Plaguelands", x = 57.8, y = 36 }, -- 17
+        { type = "KILL", quest = 6023, questName = "Unfinished Business", npc = 11611, target = "Cavalier Durgen", count = 1, map = 1422, zone = "Western Plaguelands", x = 55, y = 23.4 }, -- 18
+        { type = "TURNIN", quest = 6023, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 52, y = 28 }, -- 19
     } end,
 })

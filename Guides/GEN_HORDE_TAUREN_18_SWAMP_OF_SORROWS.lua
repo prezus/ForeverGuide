@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_18_SWAMP_OF_SORROWS",
     name = "18. Swamp of Sorrows 40-40 (Tauren)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 40,
@@ -13,24 +13,44 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_19_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 18 of the Tauren route: level 40 to 40, 17 steps, ~53 min of play in the model (26151 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 17,
+    stepCount = 37,
     steps = function() return {
-        { type = "TRAVEL", map = 1435, zone = "Swamp of Sorrows", x = 40.2, y = 60.6, radius = 60, note = "travel to Swamp of Sorrows (Swamp of Sorrows)" }, -- 1
-        { type = "HEARTH", npc = 6930, npcName = "Innkeeper Karakul", map = 1435, zone = "Stonard", x = 45.2, y = 56.7, note = "talk to Innkeeper Karakul and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 698, questName = "Lack of Surplus", npc = 5591, npcName = "Dar", map = 1435, zone = "Swamp of Sorrows", x = 44.7, y = 57.2 }, -- 3
-        { type = "ACCEPT", quest = 1424, questName = "Pool of Tears", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 47.9, y = 54.8 }, -- 4
-        { type = "COLLECT", quest = 698, questName = "Lack of Surplus", target = "Unprepared Sawtooth Flank", count = 8, map = 1435, zone = "Swamp of Sorrows", x = 53.6, y = 55.7, near = true }, -- 5
-        { type = "COLLECT", quest = 1424, questName = "Pool of Tears", target = "Atal'ai Artifact", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 62.4, y = 52.9, near = true }, -- 6
-        { type = "TURNIN", quest = 1424, questName = "Pool of Tears", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 47.9, y = 54.8 }, -- 7
-        { type = "ACCEPT", quest = 1389, questName = "Draenethyst Crystals", npc = 1776, npcName = "Magtoor", map = 1435, zone = "Swamp of Sorrows", x = 26, y = 31.4 }, -- 8
-        { type = "COLLECT", quest = 1389, questName = "Draenethyst Crystals", target = "Draenethyst Crystal", count = 6, map = 1435, zone = "Swamp of Sorrows", x = 55.1, y = 30.1, near = true }, -- 9
-        { type = "TURNIN", quest = 1389, questName = "Draenethyst Crystals", npc = 1776, npcName = "Magtoor", map = 1435, zone = "Swamp of Sorrows", x = 26, y = 31.4 }, -- 10
-        { type = "ACCEPT", quest = 1393, questName = "Galen's Escape", npc = 5391, npcName = "Galen Goodward", map = 1435, zone = "Swamp of Sorrows", x = 65.5, y = 18.2 }, -- 11
-        { type = "COMPLETE", quest = 1393, questName = "Galen's Escape", target = "Escort Galen out of the Fallow Sanctuary.", map = 1435, zone = "Swamp of Sorrows", x = 53.1, y = 29.6, note = "escort - stay close, it can fail: Escort Galen out of the Fallow Sanctuary." }, -- 12
-        { type = "TURNIN", quest = 1393, questName = "Galen's Escape", map = 1435, zone = "Swamp of Sorrows", x = 47.8, y = 39.8 }, -- 13
-        { type = "TURNIN", quest = 698, questName = "Lack of Surplus", npc = 5592, npcName = "Tok'Kar", map = 1435, zone = "Swamp of Sorrows", x = 81.3, y = 81 }, -- 14
-        { type = "ACCEPT", quest = 699, questName = "Lack of Surplus", npc = 5592, npcName = "Tok'Kar", map = 1435, zone = "Swamp of Sorrows", x = 81.3, y = 81 }, -- 15
-        { type = "KILL", quest = 699, questName = "Lack of Surplus", npc = 1087, target = "Sawtooth Snapper", count = 6, map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 95.4, near = true, note = "loot Sawtooth Snapper Claw" }, -- 16
-        { type = "TURNIN", quest = 699, questName = "Lack of Surplus", npc = 5592, npcName = "Tok'Kar", map = 1435, zone = "Swamp of Sorrows", x = 81.3, y = 81 }, -- 17
+        { type = "FLIGHTPATH", npc = 6026, npcName = "Breyk", map = 1435, zone = "Swamp of Sorrows", x = 46.1, y = 54.8 }, -- 1
+        { type = "ACCEPT", quest = 1418, questName = "Neeka Bloodscar", npc = 1442, npcName = "Helgrum the Swift", map = 1435, zone = "Swamp of Sorrows", x = 47.8, y = 55.2 }, -- 2
+        { type = "TURNIN", quest = 1418, questName = "Neeka Bloodscar", npc = 5394, npcName = "Neeka Bloodscar", map = 1418, zone = "Badlands", x = 6.4, y = 47 }, -- 3
+        { type = "TURNIN", quest = 705, questName = "Pearl Diving", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8, optional = true }, -- 4
+        { type = "ACCEPT", quest = 782, questName = "Broken Alliances", npc = 1068, npcName = "Gorn", map = 1418, zone = "Badlands", x = 2.8, y = 45.8 }, -- 5
+        { type = "COLLECT", quest = 782, questName = "Broken Alliances", target = "Sign of the Earth", count = 1, map = 1418, zone = "Badlands", x = 61.6, y = 67.8, mobs = "Boss Tho'grun" }, -- 6
+        { type = "TURNIN", quest = 782, questName = "Broken Alliances", npc = 1068, npcName = "Gorn", map = 1418, zone = "Badlands", x = 2.8, y = 45.8 }, -- 7
+        { type = "ACCEPT", quest = 795, questName = "Seal of the Earth", map = 1418, zone = "Badlands", x = 81.7, y = 49.9 }, -- 8
+        { type = "TURNIN", quest = 795, questName = "Seal of the Earth", map = 1418, zone = "Badlands", x = 81.7, y = 49.9 }, -- 9
+        { type = "TURNIN", quest = 687, questName = "Theldurin the Lost", npc = 2785, npcName = "Theldurin the Lost", map = 1418, zone = "Badlands", x = 51.4, y = 76.8 }, -- 10
+        { type = "ACCEPT", quest = 1137, questName = "News for Fizzle", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 11
+        { type = "ACCEPT", quest = 709, questName = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, zone = "Badlands", x = 51.4, y = 76.8, optional = true, note = "For Uldaman (dungeon guide)" }, -- 12
+        { type = "ACCEPT", quest = 2203, questName = "Badlands Reagent Run II", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46, optional = true, profession = "Alchemy", skill = 210, note = "Elite - group up" }, -- 13
+        { type = "COLLECT", quest = 2203, questName = "Badlands Reagent Run II", target = "Vessel of Dragon's Blood", count = 3, map = 1418, zone = "Badlands", x = 84.7, y = 55.9, optional = true, profession = "Alchemy", skill = 210, mobs = "Scorched Guardian" }, -- 14
+        { type = "TURNIN", quest = 2203, questName = "Badlands Reagent Run II", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46, optional = true, profession = "Alchemy", skill = 210 }, -- 15
+        { type = "TRAVEL", map = 1435, zone = "Swamp of Sorrows", x = 40.2, y = 60.6, radius = 60, note = "travel to Swamp of Sorrows (Swamp of Sorrows)" }, -- 16
+        { type = "HEARTH", npc = 6930, npcName = "Innkeeper Karakul", map = 1435, zone = "Stonard", x = 45.2, y = 56.7, note = "talk to Innkeeper Karakul and make this inn your home" }, -- 17
+        { type = "ACCEPT", quest = 698, questName = "Lack of Surplus", npc = 5591, npcName = "Dar", map = 1435, zone = "Swamp of Sorrows", x = 44.7, y = 57.2 }, -- 18
+        { type = "ACCEPT", quest = 1424, questName = "Pool of Tears", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 47.9, y = 54.8 }, -- 19
+        { type = "COLLECT", quest = 698, questName = "Lack of Surplus", target = "Unprepared Sawtooth Flank", count = 8, map = 1435, zone = "Swamp of Sorrows", x = 53.6, y = 55.7, near = true }, -- 20
+        { type = "COLLECT", quest = 1424, questName = "Pool of Tears", target = "Atal'ai Artifact", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 62.4, y = 52.9, near = true }, -- 21
+        { type = "TURNIN", quest = 1424, questName = "Pool of Tears", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 47.9, y = 54.8 }, -- 22
+        { type = "TURNIN", quest = 624, questName = "Cortello's Riddle", map = 1435, zone = "Swamp of Sorrows", x = 22.8, y = 48.1 }, -- 23
+        { type = "ACCEPT", quest = 1429, questName = "The Atal'ai Exile", npc = 1443, npcName = "Fel'zerul", map = 1435, zone = "Swamp of Sorrows", x = 48, y = 55 }, -- 24
+        { type = "ACCEPT", quest = 1389, questName = "Draenethyst Crystals", npc = 1776, npcName = "Magtoor", map = 1435, zone = "Swamp of Sorrows", x = 26, y = 31.4 }, -- 25
+        { type = "ACCEPT", quest = 1392, questName = "Noboru the Cudgel", npc = 5477, npcName = "Noboru the Cudgel", map = 1435, zone = "Swamp of Sorrows", x = 54.9, y = 34.1, note = "Loot Noboru's Cudgel from Noboru the Cudgel and use it to start the quest" }, -- 26
+        { type = "TURNIN", quest = 1392, questName = "Noboru the Cudgel", npc = 1776, npcName = "Magtoor", map = 1435, zone = "Swamp of Sorrows", x = 26, y = 31.4 }, -- 27
+        { type = "ACCEPT", quest = 625, questName = "Cortello's Riddle", map = 1435, zone = "Swamp of Sorrows", x = 22.8, y = 48.1 }, -- 28
+        { type = "COLLECT", quest = 1389, questName = "Draenethyst Crystals", target = "Draenethyst Crystal", count = 6, map = 1435, zone = "Swamp of Sorrows", x = 55.1, y = 30.1, near = true }, -- 29
+        { type = "TURNIN", quest = 1389, questName = "Draenethyst Crystals", npc = 1776, npcName = "Magtoor", map = 1435, zone = "Swamp of Sorrows", x = 26, y = 31.4 }, -- 30
+        { type = "ACCEPT", quest = 1393, questName = "Galen's Escape", npc = 5391, npcName = "Galen Goodward", map = 1435, zone = "Swamp of Sorrows", x = 65.5, y = 18.2 }, -- 31
+        { type = "COMPLETE", quest = 1393, questName = "Galen's Escape", target = "Escort Galen out of the Fallow Sanctuary.", map = 1435, zone = "Swamp of Sorrows", x = 53.1, y = 29.6, note = "escort - stay close, it can fail: Escort Galen out of the Fallow Sanctuary." }, -- 32
+        { type = "TURNIN", quest = 1393, questName = "Galen's Escape", map = 1435, zone = "Swamp of Sorrows", x = 47.8, y = 39.8 }, -- 33
+        { type = "TURNIN", quest = 698, questName = "Lack of Surplus", npc = 5592, npcName = "Tok'Kar", map = 1435, zone = "Swamp of Sorrows", x = 81.3, y = 81 }, -- 34
+        { type = "ACCEPT", quest = 699, questName = "Lack of Surplus", npc = 5592, npcName = "Tok'Kar", map = 1435, zone = "Swamp of Sorrows", x = 81.3, y = 81 }, -- 35
+        { type = "KILL", quest = 699, questName = "Lack of Surplus", npc = 1087, target = "Sawtooth Snapper", count = 6, map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 95.4, near = true, note = "loot Sawtooth Snapper Claw" }, -- 36
+        { type = "TURNIN", quest = 699, questName = "Lack of Surplus", npc = 5592, npcName = "Tok'Kar", map = 1435, zone = "Swamp of Sorrows", x = 81.3, y = 81 }, -- 37
     } end,
 })

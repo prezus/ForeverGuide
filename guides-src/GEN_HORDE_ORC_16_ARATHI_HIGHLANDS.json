@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_16_ARATHI_HIGHLANDS",
   "name": "16. Arathi Highlands 37-38 (Orc)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 37,
@@ -20,6 +20,8 @@
     {"type": "KILL", "quest": 643, "questName": "Sigil of Arathor", "npc": 2612, "target": "Lieutenant Valorcall", "map": 1417, "zone": "Arathi Highlands", "x": 33.5, "y": 52.1, "optional": true},
     {"type": "TURNIN", "quest": 643, "questName": "Sigil of Arathor", "npc": 2703, "npcName": "Zengu", "map": 1417, "zone": "Arathi Highlands", "x": 73.8, "y": 34, "optional": true},
     {"type": "ACCEPT", "quest": 673, "questName": "Foul Magics", "npc": 2706, "npcName": "Tor'gan", "map": 1417, "zone": "Arathi Highlands", "x": 74.7, "y": 36.3, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
+    {"type": "ACCEPT", "quest": 6622, "questName": "Triage", "npc": 12920, "npcName": "Doctor Gregory Victor", "map": 1417, "zone": "Arathi Highlands", "x": 73.4, "y": 36.8, "note": "Objectives: 15 Patients Saved!", "profession": "First Aid", "skill": 225},
+    {"type": "TURNIN", "quest": 6622, "questName": "Triage", "npc": 12920, "npcName": "Doctor Gregory Victor", "map": 1417, "zone": "Arathi Highlands", "x": 73.4, "y": 36.8, "profession": "First Aid", "skill": 225},
     {"type": "KILL", "quest": 673, "questName": "Foul Magics", "npc": 2783, "target": "Marez Cowl", "map": 1417, "zone": "Arathi Highlands", "x": 29.6, "y": 63, "near": true, "optional": true},
     {"type": "TURNIN", "quest": 673, "questName": "Foul Magics", "npc": 2706, "npcName": "Tor'gan", "map": 1417, "zone": "Arathi Highlands", "x": 74.7, "y": 36.3, "optional": true},
     {"type": "ACCEPT", "quest": 679, "questName": "Call to Arms", "npc": 2771, "npcName": "Drum Fel", "map": 1417, "zone": "Arathi Highlands", "x": 74.2, "y": 33.9, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
@@ -36,6 +38,7 @@
     {"type": "TURNIN", "quest": 701, "questName": "Guile of the Raptor", "npc": 2706, "npcName": "Tor'gan", "map": 1417, "zone": "Arathi Highlands", "x": 74.7, "y": 36.3},
     {"type": "ACCEPT", "quest": 702, "questName": "Guile of the Raptor", "npc": 2706, "npcName": "Tor'gan", "map": 1417, "zone": "Arathi Highlands", "x": 74.7, "y": 36.3},
     {"type": "TURNIN", "quest": 678, "questName": "Call to Arms", "npc": 2771, "npcName": "Drum Fel", "map": 1417, "zone": "Arathi Highlands", "x": 74.2, "y": 33.9},
+    {"type": "TURNIN", "quest": 638, "questName": "Trollbane", "npc": 2703, "npcName": "Zengu", "map": 1417, "zone": "Arathi Highlands", "x": 73.8, "y": 33.8},
     {"type": "TURNIN", "quest": 702, "questName": "Guile of the Raptor", "npc": 2792, "npcName": "Gor'mul", "map": 1417, "zone": "Arathi Highlands", "x": 72.6, "y": 33.9},
     {"type": "ACCEPT", "quest": 847, "questName": "Guile of the Raptor", "npc": 2792, "npcName": "Gor'mul", "map": 1417, "zone": "Arathi Highlands", "x": 72.6, "y": 33.9},
     {"type": "TURNIN", "quest": 847, "questName": "Guile of the Raptor", "npc": 2706, "npcName": "Tor'gan", "map": 1417, "zone": "Arathi Highlands", "x": 74.7, "y": 36.3},
@@ -46,12 +49,17 @@
     {"type": "COLLECT", "quest": 639, "questName": "Sigil of Strom", "target": "Sigil of Strom", "map": 1417, "zone": "Arathi Highlands", "x": 29.2, "y": 61.3, "near": true},
     {"type": "COLLECT", "quest": 651, "questName": "Stones of Binding", "target": "Burning Key", "map": 1417, "zone": "Arathi Highlands", "x": 25.5, "y": 30.1},
     {"type": "TURNIN", "quest": 651, "questName": "Stones of Binding", "map": 1417, "zone": "Arathi Highlands", "x": 36.2, "y": 57.4},
+    {"type": "ACCEPT", "quest": 652, "questName": "Breaking the Keystone", "map": 1417, "zone": "Arathi Highlands", "x": 36.2, "y": 57.5, "note": "Elite - group up", "optional": true},
+    {"type": "COLLECT", "quest": 652, "questName": "Breaking the Keystone", "target": "Rod of Order", "count": 1, "mobs": "Fozruk", "map": 1417, "zone": "Arathi Highlands", "x": 43, "y": 53.8, "optional": true},
     {"type": "TURNIN", "quest": 639, "questName": "Sigil of Strom", "npc": 2703, "npcName": "Zengu", "map": 1417, "zone": "Arathi Highlands", "x": 73.8, "y": 34},
     {"type": "ACCEPT", "quest": 640, "questName": "The Broken Sigil", "npc": 2703, "npcName": "Zengu", "map": 1417, "zone": "Arathi Highlands", "x": 73.8, "y": 34},
     {"type": "COLLECT", "quest": 640, "questName": "The Broken Sigil", "target": "Sigil Fragment", "count": 11, "map": 1417, "zone": "Arathi Highlands", "x": 28.9, "y": 58.9, "near": true},
+    {"type": "TURNIN", "quest": 652, "questName": "Breaking the Keystone", "map": 1417, "zone": "Arathi Highlands", "x": 36.1, "y": 57.9, "optional": true},
     {"type": "TURNIN", "quest": 640, "questName": "The Broken Sigil", "npc": 2706, "npcName": "Tor'gan", "map": 1417, "zone": "Arathi Highlands", "x": 74.7, "y": 36.3},
     {"type": "ACCEPT", "quest": 641, "questName": "Sigil of Thoradin", "npc": 2706, "npcName": "Tor'gan", "map": 1417, "zone": "Arathi Highlands", "x": 74.7, "y": 36.3},
     {"type": "TURNIN", "quest": 641, "questName": "Sigil of Thoradin", "npc": 2703, "npcName": "Zengu", "map": 1417, "zone": "Arathi Highlands", "x": 73.8, "y": 34},
+    {"type": "ACCEPT", "quest": 688, "questName": "Myzrael's Allies", "map": 1417, "zone": "Arathi Highlands", "x": 36.1, "y": 57.9},
+    {"type": "TURNIN", "quest": 688, "questName": "Myzrael's Allies", "npc": 2787, "npcName": "Zaruk", "map": 1417, "zone": "Arathi Highlands", "x": 74.4, "y": 35.6},
     {"type": "ACCEPT", "quest": 663, "questName": "Land Ho!", "npc": 2766, "npcName": "Lolo the Lookout", "map": 1417, "zone": "Arathi Highlands", "x": 31.8, "y": 82.7},
     {"type": "TURNIN", "quest": 663, "questName": "Land Ho!", "npc": 2610, "npcName": "Shakes O'Breen", "map": 1417, "zone": "Arathi Highlands", "x": 32.3, "y": 81.4},
     {"type": "ACCEPT", "quest": 662, "questName": "Deep Sea Salvage", "npc": 2767, "npcName": "First Mate Nilzlix", "map": 1417, "zone": "Arathi Highlands", "x": 32.8, "y": 81.5},
@@ -69,6 +77,8 @@
     {"type": "TURNIN", "quest": 666, "questName": "Sunken Treasure", "npc": 2774, "npcName": "Doctor Draxlegauge", "map": 1417, "zone": "Arathi Highlands", "x": 33.9, "y": 80.5},
     {"type": "TURNIN", "quest": 664, "questName": "Drowned Sorrows", "npc": 2769, "npcName": "Captain Steelgut", "map": 1417, "zone": "Arathi Highlands", "x": 34, "y": 80.8},
     {"type": "ACCEPT", "quest": 668, "questName": "Sunken Treasure", "npc": 2774, "npcName": "Doctor Draxlegauge", "map": 1417, "zone": "Arathi Highlands", "x": 33.9, "y": 80.5},
-    {"type": "TURNIN", "quest": 668, "questName": "Sunken Treasure", "npc": 2610, "npcName": "Shakes O'Breen", "map": 1417, "zone": "Arathi Highlands", "x": 32.3, "y": 81.4}
+    {"type": "TURNIN", "quest": 668, "questName": "Sunken Treasure", "npc": 2610, "npcName": "Shakes O'Breen", "map": 1417, "zone": "Arathi Highlands", "x": 32.3, "y": 81.4},
+    {"type": "ACCEPT", "quest": 669, "questName": "Sunken Treasure", "npc": 2610, "npcName": "Shakes O'Breen", "map": 1417, "zone": "Arathi Highlands", "x": 32.2, "y": 81.4},
+    {"type": "ACCEPT", "quest": 687, "questName": "Theldurin the Lost", "npc": 2787, "npcName": "Zaruk", "map": 1417, "zone": "Arathi Highlands", "x": 74.4, "y": 35.6}
   ]
 }

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_37_IRONFORGE",
     name = "37. Ironforge 49-50 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 49,
@@ -13,18 +13,62 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_38_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 37 of the Skyborne route: level 49 to 50, 11 steps, ~159 min of play in the model (6871 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 11,
+    stepCount = 55,
     steps = function() return {
         { type = "TRAVEL", map = 1425, zone = "Aerie Peak", x = 14.2, y = 41.6, radius = 60, note = "use your hearthstone (Aerie Peak)" }, -- 1
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 57.2, y = 35.7, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 2
-        { type = "HEARTH", npc = 5111, npcName = "Innkeeper Firebrew", map = 1455, zone = "Ironforge", x = 18.1, y = 51.5, note = "talk to Innkeeper Firebrew and make this inn your home" }, -- 3
-        { type = "TURNIN", quest = 3368, questName = "Suntara Stones", npc = 8256, npcName = "Curator Thorius", map = 1455, zone = "Ironforge", x = 71.5, y = 15.7 }, -- 4
-        { type = "ACCEPT", quest = 3448, questName = "Passing the Burden", npc = 2916, npcName = "Historian Karnik", map = 1455, zone = "Ironforge", x = 77.5, y = 11.8 }, -- 5
-        { type = "TURNIN", quest = 3448, questName = "Passing the Burden", npc = 8507, npcName = "Tymor", map = 1455, zone = "Ironforge", x = 31, y = 4.8 }, -- 6
-        { type = "ACCEPT", quest = 3450, questName = "An Easy Pickup", npc = 8507, npcName = "Tymor", map = 1455, zone = "Ironforge", x = 31, y = 4.8 }, -- 7
-        { type = "TURNIN", quest = 3450, questName = "An Easy Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 8
-        { type = "ACCEPT", quest = 3451, questName = "Signal for Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 9
-        { type = "TURNIN", quest = 3451, questName = "Signal for Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 10
-        { type = "GRIND", level = 50, note = "nothing worth questing at level 49 - grind to 50" }, -- 11
+        { type = "FLIGHTPATH", npc = 1573, npcName = "Gryth Thurden", map = 1455, zone = "Ironforge", x = 55.5, y = 47.7 }, -- 2
+        { type = "ACCEPT", quest = 96394, questName = "The Restless Dead", npc = 264943, npcName = "Afadra Dunwall", map = 1455, zone = "Ironforge", x = 33.2, y = 47.6, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 3
+        { type = "ACCEPT", quest = 96403, questName = "Important Heirlooms", npc = 265003, npcName = "Thom Filch", map = 1455, zone = "Ironforge", x = 32.4, y = 44.8, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 4
+        { type = "NOTE", optional = true, text = "Ready for The Hall of Thanes", note = "Picked up: Old Ironforge Incursion, The Restless Dead, Important Heirlooms. When you have a group, open The Hall of Thanes under Dungeons." }, -- 5
+        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.4, y = 6, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 6
+        { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 7
+        { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 8
+        { type = "ACCEPT", quest = 2929, questName = "The Grand Betrayal", npc = 7937, npcName = "High Tinker Mekkatorque", map = 1455, zone = "Ironforge", x = 69, y = 49, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 9
+        { type = "NOTE", optional = true, text = "Ready for Gnomeregan", note = "Picked up: Save Techbot's Brain!, Essential Artificials, Gnogaine, Gyrodrillmatic Excavationators, The Grand Betrayal. When you have a group, open Gnomeregan under Dungeons." }, -- 10
+        { type = "ACCEPT", quest = 1360, questName = "Reclaimed Treasures", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, optional = true, note = "For Uldaman (dungeon guide)" }, -- 11
+        { type = "ACCEPT", quest = 2398, questName = "The Lost Dwarves", npc = 1356, npcName = "Prospector Stormpike", map = 1455, zone = "Ironforge", x = 74.4, y = 12, optional = true, note = "For Uldaman (dungeon guide)" }, -- 12
+        { type = "NOTE", optional = true, text = "Ready for Uldaman", note = "Picked up: Agmond's Fate, Solution to Doom, Amulet of Secrets, Reclaimed Treasures, The Lost Dwarves. When you have a group, open Uldaman under Dungeons." }, -- 13
+        { type = "ACCEPT", quest = 2861, questName = "Tabetha's Task", npc = 5144, npcName = "Bink", map = 1455, zone = "Ironforge", x = 27, y = 8.2, optional = true, note = "For Zul'Farrak (dungeon guide)" }, -- 14
+        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 57.2, y = 35.7, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 15
+        { type = "ACCEPT", quest = 7905, questName = "The Darkmoon Faire", npc = 14842, npcName = "Melnan Darkstone", map = 1455, zone = "Ironforge", x = 27.2, y = 70.8 }, -- 16
+        { type = "HEARTH", npc = 5111, npcName = "Innkeeper Firebrew", map = 1455, zone = "Ironforge", x = 18.1, y = 51.5, note = "talk to Innkeeper Firebrew and make this inn your home" }, -- 17
+        { type = "TURNIN", quest = 3368, questName = "Suntara Stones", npc = 8256, npcName = "Curator Thorius", map = 1455, zone = "Ironforge", x = 71.5, y = 15.7 }, -- 18
+        { type = "ACCEPT", quest = 3448, questName = "Passing the Burden", npc = 2916, npcName = "Historian Karnik", map = 1455, zone = "Ironforge", x = 77.5, y = 11.8 }, -- 19
+        { type = "TURNIN", quest = 968, questName = "The Powers Below", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.4, y = 6, optional = true, note = "reduced xp (10%) - you out-levelled it" }, -- 20
+        { type = "TURNIN", quest = 3448, questName = "Passing the Burden", npc = 8507, npcName = "Tymor", map = 1455, zone = "Ironforge", x = 31, y = 4.8 }, -- 21
+        { type = "ACCEPT", quest = 3450, questName = "An Easy Pickup", npc = 8507, npcName = "Tymor", map = 1455, zone = "Ironforge", x = 31, y = 4.8 }, -- 22
+        { type = "ACCEPT", quest = 7802, questName = "A Donation of Wool", npc = 14723, npcName = "Mistina Steelshield", map = 1455, zone = "Ironforge", x = 43.2, y = 32 }, -- 23
+        { type = "ACCEPT", quest = 7803, questName = "A Donation of Silk", npc = 14723, npcName = "Mistina Steelshield", map = 1455, zone = "Ironforge", x = 43.2, y = 32 }, -- 24
+        { type = "ACCEPT", quest = 7804, questName = "A Donation of Mageweave", npc = 14723, npcName = "Mistina Steelshield", map = 1455, zone = "Ironforge", x = 43.2, y = 32 }, -- 25
+        { type = "TURNIN", quest = 7802, questName = "A Donation of Wool", npc = 14723, npcName = "Mistina Steelshield", map = 1455, zone = "Ironforge", x = 43.2, y = 32 }, -- 26
+        { type = "ACCEPT", quest = 7807, questName = "A Donation of Wool", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, zone = "Ironforge", x = 73.8, y = 47.8 }, -- 27
+        { type = "ACCEPT", quest = 7808, questName = "A Donation of Silk", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, zone = "Ironforge", x = 73.8, y = 47.8 }, -- 28
+        { type = "ACCEPT", quest = 7809, questName = "A Donation of Mageweave", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, zone = "Ironforge", x = 73.8, y = 47.8 }, -- 29
+        { type = "TURNIN", quest = 7807, questName = "A Donation of Wool", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, zone = "Ironforge", x = 73.8, y = 47.8 }, -- 30
+        { type = "TURNIN", quest = 1072, questName = "An Old Colleague", npc = 4081, npcName = "Lomac Gearstrip", map = 1455, zone = "Ironforge", x = 71.8, y = 51.6, note = "reduced xp (10%) - you out-levelled it" }, -- 31
+        { type = "TURNIN", quest = 7803, questName = "A Donation of Silk", npc = 14723, npcName = "Mistina Steelshield", map = 1455, zone = "Ironforge", x = 43.2, y = 32 }, -- 32
+        { type = "TURNIN", quest = 7808, questName = "A Donation of Silk", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, zone = "Ironforge", x = 73.8, y = 47.8 }, -- 33
+        { type = "TURNIN", quest = 7804, questName = "A Donation of Mageweave", npc = 14723, npcName = "Mistina Steelshield", map = 1455, zone = "Ironforge", x = 43.2, y = 32 }, -- 34
+        { type = "TURNIN", quest = 7809, questName = "A Donation of Mageweave", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, zone = "Ironforge", x = 73.8, y = 47.8 }, -- 35
+        { type = "ACCEPT", quest = 2769, questName = "The Brassbolts Brothers", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2 }, -- 36
+        { type = "TURNIN", quest = 3630, questName = "Gnome Engineering", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, profession = "Engineering", skill = 200 }, -- 37
+        { type = "ACCEPT", quest = 3632, questName = "Gnome Engineering", npc = 5174, npcName = "Springspindle Fizzlegear", map = 1455, zone = "Ironforge", x = 68.4, y = 44, profession = "Engineering", skill = 200 }, -- 38
+        { type = "TURNIN", quest = 3632, questName = "Gnome Engineering", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, profession = "Engineering", skill = 200 }, -- 39
+        { type = "TURNIN", quest = 3634, questName = "Gnome Engineering", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, profession = "Engineering", skill = 200 }, -- 40
+        { type = "TURNIN", quest = 3450, questName = "An Easy Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 41
+        { type = "ACCEPT", quest = 3451, questName = "Signal for Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 42
+        { type = "TURNIN", quest = 3451, questName = "Signal for Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 43
+        { type = "GRIND", level = 50, note = "nothing worth questing at level 49 - grind to 50" }, -- 44
+        { type = "ACCEPT", quest = 7811, questName = "A Donation of Runecloth", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, zone = "Ironforge", x = 73.8, y = 47.8 }, -- 45
+        { type = "TURNIN", quest = 7811, questName = "A Donation of Runecloth", npc = 14724, npcName = "Bubulo Acerbus", map = 1455, zone = "Ironforge", x = 73.8, y = 47.8 }, -- 46
+        { type = "TURNIN", quest = 7905, questName = "The Darkmoon Faire", npc = 14828, npcName = "Gelvas Grimegate", map = 1429, zone = "Elwynn Forest", x = 41.6, y = 68.8 }, -- 47
+        { type = "TURNIN", quest = 2769, questName = "The Brassbolts Brothers", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78, y = 77 }, -- 48
+        { type = "ACCEPT", quest = 5066, questName = "A Call to Arms: The Plaguelands!", npc = 2198, npcName = "Crier Goodman", map = 1453, zone = "Stormwind City", x = 55, y = 62.8 }, -- 49
+        { type = "TURNIN", quest = 2861, questName = "Tabetha's Task", npc = 6546, npcName = "Tabetha", map = 1445, zone = "Dustwallow Marsh", x = 46, y = 57, optional = true }, -- 50
+        { type = "ACCEPT", quest = 8151, questName = "The Hunter's Charm", npc = 5116, npcName = "Olmin Burningbeard", map = 1455, zone = "Ironforge", x = 70.6, y = 83.8, class = { "HUNTER" } }, -- 51
+        { type = "ACCEPT", quest = 8254, questName = "Cenarion Aid", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" } }, -- 52
+        { type = "ACCEPT", quest = 8250, questName = "Magecraft", npc = 7312, npcName = "Dink", map = 1455, zone = "Ironforge", x = 26.8, y = 8.4, class = { "MAGE" } }, -- 53
+        { type = "ACCEPT", quest = 8419, questName = "An Imp's Request", npc = 5172, npcName = "Briarthorn", map = 1455, zone = "Ironforge", x = 50.2, y = 6, class = { "WARLOCK" } }, -- 54
+        { type = "ACCEPT", quest = 9063, questName = "Torwa Pathfinder", npc = 5505, npcName = "Theridran", map = 1453, zone = "Stormwind City", x = 21.4, y = 51.4, class = { "DRUID" } }, -- 55
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_34_FERALAS",
     name = "34. Feralas 48-48 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 48,
@@ -13,15 +13,16 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_35_TANARIS",
     author = "ForeverGuide route planner",
     notes = "Chapter 34 of the Skyborne route: level 48 to 48, 8 steps, ~23 min of play in the model (20602 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 8,
+    stepCount = 9,
     steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.5, y = 45.0, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "ACCEPT", quest = 3445, questName = "The Sunken Temple", npc = 7900, npcName = "Angelas Moonbreeze", map = 1444, zone = "Feralas", x = 31.8, y = 45.6 }, -- 2
-        { type = "ACCEPT", quest = 2844, questName = "The Giant Guardian", npc = 7765, npcName = "Rockbiter", map = 1444, zone = "Feralas", x = 42.4, y = 22 }, -- 3
-        { type = "TURNIN", quest = 2844, questName = "The Giant Guardian", npc = 7774, npcName = "Shay Leafrunner", map = 1444, zone = "Feralas", x = 38.2, y = 10.3 }, -- 4
-        { type = "ACCEPT", quest = 2845, questName = "Wandering Shay", npc = 7774, npcName = "Shay Leafrunner", map = 1444, zone = "Feralas", x = 38.2, y = 10.3 }, -- 5
-        { type = "COLLECT", quest = 2845, questName = "Wandering Shay", target = "Shay's Bell", map = 1444, zone = "Feralas", x = 38.3, y = 10.3, note = "escort - stay close, it can fail" }, -- 6
-        { type = "COMPLETE", quest = 2845, questName = "Wandering Shay", target = "Take Shay Leafrunner to Rockbiter's camp", map = 1444, zone = "Feralas", x = 42.3, y = 21.9, note = "escort - stay close, it can fail: Take Shay Leafrunner to Rockbiter's camp" }, -- 7
-        { type = "TURNIN", quest = 2845, questName = "Wandering Shay", npc = 7765, npcName = "Rockbiter", map = 1444, zone = "Feralas", x = 42.4, y = 22 }, -- 8
+        { type = "KILL", quest = 3520, questName = "Screecher Spirits", npc = 8612, target = "Screecher Spirits Collected", count = 3, map = 1444, zone = "Feralas", x = 46.4, y = 40.6 }, -- 3
+        { type = "ACCEPT", quest = 2844, questName = "The Giant Guardian", npc = 7765, npcName = "Rockbiter", map = 1444, zone = "Feralas", x = 42.4, y = 22 }, -- 4
+        { type = "TURNIN", quest = 2844, questName = "The Giant Guardian", npc = 7774, npcName = "Shay Leafrunner", map = 1444, zone = "Feralas", x = 38.2, y = 10.3 }, -- 5
+        { type = "ACCEPT", quest = 2845, questName = "Wandering Shay", npc = 7774, npcName = "Shay Leafrunner", map = 1444, zone = "Feralas", x = 38.2, y = 10.3 }, -- 6
+        { type = "COLLECT", quest = 2845, questName = "Wandering Shay", target = "Shay's Bell", map = 1444, zone = "Feralas", x = 38.3, y = 10.3, note = "escort - stay close, it can fail" }, -- 7
+        { type = "COMPLETE", quest = 2845, questName = "Wandering Shay", target = "Take Shay Leafrunner to Rockbiter's camp", map = 1444, zone = "Feralas", x = 42.3, y = 21.9, note = "escort - stay close, it can fail: Take Shay Leafrunner to Rockbiter's camp" }, -- 8
+        { type = "TURNIN", quest = 2845, questName = "Wandering Shay", npc = 7765, npcName = "Rockbiter", map = 1444, zone = "Feralas", x = 42.4, y = 22 }, -- 9
     } end,
 })

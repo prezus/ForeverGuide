@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_20_STRANGLETHORN_VALE",
     name = "20. Stranglethorn Vale 39-39 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 39,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_21_SWAMP_OF_SORROWS",
     author = "ForeverGuide route planner",
     notes = "Chapter 20 of the Skyborne route: level 39 to 39, 41 steps, ~123 min of play in the model (28613 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (3 here).",
-    stepCount = 41,
+    stepCount = 59,
     steps = function() return {
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.3, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
         { type = "ACCEPT", quest = 600, questName = "Venture Company Mining", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 2
@@ -31,30 +31,48 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 597, questName = "The Bloodsail Buccaneers", npc = 2490, npcName = "First Mate Crazz", map = 1434, zone = "Stranglethorn Vale", x = 28.1, y = 76.2 }, -- 14
         { type = "TURNIN", quest = 607, questName = "Return to MacKinley", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 15
         { type = "ACCEPT", quest = 599, questName = "The Bloodsail Buccaneers", npc = 2490, npcName = "First Mate Crazz", map = 1434, zone = "Stranglethorn Vale", x = 28.1, y = 76.2 }, -- 16
-        { type = "ACCEPT", quest = 587, questName = "Up to Snuff", npc = 2488, npcName = "Deeg", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.4 }, -- 17
-        { type = "ACCEPT", quest = 576, questName = "Keep An Eye Out", npc = 2493, npcName = "Dizzy One-Eye", map = 1434, zone = "Stranglethorn Vale", x = 28.6, y = 75.9 }, -- 18
-        { type = "TURNIN", quest = 599, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 19
-        { type = "COLLECT", quest = 587, questName = "Up to Snuff", target = "Snuff", count = 15, map = 1434, zone = "Stranglethorn Vale", x = 29.7, y = 80.8, near = true }, -- 20
-        { type = "COLLECT", quest = 576, questName = "Keep An Eye Out", target = "Dizzy's Eye", map = 1434, zone = "Stranglethorn Vale", x = 29.7, y = 80.8, near = true }, -- 21
-        { type = "TURNIN", quest = 587, questName = "Up to Snuff", npc = 2488, npcName = "Deeg", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.4 }, -- 22
-        { type = "TURNIN", quest = 576, questName = "Keep An Eye Out", npc = 2493, npcName = "Dizzy One-Eye", map = 1434, zone = "Stranglethorn Vale", x = 28.6, y = 75.9 }, -- 23
-        { type = "COLLECT", quest = 600, questName = "Venture Company Mining", target = "Singing Blue Crystal", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 42, y = 46.3, near = true }, -- 24
-        { type = "ACCEPT", quest = 196, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 25
-        { type = "ACCEPT", quest = 193, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 26
-        { type = "KILL", quest = 193, questName = "Panther Mastery", npc = 728, target = "Bhag'thera", map = 1434, zone = "Stranglethorn Vale", x = 48.4, y = 19.2, optional = true, near = true }, -- 27
-        { type = "TURNIN", quest = 193, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6, optional = true }, -- 28
-        { type = "ACCEPT", quest = 205, questName = "Troll Witchery", npc = 739, npcName = "Brother Nimetz", map = 1434, zone = "Stranglethorn Vale", x = 37.8, y = 3.6 }, -- 29
-        { type = "ACCEPT", quest = 202, questName = "Colonel Kurzen", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 30
-        { type = "KILL", quest = 202, questName = "Colonel Kurzen", npc = 939, target = "Kurzen Elite", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 46.7, y = 6.2, optional = true, near = true }, -- 31
-        { type = "KILL", quest = 202, questName = "Colonel Kurzen", npc = 978, target = "Kurzen Subchief", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 48.8, y = 4.6, optional = true, near = true }, -- 32
-        { type = "KILL", quest = 202, questName = "Colonel Kurzen", npc = 813, target = "Colonel Kurzen", map = 1434, zone = "Stranglethorn Vale", x = 49.9, y = 4, optional = true }, -- 33
-        { type = "TURNIN", quest = 202, questName = "Colonel Kurzen", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3, optional = true }, -- 34
-        { type = "COLLECT", quest = 209, questName = "Skullsplitter Tusks", target = "Skullsplitter Tusk", count = 18, map = 1434, zone = "Stranglethorn Vale", x = 23.4, y = 8.1, near = true }, -- 35
-        { type = "KILL", quest = 196, questName = "Raptor Mastery", npc = 687, target = "Jungle Stalker", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 31.6, y = 40.7, near = true }, -- 36
-        { type = "COLLECT", quest = 205, questName = "Troll Witchery", target = "Skullsplitter Fetish", count = 4, map = 1434, zone = "Stranglethorn Vale", x = 42.1, y = 36.3, near = true }, -- 37
-        { type = "TURNIN", quest = 196, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 38
-        { type = "TURNIN", quest = 205, questName = "Troll Witchery", npc = 739, npcName = "Brother Nimetz", map = 1434, zone = "Stranglethorn Vale", x = 37.8, y = 3.6 }, -- 39
-        { type = "TURNIN", quest = 600, questName = "Venture Company Mining", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 40
-        { type = "TURNIN", quest = 209, questName = "Skullsplitter Tusks", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 41
+        { type = "TURNIN", quest = 627, questName = "Favor for Krazek", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 17
+        { type = "ACCEPT", quest = 587, questName = "Up to Snuff", npc = 2488, npcName = "Deeg", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.4 }, -- 18
+        { type = "ACCEPT", quest = 622, questName = "Return to Corporal Kaleb", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 19
+        { type = "ACCEPT", quest = 576, questName = "Keep An Eye Out", npc = 2493, npcName = "Dizzy One-Eye", map = 1434, zone = "Stranglethorn Vale", x = 28.6, y = 75.9 }, -- 20
+        { type = "TURNIN", quest = 669, questName = "Sunken Treasure", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 21
+        { type = "TURNIN", quest = 599, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 22
+        { type = "COLLECT", quest = 587, questName = "Up to Snuff", target = "Snuff", count = 15, map = 1434, zone = "Stranglethorn Vale", x = 29.7, y = 80.8, near = true }, -- 23
+        { type = "COLLECT", quest = 576, questName = "Keep An Eye Out", target = "Dizzy's Eye", map = 1434, zone = "Stranglethorn Vale", x = 29.7, y = 80.8, near = true }, -- 24
+        { type = "TURNIN", quest = 587, questName = "Up to Snuff", npc = 2488, npcName = "Deeg", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.4 }, -- 25
+        { type = "TURNIN", quest = 576, questName = "Keep An Eye Out", npc = 2493, npcName = "Dizzy One-Eye", map = 1434, zone = "Stranglethorn Vale", x = 28.6, y = 75.9 }, -- 26
+        { type = "COLLECT", quest = 600, questName = "Venture Company Mining", target = "Singing Blue Crystal", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 42, y = 46.3, near = true }, -- 27
+        { type = "COLLECT", quest = 341, questName = "Chapter III", target = "Green Hills of Stranglethorn - Page 18", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 42, y = 44.6, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 28
+        { type = "COLLECT", quest = 341, questName = "Chapter III", target = "Green Hills of Stranglethorn - Page 20", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 34.4, y = 22.8, mobs = "Gluggle" }, -- 29
+        { type = "COLLECT", quest = 341, questName = "Chapter III", target = "Green Hills of Stranglethorn - Page 21", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 43.8, y = 9.4, near = true, mobs = "Bookie Herod / Mok'rash / Lord Sakrasis" }, -- 30
+        { type = "COLLECT", quest = 341, questName = "Chapter III", target = "Green Hills of Stranglethorn - Page 24", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 44, y = 9.4, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 31
+        { type = "ACCEPT", quest = 196, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 32
+        { type = "ACCEPT", quest = 193, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 33
+        { type = "KILL", quest = 193, questName = "Panther Mastery", npc = 728, target = "Bhag'thera", map = 1434, zone = "Stranglethorn Vale", x = 48.4, y = 19.2, optional = true, near = true }, -- 34
+        { type = "TURNIN", quest = 193, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6, optional = true }, -- 35
+        { type = "TURNIN", quest = 341, questName = "Chapter III", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.4 }, -- 36
+        { type = "ACCEPT", quest = 205, questName = "Troll Witchery", npc = 739, npcName = "Brother Nimetz", map = 1434, zone = "Stranglethorn Vale", x = 37.8, y = 3.6 }, -- 37
+        { type = "ACCEPT", quest = 202, questName = "Colonel Kurzen", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 38
+        { type = "KILL", quest = 202, questName = "Colonel Kurzen", npc = 939, target = "Kurzen Elite", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 46.7, y = 6.2, optional = true, near = true }, -- 39
+        { type = "KILL", quest = 202, questName = "Colonel Kurzen", npc = 978, target = "Kurzen Subchief", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 48.8, y = 4.6, optional = true, near = true }, -- 40
+        { type = "KILL", quest = 202, questName = "Colonel Kurzen", npc = 813, target = "Colonel Kurzen", map = 1434, zone = "Stranglethorn Vale", x = 49.9, y = 4, optional = true }, -- 41
+        { type = "TURNIN", quest = 202, questName = "Colonel Kurzen", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3, optional = true }, -- 42
+        { type = "TURNIN", quest = 622, questName = "Return to Corporal Kaleb", npc = 770, npcName = "Corporal Kaleb", map = 1434, zone = "Stranglethorn Vale", x = 37.8, y = 3.2 }, -- 43
+        { type = "COLLECT", quest = 209, questName = "Skullsplitter Tusks", target = "Skullsplitter Tusk", count = 18, map = 1434, zone = "Stranglethorn Vale", x = 23.4, y = 8.1, near = true }, -- 44
+        { type = "KILL", quest = 196, questName = "Raptor Mastery", npc = 687, target = "Jungle Stalker", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 31.6, y = 40.7, near = true }, -- 45
+        { type = "COLLECT", quest = 205, questName = "Troll Witchery", target = "Skullsplitter Fetish", count = 4, map = 1434, zone = "Stranglethorn Vale", x = 42.1, y = 36.3, near = true }, -- 46
+        { type = "TURNIN", quest = 196, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 47
+        { type = "TURNIN", quest = 205, questName = "Troll Witchery", npc = 739, npcName = "Brother Nimetz", map = 1434, zone = "Stranglethorn Vale", x = 37.8, y = 3.6 }, -- 48
+        { type = "ACCEPT", quest = 197, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8, optional = true, note = "Elite - group up" }, -- 49
+        { type = "COLLECT", quest = 197, questName = "Raptor Mastery", target = "Talon of Tethis", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 31.4, y = 41.2, optional = true, mobs = "Tethis" }, -- 50
+        { type = "TURNIN", quest = 197, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8, optional = true }, -- 51
+        { type = "COLLECT", quest = 342, questName = "Chapter IV", target = "Green Hills of Stranglethorn - Page 25", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 38.1, y = 3.9, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 52
+        { type = "COLLECT", quest = 342, questName = "Chapter IV", target = "Green Hills of Stranglethorn - Page 26", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 34.4, y = 22.8, near = true, mobs = "Lord Sakrasis / Gluggle" }, -- 53
+        { type = "COLLECT", quest = 342, questName = "Chapter IV", target = "Green Hills of Stranglethorn - Page 27", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 35.2, y = 22.6, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 54
+        { type = "TURNIN", quest = 342, questName = "Chapter IV", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.4 }, -- 55
+        { type = "ACCEPT", quest = 206, questName = "Mai'Zoth", npc = 739, npcName = "Brother Nimetz", map = 1434, zone = "Stranglethorn Vale", x = 37.8, y = 3.6, optional = true, note = "Elite - group up" }, -- 56
+        { type = "TURNIN", quest = 600, questName = "Venture Company Mining", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 57
+        { type = "TURNIN", quest = 209, questName = "Skullsplitter Tusks", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 58
+        { type = "ACCEPT", quest = 624, questName = "Cortello's Riddle", map = 1434, zone = "Stranglethorn Vale", x = 29.2, y = 88.6, note = "Take Cortello's Riddle from the Cortello's Riddle and use it to start the quest" }, -- 59
     } end,
 })

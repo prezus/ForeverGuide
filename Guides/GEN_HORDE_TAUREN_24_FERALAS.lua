@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_24_FERALAS",
     name = "24. Feralas 42-42 (Tauren)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 42,
@@ -13,24 +13,27 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_25_TANARIS",
     author = "ForeverGuide route planner",
     notes = "Chapter 24 of the Tauren route: level 42 to 42, 17 steps, ~75 min of play in the model (40270 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 17,
+    stepCount = 20,
     steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Camp Mojache", x = 74.8, y = 45.2, radius = 60, note = "use your hearthstone (Camp Mojache)" }, -- 1
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 75.0, y = 43.2, radius = 60, note = "travel to Feralas (Feralas)" }, -- 2
-        { type = "ACCEPT", quest = 2980, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 3
-        { type = "ACCEPT", quest = 7730, questName = "Zukk'ash Infestation", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 4
-        { type = "ACCEPT", quest = 3121, questName = "A Strange Request", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4 }, -- 5
-        { type = "ACCEPT", quest = 2973, questName = "A New Cloak's Sheen", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 6
-        { type = "COLLECT", quest = 2973, questName = "A New Cloak's Sheen", target = "Iridescent Sprite Darter Wing", count = 10, map = 1444, zone = "Feralas", x = 70.2, y = 46.6, near = true }, -- 7
-        { type = "KILL", quest = 2980, questName = "The Ogres of Feralas", npc = 5234, target = "Gordunni Mauler / Gordunni Warlock", count = 10, map = 1444, zone = "Feralas", x = 61.8, y = 54.5, near = true }, -- 8
-        { type = "KILL", quest = 2980, questName = "The Ogres of Feralas", npc = 5236, target = "Gordunni Shaman", count = 10, map = 1444, zone = "Feralas", x = 60.4, y = 64.8, near = true }, -- 9
-        { type = "COLLECT", quest = 7730, questName = "Zukk'ash Infestation", target = "Zukk'ash Carapace", count = 20, map = 1444, zone = "Feralas", x = 71.9, y = 63.5, near = true }, -- 10
-        { type = "TURNIN", quest = 2980, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 11
-        { type = "TURNIN", quest = 2973, questName = "A New Cloak's Sheen", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 12
-        { type = "TURNIN", quest = 7730, questName = "Zukk'ash Infestation", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 13
-        { type = "ACCEPT", quest = 2974, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 14
-        { type = "COLLECT", quest = 2974, questName = "A Grim Discovery", target = "Grimtotem Horn", count = 20, map = 1444, zone = "Feralas", x = 69.9, y = 40, near = true }, -- 15
-        { type = "TURNIN", quest = 2974, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 16
-        { type = "ACCEPT", quest = 2976, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 17
+        { type = "ACCEPT", quest = 2979, questName = "Dark Ceremony", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.4, y = 43.6 }, -- 3
+        { type = "ACCEPT", quest = 2980, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 4
+        { type = "ACCEPT", quest = 7730, questName = "Zukk'ash Infestation", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 5
+        { type = "ACCEPT", quest = 3121, questName = "A Strange Request", npc = 8115, npcName = "Witch Doctor Uzer'i", map = 1444, zone = "Feralas", x = 74.4, y = 43.4 }, -- 6
+        { type = "ACCEPT", quest = 2973, questName = "A New Cloak's Sheen", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 7
+        { type = "COLLECT", quest = 2973, questName = "A New Cloak's Sheen", target = "Iridescent Sprite Darter Wing", count = 10, map = 1444, zone = "Feralas", x = 70.2, y = 46.6, near = true }, -- 8
+        { type = "KILL", quest = 2980, questName = "The Ogres of Feralas", npc = 5234, target = "Gordunni Mauler / Gordunni Warlock", count = 10, map = 1444, zone = "Feralas", x = 61.8, y = 54.5, near = true }, -- 9
+        { type = "KILL", quest = 2980, questName = "The Ogres of Feralas", npc = 5236, target = "Gordunni Shaman", count = 10, map = 1444, zone = "Feralas", x = 60.4, y = 64.8, near = true }, -- 10
+        { type = "COLLECT", quest = 2979, questName = "Dark Ceremony", target = "Gordunni Orb", count = 1, map = 1444, zone = "Feralas", x = 59.4, y = 67, mobs = "Gordunni Mage-Lord" }, -- 11
+        { type = "COLLECT", quest = 7730, questName = "Zukk'ash Infestation", target = "Zukk'ash Carapace", count = 20, map = 1444, zone = "Feralas", x = 71.9, y = 63.5, near = true }, -- 12
+        { type = "TURNIN", quest = 2979, questName = "Dark Ceremony", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.4, y = 43.6 }, -- 13
+        { type = "TURNIN", quest = 2980, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 14
+        { type = "TURNIN", quest = 2973, questName = "A New Cloak's Sheen", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 15
+        { type = "TURNIN", quest = 7730, questName = "Zukk'ash Infestation", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 16
+        { type = "ACCEPT", quest = 2974, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 17
+        { type = "COLLECT", quest = 2974, questName = "A Grim Discovery", target = "Grimtotem Horn", count = 20, map = 1444, zone = "Feralas", x = 69.9, y = 40, near = true }, -- 18
+        { type = "TURNIN", quest = 2974, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 19
+        { type = "ACCEPT", quest = 2976, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 20
     } end,
 })

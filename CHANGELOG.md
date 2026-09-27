@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Guides: re-planned 1-60. Dungeon and battleground quests no longer count as free quests on the way: the Dwarf route goes Dun Morogh, then Loch Modan (flight path and hearth there) instead of an early Ironforge detour, and Knowledge in the Deeps no longer shows a turn-in before the quest can be done. Every route opens with a quest (no "grind to level 2"), quests are taken at most 3 levels above you, and kill steps point at the creatures' camp, not a lone stray (Frostmane Headhunters at Frostmane Hold).
+- Guides: missing quests are placed over the whole route to 60, not only to 30. A quest's turn-in never comes before its accept at a chapter's end; quests from one giver are accepted together (Protecting the Herd with Never Saddle on Quality); Camping 101 quests show only to characters with that profession; a quest objective no step can show is spelled out on the accept (sit at the campfire for The Great Outdoors).
+- Guides: The Cozy Sleeping Bag chain's first note is handed in in The Barrens for the Alliance; Of Mice and Milk (unfinished in the beta) and An Apple Treat (needs Thunder Applejack) are left out; Alba Fairmoon's Westfall chain follows its story order.
 - A breadcrumb quest is passed once you have taken, or done, the quest it leads to: the game never offers it again (Rejold's New Brew after Shimmer Stout).
 - Class and profession quests say whose they are: the guide list shows "[Rogue]" in the class colour, or "[Blacksmithing]", after the quest name.
 - Quest-mob skulls come back on their own when enemy nameplates are switched off under a kill step (the nameplate key, a loading screen); no reload needed.

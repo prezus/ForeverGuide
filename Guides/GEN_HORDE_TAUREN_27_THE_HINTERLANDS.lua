@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_27_THE_HINTERLANDS",
     name = "27. The Hinterlands 45-45 (Tauren)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 45,
@@ -13,39 +13,49 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_28_SEARING_GORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 27 of the Tauren route: level 45 to 45, 32 steps, ~146 min of play in the model (37557 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 32,
+    stepCount = 42,
     steps = function() return {
-        { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 78.9, y = 79.9, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 1
-        { type = "HEARTH", npc = 14731, npcName = "Lard", map = 1425, zone = "Revantusk Village", x = 78.1, y = 81.4, note = "talk to Lard and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 7839, questName = "Vilebranch Hooligans", npc = 14737, npcName = "Smith Slagtree", map = 1425, zone = "The Hinterlands", x = 77.2, y = 80.1 }, -- 3
-        { type = "ACCEPT", quest = 7828, questName = "Stalking the Stalkers", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 4
-        { type = "ACCEPT", quest = 7829, questName = "Hunt the Savages", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 5
-        { type = "ACCEPT", quest = 7830, questName = "Avenging the Fallen", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 6
-        { type = "ACCEPT", quest = 7841, questName = "Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 7
-        { type = "ACCEPT", quest = 7844, questName = "Cannibalistic Cousins", npc = 14739, npcName = "Mystic Yayo'jin", map = 1425, zone = "The Hinterlands", x = 78.8, y = 78.3 }, -- 8
-        { type = "KILL", quest = 7828, questName = "Stalking the Stalkers", npc = 2926, target = "Silvermane Stalker", count = 10, map = 1425, zone = "The Hinterlands", x = 73.4, y = 57.9, near = true }, -- 9
-        { type = "COLLECT", quest = 7839, questName = "Vilebranch Hooligans", target = "Slagtree's Lost Tools", map = 1425, zone = "The Hinterlands", x = 72.6, y = 52.9, near = true }, -- 10
-        { type = "KILL", quest = 7844, questName = "Cannibalistic Cousins", npc = 4466, target = "Vilebranch Scalper", count = 30, map = 1425, zone = "The Hinterlands", x = 72.2, y = 48.6, near = true }, -- 11
-        { type = "KILL", quest = 7830, questName = "Avenging the Fallen", npc = 2659, target = "Razorbeak Skylord", map = 1425, zone = "The Hinterlands", x = 64.6, y = 48.6, near = true, note = "loot Skylord Plume" }, -- 12
-        { type = "KILL", quest = 7829, questName = "Hunt the Savages", npc = 2929, target = "Savage Owlbeast", count = 20, map = 1425, zone = "The Hinterlands", x = 64, y = 55.6, near = true }, -- 13
-        { type = "KILL", quest = 7828, questName = "Stalking the Stalkers", npc = 2925, target = "Silvermane Howler", count = 10, map = 1425, zone = "The Hinterlands", x = 51.8, y = 60, near = true }, -- 14
-        { type = "KILL", quest = 7844, questName = "Cannibalistic Cousins", npc = 4467, target = "Vilebranch Soothsayer", count = 30, map = 1425, zone = "The Hinterlands", x = 48.8, y = 64.4, near = true }, -- 15
-        { type = "KILL", quest = 7841, questName = "Message to the Wildhammer", npc = 2691, target = "Highvale Outrunner", count = 15, map = 1425, zone = "The Hinterlands", x = 33.9, y = 50.1, near = true }, -- 16
-        { type = "ACCEPT", quest = 2742, questName = "Rin'ji is Trapped!", npc = 7780, npcName = "Rin'ji", map = 1425, zone = "The Hinterlands", x = 30.7, y = 46.9 }, -- 17
-        { type = "KILL", quest = 7841, questName = "Message to the Wildhammer", npc = 2694, target = "Highvale Ranger / Highvale Marksman / Highvale Scout", count = 15, map = 1425, zone = "The Hinterlands", x = 30.8, y = 47.6, near = true }, -- 18
-        { type = "COMPLETE", quest = 2742, questName = "Rin'ji is Trapped!", target = "Escort Rin'ji to safety", map = 1425, zone = "The Hinterlands", x = 34.6, y = 56.3, note = "escort - stay close, it can fail: Escort Rin'ji to safety" }, -- 19
-        { type = "TURNIN", quest = 7839, questName = "Vilebranch Hooligans", npc = 14737, npcName = "Smith Slagtree", map = 1425, zone = "The Hinterlands", x = 77.2, y = 80.1 }, -- 20
-        { type = "TURNIN", quest = 7844, questName = "Cannibalistic Cousins", npc = 14739, npcName = "Mystic Yayo'jin", map = 1425, zone = "The Hinterlands", x = 78.8, y = 78.3 }, -- 21
-        { type = "TURNIN", quest = 7828, questName = "Stalking the Stalkers", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 22
-        { type = "TURNIN", quest = 7829, questName = "Hunt the Savages", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 23
-        { type = "TURNIN", quest = 7830, questName = "Avenging the Fallen", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 24
-        { type = "TURNIN", quest = 7841, questName = "Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 25
-        { type = "ACCEPT", quest = 7842, questName = "Another Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 26
-        { type = "ACCEPT", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 27
-        { type = "KILL", quest = 7816, questName = "Gammerita, Mon!", npc = 7977, target = "Gammerita", map = 1425, zone = "The Hinterlands", x = 80.4, y = 58.2, optional = true }, -- 28
-        { type = "TURNIN", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true }, -- 29
-        { type = "COLLECT", quest = 7842, questName = "Another Message to the Wildhammer", target = "Long Elegant Feather", count = 10, map = 1425, zone = "The Hinterlands", x = 64.6, y = 48.6, near = true }, -- 30
-        { type = "TURNIN", quest = 7842, questName = "Another Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 31
-        { type = "TURNIN", quest = 2742, questName = "Rin'ji is Trapped!", map = 1425, zone = "The Hinterlands", x = 86.3, y = 59 }, -- 32
+        { type = "FLIGHTPATH", npc = 4314, npcName = "Gorkas", map = 1425, zone = "The Hinterlands", x = 81.7, y = 81.8 }, -- 1
+        { type = "COLLECT", quest = 580, questName = "Whiskey Slim's Lost Grog", target = "Pupellyverbos Port", count = 12, map = 1425, zone = "The Hinterlands", x = 81.6, y = 51.8, optional = true, near = true, mobs = "Gammerita" }, -- 2
+        { type = "TURNIN", quest = 580, questName = "Whiskey Slim's Lost Grog", npc = 2491, npcName = "Whiskey Slim", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.4, optional = true }, -- 3
+        { type = "ACCEPT", quest = 594, questName = "Message in a Bottle", map = 1434, zone = "Stranglethorn Vale", x = 36.3, y = 70.6, note = "Take Carefully Folded Note from the Half-Buried Bottle and use it to start the quest" }, -- 4
+        { type = "TURNIN", quest = 594, questName = "Message in a Bottle", npc = 2634, npcName = "Princess Poobah", map = 1434, zone = "Stranglethorn Vale", x = 38.4, y = 80.6 }, -- 5
+        { type = "TURNIN", quest = 670, questName = "Sunken Treasure", npc = 2610, npcName = "Shakes O'Breen", map = 1417, zone = "Arathi Highlands", x = 32.2, y = 81.4 }, -- 6
+        { type = "COLLECT", quest = 63, questName = "Call of Water", target = "Corrupt Manifestation's Bracers", count = 1, map = 1421, zone = "Silverpine Forest", x = 38.8, y = 44.3, class = { "SHAMAN" }, mobs = "Corrupt Minor Manifestation of Water" }, -- 7
+        { type = "TURNIN", quest = 63, questName = "Call of Water", map = 1421, zone = "Silverpine Forest", x = 38.2, y = 44.5, class = { "SHAMAN" }, note = "reduced xp (10%) - you out-levelled it" }, -- 8
+        { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 78.9, y = 79.9, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 9
+        { type = "HEARTH", npc = 14731, npcName = "Lard", map = 1425, zone = "Revantusk Village", x = 78.1, y = 81.4, note = "talk to Lard and make this inn your home" }, -- 10
+        { type = "ACCEPT", quest = 7839, questName = "Vilebranch Hooligans", npc = 14737, npcName = "Smith Slagtree", map = 1425, zone = "The Hinterlands", x = 77.2, y = 80.1 }, -- 11
+        { type = "ACCEPT", quest = 7828, questName = "Stalking the Stalkers", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 12
+        { type = "ACCEPT", quest = 7829, questName = "Hunt the Savages", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 13
+        { type = "ACCEPT", quest = 7830, questName = "Avenging the Fallen", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 14
+        { type = "ACCEPT", quest = 7841, questName = "Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 15
+        { type = "ACCEPT", quest = 7844, questName = "Cannibalistic Cousins", npc = 14739, npcName = "Mystic Yayo'jin", map = 1425, zone = "The Hinterlands", x = 78.8, y = 78.3 }, -- 16
+        { type = "KILL", quest = 7828, questName = "Stalking the Stalkers", npc = 2926, target = "Silvermane Stalker", count = 10, map = 1425, zone = "The Hinterlands", x = 73.4, y = 57.9, near = true }, -- 17
+        { type = "COLLECT", quest = 7839, questName = "Vilebranch Hooligans", target = "Slagtree's Lost Tools", map = 1425, zone = "The Hinterlands", x = 72.6, y = 52.9, near = true }, -- 18
+        { type = "KILL", quest = 7844, questName = "Cannibalistic Cousins", npc = 4466, target = "Vilebranch Scalper", count = 30, map = 1425, zone = "The Hinterlands", x = 72.2, y = 48.6, near = true }, -- 19
+        { type = "KILL", quest = 7830, questName = "Avenging the Fallen", npc = 2659, target = "Razorbeak Skylord", map = 1425, zone = "The Hinterlands", x = 64.6, y = 48.6, near = true, note = "loot Skylord Plume" }, -- 20
+        { type = "KILL", quest = 7829, questName = "Hunt the Savages", npc = 2929, target = "Savage Owlbeast", count = 20, map = 1425, zone = "The Hinterlands", x = 64, y = 55.6, near = true }, -- 21
+        { type = "KILL", quest = 7828, questName = "Stalking the Stalkers", npc = 2925, target = "Silvermane Howler", count = 10, map = 1425, zone = "The Hinterlands", x = 51.8, y = 60, near = true }, -- 22
+        { type = "KILL", quest = 7844, questName = "Cannibalistic Cousins", npc = 4467, target = "Vilebranch Soothsayer", count = 30, map = 1425, zone = "The Hinterlands", x = 48.8, y = 64.4, near = true }, -- 23
+        { type = "ACCEPT", quest = 1446, questName = "Jammal'an the Prophet", npc = 5598, npcName = "Atal'ai Exile", map = 1425, zone = "The Hinterlands", x = 33.6, y = 75.2, optional = true, note = "For The Temple of Atal'Hakkar (dungeon guide)" }, -- 24
+        { type = "KILL", quest = 7841, questName = "Message to the Wildhammer", npc = 2691, target = "Highvale Outrunner", count = 15, map = 1425, zone = "The Hinterlands", x = 33.9, y = 50.1, near = true }, -- 25
+        { type = "ACCEPT", quest = 2742, questName = "Rin'ji is Trapped!", npc = 7780, npcName = "Rin'ji", map = 1425, zone = "The Hinterlands", x = 30.7, y = 46.9 }, -- 26
+        { type = "KILL", quest = 7841, questName = "Message to the Wildhammer", npc = 2694, target = "Highvale Ranger / Highvale Marksman / Highvale Scout", count = 15, map = 1425, zone = "The Hinterlands", x = 30.8, y = 47.6, near = true }, -- 27
+        { type = "ACCEPT", quest = 2933, questName = "Venom Bottles", map = 1425, zone = "The Hinterlands", x = 31.6, y = 57.7 }, -- 28
+        { type = "COMPLETE", quest = 2742, questName = "Rin'ji is Trapped!", target = "Escort Rin'ji to safety", map = 1425, zone = "The Hinterlands", x = 34.6, y = 56.3, note = "escort - stay close, it can fail: Escort Rin'ji to safety" }, -- 29
+        { type = "TURNIN", quest = 7839, questName = "Vilebranch Hooligans", npc = 14737, npcName = "Smith Slagtree", map = 1425, zone = "The Hinterlands", x = 77.2, y = 80.1 }, -- 30
+        { type = "TURNIN", quest = 7844, questName = "Cannibalistic Cousins", npc = 14739, npcName = "Mystic Yayo'jin", map = 1425, zone = "The Hinterlands", x = 78.8, y = 78.3 }, -- 31
+        { type = "TURNIN", quest = 7828, questName = "Stalking the Stalkers", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 32
+        { type = "TURNIN", quest = 7829, questName = "Hunt the Savages", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 33
+        { type = "TURNIN", quest = 7830, questName = "Avenging the Fallen", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 34
+        { type = "TURNIN", quest = 7841, questName = "Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 35
+        { type = "ACCEPT", quest = 7842, questName = "Another Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 36
+        { type = "ACCEPT", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 37
+        { type = "KILL", quest = 7816, questName = "Gammerita, Mon!", npc = 7977, target = "Gammerita", map = 1425, zone = "The Hinterlands", x = 80.4, y = 58.2, optional = true }, -- 38
+        { type = "TURNIN", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true }, -- 39
+        { type = "COLLECT", quest = 7842, questName = "Another Message to the Wildhammer", target = "Long Elegant Feather", count = 10, map = 1425, zone = "The Hinterlands", x = 64.6, y = 48.6, near = true }, -- 40
+        { type = "TURNIN", quest = 7842, questName = "Another Message to the Wildhammer", npc = 14738, npcName = "Otho Moji'ko", map = 1425, zone = "The Hinterlands", x = 79.4, y = 79.1 }, -- 41
+        { type = "TURNIN", quest = 2742, questName = "Rin'ji is Trapped!", map = 1425, zone = "The Hinterlands", x = 86.3, y = 59 }, -- 42
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_29_FERALAS",
     name = "29. Feralas 46-46 (Tauren)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 46,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_30_TANARIS",
     author = "ForeverGuide route planner",
     notes = "Chapter 29 of the Tauren route: level 46 to 46, 17 steps, ~101 min of play in the model (30473 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 17,
+    stepCount = 18,
     steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 74.8, y = 43.4, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "ACCEPT", quest = 2822, questName = "The Mark of Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 2
@@ -26,11 +26,12 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 7732, questName = "Zukk'ash Report", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 9
         { type = "COLLECT", quest = 7734, questName = "Improved Quality", target = "Rage Scar Yeti Hide", count = 10, map = 1444, zone = "Feralas", x = 55.7, y = 33.1, near = true }, -- 10
         { type = "TURNIN", quest = 7734, questName = "Improved Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 11
-        { type = "ACCEPT", quest = 7003, questName = "Zapped Giants", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 12
-        { type = "ACCEPT", quest = 7721, questName = "Fuel for the Zapping", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 13
-        { type = "COLLECT", quest = 7003, questName = "Zapped Giants", target = "Miniaturization Residue", count = 15, map = 1444, zone = "Feralas", x = 44.3, y = 46.6, near = true }, -- 14
-        { type = "TURNIN", quest = 7003, questName = "Zapped Giants", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 15
-        { type = "COLLECT", quest = 7721, questName = "Fuel for the Zapping", target = "Water Elemental Core", count = 10, map = 1444, zone = "Feralas", x = 44.2, y = 49.7, near = true }, -- 16
-        { type = "TURNIN", quest = 7721, questName = "Fuel for the Zapping", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 17
+        { type = "KILL", quest = 3520, questName = "Screecher Spirits", npc = 8612, target = "Screecher Spirits Collected", count = 3, map = 1444, zone = "Feralas", x = 46.4, y = 40.6 }, -- 12
+        { type = "ACCEPT", quest = 7003, questName = "Zapped Giants", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 13
+        { type = "ACCEPT", quest = 7721, questName = "Fuel for the Zapping", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 14
+        { type = "COLLECT", quest = 7003, questName = "Zapped Giants", target = "Miniaturization Residue", count = 15, map = 1444, zone = "Feralas", x = 44.3, y = 46.6, near = true }, -- 15
+        { type = "TURNIN", quest = 7003, questName = "Zapped Giants", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 16
+        { type = "COLLECT", quest = 7721, questName = "Fuel for the Zapping", target = "Water Elemental Core", count = 10, map = 1444, zone = "Feralas", x = 44.2, y = 49.7, near = true }, -- 17
+        { type = "TURNIN", quest = 7721, questName = "Fuel for the Zapping", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 18
     } end,
 })

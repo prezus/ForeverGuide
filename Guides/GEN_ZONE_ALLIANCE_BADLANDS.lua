@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_ALLIANCE_BADLANDS",
     name = "Zone: Badlands 35-45 (Alliance)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 35,
     maxLevel = 45,

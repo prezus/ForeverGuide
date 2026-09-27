@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_29_FERALAS",
     name = "29. Feralas 43-45 (Human)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 43,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_30_TANARIS",
     author = "ForeverGuide route planner",
     notes = "Chapter 29 of the Human route: level 43 to 45, 34 steps, ~419 min of play in the model (11882 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 34,
+    stepCount = 39,
     steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.0, y = 44.7, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "ACCEPT", quest = 2870, questName = "Against Lord Shalzaru", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 2
@@ -48,6 +48,11 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 7721, questName = "Fuel for the Zapping", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 31
         { type = "ACCEPT", quest = 7733, questName = "Improved Quality", npc = 7852, npcName = "Pratt McGrubben", map = 1444, zone = "Feralas", x = 30.6, y = 42.7 }, -- 32
         { type = "COLLECT", quest = 7733, questName = "Improved Quality", target = "Rage Scar Yeti Hide", count = 10, map = 1444, zone = "Feralas", x = 51.8, y = 30.8, near = true }, -- 33
-        { type = "TURNIN", quest = 7733, questName = "Improved Quality", npc = 7852, npcName = "Pratt McGrubben", map = 1444, zone = "Feralas", x = 30.6, y = 42.7 }, -- 34
+        { type = "ACCEPT", quest = 2844, questName = "The Giant Guardian", npc = 7765, npcName = "Rockbiter", map = 1444, zone = "Feralas", x = 42.4, y = 22 }, -- 34
+        { type = "TURNIN", quest = 2844, questName = "The Giant Guardian", npc = 7774, npcName = "Shay Leafrunner", map = 1444, zone = "Feralas", x = 38.2, y = 10.2 }, -- 35
+        { type = "TURNIN", quest = 7733, questName = "Improved Quality", npc = 7852, npcName = "Pratt McGrubben", map = 1444, zone = "Feralas", x = 30.6, y = 42.7 }, -- 36
+        { type = "ACCEPT", quest = 2845, questName = "Wandering Shay", npc = 7774, npcName = "Shay Leafrunner", map = 1444, zone = "Feralas", x = 38.2, y = 10.2, note = "Objectives: Take Shay Leafrunner to Rockbiter's camp" }, -- 37
+        { type = "COLLECT", quest = 2845, questName = "Wandering Shay", target = "Shay's Bell", count = 1, map = 1444, zone = "Feralas", x = 38.3, y = 10.3 }, -- 38
+        { type = "TURNIN", quest = 2845, questName = "Wandering Shay", npc = 7765, npcName = "Rockbiter", map = 1444, zone = "Feralas", x = 42.4, y = 22 }, -- 39
     } end,
 })

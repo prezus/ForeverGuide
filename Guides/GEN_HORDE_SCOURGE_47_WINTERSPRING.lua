@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_47_WINTERSPRING",
     name = "47. Winterspring 55-57 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 55,
@@ -13,29 +13,61 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_48_SILITHUS",
     author = "ForeverGuide route planner",
     notes = "Chapter 47 of the Scourge route: level 55 to 57, 22 steps, ~498 min of play in the model (5376 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 22,
+    stepCount = 54,
     steps = function() return {
-        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 1
-        { type = "HEARTH", npc = 11118, npcName = "Innkeeper Vizzie", map = 1452, zone = "Everlook", x = 61.4, y = 38.8, note = "talk to Innkeeper Vizzie and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 3
-        { type = "ACCEPT", quest = 5054, questName = "Ursius of the Shardtooth", npc = 10303, npcName = "Storm Shadowhoof", map = 1452, zone = "Winterspring", x = 61.9, y = 38.4, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 4
-        { type = "KILL", quest = 5054, questName = "Ursius of the Shardtooth", npc = 10806, target = "Ursius", count = 1, map = 1452, zone = "Winterspring", x = 64, y = 24.1, optional = true }, -- 5
-        { type = "TURNIN", quest = 5054, questName = "Ursius of the Shardtooth", npc = 10303, npcName = "Storm Shadowhoof", map = 1452, zone = "Winterspring", x = 61.9, y = 38.4, optional = true }, -- 6
-        { type = "COLLECT", quest = 3783, questName = "Are We There, Yeti?", target = "Thick Yeti Fur", count = 10, map = 1452, zone = "Winterspring", x = 65.9, y = 41.7, near = true }, -- 7
-        { type = "TURNIN", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 8
-        { type = "ACCEPT", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 9
-        { type = "COLLECT", quest = 977, questName = "Are We There, Yeti?", target = "Pristine Yeti Horn", count = 2, map = 1452, zone = "Winterspring", x = 64.7, y = 40.6, near = true }, -- 10
-        { type = "TURNIN", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 11
-        { type = "ACCEPT", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 12
-        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7442, target = "Winterfall Pathfinder / Winterfall Totemic", count = 8, map = 1452, zone = "Winterspring", x = 33.4, y = 37.7, near = true }, -- 13
-        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.5, y = 36.9, near = true }, -- 14
-        { type = "ACCEPT", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 15
-        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.3, y = 36.3, near = true }, -- 16
-        { type = "TURNIN", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 17
-        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7438, target = "Winterfall Ursa", count = 8, map = 1452, zone = "Winterspring", x = 65.1, y = 37.2, near = true }, -- 18
-        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7439, target = "Winterfall Shaman", count = 8, map = 1452, zone = "Winterspring", x = 67.4, y = 35.2, near = true }, -- 19
-        { type = "TURNIN", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 20
-        { type = "GRIND", npc = 7443, target = "Shardtooth Mauler", level = 56, map = 1452, zone = "Winterspring", x = 51.9, y = 32.7, near = true, note = "grind Shardtooth Mauler (level 54-56) to level 56 - nothing worth questing at 55" }, -- 21
-        { type = "GRIND", npc = 7443, target = "Shardtooth Mauler", level = 57, map = 1452, zone = "Winterspring", x = 51.9, y = 32.7, near = true, note = "grind Shardtooth Mauler (level 54-56) to level 57 - nothing worth questing at 56" }, -- 22
+        { type = "FLIGHTPATH", npc = 11139, npcName = "Yugrek", map = 1452, zone = "Winterspring", x = 60.5, y = 36.3 }, -- 1
+        { type = "ACCEPT", quest = 6605, questName = "A Strange One", npc = 11755, npcName = "Harlo Wigglesworth", map = 1452, zone = "Winterspring", x = 61, y = 38.4 }, -- 2
+        { type = "TURNIN", quest = 6605, questName = "A Strange One", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.4 }, -- 3
+        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 4
+        { type = "ACCEPT", quest = 6603, questName = "Trouble in Winterspring!", npc = 11754, npcName = "Meggi Peppinrocker", map = 1452, zone = "Winterspring", x = 61.4, y = 38.4 }, -- 5
+        { type = "HEARTH", npc = 11118, npcName = "Innkeeper Vizzie", map = 1452, zone = "Everlook", x = 61.4, y = 38.8, note = "talk to Innkeeper Vizzie and make this inn your home" }, -- 6
+        { type = "ACCEPT", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 7
+        { type = "ACCEPT", quest = 5054, questName = "Ursius of the Shardtooth", npc = 10303, npcName = "Storm Shadowhoof", map = 1452, zone = "Winterspring", x = 61.9, y = 38.4, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 8
+        { type = "KILL", quest = 5054, questName = "Ursius of the Shardtooth", npc = 10806, target = "Ursius", count = 1, map = 1452, zone = "Winterspring", x = 64, y = 24.1, optional = true }, -- 9
+        { type = "TURNIN", quest = 5054, questName = "Ursius of the Shardtooth", npc = 10303, npcName = "Storm Shadowhoof", map = 1452, zone = "Winterspring", x = 61.9, y = 38.4, optional = true }, -- 10
+        { type = "COLLECT", quest = 3783, questName = "Are We There, Yeti?", target = "Thick Yeti Fur", count = 10, map = 1452, zone = "Winterspring", x = 65.9, y = 41.7, near = true }, -- 11
+        { type = "ACCEPT", quest = 5055, questName = "Brumeran of the Chillwind", npc = 10303, npcName = "Storm Shadowhoof", map = 1452, zone = "Winterspring", x = 61.8, y = 38.4, optional = true, note = "Elite - group up" }, -- 12
+        { type = "TURNIN", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 13
+        { type = "ACCEPT", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 14
+        { type = "ACCEPT", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.8, y = 38.2, optional = true, note = "Elite - group up" }, -- 15
+        { type = "COLLECT", quest = 977, questName = "Are We There, Yeti?", target = "Pristine Yeti Horn", count = 2, map = 1452, zone = "Winterspring", x = 64.7, y = 40.6, near = true }, -- 16
+        { type = "TURNIN", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 17
+        { type = "ACCEPT", quest = 5163, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.8, y = 37.6 }, -- 18
+        { type = "ACCEPT", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 19
+        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7442, target = "Winterfall Pathfinder / Winterfall Totemic", count = 8, map = 1452, zone = "Winterspring", x = 33.4, y = 37.7, near = true }, -- 20
+        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.5, y = 36.9, near = true }, -- 21
+        { type = "ACCEPT", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 22
+        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.3, y = 36.3, near = true }, -- 23
+        { type = "TURNIN", quest = 3908, questName = "It's a Secret to Everybody", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2 }, -- 24
+        { type = "TURNIN", quest = 980, questName = "The New Springs", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2 }, -- 25
+        { type = "TURNIN", quest = 6603, questName = "Trouble in Winterspring!", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2 }, -- 26
+        { type = "TURNIN", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 27
+        { type = "ACCEPT", quest = 6030, questName = "Duke Nicholas Zverenhoff", npc = 10431, npcName = "Gregor Greystone", map = 1452, zone = "Winterspring", x = 61.2, y = 38.8 }, -- 28
+        { type = "ACCEPT", quest = 6029, questName = "The Everlook Report", npc = 10431, npcName = "Gregor Greystone", map = 1452, zone = "Winterspring", x = 61.2, y = 38.8 }, -- 29
+        { type = "ACCEPT", quest = 4842, questName = "Strange Sources", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2, note = "Objectives: Explore Zone, Discover Darkwhisper Gorge" }, -- 30
+        { type = "TURNIN", quest = 4842, questName = "Strange Sources", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2 }, -- 31
+        { type = "KILL", quest = 5055, questName = "Brumeran of the Chillwind", npc = 10807, target = "Brumeran", count = 1, map = 1452, zone = "Winterspring", x = 61.2, y = 56.2, optional = true }, -- 32
+        { type = "TURNIN", quest = 5055, questName = "Brumeran of the Chillwind", npc = 10303, npcName = "Storm Shadowhoof", map = 1452, zone = "Winterspring", x = 61.8, y = 38.4, optional = true }, -- 33
+        { type = "ACCEPT", quest = 6606, questName = "A Little Luck", npc = 11755, npcName = "Harlo Wigglesworth", map = 1452, zone = "Winterspring", x = 61, y = 38.4 }, -- 34
+        { type = "TURNIN", quest = 6606, questName = "A Little Luck", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.8, y = 38.2 }, -- 35
+        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7438, target = "Winterfall Ursa", count = 8, map = 1452, zone = "Winterspring", x = 65.1, y = 37.2, near = true }, -- 36
+        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7439, target = "Winterfall Shaman", count = 8, map = 1452, zone = "Winterspring", x = 67.4, y = 35.2, near = true }, -- 37
+        { type = "KILL", quest = 4521, questName = "Wild Guardians", npc = 7451, target = "Raging Owlbeast", count = 15, map = 1452, zone = "Winterspring", x = 60.4, y = 29.8 }, -- 38
+        { type = "KILL", quest = 4521, questName = "Wild Guardians", npc = 7450, target = "Ragged Owlbeast", count = 15, map = 1452, zone = "Winterspring", x = 49.4, y = 35.4 }, -- 39
+        { type = "TURNIN", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 40
+        { type = "TURNIN", quest = 8465, questName = "Speak to Salfa", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.8, y = 34.4 }, -- 41
+        { type = "GRIND", npc = 7443, target = "Shardtooth Mauler", level = 56, map = 1452, zone = "Winterspring", x = 51.9, y = 32.7, near = true, note = "grind Shardtooth Mauler (level 54-56) to level 56 - nothing worth questing at 55" }, -- 42
+        { type = "GRIND", npc = 7443, target = "Shardtooth Mauler", level = 57, map = 1452, zone = "Winterspring", x = 51.9, y = 32.7, near = true, note = "grind Shardtooth Mauler (level 54-56) to level 57 - nothing worth questing at 56" }, -- 43
+        { type = "KILL", quest = 5163, questName = "Are We There, Yeti?", npc = 10978, target = "Scare Legacki", count = 1, map = 1452, zone = "Winterspring", x = 61.4, y = 38.4 }, -- 44
+        { type = "KILL", quest = 5163, questName = "Are We There, Yeti?", npc = 7583, target = "Scare Sprinkle", count = 1, map = 1446, zone = "Tanaris", x = 51, y = 26.8 }, -- 45
+        { type = "KILL", quest = 5163, questName = "Are We There, Yeti?", npc = 10977, target = "Scare Quixxil", count = 1, map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 9.4 }, -- 46
+        { type = "TURNIN", quest = 5163, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.8, y = 37.6 }, -- 47
+        { type = "COLLECT", quest = 969, questName = "Luck Be With You", target = "Frostmaul Shards", count = 10, map = 1452, zone = "Winterspring", x = 58.2, y = 67.4, optional = true, near = true, mobs = "Frostmaul Giant / Frostmaul Preserver / Kashoch the Reaver" }, -- 48
+        { type = "TURNIN", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.8, y = 38.2, optional = true }, -- 49
+        { type = "TURNIN", quest = 4521, questName = "Wild Guardians", npc = 10306, npcName = "Trull Failbane", map = 1448, zone = "Felwood", x = 34.6, y = 52.6 }, -- 50
+        { type = "COLLECT", quest = 7602, questName = "Flawless Fel Essence", target = "Flawless Fel Essence (Azshara)", count = 1, map = 1447, zone = "Azshara", x = 66, y = 16.5, near = true, class = { "WARLOCK" }, mobs = "Legashi Satyr / Legashi Rogue / Legashi Hellcaller" }, -- 51
+        { type = "COLLECT", quest = 7602, questName = "Flawless Fel Essence", target = "Flawless Fel Essence (Jaedenar)", count = 1, map = 1448, zone = "Felwood", x = 37.4, y = 53.2, class = { "WARLOCK" }, mobs = "Jaedenar Legionnaire" }, -- 52
+        { type = "COLLECT", quest = 7602, questName = "Flawless Fel Essence", target = "Flawless Fel Essence (Dark Portal)", count = 1, map = 1419, zone = "Blasted Lands", x = 57.7, y = 50.6, class = { "WARLOCK" }, mobs = "Felguard Sentry" }, -- 53
+        { type = "TURNIN", quest = 7602, questName = "Flawless Fel Essence", npc = 14470, npcName = "Impsy", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, class = { "WARLOCK" } }, -- 54
     } end,
 })

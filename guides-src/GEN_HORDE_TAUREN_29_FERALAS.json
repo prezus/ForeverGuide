@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_29_FERALAS",
   "name": "29. Feralas 46-46 (Tauren)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 46,
@@ -23,6 +23,7 @@
     {"type": "ACCEPT", "quest": 7732, "questName": "Zukk'ash Report", "npc": 7875, "npcName": "Hadoken Swiftstrider", "map": 1444, "zone": "Feralas", "x": 74.9, "y": 42.5},
     {"type": "COLLECT", "quest": 7734, "questName": "Improved Quality", "target": "Rage Scar Yeti Hide", "count": 10, "map": 1444, "zone": "Feralas", "x": 55.7, "y": 33.1, "near": true},
     {"type": "TURNIN", "quest": 7734, "questName": "Improved Quality", "npc": 7854, "npcName": "Jangdor Swiftstrider", "map": 1444, "zone": "Feralas", "x": 74.4, "y": 42.9},
+    {"type": "KILL", "quest": 3520, "questName": "Screecher Spirits", "npc": 8612, "target": "Screecher Spirits Collected", "count": 3, "map": 1444, "zone": "Feralas", "x": 46.4, "y": 40.6},
     {"type": "ACCEPT", "quest": 7003, "questName": "Zapped Giants", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
     {"type": "ACCEPT", "quest": 7721, "questName": "Fuel for the Zapping", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
     {"type": "COLLECT", "quest": 7003, "questName": "Zapped Giants", "target": "Miniaturization Residue", "count": 15, "map": 1444, "zone": "Feralas", "x": 44.3, "y": 46.6, "near": true},

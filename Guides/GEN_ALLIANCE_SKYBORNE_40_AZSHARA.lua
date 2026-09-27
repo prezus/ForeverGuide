@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_40_AZSHARA",
     name = "40. Azshara 51-51 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 51,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_41_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 40 of the Skyborne route: level 51 to 51, 13 steps, ~44 min of play in the model (42409 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 13,
+    stepCount = 20,
     steps = function() return {
         { type = "TRAVEL", map = 1447, zone = "Azshara", x = 60.8, y = 66.4, radius = 60, note = "travel to Azshara (Azshara)" }, -- 1
         { type = "ACCEPT", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 2
@@ -22,11 +22,18 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 5
         { type = "COLLECT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", target = "Some Rune", map = 1447, zone = "Azshara", x = 49.5, y = 42, near = true }, -- 6
         { type = "TURNIN", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 7
-        { type = "ACCEPT", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 8
-        { type = "ACCEPT", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 9
-        { type = "KILL", quest = 5535, questName = "Spiritual Unrest", npc = 6117, target = "Highborne Lichling / Highborne Apparition", count = 6, map = 1447, zone = "Azshara", x = 13.5, y = 73.2, near = true }, -- 10
-        { type = "TURNIN", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 11
-        { type = "KILL", quest = 5536, questName = "A Land Filled with Hatred", npc = 6127, target = "Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr", count = 6, map = 1447, zone = "Azshara", x = 19.1, y = 64, near = true }, -- 12
-        { type = "TURNIN", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 13
+        { type = "FLIGHTPATH", npc = 12577, npcName = "Jarrodenus", map = 1447, zone = "Azshara", x = 11.9, y = 77.6 }, -- 8
+        { type = "TURNIN", quest = 8151, questName = "The Hunter's Charm", npc = 8405, npcName = "Ogtinc", map = 1447, zone = "Azshara", x = 42.4, y = 42.6, class = { "HUNTER" } }, -- 9
+        { type = "TURNIN", quest = 8254, questName = "Cenarion Aid", npc = 8405, npcName = "Ogtinc", map = 1447, zone = "Azshara", x = 42.4, y = 42.6, class = { "PRIEST" } }, -- 10
+        { type = "TURNIN", quest = 8250, questName = "Magecraft", npc = 8395, npcName = "Sanath Lim-yo", map = 1447, zone = "Azshara", x = 28, y = 50, class = { "MAGE" } }, -- 11
+        { type = "ACCEPT", quest = 8251, questName = "Magic Dust", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 12
+        { type = "COLLECT", quest = 8251, questName = "Magic Dust", target = "Glittering Dust", count = 10, map = 1447, zone = "Azshara", x = 55.4, y = 28.6, near = true, class = { "MAGE" }, mobs = "Blood Elf Surveyor / Blood Elf Reclaimer / Blood Elf Defender" }, -- 13
+        { type = "TURNIN", quest = 8251, questName = "Magic Dust", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 14
+        { type = "ACCEPT", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 15
+        { type = "ACCEPT", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 16
+        { type = "KILL", quest = 5535, questName = "Spiritual Unrest", npc = 6117, target = "Highborne Lichling / Highborne Apparition", count = 6, map = 1447, zone = "Azshara", x = 13.5, y = 73.2, near = true }, -- 17
+        { type = "TURNIN", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 18
+        { type = "KILL", quest = 5536, questName = "A Land Filled with Hatred", npc = 6127, target = "Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr", count = 6, map = 1447, zone = "Azshara", x = 19.1, y = 64, near = true }, -- 19
+        { type = "TURNIN", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 20
     } end,
 })

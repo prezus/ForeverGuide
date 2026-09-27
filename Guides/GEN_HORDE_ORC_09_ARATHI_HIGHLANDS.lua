@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_09_ARATHI_HIGHLANDS",
     name = "9. Arathi Highlands 31-32 (Orc)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 31,
@@ -13,29 +13,43 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_10_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 9 of the Orc route: level 31 to 32, 22 steps, ~110 min of play in the model (13074 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 22,
+    stepCount = 36,
     steps = function() return {
-        { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 33.7, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 1
-        { type = "HEARTH", npc = 9501, npcName = "Innkeeper Adegwa", map = 1417, zone = "Hammerfall", x = 73.8, y = 32.5, note = "talk to Innkeeper Adegwa and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 3
-        { type = "ACCEPT", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 4
-        { type = "ACCEPT", quest = 655, questName = "Hammerfall", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 5
-        { type = "ACCEPT", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 6
-        { type = "TURNIN", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 7
-        { type = "TURNIN", quest = 655, questName = "Hammerfall", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 8
-        { type = "ACCEPT", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 9
-        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2555, target = "Witherbark Witch Doctor", count = 10, map = 1417, zone = "Arathi Highlands", x = 71.6, y = 61.8, near = true }, -- 10
-        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2554, target = "Witherbark Axe Thrower", count = 10, map = 1417, zone = "Arathi Highlands", x = 73.7, y = 63.8, near = true }, -- 11
-        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2556, target = "Witherbark Headhunter", count = 10, map = 1417, zone = "Arathi Highlands", x = 71.3, y = 69.9, near = true }, -- 12
-        { type = "COLLECT", quest = 672, questName = "Raising Spirits", target = "Highland Raptor Eye", count = 10, map = 1417, zone = "Arathi Highlands", x = 61.6, y = 45.2, near = true }, -- 13
-        { type = "TURNIN", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 14
-        { type = "TURNIN", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 15
-        { type = "ACCEPT", quest = 674, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 16
-        { type = "TURNIN", quest = 674, questName = "Raising Spirits", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 17
-        { type = "ACCEPT", quest = 675, questName = "Raising Spirits", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 18
-        { type = "TURNIN", quest = 675, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 19
-        { type = "COLLECT", quest = 671, questName = "Foul Magics", target = "Bloodstone Amulet", count = 10, map = 1417, zone = "Arathi Highlands", x = 34.7, y = 29.9, near = true }, -- 20
-        { type = "TURNIN", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 21
-        { type = "GRIND", npc = 2559, target = "Highland Strider", level = 32, map = 1417, zone = "Arathi Highlands", x = 64.4, y = 40.9, near = true, note = "grind Highland Strider (level 30-31) to level 32 - nothing worth questing at 31" }, -- 22
+        { type = "FLIGHTPATH", npc = 2851, npcName = "Urda", map = 1417, zone = "Arathi Highlands", x = 73, y = 32.7 }, -- 1
+        { type = "ACCEPT", quest = 552, questName = "Helcular's Revenge", npc = 2429, npcName = "Novice Thaivand", map = 1424, zone = "Hillsbrad Foothills", x = 63.8, y = 19.6 }, -- 2
+        { type = "COLLECT", quest = 552, questName = "Helcular's Revenge", target = "Helcular's Rod", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 44.8, y = 28.4, near = true, mobs = "Cave Yeti / Ferocious Yeti" }, -- 3
+        { type = "TURNIN", quest = 552, questName = "Helcular's Revenge", npc = 2429, npcName = "Novice Thaivand", map = 1424, zone = "Hillsbrad Foothills", x = 63.8, y = 19.6 }, -- 4
+        { type = "ACCEPT", quest = 676, questName = "The Hammer May Fall", npc = 2770, npcName = "Tallow", map = 1424, zone = "Hillsbrad Foothills", x = 61.8, y = 19.6 }, -- 5
+        { type = "ACCEPT", quest = 2479, questName = "Hinott's Assistance", npc = 3401, npcName = "Shenthul", map = 1454, zone = "Orgrimmar", x = 43, y = 53.4, class = { "ROGUE" } }, -- 6
+        { type = "TURNIN", quest = 2479, questName = "Hinott's Assistance", npc = 2391, npcName = "Serge Hinott", map = 1424, zone = "Hillsbrad Foothills", x = 61.6, y = 19.2, class = { "ROGUE" } }, -- 7
+        { type = "ACCEPT", quest = 7321, questName = "Soothing Turtle Bisque", npc = 2393, npcName = "Christoph Jeffcoat", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 19, profession = "Cooking" }, -- 8
+        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Turtle Meat", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 65.8, y = 38, profession = "Cooking", mobs = "Snapjaw" }, -- 9
+        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Soothing Spices", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 63.1, y = 19.4, near = true, profession = "Cooking", mobs = "Gunder Thornbush / Banalash / Nerrist / Edna Mullby" }, -- 10
+        { type = "TURNIN", quest = 7321, questName = "Soothing Turtle Bisque", npc = 2393, npcName = "Christoph Jeffcoat", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 19, profession = "Cooking" }, -- 11
+        { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 33.7, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 12
+        { type = "HEARTH", npc = 9501, npcName = "Innkeeper Adegwa", map = 1417, zone = "Hammerfall", x = 73.8, y = 32.5, note = "talk to Innkeeper Adegwa and make this inn your home" }, -- 13
+        { type = "ACCEPT", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 14
+        { type = "ACCEPT", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 15
+        { type = "ACCEPT", quest = 655, questName = "Hammerfall", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 16
+        { type = "ACCEPT", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 17
+        { type = "TURNIN", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 18
+        { type = "TURNIN", quest = 655, questName = "Hammerfall", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 19
+        { type = "ACCEPT", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 20
+        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2555, target = "Witherbark Witch Doctor", count = 10, map = 1417, zone = "Arathi Highlands", x = 71.6, y = 61.8, near = true }, -- 21
+        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2554, target = "Witherbark Axe Thrower", count = 10, map = 1417, zone = "Arathi Highlands", x = 73.7, y = 63.8, near = true }, -- 22
+        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2556, target = "Witherbark Headhunter", count = 10, map = 1417, zone = "Arathi Highlands", x = 71.3, y = 69.9, near = true }, -- 23
+        { type = "COLLECT", quest = 672, questName = "Raising Spirits", target = "Highland Raptor Eye", count = 10, map = 1417, zone = "Arathi Highlands", x = 61.6, y = 45.2, near = true }, -- 24
+        { type = "TURNIN", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 25
+        { type = "TURNIN", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 26
+        { type = "ACCEPT", quest = 674, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 27
+        { type = "TURNIN", quest = 674, questName = "Raising Spirits", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 28
+        { type = "ACCEPT", quest = 675, questName = "Raising Spirits", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 29
+        { type = "TURNIN", quest = 675, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 30
+        { type = "KILL", quest = 676, questName = "The Hammer May Fall", npc = 2562, target = "Boulderfist Ogre", count = 8, map = 1417, zone = "Arathi Highlands", x = 35.4, y = 44.8 }, -- 31
+        { type = "KILL", quest = 676, questName = "The Hammer May Fall", npc = 2564, target = "Boulderfist Enforcer", count = 10, map = 1417, zone = "Arathi Highlands", x = 34, y = 44.4 }, -- 32
+        { type = "TURNIN", quest = 676, questName = "The Hammer May Fall", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.8 }, -- 33
+        { type = "COLLECT", quest = 671, questName = "Foul Magics", target = "Bloodstone Amulet", count = 10, map = 1417, zone = "Arathi Highlands", x = 34.7, y = 29.9, near = true }, -- 34
+        { type = "TURNIN", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 35
+        { type = "GRIND", npc = 2559, target = "Highland Strider", level = 32, map = 1417, zone = "Arathi Highlands", x = 64.4, y = 40.9, near = true, note = "grind Highland Strider (level 30-31) to level 32 - nothing worth questing at 31" }, -- 36
     } end,
 })

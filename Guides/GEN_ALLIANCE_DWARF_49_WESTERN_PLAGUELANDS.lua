@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_49_WESTERN_PLAGUELANDS",
     name = "49. Western Plaguelands 55-57 (Dwarf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 55,
@@ -13,32 +13,54 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_50_SILITHUS",
     author = "ForeverGuide route planner",
     notes = "Chapter 49 of the Dwarf route: level 55 to 57, 25 steps, ~490 min of play in the model (7203 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 25,
+    stepCount = 47,
     steps = function() return {
-        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.6, y = 83.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
-        { type = "ACCEPT", quest = 5533, questName = "Scholomance", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 2
-        { type = "ACCEPT", quest = 5225, questName = "Target: Gahrron's Withering", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 3
-        { type = "TURNIN", quest = 5533, questName = "Scholomance", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 4
-        { type = "ACCEPT", quest = 5537, questName = "Skeletal Fragments", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 5
-        { type = "COLLECT", quest = 5537, questName = "Skeletal Fragments", target = "Skeletal Fragments", count = 15, map = 1422, zone = "Western Plaguelands", x = 42.6, y = 74.9, near = true }, -- 6
-        { type = "TURNIN", quest = 5537, questName = "Skeletal Fragments", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 7
-        { type = "KILL", quest = 5225, questName = "Target: Gahrron's Withering", npc = 11078, target = "Cauldron Lord Soulwrath", map = 1422, zone = "Western Plaguelands", x = 62.2, y = 59.1, note = "loot Gahrron's Withering Cauldron Key" }, -- 8
-        { type = "TURNIN", quest = 5225, questName = "Target: Gahrron's Withering", map = 1422, zone = "Western Plaguelands", x = 62.5, y = 58.5 }, -- 9
-        { type = "ACCEPT", quest = 5226, questName = "Return to Chillwind Point", map = 1422, zone = "Western Plaguelands", x = 62.5, y = 58.5 }, -- 10
-        { type = "ACCEPT", quest = 6023, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 11
-        { type = "KILL", quest = 6023, questName = "Unfinished Business", npc = 11611, target = "Cavalier Durgen", count = 1, map = 1422, zone = "Western Plaguelands", x = 55.2, y = 23.6 }, -- 12
-        { type = "KILL", quest = 6023, questName = "Unfinished Business", npc = 11613, target = "Huntsman Radley", count = 1, map = 1422, zone = "Western Plaguelands", x = 57.8, y = 36.1 }, -- 13
-        { type = "TURNIN", quest = 6023, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 14
-        { type = "ACCEPT", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 15
-        { type = "COMPLETE", quest = 6025, questName = "Unfinished Business", target = "Overlook Hearthglen from a high vantage point", map = 1422, zone = "Western Plaguelands", x = 45.8, y = 18.2, note = "Overlook Hearthglen from a high vantage point" }, -- 16
-        { type = "TURNIN", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 17
-        { type = "TURNIN", quest = 5226, questName = "Return to Chillwind Point", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 18
-        { type = "ACCEPT", quest = 5237, questName = "Mission Accomplished!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 19
-        { type = "TURNIN", quest = 5237, questName = "Mission Accomplished!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 20
-        { type = "GRIND", npc = 1816, target = "Diseased Grizzly", level = 56, map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5, near = true, note = "grind Diseased Grizzly (level 55-56) to level 56 - nothing worth questing at 55" }, -- 21
-        { type = "GRIND", npc = 1816, target = "Diseased Grizzly", level = 57, map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5, near = true, note = "grind Diseased Grizzly (level 55-56) to level 57 - nothing worth questing at 56" }, -- 22
-        { type = "ACCEPT", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 23
-        { type = "COLLECT", quest = 211, questName = "Alas, Andorhal", target = "Araj's Phylactery Shard", map = 1422, zone = "Western Plaguelands", x = 45.3, y = 69.2 }, -- 24
-        { type = "TURNIN", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 25
+        { type = "ACCEPT", quest = 3444, questName = "The Stone Circle", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8 }, -- 1
+        { type = "COLLECT", quest = 3444, questName = "The Stone Circle", target = "Stone Circle", count = 1, map = 1413, zone = "The Barrens", x = 62.5, y = 38.5 }, -- 2
+        { type = "TURNIN", quest = 3444, questName = "The Stone Circle", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8 }, -- 3
+        { type = "ACCEPT", quest = 3446, questName = "Into the Depths", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8, optional = true, note = "For The Temple of Atal'Hakkar (dungeon guide)" }, -- 4
+        { type = "ACCEPT", quest = 3447, questName = "Secret of the Circle", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8, optional = true, note = "For The Temple of Atal'Hakkar (dungeon guide)" }, -- 5
+        { type = "NOTE", optional = true, text = "Ready for The Temple of Atal'Hakkar", note = "Picked up: Jammal'an the Prophet, Into the Depths, Secret of the Circle. When you have a group, open The Temple of Atal'Hakkar under Dungeons." }, -- 6
+        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.6, y = 83.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 7
+        { type = "ACCEPT", quest = 5533, questName = "Scholomance", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 8
+        { type = "ACCEPT", quest = 5225, questName = "Target: Gahrron's Withering", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 9
+        { type = "ACCEPT", quest = 8414, questName = "Dispelling Evil", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 84, class = { "PALADIN" }, race = { "Dwarf" } }, -- 10
+        { type = "TURNIN", quest = 5533, questName = "Scholomance", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 11
+        { type = "ACCEPT", quest = 5537, questName = "Skeletal Fragments", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 12
+        { type = "COLLECT", quest = 5537, questName = "Skeletal Fragments", target = "Skeletal Fragments", count = 15, map = 1422, zone = "Western Plaguelands", x = 42.6, y = 74.9, near = true }, -- 13
+        { type = "TURNIN", quest = 5537, questName = "Skeletal Fragments", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 14
+        { type = "ACCEPT", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8, optional = true, note = "For Scholomance (dungeon guide)" }, -- 15
+        { type = "KILL", quest = 5225, questName = "Target: Gahrron's Withering", npc = 11078, target = "Cauldron Lord Soulwrath", map = 1422, zone = "Western Plaguelands", x = 62.2, y = 59.1, note = "loot Gahrron's Withering Cauldron Key" }, -- 16
+        { type = "TURNIN", quest = 5225, questName = "Target: Gahrron's Withering", map = 1422, zone = "Western Plaguelands", x = 62.5, y = 58.5 }, -- 17
+        { type = "ACCEPT", quest = 5226, questName = "Return to Chillwind Point", map = 1422, zone = "Western Plaguelands", x = 62.5, y = 58.5 }, -- 18
+        { type = "ACCEPT", quest = 6023, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 19
+        { type = "KILL", quest = 6023, questName = "Unfinished Business", npc = 11611, target = "Cavalier Durgen", count = 1, map = 1422, zone = "Western Plaguelands", x = 55.2, y = 23.6 }, -- 20
+        { type = "KILL", quest = 6023, questName = "Unfinished Business", npc = 11613, target = "Huntsman Radley", count = 1, map = 1422, zone = "Western Plaguelands", x = 57.8, y = 36.1 }, -- 21
+        { type = "TURNIN", quest = 6023, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 22
+        { type = "ACCEPT", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 23
+        { type = "COMPLETE", quest = 6025, questName = "Unfinished Business", target = "Overlook Hearthglen from a high vantage point", map = 1422, zone = "Western Plaguelands", x = 45.8, y = 18.2, note = "Overlook Hearthglen from a high vantage point" }, -- 24
+        { type = "TURNIN", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 25
+        { type = "TURNIN", quest = 5903, questName = "A Plague Upon Thee", npc = 11616, npcName = "Nathaniel Dumah", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 84.8 }, -- 26
+        { type = "TURNIN", quest = 5226, questName = "Return to Chillwind Point", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 27
+        { type = "ACCEPT", quest = 5237, questName = "Mission Accomplished!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 28
+        { type = "TURNIN", quest = 5237, questName = "Mission Accomplished!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 29
+        { type = "ACCEPT", quest = 5904, questName = "A Plague Upon Thee", npc = 11616, npcName = "Nathaniel Dumah", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 84.8 }, -- 30
+        { type = "TURNIN", quest = 6028, questName = "The Everlook Report", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 31
+        { type = "GRIND", npc = 1816, target = "Diseased Grizzly", level = 56, map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5, near = true, note = "grind Diseased Grizzly (level 55-56) to level 56 - nothing worth questing at 55" }, -- 32
+        { type = "GRIND", npc = 1816, target = "Diseased Grizzly", level = 57, map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5, near = true, note = "grind Diseased Grizzly (level 55-56) to level 57 - nothing worth questing at 56" }, -- 33
+        { type = "ACCEPT", quest = 5507, questName = "Mantles of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8, note = "Objectives: Argent Dawn" }, -- 34
+        { type = "ACCEPT", quest = 5521, questName = "Chromatic Mantle of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8, note = "Objectives: Argent Dawn" }, -- 35
+        { type = "COLLECT", quest = 5507, questName = "Mantles of the Dawn", target = "Argent Dawn Valor Token", count = 10, map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8, near = true, mobs = "Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock" }, -- 36
+        { type = "TURNIN", quest = 5507, questName = "Mantles of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8 }, -- 37
+        { type = "COLLECT", quest = 5521, questName = "Chromatic Mantle of the Dawn", target = "Argent Dawn Valor Token", count = 25, map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8, near = true, mobs = "Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock" }, -- 38
+        { type = "TURNIN", quest = 5521, questName = "Chromatic Mantle of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8 }, -- 39
+        { type = "COLLECT", quest = 8414, questName = "Dispelling Evil", target = "Minion's Scourgestone", count = 20, map = 1422, zone = "Western Plaguelands", x = 53.6, y = 64.6, near = true, class = { "PALADIN" }, race = { "Dwarf" }, mobs = "Skeletal Flayer / Skeletal Sorcerer / Skeletal Terror / Skeletal Executioner" }, -- 40
+        { type = "TURNIN", quest = 8414, questName = "Dispelling Evil", npc = 1854, npcName = "High Priest Thel'danis", map = 1422, zone = "Western Plaguelands", x = 52, y = 82.8, class = { "PALADIN" }, race = { "Dwarf" } }, -- 41
+        { type = "ACCEPT", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 42
+        { type = "COLLECT", quest = 211, questName = "Alas, Andorhal", target = "Araj's Phylactery Shard", map = 1422, zone = "Western Plaguelands", x = 45.3, y = 69.2 }, -- 43
+        { type = "TURNIN", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 44
+        { type = "TURNIN", quest = 5904, questName = "A Plague Upon Thee", map = 1422, zone = "Western Plaguelands", x = 48.4, y = 31.9 }, -- 45
+        { type = "ACCEPT", quest = 8416, questName = "Inert Scourgestones", npc = 1854, npcName = "High Priest Thel'danis", map = 1422, zone = "Western Plaguelands", x = 52, y = 82.8, class = { "PALADIN" }, race = { "Dwarf" } }, -- 46
+        { type = "TURNIN", quest = 8416, questName = "Inert Scourgestones", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 84, class = { "PALADIN" }, race = { "Dwarf" } }, -- 47
     } end,
 })

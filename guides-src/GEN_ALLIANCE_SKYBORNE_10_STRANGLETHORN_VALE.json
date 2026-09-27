@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_10_STRANGLETHORN_VALE",
   "name": "10. Stranglethorn Vale 30-30 (Skyborne)",
-  "version": 2,
+  "version": 7,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 30,
@@ -12,7 +12,10 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 10 of the Skyborne route: level 30 to 30, 24 steps, ~60 min of play in the model (22476 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 2859, "npcName": "Gyll", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.5, "y": 77.8},
     {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.3, "y": 76.5, "radius": 60, "note": "travel to Stranglethorn Vale (Stranglethorn Vale)"},
+    {"type": "ACCEPT", "quest": 201, "questName": "Investigate the Camp", "npc": 773, "npcName": "Krazek", "map": 1434, "zone": "Stranglethorn Vale", "x": 27, "y": 77.2, "note": "Objectives: Explore Zone, Locate the hunters' camp"},
+    {"type": "TURNIN", "quest": 201, "questName": "Investigate the Camp", "npc": 773, "npcName": "Krazek", "map": 1434, "zone": "Stranglethorn Vale", "x": 27, "y": 77.2},
     {"type": "HEARTH", "npc": 6807, "npcName": "Innkeeper Skindle", "map": 1434, "zone": "Booty Bay", "x": 27.0, "y": 77.3, "note": "talk to Innkeeper Skindle and make this inn your home"},
     {"type": "ACCEPT", "quest": 575, "questName": "Supply and Demand", "npc": 2495, "npcName": "Drizzlik", "map": 1434, "zone": "Stranglethorn Vale", "x": 28.3, "y": 77.6},
     {"type": "KILL", "quest": 575, "questName": "Supply and Demand", "npc": 1150, "target": "River Crocolisk", "count": 2, "map": 1434, "zone": "Stranglethorn Vale", "x": 39.9, "y": 14.4, "near": true, "note": "loot Large River Crocolisk Skin"},
@@ -35,6 +38,8 @@
     {"type": "KILL", "quest": 191, "questName": "Panther Mastery", "npc": 736, "target": "Panther", "count": 10, "map": 1434, "zone": "Stranglethorn Vale", "x": 31, "y": 14.6, "near": true},
     {"type": "TURNIN", "quest": 191, "questName": "Panther Mastery", "npc": 718, "npcName": "Sir S. J. Erlgadin", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.6},
     {"type": "TURNIN", "quest": 203, "questName": "The Second Rebellion", "npc": 733, "npcName": "Sergeant Yohwa", "map": 1434, "zone": "Stranglethorn Vale", "x": 38, "y": 3.3},
+    {"type": "ACCEPT", "quest": 7810, "questName": "Arena Master", "map": 1434, "zone": "Stranglethorn Vale", "x": 30.5, "y": 47.9, "note": "Take Arena Master from the Arena Treasure Chest and use it to start the quest"},
+    {"type": "TURNIN", "quest": 7810, "questName": "Arena Master", "npc": 14508, "npcName": "Short John Mithril", "map": 1434, "zone": "Stranglethorn Vale", "x": 29.6, "y": 47.4},
     {"type": "TURNIN", "quest": 575, "questName": "Supply and Demand", "npc": 2495, "npcName": "Drizzlik", "map": 1434, "zone": "Stranglethorn Vale", "x": 28.3, "y": 77.6}
   ]
 }

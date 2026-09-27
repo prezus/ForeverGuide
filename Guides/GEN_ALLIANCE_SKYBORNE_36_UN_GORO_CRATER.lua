@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_36_UN_GORO_CRATER",
     name = "36. Un'Goro Crater 49-49 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 49,
@@ -13,24 +13,33 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_37_IRONFORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 36 of the Skyborne route: level 49 to 49, 17 steps, ~63 min of play in the model (40433 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 17,
+    stepCount = 26,
     steps = function() return {
-        { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.5, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
-        { type = "ACCEPT", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 2
-        { type = "ACCEPT", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 3
-        { type = "ACCEPT", quest = 3883, questName = "Alien Ecology", npc = 9271, npcName = "Hol'anyee Marshal", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 7.2 }, -- 4
-        { type = "ACCEPT", quest = 4141, questName = "Muigin and Larion", npc = 9119, npcName = "Muigin", map = 1449, zone = "Un'Goro Crater", x = 42.9, y = 9.6 }, -- 5
-        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Pterrordax Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 56.2, y = 8.2, near = true }, -- 6
-        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Diemetradon Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 70.5, y = 20.6, near = true }, -- 7
-        { type = "COLLECT", quest = 4141, questName = "Muigin and Larion", target = "Bloodpetal", count = 15, map = 1449, zone = "Un'Goro Crater", x = 70.9, y = 22, near = true }, -- 8
-        { type = "COLLECT", quest = 3882, questName = "Roll the Bones", target = "Dinosaur Bone", count = 8, map = 1449, zone = "Un'Goro Crater", x = 69, y = 26.4, near = true }, -- 9
-        { type = "COLLECT", quest = 3883, questName = "Alien Ecology", target = "Hive Wall Sample", map = 1449, zone = "Un'Goro Crater", x = 48.7, y = 85.3 }, -- 10
-        { type = "TURNIN", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 11
-        { type = "TURNIN", quest = 4141, questName = "Muigin and Larion", npc = 9119, npcName = "Muigin", map = 1449, zone = "Un'Goro Crater", x = 42.9, y = 9.6 }, -- 12
-        { type = "TURNIN", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 13
-        { type = "TURNIN", quest = 3883, questName = "Alien Ecology", npc = 9271, npcName = "Hol'anyee Marshal", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 7.2 }, -- 14
-        { type = "ACCEPT", quest = 4142, questName = "A Visit to Gregan", npc = 9119, npcName = "Muigin", map = 1449, zone = "Un'Goro Crater", x = 42.9, y = 9.6 }, -- 15
-        { type = "ACCEPT", quest = 3844, questName = "It's a Secret to Everybody", map = 1449, zone = "Un'Goro Crater", x = 63, y = 68.6 }, -- 16
-        { type = "TURNIN", quest = 3844, questName = "It's a Secret to Everybody", map = 1449, zone = "Un'Goro Crater", x = 63.1, y = 69.1 }, -- 17
+        { type = "FLIGHTPATH", npc = 10583, npcName = "Gryfe", map = 1449, zone = "Un'Goro Crater", x = 45.2, y = 5.8 }, -- 1
+        { type = "COLLECT", quest = 4504, questName = "Super Sticky", target = "Super Sticky Tar", count = 12, map = 1449, zone = "Un'Goro Crater", x = 47.1, y = 34.6, near = true, mobs = "Tar Beast / Tar Lurker / Tar Lord / Tar Creeper" }, -- 2
+        { type = "TURNIN", quest = 4504, questName = "Super Sticky", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 3
+        { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.5, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 4
+        { type = "ACCEPT", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 5
+        { type = "ACCEPT", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 6
+        { type = "ACCEPT", quest = 3883, questName = "Alien Ecology", npc = 9271, npcName = "Hol'anyee Marshal", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 7.2 }, -- 7
+        { type = "ACCEPT", quest = 4141, questName = "Muigin and Larion", npc = 9119, npcName = "Muigin", map = 1449, zone = "Un'Goro Crater", x = 42.9, y = 9.6 }, -- 8
+        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Pterrordax Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 56.2, y = 8.2, near = true }, -- 9
+        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Diemetradon Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 70.5, y = 20.6, near = true }, -- 10
+        { type = "COLLECT", quest = 4141, questName = "Muigin and Larion", target = "Bloodpetal", count = 15, map = 1449, zone = "Un'Goro Crater", x = 70.9, y = 22, near = true }, -- 11
+        { type = "COLLECT", quest = 3882, questName = "Roll the Bones", target = "Dinosaur Bone", count = 8, map = 1449, zone = "Un'Goro Crater", x = 69, y = 26.4, near = true }, -- 12
+        { type = "COLLECT", quest = 3883, questName = "Alien Ecology", target = "Hive Wall Sample", map = 1449, zone = "Un'Goro Crater", x = 48.7, y = 85.3 }, -- 13
+        { type = "TURNIN", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 14
+        { type = "TURNIN", quest = 4141, questName = "Muigin and Larion", npc = 9119, npcName = "Muigin", map = 1449, zone = "Un'Goro Crater", x = 42.9, y = 9.6 }, -- 15
+        { type = "TURNIN", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 16
+        { type = "TURNIN", quest = 3883, questName = "Alien Ecology", npc = 9271, npcName = "Hol'anyee Marshal", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 7.2 }, -- 17
+        { type = "ACCEPT", quest = 4142, questName = "A Visit to Gregan", npc = 9119, npcName = "Muigin", map = 1449, zone = "Un'Goro Crater", x = 42.9, y = 9.6 }, -- 18
+        { type = "ACCEPT", quest = 3844, questName = "It's a Secret to Everybody", map = 1449, zone = "Un'Goro Crater", x = 63, y = 68.6 }, -- 19
+        { type = "TURNIN", quest = 3844, questName = "It's a Secret to Everybody", map = 1449, zone = "Un'Goro Crater", x = 63.1, y = 69.1 }, -- 20
+        { type = "ACCEPT", quest = 3845, questName = "It's a Secret to Everybody", map = 1449, zone = "Un'Goro Crater", x = 63.1, y = 69, optional = true, note = "Elite - group up" }, -- 21
+        { type = "COLLECT", quest = 3444, questName = "The Stone Circle", target = "Stone Circle", count = 1, map = 1413, zone = "The Barrens", x = 62.5, y = 38.5 }, -- 22
+        { type = "TURNIN", quest = 3444, questName = "The Stone Circle", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8 }, -- 23
+        { type = "ACCEPT", quest = 3446, questName = "Into the Depths", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8, optional = true, note = "For The Temple of Atal'Hakkar (dungeon guide)" }, -- 24
+        { type = "ACCEPT", quest = 3447, questName = "Secret of the Circle", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.6, y = 45.8, optional = true, note = "For The Temple of Atal'Hakkar (dungeon guide)" }, -- 25
+        { type = "NOTE", optional = true, text = "Ready for The Temple of Atal'Hakkar", note = "Picked up: Jammal'an the Prophet, Into the Depths, Secret of the Circle. When you have a group, open The Temple of Atal'Hakkar under Dungeons." }, -- 26
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_29_BLASTED_LANDS",
     name = "29. Blasted Lands 47-50 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 47,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_30_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 29 of the Skyborne route: level 47 to 50, 25 steps, ~603 min of play in the model (6872 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 25,
+    stepCount = 28,
     steps = function() return {
         { type = "TRAVEL", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, radius = 60, note = "travel to Blasted Lands (Blasted Lands)" }, -- 1
         { type = "ACCEPT", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 2
@@ -31,14 +31,17 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Basilisk Brain", map = 1419, zone = "Blasted Lands", x = 50.2, y = 20.7, near = true }, -- 14
         { type = "COLLECT", quest = 2601, questName = "The Basilisk's Bite", target = "Basilisk Brain", map = 1419, zone = "Blasted Lands", x = 50.2, y = 20.7, near = true }, -- 15
         { type = "TURNIN", quest = 2601, questName = "The Basilisk's Bite", npc = 7506, npcName = "Bloodmage Lynnore", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.3 }, -- 16
-        { type = "COLLECT", quest = 2581, questName = "Snickerfang Jowls", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 17
-        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 18
-        { type = "COLLECT", quest = 2585, questName = "The Decisive Striker", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 19
-        { type = "TURNIN", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 20
-        { type = "TURNIN", quest = 2583, questName = "A Boar's Vitality", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 21
-        { type = "TURNIN", quest = 2585, questName = "The Decisive Striker", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 22
-        { type = "GRIND", npc = 5996, target = "Nethergarde Miner", level = 48, map = 1419, zone = "Blasted Lands", x = 57.1, y = 11.5, near = true, note = "grind Nethergarde Miner (level 47-48) to level 48 - nothing worth questing at 47" }, -- 23
-        { type = "GRIND", npc = 5996, target = "Nethergarde Miner", level = 49, map = 1419, zone = "Blasted Lands", x = 57.1, y = 11.5, near = true, note = "grind Nethergarde Miner (level 47-48) to level 49 - nothing worth questing at 48" }, -- 24
-        { type = "GRIND", npc = 5988, target = "Scorpok Stinger", level = 50, map = 1419, zone = "Blasted Lands", x = 49.6, y = 16.4, near = true, note = "grind Scorpok Stinger (level 50-51) to level 50 - nothing worth questing at 49" }, -- 25
+        { type = "ACCEPT", quest = 3501, questName = "Everything Counts In Large Amounts", npc = 7363, npcName = "Kum'isha the Collector", map = 1419, zone = "Blasted Lands", x = 51.8, y = 35.6 }, -- 17
+        { type = "COLLECT", quest = 3501, questName = "Everything Counts In Large Amounts", target = "Imperfect Draenethyst Fragment", count = 1, map = 1419, zone = "Blasted Lands", x = 50.6, y = 36, near = true, mobs = "Dreadmaul Ogre / Dreadmaul Ogre Mage / Dreadmaul Brute / Dreadmaul Mauler" }, -- 18
+        { type = "TURNIN", quest = 3501, questName = "Everything Counts In Large Amounts", npc = 7363, npcName = "Kum'isha the Collector", map = 1419, zone = "Blasted Lands", x = 51.8, y = 35.6 }, -- 19
+        { type = "COLLECT", quest = 2581, questName = "Snickerfang Jowls", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 20
+        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 21
+        { type = "COLLECT", quest = 2585, questName = "The Decisive Striker", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 22
+        { type = "TURNIN", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 23
+        { type = "TURNIN", quest = 2583, questName = "A Boar's Vitality", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 24
+        { type = "TURNIN", quest = 2585, questName = "The Decisive Striker", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 25
+        { type = "GRIND", npc = 5996, target = "Nethergarde Miner", level = 48, map = 1419, zone = "Blasted Lands", x = 57.1, y = 11.5, near = true, note = "grind Nethergarde Miner (level 47-48) to level 48 - nothing worth questing at 47" }, -- 26
+        { type = "GRIND", npc = 5996, target = "Nethergarde Miner", level = 49, map = 1419, zone = "Blasted Lands", x = 57.1, y = 11.5, near = true, note = "grind Nethergarde Miner (level 47-48) to level 49 - nothing worth questing at 48" }, -- 27
+        { type = "GRIND", npc = 5988, target = "Scorpok Stinger", level = 50, map = 1419, zone = "Blasted Lands", x = 49.6, y = 16.4, near = true, note = "grind Scorpok Stinger (level 50-51) to level 50 - nothing worth questing at 49" }, -- 28
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_30_TANARIS",
     name = "30. Tanaris 46-47 (Tauren)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 46,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_31_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 30 of the Tauren route: level 46 to 47, 31 steps, ~86 min of play in the model (36168 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 31,
+    stepCount = 40,
     steps = function() return {
         { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 51.7, y = 27.5, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 1
         { type = "ACCEPT", quest = 82, questName = "Noxious Lair Investigation", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 2
@@ -29,22 +29,31 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 12
         { type = "ACCEPT", quest = 2606, questName = "In Good Taste", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 13
         { type = "TURNIN", quest = 2606, questName = "In Good Taste", npc = 7583, npcName = "Sprinkle", map = 1446, zone = "Tanaris", x = 51.1, y = 26.9 }, -- 14
-        { type = "COLLECT", quest = 10, questName = "The Scrimshank Redemption", target = "Scrimshank's Surveying Gear", map = 1446, zone = "Tanaris", x = 56, y = 71.2 }, -- 15
-        { type = "TURNIN", quest = 10, questName = "The Scrimshank Redemption", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 16
-        { type = "ACCEPT", quest = 110, questName = "Insect Part Analysis", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 17
-        { type = "TURNIN", quest = 110, questName = "Insect Part Analysis", npc = 5594, npcName = "Alchemist Pestlezugg", map = 1446, zone = "Tanaris", x = 50.9, y = 27 }, -- 18
-        { type = "ACCEPT", quest = 113, questName = "Insect Part Analysis", npc = 5594, npcName = "Alchemist Pestlezugg", map = 1446, zone = "Tanaris", x = 50.9, y = 27 }, -- 19
-        { type = "TURNIN", quest = 113, questName = "Insect Part Analysis", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 20
-        { type = "ACCEPT", quest = 32, questName = "Rise of the Silithid", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 21
-        { type = "ACCEPT", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 22
-        { type = "COLLECT", quest = 3161, questName = "Gahz'ridian", target = "Gahz'ridian Ornament", count = 30, map = 1446, zone = "Tanaris", x = 53, y = 44, near = true }, -- 23
-        { type = "TURNIN", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 24
-        { type = "ACCEPT", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 25
-        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5490, target = "Gnarled Thistleshrub", count = 8, map = 1446, zone = "Tanaris", x = 30, y = 63.3, near = true }, -- 26
-        { type = "ACCEPT", quest = 1560, questName = "Tooga's Quest", npc = 5955, npcName = "Tooga", map = 1446, zone = "Tanaris", x = 30, y = 65 }, -- 27
-        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5485, target = "Thistleshrub Rootshaper", count = 8, map = 1446, zone = "Tanaris", x = 29.4, y = 64.6, near = true }, -- 28
-        { type = "TURNIN", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 29
-        { type = "COMPLETE", quest = 1560, questName = "Tooga's Quest", target = "Lead Tooga to Torta", map = 1446, zone = "Tanaris", x = 66.6, y = 25.6, note = "Lead Tooga to Torta" }, -- 30
-        { type = "TURNIN", quest = 1560, questName = "Tooga's Quest", npc = 6015, npcName = "Torta", map = 1446, zone = "Tanaris", x = 66.6, y = 25.7 }, -- 31
+        { type = "ACCEPT", quest = 2641, questName = "Sprinkle's Secret Ingredient", npc = 7583, npcName = "Sprinkle", map = 1446, zone = "Tanaris", x = 51, y = 26.8 }, -- 15
+        { type = "COLLECT", quest = 10, questName = "The Scrimshank Redemption", target = "Scrimshank's Surveying Gear", map = 1446, zone = "Tanaris", x = 56, y = 71.2 }, -- 16
+        { type = "TURNIN", quest = 10, questName = "The Scrimshank Redemption", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 17
+        { type = "ACCEPT", quest = 110, questName = "Insect Part Analysis", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 18
+        { type = "TURNIN", quest = 110, questName = "Insect Part Analysis", npc = 5594, npcName = "Alchemist Pestlezugg", map = 1446, zone = "Tanaris", x = 50.9, y = 27 }, -- 19
+        { type = "ACCEPT", quest = 113, questName = "Insect Part Analysis", npc = 5594, npcName = "Alchemist Pestlezugg", map = 1446, zone = "Tanaris", x = 50.9, y = 27 }, -- 20
+        { type = "TURNIN", quest = 113, questName = "Insect Part Analysis", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 21
+        { type = "ACCEPT", quest = 32, questName = "Rise of the Silithid", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 22
+        { type = "ACCEPT", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 23
+        { type = "COLLECT", quest = 3161, questName = "Gahz'ridian", target = "Gahz'ridian Ornament", count = 30, map = 1446, zone = "Tanaris", x = 53, y = 44, near = true }, -- 24
+        { type = "TURNIN", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 25
+        { type = "ACCEPT", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 26
+        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5490, target = "Gnarled Thistleshrub", count = 8, map = 1446, zone = "Tanaris", x = 30, y = 63.3, near = true }, -- 27
+        { type = "ACCEPT", quest = 1560, questName = "Tooga's Quest", npc = 5955, npcName = "Tooga", map = 1446, zone = "Tanaris", x = 30, y = 65 }, -- 28
+        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5485, target = "Thistleshrub Rootshaper", count = 8, map = 1446, zone = "Tanaris", x = 29.4, y = 64.6, near = true }, -- 29
+        { type = "TURNIN", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 30
+        { type = "COMPLETE", quest = 1560, questName = "Tooga's Quest", target = "Lead Tooga to Torta", map = 1446, zone = "Tanaris", x = 66.6, y = 25.6, note = "Lead Tooga to Torta" }, -- 31
+        { type = "TURNIN", quest = 1560, questName = "Tooga's Quest", npc = 6015, npcName = "Torta", map = 1446, zone = "Tanaris", x = 66.6, y = 25.7 }, -- 32
+        { type = "TURNIN", quest = 3520, questName = "Screecher Spirits", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 33
+        { type = "COLLECT", quest = 2641, questName = "Sprinkle's Secret Ingredient", target = "Violet Tragan", count = 1, map = 1425, zone = "The Hinterlands", x = 41.6, y = 58.9 }, -- 34
+        { type = "TURNIN", quest = 2641, questName = "Sprinkle's Secret Ingredient", npc = 7583, npcName = "Sprinkle", map = 1446, zone = "Tanaris", x = 51, y = 26.8 }, -- 35
+        { type = "TURNIN", quest = 2933, questName = "Venom Bottles", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.2 }, -- 36
+        { type = "ACCEPT", quest = 3527, questName = "The Prophecy of Mosh'aru", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4, optional = true, note = "For Zul'Farrak (dungeon guide)" }, -- 37
+        { type = "NOTE", optional = true, text = "Ready for Zul'Farrak", note = "Picked up: Divino-matic Rod, Gahz'rilla, Tiara of the Deep, Scarab Shells, Troll Temper, The Prophecy of Mosh'aru. When you have a group, open Zul'Farrak under Dungeons." }, -- 38
+        { type = "ACCEPT", quest = 100, questName = "Call of Water", map = 1421, zone = "Silverpine Forest", x = 38.2, y = 44.5, class = { "SHAMAN" } }, -- 39
+        { type = "TURNIN", quest = 100, questName = "Call of Water", npc = 5895, npcName = "Minor Manifestation of Water", map = 1421, zone = "Silverpine Forest", x = 38.6, y = 44.6, class = { "SHAMAN" }, note = "reduced xp (10%) - you out-levelled it" }, -- 40
     } end,
 })

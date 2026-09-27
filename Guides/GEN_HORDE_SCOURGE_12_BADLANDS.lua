@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_12_BADLANDS",
     name = "12. Badlands 36-37 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 36,
@@ -13,30 +13,38 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_13_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 12 of the Scourge route: level 36 to 37, 23 steps, ~124 min of play in the model (28543 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 23,
+    stepCount = 31,
     steps = function() return {
-        { type = "TRAVEL", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, radius = 60, note = "use your hearthstone (Booty Bay)" }, -- 1
-        { type = "TRAVEL", map = 1418, zone = "Badlands", x = 3.7, y = 46.8, radius = 60, note = "travel to Badlands (Badlands)" }, -- 2
-        { type = "HEARTH", npc = 9356, npcName = "Innkeeper Shul'kar", map = 1418, zone = "Kargath", x = 2.8, y = 45.9, note = "talk to Innkeeper Shul'kar and make this inn your home" }, -- 3
-        { type = "ACCEPT", quest = 2258, questName = "Badlands Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 4
-        { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Rock Elemental Shard", count = 5, map = 1418, zone = "Badlands", x = 13.3, y = 38, near = true }, -- 5
-        { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Buzzard Gizzard", count = 5, map = 1418, zone = "Badlands", x = 15.5, y = 58.5, near = true }, -- 6
-        { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Crag Coyote Fang", count = 10, map = 1418, zone = "Badlands", x = 29.4, y = 68, near = true }, -- 7
-        { type = "TURNIN", quest = 2258, questName = "Badlands Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 8
-        { type = "ACCEPT", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 9
-        { type = "KILL", quest = 710, questName = "Study of the Elements: Rock", npc = 2735, target = "Lesser Rock Elemental", count = 10, map = 1418, zone = "Badlands", x = 23.5, y = 45.5, near = true, note = "loot Small Stone Shard" }, -- 10
-        { type = "TURNIN", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 11
-        { type = "ACCEPT", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 12
-        { type = "KILL", quest = 711, questName = "Study of the Elements: Rock", npc = 92, target = "Rock Elemental", count = 3, map = 1418, zone = "Badlands", x = 13.4, y = 33.4, near = true, note = "loot Large Stone Slab" }, -- 13
-        { type = "TURNIN", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 14
-        { type = "ACCEPT", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 15
-        { type = "ACCEPT", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 16
-        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "Dentrium Power Stone / An'Alleum Power Stone", count = 8, map = 1418, zone = "Badlands", x = 51.2, y = 27.2, near = true }, -- 17
-        { type = "COLLECT", quest = 703, questName = "Barbecued Buzzard Wings", target = "Buzzard Wing", count = 4, map = 1418, zone = "Badlands", x = 57.5, y = 28.6, near = true }, -- 18
-        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 19
-        { type = "TURNIN", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 20
-        { type = "ACCEPT", quest = 1419, questName = "Coyote Thieves", npc = 5394, npcName = "Neeka Bloodscar", map = 1418, zone = "Badlands", x = 6.5, y = 47.2 }, -- 21
-        { type = "COLLECT", quest = 1419, questName = "Coyote Thieves", target = "Coyote Jawbone", count = 30, map = 1418, zone = "Badlands", x = 29.4, y = 68, near = true }, -- 22
-        { type = "TURNIN", quest = 1419, questName = "Coyote Thieves", npc = 5394, npcName = "Neeka Bloodscar", map = 1418, zone = "Badlands", x = 6.5, y = 47.2 }, -- 23
+        { type = "ACCEPT", quest = 1145, questName = "The Swarm Grows", npc = 3428, npcName = "Korran", map = 1413, zone = "The Barrens", x = 51, y = 29.6 }, -- 1
+        { type = "ACCEPT", quest = 3633, questName = "Goblin Engineering", npc = 3494, npcName = "Tinkerwiz", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2, profession = "Engineering", skill = 200 }, -- 2
+        { type = "TRAVEL", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, radius = 60, note = "use your hearthstone (Booty Bay)" }, -- 3
+        { type = "FLIGHTPATH", npc = 2861, npcName = "Gorrik", map = 1418, zone = "Badlands", x = 4, y = 44.8 }, -- 4
+        { type = "TRAVEL", map = 1418, zone = "Badlands", x = 3.7, y = 46.8, radius = 60, note = "travel to Badlands (Badlands)" }, -- 5
+        { type = "HEARTH", npc = 9356, npcName = "Innkeeper Shul'kar", map = 1418, zone = "Kargath", x = 2.8, y = 45.9, note = "talk to Innkeeper Shul'kar and make this inn your home" }, -- 6
+        { type = "ACCEPT", quest = 2258, questName = "Badlands Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 7
+        { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Rock Elemental Shard", count = 5, map = 1418, zone = "Badlands", x = 13.3, y = 38, near = true }, -- 8
+        { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Buzzard Gizzard", count = 5, map = 1418, zone = "Badlands", x = 15.5, y = 58.5, near = true }, -- 9
+        { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Crag Coyote Fang", count = 10, map = 1418, zone = "Badlands", x = 29.4, y = 68, near = true }, -- 10
+        { type = "TURNIN", quest = 2258, questName = "Badlands Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 11
+        { type = "ACCEPT", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 12
+        { type = "KILL", quest = 710, questName = "Study of the Elements: Rock", npc = 2735, target = "Lesser Rock Elemental", count = 10, map = 1418, zone = "Badlands", x = 23.5, y = 45.5, near = true, note = "loot Small Stone Shard" }, -- 13
+        { type = "TURNIN", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 14
+        { type = "ACCEPT", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 15
+        { type = "KILL", quest = 711, questName = "Study of the Elements: Rock", npc = 92, target = "Rock Elemental", count = 3, map = 1418, zone = "Badlands", x = 13.4, y = 33.4, near = true, note = "loot Large Stone Slab" }, -- 16
+        { type = "TURNIN", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 17
+        { type = "TURNIN", quest = 1106, questName = "Martek the Exiled", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 18
+        { type = "ACCEPT", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 19
+        { type = "ACCEPT", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 20
+        { type = "ACCEPT", quest = 1108, questName = "Indurium", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 21
+        { type = "ACCEPT", quest = 705, questName = "Pearl Diving", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8, optional = true, note = "Elite - group up" }, -- 22
+        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "Dentrium Power Stone / An'Alleum Power Stone", count = 8, map = 1418, zone = "Badlands", x = 51.2, y = 27.2, near = true }, -- 23
+        { type = "COLLECT", quest = 703, questName = "Barbecued Buzzard Wings", target = "Buzzard Wing", count = 4, map = 1418, zone = "Badlands", x = 57.5, y = 28.6, near = true }, -- 24
+        { type = "COLLECT", quest = 1108, questName = "Indurium", target = "Indurium Flake", count = 10, map = 1418, zone = "Badlands", x = 64.8, y = 43.4, near = true, mobs = "Stonevault Seer / Stonevault Bonesnapper / Stonevault Shaman / Stonevault Basher" }, -- 25
+        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 26
+        { type = "TURNIN", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 27
+        { type = "TURNIN", quest = 1108, questName = "Indurium", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 28
+        { type = "ACCEPT", quest = 1419, questName = "Coyote Thieves", npc = 5394, npcName = "Neeka Bloodscar", map = 1418, zone = "Badlands", x = 6.5, y = 47.2 }, -- 29
+        { type = "COLLECT", quest = 1419, questName = "Coyote Thieves", target = "Coyote Jawbone", count = 30, map = 1418, zone = "Badlands", x = 29.4, y = 68, near = true }, -- 30
+        { type = "TURNIN", quest = 1419, questName = "Coyote Thieves", npc = 5394, npcName = "Neeka Bloodscar", map = 1418, zone = "Badlands", x = 6.5, y = 47.2 }, -- 31
     } end,
 })

@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_27_FERALAS",
   "name": "27. Feralas 41-41 (Dwarf)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 41,
@@ -12,8 +12,18 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 27 of the Dwarf route: level 41 to 41, 27 steps, ~54 min of play in the model (34132 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "FLIGHTPATH", "npc": 8019, "npcName": "Fyldren Moonfeather", "map": 1444, "zone": "Feralas", "x": 30.2, "y": 43.3},
+    {"type": "ACCEPT", "quest": 1374, "questName": "Khan Jehn", "npc": 5397, "npcName": "Uthek the Wise", "map": 1443, "zone": "Desolace", "x": 36.2, "y": 79.2, "note": "Objectives: Gelkis Clan Centaur"},
+    {"type": "COLLECT", "quest": 1374, "questName": "Khan Jehn", "target": "Khan Jehn's Head", "count": 1, "mobs": "Khan Jehn", "map": 1443, "zone": "Desolace", "x": 66, "y": 80.4},
+    {"type": "TURNIN", "quest": 1374, "questName": "Khan Jehn", "npc": 5397, "npcName": "Uthek the Wise", "map": 1443, "zone": "Desolace", "x": 36.2, "y": 79.2},
+    {"type": "ACCEPT", "quest": 7028, "questName": "Twisted Evils", "npc": 13656, "npcName": "Willow", "map": 1443, "zone": "Desolace", "x": 62.2, "y": 39.6, "note": "For Maraudon (dungeon guide)", "optional": true},
+    {"type": "ACCEPT", "quest": 7041, "questName": "Vyletongue Corruption", "npc": 11715, "npcName": "Talendria", "map": 1443, "zone": "Desolace", "x": 68.4, "y": 8.8, "note": "For Maraudon (dungeon guide)", "optional": true},
+    {"type": "ACCEPT", "quest": 7044, "questName": "Legends of Maraudon", "npc": 13697, "npcName": "Cavindra", "map": 1443, "zone": "Desolace", "x": 31.9, "y": 63.8, "note": "For Maraudon (dungeon guide)", "optional": true},
     {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 31.2, "y": 45.1, "radius": 60, "note": "travel to Feralas (Feralas)"},
     {"type": "HEARTH", "npc": 7736, "npcName": "Innkeeper Shyria", "map": 1444, "zone": "Feathermoon Stronghold", "x": 31.0, "y": 43.5, "note": "talk to Innkeeper Shyria and make this inn your home"},
+    {"type": "ACCEPT", "quest": 2847, "questName": "Wild Leather Armor", "npc": 7852, "npcName": "Pratt McGrubben", "map": 1444, "zone": "Feralas", "x": 30.6, "y": 42.6, "profession": "Leatherworking", "skill": 200},
+    {"type": "COLLECT", "quest": 2847, "questName": "Wild Leather Armor", "target": "Thick Leather", "count": 10, "mobs": "Groddoc Ape / Groddoc Thunderer / Ironfur Bear / Grizzled Ironfur Bear", "map": 1444, "zone": "Feralas", "x": 30.2, "y": 43.2, "near": true, "profession": "Leatherworking", "skill": 200},
+    {"type": "TURNIN", "quest": 2847, "questName": "Wild Leather Armor", "npc": 7852, "npcName": "Pratt McGrubben", "map": 1444, "zone": "Feralas", "x": 30.6, "y": 42.6, "profession": "Leatherworking", "skill": 200},
     {"type": "ACCEPT", "quest": 4124, "questName": "The Missing Courier", "npc": 7877, "npcName": "Latronicus Moonspear", "map": 1444, "zone": "Feralas", "x": 30.4, "y": 46.2},
     {"type": "ACCEPT", "quest": 2866, "questName": "The Ruins of Solarsal", "npc": 3936, "npcName": "Shandris Feathermoon", "map": 1444, "zone": "Feralas", "x": 30.3, "y": 46.2},
     {"type": "ACCEPT", "quest": 2982, "questName": "The High Wilderness", "npc": 7900, "npcName": "Angelas Moonbreeze", "map": 1444, "zone": "Feralas", "x": 31.8, "y": 45.6},
@@ -38,6 +48,19 @@
     {"type": "ACCEPT", "quest": 4130, "questName": "Psychometric Reading", "npc": 7879, "npcName": "Quintis Jonespyre", "map": 1444, "zone": "Feralas", "x": 32.5, "y": 43.8},
     {"type": "TURNIN", "quest": 4130, "questName": "Psychometric Reading", "npc": 7880, "npcName": "Ginro Hearthkindle", "map": 1444, "zone": "Feralas", "x": 31.9, "y": 45.1},
     {"type": "ACCEPT", "quest": 4131, "questName": "The Woodpaw Gnolls", "npc": 7880, "npcName": "Ginro Hearthkindle", "map": 1444, "zone": "Feralas", "x": 31.9, "y": 45.1},
-    {"type": "TURNIN", "quest": 4131, "questName": "The Woodpaw Gnolls", "map": 1444, "zone": "Feralas", "x": 73.3, "y": 56.3}
+    {"type": "TURNIN", "quest": 4131, "questName": "The Woodpaw Gnolls", "map": 1444, "zone": "Feralas", "x": 73.3, "y": 56.3},
+    {"type": "FLIGHTPATH", "npc": 4319, "npcName": "Thyssiana", "map": 1444, "zone": "Feralas", "x": 89.5, "y": 45.9},
+    {"type": "ACCEPT", "quest": 4281, "questName": "Thalanaar Delivery", "map": 1444, "zone": "Feralas", "x": 73.3, "y": 56.3, "note": "Take Undelivered Parcel from the Large Leather Backpacks and use it to start the quest"},
+    {"type": "TURNIN", "quest": 4281, "questName": "Thalanaar Delivery", "npc": 4048, "npcName": "Falfindel Waywarder", "map": 1444, "zone": "Feralas", "x": 89.6, "y": 46.4},
+    {"type": "TURNIN", "quest": 1137, "questName": "News for Fizzle", "npc": 4454, "npcName": "Fizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78, "y": 77},
+    {"type": "ACCEPT", "quest": 2770, "questName": "Gahz'rilla", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78, "y": 77, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
+    {"type": "ACCEPT", "quest": 2864, "questName": "Tran'rek", "npc": 773, "npcName": "Krazek", "map": 1434, "zone": "Stranglethorn Vale", "x": 27, "y": 77.2, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
+    {"type": "ACCEPT", "quest": 1661, "questName": "The Tome of Nobility", "npc": 6171, "npcName": "Duthorian Rall", "map": 1453, "zone": "Stormwind City", "x": 40, "y": 29.8, "class": ["PALADIN"], "race": ["Dwarf"]},
+    {"type": "TURNIN", "quest": 1661, "questName": "The Tome of Nobility", "npc": 6171, "npcName": "Duthorian Rall", "map": 1453, "zone": "Stormwind City", "x": 40, "y": 29.8, "class": ["PALADIN"], "race": ["Dwarf"]},
+    {"type": "TURNIN", "quest": 1949, "questName": "Hidden Secrets", "npc": 6548, "npcName": "Magus Tirth", "map": 1441, "zone": "Thousand Needles", "x": 78.2, "y": 75.8, "class": ["MAGE"]},
+    {"type": "ACCEPT", "quest": 4487, "questName": "Summon Felsteed", "npc": 5172, "npcName": "Briarthorn", "map": 1455, "zone": "Ironforge", "x": 50.2, "y": 6, "class": ["WARLOCK"], "race": ["Gnome"]},
+    {"type": "TURNIN", "quest": 4487, "questName": "Summon Felsteed", "npc": 6251, "npcName": "Strahad Farsan", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 35.4, "class": ["WARLOCK"], "race": ["Gnome"]},
+    {"type": "ACCEPT", "quest": 4488, "questName": "Summon Felsteed", "npc": 461, "npcName": "Demisette Cloyce", "map": 1453, "zone": "Stormwind City", "x": 25.4, "y": 78.2, "class": ["WARLOCK"], "race": ["Gnome"]},
+    {"type": "TURNIN", "quest": 4488, "questName": "Summon Felsteed", "npc": 6251, "npcName": "Strahad Farsan", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 35.4, "class": ["WARLOCK"], "race": ["Gnome"]}
   ]
 }

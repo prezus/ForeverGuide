@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_ALLIANCE_ASHENVALE",
     name = "Zone: Ashenvale 18-30 (Alliance)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 18,
     maxLevel = 30,

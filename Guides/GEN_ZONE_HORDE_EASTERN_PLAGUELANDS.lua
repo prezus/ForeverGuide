@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_HORDE_EASTERN_PLAGUELANDS",
     name = "Zone: Eastern Plaguelands 53-60 (Horde)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     minLevel = 53,
     maxLevel = 60,

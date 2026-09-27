@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_21_SWAMP_OF_SORROWS",
     name = "21. Swamp of Sorrows 35-38 (Night Elf)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 35,
@@ -13,26 +13,41 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_22_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 21 of the NightElf route: level 35 to 38, 19 steps, ~340 min of play in the model (3157 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 19,
+    stepCount = 34,
     steps = function() return {
-        { type = "TRAVEL", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, radius = 60, note = "use your hearthstone (Booty Bay)" }, -- 1
-        { type = "TRAVEL", map = 1435, zone = "Swamp of Sorrows", x = 29.3, y = 60.1, radius = 60, note = "travel to Swamp of Sorrows (Swamp of Sorrows)" }, -- 2
-        { type = "ACCEPT", quest = 1396, questName = "Encroaching Wildlife", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.7, y = 59.8 }, -- 3
-        { type = "KILL", quest = 1396, questName = "Encroaching Wildlife", npc = 858, target = "Sorrow Spinner", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 26.1, y = 62, near = true }, -- 4
-        { type = "KILL", quest = 1396, questName = "Encroaching Wildlife", npc = 1084, target = "Young Sawtooth Crocolisk", count = 8, map = 1435, zone = "Swamp of Sorrows", x = 28.6, y = 56, near = true }, -- 5
-        { type = "KILL", quest = 1396, questName = "Encroaching Wildlife", npc = 767, target = "Swamp Jaguar", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 33.6, y = 54.4, near = true }, -- 6
-        { type = "ACCEPT", quest = 1389, questName = "Draenethyst Crystals", npc = 1776, npcName = "Magtoor", map = 1435, zone = "Swamp of Sorrows", x = 26, y = 31.4 }, -- 7
-        { type = "COLLECT", quest = 1389, questName = "Draenethyst Crystals", target = "Draenethyst Crystal", count = 6, map = 1435, zone = "Swamp of Sorrows", x = 55.1, y = 30.1, near = true }, -- 8
-        { type = "TURNIN", quest = 1389, questName = "Draenethyst Crystals", npc = 1776, npcName = "Magtoor", map = 1435, zone = "Swamp of Sorrows", x = 26, y = 31.4 }, -- 9
-        { type = "TURNIN", quest = 1396, questName = "Encroaching Wildlife", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.7, y = 59.8 }, -- 10
-        { type = "ACCEPT", quest = 1421, questName = "The Lost Caravan", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.7, y = 59.8 }, -- 11
-        { type = "COLLECT", quest = 1421, questName = "The Lost Caravan", target = "Wizards' Reagents", map = 1435, zone = "Swamp of Sorrows", x = 64.5, y = 18.3 }, -- 12
-        { type = "ACCEPT", quest = 1393, questName = "Galen's Escape", npc = 5391, npcName = "Galen Goodward", map = 1435, zone = "Swamp of Sorrows", x = 65.5, y = 18.2 }, -- 13
-        { type = "COMPLETE", quest = 1393, questName = "Galen's Escape", target = "Escort Galen out of the Fallow Sanctuary.", map = 1435, zone = "Swamp of Sorrows", x = 53.1, y = 29.6, note = "escort - stay close, it can fail: Escort Galen out of the Fallow Sanctuary." }, -- 14
-        { type = "TURNIN", quest = 1393, questName = "Galen's Escape", map = 1435, zone = "Swamp of Sorrows", x = 47.8, y = 39.8 }, -- 15
-        { type = "TURNIN", quest = 1421, questName = "The Lost Caravan", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.7, y = 59.8 }, -- 16
-        { type = "GRIND", npc = 767, target = "Swamp Jaguar", level = 36, map = 1435, zone = "Swamp of Sorrows", x = 33.6, y = 54.4, near = true, note = "grind Swamp Jaguar (level 36-37) to level 36 - nothing worth questing at 35" }, -- 17
-        { type = "GRIND", npc = 767, target = "Swamp Jaguar", level = 37, map = 1435, zone = "Swamp of Sorrows", x = 33.6, y = 54.4, near = true, note = "grind Swamp Jaguar (level 36-37) to level 37 - nothing worth questing at 36" }, -- 18
-        { type = "GRIND", npc = 767, target = "Swamp Jaguar", level = 38, map = 1435, zone = "Swamp of Sorrows", x = 33.6, y = 54.4, near = true, note = "grind Swamp Jaguar (level 36-37) to level 38 - nothing worth questing at 37" }, -- 19
+        { type = "ACCEPT", quest = 8552, questName = "The Monogrammed Sash", npc = 1493, npcName = "Mok'rash", map = 1434, zone = "Stranglethorn Vale", x = 23.3, y = 72.1, optional = true, note = "Loot Monogrammed Sash from Mok'rash and use it to start the quest; Elite - group up" }, -- 1
+        { type = "TURNIN", quest = 8552, questName = "The Monogrammed Sash", npc = 2500, npcName = "Captain Hecklebury Smotts", map = 1434, zone = "Stranglethorn Vale", x = 26.6, y = 73.6, optional = true }, -- 2
+        { type = "TURNIN", quest = 721, questName = "A Sign of Hope", npc = 2909, npcName = "Hammertoe Grez", map = 1418, zone = "Badlands", x = 37.9, y = 10.6, optional = true }, -- 3
+        { type = "ACCEPT", quest = 722, questName = "Amulet of Secrets", npc = 2909, npcName = "Hammertoe Grez", map = 1418, zone = "Badlands", x = 37.9, y = 10.6, optional = true, note = "For Uldaman (dungeon guide)" }, -- 4
+        { type = "TRAVEL", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, radius = 60, note = "use your hearthstone (Booty Bay)" }, -- 5
+        { type = "ACCEPT", quest = 624, questName = "Cortello's Riddle", map = 1434, zone = "Stranglethorn Vale", x = 29.2, y = 88.6, note = "Take Cortello's Riddle from the Cortello's Riddle and use it to start the quest" }, -- 6
+        { type = "ACCEPT", quest = 8553, questName = "The Captain's Cutlass", npc = 2500, npcName = "Captain Hecklebury Smotts", map = 1434, zone = "Stranglethorn Vale", x = 26.6, y = 73.6 }, -- 7
+        { type = "TURNIN", quest = 8553, questName = "The Captain's Cutlass", npc = 2594, npcName = "Sprogger", map = 1434, zone = "Stranglethorn Vale", x = 26.6, y = 73.6 }, -- 8
+        { type = "TRAVEL", map = 1435, zone = "Swamp of Sorrows", x = 29.3, y = 60.1, radius = 60, note = "travel to Swamp of Sorrows (Swamp of Sorrows)" }, -- 9
+        { type = "ACCEPT", quest = 1396, questName = "Encroaching Wildlife", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.7, y = 59.8 }, -- 10
+        { type = "KILL", quest = 1396, questName = "Encroaching Wildlife", npc = 858, target = "Sorrow Spinner", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 26.1, y = 62, near = true }, -- 11
+        { type = "KILL", quest = 1396, questName = "Encroaching Wildlife", npc = 1084, target = "Young Sawtooth Crocolisk", count = 8, map = 1435, zone = "Swamp of Sorrows", x = 28.6, y = 56, near = true }, -- 12
+        { type = "KILL", quest = 1396, questName = "Encroaching Wildlife", npc = 767, target = "Swamp Jaguar", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 33.6, y = 54.4, near = true }, -- 13
+        { type = "ACCEPT", quest = 1389, questName = "Draenethyst Crystals", npc = 1776, npcName = "Magtoor", map = 1435, zone = "Swamp of Sorrows", x = 26, y = 31.4 }, -- 14
+        { type = "ACCEPT", quest = 1392, questName = "Noboru the Cudgel", npc = 5477, npcName = "Noboru the Cudgel", map = 1435, zone = "Swamp of Sorrows", x = 54.9, y = 34.1, note = "Loot Noboru's Cudgel from Noboru the Cudgel and use it to start the quest" }, -- 15
+        { type = "TURNIN", quest = 1392, questName = "Noboru the Cudgel", npc = 1776, npcName = "Magtoor", map = 1435, zone = "Swamp of Sorrows", x = 26, y = 31.4 }, -- 16
+        { type = "COLLECT", quest = 1389, questName = "Draenethyst Crystals", target = "Draenethyst Crystal", count = 6, map = 1435, zone = "Swamp of Sorrows", x = 55.1, y = 30.1, near = true }, -- 17
+        { type = "TURNIN", quest = 1389, questName = "Draenethyst Crystals", npc = 1776, npcName = "Magtoor", map = 1435, zone = "Swamp of Sorrows", x = 26, y = 31.4 }, -- 18
+        { type = "TURNIN", quest = 624, questName = "Cortello's Riddle", map = 1435, zone = "Swamp of Sorrows", x = 22.8, y = 48.1 }, -- 19
+        { type = "TURNIN", quest = 1396, questName = "Encroaching Wildlife", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.7, y = 59.8 }, -- 20
+        { type = "ACCEPT", quest = 1421, questName = "The Lost Caravan", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.7, y = 59.8 }, -- 21
+        { type = "ACCEPT", quest = 625, questName = "Cortello's Riddle", map = 1435, zone = "Swamp of Sorrows", x = 22.8, y = 48.1 }, -- 22
+        { type = "COLLECT", quest = 1421, questName = "The Lost Caravan", target = "Wizards' Reagents", map = 1435, zone = "Swamp of Sorrows", x = 64.5, y = 18.3 }, -- 23
+        { type = "ACCEPT", quest = 1393, questName = "Galen's Escape", npc = 5391, npcName = "Galen Goodward", map = 1435, zone = "Swamp of Sorrows", x = 65.5, y = 18.2 }, -- 24
+        { type = "COLLECT", quest = 1373, questName = "Ongeku", target = "Draenethyst Shard", count = 1, map = 1435, zone = "Swamp of Sorrows", x = 65.1, y = 22, mobs = "Ongeku" }, -- 25
+        { type = "COMPLETE", quest = 1393, questName = "Galen's Escape", target = "Escort Galen out of the Fallow Sanctuary.", map = 1435, zone = "Swamp of Sorrows", x = 53.1, y = 29.6, note = "escort - stay close, it can fail: Escort Galen out of the Fallow Sanctuary." }, -- 26
+        { type = "TURNIN", quest = 1393, questName = "Galen's Escape", map = 1435, zone = "Swamp of Sorrows", x = 47.8, y = 39.8 }, -- 27
+        { type = "TURNIN", quest = 1421, questName = "The Lost Caravan", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.7, y = 59.8 }, -- 28
+        { type = "ACCEPT", quest = 1398, questName = "Driftwood", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.8, y = 59.6 }, -- 29
+        { type = "GRIND", npc = 767, target = "Swamp Jaguar", level = 36, map = 1435, zone = "Swamp of Sorrows", x = 33.6, y = 54.4, near = true, note = "grind Swamp Jaguar (level 36-37) to level 36 - nothing worth questing at 35" }, -- 30
+        { type = "GRIND", npc = 767, target = "Swamp Jaguar", level = 37, map = 1435, zone = "Swamp of Sorrows", x = 33.6, y = 54.4, near = true, note = "grind Swamp Jaguar (level 36-37) to level 37 - nothing worth questing at 36" }, -- 31
+        { type = "GRIND", npc = 767, target = "Swamp Jaguar", level = 38, map = 1435, zone = "Swamp of Sorrows", x = 33.6, y = 54.4, near = true, note = "grind Swamp Jaguar (level 36-37) to level 38 - nothing worth questing at 37" }, -- 32
+        { type = "COLLECT", quest = 1398, questName = "Driftwood", target = "Sundried Driftwood", count = 8, map = 1435, zone = "Swamp of Sorrows", x = 91.9, y = 31.9 }, -- 33
+        { type = "TURNIN", quest = 1398, questName = "Driftwood", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.8, y = 59.6 }, -- 34
     } end,
 })

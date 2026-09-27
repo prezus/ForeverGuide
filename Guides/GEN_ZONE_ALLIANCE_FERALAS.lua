@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_ALLIANCE_FERALAS",
     name = "Zone: Feralas 40-50 (Alliance)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 40,
     maxLevel = 50,

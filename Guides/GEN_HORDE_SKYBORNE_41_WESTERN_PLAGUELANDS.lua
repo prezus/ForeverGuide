@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_41_WESTERN_PLAGUELANDS",
     name = "41. Western Plaguelands 53-53 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 53,
@@ -13,22 +13,23 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_42_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 41 of the Skyborne route: level 53 to 53, 15 steps, ~39 min of play in the model (47801 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 15,
+    stepCount = 16,
     steps = function() return {
-        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 39.3, y = 66.0, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
-        { type = "ACCEPT", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 2
-        { type = "KILL", quest = 4971, questName = "A Matter of Time", npc = 10717, target = "Temporal Parasite", count = 10, map = 1422, zone = "Western Plaguelands", x = 45.2, y = 62.8, near = true }, -- 3
-        { type = "TURNIN", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 4
-        { type = "ACCEPT", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 5
-        { type = "COLLECT", quest = 4972, questName = "Counting Out Time", target = "Andorhal Watch", count = 5, map = 1422, zone = "Western Plaguelands", x = 40.3, y = 68.2, near = true }, -- 6
-        { type = "TURNIN", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 7
-        { type = "ACCEPT", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 8
-        { type = "KILL", quest = 4985, questName = "The Wildlife Suffers Too", npc = 1816, target = "Diseased Grizzly", count = 8, map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5, near = true }, -- 9
-        { type = "TURNIN", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 10
-        { type = "ACCEPT", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 11
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1833, target = "Scarlet Knight", count = 2, map = 1422, zone = "Western Plaguelands", x = 49.6, y = 33.2, near = true }, -- 12
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1826, target = "Scarlet Mage", count = 2, map = 1422, zone = "Western Plaguelands", x = 52.8, y = 36.7, near = true }, -- 13
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1831, target = "Scarlet Hunter / Scarlet Medic", count = 2, map = 1422, zone = "Western Plaguelands", x = 52.2, y = 44, near = true }, -- 14
-        { type = "TURNIN", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 15
+        { type = "TURNIN", quest = 5050, questName = "Good Luck Charm", npc = 10778, npcName = "Janice Felstone", map = 1422, zone = "Western Plaguelands", x = 38.4, y = 54 }, -- 1
+        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 39.3, y = 66.0, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 2
+        { type = "ACCEPT", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 3
+        { type = "KILL", quest = 4971, questName = "A Matter of Time", npc = 10717, target = "Temporal Parasite", count = 10, map = 1422, zone = "Western Plaguelands", x = 45.2, y = 62.8, near = true }, -- 4
+        { type = "TURNIN", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 5
+        { type = "ACCEPT", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 6
+        { type = "COLLECT", quest = 4972, questName = "Counting Out Time", target = "Andorhal Watch", count = 5, map = 1422, zone = "Western Plaguelands", x = 40.3, y = 68.2, near = true }, -- 7
+        { type = "TURNIN", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 8
+        { type = "ACCEPT", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 9
+        { type = "KILL", quest = 4985, questName = "The Wildlife Suffers Too", npc = 1816, target = "Diseased Grizzly", count = 8, map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5, near = true }, -- 10
+        { type = "TURNIN", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 11
+        { type = "ACCEPT", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 12
+        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1833, target = "Scarlet Knight", count = 2, map = 1422, zone = "Western Plaguelands", x = 49.6, y = 33.2, near = true }, -- 13
+        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1826, target = "Scarlet Mage", count = 2, map = 1422, zone = "Western Plaguelands", x = 52.8, y = 36.7, near = true }, -- 14
+        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1831, target = "Scarlet Hunter / Scarlet Medic", count = 2, map = 1422, zone = "Western Plaguelands", x = 52.2, y = 44, near = true }, -- 15
+        { type = "TURNIN", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 16
     } end,
 })

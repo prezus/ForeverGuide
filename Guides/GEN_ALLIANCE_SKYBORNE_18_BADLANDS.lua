@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_18_BADLANDS",
     name = "18. Badlands 37-37 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 37,
@@ -13,17 +13,23 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_19_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
     notes = "Chapter 18 of the Skyborne route: level 37 to 37, 10 steps, ~41 min of play in the model (23531 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 10,
+    stepCount = 16,
     steps = function() return {
         { type = "TRAVEL", map = 1418, zone = "Badlands", x = 49.5, y = 49.2, radius = 60, note = "travel to Badlands (Badlands)" }, -- 1
         { type = "ACCEPT", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 2
         { type = "COLLECT", quest = 733, questName = "Scrounging", target = "Scrap Metal", count = 7, map = 1418, zone = "Badlands", x = 64.7, y = 25.6, near = true }, -- 3
-        { type = "ACCEPT", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 4
-        { type = "COLLECT", quest = 703, questName = "Barbecued Buzzard Wings", target = "Buzzard Wing", count = 4, map = 1418, zone = "Badlands", x = 61.8, y = 55.6, near = true }, -- 5
-        { type = "TURNIN", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 6
-        { type = "TURNIN", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 7
-        { type = "ACCEPT", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 8
-        { type = "KILL", quest = 711, questName = "Study of the Elements: Rock", npc = 92, target = "Rock Elemental", count = 3, map = 1418, zone = "Badlands", x = 13.4, y = 33.4, near = true, note = "loot Large Stone Slab" }, -- 9
-        { type = "TURNIN", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 10
+        { type = "ACCEPT", quest = 1108, questName = "Indurium", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 4
+        { type = "ACCEPT", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 5
+        { type = "COLLECT", quest = 1108, questName = "Indurium", target = "Indurium Flake", count = 10, map = 1418, zone = "Badlands", x = 49.8, y = 63.8, near = true, mobs = "Stonevault Seer / Stonevault Bonesnapper / Stonevault Shaman / Stonevault Basher" }, -- 6
+        { type = "TURNIN", quest = 738, questName = "Find Agmond", map = 1418, zone = "Badlands", x = 50.9, y = 62.2 }, -- 7
+        { type = "ACCEPT", quest = 709, questName = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, zone = "Badlands", x = 51.4, y = 76.8, optional = true, note = "For Uldaman (dungeon guide)" }, -- 8
+        { type = "COLLECT", quest = 703, questName = "Barbecued Buzzard Wings", target = "Buzzard Wing", count = 4, map = 1418, zone = "Badlands", x = 61.8, y = 55.6, near = true }, -- 9
+        { type = "TURNIN", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 10
+        { type = "TURNIN", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 11
+        { type = "TURNIN", quest = 1108, questName = "Indurium", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 12
+        { type = "ACCEPT", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 13
+        { type = "KILL", quest = 711, questName = "Study of the Elements: Rock", npc = 92, target = "Rock Elemental", count = 3, map = 1418, zone = "Badlands", x = 13.4, y = 33.4, near = true, note = "loot Large Stone Slab" }, -- 14
+        { type = "TURNIN", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 15
+        { type = "ACCEPT", quest = 1137, questName = "News for Fizzle", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 16
     } end,
 })

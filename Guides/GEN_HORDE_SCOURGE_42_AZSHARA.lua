@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_42_AZSHARA",
     name = "42. Azshara 52-53 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 52,
@@ -13,17 +13,27 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_43_UNDERCITY",
     author = "ForeverGuide route planner",
     notes = "Chapter 42 of the Scourge route: level 52 to 53, 10 steps, ~52 min of play in the model (25946 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 10,
+    stepCount = 20,
     steps = function() return {
         { type = "TRAVEL", map = 1447, zone = "Azshara", x = 60.8, y = 66.4, radius = 60, note = "travel to Azshara (Azshara)" }, -- 1
-        { type = "TURNIN", quest = 3504, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 2
-        { type = "ACCEPT", quest = 3505, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 3
-        { type = "KILL", quest = 3505, questName = "Betrayed", npc = 6198, target = "Blood Elf Surveyor / Blood Elf Reclaimer", count = 10, map = 1447, zone = "Azshara", x = 55.8, y = 30.8, near = true }, -- 4
-        { type = "COMPLETE", quest = 3505, questName = "Betrayed", target = "Find Magus Rimtori's camp", map = 1447, zone = "Azshara", x = 59.5, y = 31.5, note = "Find Magus Rimtori's camp" }, -- 5
-        { type = "TURNIN", quest = 3505, questName = "Betrayed", map = 1447, zone = "Azshara", x = 59.5, y = 31.3 }, -- 6
-        { type = "ACCEPT", quest = 3506, questName = "Betrayed", map = 1447, zone = "Azshara", x = 59.5, y = 31.3 }, -- 7
-        { type = "KILL", quest = 3506, questName = "Betrayed", npc = 8578, target = "Magus Rimtori", map = 1447, zone = "Azshara", x = 59.5, y = 31.4, note = "loot Head of Magus Rimtori" }, -- 8
-        { type = "TURNIN", quest = 3506, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 9
-        { type = "ACCEPT", quest = 3507, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 10
+        { type = "COLLECT", quest = 3568, questName = "Seeping Corruption", target = "Filled Vial Labeled #1", count = 1, map = 1447, zone = "Azshara", x = 48, y = 61 }, -- 2
+        { type = "COLLECT", quest = 3568, questName = "Seeping Corruption", target = "Filled Vial Labeled #2", count = 1, map = 1447, zone = "Azshara", x = 47.8, y = 51.4 }, -- 3
+        { type = "COLLECT", quest = 3568, questName = "Seeping Corruption", target = "Filled Vial Labeled #3", count = 1, map = 1447, zone = "Azshara", x = 48.7, y = 48.5 }, -- 4
+        { type = "COLLECT", quest = 3568, questName = "Seeping Corruption", target = "Filled Vial Labeled #4", count = 1, map = 1447, zone = "Azshara", x = 47.4, y = 46.2 }, -- 5
+        { type = "TURNIN", quest = 3504, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 6
+        { type = "ACCEPT", quest = 3505, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 7
+        { type = "TURNIN", quest = 3563, questName = "Jes'rimon's Payment to Jediga", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.4, y = 51.4 }, -- 8
+        { type = "KILL", quest = 3505, questName = "Betrayed", npc = 6198, target = "Blood Elf Surveyor / Blood Elf Reclaimer", count = 10, map = 1447, zone = "Azshara", x = 55.8, y = 30.8, near = true }, -- 9
+        { type = "COMPLETE", quest = 3505, questName = "Betrayed", target = "Find Magus Rimtori's camp", map = 1447, zone = "Azshara", x = 59.5, y = 31.5, note = "Find Magus Rimtori's camp" }, -- 10
+        { type = "TURNIN", quest = 3505, questName = "Betrayed", map = 1447, zone = "Azshara", x = 59.5, y = 31.3 }, -- 11
+        { type = "ACCEPT", quest = 3506, questName = "Betrayed", map = 1447, zone = "Azshara", x = 59.5, y = 31.3 }, -- 12
+        { type = "KILL", quest = 3506, questName = "Betrayed", npc = 8578, target = "Magus Rimtori", map = 1447, zone = "Azshara", x = 59.5, y = 31.4, note = "loot Head of Magus Rimtori" }, -- 13
+        { type = "TURNIN", quest = 8151, questName = "The Hunter's Charm", npc = 8405, npcName = "Ogtinc", map = 1447, zone = "Azshara", x = 42.4, y = 42.6, class = { "HUNTER" } }, -- 14
+        { type = "TURNIN", quest = 8254, questName = "Cenarion Aid", npc = 8405, npcName = "Ogtinc", map = 1447, zone = "Azshara", x = 42.4, y = 42.6, class = { "PRIEST" } }, -- 15
+        { type = "TURNIN", quest = 8250, questName = "Magecraft", npc = 8395, npcName = "Sanath Lim-yo", map = 1447, zone = "Azshara", x = 28, y = 50, class = { "MAGE" } }, -- 16
+        { type = "COLLECT", quest = 8251, questName = "Magic Dust", target = "Glittering Dust", count = 10, map = 1447, zone = "Azshara", x = 59.4, y = 31.4, near = true, class = { "MAGE" }, mobs = "Blood Elf Surveyor / Blood Elf Reclaimer / Blood Elf Defender" }, -- 17
+        { type = "TURNIN", quest = 8251, questName = "Magic Dust", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 18
+        { type = "TURNIN", quest = 3506, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 19
+        { type = "ACCEPT", quest = 3507, questName = "Betrayed", npc = 8576, npcName = "Ag'tor Bloodfist", map = 1447, zone = "Azshara", x = 22.3, y = 51.5 }, -- 20
     } end,
 })

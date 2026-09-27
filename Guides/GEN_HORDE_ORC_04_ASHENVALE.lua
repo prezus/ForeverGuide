@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_04_ASHENVALE",
     name = "4. Ashenvale 20-20 (Orc)",
-    version = 2,
+    version = 7,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 20,
@@ -13,17 +13,25 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_05_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route planner",
     notes = "Chapter 4 of the Orc route: level 20 to 20, 10 steps, ~32 min of play in the model (20151 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 10,
+    stepCount = 18,
     steps = function() return {
-        { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 73.0, y = 62.9, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
-        { type = "HEARTH", npc = 12196, npcName = "Innkeeper Kaylisk", map = 1440, zone = "Splintertree Post", x = 74.0, y = 60.6, note = "talk to Innkeeper Kaylisk and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 3
-        { type = "TURNIN", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 4
-        { type = "ACCEPT", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 5
-        { type = "ACCEPT", quest = 6641, questName = "Vorsha the Lasher", npc = 12717, npcName = "Muglash", map = 1440, zone = "Ashenvale", x = 12.1, y = 34.6 }, -- 6
-        { type = "COLLECT", quest = 6442, questName = "Naga at the Zoram Strand", target = "Wrathtail Head", count = 20, map = 1440, zone = "Ashenvale", x = 11.8, y = 31.9, near = true }, -- 7
-        { type = "TURNIN", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 8
-        { type = "COMPLETE", quest = 6641, questName = "Vorsha the Lasher", target = "Defeat Vorsha the Lasher", map = 1440, zone = "Ashenvale", x = 9.6, y = 27.6, note = "Defeat Vorsha the Lasher" }, -- 9
-        { type = "TURNIN", quest = 6641, questName = "Vorsha the Lasher", npc = 12863, npcName = "Warsong Runner", map = 1440, zone = "Ashenvale", x = 12.2, y = 34.2 }, -- 10
+        { type = "FLIGHTPATH", npc = 12616, npcName = "Vhulgra", map = 1440, zone = "Ashenvale", x = 73.2, y = 61.6 }, -- 1
+        { type = "KILL", quest = 6548, questName = "Avenge My Village", npc = 11910, target = "Grimtotem Ruffian", count = 8, map = 1442, zone = "Stonetalon Mountains", x = 76.6, y = 91 }, -- 2
+        { type = "KILL", quest = 6548, questName = "Avenge My Village", npc = 11911, target = "Grimtotem Mercenary", count = 6, map = 1442, zone = "Stonetalon Mountains", x = 80.6, y = 90 }, -- 3
+        { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 73.0, y = 62.9, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 4
+        { type = "HEARTH", npc = 12196, npcName = "Innkeeper Kaylisk", map = 1440, zone = "Splintertree Post", x = 74.0, y = 60.6, note = "talk to Innkeeper Kaylisk and make this inn your home" }, -- 5
+        { type = "ACCEPT", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 6
+        { type = "TURNIN", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 7
+        { type = "FLIGHTPATH", npc = 11901, npcName = "Andruk", map = 1440, zone = "Ashenvale", x = 12.2, y = 33.8 }, -- 8
+        { type = "ACCEPT", quest = 6482, questName = "Freedom to Ruul", npc = 12818, npcName = "Ruul Snowhoof", map = 1440, zone = "Ashenvale", x = 41.4, y = 34.4, note = "Objectives: Escort Ruul from the Thistlefurs." }, -- 9
+        { type = "TURNIN", quest = 6482, questName = "Freedom to Ruul", npc = 12837, npcName = "Yama Snowhoof", map = 1440, zone = "Ashenvale", x = 74, y = 60.8 }, -- 10
+        { type = "TURNIN", quest = 6562, questName = "Trouble in the Deeps", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2, optional = true }, -- 11
+        { type = "ACCEPT", quest = 6563, questName = "The Essence of Aku'Mai", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 12
+        { type = "ACCEPT", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 13
+        { type = "ACCEPT", quest = 6641, questName = "Vorsha the Lasher", npc = 12717, npcName = "Muglash", map = 1440, zone = "Ashenvale", x = 12.1, y = 34.6 }, -- 14
+        { type = "COLLECT", quest = 6442, questName = "Naga at the Zoram Strand", target = "Wrathtail Head", count = 20, map = 1440, zone = "Ashenvale", x = 11.8, y = 31.9, near = true }, -- 15
+        { type = "TURNIN", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 16
+        { type = "COMPLETE", quest = 6641, questName = "Vorsha the Lasher", target = "Defeat Vorsha the Lasher", map = 1440, zone = "Ashenvale", x = 9.6, y = 27.6, note = "Defeat Vorsha the Lasher" }, -- 17
+        { type = "TURNIN", quest = 6641, questName = "Vorsha the Lasher", npc = 12863, npcName = "Warsong Runner", map = 1440, zone = "Ashenvale", x = 12.2, y = 34.2 }, -- 18
     } end,
 })

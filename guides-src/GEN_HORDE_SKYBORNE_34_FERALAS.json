@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_34_FERALAS",
   "name": "34. Feralas 51-51 (Skyborne)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 51,
@@ -13,7 +13,9 @@
   "notes": "Chapter 34 of the Skyborne route: level 51 to 51, 15 steps, ~57 min of play in the model (39422 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 74.9, "y": 43.5, "radius": 60, "note": "travel to Feralas (Feralas)"},
+    {"type": "ACCEPT", "quest": 3002, "questName": "The Gordunni Orb", "npc": 7777, "npcName": "Rok Orhan", "map": 1444, "zone": "Feralas", "x": 75.4, "y": 43.6},
     {"type": "ACCEPT", "quest": 3063, "questName": "Vengeance on the Northspring", "npc": 7776, "npcName": "Talo Thornhoof", "map": 1444, "zone": "Feralas", "x": 76.2, "y": 43.8},
+    {"type": "ACCEPT", "quest": 4120, "questName": "The Strength of Corruption", "npc": 7776, "npcName": "Talo Thornhoof", "map": 1444, "zone": "Feralas", "x": 76, "y": 43.8},
     {"type": "ACCEPT", "quest": 3380, "questName": "The Sunken Temple", "npc": 8115, "npcName": "Witch Doctor Uzer'i", "map": 1444, "zone": "Feralas", "x": 74.4, "y": 43.4},
     {"type": "ACCEPT", "quest": 3062, "questName": "Dark Heart", "npc": 7776, "npcName": "Talo Thornhoof", "map": 1444, "zone": "Feralas", "x": 76.2, "y": 43.8, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
     {"type": "KILL", "quest": 3062, "questName": "Dark Heart", "npc": 8075, "target": "Edana Hatetalon", "map": 1444, "zone": "Feralas", "x": 40.6, "y": 8.6, "optional": true},

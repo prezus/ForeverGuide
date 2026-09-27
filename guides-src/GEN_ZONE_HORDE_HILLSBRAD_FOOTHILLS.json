@@ -1,7 +1,7 @@
 {
   "id": "GEN_ZONE_HORDE_HILLSBRAD_FOOTHILLS",
   "name": "Zone: Hillsbrad Foothills 20-30 (Horde)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "minLevel": 20,
   "maxLevel": 30,

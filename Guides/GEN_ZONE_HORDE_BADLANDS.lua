@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ZONE_HORDE_BADLANDS",
     name = "Zone: Badlands 35-45 (Horde)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     minLevel = 35,
     maxLevel = 45,

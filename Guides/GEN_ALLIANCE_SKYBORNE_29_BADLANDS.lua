@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_29_BADLANDS",
     name = "29. Badlands 46-46 (Skyborne)",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 46,
@@ -13,17 +13,22 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_30_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 29 of the Skyborne route: level 46 to 46, 10 steps, ~25 min of play in the model (44758 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 10,
+    stepCount = 15,
     steps = function() return {
         { type = "TRAVEL", map = 1418, zone = "Badlands", x = 50.0, y = 49.6, radius = 60, note = "travel to Badlands (Badlands)" }, -- 1
         { type = "ACCEPT", quest = 706, questName = "Fiery Blaze Enchantments", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 2
         { type = "ACCEPT", quest = 732, questName = "Tremors of the Earth", npc = 2888, npcName = "Garek", map = 1418, zone = "Badlands", x = 61.9, y = 54.3 }, -- 3
         { type = "COLLECT", quest = 706, questName = "Fiery Blaze Enchantments", target = "Black Drake's Heart", map = 1418, zone = "Badlands", x = 69.7, y = 53.8, near = true }, -- 4
-        { type = "KILL", quest = 732, questName = "Tremors of the Earth", npc = 2944, target = "Boss Tho'grun", map = 1418, zone = "Badlands", x = 12.6, y = 75.5, note = "loot Sign of the Earth" }, -- 5
-        { type = "TURNIN", quest = 732, questName = "Tremors of the Earth", npc = 2888, npcName = "Garek", map = 1418, zone = "Badlands", x = 61.9, y = 54.3 }, -- 6
-        { type = "TURNIN", quest = 706, questName = "Fiery Blaze Enchantments", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 7
-        { type = "ACCEPT", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 8
-        { type = "KILL", quest = 712, questName = "Study of the Elements: Rock", npc = 2736, target = "Greater Rock Elemental", count = 5, map = 1418, zone = "Badlands", x = 6.6, y = 76.3, near = true, note = "loot Bracers of Rock Binding" }, -- 9
-        { type = "TURNIN", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 10
+        { type = "ACCEPT", quest = 739, questName = "Murdaloc", map = 1418, zone = "Badlands", x = 50.9, y = 62.2 }, -- 5
+        { type = "KILL", quest = 732, questName = "Tremors of the Earth", npc = 2944, target = "Boss Tho'grun", map = 1418, zone = "Badlands", x = 12.6, y = 75.5, note = "loot Sign of the Earth" }, -- 6
+        { type = "TURNIN", quest = 705, questName = "Pearl Diving", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8, optional = true, note = "reduced xp (20%) - you out-levelled it" }, -- 7
+        { type = "KILL", quest = 739, questName = "Murdaloc", npc = 2945, target = "Murdaloc", count = 1, map = 1418, zone = "Badlands", x = 49.6, y = 66.6 }, -- 8
+        { type = "KILL", quest = 739, questName = "Murdaloc", npc = 2893, target = "Stonevault Bonesnapper", count = 12, map = 1418, zone = "Badlands", x = 49.8, y = 63.8 }, -- 9
+        { type = "TURNIN", quest = 732, questName = "Tremors of the Earth", npc = 2888, npcName = "Garek", map = 1418, zone = "Badlands", x = 61.9, y = 54.3 }, -- 10
+        { type = "TURNIN", quest = 706, questName = "Fiery Blaze Enchantments", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 11
+        { type = "ACCEPT", quest = 722, questName = "Amulet of Secrets", npc = 2909, npcName = "Hammertoe Grez", map = 1418, zone = "Badlands", x = 37.9, y = 10.6, optional = true, note = "For Uldaman (dungeon guide)" }, -- 12
+        { type = "ACCEPT", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 13
+        { type = "KILL", quest = 712, questName = "Study of the Elements: Rock", npc = 2736, target = "Greater Rock Elemental", count = 5, map = 1418, zone = "Badlands", x = 6.6, y = 76.3, near = true, note = "loot Bracers of Rock Binding" }, -- 14
+        { type = "TURNIN", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 15
     } end,
 })
