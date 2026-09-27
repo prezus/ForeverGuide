@@ -2,60 +2,126 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_STRATHOLME",
-    name = "Stratholme 58-60",
-    version = 1,
+    name = "Stratholme 60-60",
+    version = 2,
     kind = "dungeon",
     faction = "Horde",
-    minLevel = 58,
+    minLevel = 60,
     maxLevel = 60,
     map = 1423,
     zone = "Eastern Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Stratholme: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 43,
+    stepCount = 109,
     steps = function() return {
-        { type = "ACCEPT", quest = 5848, questName = "Of Love and Family", npc = 11936, npcName = "Artist Renfray", map = 1422, zone = "Western Plaguelands", x = 65.6, y = 75.4 }, -- 1
-        { type = "ACCEPT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16033, npcName = "Bodley", zone = "zone 10074", x = 48.9, y = 63.9 }, -- 2
-        { type = "ACCEPT", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 3
-        { type = "ACCEPT", quest = 5214, questName = "The Great Fras Siabi", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 4
-        { type = "ACCEPT", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 5
-        { type = "ACCEPT", quest = 5251, questName = "The Archivist", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 6
-        { type = "ACCEPT", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.4, y = 33.6 }, -- 7
-        { type = "ACCEPT", quest = 5463, questName = "Menethil's Gift", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 8
-        { type = "ACCEPT", quest = 6163, questName = "Ramstein", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.6, y = 74.8 }, -- 9
-        { type = "ACCEPT", quest = 8945, questName = "Dead Man's Plea", npc = 16016, npcName = "Anthion Harmon", map = 1423, zone = "Eastern Plaguelands", x = 26.1, y = 11.3 }, -- 10
-        { type = "NOTE", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4, text = "Find a group for Stratholme", note = "All quests available from level 58; hand them in by level 60 for full XP" }, -- 11
-        { type = "ACCEPT", quest = 5125, questName = "Aurius' Reckoning", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 12
-        { type = "COLLECT", quest = 5212, questName = "The Flesh Does Not Lie", target = "Plagued Flesh Sample", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 13
-        { type = "COLLECT", quest = 5214, questName = "The Great Fras Siabi", target = "Grimm's Premium Tobacco", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 14
-        { type = "COLLECT", quest = 5243, questName = "Houses of the Holy", target = "Stratholme Holy Water", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 15
-        { type = "KILL", quest = 5251, questName = "The Archivist", npc = 10811, target = "Archivist Galford", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 16
-        { type = "COMPLETE", quest = 5251, questName = "The Archivist", target = "Archive Burned", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 17
-        { type = "KILL", quest = 5282, questName = "The Restless Souls", npc = 11122, target = "Souls Freed", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 18
-        { type = "COLLECT", quest = 5848, questName = "Of Love and Family", target = "Of Love and Family", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 19
-        { type = "COLLECT", quest = 6163, questName = "Ramstein", target = "Head of Ramstein the Gorger", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 20
-        { type = "KILL", quest = 8945, questName = "Dead Man's Plea", npc = 16031, target = "Ysida Freed", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 21
-        { type = "KILL", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16101, target = "Jarien", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 22
-        { type = "KILL", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16102, target = "Sothos", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 23
-        { type = "COLLECT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 24
-        { type = "COMPLETE", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 25
-        { type = "COLLECT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Right Piece of Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 26
-        { type = "TURNIN", quest = 5463, questName = "Menethil's Gift", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 27
-        { type = "TURNIN", quest = 8945, questName = "Dead Man's Plea", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 28
-        { type = "TURNIN", quest = 5125, questName = "Aurius' Reckoning", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 29
-        { type = "TURNIN", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 30
-        { type = "TURNIN", quest = 5214, questName = "The Great Fras Siabi", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 31
-        { type = "TURNIN", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 32
-        { type = "TURNIN", quest = 5251, questName = "The Archivist", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 33
-        { type = "TURNIN", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.4, y = 33.6 }, -- 34
-        { type = "TURNIN", quest = 5848, questName = "Of Love and Family", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.4, y = 43.6 }, -- 35
-        { type = "TURNIN", quest = 6163, questName = "Ramstein", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.6, y = 74.8 }, -- 36
-        { type = "TURNIN", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16033, npcName = "Bodley", zone = "zone 10074", x = 48.9, y = 63.9 }, -- 37
-        { type = "ACCEPT", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 38
-        { type = "TURNIN", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 39
-        { type = "ACCEPT", quest = 5262, questName = "The Truth Comes Crashing Down", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 40
-        { type = "TURNIN", quest = 5262, questName = "The Truth Comes Crashing Down", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 41
-        { type = "ACCEPT", quest = 5263, questName = "Above and Beyond", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 42
-        { type = "TURNIN", quest = 5263, questName = "Above and Beyond", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 43
+        { type = "ACCEPT", quest = 5166, questName = "Breastplate of the Chromatic Flight", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.7 }, -- 1
+        { type = "ACCEPT", quest = 5848, questName = "Of Love and Family", npc = 11936, npcName = "Artist Renfray", map = 1422, zone = "Western Plaguelands", x = 65.6, y = 75.4 }, -- 2
+        { type = "ACCEPT", quest = 5063, questName = "Cap of the Scarlet Savant", map = 1452, zone = "Winterspring", x = 61, y = 38.8 }, -- 3
+        { type = "ACCEPT", quest = 8944, questName = "Just Compensation", npc = 16012, npcName = "Mokvar", map = 1454, zone = "Orgrimmar", x = 34.8, y = 38 }, -- 4
+        { type = "ACCEPT", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 5
+        { type = "ACCEPT", quest = 5214, questName = "The Great Fras Siabi", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 6
+        { type = "ACCEPT", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 7
+        { type = "ACCEPT", quest = 5251, questName = "The Archivist", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 8
+        { type = "ACCEPT", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.4, y = 33.6 }, -- 9
+        { type = "ACCEPT", quest = 5463, questName = "Menethil's Gift", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 10
+        { type = "ACCEPT", quest = 6163, questName = "Ramstein", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.6, y = 74.8 }, -- 11
+        { type = "ACCEPT", quest = 8945, questName = "Dead Man's Plea", npc = 16016, npcName = "Anthion Harmon", map = 1423, zone = "Eastern Plaguelands", x = 26.1, y = 11.3 }, -- 12
+        { type = "ACCEPT", quest = 9022, questName = "Anthion's Parting Words", npc = 16016, npcName = "Anthion Harmon", map = 1423, zone = "Eastern Plaguelands", x = 26.1, y = 11.3 }, -- 13
+        { type = "NOTE", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4, text = "Find a group for Stratholme", note = "All quests available from level 60; hand them in by level 60 for full XP" }, -- 14
+        { type = "ACCEPT", quest = 5125, questName = "Aurius' Reckoning", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 15
+        { type = "ACCEPT", quest = 8829, questName = "The Ultimate Deception", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 16
+        { type = "ACCEPT", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 17
+        { type = "ACCEPT", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 18
+        { type = "ACCEPT", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 19
+        { type = "ACCEPT", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 20
+        { type = "ACCEPT", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 21
+        { type = "ACCEPT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 22
+        { type = "ACCEPT", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 23
+        { type = "ACCEPT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 24
+        { type = "COLLECT", quest = 5063, questName = "Cap of the Scarlet Savant", target = "Frayed Abomination Stitching", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 25
+        { type = "COLLECT", quest = 5063, questName = "Cap of the Scarlet Savant", target = "Arcane Crystal", count = 8, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 26
+        { type = "COLLECT", quest = 5063, questName = "Cap of the Scarlet Savant", target = "Enchanted Scarlet Thread", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 27
+        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Brilliant Chromatic Scale", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 28
+        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Blood of Heroes", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 29
+        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Frayed Abomination Stitching", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 30
+        { type = "COLLECT", quest = 5212, questName = "The Flesh Does Not Lie", target = "Plagued Flesh Sample", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 31
+        { type = "COLLECT", quest = 5214, questName = "The Great Fras Siabi", target = "Grimm's Premium Tobacco", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 32
+        { type = "COLLECT", quest = 5243, questName = "Houses of the Holy", target = "Stratholme Holy Water", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 33
+        { type = "KILL", quest = 5251, questName = "The Archivist", npc = 10811, target = "Archivist Galford", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 34
+        { type = "COMPLETE", quest = 5251, questName = "The Archivist", target = "Archive Burned", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 35
+        { type = "KILL", quest = 5282, questName = "The Restless Souls", npc = 11122, target = "Souls Freed", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 36
+        { type = "COLLECT", quest = 5848, questName = "Of Love and Family", target = "Of Love and Family", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 37
+        { type = "COLLECT", quest = 6163, questName = "Ramstein", target = "Head of Ramstein the Gorger", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 38
+        { type = "COLLECT", quest = 8944, questName = "Just Compensation", target = "Belt of Valor", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 39
+        { type = "COLLECT", quest = 8944, questName = "Just Compensation", target = "Gauntlets of Valor", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 40
+        { type = "KILL", quest = 8945, questName = "Dead Man's Plea", npc = 16031, target = "Ysida Freed", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 41
+        { type = "COLLECT", quest = 9022, questName = "Anthion's Parting Words", target = "Boots of Valor", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 42
+        { type = "COLLECT", quest = 9022, questName = "Anthion's Parting Words", target = "Legplates of Valor", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 43
+        { type = "COLLECT", quest = 9022, questName = "Anthion's Parting Words", target = "Spaulders of Valor", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 44
+        { type = "COLLECT", quest = 8829, questName = "The Ultimate Deception", target = "Skin of Shadow", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 45
+        { type = "COLLECT", quest = 8829, questName = "The Ultimate Deception", target = "Frayed Abomination Stitching", count = 3, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 46
+        { type = "COLLECT", quest = 8829, questName = "The Ultimate Deception", target = "Twilight Cultist Robe", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 47
+        { type = "COMPLETE", quest = 8829, questName = "The Ultimate Deception", target = "Logistics Task Briefing XI", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 48
+        { type = "KILL", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", npc = 16080, target = "Mor Grayhoof", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 49
+        { type = "COLLECT", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Left Piece of Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 50
+        { type = "COMPLETE", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 51
+        { type = "KILL", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", npc = 16097, target = "Isalien", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 52
+        { type = "COLLECT", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Left Piece of Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 53
+        { type = "COMPLETE", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 54
+        { type = "KILL", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", npc = 16118, target = "Kormok", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 55
+        { type = "COLLECT", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Left Piece of Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 56
+        { type = "COMPLETE", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 57
+        { type = "KILL", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16080, target = "Mor Grayhoof", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 58
+        { type = "COLLECT", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 59
+        { type = "COMPLETE", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 60
+        { type = "COLLECT", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Right Piece of Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 61
+        { type = "KILL", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16097, target = "Isalien", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 62
+        { type = "COLLECT", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 63
+        { type = "COMPLETE", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 64
+        { type = "COLLECT", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Right Piece of Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 65
+        { type = "KILL", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16101, target = "Jarien", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 66
+        { type = "KILL", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16102, target = "Sothos", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 67
+        { type = "COLLECT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 68
+        { type = "COMPLETE", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 69
+        { type = "COLLECT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Right Piece of Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 70
+        { type = "KILL", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16118, target = "Kormok", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 71
+        { type = "COLLECT", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 72
+        { type = "COMPLETE", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 73
+        { type = "COLLECT", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Right Piece of Lord Valthalak's Amulet", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 74
+        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Craftsman's Writ: Truesilver Transformer", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 75
+        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Truesilver Transformer", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 76
+        { type = "TURNIN", quest = 5463, questName = "Menethil's Gift", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 77
+        { type = "TURNIN", quest = 8945, questName = "Dead Man's Plea", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 78
+        { type = "TURNIN", quest = 5125, questName = "Aurius' Reckoning", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 79
+        { type = "TURNIN", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 80
+        { type = "TURNIN", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 81
+        { type = "TURNIN", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 82
+        { type = "TURNIN", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 83
+        { type = "TURNIN", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 84
+        { type = "TURNIN", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 85
+        { type = "TURNIN", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 86
+        { type = "TURNIN", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 87
+        { type = "TURNIN", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 88
+        { type = "TURNIN", quest = 5214, questName = "The Great Fras Siabi", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 89
+        { type = "TURNIN", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 90
+        { type = "TURNIN", quest = 5251, questName = "The Archivist", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 91
+        { type = "TURNIN", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.4, y = 33.6 }, -- 92
+        { type = "TURNIN", quest = 5848, questName = "Of Love and Family", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.4, y = 43.6 }, -- 93
+        { type = "TURNIN", quest = 6163, questName = "Ramstein", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.6, y = 74.8 }, -- 94
+        { type = "TURNIN", quest = 5063, questName = "Cap of the Scarlet Savant", npc = 10637, npcName = "Malyfous Darkhammer", map = 1452, zone = "Winterspring", x = 61, y = 38.6 }, -- 95
+        { type = "TURNIN", quest = 5166, questName = "Breastplate of the Chromatic Flight", npc = 10976, npcName = "Jeziba", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.8 }, -- 96
+        { type = "TURNIN", quest = 8944, questName = "Just Compensation", npc = 16012, npcName = "Mokvar", map = 1454, zone = "Orgrimmar", x = 34.8, y = 38 }, -- 97
+        { type = "TURNIN", quest = 9022, questName = "Anthion's Parting Words", npc = 16012, npcName = "Mokvar", map = 1454, zone = "Orgrimmar", x = 34.8, y = 38 }, -- 98
+        { type = "TURNIN", quest = 8829, questName = "The Ultimate Deception", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 51.8, y = 38 }, -- 99
+        { type = "ACCEPT", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 100
+        { type = "TURNIN", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 101
+        { type = "ACCEPT", quest = 5262, questName = "The Truth Comes Crashing Down", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 102
+        { type = "TURNIN", quest = 5262, questName = "The Truth Comes Crashing Down", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 103
+        { type = "ACCEPT", quest = 5263, questName = "Above and Beyond", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 104
+        { type = "TURNIN", quest = 5263, questName = "Above and Beyond", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 105
+        { type = "ACCEPT", quest = 5464, questName = "Menethil's Gift", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 106
+        { type = "TURNIN", quest = 5464, questName = "Menethil's Gift", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 107
+        { type = "ACCEPT", quest = 8946, questName = "Proof of Life", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 108
+        { type = "TURNIN", quest = 8946, questName = "Proof of Life", npc = 16016, npcName = "Anthion Harmon", map = 1423, zone = "Eastern Plaguelands", x = 26.1, y = 11.3 }, -- 109
     } end,
 })
