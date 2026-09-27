@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_01_DUN_MOROGH",
     name = "1. Dun Morogh 1-10 (Dwarf)",
-    version = 8,
+    version = 9,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 1,
@@ -109,12 +109,12 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 96058, questName = "Camping 101: Engineering", npc = 1702, npcName = "Bronk Guzzlegear", map = 1426, zone = "Dun Morogh", x = 50.2, y = 50.4, profession = "Engineering" }, -- 92
         { type = "TURNIN", quest = 400, questName = "Tools for Steelgrill", npc = 1376, npcName = "Beldin Steelgrill", map = 1426, zone = "Dun Morogh", x = 50.4, y = 49.1 }, -- 93
         { type = "ACCEPT", quest = 99160, questName = "Rime's Wrath", npc = 1253, npcName = "Father Gavin", map = 1426, zone = "Dun Morogh", x = 57.6, y = 44.8, note = "New in Forever" }, -- 94
-        { type = "ACCEPT", quest = 99161, questName = "Rime's Wrath", npc = 1253, npcName = "Father Gavin", map = 1426, zone = "Dun Morogh", x = 57.6, y = 44.8, note = "New in Forever" }, -- 95
-        { type = "KILL", quest = 99160, questName = "Rime's Wrath", npc = 276003, target = "Minor Ice Elemental", count = 10, map = 1426, zone = "Dun Morogh", x = 57, y = 45.2 }, -- 96
-        { type = "TURNIN", quest = 99160, questName = "Rime's Wrath", npc = 1253, npcName = "Father Gavin", map = 1426, zone = "Dun Morogh", x = 57.6, y = 44.8 }, -- 97
-        { type = "COLLECT", quest = 99161, questName = "Rime's Wrath", target = "Avala's Core", count = 1, map = 1426, zone = "Dun Morogh", x = 58.2, y = 42, mobs = "Avala" }, -- 98
-        { type = "TURNIN", quest = 99161, questName = "Rime's Wrath", npc = 1253, npcName = "Father Gavin", map = 1426, zone = "Dun Morogh", x = 57.6, y = 44.8 }, -- 99
-        { type = "ACCEPT", quest = 5541, questName = "Ammo for Rumbleshot", npc = 1694, npcName = "Loslor Rudge", map = 1426, zone = "Dun Morogh", x = 50.1, y = 49.4 }, -- 100
+        { type = "KILL", quest = 99160, questName = "Rime's Wrath", npc = 276003, target = "Minor Ice Elemental", count = 10, map = 1426, zone = "Dun Morogh", x = 57, y = 45.2 }, -- 95
+        { type = "TURNIN", quest = 99160, questName = "Rime's Wrath", npc = 1253, npcName = "Father Gavin", map = 1426, zone = "Dun Morogh", x = 57.6, y = 44.8 }, -- 96
+        { type = "ACCEPT", quest = 5541, questName = "Ammo for Rumbleshot", npc = 1694, npcName = "Loslor Rudge", map = 1426, zone = "Dun Morogh", x = 50.1, y = 49.4 }, -- 97
+        { type = "ACCEPT", quest = 99161, questName = "Rime's Wrath", npc = 1253, npcName = "Father Gavin", map = 1426, zone = "Dun Morogh", x = 57.6, y = 44.8, note = "New in Forever" }, -- 98
+        { type = "COLLECT", quest = 99161, questName = "Rime's Wrath", target = "Avala's Core", count = 1, map = 1426, zone = "Dun Morogh", x = 58.2, y = 42, mobs = "Avala" }, -- 99
+        { type = "TURNIN", quest = 99161, questName = "Rime's Wrath", npc = 1253, npcName = "Father Gavin", map = 1426, zone = "Dun Morogh", x = 57.6, y = 44.8 }, -- 100
         { type = "ACCEPT", quest = 317, questName = "Stocking Jetsteam", npc = 1378, npcName = "Pilot Bellowfiz", map = 1426, zone = "Dun Morogh", x = 49.4, y = 48.4 }, -- 101
         { type = "ACCEPT", quest = 313, questName = "The Grizzled Den", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.6 }, -- 102
         { type = "COLLECT", quest = 317, questName = "Stocking Jetsteam", target = "Chunk of Boar Meat / Thick Bear Fur", count = 4, map = 1426, zone = "Dun Morogh", x = 49.3, y = 50.3, near = true }, -- 103
