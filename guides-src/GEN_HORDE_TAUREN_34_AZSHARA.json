@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_34_AZSHARA",
   "name": "34. Azshara 50-50 (Tauren)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 50,
@@ -14,6 +14,8 @@
   "steps": [
     {"type": "FLIGHTPATH", "npc": 8610, "npcName": "Kroum", "map": 1447, "zone": "Azshara", "x": 22, "y": 49.6},
     {"type": "TURNIN", "quest": 4147, "questName": "Marvon's Workshop", "npc": 8496, "npcName": "Liv Rizzlefix", "map": 1413, "zone": "The Barrens", "x": 62.4, "y": 38.6},
+    {"type": "ACCEPT", "quest": 4146, "questName": "Zapper Fuel", "npc": 8496, "npcName": "Liv Rizzlefix", "map": 1413, "zone": "The Barrens", "x": 62.4, "y": 38.6, "note": "For The Temple of Atal'Hakkar (dungeon guide)", "optional": true},
+    {"type": "NOTE", "note": "Picked up: The Temple of Atal'Hakkar, Jammal'an the Prophet, Zapper Fuel. When you have a group, open The Temple of Atal'Hakkar under Dungeons.", "text": "Ready for The Temple of Atal'Hakkar", "optional": true},
     {"type": "TRAVEL", "map": 1447, "zone": "Azshara", "x": 22.5, "y": 51.4, "radius": 60, "note": "travel to Azshara (Azshara)"},
     {"type": "ACCEPT", "quest": 3517, "questName": "Stealing Knowledge", "npc": 8587, "npcName": "Jediga", "map": 1447, "zone": "Azshara", "x": 22.6, "y": 51.4},
     {"type": "COLLECT", "quest": 3517, "questName": "Stealing Knowledge", "target": "Tablet of Beth'Amara / Tablet of Jin'yael", "map": 1447, "zone": "Azshara", "x": 34.1, "y": 50.5, "near": true},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_34_AZSHARA",
     name = "34. Azshara 50-50 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 50,
@@ -13,35 +13,37 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_35_FELWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 34 of the Tauren route: level 50 to 50, 21 steps, ~69 min of play in the model (37854 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 28,
+    stepCount = 30,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 8610, npcName = "Kroum", map = 1447, zone = "Azshara", x = 22, y = 49.6 }, -- 1
         { type = "TURNIN", quest = 4147, questName = "Marvon's Workshop", npc = 8496, npcName = "Liv Rizzlefix", map = 1413, zone = "The Barrens", x = 62.4, y = 38.6 }, -- 2
-        { type = "TRAVEL", map = 1447, zone = "Azshara", x = 22.5, y = 51.4, radius = 60, note = "travel to Azshara (Azshara)" }, -- 3
-        { type = "ACCEPT", quest = 3517, questName = "Stealing Knowledge", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 4
-        { type = "COLLECT", quest = 3517, questName = "Stealing Knowledge", target = "Tablet of Beth'Amara / Tablet of Jin'yael", map = 1447, zone = "Azshara", x = 34.1, y = 50.5, near = true }, -- 5
-        { type = "COLLECT", quest = 3517, questName = "Stealing Knowledge", target = "Tablet of Markri / Tablet of Sael'hai", map = 1447, zone = "Azshara", x = 36.2, y = 52.6, near = true }, -- 6
-        { type = "TURNIN", quest = 3517, questName = "Stealing Knowledge", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 7
-        { type = "ACCEPT", quest = 3561, questName = "Delivery to Archmage Xylem", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 8
-        { type = "ACCEPT", quest = 8251, questName = "Magic Dust", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 9
-        { type = "TURNIN", quest = 3561, questName = "Delivery to Archmage Xylem", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.3, y = 40.2 }, -- 10
-        { type = "ACCEPT", quest = 3565, questName = "Xylem's Payment to Jediga", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.3, y = 40.2 }, -- 11
-        { type = "TURNIN", quest = 3565, questName = "Xylem's Payment to Jediga", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 12
-        { type = "ACCEPT", quest = 3541, questName = "Delivery to Jes'rimon", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.4, y = 51.4 }, -- 13
-        { type = "ACCEPT", quest = 3542, questName = "Delivery to Andron Gant", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.4, y = 51.4 }, -- 14
-        { type = "ACCEPT", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 15
-        { type = "ACCEPT", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 16
-        { type = "KILL", quest = 5535, questName = "Spiritual Unrest", npc = 6117, target = "Highborne Lichling / Highborne Apparition", count = 6, map = 1447, zone = "Azshara", x = 13.5, y = 73.2, near = true }, -- 17
-        { type = "TURNIN", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 18
-        { type = "KILL", quest = 5536, questName = "A Land Filled with Hatred", npc = 6127, target = "Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr", count = 6, map = 1447, zone = "Azshara", x = 19.1, y = 64, near = true }, -- 19
-        { type = "TURNIN", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 20
-        { type = "COLLECT", quest = 8251, questName = "Magic Dust", target = "Glittering Dust", count = 10, map = 1447, zone = "Azshara", x = 55.4, y = 28.6, near = true, class = { "MAGE" }, mobs = "Blood Elf Surveyor / Blood Elf Reclaimer / Blood Elf Defender" }, -- 21
-        { type = "TURNIN", quest = 8251, questName = "Magic Dust", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 22
-        { type = "ACCEPT", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 23
-        { type = "COLLECT", quest = 3601, questName = "Kim'jael Indeed!", target = "Kim'Jael's Compass / Kim'Jael's Scope / Kim'Jael's Stuffed Chicken / Kim'Jael's Wizzlegoober", map = 1447, zone = "Azshara", x = 56.4, y = 28.4, near = true }, -- 24
-        { type = "TURNIN", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 25
-        { type = "ACCEPT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 26
-        { type = "COLLECT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", target = "Some Rune", map = 1447, zone = "Azshara", x = 49.5, y = 42, near = true }, -- 27
-        { type = "TURNIN", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 28
+        { type = "ACCEPT", quest = 4146, questName = "Zapper Fuel", npc = 8496, npcName = "Liv Rizzlefix", map = 1413, zone = "The Barrens", x = 62.4, y = 38.6, optional = true, note = "For The Temple of Atal'Hakkar (dungeon guide)" }, -- 3
+        { type = "NOTE", optional = true, text = "Ready for The Temple of Atal'Hakkar", note = "Picked up: The Temple of Atal'Hakkar, Jammal'an the Prophet, Zapper Fuel. When you have a group, open The Temple of Atal'Hakkar under Dungeons." }, -- 4
+        { type = "TRAVEL", map = 1447, zone = "Azshara", x = 22.5, y = 51.4, radius = 60, note = "travel to Azshara (Azshara)" }, -- 5
+        { type = "ACCEPT", quest = 3517, questName = "Stealing Knowledge", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 6
+        { type = "COLLECT", quest = 3517, questName = "Stealing Knowledge", target = "Tablet of Beth'Amara / Tablet of Jin'yael", map = 1447, zone = "Azshara", x = 34.1, y = 50.5, near = true }, -- 7
+        { type = "COLLECT", quest = 3517, questName = "Stealing Knowledge", target = "Tablet of Markri / Tablet of Sael'hai", map = 1447, zone = "Azshara", x = 36.2, y = 52.6, near = true }, -- 8
+        { type = "TURNIN", quest = 3517, questName = "Stealing Knowledge", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 9
+        { type = "ACCEPT", quest = 3561, questName = "Delivery to Archmage Xylem", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 10
+        { type = "ACCEPT", quest = 8251, questName = "Magic Dust", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 11
+        { type = "TURNIN", quest = 3561, questName = "Delivery to Archmage Xylem", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.3, y = 40.2 }, -- 12
+        { type = "ACCEPT", quest = 3565, questName = "Xylem's Payment to Jediga", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.3, y = 40.2 }, -- 13
+        { type = "TURNIN", quest = 3565, questName = "Xylem's Payment to Jediga", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 14
+        { type = "ACCEPT", quest = 3541, questName = "Delivery to Jes'rimon", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.4, y = 51.4 }, -- 15
+        { type = "ACCEPT", quest = 3542, questName = "Delivery to Andron Gant", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.4, y = 51.4 }, -- 16
+        { type = "ACCEPT", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 17
+        { type = "ACCEPT", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 18
+        { type = "KILL", quest = 5535, questName = "Spiritual Unrest", npc = 6117, target = "Highborne Lichling / Highborne Apparition", count = 6, map = 1447, zone = "Azshara", x = 13.5, y = 73.2, near = true }, -- 19
+        { type = "TURNIN", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 20
+        { type = "KILL", quest = 5536, questName = "A Land Filled with Hatred", npc = 6127, target = "Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr", count = 6, map = 1447, zone = "Azshara", x = 19.1, y = 64, near = true }, -- 21
+        { type = "TURNIN", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 22
+        { type = "COLLECT", quest = 8251, questName = "Magic Dust", target = "Glittering Dust", count = 10, map = 1447, zone = "Azshara", x = 55.4, y = 28.6, near = true, class = { "MAGE" }, mobs = "Blood Elf Surveyor / Blood Elf Reclaimer / Blood Elf Defender" }, -- 23
+        { type = "TURNIN", quest = 8251, questName = "Magic Dust", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 24
+        { type = "ACCEPT", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 25
+        { type = "COLLECT", quest = 3601, questName = "Kim'jael Indeed!", target = "Kim'Jael's Compass / Kim'Jael's Scope / Kim'Jael's Stuffed Chicken / Kim'Jael's Wizzlegoober", map = 1447, zone = "Azshara", x = 56.4, y = 28.4, near = true }, -- 26
+        { type = "TURNIN", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 27
+        { type = "ACCEPT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 28
+        { type = "COLLECT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", target = "Some Rune", map = 1447, zone = "Azshara", x = 49.5, y = 42, near = true }, -- 29
+        { type = "TURNIN", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 30
     } end,
 })
