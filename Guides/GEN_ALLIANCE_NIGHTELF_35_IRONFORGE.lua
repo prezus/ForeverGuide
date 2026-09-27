@@ -2,28 +2,27 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_35_IRONFORGE",
-    name = "35. Ironforge 50-51 (Night Elf)",
+    name = "35. Ironforge 49-49 (Night Elf)",
     version = 2,
     faction = "Alliance",
     race = { "NightElf" },
-    minLevel = 50,
-    maxLevel = 51,
+    minLevel = 49,
+    maxLevel = 49,
     map = 1455,
     zone = "Ironforge",
-    next = "GEN_ALLIANCE_NIGHTELF_36_BURNING_STEPPES",
+    next = "GEN_ALLIANCE_NIGHTELF_36_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
-    notes = "Chapter 35 of the NightElf route: level 50 to 51, 10 steps, ~23 min of play in the model (62469 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 10,
+    notes = "Chapter 35 of the NightElf route: level 49 to 49, 9 steps, ~23 min of play in the model (47455 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 9,
     steps = function() return {
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.2, y = 47.8, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 1
-        { type = "ACCEPT", quest = 3702, questName = "The Smoldering Ruins of Thaurissan", npc = 8879, npcName = "Royal Historian Archesonus", map = 1455, zone = "Ironforge", x = 38.4, y = 55.3 }, -- 2
-        { type = "KILL", quest = 3702, questName = "The Smoldering Ruins of Thaurissan", npc = 8879, target = "Royal Historian Archesonus", count = 1, map = 1455, zone = "Ironforge", x = 38.4, y = 55.3 }, -- 3
-        { type = "TURNIN", quest = 3702, questName = "The Smoldering Ruins of Thaurissan", npc = 8879, npcName = "Royal Historian Archesonus", map = 1455, zone = "Ironforge", x = 38.4, y = 55.3 }, -- 4
-        { type = "TURNIN", quest = 3368, questName = "Suntara Stones", npc = 8256, npcName = "Curator Thorius", map = 1455, zone = "Ironforge", x = 71.5, y = 15.7 }, -- 5
-        { type = "ACCEPT", quest = 3371, questName = "Dwarven Justice", npc = 8256, npcName = "Curator Thorius", map = 1455, zone = "Ironforge", x = 71.5, y = 15.7 }, -- 6
-        { type = "ACCEPT", quest = 8371, questName = "Concerted Efforts", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 7
-        { type = "ACCEPT", quest = 8375, questName = "Remember Alterac Valley!", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 8
-        { type = "TURNIN", quest = 8371, questName = "Concerted Efforts", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 9
-        { type = "TURNIN", quest = 8375, questName = "Remember Alterac Valley!", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 10
+        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 57.3, y = 35.5, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 1
+        { type = "HEARTH", npc = 5111, npcName = "Innkeeper Firebrew", map = 1455, zone = "Ironforge", x = 18.1, y = 51.5, note = "talk to Innkeeper Firebrew and make this inn your home" }, -- 2
+        { type = "TURNIN", quest = 3368, questName = "Suntara Stones", npc = 8256, npcName = "Curator Thorius", map = 1455, zone = "Ironforge", x = 71.5, y = 15.7 }, -- 3
+        { type = "ACCEPT", quest = 3448, questName = "Passing the Burden", npc = 2916, npcName = "Historian Karnik", map = 1455, zone = "Ironforge", x = 77.5, y = 11.8 }, -- 4
+        { type = "TURNIN", quest = 3448, questName = "Passing the Burden", npc = 8507, npcName = "Tymor", map = 1455, zone = "Ironforge", x = 31, y = 4.8 }, -- 5
+        { type = "ACCEPT", quest = 3450, questName = "An Easy Pickup", npc = 8507, npcName = "Tymor", map = 1455, zone = "Ironforge", x = 31, y = 4.8 }, -- 6
+        { type = "TURNIN", quest = 3450, questName = "An Easy Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 7
+        { type = "ACCEPT", quest = 3451, questName = "Signal for Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 8
+        { type = "TURNIN", quest = 3451, questName = "Signal for Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 9
     } end,
 })

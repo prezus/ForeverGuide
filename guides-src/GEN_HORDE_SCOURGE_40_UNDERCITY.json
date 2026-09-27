@@ -1,0 +1,31 @@
+{
+  "id": "GEN_HORDE_SCOURGE_40_UNDERCITY",
+  "name": "40. Undercity 52-52 (Undead)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Scourge"],
+  "minLevel": 52,
+  "maxLevel": 52,
+  "map": 1458,
+  "zone": "Undercity",
+  "next": "GEN_HORDE_SCOURGE_41_UN_GORO_CRATER",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 40 of the Scourge route: level 52 to 52, 15 steps, ~24 min of play in the model (33062 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1458, "zone": "Undercity", "x": 60.8, "y": 52.6, "radius": 60, "note": "travel to Undercity (Undercity)"},
+    {"type": "HEARTH", "npc": 6741, "npcName": "Innkeeper Norman", "map": 1458, "zone": "Undercity", "x": 67.7, "y": 37.9, "note": "talk to Innkeeper Norman and make this inn your home"},
+    {"type": "ACCEPT", "quest": 232, "questName": "Errand for Apothecary Zinge", "npc": 5204, "npcName": "Apothecary Zinge", "map": 1458, "zone": "Undercity", "x": 50.1, "y": 68},
+    {"type": "TURNIN", "quest": 447, "questName": "A Recipe For Death", "npc": 2055, "npcName": "Master Apothecary Faranell", "map": 1458, "zone": "Undercity", "x": 48.8, "y": 69.3, "note": "reduced xp (10%) - you out-levelled it"},
+    {"type": "TURNIN", "quest": 513, "questName": "Elixir of Agony", "npc": 2055, "npcName": "Master Apothecary Faranell", "map": 1458, "zone": "Undercity", "x": 48.8, "y": 69.3, "note": "reduced xp (10%) - you out-levelled it"},
+    {"type": "TURNIN", "quest": 232, "questName": "Errand for Apothecary Zinge", "npc": 7683, "npcName": "Alessandro Luca", "map": 1458, "zone": "Undercity", "x": 58.6, "y": 54.7, "note": "reduced xp (60%) - you out-levelled it"},
+    {"type": "TURNIN", "quest": 5023, "questName": "Better Late Than Never", "npc": 10781, "npcName": "Royal Overseer Bauhaus", "map": 1458, "zone": "Undercity", "x": 69.8, "y": 43.2},
+    {"type": "ACCEPT", "quest": 238, "questName": "Errand for Apothecary Zinge", "npc": 7683, "npcName": "Alessandro Luca", "map": 1458, "zone": "Undercity", "x": 58.6, "y": 54.7},
+    {"type": "ACCEPT", "quest": 5049, "questName": "The Jeremiah Blues", "npc": 10781, "npcName": "Royal Overseer Bauhaus", "map": 1458, "zone": "Undercity", "x": 69.8, "y": 43.2},
+    {"type": "TURNIN", "quest": 5049, "questName": "The Jeremiah Blues", "npc": 8403, "npcName": "Jeremiah Payson", "map": 1458, "zone": "Undercity", "x": 67.6, "y": 44.2},
+    {"type": "TURNIN", "quest": 405, "questName": "The Prodigal Lich", "npc": 1498, "npcName": "Bethor Iceshard", "map": 1458, "zone": "Undercity", "x": 84.1, "y": 17.5, "note": "reduced xp (10%) - you out-levelled it"},
+    {"type": "TURNIN", "quest": 238, "questName": "Errand for Apothecary Zinge", "npc": 5204, "npcName": "Apothecary Zinge", "map": 1458, "zone": "Undercity", "x": 50.1, "y": 68, "note": "reduced xp (60%) - you out-levelled it"},
+    {"type": "ACCEPT", "quest": 4293, "questName": "A Sample of Slime...", "npc": 10136, "npcName": "Chemist Fuely", "map": 1458, "zone": "Undercity", "x": 47.5, "y": 73.4},
+    {"type": "COLLECT", "quest": 4293, "questName": "A Sample of Slime...", "target": "Corrupted Felwood Sample", "count": 5, "map": 1458, "zone": "Undercity", "x": 47.9, "y": 73.5},
+    {"type": "TURNIN", "quest": 4293, "questName": "A Sample of Slime...", "npc": 10136, "npcName": "Chemist Fuely", "map": 1458, "zone": "Undercity", "x": 47.5, "y": 73.4}
+  ]
+}

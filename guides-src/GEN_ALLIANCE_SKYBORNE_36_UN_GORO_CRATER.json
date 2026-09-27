@@ -1,0 +1,33 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_36_UN_GORO_CRATER",
+  "name": "36. Un'Goro Crater 49-49 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 49,
+  "maxLevel": 49,
+  "map": 1449,
+  "zone": "Un'Goro Crater",
+  "next": "GEN_ALLIANCE_SKYBORNE_37_IRONFORGE",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 36 of the Skyborne route: level 49 to 49, 17 steps, ~63 min of play in the model (40433 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 43.2, "y": 6.5, "radius": 60, "note": "travel to Un'Goro Crater (Un'Goro Crater)"},
+    {"type": "ACCEPT", "quest": 3882, "questName": "Roll the Bones", "npc": 9272, "npcName": "Spark Nilminer", "map": 1449, "zone": "Un'Goro Crater", "x": 43.5, "y": 7.4},
+    {"type": "ACCEPT", "quest": 4503, "questName": "Shizzle's Flyer", "npc": 9998, "npcName": "Shizzle", "map": 1449, "zone": "Un'Goro Crater", "x": 44.2, "y": 11.6},
+    {"type": "ACCEPT", "quest": 3883, "questName": "Alien Ecology", "npc": 9271, "npcName": "Hol'anyee Marshal", "map": 1449, "zone": "Un'Goro Crater", "x": 43.9, "y": 7.2},
+    {"type": "ACCEPT", "quest": 4141, "questName": "Muigin and Larion", "npc": 9119, "npcName": "Muigin", "map": 1449, "zone": "Un'Goro Crater", "x": 42.9, "y": 9.6},
+    {"type": "COLLECT", "quest": 4503, "questName": "Shizzle's Flyer", "target": "Webbed Pterrordax Scale", "count": 8, "map": 1449, "zone": "Un'Goro Crater", "x": 56.2, "y": 8.2, "near": true},
+    {"type": "COLLECT", "quest": 4503, "questName": "Shizzle's Flyer", "target": "Webbed Diemetradon Scale", "count": 8, "map": 1449, "zone": "Un'Goro Crater", "x": 70.5, "y": 20.6, "near": true},
+    {"type": "COLLECT", "quest": 4141, "questName": "Muigin and Larion", "target": "Bloodpetal", "count": 15, "map": 1449, "zone": "Un'Goro Crater", "x": 70.9, "y": 22, "near": true},
+    {"type": "COLLECT", "quest": 3882, "questName": "Roll the Bones", "target": "Dinosaur Bone", "count": 8, "map": 1449, "zone": "Un'Goro Crater", "x": 69, "y": 26.4, "near": true},
+    {"type": "COLLECT", "quest": 3883, "questName": "Alien Ecology", "target": "Hive Wall Sample", "map": 1449, "zone": "Un'Goro Crater", "x": 48.7, "y": 85.3},
+    {"type": "TURNIN", "quest": 4503, "questName": "Shizzle's Flyer", "npc": 9998, "npcName": "Shizzle", "map": 1449, "zone": "Un'Goro Crater", "x": 44.2, "y": 11.6},
+    {"type": "TURNIN", "quest": 4141, "questName": "Muigin and Larion", "npc": 9119, "npcName": "Muigin", "map": 1449, "zone": "Un'Goro Crater", "x": 42.9, "y": 9.6},
+    {"type": "TURNIN", "quest": 3882, "questName": "Roll the Bones", "npc": 9272, "npcName": "Spark Nilminer", "map": 1449, "zone": "Un'Goro Crater", "x": 43.5, "y": 7.4},
+    {"type": "TURNIN", "quest": 3883, "questName": "Alien Ecology", "npc": 9271, "npcName": "Hol'anyee Marshal", "map": 1449, "zone": "Un'Goro Crater", "x": 43.9, "y": 7.2},
+    {"type": "ACCEPT", "quest": 4142, "questName": "A Visit to Gregan", "npc": 9119, "npcName": "Muigin", "map": 1449, "zone": "Un'Goro Crater", "x": 42.9, "y": 9.6},
+    {"type": "ACCEPT", "quest": 3844, "questName": "It's a Secret to Everybody", "map": 1449, "zone": "Un'Goro Crater", "x": 63, "y": 68.6},
+    {"type": "TURNIN", "quest": 3844, "questName": "It's a Secret to Everybody", "map": 1449, "zone": "Un'Goro Crater", "x": 63.1, "y": 69.1}
+  ]
+}

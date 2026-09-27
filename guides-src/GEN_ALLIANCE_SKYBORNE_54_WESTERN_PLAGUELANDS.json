@@ -1,0 +1,21 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_54_WESTERN_PLAGUELANDS",
+  "name": "54. Western Plaguelands 57-60 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 57,
+  "maxLevel": 60,
+  "map": 1422,
+  "zone": "Western Plaguelands",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 54 of the Skyborne route: level 57 to 60, 6 steps, ~644 min of play in the model (773 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1422, "zone": "Western Plaguelands", "x": 44.0, "y": 83.5, "radius": 60, "note": "travel to Western Plaguelands (Western Plaguelands)"},
+    {"type": "ACCEPT", "quest": 211, "questName": "Alas, Andorhal", "npc": 10838, "npcName": "Commander Ashlam Valorfist", "map": 1422, "zone": "Western Plaguelands", "x": 42.7, "y": 84},
+    {"type": "COLLECT", "quest": 211, "questName": "Alas, Andorhal", "target": "Araj's Phylactery Shard", "map": 1422, "zone": "Western Plaguelands", "x": 45.3, "y": 69.2},
+    {"type": "TURNIN", "quest": 211, "questName": "Alas, Andorhal", "npc": 10838, "npcName": "Commander Ashlam Valorfist", "map": 1422, "zone": "Western Plaguelands", "x": 42.7, "y": 84},
+    {"type": "GRIND", "npc": 1802, "target": "Hungering Wraith", "level": 59, "map": 1422, "zone": "Western Plaguelands", "x": 62.2, "y": 60.2, "near": true, "note": "grind Hungering Wraith (level 56-58) to level 59 - nothing worth questing at 58"},
+    {"type": "GRIND", "level": 60, "note": "nothing worth questing at level 59 - grind to 60"}
+  ]
+}

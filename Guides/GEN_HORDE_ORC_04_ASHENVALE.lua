@@ -2,74 +2,28 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_04_ASHENVALE",
-    name = "4. Ashenvale 24-25 (Orc)",
-    version = 6,
+    name = "4. Ashenvale 20-20 (Orc)",
+    version = 2,
     faction = "Horde",
     race = { "Orc", "Troll" },
-    minLevel = 24,
-    maxLevel = 25,
+    minLevel = 20,
+    maxLevel = 20,
     map = 1440,
     zone = "Ashenvale",
     next = "GEN_HORDE_ORC_05_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 4 of the Orc route: level 24 to 25, 39 steps, ~124 min of play in the model (22497 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 56,
+    notes = "Chapter 4 of the Orc route: level 20 to 20, 10 steps, ~32 min of play in the model (20151 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 10,
     steps = function() return {
-        { type = "FLIGHTPATH", npc = 12616, npcName = "Vhulgra", map = 1440, zone = "Ashenvale", x = 73.2, y = 61.6 }, -- 1
-        { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 2
-        { type = "TURNIN", quest = 6382, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 3
-        { type = "TURNIN", quest = 235, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 4
-        { type = "HEARTH", npc = 12196, npcName = "Innkeeper Kaylisk", map = 1440, zone = "Splintertree Post", x = 74.0, y = 60.6, note = "talk to Innkeeper Kaylisk and make this inn your home" }, -- 5
-        { type = "ACCEPT", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 6
-        { type = "ACCEPT", quest = 25, questName = "Stonetalon Standstill", npc = 12737, npcName = "Mastok Wrilehiss", map = 1440, zone = "Ashenvale", x = 73.7, y = 60 }, -- 7
-        { type = "ACCEPT", quest = 6441, questName = "Satyr Horns", npc = 12724, npcName = "Pixel", map = 1440, zone = "Ashenvale", x = 73.1, y = 61.5 }, -- 8
-        { type = "TURNIN", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 9
-        { type = "ACCEPT", quest = 2, questName = "Sharptalon's Claw", npc = 12676, npcName = "Sharptalon", map = 1440, zone = "Ashenvale", x = 75, y = 70.1, note = "Loot Sharptalon's Claw from Sharptalon and use it to start the quest" }, -- 10
-        { type = "TURNIN", quest = 2, questName = "Sharptalon's Claw", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 11
-        { type = "ACCEPT", quest = 6503, questName = "Ashenvale Outrunners", npc = 12867, npcName = "Kuray'bin", map = 1440, zone = "Ashenvale", x = 71.1, y = 68.1 }, -- 12
-        { type = "ACCEPT", quest = 6504, questName = "The Lost Pages", npc = 12718, npcName = "Gurda Ragescar", map = 1440, zone = "Ashenvale", x = 70, y = 71.2 }, -- 13
-        { type = "TURNIN", quest = 6504, questName = "The Lost Pages", npc = 12718, npcName = "Gurda Ragescar", map = 1440, zone = "Ashenvale", x = 70, y = 71.2 }, -- 14
-        { type = "KILL", quest = 6503, questName = "Ashenvale Outrunners", npc = 12856, target = "Ashenvale Outrunner", count = 9, map = 1440, zone = "Ashenvale", x = 71, y = 72.6, near = true }, -- 15
-        { type = "TURNIN", quest = 6503, questName = "Ashenvale Outrunners", npc = 12867, npcName = "Kuray'bin", map = 1440, zone = "Ashenvale", x = 71.1, y = 68.1 }, -- 16
-        { type = "COLLECT", quest = 6441, questName = "Satyr Horns", target = "Satyr Horns", count = 16, map = 1440, zone = "Ashenvale", x = 66.7, y = 57.2, near = true }, -- 17
-        { type = "KILL", quest = 25, questName = "Stonetalon Standstill", npc = 3917, target = "Befouled Water Elemental", count = 12, map = 1440, zone = "Ashenvale", x = 51.6, y = 69.5, near = true }, -- 18
-        { type = "COMPLETE", quest = 25, questName = "Stonetalon Standstill", target = "Scout the gazebo on Mystral Lake that overlooks the nearby Alliance outpost.", map = 1440, zone = "Ashenvale", x = 48.9, y = 69.6, note = "Scout the gazebo on Mystral Lake that overlooks the nearby Alliance outpost." }, -- 19
-        { type = "TURNIN", quest = 25, questName = "Stonetalon Standstill", npc = 12737, npcName = "Mastok Wrilehiss", map = 1440, zone = "Ashenvale", x = 73.7, y = 60 }, -- 20
-        { type = "TURNIN", quest = 6441, questName = "Satyr Horns", npc = 12724, npcName = "Pixel", map = 1440, zone = "Ashenvale", x = 73.1, y = 61.5 }, -- 21
-        { type = "ACCEPT", quest = 6544, questName = "Torek's Assault", npc = 12858, npcName = "Torek", map = 1440, zone = "Ashenvale", x = 68.3, y = 75.3 }, -- 22
-        { type = "COMPLETE", quest = 6544, questName = "Torek's Assault", target = "Take Silverwing Outpost.", map = 1440, zone = "Ashenvale", x = 64.7, y = 75.3, note = "escort - stay close, it can fail: Take Silverwing Outpost." }, -- 23
-        { type = "TURNIN", quest = 6544, questName = "Torek's Assault", npc = 12877, npcName = "Ertog Ragetusk", map = 1440, zone = "Ashenvale", x = 73, y = 62.5 }, -- 24
-        { type = "FLIGHTPATH", npc = 11901, npcName = "Andruk", map = 1440, zone = "Ashenvale", x = 12.2, y = 33.8 }, -- 25
-        { type = "ACCEPT", quest = 24, questName = "Shadumbra's Head", npc = 12677, npcName = "Shadumbra", map = 1440, zone = "Ashenvale", x = 57.5, y = 56.1, note = "Loot Shadumbra's Head from Shadumbra and use it to start the quest" }, -- 26
-        { type = "TURNIN", quest = 24, questName = "Shadumbra's Head", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 27
-        { type = "TURNIN", quest = 6562, questName = "Trouble in the Deeps", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2, optional = true }, -- 28
-        { type = "ACCEPT", quest = 6563, questName = "The Essence of Aku'Mai", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 29
-        { type = "NOTE", optional = true, text = "Ready for Blackfathom Deeps", note = "Picked up: The Essence of Aku'Mai. When you have a group, open Blackfathom Deeps under Dungeons." }, -- 30
-        { type = "ACCEPT", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 31
-        { type = "ACCEPT", quest = 6641, questName = "Vorsha the Lasher", npc = 12717, npcName = "Muglash", map = 1440, zone = "Ashenvale", x = 12.1, y = 34.6 }, -- 32
-        { type = "ACCEPT", quest = 6462, questName = "Troll Charm", npc = 12721, npcName = "Mitsuwa", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 33
-        { type = "ACCEPT", quest = 216, questName = "Between a Rock and a Thistlefur", npc = 12757, npcName = "Karang Amakkar", map = 1440, zone = "Ashenvale", x = 11.9, y = 34.5 }, -- 34
-        { type = "ACCEPT", quest = 6921, questName = "Amongst the Ruins", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.3 }, -- 35
-        { type = "TURNIN", quest = 6921, questName = "Amongst the Ruins", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.3 }, -- 36
-        { type = "COLLECT", quest = 6442, questName = "Naga at the Zoram Strand", target = "Wrathtail Head", count = 20, map = 1440, zone = "Ashenvale", x = 11.8, y = 31.9, near = true }, -- 37
-        { type = "TURNIN", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9, note = "reduced xp (80%) - you out-levelled it" }, -- 38
-        { type = "COMPLETE", quest = 6641, questName = "Vorsha the Lasher", target = "Defeat Vorsha the Lasher", map = 1440, zone = "Ashenvale", x = 9.6, y = 27.6, note = "Defeat Vorsha the Lasher" }, -- 39
-        { type = "KILL", quest = 216, questName = "Between a Rock and a Thistlefur", npc = 3924, target = "Thistlefur Shaman / Thistlefur Avenger", count = 8, map = 1440, zone = "Ashenvale", x = 30.3, y = 42.3, near = true }, -- 40
-        { type = "TURNIN", quest = 6641, questName = "Vorsha the Lasher", npc = 12863, npcName = "Warsong Runner", map = 1440, zone = "Ashenvale", x = 12.2, y = 34.2 }, -- 41
-        { type = "TURNIN", quest = 216, questName = "Between a Rock and a Thistlefur", npc = 12757, npcName = "Karang Amakkar", map = 1440, zone = "Ashenvale", x = 11.9, y = 34.5 }, -- 42
-        { type = "ACCEPT", quest = 6621, questName = "King of the Foulweald", npc = 12757, npcName = "Karang Amakkar", map = 1440, zone = "Ashenvale", x = 11.9, y = 34.5 }, -- 43
-        { type = "COLLECT", quest = 6462, questName = "Troll Charm", target = "Troll Charm", count = 8, map = 1440, zone = "Ashenvale", x = 39.9, y = 34.2, near = true }, -- 44
-        { type = "ACCEPT", quest = 6482, questName = "Freedom to Ruul", npc = 12818, npcName = "Ruul Snowhoof", map = 1440, zone = "Ashenvale", x = 41.5, y = 34.5 }, -- 45
-        { type = "COMPLETE", quest = 6482, questName = "Freedom to Ruul", target = "Escort Ruul from the Thistlefurs.", map = 1440, zone = "Ashenvale", x = 38.5, y = 37.3, note = "escort - stay close, it can fail: Escort Ruul from the Thistlefurs." }, -- 46
-        { type = "TURNIN", quest = 6462, questName = "Troll Charm", npc = 12721, npcName = "Mitsuwa", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 47
-        { type = "ACCEPT", quest = 23, questName = "Ursangous's Paw", npc = 12678, npcName = "Ursangous", map = 1440, zone = "Ashenvale", x = 39.8, y = 65.2, note = "Loot Ursangous's Paw from Ursangous and use it to start the quest" }, -- 48
-        { type = "ACCEPT", quest = 1918, questName = "The Befouled Element", npc = 12759, npcName = "Tideress", map = 1440, zone = "Ashenvale", x = 46, y = 70, note = "Loot Befouled Water Globe from Tideress and use it to start the quest" }, -- 49
-        { type = "COLLECT", quest = 6621, questName = "King of the Foulweald", target = "Murgut's Totem", map = 1440, zone = "Ashenvale", x = 56, y = 63, near = true }, -- 50
-        { type = "TURNIN", quest = 6621, questName = "King of the Foulweald", npc = 12757, npcName = "Karang Amakkar", map = 1440, zone = "Ashenvale", x = 11.9, y = 34.5 }, -- 51
-        { type = "TURNIN", quest = 23, questName = "Ursangous's Paw", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 52
-        { type = "TURNIN", quest = 1918, questName = "The Befouled Element", npc = 12737, npcName = "Mastok Wrilehiss", map = 1440, zone = "Ashenvale", x = 73.6, y = 60 }, -- 53
-        { type = "TURNIN", quest = 6482, questName = "Freedom to Ruul", npc = 12837, npcName = "Yama Snowhoof", map = 1440, zone = "Ashenvale", x = 74.1, y = 60.9 }, -- 54
-        { type = "ACCEPT", quest = 247, questName = "The Hunt Completed", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 55
-        { type = "TURNIN", quest = 247, questName = "The Hunt Completed", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 56
+        { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 73.0, y = 62.9, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
+        { type = "HEARTH", npc = 12196, npcName = "Innkeeper Kaylisk", map = 1440, zone = "Splintertree Post", x = 74.0, y = 60.6, note = "talk to Innkeeper Kaylisk and make this inn your home" }, -- 2
+        { type = "ACCEPT", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 3
+        { type = "TURNIN", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 4
+        { type = "ACCEPT", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 5
+        { type = "ACCEPT", quest = 6641, questName = "Vorsha the Lasher", npc = 12717, npcName = "Muglash", map = 1440, zone = "Ashenvale", x = 12.1, y = 34.6 }, -- 6
+        { type = "COLLECT", quest = 6442, questName = "Naga at the Zoram Strand", target = "Wrathtail Head", count = 20, map = 1440, zone = "Ashenvale", x = 11.8, y = 31.9, near = true }, -- 7
+        { type = "TURNIN", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 8
+        { type = "COMPLETE", quest = 6641, questName = "Vorsha the Lasher", target = "Defeat Vorsha the Lasher", map = 1440, zone = "Ashenvale", x = 9.6, y = 27.6, note = "Defeat Vorsha the Lasher" }, -- 9
+        { type = "TURNIN", quest = 6641, questName = "Vorsha the Lasher", npc = 12863, npcName = "Warsong Runner", map = 1440, zone = "Ashenvale", x = 12.2, y = 34.2 }, -- 10
     } end,
 })

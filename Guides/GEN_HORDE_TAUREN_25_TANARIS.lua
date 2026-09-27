@@ -2,37 +2,49 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_25_TANARIS",
-    name = "25. Tanaris 48-48 (Tauren)",
+    name = "25. Tanaris 42-43 (Tauren)",
     version = 2,
     faction = "Horde",
     race = { "Tauren" },
-    minLevel = 48,
-    maxLevel = 48,
+    minLevel = 42,
+    maxLevel = 43,
     map = 1446,
     zone = "Tanaris",
-    next = "GEN_HORDE_TAUREN_26_FELWOOD",
+    next = "GEN_HORDE_TAUREN_26_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 25 of the Tauren route: level 48 to 48, 19 steps, ~56 min of play in the model (39738 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 19,
+    notes = "Chapter 25 of the Tauren route: level 42 to 43, 31 steps, ~117 min of play in the model (41334 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 31,
     steps = function() return {
-        { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 52.1, y = 27.5, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 1
-        { type = "ACCEPT", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 2
-        { type = "ACCEPT", quest = 2605, questName = "The Thirsty Goblin", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 3
-        { type = "ACCEPT", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 4
-        { type = "ACCEPT", quest = 2768, questName = "Divino-matic Rod", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 5
-        { type = "TURNIN", quest = 2768, questName = "Divino-matic Rod", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5, optional = true }, -- 6
-        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 5472, target = "Dunemaul Enforcer / Dunemaul Brute", count = 10, map = 1446, zone = "Tanaris", x = 39.9, y = 50.9, near = true }, -- 7
-        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 12046, target = "Gor'marok the Ravager", count = 1, map = 1446, zone = "Tanaris", x = 41.5, y = 57.8 }, -- 8
-        { type = "KILL", quest = 2605, questName = "The Thirsty Goblin", npc = 5481, target = "Thistleshrub Dew Collector", map = 1446, zone = "Tanaris", x = 31.2, y = 64.7, near = true, note = "loot Laden Dew Gland" }, -- 9
-        { type = "TURNIN", quest = 2605, questName = "The Thirsty Goblin", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 10
-        { type = "ACCEPT", quest = 2606, questName = "In Good Taste", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 11
-        { type = "TURNIN", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 12
-        { type = "TURNIN", quest = 2606, questName = "In Good Taste", npc = 7583, npcName = "Sprinkle", map = 1446, zone = "Tanaris", x = 51.1, y = 26.9 }, -- 13
-        { type = "ACCEPT", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 14
-        { type = "TURNIN", quest = 3380, questName = "The Sunken Temple", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 15
-        { type = "COLLECT", quest = 3161, questName = "Gahz'ridian", target = "Gahz'ridian Ornament", count = 30, map = 1446, zone = "Tanaris", x = 53, y = 44, near = true }, -- 16
-        { type = "TURNIN", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 17
-        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5490, target = "Gnarled Thistleshrub / Thistleshrub Rootshaper", count = 8, map = 1446, zone = "Tanaris", x = 31.2, y = 65.5, near = true }, -- 18
-        { type = "TURNIN", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 19
+        { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 51.8, y = 27.6, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 1
+        { type = "HEARTH", npc = 7733, npcName = "Innkeeper Fizzgrimble", map = 1446, zone = "Gadgetzan", x = 52.5, y = 27.9, note = "talk to Innkeeper Fizzgrimble and make this inn your home" }, -- 2
+        { type = "ACCEPT", quest = 1690, questName = "Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 3
+        { type = "ACCEPT", quest = 1707, questName = "Water Pouch Bounty", npc = 7408, npcName = "Spigot Operator Luglunket", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 4
+        { type = "ACCEPT", quest = 2875, questName = "WANTED: Andre Firebeard", map = 1446, zone = "Tanaris", x = 51.8, y = 27 }, -- 5
+        { type = "KILL", quest = 1690, questName = "Wastewander Justice", npc = 5618, target = "Wastewander Bandit / Wastewander Thief", count = 10, map = 1446, zone = "Tanaris", x = 59.4, y = 24.7, near = true }, -- 6
+        { type = "COLLECT", quest = 1707, questName = "Water Pouch Bounty", target = "Wastewander Water Pouch", count = 5, map = 1446, zone = "Tanaris", x = 60, y = 23.4, near = true }, -- 7
+        { type = "TURNIN", quest = 1690, questName = "Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 8
+        { type = "ACCEPT", quest = 1691, questName = "More Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 9
+        { type = "ACCEPT", quest = 2781, questName = "WANTED: Caliph Scorpidsting", map = 1446, zone = "Tanaris", x = 51.8, y = 27 }, -- 10
+        { type = "ACCEPT", quest = 992, questName = "Gadgetzan Water Survey", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 11
+        { type = "TURNIN", quest = 1707, questName = "Water Pouch Bounty", npc = 7408, npcName = "Spigot Operator Luglunket", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 12
+        { type = "KILL", quest = 1691, questName = "More Wastewander Justice", npc = 5623, target = "Wastewander Assassin / Wastewander Shadow Mage", count = 10, map = 1446, zone = "Tanaris", x = 58.8, y = 36.4, near = true }, -- 13
+        { type = "KILL", quest = 1691, questName = "More Wastewander Justice", npc = 5615, target = "Wastewander Rogue", count = 10, map = 1446, zone = "Tanaris", x = 59, y = 38.5, near = true }, -- 14
+        { type = "KILL", quest = 2781, questName = "WANTED: Caliph Scorpidsting", npc = 7847, target = "Caliph Scorpidsting", map = 1446, zone = "Tanaris", x = 61.8, y = 38.2, note = "loot Caliph Scorpidsting's Head" }, -- 15
+        { type = "COLLECT", quest = 992, questName = "Gadgetzan Water Survey", target = "Tapped Dowsing Widget", map = 1446, zone = "Tanaris", x = 39, y = 29 }, -- 16
+        { type = "TURNIN", quest = 1691, questName = "More Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 17
+        { type = "TURNIN", quest = 2781, questName = "WANTED: Caliph Scorpidsting", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 18
+        { type = "TURNIN", quest = 992, questName = "Gadgetzan Water Survey", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 19
+        { type = "ACCEPT", quest = 8365, questName = "Pirate Hats Ahoy!", npc = 15165, npcName = "Haughty Modiste", map = 1446, zone = "Tanaris", x = 66.6, y = 22.3 }, -- 20
+        { type = "ACCEPT", quest = 8366, questName = "Southsea Shakedown", npc = 7882, npcName = "Security Chief Bilgewhizzle", map = 1446, zone = "Tanaris", x = 67.1, y = 23.9 }, -- 21
+        { type = "ACCEPT", quest = 2873, questName = "Stoley's Shipment", npc = 7881, npcName = "Stoley", map = 1446, zone = "Tanaris", x = 67.1, y = 24 }, -- 22
+        { type = "COLLECT", quest = 8365, questName = "Pirate Hats Ahoy!", target = "Southsea Pirate Hat", count = 20, map = 1446, zone = "Tanaris", x = 71.4, y = 43, near = true }, -- 23
+        { type = "KILL", quest = 8366, questName = "Southsea Shakedown", npc = 7855, target = "Southsea Pirate / Southsea Freebooter", count = 10, map = 1446, zone = "Tanaris", x = 71.4, y = 43, near = true }, -- 24
+        { type = "COLLECT", quest = 2873, questName = "Stoley's Shipment", target = "Stoley's Shipment", map = 1446, zone = "Tanaris", x = 72.1, y = 46.7, near = true }, -- 25
+        { type = "KILL", quest = 8366, questName = "Southsea Shakedown", npc = 7858, target = "Southsea Swashbuckler / Southsea Dock Worker", count = 10, map = 1446, zone = "Tanaris", x = 72.4, y = 46.9, near = true }, -- 26
+        { type = "KILL", quest = 2875, questName = "WANTED: Andre Firebeard", npc = 7883, target = "Andre Firebeard", map = 1446, zone = "Tanaris", x = 73.4, y = 47.1, note = "loot Firebeard's Head" }, -- 27
+        { type = "TURNIN", quest = 2873, questName = "Stoley's Shipment", npc = 7881, npcName = "Stoley", map = 1446, zone = "Tanaris", x = 67.1, y = 24 }, -- 28
+        { type = "TURNIN", quest = 2875, questName = "WANTED: Andre Firebeard", npc = 7882, npcName = "Security Chief Bilgewhizzle", map = 1446, zone = "Tanaris", x = 67.1, y = 23.9 }, -- 29
+        { type = "TURNIN", quest = 8366, questName = "Southsea Shakedown", npc = 7882, npcName = "Security Chief Bilgewhizzle", map = 1446, zone = "Tanaris", x = 67.1, y = 23.9 }, -- 30
+        { type = "TURNIN", quest = 8365, questName = "Pirate Hats Ahoy!", npc = 15165, npcName = "Haughty Modiste", map = 1446, zone = "Tanaris", x = 66.6, y = 22.3 }, -- 31
     } end,
 })

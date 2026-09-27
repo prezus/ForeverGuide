@@ -3,31 +3,40 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_44_UN_GORO_CRATER",
     name = "44. Un'Goro Crater 53-54 (Human)",
-    version = 3,
+    version = 2,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 53,
     maxLevel = 54,
     map = 1449,
     zone = "Un'Goro Crater",
-    next = "GEN_ALLIANCE_HUMAN_45_SILITHUS",
+    next = "GEN_ALLIANCE_HUMAN_45_FELWOOD",
     author = "ForeverGuide route planner",
-    notes = "Chapter 44 of the Human route: level 53 to 54, 14 steps, ~96 min of play in the model (15492 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 14,
+    notes = "Chapter 44 of the Human route: level 53 to 54, 23 steps, ~101 min of play in the model (34187 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 23,
     steps = function() return {
-        { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.8, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
-        { type = "ACCEPT", quest = 4492, questName = "Lost!", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 2
-        { type = "COMPLETE", quest = 4492, questName = "Lost!", target = "Escort Ringo to Spraggle Frock at Marshal's Refuge", map = 1449, zone = "Un'Goro Crater", x = 43.7, y = 8.3, note = "escort - stay close, it can fail: Escort Ringo to Spraggle Frock at Marshal's Refuge" }, -- 3
-        { type = "ACCEPT", quest = 974, questName = "Finding the Source", npc = 10302, npcName = "Krakle", map = 1449, zone = "Un'Goro Crater", x = 30.9, y = 50.4 }, -- 4
-        { type = "KILL", quest = 974, questName = "Finding the Source", npc = 10541, target = "Krakle's Thermometer", count = 1, map = 1449, zone = "Un'Goro Crater", x = 49, y = 45, note = "Find the hottest area of Fire Plume Ridge" }, -- 5
-        { type = "TURNIN", quest = 4492, questName = "Lost!", npc = 9999, npcName = "Ringo", map = 1449, zone = "Un'Goro Crater", x = 51.9, y = 49.9 }, -- 6
-        { type = "ACCEPT", quest = 4491, questName = "A Little Help From My Friends", npc = 9999, npcName = "Ringo", map = 1449, zone = "Un'Goro Crater", x = 51.9, y = 49.9 }, -- 7
-        { type = "COMPLETE", quest = 4491, questName = "A Little Help From My Friends", target = "Escort Ringo to Spraggle Frock at Marshal's Refuge", map = 1449, zone = "Un'Goro Crater", x = 43.7, y = 8.3, note = "escort - stay close, it can fail: Escort Ringo to Spraggle Frock at Marshal's Refuge" }, -- 8
-        { type = "TURNIN", quest = 4491, questName = "A Little Help From My Friends", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 9
-        { type = "TURNIN", quest = 974, questName = "Finding the Source", npc = 10302, npcName = "Krakle", map = 1449, zone = "Un'Goro Crater", x = 30.9, y = 50.4 }, -- 10
-        { type = "ACCEPT", quest = 4301, questName = "The Mighty U'cha", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 11
-        { type = "KILL", quest = 4301, questName = "The Mighty U'cha", npc = 9622, target = "U'cha", map = 1449, zone = "Un'Goro Crater", x = 68.1, y = 12.6, note = "loot U'cha's Pelt" }, -- 12
-        { type = "TURNIN", quest = 4301, questName = "The Mighty U'cha", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 13
-        { type = "GRIND", npc = 9167, target = "Frenzied Pterrordax", level = 54, map = 1449, zone = "Un'Goro Crater", x = 41, y = 64.8, near = true, note = "grind Frenzied Pterrordax (level 51-54) to level 54 - nothing worth questing at 53" }, -- 14
+        { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.7, y = 7.2, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
+        { type = "ACCEPT", quest = 4501, questName = "Beware of Pterrordax", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 8.4 }, -- 2
+        { type = "ACCEPT", quest = 4492, questName = "Lost!", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 3
+        { type = "COMPLETE", quest = 4492, questName = "Lost!", target = "Escort Ringo to Spraggle Frock at Marshal's Refuge", map = 1449, zone = "Un'Goro Crater", x = 43.7, y = 8.3, note = "escort - stay close, it can fail: Escort Ringo to Spraggle Frock at Marshal's Refuge" }, -- 4
+        { type = "KILL", quest = 4501, questName = "Beware of Pterrordax", npc = 9166, target = "Pterrordax", count = 10, map = 1449, zone = "Un'Goro Crater", x = 56.2, y = 8.2, near = true }, -- 5
+        { type = "KILL", quest = 4501, questName = "Beware of Pterrordax", npc = 9167, target = "Frenzied Pterrordax", count = 10, map = 1449, zone = "Un'Goro Crater", x = 36.4, y = 26.4, near = true }, -- 6
+        { type = "TURNIN", quest = 4501, questName = "Beware of Pterrordax", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 7
+        { type = "ACCEPT", quest = 974, questName = "Finding the Source", npc = 10302, npcName = "Krakle", map = 1449, zone = "Un'Goro Crater", x = 30.9, y = 50.4 }, -- 8
+        { type = "KILL", quest = 974, questName = "Finding the Source", npc = 10541, target = "Krakle's Thermometer", count = 1, map = 1449, zone = "Un'Goro Crater", x = 49, y = 45, note = "Find the hottest area of Fire Plume Ridge" }, -- 9
+        { type = "TURNIN", quest = 4492, questName = "Lost!", npc = 9999, npcName = "Ringo", map = 1449, zone = "Un'Goro Crater", x = 51.9, y = 49.9 }, -- 10
+        { type = "ACCEPT", quest = 4491, questName = "A Little Help From My Friends", npc = 9999, npcName = "Ringo", map = 1449, zone = "Un'Goro Crater", x = 51.9, y = 49.9 }, -- 11
+        { type = "COMPLETE", quest = 4491, questName = "A Little Help From My Friends", target = "Escort Ringo to Spraggle Frock at Marshal's Refuge", map = 1449, zone = "Un'Goro Crater", x = 43.7, y = 8.3, note = "escort - stay close, it can fail: Escort Ringo to Spraggle Frock at Marshal's Refuge" }, -- 12
+        { type = "TURNIN", quest = 4491, questName = "A Little Help From My Friends", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 13
+        { type = "TURNIN", quest = 974, questName = "Finding the Source", npc = 10302, npcName = "Krakle", map = 1449, zone = "Un'Goro Crater", x = 30.9, y = 50.4 }, -- 14
+        { type = "ACCEPT", quest = 4289, questName = "The Apes of Un'Goro", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 15
+        { type = "ACCEPT", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 16
+        { type = "KILL", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9684, target = "Lar'korwi", map = 1449, zone = "Un'Goro Crater", x = 79.7, y = 49.8, note = "loot Lar'korwi's Head" }, -- 17
+        { type = "KILL", quest = 4289, questName = "The Apes of Un'Goro", npc = 6514, target = "Un'Goro Gorilla / Un'Goro Stomper / Un'Goro Thunderer", count = 2, map = 1449, zone = "Un'Goro Crater", x = 69.1, y = 17.6, near = true, note = "loot Un'Goro Gorilla Pelt" }, -- 18
+        { type = "TURNIN", quest = 4289, questName = "The Apes of Un'Goro", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 19
+        { type = "ACCEPT", quest = 4301, questName = "The Mighty U'cha", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 20
+        { type = "TURNIN", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 21
+        { type = "KILL", quest = 4301, questName = "The Mighty U'cha", npc = 9622, target = "U'cha", map = 1449, zone = "Un'Goro Crater", x = 68.1, y = 12.6, note = "loot U'cha's Pelt" }, -- 22
+        { type = "TURNIN", quest = 4301, questName = "The Mighty U'cha", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 23
     } end,
 })

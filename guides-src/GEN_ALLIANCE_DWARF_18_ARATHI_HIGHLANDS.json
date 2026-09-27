@@ -1,0 +1,33 @@
+{
+  "id": "GEN_ALLIANCE_DWARF_18_ARATHI_HIGHLANDS",
+  "name": "18. Arathi Highlands 33-34 (Dwarf)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Dwarf", "Gnome"],
+  "minLevel": 33,
+  "maxLevel": 34,
+  "map": 1417,
+  "zone": "Arathi Highlands",
+  "next": "GEN_ALLIANCE_DWARF_19_STRANGLETHORN_VALE",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 18 of the Dwarf route: level 33 to 34, 17 steps, ~90 min of play in the model (23598 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1417, "zone": "Arathi Highlands", "x": 46.1, "y": 46.5, "radius": 60, "note": "travel to Arathi Highlands (Arathi Highlands)"},
+    {"type": "ACCEPT", "quest": 681, "questName": "Northfold Manor", "npc": 2700, "npcName": "Captain Nials", "map": 1417, "zone": "Arathi Highlands", "x": 45.8, "y": 47.6},
+    {"type": "ACCEPT", "quest": 8260, "questName": "Arathor Basic Care Package", "npc": 15127, "npcName": "Samuel Hawke", "map": 1417, "zone": "Arathi Highlands", "x": 46, "y": 45.2},
+    {"type": "ACCEPT", "quest": 691, "questName": "Worth Its Weight in Gold", "npc": 2788, "npcName": "Apprentice Kryten", "map": 1417, "zone": "Arathi Highlands", "x": 46.2, "y": 47.8},
+    {"type": "TURNIN", "quest": 8260, "questName": "Arathor Basic Care Package", "npc": 15127, "npcName": "Samuel Hawke", "map": 1417, "zone": "Arathi Highlands", "x": 46, "y": 45.2},
+    {"type": "KILL", "quest": 681, "questName": "Northfold Manor", "npc": 2586, "target": "Syndicate Highwayman / Syndicate Mercenary", "count": 10, "map": 1417, "zone": "Arathi Highlands", "x": 33.9, "y": 32.9, "near": true},
+    {"type": "COLLECT", "quest": 691, "questName": "Worth Its Weight in Gold", "target": "Witherbark Tusk", "count": 10, "map": 1417, "zone": "Arathi Highlands", "x": 34.6, "y": 39.5, "near": true},
+    {"type": "KILL", "quest": 691, "questName": "Worth Its Weight in Gold", "npc": 2555, "target": "Witherbark Witch Doctor", "count": 10, "map": 1417, "zone": "Arathi Highlands", "x": 32.6, "y": 44.4, "near": true, "note": "loot Witherbark Medicine Pouch"},
+    {"type": "KILL", "quest": 691, "questName": "Worth Its Weight in Gold", "npc": 2557, "target": "Witherbark Shadow Hunter", "count": 4, "map": 1417, "zone": "Arathi Highlands", "x": 66.3, "y": 80.5, "near": true, "note": "loot Shadow Hunter Knife"},
+    {"type": "TURNIN", "quest": 681, "questName": "Northfold Manor", "npc": 2700, "npcName": "Captain Nials", "map": 1417, "zone": "Arathi Highlands", "x": 45.8, "y": 47.6},
+    {"type": "ACCEPT", "quest": 682, "questName": "Stromgarde Badges", "npc": 2700, "npcName": "Captain Nials", "map": 1417, "zone": "Arathi Highlands", "x": 45.8, "y": 47.6},
+    {"type": "TURNIN", "quest": 691, "questName": "Worth Its Weight in Gold", "npc": 2788, "npcName": "Apprentice Kryten", "map": 1417, "zone": "Arathi Highlands", "x": 46.2, "y": 47.8},
+    {"type": "COLLECT", "quest": 682, "questName": "Stromgarde Badges", "target": "Stromgarde Badge", "count": 7, "map": 1417, "zone": "Arathi Highlands", "x": 29.2, "y": 61.3, "near": true},
+    {"type": "TURNIN", "quest": 682, "questName": "Stromgarde Badges", "npc": 2700, "npcName": "Captain Nials", "map": 1417, "zone": "Arathi Highlands", "x": 45.8, "y": 47.6},
+    {"type": "ACCEPT", "quest": 642, "questName": "The Princess Trapped", "map": 1417, "zone": "Arathi Highlands", "x": 62.5, "y": 33.7},
+    {"type": "COLLECT", "quest": 642, "questName": "The Princess Trapped", "target": "Mote of Myzrael", "count": 12, "map": 1417, "zone": "Arathi Highlands", "x": 76.2, "y": 42.5, "near": true},
+    {"type": "TURNIN", "quest": 642, "questName": "The Princess Trapped", "map": 1417, "zone": "Arathi Highlands", "x": 84.3, "y": 31}
+  ]
+}

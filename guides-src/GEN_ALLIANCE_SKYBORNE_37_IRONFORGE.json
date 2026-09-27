@@ -1,0 +1,27 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_37_IRONFORGE",
+  "name": "37. Ironforge 49-50 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 49,
+  "maxLevel": 50,
+  "map": 1455,
+  "zone": "Ironforge",
+  "next": "GEN_ALLIANCE_SKYBORNE_38_UN_GORO_CRATER",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 37 of the Skyborne route: level 49 to 50, 11 steps, ~159 min of play in the model (6871 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1425, "zone": "Aerie Peak", "x": 14.2, "y": 41.6, "radius": 60, "note": "use your hearthstone (Aerie Peak)"},
+    {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 57.2, "y": 35.7, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
+    {"type": "HEARTH", "npc": 5111, "npcName": "Innkeeper Firebrew", "map": 1455, "zone": "Ironforge", "x": 18.1, "y": 51.5, "note": "talk to Innkeeper Firebrew and make this inn your home"},
+    {"type": "TURNIN", "quest": 3368, "questName": "Suntara Stones", "npc": 8256, "npcName": "Curator Thorius", "map": 1455, "zone": "Ironforge", "x": 71.5, "y": 15.7},
+    {"type": "ACCEPT", "quest": 3448, "questName": "Passing the Burden", "npc": 2916, "npcName": "Historian Karnik", "map": 1455, "zone": "Ironforge", "x": 77.5, "y": 11.8},
+    {"type": "TURNIN", "quest": 3448, "questName": "Passing the Burden", "npc": 8507, "npcName": "Tymor", "map": 1455, "zone": "Ironforge", "x": 31, "y": 4.8},
+    {"type": "ACCEPT", "quest": 3450, "questName": "An Easy Pickup", "npc": 8507, "npcName": "Tymor", "map": 1455, "zone": "Ironforge", "x": 31, "y": 4.8},
+    {"type": "TURNIN", "quest": 3450, "questName": "An Easy Pickup", "npc": 8517, "npcName": "Xiggs Fuselighter", "map": 1455, "zone": "Ironforge", "x": 70.9, "y": 94.6},
+    {"type": "ACCEPT", "quest": 3451, "questName": "Signal for Pickup", "npc": 8517, "npcName": "Xiggs Fuselighter", "map": 1455, "zone": "Ironforge", "x": 70.9, "y": 94.6},
+    {"type": "TURNIN", "quest": 3451, "questName": "Signal for Pickup", "npc": 8517, "npcName": "Xiggs Fuselighter", "map": 1455, "zone": "Ironforge", "x": 70.9, "y": 94.6},
+    {"type": "GRIND", "level": 50, "note": "nothing worth questing at level 49 - grind to 50"}
+  ]
+}

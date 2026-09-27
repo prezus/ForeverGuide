@@ -2,38 +2,27 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_39_EASTERN_PLAGUELANDS",
-    name = "39. Eastern Plaguelands 54-54 (Undead)",
+    name = "39. Eastern Plaguelands 52-52 (Undead)",
     version = 2,
     faction = "Horde",
     race = { "Scourge" },
-    minLevel = 54,
-    maxLevel = 54,
+    minLevel = 52,
+    maxLevel = 52,
     map = 1423,
     zone = "Eastern Plaguelands",
-    next = "GEN_HORDE_SCOURGE_40_SILITHUS",
+    next = "GEN_HORDE_SCOURGE_40_UNDERCITY",
     author = "ForeverGuide route planner",
-    notes = "Chapter 39 of the Scourge route: level 54 to 54, 20 steps, ~81 min of play in the model (50154 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 20,
+    notes = "Chapter 39 of the Scourge route: level 52 to 52, 9 steps, ~38 min of play in the model (37099 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 9,
     steps = function() return {
-        { type = "TRAVEL", map = 1423, zone = "Light's Hope Chapel", x = 71.8, y = 48.5, radius = 60, note = "use your hearthstone (Light's Hope Chapel)" }, -- 1
-        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.8, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 2
-        { type = "ACCEPT", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 3
-        { type = "TURNIN", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 4
-        { type = "ACCEPT", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 5
-        { type = "KILL", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 12247, target = "Scourge Structure", count = 8, map = 1423, zone = "Eastern Plaguelands", x = 40.7, y = 38.6, near = true, note = "Scourge Structures Destroyed" }, -- 6
-        { type = "TURNIN", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 7
-        { type = "ACCEPT", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 27.3, y = 85.2 }, -- 8
-        { type = "ACCEPT", quest = 6022, questName = "To Kill With Purpose", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 9
-        { type = "ACCEPT", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 10
-        { type = "ACCEPT", quest = 6133, questName = "The Ranger Lord's Behest", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 11
-        { type = "TURNIN", quest = 6022, questName = "To Kill With Purpose", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 12
-        { type = "KILL", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 8601, target = "Noxious Plaguebat", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 46.2, y = 65.8, near = true }, -- 13
-        { type = "KILL", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 8602, target = "Monstrous Plaguebat", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 43.5, y = 43, near = true }, -- 14
-        { type = "KILL", quest = 6133, questName = "The Ranger Lord's Behest", npc = 8564, target = "Ranger / Woodsman / Pathstrider", count = 8, map = 1423, zone = "Eastern Plaguelands", x = 51.4, y = 21.7, near = true }, -- 15
-        { type = "COLLECT", quest = 6133, questName = "The Ranger Lord's Behest", target = "Quel'Thalas Registry", map = 1423, zone = "Eastern Plaguelands", x = 52.1, y = 18.3 }, -- 16
-        { type = "TURNIN", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 17
-        { type = "TURNIN", quest = 6133, questName = "The Ranger Lord's Behest", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 18
-        { type = "KILL", quest = 6024, questName = "Hameya's Plea", npc = 12248, target = "Infiltrator Hameya", map = 1423, zone = "Eastern Plaguelands", x = 70.7, y = 16.5, note = "loot Hameya's Key" }, -- 19
-        { type = "TURNIN", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 28, y = 86.2 }, -- 20
+        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.2, y = 59.2, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
+        { type = "HEARTH", npc = 16256, npcName = "Jessica Chambers", map = 1423, zone = "Light's Hope Chapel", x = 71.8, y = 48.5, note = "talk to Jessica Chambers and make this inn your home" }, -- 2
+        { type = "ACCEPT", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 3
+        { type = "ACCEPT", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 4
+        { type = "KILL", quest = 5211, questName = "Defenders of Darrowshire", npc = 11064, target = "Darrowshire Spirit", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 81.8, y = 42.1, near = true }, -- 5
+        { type = "TURNIN", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 6
+        { type = "TURNIN", quest = 5142, questName = "Little Pamela", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 7
+        { type = "KILL", quest = 6021, questName = "Zaeldarr the Outcast", npc = 12250, target = "Zaeldarr the Outcast", map = 1423, zone = "Eastern Plaguelands", x = 27.5, y = 84.9, note = "loot Zaeldarr's Head" }, -- 8
+        { type = "TURNIN", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 9
     } end,
 })

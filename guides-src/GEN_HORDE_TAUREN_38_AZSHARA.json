@@ -1,0 +1,17 @@
+{
+  "id": "GEN_HORDE_TAUREN_38_AZSHARA",
+  "name": "38. Azshara 51-52 (Tauren)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Tauren"],
+  "minLevel": 51,
+  "maxLevel": 52,
+  "map": 1447,
+  "zone": "Azshara",
+  "next": "GEN_HORDE_TAUREN_39_FELWOOD",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 38 of the Tauren route: level 51 to 52, 1 steps, ~129 min of play in the model (36303 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "steps": [
+    {"type": "GRIND", "npc": 8761, "target": "Mosshoof Courser", "level": 52, "map": 1447, "zone": "Azshara", "x": 66.4, "y": 27.4, "near": true, "note": "grind Mosshoof Courser (level 52-53) to level 52 - nothing worth questing at 51"}
+  ]
+}

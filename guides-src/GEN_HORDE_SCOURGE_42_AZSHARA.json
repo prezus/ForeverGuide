@@ -1,0 +1,26 @@
+{
+  "id": "GEN_HORDE_SCOURGE_42_AZSHARA",
+  "name": "42. Azshara 52-53 (Undead)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Scourge"],
+  "minLevel": 52,
+  "maxLevel": 53,
+  "map": 1447,
+  "zone": "Azshara",
+  "next": "GEN_HORDE_SCOURGE_43_UNDERCITY",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 42 of the Scourge route: level 52 to 53, 10 steps, ~52 min of play in the model (25946 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1447, "zone": "Azshara", "x": 60.8, "y": 66.4, "radius": 60, "note": "travel to Azshara (Azshara)"},
+    {"type": "TURNIN", "quest": 3504, "questName": "Betrayed", "npc": 8576, "npcName": "Ag'tor Bloodfist", "map": 1447, "zone": "Azshara", "x": 22.3, "y": 51.5},
+    {"type": "ACCEPT", "quest": 3505, "questName": "Betrayed", "npc": 8576, "npcName": "Ag'tor Bloodfist", "map": 1447, "zone": "Azshara", "x": 22.3, "y": 51.5},
+    {"type": "KILL", "quest": 3505, "questName": "Betrayed", "npc": 6198, "target": "Blood Elf Surveyor / Blood Elf Reclaimer", "count": 10, "map": 1447, "zone": "Azshara", "x": 55.8, "y": 30.8, "near": true},
+    {"type": "COMPLETE", "quest": 3505, "questName": "Betrayed", "target": "Find Magus Rimtori's camp", "map": 1447, "zone": "Azshara", "x": 59.5, "y": 31.5, "note": "Find Magus Rimtori's camp"},
+    {"type": "TURNIN", "quest": 3505, "questName": "Betrayed", "map": 1447, "zone": "Azshara", "x": 59.5, "y": 31.3},
+    {"type": "ACCEPT", "quest": 3506, "questName": "Betrayed", "map": 1447, "zone": "Azshara", "x": 59.5, "y": 31.3},
+    {"type": "KILL", "quest": 3506, "questName": "Betrayed", "npc": 8578, "target": "Magus Rimtori", "map": 1447, "zone": "Azshara", "x": 59.5, "y": 31.4, "note": "loot Head of Magus Rimtori"},
+    {"type": "TURNIN", "quest": 3506, "questName": "Betrayed", "npc": 8576, "npcName": "Ag'tor Bloodfist", "map": 1447, "zone": "Azshara", "x": 22.3, "y": 51.5},
+    {"type": "ACCEPT", "quest": 3507, "questName": "Betrayed", "npc": 8576, "npcName": "Ag'tor Bloodfist", "map": 1447, "zone": "Azshara", "x": 22.3, "y": 51.5}
+  ]
+}
