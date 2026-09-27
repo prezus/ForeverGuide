@@ -1,9 +1,10 @@
 -- ============================================================
 -- ForeverGuide / Tracker.lua
 -- "Auto" mode: navigate the quest log directly, no guide needed.
--- For every quest in the log the database knows, the tracker finds the
--- nearest place that makes progress (an unfinished objective's spawns, or
--- the turn-in NPC once the quest is ready) and points the arrow there.
+-- For every quest in the log, the tracker finds the nearest place that makes
+-- progress (the world map's pin for an unfinished quest, else the database's
+-- objective spawns, or the turn-in NPC once the quest is ready) and points the
+-- arrow there.
 --
 --   /fg mode auto     tracker drives navigation and the window
 --   /fg mode guide    the active guide does (default)
@@ -30,6 +31,19 @@ end
 function Tracker:BestForQuest(entry)
     local DB, Q = ns.DB, ns.Quest
     local questID = entry.questID
+    if not entry.ready then
+        -- the world map's own pin for the quest comes first, the database only fills in
+        local mapID = ns.Player:GetMapID()
+        local x, y = Q:GetMapPin(questID, mapID)
+        if x then
+            local loc = { map = mapID, x = x, y = y, blizzard = true }
+            local what = "objective"
+            for _, o in ipairs(entry.objectives or {}) do
+                if not o.finished and o.text then what = o.text break end
+            end
+            return { questID = questID, title = entry.title, what = what, loc = loc, distance = DB:DistanceTo(loc) }
+        end
+    end
     if not DB:GetQuest(questID) then return nil end
     local locs, what, whatFor = {}, nil, {}
     if entry.ready then

@@ -305,6 +305,21 @@ function Quest:GetWaypoint(questID)
     return nil
 end
 
+--- Where the world map's numbered pin for a quest in the log sits on mapID: x, y (0-100), or nil.
+--- It marks the objective area (or the turn-in once done); the area's shape itself is not readable.
+function Quest:GetMapPin(questID, mapID)
+    if not (questID and mapID) then return nil end
+    local pins = ns.Call("C_QuestLog.GetQuestsOnMap", mapID)
+    if type(pins) ~= "table" then return nil end
+    for _, pin in ipairs(pins) do
+        if type(pin) == "table" and PlainNumber(pin.questID) == questID then
+            local x, y = PlainNumber(pin.x), PlainNumber(pin.y)
+            if x and y then return x * 100, y * 100 end
+        end
+    end
+    return nil
+end
+
 -- ------------------------------------------------------------
 -- Items the player clicks for a quest
 -- ------------------------------------------------------------

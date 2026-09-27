@@ -353,6 +353,8 @@ _G.C_QuestLog = {
     GetTitleForQuestID = function(qid) return world.titles and world.titles[qid] end,
     RequestLoadQuestByID = function() end,
     GetNextWaypoint = function() return nil end,
+    -- the world map's numbered quest pins: MOCK.questPins[uiMapID] = { { questID =, x =, y = (0-1) } }
+    GetQuestsOnMap = function(mapID) return world.questPins and world.questPins[mapID] or {} end,
     GetMaxNumQuestsCanAccept = function() return world.logCap or 40 end,
     UnitIsRelatedToActiveQuest = function(unit) local p = world.plates and world.plates[unit] return p and p.quest == true or false end,
     IsPushableQuest = function(qid) return world.log[qid] ~= nil and not (world.unpushable and world.unpushable[qid]) end,

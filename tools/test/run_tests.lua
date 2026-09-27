@@ -1359,6 +1359,56 @@ do
     ns.NpcDB[990501] = nil
 end
 
+-- ---- Blizzard's quest map pin is the primary target of an objective step ----------------
+do
+    -- the world map's numbered pin marks where the client wants the player to go for a quest in
+    -- the log; our spawn data (vanilla-era, or none for new Forever quests) only fills in
+    ns.NpcDB[990601] = { n = "Pin Wolf", spm = { [1429] = { { 40.0, 60.0 } } } }
+    MOCK_ACCEPT(990601, "Pin Test", { { text = "Pin Wolf slain: 0/5", finished = false, numFulfilled = 0, numRequired = 5 } })
+    settle()
+    MOCK_MOVE(41.0, 60.0)
+    local step = { type = "KILL", quest = 990601, npc = 990601, target = "Pin Wolf", map = 1429, x = 45.0, y = 50.0 }
+    local _, sx, sy = ns.Navigation:ResolveStep(step)
+    check(not (sx == 70 and sy == 20), "no pin: not aimed at a pin (" .. tostring(sx) .. "," .. tostring(sy) .. ")")
+    local fallbackX, fallbackY = sx, sy
+
+    MOCK.questPins = { [1429] = { { questID = 990601, x = 0.70, y = 0.20 } } }
+    local map, x, y, _, loc = ns.Navigation:ResolveStep(step)
+    check(map == 1429 and x and math.abs(x - 70) < 0.01 and math.abs(y - 20) < 0.01, "a pin on the current map beats spawns and the step's spot (" .. tostring(x) .. "," .. tostring(y) .. ")")
+    check(loc and loc.blizzard == true, "the target is marked as Blizzard's")
+
+    MOCK.questPins = { [1429] = { { questID = 990602, x = 0.70, y = 0.20 }, { questID = 990601, x = nil, y = 0.20 } } }
+    local _, ox, oy = ns.Navigation:ResolveStep(step)
+    check(ox == fallbackX and oy == fallbackY, "another quest's pin and a pin without x are ignored (" .. tostring(ox) .. "," .. tostring(oy) .. ")")
+
+    MOCK.questPins = { [1426] = { { questID = 990601, x = 0.30, y = 0.40 } } }
+    local away = { type = "KILL", quest = 990601, npc = 990601, map = 1426, x = 50.0, y = 50.0 }
+    local amap, ax, ay = ns.Navigation:ResolveStep(away)
+    check(amap == 1426 and ax and math.abs(ax - 30) < 0.01 and math.abs(ay - 40) < 0.01, "the pin on the step's own map when the player is elsewhere (" .. tostring(amap) .. " " .. tostring(ax) .. "," .. tostring(ay) .. ")")
+
+    MOCK.questPins = { [1429] = { { questID = 990601, x = 0.70, y = 0.20 } } }
+    local accept = { type = "ACCEPT", quest = 990601, npc = 990601, map = 1429, x = 45.0, y = 50.0 }
+    local _, cx = ns.Navigation:ResolveStep(accept)
+    check(cx ~= 70, "a giver step does not follow the objective pin (" .. tostring(cx) .. ")")
+    local edited = { type = "KILL", quest = 990601, npc = 990601, map = 1429, x = 12.0, y = 13.0, edited = true }
+    local _, ex, ey = ns.Navigation:ResolveStep(edited)
+    check(ex == 12.0 and ey == 13.0, "an in-game edit still beats the pin (" .. tostring(ex) .. "," .. tostring(ey) .. ")")
+
+    -- auto mode follows the same pin, even for a quest the database does not know
+    local entry = ns.Quest.log[990601]
+    local best = entry and ns.Tracker:BestForQuest(entry)
+    check(best and best.loc.map == 1429 and math.abs(best.loc.x - 70) < 0.01 and math.abs(best.loc.y - 20) < 0.01, "the tracker aims at the pin too (" .. tostring(best and best.loc.x) .. ")")
+    MOCK.questPins = nil
+    check(entry and ns.Tracker:BestForQuest(entry) == nil, "no pin and no database entry: the tracker has nothing for the quest")
+    MOCK.questPins = { [1429] = { { questID = 990601, x = 0.70, y = 0.20 } } }
+
+    MOCK_ABANDON(990601); settle()
+    local _, nx = ns.Navigation:ResolveStep(step)
+    check(nx ~= 70, "quest not in the log: its pin is not used (" .. tostring(nx) .. ")")
+    MOCK.questPins = nil
+    ns.NpcDB[990601] = nil
+end
+
 -- ---- editor + resync -------------------------------------------------------------------
 do
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
