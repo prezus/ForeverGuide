@@ -283,8 +283,11 @@ function Nav:ResolveStep(step)
     if not step then return nil end
     if ns.Editor then step = ns.Editor:Effective(step) end   -- in-game corrections win
     if step.near and not step.edited then
-        -- objective with many spawns: the nearest known one beats the planned spot
-        local loc = self:DBLocationForStep(step)
+        -- objective with many spawns: the nearest known one beats the planned spot, among the
+        -- spawns around that spot. Snow Leopards roam all of Dun Morogh; a step planned in the
+        -- west must not send the player to one in the east because it happens to be closer.
+        local around = step.map and step.x and step.y and { map = step.map, x = step.x, y = step.y } or nil
+        local loc = self:DBLocationForStep(step, around)
         if loc then return loc.map, loc.x, loc.y, step.text or loc.name, loc end
     end
     -- an NPC step whose NPC has a Forever-confirmed position: that beats the planned spot
@@ -336,8 +339,12 @@ function Nav:ClosestTo(locs, mapID, x, y)
     return best
 end
 
---- Nearest database location that makes progress on a step, or nil.
-function Nav:DBLocationForStep(step)
+--- How far (map percent) a near step's spawns may be from its planned spot to count.
+local NEAR_RADIUS = 15
+
+--- Nearest database location that makes progress on a step, or nil. With `around` ({map, x, y}),
+--- only locations within NEAR_RADIUS of it count.
+function Nav:DBLocationForStep(step, around)
     local DB = ns.DB
     if not DB or not DB:IsLoaded() then return nil end
     local t = step.type
@@ -380,6 +387,15 @@ function Nav:DBLocationForStep(step)
     if (not locs or #locs == 0) and step.npc then locs = DB:NPCLocations(step.npc) end
     if (not locs or #locs == 0) and step.item and t == "BUY" then locs = DB:ItemLocations(step.item) end
     if not locs or #locs == 0 then return nil end
+    if around then
+        local kept = {}
+        for _, l in ipairs(locs) do
+            local dx, dy = (l.x or 0) - around.x, (l.y or 0) - around.y
+            if l.map == around.map and dx * dx + dy * dy <= NEAR_RADIUS * NEAR_RADIUS then kept[#kept + 1] = l end
+        end
+        if #kept == 0 then return nil end
+        locs = kept
+    end
     local loc = DB:Nearest(locs)
     return loc
 end

@@ -427,6 +427,20 @@ local function subtitle(G, step, idx)
     return G:GetStepText(step)
 end
 
+--- Who a step is for, when not everyone: "[Warrior]" in the class colour, "[Blacksmithing]".
+--- The step is hidden from everyone else, so the tag says why this one is on the list.
+local function forTag(step)
+    local tags = {}
+    local names, colors = rawget(_G, "LOCALIZED_CLASS_NAMES_MALE"), rawget(_G, "RAID_CLASS_COLORS")
+    for _, cls in ipairs(type(step.class) == "table" and step.class or {}) do
+        local name = (names and names[cls]) or (cls:sub(1, 1) .. cls:sub(2):lower())
+        local color = colors and colors[cls] and colors[cls].colorStr
+        tags[#tags + 1] = color and ("|c" .. color .. "[" .. name .. "]|r") or ("[" .. name .. "]")
+    end
+    if step.profession then tags[#tags + 1] = "|cffc0a060[" .. step.profession .. "]|r" end
+    return #tags > 0 and table.concat(tags, " ") or nil
+end
+
 local function rowTitle(G, step)
     local t = step.type
     if step.quest then return questTitle(step) or G:GetStepText(step) end
@@ -483,7 +497,7 @@ function QG:BuildGuideEntries()
         end
         local e = {
             number = idx, index = idx, step = s, icon = ICON_FOR[s.type] or "accept", state = state,
-            title = rowTitle(G, s), subtitle = sub, questID = s.quest,
+            title = (forTag(s) and ((rowTitle(G, s) or "") .. " " .. forTag(s))) or rowTitle(G, s), subtitle = sub, questID = s.quest,
             useItem = idx == cur and G:StepUseItem(s) or nil,
             onClick = function() G:SetStep(idx) end,
             onRightClick = function() if idx == G.current then G:Skip() end end,
