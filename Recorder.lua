@@ -10,14 +10,17 @@
 -- Everything goes to ForeverGuideDB.recorder (account-wide SavedVariables):
 --   WTF\Account\<acct>\SavedVariables\ForeverGuide.lua
 -- Nothing is sent anywhere by the addon. Off by default; /fg rec off disables it.
+-- Never recorded: other players (a quest shared by one is only flagged `shared`), and the
+-- wall clock (`t` counts seconds since the recorder's first entry this session).
 -- ============================================================
 
 local _, ns = ...
 local Recorder = ns:NewModule("Recorder")
 
-local PlainNumber, PlainString = ns.PlainNumber, ns.PlainString
+local PlainNumber, PlainString, PlainBool = ns.PlainNumber, ns.PlainString, ns.PlainBool
 
 local lastTarget = nil     -- last hostile target snapshot (for kill locations)
+local sessionStart = nil   -- entry times are seconds since this, never the wall clock
 
 local function Enabled()
     return ns.db and ns.db.recorder and ns.db.recorder.enabled
@@ -35,7 +38,8 @@ function Recorder:Add(kind, fields)
     local mapID, x, y, zone, sub = Location()
     local e = fields or {}
     e.e = kind
-    e.t = PlainNumber(ns.Safe(GetServerTime)) or 0
+    sessionStart = sessionStart or ns.Now()
+    e.t = math.floor(ns.Now() - sessionStart)
     e.lvl = ns.Player:GetLevel()
     e.m, e.x, e.y = mapID, x, y
     e.zone, e.sub = zone, sub
@@ -59,22 +63,39 @@ function Recorder:NoteMap()
     ns.db.recorder.maps[mapID] = entry
 end
 
+-- Only creatures are recorded. A player behind a quest window shared the quest: note that,
+-- never who they are. A targeted player with no window open is not the quest's NPC at all.
 local function NPCFields(unitInfo)
     if not unitInfo then return {} end
+    if unitInfo.isPlayer then return { shared = unitInfo.unit ~= "target" or nil } end
+    if not unitInfo.npcID then return {} end
     return { npc = unitInfo.npcID, npcName = unitInfo.name, npcLevel = unitInfo.level }
+end
+
+-- The quest window's NPC ("questnpc"). A player there shared the quest: without an "npc" unit
+-- the fallback would be the target, a mob or another NPC that did not give the quest.
+local function QuestWindowFields()
+    local UnitIsPlayer = rawget(_G, "UnitIsPlayer")
+    if PlainBool(ns.Safe(UnitIsPlayer, "questnpc")) == true or PlainBool(ns.Safe(UnitIsPlayer, "npc")) == true then
+        return { shared = true }
+    end
+    return NPCFields(ns.Player:GetUnitInfo("questnpc") or ns.Player:GetInteractionNPC())
 end
 
 function Recorder:OnInit()
     local E = ns.Events
+    self:Scrub()
 
     E:Register("FG_QUEST_ACCEPTED", function(_, questID, title)
-        local f = NPCFields(ns.Player:GetInteractionNPC())
+        if not Enabled() then return end
+        local f = QuestWindowFields()
         f.q, f.n = questID, title
         Recorder:Add("ACCEPT", f)
     end)
 
     E:Register("FG_QUEST_TURNED_IN", function(_, questID, title, xp, money)
-        local f = NPCFields(ns.Player:GetInteractionNPC())
+        if not Enabled() then return end
+        local f = QuestWindowFields()
         f.q, f.n, f.xp, f.money = questID, title, xp, money
         Recorder:Add("TURNIN", f)
     end)
@@ -85,23 +106,26 @@ function Recorder:OnInit()
 
     -- quest offer window: this NPC starts that quest
     E:Register("QUEST_DETAIL", function()
+        if not Enabled() then return end
         local questID = PlainNumber(ns.Safe(rawget(_G, "GetQuestID")))
         local title = PlainString(ns.Safe(rawget(_G, "GetTitleText")))
-        local f = NPCFields(ns.Player:GetInteractionNPC())
+        local f = QuestWindowFields()
         f.q, f.n = questID, title
         Recorder:Add("OFFER", f)
     end)
 
     -- turn-in window: this NPC ends that quest
     E:RegisterMany({ "QUEST_PROGRESS", "QUEST_COMPLETE" }, function(event)
+        if not Enabled() then return end
         local questID = PlainNumber(ns.Safe(rawget(_G, "GetQuestID")))
         local title = PlainString(ns.Safe(rawget(_G, "GetTitleText")))
-        local f = NPCFields(ns.Player:GetInteractionNPC())
+        local f = QuestWindowFields()
         f.q, f.n = questID, title
         Recorder:Add(event == "QUEST_COMPLETE" and "ENDNPC" or "PROGRESS", f)
     end)
 
     E:Register("GOSSIP_SHOW", function()
+        if not Enabled() then return end
         local f = NPCFields(ns.Player:GetInteractionNPC())
         local avail, active = {}, {}
         local a = ns.Call("C_GossipInfo.GetAvailableQuests")
@@ -118,9 +142,11 @@ function Recorder:OnInit()
     end)
 
     E:Register("MERCHANT_SHOW", function()
+        if not Enabled() then return end
         Recorder:Add("VENDOR", NPCFields(ns.Player:GetInteractionNPC()))
     end)
     E:Register("TRAINER_SHOW", function()
+        if not Enabled() then return end
         Recorder:Add("TRAINER", NPCFields(ns.Player:GetInteractionNPC()))
     end)
 
@@ -154,6 +180,16 @@ end
 
 function Recorder:Count()
     return ns.db and #ns.db.recorder.entries or 0
+end
+
+--- Clean what older versions saved: a player's name and level where a quest was shared
+--- (an entry with a name but no npc id), and wall-clock times.
+function Recorder:Scrub()
+    if not ns.db or not ns.db.recorder then return end
+    for _, e in ipairs(ns.db.recorder.entries) do
+        if not e.npc then e.npcName, e.npcLevel = nil, nil end
+        if e.t and e.t > 1000000 then e.t = nil end
+    end
 end
 
 function Recorder:Clear()

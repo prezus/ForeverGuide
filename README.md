@@ -182,7 +182,9 @@ and shipped as `Data/ForeverDB.lua`, which `DB.lua` merges over the vanilla tabl
 records only gain what they lack; unknown ids become new records flagged `forever`). Two sources:
 
 * **Playing with the recorder on** (opt in under Options → Data collection or `/fg rec on`): quest accepts / turn-ins with NPC id + coordinates,
-  objective progress with position, gossip lists, zone maps. After a session:
+  objective progress with position, gossip lists, zone maps. Only creatures are recorded: a quest
+  shared by another player is flagged `shared`, never with who shared it, and entry times count
+  seconds within the session, not the clock. After a session:
   `python tools/merge_recorded.py` (reads every `WTF\Account\*\SavedVariables\ForeverGuide.lua` and `.bak`).
 * **The client's own tables**: export `QuestV2`, `QuestV2CliTask`, `QuestObjective`, `QuestPOIBlob`,
   `QuestPOIPoint` as CSV from `https://wago.tools/db2/<Table>?build=1.60.1.69913` into a folder, then
