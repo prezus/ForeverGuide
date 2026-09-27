@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_03_LOCH_MODAN",
     name = "3. Loch Modan 14-17 (Human)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 14,
@@ -13,167 +13,168 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_04_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the Human route: level 14 to 17, 50 steps, ~104 min of play in the model (20009 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 160,
+    stepCount = 161,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 1572, npcName = "Thorgrum Borrelson", map = 1432, zone = "Loch Modan", x = 33.9, y = 51 }, -- 1
-        { type = "ACCEPT", quest = 432, questName = "Those Blasted Troggs!", npc = 1254, npcName = "Foreman Stonebrow", map = 1426, zone = "Dun Morogh", x = 69, y = 56.2 }, -- 2
-        { type = "KILL", quest = 432, questName = "Those Blasted Troggs!", npc = 1115, target = "Rockjaw Skullthumper", count = 6, map = 1426, zone = "Dun Morogh", x = 70.8, y = 56 }, -- 3
-        { type = "TURNIN", quest = 432, questName = "Those Blasted Troggs!", npc = 1254, npcName = "Foreman Stonebrow", map = 1426, zone = "Dun Morogh", x = 69, y = 56.2 }, -- 4
-        { type = "ACCEPT", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.6, y = 56 }, -- 5
-        { type = "KILL", quest = 433, questName = "The Public Servant", npc = 1117, target = "Rockjaw Bonesnapper", count = 10, map = 1426, zone = "Dun Morogh", x = 70.8, y = 56 }, -- 6
-        { type = "TURNIN", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.6, y = 56 }, -- 7
-        { type = "ACCEPT", quest = 314, questName = "Protecting the Herd", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, optional = true, note = "Elite - group up" }, -- 8
-        { type = "COLLECT", quest = 314, questName = "Protecting the Herd", target = "Fang of Vagash", count = 1, map = 1426, zone = "Dun Morogh", x = 62.4, y = 46.2, optional = true, mobs = "Vagash" }, -- 9
-        { type = "TURNIN", quest = 314, questName = "Protecting the Herd", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, optional = true }, -- 10
-        { type = "ACCEPT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.6 }, -- 11
-        { type = "COLLECT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", target = "MacGrann's Dried Meats", count = 1, map = 1426, zone = "Dun Morogh", x = 38.5, y = 53.9 }, -- 12
-        { type = "TURNIN", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.6 }, -- 13
-        { type = "ACCEPT", quest = 419, questName = "The Lost Pilot", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.8, y = 39.2 }, -- 14
-        { type = "TURNIN", quest = 419, questName = "The Lost Pilot", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 15
-        { type = "ACCEPT", quest = 353, questName = "Stormpike's Delivery", npc = 1416, npcName = "Grimand Elmore", map = 1453, zone = "Stormwind City", x = 51.6, y = 12.2 }, -- 16
-        { type = "TURNIN", quest = 1097, questName = "Elmore's Task", npc = 1416, npcName = "Grimand Elmore", map = 1453, zone = "Stormwind City", x = 51.6, y = 12.2 }, -- 17
-        { type = "TURNIN", quest = 6281, questName = "Continue to Stormwind", npc = 1323, npcName = "Osric Strang", map = 1453, zone = "Stormwind City", x = 74.2, y = 47.4 }, -- 18
-        { type = "ACCEPT", quest = 6661, questName = "Deeprun Rat Roundup", npc = 12997, npcName = "Monty", map = 1453, zone = "Stormwind City", x = 72, y = 27.6, note = "Inside Deeprun Tram" }, -- 19
-        { type = "KILL", quest = 6661, questName = "Deeprun Rat Roundup", npc = 13017, target = "Rats captured", count = 5, map = 1453, zone = "Stormwind City", x = 72, y = 27.6, near = true, note = "Inside Deeprun Tram" }, -- 20
-        { type = "TURNIN", quest = 6661, questName = "Deeprun Rat Roundup", npc = 12997, npcName = "Monty", map = 1453, zone = "Stormwind City", x = 72, y = 27.6, note = "Inside Deeprun Tram" }, -- 21
-        { type = "ACCEPT", quest = 2039, questName = "Find Bingles", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6 }, -- 22
-        { type = "ACCEPT", quest = 7791, questName = "A Donation of Wool", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, zone = "Stormwind City", x = 44.2, y = 73.6 }, -- 23
-        { type = "TURNIN", quest = 7791, questName = "A Donation of Wool", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, zone = "Stormwind City", x = 44.2, y = 73.6 }, -- 24
-        { type = "ACCEPT", quest = 96391, questName = "Underground Map", npc = 6124, npcName = "Captain Beld", map = 1426, zone = "Dun Morogh", x = 77.8, y = 62.4, optional = true, note = "If you looted Dark Iron Map from Captain Beld / Dark Iron Spy, use it to start the quest; New in Forever" }, -- 25
-        { type = "TURNIN", quest = 96391, questName = "Underground Map", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true }, -- 26
-        { type = "ACCEPT", quest = 96393, questName = "Old Ironforge Incursion", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 27
-        { type = "TURNIN", quest = 1638, questName = "A Warrior's Training", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 28
-        { type = "ACCEPT", quest = 1679, questName = "Muren Stormpike", npc = 1229, npcName = "Granis Swiftaxe", map = 1426, zone = "Dun Morogh", x = 47.2, y = 52.6, class = { "WARRIOR" } }, -- 29
-        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 30
-        { type = "ACCEPT", quest = 1684, questName = "Elanaria", npc = 3657, npcName = "Sentinel Elissa Starbreeze", map = 1439, zone = "Darkshore", x = 39, y = 43.4, class = { "WARRIOR" } }, -- 31
-        { type = "TURNIN", quest = 1684, questName = "Elanaria", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 32
-        { type = "ACCEPT", quest = 1641, questName = "The Tome of Divinity", npc = 6171, npcName = "Duthorian Rall", map = 1453, zone = "Stormwind City", x = 40, y = 29.8, class = { "PALADIN" } }, -- 33
-        { type = "TURNIN", quest = 1641, questName = "The Tome of Divinity", npc = 6171, npcName = "Duthorian Rall", map = 1453, zone = "Stormwind City", x = 40, y = 29.8, class = { "PALADIN" } }, -- 34
-        { type = "ACCEPT", quest = 2998, questName = "Tome of Divinity", npc = 927, npcName = "Brother Wilhelm", map = 1429, zone = "Elwynn Forest", x = 41, y = 66, class = { "PALADIN" } }, -- 35
-        { type = "TURNIN", quest = 2998, questName = "Tome of Divinity", npc = 6171, npcName = "Duthorian Rall", map = 1453, zone = "Stormwind City", x = 40, y = 29.8, class = { "PALADIN" } }, -- 36
-        { type = "ACCEPT", quest = 3681, questName = "Tome of Divinity", npc = 5149, npcName = "Brandur Ironhammer", map = 1455, zone = "Ironforge", x = 23.4, y = 6.2, class = { "PALADIN" } }, -- 37
-        { type = "TURNIN", quest = 3681, questName = "Tome of Divinity", npc = 6171, npcName = "Duthorian Rall", map = 1453, zone = "Stormwind City", x = 40, y = 29.8, class = { "PALADIN" } }, -- 38
-        { type = "TURNIN", quest = 2205, questName = "Seek out SI: 7", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8, class = { "ROGUE" } }, -- 39
-        { type = "ACCEPT", quest = 5634, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.4, y = 26.2, class = { "PRIEST" } }, -- 40
-        { type = "ACCEPT", quest = 94773, questName = "Divine Grace", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" }, note = "New in Forever" }, -- 41
-        { type = "TURNIN", quest = 5634, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 42
-        { type = "TURNIN", quest = 5635, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 43
-        { type = "ACCEPT", quest = 5636, questName = "Desperate Prayer", npc = 3600, npcName = "Laurna Morninglight", map = 1438, zone = "Teldrassil", x = 55.6, y = 56.8, class = { "PRIEST" } }, -- 44
-        { type = "TURNIN", quest = 5636, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 45
-        { type = "ACCEPT", quest = 5637, questName = "Desperate Prayer", npc = 1226, npcName = "Maxan Anvol", map = 1426, zone = "Dun Morogh", x = 47.2, y = 52.2, class = { "PRIEST" } }, -- 46
-        { type = "TURNIN", quest = 5637, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 47
-        { type = "ACCEPT", quest = 5638, questName = "Desperate Prayer", npc = 11397, npcName = "Nara Meideros", map = 1453, zone = "Stormwind City", x = 20.8, y = 50.2, class = { "PRIEST" } }, -- 48
-        { type = "TURNIN", quest = 5638, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 49
-        { type = "ACCEPT", quest = 5639, questName = "Desperate Prayer", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" } }, -- 50
-        { type = "TURNIN", quest = 5639, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 51
-        { type = "ACCEPT", quest = 5640, questName = "Desperate Prayer", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 52
-        { type = "TURNIN", quest = 5640, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 53
-        { type = "TURNIN", quest = 94773, questName = "Divine Grace", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 54
-        { type = "TURNIN", quest = 94774, questName = "Divine Grace", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 55
-        { type = "ACCEPT", quest = 94449, questName = "Call of Fire", npc = 258098, npcName = "Eldrun Stormbreaker", map = 1455, zone = "Ironforge", x = 47.4, y = 13.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 56
-        { type = "TURNIN", quest = 94449, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" } }, -- 57
-        { type = "TURNIN", quest = 1860, questName = "Speak with Jennea", npc = 5497, npcName = "Jennea Cannon", map = 1453, zone = "Stormwind City", x = 38.6, y = 79.4, class = { "MAGE" } }, -- 58
-        { type = "ACCEPT", quest = 1879, questName = "Speak with Bink", npc = 1228, npcName = "Magis Sparkmantle", map = 1426, zone = "Dun Morogh", x = 47.4, y = 52, class = { "MAGE" } }, -- 59
-        { type = "TURNIN", quest = 1685, questName = "Gakin's Summons", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 60
-        { type = "TRAVEL", map = 1432, zone = "Loch Modan", x = 61.2, y = 64.2, radius = 60, note = "travel to Loch Modan (Loch Modan)" }, -- 61
-        { type = "ACCEPT", quest = 298, questName = "Excavation Progress Report", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.9, y = 65.6 }, -- 62
-        { type = "ACCEPT", quest = 385, questName = "Crocolisk Hunting", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.7 }, -- 63
-        { type = "ACCEPT", quest = 86758, questName = "Twisting the Knife", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.8, note = "New in Forever" }, -- 64
-        { type = "ACCEPT", quest = 271, questName = "Vyrin's Revenge", npc = 1156, npcName = "Vyrin Swiftwind", map = 1432, zone = "Loch Modan", x = 81.7, y = 64.1, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 65
-        { type = "KILL", quest = 271, questName = "Vyrin's Revenge", npc = 1225, target = "Ol' Sooty", map = 1432, zone = "Loch Modan", x = 37.9, y = 63.4, optional = true }, -- 66
-        { type = "ACCEPT", quest = 1639, questName = "Bartleby the Drunk", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 67
-        { type = "TURNIN", quest = 1639, questName = "Bartleby the Drunk", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 68
-        { type = "ACCEPT", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 69
-        { type = "COLLECT", quest = 1678, questName = "Vejrek", target = "Vejrek's Head", count = 1, map = 1426, zone = "Dun Morogh", x = 27.8, y = 58, class = { "WARRIOR" }, mobs = "Vejrek" }, -- 70
-        { type = "ACCEPT", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 71
-        { type = "COLLECT", quest = 1683, questName = "Vorlus Vilehoof", target = "Horn of Vorlus", count = 1, map = 1438, zone = "Teldrassil", x = 47.3, y = 63.6, class = { "WARRIOR" }, mobs = "Vorlus Vilehoof" }, -- 72
-        { type = "TURNIN", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 73
-        { type = "ACCEPT", quest = 1688, questName = "Surena Caledon", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 74
-        { type = "COLLECT", quest = 1688, questName = "Surena Caledon", target = "Surena's Choker", count = 1, map = 1429, zone = "Elwynn Forest", x = 71, y = 80.8, class = { "WARLOCK" }, mobs = "Surena Caledon" }, -- 75
-        { type = "TURNIN", quest = 1688, questName = "Surena Caledon", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 76
-        { type = "TURNIN", quest = 271, questName = "Vyrin's Revenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5, optional = true }, -- 77
-        { type = "ACCEPT", quest = 257, questName = "A Hunter's Boast", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 78
-        { type = "KILL", quest = 257, questName = "A Hunter's Boast", npc = 1194, target = "Mountain Buzzard", count = 6, map = 1432, zone = "Loch Modan", x = 78.9, y = 59.2, near = true }, -- 79
-        { type = "TURNIN", quest = 257, questName = "A Hunter's Boast", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 80
-        { type = "ACCEPT", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 81
-        { type = "TURNIN", quest = 2039, questName = "Find Bingles", npc = 6577, npcName = "Bingles Blastenheimer", map = 1432, zone = "Loch Modan", x = 63.4, y = 47.8 }, -- 82
-        { type = "COLLECT", quest = 385, questName = "Crocolisk Hunting", target = "Crocolisk Meat / Crocolisk Skin", count = 5, map = 1432, zone = "Loch Modan", x = 61.9, y = 45.4, near = true }, -- 83
-        { type = "COLLECT", quest = 86758, questName = "Twisting the Knife", target = "Marek's Croc-Hunting Knife", count = 1, map = 1432, zone = "Loch Modan", x = 60.8, y = 41.6, mobs = "Daggerfang" }, -- 84
-        { type = "KILL", quest = 258, questName = "A Hunter's Challenge", npc = 1192, target = "Elder Mountain Boar", count = 5, map = 1432, zone = "Loch Modan", x = 63, y = 40, near = true }, -- 85
-        { type = "TURNIN", quest = 385, questName = "Crocolisk Hunting", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.7 }, -- 86
-        { type = "TURNIN", quest = 86758, questName = "Twisting the Knife", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.8 }, -- 87
-        { type = "ACCEPT", quest = 531, questName = "Vyrin's Revenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.4, y = 65.2 }, -- 88
-        { type = "TURNIN", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 89
-        { type = "TURNIN", quest = 531, questName = "Vyrin's Revenge", npc = 1156, npcName = "Vyrin Swiftwind", map = 1432, zone = "Loch Modan", x = 81.8, y = 64.2 }, -- 90
-        { type = "ACCEPT", quest = 297, questName = "Gathering Idols", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.9, y = 66.7 }, -- 91
-        { type = "COLLECT", quest = 297, questName = "Gathering Idols", target = "Carved Stone Idol", count = 8, map = 1432, zone = "Loch Modan", x = 68, y = 66.1, near = true }, -- 92
-        { type = "TURNIN", quest = 297, questName = "Gathering Idols", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.9, y = 66.7 }, -- 93
-        { type = "ACCEPT", quest = 436, questName = "Ironband's Excavation", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 94
-        { type = "TURNIN", quest = 436, questName = "Ironband's Excavation", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.8, y = 66.6 }, -- 95
-        { type = "ACCEPT", quest = 1640, questName = "Beat Bartleby", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" }, note = "Objectives: Beat Bartleby" }, -- 96
-        { type = "TURNIN", quest = 1640, questName = "Beat Bartleby", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 97
-        { type = "ACCEPT", quest = 1689, questName = "The Binding", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 98
-        { type = "KILL", quest = 1689, questName = "The Binding", npc = 5676, target = "Summoned Voidwalker", count = 1, map = 1453, zone = "Stormwind City", x = 25.2, y = 77.4, near = true, class = { "WARLOCK" } }, -- 99
-        { type = "TURNIN", quest = 1689, questName = "The Binding", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 100
-        { type = "ACCEPT", quest = 418, questName = "Thelsamar Blood Sausages", npc = 1963, npcName = "Vidra Hearthstove", map = 1432, zone = "Loch Modan", x = 34.8, y = 49.3 }, -- 101
-        { type = "ACCEPT", quest = 416, questName = "Rat Catching", npc = 1340, npcName = "Mountaineer Kadrell", map = 1432, zone = "Loch Modan", x = 32.6, y = 49.7 }, -- 102
-        { type = "ACCEPT", quest = 1339, questName = "Mountaineer Stormpike's Task", npc = 1340, npcName = "Mountaineer Kadrell", map = 1432, zone = "Loch Modan", x = 32.8, y = 49.6 }, -- 103
-        { type = "ACCEPT", quest = 86667, questName = "Snowbound", npc = 49808, npcName = "Grenhild Darktalon", map = 1432, zone = "Loch Modan", x = 36.4, y = 48.2, note = "New in Forever" }, -- 104
-        { type = "TURNIN", quest = 298, questName = "Excavation Progress Report", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 105
-        { type = "ACCEPT", quest = 301, questName = "Report to Ironforge", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 106
-        { type = "COLLECT", quest = 418, questName = "Thelsamar Blood Sausages", target = "Spider Ichor", count = 3, map = 1432, zone = "Loch Modan", x = 33.9, y = 40.9, near = true }, -- 107
-        { type = "COLLECT", quest = 418, questName = "Thelsamar Blood Sausages", target = "Boar Intestines", count = 3, map = 1432, zone = "Loch Modan", x = 37.4, y = 38.4, near = true }, -- 108
-        { type = "COLLECT", quest = 418, questName = "Thelsamar Blood Sausages", target = "Bear Meat", count = 3, map = 1432, zone = "Loch Modan", x = 37.2, y = 32.8, near = true }, -- 109
-        { type = "COLLECT", quest = 416, questName = "Rat Catching", target = "Tunnel Rat Ear", count = 12, map = 1432, zone = "Loch Modan", x = 35.6, y = 27.9, near = true }, -- 110
-        { type = "ACCEPT", quest = 255, questName = "Mercenaries", npc = 1139, npcName = "Magistrate Bluntnose", map = 1432, zone = "Loch Modan", x = 34.6, y = 44.6, optional = true, note = "Elite - group up" }, -- 111
-        { type = "TURNIN", quest = 418, questName = "Thelsamar Blood Sausages", npc = 1963, npcName = "Vidra Hearthstove", map = 1432, zone = "Loch Modan", x = 34.8, y = 49.3 }, -- 112
-        { type = "TURNIN", quest = 416, questName = "Rat Catching", npc = 1340, npcName = "Mountaineer Kadrell", map = 1432, zone = "Loch Modan", x = 32.6, y = 49.7 }, -- 113
-        { type = "ACCEPT", quest = 1665, questName = "Bartleby's Mug", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 114
-        { type = "TURNIN", quest = 1665, questName = "Bartleby's Mug", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 115
-        { type = "ACCEPT", quest = 267, questName = "The Trogg Threat", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 116
-        { type = "ACCEPT", quest = 224, questName = "In Defense of the King's Lands", npc = 1089, npcName = "Mountaineer Cobbleflint", map = 1432, zone = "Loch Modan", x = 22.1, y = 73.1 }, -- 117
-        { type = "COLLECT", quest = 267, questName = "The Trogg Threat", target = "Trogg Stone Tooth", count = 8, map = 1432, zone = "Loch Modan", x = 28, y = 81.2, near = true }, -- 118
-        { type = "KILL", quest = 224, questName = "In Defense of the King's Lands", npc = 1161, target = "Stonesplinter Trogg / Stonesplinter Scout", count = 10, map = 1432, zone = "Loch Modan", x = 31.3, y = 80, near = true }, -- 119
-        { type = "TURNIN", quest = 267, questName = "The Trogg Threat", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 120
-        { type = "TURNIN", quest = 224, questName = "In Defense of the King's Lands", npc = 1089, npcName = "Mountaineer Cobbleflint", map = 1432, zone = "Loch Modan", x = 22.1, y = 73.1 }, -- 121
-        { type = "ACCEPT", quest = 237, questName = "In Defense of the King's Lands", npc = 1091, npcName = "Mountaineer Gravelgaw", map = 1432, zone = "Loch Modan", x = 23.5, y = 76.4 }, -- 122
-        { type = "KILL", quest = 237, questName = "In Defense of the King's Lands", npc = 1166, target = "Stonesplinter Seer", count = 10, map = 1432, zone = "Loch Modan", x = 27.9, y = 81.5, near = true }, -- 123
-        { type = "KILL", quest = 237, questName = "In Defense of the King's Lands", npc = 1163, target = "Stonesplinter Skullthumper", count = 10, map = 1432, zone = "Loch Modan", x = 28.9, y = 84.9, near = true }, -- 124
-        { type = "TURNIN", quest = 237, questName = "In Defense of the King's Lands", npc = 1091, npcName = "Mountaineer Gravelgaw", map = 1432, zone = "Loch Modan", x = 23.5, y = 76.4 }, -- 125
-        { type = "ACCEPT", quest = 263, questName = "In Defense of the King's Lands", npc = 1090, npcName = "Mountaineer Wallbang", map = 1432, zone = "Loch Modan", x = 23.5, y = 74.5 }, -- 126
-        { type = "KILL", quest = 263, questName = "In Defense of the King's Lands", npc = 1164, target = "Stonesplinter Bonesnapper / Stonesplinter Shaman", count = 10, map = 1432, zone = "Loch Modan", x = 33.3, y = 91, near = true }, -- 127
-        { type = "TURNIN", quest = 263, questName = "In Defense of the King's Lands", npc = 1090, npcName = "Mountaineer Wallbang", map = 1432, zone = "Loch Modan", x = 23.5, y = 74.5 }, -- 128
-        { type = "ACCEPT", quest = 217, questName = "In Defense of the King's Lands", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 129
-        { type = "ACCEPT", quest = 86585, questName = "Banner of the Fallen", npc = 269153, npcName = "Mountaineer Ylva", map = 1432, zone = "Loch Modan", x = 31.8, y = 86.2, note = "New in Forever" }, -- 130
-        { type = "KILL", quest = 86585, questName = "Banner of the Fallen", npc = 269185, target = "Headsplitter", count = 1, map = 1432, zone = "Loch Modan", x = 31.8, y = 86.2 }, -- 131
-        { type = "TURNIN", quest = 86585, questName = "Banner of the Fallen", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.8 }, -- 132
-        { type = "KILL", quest = 217, questName = "In Defense of the King's Lands", npc = 1207, target = "Brawler / Gnasher / Grawmug", count = 1, map = 1432, zone = "Loch Modan", x = 34.6, y = 90.6 }, -- 133
-        { type = "TURNIN", quest = 217, questName = "In Defense of the King's Lands", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 134
-        { type = "ACCEPT", quest = 307, questName = "Filthy Paws", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.4 }, -- 135
-        { type = "COLLECT", quest = 307, questName = "Filthy Paws", target = "Miners' Gear", count = 4, map = 1432, zone = "Loch Modan", x = 34.9, y = 23.4, near = true }, -- 136
-        { type = "TURNIN", quest = 307, questName = "Filthy Paws", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.4 }, -- 137
-        { type = "TURNIN", quest = 1339, questName = "Mountaineer Stormpike's Task", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.2 }, -- 138
-        { type = "TURNIN", quest = 353, questName = "Stormpike's Delivery", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.2 }, -- 139
-        { type = "ACCEPT", quest = 250, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46.1, y = 13.6 }, -- 140
-        { type = "TURNIN", quest = 250, questName = "A Dark Threat Looms", map = 1432, zone = "Loch Modan", x = 56.1, y = 13.2 }, -- 141
-        { type = "ACCEPT", quest = 199, questName = "A Dark Threat Looms", map = 1432, zone = "Loch Modan", x = 56.1, y = 13.2 }, -- 142
-        { type = "TURNIN", quest = 199, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46.1, y = 13.6 }, -- 143
-        { type = "ACCEPT", quest = 161, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46.1, y = 13.6 }, -- 144
-        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1178, target = "Mo'grosh Ogre", count = 4, map = 1432, zone = "Loch Modan", x = 69.6, y = 20.8, optional = true }, -- 145
-        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1180, target = "Mo'grosh Brute", count = 4, map = 1432, zone = "Loch Modan", x = 78.6, y = 15.6, optional = true }, -- 146
-        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1179, target = "Mo'grosh Enforcer", count = 4, map = 1432, zone = "Loch Modan", x = 73.4, y = 20.2, optional = true }, -- 147
-        { type = "TURNIN", quest = 255, questName = "Mercenaries", npc = 1139, npcName = "Magistrate Bluntnose", map = 1432, zone = "Loch Modan", x = 34.6, y = 44.6, optional = true }, -- 148
-        { type = "ACCEPT", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 149
-        { type = "COLLECT", quest = 104, questName = "The Coastal Menace", target = "Scale of Old Murk-Eye", count = 1, map = 1436, zone = "Westfall", x = 34.2, y = 83.8, mobs = "Old Murk-Eye" }, -- 150
-        { type = "TURNIN", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 151
-        { type = "COLLECT", quest = 86667, questName = "Snowbound", target = "Jar of Snow", count = 1, map = 1426, zone = "Dun Morogh", x = 39.3, y = 48.1 }, -- 152
-        { type = "TURNIN", quest = 86667, questName = "Snowbound", npc = 258043, npcName = "Norric Lochthane", map = 1432, zone = "Loch Modan", x = 41.8, y = 19 }, -- 153
-        { type = "ACCEPT", quest = 2041, questName = "Speak with Shoni", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6 }, -- 154
-        { type = "TURNIN", quest = 2041, questName = "Speak with Shoni", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6 }, -- 155
-        { type = "TURNIN", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 156
-        { type = "ACCEPT", quest = 2281, questName = "Redridge Rendezvous", npc = 6946, npcName = "Renzik \"The Shiv\"", map = 1453, zone = "Stormwind City", x = 75.8, y = 60.2, class = { "ROGUE" } }, -- 157
-        { type = "ACCEPT", quest = 2299, questName = "To Hulfdan!", npc = 1234, npcName = "Hogral Bakkan", map = 1426, zone = "Dun Morogh", x = 47.6, y = 52.6, class = { "ROGUE" } }, -- 158
-        { type = "ACCEPT", quest = 94465, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 159
-        { type = "TURNIN", quest = 94465, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" } }, -- 160
+        { type = "TURNIN", quest = 92748, questName = "Explosive Consultation", npc = 11026, npcName = "Sprite Jumpsprocket", map = 1453, zone = "Stormwind City", x = 54.6, y = 8 }, -- 2
+        { type = "ACCEPT", quest = 432, questName = "Those Blasted Troggs!", npc = 1254, npcName = "Foreman Stonebrow", map = 1426, zone = "Dun Morogh", x = 69, y = 56.2 }, -- 3
+        { type = "KILL", quest = 432, questName = "Those Blasted Troggs!", npc = 1115, target = "Rockjaw Skullthumper", count = 6, map = 1426, zone = "Dun Morogh", x = 70.8, y = 56 }, -- 4
+        { type = "TURNIN", quest = 432, questName = "Those Blasted Troggs!", npc = 1254, npcName = "Foreman Stonebrow", map = 1426, zone = "Dun Morogh", x = 69, y = 56.2 }, -- 5
+        { type = "ACCEPT", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.6, y = 56 }, -- 6
+        { type = "KILL", quest = 433, questName = "The Public Servant", npc = 1117, target = "Rockjaw Bonesnapper", count = 10, map = 1426, zone = "Dun Morogh", x = 70.8, y = 56 }, -- 7
+        { type = "TURNIN", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.6, y = 56 }, -- 8
+        { type = "ACCEPT", quest = 314, questName = "Protecting the Herd", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, optional = true, note = "Elite - group up" }, -- 9
+        { type = "COLLECT", quest = 314, questName = "Protecting the Herd", target = "Fang of Vagash", count = 1, map = 1426, zone = "Dun Morogh", x = 62.4, y = 46.2, optional = true, mobs = "Vagash" }, -- 10
+        { type = "TURNIN", quest = 314, questName = "Protecting the Herd", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, optional = true }, -- 11
+        { type = "ACCEPT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.6 }, -- 12
+        { type = "COLLECT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", target = "MacGrann's Dried Meats", count = 1, map = 1426, zone = "Dun Morogh", x = 38.5, y = 53.9 }, -- 13
+        { type = "TURNIN", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.6 }, -- 14
+        { type = "ACCEPT", quest = 419, questName = "The Lost Pilot", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.8, y = 39.2 }, -- 15
+        { type = "TURNIN", quest = 419, questName = "The Lost Pilot", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 16
+        { type = "ACCEPT", quest = 353, questName = "Stormpike's Delivery", npc = 1416, npcName = "Grimand Elmore", map = 1453, zone = "Stormwind City", x = 51.6, y = 12.2 }, -- 17
+        { type = "TURNIN", quest = 1097, questName = "Elmore's Task", npc = 1416, npcName = "Grimand Elmore", map = 1453, zone = "Stormwind City", x = 51.6, y = 12.2 }, -- 18
+        { type = "TURNIN", quest = 6281, questName = "Continue to Stormwind", npc = 1323, npcName = "Osric Strang", map = 1453, zone = "Stormwind City", x = 74.2, y = 47.4 }, -- 19
+        { type = "ACCEPT", quest = 6661, questName = "Deeprun Rat Roundup", npc = 12997, npcName = "Monty", map = 1453, zone = "Stormwind City", x = 72, y = 27.6, note = "Inside Deeprun Tram" }, -- 20
+        { type = "KILL", quest = 6661, questName = "Deeprun Rat Roundup", npc = 13017, target = "Rats captured", count = 5, map = 1453, zone = "Stormwind City", x = 72, y = 27.6, near = true, note = "Inside Deeprun Tram" }, -- 21
+        { type = "TURNIN", quest = 6661, questName = "Deeprun Rat Roundup", npc = 12997, npcName = "Monty", map = 1453, zone = "Stormwind City", x = 72, y = 27.6, note = "Inside Deeprun Tram" }, -- 22
+        { type = "ACCEPT", quest = 2039, questName = "Find Bingles", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6 }, -- 23
+        { type = "ACCEPT", quest = 7791, questName = "A Donation of Wool", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, zone = "Stormwind City", x = 44.2, y = 73.6 }, -- 24
+        { type = "TURNIN", quest = 7791, questName = "A Donation of Wool", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, zone = "Stormwind City", x = 44.2, y = 73.6 }, -- 25
+        { type = "ACCEPT", quest = 96391, questName = "Underground Map", npc = 6124, npcName = "Captain Beld", map = 1426, zone = "Dun Morogh", x = 77.8, y = 62.4, optional = true, note = "If you looted Dark Iron Map from Captain Beld / Dark Iron Spy, use it to start the quest; New in Forever" }, -- 26
+        { type = "TURNIN", quest = 96391, questName = "Underground Map", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true }, -- 27
+        { type = "ACCEPT", quest = 96393, questName = "Old Ironforge Incursion", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 28
+        { type = "TURNIN", quest = 1638, questName = "A Warrior's Training", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 29
+        { type = "ACCEPT", quest = 1679, questName = "Muren Stormpike", npc = 1229, npcName = "Granis Swiftaxe", map = 1426, zone = "Dun Morogh", x = 47.2, y = 52.6, class = { "WARRIOR" } }, -- 30
+        { type = "TURNIN", quest = 1679, questName = "Muren Stormpike", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 31
+        { type = "ACCEPT", quest = 1684, questName = "Elanaria", npc = 3657, npcName = "Sentinel Elissa Starbreeze", map = 1439, zone = "Darkshore", x = 39, y = 43.4, class = { "WARRIOR" } }, -- 32
+        { type = "TURNIN", quest = 1684, questName = "Elanaria", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 33
+        { type = "ACCEPT", quest = 1641, questName = "The Tome of Divinity", npc = 6171, npcName = "Duthorian Rall", map = 1453, zone = "Stormwind City", x = 40, y = 29.8, class = { "PALADIN" } }, -- 34
+        { type = "TURNIN", quest = 1641, questName = "The Tome of Divinity", npc = 6171, npcName = "Duthorian Rall", map = 1453, zone = "Stormwind City", x = 40, y = 29.8, class = { "PALADIN" } }, -- 35
+        { type = "ACCEPT", quest = 2998, questName = "Tome of Divinity", npc = 927, npcName = "Brother Wilhelm", map = 1429, zone = "Elwynn Forest", x = 41, y = 66, class = { "PALADIN" } }, -- 36
+        { type = "TURNIN", quest = 2998, questName = "Tome of Divinity", npc = 6171, npcName = "Duthorian Rall", map = 1453, zone = "Stormwind City", x = 40, y = 29.8, class = { "PALADIN" } }, -- 37
+        { type = "ACCEPT", quest = 3681, questName = "Tome of Divinity", npc = 5149, npcName = "Brandur Ironhammer", map = 1455, zone = "Ironforge", x = 23.4, y = 6.2, class = { "PALADIN" } }, -- 38
+        { type = "TURNIN", quest = 3681, questName = "Tome of Divinity", npc = 6171, npcName = "Duthorian Rall", map = 1453, zone = "Stormwind City", x = 40, y = 29.8, class = { "PALADIN" } }, -- 39
+        { type = "TURNIN", quest = 2205, questName = "Seek out SI: 7", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8, class = { "ROGUE" } }, -- 40
+        { type = "ACCEPT", quest = 5634, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.4, y = 26.2, class = { "PRIEST" } }, -- 41
+        { type = "ACCEPT", quest = 94773, questName = "Divine Grace", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" }, note = "New in Forever" }, -- 42
+        { type = "TURNIN", quest = 5634, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 43
+        { type = "TURNIN", quest = 5635, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 44
+        { type = "ACCEPT", quest = 5636, questName = "Desperate Prayer", npc = 3600, npcName = "Laurna Morninglight", map = 1438, zone = "Teldrassil", x = 55.6, y = 56.8, class = { "PRIEST" } }, -- 45
+        { type = "TURNIN", quest = 5636, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 46
+        { type = "ACCEPT", quest = 5637, questName = "Desperate Prayer", npc = 1226, npcName = "Maxan Anvol", map = 1426, zone = "Dun Morogh", x = 47.2, y = 52.2, class = { "PRIEST" } }, -- 47
+        { type = "TURNIN", quest = 5637, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 48
+        { type = "ACCEPT", quest = 5638, questName = "Desperate Prayer", npc = 11397, npcName = "Nara Meideros", map = 1453, zone = "Stormwind City", x = 20.8, y = 50.2, class = { "PRIEST" } }, -- 49
+        { type = "TURNIN", quest = 5638, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 50
+        { type = "ACCEPT", quest = 5639, questName = "Desperate Prayer", npc = 11406, npcName = "High Priest Rohan", map = 1455, zone = "Ironforge", x = 25, y = 8.4, class = { "PRIEST" } }, -- 51
+        { type = "TURNIN", quest = 5639, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 52
+        { type = "ACCEPT", quest = 5640, questName = "Desperate Prayer", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 53
+        { type = "TURNIN", quest = 5640, questName = "Desperate Prayer", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 54
+        { type = "TURNIN", quest = 94773, questName = "Divine Grace", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 55
+        { type = "TURNIN", quest = 94774, questName = "Divine Grace", npc = 376, npcName = "High Priestess Laurena", map = 1453, zone = "Stormwind City", x = 38.8, y = 26.4, class = { "PRIEST" } }, -- 56
+        { type = "ACCEPT", quest = 94449, questName = "Call of Fire", npc = 258098, npcName = "Eldrun Stormbreaker", map = 1455, zone = "Ironforge", x = 47.4, y = 13.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 57
+        { type = "TURNIN", quest = 94449, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" } }, -- 58
+        { type = "TURNIN", quest = 1860, questName = "Speak with Jennea", npc = 5497, npcName = "Jennea Cannon", map = 1453, zone = "Stormwind City", x = 38.6, y = 79.4, class = { "MAGE" } }, -- 59
+        { type = "ACCEPT", quest = 1879, questName = "Speak with Bink", npc = 1228, npcName = "Magis Sparkmantle", map = 1426, zone = "Dun Morogh", x = 47.4, y = 52, class = { "MAGE" } }, -- 60
+        { type = "TURNIN", quest = 1685, questName = "Gakin's Summons", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 61
+        { type = "TRAVEL", map = 1432, zone = "Loch Modan", x = 61.2, y = 64.2, radius = 60, note = "travel to Loch Modan (Loch Modan)" }, -- 62
+        { type = "ACCEPT", quest = 298, questName = "Excavation Progress Report", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.9, y = 65.6 }, -- 63
+        { type = "ACCEPT", quest = 385, questName = "Crocolisk Hunting", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.7 }, -- 64
+        { type = "ACCEPT", quest = 86758, questName = "Twisting the Knife", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.8, note = "New in Forever" }, -- 65
+        { type = "ACCEPT", quest = 271, questName = "Vyrin's Revenge", npc = 1156, npcName = "Vyrin Swiftwind", map = 1432, zone = "Loch Modan", x = 81.7, y = 64.1, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 66
+        { type = "KILL", quest = 271, questName = "Vyrin's Revenge", npc = 1225, target = "Ol' Sooty", map = 1432, zone = "Loch Modan", x = 37.9, y = 63.4, optional = true }, -- 67
+        { type = "ACCEPT", quest = 1639, questName = "Bartleby the Drunk", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 68
+        { type = "TURNIN", quest = 1639, questName = "Bartleby the Drunk", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 69
+        { type = "ACCEPT", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 70
+        { type = "COLLECT", quest = 1678, questName = "Vejrek", target = "Vejrek's Head", count = 1, map = 1426, zone = "Dun Morogh", x = 27.8, y = 58, class = { "WARRIOR" }, mobs = "Vejrek" }, -- 71
+        { type = "ACCEPT", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 72
+        { type = "COLLECT", quest = 1683, questName = "Vorlus Vilehoof", target = "Horn of Vorlus", count = 1, map = 1438, zone = "Teldrassil", x = 47.3, y = 63.6, class = { "WARRIOR" }, mobs = "Vorlus Vilehoof" }, -- 73
+        { type = "TURNIN", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 74
+        { type = "ACCEPT", quest = 1688, questName = "Surena Caledon", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 75
+        { type = "COLLECT", quest = 1688, questName = "Surena Caledon", target = "Surena's Choker", count = 1, map = 1429, zone = "Elwynn Forest", x = 71, y = 80.8, class = { "WARLOCK" }, mobs = "Surena Caledon" }, -- 76
+        { type = "TURNIN", quest = 1688, questName = "Surena Caledon", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 77
+        { type = "TURNIN", quest = 271, questName = "Vyrin's Revenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5, optional = true }, -- 78
+        { type = "ACCEPT", quest = 257, questName = "A Hunter's Boast", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 79
+        { type = "KILL", quest = 257, questName = "A Hunter's Boast", npc = 1194, target = "Mountain Buzzard", count = 6, map = 1432, zone = "Loch Modan", x = 78.9, y = 59.2, near = true }, -- 80
+        { type = "TURNIN", quest = 257, questName = "A Hunter's Boast", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 81
+        { type = "ACCEPT", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 82
+        { type = "TURNIN", quest = 2039, questName = "Find Bingles", npc = 6577, npcName = "Bingles Blastenheimer", map = 1432, zone = "Loch Modan", x = 63.4, y = 47.8 }, -- 83
+        { type = "COLLECT", quest = 385, questName = "Crocolisk Hunting", target = "Crocolisk Meat / Crocolisk Skin", count = 5, map = 1432, zone = "Loch Modan", x = 61.9, y = 45.4, near = true }, -- 84
+        { type = "COLLECT", quest = 86758, questName = "Twisting the Knife", target = "Marek's Croc-Hunting Knife", count = 1, map = 1432, zone = "Loch Modan", x = 60.8, y = 41.6, mobs = "Daggerfang" }, -- 85
+        { type = "KILL", quest = 258, questName = "A Hunter's Challenge", npc = 1192, target = "Elder Mountain Boar", count = 5, map = 1432, zone = "Loch Modan", x = 63, y = 40, near = true }, -- 86
+        { type = "TURNIN", quest = 385, questName = "Crocolisk Hunting", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.7 }, -- 87
+        { type = "TURNIN", quest = 86758, questName = "Twisting the Knife", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.8 }, -- 88
+        { type = "ACCEPT", quest = 531, questName = "Vyrin's Revenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.4, y = 65.2 }, -- 89
+        { type = "TURNIN", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 90
+        { type = "TURNIN", quest = 531, questName = "Vyrin's Revenge", npc = 1156, npcName = "Vyrin Swiftwind", map = 1432, zone = "Loch Modan", x = 81.8, y = 64.2 }, -- 91
+        { type = "ACCEPT", quest = 297, questName = "Gathering Idols", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.9, y = 66.7 }, -- 92
+        { type = "COLLECT", quest = 297, questName = "Gathering Idols", target = "Carved Stone Idol", count = 8, map = 1432, zone = "Loch Modan", x = 68, y = 66.1, near = true }, -- 93
+        { type = "TURNIN", quest = 297, questName = "Gathering Idols", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.9, y = 66.7 }, -- 94
+        { type = "ACCEPT", quest = 436, questName = "Ironband's Excavation", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 95
+        { type = "TURNIN", quest = 436, questName = "Ironband's Excavation", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.8, y = 66.6 }, -- 96
+        { type = "ACCEPT", quest = 1640, questName = "Beat Bartleby", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" }, note = "Objectives: Beat Bartleby" }, -- 97
+        { type = "TURNIN", quest = 1640, questName = "Beat Bartleby", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 98
+        { type = "ACCEPT", quest = 1689, questName = "The Binding", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 99
+        { type = "KILL", quest = 1689, questName = "The Binding", npc = 5676, target = "Summoned Voidwalker", count = 1, map = 1453, zone = "Stormwind City", x = 25.2, y = 77.4, near = true, class = { "WARLOCK" } }, -- 100
+        { type = "TURNIN", quest = 1689, questName = "The Binding", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" } }, -- 101
+        { type = "ACCEPT", quest = 418, questName = "Thelsamar Blood Sausages", npc = 1963, npcName = "Vidra Hearthstove", map = 1432, zone = "Loch Modan", x = 34.8, y = 49.3 }, -- 102
+        { type = "ACCEPT", quest = 416, questName = "Rat Catching", npc = 1340, npcName = "Mountaineer Kadrell", map = 1432, zone = "Loch Modan", x = 32.6, y = 49.7 }, -- 103
+        { type = "ACCEPT", quest = 1339, questName = "Mountaineer Stormpike's Task", npc = 1340, npcName = "Mountaineer Kadrell", map = 1432, zone = "Loch Modan", x = 32.8, y = 49.6 }, -- 104
+        { type = "ACCEPT", quest = 86667, questName = "Snowbound", npc = 49808, npcName = "Grenhild Darktalon", map = 1432, zone = "Loch Modan", x = 36.4, y = 48.2, note = "New in Forever" }, -- 105
+        { type = "TURNIN", quest = 298, questName = "Excavation Progress Report", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 106
+        { type = "ACCEPT", quest = 301, questName = "Report to Ironforge", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 107
+        { type = "COLLECT", quest = 418, questName = "Thelsamar Blood Sausages", target = "Spider Ichor", count = 3, map = 1432, zone = "Loch Modan", x = 33.9, y = 40.9, near = true }, -- 108
+        { type = "COLLECT", quest = 418, questName = "Thelsamar Blood Sausages", target = "Boar Intestines", count = 3, map = 1432, zone = "Loch Modan", x = 37.4, y = 38.4, near = true }, -- 109
+        { type = "COLLECT", quest = 418, questName = "Thelsamar Blood Sausages", target = "Bear Meat", count = 3, map = 1432, zone = "Loch Modan", x = 37.2, y = 32.8, near = true }, -- 110
+        { type = "COLLECT", quest = 416, questName = "Rat Catching", target = "Tunnel Rat Ear", count = 12, map = 1432, zone = "Loch Modan", x = 35.6, y = 27.9, near = true }, -- 111
+        { type = "ACCEPT", quest = 255, questName = "Mercenaries", npc = 1139, npcName = "Magistrate Bluntnose", map = 1432, zone = "Loch Modan", x = 34.6, y = 44.6, optional = true, note = "Elite - group up" }, -- 112
+        { type = "TURNIN", quest = 418, questName = "Thelsamar Blood Sausages", npc = 1963, npcName = "Vidra Hearthstove", map = 1432, zone = "Loch Modan", x = 34.8, y = 49.3 }, -- 113
+        { type = "TURNIN", quest = 416, questName = "Rat Catching", npc = 1340, npcName = "Mountaineer Kadrell", map = 1432, zone = "Loch Modan", x = 32.6, y = 49.7 }, -- 114
+        { type = "ACCEPT", quest = 1665, questName = "Bartleby's Mug", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 115
+        { type = "TURNIN", quest = 1665, questName = "Bartleby's Mug", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 116
+        { type = "ACCEPT", quest = 267, questName = "The Trogg Threat", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 117
+        { type = "ACCEPT", quest = 224, questName = "In Defense of the King's Lands", npc = 1089, npcName = "Mountaineer Cobbleflint", map = 1432, zone = "Loch Modan", x = 22.1, y = 73.1 }, -- 118
+        { type = "COLLECT", quest = 267, questName = "The Trogg Threat", target = "Trogg Stone Tooth", count = 8, map = 1432, zone = "Loch Modan", x = 28, y = 81.2, near = true }, -- 119
+        { type = "KILL", quest = 224, questName = "In Defense of the King's Lands", npc = 1161, target = "Stonesplinter Trogg / Stonesplinter Scout", count = 10, map = 1432, zone = "Loch Modan", x = 31.3, y = 80, near = true }, -- 120
+        { type = "TURNIN", quest = 267, questName = "The Trogg Threat", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 121
+        { type = "TURNIN", quest = 224, questName = "In Defense of the King's Lands", npc = 1089, npcName = "Mountaineer Cobbleflint", map = 1432, zone = "Loch Modan", x = 22.1, y = 73.1 }, -- 122
+        { type = "ACCEPT", quest = 237, questName = "In Defense of the King's Lands", npc = 1091, npcName = "Mountaineer Gravelgaw", map = 1432, zone = "Loch Modan", x = 23.5, y = 76.4 }, -- 123
+        { type = "KILL", quest = 237, questName = "In Defense of the King's Lands", npc = 1166, target = "Stonesplinter Seer", count = 10, map = 1432, zone = "Loch Modan", x = 27.9, y = 81.5, near = true }, -- 124
+        { type = "KILL", quest = 237, questName = "In Defense of the King's Lands", npc = 1163, target = "Stonesplinter Skullthumper", count = 10, map = 1432, zone = "Loch Modan", x = 28.9, y = 84.9, near = true }, -- 125
+        { type = "TURNIN", quest = 237, questName = "In Defense of the King's Lands", npc = 1091, npcName = "Mountaineer Gravelgaw", map = 1432, zone = "Loch Modan", x = 23.5, y = 76.4 }, -- 126
+        { type = "ACCEPT", quest = 263, questName = "In Defense of the King's Lands", npc = 1090, npcName = "Mountaineer Wallbang", map = 1432, zone = "Loch Modan", x = 23.5, y = 74.5 }, -- 127
+        { type = "KILL", quest = 263, questName = "In Defense of the King's Lands", npc = 1164, target = "Stonesplinter Bonesnapper / Stonesplinter Shaman", count = 10, map = 1432, zone = "Loch Modan", x = 33.3, y = 91, near = true }, -- 128
+        { type = "TURNIN", quest = 263, questName = "In Defense of the King's Lands", npc = 1090, npcName = "Mountaineer Wallbang", map = 1432, zone = "Loch Modan", x = 23.5, y = 74.5 }, -- 129
+        { type = "ACCEPT", quest = 217, questName = "In Defense of the King's Lands", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 130
+        { type = "ACCEPT", quest = 86585, questName = "Banner of the Fallen", npc = 269153, npcName = "Mountaineer Ylva", map = 1432, zone = "Loch Modan", x = 31.8, y = 86.2, note = "New in Forever" }, -- 131
+        { type = "KILL", quest = 86585, questName = "Banner of the Fallen", npc = 269185, target = "Headsplitter", count = 1, map = 1432, zone = "Loch Modan", x = 31.8, y = 86.2 }, -- 132
+        { type = "TURNIN", quest = 86585, questName = "Banner of the Fallen", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.8 }, -- 133
+        { type = "KILL", quest = 217, questName = "In Defense of the King's Lands", npc = 1207, target = "Brawler / Gnasher / Grawmug", count = 1, map = 1432, zone = "Loch Modan", x = 34.6, y = 90.6 }, -- 134
+        { type = "TURNIN", quest = 217, questName = "In Defense of the King's Lands", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 135
+        { type = "ACCEPT", quest = 307, questName = "Filthy Paws", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.4 }, -- 136
+        { type = "COLLECT", quest = 307, questName = "Filthy Paws", target = "Miners' Gear", count = 4, map = 1432, zone = "Loch Modan", x = 34.9, y = 23.4, near = true }, -- 137
+        { type = "TURNIN", quest = 307, questName = "Filthy Paws", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.4 }, -- 138
+        { type = "TURNIN", quest = 1339, questName = "Mountaineer Stormpike's Task", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.2 }, -- 139
+        { type = "TURNIN", quest = 353, questName = "Stormpike's Delivery", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.2 }, -- 140
+        { type = "ACCEPT", quest = 250, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46.1, y = 13.6 }, -- 141
+        { type = "TURNIN", quest = 250, questName = "A Dark Threat Looms", map = 1432, zone = "Loch Modan", x = 56.1, y = 13.2 }, -- 142
+        { type = "ACCEPT", quest = 199, questName = "A Dark Threat Looms", map = 1432, zone = "Loch Modan", x = 56.1, y = 13.2 }, -- 143
+        { type = "TURNIN", quest = 199, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46.1, y = 13.6 }, -- 144
+        { type = "ACCEPT", quest = 161, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46.1, y = 13.6 }, -- 145
+        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1178, target = "Mo'grosh Ogre", count = 4, map = 1432, zone = "Loch Modan", x = 69.6, y = 20.8, optional = true }, -- 146
+        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1180, target = "Mo'grosh Brute", count = 4, map = 1432, zone = "Loch Modan", x = 78.6, y = 15.6, optional = true }, -- 147
+        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1179, target = "Mo'grosh Enforcer", count = 4, map = 1432, zone = "Loch Modan", x = 73.4, y = 20.2, optional = true }, -- 148
+        { type = "TURNIN", quest = 255, questName = "Mercenaries", npc = 1139, npcName = "Magistrate Bluntnose", map = 1432, zone = "Loch Modan", x = 34.6, y = 44.6, optional = true }, -- 149
+        { type = "ACCEPT", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 150
+        { type = "COLLECT", quest = 104, questName = "The Coastal Menace", target = "Scale of Old Murk-Eye", count = 1, map = 1436, zone = "Westfall", x = 34.2, y = 83.8, mobs = "Old Murk-Eye" }, -- 151
+        { type = "TURNIN", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 152
+        { type = "COLLECT", quest = 86667, questName = "Snowbound", target = "Jar of Snow", count = 1, map = 1426, zone = "Dun Morogh", x = 39.3, y = 48.1 }, -- 153
+        { type = "TURNIN", quest = 86667, questName = "Snowbound", npc = 258043, npcName = "Norric Lochthane", map = 1432, zone = "Loch Modan", x = 41.8, y = 19 }, -- 154
+        { type = "ACCEPT", quest = 2041, questName = "Speak with Shoni", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6 }, -- 155
+        { type = "TURNIN", quest = 2041, questName = "Speak with Shoni", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6 }, -- 156
+        { type = "TURNIN", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 157
+        { type = "ACCEPT", quest = 2281, questName = "Redridge Rendezvous", npc = 6946, npcName = "Renzik \"The Shiv\"", map = 1453, zone = "Stormwind City", x = 75.8, y = 60.2, class = { "ROGUE" } }, -- 158
+        { type = "ACCEPT", quest = 2299, questName = "To Hulfdan!", npc = 1234, npcName = "Hogral Bakkan", map = 1426, zone = "Dun Morogh", x = 47.6, y = 52.6, class = { "ROGUE" } }, -- 159
+        { type = "ACCEPT", quest = 94465, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 160
+        { type = "TURNIN", quest = 94465, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" } }, -- 161
     } end,
 })
