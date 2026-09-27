@@ -265,6 +265,8 @@ end
 -- Resolve where a guide step points to
 -- ------------------------------------------------------------
 --- Returns mapID, x, y, label for a step (or nil). Order of preference:
+---  0. an in-game edit; then, for an objective step of a quest in the log, Blizzard's own
+---     world-map pin for it (current map, then the step's map) or its next waypoint
 ---  1. explicit step.map/x/y
 ---  2. step.zone name matching the player's current map + x/y
 ---  3. the bundled quest database (giver / turn-in / objective spawns / npc / item sources)
@@ -282,6 +284,10 @@ end
 function Nav:ResolveStep(step)
     if not step then return nil end
     if ns.Editor then step = ns.Editor:Effective(step) end   -- in-game corrections win
+    if not step.edited then
+        local loc = self:BlizzardLocationForStep(step)
+        if loc then return loc.map, loc.x, loc.y, step.text or loc.name, loc end
+    end
     if step.near and not step.edited then
         -- objective with many spawns: the nearest known one beats the planned spot, among the
         -- spawns around that spot. Snow Leopards roam all of Dun Morogh; a step planned in the
@@ -323,6 +329,25 @@ function Nav:ResolveStep(step)
         local mapID, x, y = ns.Quest:GetWaypoint(step.quest)
         if mapID then return mapID, x, y, step.text end
     end
+    return nil
+end
+
+local OBJECTIVE_STEP = { COMPLETE = true, KILL = true, COLLECT = true }
+
+--- Blizzard's own idea of where an objective step's quest is done, once it is in the log: the
+--- world map's pin on the player's map, then on the step's map, then the client's next waypoint
+--- (cross-zone routing). nil when the client has none, and the guide's data takes over.
+function Nav:BlizzardLocationForStep(step)
+    local questID = step.quest
+    if not (questID and OBJECTIVE_STEP[step.type] and ns.Quest:IsOnQuest(questID)) then return nil end
+    local maps = { ns.Player:GetMapID() }
+    if step.map and step.map ~= maps[1] then maps[#maps + 1] = step.map end
+    for _, mapID in ipairs(maps) do
+        local x, y = ns.Quest:GetMapPin(questID, mapID)
+        if x then return { map = mapID, x = x, y = y, blizzard = true } end
+    end
+    local mapID, x, y = ns.Quest:GetWaypoint(questID)
+    if mapID then return { map = mapID, x = x, y = y, blizzard = true } end
     return nil
 end
 
