@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Class and profession quests say whose they are: the guide list shows "[Rogue]" in the class colour, or "[Blacksmithing]", after the quest name.
+- Quest-mob skulls come back on their own when enemy nameplates are switched off under a kill step (the nameplate key, a loading screen); no reload needed.
+- The arrow on a step whose creatures roam a whole zone goes to the nearest one around the step's own spot, not to the nearest one anywhere (a Snow Leopard across Dun Morogh).
 - Grouped play: a quest you accept is shared with your group, and a quest a group member shares with you is accepted, so a party following the same guide picks up each other's quests without clicking. Group escorts a member starts are joined too, unless your quest log is full (the game's own popup then cannot accept either). Shared quests go through the same filter as NPC ones (grey and repeatable quests only when the guide asks for them), and a quest that came from another player is never shared back. Both are on by default; turn them off in Options (Quests) or with `/fg auto share off` and `/fg auto shared off`. Hold Shift to handle a shared quest by hand.
 - Guides: class quests that teach an ability stay in the guides even when doing them costs some XP - Taming the Beast and Training the Beast (Dwarf hunters), Power over Poison (Night Elf druids), Call of Earth (Night Elf shamans), Call of Water for the Healing Stream Totem (Orc and Tauren shamans), Bartleby's Mug for Defensive Stance (Dwarf warriors), The Affray for Berserker Stance (Night Elf and Skyborne warriors) and Hinott's Assistance for Poisons (Orc and Undead rogues).
 - Guides: Tauren warriors learn Defensive Stance from Ulag the Cleaver in The Barrens, as Orc warriors do, instead of being shown both it and Path of Defense.

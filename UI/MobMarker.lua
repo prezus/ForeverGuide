@@ -303,8 +303,11 @@ local function forcePlates(want)
     if not cfg().plates then return end
     if inCombat() then return end
     if want then
-        if forcedPlates == nil and getCVar("nameplateShowEnemies") ~= "1" then
-            forcedPlates = getCVar("nameplateShowEnemies") or "0"
+        -- Re-assert while held: the plates key, or a loading screen, can switch them off under us,
+        -- and then every skull is gone until a reload clears forcedPlates (seen live, 2026-09-27).
+        local now = getCVar("nameplateShowEnemies")
+        if now ~= "1" then
+            if forcedPlates == nil then forcedPlates = now or "0" end
             setCVar("nameplateShowEnemies", "1")
         end
     else

@@ -198,6 +198,15 @@ G:Evaluate("test")
 check(cur() == 6, "position only moves forward on its own (" .. tostring(cur()) .. ")")
 G:SetStep(4); settle()
 check(cur() == 4, "/fg step 4 brings the class step back (" .. tostring(cur()) .. ")")
+do
+    local classRow, plainRow
+    for _, e in ipairs((ns.QuestGuide:BuildGuideEntries())) do
+        if e.questID == 3100 and not classRow then classRow = e end
+        if e.questID == 7 and not plainRow then plainRow = e end
+    end
+    check(classRow and classRow.title:find("[Warrior]", 1, true) ~= nil, "a class quest's row says whose it is (" .. tostring(classRow and classRow.title) .. ")")
+    check(plainRow and plainRow.title:find("[", 1, true) == nil, "...and a quest for everyone says nothing (" .. tostring(plainRow and plainRow.title) .. ")")
+end
 
 -- skipping an ACCEPT skips the whole quest (3100 turn-in too)
 G:Skip(); settle()
@@ -1038,6 +1047,8 @@ do
     check(ns.MobMarker.primaryUnit == "nameplate2", "the nearest untagged quest mob gets the big skull (" .. tostring(ns.MobMarker.primaryUnit) .. ")")
     check(ns.MobMarker.markedCount == 3, "the other quest mobs get small skulls, the wolf none (" .. tostring(ns.MobMarker.markedCount) .. ")")
     check(GetCVar("nameplateShowEnemies") == "1", "enemy nameplates were switched on for the kill step")
+    SetCVar("nameplateShowEnemies", "0"); ns.MobMarker:Scan()     -- the plates key, or a loading screen
+    check(GetCVar("nameplateShowEnemies") == "1" and ns.MobMarker.markedCount == 3, "plates switched off under a held kill step come back with their skulls, no reload (" .. tostring(ns.MobMarker.markedCount) .. ")")
     MOCK_PLATE("nameplate2", { name = "Kobold Vermin", npcID = 6, scale = 1.0, y = 300, tagged = true }); ns.MobMarker:Scan()
     check(ns.MobMarker.primaryUnit == "nameplate1" and ns.MobMarker.markedCount == 2, "a tagged mob loses its skull entirely, the next one gets the big skull (" .. tostring(ns.MobMarker.primaryUnit) .. ", " .. tostring(ns.MobMarker.markedCount) .. ")")
     MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, scale = 0.8, y = 500, tagged = true }); ns.MobMarker:Scan()
@@ -1195,6 +1206,16 @@ do
         MOCK_MOVE(33.3, 44.4)
         ns.Commands:Run("edit here")
         ns.Commands:Run("edit note test note")
+    end
+    do
+        -- a near step goes to a spawn around its own spot, not the nearest one anywhere in the zone
+        local spawn = ns.DB:NPCLocations(6)[1]
+        local far = { type = "KILL", quest = 11, target = "Kobold Vermin", npc = 6, near = true, map = spawn.map, x = spawn.x > 50 and spawn.x - 40 or spawn.x + 40, y = spawn.y }
+        local _, fx, fy = ns.Navigation:ResolveStep(far)
+        check(fx == far.x and fy == far.y, string.format("no spawn around a near step's spot: its own spot (%s,%s)", tostring(fx), tostring(fy)))
+        local close = { type = "KILL", quest = 11, target = "Kobold Vermin", npc = 6, near = true, map = spawn.map, x = spawn.x + 1, y = spawn.y }
+        local _, cx = ns.Navigation:ResolveStep(close)
+        check(cx ~= close.x, "spawns around the spot: the nearest of them (" .. tostring(cx) .. ")")
     end
     ns.Commands:Run("edits")
     ns.Commands:Run("edit clear")
