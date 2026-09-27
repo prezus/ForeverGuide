@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: Moonbrook Espionage and Explosive Consultation in Westfall, with the supplies in the cave below Moonbrook; Murloc Gills after Testing the Wells; Avala after the minor ice elementals at Misty Pine Refuge.
 - Once a quest is in your log, the arrow on its kill, collect and complete steps goes to the game's own quest pin on the world map, the centre of the shaded objective area. Auto mode does the same. When the game shows no pin, the arrow goes to the guide's own spot or the quest database, as before. An in-game `/fg edit` still wins.
 - Text cut to a length limit (report comments, shared quest and NPC names) is cut on whole characters, so an accented letter at the limit no longer turns into a broken byte that makes the share invalid.
 - Guides: quests whose objective, giver or ender is inside a dungeon or raid are picked up on the way and done in that dungeon's guide. New guides for Blackrock Spire, Molten Core, Blackwing Lair, Zul'Gurub, the Ahn'Qiraj raids and Naxxramas; Stratholme's guide now has its Eastern Plaguelands quests. Places inside the Deeprun Tram and Blackrock Mountain are met at the entrance, and the step says so ("Inside Deeprun Tram").
