@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_03_WESTFALL",
   "name": "3. Westfall 11-15 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 11,
@@ -52,6 +52,9 @@
     {"type": "TURNIN", "quest": 5545, "questName": "A Bundle of Trouble", "npc": 10616, "npcName": "Supervisor Raelen", "map": 1429, "zone": "Elwynn Forest", "x": 81.4, "y": 66},
     {"type": "TURNIN", "quest": 40, "questName": "A Fishy Peril", "npc": 240, "npcName": "Marshal Dughan", "map": 1429, "zone": "Elwynn Forest", "x": 42.2, "y": 65.8},
     {"type": "ACCEPT", "quest": 353, "questName": "Stormpike's Delivery", "npc": 1416, "npcName": "Grimand Elmore", "map": 1453, "zone": "Stormwind City", "x": 51.6, "y": 12.2},
+    {"type": "ACCEPT", "quest": 6661, "questName": "Deeprun Rat Roundup", "npc": 12997, "npcName": "Monty", "map": 1455, "zone": "Ironforge", "x": 84.1, "y": 53.1, "note": "Inside Deeprun Tram"},
+    {"type": "KILL", "quest": 6661, "questName": "Deeprun Rat Roundup", "npc": 13017, "target": "Rats captured", "count": 5, "map": 1455, "zone": "Ironforge", "x": 84.1, "y": 53.1, "near": true, "note": "Inside Deeprun Tram"},
+    {"type": "TURNIN", "quest": 6661, "questName": "Deeprun Rat Roundup", "npc": 12997, "npcName": "Monty", "map": 1455, "zone": "Ironforge", "x": 84.1, "y": 53.1, "note": "Inside Deeprun Tram"},
     {"type": "ACCEPT", "quest": 1638, "questName": "A Warrior's Training", "npc": 5480, "npcName": "Ilsa Corbin", "map": 1453, "zone": "Stormwind City", "x": 78.6, "y": 45.6, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 1638, "questName": "A Warrior's Training", "npc": 6089, "npcName": "Harry Burlguard", "map": 1453, "zone": "Stormwind City", "x": 74, "y": 37.2, "class": ["WARRIOR"]},
     {"type": "ACCEPT", "quest": 1679, "questName": "Muren Stormpike", "npc": 1229, "npcName": "Granis Swiftaxe", "map": 1426, "zone": "Dun Morogh", "x": 47.2, "y": 52.6, "class": ["WARRIOR"]},
