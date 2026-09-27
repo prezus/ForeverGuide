@@ -12,84 +12,83 @@ ns.RegisterGuide({
     zone = "Durotar",
     next = "GEN_HORDE_ORC_02_THE_BARRENS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Orc route: level 1 to 10, 76 steps, ~159 min of play in the model (12464 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 76,
+    notes = "Chapter 1 of the Orc route: level 1 to 10, 75 steps, ~156 min of play in the model (12487 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 75,
     steps = function() return {
-        { type = "GRIND", npc = 3098, target = "Mottled Boar", level = 2, map = 1411, zone = "Durotar", x = 41.4, y = 71.6, near = true, note = "grind Mottled Boar (level 1-2) to level 2 - nothing worth questing at 1" }, -- 1
-        { type = "ACCEPT", quest = 788, questName = "Cutting Teeth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 2
-        { type = "KILL", quest = 788, questName = "Cutting Teeth", npc = 3098, target = "Mottled Boar", count = 10, map = 1411, zone = "Durotar", x = 41.4, y = 71.6, near = true }, -- 3
-        { type = "TURNIN", quest = 788, questName = "Cutting Teeth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 4
-        { type = "ACCEPT", quest = 789, questName = "Sting of the Scorpid", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 5
-        { type = "ACCEPT", quest = 4402, questName = "Galgar's Cactus Apple Surprise", npc = 9796, npcName = "Galgar", map = 1411, zone = "Durotar", x = 42.7, y = 67.2 }, -- 6
-        { type = "COLLECT", quest = 789, questName = "Sting of the Scorpid", target = "Scorpid Worker Tail", count = 10, map = 1411, zone = "Durotar", x = 41.8, y = 65.8, near = true }, -- 7
-        { type = "ACCEPT", quest = 790, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 8
-        { type = "COLLECT", quest = 4402, questName = "Galgar's Cactus Apple Surprise", target = "Cactus Apple", count = 10, map = 1411, zone = "Durotar", x = 40.9, y = 63.9, near = true }, -- 9
-        { type = "TURNIN", quest = 4402, questName = "Galgar's Cactus Apple Surprise", npc = 9796, npcName = "Galgar", map = 1411, zone = "Durotar", x = 42.7, y = 67.2 }, -- 10
-        { type = "TURNIN", quest = 789, questName = "Sting of the Scorpid", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 11
-        { type = "ACCEPT", quest = 5441, questName = "Lazy Peons", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 12
-        { type = "KILL", quest = 5441, questName = "Lazy Peons", npc = 10556, target = "Lazy Peon", map = 1411, zone = "Durotar", x = 45, y = 69.1, near = true }, -- 13
-        { type = "TURNIN", quest = 5441, questName = "Lazy Peons", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 14
-        { type = "ACCEPT", quest = 6394, questName = "Thazz'ril's Pick", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 15
-        { type = "KILL", quest = 790, questName = "Sarkoth", npc = 3281, target = "Sarkoth", map = 1411, zone = "Durotar", x = 40.5, y = 66.8, note = "loot Sarkoth's Mangled Claw" }, -- 16
-        { type = "TURNIN", quest = 790, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 17
-        { type = "ACCEPT", quest = 804, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 18
-        { type = "COLLECT", quest = 6394, questName = "Thazz'ril's Pick", target = "Thazz'ril's Pick", map = 1411, zone = "Durotar", x = 43.7, y = 53.8 }, -- 19
-        { type = "TURNIN", quest = 6394, questName = "Thazz'ril's Pick", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 20
-        { type = "TURNIN", quest = 804, questName = "Sarkoth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 21
-        { type = "ACCEPT", quest = 823, questName = "Report to Orgnil", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 22
-        { type = "ACCEPT", quest = 818, questName = "A Solvent Spirit", npc = 3304, npcName = "Master Vornal", map = 1411, zone = "Durotar", x = 55.9, y = 74.4 }, -- 23
-        { type = "ACCEPT", quest = 817, questName = "Practical Prey", npc = 3194, npcName = "Vel'rin Fang", map = 1411, zone = "Durotar", x = 56, y = 73.9 }, -- 24
-        { type = "ACCEPT", quest = 786, questName = "Thwarting Kolkar Aggression", npc = 3140, npcName = "Lar Prowltusk", map = 1411, zone = "Durotar", x = 54.4, y = 74.4 }, -- 25
-        { type = "COMPLETE", quest = 786, questName = "Thwarting Kolkar Aggression", target = "Attack Plan: Sen'jin Village / Attack Plan: Orgrimmar", count = 3, map = 1411, zone = "Durotar", x = 47.7, y = 77.3, note = "Attack Plan: Sen'jin Village destroyed" }, -- 26
-        { type = "COMPLETE", quest = 786, questName = "Thwarting Kolkar Aggression", target = "Attack Plan: Valley of Trials", count = 3, map = 1411, zone = "Durotar", x = 49.8, y = 81.3, note = "Attack Plan: Valley of Trials destroyed" }, -- 27
-        { type = "COLLECT", quest = 818, questName = "A Solvent Spirit", target = "Intact Makrura Eye / Crawler Mucus", count = 4, map = 1411, zone = "Durotar", x = 53.9, y = 84.8, near = true }, -- 28
-        { type = "KILL", quest = 817, questName = "Practical Prey", npc = 3121, target = "Durotar Tiger", count = 4, map = 1411, zone = "Durotar", x = 59, y = 90.6, near = true, note = "loot Durotar Tiger Fur" }, -- 29
-        { type = "TURNIN", quest = 818, questName = "A Solvent Spirit", npc = 3304, npcName = "Master Vornal", map = 1411, zone = "Durotar", x = 55.9, y = 74.4 }, -- 30
-        { type = "ACCEPT", quest = 808, questName = "Minshina's Skull", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 31
-        { type = "TURNIN", quest = 817, questName = "Practical Prey", npc = 3194, npcName = "Vel'rin Fang", map = 1411, zone = "Durotar", x = 56, y = 73.9 }, -- 32
-        { type = "TURNIN", quest = 786, questName = "Thwarting Kolkar Aggression", npc = 3140, npcName = "Lar Prowltusk", map = 1411, zone = "Durotar", x = 54.4, y = 74.4 }, -- 33
-        { type = "COLLECT", quest = 808, questName = "Minshina's Skull", target = "Minshina's Skull", map = 1411, zone = "Durotar", x = 67.4, y = 87.8, near = true }, -- 34
-        { type = "TURNIN", quest = 808, questName = "Minshina's Skull", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 35
-        { type = "TURNIN", quest = 823, questName = "Report to Orgnil", npc = 3142, npcName = "Orgnil Soulscar", map = 1411, zone = "Durotar", x = 52.2, y = 43.2 }, -- 36
-        { type = "ACCEPT", quest = 784, questName = "Vanquish the Betrayers", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 37
-        { type = "ACCEPT", quest = 791, questName = "Carry Your Weight", npc = 3147, npcName = "Furl Scornbrow", map = 1411, zone = "Durotar", x = 49.9, y = 40.4 }, -- 38
-        { type = "ACCEPT", quest = 815, questName = "Break a Few Eggs", npc = 3191, npcName = "Cook Torka", map = 1411, zone = "Durotar", x = 51.1, y = 42.5 }, -- 39
-        { type = "KILL", quest = 784, questName = "Vanquish the Betrayers", npc = 3129, target = "Kul Tiras Marine", count = 10, map = 1411, zone = "Durotar", x = 56.5, y = 50.8, near = true }, -- 40
-        { type = "COLLECT", quest = 791, questName = "Carry Your Weight", target = "Canvas Scraps", count = 8, map = 1411, zone = "Durotar", x = 56.5, y = 50.8, near = true }, -- 41
-        { type = "KILL", quest = 784, questName = "Vanquish the Betrayers", npc = 3128, target = "Kul Tiras Sailor", count = 10, map = 1411, zone = "Durotar", x = 57.1, y = 51.5, near = true }, -- 42
-        { type = "KILL", quest = 784, questName = "Vanquish the Betrayers", npc = 3192, target = "Lieutenant Benedict", count = 8, map = 1411, zone = "Durotar", x = 59.7, y = 58.3 }, -- 43
-        { type = "COLLECT", quest = 815, questName = "Break a Few Eggs", target = "Taillasher Egg", count = 3, map = 1411, zone = "Durotar", x = 64.6, y = 73.3, near = true }, -- 44
-        { type = "TURNIN", quest = 784, questName = "Vanquish the Betrayers", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 45
-        { type = "ACCEPT", quest = 825, questName = "From The Wreckage....", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 46
-        { type = "ACCEPT", quest = 837, questName = "Encroachment", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 47
-        { type = "TURNIN", quest = 815, questName = "Break a Few Eggs", npc = 3191, npcName = "Cook Torka", map = 1411, zone = "Durotar", x = 51.1, y = 42.5 }, -- 48
-        { type = "TURNIN", quest = 791, questName = "Carry Your Weight", npc = 3147, npcName = "Furl Scornbrow", map = 1411, zone = "Durotar", x = 49.9, y = 40.4 }, -- 49
-        { type = "KILL", quest = 837, questName = "Encroachment", npc = 3113, target = "Razormane Dustrunner / Razormane Battleguard", count = 4, map = 1411, zone = "Durotar", x = 44.6, y = 39.4, near = true }, -- 50
-        { type = "KILL", quest = 837, questName = "Encroachment", npc = 3112, target = "Razormane Scout / Razormane Quilboar", count = 4, map = 1411, zone = "Durotar", x = 47, y = 47.8, near = true }, -- 51
-        { type = "COLLECT", quest = 825, questName = "From The Wreckage....", target = "Gnomish Tools", count = 3, map = 1411, zone = "Durotar", x = 61.8, y = 45.8, near = true }, -- 52
-        { type = "TURNIN", quest = 825, questName = "From The Wreckage....", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 53
-        { type = "TURNIN", quest = 837, questName = "Encroachment", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 54
-        { type = "ACCEPT", quest = 834, questName = "Winds in the Desert", npc = 3293, npcName = "Rezlak", map = 1411, zone = "Durotar", x = 46.4, y = 22.9 }, -- 55
-        { type = "ACCEPT", quest = 816, questName = "Lost But Not Forgotten", npc = 3193, npcName = "Misha Tor'kren", map = 1411, zone = "Durotar", x = 43.1, y = 30.2 }, -- 56
-        { type = "COLLECT", quest = 834, questName = "Winds in the Desert", target = "Sack of Supplies", count = 5, map = 1411, zone = "Durotar", x = 47.2, y = 29.7, near = true }, -- 57
-        { type = "COLLECT", quest = 816, questName = "Lost But Not Forgotten", target = "Kron's Amulet", map = 1411, zone = "Durotar", x = 36.8, y = 22.1, near = true }, -- 58
-        { type = "TURNIN", quest = 834, questName = "Winds in the Desert", npc = 3293, npcName = "Rezlak", map = 1411, zone = "Durotar", x = 46.4, y = 22.9 }, -- 59
-        { type = "ACCEPT", quest = 835, questName = "Securing the Lines", npc = 3293, npcName = "Rezlak", map = 1411, zone = "Durotar", x = 46.4, y = 22.9 }, -- 60
-        { type = "KILL", quest = 835, questName = "Securing the Lines", npc = 3118, target = "Dustwind Storm Witch / Dustwind Savage", count = 12, map = 1411, zone = "Durotar", x = 51.2, y = 23.3, near = true }, -- 61
-        { type = "TURNIN", quest = 835, questName = "Securing the Lines", npc = 3293, npcName = "Rezlak", map = 1411, zone = "Durotar", x = 46.4, y = 22.9 }, -- 62
-        { type = "TURNIN", quest = 816, questName = "Lost But Not Forgotten", npc = 3193, npcName = "Misha Tor'kren", map = 1411, zone = "Durotar", x = 43.1, y = 30.2 }, -- 63
-        { type = "ACCEPT", quest = 806, questName = "Dark Storms", npc = 3142, npcName = "Orgnil Soulscar", map = 1411, zone = "Durotar", x = 52.2, y = 43.2 }, -- 64
-        { type = "KILL", quest = 806, questName = "Dark Storms", npc = 3203, target = "Fizzle Darkstorm", map = 1411, zone = "Durotar", x = 42.1, y = 26.7, note = "loot Fizzle's Claw" }, -- 65
-        { type = "TURNIN", quest = 806, questName = "Dark Storms", npc = 3142, npcName = "Orgnil Soulscar", map = 1411, zone = "Durotar", x = 52.2, y = 43.2 }, -- 66
-        { type = "ACCEPT", quest = 828, questName = "Margoz", npc = 3142, npcName = "Orgnil Soulscar", map = 1411, zone = "Durotar", x = 52.2, y = 43.2 }, -- 67
-        { type = "TURNIN", quest = 828, questName = "Margoz", npc = 3208, npcName = "Margoz", map = 1411, zone = "Durotar", x = 56.4, y = 20 }, -- 68
-        { type = "ACCEPT", quest = 827, questName = "Skull Rock", npc = 3208, npcName = "Margoz", map = 1411, zone = "Durotar", x = 56.4, y = 20 }, -- 69
-        { type = "COLLECT", quest = 827, questName = "Skull Rock", target = "Searing Collar", map = 1411, zone = "Durotar", x = 52.6, y = 25, near = true }, -- 70
-        { type = "TURNIN", quest = 827, questName = "Skull Rock", npc = 3208, npcName = "Margoz", map = 1411, zone = "Durotar", x = 56.4, y = 20 }, -- 71
-        { type = "ACCEPT", quest = 829, questName = "Neeru Fireblade", npc = 3208, npcName = "Margoz", map = 1411, zone = "Durotar", x = 56.4, y = 20 }, -- 72
-        { type = "ACCEPT", quest = 826, questName = "Zalazane", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 73
-        { type = "KILL", quest = 826, questName = "Zalazane", npc = 3206, target = "Voodoo Troll / Hexed Troll", count = 8, map = 1411, zone = "Durotar", x = 65.9, y = 82.8, near = true }, -- 74
-        { type = "KILL", quest = 826, questName = "Zalazane", npc = 3205, target = "Zalazane", map = 1411, zone = "Durotar", x = 67.6, y = 87.8, note = "loot Zalazane's Head" }, -- 75
-        { type = "TURNIN", quest = 826, questName = "Zalazane", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 76
+        { type = "ACCEPT", quest = 788, questName = "Cutting Teeth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 1
+        { type = "KILL", quest = 788, questName = "Cutting Teeth", npc = 3098, target = "Mottled Boar", count = 10, map = 1411, zone = "Durotar", x = 41.4, y = 71.6, near = true }, -- 2
+        { type = "TURNIN", quest = 788, questName = "Cutting Teeth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 3
+        { type = "ACCEPT", quest = 789, questName = "Sting of the Scorpid", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 4
+        { type = "ACCEPT", quest = 4402, questName = "Galgar's Cactus Apple Surprise", npc = 9796, npcName = "Galgar", map = 1411, zone = "Durotar", x = 42.7, y = 67.2 }, -- 5
+        { type = "COLLECT", quest = 789, questName = "Sting of the Scorpid", target = "Scorpid Worker Tail", count = 10, map = 1411, zone = "Durotar", x = 41.8, y = 65.8, near = true }, -- 6
+        { type = "ACCEPT", quest = 790, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 7
+        { type = "COLLECT", quest = 4402, questName = "Galgar's Cactus Apple Surprise", target = "Cactus Apple", count = 10, map = 1411, zone = "Durotar", x = 40.9, y = 63.9, near = true }, -- 8
+        { type = "TURNIN", quest = 4402, questName = "Galgar's Cactus Apple Surprise", npc = 9796, npcName = "Galgar", map = 1411, zone = "Durotar", x = 42.7, y = 67.2 }, -- 9
+        { type = "TURNIN", quest = 789, questName = "Sting of the Scorpid", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 10
+        { type = "ACCEPT", quest = 5441, questName = "Lazy Peons", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 11
+        { type = "KILL", quest = 5441, questName = "Lazy Peons", npc = 10556, target = "Lazy Peon", map = 1411, zone = "Durotar", x = 45, y = 69.1, near = true }, -- 12
+        { type = "TURNIN", quest = 5441, questName = "Lazy Peons", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 13
+        { type = "ACCEPT", quest = 6394, questName = "Thazz'ril's Pick", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 14
+        { type = "KILL", quest = 790, questName = "Sarkoth", npc = 3281, target = "Sarkoth", map = 1411, zone = "Durotar", x = 40.5, y = 66.8, note = "loot Sarkoth's Mangled Claw" }, -- 15
+        { type = "TURNIN", quest = 790, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 16
+        { type = "ACCEPT", quest = 804, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 17
+        { type = "COLLECT", quest = 6394, questName = "Thazz'ril's Pick", target = "Thazz'ril's Pick", map = 1411, zone = "Durotar", x = 43.7, y = 53.8 }, -- 18
+        { type = "TURNIN", quest = 6394, questName = "Thazz'ril's Pick", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 19
+        { type = "TURNIN", quest = 804, questName = "Sarkoth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 20
+        { type = "ACCEPT", quest = 823, questName = "Report to Orgnil", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 21
+        { type = "ACCEPT", quest = 818, questName = "A Solvent Spirit", npc = 3304, npcName = "Master Vornal", map = 1411, zone = "Durotar", x = 55.9, y = 74.4 }, -- 22
+        { type = "ACCEPT", quest = 817, questName = "Practical Prey", npc = 3194, npcName = "Vel'rin Fang", map = 1411, zone = "Durotar", x = 56, y = 73.9 }, -- 23
+        { type = "ACCEPT", quest = 786, questName = "Thwarting Kolkar Aggression", npc = 3140, npcName = "Lar Prowltusk", map = 1411, zone = "Durotar", x = 54.4, y = 74.4 }, -- 24
+        { type = "COMPLETE", quest = 786, questName = "Thwarting Kolkar Aggression", target = "Attack Plan: Sen'jin Village / Attack Plan: Orgrimmar", count = 3, map = 1411, zone = "Durotar", x = 47.7, y = 77.3, note = "Attack Plan: Sen'jin Village destroyed" }, -- 25
+        { type = "COMPLETE", quest = 786, questName = "Thwarting Kolkar Aggression", target = "Attack Plan: Valley of Trials", count = 3, map = 1411, zone = "Durotar", x = 49.8, y = 81.3, note = "Attack Plan: Valley of Trials destroyed" }, -- 26
+        { type = "COLLECT", quest = 818, questName = "A Solvent Spirit", target = "Intact Makrura Eye / Crawler Mucus", count = 4, map = 1411, zone = "Durotar", x = 53.9, y = 84.8, near = true }, -- 27
+        { type = "KILL", quest = 817, questName = "Practical Prey", npc = 3121, target = "Durotar Tiger", count = 4, map = 1411, zone = "Durotar", x = 59, y = 90.6, near = true, note = "loot Durotar Tiger Fur" }, -- 28
+        { type = "TURNIN", quest = 818, questName = "A Solvent Spirit", npc = 3304, npcName = "Master Vornal", map = 1411, zone = "Durotar", x = 55.9, y = 74.4 }, -- 29
+        { type = "ACCEPT", quest = 808, questName = "Minshina's Skull", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 30
+        { type = "TURNIN", quest = 817, questName = "Practical Prey", npc = 3194, npcName = "Vel'rin Fang", map = 1411, zone = "Durotar", x = 56, y = 73.9 }, -- 31
+        { type = "TURNIN", quest = 786, questName = "Thwarting Kolkar Aggression", npc = 3140, npcName = "Lar Prowltusk", map = 1411, zone = "Durotar", x = 54.4, y = 74.4 }, -- 32
+        { type = "COLLECT", quest = 808, questName = "Minshina's Skull", target = "Minshina's Skull", map = 1411, zone = "Durotar", x = 67.4, y = 87.8, near = true }, -- 33
+        { type = "TURNIN", quest = 808, questName = "Minshina's Skull", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 34
+        { type = "TURNIN", quest = 823, questName = "Report to Orgnil", npc = 3142, npcName = "Orgnil Soulscar", map = 1411, zone = "Durotar", x = 52.2, y = 43.2 }, -- 35
+        { type = "ACCEPT", quest = 784, questName = "Vanquish the Betrayers", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 36
+        { type = "ACCEPT", quest = 791, questName = "Carry Your Weight", npc = 3147, npcName = "Furl Scornbrow", map = 1411, zone = "Durotar", x = 49.9, y = 40.4 }, -- 37
+        { type = "ACCEPT", quest = 815, questName = "Break a Few Eggs", npc = 3191, npcName = "Cook Torka", map = 1411, zone = "Durotar", x = 51.1, y = 42.5 }, -- 38
+        { type = "KILL", quest = 784, questName = "Vanquish the Betrayers", npc = 3129, target = "Kul Tiras Marine", count = 10, map = 1411, zone = "Durotar", x = 56.5, y = 50.8, near = true }, -- 39
+        { type = "COLLECT", quest = 791, questName = "Carry Your Weight", target = "Canvas Scraps", count = 8, map = 1411, zone = "Durotar", x = 56.5, y = 50.8, near = true }, -- 40
+        { type = "KILL", quest = 784, questName = "Vanquish the Betrayers", npc = 3128, target = "Kul Tiras Sailor", count = 10, map = 1411, zone = "Durotar", x = 57.1, y = 51.5, near = true }, -- 41
+        { type = "KILL", quest = 784, questName = "Vanquish the Betrayers", npc = 3192, target = "Lieutenant Benedict", count = 8, map = 1411, zone = "Durotar", x = 59.7, y = 58.3 }, -- 42
+        { type = "COLLECT", quest = 815, questName = "Break a Few Eggs", target = "Taillasher Egg", count = 3, map = 1411, zone = "Durotar", x = 64.6, y = 73.3, near = true }, -- 43
+        { type = "TURNIN", quest = 784, questName = "Vanquish the Betrayers", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 44
+        { type = "ACCEPT", quest = 825, questName = "From The Wreckage....", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 45
+        { type = "ACCEPT", quest = 837, questName = "Encroachment", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 46
+        { type = "TURNIN", quest = 815, questName = "Break a Few Eggs", npc = 3191, npcName = "Cook Torka", map = 1411, zone = "Durotar", x = 51.1, y = 42.5 }, -- 47
+        { type = "TURNIN", quest = 791, questName = "Carry Your Weight", npc = 3147, npcName = "Furl Scornbrow", map = 1411, zone = "Durotar", x = 49.9, y = 40.4 }, -- 48
+        { type = "KILL", quest = 837, questName = "Encroachment", npc = 3113, target = "Razormane Dustrunner / Razormane Battleguard", count = 4, map = 1411, zone = "Durotar", x = 44.6, y = 39.4, near = true }, -- 49
+        { type = "KILL", quest = 837, questName = "Encroachment", npc = 3112, target = "Razormane Scout / Razormane Quilboar", count = 4, map = 1411, zone = "Durotar", x = 47, y = 47.8, near = true }, -- 50
+        { type = "COLLECT", quest = 825, questName = "From The Wreckage....", target = "Gnomish Tools", count = 3, map = 1411, zone = "Durotar", x = 61.8, y = 45.8, near = true }, -- 51
+        { type = "TURNIN", quest = 825, questName = "From The Wreckage....", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 52
+        { type = "TURNIN", quest = 837, questName = "Encroachment", npc = 3139, npcName = "Gar'Thok", map = 1411, zone = "Durotar", x = 52, y = 43.5 }, -- 53
+        { type = "ACCEPT", quest = 834, questName = "Winds in the Desert", npc = 3293, npcName = "Rezlak", map = 1411, zone = "Durotar", x = 46.4, y = 22.9 }, -- 54
+        { type = "ACCEPT", quest = 816, questName = "Lost But Not Forgotten", npc = 3193, npcName = "Misha Tor'kren", map = 1411, zone = "Durotar", x = 43.1, y = 30.2 }, -- 55
+        { type = "COLLECT", quest = 834, questName = "Winds in the Desert", target = "Sack of Supplies", count = 5, map = 1411, zone = "Durotar", x = 47.2, y = 29.7, near = true }, -- 56
+        { type = "COLLECT", quest = 816, questName = "Lost But Not Forgotten", target = "Kron's Amulet", map = 1411, zone = "Durotar", x = 36.8, y = 22.1, near = true }, -- 57
+        { type = "TURNIN", quest = 834, questName = "Winds in the Desert", npc = 3293, npcName = "Rezlak", map = 1411, zone = "Durotar", x = 46.4, y = 22.9 }, -- 58
+        { type = "ACCEPT", quest = 835, questName = "Securing the Lines", npc = 3293, npcName = "Rezlak", map = 1411, zone = "Durotar", x = 46.4, y = 22.9 }, -- 59
+        { type = "KILL", quest = 835, questName = "Securing the Lines", npc = 3118, target = "Dustwind Storm Witch / Dustwind Savage", count = 12, map = 1411, zone = "Durotar", x = 51.2, y = 23.3, near = true }, -- 60
+        { type = "TURNIN", quest = 835, questName = "Securing the Lines", npc = 3293, npcName = "Rezlak", map = 1411, zone = "Durotar", x = 46.4, y = 22.9 }, -- 61
+        { type = "TURNIN", quest = 816, questName = "Lost But Not Forgotten", npc = 3193, npcName = "Misha Tor'kren", map = 1411, zone = "Durotar", x = 43.1, y = 30.2 }, -- 62
+        { type = "ACCEPT", quest = 806, questName = "Dark Storms", npc = 3142, npcName = "Orgnil Soulscar", map = 1411, zone = "Durotar", x = 52.2, y = 43.2 }, -- 63
+        { type = "KILL", quest = 806, questName = "Dark Storms", npc = 3203, target = "Fizzle Darkstorm", map = 1411, zone = "Durotar", x = 42.1, y = 26.7, note = "loot Fizzle's Claw" }, -- 64
+        { type = "TURNIN", quest = 806, questName = "Dark Storms", npc = 3142, npcName = "Orgnil Soulscar", map = 1411, zone = "Durotar", x = 52.2, y = 43.2 }, -- 65
+        { type = "ACCEPT", quest = 828, questName = "Margoz", npc = 3142, npcName = "Orgnil Soulscar", map = 1411, zone = "Durotar", x = 52.2, y = 43.2 }, -- 66
+        { type = "TURNIN", quest = 828, questName = "Margoz", npc = 3208, npcName = "Margoz", map = 1411, zone = "Durotar", x = 56.4, y = 20 }, -- 67
+        { type = "ACCEPT", quest = 827, questName = "Skull Rock", npc = 3208, npcName = "Margoz", map = 1411, zone = "Durotar", x = 56.4, y = 20 }, -- 68
+        { type = "COLLECT", quest = 827, questName = "Skull Rock", target = "Searing Collar", map = 1411, zone = "Durotar", x = 52.6, y = 25, near = true }, -- 69
+        { type = "TURNIN", quest = 827, questName = "Skull Rock", npc = 3208, npcName = "Margoz", map = 1411, zone = "Durotar", x = 56.4, y = 20 }, -- 70
+        { type = "ACCEPT", quest = 829, questName = "Neeru Fireblade", npc = 3208, npcName = "Margoz", map = 1411, zone = "Durotar", x = 56.4, y = 20 }, -- 71
+        { type = "ACCEPT", quest = 826, questName = "Zalazane", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 72
+        { type = "KILL", quest = 826, questName = "Zalazane", npc = 3206, target = "Voodoo Troll / Hexed Troll", count = 8, map = 1411, zone = "Durotar", x = 65.9, y = 82.8, near = true }, -- 73
+        { type = "KILL", quest = 826, questName = "Zalazane", npc = 3205, target = "Zalazane", map = 1411, zone = "Durotar", x = 67.6, y = 87.8, note = "loot Zalazane's Head" }, -- 74
+        { type = "TURNIN", quest = 826, questName = "Zalazane", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 75
     } end,
 })

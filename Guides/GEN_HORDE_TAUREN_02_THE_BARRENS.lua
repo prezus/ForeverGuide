@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "The Barrens",
     next = "GEN_HORDE_TAUREN_03_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 2 of the Tauren route: level 11 to 20, 149 steps, ~446 min of play in the model (18820 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 2 of the Tauren route: level 11 to 20, 149 steps, ~446 min of play in the model (18808 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 149,
     steps = function() return {
         { type = "TRAVEL", map = 1413, zone = "The Barrens", x = 51.7, y = 30.9, radius = 60, note = "travel to The Barrens (The Barrens)" }, -- 1

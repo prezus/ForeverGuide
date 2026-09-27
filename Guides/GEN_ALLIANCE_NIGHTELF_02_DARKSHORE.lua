@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Darkshore",
     next = "GEN_ALLIANCE_NIGHTELF_03_WESTFALL",
     author = "ForeverGuide route planner",
-    notes = "Chapter 2 of the NightElf route: level 9 to 12, 68 steps, ~115 min of play in the model (14746 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 2 of the NightElf route: level 9 to 12, 68 steps, ~115 min of play in the model (14796 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 68,
     steps = function() return {
         { type = "TRAVEL", map = 1439, zone = "Darkshore", x = 37.7, y = 43.6, radius = 60, note = "travel to Darkshore (Darkshore)" }, -- 1
@@ -54,27 +54,27 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 984, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 37
         { type = "ACCEPT", quest = 985, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 38
         { type = "TURNIN", quest = 2118, questName = "Plagued Lands", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 39
-        { type = "ACCEPT", quest = 4811, questName = "The Red Crystal", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 40
-        { type = "ACCEPT", quest = 4761, questName = "Thundris Windweaver", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 41
-        { type = "KILL", quest = 985, questName = "How Big a Threat?", npc = 2167, target = "Blackwood Pathfinder / Blackwood Windtalker", count = 8, map = 1439, zone = "Darkshore", x = 39.3, y = 52.2, near = true }, -- 42
-        { type = "COMPLETE", quest = 4811, questName = "The Red Crystal", target = "Locate the large, red crystal on Darkshore's eastern mountain range", map = 1439, zone = "Darkshore", x = 47.2, y = 48.7, note = "Locate the large, red crystal on Darkshore's eastern mountain range" }, -- 43
-        { type = "TURNIN", quest = 985, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 44
-        { type = "TURNIN", quest = 4811, questName = "The Red Crystal", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 45
-        { type = "ACCEPT", quest = 4812, questName = "As Water Cascades", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 46
-        { type = "TURNIN", quest = 3524, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 47
-        { type = "TURNIN", quest = 4761, questName = "Thundris Windweaver", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 48
-        { type = "ACCEPT", quest = 4762, questName = "The Cliffspring River", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 49
-        { type = "COLLECT", quest = 4812, questName = "As Water Cascades", target = "Moonwell Water Tube", map = 1439, zone = "Darkshore", x = 37.8, y = 44 }, -- 50
-        { type = "ACCEPT", quest = 4681, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 51
-        { type = "COLLECT", quest = 4681, questName = "Washed Ashore", target = "Sea Turtle Remains", map = 1439, zone = "Darkshore", x = 31.8, y = 46.3 }, -- 52
-        { type = "COLLECT", quest = 4762, questName = "The Cliffspring River", target = "Cliffspring River Sample", map = 1439, zone = "Darkshore", x = 50.8, y = 25.6 }, -- 53
-        { type = "TURNIN", quest = 4762, questName = "The Cliffspring River", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 54
-        { type = "TURNIN", quest = 4681, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 55
-        { type = "TURNIN", quest = 4812, questName = "As Water Cascades", map = 1439, zone = "Darkshore", x = 47.3, y = 48.7 }, -- 56
-        { type = "ACCEPT", quest = 4813, questName = "The Fragments Within", map = 1439, zone = "Darkshore", x = 47.3, y = 48.7 }, -- 57
+        { type = "TURNIN", quest = 3524, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 40
+        { type = "ACCEPT", quest = 4681, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 41
+        { type = "ACCEPT", quest = 4811, questName = "The Red Crystal", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 42
+        { type = "ACCEPT", quest = 4761, questName = "Thundris Windweaver", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 43
+        { type = "COLLECT", quest = 4681, questName = "Washed Ashore", target = "Sea Turtle Remains", map = 1439, zone = "Darkshore", x = 31.8, y = 46.3 }, -- 44
+        { type = "KILL", quest = 985, questName = "How Big a Threat?", npc = 2324, target = "Blackwood Windtalker / Blackwood Pathfinder", count = 8, map = 1439, zone = "Darkshore", x = 39.1, y = 52.6, near = true }, -- 45
+        { type = "COMPLETE", quest = 4811, questName = "The Red Crystal", target = "Locate the large, red crystal on Darkshore's eastern mountain range", map = 1439, zone = "Darkshore", x = 47.2, y = 48.7, note = "Locate the large, red crystal on Darkshore's eastern mountain range" }, -- 46
+        { type = "TURNIN", quest = 985, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 47
+        { type = "TURNIN", quest = 4811, questName = "The Red Crystal", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 48
+        { type = "ACCEPT", quest = 4812, questName = "As Water Cascades", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 49
+        { type = "TURNIN", quest = 4681, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 50
+        { type = "TURNIN", quest = 4761, questName = "Thundris Windweaver", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 51
+        { type = "ACCEPT", quest = 4762, questName = "The Cliffspring River", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 52
+        { type = "COLLECT", quest = 4812, questName = "As Water Cascades", target = "Moonwell Water Tube", map = 1439, zone = "Darkshore", x = 37.8, y = 44 }, -- 53
+        { type = "COLLECT", quest = 4762, questName = "The Cliffspring River", target = "Cliffspring River Sample", map = 1439, zone = "Darkshore", x = 50.8, y = 25.6 }, -- 54
+        { type = "TURNIN", quest = 4762, questName = "The Cliffspring River", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 55
+        { type = "ACCEPT", quest = 4723, questName = "Beached Sea Creature", map = 1439, zone = "Darkshore", x = 41.9, y = 31.5 }, -- 56
+        { type = "ACCEPT", quest = 4725, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 44.2, y = 20.6 }, -- 57
         { type = "ACCEPT", quest = 4727, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 53.1, y = 18.1 }, -- 58
-        { type = "ACCEPT", quest = 4725, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 44.2, y = 20.6 }, -- 59
-        { type = "ACCEPT", quest = 4723, questName = "Beached Sea Creature", map = 1439, zone = "Darkshore", x = 41.9, y = 31.5 }, -- 60
+        { type = "TURNIN", quest = 4812, questName = "As Water Cascades", map = 1439, zone = "Darkshore", x = 47.3, y = 48.7 }, -- 59
+        { type = "ACCEPT", quest = 4813, questName = "The Fragments Within", map = 1439, zone = "Darkshore", x = 47.3, y = 48.7 }, -- 60
         { type = "TURNIN", quest = 4813, questName = "The Fragments Within", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 61
         { type = "TURNIN", quest = 4723, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 62
         { type = "TURNIN", quest = 4725, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 63

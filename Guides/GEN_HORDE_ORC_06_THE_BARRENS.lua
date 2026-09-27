@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "The Barrens",
     next = "GEN_HORDE_ORC_07_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 6 of the Orc route: level 22 to 24, 27 steps, ~136 min of play in the model (20550 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    notes = "Chapter 6 of the Orc route: level 22 to 24, 27 steps, ~136 min of play in the model (20535 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 27,
     steps = function() return {
         { type = "TRAVEL", map = 1413, zone = "The Barrens", x = 62.7, y = 37.5, radius = 60, note = "travel to The Barrens (The Barrens)" }, -- 1

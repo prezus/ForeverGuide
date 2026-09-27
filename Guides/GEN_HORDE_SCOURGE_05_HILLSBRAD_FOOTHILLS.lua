@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Hillsbrad Foothills",
     next = "GEN_HORDE_SCOURGE_06_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 5 of the Scourge route: level 24 to 31, 65 steps, ~573 min of play in the model (6409 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 5 of the Scourge route: level 24 to 31, 65 steps, ~573 min of play in the model (6407 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 65,
     steps = function() return {
         { type = "TRAVEL", map = 1424, zone = "Hillsbrad Foothills", x = 62.1, y = 20.0, radius = 60, note = "travel to Hillsbrad Foothills (Hillsbrad Foothills)" }, -- 1

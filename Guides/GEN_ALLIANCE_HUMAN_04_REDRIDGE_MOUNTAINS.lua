@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Redridge Mountains",
     next = "GEN_ALLIANCE_HUMAN_05_WETLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 4 of the Human route: level 17 to 20, 45 steps, ~174 min of play in the model (12401 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 4 of the Human route: level 17 to 20, 45 steps, ~175 min of play in the model (12316 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 45,
     steps = function() return {
         { type = "TRAVEL", map = 1436, zone = "Sentinel Hill", x = 52.9, y = 53.7, radius = 60, note = "use your hearthstone (Sentinel Hill)" }, -- 1

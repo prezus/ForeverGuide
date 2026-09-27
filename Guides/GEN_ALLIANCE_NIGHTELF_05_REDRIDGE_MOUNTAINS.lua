@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Redridge Mountains",
     next = "GEN_ALLIANCE_NIGHTELF_06_WETLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 5 of the NightElf route: level 18 to 20, 44 steps, ~111 min of play in the model (19793 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 5 of the NightElf route: level 18 to 20, 44 steps, ~112 min of play in the model (19683 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 44,
     steps = function() return {
         { type = "TRAVEL", map = 1436, zone = "Sentinel Hill", x = 52.9, y = 53.7, radius = 60, note = "use your hearthstone (Sentinel Hill)" }, -- 1

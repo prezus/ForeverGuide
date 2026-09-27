@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Loch Modan",
     next = "GEN_ALLIANCE_NIGHTELF_05_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 4 of the NightElf route: level 16 to 18, 50 steps, ~94 min of play in the model (20767 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    notes = "Chapter 4 of the NightElf route: level 16 to 18, 50 steps, ~95 min of play in the model (20756 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 50,
     steps = function() return {
         { type = "TRAVEL", map = 1432, zone = "Loch Modan", x = 61.2, y = 64.2, radius = 60, note = "travel to Loch Modan (Loch Modan)" }, -- 1
