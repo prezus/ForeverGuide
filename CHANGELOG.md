@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- A breadcrumb quest is passed once you have taken, or done, the quest it leads to: the game never offers it again (Rejold's New Brew after Shimmer Stout).
 - Class and profession quests say whose they are: the guide list shows "[Rogue]" in the class colour, or "[Blacksmithing]", after the quest name.
 - Quest-mob skulls come back on their own when enemy nameplates are switched off under a kill step (the nameplate key, a loading screen); no reload needed.
 - The arrow on a step whose creatures roam a whole zone goes to the nearest one around the step's own spot, not to the nearest one anywhere (a Snow Leopard across Dun Morogh).

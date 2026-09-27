@@ -1597,6 +1597,16 @@ do
     if ns.Quest:IsOnQuest(4010) then MOCK_ABANDON(4010); settle() end
 end
 
+-- a breadcrumb is passed once its quest is taken: Rejold's New Brew (415) leads to Shimmer Stout (413)
+do
+    local bread = { type = "ACCEPT", quest = 415 }
+    check(G:IsStepDone(bread, 9999) == false, "a breadcrumb's accept waits while its quest is not taken")
+    MOCK_ACCEPT(413, "Shimmer Stout"); settle()
+    local done, why = G:IsStepDone(bread, 9999)
+    check(done == true and why == "breadcrumb passed", "...and is passed once Shimmer Stout is in the log (" .. tostring(why) .. ")")
+    MOCK_ABANDON(413); settle()
+end
+
 -- class-only WoW Forever quests: the class comes from the Forever overlay, not the Classic database
 do
     check(ns.QuestDB[76156] and ns.QuestDB[76156].forever and ns.QuestDB[76156].classes == 64, "the overlay marks Forever's Stalk With The Earthmother as shaman-only")
