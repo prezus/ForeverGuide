@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_01_ZEPHRAS_ISLE",
     name = "1. Zephras Isle 1-13 (Skyborne)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 1,
@@ -165,7 +165,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 92701, questName = "To Valanaar", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 148
         { type = "TURNIN", quest = 93927, questName = "A Last Request", map = 2521, zone = "Zephras Isle", x = 45.7, y = 45.5 }, -- 149
         { type = "ACCEPT", quest = 94374, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 150
-        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" } }, -- 151
+        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1426, zone = "Dun Morogh", x = 26.4, y = 68, class = { "SHAMAN" } }, -- 151
         { type = "ACCEPT", quest = 92698, questName = "What Is My Purpose?", npc = 250929, npcName = "Malfunctioning Cyclone Construct", map = 2521, zone = "Zephras Isle", x = 49.1, y = 78.4 }, -- 152
         { type = "TURNIN", quest = 92698, questName = "What Is My Purpose?", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 153
         { type = "ACCEPT", quest = 92682, questName = "Make Yourself Useful", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 154
@@ -178,7 +178,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 92682, questName = "Make Yourself Useful", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 161
         { type = "KILL", quest = 92684, questName = "Ornery Ornery Galestriders", npc = 251707, target = "Ornery Galestrider", count = 7, map = 2521, zone = "Zephras Isle", x = 46.2, y = 78.0, near = true, note = "Lowlands Galestrider Tenderloin" }, -- 162
         { type = "TURNIN", quest = 92684, questName = "Ornery Ornery Galestriders", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 163
-        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" }, note = "New in Forever" }, -- 164
+        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1426, zone = "Dun Morogh", x = 26.4, y = 68, class = { "SHAMAN" }, note = "New in Forever" }, -- 164
         { type = "TURNIN", quest = 94375, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 165
         { type = "KILL", quest = 92685, questName = "The Hills Have Eyes", npc = 252820, target = "Bandit Highwayman", count = 7, map = 2521, zone = "Zephras Isle", x = 45.8, y = 78.4, near = true, note = "loot Blood-Stained Bandit Mask" }, -- 166
         { type = "TURNIN", quest = 92685, questName = "The Hills Have Eyes", npc = 252800, npcName = "Aamelia Windfield", map = 2521, zone = "Zephras Isle", x = 47.5, y = 78.5 }, -- 167
