@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_10_ASHENVALE",
     name = "10. Ashenvale 24-25 (Dwarf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 24,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_11_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 10 of the Dwarf route: level 24 to 25, 49 steps, ~118 min of play in the model (22230 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 60,
+    stepCount = 62,
     steps = [[{
 {type="FLIGHTPATH",npc=4267,npcName="Daelyshia",map=1440,zone="Ashenvale",x=34.4,y=48},
 {type="ACCEPT",quest=98461,questName="Unrequited Love",npc=2913,npcName="Archaeologist Hollee",map=1439,zone="Darkshore",x=37.4,y=41.8,note="New in Forever"},
@@ -32,6 +32,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1054,questName="Culling the Threat",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
 {type="ACCEPT",quest=1070,questName="On Guard in Stonetalon",npc=4079,npcName="Sentinel Thenysil",map=1440,zone="Ashenvale",x=34.8,y=49.8},
 {type="ACCEPT",quest=4581,questName="Kayneth Stillwind",npc=3845,npcName="Shindrell Swiftfire",map=1440,zone="Ashenvale",x=34.6,y=48.8},
+{type="ACCEPT",quest=65602,questName="What Is Love?",npc=6244,npcName="Takar the Seer",map=1413,zone="The Barrens",x=49.2,y=57,class={"WARLOCK"},race={"Gnome"}},
 {type="TURNIN",quest=991,questName="Raene's Cleansing",npc=3891,npcName="Teronis' Corpse",map=1440,zone="Ashenvale",x=20.3,y=42.3},
 {type="ACCEPT",quest=1023,questName="Raene's Cleansing",npc=3891,npcName="Teronis' Corpse",map=1440,zone="Ashenvale",x=20.3,y=42.3},
 {type="COLLECT",quest=1023,questName="Raene's Cleansing",target="Glowing Gem",map=1440,zone="Ashenvale",x=20.6,y=42.2,near=true},
@@ -39,6 +40,7 @@ ns.RegisterGuide({
 {type="COLLECT",quest=1008,questName="The Zoram Strand",target="Wrathtail Head",count=20,map=1440,zone="Ashenvale",x=13.7,y=30.9,near=true},
 {type="ACCEPT",quest=1007,questName="The Ancient Statuette",npc=3846,npcName="Talen",map=1440,zone="Ashenvale",x=14.8,y=31.3},
 {type="COLLECT",quest=1007,questName="The Ancient Statuette",target="Ancient Statuette",map=1440,zone="Ashenvale",x=14.2,y=20.6},
+{type="COLLECT",quest=65602,questName="What Is Love?",target="Wooden Figurine",count=1,map=1440,zone="Ashenvale",x=26.6,y=22,class={"WARLOCK"},race={"Gnome"}},
 {type="COLLECT",quest=1010,questName="Bathran's Hair",target="Bathran's Hair",count=5,map=1440,zone="Ashenvale",x=30.1,y=24.7,near=true},
 {type="TURNIN",quest=1007,questName="The Ancient Statuette",npc=3846,npcName="Talen",map=1440,zone="Ashenvale",x=14.8,y=31.3},
 {type="ACCEPT",quest=1009,questName="Ruuzel",npc=3846,npcName="Talen",map=1440,zone="Ashenvale",x=14.8,y=31.3},
