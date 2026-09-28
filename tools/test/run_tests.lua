@@ -1628,7 +1628,7 @@ do
         local activeTop = 4
         for i, entry in ipairs(f.list.entries) do
             if entry.state == "active" then break end
-            activeTop = activeTop + f.list.rows[i]:GetHeight() + 3
+            activeTop = activeTop + ns.QuestRow.HeightFor(entry, ns.db.ui.showSubtitles ~= false) + 3
         end
         local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - 70
         check(activeTop >= f.scroll:GetVerticalScroll() and activeTop <= f.scroll:GetVerticalScroll() + viewport,
@@ -2765,6 +2765,30 @@ do
     check(tb:IsShown(), "...and shows again with it")
     ns.db.ui.height = savedHeight
     ns.QuestGuide:Layout()
+end
+
+-- ---- a long guide builds only the rows on screen -------------------------------------
+-- WoW never frees a frame, so a row per step would keep a few hundred frames for the session.
+do
+    local f = ns.QuestGuide.frame
+    local before = G.active and G.active.id
+    G:Activate(chapterId("GEN_ALLIANCE_HUMAN_01_"), true); ns.UI:Refresh(); settle()
+    local l = f.list
+    local n = #l.entries
+    check(n > 100, "the Elwynn chapter lists its whole route (" .. n .. " rows)")
+    check(#l.rows <= 30, "only the rows in view have a frame (" .. #l.rows .. " for " .. n .. " entries)")
+    check(l.height > 100 * ns.QuestRow.HEIGHT_ONE, "the list still scrolls over the whole guide (" .. l.height .. ")")
+    ns.QuestGuide:ScrollToFraction(1); settle()
+    local last = l:RowFor(n)
+    check(last ~= nil and last:IsShown() and last.entry == l.entries[n], "scrolled to the bottom, the last step has its row")
+    check(l:RowFor(1) == nil, "...and the first step, far off screen, has none")
+    local shown = 0
+    for _, r in ipairs(l.rows) do if r:IsShown() then shown = shown + 1 end end
+    check(#l.rows <= 30 and shown > 0, "scrolling reuses the rows (" .. #l.rows .. " frames)")
+    ns.QuestGuide:ScrollToFraction(0); settle()
+    check(l:RowFor(1) ~= nil and l:RowFor(1).entry == l.entries[1], "back at the top, the first step has its row again")
+    if before then G:Activate(before, true) end
+    ns.UI:Refresh(); settle()
 end
 
 -- ---- no swallowed errors anywhere -------------------------------------------------
