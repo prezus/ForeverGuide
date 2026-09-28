@@ -21,6 +21,43 @@ _G.MOCK = world
 
 -- ---- frames / widgets -------------------------------------------------
 local frames = {}
+-- Protected frames, as the client has them: a Secure* template makes a frame protected, and so is
+-- every frame it is parented under or anchored to. In combat those frames cannot be moved, sized,
+-- shown or hidden by an addon: the call does nothing and the client fires ADDON_ACTION_BLOCKED,
+-- recorded here in `world.blocked` as "<name>:<method>()".
+world.blocked = {}
+local function isProtected(r)
+    for _, s in ipairs(frames) do
+        if s.secure then
+            if s == r then return true end
+            local p = s.parent
+            while p do
+                if p == r then return true end
+                p = p.parent
+            end
+            for _, pt in ipairs(s.points) do
+                if pt[2] == r then return true end
+            end
+        end
+    end
+    return false
+end
+local RESTRICTED = { "Show", "Hide", "SetShown", "SetSize", "SetWidth", "SetHeight", "SetScale", "SetPoint",
+    "ClearAllPoints", "SetFrameStrata", "SetParent", "StartMoving", "StartSizing" }
+local function restrict(r)
+    for _, m in ipairs(RESTRICTED) do
+        local raw = r[m]
+        r[m] = function(self, ...)
+            if world.inCombat and isProtected(self) then
+                world.blocked[#world.blocked + 1] = tostring(self.name) .. ":" .. m .. "()"
+                return
+            end
+            return raw(self, ...)
+        end
+    end
+end
+_G.MOCK_IS_PROTECTED = isProtected
+
 local function NewRegion(kind)
     local r = { kind = kind, points = {}, shown = true, scripts = {}, events = {}, text = "" }
     function r:SetPoint(...) self.points[#self.points + 1] = { ... } end
@@ -31,10 +68,23 @@ local function NewRegion(kind)
     function r:SetHeight(h) self.h = h end
     function r:GetWidth() return self.w or 0 end
     function r:GetHeight() return self.h or 0 end
-    function r:Show() self.shown = true end
-    function r:Hide() self.shown = false end
+    -- OnShow / OnHide fire when the frame's own shown state flips, as in the client
+    local function setShown(self, v)
+        v = v and true or false
+        if self.shown == v then return end
+        self.shown = v
+        local fn = self.scripts[v and "OnShow" or "OnHide"]
+        if fn then fn(self) end
+    end
+    function r:Show() setShown(self, true) end
+    function r:Hide() setShown(self, false) end
     function r:IsShown() return self.shown end
-    function r:SetShown(v) self.shown = v end
+    function r:SetShown(v) setShown(self, v) end
+    -- a fixed spot on the 1280x720 screen: enough for code that places one frame over another
+    function r:GetLeft() return 900 end
+    function r:GetRight() return 900 + self:GetWidth() end
+    function r:GetTop() return 600 end
+    function r:GetBottom() return 600 - self:GetHeight() end
     function r:SetScale(v) self.scale = v end
     function r:GetScale() return self.scale or 1 end
     function r:SetFrameStrata(strata) self.strata = strata end
@@ -140,12 +190,15 @@ local function NewRegion(kind)
     end
     function r:CreateTexture(_, layer) return child(self, NewRegion("Texture"), layer) end
     function r:CreateFontString(_, layer, template) local fs = child(self, NewRegion("FontString"), layer) fs.template = template return fs end
+    function r:IsProtected() return isProtected(self) end
+    restrict(r)
     return r
 end
 
 function _G.CreateFrame(kind, name, parent, template)
     local f = NewRegion(kind)
     f.name, f.template, f.parent = name, template, parent
+    f.secure = type(template) == "string" and template:find("Secure", 1, true) ~= nil
     if parent then parent.children = parent.children or {} parent.children[#parent.children + 1] = f end
     if name then _G[name] = f end
     frames[#frames + 1] = f

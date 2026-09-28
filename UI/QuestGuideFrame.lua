@@ -159,16 +159,12 @@ function QG:Create()
     f.dungeonsBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 9)
 
     -- the skull button: a secure button whose click runs "/targetexact <mob>" for the current kill
-    -- step (the one way an addon may change the target). Secure frames cannot be moved or shown in
-    -- combat, so it is anchored once, between Guide and Guides, and simply stays.
+    -- step (the one way an addon may change the target). It sits between Guide and Guides but is
+    -- not the window's child: see PlaceSecureButtons.
     if ns.MobMarker and ns.MobMarker.TargetButton then
         local tb = ns.MobMarker:TargetButton()
         if tb then
-            tb:SetParent(f)
-            tb:ClearAllPoints()
             tb:SetSize(30, 24)
-            tb:SetPoint("BOTTOM", f, "BOTTOM", 0, 39)
-            tb:SetFrameLevel(f:GetFrameLevel() + 5)
             local normal = tb:CreateTexture(nil, "BACKGROUND")
             normal:SetAllPoints()
             pcall(normal.SetTexture, normal, Theme.TEX.button)
@@ -201,6 +197,7 @@ function QG:Create()
 
     f.elapsed = 0
     f:SetScript("OnUpdate", function(self, elapsed)
+        QG:FollowWindow()
         self.elapsed = self.elapsed + (elapsed or 0)
         if self.elapsed < math.max(0.25, ns.db.nav.updateInterval or 0.1) then return end
         self.elapsed = 0
@@ -208,8 +205,8 @@ function QG:Create()
         if not okU then ns.ReportOnce("qg:distances", err) end
     end)
 
-    f:SetScript("OnShow", function() QG.scrolledTo = nil QG:ApplyTracker() end)
-    f:SetScript("OnHide", function() QG:ApplyTracker() end)
+    f:SetScript("OnShow", function() QG.scrolledTo = nil QG:ApplyTracker() QG:PlaceSecureButtons() end)
+    f:SetScript("OnHide", function() QG:ApplyTracker() QG:PlaceSecureButtons() end)
     self.frame = f
     self:Apply()
     if not cfg.shown then f:Hide() end
@@ -414,19 +411,69 @@ function QG:Layout()
     self:PlaceItemButton()
 end
 
--- ---- the quest item button ------------------------------------------------------------------
--- A secure button that uses the current step's quest item (the one way an addon may use an item:
--- the PLAYER clicks it). Secure frames cannot be moved, shown, hidden or re-pointed in combat, so
--- it is set up out of combat only and left as it is during a fight. It hangs off the window, not
--- off the row: rows are re-laid out in combat, which they could not be with a secure frame on them.
-local ITEM_SIZE = 22
-
 local function inCombat()
     return ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true
 end
 
+-- ---- the secure buttons over the window ------------------------------------------------------
+-- A secure button makes every frame it is parented under or anchored to protected, and in combat
+-- the client blocks moving, sizing, showing and hiding a protected frame (ADDON_ACTION_BLOCKED).
+-- So the item and skull buttons are children of UIParent, never of the window or its rows: they are
+-- placed over the window by screen position out of combat and left where they are during a fight,
+-- made invisible when the window goes away.
+
+--- Put the secure buttons over the window, or hide them with it (out of combat; deferred otherwise).
+function QG:PlaceSecureButtons()
+    local f = frame
+    if not f then return end
+    local tb, ib = f.targetBtn, f.itemBtn
+    if inCombat() then
+        local alpha = f:IsShown() and 1 or 0
+        if tb then pcall(tb.SetAlpha, tb, alpha) end
+        if ib then pcall(ib.SetAlpha, ib, alpha) end
+        self.securePending = true
+        return
+    end
+    self.securePending = nil
+    local left, right, top, bottom = f:GetLeft(), f:GetRight(), f:GetTop(), f:GetBottom()
+    local shown = f:IsShown() and left ~= nil and top ~= nil
+    local at = self.placedAt or {}
+    at[1], at[2], at[3], at[4], at[5], at[6] = left, right, top, bottom, f:GetScale(), f:GetFrameStrata()
+    self.placedAt = at
+    local function over(b, level, point, x, y)
+        pcall(b.SetAlpha, b, 1)
+        if not shown or not x then b:Hide() return end
+        b:SetScale(f:GetScale())            -- both are UIParent's children: same scale, same units
+        b:SetFrameStrata(f:GetFrameStrata() or "HIGH")
+        b:SetFrameLevel(f:GetFrameLevel() + level)
+        b:ClearAllPoints()
+        b:SetPoint(point, UIParent, "BOTTOMLEFT", x, y)
+        b:Show()
+    end
+    if tb then over(tb, 5, "BOTTOM", (left + right) / 2, bottom + 39) end
+    if ib then over(ib, 6, "TOPRIGHT", ib.fromTop and right - 14, ib.fromTop and top - ib.fromTop) end
+end
+
+--- Every frame: re-place the buttons once the window has moved, resized, rescaled or changed layer.
+function QG:FollowWindow()
+    local f = frame
+    if not f or inCombat() then return end
+    local at = self.placedAt
+    if self.securePending or not at or at[1] ~= f:GetLeft() or at[2] ~= f:GetRight() or at[3] ~= f:GetTop()
+        or at[4] ~= f:GetBottom() or at[5] ~= f:GetScale() or at[6] ~= f:GetFrameStrata() then
+        self:PlaceSecureButtons()
+    end
+end
+
+-- ---- the quest item button ------------------------------------------------------------------
+-- A secure button that uses the current step's quest item (the one way an addon may use an item:
+-- the PLAYER clicks it). Secure attributes are locked in combat, so it is set up out of combat only
+-- and left as it is during a fight. It sits over the step's row but is not its child: rows are
+-- re-laid out in combat, which they could not be with a secure frame on them.
+local ITEM_SIZE = 22
+
 function QG:CreateItemButton(f)
-    local ok, b = pcall(CreateFrame, "Button", "ForeverGuideItemButton", f, "SecureActionButtonTemplate")
+    local ok, b = pcall(CreateFrame, "Button", "ForeverGuideItemButton", UIParent, "SecureActionButtonTemplate")
     if not ok or not b then return nil end
     pcall(b.SetAttribute, b, "type", "item")
     pcall(b.RegisterForClicks, b, "AnyDown", "AnyUp")
@@ -490,9 +537,8 @@ end
 function QG:PlaceItemButton()
     local f = frame
     local b = f and f.itemBtn
-    if not b then return end
-    if inCombat() then self.itemPending = true return end
-    self.itemPending = nil
+    if not b then return self:PlaceSecureButtons() end
+    if inCombat() then self.securePending = true return end
     local top, idx, itemID = 4, nil, nil
     for i, e in ipairs(f.list.entries or {}) do
         if e.useItem then idx, itemID = i, e.useItem break end
@@ -502,8 +548,8 @@ function QG:PlaceItemButton()
     local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
     local y = row and (top - (f.scroll and f.scroll:GetVerticalScroll() or 0))
     if not row or y < 0 or y + row:GetHeight() > viewport + 1 then
-        b:Hide()
-        b.itemID = nil
+        b.itemID, b.fromTop = nil, nil
+        self:PlaceSecureButtons()
         return
     end
     if b.itemID ~= itemID then
@@ -513,9 +559,8 @@ function QG:PlaceItemButton()
         pcall(b.icon.SetTexture, b.icon, ns.Plain(icon) or "Interface\\Icons\\INV_Misc_QuestionMark")
         b.itemID = itemID
     end
-    b:ClearAllPoints()
-    b:SetPoint("TOPRIGHT", f, "TOPRIGHT", -14, -(ns.QuestGuideHeader.HEIGHT + 2 + y + (row:GetHeight() - ITEM_SIZE) / 2))
-    b:Show()
+    b.fromTop = ns.QuestGuideHeader.HEIGHT + 2 + y + (row:GetHeight() - ITEM_SIZE) / 2
+    self:PlaceSecureButtons()
     self:UpdateItemButtonState()
 end
 
@@ -962,7 +1007,7 @@ function QG:ToggleInfo()
 end
 
 function QG:OnInit()
-    ns.Events:Register("PLAYER_REGEN_ENABLED", function() if QG.itemPending then QG:PlaceItemButton() end end)
+    ns.Events:Register("PLAYER_REGEN_ENABLED", function() if QG.securePending then QG:PlaceItemButton() end end)
     ns.Events:Register("FG_LOCK_CHANGED", function(_, locked)
         if frame and frame.resizeGrip then frame.resizeGrip:SetShown(not locked) end
     end)

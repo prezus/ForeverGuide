@@ -2676,6 +2676,48 @@ do
     MOCK.items[8584], MOCK.items[7297], MOCK.items[99932] = nil, nil, nil
 end
 
+-- ---- combat: the window is not a protected frame --------------------------------------
+-- The secure item and target buttons protect every frame they are parented under or anchored to.
+-- The window must not be one of those, or the client blocks its every resize, show and hide in
+-- combat (ADDON_ACTION_BLOCKED on ForeverGuideFrame:SetHeight() and :Hide(), from players' BugSack).
+do
+    ns.UI:Show(); settle()
+    local f = ForeverGuideFrame
+    local tb, ib = ForeverGuideTargetButton, ForeverGuideItemButton
+    check(not MOCK_IS_PROTECTED(f), "the Quest Guide window is not a protected frame")
+    check(tb:GetParent() ~= f and ib:GetParent() ~= f, "the secure buttons are not children of the window")
+    check(tb:IsShown(), "the skull button shows with the window")
+
+    local savedHeight = ns.db.ui.height
+    MOCK.blocked = {}
+    MOCK.inCombat = true
+    MOCK_FIRE("PLAYER_REGEN_DISABLED")
+    MOCK_FIRE("BAG_UPDATE_DELAYED"); settle()          -- the debounced refresh from the report
+    ns.db.ui.height = 420
+    ns.QuestGuide:Layout()
+    MOCK.mapOpen = true; WorldMapFrame.hooks.OnShow(); settle()
+    MOCK.mapOpen = false; WorldMapFrame.hooks.OnHide(); settle()
+    ns.UI:Suspend(true, "dungeon")
+    check(not f:IsShown(), "in combat the window can still step aside for a dungeon")
+    check(tb.alpha == 0, "...and the skull button it cannot hide goes invisible instead")
+    ns.UI:Suspend(false, "dungeon")
+    check(f:IsShown() and tb.alpha == 1, "...both come back in combat")
+    ns.UI:Toggle()
+    check(not f:IsShown(), "in combat the window's key still hides it")
+    ns.UI:Toggle()
+    check(f:IsShown() and f:GetHeight() == 420, "in combat the window still shows and resizes (" .. tostring(f:GetHeight()) .. ")")
+    check(#MOCK.blocked == 0, "no blocked actions in combat (" .. table.concat(MOCK.blocked, ", ") .. ")")
+
+    ns.UI:Hide()
+    MOCK.inCombat = false
+    MOCK_FIRE("PLAYER_REGEN_ENABLED"); settle()
+    check(not tb:IsShown() and tb.alpha == 1, "after combat the skull button is hidden with the window, not just invisible")
+    ns.UI:Show(); settle()
+    check(tb:IsShown(), "...and shows again with it")
+    ns.db.ui.height = savedHeight
+    ns.QuestGuide:Layout()
+end
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 do
     local expected = 0
