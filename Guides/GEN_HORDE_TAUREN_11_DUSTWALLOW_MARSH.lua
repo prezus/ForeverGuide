@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_11_DUSTWALLOW_MARSH",
     name = "11. Dustwallow Marsh 33-34 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 33,
@@ -45,7 +45,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1239, questName = "The Severed Head", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 25.9 }, -- 28
         { type = "TURNIN", quest = 1239, questName = "The Severed Head", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 29
         { type = "ACCEPT", quest = 1240, questName = "The Troll Witchdoctor", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 30
-        { type = "COLLECT", quest = 1218, questName = "Soothing Spices", target = "Soothing Spices", count = 3, map = 1445, zone = "Dustwallow Marsh", x = 66.4, y = 51.5, near = true, mobs = "Gunder Thornbush / Banalash / Nerrist / Edna Mullby" }, -- 31
+        { type = "COLLECT", quest = 1218, questName = "Soothing Spices", target = "Soothing Spices", count = 3, map = 1445, zone = "Dustwallow Marsh", x = 66.4, y = 51.5, near = true }, -- 31
         { type = "TURNIN", quest = 1218, questName = "Soothing Spices", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.2 }, -- 32
         { type = "COLLECT", quest = 1202, questName = "The Theramore Docks", target = "Captain's Documents", map = 1445, zone = "Dustwallow Marsh", x = 71.5, y = 51.2 }, -- 33
         { type = "ACCEPT", quest = 1206, questName = "Jarl Needs Eyes", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.2 }, -- 34
