@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Reports: each report (/fg wrong, and a missing quest from Unknown Quests) records your race, class and faction, shown in /fg reports and in /fg share, so a report still says who made it after you switch characters.
 - Guides: quests that need items a levelling character doesn't carry are out (cloth donations, Felwood's corrupted plants and salves, Argent Dawn commissions, care packages, A Sealed Crate).
 - Guides: Call of Earth for Dwarf shamans goes up the snowy hill in Dun Morogh to the Spirit Stone, not to Durotar.
 - Guides: A Light in the Darkness shows only to paladins.

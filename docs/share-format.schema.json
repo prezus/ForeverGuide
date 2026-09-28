@@ -339,6 +339,18 @@
           "npcStep": {
             "type": "integer"
           },
+          "race": {
+            "type": "string",
+            "maxLength": 20
+          },
+          "class": {
+            "type": "string",
+            "maxLength": 20
+          },
+          "faction": {
+            "type": "string",
+            "maxLength": 20
+          },
           "loc": {
             "type": "object",
             "additionalProperties": false,

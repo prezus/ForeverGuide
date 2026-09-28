@@ -33,6 +33,7 @@ ns.db = {
     harvest = { lines = { [5012] = { map = 1429, x = 40, y = 30, line = 7, lineName = "not shared" } } },
     scan = { quests = { [5013] = "Quote \" and back\\slash and\nnewline" } },
     reports = { { t = 99, text = "giver moved east", q = 783, m = 1429, x = 40.1, y = 50.2, lvl = 5,
+        race = "Human", class = "WARRIOR", faction = "Alliance",
         loc = { m = 1429, x = 48.5, y = 41.5, id = 197, kind = "npc" } } },
 }
 io.write(ns.Share:Json())

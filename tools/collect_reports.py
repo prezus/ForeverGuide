@@ -65,7 +65,8 @@ def main():
         loc = r.get("loc") or {}
         print("  step %-4s %-8s quest %-6s %s" % (r.get("step") or "-", r.get("type") or r.get("what") or "", r.get("q") or "-", ('"%s"' % r["text"]) if r.get("text") else ""))
         print("      expected: map %s %.1f,%.1f%s" % (loc.get("m"), loc.get("x") or 0, loc.get("y") or 0, (" (%s %s)" % (loc.get("kind"), loc.get("id"))) if loc.get("id") else ""))
-        print("      player:   map %s %.1f,%.1f  %s%s  lvl %s%s" % (r.get("m"), r.get("x") or 0, r.get("y") or 0, r.get("zone") or "", (" / " + r["sub"]) if r.get("sub") else "", r.get("lvl"),
+        who = ("  %s %s %s" % (r["race"], r.get("class") or "?", r.get("faction") or "?")) if r.get("race") else ""
+        print("      player:   map %s %.1f,%.1f  %s%s  lvl %s%s%s" % (r.get("m"), r.get("x") or 0, r.get("y") or 0, r.get("zone") or "", (" / " + r["sub"]) if r.get("sub") else "", r.get("lvl"), who,
               ("  target %s (%s)" % (r.get("npcName"), r.get("npc"))) if r.get("npc") else ""))
     print("\n%d report(s) -> %s" % (len(reports), os.path.relpath(OUT, foreverdb.ROOT)))
     return 0

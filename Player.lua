@@ -115,6 +115,15 @@ function Player:GetRace()
     return self.cache.race, self.cache.raceFile
 end
 
+-- Who a report is about, as the share's profile names the player: race and class tokens
+-- ("Scourge", "ROGUE") and faction ("Horde"). Reports outlive the character that made them,
+-- so each one carries these; Skyborne needs the faction, its classes differ per side.
+function Player:GetIdentity()
+    local _, race = self:GetRace()
+    local _, class = self:GetClass()
+    return race, class, self:GetFaction()
+end
+
 function Player:GetName()
     return PlainString(Safe(UnitName, "player")) or "?"
 end
