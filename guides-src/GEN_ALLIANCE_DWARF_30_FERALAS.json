@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_30_FERALAS",
   "name": "30. Feralas 43-45 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 43,
@@ -25,6 +25,7 @@
     {"type": "TURNIN", "quest": 4135, "questName": "The Writhing Deep", "map": 1444, "zone": "Feralas", "x": 72.1, "y": 63.7},
     {"type": "ACCEPT", "quest": 4265, "questName": "Freed from the Hive", "map": 1444, "zone": "Feralas", "x": 72.1, "y": 63.7},
     {"type": "COMPLETE", "quest": 4265, "questName": "Freed from the Hive", "target": "Free Raschal.", "map": 1444, "zone": "Feralas", "x": 72.1, "y": 63.8, "note": "Free Raschal."},
+    {"type": "COLLECT", "quest": 2741, "questName": "The Super Egg-O-Matic", "target": "Hippogryph Egg", "count": 1, "map": 1444, "zone": "Feralas", "x": 58.6, "y": 75.5},
     {"type": "TURNIN", "quest": 4265, "questName": "Freed from the Hive", "npc": 7880, "npcName": "Ginro Hearthkindle", "map": 1444, "zone": "Feralas", "x": 31.9, "y": 45.1},
     {"type": "ACCEPT", "quest": 4266, "questName": "A Hero's Welcome", "npc": 7880, "npcName": "Ginro Hearthkindle", "map": 1444, "zone": "Feralas", "x": 31.9, "y": 45.1},
     {"type": "TURNIN", "quest": 4266, "questName": "A Hero's Welcome", "npc": 3936, "npcName": "Shandris Feathermoon", "map": 1444, "zone": "Feralas", "x": 30.3, "y": 46.2},
