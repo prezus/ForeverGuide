@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_16_STRANGLETHORN_VALE",
   "name": "16. Stranglethorn Vale 38-39 (Tauren)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 38,
@@ -39,6 +39,7 @@
     {"type": "ACCEPT", "quest": 8553, "questName": "The Captain's Cutlass", "npc": 2500, "npcName": "Captain Hecklebury Smotts", "map": 1434, "zone": "Stranglethorn Vale", "x": 26.6, "y": 73.6},
     {"type": "TURNIN", "quest": 8553, "questName": "The Captain's Cutlass", "npc": 2594, "npcName": "Sprogger", "map": 1434, "zone": "Stranglethorn Vale", "x": 26.6, "y": 73.6},
     {"type": "ACCEPT", "quest": 572, "questName": "Mok'thardin's Enchantment", "npc": 2465, "npcName": "Far Seer Mok'thardin", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.1, "y": 29.2},
+    {"type": "ACCEPT", "quest": 2932, "questName": "Grim Message", "npc": 2497, "npcName": "Nimboya", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.2, "y": 27.8, "note": "Objectives: Place the grim message."},
     {"type": "ACCEPT", "quest": 584, "questName": "Bloodscalp Clan Heads", "npc": 2497, "npcName": "Nimboya", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.2, "y": 27.7},
     {"type": "COLLECT", "quest": 600, "questName": "Venture Company Mining", "target": "Singing Blue Crystal", "count": 10, "map": 1434, "zone": "Stranglethorn Vale", "x": 40.4, "y": 43.3, "near": true},
     {"type": "KILL", "quest": 572, "questName": "Mok'thardin's Enchantment", "npc": 687, "target": "Jungle Stalker", "count": 10, "map": 1434, "zone": "Stranglethorn Vale", "x": 32, "y": 42.4, "near": true, "note": "loot Jungle Stalker Feather"},
