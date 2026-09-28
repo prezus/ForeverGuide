@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_42_UN_GORO_CRATER",
     name = "42. Un'Goro Crater 52-53 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 52,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_43_UNDERCITY",
     author = "ForeverGuide route planner",
     notes = "Chapter 42 of the Tauren route: level 52 to 53, 21 steps, ~143 min of play in the model (19341 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 27,
+    stepCount = 29,
     steps = [[{
 {type="TRAVEL",map=1449,zone="Un'Goro Crater",x=44.1,y=7.6,radius=60,note="travel to Un'Goro Crater (Un'Goro Crater)"},
 {type="ACCEPT",quest=4492,questName="Lost!",npc=9997,npcName="Spraggle Frock",map=1449,zone="Un'Goro Crater",x=43.6,y=8.5},
@@ -39,6 +39,8 @@ ns.RegisterGuide({
 {type="KILL",quest=4289,questName="The Apes of Un'Goro",npc=6514,target="Un'Goro Gorilla / Un'Goro Stomper / Un'Goro Thunderer",count=2,map=1449,zone="Un'Goro Crater",x=62.6,y=19.7,near=true,note="loot Un'Goro Gorilla Pelt"},
 {type="TURNIN",quest=4289,questName="The Apes of Un'Goro",npc=9619,npcName="Torwa Pathfinder",map=1449,zone="Un'Goro Crater",x=71.6,y=76},
 {type="ACCEPT",quest=4301,questName="The Mighty U'cha",npc=9619,npcName="Torwa Pathfinder",map=1449,zone="Un'Goro Crater",x=71.6,y=76},
+{type="COLLECT",quest=4292,questName="The Bait for Lar'korwi",target="Lar'korwi's Head",count=1,map=1449,zone="Un'Goro Crater",x=79.6,y=49.8,mobs="Lar'korwi"},
+{type="TURNIN",quest=4292,questName="The Bait for Lar'korwi",npc=9619,npcName="Torwa Pathfinder",map=1449,zone="Un'Goro Crater",x=71.6,y=76},
 {type="KILL",quest=4301,questName="The Mighty U'cha",npc=9622,target="U'cha",map=1449,zone="Un'Goro Crater",x=68.1,y=12.6,note="loot U'cha's Pelt"},
 {type="TURNIN",quest=4301,questName="The Mighty U'cha",npc=9619,npcName="Torwa Pathfinder",map=1449,zone="Un'Goro Crater",x=71.6,y=76},
 {type="GRIND",npc=9167,target="Frenzied Pterrordax",level=53,map=1449,zone="Un'Goro Crater",x=41,y=64.8,near=true,note="grind Frenzied Pterrordax (level 51-54) to level 53 - nothing worth questing at 52"}

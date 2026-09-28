@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_39_IRONFORGE",
     name = "39. Ironforge 51-51 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 51,
@@ -13,14 +13,16 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_40_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 39 of the Dwarf route: level 51 to 51, 5 steps, ~1 min of play in the model (38493 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 9,
+    stepCount = 11,
     steps = [[{
 {type="TRAVEL",map=1455,zone="Ironforge",x=18.1,y=51.5,radius=60,note="use your hearthstone (Ironforge)"},
+{type="TURNIN",quest=3461,questName="Return to Tymor",npc=8507,npcName="Tymor",map=1455,zone="Ironforge",x=31.2,y=4.6},
 {type="ACCEPT",quest=5090,questName="A Call to Arms: The Plaguelands!",npc=10877,npcName="Courier Hammerfall",map=1455,zone="Ironforge",x=31.6,y=67},
 {type="ACCEPT",quest=8415,questName="Chillwind Point",npc=5149,npcName="Brandur Ironhammer",map=1455,zone="Ironforge",x=23.4,y=6.2,class={"PALADIN"},race={"Dwarf"}},
-{type="ACCEPT",quest=8419,questName="An Imp's Request",npc=5172,npcName="Briarthorn",map=1455,zone="Ironforge",x=50.2,y=6,class={"WARLOCK"}},
+{type="ACCEPT",quest=8419,questName="An Imp's Request",npc=5172,npcName="Briarthorn",map=1455,zone="Ironforge",x=50.2,y=6,class={"WARLOCK"},race={"Gnome"}},
 {type="TRAVEL",map=1455,zone="Ironforge",x=56.8,y=34.6,radius=60,note="travel to Ironforge (Ironforge)"},
 {type="TURNIN",quest=291,questName="The Reports",npc=1274,npcName="Senator Barin Redstone",map=1455,zone="Ironforge",x=39.4,y=57,note="reduced xp (10%) - you out-levelled it"},
+{type="TURNIN",quest=4512,questName="A Little Slime Goes a Long Way",npc=9616,npcName="Laris Geardawdle",map=1455,zone="Ironforge",x=75.4,y=23},
 {type="ACCEPT",quest=3702,questName="The Smoldering Ruins of Thaurissan",npc=8879,npcName="Royal Historian Archesonus",map=1455,zone="Ironforge",x=38.4,y=55.3},
 {type="KILL",quest=3702,questName="The Smoldering Ruins of Thaurissan",npc=8879,target="Royal Historian Archesonus",count=1,map=1455,zone="Ironforge",x=38.4,y=55.3},
 {type="TURNIN",quest=3702,questName="The Smoldering Ruins of Thaurissan",npc=8879,npcName="Royal Historian Archesonus",map=1455,zone="Ironforge",x=38.4,y=55.3}

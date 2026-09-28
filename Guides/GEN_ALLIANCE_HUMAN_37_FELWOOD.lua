@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_37_FELWOOD",
     name = "37. Felwood 51-51 (Human)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 51,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_38_IRONFORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 37 of the Human route: level 51 to 51, 22 steps, ~82 min of play in the model (44117 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 41,
+    stepCount = 43,
     steps = [[{
 {type="TRAVEL",map=1448,zone="Felwood",x=51.6,y=82.7,radius=60,note="travel to Felwood (Felwood)"},
 {type="ACCEPT",quest=8460,questName="Timbermaw Ally",npc=11554,npcName="Grazle",map=1448,zone="Felwood",x=50.9,y=85},
@@ -42,6 +42,8 @@ ns.RegisterGuide({
 {type="COLLECT",quest=5157,questName="Collection of the Corrupt Water",target="Corrupt Moonwell Water",map=1448,zone="Felwood",x=35.2,y=59.8},
 {type="TURNIN",quest=5157,questName="Collection of the Corrupt Water",npc=10922,npcName="Greta Mosshoof",map=1448,zone="Felwood",x=51.2,y=82.1},
 {type="FLIGHTPATH",npc=12578,npcName="Mishellena",map=1448,zone="Felwood",x=62.5,y=24.2},
+{type="COLLECT",quest=4512,questName="A Little Slime Goes a Long Way",target="Filled Cursed Ooze Jar",count=6,map=1448,zone="Felwood",x=41.2,y=70.9,mobs="Cursed Ooze"},
+{type="COLLECT",quest=4512,questName="A Little Slime Goes a Long Way",target="Filled Tainted Ooze Jar",count=6,map=1448,zone="Felwood",x=42.6,y=47.6,mobs="Tainted Ooze"},
 {type="ACCEPT",quest=5158,questName="Seeking Spiritual Aid",npc=10922,npcName="Greta Mosshoof",map=1448,zone="Felwood",x=51.2,y=82.2},
 {type="KILL",quest=4906,questName="Further Corruption",npc=7111,target="Jadefire Hellcaller",count=8,map=1448,zone="Felwood",x=41.7,y=21.7,near=true},
 {type="KILL",quest=4906,questName="Further Corruption",npc=7108,target="Jadefire Betrayer / Jadefire Trickster",count=8,map=1448,zone="Felwood",x=41.6,y=19.6,near=true},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_37_WESTERN_PLAGUELANDS",
     name = "37. Western Plaguelands 52-52 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 52,
@@ -13,13 +13,12 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_38_UNDERCITY",
     author = "ForeverGuide route planner",
     notes = "Chapter 37 of the Skyborne route: level 52 to 52, 14 steps, ~45 min of play in the model (38906 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 18,
+    stepCount = 17,
     steps = [[{
 {type="TRAVEL",map=1454,zone="Orgrimmar",x=54.1,y=68.4,radius=60,note="use your hearthstone (Orgrimmar)"},
 {type="TURNIN",quest=3002,questName="The Gordunni Orb",npc=7311,npcName="Uthel'nay",map=1454,zone="Orgrimmar",x=39,y=86},
 {type="TURNIN",quest=5093,questName="A Call to Arms: The Plaguelands!",npc=10837,npcName="High Executor Derrington",map=1420,zone="Tirisfal Glades",x=83,y=69},
 {type="ACCEPT",quest=5341,questName="Barov Family Fortune",npc=11022,npcName="Alexi Barov",map=1420,zone="Tirisfal Glades",x=83,y=71.4,optional=true,note="For Scholomance (dungeon guide)"},
-{type="ACCEPT",quest=8250,questName="Magecraft",npc=7311,npcName="Uthel'nay",map=1454,zone="Orgrimmar",x=39,y=86,class={"MAGE"}},
 {type="TRAVEL",map=1422,zone="Western Plaguelands",x=39.2,y=63.7,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
 {type="ACCEPT",quest=5021,questName="Better Late Than Never",npc=10778,npcName="Janice Felstone",map=1422,zone="Western Plaguelands",x=38.4,y=54.1},
 {type="TURNIN",quest=5021,questName="Better Late Than Never",map=1422,zone="Western Plaguelands",x=38.7,y=55.2},

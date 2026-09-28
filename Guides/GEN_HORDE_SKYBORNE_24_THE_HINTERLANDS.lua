@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_24_THE_HINTERLANDS",
     name = "24. The Hinterlands 45-45 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 45,
@@ -13,9 +13,11 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_25_SEARING_GORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 24 of the Skyborne route: level 45 to 45, 32 steps, ~146 min of play in the model (37557 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 40,
+    stepCount = 42,
     steps = [[{
 {type="FLIGHTPATH",npc=4314,npcName="Gorkas",map=1425,zone="The Hinterlands",x=81.7,y=81.8},
+{type="COLLECT",quest=2932,questName="Grim Message",target="Witherbark Skull",count=20,map=1425,zone="The Hinterlands",x=22.4,y=57.7,near=true,mobs="Witherbark Scalper / Witherbark Zealot / Witherbark Hideskinner / Witherbark Venomblood"},
+{type="TURNIN",quest=2932,questName="Grim Message",npc=2497,npcName="Nimboya",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.8},
 {type="COLLECT",quest=580,questName="Whiskey Slim's Lost Grog",target="Pupellyverbos Port",count=12,map=1425,zone="The Hinterlands",x=81.6,y=51.8,optional=true,near=true,mobs="Gammerita"},
 {type="TURNIN",quest=580,questName="Whiskey Slim's Lost Grog",npc=2491,npcName="Whiskey Slim",map=1434,zone="Stranglethorn Vale",x=27,y=77.4,optional=true},
 {type="ACCEPT",quest=594,questName="Message in a Bottle",map=1434,zone="Stranglethorn Vale",x=36.3,y=70.6,note="Take Carefully Folded Note from the Half-Buried Bottle and use it to start the quest"},

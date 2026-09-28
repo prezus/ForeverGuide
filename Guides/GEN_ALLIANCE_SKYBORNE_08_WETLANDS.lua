@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_08_WETLANDS",
     name = "8. Wetlands 25-28 (Skyborne)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 25,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_09_DUSKWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 8 of the Skyborne route: level 25 to 28, 58 steps, ~192 min of play in the model (18961 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 100,
+    stepCount = 98,
     steps = [[{
 {type="FLIGHTPATH",npc=1571,npcName="Shellei Brondir",map=1437,zone="Wetlands",x=9.5,y=59.7},
 {type="TURNIN",quest=1075,questName="A Scroll from Mauren",npc=4078,npcName="Collin Mauren",map=1453,zone="Stormwind City",x=43,y=80.2},
@@ -27,7 +27,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2928,questName="Gyrodrillmatic Excavationators",npc=6579,npcName="Shoni the Shilent",map=1453,zone="Stormwind City",x=55.4,y=12.6,optional=true,note="For Gnomeregan (dungeon guide)"},
 {type="ACCEPT",quest=2360,questName="Mathias and the Defias",npc=332,npcName="Master Mathias Shaw",map=1453,zone="Stormwind City",x=75.8,y=59.8,class={"ROGUE"}},
 {type="TURNIN",quest=2360,questName="Mathias and the Defias",npc=7024,npcName="Agent Kearnen",map=1436,zone="Westfall",x=68.4,y=70,class={"ROGUE"}},
-{type="ACCEPT",quest=94495,questName="Call of Water",npc=258043,npcName="Norric Lochthane",map=1432,zone="Loch Modan",x=41.8,y=19,class={"SHAMAN"},note="New in Forever"},
 {type="TRAVEL",map=1437,zone="Wetlands",x=10.3,y=58.9,radius=60,note="travel to Wetlands (Wetlands)"},
 {type="ACCEPT",quest=463,questName="The Greenwarden",npc=1239,npcName="First Mate Fitzsimmons",map=1437,zone="Wetlands",x=10.8,y=59.6},
 {type="ACCEPT",quest=288,questName="The Third Fleet",npc=1239,npcName="First Mate Fitzsimmons",map=1437,zone="Wetlands",x=10.8,y=59.6},
@@ -64,7 +63,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=463,questName="The Greenwarden",npc=1244,npcName="Rethiel the Greenwarden",map=1437,zone="Wetlands",x=56.2,y=40.4},
 {type="ACCEPT",quest=276,questName="Tramping Paws",npc=1244,npcName="Rethiel the Greenwarden",map=1437,zone="Wetlands",x=56.4,y=40.4},
 {type="KILL",quest=276,questName="Tramping Paws",npc=1008,target="Mosshide Mongrel",count=15,map=1437,zone="Wetlands",x=61.2,y=55.6,near=true},
-{type="TURNIN",quest=94495,questName="Call of Water",npc=258203,npcName="Hervdana Saegrund",map=1437,zone="Wetlands",x=65.6,y=76.4,class={"SHAMAN"}},
 {type="KILL",quest=276,questName="Tramping Paws",npc=1007,target="Mosshide Gnoll",count=15,map=1437,zone="Wetlands",x=61.6,y=66.8,near=true},
 {type="TURNIN",quest=276,questName="Tramping Paws",npc=1244,npcName="Rethiel the Greenwarden",map=1437,zone="Wetlands",x=56.4,y=40.4},
 {type="ACCEPT",quest=277,questName="Fire Taboo",npc=1244,npcName="Rethiel the Greenwarden",map=1437,zone="Wetlands",x=56.4,y=40.4},

@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_02_DARKSHORE",
   "name": "2. Darkshore 9-12 (Night Elf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 9,
@@ -13,14 +13,9 @@
   "notes": "Chapter 2 of the NightElf route: level 9 to 12, 68 steps, ~115 min of play in the model (14796 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "FLIGHTPATH", "npc": 3841, "npcName": "Caylais Moonfeather", "map": 1439, "zone": "Darkshore", "x": 36.3, "y": 45.6},
-    {"type": "ACCEPT", "quest": 94373, "questName": "Call of Earth", "npc": 257446, "npcName": "Teo Hammerstorm", "map": 1426, "zone": "Dun Morogh", "x": 28.8, "y": 66.2, "note": "New in Forever", "class": ["SHAMAN"]},
-    {"type": "COLLECT", "quest": 94373, "questName": "Call of Earth", "target": "Iceclaw Bear Pendant", "count": 2, "mobs": "Frostmane Troll Whelp / Frostmane Novice", "map": 1426, "zone": "Dun Morogh", "x": 30.4, "y": 79.4, "near": true, "class": ["SHAMAN"]},
-    {"type": "TURNIN", "quest": 94373, "questName": "Call of Earth", "npc": 257446, "npcName": "Teo Hammerstorm", "map": 1426, "zone": "Dun Morogh", "x": 28.8, "y": 66.2, "class": ["SHAMAN"]},
     {"type": "TRAVEL", "map": 1439, "zone": "Darkshore", "x": 37.7, "y": 43.6, "radius": 60, "note": "travel to Darkshore (Darkshore)"},
     {"type": "HEARTH", "npc": 6737, "npcName": "Innkeeper Shaussiy", "map": 1439, "zone": "Auberdine", "x": 37.0, "y": 44.1, "note": "talk to Innkeeper Shaussiy and make this inn your home"},
     {"type": "ACCEPT", "quest": 983, "questName": "Buzzbox 827", "npc": 3666, "npcName": "Wizbang Cranktoggle", "map": 1439, "zone": "Darkshore", "x": 37.0, "y": 44.1},
-    {"type": "ACCEPT", "quest": 94374, "questName": "Call of Earth", "npc": 257446, "npcName": "Teo Hammerstorm", "map": 1426, "zone": "Dun Morogh", "x": 28.8, "y": 66.2, "note": "New in Forever", "class": ["SHAMAN"]},
-    {"type": "TURNIN", "quest": 94374, "questName": "Call of Earth", "npc": 5891, "npcName": "Minor Manifestation of Earth", "map": 1426, "zone": "Dun Morogh", "x": 26.4, "y": 68, "class": ["SHAMAN"]},
     {"type": "COLLECT", "quest": 983, "questName": "Buzzbox 827", "target": "Crawler Leg", "count": 6, "map": 1439, "zone": "Darkshore", "x": 36.2, "y": 44.5, "near": true},
     {"type": "TURNIN", "quest": 983, "questName": "Buzzbox 827", "map": 1439, "zone": "Darkshore", "x": 36.6, "y": 46.3},
     {"type": "ACCEPT", "quest": 1001, "questName": "Buzzbox 411", "map": 1439, "zone": "Darkshore", "x": 36.6, "y": 46.3},

@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_27_FERALAS",
   "name": "27. Feralas 41-41 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 41,
@@ -57,7 +57,7 @@
     {"type": "ACCEPT", "quest": 2864, "questName": "Tran'rek", "npc": 773, "npcName": "Krazek", "map": 1434, "zone": "Stranglethorn Vale", "x": 27, "y": 77.2, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 1661, "questName": "The Tome of Nobility", "npc": 6171, "npcName": "Duthorian Rall", "map": 1453, "zone": "Stormwind City", "x": 40, "y": 29.8, "class": ["PALADIN"], "race": ["Dwarf"]},
     {"type": "TURNIN", "quest": 1661, "questName": "The Tome of Nobility", "npc": 6171, "npcName": "Duthorian Rall", "map": 1453, "zone": "Stormwind City", "x": 40, "y": 29.8, "class": ["PALADIN"], "race": ["Dwarf"]},
-    {"type": "TURNIN", "quest": 1949, "questName": "Hidden Secrets", "npc": 6548, "npcName": "Magus Tirth", "map": 1441, "zone": "Thousand Needles", "x": 78.2, "y": 75.8, "class": ["MAGE"]},
+    {"type": "TURNIN", "quest": 1949, "questName": "Hidden Secrets", "npc": 6548, "npcName": "Magus Tirth", "map": 1441, "zone": "Thousand Needles", "x": 78.2, "y": 75.8, "class": ["MAGE"], "race": ["Gnome"]},
     {"type": "ACCEPT", "quest": 4487, "questName": "Summon Felsteed", "npc": 5172, "npcName": "Briarthorn", "map": 1455, "zone": "Ironforge", "x": 50.2, "y": 6, "class": ["WARLOCK"], "race": ["Gnome"]},
     {"type": "TURNIN", "quest": 4487, "questName": "Summon Felsteed", "npc": 6251, "npcName": "Strahad Farsan", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 35.4, "class": ["WARLOCK"], "race": ["Gnome"]},
     {"type": "ACCEPT", "quest": 4488, "questName": "Summon Felsteed", "npc": 461, "npcName": "Demisette Cloyce", "map": 1453, "zone": "Stormwind City", "x": 25.4, "y": 78.2, "class": ["WARLOCK"], "race": ["Gnome"]},

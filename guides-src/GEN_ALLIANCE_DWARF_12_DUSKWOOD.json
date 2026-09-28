@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_12_DUSKWOOD",
   "name": "12. Duskwood 27-27 (Dwarf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 27,
@@ -59,6 +59,8 @@
     {"type": "TURNIN", "quest": 269, "questName": "Seeking Wisdom", "npc": 1212, "npcName": "Bishop Farthing", "map": 1453, "zone": "Stormwind City", "x": 39.2, "y": 28},
     {"type": "TURNIN", "quest": 2925, "questName": "Klockmort's Essentials", "npc": 6169, "npcName": "Klockmort Spannerspan", "map": 1455, "zone": "Ironforge", "x": 68.2, "y": 46.2, "optional": true},
     {"type": "TURNIN", "quest": 2931, "questName": "Castpipe's Task", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.4, "optional": true},
+    {"type": "ACCEPT", "quest": 1650, "questName": "The Tome of Valor", "npc": 6171, "npcName": "Duthorian Rall", "map": 1453, "zone": "Stormwind City", "x": 40, "y": 29.8, "class": ["PALADIN"], "race": ["Dwarf"]},
+    {"type": "TURNIN", "quest": 1650, "questName": "The Tome of Valor", "npc": 6182, "npcName": "Daphne Stilwell", "map": 1436, "zone": "Westfall", "x": 42.2, "y": 88.6, "class": ["PALADIN"], "race": ["Dwarf"]},
     {"type": "ACCEPT", "quest": 2359, "questName": "Klaven's Tower", "npc": 7024, "npcName": "Agent Kearnen", "map": 1436, "zone": "Westfall", "x": 68.4, "y": 70, "note": "Elite - group up", "optional": true, "class": ["ROGUE"]},
     {"type": "COLLECT", "quest": 2359, "questName": "Klaven's Tower", "target": "Klaven Mortwake's Journal", "count": 1, "mobs": "Klaven Mortwake", "map": 1436, "zone": "Westfall", "x": 70.4, "y": 74.2, "optional": true, "class": ["ROGUE"]},
     {"type": "COLLECT", "quest": 2359, "questName": "Klaven's Tower", "target": "Defias Tower Key", "count": 1, "mobs": "Malformed Defias Drone", "map": 1436, "zone": "Westfall", "x": 69.4, "y": 74.4, "optional": true, "class": ["ROGUE"]},

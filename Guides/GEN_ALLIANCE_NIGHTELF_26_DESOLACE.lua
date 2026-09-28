@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_26_DESOLACE",
     name = "26. Desolace 40-41 (Night Elf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 40,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_27_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 26 of the NightElf route: level 40 to 41, 24 steps, ~151 min of play in the model (13838 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 27,
+    stepCount = 28,
     steps = [[{
 {type="TRAVEL",map=1443,zone="Desolace",x=66.3,y=9.3,radius=60,note="travel to Desolace (Desolace)"},
 {type="ACCEPT",quest=261,questName="Down the Scarlet Path",npc=1182,npcName="Brother Anton",map=1443,zone="Desolace",x=66.5,y=7.9},
@@ -26,6 +26,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=5501,questName="Bone Collector",npc=11438,npcName="Bibbly F'utzbuckle",map=1443,zone="Desolace",x=62.3,y=39},
 {type="ACCEPT",quest=6134,questName="Ghost-o-plasm Round Up",npc=6019,npcName="Hornizz Brimbuzzle",map=1443,zone="Desolace",x=47.8,y=61.8},
 {type="ACCEPT",quest=5943,questName="Gizelton Caravan",npc=11626,npcName="Rigger Gizelton",map=1443,zone="Desolace",x=45.4,y=75.3},
+{type="ACCEPT",quest=7067,questName="The Pariah's Instructions",npc=13717,npcName="Centaur Pariah",map=1443,zone="Desolace",x=50.4,y=86.6,optional=true,note="For Maraudon (dungeon guide)"},
 {type="COMPLETE",quest=5943,questName="Gizelton Caravan",target="Escort Gizelton Caravan past Mannoroc Coven",map=1443,zone="Desolace",x=55.7,y=67.8,note="escort - stay close, it can fail: Escort Gizelton Caravan past Mannoroc Coven"},
 {type="KILL",quest=6134,questName="Ghost-o-plasm Round Up",npc=11560,target="Magrami Spectre",count=8,map=1443,zone="Desolace",x=64.2,y=91.6,note="loot Ghost-o-plasm"},
 {type="TURNIN",quest=6134,questName="Ghost-o-plasm Round Up",npc=6019,npcName="Hornizz Brimbuzzle",map=1443,zone="Desolace",x=47.8,y=61.8},

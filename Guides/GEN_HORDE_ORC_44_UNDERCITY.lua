@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_44_UNDERCITY",
     name = "44. Undercity 53-53 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 53,
@@ -13,9 +13,8 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_45_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 44 of the Orc route: level 53 to 53, 5 steps, ~2 min of play in the model (148472 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 9,
+    stepCount = 8,
     steps = [[{
-{type="TURNIN",quest=1476,questName="Hearts of the Pure",npc=5675,npcName="Carendin Halgar",map=1458,zone="Undercity",x=85,y=25.6,class={"WARLOCK"},race={"Orc"},note="reduced xp (10%) - you out-levelled it"},
 {type="TURNIN",quest=1801,questName="Tome of the Cabal",npc=6293,npcName="Jorah Annison",map=1458,zone="Undercity",x=76,y=37.6,class={"WARLOCK"},race={"Orc"},note="reduced xp (10%) - you out-levelled it"},
 {type="TRAVEL",map=1458,zone="Undercity",x=67.7,y=37.9,radius=60,note="use your hearthstone (Undercity)"},
 {type="ACCEPT",quest=1803,questName="Tome of the Cabal",npc=6293,npcName="Jorah Annison",map=1458,zone="Undercity",x=76,y=37.6,class={"WARLOCK"},race={"Orc"}},

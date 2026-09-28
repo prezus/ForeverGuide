@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_22_DUSTWALLOW_MARSH",
     name = "22. Dustwallow Marsh 40-41 (Orc)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 40,
@@ -13,12 +13,13 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_23_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 22 of the Orc route: level 40 to 41, 17 steps, ~73 min of play in the model (31757 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 30,
+    stepCount = 31,
     steps = [[{
 {type="COLLECT",quest=1206,questName="Jarl Needs Eyes",target="Unpopped Darkmist Eye",count=40,map=1445,zone="Dustwallow Marsh",x=34.2,y=22.6,near=true,mobs="Darkmist Spider / Darkmist Lurker / Darkmist Recluse / Darkmist Silkspinner"},
 {type="TURNIN",quest=1206,questName="Jarl Needs Eyes",npc=4792,npcName="\"Swamp Eye\" Jarl",map=1445,zone="Dustwallow Marsh",x=55.4,y=26.2},
 {type="ACCEPT",quest=4490,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"}},
 {type="TURNIN",quest=4490,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"}},
+{type="ACCEPT",quest=1512,questName="Love's Gift",npc=5908,npcName="Grunt Dogran",map=1413,zone="The Barrens",x=43.2,y=47.8,class={"WARLOCK"},race={"Orc"}},
 {type="TRAVEL",map=1445,zone="Dustwallow Marsh",x=36.8,y=32.1,radius=60,note="travel to Dustwallow Marsh (Dustwallow Marsh)"},
 {type="ACCEPT",quest=1166,questName="Overlord Mok'Morokk's Concern",npc=4500,npcName="Overlord Mok'Morokk",map=1445,zone="Dustwallow Marsh",x=36.3,y=31.4},
 {type="ACCEPT",quest=1169,questName="Identifying the Brood",npc=4501,npcName="Draz'Zilb",map=1445,zone="Dustwallow Marsh",x=37.2,y=33.1},

@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_01_TIRISFAL_GLADES",
   "name": "1. Tirisfal Glades 1-12 (Undead)",
-  "version": 10,
+  "version": 11,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 1,
@@ -20,9 +20,6 @@
     {"type": "ACCEPT", "quest": 1470, "questName": "Piercing the Veil", "npc": 5667, "npcName": "Venya Marthand", "map": 1420, "zone": "Tirisfal Glades", "x": 31, "y": 66.2, "class": ["WARLOCK"]},
     {"type": "COLLECT", "quest": 1470, "questName": "Piercing the Veil", "target": "Rattlecage Skull", "count": 3, "mobs": "Rattlecage Skeleton", "map": 1420, "zone": "Tirisfal Glades", "x": 33, "y": 63.2, "class": ["WARLOCK"]},
     {"type": "TURNIN", "quest": 1470, "questName": "Piercing the Veil", "npc": 5667, "npcName": "Venya Marthand", "map": 1420, "zone": "Tirisfal Glades", "x": 31, "y": 66.2, "class": ["WARLOCK"]},
-    {"type": "ACCEPT", "quest": 1485, "questName": "Vile Familiars", "npc": 5765, "npcName": "Ruzan", "map": 1411, "zone": "Durotar", "x": 42.6, "y": 69, "class": ["WARLOCK"]},
-    {"type": "COLLECT", "quest": 1485, "questName": "Vile Familiars", "target": "Vile Familiar Head", "count": 6, "mobs": "Vile Familiar", "map": 1411, "zone": "Durotar", "x": 45.2, "y": 55, "class": ["WARLOCK"]},
-    {"type": "TURNIN", "quest": 1485, "questName": "Vile Familiars", "npc": 5765, "npcName": "Ruzan", "map": 1411, "zone": "Durotar", "x": 42.6, "y": 69, "class": ["WARLOCK"]},
     {"type": "KILL", "quest": 364, "questName": "The Mindless Ones", "npc": 1501, "target": "Mindless Zombie", "count": 8, "map": 1420, "zone": "Tirisfal Glades", "x": 31.2, "y": 63.7, "near": true},
     {"type": "ACCEPT", "quest": 90902, "questName": "Rediscovering the Light", "npc": 244808, "npcName": "Aramis Hammerhand", "map": 1420, "zone": "Tirisfal Glades", "x": 31, "y": 66.2, "note": "New in Forever", "class": ["PALADIN"]},
     {"type": "ACCEPT", "quest": 98389, "questName": "A Light in the Darkness", "npc": 244808, "npcName": "Aramis Hammerhand", "map": 1420, "zone": "Tirisfal Glades", "x": 31, "y": 66.2, "note": "New in Forever", "class": ["PALADIN"]},

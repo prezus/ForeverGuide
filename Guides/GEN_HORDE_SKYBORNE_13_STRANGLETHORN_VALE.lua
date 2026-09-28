@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_13_STRANGLETHORN_VALE",
     name = "13. Stranglethorn Vale 38-39 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 38,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_14_BADLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 13 of the Skyborne route: level 38 to 39, 51 steps, ~211 min of play in the model (27757 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
-    stepCount = 72,
+    stepCount = 73,
     steps = [[{
 {type="TRAVEL",map=1418,zone="Kargath",x=2.8,y=45.9,radius=60,note="use your hearthstone (Kargath)"},
 {type="ACCEPT",quest=1372,questName="Nothing But The Truth",npc=5418,npcName="Deathstalker Zraedus",map=1431,zone="Duskwood",x=87.6,y=35.6},
@@ -42,6 +42,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=8553,questName="The Captain's Cutlass",npc=2500,npcName="Captain Hecklebury Smotts",map=1434,zone="Stranglethorn Vale",x=26.6,y=73.6},
 {type="TURNIN",quest=8553,questName="The Captain's Cutlass",npc=2594,npcName="Sprogger",map=1434,zone="Stranglethorn Vale",x=26.6,y=73.6},
 {type="ACCEPT",quest=572,questName="Mok'thardin's Enchantment",npc=2465,npcName="Far Seer Mok'thardin",map=1434,zone="Stranglethorn Vale",x=32.1,y=29.2},
+{type="ACCEPT",quest=2932,questName="Grim Message",npc=2497,npcName="Nimboya",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.8,note="Objectives: Place the grim message."},
 {type="ACCEPT",quest=584,questName="Bloodscalp Clan Heads",npc=2497,npcName="Nimboya",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.7},
 {type="COLLECT",quest=600,questName="Venture Company Mining",target="Singing Blue Crystal",count=10,map=1434,zone="Stranglethorn Vale",x=40.4,y=43.3,near=true},
 {type="KILL",quest=572,questName="Mok'thardin's Enchantment",npc=687,target="Jungle Stalker",count=10,map=1434,zone="Stranglethorn Vale",x=32,y=42.4,near=true,note="loot Jungle Stalker Feather"},

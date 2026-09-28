@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_44_UN_GORO_CRATER",
     name = "44. Un'Goro Crater 52-53 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 52,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_45_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 44 of the Skyborne route: level 52 to 53, 23 steps, ~206 min of play in the model (41590 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 32,
+    stepCount = 33,
     steps = [[{
 {type="GRIND",npc=9167,target="Frenzied Pterrordax",level=53,map=1449,zone="Un'Goro Crater",x=41,y=64.8,near=true,note="grind Frenzied Pterrordax (level 51-54) to level 53 - nothing worth questing at 52"},
 {type="ACCEPT",quest=974,questName="Finding the Source",npc=10302,npcName="Krakle",map=1449,zone="Un'Goro Crater",x=30.9,y=50.4},
@@ -46,6 +46,7 @@ ns.RegisterGuide({
 {type="KILL",quest=4301,questName="The Mighty U'cha",npc=9622,target="U'cha",map=1449,zone="Un'Goro Crater",x=68.1,y=12.6,note="loot U'cha's Pelt"},
 {type="ACCEPT",quest=4245,questName="Chasing A-Me 01",npc=9623,npcName="A-Me 01",map=1449,zone="Un'Goro Crater",x=67.6,y=16.8,note="Objectives: Protect A-Me 01 until you reach Karna Remtravel"},
 {type="TURNIN",quest=4245,questName="Chasing A-Me 01",npc=9618,npcName="Karna Remtravel",map=1449,zone="Un'Goro Crater",x=46.4,y=13.4},
+{type="COLLECT",quest=4513,questName="A Little Slime Goes a Long Way",target="Filled Pure Sample Jar",count=10,map=1449,zone="Un'Goro Crater",x=61.8,y=25.4,near=true,mobs="Muculent Ooze / Primal Ooze / Glutinous Ooze"},
 {type="TURNIN",quest=4301,questName="The Mighty U'cha",npc=9619,npcName="Torwa Pathfinder",map=1449,zone="Un'Goro Crater",x=71.6,y=76}
 }]],
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_36_ORGRIMMAR",
     name = "36. Orgrimmar 51-51 (Tauren)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 51,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_37_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 36 of the Tauren route: level 51 to 51, 11 steps, ~19 min of play in the model (50058 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 27,
+    stepCount = 26,
     steps = [[{
 {type="FLIGHTPATH",npc=3310,npcName="Doras",map=1454,zone="Orgrimmar",x=45.1,y=63.9},
 {type="TURNIN",quest=1262,questName="Report to Zor",npc=4047,npcName="Zor Lonetree",map=1454,zone="Orgrimmar",x=39,y=38,note="reduced xp (10%) - you out-levelled it"},
@@ -25,7 +25,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2861,questName="Tabetha's Task",npc=5885,npcName="Deino",map=1454,zone="Orgrimmar",x=38.4,y=85.8,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="TURNIN",quest=2861,questName="Tabetha's Task",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57,optional=true},
 {type="TRAVEL",map=1454,zone="Orgrimmar",x=50.3,y=42.9,radius=60,note="travel to Orgrimmar (Orgrimmar)"},
-{type="ACCEPT",quest=8419,questName="An Imp's Request",npc=3326,npcName="Zevrost",map=1454,zone="Orgrimmar",x=48.4,y=45.6,class={"WARLOCK"}},
 {type="HEARTH",npc=6929,npcName="Innkeeper Gryshka",map=1454,zone="Orgrimmar",x=54.1,y=68.4,note="talk to Innkeeper Gryshka and make this inn your home"},
 {type="ACCEPT",quest=5093,questName="A Call to Arms: The Plaguelands!",npc=10880,npcName="Warcaller Gorlach",map=1454,zone="Orgrimmar",x=46.6,y=64.6},
 {type="TURNIN",quest=3121,questName="A Strange Request",npc=3216,npcName="Neeru Fireblade",map=1454,zone="Orgrimmar",x=49.5,y=50.6,note="reduced xp (80%) - you out-levelled it"},

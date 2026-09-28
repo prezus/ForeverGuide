@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_10_THOUSAND_NEEDLES",
     name = "10. Thousand Needles 32-33 (Tauren)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 32,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_11_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
     notes = "Chapter 10 of the Tauren route: level 32 to 33, 39 steps, ~112 min of play in the model (25095 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 76,
+    stepCount = 74,
     steps = [[{
 {type="ACCEPT",quest=1145,questName="The Swarm Grows",npc=3428,npcName="Korran",map=1413,zone="The Barrens",x=51,y=29.6},
 {type="ACCEPT",quest=1111,questName="Wharfmaster Dizzywig",npc=4452,npcName="Kravel Koalbeard",map=1441,zone="Thousand Needles",x=77.8,y=77.2},
@@ -22,7 +22,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1102,questName="A Vengeful Fate",npc=4451,npcName="Auld Stonespire",map=1456,zone="Thunder Bluff",x=36.2,y=59.8,optional=true,note="For Razorfen Kraul (dungeon guide)"},
 {type="ACCEPT",quest=6626,questName="A Host of Evil",npc=12866,npcName="Myriam Moonsinger",map=1413,zone="The Barrens",x=49,y=94.8,optional=true,note="For Razorfen Downs (dungeon guide)"},
 {type="TURNIN",quest=1718,questName="The Islander",npc=6236,npcName="Klannoc Macleod",map=1413,zone="The Barrens",x=68.6,y=49,class={"WARRIOR"}},
-{type="ACCEPT",quest=1531,questName="Call of Air",npc=5892,npcName="Searn Firewarder",map=1454,zone="Orgrimmar",x=37.8,y=37.4,class={"SHAMAN"}},
 {type="ACCEPT",quest=1532,questName="Call of Air",npc=5906,npcName="Xanis Flameweaver",map=1456,zone="Thunder Bluff",x=25.2,y=21,class={"SHAMAN"}},
 {type="ACCEPT",quest=220,questName="Call of Water",npc=5899,npcName="Brine",map=1413,zone="The Barrens",x=43.4,y=77.4,class={"SHAMAN"}},
 {type="TURNIN",quest=220,questName="Call of Water",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8,class={"SHAMAN"},note="reduced xp (20%) - you out-levelled it"},
@@ -60,7 +59,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1150,questName="Test of Endurance",npc=2986,npcName="Dorn Plainstalker",map=1441,zone="Thousand Needles",x=54,y=41.5},
 {type="ACCEPT",quest=4767,questName="Wind Rider",npc=10377,npcName="Elu",map=1441,zone="Thousand Needles",x=45,y=49},
 {type="ACCEPT",quest=1151,questName="Test of Strength",npc=2986,npcName="Dorn Plainstalker",map=1441,zone="Thousand Needles",x=53.8,y=41.6,optional=true,note="Elite - group up"},
-{type="TURNIN",quest=1531,questName="Call of Air",npc=5905,npcName="Prate Cloudseer",map=1441,zone="Thousand Needles",x=53.6,y=42.8,class={"SHAMAN"}},
 {type="TURNIN",quest=1532,questName="Call of Air",npc=5905,npcName="Prate Cloudseer",map=1441,zone="Thousand Needles",x=53.6,y=42.8,class={"SHAMAN"}},
 {type="ACCEPT",quest=4821,questName="Alien Egg",npc=10539,npcName="Hagar Lightninghoof",map=1441,zone="Thousand Needles",x=44.6,y=50.3},
 {type="ACCEPT",quest=4841,questName="Pacify the Centaur",npc=10537,npcName="Cliffwatcher Longhorn",map=1441,zone="Thousand Needles",x=45.7,y=50.7},

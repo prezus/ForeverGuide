@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_41_UN_GORO_CRATER",
     name = "41. Un'Goro Crater 52-52 (Undead)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 52,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_42_AZSHARA",
     author = "ForeverGuide route planner",
     notes = "Chapter 41 of the Scourge route: level 52 to 52, 20 steps, ~87 min of play in the model (31900 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 26,
+    stepCount = 28,
     steps = [[{
 {type="TRAVEL",map=1449,zone="Un'Goro Crater",x=44.1,y=7.6,radius=60,note="travel to Un'Goro Crater (Un'Goro Crater)"},
 {type="ACCEPT",quest=4492,questName="Lost!",npc=9997,npcName="Spraggle Frock",map=1449,zone="Un'Goro Crater",x=43.6,y=8.5},
@@ -39,6 +39,8 @@ ns.RegisterGuide({
 {type="KILL",quest=4289,questName="The Apes of Un'Goro",npc=6514,target="Un'Goro Gorilla / Un'Goro Stomper / Un'Goro Thunderer",count=2,map=1449,zone="Un'Goro Crater",x=62.6,y=19.7,near=true,note="loot Un'Goro Gorilla Pelt"},
 {type="TURNIN",quest=4289,questName="The Apes of Un'Goro",npc=9619,npcName="Torwa Pathfinder",map=1449,zone="Un'Goro Crater",x=71.6,y=76},
 {type="ACCEPT",quest=4301,questName="The Mighty U'cha",npc=9619,npcName="Torwa Pathfinder",map=1449,zone="Un'Goro Crater",x=71.6,y=76},
+{type="COLLECT",quest=4292,questName="The Bait for Lar'korwi",target="Lar'korwi's Head",count=1,map=1449,zone="Un'Goro Crater",x=79.6,y=49.8,mobs="Lar'korwi"},
+{type="TURNIN",quest=4292,questName="The Bait for Lar'korwi",npc=9619,npcName="Torwa Pathfinder",map=1449,zone="Un'Goro Crater",x=71.6,y=76},
 {type="KILL",quest=4301,questName="The Mighty U'cha",npc=9622,target="U'cha",map=1449,zone="Un'Goro Crater",x=68.1,y=12.6,note="loot U'cha's Pelt"},
 {type="TURNIN",quest=4301,questName="The Mighty U'cha",npc=9619,npcName="Torwa Pathfinder",map=1449,zone="Un'Goro Crater",x=71.6,y=76}
 }]],

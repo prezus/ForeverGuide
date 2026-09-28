@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_10_ASHENVALE",
   "name": "10. Ashenvale 24-25 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 24,
@@ -21,9 +21,6 @@
     {"type": "ACCEPT", "quest": 2925, "questName": "Klockmort's Essentials", "npc": 6142, "npcName": "Mathiel", "map": 1457, "zone": "Darnassus", "x": 59.2, "y": 45.4, "note": "For Gnomeregan (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 5672, "questName": "Elune's Grace", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
     {"type": "TURNIN", "quest": 5672, "questName": "Elune's Grace", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
-    {"type": "TURNIN", "quest": 5673, "questName": "Elune's Grace", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
-    {"type": "TURNIN", "quest": 5674, "questName": "Elune's Grace", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
-    {"type": "TURNIN", "quest": 5675, "questName": "Elune's Grace", "npc": 11401, "npcName": "Priestess Alathea", "map": 1457, "zone": "Darnassus", "x": 39.2, "y": 81, "class": ["PRIEST"]},
     {"type": "ACCEPT", "quest": 98393, "questName": "The Great Cat Spirit", "npc": 4217, "npcName": "Mathrengyl Bearwalker", "map": 1457, "zone": "Darnassus", "x": 35.2, "y": 8, "note": "New in Forever", "class": ["DRUID"]},
     {"type": "TURNIN", "quest": 98393, "questName": "The Great Cat Spirit", "npc": 11802, "npcName": "Dendrite Starblaze", "map": 1450, "zone": "Moonglade", "x": 56.2, "y": 30.4, "class": ["DRUID"]},
     {"type": "TRAVEL", "map": 1440, "zone": "Ashenvale", "x": 36.4, "y": 50.2, "radius": 60, "note": "travel to Ashenvale (Ashenvale)"},

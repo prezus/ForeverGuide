@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_29_BADLANDS",
     name = "29. Badlands 46-46 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 46,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_30_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 29 of the Skyborne route: level 46 to 46, 10 steps, ~25 min of play in the model (44758 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 15,
+    stepCount = 19,
     steps = [[{
 {type="TRAVEL",map=1418,zone="Badlands",x=50.0,y=49.6,radius=60,note="travel to Badlands (Badlands)"},
 {type="ACCEPT",quest=706,questName="Fiery Blaze Enchantments",npc=2860,npcName="Sigrun Ironhew",map=1418,zone="Badlands",x=53.8,y=43.3},
@@ -25,6 +25,10 @@ ns.RegisterGuide({
 {type="KILL",quest=739,questName="Murdaloc",npc=2945,target="Murdaloc",count=1,map=1418,zone="Badlands",x=49.6,y=66.6},
 {type="KILL",quest=739,questName="Murdaloc",npc=2893,target="Stonevault Bonesnapper",count=12,map=1418,zone="Badlands",x=49.8,y=63.8},
 {type="TURNIN",quest=732,questName="Tremors of the Earth",npc=2888,npcName="Garek",map=1418,zone="Badlands",x=61.9,y=54.3},
+{type="ACCEPT",quest=717,questName="Tremors of the Earth",npc=2888,npcName="Garek",map=1418,zone="Badlands",x=61.8,y=54.2,optional=true,note="Elite - group up"},
+{type="COLLECT",quest=717,questName="Tremors of the Earth",target="Blacklash's Bindings",count=1,map=1418,zone="Badlands",x=81.6,y=49.8,optional=true,mobs="Blacklash"},
+{type="COLLECT",quest=717,questName="Tremors of the Earth",target="Chains of Hematus",count=1,map=1418,zone="Badlands",x=81.6,y=50.2,optional=true,mobs="Hematus"},
+{type="TURNIN",quest=717,questName="Tremors of the Earth",npc=2888,npcName="Garek",map=1418,zone="Badlands",x=61.8,y=54.2,optional=true},
 {type="TURNIN",quest=706,questName="Fiery Blaze Enchantments",npc=2860,npcName="Sigrun Ironhew",map=1418,zone="Badlands",x=53.8,y=43.3},
 {type="ACCEPT",quest=722,questName="Amulet of Secrets",npc=2909,npcName="Hammertoe Grez",map=1418,zone="Badlands",x=37.9,y=10.6,optional=true,note="For Uldaman (dungeon guide)"},
 {type="ACCEPT",quest=712,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},

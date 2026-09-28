@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_13_THOUSAND_NEEDLES",
     name = "13. Thousand Needles 29-29 (Human)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 29,
@@ -13,11 +13,13 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_14_ASHENVALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 13 of the Human route: level 29 to 29, 11 steps, ~40 min of play in the model (25277 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 17,
+    stepCount = 19,
     steps = [[{
 {type="TRAVEL",map=1440,zone="Astranaar",x=37.0,y=49.2,radius=60,note="use your hearthstone (Astranaar)"},
 {type="ACCEPT",quest=79192,questName="Stepping Stones",map=1413,zone="The Barrens",x=46.4,y=73.9,note="Cozy Sleeping Bag chain: keep it going"},
 {type="ACCEPT",quest=6626,questName="A Host of Evil",npc=12866,npcName="Myriam Moonsinger",map=1413,zone="The Barrens",x=49,y=94.8,optional=true,note="For Razorfen Downs (dungeon guide)"},
+{type="ACCEPT",quest=1652,questName="The Tome of Valor",npc=6182,npcName="Daphne Stilwell",map=1436,zone="Westfall",x=42.2,y=88.6,class={"PALADIN"}},
+{type="TURNIN",quest=1652,questName="The Tome of Valor",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"}},
 {type="TRAVEL",map=1441,zone="Thousand Needles",x=78.8,y=76.8,radius=60,note="travel to Thousand Needles (Thousand Needles)"},
 {type="ACCEPT",quest=1104,questName="Salt Flat Venom",npc=4454,npcName="Fizzle Brassbolts",map=1441,zone="Thousand Needles",x=78.1,y=77.1},
 {type="ACCEPT",quest=1105,questName="Hardened Shells",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78.1,y=77.1},
