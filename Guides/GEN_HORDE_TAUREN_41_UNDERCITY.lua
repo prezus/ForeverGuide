@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_41_UNDERCITY",
     name = "41. Undercity 52-52 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 52,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_42_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 41 of the Tauren route: level 52 to 52, 13 steps, ~20 min of play in the model (40454 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 42,
+    stepCount = 38,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 4551, npcName = "Michael Garrett", map = 1458, zone = "Undercity", x = 63.3, y = 48.6 }, -- 1
         { type = "ACCEPT", quest = 5725, questName = "The Power to Destroy...", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.2, y = 92.6, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 2
@@ -37,25 +37,21 @@ ns.RegisterGuide({
         { type = "TRAVEL", map = 1458, zone = "Undercity", x = 60.5, y = 53.3, radius = 60, note = "travel to Undercity (Undercity)" }, -- 20
         { type = "TURNIN", quest = 2782, questName = "Rin'ji's Secret", npc = 7825, npcName = "Oran Snakewrithe", map = 1458, zone = "Undercity", x = 73.4, y = 32.4 }, -- 21
         { type = "HEARTH", npc = 6741, npcName = "Innkeeper Norman", map = 1458, zone = "Undercity", x = 67.7, y = 37.9, note = "talk to Innkeeper Norman and make this inn your home" }, -- 22
-        { type = "ACCEPT", quest = 7817, questName = "A Donation of Mageweave", npc = 14729, npcName = "Ralston Farnsley", map = 1458, zone = "Undercity", x = 71.6, y = 28.8 }, -- 23
-        { type = "TURNIN", quest = 7817, questName = "A Donation of Mageweave", npc = 14729, npcName = "Ralston Farnsley", map = 1458, zone = "Undercity", x = 71.6, y = 28.8 }, -- 24
-        { type = "ACCEPT", quest = 8273, questName = "Oran's Gratitude", npc = 7825, npcName = "Oran Snakewrithe", map = 1458, zone = "Undercity", x = 73.4, y = 32.4 }, -- 25
-        { type = "TURNIN", quest = 8273, questName = "Oran's Gratitude", npc = 7825, npcName = "Oran Snakewrithe", map = 1458, zone = "Undercity", x = 73.4, y = 32.4 }, -- 26
-        { type = "ACCEPT", quest = 232, questName = "Errand for Apothecary Zinge", npc = 5204, npcName = "Apothecary Zinge", map = 1458, zone = "Undercity", x = 50.1, y = 68 }, -- 27
-        { type = "TURNIN", quest = 513, questName = "Elixir of Agony", npc = 2055, npcName = "Master Apothecary Faranell", map = 1458, zone = "Undercity", x = 48.8, y = 69.3, note = "reduced xp (10%) - you out-levelled it" }, -- 28
-        { type = "TURNIN", quest = 232, questName = "Errand for Apothecary Zinge", npc = 7683, npcName = "Alessandro Luca", map = 1458, zone = "Undercity", x = 58.6, y = 54.7, note = "reduced xp (60%) - you out-levelled it" }, -- 29
-        { type = "TURNIN", quest = 5023, questName = "Better Late Than Never", npc = 10781, npcName = "Royal Overseer Bauhaus", map = 1458, zone = "Undercity", x = 69.8, y = 43.2 }, -- 30
-        { type = "ACCEPT", quest = 238, questName = "Errand for Apothecary Zinge", npc = 7683, npcName = "Alessandro Luca", map = 1458, zone = "Undercity", x = 58.6, y = 54.7 }, -- 31
-        { type = "ACCEPT", quest = 5049, questName = "The Jeremiah Blues", npc = 10781, npcName = "Royal Overseer Bauhaus", map = 1458, zone = "Undercity", x = 69.8, y = 43.2 }, -- 32
-        { type = "TURNIN", quest = 5049, questName = "The Jeremiah Blues", npc = 8403, npcName = "Jeremiah Payson", map = 1458, zone = "Undercity", x = 67.6, y = 44.2 }, -- 33
-        { type = "ACCEPT", quest = 5050, questName = "Good Luck Charm", npc = 8403, npcName = "Jeremiah Payson", map = 1458, zone = "Undercity", x = 67.4, y = 43.8 }, -- 34
-        { type = "TURNIN", quest = 238, questName = "Errand for Apothecary Zinge", npc = 5204, npcName = "Apothecary Zinge", map = 1458, zone = "Undercity", x = 50.1, y = 68, note = "reduced xp (60%) - you out-levelled it" }, -- 35
-        { type = "ACCEPT", quest = 4293, questName = "A Sample of Slime...", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 36
-        { type = "COLLECT", quest = 4293, questName = "A Sample of Slime...", target = "Corrupted Felwood Sample", count = 5, map = 1458, zone = "Undercity", x = 47.9, y = 73.5 }, -- 37
-        { type = "TURNIN", quest = 4293, questName = "A Sample of Slime...", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 38
-        { type = "TURNIN", quest = 550, questName = "Battle of Hillsbrad", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.2, y = 92.6, note = "reduced xp (10%) - you out-levelled it" }, -- 39
-        { type = "TURNIN", quest = 3542, questName = "Delivery to Andron Gant", npc = 6522, npcName = "Andron Gant", map = 1458, zone = "Undercity", x = 54.6, y = 75.6 }, -- 40
-        { type = "TURNIN", quest = 96, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" }, note = "reduced xp (10%) - you out-levelled it" }, -- 41
-        { type = "TURNIN", quest = 3526, questName = "Goblin Engineering", npc = 8126, npcName = "Nixx Sprocketspring", map = 1446, zone = "Tanaris", x = 52.4, y = 27.2, profession = "Engineering", skill = 200 }, -- 42
+        { type = "ACCEPT", quest = 232, questName = "Errand for Apothecary Zinge", npc = 5204, npcName = "Apothecary Zinge", map = 1458, zone = "Undercity", x = 50.1, y = 68 }, -- 23
+        { type = "TURNIN", quest = 513, questName = "Elixir of Agony", npc = 2055, npcName = "Master Apothecary Faranell", map = 1458, zone = "Undercity", x = 48.8, y = 69.3, note = "reduced xp (10%) - you out-levelled it" }, -- 24
+        { type = "TURNIN", quest = 232, questName = "Errand for Apothecary Zinge", npc = 7683, npcName = "Alessandro Luca", map = 1458, zone = "Undercity", x = 58.6, y = 54.7, note = "reduced xp (60%) - you out-levelled it" }, -- 25
+        { type = "TURNIN", quest = 5023, questName = "Better Late Than Never", npc = 10781, npcName = "Royal Overseer Bauhaus", map = 1458, zone = "Undercity", x = 69.8, y = 43.2 }, -- 26
+        { type = "ACCEPT", quest = 238, questName = "Errand for Apothecary Zinge", npc = 7683, npcName = "Alessandro Luca", map = 1458, zone = "Undercity", x = 58.6, y = 54.7 }, -- 27
+        { type = "ACCEPT", quest = 5049, questName = "The Jeremiah Blues", npc = 10781, npcName = "Royal Overseer Bauhaus", map = 1458, zone = "Undercity", x = 69.8, y = 43.2 }, -- 28
+        { type = "TURNIN", quest = 5049, questName = "The Jeremiah Blues", npc = 8403, npcName = "Jeremiah Payson", map = 1458, zone = "Undercity", x = 67.6, y = 44.2 }, -- 29
+        { type = "ACCEPT", quest = 5050, questName = "Good Luck Charm", npc = 8403, npcName = "Jeremiah Payson", map = 1458, zone = "Undercity", x = 67.4, y = 43.8 }, -- 30
+        { type = "TURNIN", quest = 238, questName = "Errand for Apothecary Zinge", npc = 5204, npcName = "Apothecary Zinge", map = 1458, zone = "Undercity", x = 50.1, y = 68, note = "reduced xp (60%) - you out-levelled it" }, -- 31
+        { type = "ACCEPT", quest = 4293, questName = "A Sample of Slime...", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 32
+        { type = "COLLECT", quest = 4293, questName = "A Sample of Slime...", target = "Corrupted Felwood Sample", count = 5, map = 1458, zone = "Undercity", x = 47.9, y = 73.5 }, -- 33
+        { type = "TURNIN", quest = 4293, questName = "A Sample of Slime...", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 34
+        { type = "TURNIN", quest = 550, questName = "Battle of Hillsbrad", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.2, y = 92.6, note = "reduced xp (10%) - you out-levelled it" }, -- 35
+        { type = "TURNIN", quest = 3542, questName = "Delivery to Andron Gant", npc = 6522, npcName = "Andron Gant", map = 1458, zone = "Undercity", x = 54.6, y = 75.6 }, -- 36
+        { type = "TURNIN", quest = 96, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" }, note = "reduced xp (10%) - you out-levelled it" }, -- 37
+        { type = "TURNIN", quest = 3526, questName = "Goblin Engineering", npc = 8126, npcName = "Nixx Sprocketspring", map = 1446, zone = "Tanaris", x = 52.4, y = 27.2, profession = "Engineering", skill = 200 }, -- 38
     } end,
 })
