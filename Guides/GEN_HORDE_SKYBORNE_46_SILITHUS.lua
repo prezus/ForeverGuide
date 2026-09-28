@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_46_SILITHUS",
     name = "46. Silithus 57-57 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 57,
@@ -13,13 +13,12 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_47_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 46 of the Skyborne route: level 57 to 57, 21 steps, ~94 min of play in the model (50144 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 30,
+    stepCount = 29,
     steps = [[{
 {type="KILL",quest=6805,questName="Stormers and Rumblers",npc=11744,target="Dust Stormer",count=15,map=1451,zone="Silithus",x=28.4,y=20},
 {type="KILL",quest=6805,questName="Stormers and Rumblers",npc=11746,target="Desert Rumbler",count=15,map=1451,zone="Silithus",x=19.8,y=15.6},
 {type="TURNIN",quest=6805,questName="Stormers and Rumblers",npc=13278,npcName="Duke Hydraxis",map=1447,zone="Azshara",x=79.2,y=73.6},
 {type="TRAVEL",map=1451,zone="Silithus",x=49.3,y=37.1,radius=60,note="travel to Silithus (Silithus)"},
-{type="ACCEPT",quest=8859,questName="Secrets of the Colossus - Zora",npc=15797,npcName="Colossus Researcher Sophia",map=1451,zone="Silithus",x=49.4,y=37.2},
 {type="ACCEPT",quest=8285,questName="The Deserter",npc=15183,npcName="Geologist Larksbane",map=1451,zone="Silithus",x=49.7,y=37.5},
 {type="ACCEPT",quest=9416,questName="Report to General Kirika",npc=17081,npcName="Scout Bloodfist",map=1451,zone="Silithus",x=49,y=36.7},
 {type="ACCEPT",quest=8318,questName="Secret Communication",npc=15306,npcName="Bor Wildmane",map=1451,zone="Silithus",x=48.6,y=37.8},
