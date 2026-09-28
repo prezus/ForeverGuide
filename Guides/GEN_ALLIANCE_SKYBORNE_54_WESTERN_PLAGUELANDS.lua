@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_54_WESTERN_PLAGUELANDS",
     name = "54. Western Plaguelands 57-60 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 57,
@@ -16,12 +16,12 @@ ns.RegisterGuide({
     steps = function() return {
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 44.0, y = 83.5, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
         { type = "TURNIN", quest = 5903, questName = "A Plague Upon Thee", npc = 11616, npcName = "Nathaniel Dumah", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 84.8 }, -- 2
-        { type = "TURNIN", quest = 6028, questName = "The Everlook Report", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 3
-        { type = "ACCEPT", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 4
-        { type = "COLLECT", quest = 211, questName = "Alas, Andorhal", target = "Araj's Phylactery Shard", map = 1422, zone = "Western Plaguelands", x = 45.3, y = 69.2 }, -- 5
-        { type = "TURNIN", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 6
-        { type = "ACCEPT", quest = 5904, questName = "A Plague Upon Thee", npc = 11616, npcName = "Nathaniel Dumah", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 84.8 }, -- 7
-        { type = "TURNIN", quest = 5904, questName = "A Plague Upon Thee", map = 1422, zone = "Western Plaguelands", x = 48.4, y = 31.9 }, -- 8
+        { type = "ACCEPT", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 3
+        { type = "COLLECT", quest = 211, questName = "Alas, Andorhal", target = "Araj's Phylactery Shard", map = 1422, zone = "Western Plaguelands", x = 45.3, y = 69.2 }, -- 4
+        { type = "TURNIN", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 5
+        { type = "ACCEPT", quest = 5904, questName = "A Plague Upon Thee", npc = 11616, npcName = "Nathaniel Dumah", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 84.8 }, -- 6
+        { type = "TURNIN", quest = 5904, questName = "A Plague Upon Thee", map = 1422, zone = "Western Plaguelands", x = 48.4, y = 31.9 }, -- 7
+        { type = "TURNIN", quest = 6028, questName = "The Everlook Report", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 8
         { type = "TURNIN", quest = 5846, questName = "Of Love and Family", npc = 11936, npcName = "Artist Renfray", map = 1422, zone = "Western Plaguelands", x = 65.6, y = 75.4 }, -- 9
         { type = "ACCEPT", quest = 5507, questName = "Mantles of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8, note = "Objectives: Argent Dawn" }, -- 10
         { type = "COLLECT", quest = 5507, questName = "Mantles of the Dawn", target = "Argent Dawn Valor Token", count = 10, map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8, near = true, mobs = "Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock" }, -- 11
