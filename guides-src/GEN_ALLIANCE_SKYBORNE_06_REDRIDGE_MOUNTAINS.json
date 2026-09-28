@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_06_REDRIDGE_MOUNTAINS",
   "name": "6. Redridge Mountains 21-23 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 21,
@@ -13,14 +13,6 @@
   "notes": "Chapter 6 of the Skyborne route: level 21 to 23, 60 steps, ~125 min of play in the model (23140 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (3 here).",
   "steps": [
     {"type": "FLIGHTPATH", "npc": 931, "npcName": "Ariena Stormfeather", "map": 1433, "zone": "Redridge Mountains", "x": 25.5, "y": 59.4},
-    {"type": "ACCEPT", "quest": 91904, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71, "note": "New in Forever"},
-    {"type": "ACCEPT", "quest": 91905, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71, "note": "New in Forever"},
-    {"type": "ACCEPT", "quest": 91899, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71, "note": "New in Forever"},
-    {"type": "ACCEPT", "quest": 91900, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71, "note": "New in Forever"},
-    {"type": "TURNIN", "quest": 91904, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71},
-    {"type": "TURNIN", "quest": 91905, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71},
-    {"type": "TURNIN", "quest": 91899, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71},
-    {"type": "TURNIN", "quest": 91900, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71},
     {"type": "ACCEPT", "quest": 65, "questName": "The Defias Brotherhood", "npc": 234, "npcName": "Gryan Stoutmantle", "map": 1436, "zone": "Westfall", "x": 56.2, "y": 47.6},
     {"type": "TURNIN", "quest": 65, "questName": "The Defias Brotherhood", "npc": 266, "npcName": "Wiley the Black", "map": 1433, "zone": "Redridge Mountains", "x": 26.6, "y": 45.2},
     {"type": "ACCEPT", "quest": 132, "questName": "The Defias Brotherhood", "npc": 266, "npcName": "Wiley the Black", "map": 1433, "zone": "Redridge Mountains", "x": 26.6, "y": 45.2},
