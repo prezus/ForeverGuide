@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_36_UN_GORO_CRATER",
   "name": "36. Un'Goro Crater 49-50 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 49,
@@ -13,7 +13,6 @@
   "notes": "Chapter 36 of the Dwarf route: level 49 to 50, 43 steps, ~292 min of play in the model (41297 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "FLIGHTPATH", "npc": 10583, "npcName": "Gryfe", "map": 1449, "zone": "Un'Goro Crater", "x": 45.2, "y": 5.8},
-    {"type": "TURNIN", "quest": 7905, "questName": "The Darkmoon Faire", "npc": 14828, "npcName": "Gelvas Grimegate", "map": 1429, "zone": "Elwynn Forest", "x": 41.6, "y": 68.8},
     {"type": "TURNIN", "quest": 2769, "questName": "The Brassbolts Brothers", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78, "y": 77},
     {"type": "TURNIN", "quest": 2641, "questName": "Sprinkle's Secret Ingredient", "npc": 7583, "npcName": "Sprinkle", "map": 1446, "zone": "Tanaris", "x": 51, "y": 26.8},
     {"type": "KILL", "quest": 3520, "questName": "Screecher Spirits", "npc": 8612, "target": "Screecher Spirits Collected", "count": 3, "map": 1444, "zone": "Feralas", "x": 46.4, "y": 40.6},
