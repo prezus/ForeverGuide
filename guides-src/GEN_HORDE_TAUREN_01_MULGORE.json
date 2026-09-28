@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_01_MULGORE",
   "name": "1. Mulgore 1-11 (Tauren)",
-  "version": 9,
+  "version": 10,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 1,
@@ -150,9 +150,9 @@
     {"type": "ACCEPT", "quest": 833, "questName": "A Sacred Burial", "npc": 3233, "npcName": "Lorekeeper Raintotem", "map": 1412, "zone": "Mulgore", "x": 59.9, "y": 25.6},
     {"type": "KILL", "quest": 833, "questName": "A Sacred Burial", "npc": 3232, "target": "Bristleback Interloper", "count": 8, "map": 1412, "zone": "Mulgore", "x": 61.2, "y": 22.8, "near": true},
     {"type": "TURNIN", "quest": 833, "questName": "A Sacred Burial", "npc": 3233, "npcName": "Lorekeeper Raintotem", "map": 1412, "zone": "Mulgore", "x": 59.9, "y": 25.6},
-    {"type": "TURNIN", "quest": 760, "questName": "Wildmane Cleansing", "npc": 2948, "npcName": "Mull Thunderhorn", "map": 1412, "zone": "Mulgore", "x": 48.5, "y": 60.4},
     {"type": "ACCEPT", "quest": 99101, "questName": "Our Ancient Enemy", "npc": 3222, "npcName": "Brave Wildrunner", "map": 1412, "zone": "Mulgore", "x": 47.2, "y": 59.6, "note": "New in Forever"},
     {"type": "TURNIN", "quest": 99101, "questName": "Our Ancient Enemy", "npc": 2993, "npcName": "Baine Bloodhoof", "map": 1412, "zone": "Mulgore", "x": 47.4, "y": 60.2},
+    {"type": "TURNIN", "quest": 760, "questName": "Wildmane Cleansing", "npc": 2948, "npcName": "Mull Thunderhorn", "map": 1412, "zone": "Mulgore", "x": 48.5, "y": 60.4},
     {"type": "ACCEPT", "quest": 1656, "questName": "A Task Unfinished", "npc": 6775, "npcName": "Antur Fallow", "map": 1412, "zone": "Mulgore", "x": 38.5, "y": 81.6},
     {"type": "TURNIN", "quest": 1656, "questName": "A Task Unfinished", "npc": 6747, "npcName": "Innkeeper Kauth", "map": 1412, "zone": "Mulgore", "x": 46.6, "y": 61.1, "note": "reduced xp (80%) - you out-levelled it"}
   ]
