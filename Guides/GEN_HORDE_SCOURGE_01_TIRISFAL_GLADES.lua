@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_01_TIRISFAL_GLADES",
     name = "1. Tirisfal Glades 1-12 (Undead)",
-    version = 10,
+    version = 11,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 1,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_02_SILVERPINE_FOREST",
     author = "ForeverGuide route planner",
     notes = "Chapter 1 of the Scourge route: level 1 to 12, 105 steps, ~189 min of play in the model (14879 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 203,
+    stepCount = 200,
     steps = [[{
 {type="ACCEPT",quest=98601,questName="A Difficult Path",npc=1569,npcName="Shadow Priest Sarvis",map=1420,zone="Tirisfal Glades",x=30.8,y=66.2,class={"PALADIN"},note="New in Forever"},
 {type="ACCEPT",quest=364,questName="The Mindless Ones",npc=1569,npcName="Shadow Priest Sarvis",map=1420,zone="Tirisfal Glades",x=30.8,y=66.2},
@@ -23,9 +23,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1470,questName="Piercing the Veil",npc=5667,npcName="Venya Marthand",map=1420,zone="Tirisfal Glades",x=31,y=66.2,class={"WARLOCK"}},
 {type="COLLECT",quest=1470,questName="Piercing the Veil",target="Rattlecage Skull",count=3,map=1420,zone="Tirisfal Glades",x=33,y=63.2,class={"WARLOCK"},mobs="Rattlecage Skeleton"},
 {type="TURNIN",quest=1470,questName="Piercing the Veil",npc=5667,npcName="Venya Marthand",map=1420,zone="Tirisfal Glades",x=31,y=66.2,class={"WARLOCK"}},
-{type="ACCEPT",quest=1485,questName="Vile Familiars",npc=5765,npcName="Ruzan",map=1411,zone="Durotar",x=42.6,y=69,class={"WARLOCK"}},
-{type="COLLECT",quest=1485,questName="Vile Familiars",target="Vile Familiar Head",count=6,map=1411,zone="Durotar",x=45.2,y=55,class={"WARLOCK"},mobs="Vile Familiar"},
-{type="TURNIN",quest=1485,questName="Vile Familiars",npc=5765,npcName="Ruzan",map=1411,zone="Durotar",x=42.6,y=69,class={"WARLOCK"}},
 {type="KILL",quest=364,questName="The Mindless Ones",npc=1501,target="Mindless Zombie",count=8,map=1420,zone="Tirisfal Glades",x=31.2,y=63.7,near=true},
 {type="ACCEPT",quest=90902,questName="Rediscovering the Light",npc=244808,npcName="Aramis Hammerhand",map=1420,zone="Tirisfal Glades",x=31,y=66.2,class={"PALADIN"},note="New in Forever"},
 {type="ACCEPT",quest=98389,questName="A Light in the Darkness",npc=244808,npcName="Aramis Hammerhand",map=1420,zone="Tirisfal Glades",x=31,y=66.2,class={"PALADIN"},note="New in Forever"},
