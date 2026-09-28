@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_48_WESTERN_PLAGUELANDS",
     name = "48. Western Plaguelands 55-57 (Human)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 55,
@@ -32,7 +32,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=3446,questName="Into the Depths",npc=7771,npcName="Marvon Rivetseeker",map=1446,zone="Tanaris",x=52.6,y=45.8,optional=true,note="For The Temple of Atal'Hakkar (dungeon guide)"},
 {type="ACCEPT",quest=3447,questName="Secret of the Circle",npc=7771,npcName="Marvon Rivetseeker",map=1446,zone="Tanaris",x=52.6,y=45.8,optional=true,note="For The Temple of Atal'Hakkar (dungeon guide)"},
 {type="NOTE",optional=true,text="Ready for The Temple of Atal'Hakkar",note="Picked up: Jammal'an the Prophet, Into the Depths, Secret of the Circle. When you have a group, open The Temple of Atal'Hakkar under Dungeons."},
-{type="NOTE",optional=true,text="Ready for Blackrock Depths",note="Picked up: Dark Iron Legacy, A Taste of Flame, Hurley Blackbreath, Ribbly Screwspigot, Marshal Windsor, Incendius!, The Good Stuff, Kharan Mighthammer. When you have a group, open Blackrock Depths under Dungeons."},
+{type="NOTE",optional=true,text="Ready for Blackrock Depths",note="Picked up: Dark Iron Legacy, A Taste of Flame, The Heart of the Mountain, Hurley Blackbreath, Ribbly Screwspigot, Marshal Windsor, Incendius!, The Good Stuff, Kharan Mighthammer. When you have a group, open Blackrock Depths under Dungeons."},
 {type="TRAVEL",map=1422,zone="Western Plaguelands",x=43.6,y=83.7,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
 {type="ACCEPT",quest=5533,questName="Scholomance",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
 {type="ACCEPT",quest=5225,questName="Target: Gahrron's Withering",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},
