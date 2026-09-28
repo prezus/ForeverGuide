@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_35_IRONFORGE",
     name = "35. Ironforge 49-49 (Dwarf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 49,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_36_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 35 of the Dwarf route: level 49 to 49, 9 steps, ~23 min of play in the model (47459 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 47,
+    stepCount = 46,
     steps = [[{
 {type="FLIGHTPATH",npc=1573,npcName="Gryth Thurden",map=1455,zone="Ironforge",x=55.5,y=47.7},
 {type="TURNIN",quest=2990,questName="Thadius Grimshade",npc=8022,npcName="Thadius Grimshade",map=1419,zone="Blasted Lands",x=67,y=19.4},
@@ -33,7 +33,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2861,questName="Tabetha's Task",npc=5144,npcName="Bink",map=1455,zone="Ironforge",x=27,y=8.2,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="ACCEPT",quest=2991,questName="Nekrum's Medallion",npc=8022,npcName="Thadius Grimshade",map=1419,zone="Blasted Lands",x=67,y=19.4,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="TRAVEL",map=1455,zone="Ironforge",x=57.2,y=35.7,radius=60,note="travel to Ironforge (Ironforge)"},
-{type="ACCEPT",quest=7905,questName="The Darkmoon Faire",npc=14842,npcName="Melnan Darkstone",map=1455,zone="Ironforge",x=27.2,y=70.8},
 {type="HEARTH",npc=5111,npcName="Innkeeper Firebrew",map=1455,zone="Ironforge",x=18.1,y=51.5,note="talk to Innkeeper Firebrew and make this inn your home"},
 {type="TURNIN",quest=6391,questName="Ride to Ironforge",npc=4256,npcName="Golnir Bouldertoe",map=1455,zone="Ironforge",x=51,y=26,note="reduced xp (10%) - you out-levelled it"},
 {type="TURNIN",quest=96031,questName="Camping 101: Leatherworking",npc=1466,npcName="Gretta Finespindle",map=1455,zone="Ironforge",x=39,y=32.8,profession="Leatherworking",note="reduced xp (10%) - you out-levelled it"},

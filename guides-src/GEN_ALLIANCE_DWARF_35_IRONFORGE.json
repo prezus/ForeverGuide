@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_35_IRONFORGE",
   "name": "35. Ironforge 49-49 (Dwarf)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 49,
@@ -30,7 +30,6 @@
     {"type": "ACCEPT", "quest": 2861, "questName": "Tabetha's Task", "npc": 5144, "npcName": "Bink", "map": 1455, "zone": "Ironforge", "x": 27, "y": 8.2, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 2991, "questName": "Nekrum's Medallion", "npc": 8022, "npcName": "Thadius Grimshade", "map": 1419, "zone": "Blasted Lands", "x": 67, "y": 19.4, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
     {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 57.2, "y": 35.7, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
-    {"type": "ACCEPT", "quest": 7905, "questName": "The Darkmoon Faire", "npc": 14842, "npcName": "Melnan Darkstone", "map": 1455, "zone": "Ironforge", "x": 27.2, "y": 70.8},
     {"type": "HEARTH", "npc": 5111, "npcName": "Innkeeper Firebrew", "map": 1455, "zone": "Ironforge", "x": 18.1, "y": 51.5, "note": "talk to Innkeeper Firebrew and make this inn your home"},
     {"type": "TURNIN", "quest": 6391, "questName": "Ride to Ironforge", "npc": 4256, "npcName": "Golnir Bouldertoe", "map": 1455, "zone": "Ironforge", "x": 51, "y": 26, "note": "reduced xp (10%) - you out-levelled it"},
     {"type": "TURNIN", "quest": 96031, "questName": "Camping 101: Leatherworking", "npc": 1466, "npcName": "Gretta Finespindle", "map": 1455, "zone": "Ironforge", "x": 39, "y": 32.8, "note": "reduced xp (10%) - you out-levelled it", "profession": "Leatherworking"},
