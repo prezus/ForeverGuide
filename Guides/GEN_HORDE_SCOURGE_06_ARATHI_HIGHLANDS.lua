@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_06_ARATHI_HIGHLANDS",
     name = "6. Arathi Highlands 31-32 (Undead)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 31,
@@ -24,7 +24,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2479, questName = "Hinott's Assistance", npc = 2391, npcName = "Serge Hinott", map = 1424, zone = "Hillsbrad Foothills", x = 61.6, y = 19.2, class = { "ROGUE" } }, -- 7
         { type = "ACCEPT", quest = 7321, questName = "Soothing Turtle Bisque", npc = 2393, npcName = "Christoph Jeffcoat", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 19, profession = "Cooking" }, -- 8
         { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Turtle Meat", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 65.8, y = 38, profession = "Cooking", mobs = "Snapjaw" }, -- 9
-        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Soothing Spices", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 63.1, y = 19.4, near = true, profession = "Cooking", mobs = "Gunder Thornbush / Banalash / Nerrist / Edna Mullby" }, -- 10
+        { type = "COLLECT", quest = 7321, questName = "Soothing Turtle Bisque", target = "Soothing Spices", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 63.1, y = 19.4, near = true, profession = "Cooking" }, -- 10
         { type = "TURNIN", quest = 7321, questName = "Soothing Turtle Bisque", npc = 2393, npcName = "Christoph Jeffcoat", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 19, profession = "Cooking" }, -- 11
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 33.7, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 12
         { type = "HEARTH", npc = 9501, npcName = "Innkeeper Adegwa", map = 1417, zone = "Hammerfall", x = 73.8, y = 32.5, note = "talk to Innkeeper Adegwa and make this inn your home" }, -- 13
