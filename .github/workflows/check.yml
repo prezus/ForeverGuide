@@ -15,6 +15,8 @@ jobs:
         run: lua5.1 tools/test/run_tests.lua
       - name: Validate guide sources
         run: python3 tools/compile_guides.py --check
+      - name: Packed data matches its tables
+        run: lua5.1 tools/pack_data.lua --check
       - name: Test data tools
         run: |
           python3 tools/test/test_merge_recorded.py

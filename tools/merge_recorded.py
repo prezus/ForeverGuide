@@ -46,7 +46,7 @@ def vanilla_ids():
     """Quest / npc ids the vanilla database already knows (from Data/*.lua)."""
     ids = {"quests": set(), "npcs": set()}
     for fn, key in (("QuestDB.lua", "quests"), ("NpcDB.lua", "npcs")):
-        path = os.path.join(foreverdb.ROOT, "Data", fn)
+        path = os.path.join(foreverdb.TABLES, fn)
         if os.path.isfile(path):
             with open(path, "r", encoding="utf-8", errors="replace") as fh:
                 for line in fh:

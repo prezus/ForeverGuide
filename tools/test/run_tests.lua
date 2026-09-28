@@ -1011,9 +1011,9 @@ end
 
 
 -- ---- Forever overlay data merged into the Classic database ---------------------------------
-check(ns.DB.overlayApplied == true, "Forever overlay applied at init")
-check(ns.QuestDB[317] and ns.QuestDB[317].fobj and ns.QuestDB[317].fobj[1].spm ~= nil, "overlay objective evidence attached to vanilla quest 317")
-check(ns.NpcDB[1131] and ns.NpcDB[1131].spm ~= nil, "overlay npc points merged into vanilla npc 1131")
+check(ns.ForeverDB == nil and type(ns.QuestDB[317]) == "string", "the Forever overlay ships merged into the packed records")
+check(ns.DB:GetQuest(317) and ns.DB:GetQuest(317).fobj and ns.DB:GetQuest(317).fobj[1].spm ~= nil, "overlay objective evidence attached to vanilla quest 317")
+check(ns.DB:GetNPC(1131) and ns.DB:GetNPC(1131).spm ~= nil, "overlay npc points merged into vanilla npc 1131")
 do
     local locs = ns.DB:NPCLocations(1131)
     local hasForever = false
@@ -1021,9 +1021,46 @@ do
     check(hasForever, "spm points show up in NPCLocations")
     local objs = ns.DB:QuestObjectives(317)
     check(objs[1] and #objs[1].locations > 0, "vanilla objective of 317 keeps its own locations (" .. tostring(objs[1] and #objs[1].locations) .. ")")
-    local fq = ns.QuestDB[99128]
+    local fq = ns.DB:GetQuest(99128)
     check(fq and fq.forever and fq.n == "Slimy Menace", "Forever-only quest 99128 exists with its title")
     check(ns.Quest:XPMultiplier(783, 1) == 1 and ns.Quest:XPMultiplier(783, 7) == 0.8 and ns.Quest:XPMultiplier(783, 12) == 0.1, "xp multiplier follows the Classic reduction table")
+end
+
+-- ---- packed records: the indexes match the records, decoding is safe and cached --------------
+do
+    local DB = ns.DB
+    local byZone, byItem = {}, {}
+    for id, q in DB:EachQuest() do
+        if q.zone and q.zone > 0 then
+            local z = DB:ParentZone(q.zone)
+            byZone[z] = byZone[z] or {}
+            byZone[z][id] = true
+        end
+        for _, e in ipairs(q.item or {}) do
+            if e[1] then byItem[e[1]] = byItem[e[1]] or {} byItem[e[1]][id] = true end
+        end
+    end
+    local function same(built, index)
+        local n = 0
+        for key, set in pairs(built) do
+            local listed = {}
+            for _, id in ipairs(index[key] or {}) do listed[id] = true end
+            for id in pairs(set) do if not listed[id] then return false, key .. ":" .. id end end
+            for id in pairs(listed) do if not set[id] then return false, key .. ":" .. id end end
+            n = n + 1
+        end
+        for key in pairs(index) do if not built[key] then return false, "extra " .. key end end
+        return n > 0, n
+    end
+    local okZ, whyZ = same(byZone, ns.QuestIndex.byZone)
+    local okI, whyI = same(byItem, ns.QuestIndex.byItem)
+    check(okZ, "the zone index lists exactly the quests of each zone (" .. tostring(whyZ) .. ")")
+    check(okI, "the item index lists exactly the quests each item is for (" .. tostring(whyI) .. ")")
+    check(DB:GetQuest(317) == DB:GetQuest(317), "a record read twice is decoded once")
+    check(ns.DecodeRecord("{1,2}")[2] == 2, "a packed constructor decodes")
+    check(ns.DecodeRecord("{") == nil, "broken packed text decodes to nothing, not an error")
+    check(ns.DecodeRecord("{x=print}").x == nil and ns.DecodeRecord("(function() y = 1 end)()") == nil and rawget(_G, "y") == nil,
+        "packed text sees no globals and cannot set any")
 end
 
 -- ---- /fg wrong: feedback reports ----------------------------------------------------------
@@ -2063,7 +2100,7 @@ end
 -- (Ilya, 2026-09-21: the Dwarf chapter offered 6181 "A Swift Message", a Human-only quest, and the
 --  guide sat on it at Quartermaster Lewis - who has nothing to say to a dwarf)
 do
-    local q = ns.QuestDB and ns.QuestDB[6181]
+    local q = ns.DB:GetQuest(6181)
     check(q ~= nil and q.races ~= nil and q.races ~= 0, "the database knows 6181 is race-restricted")
     local mine = MOCK.race
     MOCK.race = { "Dwarf", "Dwarf" }
@@ -2092,7 +2129,7 @@ end
 
 -- class-only WoW Forever quests: the class comes from the Forever overlay, not the Classic database
 do
-    check(ns.QuestDB[76156] and ns.QuestDB[76156].forever and ns.QuestDB[76156].classes == 64, "the overlay marks Forever's Stalk With The Earthmother as shaman-only")
+    check(ns.DB:GetQuest(76156) and ns.DB:GetQuest(76156).forever and ns.DB:GetQuest(76156).classes == 64, "the overlay marks Forever's Stalk With The Earthmother as shaman-only")
     local mine = MOCK.class
     MOCK.class = { "Warrior", "WARRIOR", 1 }; ns.Player.cache = {}
     check(ns.DB:RaceClassOK(76156) == false, "a warrior cannot take the shaman quest")

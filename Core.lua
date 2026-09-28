@@ -223,6 +223,19 @@ function ns.Utf8Sub(s, maxBytes)
     return s
 end
 
+--- A packed record (Data/*.lua, compiled guide steps): a Lua table constructor in a string,
+--- read into a table. It runs in an empty environment, so the text can only build a value.
+--- Returns nil and the error when the text is not a constructor.
+local NO_GLOBALS = setmetatable({}, { __newindex = function() error("packed data cannot set globals", 2) end })
+function ns.DecodeRecord(text)
+    local chunk, err = loadstring("return " .. text)
+    if not chunk then return nil, err end
+    setfenv(chunk, NO_GLOBALS)
+    local ok, value = pcall(chunk)
+    if not ok then return nil, value end
+    return value
+end
+
 -- ------------------------------------------------------------
 -- Module registry + lifecycle
 -- ------------------------------------------------------------

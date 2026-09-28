@@ -19,23 +19,6 @@
 local _, ns = ...
 local Tips = ns:NewModule("ItemTips")
 
-local itemQuests          -- itemID -> { questID, ... } built on first use from QuestDB
-
-local function index()
-    if itemQuests then return itemQuests end
-    itemQuests = {}
-    for qid, q in pairs(ns.QuestDB or {}) do
-        for _, e in ipairs(q.item or {}) do
-            local id = e[1]
-            if id then
-                itemQuests[id] = itemQuests[id] or {}
-                table.insert(itemQuests[id], qid)
-            end
-        end
-    end
-    return itemQuests
-end
-
 -- Items a live objective named, remembered for the session: once that quest is turned in the
 -- database may not know the link (Forever rewrote the quest), but we do.
 local seenItems = {}    -- lower-case item name -> { [questID] = title }
@@ -76,7 +59,7 @@ function Tips:Leftover(itemID, itemName)
         if active and rawget(active, "steps") then
             for _, i in ipairs(ns.Guide:OrderFrom(ns.Guide.current or ns.Guide:FirstIdx())) do local s = active.steps[i] if s.quest then ahead[s.quest] = true end end
         end
-        for _, qid in ipairs(index()[itemID] or {}) do
+        for _, qid in ipairs(ns.DB:QuestsForItem(itemID)) do
             if not ns.DB:IsRemoved(qid) then
                 if Q:IsOnQuest(qid) or ahead[qid] then stillNeeded = true
                 elseif Q:IsCompleted(qid) then doneName = doneName or ns.DB:QuestName(qid) or ("quest " .. qid)
@@ -124,7 +107,7 @@ function Tips:LinesFor(itemID, itemName)
                 if s.quest then ahead[s.quest] = true end
             end
         end
-        for _, qid in ipairs(index()[itemID] or {}) do
+        for _, qid in ipairs(ns.DB:QuestsForItem(itemID)) do
             if not seen[qid] and not ns.DB:IsRemoved(qid) and not (Q and Q:IsCompleted(qid)) then
                 local name = ns.DB:QuestName(qid) or ("quest " .. qid)
                 if ahead[qid] then

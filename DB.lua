@@ -1,7 +1,9 @@
 -- ============================================================
 -- ForeverGuide / DB.lua
--- Access to the bundled quest database (Data/*.lua, built from Questie's
--- Classic Era data by tools/build_questdb.lua).
+-- Access to the bundled quest database (Data/*.lua, packed by tools/pack_data.lua
+-- from data-src/tables, which tools/build_questdb.lua builds from Questie's Classic
+-- Era data and the Forever tools extend). Each record is stored as a string and
+-- decoded the first time it is read; the tables below are what DB:Get* returns.
 --
 --   ns.QuestDB[id]  = { n, lvl, req, maxlvl, races, classes, zone, text,
 --                       snpc/sobj/sitem, enpc/eobj, kill/obj/item/credit/spell,
@@ -12,9 +14,10 @@
 --   ns.ItemDB[id]   = { n, npc = {npcIDs}, obj = {objectIDs}, startq, vendors, quests }
 --   ns.ZoneDB       = { areaToMap = { [areaID] = uiMapID }, names = { [areaID] = name }, parent = { [areaID] = areaID },
 --                       mapNames = { [uiMapID] = name } }
---   ns.ForeverDB    = WoW Forever additions (Data/ForeverDB.lua), merged over the tables above by
---                     DB:ApplyOverlay(): new quests/npcs get `forever = true`; recorded points live in
---                     `spm` (map coords per uiMapID) / `spw` (world coords), objective evidence in `fobj`.
+--   WoW Forever additions are merged in by tools/pack_data.lua: new quests/npcs have `forever = true`,
+--   quests the client lacks `removed = true`; recorded points live in `spm` (map coords per uiMapID)
+--   / `spw` (world coords), objective evidence in `fobj`.
+--   ns.QuestIndex   = { byZone = { [top-level areaID] = { questIDs } }, byItem = { [itemID] = { questIDs } } }
 --
 -- Coordinates are 0-100 on the Classic Era uiMapID of the area (confirmed
 -- identical on WoW Forever 1.60.1).
@@ -42,10 +45,53 @@ end
 -- ------------------------------------------------------------
 -- Raw access
 -- ------------------------------------------------------------
-function DB:GetQuest(id) return id and ns.QuestDB and ns.QuestDB[id] or nil end
-function DB:GetNPC(id) return id and ns.NpcDB and ns.NpcDB[id] or nil end
-function DB:GetObject(id) return id and ns.ObjectDB and ns.ObjectDB[id] or nil end
-function DB:GetItem(id) return id and ns.ItemDB and ns.ItemDB[id] or nil end
+-- A decoded record stays while anything holds it (weak cache) and while it is among the last
+-- RECENT decoded, so a record read every tick is not decoded every tick. Records are read-only.
+local RECENT = 256
+local decoded = {}
+for _, name in ipairs({ "QuestDB", "NpcDB", "ObjectDB", "ItemDB" }) do decoded[name] = setmetatable({}, { __mode = "v" }) end
+local recent, recentAt = {}, 0     -- luacheck: ignore (holds the recent records strongly)
+
+--- The record `id` of table `name`; `keep` false decodes it without caching (a scan over all).
+local function Record(name, id, keep)
+    local db = id and ns[name]
+    local v = db and db[id]
+    if type(v) ~= "string" then return v end
+    local value = decoded[name][id]
+    if value then return value end
+    local err
+    value, err = ns.DecodeRecord(v)
+    if not value then
+        ns.ReportOnce("DB:" .. name, "record " .. tostring(id) .. " does not decode: " .. tostring(err))
+        return nil
+    end
+    if keep ~= false then
+        decoded[name][id] = value
+        recentAt = recentAt % RECENT + 1
+        recent[recentAt] = value
+    end
+    return value
+end
+
+function DB:GetQuest(id) return Record("QuestDB", id) end
+function DB:GetNPC(id) return Record("NpcDB", id) end
+function DB:GetObject(id) return Record("ObjectDB", id) end
+function DB:GetItem(id) return Record("ItemDB", id) end
+
+--- Every quest as (id, record), decoded for this pass only.
+function DB:EachQuest()
+    local db, id = ns.QuestDB or {}, nil
+    return function()
+        id = next(db, id)
+        if id ~= nil then return id, Record("QuestDB", id, false) end
+    end
+end
+
+--- The quests whose objectives name an item (built by tools/pack_data.lua).
+function DB:QuestsForItem(itemID)
+    local index = ns.QuestIndex and ns.QuestIndex.byItem
+    return index and index[itemID] or {}
+end
 
 function DB:IsLoaded()
     return ns.QuestDB ~= nil and next(ns.QuestDB) ~= nil
@@ -103,7 +149,7 @@ end
 -- world -> map conversion for Forever points stored as world coordinates (spw),
 -- cached because C_Map.GetMapPosFromWorldPos is not free.
 local mapPosCache = {}
-local objCache = {}   -- questID -> objective list; the database is static after ApplyOverlay
+local objCache = {}   -- questID -> objective list; the database is static
 local function WorldToMap(map, inst, wx, wy)
     if type(map) ~= "number" or type(inst) ~= "number" or type(wx) ~= "number" or type(wy) ~= "number" then return nil end
     local key = map .. ":" .. inst .. ":" .. wx .. ":" .. wy
@@ -175,111 +221,6 @@ end
 function DB:IsForeverQuest(id)
     local q = self:GetQuest(id)
     return q and q.forever or false
-end
-
--- ------------------------------------------------------------
--- Forever overlay (Data/ForeverDB.lua, built by tools/merge_recorded.py and
--- tools/import_db2.py). Vanilla records only gain what they lack; unknown ids
--- become new records flagged `forever = true`.
--- ------------------------------------------------------------
-local function AddUnique(list, v)
-    for _, x in ipairs(list) do if x == v then return end end
-    list[#list + 1] = v
-end
-
-local function MergePoints(dst, src)
-    if not src then return end
-    for map, pts in pairs(src) do
-        dst[map] = dst[map] or {}
-        for _, p in ipairs(pts) do dst[map][#dst[map] + 1] = p end
-    end
-end
-
-function DB:ApplyOverlay(overlay)
-    overlay = overlay or ns.ForeverDB
-    if self.overlayApplied then return 0 end
-    self.overlayApplied = true
-    objCache = {}
-    -- the client's own quest id list (Data/ForeverQuestIDs.lua): vanilla quests it lacks are gone
-    if ns.ForeverQuestIDs and ns.QuestDB then
-        local gone = 0
-        for id, q in pairs(ns.QuestDB) do
-            if not ns.ForeverQuestIDs[id] then q.removed = true gone = gone + 1 end
-        end
-        self.removedCount = gone
-    end
-    if not overlay then return 0 end
-    ns.QuestDB = ns.QuestDB or {}
-    ns.NpcDB = ns.NpcDB or {}
-    ns.ObjectDB = ns.ObjectDB or {}
-    ns.ZoneDB = ns.ZoneDB or { areaToMap = {}, names = {}, parent = {} }
-    ns.ZoneDB.mapNames = ns.ZoneDB.mapNames or {}
-    ns.ZoneDB.mapParent = ns.ZoneDB.mapParent or {}
-    local added = 0
-
-    for map, m in pairs(overlay.maps or {}) do
-        if m.name then ns.ZoneDB.mapNames[map] = m.name end
-        if m.parent then ns.ZoneDB.mapParent[map] = m.parent end
-    end
-
-    for id, f in pairs(overlay.npcs or {}) do
-        local n = ns.NpcDB[id]
-        if not n then
-            n = { n = f.n or ("NPC " .. id), min = f.lvl, max = f.lvl, forever = true }
-            ns.NpcDB[id] = n
-            added = added + 1
-        elseif not n.n and f.n then
-            n.n = f.n
-        end
-        if f.spm then n.spm = n.spm or {} MergePoints(n.spm, f.spm) end
-        if f.spw then n.spw = n.spw or {} MergePoints(n.spw, f.spw) end
-        for _, q in ipairs(f.starts or {}) do n.starts = n.starts or {} AddUnique(n.starts, q) end
-        for _, q in ipairs(f.ends or {}) do n.ends = n.ends or {} AddUnique(n.ends, q) end
-    end
-
-    for id, f in pairs(overlay.objects or {}) do
-        local o = ns.ObjectDB[id]
-        if not o then
-            o = { n = f.n or ("Object " .. id), forever = true }
-            ns.ObjectDB[id] = o
-        end
-        if f.spm then o.spm = o.spm or {} MergePoints(o.spm, f.spm) end
-        if f.spw then o.spw = o.spw or {} MergePoints(o.spw, f.spw) end
-    end
-
-    for id, f in pairs(overlay.quests or {}) do
-        local q = ns.QuestDB[id]
-        if not q then
-            q = { forever = true }
-            ns.QuestDB[id] = q
-            added = added + 1
-        end
-        if f.n and (not q.n or q.n == "") then q.n = f.n end
-        if f.lvl and not q.lvl then q.lvl = f.lvl end
-        if f.req and not q.req then q.req = f.req end
-        if f.zone and not q.zone then q.zone = f.zone end
-        if f.xp and not q.xp then q.xp = f.xp end
-        if f.classes and q.forever then q.classes = f.classes end
-        if f.pre and q.forever and not q.pre then q.pre = f.pre end
-        if f.snpc and #f.snpc > 0 and not ((q.snpc and #q.snpc > 0) or (q.sobj and #q.sobj > 0) or (q.sitem and #q.sitem > 0)) then
-            q.snpc = {}
-            for _, n in ipairs(f.snpc) do AddUnique(q.snpc, n) end
-        end
-        if f.enpc and #f.enpc > 0 and not ((q.enpc and #q.enpc > 0) or (q.eobj and #q.eobj > 0)) then
-            q.enpc = {}
-            for _, n in ipairs(f.enpc) do AddUnique(q.enpc, n) end
-        end
-        -- objective / start evidence is kept separately and only used where vanilla has nothing
-        if f.obj then q.fobj = f.obj end
-        if f.start then q.fstart = f.start end
-        if f.fin then q.ffin = f.fin end
-    end
-    return added
-end
-
-function DB:OnInit()
-    local added = self:ApplyOverlay()
-    if added > 0 then ns.Debug("Forever overlay:", added, "new quests/npcs") end
 end
 
 function DB:NPCLocations(npcID, out)
@@ -535,7 +476,7 @@ function DB:Search(text, limit)
     local lower = string.lower(text)
     local asNumber = tonumber(text)
     if asNumber and ns.QuestDB[asNumber] then out[#out + 1] = asNumber return out end
-    for id, q in pairs(ns.QuestDB) do
+    for id, q in self:EachQuest() do
         if q.n and string.find(string.lower(q.n), lower, 1, true) then
             out[#out + 1] = id
             if limit and #out >= limit then break end
@@ -549,15 +490,12 @@ end
 --- sorted by level.
 function DB:AvailableInZone(areaID, limit)
     local out = {}
-    if not ns.QuestDB then return out end
-    for id, q in pairs(ns.QuestDB) do
-        if q.zone and q.zone > 0 and self:ParentZone(q.zone) == areaID then
-            local ok = self:IsAvailable(id)
-            if ok then out[#out + 1] = id end
-        end
+    local index = ns.QuestIndex and ns.QuestIndex.byZone
+    for _, id in ipairs(index and index[areaID] or {}) do
+        if self:IsAvailable(id) then out[#out + 1] = id end
     end
     table.sort(out, function(a, b)
-        local qa, qb = ns.QuestDB[a], ns.QuestDB[b]
+        local qa, qb = self:GetQuest(a), self:GetQuest(b)
         if (qa.lvl or 0) ~= (qb.lvl or 0) then return (qa.lvl or 0) < (qb.lvl or 0) end
         return a < b
     end)
