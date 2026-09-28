@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_10_THOUSAND_NEEDLES",
   "name": "10. Thousand Needles 32-33 (Tauren)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 32,
@@ -12,8 +12,6 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 10 of the Tauren route: level 32 to 33, 39 steps, ~112 min of play in the model (25095 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
-    {"type": "ACCEPT", "quest": 7866, "questName": "Outrider Basic Care Package", "npc": 14754, "npcName": "Kelm Hargunth", "map": 1413, "zone": "The Barrens", "x": 46.6, "y": 8.4},
-    {"type": "TURNIN", "quest": 7866, "questName": "Outrider Basic Care Package", "npc": 14754, "npcName": "Kelm Hargunth", "map": 1413, "zone": "The Barrens", "x": 46.6, "y": 8.4},
     {"type": "ACCEPT", "quest": 1145, "questName": "The Swarm Grows", "npc": 3428, "npcName": "Korran", "map": 1413, "zone": "The Barrens", "x": 51, "y": 29.6},
     {"type": "ACCEPT", "quest": 1111, "questName": "Wharfmaster Dizzywig", "npc": 4452, "npcName": "Kravel Koalbeard", "map": 1441, "zone": "Thousand Needles", "x": 77.8, "y": 77.2},
     {"type": "TURNIN", "quest": 1111, "questName": "Wharfmaster Dizzywig", "npc": 3453, "npcName": "Wharfmaster Dizzywig", "map": 1413, "zone": "The Barrens", "x": 63.2, "y": 38.4},
@@ -30,8 +28,6 @@
     {"type": "TRAVEL", "map": 1441, "zone": "Thousand Needles", "x": 78.8, "y": 76.9, "radius": 60, "note": "travel to Thousand Needles (Thousand Needles)"},
     {"type": "ACCEPT", "quest": 1104, "questName": "Salt Flat Venom", "npc": 4454, "npcName": "Fizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
     {"type": "ACCEPT", "quest": 1105, "questName": "Hardened Shells", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
-    {"type": "ACCEPT", "quest": 1191, "questName": "Zamek's Distraction", "npc": 4709, "npcName": "Zamek", "map": 1441, "zone": "Thousand Needles", "x": 79.8, "y": 77},
-    {"type": "TURNIN", "quest": 1191, "questName": "Zamek's Distraction", "npc": 4709, "npcName": "Zamek", "map": 1441, "zone": "Thousand Needles", "x": 79.8, "y": 77},
     {"type": "ACCEPT", "quest": 1176, "questName": "Load Lightening", "npc": 4630, "npcName": "Pozzik", "map": 1441, "zone": "Thousand Needles", "x": 80.2, "y": 75.9},
     {"type": "ACCEPT", "quest": 1175, "questName": "A Bump in the Road", "npc": 4629, "npcName": "Trackmaster Zherin", "map": 1441, "zone": "Thousand Needles", "x": 81.6, "y": 78},
     {"type": "COLLECT", "quest": 1104, "questName": "Salt Flat Venom", "target": "Salty Scorpid Venom", "count": 6, "map": 1441, "zone": "Thousand Needles", "x": 82.8, "y": 79.7, "near": true},
