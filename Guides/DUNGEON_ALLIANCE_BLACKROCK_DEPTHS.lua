@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_ALLIANCE_BLACKROCK_DEPTHS",
-    name = "Blackrock Depths 60-60",
-    version = 2,
+    name = "Blackrock Depths 52-57",
+    version = 3,
     kind = "dungeon",
     faction = "Alliance",
-    minLevel = 60,
-    maxLevel = 60,
+    minLevel = 52,
+    maxLevel = 57,
     map = 1427,
     zone = "Searing Gorge",
     author = "ForeverGuide route planner",
     notes = "Blackrock Depths: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 87,
+    stepCount = 65,
     steps = function() return {
         { type = "ACCEPT", quest = 3801, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9 }, -- 1
         { type = "TURNIN", quest = 3801, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9 }, -- 2
@@ -28,78 +28,56 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 4241, questName = "Marshal Windsor", npc = 9560, npcName = "Marshal Maxwell", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.8 }, -- 12
         { type = "ACCEPT", quest = 4263, questName = "Incendius!", npc = 9561, npcName = "Jalinda Sprig", map = 1428, zone = "Burning Steppes", x = 85.4, y = 70 }, -- 13
         { type = "ACCEPT", quest = 4286, questName = "The Good Stuff", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.6 }, -- 14
-        { type = "ACCEPT", quest = 7848, questName = "Attunement to the Core", npc = 14387, npcName = "Lothos Riftwaker", map = 1428, zone = "Burning Steppes", x = 26.4, y = 24.6 }, -- 15
-        { type = "ACCEPT", quest = 4341, questName = "Kharan Mighthammer", npc = 2784, npcName = "King Magni Bronzebeard", map = 1455, zone = "Ironforge", x = 39.4, y = 55.8 }, -- 16
-        { type = "ACCEPT", quest = 4003, questName = "The Royal Rescue", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 17
-        { type = "NOTE", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3, text = "Find a group for Blackrock Depths", note = "All quests available from level 60; hand them in by level 60 for full XP" }, -- 18
-        { type = "ACCEPT", quest = 3911, questName = "The Last Element", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 19
-        { type = "ACCEPT", quest = 4201, questName = "The Love Potion", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 20
-        { type = "ACCEPT", quest = 7487, questName = "Attunement to the Core", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 21
-        { type = "ACCEPT", quest = 7604, questName = "A Binding Contract", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 22
-        { type = "ACCEPT", quest = 9015, questName = "The Challenge", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 23
-        { type = "ACCEPT", quest = 8961, questName = "Three Kings of Flame", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 24
-        { type = "ACCEPT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 25
-        { type = "COLLECT", quest = 3802, questName = "Dark Iron Legacy", target = "Ironfel", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 26
-        { type = "KILL", quest = 4003, questName = "The Royal Rescue", npc = 9019, target = "Emperor Dagran Thaurissan", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 27
-        { type = "COLLECT", quest = 4024, questName = "A Taste of Flame", target = "Encased Fiery Essence", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 28
-        { type = "COLLECT", quest = 4123, questName = "The Heart of the Mountain", target = "The Heart of the Mountain", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 29
-        { type = "COLLECT", quest = 4126, questName = "Hurley Blackbreath", target = "Lost Thunderbrew Recipe", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 30
-        { type = "COLLECT", quest = 4136, questName = "Ribbly Screwspigot", target = "Ribbly's Head", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 31
-        { type = "KILL", quest = 4263, questName = "Incendius!", npc = 9017, target = "Lord Incendius", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 32
-        { type = "COLLECT", quest = 4286, questName = "The Good Stuff", target = "Dark Iron Fanny Pack", count = 20, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 33
-        { type = "COLLECT", quest = 7848, questName = "Attunement to the Core", target = "Core Fragment", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 34
-        { type = "COLLECT", quest = 3911, questName = "The Last Element", target = "Essence of the Elements", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 35
-        { type = "COLLECT", quest = 4201, questName = "The Love Potion", target = "Gromsblood", count = 4, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 36
-        { type = "COLLECT", quest = 4201, questName = "The Love Potion", target = "Giant Silver Vein", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 37
-        { type = "COLLECT", quest = 4201, questName = "The Love Potion", target = "Nagmara's Filled Vial", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 38
-        { type = "COLLECT", quest = 7487, questName = "Attunement to the Core", target = "Core Fragment", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 39
-        { type = "COMPLETE", quest = 7604, questName = "A Binding Contract", target = "Thorium Brotherhood Contract", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 40
-        { type = "COLLECT", quest = 7604, questName = "A Binding Contract", target = "Sulfuron Ingot", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 41
-        { type = "KILL", quest = 9015, questName = "The Challenge", npc = 16166, target = "Theldren's Team Defeated", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 42
-        { type = "COLLECT", quest = 9015, questName = "The Challenge", target = "Top Piece of Lord Valthalak's Amulet", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 43
-        { type = "COLLECT", quest = 8961, questName = "Three Kings of Flame", target = "Incendicite of Incendius", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 44
-        { type = "COLLECT", quest = 8961, questName = "Three Kings of Flame", target = "Ember of Emberseer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 45
-        { type = "COLLECT", quest = 8961, questName = "Three Kings of Flame", target = "Cinder of Cynders", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 46
-        { type = "COLLECT", quest = 8961, questName = "Three Kings of Flame", target = "Hallowed Brazier", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 47
-        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Craftsman's Writ: Truesilver Transformer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 48
-        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Truesilver Transformer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 49
-        { type = "TURNIN", quest = 3802, questName = "Dark Iron Legacy", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 50
-        { type = "TURNIN", quest = 4003, questName = "The Royal Rescue", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 51
-        { type = "TURNIN", quest = 4241, questName = "Marshal Windsor", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 52
-        { type = "TURNIN", quest = 4341, questName = "Kharan Mighthammer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 53
-        { type = "TURNIN", quest = 3911, questName = "The Last Element", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 54
-        { type = "TURNIN", quest = 4201, questName = "The Love Potion", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 55
-        { type = "TURNIN", quest = 7487, questName = "Attunement to the Core", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 56
-        { type = "TURNIN", quest = 7604, questName = "A Binding Contract", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 57
-        { type = "TURNIN", quest = 8961, questName = "Three Kings of Flame", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 58
-        { type = "TURNIN", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 59
-        { type = "TURNIN", quest = 4024, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6 }, -- 60
-        { type = "TURNIN", quest = 4123, questName = "The Heart of the Mountain", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.8 }, -- 61
-        { type = "TURNIN", quest = 4126, questName = "Hurley Blackbreath", npc = 1267, npcName = "Ragnar Thunderbrew", map = 1426, zone = "Dun Morogh", x = 46.8, y = 52.4 }, -- 62
-        { type = "TURNIN", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22 }, -- 63
-        { type = "TURNIN", quest = 4263, questName = "Incendius!", npc = 9561, npcName = "Jalinda Sprig", map = 1428, zone = "Burning Steppes", x = 85.4, y = 70 }, -- 64
-        { type = "TURNIN", quest = 4286, questName = "The Good Stuff", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.6 }, -- 65
-        { type = "TURNIN", quest = 7848, questName = "Attunement to the Core", npc = 14387, npcName = "Lothos Riftwaker", map = 1428, zone = "Burning Steppes", x = 26.4, y = 24.6 }, -- 66
-        { type = "TURNIN", quest = 9015, questName = "The Challenge", npc = 16016, npcName = "Anthion Harmon", map = 1423, zone = "Eastern Plaguelands", x = 26.1, y = 11.3 }, -- 67
-        { type = "ACCEPT", quest = 4004, questName = "The Princess Saved?", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 68
-        { type = "TURNIN", quest = 4004, questName = "The Princess Saved?", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 69
-        { type = "ACCEPT", quest = 4242, questName = "Abandoned Hope", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 70
-        { type = "TURNIN", quest = 4242, questName = "Abandoned Hope", npc = 9560, npcName = "Marshal Maxwell", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.8 }, -- 71
-        { type = "ACCEPT", quest = 4264, questName = "A Crumpled Up Note", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 72
-        { type = "TURNIN", quest = 4264, questName = "A Crumpled Up Note", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 73
-        { type = "ACCEPT", quest = 4282, questName = "A Shred of Hope", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 74
-        { type = "TURNIN", quest = 4282, questName = "A Shred of Hope", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 75
-        { type = "ACCEPT", quest = 4322, questName = "Jail Break!", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 76
-        { type = "TURNIN", quest = 4322, questName = "Jail Break!", npc = 9560, npcName = "Marshal Maxwell", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.8 }, -- 77
-        { type = "ACCEPT", quest = 4342, questName = "Kharan's Tale", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 78
-        { type = "TURNIN", quest = 4342, questName = "Kharan's Tale", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 79
-        { type = "ACCEPT", quest = 4361, questName = "The Bearer of Bad News", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 80
-        { type = "TURNIN", quest = 4361, questName = "The Bearer of Bad News", npc = 2784, npcName = "King Magni Bronzebeard", map = 1455, zone = "Ironforge", x = 39.4, y = 55.8 }, -- 81
-        { type = "ACCEPT", quest = 4362, questName = "The Fate of the Kingdom", npc = 2784, npcName = "King Magni Bronzebeard", map = 1455, zone = "Ironforge", x = 39.4, y = 55.8 }, -- 82
-        { type = "TURNIN", quest = 4362, questName = "The Fate of the Kingdom", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 83
-        { type = "ACCEPT", quest = 4363, questName = "The Princess's Surprise", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 84
-        { type = "TURNIN", quest = 4363, questName = "The Princess's Surprise", npc = 2784, npcName = "King Magni Bronzebeard", map = 1455, zone = "Ironforge", x = 39.4, y = 55.8 }, -- 85
-        { type = "ACCEPT", quest = 8959, questName = "Anthion's Parting Words", npc = 16016, npcName = "Anthion Harmon", map = 1423, zone = "Eastern Plaguelands", x = 26.1, y = 11.3 }, -- 86
-        { type = "TURNIN", quest = 8959, questName = "Anthion's Parting Words", npc = 16013, npcName = "Deliana", map = 1455, zone = "Ironforge", x = 43.4, y = 52.2 }, -- 87
+        { type = "ACCEPT", quest = 4341, questName = "Kharan Mighthammer", npc = 2784, npcName = "King Magni Bronzebeard", map = 1455, zone = "Ironforge", x = 39.4, y = 55.8 }, -- 15
+        { type = "ACCEPT", quest = 4003, questName = "The Royal Rescue", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 16
+        { type = "NOTE", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3, text = "Find a group for Blackrock Depths", note = "All quests available from level 52; hand them in by level 57 for full XP" }, -- 17
+        { type = "ACCEPT", quest = 3911, questName = "The Last Element", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 18
+        { type = "ACCEPT", quest = 4201, questName = "The Love Potion", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 19
+        { type = "ACCEPT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 20
+        { type = "COLLECT", quest = 3802, questName = "Dark Iron Legacy", target = "Ironfel", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 21
+        { type = "KILL", quest = 4003, questName = "The Royal Rescue", npc = 9019, target = "Emperor Dagran Thaurissan", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 22
+        { type = "COLLECT", quest = 4024, questName = "A Taste of Flame", target = "Encased Fiery Essence", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 23
+        { type = "COLLECT", quest = 4123, questName = "The Heart of the Mountain", target = "The Heart of the Mountain", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 24
+        { type = "COLLECT", quest = 4126, questName = "Hurley Blackbreath", target = "Lost Thunderbrew Recipe", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 25
+        { type = "COLLECT", quest = 4136, questName = "Ribbly Screwspigot", target = "Ribbly's Head", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 26
+        { type = "KILL", quest = 4263, questName = "Incendius!", npc = 9017, target = "Lord Incendius", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 27
+        { type = "COLLECT", quest = 4286, questName = "The Good Stuff", target = "Dark Iron Fanny Pack", count = 20, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 28
+        { type = "COLLECT", quest = 3911, questName = "The Last Element", target = "Essence of the Elements", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 29
+        { type = "COLLECT", quest = 4201, questName = "The Love Potion", target = "Gromsblood", count = 4, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 30
+        { type = "COLLECT", quest = 4201, questName = "The Love Potion", target = "Giant Silver Vein", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 31
+        { type = "COLLECT", quest = 4201, questName = "The Love Potion", target = "Nagmara's Filled Vial", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 32
+        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Craftsman's Writ: Truesilver Transformer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 33
+        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Truesilver Transformer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 34
+        { type = "TURNIN", quest = 3802, questName = "Dark Iron Legacy", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 35
+        { type = "TURNIN", quest = 4003, questName = "The Royal Rescue", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 36
+        { type = "TURNIN", quest = 4241, questName = "Marshal Windsor", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 37
+        { type = "TURNIN", quest = 4341, questName = "Kharan Mighthammer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 38
+        { type = "TURNIN", quest = 3911, questName = "The Last Element", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 39
+        { type = "TURNIN", quest = 4201, questName = "The Love Potion", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 40
+        { type = "TURNIN", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 41
+        { type = "TURNIN", quest = 4024, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6 }, -- 42
+        { type = "TURNIN", quest = 4123, questName = "The Heart of the Mountain", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.8 }, -- 43
+        { type = "TURNIN", quest = 4126, questName = "Hurley Blackbreath", npc = 1267, npcName = "Ragnar Thunderbrew", map = 1426, zone = "Dun Morogh", x = 46.8, y = 52.4 }, -- 44
+        { type = "TURNIN", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22 }, -- 45
+        { type = "TURNIN", quest = 4263, questName = "Incendius!", npc = 9561, npcName = "Jalinda Sprig", map = 1428, zone = "Burning Steppes", x = 85.4, y = 70 }, -- 46
+        { type = "TURNIN", quest = 4286, questName = "The Good Stuff", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.6 }, -- 47
+        { type = "ACCEPT", quest = 4004, questName = "The Princess Saved?", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 48
+        { type = "TURNIN", quest = 4004, questName = "The Princess Saved?", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 49
+        { type = "ACCEPT", quest = 4242, questName = "Abandoned Hope", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 50
+        { type = "TURNIN", quest = 4242, questName = "Abandoned Hope", npc = 9560, npcName = "Marshal Maxwell", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.8 }, -- 51
+        { type = "ACCEPT", quest = 4264, questName = "A Crumpled Up Note", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 52
+        { type = "TURNIN", quest = 4264, questName = "A Crumpled Up Note", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 53
+        { type = "ACCEPT", quest = 4282, questName = "A Shred of Hope", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 54
+        { type = "TURNIN", quest = 4282, questName = "A Shred of Hope", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 55
+        { type = "ACCEPT", quest = 4322, questName = "Jail Break!", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 56
+        { type = "TURNIN", quest = 4322, questName = "Jail Break!", npc = 9560, npcName = "Marshal Maxwell", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.8 }, -- 57
+        { type = "ACCEPT", quest = 4342, questName = "Kharan's Tale", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 58
+        { type = "TURNIN", quest = 4342, questName = "Kharan's Tale", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 59
+        { type = "ACCEPT", quest = 4361, questName = "The Bearer of Bad News", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 60
+        { type = "TURNIN", quest = 4361, questName = "The Bearer of Bad News", npc = 2784, npcName = "King Magni Bronzebeard", map = 1455, zone = "Ironforge", x = 39.4, y = 55.8 }, -- 61
+        { type = "ACCEPT", quest = 4362, questName = "The Fate of the Kingdom", npc = 2784, npcName = "King Magni Bronzebeard", map = 1455, zone = "Ironforge", x = 39.4, y = 55.8 }, -- 62
+        { type = "TURNIN", quest = 4362, questName = "The Fate of the Kingdom", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 63
+        { type = "ACCEPT", quest = 4363, questName = "The Princess's Surprise", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 64
+        { type = "TURNIN", quest = 4363, questName = "The Princess's Surprise", npc = 2784, npcName = "King Magni Bronzebeard", map = 1455, zone = "Ironforge", x = 39.4, y = 55.8 }, -- 65
     } end,
 })
