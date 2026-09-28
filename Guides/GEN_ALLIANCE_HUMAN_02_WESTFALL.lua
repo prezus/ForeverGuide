@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_02_WESTFALL",
     name = "2. Westfall 11-14 (Human)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 11,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_03_LOCH_MODAN",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Human route: level 11 to 14, 45 steps, ~136 min of play in the model (17747 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 72,
+    stepCount = 73,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 523, npcName = "Thor", map = 1436, zone = "Westfall", x = 56.6, y = 52.6 }, -- 1
         { type = "TRAVEL", map = 1436, zone = "Westfall", x = 56.2, y = 43.9, radius = 60, note = "travel to Westfall (Westfall)" }, -- 2
@@ -30,62 +30,63 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 64, questName = "The Forgotten Heirloom", target = "Furlbrow's Pocket Watch", map = 1436, zone = "Westfall", x = 49.3, y = 19.3 }, -- 13
         { type = "COLLECT", quest = 151, questName = "Poor Old Blanchy", target = "Handful of Oats", count = 8, map = 1436, zone = "Westfall", x = 51.5, y = 31.9, near = true }, -- 14
         { type = "ACCEPT", quest = 92909, questName = "Harvesting the Harvesters", npc = 253395, npcName = "Ozwin Ironsprocket", map = 1436, zone = "Westfall", x = 51.6, y = 32.2, note = "New in Forever" }, -- 15
-        { type = "TURNIN", quest = 22, questName = "Goretusk Liver Pie", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 16
-        { type = "TURNIN", quest = 36, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 17
-        { type = "ACCEPT", quest = 38, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 18
-        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Okra", count = 3, map = 1436, zone = "Westfall", x = 56.9, y = 34.3, near = true }, -- 19
-        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Goretusk Snout", count = 3, map = 1436, zone = "Westfall", x = 61.2, y = 36.5, near = true }, -- 20
-        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Stringy Vulture Meat", count = 3, map = 1436, zone = "Westfall", x = 60.9, y = 28, near = true }, -- 21
-        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Murloc Eye", count = 3, map = 1436, zone = "Westfall", x = 56.3, y = 9.6, near = true }, -- 22
-        { type = "TURNIN", quest = 64, questName = "The Forgotten Heirloom", npc = 237, npcName = "Farmer Furlbrow", map = 1436, zone = "Westfall", x = 60, y = 19.4 }, -- 23
-        { type = "TURNIN", quest = 151, questName = "Poor Old Blanchy", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 24
-        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Golem Isospring", count = 14, map = 1436, zone = "Westfall", x = 57.6, y = 19.4, near = true, mobs = "Rusty Harvest Golem / Decrepit Harvester" }, -- 25
-        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Harvester Gyrostabilizer", count = 5, map = 1436, zone = "Westfall", x = 54.2, y = 30.8, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper" }, -- 26
-        { type = "TURNIN", quest = 38, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 27
-        { type = "ACCEPT", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 28
-        { type = "TURNIN", quest = 92909, questName = "Harvesting the Harvesters", npc = 253395, npcName = "Ozwin Ironsprocket", map = 1436, zone = "Westfall", x = 51.6, y = 32.2 }, -- 29
-        { type = "KILL", quest = 9, questName = "The Killing Fields", npc = 114, target = "Harvest Watcher", count = 20, map = 1436, zone = "Westfall", x = 53.3, y = 33.6, near = true }, -- 30
-        { type = "TURNIN", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 31
-        { type = "TURNIN", quest = 109, questName = "Report to Gryan Stoutmantle", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 32
-        { type = "ACCEPT", quest = 6181, questName = "A Swift Message", npc = 491, npcName = "Quartermaster Lewis", map = 1436, zone = "Westfall", x = 57, y = 47.2 }, -- 33
-        { type = "ACCEPT", quest = 12, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 34
-        { type = "ACCEPT", quest = 102, questName = "Patrolling Westfall", npc = 821, npcName = "Captain Danuvin", map = 1436, zone = "Westfall", x = 56.4, y = 47.6 }, -- 35
-        { type = "ACCEPT", quest = 153, questName = "Red Leather Bandanas", npc = 878, npcName = "Scout Galiaan", map = 1436, zone = "Westfall", x = 54, y = 53 }, -- 36
-        { type = "TURNIN", quest = 6181, questName = "A Swift Message", npc = 523, npcName = "Thor", map = 1436, zone = "Westfall", x = 56.6, y = 52.6 }, -- 37
-        { type = "ACCEPT", quest = 6281, questName = "Continue to Stormwind", npc = 523, npcName = "Thor", map = 1436, zone = "Westfall", x = 56.4, y = 52.6 }, -- 38
-        { type = "COLLECT", quest = 102, questName = "Patrolling Westfall", target = "Gnoll Paw", count = 8, map = 1436, zone = "Westfall", x = 53.3, y = 60.8, near = true }, -- 39
-        { type = "TURNIN", quest = 92742, questName = "Testing the Wells", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 40
-        { type = "KILL", quest = 12, questName = "The People's Militia", npc = 95, target = "Defias Smuggler / Defias Trapper", count = 15, map = 1436, zone = "Westfall", x = 41.1, y = 41.8, near = true }, -- 41
-        { type = "COLLECT", quest = 153, questName = "Red Leather Bandanas", target = "Red Leather Bandana", count = 15, map = 1436, zone = "Westfall", x = 41.6, y = 41.1, near = true }, -- 42
-        { type = "TURNIN", quest = 12, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 43
-        { type = "ACCEPT", quest = 13, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 44
-        { type = "TURNIN", quest = 102, questName = "Patrolling Westfall", npc = 821, npcName = "Captain Danuvin", map = 1436, zone = "Westfall", x = 56.4, y = 47.6 }, -- 45
-        { type = "TURNIN", quest = 153, questName = "Red Leather Bandanas", npc = 878, npcName = "Scout Galiaan", map = 1436, zone = "Westfall", x = 54, y = 53 }, -- 46
-        { type = "KILL", quest = 13, questName = "The People's Militia", npc = 589, target = "Defias Pillager / Defias Looter", count = 15, map = 1436, zone = "Westfall", x = 46.3, y = 67.4, near = true }, -- 47
-        { type = "TURNIN", quest = 13, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 48
-        { type = "ACCEPT", quest = 92744, questName = "Murloc Gills", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 49
-        { type = "ACCEPT", quest = 92745, questName = "The State of the Mines", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 50
-        { type = "KILL", quest = 92745, questName = "The State of the Mines", npc = 1236, target = "Kobold Digger", count = 4, map = 1436, zone = "Westfall", x = 44.6, y = 23.4 }, -- 51
-        { type = "KILL", quest = 92745, questName = "The State of the Mines", npc = 1426, target = "Riverpaw Miner", count = 6, map = 1436, zone = "Westfall", x = 30, y = 47.4 }, -- 52
-        { type = "TURNIN", quest = 92745, questName = "The State of the Mines", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 53
-        { type = "ACCEPT", quest = 117, questName = "Thunderbrew", npc = 239, npcName = "Grimbooze Thunderbrew", map = 1436, zone = "Westfall", x = 44.6, y = 80.2 }, -- 54
-        { type = "COLLECT", quest = 117, questName = "Thunderbrew", target = "Hops", count = 5, map = 1436, zone = "Westfall", x = 51.4, y = 46.6, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper / Rusty Harvest Golem" }, -- 55
-        { type = "ACCEPT", quest = 152, questName = "The Coast Isn't Clear", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 56
-        { type = "ACCEPT", quest = 103, questName = "Keeper of the Flame", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 57
-        { type = "TURNIN", quest = 117, questName = "Thunderbrew", npc = 239, npcName = "Grimbooze Thunderbrew", map = 1436, zone = "Westfall", x = 44.6, y = 80.2 }, -- 58
-        { type = "COLLECT", quest = 103, questName = "Keeper of the Flame", target = "Flask of Oil", count = 5, map = 1436, zone = "Westfall", x = 46.5, y = 69.1, near = true }, -- 59
-        { type = "COLLECT", quest = 92744, questName = "Murloc Gills", target = "Longshore Murloc Gill", count = 7, map = 1436, zone = "Westfall", x = 33.8, y = 84.6, near = true, mobs = "Murloc Coastrunner / Murloc Tidehunter / Murloc Warrior / Murloc Minor Oracle" }, -- 60
-        { type = "TURNIN", quest = 103, questName = "Keeper of the Flame", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 61
-        { type = "ACCEPT", quest = 79008, questName = "... and that note you found", map = 1436, zone = "Westfall", x = 37.5, y = 50.7, note = "Cozy Sleeping Bag chain: keep it going" }, -- 62
-        { type = "TURNIN", quest = 92744, questName = "Murloc Gills", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 63
-        { type = "ACCEPT", quest = 92747, questName = "Moonbrook Espionage", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 64
-        { type = "COLLECT", quest = 92747, questName = "Moonbrook Espionage", target = "Suspicious Industrial Supplies", count = 8, map = 1436, zone = "Westfall", x = 42.5, y = 71.7 }, -- 65
-        { type = "TURNIN", quest = 92747, questName = "Moonbrook Espionage", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 66
-        { type = "ACCEPT", quest = 65, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 67
-        { type = "ACCEPT", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 68
-        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 121, target = "Defias Pathstalker / Defias Highwayman", count = 15, map = 1436, zone = "Westfall", x = 52.8, y = 73.5, near = true }, -- 69
-        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 449, target = "Defias Knuckleduster", count = 15, map = 1436, zone = "Westfall", x = 51.6, y = 78.2, near = true }, -- 70
-        { type = "ACCEPT", quest = 92748, questName = "Explosive Consultation", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 71
-        { type = "TURNIN", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 72
+        { type = "ACCEPT", quest = 92911, questName = "Harvesting the Harvesters", npc = 253395, npcName = "Ozwin Ironsprocket", map = 1436, zone = "Westfall", x = 51.6, y = 32.2, note = "New in Forever" }, -- 16
+        { type = "TURNIN", quest = 22, questName = "Goretusk Liver Pie", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 17
+        { type = "TURNIN", quest = 36, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 18
+        { type = "ACCEPT", quest = 38, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 19
+        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Okra", count = 3, map = 1436, zone = "Westfall", x = 56.9, y = 34.3, near = true }, -- 20
+        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Goretusk Snout", count = 3, map = 1436, zone = "Westfall", x = 61.2, y = 36.5, near = true }, -- 21
+        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Stringy Vulture Meat", count = 3, map = 1436, zone = "Westfall", x = 60.9, y = 28, near = true }, -- 22
+        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Murloc Eye", count = 3, map = 1436, zone = "Westfall", x = 56.3, y = 9.6, near = true }, -- 23
+        { type = "TURNIN", quest = 64, questName = "The Forgotten Heirloom", npc = 237, npcName = "Farmer Furlbrow", map = 1436, zone = "Westfall", x = 60, y = 19.4 }, -- 24
+        { type = "TURNIN", quest = 151, questName = "Poor Old Blanchy", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 25
+        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Golem Isospring", count = 14, map = 1436, zone = "Westfall", x = 57.6, y = 19.4, near = true, mobs = "Rusty Harvest Golem / Decrepit Harvester" }, -- 26
+        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Harvester Gyrostabilizer", count = 5, map = 1436, zone = "Westfall", x = 54.2, y = 30.8, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper" }, -- 27
+        { type = "TURNIN", quest = 38, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 28
+        { type = "ACCEPT", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 29
+        { type = "TURNIN", quest = 92909, questName = "Harvesting the Harvesters", npc = 253395, npcName = "Ozwin Ironsprocket", map = 1436, zone = "Westfall", x = 51.6, y = 32.2 }, -- 30
+        { type = "KILL", quest = 9, questName = "The Killing Fields", npc = 114, target = "Harvest Watcher", count = 20, map = 1436, zone = "Westfall", x = 53.3, y = 33.6, near = true }, -- 31
+        { type = "TURNIN", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 32
+        { type = "TURNIN", quest = 109, questName = "Report to Gryan Stoutmantle", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 33
+        { type = "ACCEPT", quest = 6181, questName = "A Swift Message", npc = 491, npcName = "Quartermaster Lewis", map = 1436, zone = "Westfall", x = 57, y = 47.2 }, -- 34
+        { type = "ACCEPT", quest = 12, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 35
+        { type = "ACCEPT", quest = 102, questName = "Patrolling Westfall", npc = 821, npcName = "Captain Danuvin", map = 1436, zone = "Westfall", x = 56.4, y = 47.6 }, -- 36
+        { type = "ACCEPT", quest = 153, questName = "Red Leather Bandanas", npc = 878, npcName = "Scout Galiaan", map = 1436, zone = "Westfall", x = 54, y = 53 }, -- 37
+        { type = "TURNIN", quest = 6181, questName = "A Swift Message", npc = 523, npcName = "Thor", map = 1436, zone = "Westfall", x = 56.6, y = 52.6 }, -- 38
+        { type = "ACCEPT", quest = 6281, questName = "Continue to Stormwind", npc = 523, npcName = "Thor", map = 1436, zone = "Westfall", x = 56.4, y = 52.6 }, -- 39
+        { type = "COLLECT", quest = 102, questName = "Patrolling Westfall", target = "Gnoll Paw", count = 8, map = 1436, zone = "Westfall", x = 53.3, y = 60.8, near = true }, -- 40
+        { type = "TURNIN", quest = 92742, questName = "Testing the Wells", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 41
+        { type = "KILL", quest = 12, questName = "The People's Militia", npc = 95, target = "Defias Smuggler / Defias Trapper", count = 15, map = 1436, zone = "Westfall", x = 41.1, y = 41.8, near = true }, -- 42
+        { type = "COLLECT", quest = 153, questName = "Red Leather Bandanas", target = "Red Leather Bandana", count = 15, map = 1436, zone = "Westfall", x = 41.6, y = 41.1, near = true }, -- 43
+        { type = "TURNIN", quest = 12, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 44
+        { type = "ACCEPT", quest = 13, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 45
+        { type = "TURNIN", quest = 102, questName = "Patrolling Westfall", npc = 821, npcName = "Captain Danuvin", map = 1436, zone = "Westfall", x = 56.4, y = 47.6 }, -- 46
+        { type = "TURNIN", quest = 153, questName = "Red Leather Bandanas", npc = 878, npcName = "Scout Galiaan", map = 1436, zone = "Westfall", x = 54, y = 53 }, -- 47
+        { type = "KILL", quest = 13, questName = "The People's Militia", npc = 589, target = "Defias Pillager / Defias Looter", count = 15, map = 1436, zone = "Westfall", x = 46.3, y = 67.4, near = true }, -- 48
+        { type = "TURNIN", quest = 13, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 49
+        { type = "ACCEPT", quest = 92744, questName = "Murloc Gills", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 50
+        { type = "ACCEPT", quest = 92745, questName = "The State of the Mines", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 51
+        { type = "KILL", quest = 92745, questName = "The State of the Mines", npc = 1236, target = "Kobold Digger", count = 4, map = 1436, zone = "Westfall", x = 44.6, y = 23.4 }, -- 52
+        { type = "KILL", quest = 92745, questName = "The State of the Mines", npc = 1426, target = "Riverpaw Miner", count = 6, map = 1436, zone = "Westfall", x = 30, y = 47.4 }, -- 53
+        { type = "TURNIN", quest = 92745, questName = "The State of the Mines", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 54
+        { type = "ACCEPT", quest = 117, questName = "Thunderbrew", npc = 239, npcName = "Grimbooze Thunderbrew", map = 1436, zone = "Westfall", x = 44.6, y = 80.2 }, -- 55
+        { type = "COLLECT", quest = 117, questName = "Thunderbrew", target = "Hops", count = 5, map = 1436, zone = "Westfall", x = 51.4, y = 46.6, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper / Rusty Harvest Golem" }, -- 56
+        { type = "ACCEPT", quest = 152, questName = "The Coast Isn't Clear", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 57
+        { type = "ACCEPT", quest = 103, questName = "Keeper of the Flame", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 58
+        { type = "TURNIN", quest = 117, questName = "Thunderbrew", npc = 239, npcName = "Grimbooze Thunderbrew", map = 1436, zone = "Westfall", x = 44.6, y = 80.2 }, -- 59
+        { type = "COLLECT", quest = 103, questName = "Keeper of the Flame", target = "Flask of Oil", count = 5, map = 1436, zone = "Westfall", x = 46.5, y = 69.1, near = true }, -- 60
+        { type = "COLLECT", quest = 92744, questName = "Murloc Gills", target = "Longshore Murloc Gill", count = 7, map = 1436, zone = "Westfall", x = 33.8, y = 84.6, near = true, mobs = "Murloc Coastrunner / Murloc Tidehunter / Murloc Warrior / Murloc Minor Oracle" }, -- 61
+        { type = "TURNIN", quest = 103, questName = "Keeper of the Flame", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 62
+        { type = "ACCEPT", quest = 79008, questName = "... and that note you found", map = 1436, zone = "Westfall", x = 37.5, y = 50.7, note = "Cozy Sleeping Bag chain: keep it going" }, -- 63
+        { type = "TURNIN", quest = 92744, questName = "Murloc Gills", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 64
+        { type = "ACCEPT", quest = 92747, questName = "Moonbrook Espionage", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 65
+        { type = "COLLECT", quest = 92747, questName = "Moonbrook Espionage", target = "Suspicious Industrial Supplies", count = 8, map = 1436, zone = "Westfall", x = 42.5, y = 71.7 }, -- 66
+        { type = "TURNIN", quest = 92747, questName = "Moonbrook Espionage", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 67
+        { type = "ACCEPT", quest = 65, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 68
+        { type = "ACCEPT", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 69
+        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 121, target = "Defias Pathstalker / Defias Highwayman", count = 15, map = 1436, zone = "Westfall", x = 52.8, y = 73.5, near = true }, -- 70
+        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 449, target = "Defias Knuckleduster", count = 15, map = 1436, zone = "Westfall", x = 51.6, y = 78.2, near = true }, -- 71
+        { type = "ACCEPT", quest = 92748, questName = "Explosive Consultation", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 72
+        { type = "TURNIN", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 73
     } end,
 })
