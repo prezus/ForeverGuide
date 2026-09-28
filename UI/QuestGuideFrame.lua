@@ -300,10 +300,10 @@ function QG:CreateScrollBar(f)
         return ((top - cy / scale) - bar.thumbHeight / 2) / free
     end
     bar:RegisterForClicks("LeftButtonDown")
-    bar:SetScript("OnMouseDown", function(self) self.dragging = true QG:ScrollToFraction(fractionAtCursor()) end)
-    bar:SetScript("OnMouseUp", function(self) self.dragging = false end)
-    bar:SetScript("OnUpdate", function(self)
-        if self.dragging then QG:ScrollToFraction(fractionAtCursor()) end
+    bar:SetScript("OnMouseDown", function(b) b.dragging = true QG:ScrollToFraction(fractionAtCursor()) end)
+    bar:SetScript("OnMouseUp", function(b) b.dragging = false end)
+    bar:SetScript("OnUpdate", function(b)
+        if b.dragging then QG:ScrollToFraction(fractionAtCursor()) end
     end)
     bar:SetScript("OnMouseWheel", function(_, delta) f.scroll:GetScript("OnMouseWheel")(f.scroll, delta) end)
     bar:Hide()
