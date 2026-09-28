@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_53_EASTERN_PLAGUELANDS",
     name = "53. Eastern Plaguelands 57-57 (Skyborne)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 57,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_54_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 53 of the Skyborne route: level 57 to 57, 22 steps, ~153 min of play in the model (37723 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 50,
+    stepCount = 49,
     steps = [[{
 {type="TURNIN",quest=5163,questName="Are We There, Yeti?",npc=10305,npcName="Umi Rumplesnicker",map=1452,zone="Winterspring",x=60.8,y=37.6},
 {type="TRAVEL",map=1452,zone="Everlook",x=61.4,y=38.8,radius=60,note="use your hearthstone (Everlook)"},
@@ -57,7 +57,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=5245,questName="Troubled Spirits of Kel'Theril",npc=10304,npcName="Aurora Skycaller",map=1423,zone="Eastern Plaguelands",x=53.4,y=22},
 {type="ACCEPT",quest=5282,questName="The Restless Souls",npc=11140,npcName="Egan",map=1423,zone="Eastern Plaguelands",x=14.4,y=33.6,optional=true,note="For Stratholme (dungeon guide)"},
 {type="KILL",quest=6024,questName="Hameya's Plea",npc=12248,target="Infiltrator Hameya",map=1423,zone="Eastern Plaguelands",x=70.7,y=16.5,note="loot Hameya's Key"},
-{type="TURNIN",quest=8859,questName="Secrets of the Colossus - Zora",npc=11034,npcName="Lord Maxwell Tyrosus",map=1423,zone="Eastern Plaguelands",x=81.6,y=58},
 {type="ACCEPT",quest=9141,questName="They Call Me \"The Rooster\"",npc=16212,npcName="Dispatch Commander Metz",map=1423,zone="Eastern Plaguelands",x=81,y=57.6},
 {type="COLLECT",quest=9141,questName="They Call Me \"The Rooster\"",target="Argent Dawn Valor Token",count=1,map=1423,zone="Eastern Plaguelands",x=81.4,y=60,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
 {type="TURNIN",quest=9141,questName="They Call Me \"The Rooster\"",npc=16212,npcName="Dispatch Commander Metz",map=1423,zone="Eastern Plaguelands",x=81,y=57.6},
