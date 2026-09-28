@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_27_FERALAS",
   "name": "27. Feralas 41-41 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 41,
@@ -54,7 +54,6 @@
     {"type": "TURNIN", "quest": 4281, "questName": "Thalanaar Delivery", "npc": 4048, "npcName": "Falfindel Waywarder", "map": 1444, "zone": "Feralas", "x": 89.6, "y": 46.4},
     {"type": "TURNIN", "quest": 1137, "questName": "News for Fizzle", "npc": 4454, "npcName": "Fizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78, "y": 77},
     {"type": "ACCEPT", "quest": 2770, "questName": "Gahz'rilla", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78, "y": 77, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
-    {"type": "ACCEPT", "quest": 2864, "questName": "Tran'rek", "npc": 773, "npcName": "Krazek", "map": 1434, "zone": "Stranglethorn Vale", "x": 27, "y": 77.2, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
-    {"type": "TURNIN", "quest": 1949, "questName": "Hidden Secrets", "npc": 6548, "npcName": "Magus Tirth", "map": 1441, "zone": "Thousand Needles", "x": 78.2, "y": 75.8, "class": ["MAGE"]}
+    {"type": "ACCEPT", "quest": 2864, "questName": "Tran'rek", "npc": 773, "npcName": "Krazek", "map": 1434, "zone": "Stranglethorn Vale", "x": 27, "y": 77.2, "note": "For Zul'Farrak (dungeon guide)", "optional": true}
   ]
 }
