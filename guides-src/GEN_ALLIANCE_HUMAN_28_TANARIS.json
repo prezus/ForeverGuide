@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_28_TANARIS",
   "name": "28. Tanaris 42-43 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 42,
@@ -27,7 +27,6 @@
     {"type": "ACCEPT", "quest": 1707, "questName": "Water Pouch Bounty", "npc": 7408, "npcName": "Spigot Operator Luglunket", "map": 1446, "zone": "Tanaris", "x": 52.5, "y": 28.5},
     {"type": "ACCEPT", "quest": 2875, "questName": "WANTED: Andre Firebeard", "map": 1446, "zone": "Tanaris", "x": 51.8, "y": 27},
     {"type": "ACCEPT", "quest": 2741, "questName": "The Super Egg-O-Matic", "map": 1446, "zone": "Tanaris", "x": 52.4, "y": 27},
-    {"type": "TURNIN", "quest": 2741, "questName": "The Super Egg-O-Matic", "map": 1446, "zone": "Tanaris", "x": 52.4, "y": 27},
     {"type": "TURNIN", "quest": 3629, "questName": "Goblin Engineering", "npc": 8126, "npcName": "Nixx Sprocketspring", "map": 1446, "zone": "Tanaris", "x": 52.4, "y": 27.2, "profession": "Engineering", "skill": 200},
     {"type": "TURNIN", "quest": 3633, "questName": "Goblin Engineering", "npc": 8126, "npcName": "Nixx Sprocketspring", "map": 1446, "zone": "Tanaris", "x": 52.4, "y": 27.2, "profession": "Engineering", "skill": 200},
     {"type": "TURNIN", "quest": 4181, "questName": "Goblin Engineering", "npc": 8126, "npcName": "Nixx Sprocketspring", "map": 1446, "zone": "Tanaris", "x": 52.4, "y": 27.2, "profession": "Engineering", "skill": 200},
