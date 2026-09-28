@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_ZUL_GURUB",
     name = "Zul'Gurub 60-60",
-    version = 1,
+    version = 2,
     kind = "dungeon",
     faction = "Horde",
     minLevel = 60,
@@ -12,32 +12,33 @@ ns.RegisterGuide({
     zone = "Stranglethorn Vale",
     author = "ForeverGuide route planner",
     notes = "Zul'Gurub: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 25,
+    stepCount = 26,
     steps = function() return {
         { type = "ACCEPT", quest = 8041, questName = "Strength of Mount Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 1
         { type = "TURNIN", quest = 8041, questName = "Strength of Mount Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 2
-        { type = "ACCEPT", quest = 8042, questName = "Strength of Mount Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 3
-        { type = "TURNIN", quest = 8042, questName = "Strength of Mount Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 4
-        { type = "ACCEPT", quest = 8043, questName = "Strength of Mount Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 5
-        { type = "TURNIN", quest = 8043, questName = "Strength of Mount Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 6
-        { type = "ACCEPT", quest = 8044, questName = "The Rage of Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 7
-        { type = "TURNIN", quest = 8044, questName = "The Rage of Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 8
-        { type = "ACCEPT", quest = 8181, questName = "Confront Yeh'kinya", npc = 10460, npcName = "Prospector Ironboot", map = 1446, zone = "Tanaris", x = 66.8, y = 24 }, -- 9
-        { type = "TURNIN", quest = 8181, questName = "Confront Yeh'kinya", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 10
-        { type = "ACCEPT", quest = 8240, questName = "A Bijou for Zanza", npc = 15070, npcName = "Vinchaxa", map = 1434, zone = "Stranglethorn Vale", x = 14.4, y = 15.8 }, -- 11
-        { type = "TURNIN", quest = 8240, questName = "A Bijou for Zanza", npc = 15070, npcName = "Vinchaxa", map = 1434, zone = "Stranglethorn Vale", x = 14.4, y = 15.8 }, -- 12
-        { type = "ACCEPT", quest = 9023, questName = "The Perfect Poison", npc = 16091, npcName = "Dirk Thunderwood", map = 1451, zone = "Silithus", x = 52, y = 39 }, -- 13
-        { type = "ACCEPT", quest = 8201, questName = "A Collection of Heads", npc = 14910, npcName = "Exzhal", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 15.4 }, -- 14
-        { type = "NOTE", map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6, text = "Find a group for Zul'Gurub", note = "All quests available from level 60; hand them in by level 60 for full XP" }, -- 15
-        { type = "ACCEPT", quest = 8183, questName = "The Heart of Hakkar", map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 16
-        { type = "ACCEPT", quest = 8227, questName = "Nat's Measuring Tape", map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 17
-        { type = "COLLECT", quest = 8201, questName = "A Collection of Heads", target = "Gurubashi Head Collection", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 18
-        { type = "COLLECT", quest = 8201, questName = "A Collection of Heads", target = "Channeler's Head", count = 5, map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 19
-        { type = "COLLECT", quest = 9023, questName = "The Perfect Poison", target = "Venoxis's Venom Sac", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 20
-        { type = "COLLECT", quest = 9023, questName = "The Perfect Poison", target = "Kurinnaxx's Venom Sac", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 21
-        { type = "TURNIN", quest = 8201, questName = "A Collection of Heads", npc = 14910, npcName = "Exzhal", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 15.4 }, -- 22
-        { type = "TURNIN", quest = 8183, questName = "The Heart of Hakkar", npc = 14875, npcName = "Molthor", map = 1434, zone = "Stranglethorn Vale", x = 15, y = 15.2 }, -- 23
-        { type = "TURNIN", quest = 9023, questName = "The Perfect Poison", npc = 16091, npcName = "Dirk Thunderwood", map = 1451, zone = "Silithus", x = 52, y = 39 }, -- 24
-        { type = "TURNIN", quest = 8227, questName = "Nat's Measuring Tape", npc = 12919, npcName = "Nat Pagle", map = 1445, zone = "Dustwallow Marsh", x = 58.4, y = 60 }, -- 25
+        { type = "ACCEPT", quest = 8181, questName = "Confront Yeh'kinya", npc = 10460, npcName = "Prospector Ironboot", map = 1446, zone = "Tanaris", x = 66.8, y = 24 }, -- 3
+        { type = "TURNIN", quest = 8181, questName = "Confront Yeh'kinya", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 4
+        { type = "ACCEPT", quest = 8240, questName = "A Bijou for Zanza", npc = 15070, npcName = "Vinchaxa", map = 1434, zone = "Stranglethorn Vale", x = 14.4, y = 15.8 }, -- 5
+        { type = "TURNIN", quest = 8240, questName = "A Bijou for Zanza", npc = 15070, npcName = "Vinchaxa", map = 1434, zone = "Stranglethorn Vale", x = 14.4, y = 15.8 }, -- 6
+        { type = "ACCEPT", quest = 9023, questName = "The Perfect Poison", npc = 16091, npcName = "Dirk Thunderwood", map = 1451, zone = "Silithus", x = 52, y = 39 }, -- 7
+        { type = "ACCEPT", quest = 8042, questName = "Strength of Mount Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 8
+        { type = "ACCEPT", quest = 8201, questName = "A Collection of Heads", npc = 14910, npcName = "Exzhal", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 15.4 }, -- 9
+        { type = "NOTE", map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6, text = "Find a group for Zul'Gurub", note = "All quests available from level 60; hand them in by level 60 for full XP" }, -- 10
+        { type = "ACCEPT", quest = 8183, questName = "The Heart of Hakkar", map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 11
+        { type = "ACCEPT", quest = 8227, questName = "Nat's Measuring Tape", map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 12
+        { type = "COLLECT", quest = 8042, questName = "Strength of Mount Mugamba", target = "item 19574", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 13
+        { type = "COLLECT", quest = 8201, questName = "A Collection of Heads", target = "Gurubashi Head Collection", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 14
+        { type = "COLLECT", quest = 8201, questName = "A Collection of Heads", target = "Channeler's Head", count = 5, map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 15
+        { type = "COLLECT", quest = 9023, questName = "The Perfect Poison", target = "Venoxis's Venom Sac", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 16
+        { type = "COLLECT", quest = 9023, questName = "The Perfect Poison", target = "Kurinnaxx's Venom Sac", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 53.9, y = 17.6 }, -- 17
+        { type = "TURNIN", quest = 8042, questName = "Strength of Mount Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 18
+        { type = "TURNIN", quest = 8201, questName = "A Collection of Heads", npc = 14910, npcName = "Exzhal", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 15.4 }, -- 19
+        { type = "TURNIN", quest = 8183, questName = "The Heart of Hakkar", npc = 14875, npcName = "Molthor", map = 1434, zone = "Stranglethorn Vale", x = 15, y = 15.2 }, -- 20
+        { type = "TURNIN", quest = 9023, questName = "The Perfect Poison", npc = 16091, npcName = "Dirk Thunderwood", map = 1451, zone = "Silithus", x = 52, y = 39 }, -- 21
+        { type = "TURNIN", quest = 8227, questName = "Nat's Measuring Tape", npc = 12919, npcName = "Nat Pagle", map = 1445, zone = "Dustwallow Marsh", x = 58.4, y = 60 }, -- 22
+        { type = "ACCEPT", quest = 8043, questName = "Strength of Mount Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 23
+        { type = "TURNIN", quest = 8043, questName = "Strength of Mount Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 24
+        { type = "ACCEPT", quest = 8044, questName = "The Rage of Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 25
+        { type = "TURNIN", quest = 8044, questName = "The Rage of Mugamba", npc = 14902, npcName = "Jin'rokh the Breaker", map = 1434, zone = "Stranglethorn Vale", x = 15.2, y = 14.4 }, -- 26
     } end,
 })
