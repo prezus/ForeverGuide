@@ -63,6 +63,20 @@ local function chapterId(prefix)
 end
 
 print("guide active: " .. tostring(G.active and G.active.id))
+-- Listing the route's quests (the Unknown Quests count) reads other chapters' steps without keeping them.
+do
+    local built = {}
+    for _, id in ipairs(G.list) do
+        local g = G.registry[id]
+        if rawget(g, "steps") and g ~= G.active then built[#built + 1] = id end
+    end
+    check(#built == 0, "after login only the open guide's steps are built (" .. #built .. " others: " .. tostring(built[1]) .. ")")
+    local laterQuest
+    local ch3 = G.registry[chapterId("GEN_ALLIANCE_HUMAN_03_")]
+    for _, s in ipairs(G:ScanSteps(ch3)) do if s.quest then laterQuest = s.quest break end end
+    check(laterQuest and G:CoveredQuests()[laterQuest], "a later chapter's quest is still covered by the route")
+    check(rawget(ch3, "steps") == nil, "...and scanning that chapter did not keep its steps")
+end
 -- The other faction's guides are dropped at login, so their step loaders can be collected.
 do
     local horde, consistent = 0, true

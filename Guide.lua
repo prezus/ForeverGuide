@@ -68,27 +68,28 @@ Guide.MANUAL, Guide.OBJECTIVE = MANUAL, OBJECTIVE
 ---@field hasEdit? boolean
 ---@field edited? boolean
 
+---@param steps FGStep[]
+local function prepare(steps)
+    for i, step in ipairs(steps) do
+        step.index = i
+        step.type = string.upper(tostring(step.type or "NOTE"))
+    end
+    return steps
+end
+
 function ns.RegisterGuide(guide)
     if type(guide) ~= "table" or type(guide.id) ~= "string" then
         ns.Error("RegisterGuide: guide needs a string id")
         return
     end
     guide.version = guide.version or 1
-    ---@param steps FGStep[]
-    local function prepare(steps)
-        for i, step in ipairs(steps) do
-            step.index = i
-            step.type = string.upper(tostring(step.type or "NOTE"))
-        end
-        return steps
-    end
     if type(guide.steps) == "function" then
         -- compiled guides hand over a loader: the step tables are built the first time a guide's
         -- steps are read (activation, AutoQuest, the info popup), never for the 400 guides that are
         -- only ever listed in the picker
         local loader = guide.steps
         guide.steps = nil
-        setmetatable(guide, { __index = function(t, k)
+        setmetatable(guide, { loader = loader, __index = function(t, k)
             if k ~= "steps" then return nil end
             local steps = prepare(loader() or {})
             rawset(t, "steps", steps)
@@ -103,6 +104,18 @@ function ns.RegisterGuide(guide)
         Guide.list[#Guide.list + 1] = guide.id
     end
     Guide.registry[guide.id] = guide
+end
+
+--- A guide's steps for a read-only pass (which quests it has): a guide not built yet is built for
+--- this call only, not kept, so scanning the route's chapters does not hold all of their steps.
+---@return FGStep[]
+function Guide:ScanSteps(g)
+    if not g then return {} end
+    local steps = rawget(g, "steps")
+    if steps then return steps end
+    local mt = getmetatable(g)
+    if mt and mt.loader then return prepare(mt.loader() or {}) end
+    return g.steps or {}
 end
 
 function Guide:Get(id)
@@ -164,7 +177,7 @@ function Guide:CoveredQuests()
     if coveredKey == key then return coveredCache end
     local covered = {}
     local function add(g)
-        for _, step in ipairs(g and g.steps or {}) do
+        for _, step in ipairs(self:ScanSteps(g)) do
             if step.quest then covered[step.quest] = true end
         end
     end
