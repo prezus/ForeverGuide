@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_08_WETLANDS",
   "name": "8. Wetlands 23-24 (Human)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 23,
@@ -26,6 +26,9 @@
     {"type": "TURNIN", "quest": 285, "questName": "Search More Hovels", "map": 1437, "zone": "Wetlands", "x": 13.9, "y": 34.8},
     {"type": "ACCEPT", "quest": 286, "questName": "Return the Statuette", "map": 1437, "zone": "Wetlands", "x": 13.9, "y": 34.8},
     {"type": "TURNIN", "quest": 286, "questName": "Return the Statuette", "npc": 1242, "npcName": "Karl Boran", "map": 1437, "zone": "Wetlands", "x": 8.3, "y": 58.6},
+    {"type": "ACCEPT", "quest": 288, "questName": "The Third Fleet", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.8, "y": 59.6},
+    {"type": "COLLECT", "quest": 288, "questName": "The Third Fleet", "target": "Flagon of Dwarven Honeymead", "count": 1, "map": 1437, "zone": "Wetlands", "x": 10.6, "y": 60.8, "near": true},
+    {"type": "TURNIN", "quest": 288, "questName": "The Third Fleet", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.8, "y": 59.6},
     {"type": "ACCEPT", "quest": 294, "questName": "Ormer's Revenge", "npc": 1078, "npcName": "Ormer Ironbraid", "map": 1437, "zone": "Wetlands", "x": 38.2, "y": 50.9},
     {"type": "KILL", "quest": 294, "questName": "Ormer's Revenge", "npc": 1020, "target": "Mottled Raptor", "count": 10, "map": 1437, "zone": "Wetlands", "x": 31.5, "y": 42.1, "near": true},
     {"type": "KILL", "quest": 294, "questName": "Ormer's Revenge", "npc": 1021, "target": "Mottled Screecher", "count": 10, "map": 1437, "zone": "Wetlands", "x": 30.2, "y": 44.1, "near": true},
