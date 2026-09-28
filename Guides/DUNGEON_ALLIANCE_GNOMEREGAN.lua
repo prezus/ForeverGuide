@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_ALLIANCE_GNOMEREGAN",
     name = "Gnomeregan 28-31",
-    version = 2,
+    version = 3,
     kind = "dungeon",
     faction = "Alliance",
     minLevel = 28,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Dun Morogh",
     author = "ForeverGuide route planner",
     notes = "Gnomeregan: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 50,
+    stepCount = 44,
     steps = function() return {
         { type = "ACCEPT", quest = 2923, questName = "Tinkmaster Overspark", npc = 7917, npcName = "Brother Sarno", map = 1453, zone = "Stormwind City", x = 40.6, y = 30.8 }, -- 1
         { type = "TURNIN", quest = 2923, questName = "Tinkmaster Overspark", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2 }, -- 2
@@ -56,13 +56,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2904, questName = "A Fine Mess", npc = 7853, npcName = "Scooty", map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 77.4 }, -- 40
         { type = "ACCEPT", quest = 2947, questName = "Return of the Ring", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 41
         { type = "TURNIN", quest = 2947, questName = "Return of the Ring", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 42
-        { type = "ACCEPT", quest = 2952, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 43
-        { type = "TURNIN", quest = 2952, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 44
-        { type = "ACCEPT", quest = 2962, questName = "The Only Cure is More Green Glow", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 45
-        { type = "TURNIN", quest = 2962, questName = "The Only Cure is More Green Glow", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 46
-        { type = "ACCEPT", quest = 4605, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 47
-        { type = "TURNIN", quest = 4605, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 48
-        { type = "ACCEPT", quest = 4606, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 49
-        { type = "TURNIN", quest = 4606, questName = "The Sparklematic 5200!", map = 1426, zone = "Dun Morogh", x = 24.3, y = 39.8 }, -- 50
+        { type = "ACCEPT", quest = 2962, questName = "The Only Cure is More Green Glow", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 43
+        { type = "TURNIN", quest = 2962, questName = "The Only Cure is More Green Glow", npc = 1268, npcName = "Ozzie Togglevolt", map = 1426, zone = "Dun Morogh", x = 45.8, y = 49.2 }, -- 44
     } end,
 })
