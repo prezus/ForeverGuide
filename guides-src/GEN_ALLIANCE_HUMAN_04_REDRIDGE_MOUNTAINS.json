@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_04_REDRIDGE_MOUNTAINS",
   "name": "4. Redridge Mountains 17-20 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 17,
@@ -14,14 +14,6 @@
   "steps": [
     {"type": "TRAVEL", "map": 1436, "zone": "Sentinel Hill", "x": 52.9, "y": 53.7, "radius": 60, "note": "use your hearthstone (Sentinel Hill)"},
     {"type": "FLIGHTPATH", "npc": 931, "npcName": "Ariena Stormfeather", "map": 1433, "zone": "Redridge Mountains", "x": 25.5, "y": 59.4},
-    {"type": "ACCEPT", "quest": 91904, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71, "note": "New in Forever"},
-    {"type": "ACCEPT", "quest": 91905, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71, "note": "New in Forever"},
-    {"type": "ACCEPT", "quest": 91899, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71, "note": "New in Forever"},
-    {"type": "ACCEPT", "quest": 91900, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71, "note": "New in Forever"},
-    {"type": "TURNIN", "quest": 91904, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71},
-    {"type": "TURNIN", "quest": 91905, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71},
-    {"type": "TURNIN", "quest": 91899, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71},
-    {"type": "TURNIN", "quest": 91900, "questName": "A Sealed Crate", "npc": 256390, "npcName": "Marcy Baker", "map": 1433, "zone": "Redridge Mountains", "x": 9.6, "y": 71},
     {"type": "KILL", "quest": 152, "questName": "The Coast Isn't Clear", "npc": 126, "target": "Murloc Coastrunner", "count": 7, "map": 1436, "zone": "Westfall", "x": 56.2, "y": 9.4},
     {"type": "KILL", "quest": 152, "questName": "The Coast Isn't Clear", "npc": 171, "target": "Murloc Warrior", "count": 7, "map": 1436, "zone": "Westfall", "x": 26, "y": 50.4},
     {"type": "KILL", "quest": 152, "questName": "The Coast Isn't Clear", "npc": 127, "target": "Murloc Tidehunter", "count": 7, "map": 1436, "zone": "Westfall", "x": 33.8, "y": 84.8},
