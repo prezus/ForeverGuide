@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_13_WETLANDS",
     name = "13. Wetlands 27-29 (Dwarf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 27,
@@ -13,39 +13,47 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_14_THOUSAND_NEEDLES",
     author = "ForeverGuide route planner",
     notes = "Chapter 13 of the Dwarf route: level 27 to 29, 25 steps, ~117 min of play in the model (10980 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 32,
+    stepCount = 40,
     steps = function() return {
         { type = "TRAVEL", map = 1437, zone = "Wetlands", x = 10.7, y = 60.2, radius = 60, note = "travel to Wetlands (Wetlands)" }, -- 1
-        { type = "ACCEPT", quest = 472, questName = "Fall of Dun Modr", npc = 2097, npcName = "Harlo Barnaby", map = 1437, zone = "Wetlands", x = 10.9, y = 55.9 }, -- 2
-        { type = "ACCEPT", quest = 464, questName = "War Banners", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 3
-        { type = "TURNIN", quest = 98461, questName = "Unrequited Love", npc = 2096, npcName = "Tarrel Rockweaver", map = 1437, zone = "Wetlands", x = 11.4, y = 52.2, note = "reduced xp (80%) - you out-levelled it" }, -- 4
-        { type = "COLLECT", quest = 464, questName = "War Banners", target = "Dragonmaw War Banner", count = 8, map = 1437, zone = "Wetlands", x = 38.2, y = 45.9, near = true }, -- 5
-        { type = "ACCEPT", quest = 296, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 6
-        { type = "ACCEPT", quest = 299, questName = "Uncovering the Past", npc = 1077, npcName = "Prospector Whelgar", map = 1437, zone = "Wetlands", x = 38.8, y = 52.4 }, -- 7
-        { type = "COLLECT", quest = 299, questName = "Uncovering the Past", target = "Ados Fragment / Modr Fragment / Golm Fragment / Neru Fragment", count = 4, map = 1437, zone = "Wetlands", x = 36.1, y = 50, near = true }, -- 8
-        { type = "TURNIN", quest = 299, questName = "Uncovering the Past", npc = 1077, npcName = "Prospector Whelgar", map = 1437, zone = "Wetlands", x = 38.8, y = 52.4 }, -- 9
-        { type = "KILL", quest = 296, questName = "Ormer's Revenge", npc = 1353, target = "Sarltooth", map = 1437, zone = "Wetlands", x = 33.3, y = 51.5, note = "loot Sarltooth's Talon" }, -- 10
-        { type = "TURNIN", quest = 296, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 11
-        { type = "TURNIN", quest = 472, questName = "Fall of Dun Modr", npc = 1071, npcName = "Longbraid the Grim", map = 1437, zone = "Wetlands", x = 49.8, y = 18.3 }, -- 12
-        { type = "ACCEPT", quest = 631, questName = "The Thandol Span", npc = 1075, npcName = "Rhag Garmason", map = 1437, zone = "Wetlands", x = 49.9, y = 18.2 }, -- 13
-        { type = "ACCEPT", quest = 303, questName = "The Dark Iron War", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.7, y = 18.2, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 14
-        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1051, target = "Dark Iron Dwarf", count = 10, map = 1437, zone = "Wetlands", x = 48.2, y = 17.7, optional = true, near = true }, -- 15
-        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1053, target = "Dark Iron Tunneler", count = 10, map = 1437, zone = "Wetlands", x = 47.1, y = 17.5, optional = true, near = true }, -- 16
-        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1052, target = "Dark Iron Saboteur", count = 10, map = 1437, zone = "Wetlands", x = 48.1, y = 18.6, optional = true, near = true }, -- 17
-        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1054, target = "Dark Iron Demolitionist", count = 10, map = 1437, zone = "Wetlands", x = 46.7, y = 18.6, optional = true, near = true }, -- 18
-        { type = "TURNIN", quest = 303, questName = "The Dark Iron War", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.7, y = 18.2, optional = true }, -- 19
-        { type = "ACCEPT", quest = 378, questName = "The Fury Runs Deep", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.6, y = 18.2, optional = true, note = "For The Stockade (dungeon guide)" }, -- 20
-        { type = "NOTE", optional = true, text = "Ready for The Stockade", note = "Picked up: Crime and Punishment, The Fury Runs Deep, What Comes Around..., Quell the Uprising, The Color of Blood. When you have a group, open The Stockade under Dungeons." }, -- 21
-        { type = "TURNIN", quest = 631, questName = "The Thandol Span", map = 1437, zone = "Wetlands", x = 51.3, y = 8 }, -- 22
-        { type = "ACCEPT", quest = 632, questName = "The Thandol Span", map = 1437, zone = "Wetlands", x = 51.3, y = 8 }, -- 23
-        { type = "TURNIN", quest = 632, questName = "The Thandol Span", npc = 1075, npcName = "Rhag Garmason", map = 1437, zone = "Wetlands", x = 49.9, y = 18.2 }, -- 24
-        { type = "ACCEPT", quest = 633, questName = "The Thandol Span", npc = 1075, npcName = "Rhag Garmason", map = 1437, zone = "Wetlands", x = 49.8, y = 18.2 }, -- 25
-        { type = "TURNIN", quest = 464, questName = "War Banners", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 26
-        { type = "ACCEPT", quest = 465, questName = "Nek'rosh's Gambit", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 27
-        { type = "TURNIN", quest = 465, questName = "Nek'rosh's Gambit", map = 1437, zone = "Wetlands", x = 47.5, y = 47 }, -- 28
-        { type = "ACCEPT", quest = 474, questName = "Defeat Nek'rosh", map = 1437, zone = "Wetlands", x = 47.5, y = 46.9, optional = true, note = "Elite - group up" }, -- 29
-        { type = "COLLECT", quest = 474, questName = "Defeat Nek'rosh", target = "Nek'rosh's Head", count = 1, map = 1437, zone = "Wetlands", x = 53.4, y = 54.4, optional = true, mobs = "Chieftain Nek'rosh" }, -- 30
-        { type = "GRIND", npc = 1418, target = "Bluegill Raider", level = 29, map = 1437, zone = "Wetlands", x = 28.2, y = 16.1, near = true, note = "grind Bluegill Raider (level 28-29) to level 29 - nothing worth questing at 28" }, -- 31
-        { type = "TURNIN", quest = 474, questName = "Defeat Nek'rosh", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.8, y = 57.4, optional = true }, -- 32
+        { type = "ACCEPT", quest = 289, questName = "The Cursed Crew", npc = 1239, npcName = "First Mate Fitzsimmons", map = 1437, zone = "Wetlands", x = 10.8, y = 59.6 }, -- 2
+        { type = "ACCEPT", quest = 472, questName = "Fall of Dun Modr", npc = 2097, npcName = "Harlo Barnaby", map = 1437, zone = "Wetlands", x = 10.9, y = 55.9 }, -- 3
+        { type = "ACCEPT", quest = 464, questName = "War Banners", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 4
+        { type = "TURNIN", quest = 98461, questName = "Unrequited Love", npc = 2096, npcName = "Tarrel Rockweaver", map = 1437, zone = "Wetlands", x = 11.4, y = 52.2, note = "reduced xp (80%) - you out-levelled it" }, -- 5
+        { type = "COLLECT", quest = 464, questName = "War Banners", target = "Dragonmaw War Banner", count = 8, map = 1437, zone = "Wetlands", x = 38.2, y = 45.9, near = true }, -- 6
+        { type = "ACCEPT", quest = 296, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 7
+        { type = "ACCEPT", quest = 299, questName = "Uncovering the Past", npc = 1077, npcName = "Prospector Whelgar", map = 1437, zone = "Wetlands", x = 38.8, y = 52.4 }, -- 8
+        { type = "COLLECT", quest = 299, questName = "Uncovering the Past", target = "Ados Fragment / Modr Fragment / Golm Fragment / Neru Fragment", count = 4, map = 1437, zone = "Wetlands", x = 36.1, y = 50, near = true }, -- 9
+        { type = "TURNIN", quest = 299, questName = "Uncovering the Past", npc = 1077, npcName = "Prospector Whelgar", map = 1437, zone = "Wetlands", x = 38.8, y = 52.4 }, -- 10
+        { type = "KILL", quest = 296, questName = "Ormer's Revenge", npc = 1353, target = "Sarltooth", map = 1437, zone = "Wetlands", x = 33.3, y = 51.5, note = "loot Sarltooth's Talon" }, -- 11
+        { type = "TURNIN", quest = 296, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 12
+        { type = "TURNIN", quest = 472, questName = "Fall of Dun Modr", npc = 1071, npcName = "Longbraid the Grim", map = 1437, zone = "Wetlands", x = 49.8, y = 18.3 }, -- 13
+        { type = "ACCEPT", quest = 631, questName = "The Thandol Span", npc = 1075, npcName = "Rhag Garmason", map = 1437, zone = "Wetlands", x = 49.9, y = 18.2 }, -- 14
+        { type = "ACCEPT", quest = 303, questName = "The Dark Iron War", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.7, y = 18.2, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 15
+        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1051, target = "Dark Iron Dwarf", count = 10, map = 1437, zone = "Wetlands", x = 48.2, y = 17.7, optional = true, near = true }, -- 16
+        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1053, target = "Dark Iron Tunneler", count = 10, map = 1437, zone = "Wetlands", x = 47.1, y = 17.5, optional = true, near = true }, -- 17
+        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1052, target = "Dark Iron Saboteur", count = 10, map = 1437, zone = "Wetlands", x = 48.1, y = 18.6, optional = true, near = true }, -- 18
+        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1054, target = "Dark Iron Demolitionist", count = 10, map = 1437, zone = "Wetlands", x = 46.7, y = 18.6, optional = true, near = true }, -- 19
+        { type = "TURNIN", quest = 303, questName = "The Dark Iron War", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.7, y = 18.2, optional = true }, -- 20
+        { type = "ACCEPT", quest = 378, questName = "The Fury Runs Deep", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.6, y = 18.2, optional = true, note = "For The Stockade (dungeon guide)" }, -- 21
+        { type = "NOTE", optional = true, text = "Ready for The Stockade", note = "Picked up: Crime and Punishment, The Fury Runs Deep, What Comes Around..., Quell the Uprising, The Color of Blood. When you have a group, open The Stockade under Dungeons." }, -- 22
+        { type = "TURNIN", quest = 631, questName = "The Thandol Span", map = 1437, zone = "Wetlands", x = 51.3, y = 8 }, -- 23
+        { type = "ACCEPT", quest = 632, questName = "The Thandol Span", map = 1437, zone = "Wetlands", x = 51.3, y = 8 }, -- 24
+        { type = "TURNIN", quest = 632, questName = "The Thandol Span", npc = 1075, npcName = "Rhag Garmason", map = 1437, zone = "Wetlands", x = 49.9, y = 18.2 }, -- 25
+        { type = "KILL", quest = 289, questName = "The Cursed Crew", npc = 1157, target = "Cursed Sailor", count = 13, map = 1437, zone = "Wetlands", x = 14, y = 29 }, -- 26
+        { type = "KILL", quest = 289, questName = "The Cursed Crew", npc = 1158, target = "Cursed Marine", count = 5, map = 1437, zone = "Wetlands", x = 14.8, y = 24.6 }, -- 27
+        { type = "COLLECT", quest = 289, questName = "The Cursed Crew", target = "Snellig's Snuffbox", count = 1, map = 1437, zone = "Wetlands", x = 14, y = 29.8, mobs = "First Mate Snellig" }, -- 28
+        { type = "ACCEPT", quest = 633, questName = "The Thandol Span", npc = 1075, npcName = "Rhag Garmason", map = 1437, zone = "Wetlands", x = 49.8, y = 18.2 }, -- 29
+        { type = "TURNIN", quest = 464, questName = "War Banners", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 30
+        { type = "ACCEPT", quest = 465, questName = "Nek'rosh's Gambit", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 31
+        { type = "TURNIN", quest = 289, questName = "The Cursed Crew", npc = 1239, npcName = "First Mate Fitzsimmons", map = 1437, zone = "Wetlands", x = 10.8, y = 59.6 }, -- 32
+        { type = "TURNIN", quest = 465, questName = "Nek'rosh's Gambit", map = 1437, zone = "Wetlands", x = 47.5, y = 47 }, -- 33
+        { type = "ACCEPT", quest = 474, questName = "Defeat Nek'rosh", map = 1437, zone = "Wetlands", x = 47.5, y = 46.9, optional = true, note = "Elite - group up" }, -- 34
+        { type = "COLLECT", quest = 474, questName = "Defeat Nek'rosh", target = "Nek'rosh's Head", count = 1, map = 1437, zone = "Wetlands", x = 53.4, y = 54.4, optional = true, mobs = "Chieftain Nek'rosh" }, -- 35
+        { type = "GRIND", npc = 1418, target = "Bluegill Raider", level = 29, map = 1437, zone = "Wetlands", x = 28.2, y = 16.1, near = true, note = "grind Bluegill Raider (level 28-29) to level 29 - nothing worth questing at 28" }, -- 36
+        { type = "ACCEPT", quest = 290, questName = "Lifting the Curse", npc = 1239, npcName = "First Mate Fitzsimmons", map = 1437, zone = "Wetlands", x = 10.8, y = 59.6 }, -- 37
+        { type = "COLLECT", quest = 290, questName = "Lifting the Curse", target = "Intrepid Strongbox Key", count = 1, map = 1437, zone = "Wetlands", x = 15.6, y = 23.4, mobs = "Captain Halyndor" }, -- 38
+        { type = "TURNIN", quest = 290, questName = "Lifting the Curse", map = 1437, zone = "Wetlands", x = 14.3, y = 24 }, -- 39
+        { type = "TURNIN", quest = 474, questName = "Defeat Nek'rosh", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.8, y = 57.4, optional = true }, -- 40
     } end,
 })
