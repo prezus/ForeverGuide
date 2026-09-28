@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_42_AZSHARA",
     name = "42. Azshara 52-53 (Undead)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 52,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_43_UNDERCITY",
     author = "ForeverGuide route planner",
     notes = "Chapter 42 of the Scourge route: level 52 to 53, 10 steps, ~52 min of play in the model (25946 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 20,
+    stepCount = 19,
     steps = [[{
 {type="TRAVEL",map=1447,zone="Azshara",x=60.8,y=66.4,radius=60,note="travel to Azshara (Azshara)"},
 {type="COLLECT",quest=3568,questName="Seeping Corruption",target="Filled Vial Labeled #1",count=1,map=1447,zone="Azshara",x=48,y=61},
@@ -28,7 +28,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=3505,questName="Betrayed",map=1447,zone="Azshara",x=59.5,y=31.3},
 {type="ACCEPT",quest=3506,questName="Betrayed",map=1447,zone="Azshara",x=59.5,y=31.3},
 {type="KILL",quest=3506,questName="Betrayed",npc=8578,target="Magus Rimtori",map=1447,zone="Azshara",x=59.5,y=31.4,note="loot Head of Magus Rimtori"},
-{type="TURNIN",quest=8151,questName="The Hunter's Charm",npc=8405,npcName="Ogtinc",map=1447,zone="Azshara",x=42.4,y=42.6,class={"HUNTER"}},
 {type="TURNIN",quest=8254,questName="Cenarion Aid",npc=8405,npcName="Ogtinc",map=1447,zone="Azshara",x=42.4,y=42.6,class={"PRIEST"}},
 {type="TURNIN",quest=8250,questName="Magecraft",npc=8395,npcName="Sanath Lim-yo",map=1447,zone="Azshara",x=28,y=50,class={"MAGE"}},
 {type="COLLECT",quest=8251,questName="Magic Dust",target="Glittering Dust",count=10,map=1447,zone="Azshara",x=59.4,y=31.4,near=true,class={"MAGE"},mobs="Blood Elf Surveyor / Blood Elf Reclaimer / Blood Elf Defender"},
