@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_01_TIRISFAL_GLADES",
     name = "1. Tirisfal Glades 1-12 (Undead)",
-    version = 8,
+    version = 9,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 1,
@@ -27,13 +27,13 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 1485, questName = "Vile Familiars", target = "Vile Familiar Head", count = 6, map = 1411, zone = "Durotar", x = 45.2, y = 55, class = { "WARLOCK" }, mobs = "Vile Familiar" }, -- 10
         { type = "TURNIN", quest = 1485, questName = "Vile Familiars", npc = 5765, npcName = "Ruzan", map = 1411, zone = "Durotar", x = 42.6, y = 69, class = { "WARLOCK" } }, -- 11
         { type = "KILL", quest = 364, questName = "The Mindless Ones", npc = 1501, target = "Mindless Zombie", count = 8, map = 1420, zone = "Tirisfal Glades", x = 31.2, y = 63.7, near = true }, -- 12
-        { type = "ACCEPT", quest = 98389, questName = "A Light in the Darkness", npc = 244808, npcName = "Aramis Hammerhand", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66.2, note = "New in Forever" }, -- 13
-        { type = "ACCEPT", quest = 90902, questName = "Rediscovering the Light", npc = 244808, npcName = "Aramis Hammerhand", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66.2, class = { "PALADIN" }, note = "New in Forever" }, -- 14
+        { type = "ACCEPT", quest = 90902, questName = "Rediscovering the Light", npc = 244808, npcName = "Aramis Hammerhand", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66.2, class = { "PALADIN" }, note = "New in Forever" }, -- 13
+        { type = "ACCEPT", quest = 98389, questName = "A Light in the Darkness", npc = 244808, npcName = "Aramis Hammerhand", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66.2, class = { "PALADIN" }, note = "New in Forever" }, -- 14
         { type = "KILL", quest = 90902, questName = "Rediscovering the Light", npc = 259377, target = "Injured Deathguard healed", count = 5, map = 1420, zone = "Tirisfal Glades", x = 31.6, y = 64.8, class = { "PALADIN" } }, -- 15
         { type = "TURNIN", quest = 90902, questName = "Rediscovering the Light", npc = 244808, npcName = "Aramis Hammerhand", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66.2, class = { "PALADIN" } }, -- 16
         { type = "ACCEPT", quest = 376, questName = "The Damned", npc = 1661, npcName = "Novice Elreth", map = 1420, zone = "Tirisfal Glades", x = 30.9, y = 66.1 }, -- 17
-        { type = "KILL", quest = 98389, questName = "A Light in the Darkness", npc = 271961, target = "Webbed Forsaken freed", count = 6, map = 1420, zone = "Tirisfal Glades", x = 26.6, y = 59.4 }, -- 18
-        { type = "TURNIN", quest = 98389, questName = "A Light in the Darkness", npc = 244808, npcName = "Aramis Hammerhand", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66.2 }, -- 19
+        { type = "KILL", quest = 98389, questName = "A Light in the Darkness", npc = 271961, target = "Webbed Forsaken freed", count = 6, map = 1420, zone = "Tirisfal Glades", x = 26.6, y = 59.4, class = { "PALADIN" } }, -- 18
+        { type = "TURNIN", quest = 98389, questName = "A Light in the Darkness", npc = 244808, npcName = "Aramis Hammerhand", map = 1420, zone = "Tirisfal Glades", x = 31, y = 66.2, class = { "PALADIN" } }, -- 19
         { type = "COLLECT", quest = 376, questName = "The Damned", target = "Scavenger Paw", count = 6, map = 1420, zone = "Tirisfal Glades", x = 29.4, y = 65.7, near = true }, -- 20
         { type = "COLLECT", quest = 376, questName = "The Damned", target = "Duskbat Wing", count = 6, map = 1420, zone = "Tirisfal Glades", x = 29, y = 67.8, near = true }, -- 21
         { type = "TURNIN", quest = 376, questName = "The Damned", npc = 1661, npcName = "Novice Elreth", map = 1420, zone = "Tirisfal Glades", x = 30.9, y = 66.1 }, -- 22
