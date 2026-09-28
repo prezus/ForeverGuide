@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: Blackrock Depths is listed at 52-57 and Dire Maul at 56-60 instead of 60, and Blackrock Spire, Scholomance and Stratholme at 57-60: the Molten Core attunement, the Dungeon Set 2 upgrade chain and The Forging of Quel'Serrar are out of the dungeon guides. Alliance characters pick up The True Masters in Burning Steppes on the way to Blackrock Depths.
 - Guides: Ahn'Qiraj War Effort quests are out of the dungeon guides (Armor Kits for the Field, The Ultimate Deception, Eranikus, Tyrant of the Dream), so Uldaman is listed at 40-41 instead of 60, Sunken Temple at 48-55, and Scholomance and Stratholme at 58-60.
 - Guides: the raid guides are gone (Molten Core, Blackwing Lair, Zul'Gurub, Ruins of Ahn'Qiraj, Ahn'Qiraj and Naxxramas): WoW Forever has no raids. `/fg dungeons` lists dungeons only.
 - Guides: WoW Forever has no raids, so the Eastern Plaguelands chapters no longer send you toward Naxxramas: The Dread Citadel, Echoes of War, Cryptstalker Armor Doesn't Make Itself... and Bonescythe Digs are out.

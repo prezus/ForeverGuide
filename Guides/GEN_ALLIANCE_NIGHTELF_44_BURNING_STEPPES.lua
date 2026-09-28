@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_44_BURNING_STEPPES",
     name = "44. Burning Steppes 53-53 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 53,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_45_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 44 of the NightElf route: level 53 to 53, 23 steps, ~125 min of play in the model (35015 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 60,
+    stepCount = 59,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 2299, npcName = "Borgus Stoutarm", map = 1428, zone = "Burning Steppes", x = 84.3, y = 68.3 }, -- 1
         { type = "TURNIN", quest = 5781, questName = "Of Forgotten Memories", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.4, y = 43.6 }, -- 2
@@ -65,15 +65,14 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 4023, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6, optional = true }, -- 48
         { type = "ACCEPT", quest = 4024, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 49
         { type = "ACCEPT", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 50
-        { type = "NOTE", optional = true, text = "Ready for Blackrock Depths", note = "Picked up: Dark Iron Legacy, A Taste of Flame, Hurley Blackbreath, Ribbly Screwspigot, Incendius!, The Good Stuff, Kharan Mighthammer. When you have a group, open Blackrock Depths under Dungeons." }, -- 51
-        { type = "TURNIN", quest = 4324, questName = "Yuka Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22, optional = true }, -- 52
-        { type = "ACCEPT", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 53
-        { type = "COLLECT", quest = 4296, questName = "Tablet of the Seven", target = "Tablet Transcript", map = 1428, zone = "Burning Steppes", x = 54.1, y = 40.8 }, -- 54
-        { type = "TURNIN", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 55
-        { type = "TURNIN", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.8 }, -- 56
-        { type = "TURNIN", quest = 4183, questName = "The True Masters", npc = 344, npcName = "Magistrate Solomon", map = 1433, zone = "Redridge Mountains", x = 30, y = 44.2 }, -- 57
-        { type = "ACCEPT", quest = 3454, questName = "The Torch of Retribution", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39 }, -- 58
-        { type = "TURNIN", quest = 3454, questName = "The Torch of Retribution", map = 1427, zone = "Searing Gorge", x = 39, y = 39.1 }, -- 59
-        { type = "ACCEPT", quest = 7494, questName = "Feathermoon Stronghold", npc = 2198, npcName = "Crier Goodman", map = 1453, zone = "Stormwind City", x = 55, y = 62.8, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 60
+        { type = "TURNIN", quest = 4324, questName = "Yuka Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22, optional = true }, -- 51
+        { type = "ACCEPT", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 52
+        { type = "COLLECT", quest = 4296, questName = "Tablet of the Seven", target = "Tablet Transcript", map = 1428, zone = "Burning Steppes", x = 54.1, y = 40.8 }, -- 53
+        { type = "TURNIN", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 54
+        { type = "TURNIN", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.8 }, -- 55
+        { type = "TURNIN", quest = 4183, questName = "The True Masters", npc = 344, npcName = "Magistrate Solomon", map = 1433, zone = "Redridge Mountains", x = 30, y = 44.2 }, -- 56
+        { type = "ACCEPT", quest = 3454, questName = "The Torch of Retribution", npc = 8479, npcName = "Velarok Windblade", map = 1427, zone = "Searing Gorge", x = 39, y = 39 }, -- 57
+        { type = "TURNIN", quest = 3454, questName = "The Torch of Retribution", map = 1427, zone = "Searing Gorge", x = 39, y = 39.1 }, -- 58
+        { type = "ACCEPT", quest = 7494, questName = "Feathermoon Stronghold", npc = 2198, npcName = "Crier Goodman", map = 1453, zone = "Stormwind City", x = 55, y = 62.8, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 59
     } end,
 })

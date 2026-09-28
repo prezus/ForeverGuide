@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_09_WETLANDS",
     name = "9. Wetlands 23-24 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 23,
@@ -13,33 +13,32 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_10_ASHENVALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 9 of the Dwarf route: level 23 to 24, 23 steps, ~62 min of play in the model (22607 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 26,
+    stepCount = 25,
     steps = function() return {
         { type = "ACCEPT", quest = 387, questName = "Quell the Uprising", npc = 1719, npcName = "Warden Thelwater", map = 1453, zone = "Stormwind City", x = 41.2, y = 58, optional = true, note = "For The Stockade (dungeon guide)" }, -- 1
         { type = "ACCEPT", quest = 388, questName = "The Color of Blood", npc = 1721, npcName = "Nikova Raskol", map = 1453, zone = "Stormwind City", x = 73.4, y = 46.6, optional = true, note = "For The Stockade (dungeon guide)" }, -- 2
-        { type = "ACCEPT", quest = 288, questName = "The Third Fleet", npc = 1239, npcName = "First Mate Fitzsimmons", map = 1437, zone = "Wetlands", x = 10.8, y = 59.6, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 3
-        { type = "TRAVEL", map = 1437, zone = "Wetlands", x = 10.4, y = 59.8, radius = 60, note = "travel to Wetlands (Wetlands)" }, -- 4
-        { type = "ACCEPT", quest = 281, questName = "Reclaiming Goods", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 5
-        { type = "ACCEPT", quest = 471, questName = "Apprentice's Duties", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 6
-        { type = "KILL", quest = 471, questName = "Apprentice's Duties", npc = 2089, target = "Giant Wetlands Crocolisk", count = 6, map = 1437, zone = "Wetlands", x = 15.3, y = 29.2, near = true, note = "loot Giant Crocolisk Skin" }, -- 7
-        { type = "TURNIN", quest = 471, questName = "Apprentice's Duties", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 8
-        { type = "TURNIN", quest = 281, questName = "Reclaiming Goods", map = 1437, zone = "Wetlands", x = 13.5, y = 41.4 }, -- 9
-        { type = "ACCEPT", quest = 284, questName = "The Search Continues", map = 1437, zone = "Wetlands", x = 13.5, y = 41.4 }, -- 10
-        { type = "TURNIN", quest = 284, questName = "The Search Continues", map = 1437, zone = "Wetlands", x = 13.6, y = 38.2 }, -- 11
-        { type = "ACCEPT", quest = 285, questName = "Search More Hovels", map = 1437, zone = "Wetlands", x = 13.6, y = 38.2 }, -- 12
-        { type = "TURNIN", quest = 285, questName = "Search More Hovels", map = 1437, zone = "Wetlands", x = 13.9, y = 34.8 }, -- 13
-        { type = "ACCEPT", quest = 286, questName = "Return the Statuette", map = 1437, zone = "Wetlands", x = 13.9, y = 34.8 }, -- 14
-        { type = "TURNIN", quest = 286, questName = "Return the Statuette", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 15
-        { type = "ACCEPT", quest = 294, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 16
-        { type = "KILL", quest = 294, questName = "Ormer's Revenge", npc = 1020, target = "Mottled Raptor", count = 10, map = 1437, zone = "Wetlands", x = 31.5, y = 42.1, near = true }, -- 17
-        { type = "KILL", quest = 294, questName = "Ormer's Revenge", npc = 1021, target = "Mottled Screecher", count = 10, map = 1437, zone = "Wetlands", x = 30.2, y = 44.1, near = true }, -- 18
-        { type = "TURNIN", quest = 294, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 19
-        { type = "ACCEPT", quest = 295, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 20
-        { type = "KILL", quest = 295, questName = "Ormer's Revenge", npc = 1022, target = "Mottled Scytheclaw", count = 10, map = 1437, zone = "Wetlands", x = 35.6, y = 51.9, near = true }, -- 21
-        { type = "KILL", quest = 295, questName = "Ormer's Revenge", npc = 1023, target = "Mottled Razormaw", count = 10, map = 1437, zone = "Wetlands", x = 34.3, y = 49.6, near = true }, -- 22
-        { type = "TURNIN", quest = 295, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 23
-        { type = "ACCEPT", quest = 275, questName = "Blisters on The Land", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, zone = "Wetlands", x = 56.4, y = 40.4 }, -- 24
-        { type = "KILL", quest = 275, questName = "Blisters on The Land", npc = 1040, target = "Fen Creeper", count = 12, map = 1437, zone = "Wetlands", x = 55, y = 37.2, near = true }, -- 25
-        { type = "TURNIN", quest = 275, questName = "Blisters on The Land", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, zone = "Wetlands", x = 56.4, y = 40.4 }, -- 26
+        { type = "TRAVEL", map = 1437, zone = "Wetlands", x = 10.4, y = 59.8, radius = 60, note = "travel to Wetlands (Wetlands)" }, -- 3
+        { type = "ACCEPT", quest = 281, questName = "Reclaiming Goods", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 4
+        { type = "ACCEPT", quest = 471, questName = "Apprentice's Duties", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 5
+        { type = "KILL", quest = 471, questName = "Apprentice's Duties", npc = 2089, target = "Giant Wetlands Crocolisk", count = 6, map = 1437, zone = "Wetlands", x = 15.3, y = 29.2, near = true, note = "loot Giant Crocolisk Skin" }, -- 6
+        { type = "TURNIN", quest = 471, questName = "Apprentice's Duties", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 7
+        { type = "TURNIN", quest = 281, questName = "Reclaiming Goods", map = 1437, zone = "Wetlands", x = 13.5, y = 41.4 }, -- 8
+        { type = "ACCEPT", quest = 284, questName = "The Search Continues", map = 1437, zone = "Wetlands", x = 13.5, y = 41.4 }, -- 9
+        { type = "TURNIN", quest = 284, questName = "The Search Continues", map = 1437, zone = "Wetlands", x = 13.6, y = 38.2 }, -- 10
+        { type = "ACCEPT", quest = 285, questName = "Search More Hovels", map = 1437, zone = "Wetlands", x = 13.6, y = 38.2 }, -- 11
+        { type = "TURNIN", quest = 285, questName = "Search More Hovels", map = 1437, zone = "Wetlands", x = 13.9, y = 34.8 }, -- 12
+        { type = "ACCEPT", quest = 286, questName = "Return the Statuette", map = 1437, zone = "Wetlands", x = 13.9, y = 34.8 }, -- 13
+        { type = "TURNIN", quest = 286, questName = "Return the Statuette", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 14
+        { type = "ACCEPT", quest = 294, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 15
+        { type = "KILL", quest = 294, questName = "Ormer's Revenge", npc = 1020, target = "Mottled Raptor", count = 10, map = 1437, zone = "Wetlands", x = 31.5, y = 42.1, near = true }, -- 16
+        { type = "KILL", quest = 294, questName = "Ormer's Revenge", npc = 1021, target = "Mottled Screecher", count = 10, map = 1437, zone = "Wetlands", x = 30.2, y = 44.1, near = true }, -- 17
+        { type = "TURNIN", quest = 294, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 18
+        { type = "ACCEPT", quest = 295, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 19
+        { type = "KILL", quest = 295, questName = "Ormer's Revenge", npc = 1022, target = "Mottled Scytheclaw", count = 10, map = 1437, zone = "Wetlands", x = 35.6, y = 51.9, near = true }, -- 20
+        { type = "KILL", quest = 295, questName = "Ormer's Revenge", npc = 1023, target = "Mottled Razormaw", count = 10, map = 1437, zone = "Wetlands", x = 34.3, y = 49.6, near = true }, -- 21
+        { type = "TURNIN", quest = 295, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 22
+        { type = "ACCEPT", quest = 275, questName = "Blisters on The Land", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, zone = "Wetlands", x = 56.4, y = 40.4 }, -- 23
+        { type = "KILL", quest = 275, questName = "Blisters on The Land", npc = 1040, target = "Fen Creeper", count = 12, map = 1437, zone = "Wetlands", x = 55, y = 37.2, near = true }, -- 24
+        { type = "TURNIN", quest = 275, questName = "Blisters on The Land", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, zone = "Wetlands", x = 56.4, y = 40.4 }, -- 25
     } end,
 })

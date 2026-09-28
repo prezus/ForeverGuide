@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_48_SILITHUS",
   "name": "48. Silithus 55-55 (Night Elf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 55,
@@ -21,7 +21,7 @@
     {"type": "ACCEPT", "quest": 7482, "questName": "Elven Legends", "npc": 14374, "npcName": "Scholar Runethorn", "map": 1444, "zone": "Feralas", "x": 31.2, "y": 43.4, "note": "For Dire Maul (dungeon guide); Objectives: Master Kariel Winthalus Found", "optional": true},
     {"type": "TURNIN", "quest": 7482, "questName": "Elven Legends", "npc": 14374, "npcName": "Scholar Runethorn", "map": 1444, "zone": "Feralas", "x": 31.2, "y": 43.4, "optional": true},
     {"type": "ACCEPT", "quest": 7488, "questName": "Lethtendris's Web", "npc": 7877, "npcName": "Latronicus Moonspear", "map": 1444, "zone": "Feralas", "x": 30.4, "y": 46, "note": "For Dire Maul (dungeon guide)", "optional": true},
-    {"type": "NOTE", "note": "Picked up: The Third Fleet, Pusillin and the Elder Azj'Tordin, Lethtendris's Web. When you have a group, open Dire Maul under Dungeons.", "text": "Ready for Dire Maul", "optional": true},
+    {"type": "NOTE", "note": "Picked up: Pusillin and the Elder Azj'Tordin, Lethtendris's Web. When you have a group, open Dire Maul under Dungeons.", "text": "Ready for Dire Maul", "optional": true},
     {"type": "TURNIN", "quest": 7494, "questName": "Feathermoon Stronghold", "npc": 7877, "npcName": "Latronicus Moonspear", "map": 1444, "zone": "Feralas", "x": 30.4, "y": 46, "optional": true},
     {"type": "TRAVEL", "map": 1451, "zone": "Silithus", "x": 49.9, "y": 37.4, "radius": 60, "note": "travel to Silithus (Silithus)"},
     {"type": "HEARTH", "npc": 15174, "npcName": "Calandrath", "map": 1451, "zone": "Cenarion Hold", "x": 51.9, "y": 39.2, "note": "talk to Calandrath and make this inn your home"},

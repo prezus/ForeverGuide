@@ -2,105 +2,51 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_SCHOLOMANCE",
-    name = "Scholomance 58-60",
-    version = 3,
+    name = "Scholomance 57-60",
+    version = 4,
     kind = "dungeon",
     faction = "Horde",
-    minLevel = 58,
+    minLevel = 57,
     maxLevel = 60,
     map = 1422,
     zone = "Western Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Scholomance: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 88,
+    stepCount = 34,
     steps = function() return {
         { type = "ACCEPT", quest = 5531, questName = "Betina Bigglezink", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 1
         { type = "TURNIN", quest = 5531, questName = "Betina Bigglezink", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 2
         { type = "ACCEPT", quest = 5341, questName = "Barov Family Fortune", npc = 11022, npcName = "Alexi Barov", map = 1420, zone = "Tirisfal Glades", x = 83, y = 71.4 }, -- 3
         { type = "ACCEPT", quest = 4771, questName = "Dawn's Gambit", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 4
         { type = "ACCEPT", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 5
-        { type = "ACCEPT", quest = 9022, questName = "Anthion's Parting Words", npc = 16016, npcName = "Anthion Harmon", map = 1423, zone = "Eastern Plaguelands", x = 26.1, y = 11.3 }, -- 6
-        { type = "ACCEPT", quest = 9013, questName = "Saving the Best for Last", npc = 16012, npcName = "Mokvar", map = 1454, zone = "Orgrimmar", x = 34.8, y = 38 }, -- 7
-        { type = "ACCEPT", quest = 5167, questName = "Legplates of the Chromatic Defier", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.7 }, -- 8
-        { type = "ACCEPT", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 9
-        { type = "ACCEPT", quest = 5466, questName = "The Lich, Ras Frostwhisper", npc = 11286, npcName = "Magistrate Marduke", map = 1422, zone = "Western Plaguelands", x = 70.4, y = 74 }, -- 10
-        { type = "NOTE", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2, text = "Find a group for Scholomance", note = "All quests available from level 58; hand them in by level 60 for full XP" }, -- 11
-        { type = "ACCEPT", quest = 8950, questName = "The Instigator's Enchantment", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 12
-        { type = "ACCEPT", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 13
-        { type = "ACCEPT", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 14
-        { type = "ACCEPT", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 15
-        { type = "ACCEPT", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 16
-        { type = "ACCEPT", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 17
-        { type = "ACCEPT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 18
-        { type = "ACCEPT", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 19
-        { type = "KILL", quest = 4771, questName = "Dawn's Gambit", npc = 10432, target = "Vectus", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 20
-        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Brilliant Chromatic Scale", count = 10, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 21
-        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Blood of Heroes", count = 10, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 22
-        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Skin of Shadow", count = 5, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 23
-        { type = "COLLECT", quest = 5341, questName = "Barov Family Fortune", target = "The Deed to Brill", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 24
-        { type = "COLLECT", quest = 5341, questName = "Barov Family Fortune", target = "The Deed to Caer Darrow", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 25
-        { type = "COLLECT", quest = 5341, questName = "Barov Family Fortune", target = "The Deed to Southshore", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 26
-        { type = "COLLECT", quest = 5341, questName = "Barov Family Fortune", target = "The Deed to Tarren Mill", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 27
-        { type = "KILL", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", npc = 11261, target = "Doctor Theolen Krastinov", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 28
-        { type = "COMPLETE", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", target = "Remains of Eva Sarkhoff Burned", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 29
-        { type = "COMPLETE", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", target = "Remains of Lucien Sarkhoff Burned", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 30
-        { type = "COLLECT", quest = 5466, questName = "The Lich, Ras Frostwhisper", target = "Human Head of Ras Frostwhisper", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 31
-        { type = "KILL", quest = 5529, questName = "Plagued Hatchlings", npc = 10678, target = "Plagued Hatchling", count = 20, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 32
-        { type = "COLLECT", quest = 9013, questName = "Saving the Best for Last", target = "Helm of Valor", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 33
-        { type = "COLLECT", quest = 9013, questName = "Saving the Best for Last", target = "Breastplate of Valor", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 34
-        { type = "COLLECT", quest = 9022, questName = "Anthion's Parting Words", target = "Boots of Valor", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 35
-        { type = "COLLECT", quest = 9022, questName = "Anthion's Parting Words", target = "Legplates of Valor", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 36
-        { type = "COLLECT", quest = 9022, questName = "Anthion's Parting Words", target = "Spaulders of Valor", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 37
-        { type = "COLLECT", quest = 8950, questName = "The Instigator's Enchantment", target = "Jeering Spectre's Essence", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 38
-        { type = "COLLECT", quest = 8950, questName = "The Instigator's Enchantment", target = "Dark Rune", count = 4, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 39
-        { type = "COLLECT", quest = 8950, questName = "The Instigator's Enchantment", target = "Large Brilliant Shard", count = 8, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 40
-        { type = "KILL", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", npc = 16080, target = "Mor Grayhoof", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 41
-        { type = "COLLECT", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Left Piece of Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 42
-        { type = "COMPLETE", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 43
-        { type = "KILL", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", npc = 16097, target = "Isalien", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 44
-        { type = "COLLECT", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Left Piece of Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 45
-        { type = "COMPLETE", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 46
-        { type = "KILL", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", npc = 16118, target = "Kormok", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 47
-        { type = "COLLECT", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Left Piece of Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 48
-        { type = "COMPLETE", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 49
-        { type = "KILL", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16080, target = "Mor Grayhoof", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 50
-        { type = "COLLECT", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 51
-        { type = "COMPLETE", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 52
-        { type = "COLLECT", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Right Piece of Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 53
-        { type = "KILL", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16097, target = "Isalien", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 54
-        { type = "COLLECT", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 55
-        { type = "COMPLETE", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 56
-        { type = "COLLECT", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Right Piece of Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 57
-        { type = "KILL", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16101, target = "Jarien", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 58
-        { type = "KILL", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16102, target = "Sothos", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 59
-        { type = "COLLECT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 60
-        { type = "COMPLETE", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 61
-        { type = "COLLECT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Right Piece of Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 62
-        { type = "KILL", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", npc = 16118, target = "Kormok", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 63
-        { type = "COLLECT", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 64
-        { type = "COMPLETE", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Brazier of Beckoning", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 65
-        { type = "COLLECT", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", target = "Right Piece of Lord Valthalak's Amulet", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 66
-        { type = "TURNIN", quest = 8950, questName = "The Instigator's Enchantment", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 67
-        { type = "TURNIN", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 68
-        { type = "TURNIN", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 69
-        { type = "TURNIN", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 70
-        { type = "TURNIN", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 71
-        { type = "TURNIN", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 72
-        { type = "TURNIN", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 73
-        { type = "TURNIN", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 74
-        { type = "TURNIN", quest = 5167, questName = "Legplates of the Chromatic Defier", npc = 10976, npcName = "Jeziba", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.8 }, -- 75
-        { type = "TURNIN", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 76
-        { type = "TURNIN", quest = 5466, questName = "The Lich, Ras Frostwhisper", npc = 11286, npcName = "Magistrate Marduke", map = 1422, zone = "Western Plaguelands", x = 70.4, y = 74 }, -- 77
-        { type = "TURNIN", quest = 4771, questName = "Dawn's Gambit", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 78
-        { type = "TURNIN", quest = 5341, questName = "Barov Family Fortune", npc = 11022, npcName = "Alexi Barov", map = 1420, zone = "Tirisfal Glades", x = 83, y = 71.4 }, -- 79
-        { type = "TURNIN", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 80
-        { type = "TURNIN", quest = 9013, questName = "Saving the Best for Last", npc = 16012, npcName = "Mokvar", map = 1454, zone = "Orgrimmar", x = 34.8, y = 38 }, -- 81
-        { type = "TURNIN", quest = 9022, questName = "Anthion's Parting Words", npc = 16012, npcName = "Mokvar", map = 1454, zone = "Orgrimmar", x = 34.8, y = 38 }, -- 82
-        { type = "ACCEPT", quest = 5515, questName = "Krastinov's Bag of Horrors", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 83
-        { type = "TURNIN", quest = 5515, questName = "Krastinov's Bag of Horrors", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 84
-        { type = "ACCEPT", quest = 5384, questName = "Kirtonos the Herald", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 85
-        { type = "TURNIN", quest = 5384, questName = "Kirtonos the Herald", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 86
-        { type = "ACCEPT", quest = 5582, questName = "Healthy Dragon Scale", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 87
-        { type = "TURNIN", quest = 5582, questName = "Healthy Dragon Scale", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 88
+        { type = "ACCEPT", quest = 5167, questName = "Legplates of the Chromatic Defier", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.7 }, -- 6
+        { type = "ACCEPT", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 7
+        { type = "ACCEPT", quest = 5466, questName = "The Lich, Ras Frostwhisper", npc = 11286, npcName = "Magistrate Marduke", map = 1422, zone = "Western Plaguelands", x = 70.4, y = 74 }, -- 8
+        { type = "NOTE", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2, text = "Find a group for Scholomance", note = "All quests available from level 57; hand them in by level 60 for full XP" }, -- 9
+        { type = "KILL", quest = 4771, questName = "Dawn's Gambit", npc = 10432, target = "Vectus", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 10
+        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Brilliant Chromatic Scale", count = 10, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 11
+        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Blood of Heroes", count = 10, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 12
+        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Skin of Shadow", count = 5, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 13
+        { type = "COLLECT", quest = 5341, questName = "Barov Family Fortune", target = "The Deed to Brill", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 14
+        { type = "COLLECT", quest = 5341, questName = "Barov Family Fortune", target = "The Deed to Caer Darrow", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 15
+        { type = "COLLECT", quest = 5341, questName = "Barov Family Fortune", target = "The Deed to Southshore", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 16
+        { type = "COLLECT", quest = 5341, questName = "Barov Family Fortune", target = "The Deed to Tarren Mill", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 17
+        { type = "KILL", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", npc = 11261, target = "Doctor Theolen Krastinov", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 18
+        { type = "COMPLETE", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", target = "Remains of Eva Sarkhoff Burned", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 19
+        { type = "COMPLETE", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", target = "Remains of Lucien Sarkhoff Burned", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 20
+        { type = "COLLECT", quest = 5466, questName = "The Lich, Ras Frostwhisper", target = "Human Head of Ras Frostwhisper", count = 1, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 21
+        { type = "KILL", quest = 5529, questName = "Plagued Hatchlings", npc = 10678, target = "Plagued Hatchling", count = 20, map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 22
+        { type = "TURNIN", quest = 5167, questName = "Legplates of the Chromatic Defier", npc = 10976, npcName = "Jeziba", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.8 }, -- 23
+        { type = "TURNIN", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 24
+        { type = "TURNIN", quest = 5466, questName = "The Lich, Ras Frostwhisper", npc = 11286, npcName = "Magistrate Marduke", map = 1422, zone = "Western Plaguelands", x = 70.4, y = 74 }, -- 25
+        { type = "TURNIN", quest = 4771, questName = "Dawn's Gambit", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 26
+        { type = "TURNIN", quest = 5341, questName = "Barov Family Fortune", npc = 11022, npcName = "Alexi Barov", map = 1420, zone = "Tirisfal Glades", x = 83, y = 71.4 }, -- 27
+        { type = "TURNIN", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 28
+        { type = "ACCEPT", quest = 5515, questName = "Krastinov's Bag of Horrors", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 29
+        { type = "TURNIN", quest = 5515, questName = "Krastinov's Bag of Horrors", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 30
+        { type = "ACCEPT", quest = 5384, questName = "Kirtonos the Herald", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 31
+        { type = "TURNIN", quest = 5384, questName = "Kirtonos the Herald", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8 }, -- 32
+        { type = "ACCEPT", quest = 5582, questName = "Healthy Dragon Scale", map = 1422, zone = "Western Plaguelands", x = 69.7, y = 73.2 }, -- 33
+        { type = "TURNIN", quest = 5582, questName = "Healthy Dragon Scale", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 34
     } end,
 })
