@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_AHN_QIRAJ",
     name = "Ahn'Qiraj 60-60",
-    version = 1,
+    version = 2,
     kind = "dungeon",
     faction = "Horde",
     minLevel = 60,
@@ -12,14 +12,15 @@ ns.RegisterGuide({
     zone = "Silithus",
     author = "ForeverGuide route planner",
     notes = "Ahn'Qiraj: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 7,
+    stepCount = 8,
     steps = function() return {
         { type = "NOTE", map = 1451, zone = "Silithus", x = 28.6, y = 92.3, text = "Find a group for Ahn'Qiraj", note = "All quests available from level 60; hand them in by level 60 for full XP" }, -- 1
         { type = "ACCEPT", quest = 8579, questName = "Mortal Champions", map = 1451, zone = "Silithus", x = 28.6, y = 92.3 }, -- 2
         { type = "ACCEPT", quest = 8801, questName = "C'Thun's Legacy", map = 1451, zone = "Silithus", x = 28.6, y = 92.3 }, -- 3
-        { type = "TURNIN", quest = 8579, questName = "Mortal Champions", map = 1451, zone = "Silithus", x = 28.6, y = 92.3 }, -- 4
-        { type = "TURNIN", quest = 8801, questName = "C'Thun's Legacy", npc = 15379, npcName = "Caelestrasz", map = 1451, zone = "Silithus", x = 28.6, y = 89.2 }, -- 5
-        { type = "ACCEPT", quest = 8802, questName = "The Savior of Kalimdor", npc = 15379, npcName = "Caelestrasz", map = 1451, zone = "Silithus", x = 28.6, y = 89.2 }, -- 6
-        { type = "TURNIN", quest = 8802, questName = "The Savior of Kalimdor", npc = 15192, npcName = "Anachronos", map = 1446, zone = "Tanaris", x = 65.2, y = 50 }, -- 7
+        { type = "COLLECT", quest = 8579, questName = "Mortal Champions", target = "Qiraji Lord's Insignia", count = 1, map = 1451, zone = "Silithus", x = 28.6, y = 92.3 }, -- 4
+        { type = "TURNIN", quest = 8579, questName = "Mortal Champions", map = 1451, zone = "Silithus", x = 28.6, y = 92.3 }, -- 5
+        { type = "TURNIN", quest = 8801, questName = "C'Thun's Legacy", npc = 15379, npcName = "Caelestrasz", map = 1451, zone = "Silithus", x = 28.6, y = 89.2 }, -- 6
+        { type = "ACCEPT", quest = 8802, questName = "The Savior of Kalimdor", npc = 15379, npcName = "Caelestrasz", map = 1451, zone = "Silithus", x = 28.6, y = 89.2 }, -- 7
+        { type = "TURNIN", quest = 8802, questName = "The Savior of Kalimdor", npc = 15192, npcName = "Anachronos", map = 1446, zone = "Tanaris", x = 65.2, y = 50 }, -- 8
     } end,
 })
