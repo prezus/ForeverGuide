@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_29_TANARIS",
     name = "29. Tanaris 42-43 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 42,
@@ -15,8 +15,8 @@ ns.RegisterGuide({
     notes = "Chapter 29 of the Dwarf route: level 42 to 43, 33 steps, ~155 min of play in the model (31686 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 48,
     steps = [[{
-{type="ACCEPT",quest=4490,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"}},
-{type="TURNIN",quest=4490,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"}},
+{type="ACCEPT",quest=4490,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"},race={"Gnome"}},
+{type="TURNIN",quest=4490,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"},race={"Gnome"}},
 {type="TRAVEL",map=1444,zone="Feathermoon Stronghold",x=31.0,y=43.5,radius=60,note="use your hearthstone (Feathermoon Stronghold)"},
 {type="FLIGHTPATH",npc=7823,npcName="Bera Stonehammer",map=1446,zone="Tanaris",x=51,y=29.3},
 {type="ACCEPT",quest=2768,questName="Divino-matic Rod",npc=7407,npcName="Chief Engineer Bilgewhizzle",map=1446,zone="Tanaris",x=52.4,y=28.4,optional=true,note="For Zul'Farrak (dungeon guide)"},
