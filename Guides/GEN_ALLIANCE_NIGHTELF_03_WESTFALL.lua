@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_03_WESTFALL",
     name = "3. Westfall 12-16 (Night Elf)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 12,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_04_LOCH_MODAN",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the NightElf route: level 12 to 16, 50 steps, ~169 min of play in the model (16062 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 123,
+    stepCount = 121,
     steps = [[{
 {type="FLIGHTPATH",npc=523,npcName="Thor",map=1436,zone="Westfall",x=56.6,y=52.6},
 {type="TURNIN",quest=963,questName="For Love Eternal",npc=3644,npcName="Cerellean Whiteclaw",map=1439,zone="Darkshore",x=35.8,y=43.6},
@@ -21,8 +21,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1684,questName="Elanaria",npc=4088,npcName="Elanaria",map=1457,zone="Darnassus",x=57.4,y=34.8,class={"WARRIOR"}},
 {type="ACCEPT",quest=6071,questName="The Hunter's Path",npc=4146,npcName="Jocaste",map=1457,zone="Darnassus",x=40.2,y=8.8,class={"HUNTER"}},
 {type="TURNIN",quest=6071,questName="The Hunter's Path",npc=3601,npcName="Dazalar",map=1438,zone="Teldrassil",x=56.6,y=59.6,class={"HUNTER"}},
-{type="ACCEPT",quest=6072,questName="The Hunter's Path",npc=3596,npcName="Ayanna Everstride",map=1438,zone="Teldrassil",x=58.4,y=40.6,class={"HUNTER"}},
-{type="TURNIN",quest=6072,questName="The Hunter's Path",npc=3601,npcName="Dazalar",map=1438,zone="Teldrassil",x=56.6,y=59.6,class={"HUNTER"}},
 {type="ACCEPT",quest=6073,questName="The Hunter's Path",npc=5515,npcName="Einris Brightspear",map=1453,zone="Stormwind City",x=61.6,y=15.4,class={"HUNTER"}},
 {type="TURNIN",quest=6073,questName="The Hunter's Path",npc=3601,npcName="Dazalar",map=1438,zone="Teldrassil",x=56.6,y=59.6,class={"HUNTER"}},
 {type="ACCEPT",quest=6721,questName="The Hunter's Path",npc=5116,npcName="Olmin Burningbeard",map=1455,zone="Ironforge",x=70.6,y=83.8,class={"HUNTER"}},

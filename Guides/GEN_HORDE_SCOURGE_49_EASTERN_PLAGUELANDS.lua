@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_49_EASTERN_PLAGUELANDS",
     name = "49. Eastern Plaguelands 57-60 (Undead)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 57,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Chapter 49 of the Scourge route: level 57 to 60, 30 steps, ~815 min of play in the model (9572 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 81,
+    stepCount = 80,
     steps = [[{
 {type="ACCEPT",quest=5513,questName="Mantles of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60,note="Objectives: Argent Dawn"},
 {type="ACCEPT",quest=5517,questName="Chromatic Mantle of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60,note="Objectives: Argent Dawn"},
@@ -37,7 +37,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=9200,questName="Craftsman's Writ - Major Mana Potion",npc=16131,npcName="Rohan the Assassin",map=1423,zone="Eastern Plaguelands",x=81.4,y=58.4,optional=true,note="Loot Craftsman's Writ - Major Mana Potion from Rohan the Assassin and use it to start the quest; Elite - group up"},
 {type="ACCEPT",quest=9202,questName="Craftsman's Writ - Major Healing Potion",npc=16131,npcName="Rohan the Assassin",map=1423,zone="Eastern Plaguelands",x=81.4,y=58.4,optional=true,note="Loot Craftsman's Writ - Major Healing Potion from Rohan the Assassin and use it to start the quest; Elite - group up"},
 {type="ACCEPT",quest=9128,questName="The Elemental Equation",npc=16116,npcName="Archmage Angela Dosantos",map=1423,zone="Eastern Plaguelands",x=81.5,y=58.3},
-{type="TURNIN",quest=8859,questName="Secrets of the Colossus - Zora",npc=11034,npcName="Lord Maxwell Tyrosus",map=1423,zone="Eastern Plaguelands",x=81.6,y=58},
 {type="ACCEPT",quest=9141,questName="They Call Me \"The Rooster\"",npc=16212,npcName="Dispatch Commander Metz",map=1423,zone="Eastern Plaguelands",x=81,y=57.6},
 {type="ACCEPT",quest=9665,questName="Bolstering Our Defenses",npc=17072,npcName="Emmisary Gormok",map=1423,zone="Eastern Plaguelands",x=80,y=57.4},
 {type="ACCEPT",quest=5281,questName="The Restless Souls",npc=11038,npcName="Caretaker Alen",map=1423,zone="Eastern Plaguelands",x=79.6,y=63.9},

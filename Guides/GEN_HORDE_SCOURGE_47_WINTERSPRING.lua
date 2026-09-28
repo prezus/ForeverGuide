@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_47_WINTERSPRING",
     name = "47. Winterspring 55-57 (Undead)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 55,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_48_SILITHUS",
     author = "ForeverGuide route planner",
     notes = "Chapter 47 of the Scourge route: level 55 to 57, 22 steps, ~498 min of play in the model (5376 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 58,
+    stepCount = 56,
     steps = [[{
 {type="FLIGHTPATH",npc=11139,npcName="Yugrek",map=1452,zone="Winterspring",x=60.5,y=36.3},
 {type="ACCEPT",quest=6605,questName="A Strange One",npc=11755,npcName="Harlo Wigglesworth",map=1452,zone="Winterspring",x=61,y=38.4},
@@ -48,8 +48,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=4842,questName="Strange Sources",npc=9298,npcName="Donova Snowden",map=1452,zone="Winterspring",x=31.2,y=45.2},
 {type="KILL",quest=5055,questName="Brumeran of the Chillwind",npc=10807,target="Brumeran",count=1,map=1452,zone="Winterspring",x=61.2,y=56.2,optional=true},
 {type="TURNIN",quest=5055,questName="Brumeran of the Chillwind",npc=10303,npcName="Storm Shadowhoof",map=1452,zone="Winterspring",x=61.8,y=38.4,optional=true},
-{type="ACCEPT",quest=6606,questName="A Little Luck",npc=11755,npcName="Harlo Wigglesworth",map=1452,zone="Winterspring",x=61,y=38.4},
-{type="TURNIN",quest=6606,questName="A Little Luck",npc=10307,npcName="Witch Doctor Mau'ari",map=1452,zone="Winterspring",x=61.8,y=38.2},
 {type="KILL",quest=8464,questName="Winterfall Activity",npc=7438,target="Winterfall Ursa",count=8,map=1452,zone="Winterspring",x=65.1,y=37.2,near=true},
 {type="KILL",quest=8464,questName="Winterfall Activity",npc=7439,target="Winterfall Shaman",count=8,map=1452,zone="Winterspring",x=67.4,y=35.2,near=true},
 {type="ACCEPT",quest=5056,questName="Shy-Rotam",npc=10303,npcName="Storm Shadowhoof",map=1452,zone="Winterspring",x=61.8,y=38.4,optional=true,note="Elite - group up"},

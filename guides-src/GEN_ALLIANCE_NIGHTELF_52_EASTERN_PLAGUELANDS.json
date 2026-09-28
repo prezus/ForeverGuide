@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_52_EASTERN_PLAGUELANDS",
   "name": "52. Eastern Plaguelands 57-60 (Night Elf)",
-  "version": 6,
+  "version": 7,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 57,
@@ -47,7 +47,6 @@
     {"type": "TURNIN", "quest": 5245, "questName": "Troubled Spirits of Kel'Theril", "npc": 10304, "npcName": "Aurora Skycaller", "map": 1423, "zone": "Eastern Plaguelands", "x": 53.4, "y": 22},
     {"type": "ACCEPT", "quest": 5282, "questName": "The Restless Souls", "npc": 11140, "npcName": "Egan", "map": 1423, "zone": "Eastern Plaguelands", "x": 14.4, "y": 33.6, "note": "For Stratholme (dungeon guide)", "optional": true},
     {"type": "KILL", "quest": 6024, "questName": "Hameya's Plea", "npc": 12248, "target": "Infiltrator Hameya", "map": 1423, "zone": "Eastern Plaguelands", "x": 70.7, "y": 16.5, "note": "loot Hameya's Key"},
-    {"type": "TURNIN", "quest": 8859, "questName": "Secrets of the Colossus - Zora", "npc": 11034, "npcName": "Lord Maxwell Tyrosus", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.6, "y": 58},
     {"type": "ACCEPT", "quest": 9141, "questName": "They Call Me \"The Rooster\"", "npc": 16212, "npcName": "Dispatch Commander Metz", "map": 1423, "zone": "Eastern Plaguelands", "x": 81, "y": 57.6},
     {"type": "COLLECT", "quest": 9141, "questName": "They Call Me \"The Rooster\"", "target": "Argent Dawn Valor Token", "count": 1, "mobs": "Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.4, "y": 60, "near": true},
     {"type": "TURNIN", "quest": 9141, "questName": "They Call Me \"The Rooster\"", "npc": 16212, "npcName": "Dispatch Commander Metz", "map": 1423, "zone": "Eastern Plaguelands", "x": 81, "y": 57.6},

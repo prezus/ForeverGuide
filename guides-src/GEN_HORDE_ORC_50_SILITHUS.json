@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_50_SILITHUS",
   "name": "50. Silithus 57-57 (Orc)",
-  "version": 4,
+  "version": 5,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 57,
@@ -23,7 +23,6 @@
     {"type": "COLLECT", "quest": 7602, "questName": "Flawless Fel Essence", "target": "Flawless Fel Essence (Dark Portal)", "count": 1, "mobs": "Felguard Sentry", "map": 1419, "zone": "Blasted Lands", "x": 57.7, "y": 50.6, "class": ["WARLOCK"]},
     {"type": "TURNIN", "quest": 7602, "questName": "Flawless Fel Essence", "npc": 14470, "npcName": "Impsy", "map": 1448, "zone": "Felwood", "x": 41.4, "y": 44.8, "class": ["WARLOCK"]},
     {"type": "TRAVEL", "map": 1451, "zone": "Silithus", "x": 49.3, "y": 37.1, "radius": 60, "note": "travel to Silithus (Silithus)"},
-    {"type": "ACCEPT", "quest": 8859, "questName": "Secrets of the Colossus - Zora", "npc": 15797, "npcName": "Colossus Researcher Sophia", "map": 1451, "zone": "Silithus", "x": 49.4, "y": 37.2},
     {"type": "ACCEPT", "quest": 8285, "questName": "The Deserter", "npc": 15183, "npcName": "Geologist Larksbane", "map": 1451, "zone": "Silithus", "x": 49.7, "y": 37.5},
     {"type": "ACCEPT", "quest": 9416, "questName": "Report to General Kirika", "npc": 17081, "npcName": "Scout Bloodfist", "map": 1451, "zone": "Silithus", "x": 49, "y": 36.7},
     {"type": "ACCEPT", "quest": 8318, "questName": "Secret Communication", "npc": 15306, "npcName": "Bor Wildmane", "map": 1451, "zone": "Silithus", "x": 48.6, "y": 37.8},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_38_UN_GORO_CRATER",
     name = "38. Un'Goro Crater 50-51 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 50,
@@ -13,9 +13,8 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_39_FELWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 38 of the Skyborne route: level 50 to 51, 27 steps, ~286 min of play in the model (38458 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 36,
+    stepCount = 35,
     steps = [[{
-{type="TURNIN",quest=7905,questName="The Darkmoon Faire",npc=14828,npcName="Gelvas Grimegate",map=1429,zone="Elwynn Forest",x=41.6,y=68.8},
 {type="TURNIN",quest=2769,questName="The Brassbolts Brothers",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77},
 {type="ACCEPT",quest=5066,questName="A Call to Arms: The Plaguelands!",npc=2198,npcName="Crier Goodman",map=1453,zone="Stormwind City",x=55,y=62.8},
 {type="TURNIN",quest=2861,questName="Tabetha's Task",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57,optional=true},
