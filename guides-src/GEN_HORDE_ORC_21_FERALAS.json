@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_21_FERALAS",
   "name": "21. Feralas 40-40 (Orc)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 40,
@@ -16,6 +16,8 @@
     {"type": "TURNIN", "quest": 1107, "questName": "Encrusted Tail Fins", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78, "y": 77, "optional": true},
     {"type": "TURNIN", "quest": 1137, "questName": "News for Fizzle", "npc": 4454, "npcName": "Fizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78, "y": 77},
     {"type": "ACCEPT", "quest": 2770, "questName": "Gahz'rilla", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78, "y": 77, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
+    {"type": "ACCEPT", "quest": 1515, "questName": "Dogran's Captivity", "npc": 5911, "npcName": "Grunt Logmar", "map": 1413, "zone": "The Barrens", "x": 44.6, "y": 59.2, "class": ["WARLOCK"], "race": ["Orc"]},
+    {"type": "TURNIN", "quest": 1515, "questName": "Dogran's Captivity", "npc": 5908, "npcName": "Grunt Dogran", "map": 1413, "zone": "The Barrens", "x": 43.2, "y": 47.8, "note": "reduced xp (10%) - you out-levelled it", "class": ["WARLOCK"], "race": ["Orc"]},
     {"type": "ACCEPT", "quest": 3631, "questName": "Summon Felsteed", "npc": 3326, "npcName": "Zevrost", "map": 1454, "zone": "Orgrimmar", "x": 48.4, "y": 45.6, "class": ["WARLOCK"], "race": ["Orc"]},
     {"type": "TURNIN", "quest": 3631, "questName": "Summon Felsteed", "npc": 6251, "npcName": "Strahad Farsan", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 35.4, "class": ["WARLOCK"], "race": ["Orc"]},
     {"type": "ACCEPT", "quest": 4489, "questName": "Summon Felsteed", "npc": 4563, "npcName": "Kaal Soulreaper", "map": 1458, "zone": "Undercity", "x": 86, "y": 15.6, "class": ["WARLOCK"], "race": ["Orc"]},
