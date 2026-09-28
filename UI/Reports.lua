@@ -77,6 +77,7 @@ function Reports:MissingQuest(questID)
         guide = guide and guide.id, step = guide and ns.Guide.current, objectives = {},
     }
     if npc and npc.npcID then r.npc, r.npcName = npc.npcID, npc.name end
+    r.race, r.class, r.faction = ns.Player:GetIdentity()
     for _, obj in ipairs(quest.objectives) do
         r.objectives[#r.objectives + 1] = {
             text = obj.text, numFulfilled = obj.numFulfilled,
@@ -89,6 +90,13 @@ function Reports:MissingQuest(questID)
     ns.Printf("missing route quest reported: %s (%d). Copy it with /fg reports.", quest.title, questID)
 end
 
+-- " Scourge ROGUE Horde" after the level: the character the report is about. Empty for a report
+-- saved before reports recorded it.
+local function Identity(r)
+    if not r.race then return "" end
+    return " " .. r.race .. " " .. tostring(r.class or "?") .. " " .. tostring(r.faction or "?")
+end
+
 local function Export(reports)
     local lines = {}
     for i, r in ipairs(reports) do
@@ -99,7 +107,7 @@ local function Export(reports)
         lines[#lines + 1] = string.format("%d. time %s | %s%s | quest %s | %s | expected %s | actual %s | level %s%s | %s",
             i, tostring(r.t or "?"), r.guide and (r.guide .. " step " .. tostring(r.step or "?")) or (r.mode or "unknown mode"),
             r.type and (" " .. r.type) or (r.what and " " .. r.what or ""), tostring(r.q or "?"),
-            r.text or r.title or "(no description)", r.type == "MISSING_ROUTE_QUEST" and "not in route" or where, actual, tostring(r.lvl or "?"),
+            r.text or r.title or "(no description)", r.type == "MISSING_ROUTE_QUEST" and "not in route" or where, actual, tostring(r.lvl or "?") .. Identity(r),
             r.npc and (" | target NPC " .. tostring(r.npc) .. " " .. (r.npcName or "")) or "",
             r.npcStep and ("expected NPC " .. tostring(r.npcStep)) or "")
         if r.type == "MISSING_ROUTE_QUEST" then

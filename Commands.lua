@@ -697,6 +697,7 @@ function handlers.wrong(rest)
     local map, x, y = P:GetMapPosition()
     local zone, sub = P:GetZone()
     local r = { t = ns.Now(), text = ns.Utf8Sub(rest, ns.Reports.TEXT_MAX), m = map, x = x, y = y, zone = zone, sub = sub, lvl = P:GetLevel() }
+    r.race, r.class, r.faction = P:GetIdentity()
     local npc = P:GetUnitInfo("target")
     if npc and npc.npcID then r.npc = npc.npcID r.npcName = npc.name end
     if T and T:IsActive() and (not G.active or ns.char.mode == "auto") then

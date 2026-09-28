@@ -19,7 +19,8 @@ A share never contains:
 - **Other players.** A quest shared by a party member is only flagged `shared`. The sharer's
   name, level and id are never read.
 - **Who the player is.** No character name, realm, account, GUID, guild or chat. The profile
-  holds only race, class and faction.
+  holds only race, class and faction. Each report carries the same three for the character that
+  made it, since reports outlive the character that ran `/fg share`.
 - **Time.** No timestamps or dates. `order` is the only sequence: the order in which quests
   were accepted and turned in during the session.
 - **Exact positions.** Spots are rounded to half a map unit (`cells`).
@@ -142,6 +143,9 @@ the uiMapID's 0-100 map.
 | `reports[].npc` | integer | Targeted creature id |
 | `reports[].npcName` | string | Targeted creature name |
 | `reports[].npcStep` | integer | The creature id the step names |
+| `reports[].race` | string | The race token of the character that made the report (`Scourge`, ...) |
+| `reports[].class` | string | Its class token (`ROGUE`, ...) |
+| `reports[].faction` | string | Its faction, `Alliance` or `Horde` (Skyborne play on both) |
 | `reports[].loc.m` | integer | Where the step pointed: uiMapID |
 | `reports[].loc.x` | number | Where the step pointed: x |
 | `reports[].loc.y` | number | Where the step pointed: y |

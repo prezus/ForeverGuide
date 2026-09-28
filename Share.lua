@@ -70,6 +70,7 @@ local SCHEMA = Obj {
         { "text", Str(200) }, { "title", Str(120) }, { "questLevel", "int" }, { "ready", "bool" }, { "failed", "bool" },
         { "m", "int" }, { "x", "num" }, { "y", "num" }, { "zone", Str(80) }, { "sub", Str(80) }, { "lvl", "int" },
         { "npc", "int" }, { "npcName", Str(80) }, { "npcStep", "int" },
+        { "race", Str(20) }, { "class", Str(20) }, { "faction", Str(20) },
         { "loc", Obj { { "m", "int" }, { "x", "num" }, { "y", "num" }, { "id", "int" }, { "kind", Str(20) } } },
         { "objectives", List(Obj {
             { "text", Str(160) }, { "numFulfilled", "int" }, { "numRequired", "int" }, { "finished", "bool" },
@@ -261,6 +262,12 @@ end
 -- ---- the readable summary -----------------------------------------------------------
 local function Num(n) return string.format("%.14g", n) end
 
+-- "Scourge Rogue, Horde": a race token, a class token read as a word, and a faction.
+local function Who(race, class, faction)
+    local word = class and (class:sub(1, 1) .. class:sub(2):lower())
+    return string.format("%s %s, %s", race or "?", word or "?", faction or "?")
+end
+
 local function MapName(doc, mapID)
     local m = doc.maps and doc.maps[mapID]
     return m and m.name and (m.name .. " (" .. mapID .. ")") or ("map " .. mapID)
@@ -307,9 +314,7 @@ function Share:Summary(doc)
     add("ForeverGuide repository shows how to decode it with common tools and validate it against its schema.")
     add("")
     local p = doc.profile or {}
-    local class = p.class and (p.class:sub(1, 1) .. p.class:sub(2):lower())
-    add("About you: %s %s, %s. ForeverGuide %s, game build %s.", p.race or "?", class or "?", p.faction or "?",
-        doc.addon or "?", doc.build or "?")
+    add("About you: %s. ForeverGuide %s, game build %s.", Who(p.race, p.class, p.faction), doc.addon or "?", doc.build or "?")
     local function section(title, n, what)
         add("")
         add("%s (%d) - %s", title, n, what)
@@ -388,6 +393,7 @@ function Share:Summary(doc)
             if r.q then parts[#parts + 1] = "quest " .. r.q end
             if r.m then parts[#parts + 1] = "at " .. MapName(doc, r.m) .. " " .. Num(r.x or 0) .. ", " .. Num(r.y or 0) end
             if r.lvl then parts[#parts + 1] = "level " .. r.lvl end
+            if r.race then parts[#parts + 1] = "as " .. Who(r.race, r.class, r.faction) end
             if r.npc then parts[#parts + 1] = "target " .. (r.npcName or "creature") .. " (" .. r.npc .. ")" end
             add("   %s", table.concat(parts, ", "))
         end

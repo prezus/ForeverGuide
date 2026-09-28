@@ -238,7 +238,7 @@ do
     c.quests[5010].sharer = "Partymate"
     c.npcs[9001].guid = "Player-1-000001"
     ns.db.reports = { { t = 1234.5, text = "giver moved", q = 5010, m = MOCK.mapID, x = 40.1, y = 50.2, lvl = 5,
-        npc = 9001, npcName = "Marshal Test", secret = "Tester" } }
+        npc = 9001, npcName = "Marshal Test", secret = "Tester", race = "Scourge", class = "ROGUE", faction = "Horde" } }
     local doc = json.decode(ns.Share:Json())
     local q = doc.quests and doc.quests["5010"]
     check(doc.format == 2 and doc.addon == ns.version and doc.profile and doc.profile.race and doc.profile.class
@@ -249,6 +249,8 @@ do
     check(order[#order - 2] == 5010 and order[#order - 1] == -5010 and order[#order] == 5005, "the share carries the session order")
     local r = doc.reports and doc.reports[1]
     check(r and r.text == "giver moved" and r.npc == 9001 and r.t == nil and r.secret == nil, "reports are shared without their time or unknown fields")
+    check(r and r.race == "Scourge" and r.class == "ROGUE" and r.faction == "Horde", "a shared report names the character that made it")
+    check(ns.Share:Summary():find("as Scourge Rogue, Horde", 1, true), "Readable names the character of each report")
     local raw = ns.Share:Json()
     check(not raw:find("Partymate", 1, true) and not raw:find("Player-", 1, true) and not raw:find("Tester", 1, true)
         and not raw:find("Classic Beta PvE 2", 1, true) and not raw:find("sharer", 1, true) and not raw:find("guid", 1, true),
@@ -527,6 +529,8 @@ do
         and missing.objectives and missing.objectives[1] and missing.objectives[1].text == "Gather 2 things"
         and missing.objectives[1].numFulfilled == 1 and missing.objectives[1].numRequired == 2,
         "right-click captures unknown quest, objectives, route and player location")
+    check(missing and missing.race == "Human" and missing.class == "WARRIOR" and missing.faction == "Alliance",
+        "a missing-quest report records the character's race, class and faction")
     check(missing and ns.Reports.Export({ missing }):find("Unplanned errand", 1, true)
         and ns.Reports.Export({ missing }):find("Gather 2 things", 1, true),
         "copyable report includes quest title and objectives")
@@ -990,6 +994,13 @@ do
         "the feedback dialog asks players to leave names out")
     ns.Commands:Run("wrong " .. string.rep("x", 300))
     check(#ns.db.reports[3].text == 200, "report text is capped at 200 characters")
+    local first = ns.db.reports[1]
+    check(first.race == "Human" and first.class == "WARRIOR" and first.faction == "Alliance",
+        "a report records the race, class and faction of the character that made it")
+    check(ns.Reports.Export({ first }):find("| level %d+ Human WARRIOR Alliance |"),
+        "the copyable report names the character after its level")
+    check(ns.Reports.Export({ { t = 1, text = "old", lvl = 3 } }):find("| level 3 | ", 1, true),
+        "a report saved before reports named the character exports as before")
     table.remove(ns.db.reports, 3)
     ns.Commands:Run("wrong " .. string.rep("x", 199) .. "\195\169")
     check(ns.db.reports[3].text == string.rep("x", 199), "a report capped mid-character loses the whole character")

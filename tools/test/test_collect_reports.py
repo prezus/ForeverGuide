@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-"""A collected report must not retain a SavedVariables account folder name."""
+"""A collected report must not retain a SavedVariables account folder name, and its review list names
+the character that made each report."""
 
+import contextlib
+import io
 import json
 import os
 import sys
@@ -14,8 +17,12 @@ with tempfile.TemporaryDirectory() as tmp:
     with open(collect_reports.OUT, "w", encoding="utf-8") as fh:
         json.dump([{"key": "old", "file": "account-label", "guide": "G", "t": 1}], fh)
     collect_reports.foreverdb.load_saved_variables = lambda _: (
-        {"reports": [{"t": 2, "guide": "G", "step": 1, "q": 42, "text": "bad step"}]}, {})
+        {"reports": [{"t": 2, "guide": "G", "step": 1, "q": 42, "text": "bad step", "lvl": 2,
+                      "race": "Scourge", "class": "ROGUE", "faction": "Horde"}]}, {})
     sys.argv = ["collect_reports.py", os.path.join(tmp, "account-label", "SavedVariables", "ForeverGuide.lua")]
-    assert collect_reports.main() == 0
+    out = io.StringIO()
+    with contextlib.redirect_stdout(out):
+        assert collect_reports.main() == 0
+    assert "lvl 2  Scourge ROGUE Horde" in out.getvalue(), out.getvalue()
     with open(collect_reports.OUT, encoding="utf-8") as fh:
         assert all("file" not in report for report in json.load(fh))
