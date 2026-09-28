@@ -2709,6 +2709,7 @@ do
     check(f:IsShown(), "in combat the window's key still shows it")
     -- the skull button on the bottom edge cannot follow the window in combat, so it holds still
     check(f:GetHeight() == before, "in combat the window keeps its height (" .. tostring(f:GetHeight()) .. ", was " .. tostring(before) .. ")")
+    f.moving, f.sizing = false, false   -- the script sweep above can leave a drag open, in pairs() order
     f.scripts.OnDragStart(f)
     check(not f.moving, "in combat the window cannot be dragged")
     f.resizeGrip.scripts.OnMouseDown(f.resizeGrip)
