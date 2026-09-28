@@ -366,9 +366,10 @@ local function SpellKnown(spellID)
 end
 
 --- Is a step done according to game state (or manual completion)?
-function Guide:IsStepDone(step, idx)
+--- Is the step done? `gameOnly` ignores steps marked done or skipped by hand.
+function Guide:IsStepDone(step, idx, gameOnly)
     local p = self.progress
-    if p and p.done[idx] then return true, "manual" end
+    if p and p.done[idx] and not gameOnly then return true, "manual" end
     if not self:StepApplies(step) then return true, "n/a" end
 
     local Q = ns.Quest
@@ -1092,7 +1093,7 @@ end
 function Guide:Skip()
     local step = self:GetCurrentStep()
     if not step then return end
-    ns.Printf("Skipped step %d: %s (/fg skipped brings it back)", self:PosOf(step.index), self:GetStepText(step))
+    ns.Printf("Skipped step %d: %s (still in the list: right-click > Do now brings it back)", self:PosOf(step.index), self:GetStepText(step))
     self:MarkDone(step.index, "skip")
 end
 

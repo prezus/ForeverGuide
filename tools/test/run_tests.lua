@@ -1513,7 +1513,15 @@ do
         shownRows = shownRows + 1
         if e.state == "active" then activeRows = activeRows + 1 activeIdx = e.index end
     end
-    check(shownRows >= 3 and shownRows <= (ns.db.ui.maxRows or 7), "list shows a sensible number of rows (" .. shownRows .. ")")
+    local applicable = 0
+    for _, st in ipairs(G.active.steps) do if G:StepApplies(st) then applicable = applicable + 1 end end
+    check(shownRows == applicable, "the list holds the whole guide, to scroll through (" .. shownRows .. " of " .. applicable .. ")")
+    -- the window keeps its own height and scrolls; a refresh does not yank the list back while you read ahead
+    local viewH = f:GetHeight()
+    check(viewH < ns.QuestGuideHeader.HEIGHT + f.list.height, "the window is shorter than the list: it scrolls")
+    f.scroll:SetVerticalScroll(0)
+    ns.UI:Refresh(); settle()
+    check(f.scroll:GetVerticalScroll() == 0, "a refresh keeps where you scrolled to (" .. f.scroll:GetVerticalScroll() .. ")")
     check(activeRows == 1 and activeIdx == G.current, "exactly one row is the active step and it is the current one")
     check(f.header.count:GetText():find("^%d+ / %d+$") ~= nil, "header shows current / total (" .. tostring(f.header.count:GetText()) .. ")")
     local e1 = f.list.entries[1]
@@ -1557,14 +1565,22 @@ do
         check(f.list:GetWidth() > 0 and f.list:GetWidth() < f:GetWidth() and f.list:GetHeight() > 0,
             "scroll child has a real width and height so quest text renders")
         f.scroll:SetVerticalScroll(0)
-        ns.UI:Refresh()
+        -- jump to an accept further down: the list follows the new current step
+        local target
+        for _, e in ipairs(f.list.entries) do
+            if e.number > G:PosOf(G.current) + 5 and e.step.type == "ACCEPT" and e.state ~= "done" then target = e.index break end
+        end
+        local beforeStep = G.current
+        G:SetStep(target); settle()
+        check(G.current ~= beforeStep, "the jump changed the current step (" .. tostring(beforeStep) .. " -> " .. tostring(G.current) .. ")")
         local activeTop = 4
         for i, entry in ipairs(f.list.entries) do
             if entry.state == "active" then break end
             activeTop = activeTop + f.list.rows[i]:GetHeight() + 3
         end
-        check(activeTop <= f.scroll:GetVerticalScroll() + 64,
-            "resized guide keeps the current step inside the visible list")
+        local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - 70
+        check(activeTop >= f.scroll:GetVerticalScroll() and activeTop <= f.scroll:GetVerticalScroll() + viewport,
+            "a new current step is scrolled into view (" .. activeTop .. " at scroll " .. f.scroll:GetVerticalScroll() .. ")")
         f:SetHeight(520)
         f.resizeGrip:GetScript("OnMouseUp")(f.resizeGrip)
         check(ns.db.ui.maxRows > 7 and #f.list.entries > 7,
@@ -1577,7 +1593,9 @@ do
     check(math.abs((ns.db.ui.opacity or 0) - 0.7) < 1e-6, "/fg qg opacity sets the window opacity")
     ns.Commands:Run("qg rows 4"); settle()
     ns.UI:Refresh(); settle()
-    check(#f.list.entries <= 4, "/fg qg rows limits the list (" .. #f.list.entries .. ")")
+    local fourRows = f:GetHeight()
+    ns.Commands:Run("qg rows 7"); ns.UI:Refresh(); settle()
+    check(fourRows < f:GetHeight(), "/fg qg rows sets how many rows the window shows (" .. fourRows .. " < " .. f:GetHeight() .. ")")
     ns.Commands:Run("qg rows 7"); ns.UI:Refresh(); settle()
     ns.Commands:Run("qg subtitles off"); ns.UI:Refresh(); settle()
     check(ns.db.ui.showSubtitles == false and f.list.rows[1]:GetHeight() == ns.QuestRow.HEIGHT_ONE, "subtitles off makes single-line rows")
@@ -1729,6 +1747,16 @@ do
     check(G.progress.done[1] and G.progress.done[4] and G.progress.done[8], "skipping an accept skips its quest")
     local skipped = G:SkippedSteps()
     check(#skipped == 1 and skipped[1] == 1, "the skipped step is listed (" .. #skipped .. ")")
+    ns.UI:Refresh(); settle()
+    local byIdx = {}
+    for _, e in ipairs(ForeverGuideFrame.list.entries) do byIdx[e.index] = e end
+    check(#ForeverGuideFrame.list.entries == 9, "the window lists every step of the guide (" .. #ForeverGuideFrame.list.entries .. ")")
+    check(byIdx[1] and byIdx[1].state == "skipped" and (byIdx[1].title or ""):find("Skipped", 1, true) ~= nil,
+        "a skipped step stays in the list, marked skipped (" .. tostring(byIdx[1] and byIdx[1].state) .. ")")
+    check(byIdx[8] and byIdx[8].state == "skipped", "so does the rest of the skipped quest")
+    local labels = {}
+    for _, item in ipairs(ns.QuestGuide:StepMenuItems(1)) do labels[#labels + 1] = item[1] end
+    check(table.concat(labels, ",") == "Do now", "right click on a skipped row offers Do now (" .. table.concat(labels, ",") .. ")")
     check(G:DoNow(1) == true and G.current == 1, "Do now brings a skipped step back (" .. tostring(G.current) .. ")")
     check(not G.progress.done[4] and not G.progress.done[8] and #G:SkippedSteps() == 0, "...with the rest of its quest, and it is no longer listed")
     check(G:DoNow(99) == false, "Do now on a step that does not exist does nothing")
@@ -1767,7 +1795,7 @@ do
         end
         local laterTip, skipTip = hover(m.buttons[2]), hover(m.buttons[3])
         check(laterTip:find("next 5", 1, true) ~= nil and laterTip:find("Not marked done", 1, true) ~= nil, "Later explains itself on hover: " .. laterTip)
-        check(skipTip:find("Skipped", 1, true) ~= nil, "Skip says where a skipped step can be brought back: " .. skipTip)
+        check(skipTip:find("stays in the list", 1, true) ~= nil, "Skip says the step stays in the list to undo: " .. skipTip)
         local nowTip = hover(m.buttons[1])
         check(nowTip:find("current step", 1, true) ~= nil, "Do now explains itself on hover")
         for _, tip in ipairs({ laterTip, skipTip, nowTip }) do

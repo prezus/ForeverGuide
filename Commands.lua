@@ -477,7 +477,6 @@ function handlers.skipped()
     if #list == 0 then ns.Print("nothing skipped in this guide.") return end
     ns.Printf("skipped in %s (/fg now <n> brings one back):", G.active.name or G.active.id)
     for _, idx in ipairs(list) do ns.Printf("  %d. %s", G:PosOf(idx), G:GetStepText(G.active.steps[idx])) end
-    if ns.QuestGuide and ns.UI then ns.UI:Show() ns.QuestGuide:SetDrawer("skipped") end
 end
 
 function handlers.order(rest)
