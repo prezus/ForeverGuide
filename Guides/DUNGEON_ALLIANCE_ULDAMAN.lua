@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_ALLIANCE_ULDAMAN",
-    name = "Uldaman 60-60",
-    version = 3,
+    name = "Uldaman 40-41",
+    version = 4,
     kind = "dungeon",
     faction = "Alliance",
-    minLevel = 60,
-    maxLevel = 60,
+    minLevel = 40,
+    maxLevel = 41,
     map = 1418,
     zone = "Badlands",
     author = "ForeverGuide route planner",
     notes = "Uldaman: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 51,
+    stepCount = 46,
     steps = function() return {
         { type = "ACCEPT", quest = 721, questName = "A Sign of Hope", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.2 }, -- 1
         { type = "TURNIN", quest = 721, questName = "A Sign of Hope", npc = 2909, npcName = "Hammertoe Grez", map = 1418, zone = "Badlands", x = 37.9, y = 10.6 }, -- 2
@@ -24,46 +24,41 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 709, questName = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, zone = "Badlands", x = 51.4, y = 76.8 }, -- 8
         { type = "ACCEPT", quest = 722, questName = "Amulet of Secrets", npc = 2909, npcName = "Hammertoe Grez", map = 1418, zone = "Badlands", x = 37.9, y = 10.6 }, -- 9
         { type = "ACCEPT", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8 }, -- 10
-        { type = "NOTE", map = 1418, zone = "Badlands", x = 44.6, y = 12.1, text = "Find a group for Uldaman", note = "All quests available from level 60; hand them in by level 60 for full XP" }, -- 11
+        { type = "NOTE", map = 1418, zone = "Badlands", x = 44.6, y = 12.1, text = "Find a group for Uldaman", note = "All quests available from level 40; hand them in by level 41 for full XP" }, -- 11
         { type = "ACCEPT", quest = 2198, questName = "The Shattered Necklace", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 12
         { type = "ACCEPT", quest = 2240, questName = "The Hidden Chamber", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 13
         { type = "ACCEPT", quest = 2278, questName = "The Platinum Discs", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 14
-        { type = "ACCEPT", quest = 8780, questName = "Armor Kits for the Field", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 15
-        { type = "COLLECT", quest = 17, questName = "Uldaman Reagent Run", target = "Magenta Fungus Cap", count = 12, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 16
-        { type = "COLLECT", quest = 704, questName = "Agmond's Fate", target = "Carved Stone Urn", count = 4, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 17
-        { type = "COLLECT", quest = 709, questName = "Solution to Doom", target = "Tablet of Ryun'eh", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 18
-        { type = "COLLECT", quest = 722, questName = "Amulet of Secrets", target = "Hammertoe's Amulet", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 19
-        { type = "COLLECT", quest = 1139, questName = "The Lost Tablets of Will", target = "Tablet of Will", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 20
-        { type = "COLLECT", quest = 1360, questName = "Reclaimed Treasures", target = "Krom Stoutarm's Treasure", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 21
-        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "Dentrium Power Stone", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 22
-        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "An'Alleum Power Stone", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 23
-        { type = "COMPLETE", quest = 2198, questName = "The Shattered Necklace", target = "Shattered Necklace", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 24
-        { type = "COLLECT", quest = 8780, questName = "Armor Kits for the Field", target = "Rugged Armor Kit", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 25
-        { type = "COLLECT", quest = 8780, questName = "Armor Kits for the Field", target = "Heavy Armor Kit", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 26
-        { type = "COMPLETE", quest = 8780, questName = "Armor Kits for the Field", target = "Logistics Task Briefing VII", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 27
-        { type = "TURNIN", quest = 2398, questName = "The Lost Dwarves", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 28
-        { type = "TURNIN", quest = 2278, questName = "The Platinum Discs", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 29
-        { type = "TURNIN", quest = 709, questName = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, zone = "Badlands", x = 51.4, y = 76.8 }, -- 30
-        { type = "TURNIN", quest = 722, questName = "Amulet of Secrets", npc = 2909, npcName = "Hammertoe Grez", map = 1418, zone = "Badlands", x = 37.9, y = 10.6 }, -- 31
-        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8 }, -- 32
-        { type = "TURNIN", quest = 17, questName = "Uldaman Reagent Run", npc = 1470, npcName = "Ghak Healtouch", map = 1432, zone = "Loch Modan", x = 37, y = 49.2 }, -- 33
-        { type = "TURNIN", quest = 704, questName = "Agmond's Fate", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.8, y = 65.6 }, -- 34
-        { type = "TURNIN", quest = 1139, questName = "The Lost Tablets of Will", npc = 2918, npcName = "Advisor Belgrum", map = 1455, zone = "Ironforge", x = 77.2, y = 10 }, -- 35
-        { type = "TURNIN", quest = 1360, questName = "Reclaimed Treasures", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8 }, -- 36
-        { type = "TURNIN", quest = 2198, questName = "The Shattered Necklace", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 37
-        { type = "TURNIN", quest = 2240, questName = "The Hidden Chamber", npc = 1356, npcName = "Prospector Stormpike", map = 1455, zone = "Ironforge", x = 74.4, y = 12 }, -- 38
-        { type = "TURNIN", quest = 8780, questName = "Armor Kits for the Field", npc = 15443, npcName = "Janela Stouthammer", map = 1451, zone = "Silithus", x = 32.8, y = 52.4 }, -- 39
-        { type = "ACCEPT", quest = 2199, questName = "Lore for a Price", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 40
-        { type = "TURNIN", quest = 2199, questName = "Lore for a Price", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 41
-        { type = "ACCEPT", quest = 2200, questName = "Back to Uldaman", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 42
-        { type = "TURNIN", quest = 2200, questName = "Back to Uldaman", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 43
-        { type = "ACCEPT", quest = 2201, questName = "Find the Gems", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 44
-        { type = "TURNIN", quest = 2201, questName = "Find the Gems", map = 1418, zone = "Badlands", x = 44.7, y = 12.6 }, -- 45
-        { type = "ACCEPT", quest = 2204, questName = "Restoring the Necklace", map = 1418, zone = "Badlands", x = 44.7, y = 12.6 }, -- 46
-        { type = "TURNIN", quest = 2204, questName = "Restoring the Necklace", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 47
-        { type = "ACCEPT", quest = 2279, questName = "The Platinum Discs", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 48
-        { type = "TURNIN", quest = 2279, questName = "The Platinum Discs", npc = 5387, npcName = "High Explorer Magellas", map = 1455, zone = "Ironforge", x = 69.6, y = 18.6 }, -- 49
-        { type = "ACCEPT", quest = 3375, questName = "Replacement Phial", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 50
-        { type = "TURNIN", quest = 3375, questName = "Replacement Phial", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 51
+        { type = "COLLECT", quest = 17, questName = "Uldaman Reagent Run", target = "Magenta Fungus Cap", count = 12, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 15
+        { type = "COLLECT", quest = 704, questName = "Agmond's Fate", target = "Carved Stone Urn", count = 4, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 16
+        { type = "COLLECT", quest = 709, questName = "Solution to Doom", target = "Tablet of Ryun'eh", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 17
+        { type = "COLLECT", quest = 722, questName = "Amulet of Secrets", target = "Hammertoe's Amulet", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 18
+        { type = "COLLECT", quest = 1139, questName = "The Lost Tablets of Will", target = "Tablet of Will", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 19
+        { type = "COLLECT", quest = 1360, questName = "Reclaimed Treasures", target = "Krom Stoutarm's Treasure", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 20
+        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "Dentrium Power Stone", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 21
+        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "An'Alleum Power Stone", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 22
+        { type = "COMPLETE", quest = 2198, questName = "The Shattered Necklace", target = "Shattered Necklace", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 23
+        { type = "TURNIN", quest = 2398, questName = "The Lost Dwarves", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 24
+        { type = "TURNIN", quest = 2278, questName = "The Platinum Discs", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 25
+        { type = "TURNIN", quest = 709, questName = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, zone = "Badlands", x = 51.4, y = 76.8 }, -- 26
+        { type = "TURNIN", quest = 722, questName = "Amulet of Secrets", npc = 2909, npcName = "Hammertoe Grez", map = 1418, zone = "Badlands", x = 37.9, y = 10.6 }, -- 27
+        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8 }, -- 28
+        { type = "TURNIN", quest = 17, questName = "Uldaman Reagent Run", npc = 1470, npcName = "Ghak Healtouch", map = 1432, zone = "Loch Modan", x = 37, y = 49.2 }, -- 29
+        { type = "TURNIN", quest = 704, questName = "Agmond's Fate", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.8, y = 65.6 }, -- 30
+        { type = "TURNIN", quest = 1139, questName = "The Lost Tablets of Will", npc = 2918, npcName = "Advisor Belgrum", map = 1455, zone = "Ironforge", x = 77.2, y = 10 }, -- 31
+        { type = "TURNIN", quest = 1360, questName = "Reclaimed Treasures", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8 }, -- 32
+        { type = "TURNIN", quest = 2198, questName = "The Shattered Necklace", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 33
+        { type = "TURNIN", quest = 2240, questName = "The Hidden Chamber", npc = 1356, npcName = "Prospector Stormpike", map = 1455, zone = "Ironforge", x = 74.4, y = 12 }, -- 34
+        { type = "ACCEPT", quest = 2199, questName = "Lore for a Price", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 35
+        { type = "TURNIN", quest = 2199, questName = "Lore for a Price", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 36
+        { type = "ACCEPT", quest = 2200, questName = "Back to Uldaman", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 37
+        { type = "TURNIN", quest = 2200, questName = "Back to Uldaman", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 38
+        { type = "ACCEPT", quest = 2201, questName = "Find the Gems", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 39
+        { type = "TURNIN", quest = 2201, questName = "Find the Gems", map = 1418, zone = "Badlands", x = 44.7, y = 12.6 }, -- 40
+        { type = "ACCEPT", quest = 2204, questName = "Restoring the Necklace", map = 1418, zone = "Badlands", x = 44.7, y = 12.6 }, -- 41
+        { type = "TURNIN", quest = 2204, questName = "Restoring the Necklace", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 42
+        { type = "ACCEPT", quest = 2279, questName = "The Platinum Discs", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 43
+        { type = "TURNIN", quest = 2279, questName = "The Platinum Discs", npc = 5387, npcName = "High Explorer Magellas", map = 1455, zone = "Ironforge", x = 69.6, y = 18.6 }, -- 44
+        { type = "ACCEPT", quest = 3375, questName = "Replacement Phial", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 45
+        { type = "TURNIN", quest = 3375, questName = "Replacement Phial", npc = 6826, npcName = "Talvash del Kissel", map = 1455, zone = "Ironforge", x = 36, y = 4 }, -- 46
     } end,
 })

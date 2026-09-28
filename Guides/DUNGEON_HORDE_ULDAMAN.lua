@@ -2,55 +2,50 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_ULDAMAN",
-    name = "Uldaman 60-60",
-    version = 2,
+    name = "Uldaman 40-41",
+    version = 3,
     kind = "dungeon",
     faction = "Horde",
-    minLevel = 60,
-    maxLevel = 60,
+    minLevel = 40,
+    maxLevel = 41,
     map = 1418,
     zone = "Badlands",
     author = "ForeverGuide route planner",
     notes = "Uldaman: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 38,
+    stepCount = 33,
     steps = function() return {
         { type = "ACCEPT", quest = 2342, questName = "Reclaimed Treasures", npc = 5651, npcName = "Patrick Garrett", map = 1458, zone = "Undercity", x = 62.6, y = 48.4 }, -- 1
         { type = "ACCEPT", quest = 2283, questName = "Necklace Recovery", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.4, y = 36.8 }, -- 2
         { type = "ACCEPT", quest = 709, questName = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, zone = "Badlands", x = 51.4, y = 76.8 }, -- 3
         { type = "ACCEPT", quest = 2202, questName = "Uldaman Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 4
         { type = "ACCEPT", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8 }, -- 5
-        { type = "NOTE", map = 1418, zone = "Badlands", x = 44.6, y = 12.1, text = "Find a group for Uldaman", note = "All quests available from level 60; hand them in by level 60 for full XP" }, -- 6
+        { type = "NOTE", map = 1418, zone = "Badlands", x = 44.6, y = 12.1, text = "Find a group for Uldaman", note = "All quests available from level 40; hand them in by level 41 for full XP" }, -- 6
         { type = "ACCEPT", quest = 2278, questName = "The Platinum Discs", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 7
-        { type = "ACCEPT", quest = 8787, questName = "Armor Kits for the Field", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 8
-        { type = "COLLECT", quest = 709, questName = "Solution to Doom", target = "Tablet of Ryun'eh", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 9
-        { type = "COLLECT", quest = 2202, questName = "Uldaman Reagent Run", target = "Magenta Fungus Cap", count = 12, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 10
-        { type = "COLLECT", quest = 2283, questName = "Necklace Recovery", target = "Shattered Necklace", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 11
-        { type = "COLLECT", quest = 2342, questName = "Reclaimed Treasures", target = "Garrett Family Treasure", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 12
-        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "Dentrium Power Stone", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 13
-        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "An'Alleum Power Stone", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 14
-        { type = "COLLECT", quest = 8787, questName = "Armor Kits for the Field", target = "Rugged Armor Kit", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 15
-        { type = "COLLECT", quest = 8787, questName = "Armor Kits for the Field", target = "Heavy Armor Kit", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 16
-        { type = "COMPLETE", quest = 8787, questName = "Armor Kits for the Field", target = "Logistics Task Briefing VII", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 17
-        { type = "TURNIN", quest = 2278, questName = "The Platinum Discs", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 18
-        { type = "TURNIN", quest = 709, questName = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, zone = "Badlands", x = 51.4, y = 76.8 }, -- 19
-        { type = "TURNIN", quest = 2202, questName = "Uldaman Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 20
-        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8 }, -- 21
-        { type = "TURNIN", quest = 2283, questName = "Necklace Recovery", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.4, y = 36.8 }, -- 22
-        { type = "TURNIN", quest = 2342, questName = "Reclaimed Treasures", npc = 5651, npcName = "Patrick Garrett", map = 1458, zone = "Undercity", x = 62.6, y = 48.4 }, -- 23
-        { type = "TURNIN", quest = 8787, questName = "Armor Kits for the Field", npc = 15613, npcName = "Merok Longstride", map = 1451, zone = "Silithus", x = 51.8, y = 68 }, -- 24
-        { type = "ACCEPT", quest = 2280, questName = "The Platinum Discs", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 25
-        { type = "TURNIN", quest = 2280, questName = "The Platinum Discs", npc = 3978, npcName = "Sage Truthseeker", map = 1456, zone = "Thunder Bluff", x = 34.6, y = 47.2 }, -- 26
-        { type = "ACCEPT", quest = 2284, questName = "Necklace Recovery, Take 2", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.4, y = 36.8 }, -- 27
-        { type = "TURNIN", quest = 2284, questName = "Necklace Recovery, Take 2", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 28
-        { type = "ACCEPT", quest = 2318, questName = "Translating the Journal", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 29
-        { type = "TURNIN", quest = 2318, questName = "Translating the Journal", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 30
-        { type = "ACCEPT", quest = 2338, questName = "Translating the Journal", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 31
-        { type = "TURNIN", quest = 2338, questName = "Translating the Journal", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 32
-        { type = "ACCEPT", quest = 2339, questName = "Find the Gems and Power Source", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 33
-        { type = "TURNIN", quest = 2339, questName = "Find the Gems and Power Source", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 34
-        { type = "ACCEPT", quest = 2340, questName = "Deliver the Gems", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 35
-        { type = "TURNIN", quest = 2340, questName = "Deliver the Gems", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.4, y = 36.8 }, -- 36
-        { type = "ACCEPT", quest = 2341, questName = "Necklace Recovery, Take 3", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.4, y = 36.8 }, -- 37
-        { type = "TURNIN", quest = 2341, questName = "Necklace Recovery, Take 3", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 38
+        { type = "COLLECT", quest = 709, questName = "Solution to Doom", target = "Tablet of Ryun'eh", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 8
+        { type = "COLLECT", quest = 2202, questName = "Uldaman Reagent Run", target = "Magenta Fungus Cap", count = 12, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 9
+        { type = "COLLECT", quest = 2283, questName = "Necklace Recovery", target = "Shattered Necklace", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 10
+        { type = "COLLECT", quest = 2342, questName = "Reclaimed Treasures", target = "Garrett Family Treasure", count = 1, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 11
+        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "Dentrium Power Stone", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 12
+        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "An'Alleum Power Stone", count = 8, map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 13
+        { type = "TURNIN", quest = 2278, questName = "The Platinum Discs", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 14
+        { type = "TURNIN", quest = 709, questName = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, zone = "Badlands", x = 51.4, y = 76.8 }, -- 15
+        { type = "TURNIN", quest = 2202, questName = "Uldaman Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 16
+        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8 }, -- 17
+        { type = "TURNIN", quest = 2283, questName = "Necklace Recovery", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.4, y = 36.8 }, -- 18
+        { type = "TURNIN", quest = 2342, questName = "Reclaimed Treasures", npc = 5651, npcName = "Patrick Garrett", map = 1458, zone = "Undercity", x = 62.6, y = 48.4 }, -- 19
+        { type = "ACCEPT", quest = 2280, questName = "The Platinum Discs", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 20
+        { type = "TURNIN", quest = 2280, questName = "The Platinum Discs", npc = 3978, npcName = "Sage Truthseeker", map = 1456, zone = "Thunder Bluff", x = 34.6, y = 47.2 }, -- 21
+        { type = "ACCEPT", quest = 2284, questName = "Necklace Recovery, Take 2", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.4, y = 36.8 }, -- 22
+        { type = "TURNIN", quest = 2284, questName = "Necklace Recovery, Take 2", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 23
+        { type = "ACCEPT", quest = 2318, questName = "Translating the Journal", map = 1418, zone = "Badlands", x = 44.6, y = 12.1 }, -- 24
+        { type = "TURNIN", quest = 2318, questName = "Translating the Journal", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 25
+        { type = "ACCEPT", quest = 2338, questName = "Translating the Journal", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 26
+        { type = "TURNIN", quest = 2338, questName = "Translating the Journal", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 27
+        { type = "ACCEPT", quest = 2339, questName = "Find the Gems and Power Source", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 28
+        { type = "TURNIN", quest = 2339, questName = "Find the Gems and Power Source", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 29
+        { type = "ACCEPT", quest = 2340, questName = "Deliver the Gems", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 30
+        { type = "TURNIN", quest = 2340, questName = "Deliver the Gems", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.4, y = 36.8 }, -- 31
+        { type = "ACCEPT", quest = 2341, questName = "Necklace Recovery, Take 3", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.4, y = 36.8 }, -- 32
+        { type = "TURNIN", quest = 2341, questName = "Necklace Recovery, Take 3", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.6, y = 46 }, -- 33
     } end,
 })
