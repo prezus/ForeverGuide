@@ -1,11 +1,11 @@
 {
   "id": "DUNGEON_HORDE_THE_TEMPLE_OF_ATAL_HAKKAR",
-  "name": "The Temple of Atal'Hakkar 60-60",
-  "version": 2,
+  "name": "The Temple of Atal'Hakkar 48-55",
+  "version": 3,
   "kind": "dungeon",
   "faction": "Horde",
-  "minLevel": 60,
-  "maxLevel": 60,
+  "minLevel": 48,
+  "maxLevel": 55,
   "map": 1435,
   "zone": "Swamp of Sorrows",
   "author": "ForeverGuide route planner",
@@ -19,9 +19,8 @@
     {"type": "ACCEPT", "quest": 3447, "questName": "Secret of the Circle", "npc": 7771, "npcName": "Marvon Rivetseeker", "map": 1446, "zone": "Tanaris", "x": 52.6, "y": 45.8},
     {"type": "ACCEPT", "quest": 3528, "questName": "The God Hakkar", "npc": 8579, "npcName": "Yeh'kinya", "map": 1446, "zone": "Tanaris", "x": 67, "y": 22.4},
     {"type": "ACCEPT", "quest": 1445, "questName": "The Temple of Atal'Hakkar", "npc": 1443, "npcName": "Fel'zerul", "map": 1435, "zone": "Swamp of Sorrows", "x": 48, "y": 55},
-    {"type": "NOTE", "map": 1435, "zone": "Swamp of Sorrows", "x": 69.9, "y": 53.5, "note": "All quests available from level 60; hand them in by level 60 for full XP", "text": "Find a group for The Temple of Atal'Hakkar"},
+    {"type": "NOTE", "map": 1435, "zone": "Swamp of Sorrows", "x": 69.9, "y": 53.5, "note": "All quests available from level 48; hand them in by level 55 for full XP", "text": "Find a group for The Temple of Atal'Hakkar"},
     {"type": "ACCEPT", "quest": 3373, "questName": "The Essence of Eranikus", "map": 1435, "zone": "Swamp of Sorrows", "x": 69.9, "y": 53.5},
-    {"type": "ACCEPT", "quest": 8733, "questName": "Eranikus, Tyrant of the Dream", "map": 1435, "zone": "Swamp of Sorrows", "x": 69.9, "y": 53.5},
     {"type": "COLLECT", "quest": 1445, "questName": "The Temple of Atal'Hakkar", "target": "Fetish of Hakkar", "count": 20, "map": 1435, "zone": "Swamp of Sorrows", "x": 69.9, "y": 53.5},
     {"type": "COLLECT", "quest": 1446, "questName": "Jammal'an the Prophet", "target": "Head of Jammal'an", "count": 1, "map": 1435, "zone": "Swamp of Sorrows", "x": 69.9, "y": 53.5},
     {"type": "COLLECT", "quest": 3528, "questName": "The God Hakkar", "target": "Filled Egg of Hakkar", "count": 1, "map": 1435, "zone": "Swamp of Sorrows", "x": 69.9, "y": 53.5},
@@ -34,7 +33,6 @@
     {"type": "TURNIN", "quest": 1445, "questName": "The Temple of Atal'Hakkar", "npc": 1443, "npcName": "Fel'zerul", "map": 1435, "zone": "Swamp of Sorrows", "x": 48, "y": 55},
     {"type": "TURNIN", "quest": 1446, "questName": "Jammal'an the Prophet", "npc": 5598, "npcName": "Atal'ai Exile", "map": 1425, "zone": "The Hinterlands", "x": 33.6, "y": 75.2},
     {"type": "TURNIN", "quest": 3528, "questName": "The God Hakkar", "npc": 8579, "npcName": "Yeh'kinya", "map": 1446, "zone": "Tanaris", "x": 67, "y": 22.4},
-    {"type": "TURNIN", "quest": 4146, "questName": "Zapper Fuel", "npc": 9118, "npcName": "Larion", "map": 1449, "zone": "Un'Goro Crater", "x": 45.6, "y": 8.6},
-    {"type": "TURNIN", "quest": 8733, "questName": "Eranikus, Tyrant of the Dream", "npc": 15624, "npcName": "Forest Wisp", "map": 1438, "zone": "Teldrassil", "x": 37.6, "y": 48}
+    {"type": "TURNIN", "quest": 4146, "questName": "Zapper Fuel", "npc": 9118, "npcName": "Larion", "map": 1449, "zone": "Un'Goro Crater", "x": 45.6, "y": 8.6}
   ]
 }
