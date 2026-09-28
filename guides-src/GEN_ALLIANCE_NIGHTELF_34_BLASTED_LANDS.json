@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_34_BLASTED_LANDS",
   "name": "34. Blasted Lands 47-49 (Night Elf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 47,
@@ -16,8 +16,6 @@
     {"type": "TURNIN", "quest": 626, "questName": "Cortello's Riddle", "map": 1425, "zone": "The Hinterlands", "x": 80.8, "y": 46.8},
     {"type": "ACCEPT", "quest": 1425, "questName": "Deliver the Shipment", "npc": 5476, "npcName": "Watcher Biggs", "map": 1435, "zone": "Swamp of Sorrows", "x": 26.8, "y": 59.6},
     {"type": "TURNIN", "quest": 1425, "questName": "Deliver the Shipment", "npc": 5393, "npcName": "Quartermaster Lungertz", "map": 1419, "zone": "Blasted Lands", "x": 66.4, "y": 21.2},
-    {"type": "ACCEPT", "quest": 94375, "questName": "Call of Earth", "npc": 5891, "npcName": "Minor Manifestation of Earth", "map": 1426, "zone": "Dun Morogh", "x": 26.4, "y": 68, "note": "New in Forever", "class": ["SHAMAN"]},
-    {"type": "TURNIN", "quest": 94375, "questName": "Call of Earth", "npc": 257446, "npcName": "Teo Hammerstorm", "map": 1426, "zone": "Dun Morogh", "x": 28.8, "y": 66.2, "note": "reduced xp (10%) - you out-levelled it", "class": ["SHAMAN"]},
     {"type": "TRAVEL", "map": 1419, "zone": "Blasted Lands", "x": 50.6, "y": 14.2, "radius": 60, "note": "travel to Blasted Lands (Blasted Lands)"},
     {"type": "ACCEPT", "quest": 2581, "questName": "Snickerfang Jowls", "npc": 7505, "npcName": "Bloodmage Drazial", "map": 1419, "zone": "Blasted Lands", "x": 50.6, "y": 14.2},
     {"type": "ACCEPT", "quest": 2583, "questName": "A Boar's Vitality", "npc": 7505, "npcName": "Bloodmage Drazial", "map": 1419, "zone": "Blasted Lands", "x": 50.6, "y": 14.2},
