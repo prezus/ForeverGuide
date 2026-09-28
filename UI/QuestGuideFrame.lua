@@ -23,6 +23,8 @@ local Theme = ns.Theme
 local QG = ns:NewModule("QuestGuide")
 
 local FOOTER = 70       -- two button rows
+local BAR_ROOM = 14     -- right of the list: the scroll bar
+local LIST_INSET = 6 + BAR_ROOM
 local DRAWER_ROWS_HEIGHT = 180
 local frame
 local info      -- the Details popup (created on first use)
@@ -113,19 +115,18 @@ function QG:Create()
     f.header = ns.QuestGuideHeader.Create(f)
     local scroll = CreateFrame("ScrollFrame", nil, f)
     scroll:SetPoint("TOPLEFT", f.header, "BOTTOMLEFT", 6, -2)
-    scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -6, FOOTER + 4)
+    scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -BAR_ROOM, FOOTER + 4)
     scroll:EnableMouseWheel(true)
     scroll:SetScript("OnMouseWheel", function(self, delta)
         local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
         local range = math.max(self:GetVerticalScrollRange(), f.list.height - viewport, 0)
         self:SetVerticalScroll(math.max(0, math.min(range, self:GetVerticalScroll() - delta * 40)))
-        QG:SetView(self:GetVerticalScroll())
-        f.list:UpdateDistances(false)
-        QG:PlaceItemButton()
+        QG:Scrolled()
     end)
     f.scroll = scroll
     f.list = ns.QuestList.Create(scroll)
-    f.list:SetSize(cfg.width - 12, 40)
+    f.list:SetSize(cfg.width - LIST_INSET, 40)
+    self:CreateScrollBar(f)
     f.list:SetPoint("TOPLEFT", scroll, "TOPLEFT", 0, 0)
     scroll:SetScrollChild(f.list)
 
@@ -138,7 +139,7 @@ function QG:Create()
     f.footerLine:SetVertexColor(0.3, 0.3, 0.3, 1)
     f:SetScript("OnSizeChanged", function(self, width, height)
         if not self.resizing then return end
-        self.list:SetWidth(width - 12)
+        self.list:SetWidth(width - LIST_INSET)
         for _, d in ipairs(self.drawers) do d.list:SetWidth(width - 12) end
         self.footerLine:ClearAllPoints()
         self.footerLine:SetPoint("TOPLEFT", self, "TOPLEFT", 12, -(height - FOOTER))
@@ -249,13 +250,117 @@ function QG:Apply()
     local cfg = ns.db.ui
     pcall(frame.SetScale, frame, cfg.scale or 1)
     frame:SetWidth(math.max(cfg.width or 300, 240))
-    frame.list:SetWidth(frame:GetWidth() - 12)
+    frame.list:SetWidth(frame:GetWidth() - LIST_INSET)
     for _, d in ipairs(frame.drawers) do
         d.list:SetWidth(frame:GetWidth() - 12)
         if d.SetBackdropColor then pcall(d.SetBackdropColor, d, 0, 0, 0, cfg.opacity or 0.75) end
     end
     if frame.SetBackdropColor then pcall(frame.SetBackdropColor, frame, 0, 0, 0, cfg.opacity or 0.75) end
     self:Layout()
+end
+
+-- ---- the scroll bar ---------------------------------------------------------------------------
+-- A thin track right of the list: the thumb shows which part of the guide is on screen and how
+-- much of it, a gold mark where the current step is. Drag the thumb or click the track to move.
+-- Drawn by hand: the scroll bar templates are not the same on every client.
+local BAR_W = 5
+
+local function viewportHeight(f)
+    return f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
+end
+
+function QG:CreateScrollBar(f)
+    local bar = CreateFrame("Button", nil, f)
+    bar:SetWidth(BAR_W + 6)
+    bar:SetPoint("TOPRIGHT", f.scroll, "TOPRIGHT", BAR_ROOM - 2, 0)
+    bar:SetPoint("BOTTOMRIGHT", f.scroll, "BOTTOMRIGHT", BAR_ROOM - 2, 0)
+    bar:SetFrameLevel(f:GetFrameLevel() + 4)
+    bar.track = bar:CreateTexture(nil, "BACKGROUND")
+    bar.track:SetWidth(BAR_W)
+    bar.track:SetPoint("TOP", bar, "TOP", 0, 0)
+    bar.track:SetPoint("BOTTOM", bar, "BOTTOM", 0, 0)
+    pcall(bar.track.SetTexture, bar.track, Theme.TEX.white)
+    bar.track:SetVertexColor(1, 1, 1, 0.08)
+    bar.thumb = bar:CreateTexture(nil, "ARTWORK")
+    bar.thumb:SetWidth(BAR_W)
+    pcall(bar.thumb.SetTexture, bar.thumb, Theme.TEX.white)
+    bar.thumb:SetVertexColor(0.75, 0.80, 0.87, 0.55)
+    bar.mark = bar:CreateTexture(nil, "OVERLAY")
+    bar.mark:SetSize(BAR_W + 4, 2)
+    pcall(bar.mark.SetTexture, bar.mark, Theme.TEX.white)
+    bar.mark:SetVertexColor(1.0, 0.82, 0.30, 1)
+    bar.thumbHeight, bar.thumbOffset, bar.trackHeight, bar.markOffset = 0, 0, 0, 0
+    -- click the track: that part of the guide; hold and drag: follow the mouse
+    local function fractionAtCursor()
+        local _, cy = GetCursorPosition()
+        local scale = bar.GetEffectiveScale and bar:GetEffectiveScale() or 1
+        local top = bar:GetTop() or 0
+        local free = bar.trackHeight - bar.thumbHeight
+        if free <= 0 then return 0 end
+        return ((top - cy / scale) - bar.thumbHeight / 2) / free
+    end
+    bar:RegisterForClicks("LeftButtonDown")
+    bar:SetScript("OnMouseDown", function(self) self.dragging = true QG:ScrollToFraction(fractionAtCursor()) end)
+    bar:SetScript("OnMouseUp", function(self) self.dragging = false end)
+    bar:SetScript("OnUpdate", function(self)
+        if self.dragging then QG:ScrollToFraction(fractionAtCursor()) end
+    end)
+    bar:SetScript("OnMouseWheel", function(_, delta) f.scroll:GetScript("OnMouseWheel")(f.scroll, delta) end)
+    bar:Hide()
+    f.scrollBar = bar
+end
+
+--- Put the thumb and the current-step mark where the list is.
+function QG:UpdateScrollBar()
+    local f = frame
+    local bar = f and f.scrollBar
+    if not bar then return end
+    local viewport = viewportHeight(f)
+    local total = f.list.height or 0
+    if viewport <= 0 or total <= viewport + 1 then bar:Hide() return end
+    local track = viewport
+    local thumbH = math.max(16, math.floor(track * viewport / total))
+    local range = total - viewport
+    local at = math.max(0, math.min(range, f.scroll:GetVerticalScroll()))
+    local offset = (track - thumbH) * at / range
+    bar.trackHeight, bar.thumbHeight, bar.thumbOffset = track, thumbH, offset
+    bar.thumb:SetHeight(thumbH)
+    bar.thumb:ClearAllPoints()
+    bar.thumb:SetPoint("TOP", bar, "TOP", 0, -offset)
+    -- the current step's place in the whole list
+    local top, markAt = 4, nil
+    for i, e in ipairs(f.list.entries) do
+        if e.state == "active" then markAt = top + f.list.rows[i]:GetHeight() / 2 break end
+        top = top + f.list.rows[i]:GetHeight() + 3
+    end
+    if markAt then
+        bar.markOffset = math.floor(track * markAt / total)
+        bar.mark:ClearAllPoints()
+        bar.mark:SetPoint("TOP", bar, "TOP", 0, -bar.markOffset)
+        bar.mark:Show()
+    else
+        bar.markOffset = 0
+        bar.mark:Hide()
+    end
+    bar:Show()
+end
+
+--- Scroll so the view starts `fraction` (0 = top, 1 = bottom) of the way down the list.
+function QG:ScrollToFraction(fraction)
+    local f = frame
+    if not f then return end
+    local range = math.max(0, (f.list.height or 0) - viewportHeight(f))
+    f.scroll:SetVerticalScroll(math.floor(range * math.max(0, math.min(1, fraction or 0)) + 0.5))
+    self:Scrolled()
+end
+
+--- After any scroll: the rows on screen, their distances, the item button and the bar.
+function QG:Scrolled()
+    local f = frame
+    self:SetView(f.scroll:GetVerticalScroll())
+    f.list:UpdateDistances(false)
+    self:PlaceItemButton()
+    self:UpdateScrollBar()
 end
 
 --- The rows the window shows at once (the list itself holds the whole guide and scrolls).
@@ -304,6 +409,7 @@ function QG:Layout()
         f.scroll:SetVerticalScroll(at)
         self:SetView(at)
         f.list:UpdateDistances(false)
+        self:UpdateScrollBar()
     end
     self:PlaceItemButton()
 end

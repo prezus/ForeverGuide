@@ -1522,6 +1522,18 @@ do
     f.scroll:SetVerticalScroll(0)
     ns.UI:Refresh(); settle()
     check(f.scroll:GetVerticalScroll() == 0, "a refresh keeps where you scrolled to (" .. f.scroll:GetVerticalScroll() .. ")")
+    -- the scroll bar: shows where the view is in the guide, and where the current step is
+    local bar = f.scrollBar
+    check(bar and bar:IsShown(), "a long list gets a scroll bar")
+    if bar then
+        check(bar.thumbHeight < bar.trackHeight and bar.thumbOffset == 0, string.format("at the top: a short thumb at the top (%s of %s, at %s)", tostring(bar.thumbHeight), tostring(bar.trackHeight), tostring(bar.thumbOffset)))
+        check(bar.mark:IsShown() and bar.markOffset > 0, "a mark shows where the current step is in the guide")
+        ns.QuestGuide:ScrollToFraction(1)
+        check(math.abs(bar.thumbOffset - (bar.trackHeight - bar.thumbHeight)) < 0.5, "scrolled to the end: the thumb sits at the bottom")
+        check(f.scroll:GetVerticalScroll() > 0, "and the list moved with it")
+        ns.QuestGuide:ScrollToFraction(0)
+        check(bar.thumbOffset == 0 and f.scroll:GetVerticalScroll() == 0, "and back to the top")
+    end
     check(activeRows == 1 and activeIdx == G.current, "exactly one row is the active step and it is the current one")
     check(f.header.count:GetText():find("^%d+ / %d+$") ~= nil, "header shows current / total (" .. tostring(f.header.count:GetText()) .. ")")
     local e1 = f.list.entries[1]
