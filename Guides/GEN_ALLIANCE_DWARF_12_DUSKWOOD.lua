@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_12_DUSKWOOD",
     name = "12. Duskwood 27-27 (Dwarf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 27,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_13_WETLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 12 of the Dwarf route: level 27 to 27, 32 steps, ~84 min of play in the model (22836 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 55,
+    stepCount = 53,
     steps = function() return {
         { type = "TURNIN", quest = 79008, questName = "... and that note you found", map = 1413, zone = "The Barrens", x = 46.4, y = 73.9 }, -- 1
         { type = "ACCEPT", quest = 959, questName = "Trouble at the Docks", npc = 3665, npcName = "Crane Operator Bigglefuzz", map = 1413, zone = "The Barrens", x = 63, y = 37.6, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 2
@@ -60,15 +60,13 @@ ns.RegisterGuide({
         { type = "KILL", quest = 222, questName = "Worgen in the Woods", npc = 920, target = "Nightbane Tainted One", count = 8, map = 1431, zone = "Duskwood", x = 73.4, y = 76.8 }, -- 43
         { type = "TURNIN", quest = 222, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.2, y = 48 }, -- 44
         { type = "TURNIN", quest = 269, questName = "Seeking Wisdom", npc = 1212, npcName = "Bishop Farthing", map = 1453, zone = "Stormwind City", x = 39.2, y = 28 }, -- 45
-        { type = "ACCEPT", quest = 7793, questName = "A Donation of Silk", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, zone = "Stormwind City", x = 44.2, y = 73.6 }, -- 46
-        { type = "TURNIN", quest = 7793, questName = "A Donation of Silk", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, zone = "Stormwind City", x = 44.2, y = 73.6 }, -- 47
-        { type = "TURNIN", quest = 2925, questName = "Klockmort's Essentials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2, optional = true }, -- 48
-        { type = "TURNIN", quest = 2931, questName = "Castpipe's Task", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.4, optional = true }, -- 49
-        { type = "ACCEPT", quest = 2359, questName = "Klaven's Tower", npc = 7024, npcName = "Agent Kearnen", map = 1436, zone = "Westfall", x = 68.4, y = 70, optional = true, class = { "ROGUE" }, note = "Elite - group up" }, -- 50
-        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Klaven Mortwake's Journal", count = 1, map = 1436, zone = "Westfall", x = 70.4, y = 74.2, optional = true, class = { "ROGUE" }, mobs = "Klaven Mortwake" }, -- 51
-        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Defias Tower Key", count = 1, map = 1436, zone = "Westfall", x = 69.4, y = 74.4, optional = true, class = { "ROGUE" }, mobs = "Malformed Defias Drone" }, -- 52
-        { type = "TURNIN", quest = 2359, questName = "Klaven's Tower", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8, optional = true, class = { "ROGUE" } }, -- 53
-        { type = "ACCEPT", quest = 1939, questName = "High Sorcerer Andromath", npc = 5497, npcName = "Jennea Cannon", map = 1453, zone = "Stormwind City", x = 38.6, y = 79.4, class = { "MAGE" }, race = { "Gnome" } }, -- 54
-        { type = "TURNIN", quest = 1939, questName = "High Sorcerer Andromath", npc = 5694, npcName = "High Sorcerer Andromath", map = 1453, zone = "Stormwind City", x = 37.6, y = 81.6, class = { "MAGE" }, race = { "Gnome" } }, -- 55
+        { type = "TURNIN", quest = 2925, questName = "Klockmort's Essentials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2, optional = true }, -- 46
+        { type = "TURNIN", quest = 2931, questName = "Castpipe's Task", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.4, optional = true }, -- 47
+        { type = "ACCEPT", quest = 2359, questName = "Klaven's Tower", npc = 7024, npcName = "Agent Kearnen", map = 1436, zone = "Westfall", x = 68.4, y = 70, optional = true, class = { "ROGUE" }, note = "Elite - group up" }, -- 48
+        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Klaven Mortwake's Journal", count = 1, map = 1436, zone = "Westfall", x = 70.4, y = 74.2, optional = true, class = { "ROGUE" }, mobs = "Klaven Mortwake" }, -- 49
+        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Defias Tower Key", count = 1, map = 1436, zone = "Westfall", x = 69.4, y = 74.4, optional = true, class = { "ROGUE" }, mobs = "Malformed Defias Drone" }, -- 50
+        { type = "TURNIN", quest = 2359, questName = "Klaven's Tower", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8, optional = true, class = { "ROGUE" } }, -- 51
+        { type = "ACCEPT", quest = 1939, questName = "High Sorcerer Andromath", npc = 5497, npcName = "Jennea Cannon", map = 1453, zone = "Stormwind City", x = 38.6, y = 79.4, class = { "MAGE" }, race = { "Gnome" } }, -- 52
+        { type = "TURNIN", quest = 1939, questName = "High Sorcerer Andromath", npc = 5694, npcName = "High Sorcerer Andromath", map = 1453, zone = "Stormwind City", x = 37.6, y = 81.6, class = { "MAGE" }, race = { "Gnome" } }, -- 53
     } end,
 })
