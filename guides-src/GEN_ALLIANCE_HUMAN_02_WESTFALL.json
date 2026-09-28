@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_02_WESTFALL",
   "name": "2. Westfall 11-14 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 11,
@@ -75,10 +75,14 @@
     {"type": "TURNIN", "quest": 103, "questName": "Keeper of the Flame", "npc": 392, "npcName": "Captain Grayson", "map": 1436, "zone": "Westfall", "x": 30, "y": 86},
     {"type": "ACCEPT", "quest": 79008, "questName": "... and that note you found", "map": 1436, "zone": "Westfall", "x": 37.5, "y": 50.7, "note": "Cozy Sleeping Bag chain: keep it going"},
     {"type": "TURNIN", "quest": 92744, "questName": "Murloc Gills", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53},
+    {"type": "ACCEPT", "quest": 92747, "questName": "Moonbrook Espionage", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53, "note": "New in Forever"},
+    {"type": "COLLECT", "quest": 92747, "questName": "Moonbrook Espionage", "target": "Suspicious Industrial Supplies", "count": 8, "map": 1436, "zone": "Westfall", "x": 42.5, "y": 71.7},
+    {"type": "TURNIN", "quest": 92747, "questName": "Moonbrook Espionage", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53},
     {"type": "ACCEPT", "quest": 65, "questName": "The Defias Brotherhood", "npc": 234, "npcName": "Gryan Stoutmantle", "map": 1436, "zone": "Westfall", "x": 56.2, "y": 47.6},
     {"type": "ACCEPT", "quest": 14, "questName": "The People's Militia", "npc": 234, "npcName": "Gryan Stoutmantle", "map": 1436, "zone": "Westfall", "x": 56.3, "y": 47.5},
     {"type": "KILL", "quest": 14, "questName": "The People's Militia", "npc": 121, "target": "Defias Pathstalker / Defias Highwayman", "count": 15, "map": 1436, "zone": "Westfall", "x": 52.8, "y": 73.5, "near": true},
     {"type": "KILL", "quest": 14, "questName": "The People's Militia", "npc": 449, "target": "Defias Knuckleduster", "count": 15, "map": 1436, "zone": "Westfall", "x": 51.6, "y": 78.2, "near": true},
+    {"type": "ACCEPT", "quest": 92748, "questName": "Explosive Consultation", "npc": 253092, "npcName": "Alba Fairmoon", "map": 1436, "zone": "Westfall", "x": 52.4, "y": 53, "note": "New in Forever"},
     {"type": "TURNIN", "quest": 14, "questName": "The People's Militia", "npc": 234, "npcName": "Gryan Stoutmantle", "map": 1436, "zone": "Westfall", "x": 56.3, "y": 47.5}
   ]
 }
