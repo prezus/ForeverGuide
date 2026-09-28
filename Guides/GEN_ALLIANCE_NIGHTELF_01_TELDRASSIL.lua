@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_01_TELDRASSIL",
     name = "1. Teldrassil 1-9 (Night Elf)",
-    version = 10,
+    version = 11,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 1,
@@ -177,7 +177,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 931, questName = "The Shimmering Frond", map = 1438, zone = "Teldrassil", x = 34.6, y = 28.8 }, -- 160
         { type = "ACCEPT", quest = 99050, questName = "The Great Tree Provides", npc = 6094, npcName = "Byancie", map = 1438, zone = "Teldrassil", x = 55.2, y = 56.8, note = "New in Forever" }, -- 161
         { type = "COLLECT", quest = 99050, questName = "The Great Tree Provides", target = "Dewy Lasher Frond", count = 6, map = 1438, zone = "Teldrassil", x = 41.6, y = 38.8, near = true, mobs = "Lasher Sproutling / Blooming Lasher / Wrathvine" }, -- 162
-        { type = "COLLECT", quest = 99050, questName = "The Great Tree Provides", target = "Empty Vial", count = 1, map = 1438, zone = "Teldrassil", x = 55.3, y = 57.2, near = true, mobs = "Tharynn Bouden / Amy Davenport / Gina MacGregor / Antonio Perelli" }, -- 163
+        { type = "COLLECT", quest = 99050, questName = "The Great Tree Provides", target = "Empty Vial", count = 1, map = 1438, zone = "Teldrassil", x = 55.3, y = 57.2, near = true }, -- 163
         { type = "COLLECT", quest = 99050, questName = "The Great Tree Provides", target = "Refreshing Spring Water", count = 1, map = 1438, zone = "Teldrassil", x = 54.6, y = 52.6, near = true, mobs = "Hogger / Grell / Grellkin / Greenpaw" }, -- 164
         { type = "TURNIN", quest = 99050, questName = "The Great Tree Provides", npc = 6094, npcName = "Byancie", map = 1438, zone = "Teldrassil", x = 55.2, y = 56.8 }, -- 165
         { type = "TURNIN", quest = 931, questName = "The Shimmering Frond", npc = 2080, npcName = "Denalan", map = 1438, zone = "Teldrassil", x = 60.9, y = 68.5 }, -- 166
