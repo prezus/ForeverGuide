@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_50_FELWOOD",
     name = "50. Felwood 55-55 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 55,
@@ -17,7 +17,7 @@ ns.RegisterGuide({
     steps = [[{
 {type="ACCEPT",quest=5249,questName="To Winterspring!",npc=10924,npcName="Ivy Leafrunner",map=1448,zone="Felwood",x=50.8,y=81.6},
 {type="ACCEPT",quest=7065,questName="Corruption of Earth and Seed",npc=13698,npcName="Keeper Marandis",map=1443,zone="Desolace",x=63.8,y=10.6,optional=true,note="For Maraudon (dungeon guide)"},
-{type="NOTE",optional=true,text="Ready for Maraudon",note="Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons."},
+{type="NOTE",optional=true,text="Ready for Maraudon",note="Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, The Pariah's Instructions, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons."},
 {type="TRAVEL",map=1448,zone="Felwood",x=51.9,y=83.0,radius=60,note="travel to Felwood (Felwood)"},
 {type="ACCEPT",quest=4101,questName="Cleansing Felwood",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8},
 {type="ACCEPT",quest=5204,questName="Retribution of the Light",npc=11019,npcName="Jessir Moonbow",map=1448,zone="Felwood",x=51.2,y=82,optional=true},
