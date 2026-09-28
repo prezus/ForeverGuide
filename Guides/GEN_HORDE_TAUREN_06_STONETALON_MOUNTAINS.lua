@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_06_STONETALON_MOUNTAINS",
     name = "6. Stonetalon Mountains 23-24 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 23,
@@ -13,8 +13,9 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_07_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route planner",
     notes = "Chapter 6 of the Tauren route: level 23 to 24, 25 steps, ~119 min of play in the model (21605 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 34,
+    stepCount = 37,
     steps = [[{
+{type="TURNIN",quest=30,questName="Trial of the Sea Lion",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"}},
 {type="TRAVEL",map=1442,zone="Stonetalon Mountains",x=46.7,y=60.9,radius=60,note="travel to Stonetalon Mountains (Stonetalon Mountains)"},
 {type="ACCEPT",quest=1087,questName="Cenarius' Legacy",npc=4198,npcName="Braelyn Firehand",map=1442,zone="Stonetalon Mountains",x=45.9,y=60.4},
 {type="TURNIN",quest=6401,questName="Kaya's Alive",npc=11864,npcName="Tammra Windfield",map=1442,zone="Stonetalon Mountains",x=47.4,y=58.4},
@@ -22,6 +23,8 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=6393,questName="Elemental War",npc=11862,npcName="Tsunaman",map=1442,zone="Stonetalon Mountains",x=47.4,y=64.3},
 {type="ACCEPT",quest=6282,questName="Harpies Threaten",npc=11860,npcName="Maggran Earthbinder",map=1442,zone="Stonetalon Mountains",x=47.2,y=61.2},
 {type="ACCEPT",quest=6283,questName="Bloodfury Bloodline",npc=11860,npcName="Maggran Earthbinder",map=1442,zone="Stonetalon Mountains",x=47.2,y=61.2,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="ACCEPT",quest=31,questName="Aquatic Form",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"}},
+{type="TURNIN",quest=31,questName="Aquatic Form",npc=3033,npcName="Turak Runetotem",map=1456,zone="Thunder Bluff",x=76.4,y=27.6,class={"DRUID"}},
 {type="KILL",quest=6283,questName="Bloodfury Bloodline",npc=12579,target="Bloodfury Ripper",map=1442,zone="Stonetalon Mountains",x=30.8,y=61.9,optional=true},
 {type="TURNIN",quest=6283,questName="Bloodfury Bloodline",npc=11860,npcName="Maggran Earthbinder",map=1442,zone="Stonetalon Mountains",x=47.2,y=61.2,optional=true},
 {type="COLLECT",quest=6393,questName="Elemental War",target="Incendrites",count=10,map=1442,zone="Stonetalon Mountains",x=37.3,y=60.5,near=true},
