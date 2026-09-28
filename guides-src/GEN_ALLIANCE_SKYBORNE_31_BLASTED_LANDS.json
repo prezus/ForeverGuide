@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_31_BLASTED_LANDS",
   "name": "31. Blasted Lands 47-47 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 47,
@@ -17,8 +17,6 @@
     {"type": "TURNIN", "quest": 2990, "questName": "Thadius Grimshade", "npc": 8022, "npcName": "Thadius Grimshade", "map": 1419, "zone": "Blasted Lands", "x": 67, "y": 19.4},
     {"type": "ACCEPT", "quest": 1448, "questName": "In Search of The Temple", "npc": 5384, "npcName": "Brohann Caskbelly", "map": 1453, "zone": "Stormwind City", "x": 64.2, "y": 20.8, "note": "Objectives: Explore Zone, Search for the Temple of Atal'Hakkar"},
     {"type": "TURNIN", "quest": 1448, "questName": "In Search of The Temple", "npc": 5384, "npcName": "Brohann Caskbelly", "map": 1453, "zone": "Stormwind City", "x": 64.2, "y": 20.8},
-    {"type": "ACCEPT", "quest": 7794, "questName": "A Donation of Mageweave", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
-    {"type": "TURNIN", "quest": 7794, "questName": "A Donation of Mageweave", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
     {"type": "ACCEPT", "quest": 3636, "questName": "Bring the Light", "npc": 1284, "npcName": "Archbishop Benedictus", "map": 1453, "zone": "Stormwind City", "x": 39.6, "y": 27.4, "note": "For Razorfen Downs (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: Bring the Light, A Host of Evil. When you have a group, open Razorfen Downs under Dungeons.", "text": "Ready for Razorfen Downs", "optional": true},
     {"type": "ACCEPT", "quest": 2991, "questName": "Nekrum's Medallion", "npc": 8022, "npcName": "Thadius Grimshade", "map": 1419, "zone": "Blasted Lands", "x": 67, "y": 19.4, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
