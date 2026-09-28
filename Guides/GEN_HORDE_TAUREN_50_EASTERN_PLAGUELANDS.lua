@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_50_EASTERN_PLAGUELANDS",
     name = "50. Eastern Plaguelands 57-60 (Tauren)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 57,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Chapter 50 of the Tauren route: level 57 to 60, 30 steps, ~815 min of play in the model (9572 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 64,
+    stepCount = 51,
     steps = [[{
 {type="ACCEPT",quest=5513,questName="Mantles of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60,note="Objectives: Argent Dawn"},
 {type="ACCEPT",quest=5517,questName="Chromatic Mantle of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60,note="Objectives: Argent Dawn"},
@@ -21,9 +21,6 @@ ns.RegisterGuide({
 {type="COLLECT",quest=5517,questName="Chromatic Mantle of the Dawn",target="Argent Dawn Valor Token",count=25,map=1423,zone="Eastern Plaguelands",x=81.4,y=60,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
 {type="TURNIN",quest=5517,questName="Chromatic Mantle of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60},
 {type="TURNIN",quest=6029,questName="The Everlook Report",npc=10839,npcName="Argent Officer Garush",map=1420,zone="Tirisfal Glades",x=83.2,y=68.4},
-{type="ACCEPT",quest=7603,questName="Kroshius' Infernal Core",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,optional=true,class={"WARLOCK"},note="Elite - group up"},
-{type="COLLECT",quest=7603,questName="Kroshius' Infernal Core",target="Kroshius' Infernal Core",count=1,map=1448,zone="Felwood",x=45.4,y=35.4,optional=true,class={"WARLOCK"},mobs="Kroshius"},
-{type="TURNIN",quest=7603,questName="Kroshius' Infernal Core",npc=14469,npcName="Niby the Almighty",map=1448,zone="Felwood",x=41.4,y=44.8,optional=true,class={"WARLOCK"}},
 {type="TRAVEL",map=1423,zone="Eastern Plaguelands",x=81.3,y=58.8,radius=60,note="travel to Eastern Plaguelands (Eastern Plaguelands)"},
 {type="ACCEPT",quest=9200,questName="Craftsman's Writ - Major Mana Potion",npc=16131,npcName="Rohan the Assassin",map=1423,zone="Eastern Plaguelands",x=81.4,y=58.4,optional=true,note="Loot Craftsman's Writ - Major Mana Potion from Rohan the Assassin and use it to start the quest; Elite - group up"},
 {type="ACCEPT",quest=9128,questName="The Elemental Equation",npc=16116,npcName="Archmage Angela Dosantos",map=1423,zone="Eastern Plaguelands",x=81.5,y=58.3},
@@ -67,16 +64,6 @@ ns.RegisterGuide({
 {type="NOTE",optional=true,text="Ready for Stratholme",note="Picked up: The Flesh Does Not Lie, The Great Fras Siabi, Houses of the Holy, The Archivist, The Restless Souls, Of Love and Family. When you have a group, open Stratholme under Dungeons."},
 {type="TURNIN",quest=6024,questName="Hameya's Plea",map=1423,zone="Eastern Plaguelands",x=28,y=86.2},
 {type="GRIND",npc=8532,target="Diseased Flayer",level=59,map=1423,zone="Eastern Plaguelands",x=33.6,y=61.4,near=true,note="grind Diseased Flayer (level 57-59) to level 59 - nothing worth questing at 58"},
-{type="GRIND",npc=8532,target="Diseased Flayer",level=60,map=1423,zone="Eastern Plaguelands",x=33.6,y=61.4,near=true,note="grind Diseased Flayer (level 57-59) to level 60 - nothing worth questing at 59"},
-{type="ACCEPT",quest=9362,questName="Warlord Krellian",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
-{type="COLLECT",quest=9362,questName="Warlord Krellian",target="Prismatic Shell",count=1,map=1447,zone="Azshara",x=40.4,y=53,near=true,class={"MAGE"},mobs="Warlord Krellian / Scalebeard"},
-{type="TURNIN",quest=9362,questName="Warlord Krellian",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
-{type="ACCEPT",quest=7562,questName="Mor'zul Bloodbringer",npc=5753,npcName="Martha Strain",map=1458,zone="Undercity",x=85.8,y=15.8,class={"WARLOCK"}},
-{type="TURNIN",quest=7562,questName="Mor'zul Bloodbringer",npc=14436,npcName="Mor'zul Bloodbringer",map=1428,zone="Burning Steppes",x=12.6,y=31.6,class={"WARLOCK"}},
-{type="ACCEPT",quest=7623,questName="Lord Banehollow",npc=14437,npcName="Gorzeeki Wildeyes",map=1428,zone="Burning Steppes",x=12.4,y=31.6,class={"WARLOCK"}},
-{type="TURNIN",quest=7623,questName="Lord Banehollow",npc=9516,npcName="Lord Banehollow",map=1448,zone="Felwood",x=36,y=44.6,class={"WARLOCK"}},
-{type="ACCEPT",quest=7582,questName="The Prison's Casing",npc=14463,npcName="Daio the Decrepit",map=1419,zone="Blasted Lands",x=34,y=50.2,optional=true,class={"WARLOCK"},note="Elite - group up"},
-{type="COLLECT",quest=7582,questName="The Prison's Casing",target="Tears of the Hederine",count=5,map=1452,zone="Winterspring",x=55.5,y=84.2,optional=true,near=true,class={"WARLOCK"},mobs="Hederine Initiate / Hederine Manastalker / Hederine Slayer"},
-{type="TURNIN",quest=7582,questName="The Prison's Casing",npc=14463,npcName="Daio the Decrepit",map=1419,zone="Blasted Lands",x=34,y=50.2,optional=true,class={"WARLOCK"}}
+{type="GRIND",npc=8532,target="Diseased Flayer",level=60,map=1423,zone="Eastern Plaguelands",x=33.6,y=61.4,near=true,note="grind Diseased Flayer (level 57-59) to level 60 - nothing worth questing at 59"}
 }]],
 })
