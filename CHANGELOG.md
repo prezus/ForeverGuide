@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: the raid guides are gone (Molten Core, Blackwing Lair, Zul'Gurub, Ruins of Ahn'Qiraj, Ahn'Qiraj and Naxxramas): WoW Forever has no raids. `/fg dungeons` lists dungeons only.
 - Guides: WoW Forever has no raids, so the Eastern Plaguelands chapters no longer send you toward Naxxramas: The Dread Citadel, Echoes of War, Cryptstalker Armor Doesn't Make Itself... and Bonescythe Digs are out.
 - No more "ForeverGuide tried to call the protected function" errors in combat or when opening the map. The window still hides and shows in combat. It holds still until the fight is over: it cannot be dragged or resized, and it keeps its height, so the quest item and skull buttons stay on it. If it goes away mid-fight, those two buttons turn invisible and are put away properly once combat ends.
 - Distances are always in yards, like the game's own waypoint: "85 yd", and "1.5k yd" from a thousand yards on, instead of switching to kilometres.
