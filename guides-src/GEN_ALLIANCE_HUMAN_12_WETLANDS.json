@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_12_WETLANDS",
   "name": "12. Wetlands 27-29 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 27,
@@ -13,6 +13,7 @@
   "notes": "Chapter 12 of the Human route: level 27 to 29, 25 steps, ~117 min of play in the model (10980 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1437, "zone": "Wetlands", "x": 10.7, "y": 60.2, "radius": 60, "note": "travel to Wetlands (Wetlands)"},
+    {"type": "ACCEPT", "quest": 289, "questName": "The Cursed Crew", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.8, "y": 59.6},
     {"type": "ACCEPT", "quest": 472, "questName": "Fall of Dun Modr", "npc": 2097, "npcName": "Harlo Barnaby", "map": 1437, "zone": "Wetlands", "x": 10.9, "y": 55.9},
     {"type": "ACCEPT", "quest": 464, "questName": "War Banners", "npc": 2104, "npcName": "Captain Stoutfist", "map": 1437, "zone": "Wetlands", "x": 9.9, "y": 57.5},
     {"type": "TURNIN", "quest": 98461, "questName": "Unrequited Love", "npc": 2096, "npcName": "Tarrel Rockweaver", "map": 1437, "zone": "Wetlands", "x": 11.4, "y": 52.2, "note": "reduced xp (80%) - you out-levelled it"},
@@ -36,13 +37,20 @@
     {"type": "TURNIN", "quest": 631, "questName": "The Thandol Span", "map": 1437, "zone": "Wetlands", "x": 51.3, "y": 8},
     {"type": "ACCEPT", "quest": 632, "questName": "The Thandol Span", "map": 1437, "zone": "Wetlands", "x": 51.3, "y": 8},
     {"type": "TURNIN", "quest": 632, "questName": "The Thandol Span", "npc": 1075, "npcName": "Rhag Garmason", "map": 1437, "zone": "Wetlands", "x": 49.9, "y": 18.2},
+    {"type": "KILL", "quest": 289, "questName": "The Cursed Crew", "npc": 1157, "target": "Cursed Sailor", "count": 13, "map": 1437, "zone": "Wetlands", "x": 14, "y": 29},
+    {"type": "KILL", "quest": 289, "questName": "The Cursed Crew", "npc": 1158, "target": "Cursed Marine", "count": 5, "map": 1437, "zone": "Wetlands", "x": 14.8, "y": 24.6},
+    {"type": "COLLECT", "quest": 289, "questName": "The Cursed Crew", "target": "Snellig's Snuffbox", "count": 1, "mobs": "First Mate Snellig", "map": 1437, "zone": "Wetlands", "x": 14, "y": 29.8},
     {"type": "ACCEPT", "quest": 633, "questName": "The Thandol Span", "npc": 1075, "npcName": "Rhag Garmason", "map": 1437, "zone": "Wetlands", "x": 49.8, "y": 18.2},
     {"type": "TURNIN", "quest": 464, "questName": "War Banners", "npc": 2104, "npcName": "Captain Stoutfist", "map": 1437, "zone": "Wetlands", "x": 9.9, "y": 57.5},
     {"type": "ACCEPT", "quest": 465, "questName": "Nek'rosh's Gambit", "npc": 2104, "npcName": "Captain Stoutfist", "map": 1437, "zone": "Wetlands", "x": 9.9, "y": 57.5},
+    {"type": "TURNIN", "quest": 289, "questName": "The Cursed Crew", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.8, "y": 59.6},
     {"type": "TURNIN", "quest": 465, "questName": "Nek'rosh's Gambit", "map": 1437, "zone": "Wetlands", "x": 47.5, "y": 47},
     {"type": "ACCEPT", "quest": 474, "questName": "Defeat Nek'rosh", "map": 1437, "zone": "Wetlands", "x": 47.5, "y": 46.9, "note": "Elite - group up", "optional": true},
     {"type": "COLLECT", "quest": 474, "questName": "Defeat Nek'rosh", "target": "Nek'rosh's Head", "count": 1, "mobs": "Chieftain Nek'rosh", "map": 1437, "zone": "Wetlands", "x": 53.4, "y": 54.4, "optional": true},
     {"type": "GRIND", "npc": 1418, "target": "Bluegill Raider", "level": 29, "map": 1437, "zone": "Wetlands", "x": 28.2, "y": 16.1, "near": true, "note": "grind Bluegill Raider (level 28-29) to level 29 - nothing worth questing at 28"},
+    {"type": "ACCEPT", "quest": 290, "questName": "Lifting the Curse", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.8, "y": 59.6},
+    {"type": "COLLECT", "quest": 290, "questName": "Lifting the Curse", "target": "Intrepid Strongbox Key", "count": 1, "mobs": "Captain Halyndor", "map": 1437, "zone": "Wetlands", "x": 15.6, "y": 23.4},
+    {"type": "TURNIN", "quest": 290, "questName": "Lifting the Curse", "map": 1437, "zone": "Wetlands", "x": 14.3, "y": 24},
     {"type": "TURNIN", "quest": 474, "questName": "Defeat Nek'rosh", "npc": 2104, "npcName": "Captain Stoutfist", "map": 1437, "zone": "Wetlands", "x": 9.8, "y": 57.4, "optional": true}
   ]
 }
