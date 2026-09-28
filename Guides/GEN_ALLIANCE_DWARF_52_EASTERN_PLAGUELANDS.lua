@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_52_EASTERN_PLAGUELANDS",
     name = "52. Eastern Plaguelands 57-60 (Dwarf)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 57,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Chapter 52 of the Dwarf route: level 57 to 60, 23 steps, ~729 min of play in the model (7919 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 66,
+    stepCount = 65,
     steps = [[{
 {type="ACCEPT",quest=5212,questName="The Flesh Does Not Lie",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6,optional=true,note="For Stratholme (dungeon guide)"},
 {type="ACCEPT",quest=5529,questName="Plagued Hatchlings",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6,optional=true,note="For Scholomance (dungeon guide)"},
@@ -57,7 +57,6 @@ ns.RegisterGuide({
 {type="COLLECT",quest=7603,questName="Kroshius' Infernal Core",target="Kroshius' Infernal Core",count=1,map=1448,zone="Felwood",x=45.4,y=35.4,optional=true,class={"WARLOCK"},race={"Gnome"},mobs="Kroshius"},
 {type="TURNIN",quest=7603,questName="Kroshius' Infernal Core",npc=14469,npcName="Niby the Almighty",map=1448,zone="Felwood",x=41.4,y=44.8,optional=true,class={"WARLOCK"},race={"Gnome"}},
 {type="KILL",quest=6024,questName="Hameya's Plea",npc=12248,target="Infiltrator Hameya",map=1423,zone="Eastern Plaguelands",x=70.7,y=16.5,note="loot Hameya's Key"},
-{type="TURNIN",quest=8859,questName="Secrets of the Colossus - Zora",npc=11034,npcName="Lord Maxwell Tyrosus",map=1423,zone="Eastern Plaguelands",x=81.6,y=58},
 {type="ACCEPT",quest=9141,questName="They Call Me \"The Rooster\"",npc=16212,npcName="Dispatch Commander Metz",map=1423,zone="Eastern Plaguelands",x=81,y=57.6},
 {type="COLLECT",quest=9141,questName="They Call Me \"The Rooster\"",target="Argent Dawn Valor Token",count=1,map=1423,zone="Eastern Plaguelands",x=81.4,y=60,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
 {type="TURNIN",quest=9141,questName="They Call Me \"The Rooster\"",npc=16212,npcName="Dispatch Commander Metz",map=1423,zone="Eastern Plaguelands",x=81,y=57.6},
