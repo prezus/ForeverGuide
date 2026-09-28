@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_38_AZSHARA",
     name = "38. Azshara 51-52 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 51,
@@ -19,8 +19,8 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=7029,questName="Vyletongue Corruption",npc=11823,npcName="Vark Battlescar",map=1443,zone="Desolace",x=23.2,y=70.2,optional=true,note="For Maraudon (dungeon guide)"},
 {type="ACCEPT",quest=7044,questName="Legends of Maraudon",npc=13697,npcName="Cavindra",map=1443,zone="Desolace",x=31.9,y=63.8,optional=true,note="For Maraudon (dungeon guide)"},
 {type="ACCEPT",quest=7064,questName="Corruption of Earth and Seed",npc=13699,npcName="Selendra",map=1443,zone="Desolace",x=26.8,y=77.6,optional=true,note="For Maraudon (dungeon guide)"},
-{type="NOTE",optional=true,text="Ready for Maraudon",note="Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons."},
-{type="GRIND",npc=8761,target="Mosshoof Courser",level=52,map=1447,zone="Azshara",x=66.4,y=27.4,near=true,note="grind Mosshoof Courser (level 52-53) to level 52 - nothing worth questing at 51"},
-{type="COLLECT",quest=8419,questName="An Imp's Request",target="Felcloth",count=1,map=1447,zone="Azshara",x=62.8,y=25.5,near=true,class={"WARLOCK"},mobs="Felguard Sentry / Legashi Satyr / Legashi Rogue / Legashi Hellcaller"}
+{type="ACCEPT",quest=7067,questName="The Pariah's Instructions",npc=13717,npcName="Centaur Pariah",map=1443,zone="Desolace",x=50.4,y=86.6,optional=true,note="For Maraudon (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Maraudon",note="Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, The Pariah's Instructions, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons."},
+{type="GRIND",npc=8761,target="Mosshoof Courser",level=52,map=1447,zone="Azshara",x=66.4,y=27.4,near=true,note="grind Mosshoof Courser (level 52-53) to level 52 - nothing worth questing at 51"}
 }]],
 })
