@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_03_THE_BARRENS",
   "name": "3. The Barrens 18-19 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 18,
@@ -72,8 +72,6 @@
     {"type": "TURNIN", "quest": 902, "questName": "Samophlange", "npc": 3442, "npcName": "Sputtervalve", "map": 1413, "zone": "The Barrens", "x": 63, "y": 37.2},
     {"type": "TURNIN", "quest": 896, "questName": "Miner's Fortune", "npc": 3453, "npcName": "Wharfmaster Dizzywig", "map": 1413, "zone": "The Barrens", "x": 63.4, "y": 38.5},
     {"type": "TURNIN", "quest": 97005, "questName": "Chol'aruk the Ravener", "npc": 267309, "npcName": "Bainham", "map": 1413, "zone": "The Barrens", "x": 61.8, "y": 39.4, "optional": true},
-    {"type": "ACCEPT", "quest": 80001, "questName": "Rekindle", "map": 1442, "zone": "Stonetalon Mountains", "x": 40.6, "y": 52.4},
-    {"type": "TURNIN", "quest": 80001, "questName": "Rekindle", "map": 1442, "zone": "Stonetalon Mountains", "x": 40.6, "y": 52.4},
     {"type": "COLLECT", "quest": 888, "questName": "Stolen Booty", "target": "Shipment of Boots", "count": 1, "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 49.6},
     {"type": "COLLECT", "quest": 888, "questName": "Stolen Booty", "target": "Telescopic Lens", "count": 1, "map": 1413, "zone": "The Barrens", "x": 63.6, "y": 49.3},
     {"type": "TURNIN", "quest": 888, "questName": "Stolen Booty", "npc": 3391, "npcName": "Gazlowe", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 36.2},
