@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_35_FELWOOD",
   "name": "35. Felwood 50-51 (Tauren)",
-  "version": 4,
+  "version": 5,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 50,
@@ -35,15 +35,9 @@
     {"type": "TURNIN", "quest": 5157, "questName": "Collection of the Corrupt Water", "npc": 10922, "npcName": "Greta Mosshoof", "map": 1448, "zone": "Felwood", "x": 51.2, "y": 82.1},
     {"type": "ACCEPT", "quest": 5158, "questName": "Seeking Spiritual Aid", "npc": 10922, "npcName": "Greta Mosshoof", "map": 1448, "zone": "Felwood", "x": 51.2, "y": 82.2},
     {"type": "ACCEPT", "quest": 5156, "questName": "Verifying the Corruption", "npc": 10921, "npcName": "Taronn Redfeather", "map": 1448, "zone": "Felwood", "x": 50.9, "y": 81.6},
-    {"type": "ACCEPT", "quest": 7601, "questName": "What Niby Commands", "npc": 14469, "npcName": "Niby the Almighty", "map": 1448, "zone": "Felwood", "x": 41.4, "y": 44.8, "class": ["WARLOCK"]},
-    {"type": "TURNIN", "quest": 7601, "questName": "What Niby Commands", "npc": 14470, "npcName": "Impsy", "map": 1448, "zone": "Felwood", "x": 41.4, "y": 44.8, "class": ["WARLOCK"]},
-    {"type": "ACCEPT", "quest": 8420, "questName": "Hot and Itchy", "npc": 14470, "npcName": "Impsy", "map": 1448, "zone": "Felwood", "x": 41.4, "y": 44.8, "class": ["WARLOCK"]},
     {"type": "COMPLETE", "quest": 5156, "questName": "Verifying the Corruption", "npc": 9878, "target": "Entropic Beast / Entropic Horror / Explore the craters in Shatter Scar Vale", "count": 2, "map": 1448, "zone": "Felwood", "x": 41.3, "y": 43.8, "near": true},
     {"type": "ACCEPT", "quest": 5202, "questName": "A Strange Red Key", "npc": 7118, "npcName": "Jaedenar Darkweaver", "map": 1448, "zone": "Felwood", "x": 40.7, "y": 48.4, "note": "If you looted Blood Red Key from Jaedenar Enforcer / Jaedenar Darkweaver / Jaedenar Warlock / Jaedenar Legionnaire / Ulathek, use it to start the quest", "optional": true},
     {"type": "TURNIN", "quest": 5202, "questName": "A Strange Red Key", "npc": 11016, "npcName": "Captured Arko'narin", "map": 1448, "zone": "Felwood", "x": 36.2, "y": 55.4, "optional": true},
-    {"type": "COLLECT", "quest": 8420, "questName": "Hot and Itchy", "target": "Felcloth", "count": 1, "mobs": "Jadefire Rogue / Jadefire Trickster / Jadefire Betrayer / Jadefire Felsworn", "map": 1448, "zone": "Felwood", "x": 38.8, "y": 46.8, "near": true, "class": ["WARLOCK"]},
-    {"type": "TURNIN", "quest": 8420, "questName": "Hot and Itchy", "npc": 14470, "npcName": "Impsy", "map": 1448, "zone": "Felwood", "x": 41.4, "y": 44.8, "class": ["WARLOCK"]},
-    {"type": "ACCEPT", "quest": 7602, "questName": "Flawless Fel Essence", "npc": 14470, "npcName": "Impsy", "map": 1448, "zone": "Felwood", "x": 41.4, "y": 44.8, "class": ["WARLOCK"]},
     {"type": "TURNIN", "quest": 5156, "questName": "Verifying the Corruption", "npc": 10921, "npcName": "Taronn Redfeather", "map": 1448, "zone": "Felwood", "x": 50.9, "y": 81.6}
   ]
 }
