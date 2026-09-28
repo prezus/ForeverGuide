@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_04_LOCH_MODAN",
   "name": "4. Loch Modan 15-16 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 15,
@@ -14,8 +14,6 @@
   "steps": [
     {"type": "ACCEPT", "quest": 436, "questName": "Ironband's Excavation", "npc": 1105, "npcName": "Jern Hornhelm", "map": 1432, "zone": "Loch Modan", "x": 37.2, "y": 47.4},
     {"type": "ACCEPT", "quest": 2039, "questName": "Find Bingles", "npc": 6569, "npcName": "Gnoarn", "map": 1455, "zone": "Ironforge", "x": 69.4, "y": 50.6},
-    {"type": "ACCEPT", "quest": 7791, "questName": "A Donation of Wool", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
-    {"type": "TURNIN", "quest": 7791, "questName": "A Donation of Wool", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
     {"type": "ACCEPT", "quest": 1639, "questName": "Bartleby the Drunk", "npc": 6089, "npcName": "Harry Burlguard", "map": 1453, "zone": "Stormwind City", "x": 74, "y": 37.2, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 1639, "questName": "Bartleby the Drunk", "npc": 6090, "npcName": "Bartleby", "map": 1453, "zone": "Stormwind City", "x": 73.8, "y": 36.6, "class": ["WARRIOR"]},
     {"type": "ACCEPT", "quest": 1678, "questName": "Vejrek", "npc": 6114, "npcName": "Muren Stormpike", "map": 1455, "zone": "Ironforge", "x": 70.6, "y": 90.4, "class": ["WARRIOR"]},
