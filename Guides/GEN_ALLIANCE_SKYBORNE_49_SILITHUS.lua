@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_49_SILITHUS",
     name = "49. Silithus 55-55 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 55,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_50_FELWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 49 of the Skyborne route: level 55 to 55, 23 steps, ~110 min of play in the model (35254 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 33,
+    stepCount = 32,
     steps = [[{
 {type="FLIGHTPATH",npc=15177,npcName="Cloud Skydancer",map=1451,zone="Silithus",x=50.6,y=34.5},
 {type="ACCEPT",quest=7441,questName="Pusillin and the Elder Azj'Tordin",npc=14355,npcName="Azj'Tordin",map=1444,zone="Feralas",x=76.8,y=37.4,optional=true,note="For Dire Maul (dungeon guide)"},
@@ -32,7 +32,6 @@ ns.RegisterGuide({
 {type="KILL",quest=8280,questName="Securing the Supply Lines",npc=11740,target="Dredge Striker",count=15,map=1451,zone="Silithus",x=38.2,y=34.3,near=true},
 {type="KILL",quest=8277,questName="Deadly Desert Venom",npc=11738,target="Sand Skitterer",count=8,map=1451,zone="Silithus",x=39,y=33.2,near=true,note="loot Sand Skitterer Fang"},
 {type="COLLECT",quest=8284,questName="The Twilight Mystery",target="Twilight Tablet Fragment",count=8,map=1451,zone="Silithus",x=26.4,y=15.9,near=true},
-{type="ACCEPT",quest=8859,questName="Secrets of the Colossus - Zora",npc=15797,npcName="Colossus Researcher Sophia",map=1451,zone="Silithus",x=49.4,y=37.2},
 {type="TURNIN",quest=8280,questName="Securing the Supply Lines",npc=15191,npcName="Windcaller Proudhorn",map=1451,zone="Silithus",x=51.2,y=38.3},
 {type="ACCEPT",quest=8281,questName="Stepping Up Security",npc=15191,npcName="Windcaller Proudhorn",map=1451,zone="Silithus",x=51.2,y=38.3},
 {type="TURNIN",quest=8277,questName="Deadly Desert Venom",npc=15189,npcName="Beetix Ficklespragg",map=1451,zone="Silithus",x=51.6,y=38.6},
