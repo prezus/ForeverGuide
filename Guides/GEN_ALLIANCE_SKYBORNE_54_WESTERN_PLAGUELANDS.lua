@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_54_WESTERN_PLAGUELANDS",
     name = "54. Western Plaguelands 57-60 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 57,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Chapter 54 of the Skyborne route: level 57 to 60, 6 steps, ~644 min of play in the model (773 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 30,
+    stepCount = 23,
     steps = [[{
 {type="TRAVEL",map=1422,zone="Western Plaguelands",x=44.0,y=83.5,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
 {type="TURNIN",quest=5903,questName="A Plague Upon Thee",npc=11616,npcName="Nathaniel Dumah",map=1422,zone="Western Plaguelands",x=43.4,y=84.8},
@@ -36,13 +36,6 @@ ns.RegisterGuide({
 {type="GRIND",level=60,note="nothing worth questing at level 59 - grind to 60"},
 {type="ACCEPT",quest=9362,questName="Warlord Krellian",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
 {type="COLLECT",quest=9362,questName="Warlord Krellian",target="Prismatic Shell",count=1,map=1447,zone="Azshara",x=40.4,y=53,near=true,class={"MAGE"},mobs="Warlord Krellian / Scalebeard"},
-{type="TURNIN",quest=9362,questName="Warlord Krellian",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
-{type="ACCEPT",quest=7562,questName="Mor'zul Bloodbringer",npc=5753,npcName="Martha Strain",map=1458,zone="Undercity",x=85.8,y=15.8,class={"WARLOCK"}},
-{type="TURNIN",quest=7562,questName="Mor'zul Bloodbringer",npc=14436,npcName="Mor'zul Bloodbringer",map=1428,zone="Burning Steppes",x=12.6,y=31.6,class={"WARLOCK"}},
-{type="ACCEPT",quest=7623,questName="Lord Banehollow",npc=14437,npcName="Gorzeeki Wildeyes",map=1428,zone="Burning Steppes",x=12.4,y=31.6,class={"WARLOCK"}},
-{type="TURNIN",quest=7623,questName="Lord Banehollow",npc=9516,npcName="Lord Banehollow",map=1448,zone="Felwood",x=36,y=44.6,class={"WARLOCK"}},
-{type="ACCEPT",quest=7582,questName="The Prison's Casing",npc=14463,npcName="Daio the Decrepit",map=1419,zone="Blasted Lands",x=34,y=50.2,optional=true,class={"WARLOCK"},note="Elite - group up"},
-{type="COLLECT",quest=7582,questName="The Prison's Casing",target="Tears of the Hederine",count=5,map=1452,zone="Winterspring",x=55.5,y=84.2,optional=true,near=true,class={"WARLOCK"},mobs="Hederine Initiate / Hederine Manastalker / Hederine Slayer"},
-{type="TURNIN",quest=7582,questName="The Prison's Casing",npc=14463,npcName="Daio the Decrepit",map=1419,zone="Blasted Lands",x=34,y=50.2,optional=true,class={"WARLOCK"}}
+{type="TURNIN",quest=9362,questName="Warlord Krellian",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}}
 }]],
 })
