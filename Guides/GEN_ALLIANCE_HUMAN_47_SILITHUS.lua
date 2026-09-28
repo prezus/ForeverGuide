@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_47_SILITHUS",
     name = "47. Silithus 55-55 (Human)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 55,
@@ -19,7 +19,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=3445,questName="The Sunken Temple",npc=7900,npcName="Angelas Moonbreeze",map=1444,zone="Feralas",x=31.8,y=45.6},
 {type="TURNIN",quest=3445,questName="The Sunken Temple",npc=7771,npcName="Marvon Rivetseeker",map=1446,zone="Tanaris",x=52.6,y=45.8},
 {type="ACCEPT",quest=7065,questName="Corruption of Earth and Seed",npc=13698,npcName="Keeper Marandis",map=1443,zone="Desolace",x=63.8,y=10.6,optional=true,note="For Maraudon (dungeon guide)"},
-{type="NOTE",optional=true,text="Ready for Maraudon",note="Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons."},
+{type="NOTE",optional=true,text="Ready for Maraudon",note="Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, The Pariah's Instructions, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons."},
 {type="ACCEPT",quest=7441,questName="Pusillin and the Elder Azj'Tordin",npc=14355,npcName="Azj'Tordin",map=1444,zone="Feralas",x=76.8,y=37.4,optional=true,note="For Dire Maul (dungeon guide)"},
 {type="ACCEPT",quest=7482,questName="Elven Legends",npc=14374,npcName="Scholar Runethorn",map=1444,zone="Feralas",x=31.2,y=43.4,optional=true,note="For Dire Maul (dungeon guide); Objectives: Master Kariel Winthalus Found"},
 {type="TURNIN",quest=7482,questName="Elven Legends",npc=14374,npcName="Scholar Runethorn",map=1444,zone="Feralas",x=31.2,y=43.4,optional=true},
