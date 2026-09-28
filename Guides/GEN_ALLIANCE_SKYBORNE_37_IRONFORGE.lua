@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_37_IRONFORGE",
     name = "37. Ironforge 49-50 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 49,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_38_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 37 of the Skyborne route: level 49 to 50, 11 steps, ~159 min of play in the model (6871 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 35,
+    stepCount = 34,
     steps = [[{
 {type="TRAVEL",map=1425,zone="Aerie Peak",x=14.2,y=41.6,radius=60,note="use your hearthstone (Aerie Peak)"},
 {type="FLIGHTPATH",npc=1573,npcName="Gryth Thurden",map=1455,zone="Ironforge",x=55.5,y=47.7},
@@ -31,7 +31,6 @@ ns.RegisterGuide({
 {type="NOTE",optional=true,text="Ready for Uldaman",note="Picked up: Agmond's Fate, Solution to Doom, Amulet of Secrets, Reclaimed Treasures, The Lost Dwarves. When you have a group, open Uldaman under Dungeons."},
 {type="ACCEPT",quest=2861,questName="Tabetha's Task",npc=5144,npcName="Bink",map=1455,zone="Ironforge",x=27,y=8.2,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="TRAVEL",map=1455,zone="Ironforge",x=57.2,y=35.7,radius=60,note="travel to Ironforge (Ironforge)"},
-{type="ACCEPT",quest=7905,questName="The Darkmoon Faire",npc=14842,npcName="Melnan Darkstone",map=1455,zone="Ironforge",x=27.2,y=70.8},
 {type="HEARTH",npc=5111,npcName="Innkeeper Firebrew",map=1455,zone="Ironforge",x=18.1,y=51.5,note="talk to Innkeeper Firebrew and make this inn your home"},
 {type="TURNIN",quest=3368,questName="Suntara Stones",npc=8256,npcName="Curator Thorius",map=1455,zone="Ironforge",x=71.5,y=15.7},
 {type="ACCEPT",quest=3448,questName="Passing the Burden",npc=2916,npcName="Historian Karnik",map=1455,zone="Ironforge",x=77.5,y=11.8},
