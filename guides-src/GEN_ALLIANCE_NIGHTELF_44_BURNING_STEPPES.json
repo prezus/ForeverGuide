@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_44_BURNING_STEPPES",
   "name": "44. Burning Steppes 53-53 (Night Elf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 53,
@@ -62,7 +62,6 @@
     {"type": "TURNIN", "quest": 4023, "questName": "A Taste of Flame", "npc": 9459, "npcName": "Cyrus Therepentous", "map": 1428, "zone": "Burning Steppes", "x": 94.8, "y": 31.6, "optional": true},
     {"type": "ACCEPT", "quest": 4024, "questName": "A Taste of Flame", "npc": 9459, "npcName": "Cyrus Therepentous", "map": 1428, "zone": "Burning Steppes", "x": 94.8, "y": 31.6, "note": "For Blackrock Depths (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 4136, "questName": "Ribbly Screwspigot", "npc": 9544, "npcName": "Yuka Screwspigot", "map": 1428, "zone": "Burning Steppes", "x": 66, "y": 22, "note": "For Blackrock Depths (dungeon guide)", "optional": true},
-    {"type": "NOTE", "note": "Picked up: Dark Iron Legacy, A Taste of Flame, Hurley Blackbreath, Ribbly Screwspigot, Incendius!, The Good Stuff, Kharan Mighthammer. When you have a group, open Blackrock Depths under Dungeons.", "text": "Ready for Blackrock Depths", "optional": true},
     {"type": "TURNIN", "quest": 4324, "questName": "Yuka Screwspigot", "npc": 9544, "npcName": "Yuka Screwspigot", "map": 1428, "zone": "Burning Steppes", "x": 66, "y": 22, "optional": true},
     {"type": "ACCEPT", "quest": 4296, "questName": "Tablet of the Seven", "npc": 9536, "npcName": "Maxwort Uberglint", "map": 1428, "zone": "Burning Steppes", "x": 65.2, "y": 23.9},
     {"type": "COLLECT", "quest": 4296, "questName": "Tablet of the Seven", "target": "Tablet Transcript", "map": 1428, "zone": "Burning Steppes", "x": 54.1, "y": 40.8},
