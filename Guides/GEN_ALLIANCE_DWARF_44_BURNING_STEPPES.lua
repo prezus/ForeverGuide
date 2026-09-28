@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_44_BURNING_STEPPES",
     name = "44. Burning Steppes 53-53 (Dwarf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 53,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_45_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 44 of the Dwarf route: level 53 to 53, 23 steps, ~125 min of play in the model (35015 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 59,
+    stepCount = 60,
     steps = [[{
 {type="FLIGHTPATH",npc=2299,npcName="Borgus Stoutarm",map=1428,zone="Burning Steppes",x=84.3,y=68.3},
 {type="TURNIN",quest=5781,questName="Of Forgotten Memories",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.4,y=43.6},
@@ -51,8 +51,9 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=3801,questName="Dark Iron Legacy",npc=8888,npcName="Franclorn Forgewright",map=1428,zone="Burning Steppes",x=29,y=28.9,optional=true,note="For Blackrock Depths (dungeon guide)"},
 {type="TURNIN",quest=3801,questName="Dark Iron Legacy",npc=8888,npcName="Franclorn Forgewright",map=1428,zone="Burning Steppes",x=29,y=28.9,optional=true},
 {type="ACCEPT",quest=3802,questName="Dark Iron Legacy",npc=8888,npcName="Franclorn Forgewright",map=1428,zone="Burning Steppes",x=29,y=28.9,optional=true,note="For Blackrock Depths (dungeon guide)"},
+{type="ACCEPT",quest=4123,questName="The Heart of the Mountain",npc=9536,npcName="Maxwort Uberglint",map=1428,zone="Burning Steppes",x=65.2,y=23.8,optional=true,note="For Blackrock Depths (dungeon guide)"},
 {type="ACCEPT",quest=4263,questName="Incendius!",npc=9561,npcName="Jalinda Sprig",map=1428,zone="Burning Steppes",x=85.4,y=70,optional=true,note="For Blackrock Depths (dungeon guide)"},
-{type="COLLECT",quest=8419,questName="An Imp's Request",target="Felcloth",count=1,map=1428,zone="Burning Steppes",x=41.9,y=46.5,near=true,class={"WARLOCK"},mobs="Felguard Sentry / Legashi Satyr / Legashi Rogue / Legashi Hellcaller"},
+{type="COLLECT",quest=8419,questName="An Imp's Request",target="Felcloth",count=1,map=1428,zone="Burning Steppes",x=41.9,y=46.5,near=true,class={"WARLOCK"},race={"Gnome"},mobs="Felguard Sentry / Legashi Satyr / Legashi Rogue / Legashi Hellcaller"},
 {type="KILL",quest=3824,questName="Gor'tesh the Brute Lord",npc=9176,target="Gor'tesh",map=1428,zone="Burning Steppes",x=39.3,y=55.3,note="loot Gor'tesh's Lopped Off Head"},
 {type="TURNIN",quest=3824,questName="Gor'tesh the Brute Lord",npc=9177,npcName="Oralius",map=1428,zone="Burning Steppes",x=84.6,y=68.7},
 {type="ACCEPT",quest=3825,questName="Ogre Head On A Stick = Party",npc=9177,npcName="Oralius",map=1428,zone="Burning Steppes",x=84.6,y=68.7},
