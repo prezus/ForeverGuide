@@ -331,10 +331,9 @@ function QG:UpdateScrollBar()
     bar.thumb:ClearAllPoints()
     bar.thumb:SetPoint("TOP", bar, "TOP", 0, -offset)
     -- the current step's place in the whole list
-    local top, markAt = 4, nil
+    local markAt
     for i, e in ipairs(f.list.entries) do
-        if e.state == "active" then markAt = top + f.list.rows[i]:GetHeight() / 2 break end
-        top = top + f.list.rows[i]:GetHeight() + 3
+        if e.state == "active" then markAt = f.list.tops[i] + f.list.heights[i] / 2 break end
     end
     if markAt then
         bar.markOffset = math.floor(track * markAt / total)
@@ -376,7 +375,7 @@ end
 function QG:SetView(at)
     local f = frame
     local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
-    f.list.viewTop, f.list.viewBottom = at, at + viewport
+    f.list:SetView(at, at + viewport)
 end
 
 function QG:Layout()
@@ -398,11 +397,9 @@ function QG:Layout()
     if f.scroll then
         local viewport = height - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
         local at = f.scroll:GetVerticalScroll()
-        local top, tops, activeI = 4, {}, nil
+        local tops, activeI = f.list.tops, nil
         for i, entry in ipairs(f.list.entries) do
-            tops[i] = top
-            if entry.state == "active" and not activeI then activeI = i end
-            top = top + f.list.rows[i]:GetHeight() + 3
+            if entry.state == "active" then activeI = i break end
         end
         -- scroll to the current step only when it changes: a refresh must not pull the list back
         -- while the player reads further down
@@ -410,7 +407,7 @@ function QG:Layout()
         local key = e and (e.index or e.questID)
         if key and key ~= self.scrolledTo then
             at = tops[math.max(1, activeI - 2)]        -- two steps of context above it
-            local bottom = tops[activeI] + f.list.rows[activeI]:GetHeight()
+            local bottom = tops[activeI] + f.list.heights[activeI]
             -- too little room for the context: the current step itself, its top first
             if bottom > at + viewport then at = math.min(tops[activeI], bottom - viewport) end
             self.scrolledTo = key
@@ -548,15 +545,14 @@ function QG:PlaceItemButton()
     local b = f and f.itemBtn
     if not b then return self:PlaceSecureButtons() end
     if inCombat() then self.securePending = true return end
-    local top, idx, itemID = 4, nil, nil
+    local idx, itemID
     for i, e in ipairs(f.list.entries or {}) do
         if e.useItem then idx, itemID = i, e.useItem break end
-        top = top + f.list.rows[i]:GetHeight() + 3
     end
-    local row = idx and f.list.rows[idx]
+    local rowH = idx and f.list.heights[idx]
     local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
-    local y = row and (top - (f.scroll and f.scroll:GetVerticalScroll() or 0))
-    if not row or y < 0 or y + row:GetHeight() > viewport + 1 then
+    local y = idx and (f.list.tops[idx] - (f.scroll and f.scroll:GetVerticalScroll() or 0))
+    if not idx or y < 0 or y + rowH > viewport + 1 then
         b.itemID, b.fromTop = nil, nil
         self:PlaceSecureButtons()
         return
@@ -568,7 +564,7 @@ function QG:PlaceItemButton()
         pcall(b.icon.SetTexture, b.icon, ns.Plain(icon) or "Interface\\Icons\\INV_Misc_QuestionMark")
         b.itemID = itemID
     end
-    b.fromTop = ns.QuestGuideHeader.HEIGHT + 2 + y + (row:GetHeight() - ITEM_SIZE) / 2
+    b.fromTop = ns.QuestGuideHeader.HEIGHT + 2 + y + (rowH - ITEM_SIZE) / 2
     self:PlaceSecureButtons()
     self:UpdateItemButtonState()
 end

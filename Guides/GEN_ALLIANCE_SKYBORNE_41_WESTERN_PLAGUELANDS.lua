@@ -14,57 +14,57 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 41 of the Skyborne route: level 51 to 52, 36 steps, ~91 min of play in the model (55752 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 51,
-    steps = function() return {
-        { type = "ACCEPT", quest = 5090, questName = "A Call to Arms: The Plaguelands!", npc = 10877, npcName = "Courier Hammerfall", map = 1455, zone = "Ironforge", x = 31.6, y = 67 }, -- 1
-        { type = "ACCEPT", quest = 1198, questName = "In Search of Thaelrid", npc = 4786, npcName = "Dawnwatcher Shaedlass", map = 1457, zone = "Darnassus", x = 55.4, y = 24.6, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 2
-        { type = "ACCEPT", quest = 1199, questName = "Twilight Falls", npc = 4784, npcName = "Argent Guard Manados", map = 1457, zone = "Darnassus", x = 55.2, y = 23.6, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 3
-        { type = "ACCEPT", quest = 1275, questName = "Researching the Corruption", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.4, y = 43, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 4
-        { type = "NOTE", optional = true, text = "Ready for Blackfathom Deeps", note = "Picked up: Knowledge in the Deeps, In Search of Thaelrid, Twilight Falls, Researching the Corruption. When you have a group, open Blackfathom Deeps under Dungeons." }, -- 5
-        { type = "ACCEPT", quest = 4126, questName = "Hurley Blackbreath", npc = 1267, npcName = "Ragnar Thunderbrew", map = 1426, zone = "Dun Morogh", x = 46.8, y = 52.4, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 6
-        { type = "ACCEPT", quest = 8252, questName = "The Siren's Coral", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 7
-        { type = "COLLECT", quest = 8252, questName = "The Siren's Coral", target = "Enchanted Coral", count = 6, map = 1447, zone = "Azshara", x = 40.2, y = 53, class = { "MAGE" }, mobs = "Spitelash Siren" }, -- 8
-        { type = "TURNIN", quest = 8252, questName = "The Siren's Coral", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 9
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 18.1, y = 51.5, radius = 60, note = "use your hearthstone (Ironforge)" }, -- 10
-        { type = "FLIGHTPATH", npc = 12596, npcName = "Bibilfaz Featherwhistle", map = 1422, zone = "Western Plaguelands", x = 42.9, y = 85.1 }, -- 11
-        { type = "ACCEPT", quest = 5343, questName = "Barov Family Fortune", npc = 11023, npcName = "Weldon Barov", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 83.6, optional = true, note = "For Scholomance (dungeon guide)" }, -- 12
-        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.5, y = 83.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 13
-        { type = "ACCEPT", quest = 5092, questName = "Clear the Way", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 14
-        { type = "KILL", quest = 5092, questName = "Clear the Way", npc = 1791, target = "Slavering Ghoul", count = 10, map = 1422, zone = "Western Plaguelands", x = 48.7, y = 80.4, near = true }, -- 15
-        { type = "KILL", quest = 5092, questName = "Clear the Way", npc = 1783, target = "Skeletal Flayer", count = 10, map = 1422, zone = "Western Plaguelands", x = 54.5, y = 80.9, near = true }, -- 16
-        { type = "TURNIN", quest = 5090, questName = "A Call to Arms: The Plaguelands!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 84 }, -- 17
-        { type = "TURNIN", quest = 5066, questName = "A Call to Arms: The Plaguelands!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 84 }, -- 18
-        { type = "TURNIN", quest = 5092, questName = "Clear the Way", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 19
-        { type = "ACCEPT", quest = 5215, questName = "The Scourge Cauldrons", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 20
-        { type = "TURNIN", quest = 5215, questName = "The Scourge Cauldrons", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 21
-        { type = "ACCEPT", quest = 5216, questName = "Target: Felstone Field", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 22
-        { type = "KILL", quest = 5216, questName = "Target: Felstone Field", npc = 11075, target = "Cauldron Lord Bilemaw", map = 1422, zone = "Western Plaguelands", x = 36.9, y = 57.4, note = "loot Felstone Field Cauldron Key" }, -- 23
-        { type = "ACCEPT", quest = 5021, questName = "Better Late Than Never", npc = 10778, npcName = "Janice Felstone", map = 1422, zone = "Western Plaguelands", x = 38.4, y = 54.1 }, -- 24
-        { type = "TURNIN", quest = 5021, questName = "Better Late Than Never", map = 1422, zone = "Western Plaguelands", x = 38.7, y = 55.2 }, -- 25
-        { type = "ACCEPT", quest = 5022, questName = "Better Late Than Never", map = 1422, zone = "Western Plaguelands", x = 38.8, y = 55.2 }, -- 26
-        { type = "TURNIN", quest = 5216, questName = "Target: Felstone Field", map = 1422, zone = "Western Plaguelands", x = 37.3, y = 56.8 }, -- 27
-        { type = "ACCEPT", quest = 5217, questName = "Return to Chillwind Camp", map = 1422, zone = "Western Plaguelands", x = 37.3, y = 56.8 }, -- 28
-        { type = "ACCEPT", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 29
-        { type = "KILL", quest = 4984, questName = "The Wildlife Suffers Too", npc = 1817, target = "Diseased Wolf", count = 8, map = 1422, zone = "Western Plaguelands", x = 52.5, y = 70.5, near = true }, -- 30
-        { type = "ACCEPT", quest = 5142, questName = "Little Pamela", npc = 10927, npcName = "Marlene Redpath", map = 1422, zone = "Western Plaguelands", x = 49.2, y = 78.6 }, -- 31
-        { type = "ACCEPT", quest = 5903, questName = "A Plague Upon Thee", npc = 11616, npcName = "Nathaniel Dumah", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 84.8 }, -- 32
-        { type = "TURNIN", quest = 5217, questName = "Return to Chillwind Camp", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 33
-        { type = "ACCEPT", quest = 5219, questName = "Target: Dalson's Tears", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 34
-        { type = "ACCEPT", quest = 5401, questName = "Argent Dawn Commission", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 35
-        { type = "TURNIN", quest = 5401, questName = "Argent Dawn Commission", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 36
-        { type = "KILL", quest = 5219, questName = "Target: Dalson's Tears", npc = 11077, target = "Cauldron Lord Malvinious", map = 1422, zone = "Western Plaguelands", x = 46.1, y = 52.6, note = "loot Dalson's Tears Cauldron Key" }, -- 37
-        { type = "ACCEPT", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 38
-        { type = "TURNIN", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 39
-        { type = "TURNIN", quest = 5219, questName = "Target: Dalson's Tears", map = 1422, zone = "Western Plaguelands", x = 46.2, y = 51.9 }, -- 40
-        { type = "ACCEPT", quest = 5220, questName = "Return to Chillwind Camp", map = 1422, zone = "Western Plaguelands", x = 46.2, y = 51.9 }, -- 41
-        { type = "ACCEPT", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 42
-        { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 43
-        { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 44
-        { type = "TURNIN", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 45
-        { type = "TURNIN", quest = 5220, questName = "Return to Chillwind Camp", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 46
-        { type = "ACCEPT", quest = 5222, questName = "Target: Writhing Haunt", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 47
-        { type = "KILL", quest = 5222, questName = "Target: Writhing Haunt", npc = 11076, target = "Cauldron Lord Razarch", map = 1422, zone = "Western Plaguelands", x = 52.9, y = 66.1, note = "loot Writhing Haunt Cauldron Key" }, -- 48
-        { type = "TURNIN", quest = 5222, questName = "Target: Writhing Haunt", map = 1422, zone = "Western Plaguelands", x = 53, y = 65.6 }, -- 49
-        { type = "ACCEPT", quest = 5223, questName = "Return to Chillwind Camp", map = 1422, zone = "Western Plaguelands", x = 53, y = 65.6 }, -- 50
-        { type = "TURNIN", quest = 5223, questName = "Return to Chillwind Camp", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 51
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=5090,questName="A Call to Arms: The Plaguelands!",npc=10877,npcName="Courier Hammerfall",map=1455,zone="Ironforge",x=31.6,y=67},
+{type="ACCEPT",quest=1198,questName="In Search of Thaelrid",npc=4786,npcName="Dawnwatcher Shaedlass",map=1457,zone="Darnassus",x=55.4,y=24.6,optional=true,note="For Blackfathom Deeps (dungeon guide)"},
+{type="ACCEPT",quest=1199,questName="Twilight Falls",npc=4784,npcName="Argent Guard Manados",map=1457,zone="Darnassus",x=55.2,y=23.6,optional=true,note="For Blackfathom Deeps (dungeon guide)"},
+{type="ACCEPT",quest=1275,questName="Researching the Corruption",npc=8997,npcName="Gershala Nightwhisper",map=1439,zone="Darkshore",x=38.4,y=43,optional=true,note="For Blackfathom Deeps (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Blackfathom Deeps",note="Picked up: Knowledge in the Deeps, In Search of Thaelrid, Twilight Falls, Researching the Corruption. When you have a group, open Blackfathom Deeps under Dungeons."},
+{type="ACCEPT",quest=4126,questName="Hurley Blackbreath",npc=1267,npcName="Ragnar Thunderbrew",map=1426,zone="Dun Morogh",x=46.8,y=52.4,optional=true,note="For Blackrock Depths (dungeon guide)"},
+{type="ACCEPT",quest=8252,questName="The Siren's Coral",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
+{type="COLLECT",quest=8252,questName="The Siren's Coral",target="Enchanted Coral",count=6,map=1447,zone="Azshara",x=40.2,y=53,class={"MAGE"},mobs="Spitelash Siren"},
+{type="TURNIN",quest=8252,questName="The Siren's Coral",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
+{type="TRAVEL",map=1455,zone="Ironforge",x=18.1,y=51.5,radius=60,note="use your hearthstone (Ironforge)"},
+{type="FLIGHTPATH",npc=12596,npcName="Bibilfaz Featherwhistle",map=1422,zone="Western Plaguelands",x=42.9,y=85.1},
+{type="ACCEPT",quest=5343,questName="Barov Family Fortune",npc=11023,npcName="Weldon Barov",map=1422,zone="Western Plaguelands",x=43.4,y=83.6,optional=true,note="For Scholomance (dungeon guide)"},
+{type="TRAVEL",map=1422,zone="Western Plaguelands",x=43.5,y=83.7,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
+{type="ACCEPT",quest=5092,questName="Clear the Way",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
+{type="KILL",quest=5092,questName="Clear the Way",npc=1791,target="Slavering Ghoul",count=10,map=1422,zone="Western Plaguelands",x=48.7,y=80.4,near=true},
+{type="KILL",quest=5092,questName="Clear the Way",npc=1783,target="Skeletal Flayer",count=10,map=1422,zone="Western Plaguelands",x=54.5,y=80.9,near=true},
+{type="TURNIN",quest=5090,questName="A Call to Arms: The Plaguelands!",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.8,y=84},
+{type="TURNIN",quest=5066,questName="A Call to Arms: The Plaguelands!",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.8,y=84},
+{type="TURNIN",quest=5092,questName="Clear the Way",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
+{type="ACCEPT",quest=5215,questName="The Scourge Cauldrons",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
+{type="TURNIN",quest=5215,questName="The Scourge Cauldrons",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},
+{type="ACCEPT",quest=5216,questName="Target: Felstone Field",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},
+{type="KILL",quest=5216,questName="Target: Felstone Field",npc=11075,target="Cauldron Lord Bilemaw",map=1422,zone="Western Plaguelands",x=36.9,y=57.4,note="loot Felstone Field Cauldron Key"},
+{type="ACCEPT",quest=5021,questName="Better Late Than Never",npc=10778,npcName="Janice Felstone",map=1422,zone="Western Plaguelands",x=38.4,y=54.1},
+{type="TURNIN",quest=5021,questName="Better Late Than Never",map=1422,zone="Western Plaguelands",x=38.7,y=55.2},
+{type="ACCEPT",quest=5022,questName="Better Late Than Never",map=1422,zone="Western Plaguelands",x=38.8,y=55.2},
+{type="TURNIN",quest=5216,questName="Target: Felstone Field",map=1422,zone="Western Plaguelands",x=37.3,y=56.8},
+{type="ACCEPT",quest=5217,questName="Return to Chillwind Camp",map=1422,zone="Western Plaguelands",x=37.3,y=56.8},
+{type="ACCEPT",quest=4984,questName="The Wildlife Suffers Too",npc=10739,npcName="Mulgris Deepriver",map=1422,zone="Western Plaguelands",x=53.7,y=64.7},
+{type="KILL",quest=4984,questName="The Wildlife Suffers Too",npc=1817,target="Diseased Wolf",count=8,map=1422,zone="Western Plaguelands",x=52.5,y=70.5,near=true},
+{type="ACCEPT",quest=5142,questName="Little Pamela",npc=10927,npcName="Marlene Redpath",map=1422,zone="Western Plaguelands",x=49.2,y=78.6},
+{type="ACCEPT",quest=5903,questName="A Plague Upon Thee",npc=11616,npcName="Nathaniel Dumah",map=1422,zone="Western Plaguelands",x=43.4,y=84.8},
+{type="TURNIN",quest=5217,questName="Return to Chillwind Camp",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},
+{type="ACCEPT",quest=5219,questName="Target: Dalson's Tears",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},
+{type="ACCEPT",quest=5401,questName="Argent Dawn Commission",npc=10840,npcName="Argent Officer Pureheart",map=1422,zone="Western Plaguelands",x=43,y=83.6},
+{type="TURNIN",quest=5401,questName="Argent Dawn Commission",npc=10840,npcName="Argent Officer Pureheart",map=1422,zone="Western Plaguelands",x=43,y=83.6},
+{type="KILL",quest=5219,questName="Target: Dalson's Tears",npc=11077,target="Cauldron Lord Malvinious",map=1422,zone="Western Plaguelands",x=46.1,y=52.6,note="loot Dalson's Tears Cauldron Key"},
+{type="ACCEPT",quest=5058,questName="Mrs. Dalson's Diary",map=1422,zone="Western Plaguelands",x=47.8,y=50.7},
+{type="TURNIN",quest=5058,questName="Mrs. Dalson's Diary",map=1422,zone="Western Plaguelands",x=47.8,y=50.7},
+{type="TURNIN",quest=5219,questName="Target: Dalson's Tears",map=1422,zone="Western Plaguelands",x=46.2,y=51.9},
+{type="ACCEPT",quest=5220,questName="Return to Chillwind Camp",map=1422,zone="Western Plaguelands",x=46.2,y=51.9},
+{type="ACCEPT",quest=5060,questName="Locked Away",map=1422,zone="Western Plaguelands",x=47.4,y=49.6},
+{type="KILL",quest=5060,questName="Locked Away",npc=10836,target="Farmer Dalson",map=1422,zone="Western Plaguelands",x=48.2,y=49.7,note="loot Dalson Cabinet Key"},
+{type="TURNIN",quest=5060,questName="Locked Away",map=1422,zone="Western Plaguelands",x=47.4,y=49.6},
+{type="TURNIN",quest=4984,questName="The Wildlife Suffers Too",npc=10739,npcName="Mulgris Deepriver",map=1422,zone="Western Plaguelands",x=53.7,y=64.7},
+{type="TURNIN",quest=5220,questName="Return to Chillwind Camp",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},
+{type="ACCEPT",quest=5222,questName="Target: Writhing Haunt",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},
+{type="KILL",quest=5222,questName="Target: Writhing Haunt",npc=11076,target="Cauldron Lord Razarch",map=1422,zone="Western Plaguelands",x=52.9,y=66.1,note="loot Writhing Haunt Cauldron Key"},
+{type="TURNIN",quest=5222,questName="Target: Writhing Haunt",map=1422,zone="Western Plaguelands",x=53,y=65.6},
+{type="ACCEPT",quest=5223,questName="Return to Chillwind Camp",map=1422,zone="Western Plaguelands",x=53,y=65.6},
+{type="TURNIN",quest=5223,questName="Return to Chillwind Camp",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5}
+}]],
 })

@@ -13,26 +13,26 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Wailing Caverns: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 20,
-    steps = function() return {
-        { type = "ACCEPT", quest = 959, questName = "Trouble at the Docks", npc = 3665, npcName = "Crane Operator Bigglefuzz", map = 1413, zone = "The Barrens", x = 63, y = 37.6 }, -- 1
-        { type = "ACCEPT", quest = 1486, questName = "Deviate Hides", npc = 5767, npcName = "Nalpak", map = 1413, zone = "The Barrens", x = 46, y = 35.7 }, -- 2
-        { type = "ACCEPT", quest = 1487, questName = "Deviate Eradication", npc = 5768, npcName = "Ebru", map = 1413, zone = "The Barrens", x = 46, y = 35.7 }, -- 3
-        { type = "ACCEPT", quest = 1491, questName = "Smart Drinks", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 4
-        { type = "NOTE", map = 1413, zone = "The Barrens", x = 46, y = 36.5, text = "Find a group for Wailing Caverns", note = "All quests available from level 15; hand them in by level 22 for full XP" }, -- 5
-        { type = "ACCEPT", quest = 3366, questName = "The Glowing Shard", map = 1413, zone = "The Barrens", x = 46, y = 36.5 }, -- 6
-        { type = "ACCEPT", quest = 6981, questName = "The Glowing Shard", map = 1413, zone = "The Barrens", x = 46, y = 36.5 }, -- 7
-        { type = "COLLECT", quest = 959, questName = "Trouble at the Docks", target = "99-Year-Old Port", count = 1, map = 1413, zone = "The Barrens", x = 46, y = 36.5 }, -- 8
-        { type = "COLLECT", quest = 1486, questName = "Deviate Hides", target = "Deviate Hide", count = 20, map = 1413, zone = "The Barrens", x = 46, y = 36.5 }, -- 9
-        { type = "KILL", quest = 1487, questName = "Deviate Eradication", npc = 3636, target = "Deviate Ravager", count = 7, map = 1413, zone = "The Barrens", x = 46, y = 36.5 }, -- 10
-        { type = "KILL", quest = 1487, questName = "Deviate Eradication", npc = 5755, target = "Deviate Viper", count = 7, map = 1413, zone = "The Barrens", x = 46, y = 36.5 }, -- 11
-        { type = "KILL", quest = 1487, questName = "Deviate Eradication", npc = 5761, target = "Deviate Shambler", count = 7, map = 1413, zone = "The Barrens", x = 46, y = 36.5 }, -- 12
-        { type = "KILL", quest = 1487, questName = "Deviate Eradication", npc = 5056, target = "Deviate Dreadfang", count = 7, map = 1413, zone = "The Barrens", x = 46, y = 36.5 }, -- 13
-        { type = "COLLECT", quest = 1491, questName = "Smart Drinks", target = "Wailing Essence", count = 6, map = 1413, zone = "The Barrens", x = 46, y = 36.5 }, -- 14
-        { type = "TURNIN", quest = 3366, questName = "The Glowing Shard", map = 1413, zone = "The Barrens", x = 46, y = 36.5 }, -- 15
-        { type = "TURNIN", quest = 959, questName = "Trouble at the Docks", npc = 3665, npcName = "Crane Operator Bigglefuzz", map = 1413, zone = "The Barrens", x = 63, y = 37.6 }, -- 16
-        { type = "TURNIN", quest = 1486, questName = "Deviate Hides", npc = 5767, npcName = "Nalpak", map = 1413, zone = "The Barrens", x = 46, y = 35.7 }, -- 17
-        { type = "TURNIN", quest = 1487, questName = "Deviate Eradication", npc = 5768, npcName = "Ebru", map = 1413, zone = "The Barrens", x = 46, y = 35.7 }, -- 18
-        { type = "TURNIN", quest = 1491, questName = "Smart Drinks", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 19
-        { type = "TURNIN", quest = 6981, questName = "The Glowing Shard", npc = 8418, npcName = "Falla Sagewind", map = 1413, zone = "The Barrens", x = 48.2, y = 32.8 }, -- 20
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=959,questName="Trouble at the Docks",npc=3665,npcName="Crane Operator Bigglefuzz",map=1413,zone="The Barrens",x=63,y=37.6},
+{type="ACCEPT",quest=1486,questName="Deviate Hides",npc=5767,npcName="Nalpak",map=1413,zone="The Barrens",x=46,y=35.7},
+{type="ACCEPT",quest=1487,questName="Deviate Eradication",npc=5768,npcName="Ebru",map=1413,zone="The Barrens",x=46,y=35.7},
+{type="ACCEPT",quest=1491,questName="Smart Drinks",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6},
+{type="NOTE",map=1413,zone="The Barrens",x=46,y=36.5,text="Find a group for Wailing Caverns",note="All quests available from level 15; hand them in by level 22 for full XP"},
+{type="ACCEPT",quest=3366,questName="The Glowing Shard",map=1413,zone="The Barrens",x=46,y=36.5},
+{type="ACCEPT",quest=6981,questName="The Glowing Shard",map=1413,zone="The Barrens",x=46,y=36.5},
+{type="COLLECT",quest=959,questName="Trouble at the Docks",target="99-Year-Old Port",count=1,map=1413,zone="The Barrens",x=46,y=36.5},
+{type="COLLECT",quest=1486,questName="Deviate Hides",target="Deviate Hide",count=20,map=1413,zone="The Barrens",x=46,y=36.5},
+{type="KILL",quest=1487,questName="Deviate Eradication",npc=3636,target="Deviate Ravager",count=7,map=1413,zone="The Barrens",x=46,y=36.5},
+{type="KILL",quest=1487,questName="Deviate Eradication",npc=5755,target="Deviate Viper",count=7,map=1413,zone="The Barrens",x=46,y=36.5},
+{type="KILL",quest=1487,questName="Deviate Eradication",npc=5761,target="Deviate Shambler",count=7,map=1413,zone="The Barrens",x=46,y=36.5},
+{type="KILL",quest=1487,questName="Deviate Eradication",npc=5056,target="Deviate Dreadfang",count=7,map=1413,zone="The Barrens",x=46,y=36.5},
+{type="COLLECT",quest=1491,questName="Smart Drinks",target="Wailing Essence",count=6,map=1413,zone="The Barrens",x=46,y=36.5},
+{type="TURNIN",quest=3366,questName="The Glowing Shard",map=1413,zone="The Barrens",x=46,y=36.5},
+{type="TURNIN",quest=959,questName="Trouble at the Docks",npc=3665,npcName="Crane Operator Bigglefuzz",map=1413,zone="The Barrens",x=63,y=37.6},
+{type="TURNIN",quest=1486,questName="Deviate Hides",npc=5767,npcName="Nalpak",map=1413,zone="The Barrens",x=46,y=35.7},
+{type="TURNIN",quest=1487,questName="Deviate Eradication",npc=5768,npcName="Ebru",map=1413,zone="The Barrens",x=46,y=35.7},
+{type="TURNIN",quest=1491,questName="Smart Drinks",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6},
+{type="TURNIN",quest=6981,questName="The Glowing Shard",npc=8418,npcName="Falla Sagewind",map=1413,zone="The Barrens",x=48.2,y=32.8}
+}]],
 })

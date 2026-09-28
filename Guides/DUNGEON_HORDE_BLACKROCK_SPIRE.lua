@@ -13,67 +13,67 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Blackrock Spire: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 61,
-    steps = function() return {
-        { type = "ACCEPT", quest = 4724, questName = "The Pack Mistress", npc = 9081, npcName = "Galamav the Marksman", map = 1418, zone = "Badlands", x = 5.8, y = 47.6 }, -- 1
-        { type = "ACCEPT", quest = 4768, questName = "The Darkstone Tablet", npc = 9078, npcName = "Shadowmage Vivian Lagrave", map = 1418, zone = "Badlands", x = 3, y = 47.6 }, -- 2
-        { type = "ACCEPT", quest = 4903, questName = "Warlord's Command", npc = 9077, npcName = "Warlord Goretooth", map = 1418, zone = "Badlands", x = 3, y = 47.6 }, -- 3
-        { type = "ACCEPT", quest = 6821, questName = "Eye of the Emberseer", npc = 13278, npcName = "Duke Hydraxis", map = 1447, zone = "Azshara", x = 79.2, y = 73.6 }, -- 4
-        { type = "ACCEPT", quest = 5166, questName = "Breastplate of the Chromatic Flight", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.7 }, -- 5
-        { type = "ACCEPT", quest = 5167, questName = "Legplates of the Chromatic Defier", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.7 }, -- 6
-        { type = "ACCEPT", quest = 6569, questName = "Oculus Illusions", npc = 11872, npcName = "Myranda the Hag", map = 1422, zone = "Western Plaguelands", x = 50.8, y = 77.8 }, -- 7
-        { type = "ACCEPT", quest = 4729, questName = "Kibler's Exotic Pets", npc = 10260, npcName = "Kibler", map = 1428, zone = "Burning Steppes", x = 65.8, y = 22 }, -- 8
-        { type = "ACCEPT", quest = 4862, questName = "En-Ay-Es-Tee-Why", npc = 10260, npcName = "Kibler", map = 1428, zone = "Burning Steppes", x = 65.8, y = 22 }, -- 9
-        { type = "ACCEPT", quest = 6602, questName = "Blood of the Black Dragon Champion", npc = 10182, npcName = "Rexxar", map = 1444, zone = "Feralas", x = 45.2, y = 2.6 }, -- 10
-        { type = "ACCEPT", quest = 4788, questName = "The Final Tablets", npc = 10460, npcName = "Prospector Ironboot", map = 1446, zone = "Tanaris", x = 66.8, y = 24 }, -- 11
-        { type = "ACCEPT", quest = 4974, questName = "For The Horde!", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 12
-        { type = "NOTE", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3, text = "Find a group for Blackrock Spire", note = "All quests available from level 57; hand them in by level 60 for full XP" }, -- 13
-        { type = "ACCEPT", quest = 4742, questName = "Seal of Ascension", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 14
-        { type = "ACCEPT", quest = 4867, questName = "Urok Doomhowl", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 15
-        { type = "ACCEPT", quest = 4982, questName = "Bijou's Belongings", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 16
-        { type = "ACCEPT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 17
-        { type = "KILL", quest = 4724, questName = "The Pack Mistress", npc = 10220, target = "Halycon", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 18
-        { type = "COLLECT", quest = 4729, questName = "Kibler's Exotic Pets", target = "Caged Worg Pup", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 19
-        { type = "COLLECT", quest = 4768, questName = "The Darkstone Tablet", target = "Darkstone Tablet", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 20
-        { type = "COLLECT", quest = 4788, questName = "The Final Tablets", target = "Fifth Mosh'aru Tablet", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 21
-        { type = "COLLECT", quest = 4788, questName = "The Final Tablets", target = "Sixth Mosh'aru Tablet", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 22
-        { type = "COLLECT", quest = 4862, questName = "En-Ay-Es-Tee-Why", target = "Spire Spider Egg", count = 15, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 23
-        { type = "KILL", quest = 4903, questName = "Warlord's Command", npc = 9568, target = "Overlord Wyrmthalak", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 24
-        { type = "KILL", quest = 4903, questName = "Warlord's Command", npc = 9196, target = "Highlord Omokk", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 25
-        { type = "KILL", quest = 4903, questName = "Warlord's Command", npc = 9237, target = "War Master Voone", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 26
-        { type = "COLLECT", quest = 4903, questName = "Warlord's Command", target = "Important Blackrock Documents", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 27
-        { type = "COLLECT", quest = 4974, questName = "For The Horde!", target = "Head of Rend Blackhand", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 28
-        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Brilliant Chromatic Scale", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 29
-        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Blood of Heroes", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 30
-        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Frayed Abomination Stitching", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 31
-        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Brilliant Chromatic Scale", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 32
-        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Blood of Heroes", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 33
-        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Skin of Shadow", count = 5, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 34
-        { type = "COLLECT", quest = 6569, questName = "Oculus Illusions", target = "Black Dragonspawn Eye", count = 20, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 35
-        { type = "COLLECT", quest = 6602, questName = "Blood of the Black Dragon Champion", target = "Blood of the Black Dragon Champion", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 36
-        { type = "COLLECT", quest = 6821, questName = "Eye of the Emberseer", target = "Eye of the Emberseer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 37
-        { type = "COLLECT", quest = 4742, questName = "Seal of Ascension", target = "Gemstone of Spirestone", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 38
-        { type = "COLLECT", quest = 4742, questName = "Seal of Ascension", target = "Gemstone of Smolderthorn", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 39
-        { type = "COLLECT", quest = 4742, questName = "Seal of Ascension", target = "Gemstone of Bloodaxe", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 40
-        { type = "COLLECT", quest = 4742, questName = "Seal of Ascension", target = "Unadorned Seal of Ascension", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 41
-        { type = "COLLECT", quest = 4867, questName = "Urok Doomhowl", target = "Warosh's Mojo", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 42
-        { type = "COLLECT", quest = 4982, questName = "Bijou's Belongings", target = "Bijou's Belongings", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 43
-        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Craftsman's Writ: Truesilver Transformer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 44
-        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Truesilver Transformer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 45
-        { type = "TURNIN", quest = 4742, questName = "Seal of Ascension", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 46
-        { type = "TURNIN", quest = 4867, questName = "Urok Doomhowl", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 47
-        { type = "TURNIN", quest = 4982, questName = "Bijou's Belongings", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 48
-        { type = "TURNIN", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 49
-        { type = "TURNIN", quest = 4724, questName = "The Pack Mistress", npc = 9081, npcName = "Galamav the Marksman", map = 1418, zone = "Badlands", x = 5.8, y = 47.6 }, -- 50
-        { type = "TURNIN", quest = 4729, questName = "Kibler's Exotic Pets", npc = 10260, npcName = "Kibler", map = 1428, zone = "Burning Steppes", x = 65.8, y = 22 }, -- 51
-        { type = "TURNIN", quest = 4768, questName = "The Darkstone Tablet", npc = 9078, npcName = "Shadowmage Vivian Lagrave", map = 1418, zone = "Badlands", x = 3, y = 47.6 }, -- 52
-        { type = "TURNIN", quest = 4788, questName = "The Final Tablets", npc = 10460, npcName = "Prospector Ironboot", map = 1446, zone = "Tanaris", x = 66.8, y = 24 }, -- 53
-        { type = "TURNIN", quest = 4862, questName = "En-Ay-Es-Tee-Why", npc = 10260, npcName = "Kibler", map = 1428, zone = "Burning Steppes", x = 65.8, y = 22 }, -- 54
-        { type = "TURNIN", quest = 4903, questName = "Warlord's Command", npc = 9077, npcName = "Warlord Goretooth", map = 1418, zone = "Badlands", x = 5.8, y = 47.4 }, -- 55
-        { type = "TURNIN", quest = 4974, questName = "For The Horde!", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 56
-        { type = "TURNIN", quest = 5166, questName = "Breastplate of the Chromatic Flight", npc = 10976, npcName = "Jeziba", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.8 }, -- 57
-        { type = "TURNIN", quest = 5167, questName = "Legplates of the Chromatic Defier", npc = 10976, npcName = "Jeziba", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.8 }, -- 58
-        { type = "TURNIN", quest = 6569, questName = "Oculus Illusions", npc = 11872, npcName = "Myranda the Hag", map = 1422, zone = "Western Plaguelands", x = 50.8, y = 77.8 }, -- 59
-        { type = "TURNIN", quest = 6602, questName = "Blood of the Black Dragon Champion", npc = 10182, npcName = "Rexxar", map = 1444, zone = "Feralas", x = 45.2, y = 2.6 }, -- 60
-        { type = "TURNIN", quest = 6821, questName = "Eye of the Emberseer", npc = 13278, npcName = "Duke Hydraxis", map = 1447, zone = "Azshara", x = 79.2, y = 73.6 }, -- 61
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=4724,questName="The Pack Mistress",npc=9081,npcName="Galamav the Marksman",map=1418,zone="Badlands",x=5.8,y=47.6},
+{type="ACCEPT",quest=4768,questName="The Darkstone Tablet",npc=9078,npcName="Shadowmage Vivian Lagrave",map=1418,zone="Badlands",x=3,y=47.6},
+{type="ACCEPT",quest=4903,questName="Warlord's Command",npc=9077,npcName="Warlord Goretooth",map=1418,zone="Badlands",x=3,y=47.6},
+{type="ACCEPT",quest=6821,questName="Eye of the Emberseer",npc=13278,npcName="Duke Hydraxis",map=1447,zone="Azshara",x=79.2,y=73.6},
+{type="ACCEPT",quest=5166,questName="Breastplate of the Chromatic Flight",map=1422,zone="Western Plaguelands",x=39.4,y=66.7},
+{type="ACCEPT",quest=5167,questName="Legplates of the Chromatic Defier",map=1422,zone="Western Plaguelands",x=39.4,y=66.7},
+{type="ACCEPT",quest=6569,questName="Oculus Illusions",npc=11872,npcName="Myranda the Hag",map=1422,zone="Western Plaguelands",x=50.8,y=77.8},
+{type="ACCEPT",quest=4729,questName="Kibler's Exotic Pets",npc=10260,npcName="Kibler",map=1428,zone="Burning Steppes",x=65.8,y=22},
+{type="ACCEPT",quest=4862,questName="En-Ay-Es-Tee-Why",npc=10260,npcName="Kibler",map=1428,zone="Burning Steppes",x=65.8,y=22},
+{type="ACCEPT",quest=6602,questName="Blood of the Black Dragon Champion",npc=10182,npcName="Rexxar",map=1444,zone="Feralas",x=45.2,y=2.6},
+{type="ACCEPT",quest=4788,questName="The Final Tablets",npc=10460,npcName="Prospector Ironboot",map=1446,zone="Tanaris",x=66.8,y=24},
+{type="ACCEPT",quest=4974,questName="For The Horde!",npc=4949,npcName="Thrall",map=1454,zone="Orgrimmar",x=32,y=37.8},
+{type="NOTE",map=1427,zone="Searing Gorge",x=34.8,y=85.3,text="Find a group for Blackrock Spire",note="All quests available from level 57; hand them in by level 60 for full XP"},
+{type="ACCEPT",quest=4742,questName="Seal of Ascension",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=4867,questName="Urok Doomhowl",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=4982,questName="Bijou's Belongings",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=4724,questName="The Pack Mistress",npc=10220,target="Halycon",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4729,questName="Kibler's Exotic Pets",target="Caged Worg Pup",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4768,questName="The Darkstone Tablet",target="Darkstone Tablet",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4788,questName="The Final Tablets",target="Fifth Mosh'aru Tablet",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4788,questName="The Final Tablets",target="Sixth Mosh'aru Tablet",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4862,questName="En-Ay-Es-Tee-Why",target="Spire Spider Egg",count=15,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=4903,questName="Warlord's Command",npc=9568,target="Overlord Wyrmthalak",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=4903,questName="Warlord's Command",npc=9196,target="Highlord Omokk",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=4903,questName="Warlord's Command",npc=9237,target="War Master Voone",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4903,questName="Warlord's Command",target="Important Blackrock Documents",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4974,questName="For The Horde!",target="Head of Rend Blackhand",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5166,questName="Breastplate of the Chromatic Flight",target="Brilliant Chromatic Scale",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5166,questName="Breastplate of the Chromatic Flight",target="Blood of Heroes",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5166,questName="Breastplate of the Chromatic Flight",target="Frayed Abomination Stitching",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5167,questName="Legplates of the Chromatic Defier",target="Brilliant Chromatic Scale",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5167,questName="Legplates of the Chromatic Defier",target="Blood of Heroes",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5167,questName="Legplates of the Chromatic Defier",target="Skin of Shadow",count=5,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=6569,questName="Oculus Illusions",target="Black Dragonspawn Eye",count=20,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=6602,questName="Blood of the Black Dragon Champion",target="Blood of the Black Dragon Champion",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=6821,questName="Eye of the Emberseer",target="Eye of the Emberseer",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4742,questName="Seal of Ascension",target="Gemstone of Spirestone",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4742,questName="Seal of Ascension",target="Gemstone of Smolderthorn",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4742,questName="Seal of Ascension",target="Gemstone of Bloodaxe",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4742,questName="Seal of Ascension",target="Unadorned Seal of Ascension",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4867,questName="Urok Doomhowl",target="Warosh's Mojo",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4982,questName="Bijou's Belongings",target="Bijou's Belongings",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",target="Craftsman's Writ: Truesilver Transformer",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",target="Truesilver Transformer",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=4742,questName="Seal of Ascension",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=4867,questName="Urok Doomhowl",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=4982,questName="Bijou's Belongings",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=4724,questName="The Pack Mistress",npc=9081,npcName="Galamav the Marksman",map=1418,zone="Badlands",x=5.8,y=47.6},
+{type="TURNIN",quest=4729,questName="Kibler's Exotic Pets",npc=10260,npcName="Kibler",map=1428,zone="Burning Steppes",x=65.8,y=22},
+{type="TURNIN",quest=4768,questName="The Darkstone Tablet",npc=9078,npcName="Shadowmage Vivian Lagrave",map=1418,zone="Badlands",x=3,y=47.6},
+{type="TURNIN",quest=4788,questName="The Final Tablets",npc=10460,npcName="Prospector Ironboot",map=1446,zone="Tanaris",x=66.8,y=24},
+{type="TURNIN",quest=4862,questName="En-Ay-Es-Tee-Why",npc=10260,npcName="Kibler",map=1428,zone="Burning Steppes",x=65.8,y=22},
+{type="TURNIN",quest=4903,questName="Warlord's Command",npc=9077,npcName="Warlord Goretooth",map=1418,zone="Badlands",x=5.8,y=47.4},
+{type="TURNIN",quest=4974,questName="For The Horde!",npc=4949,npcName="Thrall",map=1454,zone="Orgrimmar",x=32,y=37.8},
+{type="TURNIN",quest=5166,questName="Breastplate of the Chromatic Flight",npc=10976,npcName="Jeziba",map=1422,zone="Western Plaguelands",x=39.4,y=66.8},
+{type="TURNIN",quest=5167,questName="Legplates of the Chromatic Defier",npc=10976,npcName="Jeziba",map=1422,zone="Western Plaguelands",x=39.4,y=66.8},
+{type="TURNIN",quest=6569,questName="Oculus Illusions",npc=11872,npcName="Myranda the Hag",map=1422,zone="Western Plaguelands",x=50.8,y=77.8},
+{type="TURNIN",quest=6602,questName="Blood of the Black Dragon Champion",npc=10182,npcName="Rexxar",map=1444,zone="Feralas",x=45.2,y=2.6},
+{type="TURNIN",quest=6821,questName="Eye of the Emberseer",npc=13278,npcName="Duke Hydraxis",map=1447,zone="Azshara",x=79.2,y=73.6}
+}]],
 })

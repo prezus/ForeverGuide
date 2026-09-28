@@ -14,67 +14,67 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 51 of the Skyborne route: level 55 to 57, 33 steps, ~354 min of play in the model (13529 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 61,
-    steps = function() return {
-        { type = "FLIGHTPATH", npc = 11138, npcName = "Maethrya", map = 1452, zone = "Winterspring", x = 62.3, y = 36.6 }, -- 1
-        { type = "COLLECT", quest = 5883, questName = "Salve via Mining", target = "Tainted Vitriol", count = 1, map = 1448, zone = "Felwood", x = 34.7, y = 61.8, near = true, profession = "Mining", skill = 200 }, -- 2
-        { type = "TURNIN", quest = 5883, questName = "Salve via Mining", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8, profession = "Mining", skill = 200 }, -- 3
-        { type = "COLLECT", quest = 5884, questName = "Salve via Gathering", target = "Fel Creep", count = 1, map = 1448, zone = "Felwood", x = 62.4, y = 24.2, optional = true, profession = "Herbalism", skill = 200, mobs = "Mishellena" }, -- 4
-        { type = "TURNIN", quest = 5884, questName = "Salve via Gathering", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8, optional = true, profession = "Herbalism", skill = 200 }, -- 5
-        { type = "COLLECT", quest = 5885, questName = "Salve via Skinning", target = "item 11512", count = 1, map = 1448, zone = "Felwood", x = 35.4, y = 57.2, near = true, profession = "Skinning", skill = 200, mobs = "Jaedenar Hunter / Angerclaw Grizzly / Felpaw Ravager" }, -- 6
-        { type = "TURNIN", quest = 5885, questName = "Salve via Skinning", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8, profession = "Skinning", skill = 200 }, -- 7
-        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 8
-        { type = "ACCEPT", quest = 6603, questName = "Trouble in Winterspring!", npc = 11754, npcName = "Meggi Peppinrocker", map = 1452, zone = "Winterspring", x = 61.4, y = 38.4 }, -- 9
-        { type = "HEARTH", npc = 11118, npcName = "Innkeeper Vizzie", map = 1452, zone = "Everlook", x = 61.4, y = 38.8, note = "talk to Innkeeper Vizzie and make this inn your home" }, -- 10
-        { type = "ACCEPT", quest = 6604, questName = "Enraged Wildkin", npc = 11755, npcName = "Harlo Wigglesworth", map = 1452, zone = "Winterspring", x = 61, y = 38.4 }, -- 11
-        { type = "ACCEPT", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 12
-        { type = "COLLECT", quest = 3783, questName = "Are We There, Yeti?", target = "Thick Yeti Fur", count = 10, map = 1452, zone = "Winterspring", x = 65.9, y = 41.7, near = true }, -- 13
-        { type = "TURNIN", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 14
-        { type = "ACCEPT", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 15
-        { type = "COLLECT", quest = 977, questName = "Are We There, Yeti?", target = "Pristine Yeti Horn", count = 2, map = 1452, zone = "Winterspring", x = 64.7, y = 40.6, near = true }, -- 16
-        { type = "TURNIN", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 17
-        { type = "TURNIN", quest = 6604, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52, y = 30.4 }, -- 18
-        { type = "ACCEPT", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 11079, npcName = "Wynd Nightchaser", map = 1452, zone = "Winterspring", x = 52, y = 30.4 }, -- 19
-        { type = "TURNIN", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 20
-        { type = "TURNIN", quest = 5249, questName = "To Winterspring!", npc = 11079, npcName = "Wynd Nightchaser", map = 1452, zone = "Winterspring", x = 52, y = 30.2 }, -- 21
-        { type = "ACCEPT", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 22
-        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7442, target = "Winterfall Pathfinder / Winterfall Totemic", count = 8, map = 1452, zone = "Winterspring", x = 33.4, y = 37.7, near = true }, -- 23
-        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.5, y = 36.9, near = true }, -- 24
-        { type = "ACCEPT", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 25
-        { type = "TURNIN", quest = 8465, questName = "Speak to Salfa", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.8, y = 34.4 }, -- 26
-        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.3, y = 36.3, near = true }, -- 27
-        { type = "TURNIN", quest = 3908, questName = "It's a Secret to Everybody", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2 }, -- 28
-        { type = "TURNIN", quest = 980, questName = "The New Springs", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2 }, -- 29
-        { type = "TURNIN", quest = 6603, questName = "Trouble in Winterspring!", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2 }, -- 30
-        { type = "TURNIN", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 31
-        { type = "ACCEPT", quest = 6028, questName = "The Everlook Report", npc = 10431, npcName = "Gregor Greystone", map = 1452, zone = "Winterspring", x = 61.2, y = 38.8 }, -- 32
-        { type = "ACCEPT", quest = 6030, questName = "Duke Nicholas Zverenhoff", npc = 10431, npcName = "Gregor Greystone", map = 1452, zone = "Winterspring", x = 61.2, y = 38.8 }, -- 33
-        { type = "ACCEPT", quest = 4842, questName = "Strange Sources", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2, note = "Objectives: Explore Zone, Discover Darkwhisper Gorge" }, -- 34
-        { type = "TURNIN", quest = 4842, questName = "Strange Sources", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.2, y = 45.2 }, -- 35
-        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7438, target = "Winterfall Ursa", count = 8, map = 1452, zone = "Winterspring", x = 65.1, y = 37.2, near = true }, -- 36
-        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7439, target = "Winterfall Shaman", count = 8, map = 1452, zone = "Winterspring", x = 67.4, y = 35.2, near = true }, -- 37
-        { type = "TURNIN", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 38
-        { type = "ACCEPT", quest = 5245, questName = "Troubled Spirits of Kel'Theril", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52, y = 30.4 }, -- 39
-        { type = "ACCEPT", quest = 4861, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 40
-        { type = "TURNIN", quest = 4861, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 41
-        { type = "ACCEPT", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 42
-        { type = "TURNIN", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 43
-        { type = "ACCEPT", quest = 4864, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 44
-        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Jaron's Supplies", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7, near = true }, -- 45
-        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Blue-feathered Amulet", map = 1452, zone = "Winterspring", x = 59.4, y = 59.8, near = true }, -- 46
-        { type = "COLLECT", quest = 5245, questName = "Troubled Spirits of Kel'Theril", target = "First Relic Fragment", count = 1, map = 1452, zone = "Winterspring", x = 55.1, y = 43 }, -- 47
-        { type = "COLLECT", quest = 5245, questName = "Troubled Spirits of Kel'Theril", target = "Second Relic Fragment", count = 1, map = 1452, zone = "Winterspring", x = 50.9, y = 41.7 }, -- 48
-        { type = "COLLECT", quest = 5245, questName = "Troubled Spirits of Kel'Theril", target = "Third Relic Fragment", count = 1, map = 1452, zone = "Winterspring", x = 53.3, y = 43.4 }, -- 49
-        { type = "COLLECT", quest = 5245, questName = "Troubled Spirits of Kel'Theril", target = "Fourth Relic Fragment", count = 1, map = 1452, zone = "Winterspring", x = 52.4, y = 41.5 }, -- 50
-        { type = "TURNIN", quest = 4864, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 51
-        { type = "GRIND", npc = 7443, target = "Shardtooth Mauler", level = 57, map = 1452, zone = "Winterspring", x = 51.9, y = 32.7, near = true, note = "grind Shardtooth Mauler (level 54-56) to level 57 - nothing worth questing at 56" }, -- 52
-        { type = "ACCEPT", quest = 5163, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.8, y = 37.6 }, -- 53
-        { type = "ACCEPT", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 54
-        { type = "COLLECT", quest = 969, questName = "Luck Be With You", target = "Frostmaul Shards", count = 4, map = 1452, zone = "Winterspring", x = 58.7, y = 63.6, near = true }, -- 55
-        { type = "TURNIN", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 56
-        { type = "ACCEPT", quest = 975, questName = "Cache of Mau'ari", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 57
-        { type = "TURNIN", quest = 975, questName = "Cache of Mau'ari", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 58
-        { type = "KILL", quest = 5163, questName = "Are We There, Yeti?", npc = 10978, target = "Scare Legacki", count = 1, map = 1452, zone = "Winterspring", x = 61.4, y = 38.4 }, -- 59
-        { type = "KILL", quest = 5163, questName = "Are We There, Yeti?", npc = 7583, target = "Scare Sprinkle", count = 1, map = 1446, zone = "Tanaris", x = 51, y = 26.8 }, -- 60
-        { type = "KILL", quest = 5163, questName = "Are We There, Yeti?", npc = 10977, target = "Scare Quixxil", count = 1, map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 9.4 }, -- 61
-    } end,
+    steps = [[{
+{type="FLIGHTPATH",npc=11138,npcName="Maethrya",map=1452,zone="Winterspring",x=62.3,y=36.6},
+{type="COLLECT",quest=5883,questName="Salve via Mining",target="Tainted Vitriol",count=1,map=1448,zone="Felwood",x=34.7,y=61.8,near=true,profession="Mining",skill=200},
+{type="TURNIN",quest=5883,questName="Salve via Mining",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8,profession="Mining",skill=200},
+{type="COLLECT",quest=5884,questName="Salve via Gathering",target="Fel Creep",count=1,map=1448,zone="Felwood",x=62.4,y=24.2,optional=true,profession="Herbalism",skill=200,mobs="Mishellena"},
+{type="TURNIN",quest=5884,questName="Salve via Gathering",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8,optional=true,profession="Herbalism",skill=200},
+{type="COLLECT",quest=5885,questName="Salve via Skinning",target="item 11512",count=1,map=1448,zone="Felwood",x=35.4,y=57.2,near=true,profession="Skinning",skill=200,mobs="Jaedenar Hunter / Angerclaw Grizzly / Felpaw Ravager"},
+{type="TURNIN",quest=5885,questName="Salve via Skinning",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8,profession="Skinning",skill=200},
+{type="TRAVEL",map=1452,zone="Winterspring",x=61.4,y=38.2,radius=60,note="travel to Winterspring (Winterspring)"},
+{type="ACCEPT",quest=6603,questName="Trouble in Winterspring!",npc=11754,npcName="Meggi Peppinrocker",map=1452,zone="Winterspring",x=61.4,y=38.4},
+{type="HEARTH",npc=11118,npcName="Innkeeper Vizzie",map=1452,zone="Everlook",x=61.4,y=38.8,note="talk to Innkeeper Vizzie and make this inn your home"},
+{type="ACCEPT",quest=6604,questName="Enraged Wildkin",npc=11755,npcName="Harlo Wigglesworth",map=1452,zone="Winterspring",x=61,y=38.4},
+{type="ACCEPT",quest=3783,questName="Are We There, Yeti?",npc=10305,npcName="Umi Rumplesnicker",map=1452,zone="Winterspring",x=60.9,y=37.6},
+{type="COLLECT",quest=3783,questName="Are We There, Yeti?",target="Thick Yeti Fur",count=10,map=1452,zone="Winterspring",x=65.9,y=41.7,near=true},
+{type="TURNIN",quest=3783,questName="Are We There, Yeti?",npc=10305,npcName="Umi Rumplesnicker",map=1452,zone="Winterspring",x=60.9,y=37.6},
+{type="ACCEPT",quest=977,questName="Are We There, Yeti?",npc=10305,npcName="Umi Rumplesnicker",map=1452,zone="Winterspring",x=60.9,y=37.6},
+{type="COLLECT",quest=977,questName="Are We There, Yeti?",target="Pristine Yeti Horn",count=2,map=1452,zone="Winterspring",x=64.7,y=40.6,near=true},
+{type="TURNIN",quest=977,questName="Are We There, Yeti?",npc=10305,npcName="Umi Rumplesnicker",map=1452,zone="Winterspring",x=60.9,y=37.6},
+{type="TURNIN",quest=6604,questName="Enraged Wildkin",npc=10301,npcName="Jaron Stoneshaper",map=1452,zone="Winterspring",x=52,y=30.4},
+{type="ACCEPT",quest=5244,questName="The Ruins of Kel'Theril",npc=11079,npcName="Wynd Nightchaser",map=1452,zone="Winterspring",x=52,y=30.4},
+{type="TURNIN",quest=5244,questName="The Ruins of Kel'Theril",npc=10301,npcName="Jaron Stoneshaper",map=1452,zone="Winterspring",x=52.1,y=30.4},
+{type="TURNIN",quest=5249,questName="To Winterspring!",npc=11079,npcName="Wynd Nightchaser",map=1452,zone="Winterspring",x=52,y=30.2},
+{type="ACCEPT",quest=5082,questName="Threat of the Winterfall",npc=9298,npcName="Donova Snowden",map=1452,zone="Winterspring",x=31.3,y=45.2},
+{type="KILL",quest=5082,questName="Threat of the Winterfall",npc=7442,target="Winterfall Pathfinder / Winterfall Totemic",count=8,map=1452,zone="Winterspring",x=33.4,y=37.7,near=true},
+{type="KILL",quest=5082,questName="Threat of the Winterfall",npc=7440,target="Winterfall Den Watcher",count=8,map=1452,zone="Winterspring",x=30.5,y=36.9,near=true},
+{type="ACCEPT",quest=8464,questName="Winterfall Activity",npc=11556,npcName="Salfa",map=1452,zone="Winterspring",x=27.7,y=34.5},
+{type="TURNIN",quest=8465,questName="Speak to Salfa",npc=11556,npcName="Salfa",map=1452,zone="Winterspring",x=27.8,y=34.4},
+{type="KILL",quest=8464,questName="Winterfall Activity",npc=7440,target="Winterfall Den Watcher",count=8,map=1452,zone="Winterspring",x=30.3,y=36.3,near=true},
+{type="TURNIN",quest=3908,questName="It's a Secret to Everybody",npc=9298,npcName="Donova Snowden",map=1452,zone="Winterspring",x=31.2,y=45.2},
+{type="TURNIN",quest=980,questName="The New Springs",npc=9298,npcName="Donova Snowden",map=1452,zone="Winterspring",x=31.2,y=45.2},
+{type="TURNIN",quest=6603,questName="Trouble in Winterspring!",npc=9298,npcName="Donova Snowden",map=1452,zone="Winterspring",x=31.2,y=45.2},
+{type="TURNIN",quest=5082,questName="Threat of the Winterfall",npc=9298,npcName="Donova Snowden",map=1452,zone="Winterspring",x=31.3,y=45.2},
+{type="ACCEPT",quest=6028,questName="The Everlook Report",npc=10431,npcName="Gregor Greystone",map=1452,zone="Winterspring",x=61.2,y=38.8},
+{type="ACCEPT",quest=6030,questName="Duke Nicholas Zverenhoff",npc=10431,npcName="Gregor Greystone",map=1452,zone="Winterspring",x=61.2,y=38.8},
+{type="ACCEPT",quest=4842,questName="Strange Sources",npc=9298,npcName="Donova Snowden",map=1452,zone="Winterspring",x=31.2,y=45.2,note="Objectives: Explore Zone, Discover Darkwhisper Gorge"},
+{type="TURNIN",quest=4842,questName="Strange Sources",npc=9298,npcName="Donova Snowden",map=1452,zone="Winterspring",x=31.2,y=45.2},
+{type="KILL",quest=8464,questName="Winterfall Activity",npc=7438,target="Winterfall Ursa",count=8,map=1452,zone="Winterspring",x=65.1,y=37.2,near=true},
+{type="KILL",quest=8464,questName="Winterfall Activity",npc=7439,target="Winterfall Shaman",count=8,map=1452,zone="Winterspring",x=67.4,y=35.2,near=true},
+{type="TURNIN",quest=8464,questName="Winterfall Activity",npc=11556,npcName="Salfa",map=1452,zone="Winterspring",x=27.7,y=34.5},
+{type="ACCEPT",quest=5245,questName="Troubled Spirits of Kel'Theril",npc=10301,npcName="Jaron Stoneshaper",map=1452,zone="Winterspring",x=52,y=30.4},
+{type="ACCEPT",quest=4861,questName="Enraged Wildkin",npc=10301,npcName="Jaron Stoneshaper",map=1452,zone="Winterspring",x=52.1,y=30.4},
+{type="TURNIN",quest=4861,questName="Enraged Wildkin",map=1452,zone="Winterspring",x=59,y=59.8},
+{type="ACCEPT",quest=4863,questName="Enraged Wildkin",map=1452,zone="Winterspring",x=59,y=59.8},
+{type="TURNIN",quest=4863,questName="Enraged Wildkin",map=1452,zone="Winterspring",x=61.4,y=60.7},
+{type="ACCEPT",quest=4864,questName="Enraged Wildkin",map=1452,zone="Winterspring",x=61.4,y=60.7},
+{type="COLLECT",quest=4864,questName="Enraged Wildkin",target="Jaron's Supplies",map=1452,zone="Winterspring",x=61.4,y=60.7,near=true},
+{type="COLLECT",quest=4864,questName="Enraged Wildkin",target="Blue-feathered Amulet",map=1452,zone="Winterspring",x=59.4,y=59.8,near=true},
+{type="COLLECT",quest=5245,questName="Troubled Spirits of Kel'Theril",target="First Relic Fragment",count=1,map=1452,zone="Winterspring",x=55.1,y=43},
+{type="COLLECT",quest=5245,questName="Troubled Spirits of Kel'Theril",target="Second Relic Fragment",count=1,map=1452,zone="Winterspring",x=50.9,y=41.7},
+{type="COLLECT",quest=5245,questName="Troubled Spirits of Kel'Theril",target="Third Relic Fragment",count=1,map=1452,zone="Winterspring",x=53.3,y=43.4},
+{type="COLLECT",quest=5245,questName="Troubled Spirits of Kel'Theril",target="Fourth Relic Fragment",count=1,map=1452,zone="Winterspring",x=52.4,y=41.5},
+{type="TURNIN",quest=4864,questName="Enraged Wildkin",npc=10301,npcName="Jaron Stoneshaper",map=1452,zone="Winterspring",x=52.1,y=30.4},
+{type="GRIND",npc=7443,target="Shardtooth Mauler",level=57,map=1452,zone="Winterspring",x=51.9,y=32.7,near=true,note="grind Shardtooth Mauler (level 54-56) to level 57 - nothing worth questing at 56"},
+{type="ACCEPT",quest=5163,questName="Are We There, Yeti?",npc=10305,npcName="Umi Rumplesnicker",map=1452,zone="Winterspring",x=60.8,y=37.6},
+{type="ACCEPT",quest=969,questName="Luck Be With You",npc=10307,npcName="Witch Doctor Mau'ari",map=1452,zone="Winterspring",x=61.9,y=38.3},
+{type="COLLECT",quest=969,questName="Luck Be With You",target="Frostmaul Shards",count=4,map=1452,zone="Winterspring",x=58.7,y=63.6,near=true},
+{type="TURNIN",quest=969,questName="Luck Be With You",npc=10307,npcName="Witch Doctor Mau'ari",map=1452,zone="Winterspring",x=61.9,y=38.3},
+{type="ACCEPT",quest=975,questName="Cache of Mau'ari",npc=10307,npcName="Witch Doctor Mau'ari",map=1452,zone="Winterspring",x=61.9,y=38.3},
+{type="TURNIN",quest=975,questName="Cache of Mau'ari",npc=10307,npcName="Witch Doctor Mau'ari",map=1452,zone="Winterspring",x=61.9,y=38.3},
+{type="KILL",quest=5163,questName="Are We There, Yeti?",npc=10978,target="Scare Legacki",count=1,map=1452,zone="Winterspring",x=61.4,y=38.4},
+{type="KILL",quest=5163,questName="Are We There, Yeti?",npc=7583,target="Scare Sprinkle",count=1,map=1446,zone="Tanaris",x=51,y=26.8},
+{type="KILL",quest=5163,questName="Are We There, Yeti?",npc=10977,target="Scare Quixxil",count=1,map=1449,zone="Un'Goro Crater",x=43.6,y=9.4}
+}]],
 })

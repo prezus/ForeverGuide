@@ -12,70 +12,70 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Feralas for a Alliance character, 24 quests. The race routes are the faster path; pick this when you just want to quest here.",
     stepCount = 64,
-    steps = function() return {
-        { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.2, y = 45.1, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
-        { type = "HEARTH", npc = 7736, npcName = "Innkeeper Shyria", map = 1444, zone = "Feathermoon Stronghold", x = 31.0, y = 43.5, note = "talk to Innkeeper Shyria and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 4124, questName = "The Missing Courier", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 3
-        { type = "ACCEPT", quest = 2866, questName = "The Ruins of Solarsal", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 4
-        { type = "TURNIN", quest = 4124, questName = "The Missing Courier", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 5
-        { type = "ACCEPT", quest = 4125, questName = "The Missing Courier", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 6
-        { type = "TURNIN", quest = 2866, questName = "The Ruins of Solarsal", map = 1444, zone = "Feralas", x = 26.3, y = 52.3 }, -- 7
-        { type = "ACCEPT", quest = 2867, questName = "Return to Feathermoon Stronghold", map = 1444, zone = "Feralas", x = 26.3, y = 52.3 }, -- 8
-        { type = "TURNIN", quest = 2867, questName = "Return to Feathermoon Stronghold", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 9
-        { type = "ACCEPT", quest = 3130, questName = "Against the Hatecrest", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 10
-        { type = "TURNIN", quest = 3130, questName = "Against the Hatecrest", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 11
-        { type = "ACCEPT", quest = 2869, questName = "Against the Hatecrest", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 12
-        { type = "COLLECT", quest = 2869, questName = "Against the Hatecrest", target = "Hatecrest Naga Scale", count = 10, map = 1444, zone = "Feralas", x = 28.5, y = 50.6, near = true }, -- 13
-        { type = "TURNIN", quest = 2869, questName = "Against the Hatecrest", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 14
-        { type = "TURNIN", quest = 4125, questName = "The Missing Courier", map = 1444, zone = "Feralas", x = 45.4, y = 65 }, -- 15
-        { type = "ACCEPT", quest = 4127, questName = "Boat Wreckage", map = 1444, zone = "Feralas", x = 45.4, y = 65 }, -- 16
-        { type = "TURNIN", quest = 4127, questName = "Boat Wreckage", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 17
-        { type = "ACCEPT", quest = 4129, questName = "The Knife Revealed", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 18
-        { type = "ACCEPT", quest = 2982, questName = "The High Wilderness", npc = 7900, npcName = "Angelas Moonbreeze", map = 1444, zone = "Feralas", x = 31.8, y = 45.6 }, -- 19
-        { type = "TURNIN", quest = 4129, questName = "The Knife Revealed", npc = 7879, npcName = "Quintis Jonespyre", map = 1444, zone = "Feralas", x = 32.5, y = 43.8 }, -- 20
-        { type = "ACCEPT", quest = 4130, questName = "Psychometric Reading", npc = 7879, npcName = "Quintis Jonespyre", map = 1444, zone = "Feralas", x = 32.5, y = 43.8 }, -- 21
-        { type = "TURNIN", quest = 4130, questName = "Psychometric Reading", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 22
-        { type = "ACCEPT", quest = 4131, questName = "The Woodpaw Gnolls", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 23
-        { type = "KILL", quest = 2982, questName = "The High Wilderness", npc = 5240, target = "Gordunni Warlock / Gordunni Brute", count = 8, map = 1444, zone = "Feralas", x = 59.5, y = 57, near = true }, -- 24
-        { type = "KILL", quest = 2982, questName = "The High Wilderness", npc = 5236, target = "Gordunni Shaman", count = 8, map = 1444, zone = "Feralas", x = 60.4, y = 64.8, near = true }, -- 25
-        { type = "TURNIN", quest = 2982, questName = "The High Wilderness", npc = 7900, npcName = "Angelas Moonbreeze", map = 1444, zone = "Feralas", x = 31.8, y = 45.6 }, -- 26
-        { type = "TURNIN", quest = 4131, questName = "The Woodpaw Gnolls", map = 1444, zone = "Feralas", x = 73.3, y = 56.3 }, -- 27
-        { type = "ACCEPT", quest = 2870, questName = "Against Lord Shalzaru", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 28
-        { type = "KILL", quest = 2870, questName = "Against Lord Shalzaru", npc = 8136, target = "Lord Shalzaru", map = 1444, zone = "Feralas", x = 28.5, y = 70.5, note = "loot Mysterious Relic" }, -- 29
-        { type = "TURNIN", quest = 2870, questName = "Against Lord Shalzaru", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 30
-        { type = "ACCEPT", quest = 2871, questName = "Delivering the Relic", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 31
-        { type = "TURNIN", quest = 2871, questName = "Delivering the Relic", npc = 7878, npcName = "Vestia Moonspear", map = 1444, zone = "Feralas", x = 30.1, y = 45.1 }, -- 32
-        { type = "ACCEPT", quest = 2821, questName = "The Mark of Quality", npc = 7852, npcName = "Pratt McGrubben", map = 1444, zone = "Feralas", x = 30.6, y = 42.7 }, -- 33
-        { type = "COLLECT", quest = 2821, questName = "The Mark of Quality", target = "Thick Yeti Hide", count = 10, map = 1444, zone = "Feralas", x = 50.6, y = 58.2, near = true }, -- 34
-        { type = "TURNIN", quest = 2821, questName = "The Mark of Quality", npc = 7852, npcName = "Pratt McGrubben", map = 1444, zone = "Feralas", x = 30.6, y = 42.7 }, -- 35
-        { type = "ACCEPT", quest = 4135, questName = "The Writhing Deep", map = 1444, zone = "Feralas", x = 73.3, y = 56.3 }, -- 36
-        { type = "TURNIN", quest = 4135, questName = "The Writhing Deep", map = 1444, zone = "Feralas", x = 72.1, y = 63.7 }, -- 37
-        { type = "ACCEPT", quest = 4265, questName = "Freed from the Hive", map = 1444, zone = "Feralas", x = 72.1, y = 63.7 }, -- 38
-        { type = "COMPLETE", quest = 4265, questName = "Freed from the Hive", target = "Free Raschal.", map = 1444, zone = "Feralas", x = 72.1, y = 63.8, note = "Free Raschal." }, -- 39
-        { type = "TURNIN", quest = 4265, questName = "Freed from the Hive", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 40
-        { type = "ACCEPT", quest = 4266, questName = "A Hero's Welcome", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 41
-        { type = "TURNIN", quest = 4266, questName = "A Hero's Welcome", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 42
-        { type = "ACCEPT", quest = 2969, questName = "Freedom for All Creatures", npc = 7956, npcName = "Kindal Moonweaver", map = 1444, zone = "Feralas", x = 65.9, y = 45.7 }, -- 43
-        { type = "COMPLETE", quest = 2969, questName = "Freedom for All Creatures", target = "Save at least 6 Sprite Darters from capture", map = 1444, zone = "Feralas", x = 67.3, y = 46.7, note = "Save at least 6 Sprite Darters from capture" }, -- 44
-        { type = "TURNIN", quest = 2969, questName = "Freedom for All Creatures", npc = 7956, npcName = "Kindal Moonweaver", map = 1444, zone = "Feralas", x = 65.9, y = 45.7 }, -- 45
-        { type = "ACCEPT", quest = 2970, questName = "Doling Justice", npc = 7957, npcName = "Jer'kai Moonweaver", map = 1444, zone = "Feralas", x = 66, y = 45.6 }, -- 46
-        { type = "KILL", quest = 2970, questName = "Doling Justice", npc = 7726, target = "Grimtotem Naturalist / Grimtotem Shaman / Grimtotem Raider", count = 12, map = 1444, zone = "Feralas", x = 66.8, y = 46.2, near = true }, -- 47
-        { type = "TURNIN", quest = 2970, questName = "Doling Justice", npc = 7957, npcName = "Jer'kai Moonweaver", map = 1444, zone = "Feralas", x = 66, y = 45.6 }, -- 48
-        { type = "ACCEPT", quest = 2972, questName = "Doling Justice", npc = 7957, npcName = "Jer'kai Moonweaver", map = 1444, zone = "Feralas", x = 66, y = 45.6 }, -- 49
-        { type = "ACCEPT", quest = 7003, questName = "Zapped Giants", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 50
-        { type = "ACCEPT", quest = 7721, questName = "Fuel for the Zapping", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 51
-        { type = "COLLECT", quest = 7003, questName = "Zapped Giants", target = "Miniaturization Residue", count = 15, map = 1444, zone = "Feralas", x = 44.3, y = 46.6, near = true }, -- 52
-        { type = "TURNIN", quest = 7003, questName = "Zapped Giants", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 53
-        { type = "COLLECT", quest = 7721, questName = "Fuel for the Zapping", target = "Water Elemental Core", count = 10, map = 1444, zone = "Feralas", x = 44.2, y = 49.7, near = true }, -- 54
-        { type = "TURNIN", quest = 7721, questName = "Fuel for the Zapping", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 55
-        { type = "ACCEPT", quest = 7733, questName = "Improved Quality", npc = 7852, npcName = "Pratt McGrubben", map = 1444, zone = "Feralas", x = 30.6, y = 42.7 }, -- 56
-        { type = "COLLECT", quest = 7733, questName = "Improved Quality", target = "Rage Scar Yeti Hide", count = 10, map = 1444, zone = "Feralas", x = 51.8, y = 30.8, near = true }, -- 57
-        { type = "TURNIN", quest = 7733, questName = "Improved Quality", npc = 7852, npcName = "Pratt McGrubben", map = 1444, zone = "Feralas", x = 30.6, y = 42.7 }, -- 58
-        { type = "ACCEPT", quest = 2844, questName = "The Giant Guardian", npc = 7765, npcName = "Rockbiter", map = 1444, zone = "Feralas", x = 42.4, y = 22 }, -- 59
-        { type = "TURNIN", quest = 2844, questName = "The Giant Guardian", npc = 7774, npcName = "Shay Leafrunner", map = 1444, zone = "Feralas", x = 38.2, y = 10.3 }, -- 60
-        { type = "ACCEPT", quest = 2845, questName = "Wandering Shay", npc = 7774, npcName = "Shay Leafrunner", map = 1444, zone = "Feralas", x = 38.2, y = 10.3 }, -- 61
-        { type = "COLLECT", quest = 2845, questName = "Wandering Shay", target = "Shay's Bell", map = 1444, zone = "Feralas", x = 38.3, y = 10.3, note = "escort - stay close, it can fail" }, -- 62
-        { type = "COMPLETE", quest = 2845, questName = "Wandering Shay", target = "Take Shay Leafrunner to Rockbiter's camp", map = 1444, zone = "Feralas", x = 42.3, y = 21.9, note = "escort - stay close, it can fail: Take Shay Leafrunner to Rockbiter's camp" }, -- 63
-        { type = "TURNIN", quest = 2845, questName = "Wandering Shay", npc = 7765, npcName = "Rockbiter", map = 1444, zone = "Feralas", x = 42.4, y = 22 }, -- 64
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1444,zone="Feralas",x=31.2,y=45.1,radius=60,note="travel to Feralas (Feralas)"},
+{type="HEARTH",npc=7736,npcName="Innkeeper Shyria",map=1444,zone="Feathermoon Stronghold",x=31.0,y=43.5,note="talk to Innkeeper Shyria and make this inn your home"},
+{type="ACCEPT",quest=4124,questName="The Missing Courier",npc=7877,npcName="Latronicus Moonspear",map=1444,zone="Feralas",x=30.4,y=46.2},
+{type="ACCEPT",quest=2866,questName="The Ruins of Solarsal",npc=3936,npcName="Shandris Feathermoon",map=1444,zone="Feralas",x=30.3,y=46.2},
+{type="TURNIN",quest=4124,questName="The Missing Courier",npc=7880,npcName="Ginro Hearthkindle",map=1444,zone="Feralas",x=31.9,y=45.1},
+{type="ACCEPT",quest=4125,questName="The Missing Courier",npc=7880,npcName="Ginro Hearthkindle",map=1444,zone="Feralas",x=31.9,y=45.1},
+{type="TURNIN",quest=2866,questName="The Ruins of Solarsal",map=1444,zone="Feralas",x=26.3,y=52.3},
+{type="ACCEPT",quest=2867,questName="Return to Feathermoon Stronghold",map=1444,zone="Feralas",x=26.3,y=52.3},
+{type="TURNIN",quest=2867,questName="Return to Feathermoon Stronghold",npc=3936,npcName="Shandris Feathermoon",map=1444,zone="Feralas",x=30.3,y=46.2},
+{type="ACCEPT",quest=3130,questName="Against the Hatecrest",npc=3936,npcName="Shandris Feathermoon",map=1444,zone="Feralas",x=30.3,y=46.2},
+{type="TURNIN",quest=3130,questName="Against the Hatecrest",npc=7877,npcName="Latronicus Moonspear",map=1444,zone="Feralas",x=30.4,y=46.2},
+{type="ACCEPT",quest=2869,questName="Against the Hatecrest",npc=7877,npcName="Latronicus Moonspear",map=1444,zone="Feralas",x=30.4,y=46.2},
+{type="COLLECT",quest=2869,questName="Against the Hatecrest",target="Hatecrest Naga Scale",count=10,map=1444,zone="Feralas",x=28.5,y=50.6,near=true},
+{type="TURNIN",quest=2869,questName="Against the Hatecrest",npc=7877,npcName="Latronicus Moonspear",map=1444,zone="Feralas",x=30.4,y=46.2},
+{type="TURNIN",quest=4125,questName="The Missing Courier",map=1444,zone="Feralas",x=45.4,y=65},
+{type="ACCEPT",quest=4127,questName="Boat Wreckage",map=1444,zone="Feralas",x=45.4,y=65},
+{type="TURNIN",quest=4127,questName="Boat Wreckage",npc=7880,npcName="Ginro Hearthkindle",map=1444,zone="Feralas",x=31.9,y=45.1},
+{type="ACCEPT",quest=4129,questName="The Knife Revealed",npc=7880,npcName="Ginro Hearthkindle",map=1444,zone="Feralas",x=31.9,y=45.1},
+{type="ACCEPT",quest=2982,questName="The High Wilderness",npc=7900,npcName="Angelas Moonbreeze",map=1444,zone="Feralas",x=31.8,y=45.6},
+{type="TURNIN",quest=4129,questName="The Knife Revealed",npc=7879,npcName="Quintis Jonespyre",map=1444,zone="Feralas",x=32.5,y=43.8},
+{type="ACCEPT",quest=4130,questName="Psychometric Reading",npc=7879,npcName="Quintis Jonespyre",map=1444,zone="Feralas",x=32.5,y=43.8},
+{type="TURNIN",quest=4130,questName="Psychometric Reading",npc=7880,npcName="Ginro Hearthkindle",map=1444,zone="Feralas",x=31.9,y=45.1},
+{type="ACCEPT",quest=4131,questName="The Woodpaw Gnolls",npc=7880,npcName="Ginro Hearthkindle",map=1444,zone="Feralas",x=31.9,y=45.1},
+{type="KILL",quest=2982,questName="The High Wilderness",npc=5240,target="Gordunni Warlock / Gordunni Brute",count=8,map=1444,zone="Feralas",x=59.5,y=57,near=true},
+{type="KILL",quest=2982,questName="The High Wilderness",npc=5236,target="Gordunni Shaman",count=8,map=1444,zone="Feralas",x=60.4,y=64.8,near=true},
+{type="TURNIN",quest=2982,questName="The High Wilderness",npc=7900,npcName="Angelas Moonbreeze",map=1444,zone="Feralas",x=31.8,y=45.6},
+{type="TURNIN",quest=4131,questName="The Woodpaw Gnolls",map=1444,zone="Feralas",x=73.3,y=56.3},
+{type="ACCEPT",quest=2870,questName="Against Lord Shalzaru",npc=7877,npcName="Latronicus Moonspear",map=1444,zone="Feralas",x=30.4,y=46.2},
+{type="KILL",quest=2870,questName="Against Lord Shalzaru",npc=8136,target="Lord Shalzaru",map=1444,zone="Feralas",x=28.5,y=70.5,note="loot Mysterious Relic"},
+{type="TURNIN",quest=2870,questName="Against Lord Shalzaru",npc=7877,npcName="Latronicus Moonspear",map=1444,zone="Feralas",x=30.4,y=46.2},
+{type="ACCEPT",quest=2871,questName="Delivering the Relic",npc=7877,npcName="Latronicus Moonspear",map=1444,zone="Feralas",x=30.4,y=46.2},
+{type="TURNIN",quest=2871,questName="Delivering the Relic",npc=7878,npcName="Vestia Moonspear",map=1444,zone="Feralas",x=30.1,y=45.1},
+{type="ACCEPT",quest=2821,questName="The Mark of Quality",npc=7852,npcName="Pratt McGrubben",map=1444,zone="Feralas",x=30.6,y=42.7},
+{type="COLLECT",quest=2821,questName="The Mark of Quality",target="Thick Yeti Hide",count=10,map=1444,zone="Feralas",x=50.6,y=58.2,near=true},
+{type="TURNIN",quest=2821,questName="The Mark of Quality",npc=7852,npcName="Pratt McGrubben",map=1444,zone="Feralas",x=30.6,y=42.7},
+{type="ACCEPT",quest=4135,questName="The Writhing Deep",map=1444,zone="Feralas",x=73.3,y=56.3},
+{type="TURNIN",quest=4135,questName="The Writhing Deep",map=1444,zone="Feralas",x=72.1,y=63.7},
+{type="ACCEPT",quest=4265,questName="Freed from the Hive",map=1444,zone="Feralas",x=72.1,y=63.7},
+{type="COMPLETE",quest=4265,questName="Freed from the Hive",target="Free Raschal.",map=1444,zone="Feralas",x=72.1,y=63.8,note="Free Raschal."},
+{type="TURNIN",quest=4265,questName="Freed from the Hive",npc=7880,npcName="Ginro Hearthkindle",map=1444,zone="Feralas",x=31.9,y=45.1},
+{type="ACCEPT",quest=4266,questName="A Hero's Welcome",npc=7880,npcName="Ginro Hearthkindle",map=1444,zone="Feralas",x=31.9,y=45.1},
+{type="TURNIN",quest=4266,questName="A Hero's Welcome",npc=3936,npcName="Shandris Feathermoon",map=1444,zone="Feralas",x=30.3,y=46.2},
+{type="ACCEPT",quest=2969,questName="Freedom for All Creatures",npc=7956,npcName="Kindal Moonweaver",map=1444,zone="Feralas",x=65.9,y=45.7},
+{type="COMPLETE",quest=2969,questName="Freedom for All Creatures",target="Save at least 6 Sprite Darters from capture",map=1444,zone="Feralas",x=67.3,y=46.7,note="Save at least 6 Sprite Darters from capture"},
+{type="TURNIN",quest=2969,questName="Freedom for All Creatures",npc=7956,npcName="Kindal Moonweaver",map=1444,zone="Feralas",x=65.9,y=45.7},
+{type="ACCEPT",quest=2970,questName="Doling Justice",npc=7957,npcName="Jer'kai Moonweaver",map=1444,zone="Feralas",x=66,y=45.6},
+{type="KILL",quest=2970,questName="Doling Justice",npc=7726,target="Grimtotem Naturalist / Grimtotem Shaman / Grimtotem Raider",count=12,map=1444,zone="Feralas",x=66.8,y=46.2,near=true},
+{type="TURNIN",quest=2970,questName="Doling Justice",npc=7957,npcName="Jer'kai Moonweaver",map=1444,zone="Feralas",x=66,y=45.6},
+{type="ACCEPT",quest=2972,questName="Doling Justice",npc=7957,npcName="Jer'kai Moonweaver",map=1444,zone="Feralas",x=66,y=45.6},
+{type="ACCEPT",quest=7003,questName="Zapped Giants",npc=14637,npcName="Zorbin Fandazzle",map=1444,zone="Feralas",x=44.8,y=43.4},
+{type="ACCEPT",quest=7721,questName="Fuel for the Zapping",npc=14637,npcName="Zorbin Fandazzle",map=1444,zone="Feralas",x=44.8,y=43.4},
+{type="COLLECT",quest=7003,questName="Zapped Giants",target="Miniaturization Residue",count=15,map=1444,zone="Feralas",x=44.3,y=46.6,near=true},
+{type="TURNIN",quest=7003,questName="Zapped Giants",npc=14637,npcName="Zorbin Fandazzle",map=1444,zone="Feralas",x=44.8,y=43.4},
+{type="COLLECT",quest=7721,questName="Fuel for the Zapping",target="Water Elemental Core",count=10,map=1444,zone="Feralas",x=44.2,y=49.7,near=true},
+{type="TURNIN",quest=7721,questName="Fuel for the Zapping",npc=14637,npcName="Zorbin Fandazzle",map=1444,zone="Feralas",x=44.8,y=43.4},
+{type="ACCEPT",quest=7733,questName="Improved Quality",npc=7852,npcName="Pratt McGrubben",map=1444,zone="Feralas",x=30.6,y=42.7},
+{type="COLLECT",quest=7733,questName="Improved Quality",target="Rage Scar Yeti Hide",count=10,map=1444,zone="Feralas",x=51.8,y=30.8,near=true},
+{type="TURNIN",quest=7733,questName="Improved Quality",npc=7852,npcName="Pratt McGrubben",map=1444,zone="Feralas",x=30.6,y=42.7},
+{type="ACCEPT",quest=2844,questName="The Giant Guardian",npc=7765,npcName="Rockbiter",map=1444,zone="Feralas",x=42.4,y=22},
+{type="TURNIN",quest=2844,questName="The Giant Guardian",npc=7774,npcName="Shay Leafrunner",map=1444,zone="Feralas",x=38.2,y=10.3},
+{type="ACCEPT",quest=2845,questName="Wandering Shay",npc=7774,npcName="Shay Leafrunner",map=1444,zone="Feralas",x=38.2,y=10.3},
+{type="COLLECT",quest=2845,questName="Wandering Shay",target="Shay's Bell",map=1444,zone="Feralas",x=38.3,y=10.3,note="escort - stay close, it can fail"},
+{type="COMPLETE",quest=2845,questName="Wandering Shay",target="Take Shay Leafrunner to Rockbiter's camp",map=1444,zone="Feralas",x=42.3,y=21.9,note="escort - stay close, it can fail: Take Shay Leafrunner to Rockbiter's camp"},
+{type="TURNIN",quest=2845,questName="Wandering Shay",npc=7765,npcName="Rockbiter",map=1444,zone="Feralas",x=42.4,y=22}
+}]],
 })

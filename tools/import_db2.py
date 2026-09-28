@@ -75,11 +75,11 @@ def flt(v, default=None):
 
 
 def emit_quest_ids(client_ids):
-    """Data/ForeverQuestIDs.lua: the client's quest id set + the ids Questie does not know."""
+    """data-src/tables/ForeverQuestIDs.lua: the client's quest id set + the ids Questie does not know."""
     from merge_recorded import vanilla_ids
     vanilla = vanilla_ids()["quests"]
     new = [i for i in client_ids if i not in vanilla]
-    path = os.path.join(foreverdb.ROOT, "Data", "ForeverQuestIDs.lua")
+    path = os.path.join(foreverdb.TABLES, "ForeverQuestIDs.lua")
 
     def runs(ids):
         out, s, p = [], None, None

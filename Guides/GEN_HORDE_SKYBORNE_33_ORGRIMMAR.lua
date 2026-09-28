@@ -14,34 +14,34 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 33 of the Skyborne route: level 51 to 51, 11 steps, ~19 min of play in the model (50099 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 28,
-    steps = function() return {
-        { type = "FLIGHTPATH", npc = 3310, npcName = "Doras", map = 1454, zone = "Orgrimmar", x = 45.1, y = 63.9 }, -- 1
-        { type = "TURNIN", quest = 1262, questName = "Report to Zor", npc = 4047, npcName = "Zor Lonetree", map = 1454, zone = "Orgrimmar", x = 39, y = 38, note = "reduced xp (10%) - you out-levelled it" }, -- 2
-        { type = "TURNIN", quest = 5158, questName = "Seeking Spiritual Aid", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8 }, -- 3
-        { type = "ACCEPT", quest = 5728, questName = "Hidden Enemies", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 4
-        { type = "ACCEPT", quest = 5761, questName = "Slaying the Beast", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.6, y = 50.4, optional = true, note = "For Ragefire Chasm (dungeon guide)" }, -- 5
-        { type = "ACCEPT", quest = 2283, questName = "Necklace Recovery", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.4, y = 36.8, optional = true, note = "For Uldaman (dungeon guide)" }, -- 6
-        { type = "ACCEPT", quest = 7068, questName = "Shadowshard Fragments", npc = 7311, npcName = "Uthel'nay", map = 1454, zone = "Orgrimmar", x = 39, y = 86, optional = true, note = "For Maraudon (dungeon guide)" }, -- 7
-        { type = "ACCEPT", quest = 2861, questName = "Tabetha's Task", npc = 5885, npcName = "Deino", map = 1454, zone = "Orgrimmar", x = 38.4, y = 85.8, optional = true, note = "For Zul'Farrak (dungeon guide)" }, -- 8
-        { type = "TURNIN", quest = 2861, questName = "Tabetha's Task", npc = 6546, npcName = "Tabetha", map = 1445, zone = "Dustwallow Marsh", x = 46, y = 57, optional = true }, -- 9
-        { type = "TRAVEL", map = 1454, zone = "Orgrimmar", x = 50.2, y = 44.1, radius = 60, note = "travel to Orgrimmar (Orgrimmar)" }, -- 10
-        { type = "TURNIN", quest = 2380, questName = "To Orgrimmar!", npc = 3401, npcName = "Shenthul", map = 1454, zone = "Orgrimmar", x = 43, y = 53.4, class = { "ROGUE" }, note = "reduced xp (10%) - you out-levelled it" }, -- 11
-        { type = "ACCEPT", quest = 8419, questName = "An Imp's Request", npc = 3326, npcName = "Zevrost", map = 1454, zone = "Orgrimmar", x = 48.4, y = 45.6, class = { "WARLOCK" } }, -- 12
-        { type = "HEARTH", npc = 6929, npcName = "Innkeeper Gryshka", map = 1454, zone = "Orgrimmar", x = 54.1, y = 68.4, note = "talk to Innkeeper Gryshka and make this inn your home" }, -- 13
-        { type = "ACCEPT", quest = 5093, questName = "A Call to Arms: The Plaguelands!", npc = 10880, npcName = "Warcaller Gorlach", map = 1454, zone = "Orgrimmar", x = 46.6, y = 64.6 }, -- 14
-        { type = "TURNIN", quest = 3121, questName = "A Strange Request", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.5, y = 50.6, note = "reduced xp (80%) - you out-levelled it" }, -- 15
-        { type = "TURNIN", quest = 32, questName = "Rise of the Silithid", npc = 7010, npcName = "Zilzibin Drumlore", map = 1454, zone = "Orgrimmar", x = 56.3, y = 46.7 }, -- 16
-        { type = "TURNIN", quest = 7732, questName = "Zukk'ash Report", npc = 7010, npcName = "Zilzibin Drumlore", map = 1454, zone = "Orgrimmar", x = 56.3, y = 46.7 }, -- 17
-        { type = "ACCEPT", quest = 3122, questName = "Return to Witch Doctor Uzer'i", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.5, y = 50.6 }, -- 18
-        { type = "TURNIN", quest = 3541, questName = "Delivery to Jes'rimon", npc = 8659, npcName = "Jes'rimon", map = 1454, zone = "Orgrimmar", x = 55.6, y = 34 }, -- 19
-        { type = "ACCEPT", quest = 649, questName = "Ripple Recovery", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.5, y = 36.6 }, -- 20
-        { type = "ACCEPT", quest = 3563, questName = "Jes'rimon's Payment to Jediga", npc = 8659, npcName = "Jes'rimon", map = 1454, zone = "Orgrimmar", x = 55.6, y = 34 }, -- 21
-        { type = "ACCEPT", quest = 4494, questName = "March of the Silithid", npc = 7010, npcName = "Zilzibin Drumlore", map = 1454, zone = "Orgrimmar", x = 56.3, y = 46.7 }, -- 22
-        { type = "TURNIN", quest = 649, questName = "Ripple Recovery", npc = 6987, npcName = "Malton Droffers", map = 1454, zone = "Orgrimmar", x = 59.7, y = 36.9 }, -- 23
-        { type = "TURNIN", quest = 1145, questName = "The Swarm Grows", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75, y = 34.2, note = "reduced xp (10%) - you out-levelled it" }, -- 24
-        { type = "ACCEPT", quest = 8151, questName = "The Hunter's Charm", npc = 3352, npcName = "Ormak Grimshot", map = 1454, zone = "Orgrimmar", x = 66.2, y = 18.2, class = { "HUNTER" } }, -- 25
-        { type = "ACCEPT", quest = 3504, questName = "Betrayed", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 26
-        { type = "TURNIN", quest = 2976, questName = "A Grim Discovery", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2, note = "reduced xp (80%) - you out-levelled it" }, -- 27
-        { type = "TURNIN", quest = 3923, questName = "Rilli Greasygob", npc = 9317, npcName = "Rilli Greasygob", map = 1454, zone = "Orgrimmar", x = 76.2, y = 24.6, note = "reduced xp (10%) - you out-levelled it" }, -- 28
-    } end,
+    steps = [[{
+{type="FLIGHTPATH",npc=3310,npcName="Doras",map=1454,zone="Orgrimmar",x=45.1,y=63.9},
+{type="TURNIN",quest=1262,questName="Report to Zor",npc=4047,npcName="Zor Lonetree",map=1454,zone="Orgrimmar",x=39,y=38,note="reduced xp (10%) - you out-levelled it"},
+{type="TURNIN",quest=5158,questName="Seeking Spiritual Aid",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8},
+{type="ACCEPT",quest=5728,questName="Hidden Enemies",npc=4949,npcName="Thrall",map=1454,zone="Orgrimmar",x=32,y=37.8,optional=true,note="For Ragefire Chasm (dungeon guide)"},
+{type="ACCEPT",quest=5761,questName="Slaying the Beast",npc=3216,npcName="Neeru Fireblade",map=1454,zone="Orgrimmar",x=49.6,y=50.4,optional=true,note="For Ragefire Chasm (dungeon guide)"},
+{type="ACCEPT",quest=2283,questName="Necklace Recovery",npc=6986,npcName="Dran Droffers",map=1454,zone="Orgrimmar",x=59.4,y=36.8,optional=true,note="For Uldaman (dungeon guide)"},
+{type="ACCEPT",quest=7068,questName="Shadowshard Fragments",npc=7311,npcName="Uthel'nay",map=1454,zone="Orgrimmar",x=39,y=86,optional=true,note="For Maraudon (dungeon guide)"},
+{type="ACCEPT",quest=2861,questName="Tabetha's Task",npc=5885,npcName="Deino",map=1454,zone="Orgrimmar",x=38.4,y=85.8,optional=true,note="For Zul'Farrak (dungeon guide)"},
+{type="TURNIN",quest=2861,questName="Tabetha's Task",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57,optional=true},
+{type="TRAVEL",map=1454,zone="Orgrimmar",x=50.2,y=44.1,radius=60,note="travel to Orgrimmar (Orgrimmar)"},
+{type="TURNIN",quest=2380,questName="To Orgrimmar!",npc=3401,npcName="Shenthul",map=1454,zone="Orgrimmar",x=43,y=53.4,class={"ROGUE"},note="reduced xp (10%) - you out-levelled it"},
+{type="ACCEPT",quest=8419,questName="An Imp's Request",npc=3326,npcName="Zevrost",map=1454,zone="Orgrimmar",x=48.4,y=45.6,class={"WARLOCK"}},
+{type="HEARTH",npc=6929,npcName="Innkeeper Gryshka",map=1454,zone="Orgrimmar",x=54.1,y=68.4,note="talk to Innkeeper Gryshka and make this inn your home"},
+{type="ACCEPT",quest=5093,questName="A Call to Arms: The Plaguelands!",npc=10880,npcName="Warcaller Gorlach",map=1454,zone="Orgrimmar",x=46.6,y=64.6},
+{type="TURNIN",quest=3121,questName="A Strange Request",npc=3216,npcName="Neeru Fireblade",map=1454,zone="Orgrimmar",x=49.5,y=50.6,note="reduced xp (80%) - you out-levelled it"},
+{type="TURNIN",quest=32,questName="Rise of the Silithid",npc=7010,npcName="Zilzibin Drumlore",map=1454,zone="Orgrimmar",x=56.3,y=46.7},
+{type="TURNIN",quest=7732,questName="Zukk'ash Report",npc=7010,npcName="Zilzibin Drumlore",map=1454,zone="Orgrimmar",x=56.3,y=46.7},
+{type="ACCEPT",quest=3122,questName="Return to Witch Doctor Uzer'i",npc=3216,npcName="Neeru Fireblade",map=1454,zone="Orgrimmar",x=49.5,y=50.6},
+{type="TURNIN",quest=3541,questName="Delivery to Jes'rimon",npc=8659,npcName="Jes'rimon",map=1454,zone="Orgrimmar",x=55.6,y=34},
+{type="ACCEPT",quest=649,questName="Ripple Recovery",npc=6986,npcName="Dran Droffers",map=1454,zone="Orgrimmar",x=59.5,y=36.6},
+{type="ACCEPT",quest=3563,questName="Jes'rimon's Payment to Jediga",npc=8659,npcName="Jes'rimon",map=1454,zone="Orgrimmar",x=55.6,y=34},
+{type="ACCEPT",quest=4494,questName="March of the Silithid",npc=7010,npcName="Zilzibin Drumlore",map=1454,zone="Orgrimmar",x=56.3,y=46.7},
+{type="TURNIN",quest=649,questName="Ripple Recovery",npc=6987,npcName="Malton Droffers",map=1454,zone="Orgrimmar",x=59.7,y=36.9},
+{type="TURNIN",quest=1145,questName="The Swarm Grows",npc=4485,npcName="Belgrom Rockmaul",map=1454,zone="Orgrimmar",x=75,y=34.2,note="reduced xp (10%) - you out-levelled it"},
+{type="ACCEPT",quest=8151,questName="The Hunter's Charm",npc=3352,npcName="Ormak Grimshot",map=1454,zone="Orgrimmar",x=66.2,y=18.2,class={"HUNTER"}},
+{type="ACCEPT",quest=3504,questName="Betrayed",npc=4485,npcName="Belgrom Rockmaul",map=1454,zone="Orgrimmar",x=75.2,y=34.2},
+{type="TURNIN",quest=2976,questName="A Grim Discovery",npc=4485,npcName="Belgrom Rockmaul",map=1454,zone="Orgrimmar",x=75.2,y=34.2,note="reduced xp (80%) - you out-levelled it"},
+{type="TURNIN",quest=3923,questName="Rilli Greasygob",npc=9317,npcName="Rilli Greasygob",map=1454,zone="Orgrimmar",x=76.2,y=24.6,note="reduced xp (10%) - you out-levelled it"}
+}]],
 })

@@ -14,70 +14,70 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 8 of the Orc route: level 25 to 31, 34 steps, ~469 min of play in the model (2091 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 64,
-    steps = function() return {
-        { type = "ACCEPT", quest = 2458, questName = "Deep Cover", npc = 3401, npcName = "Shenthul", map = 1454, zone = "Orgrimmar", x = 43, y = 53.4, class = { "ROGUE" } }, -- 1
-        { type = "TURNIN", quest = 2458, questName = "Deep Cover", npc = 7233, npcName = "Taskmaster Fizzule", map = 1413, zone = "The Barrens", x = 55.4, y = 5.6, class = { "ROGUE" } }, -- 2
-        { type = "TURNIN", quest = 1530, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 3
-        { type = "ACCEPT", quest = 1476, questName = "Hearts of the Pure", npc = 5693, npcName = "Godrick Farsan", map = 1458, zone = "Undercity", x = 85, y = 14.8, class = { "WARLOCK" }, race = { "Orc" } }, -- 4
-        { type = "TRAVEL", map = 1424, zone = "Tarren Mill", x = 62.8, y = 19.0, radius = 60, note = "use your hearthstone (Tarren Mill)" }, -- 5
-        { type = "TRAVEL", map = 1424, zone = "Hillsbrad Foothills", x = 62.1, y = 20.1, radius = 60, note = "travel to Hillsbrad Foothills (Hillsbrad Foothills)" }, -- 6
-        { type = "ACCEPT", quest = 529, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 7
-        { type = "ACCEPT", quest = 567, questName = "Dangerous!", map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 19.7 }, -- 8
-        { type = "ACCEPT", quest = 509, questName = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 9
-        { type = "ACCEPT", quest = 541, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 10
-        { type = "ACCEPT", quest = 1535, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 11
-        { type = "COLLECT", quest = 1535, questName = "Call of Water", target = "Filled Brown Waterskin", count = 1, map = 1413, zone = "The Barrens", x = 44.3, y = 76.8, class = { "SHAMAN" } }, -- 12
-        { type = "TURNIN", quest = 1535, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 13
-        { type = "KILL", quest = 541, questName = "Battle of Hillsbrad", npc = 2344, target = "Dun Garok Mountaineer", map = 1424, zone = "Hillsbrad Foothills", x = 70.4, y = 77.2, optional = true, near = true }, -- 14
-        { type = "KILL", quest = 541, questName = "Battle of Hillsbrad", npc = 2345, target = "Dun Garok Rifleman", map = 1424, zone = "Hillsbrad Foothills", x = 71.3, y = 74.2, optional = true, near = true }, -- 15
-        { type = "KILL", quest = 541, questName = "Battle of Hillsbrad", npc = 2346, target = "Dun Garok Priest", map = 1424, zone = "Hillsbrad Foothills", x = 71.1, y = 79, optional = true, near = true }, -- 16
-        { type = "KILL", quest = 541, questName = "Battle of Hillsbrad", npc = 2304, target = "Captain Ironhill", count = 2, map = 1424, zone = "Hillsbrad Foothills", x = 71.5, y = 79.8, optional = true, near = true }, -- 17
-        { type = "ACCEPT", quest = 1536, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 18
-        { type = "COLLECT", quest = 1536, questName = "Call of Water", target = "Filled Red Waterskin", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 20.8, class = { "SHAMAN" } }, -- 19
-        { type = "TURNIN", quest = 1536, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 20
-        { type = "TURNIN", quest = 541, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, optional = true }, -- 21
-        { type = "COMPLETE", quest = 529, questName = "Battle of Hillsbrad", npc = 2265, target = "Hillsbrad Apprentice Blacksmith / Shipment of Iron / Blacksmith Verringtan", count = 4, map = 1424, zone = "Hillsbrad Foothills", x = 32.6, y = 45.1, near = true }, -- 22
-        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2448, target = "Clerk Horrace Whitesteed", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 29.5, y = 42.4 }, -- 23
-        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2449, target = "Citizen Wilkes", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 32.6, y = 39.8 }, -- 24
-        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2451, target = "Farmer Kalaba", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 35.9, y = 46.6 }, -- 25
-        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2450, target = "Miner Hackett", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 31.8, y = 52.7 }, -- 26
-        { type = "COLLECT", quest = 509, questName = "Elixir of Agony", target = "Mudsnout Blossoms", count = 6, map = 1424, zone = "Hillsbrad Foothills", x = 63.5, y = 62.5, near = true }, -- 27
-        { type = "TURNIN", quest = 529, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 28
-        { type = "ACCEPT", quest = 532, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 29
-        { type = "TURNIN", quest = 567, questName = "Dangerous!", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 30
-        { type = "ACCEPT", quest = 550, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.2, y = 20.2 }, -- 31
-        { type = "TURNIN", quest = 509, questName = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 32
-        { type = "ACCEPT", quest = 513, questName = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 33
-        { type = "KILL", quest = 532, questName = "Battle of Hillsbrad", npc = 2387, target = "Hillsbrad Councilman", count = 5, map = 1424, zone = "Hillsbrad Foothills", x = 32.1, y = 42.4, near = true }, -- 34
-        { type = "COMPLETE", quest = 532, questName = "Battle of Hillsbrad", target = "Hillsbrad Proclamation / Magistrate Burnside / Hillsbrad Town Registry", count = 5, map = 1424, zone = "Hillsbrad Foothills", x = 29.7, y = 41.8, note = "Hillsbrad Proclamation destroyed" }, -- 35
-        { type = "TURNIN", quest = 532, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 36
-        { type = "ACCEPT", quest = 539, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 37
-        { type = "KILL", quest = 539, questName = "Battle of Hillsbrad", npc = 2269, target = "Hillsbrad Miner", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 32.4, y = 52.1, near = true }, -- 38
-        { type = "KILL", quest = 539, questName = "Battle of Hillsbrad", npc = 2305, target = "Foreman Bonds", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 31.2, y = 56 }, -- 39
-        { type = "ACCEPT", quest = 1534, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 40
-        { type = "COLLECT", quest = 1534, questName = "Call of Water", target = "Filled Blue Waterskin", count = 1, map = 1440, zone = "Ashenvale", x = 33.6, y = 67.5, class = { "SHAMAN" } }, -- 41
-        { type = "TURNIN", quest = 1534, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 42
-        { type = "TURNIN", quest = 539, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 43
-        { type = "GRIND", npc = 2356, target = "Elder Gray Bear", level = 27, map = 1424, zone = "Hillsbrad Foothills", x = 70.5, y = 25.8, near = true, note = "grind Elder Gray Bear (level 25-26) to level 27 - nothing worth questing at 26" }, -- 44
-        { type = "ACCEPT", quest = 547, questName = "Humbert's Sword", npc = 2419, npcName = "Deathguard Humbert", map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 20.2, optional = true, note = "Elite - group up" }, -- 45
-        { type = "COLLECT", quest = 547, questName = "Humbert's Sword", target = "Humbert's Sword", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 71, y = 78.6, optional = true, near = true, mobs = "Dun Garok Mountaineer / Dun Garok Rifleman / Dun Garok Priest / Tamra Stormpike" }, -- 46
-        { type = "TURNIN", quest = 547, questName = "Humbert's Sword", npc = 2419, npcName = "Deathguard Humbert", map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 20.2, optional = true }, -- 47
-        { type = "ACCEPT", quest = 2478, questName = "Mission: Possible But Not Probable", npc = 7233, npcName = "Taskmaster Fizzule", map = 1413, zone = "The Barrens", x = 55.4, y = 5.6, optional = true, class = { "ROGUE" }, note = "Elite - group up" }, -- 48
-        { type = "KILL", quest = 2478, questName = "Mission: Possible But Not Probable", npc = 7310, target = "Mutated Venture Co. Drone", count = 2, map = 1413, zone = "The Barrens", x = 54.8, y = 5.8, optional = true, class = { "ROGUE" } }, -- 49
-        { type = "KILL", quest = 2478, questName = "Mission: Possible But Not Probable", npc = 7307, target = "Venture Co. Lookout", count = 2, map = 1413, zone = "The Barrens", x = 54.6, y = 5.6, optional = true, class = { "ROGUE" } }, -- 50
-        { type = "KILL", quest = 2478, questName = "Mission: Possible But Not Probable", npc = 7308, target = "Venture Co. Patroller", count = 2, map = 1413, zone = "The Barrens", x = 54.6, y = 5.6, optional = true, class = { "ROGUE" } }, -- 51
-        { type = "COLLECT", quest = 2478, questName = "Mission: Possible But Not Probable", target = "Gallywix's Head", count = 1, map = 1413, zone = "The Barrens", x = 54.8, y = 5.6, optional = true, class = { "ROGUE" }, mobs = "Grand Foreman Puzik Gallywix" }, -- 52
-        { type = "COLLECT", quest = 2478, questName = "Mission: Possible But Not Probable", target = "Silixiz's Tower Key", count = 1, map = 1413, zone = "The Barrens", x = 54.8, y = 6, optional = true, class = { "ROGUE" }, mobs = "Foreman Silixiz" }, -- 53
-        { type = "COLLECT", quest = 2478, questName = "Mission: Possible But Not Probable", target = "Cache of Zanzil's Altered Mixture", count = 1, map = 1413, zone = "The Barrens", x = 54.7, y = 5.6, optional = true, near = true, class = { "ROGUE" }, mobs = "Taskmaster Fizzule" }, -- 54
-        { type = "TURNIN", quest = 2478, questName = "Mission: Possible But Not Probable", npc = 3401, npcName = "Shenthul", map = 1454, zone = "Orgrimmar", x = 43, y = 53.4, optional = true, class = { "ROGUE" } }, -- 55
-        { type = "ACCEPT", quest = 220, questName = "Call of Water", npc = 5899, npcName = "Brine", map = 1413, zone = "The Barrens", x = 43.4, y = 77.4, class = { "SHAMAN" } }, -- 56
-        { type = "TURNIN", quest = 220, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 57
-        { type = "GRIND", npc = 2269, target = "Hillsbrad Miner", level = 28, map = 1424, zone = "Hillsbrad Foothills", x = 32.4, y = 52.1, near = true, note = "grind Hillsbrad Miner (level 26-27) to level 28 - nothing worth questing at 27" }, -- 58
-        { type = "ACCEPT", quest = 63, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 59
-        { type = "COLLECT", quest = 63, questName = "Call of Water", target = "Corrupt Manifestation's Bracers", count = 1, map = 1421, zone = "Silverpine Forest", x = 38.8, y = 44.3, class = { "SHAMAN" }, mobs = "Corrupt Minor Manifestation of Water" }, -- 60
-        { type = "TURNIN", quest = 63, questName = "Call of Water", map = 1421, zone = "Silverpine Forest", x = 38.2, y = 44.5, class = { "SHAMAN" } }, -- 61
-        { type = "GRIND", npc = 2375, target = "Torn Fin Coastrunner", level = 29, map = 1424, zone = "Hillsbrad Foothills", x = 22.1, y = 64, near = true, note = "grind Torn Fin Coastrunner (level 29-30) to level 29 - nothing worth questing at 28" }, -- 62
-        { type = "GRIND", npc = 2375, target = "Torn Fin Coastrunner", level = 30, map = 1424, zone = "Hillsbrad Foothills", x = 22.1, y = 64, near = true, note = "grind Torn Fin Coastrunner (level 29-30) to level 30 - nothing worth questing at 29" }, -- 63
-        { type = "GRIND", npc = 2375, target = "Torn Fin Coastrunner", level = 31, map = 1424, zone = "Hillsbrad Foothills", x = 22.1, y = 64, near = true, note = "grind Torn Fin Coastrunner (level 29-30) to level 31 - nothing worth questing at 30" }, -- 64
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=2458,questName="Deep Cover",npc=3401,npcName="Shenthul",map=1454,zone="Orgrimmar",x=43,y=53.4,class={"ROGUE"}},
+{type="TURNIN",quest=2458,questName="Deep Cover",npc=7233,npcName="Taskmaster Fizzule",map=1413,zone="The Barrens",x=55.4,y=5.6,class={"ROGUE"}},
+{type="TURNIN",quest=1530,questName="Call of Water",npc=5899,npcName="Brine",map=1413,zone="The Barrens",x=43.4,y=77.4,class={"SHAMAN"}},
+{type="ACCEPT",quest=1476,questName="Hearts of the Pure",npc=5693,npcName="Godrick Farsan",map=1458,zone="Undercity",x=85,y=14.8,class={"WARLOCK"},race={"Orc"}},
+{type="TRAVEL",map=1424,zone="Tarren Mill",x=62.8,y=19.0,radius=60,note="use your hearthstone (Tarren Mill)"},
+{type="TRAVEL",map=1424,zone="Hillsbrad Foothills",x=62.1,y=20.1,radius=60,note="travel to Hillsbrad Foothills (Hillsbrad Foothills)"},
+{type="ACCEPT",quest=529,questName="Battle of Hillsbrad",npc=2215,npcName="High Executor Darthalia",map=1424,zone="Hillsbrad Foothills",x=62.3,y=20.5},
+{type="ACCEPT",quest=567,questName="Dangerous!",map=1424,zone="Hillsbrad Foothills",x=62.6,y=19.7},
+{type="ACCEPT",quest=509,questName="Elixir of Agony",npc=2216,npcName="Apothecary Lydon",map=1424,zone="Hillsbrad Foothills",x=61.4,y=19.1},
+{type="ACCEPT",quest=541,questName="Battle of Hillsbrad",npc=2215,npcName="High Executor Darthalia",map=1424,zone="Hillsbrad Foothills",x=62.3,y=20.5,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="ACCEPT",quest=1535,questName="Call of Water",npc=5899,npcName="Brine",map=1413,zone="The Barrens",x=43.4,y=77.4,class={"SHAMAN"}},
+{type="COLLECT",quest=1535,questName="Call of Water",target="Filled Brown Waterskin",count=1,map=1413,zone="The Barrens",x=44.3,y=76.8,class={"SHAMAN"}},
+{type="TURNIN",quest=1535,questName="Call of Water",npc=5899,npcName="Brine",map=1413,zone="The Barrens",x=43.4,y=77.4,class={"SHAMAN"}},
+{type="KILL",quest=541,questName="Battle of Hillsbrad",npc=2344,target="Dun Garok Mountaineer",map=1424,zone="Hillsbrad Foothills",x=70.4,y=77.2,optional=true,near=true},
+{type="KILL",quest=541,questName="Battle of Hillsbrad",npc=2345,target="Dun Garok Rifleman",map=1424,zone="Hillsbrad Foothills",x=71.3,y=74.2,optional=true,near=true},
+{type="KILL",quest=541,questName="Battle of Hillsbrad",npc=2346,target="Dun Garok Priest",map=1424,zone="Hillsbrad Foothills",x=71.1,y=79,optional=true,near=true},
+{type="KILL",quest=541,questName="Battle of Hillsbrad",npc=2304,target="Captain Ironhill",count=2,map=1424,zone="Hillsbrad Foothills",x=71.5,y=79.8,optional=true,near=true},
+{type="ACCEPT",quest=1536,questName="Call of Water",npc=5899,npcName="Brine",map=1413,zone="The Barrens",x=43.4,y=77.4,class={"SHAMAN"}},
+{type="COLLECT",quest=1536,questName="Call of Water",target="Filled Red Waterskin",count=1,map=1424,zone="Hillsbrad Foothills",x=62.2,y=20.8,class={"SHAMAN"}},
+{type="TURNIN",quest=1536,questName="Call of Water",npc=5899,npcName="Brine",map=1413,zone="The Barrens",x=43.4,y=77.4,class={"SHAMAN"}},
+{type="TURNIN",quest=541,questName="Battle of Hillsbrad",npc=2215,npcName="High Executor Darthalia",map=1424,zone="Hillsbrad Foothills",x=62.3,y=20.5,optional=true},
+{type="COMPLETE",quest=529,questName="Battle of Hillsbrad",npc=2265,target="Hillsbrad Apprentice Blacksmith / Shipment of Iron / Blacksmith Verringtan",count=4,map=1424,zone="Hillsbrad Foothills",x=32.6,y=45.1,near=true},
+{type="KILL",quest=567,questName="Dangerous!",npc=2448,target="Clerk Horrace Whitesteed",count=1,map=1424,zone="Hillsbrad Foothills",x=29.5,y=42.4},
+{type="KILL",quest=567,questName="Dangerous!",npc=2449,target="Citizen Wilkes",count=1,map=1424,zone="Hillsbrad Foothills",x=32.6,y=39.8},
+{type="KILL",quest=567,questName="Dangerous!",npc=2451,target="Farmer Kalaba",count=1,map=1424,zone="Hillsbrad Foothills",x=35.9,y=46.6},
+{type="KILL",quest=567,questName="Dangerous!",npc=2450,target="Miner Hackett",count=1,map=1424,zone="Hillsbrad Foothills",x=31.8,y=52.7},
+{type="COLLECT",quest=509,questName="Elixir of Agony",target="Mudsnout Blossoms",count=6,map=1424,zone="Hillsbrad Foothills",x=63.5,y=62.5,near=true},
+{type="TURNIN",quest=529,questName="Battle of Hillsbrad",npc=2215,npcName="High Executor Darthalia",map=1424,zone="Hillsbrad Foothills",x=62.3,y=20.5},
+{type="ACCEPT",quest=532,questName="Battle of Hillsbrad",npc=2215,npcName="High Executor Darthalia",map=1424,zone="Hillsbrad Foothills",x=62.3,y=20.5},
+{type="TURNIN",quest=567,questName="Dangerous!",npc=2215,npcName="High Executor Darthalia",map=1424,zone="Hillsbrad Foothills",x=62.3,y=20.5},
+{type="ACCEPT",quest=550,questName="Battle of Hillsbrad",npc=2215,npcName="High Executor Darthalia",map=1424,zone="Hillsbrad Foothills",x=62.2,y=20.2},
+{type="TURNIN",quest=509,questName="Elixir of Agony",npc=2216,npcName="Apothecary Lydon",map=1424,zone="Hillsbrad Foothills",x=61.4,y=19.1},
+{type="ACCEPT",quest=513,questName="Elixir of Agony",npc=2216,npcName="Apothecary Lydon",map=1424,zone="Hillsbrad Foothills",x=61.4,y=19.1},
+{type="KILL",quest=532,questName="Battle of Hillsbrad",npc=2387,target="Hillsbrad Councilman",count=5,map=1424,zone="Hillsbrad Foothills",x=32.1,y=42.4,near=true},
+{type="COMPLETE",quest=532,questName="Battle of Hillsbrad",target="Hillsbrad Proclamation / Magistrate Burnside / Hillsbrad Town Registry",count=5,map=1424,zone="Hillsbrad Foothills",x=29.7,y=41.8,note="Hillsbrad Proclamation destroyed"},
+{type="TURNIN",quest=532,questName="Battle of Hillsbrad",npc=2215,npcName="High Executor Darthalia",map=1424,zone="Hillsbrad Foothills",x=62.3,y=20.5},
+{type="ACCEPT",quest=539,questName="Battle of Hillsbrad",npc=2215,npcName="High Executor Darthalia",map=1424,zone="Hillsbrad Foothills",x=62.3,y=20.5},
+{type="KILL",quest=539,questName="Battle of Hillsbrad",npc=2269,target="Hillsbrad Miner",count=10,map=1424,zone="Hillsbrad Foothills",x=32.4,y=52.1,near=true},
+{type="KILL",quest=539,questName="Battle of Hillsbrad",npc=2305,target="Foreman Bonds",count=1,map=1424,zone="Hillsbrad Foothills",x=31.2,y=56},
+{type="ACCEPT",quest=1534,questName="Call of Water",npc=5899,npcName="Brine",map=1413,zone="The Barrens",x=43.4,y=77.4,class={"SHAMAN"}},
+{type="COLLECT",quest=1534,questName="Call of Water",target="Filled Blue Waterskin",count=1,map=1440,zone="Ashenvale",x=33.6,y=67.5,class={"SHAMAN"}},
+{type="TURNIN",quest=1534,questName="Call of Water",npc=5899,npcName="Brine",map=1413,zone="The Barrens",x=43.4,y=77.4,class={"SHAMAN"}},
+{type="TURNIN",quest=539,questName="Battle of Hillsbrad",npc=2215,npcName="High Executor Darthalia",map=1424,zone="Hillsbrad Foothills",x=62.3,y=20.5},
+{type="GRIND",npc=2356,target="Elder Gray Bear",level=27,map=1424,zone="Hillsbrad Foothills",x=70.5,y=25.8,near=true,note="grind Elder Gray Bear (level 25-26) to level 27 - nothing worth questing at 26"},
+{type="ACCEPT",quest=547,questName="Humbert's Sword",npc=2419,npcName="Deathguard Humbert",map=1424,zone="Hillsbrad Foothills",x=62.6,y=20.2,optional=true,note="Elite - group up"},
+{type="COLLECT",quest=547,questName="Humbert's Sword",target="Humbert's Sword",count=1,map=1424,zone="Hillsbrad Foothills",x=71,y=78.6,optional=true,near=true,mobs="Dun Garok Mountaineer / Dun Garok Rifleman / Dun Garok Priest / Tamra Stormpike"},
+{type="TURNIN",quest=547,questName="Humbert's Sword",npc=2419,npcName="Deathguard Humbert",map=1424,zone="Hillsbrad Foothills",x=62.6,y=20.2,optional=true},
+{type="ACCEPT",quest=2478,questName="Mission: Possible But Not Probable",npc=7233,npcName="Taskmaster Fizzule",map=1413,zone="The Barrens",x=55.4,y=5.6,optional=true,class={"ROGUE"},note="Elite - group up"},
+{type="KILL",quest=2478,questName="Mission: Possible But Not Probable",npc=7310,target="Mutated Venture Co. Drone",count=2,map=1413,zone="The Barrens",x=54.8,y=5.8,optional=true,class={"ROGUE"}},
+{type="KILL",quest=2478,questName="Mission: Possible But Not Probable",npc=7307,target="Venture Co. Lookout",count=2,map=1413,zone="The Barrens",x=54.6,y=5.6,optional=true,class={"ROGUE"}},
+{type="KILL",quest=2478,questName="Mission: Possible But Not Probable",npc=7308,target="Venture Co. Patroller",count=2,map=1413,zone="The Barrens",x=54.6,y=5.6,optional=true,class={"ROGUE"}},
+{type="COLLECT",quest=2478,questName="Mission: Possible But Not Probable",target="Gallywix's Head",count=1,map=1413,zone="The Barrens",x=54.8,y=5.6,optional=true,class={"ROGUE"},mobs="Grand Foreman Puzik Gallywix"},
+{type="COLLECT",quest=2478,questName="Mission: Possible But Not Probable",target="Silixiz's Tower Key",count=1,map=1413,zone="The Barrens",x=54.8,y=6,optional=true,class={"ROGUE"},mobs="Foreman Silixiz"},
+{type="COLLECT",quest=2478,questName="Mission: Possible But Not Probable",target="Cache of Zanzil's Altered Mixture",count=1,map=1413,zone="The Barrens",x=54.7,y=5.6,optional=true,near=true,class={"ROGUE"},mobs="Taskmaster Fizzule"},
+{type="TURNIN",quest=2478,questName="Mission: Possible But Not Probable",npc=3401,npcName="Shenthul",map=1454,zone="Orgrimmar",x=43,y=53.4,optional=true,class={"ROGUE"}},
+{type="ACCEPT",quest=220,questName="Call of Water",npc=5899,npcName="Brine",map=1413,zone="The Barrens",x=43.4,y=77.4,class={"SHAMAN"}},
+{type="TURNIN",quest=220,questName="Call of Water",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8,class={"SHAMAN"}},
+{type="GRIND",npc=2269,target="Hillsbrad Miner",level=28,map=1424,zone="Hillsbrad Foothills",x=32.4,y=52.1,near=true,note="grind Hillsbrad Miner (level 26-27) to level 28 - nothing worth questing at 27"},
+{type="ACCEPT",quest=63,questName="Call of Water",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8,class={"SHAMAN"}},
+{type="COLLECT",quest=63,questName="Call of Water",target="Corrupt Manifestation's Bracers",count=1,map=1421,zone="Silverpine Forest",x=38.8,y=44.3,class={"SHAMAN"},mobs="Corrupt Minor Manifestation of Water"},
+{type="TURNIN",quest=63,questName="Call of Water",map=1421,zone="Silverpine Forest",x=38.2,y=44.5,class={"SHAMAN"}},
+{type="GRIND",npc=2375,target="Torn Fin Coastrunner",level=29,map=1424,zone="Hillsbrad Foothills",x=22.1,y=64,near=true,note="grind Torn Fin Coastrunner (level 29-30) to level 29 - nothing worth questing at 28"},
+{type="GRIND",npc=2375,target="Torn Fin Coastrunner",level=30,map=1424,zone="Hillsbrad Foothills",x=22.1,y=64,near=true,note="grind Torn Fin Coastrunner (level 29-30) to level 30 - nothing worth questing at 29"},
+{type="GRIND",npc=2375,target="Torn Fin Coastrunner",level=31,map=1424,zone="Hillsbrad Foothills",x=22.1,y=64,near=true,note="grind Torn Fin Coastrunner (level 29-30) to level 31 - nothing worth questing at 30"}
+}]],
 })

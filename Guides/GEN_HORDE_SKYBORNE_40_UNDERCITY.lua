@@ -14,12 +14,12 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 40 of the Skyborne route: level 53 to 53, 5 steps, ~2 min of play in the model (148023 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 6,
-    steps = function() return {
-        { type = "TRAVEL", map = 1458, zone = "Undercity", x = 67.7, y = 37.9, radius = 60, note = "use your hearthstone (Undercity)" }, -- 1
-        { type = "TRAVEL", map = 1458, zone = "Undercity", x = 59.2, y = 54.8, radius = 60, note = "travel to Undercity (Undercity)" }, -- 2
-        { type = "ACCEPT", quest = 3564, questName = "Andron's Payment to Jediga", npc = 6522, npcName = "Andron Gant", map = 1458, zone = "Undercity", x = 54.6, y = 75.6 }, -- 3
-        { type = "ACCEPT", quest = 4294, questName = "... and a Batch of Ooze", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 4
-        { type = "COLLECT", quest = 4294, questName = "... and a Batch of Ooze", target = "Pure Un'Goro Sample", count = 5, map = 1458, zone = "Undercity", x = 47.7, y = 73.6 }, -- 5
-        { type = "TURNIN", quest = 4294, questName = "... and a Batch of Ooze", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 6
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1458,zone="Undercity",x=67.7,y=37.9,radius=60,note="use your hearthstone (Undercity)"},
+{type="TRAVEL",map=1458,zone="Undercity",x=59.2,y=54.8,radius=60,note="travel to Undercity (Undercity)"},
+{type="ACCEPT",quest=3564,questName="Andron's Payment to Jediga",npc=6522,npcName="Andron Gant",map=1458,zone="Undercity",x=54.6,y=75.6},
+{type="ACCEPT",quest=4294,questName="... and a Batch of Ooze",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4},
+{type="COLLECT",quest=4294,questName="... and a Batch of Ooze",target="Pure Un'Goro Sample",count=5,map=1458,zone="Undercity",x=47.7,y=73.6},
+{type="TURNIN",quest=4294,questName="... and a Batch of Ooze",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4}
+}]],
 })

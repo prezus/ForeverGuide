@@ -14,34 +14,34 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 50 of the Human route: level 57 to 57, 22 steps, ~80 min of play in the model (41215 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 28,
-    steps = function() return {
-        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.3, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 1
-        { type = "ACCEPT", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 2
-        { type = "ACCEPT", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 3
-        { type = "COLLECT", quest = 977, questName = "Are We There, Yeti?", target = "Pristine Yeti Horn", count = 2, map = 1452, zone = "Winterspring", x = 64.7, y = 40.6, near = true }, -- 4
-        { type = "COLLECT", quest = 969, questName = "Luck Be With You", target = "Frostmaul Shards", count = 4, map = 1452, zone = "Winterspring", x = 58.7, y = 63.6, near = true }, -- 5
-        { type = "ACCEPT", quest = 6030, questName = "Duke Nicholas Zverenhoff", npc = 10431, npcName = "Gregor Greystone", map = 1452, zone = "Winterspring", x = 61.2, y = 38.8 }, -- 6
-        { type = "TURNIN", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 7
-        { type = "TURNIN", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 8
-        { type = "ACCEPT", quest = 975, questName = "Cache of Mau'ari", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 9
-        { type = "TURNIN", quest = 975, questName = "Cache of Mau'ari", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 10
-        { type = "ACCEPT", quest = 4861, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 11
-        { type = "TURNIN", quest = 4861, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 12
-        { type = "ACCEPT", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 13
-        { type = "TURNIN", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 14
-        { type = "ACCEPT", quest = 4864, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 15
-        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Jaron's Supplies", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7, near = true }, -- 16
-        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Blue-feathered Amulet", map = 1452, zone = "Winterspring", x = 59.4, y = 59.8, near = true }, -- 17
-        { type = "COLLECT", quest = 5245, questName = "Troubled Spirits of Kel'Theril", target = "First Relic Fragment", count = 1, map = 1452, zone = "Winterspring", x = 55.1, y = 43 }, -- 18
-        { type = "COLLECT", quest = 5245, questName = "Troubled Spirits of Kel'Theril", target = "Second Relic Fragment", count = 1, map = 1452, zone = "Winterspring", x = 50.9, y = 41.7 }, -- 19
-        { type = "COLLECT", quest = 5245, questName = "Troubled Spirits of Kel'Theril", target = "Third Relic Fragment", count = 1, map = 1452, zone = "Winterspring", x = 53.3, y = 43.4 }, -- 20
-        { type = "COLLECT", quest = 5245, questName = "Troubled Spirits of Kel'Theril", target = "Fourth Relic Fragment", count = 1, map = 1452, zone = "Winterspring", x = 52.4, y = 41.5 }, -- 21
-        { type = "TURNIN", quest = 4864, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 22
-        { type = "TURNIN", quest = 8465, questName = "Speak to Salfa", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.8, y = 34.4 }, -- 23
-        { type = "ACCEPT", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 24
-        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.3, y = 36.3, near = true }, -- 25
-        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7438, target = "Winterfall Ursa", count = 8, map = 1452, zone = "Winterspring", x = 65.1, y = 37.2, near = true }, -- 26
-        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7439, target = "Winterfall Shaman", count = 8, map = 1452, zone = "Winterspring", x = 67.4, y = 35.2, near = true }, -- 27
-        { type = "TURNIN", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 28
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1452,zone="Winterspring",x=61.4,y=38.3,radius=60,note="travel to Winterspring (Winterspring)"},
+{type="ACCEPT",quest=977,questName="Are We There, Yeti?",npc=10305,npcName="Umi Rumplesnicker",map=1452,zone="Winterspring",x=60.9,y=37.6},
+{type="ACCEPT",quest=969,questName="Luck Be With You",npc=10307,npcName="Witch Doctor Mau'ari",map=1452,zone="Winterspring",x=61.9,y=38.3},
+{type="COLLECT",quest=977,questName="Are We There, Yeti?",target="Pristine Yeti Horn",count=2,map=1452,zone="Winterspring",x=64.7,y=40.6,near=true},
+{type="COLLECT",quest=969,questName="Luck Be With You",target="Frostmaul Shards",count=4,map=1452,zone="Winterspring",x=58.7,y=63.6,near=true},
+{type="ACCEPT",quest=6030,questName="Duke Nicholas Zverenhoff",npc=10431,npcName="Gregor Greystone",map=1452,zone="Winterspring",x=61.2,y=38.8},
+{type="TURNIN",quest=977,questName="Are We There, Yeti?",npc=10305,npcName="Umi Rumplesnicker",map=1452,zone="Winterspring",x=60.9,y=37.6},
+{type="TURNIN",quest=969,questName="Luck Be With You",npc=10307,npcName="Witch Doctor Mau'ari",map=1452,zone="Winterspring",x=61.9,y=38.3},
+{type="ACCEPT",quest=975,questName="Cache of Mau'ari",npc=10307,npcName="Witch Doctor Mau'ari",map=1452,zone="Winterspring",x=61.9,y=38.3},
+{type="TURNIN",quest=975,questName="Cache of Mau'ari",npc=10307,npcName="Witch Doctor Mau'ari",map=1452,zone="Winterspring",x=61.9,y=38.3},
+{type="ACCEPT",quest=4861,questName="Enraged Wildkin",npc=10301,npcName="Jaron Stoneshaper",map=1452,zone="Winterspring",x=52.1,y=30.4},
+{type="TURNIN",quest=4861,questName="Enraged Wildkin",map=1452,zone="Winterspring",x=59,y=59.8},
+{type="ACCEPT",quest=4863,questName="Enraged Wildkin",map=1452,zone="Winterspring",x=59,y=59.8},
+{type="TURNIN",quest=4863,questName="Enraged Wildkin",map=1452,zone="Winterspring",x=61.4,y=60.7},
+{type="ACCEPT",quest=4864,questName="Enraged Wildkin",map=1452,zone="Winterspring",x=61.4,y=60.7},
+{type="COLLECT",quest=4864,questName="Enraged Wildkin",target="Jaron's Supplies",map=1452,zone="Winterspring",x=61.4,y=60.7,near=true},
+{type="COLLECT",quest=4864,questName="Enraged Wildkin",target="Blue-feathered Amulet",map=1452,zone="Winterspring",x=59.4,y=59.8,near=true},
+{type="COLLECT",quest=5245,questName="Troubled Spirits of Kel'Theril",target="First Relic Fragment",count=1,map=1452,zone="Winterspring",x=55.1,y=43},
+{type="COLLECT",quest=5245,questName="Troubled Spirits of Kel'Theril",target="Second Relic Fragment",count=1,map=1452,zone="Winterspring",x=50.9,y=41.7},
+{type="COLLECT",quest=5245,questName="Troubled Spirits of Kel'Theril",target="Third Relic Fragment",count=1,map=1452,zone="Winterspring",x=53.3,y=43.4},
+{type="COLLECT",quest=5245,questName="Troubled Spirits of Kel'Theril",target="Fourth Relic Fragment",count=1,map=1452,zone="Winterspring",x=52.4,y=41.5},
+{type="TURNIN",quest=4864,questName="Enraged Wildkin",npc=10301,npcName="Jaron Stoneshaper",map=1452,zone="Winterspring",x=52.1,y=30.4},
+{type="TURNIN",quest=8465,questName="Speak to Salfa",npc=11556,npcName="Salfa",map=1452,zone="Winterspring",x=27.8,y=34.4},
+{type="ACCEPT",quest=8464,questName="Winterfall Activity",npc=11556,npcName="Salfa",map=1452,zone="Winterspring",x=27.7,y=34.5},
+{type="KILL",quest=8464,questName="Winterfall Activity",npc=7440,target="Winterfall Den Watcher",count=8,map=1452,zone="Winterspring",x=30.3,y=36.3,near=true},
+{type="KILL",quest=8464,questName="Winterfall Activity",npc=7438,target="Winterfall Ursa",count=8,map=1452,zone="Winterspring",x=65.1,y=37.2,near=true},
+{type="KILL",quest=8464,questName="Winterfall Activity",npc=7439,target="Winterfall Shaman",count=8,map=1452,zone="Winterspring",x=67.4,y=35.2,near=true},
+{type="TURNIN",quest=8464,questName="Winterfall Activity",npc=11556,npcName="Salfa",map=1452,zone="Winterspring",x=27.7,y=34.5}
+}]],
 })

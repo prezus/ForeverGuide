@@ -14,38 +14,38 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 37 of the Skyborne route: level 49 to 50, 11 steps, ~159 min of play in the model (6871 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 32,
-    steps = function() return {
-        { type = "TRAVEL", map = 1425, zone = "Aerie Peak", x = 14.2, y = 41.6, radius = 60, note = "use your hearthstone (Aerie Peak)" }, -- 1
-        { type = "FLIGHTPATH", npc = 1573, npcName = "Gryth Thurden", map = 1455, zone = "Ironforge", x = 55.5, y = 47.7 }, -- 2
-        { type = "ACCEPT", quest = 96394, questName = "The Restless Dead", npc = 264943, npcName = "Afadra Dunwall", map = 1455, zone = "Ironforge", x = 33.2, y = 47.6, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 3
-        { type = "ACCEPT", quest = 96403, questName = "Important Heirlooms", npc = 265003, npcName = "Thom Filch", map = 1455, zone = "Ironforge", x = 32.4, y = 44.8, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 4
-        { type = "NOTE", optional = true, text = "Ready for The Hall of Thanes", note = "Picked up: Old Ironforge Incursion, The Restless Dead, Important Heirlooms. When you have a group, open The Hall of Thanes under Dungeons." }, -- 5
-        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.4, y = 6, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 6
-        { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 7
-        { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 8
-        { type = "ACCEPT", quest = 2929, questName = "The Grand Betrayal", npc = 7937, npcName = "High Tinker Mekkatorque", map = 1455, zone = "Ironforge", x = 69, y = 49, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 9
-        { type = "NOTE", optional = true, text = "Ready for Gnomeregan", note = "Picked up: Save Techbot's Brain!, Essential Artificials, Gnogaine, Gyrodrillmatic Excavationators, The Grand Betrayal. When you have a group, open Gnomeregan under Dungeons." }, -- 10
-        { type = "ACCEPT", quest = 1360, questName = "Reclaimed Treasures", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, optional = true, note = "For Uldaman (dungeon guide)" }, -- 11
-        { type = "ACCEPT", quest = 2398, questName = "The Lost Dwarves", npc = 1356, npcName = "Prospector Stormpike", map = 1455, zone = "Ironforge", x = 74.4, y = 12, optional = true, note = "For Uldaman (dungeon guide)" }, -- 12
-        { type = "NOTE", optional = true, text = "Ready for Uldaman", note = "Picked up: Agmond's Fate, Solution to Doom, Amulet of Secrets, Reclaimed Treasures, The Lost Dwarves. When you have a group, open Uldaman under Dungeons." }, -- 13
-        { type = "ACCEPT", quest = 2861, questName = "Tabetha's Task", npc = 5144, npcName = "Bink", map = 1455, zone = "Ironforge", x = 27, y = 8.2, optional = true, note = "For Zul'Farrak (dungeon guide)" }, -- 14
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 57.2, y = 35.7, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 15
-        { type = "ACCEPT", quest = 7905, questName = "The Darkmoon Faire", npc = 14842, npcName = "Melnan Darkstone", map = 1455, zone = "Ironforge", x = 27.2, y = 70.8 }, -- 16
-        { type = "HEARTH", npc = 5111, npcName = "Innkeeper Firebrew", map = 1455, zone = "Ironforge", x = 18.1, y = 51.5, note = "talk to Innkeeper Firebrew and make this inn your home" }, -- 17
-        { type = "TURNIN", quest = 3368, questName = "Suntara Stones", npc = 8256, npcName = "Curator Thorius", map = 1455, zone = "Ironforge", x = 71.5, y = 15.7 }, -- 18
-        { type = "ACCEPT", quest = 3448, questName = "Passing the Burden", npc = 2916, npcName = "Historian Karnik", map = 1455, zone = "Ironforge", x = 77.5, y = 11.8 }, -- 19
-        { type = "TURNIN", quest = 968, questName = "The Powers Below", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.4, y = 6, optional = true, note = "reduced xp (10%) - you out-levelled it" }, -- 20
-        { type = "TURNIN", quest = 3448, questName = "Passing the Burden", npc = 8507, npcName = "Tymor", map = 1455, zone = "Ironforge", x = 31, y = 4.8 }, -- 21
-        { type = "ACCEPT", quest = 3450, questName = "An Easy Pickup", npc = 8507, npcName = "Tymor", map = 1455, zone = "Ironforge", x = 31, y = 4.8 }, -- 22
-        { type = "TURNIN", quest = 1072, questName = "An Old Colleague", npc = 4081, npcName = "Lomac Gearstrip", map = 1455, zone = "Ironforge", x = 71.8, y = 51.6, note = "reduced xp (10%) - you out-levelled it" }, -- 23
-        { type = "ACCEPT", quest = 2769, questName = "The Brassbolts Brothers", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2 }, -- 24
-        { type = "TURNIN", quest = 3630, questName = "Gnome Engineering", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, profession = "Engineering", skill = 200 }, -- 25
-        { type = "ACCEPT", quest = 3632, questName = "Gnome Engineering", npc = 5174, npcName = "Springspindle Fizzlegear", map = 1455, zone = "Ironforge", x = 68.4, y = 44, profession = "Engineering", skill = 200 }, -- 26
-        { type = "TURNIN", quest = 3632, questName = "Gnome Engineering", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, profession = "Engineering", skill = 200 }, -- 27
-        { type = "TURNIN", quest = 3634, questName = "Gnome Engineering", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.8, y = 50.2, profession = "Engineering", skill = 200 }, -- 28
-        { type = "TURNIN", quest = 3450, questName = "An Easy Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 29
-        { type = "ACCEPT", quest = 3451, questName = "Signal for Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 30
-        { type = "TURNIN", quest = 3451, questName = "Signal for Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 31
-        { type = "GRIND", level = 50, note = "nothing worth questing at level 49 - grind to 50" }, -- 32
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1425,zone="Aerie Peak",x=14.2,y=41.6,radius=60,note="use your hearthstone (Aerie Peak)"},
+{type="FLIGHTPATH",npc=1573,npcName="Gryth Thurden",map=1455,zone="Ironforge",x=55.5,y=47.7},
+{type="ACCEPT",quest=96394,questName="The Restless Dead",npc=264943,npcName="Afadra Dunwall",map=1455,zone="Ironforge",x=33.2,y=47.6,optional=true,note="New in Forever; For The Hall of Thanes (dungeon guide)"},
+{type="ACCEPT",quest=96403,questName="Important Heirlooms",npc=265003,npcName="Thom Filch",map=1455,zone="Ironforge",x=32.4,y=44.8,optional=true,note="New in Forever; For The Hall of Thanes (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for The Hall of Thanes",note="Picked up: Old Ironforge Incursion, The Restless Dead, Important Heirlooms. When you have a group, open The Hall of Thanes under Dungeons."},
+{type="ACCEPT",quest=971,questName="Knowledge in the Deeps",npc=2786,npcName="Gerrig Bonegrip",map=1455,zone="Ironforge",x=50.4,y=6,optional=true,note="For Blackfathom Deeps (dungeon guide)"},
+{type="ACCEPT",quest=2922,questName="Save Techbot's Brain!",npc=7944,npcName="Tinkmaster Overspark",map=1455,zone="Ironforge",x=69.8,y=50.2,optional=true,note="For Gnomeregan (dungeon guide)"},
+{type="ACCEPT",quest=2924,questName="Essential Artificials",npc=6169,npcName="Klockmort Spannerspan",map=1455,zone="Ironforge",x=68.2,y=46.2,optional=true,note="For Gnomeregan (dungeon guide)"},
+{type="ACCEPT",quest=2929,questName="The Grand Betrayal",npc=7937,npcName="High Tinker Mekkatorque",map=1455,zone="Ironforge",x=69,y=49,optional=true,note="For Gnomeregan (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Gnomeregan",note="Picked up: Save Techbot's Brain!, Essential Artificials, Gnogaine, Gyrodrillmatic Excavationators, The Grand Betrayal. When you have a group, open Gnomeregan under Dungeons."},
+{type="ACCEPT",quest=1360,questName="Reclaimed Treasures",npc=6294,npcName="Krom Stoutarm",map=1455,zone="Ironforge",x=74.2,y=9.8,optional=true,note="For Uldaman (dungeon guide)"},
+{type="ACCEPT",quest=2398,questName="The Lost Dwarves",npc=1356,npcName="Prospector Stormpike",map=1455,zone="Ironforge",x=74.4,y=12,optional=true,note="For Uldaman (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Uldaman",note="Picked up: Agmond's Fate, Solution to Doom, Amulet of Secrets, Reclaimed Treasures, The Lost Dwarves. When you have a group, open Uldaman under Dungeons."},
+{type="ACCEPT",quest=2861,questName="Tabetha's Task",npc=5144,npcName="Bink",map=1455,zone="Ironforge",x=27,y=8.2,optional=true,note="For Zul'Farrak (dungeon guide)"},
+{type="TRAVEL",map=1455,zone="Ironforge",x=57.2,y=35.7,radius=60,note="travel to Ironforge (Ironforge)"},
+{type="ACCEPT",quest=7905,questName="The Darkmoon Faire",npc=14842,npcName="Melnan Darkstone",map=1455,zone="Ironforge",x=27.2,y=70.8},
+{type="HEARTH",npc=5111,npcName="Innkeeper Firebrew",map=1455,zone="Ironforge",x=18.1,y=51.5,note="talk to Innkeeper Firebrew and make this inn your home"},
+{type="TURNIN",quest=3368,questName="Suntara Stones",npc=8256,npcName="Curator Thorius",map=1455,zone="Ironforge",x=71.5,y=15.7},
+{type="ACCEPT",quest=3448,questName="Passing the Burden",npc=2916,npcName="Historian Karnik",map=1455,zone="Ironforge",x=77.5,y=11.8},
+{type="TURNIN",quest=968,questName="The Powers Below",npc=2786,npcName="Gerrig Bonegrip",map=1455,zone="Ironforge",x=50.4,y=6,optional=true,note="reduced xp (10%) - you out-levelled it"},
+{type="TURNIN",quest=3448,questName="Passing the Burden",npc=8507,npcName="Tymor",map=1455,zone="Ironforge",x=31,y=4.8},
+{type="ACCEPT",quest=3450,questName="An Easy Pickup",npc=8507,npcName="Tymor",map=1455,zone="Ironforge",x=31,y=4.8},
+{type="TURNIN",quest=1072,questName="An Old Colleague",npc=4081,npcName="Lomac Gearstrip",map=1455,zone="Ironforge",x=71.8,y=51.6,note="reduced xp (10%) - you out-levelled it"},
+{type="ACCEPT",quest=2769,questName="The Brassbolts Brothers",npc=6169,npcName="Klockmort Spannerspan",map=1455,zone="Ironforge",x=68.2,y=46.2},
+{type="TURNIN",quest=3630,questName="Gnome Engineering",npc=7944,npcName="Tinkmaster Overspark",map=1455,zone="Ironforge",x=69.8,y=50.2,profession="Engineering",skill=200},
+{type="ACCEPT",quest=3632,questName="Gnome Engineering",npc=5174,npcName="Springspindle Fizzlegear",map=1455,zone="Ironforge",x=68.4,y=44,profession="Engineering",skill=200},
+{type="TURNIN",quest=3632,questName="Gnome Engineering",npc=7944,npcName="Tinkmaster Overspark",map=1455,zone="Ironforge",x=69.8,y=50.2,profession="Engineering",skill=200},
+{type="TURNIN",quest=3634,questName="Gnome Engineering",npc=7944,npcName="Tinkmaster Overspark",map=1455,zone="Ironforge",x=69.8,y=50.2,profession="Engineering",skill=200},
+{type="TURNIN",quest=3450,questName="An Easy Pickup",npc=8517,npcName="Xiggs Fuselighter",map=1455,zone="Ironforge",x=70.9,y=94.6},
+{type="ACCEPT",quest=3451,questName="Signal for Pickup",npc=8517,npcName="Xiggs Fuselighter",map=1455,zone="Ironforge",x=70.9,y=94.6},
+{type="TURNIN",quest=3451,questName="Signal for Pickup",npc=8517,npcName="Xiggs Fuselighter",map=1455,zone="Ironforge",x=70.9,y=94.6},
+{type="GRIND",level=50,note="nothing worth questing at level 49 - grind to 50"}
+}]],
 })

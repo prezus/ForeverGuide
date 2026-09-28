@@ -13,76 +13,76 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Blackrock Depths: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 70,
-    steps = function() return {
-        { type = "ACCEPT", quest = 3801, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9 }, -- 1
-        { type = "TURNIN", quest = 3801, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9 }, -- 2
-        { type = "ACCEPT", quest = 4133, questName = "Vivian Lagrave", npc = 5204, npcName = "Apothecary Zinge", map = 1458, zone = "Undercity", x = 50, y = 68.4 }, -- 3
-        { type = "TURNIN", quest = 4133, questName = "Vivian Lagrave", npc = 9078, npcName = "Shadowmage Vivian Lagrave", map = 1418, zone = "Badlands", x = 3, y = 47.6 }, -- 4
-        { type = "ACCEPT", quest = 4324, questName = "Yuka Screwspigot", npc = 9706, npcName = "Yorba Screwspigot", map = 1446, zone = "Tanaris", x = 67, y = 24 }, -- 5
-        { type = "TURNIN", quest = 4324, questName = "Yuka Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22 }, -- 6
-        { type = "ACCEPT", quest = 3907, questName = "Disharmony of Fire", npc = 9084, npcName = "Thunderheart", map = 1418, zone = "Badlands", x = 3.4, y = 48.2 }, -- 7
-        { type = "ACCEPT", quest = 3981, questName = "Commander Gor'shak", npc = 9081, npcName = "Galamav the Marksman", map = 1418, zone = "Badlands", x = 5.8, y = 47.6 }, -- 8
-        { type = "ACCEPT", quest = 4063, questName = "The Rise of the Machines", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 25.8, y = 45 }, -- 9
-        { type = "ACCEPT", quest = 4081, questName = "KILL ON SIGHT: Dark Iron Dwarves", map = 1418, zone = "Badlands", x = 3.8, y = 47.5 }, -- 10
-        { type = "ACCEPT", quest = 4134, questName = "Lost Thunderbrew Recipe", npc = 9078, npcName = "Shadowmage Vivian Lagrave", map = 1418, zone = "Badlands", x = 3, y = 47.6 }, -- 11
-        { type = "ACCEPT", quest = 7201, questName = "The Last Element", npc = 9078, npcName = "Shadowmage Vivian Lagrave", map = 1418, zone = "Badlands", x = 3, y = 47.6 }, -- 12
-        { type = "ACCEPT", quest = 3802, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9 }, -- 13
-        { type = "ACCEPT", quest = 4024, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6 }, -- 14
-        { type = "ACCEPT", quest = 4123, questName = "The Heart of the Mountain", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.8 }, -- 15
-        { type = "ACCEPT", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22 }, -- 16
-        { type = "NOTE", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3, text = "Find a group for Blackrock Depths", note = "All quests available from level 52; hand them in by level 57 for full XP" }, -- 17
-        { type = "ACCEPT", quest = 3911, questName = "The Last Element", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 18
-        { type = "ACCEPT", quest = 4201, questName = "The Love Potion", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 19
-        { type = "ACCEPT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 20
-        { type = "COLLECT", quest = 3802, questName = "Dark Iron Legacy", target = "Ironfel", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 21
-        { type = "KILL", quest = 3907, questName = "Disharmony of Fire", npc = 9017, target = "Lord Incendius", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 22
-        { type = "COLLECT", quest = 3907, questName = "Disharmony of Fire", target = "Tablet of Kurniya", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 23
-        { type = "COLLECT", quest = 4024, questName = "A Taste of Flame", target = "Encased Fiery Essence", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 24
-        { type = "COLLECT", quest = 4063, questName = "The Rise of the Machines", target = "Head of Argelmach", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 25
-        { type = "COLLECT", quest = 4063, questName = "The Rise of the Machines", target = "Intact Elemental Core", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 26
-        { type = "KILL", quest = 4081, questName = "KILL ON SIGHT: Dark Iron Dwarves", npc = 8891, target = "Anvilrage Guardsman", count = 15, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 27
-        { type = "KILL", quest = 4081, questName = "KILL ON SIGHT: Dark Iron Dwarves", npc = 8890, target = "Anvilrage Warden", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 28
-        { type = "KILL", quest = 4081, questName = "KILL ON SIGHT: Dark Iron Dwarves", npc = 8892, target = "Anvilrage Footman", count = 5, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 29
-        { type = "COLLECT", quest = 4123, questName = "The Heart of the Mountain", target = "The Heart of the Mountain", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 30
-        { type = "COLLECT", quest = 4134, questName = "Lost Thunderbrew Recipe", target = "Lost Thunderbrew Recipe", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 31
-        { type = "COLLECT", quest = 4136, questName = "Ribbly Screwspigot", target = "Ribbly's Head", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 32
-        { type = "COLLECT", quest = 7201, questName = "The Last Element", target = "Essence of the Elements", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 33
-        { type = "COLLECT", quest = 3911, questName = "The Last Element", target = "Essence of the Elements", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 34
-        { type = "COLLECT", quest = 4201, questName = "The Love Potion", target = "Gromsblood", count = 4, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 35
-        { type = "COLLECT", quest = 4201, questName = "The Love Potion", target = "Giant Silver Vein", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 36
-        { type = "COLLECT", quest = 4201, questName = "The Love Potion", target = "Nagmara's Filled Vial", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 37
-        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Craftsman's Writ: Truesilver Transformer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 38
-        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Truesilver Transformer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 39
-        { type = "TURNIN", quest = 3802, questName = "Dark Iron Legacy", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 40
-        { type = "TURNIN", quest = 3981, questName = "Commander Gor'shak", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 41
-        { type = "TURNIN", quest = 3911, questName = "The Last Element", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 42
-        { type = "TURNIN", quest = 4201, questName = "The Love Potion", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 43
-        { type = "TURNIN", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 44
-        { type = "TURNIN", quest = 3907, questName = "Disharmony of Fire", npc = 9084, npcName = "Thunderheart", map = 1418, zone = "Badlands", x = 3.4, y = 48.2 }, -- 45
-        { type = "TURNIN", quest = 4024, questName = "A Taste of Flame", npc = 9459, npcName = "Cyrus Therepentous", map = 1428, zone = "Burning Steppes", x = 94.8, y = 31.6 }, -- 46
-        { type = "TURNIN", quest = 4063, questName = "The Rise of the Machines", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 25.8, y = 45 }, -- 47
-        { type = "TURNIN", quest = 4081, questName = "KILL ON SIGHT: Dark Iron Dwarves", npc = 9077, npcName = "Warlord Goretooth", map = 1418, zone = "Badlands", x = 5.8, y = 47.4 }, -- 48
-        { type = "TURNIN", quest = 4123, questName = "The Heart of the Mountain", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.8 }, -- 49
-        { type = "TURNIN", quest = 4134, questName = "Lost Thunderbrew Recipe", npc = 9078, npcName = "Shadowmage Vivian Lagrave", map = 1418, zone = "Badlands", x = 3, y = 47.6 }, -- 50
-        { type = "TURNIN", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66, y = 22 }, -- 51
-        { type = "TURNIN", quest = 7201, questName = "The Last Element", npc = 9078, npcName = "Shadowmage Vivian Lagrave", map = 1418, zone = "Badlands", x = 3, y = 47.6 }, -- 52
-        { type = "ACCEPT", quest = 3982, questName = "What Is Going On?", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 53
-        { type = "TURNIN", quest = 3982, questName = "What Is Going On?", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 54
-        { type = "ACCEPT", quest = 4001, questName = "What Is Going On?", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 55
-        { type = "TURNIN", quest = 4001, questName = "What Is Going On?", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 56
-        { type = "ACCEPT", quest = 4002, questName = "The Eastern Kingdoms", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 57
-        { type = "TURNIN", quest = 4002, questName = "The Eastern Kingdoms", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 58
-        { type = "ACCEPT", quest = 4003, questName = "The Royal Rescue", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 59
-        { type = "TURNIN", quest = 4003, questName = "The Royal Rescue", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 60
-        { type = "ACCEPT", quest = 4004, questName = "The Princess Saved?", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 61
-        { type = "TURNIN", quest = 4004, questName = "The Princess Saved?", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 32, y = 37.8 }, -- 62
-        { type = "ACCEPT", quest = 4082, questName = "KILL ON SIGHT: High Ranking Dark Iron Officials", map = 1418, zone = "Badlands", x = 4, y = 46.8 }, -- 63
-        { type = "TURNIN", quest = 4082, questName = "KILL ON SIGHT: High Ranking Dark Iron Officials", npc = 9077, npcName = "Warlord Goretooth", map = 1418, zone = "Badlands", x = 5.8, y = 47.4 }, -- 64
-        { type = "ACCEPT", quest = 4122, questName = "Grark Lorkrub", npc = 9080, npcName = "Lexlort", map = 1418, zone = "Badlands", x = 5.8, y = 47.6 }, -- 65
-        { type = "TURNIN", quest = 4122, questName = "Grark Lorkrub", npc = 9520, npcName = "Grark Lorkrub", map = 1428, zone = "Burning Steppes", x = 40.2, y = 34.2 }, -- 66
-        { type = "ACCEPT", quest = 4121, questName = "Precarious Predicament", npc = 9520, npcName = "Grark Lorkrub", map = 1428, zone = "Burning Steppes", x = 40.2, y = 34.2 }, -- 67
-        { type = "TURNIN", quest = 4121, questName = "Precarious Predicament", npc = 9080, npcName = "Lexlort", map = 1418, zone = "Badlands", x = 5.8, y = 47.6 }, -- 68
-        { type = "ACCEPT", quest = 4132, questName = "Operation: Death to Angerforge", npc = 9077, npcName = "Warlord Goretooth", map = 1418, zone = "Badlands", x = 5.8, y = 47.4 }, -- 69
-        { type = "TURNIN", quest = 4132, questName = "Operation: Death to Angerforge", npc = 9077, npcName = "Warlord Goretooth", map = 1418, zone = "Badlands", x = 5.8, y = 47.4 }, -- 70
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=3801,questName="Dark Iron Legacy",npc=8888,npcName="Franclorn Forgewright",map=1428,zone="Burning Steppes",x=29,y=28.9},
+{type="TURNIN",quest=3801,questName="Dark Iron Legacy",npc=8888,npcName="Franclorn Forgewright",map=1428,zone="Burning Steppes",x=29,y=28.9},
+{type="ACCEPT",quest=4133,questName="Vivian Lagrave",npc=5204,npcName="Apothecary Zinge",map=1458,zone="Undercity",x=50,y=68.4},
+{type="TURNIN",quest=4133,questName="Vivian Lagrave",npc=9078,npcName="Shadowmage Vivian Lagrave",map=1418,zone="Badlands",x=3,y=47.6},
+{type="ACCEPT",quest=4324,questName="Yuka Screwspigot",npc=9706,npcName="Yorba Screwspigot",map=1446,zone="Tanaris",x=67,y=24},
+{type="TURNIN",quest=4324,questName="Yuka Screwspigot",npc=9544,npcName="Yuka Screwspigot",map=1428,zone="Burning Steppes",x=66,y=22},
+{type="ACCEPT",quest=3907,questName="Disharmony of Fire",npc=9084,npcName="Thunderheart",map=1418,zone="Badlands",x=3.4,y=48.2},
+{type="ACCEPT",quest=3981,questName="Commander Gor'shak",npc=9081,npcName="Galamav the Marksman",map=1418,zone="Badlands",x=5.8,y=47.6},
+{type="ACCEPT",quest=4063,questName="The Rise of the Machines",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=25.8,y=45},
+{type="ACCEPT",quest=4081,questName="KILL ON SIGHT: Dark Iron Dwarves",map=1418,zone="Badlands",x=3.8,y=47.5},
+{type="ACCEPT",quest=4134,questName="Lost Thunderbrew Recipe",npc=9078,npcName="Shadowmage Vivian Lagrave",map=1418,zone="Badlands",x=3,y=47.6},
+{type="ACCEPT",quest=7201,questName="The Last Element",npc=9078,npcName="Shadowmage Vivian Lagrave",map=1418,zone="Badlands",x=3,y=47.6},
+{type="ACCEPT",quest=3802,questName="Dark Iron Legacy",npc=8888,npcName="Franclorn Forgewright",map=1428,zone="Burning Steppes",x=29,y=28.9},
+{type="ACCEPT",quest=4024,questName="A Taste of Flame",npc=9459,npcName="Cyrus Therepentous",map=1428,zone="Burning Steppes",x=94.8,y=31.6},
+{type="ACCEPT",quest=4123,questName="The Heart of the Mountain",npc=9536,npcName="Maxwort Uberglint",map=1428,zone="Burning Steppes",x=65.2,y=23.8},
+{type="ACCEPT",quest=4136,questName="Ribbly Screwspigot",npc=9544,npcName="Yuka Screwspigot",map=1428,zone="Burning Steppes",x=66,y=22},
+{type="NOTE",map=1427,zone="Searing Gorge",x=34.8,y=85.3,text="Find a group for Blackrock Depths",note="All quests available from level 52; hand them in by level 57 for full XP"},
+{type="ACCEPT",quest=3911,questName="The Last Element",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=4201,questName="The Love Potion",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=3802,questName="Dark Iron Legacy",target="Ironfel",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=3907,questName="Disharmony of Fire",npc=9017,target="Lord Incendius",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=3907,questName="Disharmony of Fire",target="Tablet of Kurniya",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4024,questName="A Taste of Flame",target="Encased Fiery Essence",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4063,questName="The Rise of the Machines",target="Head of Argelmach",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4063,questName="The Rise of the Machines",target="Intact Elemental Core",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=4081,questName="KILL ON SIGHT: Dark Iron Dwarves",npc=8891,target="Anvilrage Guardsman",count=15,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=4081,questName="KILL ON SIGHT: Dark Iron Dwarves",npc=8890,target="Anvilrage Warden",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=4081,questName="KILL ON SIGHT: Dark Iron Dwarves",npc=8892,target="Anvilrage Footman",count=5,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4123,questName="The Heart of the Mountain",target="The Heart of the Mountain",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4134,questName="Lost Thunderbrew Recipe",target="Lost Thunderbrew Recipe",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4136,questName="Ribbly Screwspigot",target="Ribbly's Head",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=7201,questName="The Last Element",target="Essence of the Elements",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=3911,questName="The Last Element",target="Essence of the Elements",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4201,questName="The Love Potion",target="Gromsblood",count=4,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4201,questName="The Love Potion",target="Giant Silver Vein",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4201,questName="The Love Potion",target="Nagmara's Filled Vial",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",target="Craftsman's Writ: Truesilver Transformer",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",target="Truesilver Transformer",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=3802,questName="Dark Iron Legacy",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=3981,questName="Commander Gor'shak",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=3911,questName="The Last Element",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=4201,questName="The Love Potion",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=3907,questName="Disharmony of Fire",npc=9084,npcName="Thunderheart",map=1418,zone="Badlands",x=3.4,y=48.2},
+{type="TURNIN",quest=4024,questName="A Taste of Flame",npc=9459,npcName="Cyrus Therepentous",map=1428,zone="Burning Steppes",x=94.8,y=31.6},
+{type="TURNIN",quest=4063,questName="The Rise of the Machines",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=25.8,y=45},
+{type="TURNIN",quest=4081,questName="KILL ON SIGHT: Dark Iron Dwarves",npc=9077,npcName="Warlord Goretooth",map=1418,zone="Badlands",x=5.8,y=47.4},
+{type="TURNIN",quest=4123,questName="The Heart of the Mountain",npc=9536,npcName="Maxwort Uberglint",map=1428,zone="Burning Steppes",x=65.2,y=23.8},
+{type="TURNIN",quest=4134,questName="Lost Thunderbrew Recipe",npc=9078,npcName="Shadowmage Vivian Lagrave",map=1418,zone="Badlands",x=3,y=47.6},
+{type="TURNIN",quest=4136,questName="Ribbly Screwspigot",npc=9544,npcName="Yuka Screwspigot",map=1428,zone="Burning Steppes",x=66,y=22},
+{type="TURNIN",quest=7201,questName="The Last Element",npc=9078,npcName="Shadowmage Vivian Lagrave",map=1418,zone="Badlands",x=3,y=47.6},
+{type="ACCEPT",quest=3982,questName="What Is Going On?",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=3982,questName="What Is Going On?",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=4001,questName="What Is Going On?",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=4001,questName="What Is Going On?",npc=4949,npcName="Thrall",map=1454,zone="Orgrimmar",x=32,y=37.8},
+{type="ACCEPT",quest=4002,questName="The Eastern Kingdoms",npc=4949,npcName="Thrall",map=1454,zone="Orgrimmar",x=32,y=37.8},
+{type="TURNIN",quest=4002,questName="The Eastern Kingdoms",npc=4949,npcName="Thrall",map=1454,zone="Orgrimmar",x=32,y=37.8},
+{type="ACCEPT",quest=4003,questName="The Royal Rescue",npc=4949,npcName="Thrall",map=1454,zone="Orgrimmar",x=32,y=37.8},
+{type="TURNIN",quest=4003,questName="The Royal Rescue",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=4004,questName="The Princess Saved?",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=4004,questName="The Princess Saved?",npc=4949,npcName="Thrall",map=1454,zone="Orgrimmar",x=32,y=37.8},
+{type="ACCEPT",quest=4082,questName="KILL ON SIGHT: High Ranking Dark Iron Officials",map=1418,zone="Badlands",x=4,y=46.8},
+{type="TURNIN",quest=4082,questName="KILL ON SIGHT: High Ranking Dark Iron Officials",npc=9077,npcName="Warlord Goretooth",map=1418,zone="Badlands",x=5.8,y=47.4},
+{type="ACCEPT",quest=4122,questName="Grark Lorkrub",npc=9080,npcName="Lexlort",map=1418,zone="Badlands",x=5.8,y=47.6},
+{type="TURNIN",quest=4122,questName="Grark Lorkrub",npc=9520,npcName="Grark Lorkrub",map=1428,zone="Burning Steppes",x=40.2,y=34.2},
+{type="ACCEPT",quest=4121,questName="Precarious Predicament",npc=9520,npcName="Grark Lorkrub",map=1428,zone="Burning Steppes",x=40.2,y=34.2},
+{type="TURNIN",quest=4121,questName="Precarious Predicament",npc=9080,npcName="Lexlort",map=1418,zone="Badlands",x=5.8,y=47.6},
+{type="ACCEPT",quest=4132,questName="Operation: Death to Angerforge",npc=9077,npcName="Warlord Goretooth",map=1418,zone="Badlands",x=5.8,y=47.4},
+{type="TURNIN",quest=4132,questName="Operation: Death to Angerforge",npc=9077,npcName="Warlord Goretooth",map=1418,zone="Badlands",x=5.8,y=47.4}
+}]],
 })

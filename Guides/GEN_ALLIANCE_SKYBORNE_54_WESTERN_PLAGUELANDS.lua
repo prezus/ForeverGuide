@@ -13,36 +13,36 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 54 of the Skyborne route: level 57 to 60, 6 steps, ~644 min of play in the model (773 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 30,
-    steps = function() return {
-        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 44.0, y = 83.5, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
-        { type = "TURNIN", quest = 5903, questName = "A Plague Upon Thee", npc = 11616, npcName = "Nathaniel Dumah", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 84.8 }, -- 2
-        { type = "ACCEPT", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 3
-        { type = "COLLECT", quest = 211, questName = "Alas, Andorhal", target = "Araj's Phylactery Shard", map = 1422, zone = "Western Plaguelands", x = 45.3, y = 69.2 }, -- 4
-        { type = "TURNIN", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 5
-        { type = "ACCEPT", quest = 5904, questName = "A Plague Upon Thee", npc = 11616, npcName = "Nathaniel Dumah", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 84.8 }, -- 6
-        { type = "TURNIN", quest = 5904, questName = "A Plague Upon Thee", map = 1422, zone = "Western Plaguelands", x = 48.4, y = 31.9 }, -- 7
-        { type = "TURNIN", quest = 6028, questName = "The Everlook Report", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 8
-        { type = "TURNIN", quest = 5846, questName = "Of Love and Family", npc = 11936, npcName = "Artist Renfray", map = 1422, zone = "Western Plaguelands", x = 65.6, y = 75.4 }, -- 9
-        { type = "ACCEPT", quest = 5507, questName = "Mantles of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8, note = "Objectives: Argent Dawn" }, -- 10
-        { type = "COLLECT", quest = 5507, questName = "Mantles of the Dawn", target = "Argent Dawn Valor Token", count = 10, map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8, near = true, mobs = "Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock" }, -- 11
-        { type = "TURNIN", quest = 5507, questName = "Mantles of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8 }, -- 12
-        { type = "COLLECT", quest = 5521, questName = "Chromatic Mantle of the Dawn", target = "Argent Dawn Valor Token", count = 25, map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8, near = true, mobs = "Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock" }, -- 13
-        { type = "TURNIN", quest = 5521, questName = "Chromatic Mantle of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8 }, -- 14
-        { type = "ACCEPT", quest = 5848, questName = "Of Love and Family", npc = 11936, npcName = "Artist Renfray", map = 1422, zone = "Western Plaguelands", x = 65.6, y = 75.4, optional = true, note = "For Stratholme (dungeon guide)" }, -- 15
-        { type = "NOTE", optional = true, text = "Ready for Stratholme", note = "Picked up: The Flesh Does Not Lie, The Great Fras Siabi, Houses of the Holy, The Archivist, The Restless Souls, Of Love and Family. When you have a group, open Stratholme under Dungeons." }, -- 16
-        { type = "GRIND", npc = 1802, target = "Hungering Wraith", level = 59, map = 1422, zone = "Western Plaguelands", x = 62.2, y = 60.2, near = true, note = "grind Hungering Wraith (level 56-58) to level 59 - nothing worth questing at 58" }, -- 17
-        { type = "ACCEPT", quest = 6389, questName = "A Plague Upon Thee", map = 1422, zone = "Western Plaguelands", x = 48.4, y = 31.9 }, -- 18
-        { type = "TURNIN", quest = 6389, questName = "A Plague Upon Thee", npc = 11616, npcName = "Nathaniel Dumah", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 84.8 }, -- 19
-        { type = "GRIND", level = 60, note = "nothing worth questing at level 59 - grind to 60" }, -- 20
-        { type = "ACCEPT", quest = 9362, questName = "Warlord Krellian", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 21
-        { type = "COLLECT", quest = 9362, questName = "Warlord Krellian", target = "Prismatic Shell", count = 1, map = 1447, zone = "Azshara", x = 40.4, y = 53, near = true, class = { "MAGE" }, mobs = "Warlord Krellian / Scalebeard" }, -- 22
-        { type = "TURNIN", quest = 9362, questName = "Warlord Krellian", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 23
-        { type = "ACCEPT", quest = 7562, questName = "Mor'zul Bloodbringer", npc = 5753, npcName = "Martha Strain", map = 1458, zone = "Undercity", x = 85.8, y = 15.8, class = { "WARLOCK" } }, -- 24
-        { type = "TURNIN", quest = 7562, questName = "Mor'zul Bloodbringer", npc = 14436, npcName = "Mor'zul Bloodbringer", map = 1428, zone = "Burning Steppes", x = 12.6, y = 31.6, class = { "WARLOCK" } }, -- 25
-        { type = "ACCEPT", quest = 7623, questName = "Lord Banehollow", npc = 14437, npcName = "Gorzeeki Wildeyes", map = 1428, zone = "Burning Steppes", x = 12.4, y = 31.6, class = { "WARLOCK" } }, -- 26
-        { type = "TURNIN", quest = 7623, questName = "Lord Banehollow", npc = 9516, npcName = "Lord Banehollow", map = 1448, zone = "Felwood", x = 36, y = 44.6, class = { "WARLOCK" } }, -- 27
-        { type = "ACCEPT", quest = 7582, questName = "The Prison's Casing", npc = 14463, npcName = "Daio the Decrepit", map = 1419, zone = "Blasted Lands", x = 34, y = 50.2, optional = true, class = { "WARLOCK" }, note = "Elite - group up" }, -- 28
-        { type = "COLLECT", quest = 7582, questName = "The Prison's Casing", target = "Tears of the Hederine", count = 5, map = 1452, zone = "Winterspring", x = 55.5, y = 84.2, optional = true, near = true, class = { "WARLOCK" }, mobs = "Hederine Initiate / Hederine Manastalker / Hederine Slayer" }, -- 29
-        { type = "TURNIN", quest = 7582, questName = "The Prison's Casing", npc = 14463, npcName = "Daio the Decrepit", map = 1419, zone = "Blasted Lands", x = 34, y = 50.2, optional = true, class = { "WARLOCK" } }, -- 30
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1422,zone="Western Plaguelands",x=44.0,y=83.5,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
+{type="TURNIN",quest=5903,questName="A Plague Upon Thee",npc=11616,npcName="Nathaniel Dumah",map=1422,zone="Western Plaguelands",x=43.4,y=84.8},
+{type="ACCEPT",quest=211,questName="Alas, Andorhal",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
+{type="COLLECT",quest=211,questName="Alas, Andorhal",target="Araj's Phylactery Shard",map=1422,zone="Western Plaguelands",x=45.3,y=69.2},
+{type="TURNIN",quest=211,questName="Alas, Andorhal",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
+{type="ACCEPT",quest=5904,questName="A Plague Upon Thee",npc=11616,npcName="Nathaniel Dumah",map=1422,zone="Western Plaguelands",x=43.4,y=84.8},
+{type="TURNIN",quest=5904,questName="A Plague Upon Thee",map=1422,zone="Western Plaguelands",x=48.4,y=31.9},
+{type="TURNIN",quest=6028,questName="The Everlook Report",npc=10840,npcName="Argent Officer Pureheart",map=1422,zone="Western Plaguelands",x=43,y=83.6},
+{type="TURNIN",quest=5846,questName="Of Love and Family",npc=11936,npcName="Artist Renfray",map=1422,zone="Western Plaguelands",x=65.6,y=75.4},
+{type="ACCEPT",quest=5507,questName="Mantles of the Dawn",npc=10857,npcName="Argent Quartermaster Lightspark",map=1422,zone="Western Plaguelands",x=42.8,y=83.8,note="Objectives: Argent Dawn"},
+{type="COLLECT",quest=5507,questName="Mantles of the Dawn",target="Argent Dawn Valor Token",count=10,map=1422,zone="Western Plaguelands",x=42.8,y=83.8,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
+{type="TURNIN",quest=5507,questName="Mantles of the Dawn",npc=10857,npcName="Argent Quartermaster Lightspark",map=1422,zone="Western Plaguelands",x=42.8,y=83.8},
+{type="COLLECT",quest=5521,questName="Chromatic Mantle of the Dawn",target="Argent Dawn Valor Token",count=25,map=1422,zone="Western Plaguelands",x=42.8,y=83.8,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
+{type="TURNIN",quest=5521,questName="Chromatic Mantle of the Dawn",npc=10857,npcName="Argent Quartermaster Lightspark",map=1422,zone="Western Plaguelands",x=42.8,y=83.8},
+{type="ACCEPT",quest=5848,questName="Of Love and Family",npc=11936,npcName="Artist Renfray",map=1422,zone="Western Plaguelands",x=65.6,y=75.4,optional=true,note="For Stratholme (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Stratholme",note="Picked up: The Flesh Does Not Lie, The Great Fras Siabi, Houses of the Holy, The Archivist, The Restless Souls, Of Love and Family. When you have a group, open Stratholme under Dungeons."},
+{type="GRIND",npc=1802,target="Hungering Wraith",level=59,map=1422,zone="Western Plaguelands",x=62.2,y=60.2,near=true,note="grind Hungering Wraith (level 56-58) to level 59 - nothing worth questing at 58"},
+{type="ACCEPT",quest=6389,questName="A Plague Upon Thee",map=1422,zone="Western Plaguelands",x=48.4,y=31.9},
+{type="TURNIN",quest=6389,questName="A Plague Upon Thee",npc=11616,npcName="Nathaniel Dumah",map=1422,zone="Western Plaguelands",x=43.4,y=84.8},
+{type="GRIND",level=60,note="nothing worth questing at level 59 - grind to 60"},
+{type="ACCEPT",quest=9362,questName="Warlord Krellian",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
+{type="COLLECT",quest=9362,questName="Warlord Krellian",target="Prismatic Shell",count=1,map=1447,zone="Azshara",x=40.4,y=53,near=true,class={"MAGE"},mobs="Warlord Krellian / Scalebeard"},
+{type="TURNIN",quest=9362,questName="Warlord Krellian",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
+{type="ACCEPT",quest=7562,questName="Mor'zul Bloodbringer",npc=5753,npcName="Martha Strain",map=1458,zone="Undercity",x=85.8,y=15.8,class={"WARLOCK"}},
+{type="TURNIN",quest=7562,questName="Mor'zul Bloodbringer",npc=14436,npcName="Mor'zul Bloodbringer",map=1428,zone="Burning Steppes",x=12.6,y=31.6,class={"WARLOCK"}},
+{type="ACCEPT",quest=7623,questName="Lord Banehollow",npc=14437,npcName="Gorzeeki Wildeyes",map=1428,zone="Burning Steppes",x=12.4,y=31.6,class={"WARLOCK"}},
+{type="TURNIN",quest=7623,questName="Lord Banehollow",npc=9516,npcName="Lord Banehollow",map=1448,zone="Felwood",x=36,y=44.6,class={"WARLOCK"}},
+{type="ACCEPT",quest=7582,questName="The Prison's Casing",npc=14463,npcName="Daio the Decrepit",map=1419,zone="Blasted Lands",x=34,y=50.2,optional=true,class={"WARLOCK"},note="Elite - group up"},
+{type="COLLECT",quest=7582,questName="The Prison's Casing",target="Tears of the Hederine",count=5,map=1452,zone="Winterspring",x=55.5,y=84.2,optional=true,near=true,class={"WARLOCK"},mobs="Hederine Initiate / Hederine Manastalker / Hederine Slayer"},
+{type="TURNIN",quest=7582,questName="The Prison's Casing",npc=14463,npcName="Daio the Decrepit",map=1419,zone="Blasted Lands",x=34,y=50.2,optional=true,class={"WARLOCK"}}
+}]],
 })

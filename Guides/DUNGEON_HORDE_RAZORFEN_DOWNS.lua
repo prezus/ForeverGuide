@@ -13,23 +13,23 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Razorfen Downs: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 17,
-    steps = function() return {
-        { type = "ACCEPT", quest = 3341, questName = "Bring the End", npc = 2308, npcName = "Andrew Brownell", map = 1458, zone = "Undercity", x = 74, y = 32.8 }, -- 1
-        { type = "ACCEPT", quest = 6626, questName = "A Host of Evil", npc = 12866, npcName = "Myriam Moonsinger", map = 1413, zone = "The Barrens", x = 49, y = 94.8 }, -- 2
-        { type = "NOTE", map = 1413, zone = "The Barrens", x = 49, y = 93.9, text = "Find a group for Razorfen Downs", note = "All quests available from level 37; hand them in by level 40 for full XP" }, -- 3
-        { type = "ACCEPT", quest = 3523, questName = "Scourge of the Downs", map = 1413, zone = "The Barrens", x = 49, y = 93.9 }, -- 4
-        { type = "ACCEPT", quest = 6522, questName = "An Unholy Alliance", map = 1413, zone = "The Barrens", x = 49, y = 93.9 }, -- 5
-        { type = "COLLECT", quest = 3341, questName = "Bring the End", target = "Skull of the Coldbringer", count = 1, map = 1413, zone = "The Barrens", x = 49, y = 93.9 }, -- 6
-        { type = "KILL", quest = 6626, questName = "A Host of Evil", npc = 7873, target = "Razorfen Battleguard", count = 8, map = 1413, zone = "The Barrens", x = 49, y = 93.9 }, -- 7
-        { type = "KILL", quest = 6626, questName = "A Host of Evil", npc = 7874, target = "Razorfen Thornweaver", count = 8, map = 1413, zone = "The Barrens", x = 49, y = 93.9 }, -- 8
-        { type = "KILL", quest = 6626, questName = "A Host of Evil", npc = 7872, target = "Death's Head Cultist", count = 8, map = 1413, zone = "The Barrens", x = 49, y = 93.9 }, -- 9
-        { type = "TURNIN", quest = 3523, questName = "Scourge of the Downs", map = 1413, zone = "The Barrens", x = 49, y = 93.9 }, -- 10
-        { type = "TURNIN", quest = 6626, questName = "A Host of Evil", npc = 12866, npcName = "Myriam Moonsinger", map = 1413, zone = "The Barrens", x = 49, y = 94.8 }, -- 11
-        { type = "TURNIN", quest = 3341, questName = "Bring the End", npc = 2308, npcName = "Andrew Brownell", map = 1458, zone = "Undercity", x = 74, y = 32.8 }, -- 12
-        { type = "TURNIN", quest = 6522, questName = "An Unholy Alliance", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.2, y = 92.6 }, -- 13
-        { type = "ACCEPT", quest = 3525, questName = "Extinguishing the Idol", map = 1413, zone = "The Barrens", x = 49, y = 93.9 }, -- 14
-        { type = "TURNIN", quest = 3525, questName = "Extinguishing the Idol", map = 1413, zone = "The Barrens", x = 49, y = 93.9 }, -- 15
-        { type = "ACCEPT", quest = 6521, questName = "An Unholy Alliance", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.2, y = 92.6 }, -- 16
-        { type = "TURNIN", quest = 6521, questName = "An Unholy Alliance", npc = 2425, npcName = "Varimathras", map = 1458, zone = "Undercity", x = 56.2, y = 92.6 }, -- 17
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=3341,questName="Bring the End",npc=2308,npcName="Andrew Brownell",map=1458,zone="Undercity",x=74,y=32.8},
+{type="ACCEPT",quest=6626,questName="A Host of Evil",npc=12866,npcName="Myriam Moonsinger",map=1413,zone="The Barrens",x=49,y=94.8},
+{type="NOTE",map=1413,zone="The Barrens",x=49,y=93.9,text="Find a group for Razorfen Downs",note="All quests available from level 37; hand them in by level 40 for full XP"},
+{type="ACCEPT",quest=3523,questName="Scourge of the Downs",map=1413,zone="The Barrens",x=49,y=93.9},
+{type="ACCEPT",quest=6522,questName="An Unholy Alliance",map=1413,zone="The Barrens",x=49,y=93.9},
+{type="COLLECT",quest=3341,questName="Bring the End",target="Skull of the Coldbringer",count=1,map=1413,zone="The Barrens",x=49,y=93.9},
+{type="KILL",quest=6626,questName="A Host of Evil",npc=7873,target="Razorfen Battleguard",count=8,map=1413,zone="The Barrens",x=49,y=93.9},
+{type="KILL",quest=6626,questName="A Host of Evil",npc=7874,target="Razorfen Thornweaver",count=8,map=1413,zone="The Barrens",x=49,y=93.9},
+{type="KILL",quest=6626,questName="A Host of Evil",npc=7872,target="Death's Head Cultist",count=8,map=1413,zone="The Barrens",x=49,y=93.9},
+{type="TURNIN",quest=3523,questName="Scourge of the Downs",map=1413,zone="The Barrens",x=49,y=93.9},
+{type="TURNIN",quest=6626,questName="A Host of Evil",npc=12866,npcName="Myriam Moonsinger",map=1413,zone="The Barrens",x=49,y=94.8},
+{type="TURNIN",quest=3341,questName="Bring the End",npc=2308,npcName="Andrew Brownell",map=1458,zone="Undercity",x=74,y=32.8},
+{type="TURNIN",quest=6522,questName="An Unholy Alliance",npc=2425,npcName="Varimathras",map=1458,zone="Undercity",x=56.2,y=92.6},
+{type="ACCEPT",quest=3525,questName="Extinguishing the Idol",map=1413,zone="The Barrens",x=49,y=93.9},
+{type="TURNIN",quest=3525,questName="Extinguishing the Idol",map=1413,zone="The Barrens",x=49,y=93.9},
+{type="ACCEPT",quest=6521,questName="An Unholy Alliance",npc=2425,npcName="Varimathras",map=1458,zone="Undercity",x=56.2,y=92.6},
+{type="TURNIN",quest=6521,questName="An Unholy Alliance",npc=2425,npcName="Varimathras",map=1458,zone="Undercity",x=56.2,y=92.6}
+}]],
 })

@@ -14,14 +14,14 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 38 of the Human route: level 51 to 51, 5 steps, ~1 min of play in the model (38414 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 8,
-    steps = function() return {
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 18.1, y = 51.5, radius = 60, note = "use your hearthstone (Ironforge)" }, -- 1
-        { type = "ACCEPT", quest = 5090, questName = "A Call to Arms: The Plaguelands!", npc = 10877, npcName = "Courier Hammerfall", map = 1455, zone = "Ironforge", x = 31.6, y = 67 }, -- 2
-        { type = "ACCEPT", quest = 8415, questName = "Chillwind Point", npc = 5149, npcName = "Brandur Ironhammer", map = 1455, zone = "Ironforge", x = 23.4, y = 6.2, class = { "PALADIN" } }, -- 3
-        { type = "ACCEPT", quest = 8419, questName = "An Imp's Request", npc = 5172, npcName = "Briarthorn", map = 1455, zone = "Ironforge", x = 50.2, y = 6, class = { "WARLOCK" } }, -- 4
-        { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 57.0, y = 34.3, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 5
-        { type = "ACCEPT", quest = 3702, questName = "The Smoldering Ruins of Thaurissan", npc = 8879, npcName = "Royal Historian Archesonus", map = 1455, zone = "Ironforge", x = 38.4, y = 55.3 }, -- 6
-        { type = "KILL", quest = 3702, questName = "The Smoldering Ruins of Thaurissan", npc = 8879, target = "Royal Historian Archesonus", count = 1, map = 1455, zone = "Ironforge", x = 38.4, y = 55.3 }, -- 7
-        { type = "TURNIN", quest = 3702, questName = "The Smoldering Ruins of Thaurissan", npc = 8879, npcName = "Royal Historian Archesonus", map = 1455, zone = "Ironforge", x = 38.4, y = 55.3 }, -- 8
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1455,zone="Ironforge",x=18.1,y=51.5,radius=60,note="use your hearthstone (Ironforge)"},
+{type="ACCEPT",quest=5090,questName="A Call to Arms: The Plaguelands!",npc=10877,npcName="Courier Hammerfall",map=1455,zone="Ironforge",x=31.6,y=67},
+{type="ACCEPT",quest=8415,questName="Chillwind Point",npc=5149,npcName="Brandur Ironhammer",map=1455,zone="Ironforge",x=23.4,y=6.2,class={"PALADIN"}},
+{type="ACCEPT",quest=8419,questName="An Imp's Request",npc=5172,npcName="Briarthorn",map=1455,zone="Ironforge",x=50.2,y=6,class={"WARLOCK"}},
+{type="TRAVEL",map=1455,zone="Ironforge",x=57.0,y=34.3,radius=60,note="travel to Ironforge (Ironforge)"},
+{type="ACCEPT",quest=3702,questName="The Smoldering Ruins of Thaurissan",npc=8879,npcName="Royal Historian Archesonus",map=1455,zone="Ironforge",x=38.4,y=55.3},
+{type="KILL",quest=3702,questName="The Smoldering Ruins of Thaurissan",npc=8879,target="Royal Historian Archesonus",count=1,map=1455,zone="Ironforge",x=38.4,y=55.3},
+{type="TURNIN",quest=3702,questName="The Smoldering Ruins of Thaurissan",npc=8879,npcName="Royal Historian Archesonus",map=1455,zone="Ironforge",x=38.4,y=55.3}
+}]],
 })

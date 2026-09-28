@@ -14,51 +14,51 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 46 of the Scourge route: level 55 to 55, 24 steps, ~94 min of play in the model (40991 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 45,
-    steps = function() return {
-        { type = "ACCEPT", quest = 5961, questName = "The Champion of the Banshee Queen", npc = 10181, npcName = "Lady Sylvanas Windrunner", map = 1458, zone = "Undercity", x = 57.8, y = 91.8 }, -- 1
-        { type = "ACCEPT", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 52, y = 28, note = "Objectives: Explore Zone, Overlook Hearthglen from a high vantage point" }, -- 2
-        { type = "TURNIN", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 52, y = 28 }, -- 3
-        { type = "ACCEPT", quest = 7492, questName = "Camp Mojache", npc = 10879, npcName = "Harbinger Balthazad", map = 1458, zone = "Undercity", x = 68.2, y = 47.6, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 4
-        { type = "ACCEPT", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8, optional = true, note = "For Scholomance (dungeon guide)" }, -- 5
-        { type = "ACCEPT", quest = 1471, questName = "The Binding", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" } }, -- 6
-        { type = "KILL", quest = 1471, questName = "The Binding", npc = 5676, target = "Summoned Voidwalker", count = 1, map = 1458, zone = "Undercity", x = 86.6, y = 27, near = true, class = { "WARLOCK" } }, -- 7
-        { type = "TURNIN", quest = 1471, questName = "The Binding", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" }, note = "reduced xp (10%) - you out-levelled it" }, -- 8
-        { type = "TRAVEL", map = 1458, zone = "Undercity", x = 67.7, y = 37.9, radius = 60, note = "use your hearthstone (Undercity)" }, -- 9
-        { type = "FLIGHTPATH", npc = 15178, npcName = "Runk Windtamer", map = 1451, zone = "Silithus", x = 48.7, y = 36.7 }, -- 10
-        { type = "TURNIN", quest = 4120, questName = "The Strength of Corruption", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76, y = 43.8 }, -- 11
-        { type = "ACCEPT", quest = 7441, questName = "Pusillin and the Elder Azj'Tordin", npc = 14355, npcName = "Azj'Tordin", map = 1444, zone = "Feralas", x = 76.8, y = 37.4, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 12
-        { type = "ACCEPT", quest = 7481, questName = "Elven Legends", npc = 14373, npcName = "Sage Korolusk", map = 1444, zone = "Feralas", x = 75, y = 43.8, optional = true, note = "For Dire Maul (dungeon guide); Objectives: Master Kariel Winthalus Found" }, -- 13
-        { type = "TURNIN", quest = 7481, questName = "Elven Legends", npc = 14373, npcName = "Sage Korolusk", map = 1444, zone = "Feralas", x = 75, y = 43.8, optional = true }, -- 14
-        { type = "ACCEPT", quest = 7489, questName = "Lethtendris's Web", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76, y = 43.8, optional = true, note = "For Dire Maul (dungeon guide)" }, -- 15
-        { type = "NOTE", optional = true, text = "Ready for Dire Maul", note = "Picked up: Pusillin and the Elder Azj'Tordin, Lethtendris's Web. When you have a group, open Dire Maul under Dungeons." }, -- 16
-        { type = "TURNIN", quest = 7492, questName = "Camp Mojache", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76, y = 43.8, optional = true }, -- 17
-        { type = "COLLECT", quest = 1803, questName = "Tome of the Cabal", target = "Moldy Tome", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 27.8, y = 72.8, class = { "WARLOCK" } }, -- 18
-        { type = "COLLECT", quest = 1803, questName = "Tome of the Cabal", target = "Tattered Manuscript", count = 1, map = 1441, zone = "Thousand Needles", x = 43.4, y = 32.7, class = { "WARLOCK" } }, -- 19
-        { type = "TURNIN", quest = 1803, questName = "Tome of the Cabal", npc = 6293, npcName = "Jorah Annison", map = 1458, zone = "Undercity", x = 76, y = 37.6, class = { "WARLOCK" }, note = "reduced xp (10%) - you out-levelled it" }, -- 20
-        { type = "TRAVEL", map = 1451, zone = "Silithus", x = 49.9, y = 37.5, radius = 60, note = "travel to Silithus (Silithus)" }, -- 21
-        { type = "HEARTH", npc = 15174, npcName = "Calandrath", map = 1451, zone = "Cenarion Hold", x = 51.9, y = 39.2, note = "talk to Calandrath and make this inn your home" }, -- 22
-        { type = "ACCEPT", quest = 8307, questName = "Desert Recipe", npc = 15174, npcName = "Calandrath", map = 1451, zone = "Silithus", x = 51.8, y = 39, profession = "Cooking", skill = 285 }, -- 23
-        { type = "ACCEPT", quest = 8277, questName = "Deadly Desert Venom", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 24
-        { type = "ACCEPT", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 25
-        { type = "ACCEPT", quest = 8284, questName = "The Twilight Mystery", npc = 15183, npcName = "Geologist Larksbane", map = 1451, zone = "Silithus", x = 49.7, y = 37.5 }, -- 26
-        { type = "KILL", quest = 8277, questName = "Deadly Desert Venom", npc = 11735, target = "Stonelash Scorpid", count = 8, map = 1451, zone = "Silithus", x = 43, y = 41.2, near = true, note = "loot Stonelash Scorpid Stinger" }, -- 27
-        { type = "KILL", quest = 8280, questName = "Securing the Supply Lines", npc = 11740, target = "Dredge Striker", count = 15, map = 1451, zone = "Silithus", x = 38.2, y = 34.3, near = true }, -- 28
-        { type = "KILL", quest = 8277, questName = "Deadly Desert Venom", npc = 11738, target = "Sand Skitterer", count = 8, map = 1451, zone = "Silithus", x = 39, y = 33.2, near = true, note = "loot Sand Skitterer Fang" }, -- 29
-        { type = "COLLECT", quest = 8284, questName = "The Twilight Mystery", target = "Twilight Tablet Fragment", count = 8, map = 1451, zone = "Silithus", x = 26.4, y = 15.9, near = true }, -- 30
-        { type = "TURNIN", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 31
-        { type = "ACCEPT", quest = 8281, questName = "Stepping Up Security", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 32
-        { type = "TURNIN", quest = 8277, questName = "Deadly Desert Venom", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 33
-        { type = "ACCEPT", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", map = 1451, zone = "Silithus", x = 51.3, y = 38.2, optional = true, note = "Elite - group up" }, -- 34
-        { type = "TURNIN", quest = 8284, questName = "The Twilight Mystery", npc = 15183, npcName = "Geologist Larksbane", map = 1451, zone = "Silithus", x = 49.7, y = 37.5 }, -- 35
-        { type = "ACCEPT", quest = 8278, questName = "Noggle's Last Hope", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 36
-        { type = "KILL", quest = 8281, questName = "Stepping Up Security", npc = 11741, target = "Dredge Crusher", count = 20, map = 1451, zone = "Silithus", x = 51.9, y = 57.2, near = true }, -- 37
-        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11736, target = "Stonelash Pincer", count = 3, map = 1451, zone = "Silithus", x = 51.4, y = 62.3, near = true, note = "loot Stonelash Pincer Stinger" }, -- 38
-        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11737, target = "Stonelash Flayer", count = 3, map = 1451, zone = "Silithus", x = 49.5, y = 66.6, near = true, note = "loot Stonelash Flayer Stinger" }, -- 39
-        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11739, target = "Rock Stalker", count = 3, map = 1451, zone = "Silithus", x = 50.4, y = 69.8, near = true, note = "loot Rock Stalker Fang" }, -- 40
-        { type = "TURNIN", quest = 8278, questName = "Noggle's Last Hope", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 41
-        { type = "ACCEPT", quest = 8282, questName = "Noggle's Lost Satchel", npc = 15190, npcName = "Noggle Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.5 }, -- 42
-        { type = "TURNIN", quest = 8281, questName = "Stepping Up Security", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 43
-        { type = "COLLECT", quest = 8282, questName = "Noggle's Lost Satchel", target = "Noggle's Satchel", map = 1451, zone = "Silithus", x = 44.6, y = 91.4 }, -- 44
-        { type = "TURNIN", quest = 8282, questName = "Noggle's Lost Satchel", npc = 15190, npcName = "Noggle Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.5 }, -- 45
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=5961,questName="The Champion of the Banshee Queen",npc=10181,npcName="Lady Sylvanas Windrunner",map=1458,zone="Undercity",x=57.8,y=91.8},
+{type="ACCEPT",quest=6025,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=52,y=28,note="Objectives: Explore Zone, Overlook Hearthglen from a high vantage point"},
+{type="TURNIN",quest=6025,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=52,y=28},
+{type="ACCEPT",quest=7492,questName="Camp Mojache",npc=10879,npcName="Harbinger Balthazad",map=1458,zone="Undercity",x=68.2,y=47.6,optional=true,note="For Dire Maul (dungeon guide)"},
+{type="ACCEPT",quest=5382,questName="Doctor Theolen Krastinov, the Butcher",npc=11216,npcName="Eva Sarkhoff",map=1422,zone="Western Plaguelands",x=70.2,y=73.8,optional=true,note="For Scholomance (dungeon guide)"},
+{type="ACCEPT",quest=1471,questName="The Binding",npc=5675,npcName="Carendin Halgar",map=1458,zone="Undercity",x=85,y=25.6,class={"WARLOCK"}},
+{type="KILL",quest=1471,questName="The Binding",npc=5676,target="Summoned Voidwalker",count=1,map=1458,zone="Undercity",x=86.6,y=27,near=true,class={"WARLOCK"}},
+{type="TURNIN",quest=1471,questName="The Binding",npc=5675,npcName="Carendin Halgar",map=1458,zone="Undercity",x=85,y=25.6,class={"WARLOCK"},note="reduced xp (10%) - you out-levelled it"},
+{type="TRAVEL",map=1458,zone="Undercity",x=67.7,y=37.9,radius=60,note="use your hearthstone (Undercity)"},
+{type="FLIGHTPATH",npc=15178,npcName="Runk Windtamer",map=1451,zone="Silithus",x=48.7,y=36.7},
+{type="TURNIN",quest=4120,questName="The Strength of Corruption",npc=7776,npcName="Talo Thornhoof",map=1444,zone="Feralas",x=76,y=43.8},
+{type="ACCEPT",quest=7441,questName="Pusillin and the Elder Azj'Tordin",npc=14355,npcName="Azj'Tordin",map=1444,zone="Feralas",x=76.8,y=37.4,optional=true,note="For Dire Maul (dungeon guide)"},
+{type="ACCEPT",quest=7481,questName="Elven Legends",npc=14373,npcName="Sage Korolusk",map=1444,zone="Feralas",x=75,y=43.8,optional=true,note="For Dire Maul (dungeon guide); Objectives: Master Kariel Winthalus Found"},
+{type="TURNIN",quest=7481,questName="Elven Legends",npc=14373,npcName="Sage Korolusk",map=1444,zone="Feralas",x=75,y=43.8,optional=true},
+{type="ACCEPT",quest=7489,questName="Lethtendris's Web",npc=7776,npcName="Talo Thornhoof",map=1444,zone="Feralas",x=76,y=43.8,optional=true,note="For Dire Maul (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Dire Maul",note="Picked up: Pusillin and the Elder Azj'Tordin, Lethtendris's Web. When you have a group, open Dire Maul under Dungeons."},
+{type="TURNIN",quest=7492,questName="Camp Mojache",npc=7776,npcName="Talo Thornhoof",map=1444,zone="Feralas",x=76,y=43.8,optional=true},
+{type="COLLECT",quest=1803,questName="Tome of the Cabal",target="Moldy Tome",count=1,map=1424,zone="Hillsbrad Foothills",x=27.8,y=72.8,class={"WARLOCK"}},
+{type="COLLECT",quest=1803,questName="Tome of the Cabal",target="Tattered Manuscript",count=1,map=1441,zone="Thousand Needles",x=43.4,y=32.7,class={"WARLOCK"}},
+{type="TURNIN",quest=1803,questName="Tome of the Cabal",npc=6293,npcName="Jorah Annison",map=1458,zone="Undercity",x=76,y=37.6,class={"WARLOCK"},note="reduced xp (10%) - you out-levelled it"},
+{type="TRAVEL",map=1451,zone="Silithus",x=49.9,y=37.5,radius=60,note="travel to Silithus (Silithus)"},
+{type="HEARTH",npc=15174,npcName="Calandrath",map=1451,zone="Cenarion Hold",x=51.9,y=39.2,note="talk to Calandrath and make this inn your home"},
+{type="ACCEPT",quest=8307,questName="Desert Recipe",npc=15174,npcName="Calandrath",map=1451,zone="Silithus",x=51.8,y=39,profession="Cooking",skill=285},
+{type="ACCEPT",quest=8277,questName="Deadly Desert Venom",npc=15189,npcName="Beetix Ficklespragg",map=1451,zone="Silithus",x=51.6,y=38.6},
+{type="ACCEPT",quest=8280,questName="Securing the Supply Lines",npc=15191,npcName="Windcaller Proudhorn",map=1451,zone="Silithus",x=51.2,y=38.3},
+{type="ACCEPT",quest=8284,questName="The Twilight Mystery",npc=15183,npcName="Geologist Larksbane",map=1451,zone="Silithus",x=49.7,y=37.5},
+{type="KILL",quest=8277,questName="Deadly Desert Venom",npc=11735,target="Stonelash Scorpid",count=8,map=1451,zone="Silithus",x=43,y=41.2,near=true,note="loot Stonelash Scorpid Stinger"},
+{type="KILL",quest=8280,questName="Securing the Supply Lines",npc=11740,target="Dredge Striker",count=15,map=1451,zone="Silithus",x=38.2,y=34.3,near=true},
+{type="KILL",quest=8277,questName="Deadly Desert Venom",npc=11738,target="Sand Skitterer",count=8,map=1451,zone="Silithus",x=39,y=33.2,near=true,note="loot Sand Skitterer Fang"},
+{type="COLLECT",quest=8284,questName="The Twilight Mystery",target="Twilight Tablet Fragment",count=8,map=1451,zone="Silithus",x=26.4,y=15.9,near=true},
+{type="TURNIN",quest=8280,questName="Securing the Supply Lines",npc=15191,npcName="Windcaller Proudhorn",map=1451,zone="Silithus",x=51.2,y=38.3},
+{type="ACCEPT",quest=8281,questName="Stepping Up Security",npc=15191,npcName="Windcaller Proudhorn",map=1451,zone="Silithus",x=51.2,y=38.3},
+{type="TURNIN",quest=8277,questName="Deadly Desert Venom",npc=15189,npcName="Beetix Ficklespragg",map=1451,zone="Silithus",x=51.6,y=38.6},
+{type="ACCEPT",quest=8283,questName="Wanted - Deathclasp, Terror of the Sands",map=1451,zone="Silithus",x=51.3,y=38.2,optional=true,note="Elite - group up"},
+{type="TURNIN",quest=8284,questName="The Twilight Mystery",npc=15183,npcName="Geologist Larksbane",map=1451,zone="Silithus",x=49.7,y=37.5},
+{type="ACCEPT",quest=8278,questName="Noggle's Last Hope",npc=15189,npcName="Beetix Ficklespragg",map=1451,zone="Silithus",x=51.6,y=38.6},
+{type="KILL",quest=8281,questName="Stepping Up Security",npc=11741,target="Dredge Crusher",count=20,map=1451,zone="Silithus",x=51.9,y=57.2,near=true},
+{type="KILL",quest=8278,questName="Noggle's Last Hope",npc=11736,target="Stonelash Pincer",count=3,map=1451,zone="Silithus",x=51.4,y=62.3,near=true,note="loot Stonelash Pincer Stinger"},
+{type="KILL",quest=8278,questName="Noggle's Last Hope",npc=11737,target="Stonelash Flayer",count=3,map=1451,zone="Silithus",x=49.5,y=66.6,near=true,note="loot Stonelash Flayer Stinger"},
+{type="KILL",quest=8278,questName="Noggle's Last Hope",npc=11739,target="Rock Stalker",count=3,map=1451,zone="Silithus",x=50.4,y=69.8,near=true,note="loot Rock Stalker Fang"},
+{type="TURNIN",quest=8278,questName="Noggle's Last Hope",npc=15189,npcName="Beetix Ficklespragg",map=1451,zone="Silithus",x=51.6,y=38.6},
+{type="ACCEPT",quest=8282,questName="Noggle's Lost Satchel",npc=15190,npcName="Noggle Ficklespragg",map=1451,zone="Silithus",x=51.6,y=38.5},
+{type="TURNIN",quest=8281,questName="Stepping Up Security",npc=15191,npcName="Windcaller Proudhorn",map=1451,zone="Silithus",x=51.2,y=38.3},
+{type="COLLECT",quest=8282,questName="Noggle's Lost Satchel",target="Noggle's Satchel",map=1451,zone="Silithus",x=44.6,y=91.4},
+{type="TURNIN",quest=8282,questName="Noggle's Lost Satchel",npc=15190,npcName="Noggle Ficklespragg",map=1451,zone="Silithus",x=51.6,y=38.5}
+}]],
 })

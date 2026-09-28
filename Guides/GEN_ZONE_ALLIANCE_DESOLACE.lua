@@ -12,54 +12,54 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Desolace for a Alliance character, 16 quests. The race routes are the faster path; pick this when you just want to quest here.",
     stepCount = 48,
-    steps = function() return {
-        { type = "TRAVEL", map = 1443, zone = "Desolace", x = 66.4, y = 10.0, radius = 60, note = "travel to Desolace (Desolace)" }, -- 1
-        { type = "HEARTH", npc = 11103, npcName = "Innkeeper Lyshaerya", map = 1443, zone = "Nijel's Point", x = 66.3, y = 6.5, note = "talk to Innkeeper Lyshaerya and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 1387, questName = "Centaur Bounty", npc = 5752, npcName = "Corporal Melkins", map = 1443, zone = "Desolace", x = 66.7, y = 10.9 }, -- 3
-        { type = "ACCEPT", quest = 1437, questName = "Vahlarriel's Search", npc = 5642, npcName = "Vahlarriel Demonslayer", map = 1443, zone = "Desolace", x = 66.4, y = 11.8 }, -- 4
-        { type = "COLLECT", quest = 1387, questName = "Centaur Bounty", target = "Centaur Ear", count = 15, map = 1443, zone = "Desolace", x = 68.5, y = 38.8, near = true }, -- 5
-        { type = "TURNIN", quest = 1387, questName = "Centaur Bounty", npc = 5752, npcName = "Corporal Melkins", map = 1443, zone = "Desolace", x = 66.7, y = 10.9 }, -- 6
-        { type = "TURNIN", quest = 1437, questName = "Vahlarriel's Search", map = 1443, zone = "Desolace", x = 56.5, y = 17.8 }, -- 7
-        { type = "ACCEPT", quest = 1465, questName = "Vahlarriel's Search", map = 1443, zone = "Desolace", x = 56.5, y = 17.8 }, -- 8
-        { type = "TURNIN", quest = 1465, questName = "Vahlarriel's Search", npc = 5642, npcName = "Vahlarriel Demonslayer", map = 1443, zone = "Desolace", x = 66.4, y = 11.8 }, -- 9
-        { type = "ACCEPT", quest = 1438, questName = "Vahlarriel's Search", npc = 5642, npcName = "Vahlarriel Demonslayer", map = 1443, zone = "Desolace", x = 66.4, y = 11.8 }, -- 10
-        { type = "TURNIN", quest = 1438, questName = "Vahlarriel's Search", npc = 5644, npcName = "Dalinda Malem", map = 1443, zone = "Desolace", x = 54.9, y = 26.1 }, -- 11
-        { type = "ACCEPT", quest = 1439, questName = "Search for Tyranis", npc = 5644, npcName = "Dalinda Malem", map = 1443, zone = "Desolace", x = 54.9, y = 26.1 }, -- 12
-        { type = "KILL", quest = 1439, questName = "Search for Tyranis", npc = 5643, target = "Tyranis Malem", map = 1443, zone = "Desolace", x = 53, y = 29.1, note = "loot Tyranis' Pendant" }, -- 13
-        { type = "TURNIN", quest = 1439, questName = "Search for Tyranis", npc = 5644, npcName = "Dalinda Malem", map = 1443, zone = "Desolace", x = 54.9, y = 26.1 }, -- 14
-        { type = "ACCEPT", quest = 1440, questName = "Return to Vahlarriel", npc = 5644, npcName = "Dalinda Malem", map = 1443, zone = "Desolace", x = 54.9, y = 26.1 }, -- 15
-        { type = "COMPLETE", quest = 1440, questName = "Return to Vahlarriel", target = "Rescue Dalinda Malem", map = 1443, zone = "Desolace", x = 58.3, y = 30.9, note = "escort - stay close, it can fail: Rescue Dalinda Malem" }, -- 16
-        { type = "TURNIN", quest = 1440, questName = "Return to Vahlarriel", npc = 5642, npcName = "Vahlarriel Demonslayer", map = 1443, zone = "Desolace", x = 66.4, y = 11.8 }, -- 17
-        { type = "ACCEPT", quest = 5741, questName = "Sceptre of Light", npc = 11863, npcName = "Azore Aldamort", map = 1443, zone = "Desolace", x = 38.9, y = 27.2 }, -- 18
-        { type = "KILL", quest = 5741, questName = "Sceptre of Light", npc = 13019, target = "Burning Blade Seer", map = 1443, zone = "Desolace", x = 55.2, y = 30.2, note = "loot Sceptre of Light" }, -- 19
-        { type = "TURNIN", quest = 5741, questName = "Sceptre of Light", npc = 11863, npcName = "Azore Aldamort", map = 1443, zone = "Desolace", x = 38.9, y = 27.2 }, -- 20
-        { type = "ACCEPT", quest = 5561, questName = "Kodo Roundup", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 21
-        { type = "KILL", quest = 5561, questName = "Kodo Roundup", npc = 4700, target = "targets", map = 1443, zone = "Desolace", x = 53.7, y = 56.7, near = true }, -- 22
-        { type = "TURNIN", quest = 5561, questName = "Kodo Roundup", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 23
-        { type = "ACCEPT", quest = 5821, questName = "Bodyguard for Hire", npc = 11625, npcName = "Cork Gizelton", map = 1443, zone = "Desolace", x = 66.5, y = 37.5 }, -- 24
-        { type = "COMPLETE", quest = 5821, questName = "Bodyguard for Hire", target = "Escort Gizelton Caravan past Kolkar Centaur Village", map = 1443, zone = "Desolace", x = 67.2, y = 56.6, note = "escort - stay close, it can fail: Escort Gizelton Caravan past Kolkar Centaur Village" }, -- 25
-        { type = "TURNIN", quest = 5821, questName = "Bodyguard for Hire", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 26
-        { type = "ACCEPT", quest = 1382, questName = "Strange Alliance", npc = 5396, npcName = "Captain Pentigast", map = 1443, zone = "Desolace", x = 66.7, y = 10.9 }, -- 27
-        { type = "ACCEPT", quest = 1385, questName = "Brutal Politics", npc = 5396, npcName = "Captain Pentigast", map = 1443, zone = "Desolace", x = 66.7, y = 10.9 }, -- 28
-        { type = "TURNIN", quest = 1385, questName = "Brutal Politics", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 29
-        { type = "ACCEPT", quest = 1386, questName = "Assault on the Kolkar", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 30
-        { type = "KILL", quest = 1386, questName = "Assault on the Kolkar", npc = 4632, target = "Kolkar Centaur", count = 12, map = 1443, zone = "Desolace", x = 68.6, y = 52.2, near = true }, -- 31
-        { type = "KILL", quest = 1386, questName = "Assault on the Kolkar", npc = 4633, target = "Kolkar Scout", count = 12, map = 1443, zone = "Desolace", x = 68.7, y = 50, near = true }, -- 32
-        { type = "KILL", quest = 1386, questName = "Assault on the Kolkar", npc = 4634, target = "Kolkar Mauler", count = 12, map = 1443, zone = "Desolace", x = 70.9, y = 46.7, near = true }, -- 33
-        { type = "TURNIN", quest = 1386, questName = "Assault on the Kolkar", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 34
-        { type = "ACCEPT", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 35
-        { type = "COLLECT", quest = 1369, questName = "Broken Tears", target = "Broken Tears", count = 3, map = 1443, zone = "Desolace", x = 40.5, y = 91.9, near = true }, -- 36
-        { type = "TURNIN", quest = 1382, questName = "Strange Alliance", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 37
-        { type = "ACCEPT", quest = 1384, questName = "Raid on the Kolkar", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 38
-        { type = "COLLECT", quest = 1384, questName = "Raid on the Kolkar", target = "Crude Charm", count = 10, map = 1443, zone = "Desolace", x = 67.7, y = 52, near = true }, -- 39
-        { type = "TURNIN", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 40
-        { type = "TURNIN", quest = 1384, questName = "Raid on the Kolkar", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 41
-        { type = "ACCEPT", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 42
-        { type = "COLLECT", quest = 1370, questName = "Stealing Supplies", target = "Crudely Dried Meat", count = 6, map = 1443, zone = "Desolace", x = 65.8, y = 80.5, near = true }, -- 43
-        { type = "TURNIN", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 44
-        { type = "ACCEPT", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 36.1, y = 30.4 }, -- 45
-        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Golden Key", map = 1443, zone = "Desolace", x = 35.9, y = 28.8, near = true }, -- 46
-        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Silver Key", map = 1443, zone = "Desolace", x = 33, y = 31.1, near = true }, -- 47
-        { type = "TURNIN", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 30, y = 8.7 }, -- 48
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1443,zone="Desolace",x=66.4,y=10.0,radius=60,note="travel to Desolace (Desolace)"},
+{type="HEARTH",npc=11103,npcName="Innkeeper Lyshaerya",map=1443,zone="Nijel's Point",x=66.3,y=6.5,note="talk to Innkeeper Lyshaerya and make this inn your home"},
+{type="ACCEPT",quest=1387,questName="Centaur Bounty",npc=5752,npcName="Corporal Melkins",map=1443,zone="Desolace",x=66.7,y=10.9},
+{type="ACCEPT",quest=1437,questName="Vahlarriel's Search",npc=5642,npcName="Vahlarriel Demonslayer",map=1443,zone="Desolace",x=66.4,y=11.8},
+{type="COLLECT",quest=1387,questName="Centaur Bounty",target="Centaur Ear",count=15,map=1443,zone="Desolace",x=68.5,y=38.8,near=true},
+{type="TURNIN",quest=1387,questName="Centaur Bounty",npc=5752,npcName="Corporal Melkins",map=1443,zone="Desolace",x=66.7,y=10.9},
+{type="TURNIN",quest=1437,questName="Vahlarriel's Search",map=1443,zone="Desolace",x=56.5,y=17.8},
+{type="ACCEPT",quest=1465,questName="Vahlarriel's Search",map=1443,zone="Desolace",x=56.5,y=17.8},
+{type="TURNIN",quest=1465,questName="Vahlarriel's Search",npc=5642,npcName="Vahlarriel Demonslayer",map=1443,zone="Desolace",x=66.4,y=11.8},
+{type="ACCEPT",quest=1438,questName="Vahlarriel's Search",npc=5642,npcName="Vahlarriel Demonslayer",map=1443,zone="Desolace",x=66.4,y=11.8},
+{type="TURNIN",quest=1438,questName="Vahlarriel's Search",npc=5644,npcName="Dalinda Malem",map=1443,zone="Desolace",x=54.9,y=26.1},
+{type="ACCEPT",quest=1439,questName="Search for Tyranis",npc=5644,npcName="Dalinda Malem",map=1443,zone="Desolace",x=54.9,y=26.1},
+{type="KILL",quest=1439,questName="Search for Tyranis",npc=5643,target="Tyranis Malem",map=1443,zone="Desolace",x=53,y=29.1,note="loot Tyranis' Pendant"},
+{type="TURNIN",quest=1439,questName="Search for Tyranis",npc=5644,npcName="Dalinda Malem",map=1443,zone="Desolace",x=54.9,y=26.1},
+{type="ACCEPT",quest=1440,questName="Return to Vahlarriel",npc=5644,npcName="Dalinda Malem",map=1443,zone="Desolace",x=54.9,y=26.1},
+{type="COMPLETE",quest=1440,questName="Return to Vahlarriel",target="Rescue Dalinda Malem",map=1443,zone="Desolace",x=58.3,y=30.9,note="escort - stay close, it can fail: Rescue Dalinda Malem"},
+{type="TURNIN",quest=1440,questName="Return to Vahlarriel",npc=5642,npcName="Vahlarriel Demonslayer",map=1443,zone="Desolace",x=66.4,y=11.8},
+{type="ACCEPT",quest=5741,questName="Sceptre of Light",npc=11863,npcName="Azore Aldamort",map=1443,zone="Desolace",x=38.9,y=27.2},
+{type="KILL",quest=5741,questName="Sceptre of Light",npc=13019,target="Burning Blade Seer",map=1443,zone="Desolace",x=55.2,y=30.2,note="loot Sceptre of Light"},
+{type="TURNIN",quest=5741,questName="Sceptre of Light",npc=11863,npcName="Azore Aldamort",map=1443,zone="Desolace",x=38.9,y=27.2},
+{type="ACCEPT",quest=5561,questName="Kodo Roundup",npc=11596,npcName="Smeed Scrabblescrew",map=1443,zone="Desolace",x=60.9,y=61.9},
+{type="KILL",quest=5561,questName="Kodo Roundup",npc=4700,target="targets",map=1443,zone="Desolace",x=53.7,y=56.7,near=true},
+{type="TURNIN",quest=5561,questName="Kodo Roundup",npc=11596,npcName="Smeed Scrabblescrew",map=1443,zone="Desolace",x=60.9,y=61.9},
+{type="ACCEPT",quest=5821,questName="Bodyguard for Hire",npc=11625,npcName="Cork Gizelton",map=1443,zone="Desolace",x=66.5,y=37.5},
+{type="COMPLETE",quest=5821,questName="Bodyguard for Hire",target="Escort Gizelton Caravan past Kolkar Centaur Village",map=1443,zone="Desolace",x=67.2,y=56.6,note="escort - stay close, it can fail: Escort Gizelton Caravan past Kolkar Centaur Village"},
+{type="TURNIN",quest=5821,questName="Bodyguard for Hire",npc=11596,npcName="Smeed Scrabblescrew",map=1443,zone="Desolace",x=60.9,y=61.9},
+{type="ACCEPT",quest=1382,questName="Strange Alliance",npc=5396,npcName="Captain Pentigast",map=1443,zone="Desolace",x=66.7,y=10.9},
+{type="ACCEPT",quest=1385,questName="Brutal Politics",npc=5396,npcName="Captain Pentigast",map=1443,zone="Desolace",x=66.7,y=10.9},
+{type="TURNIN",quest=1385,questName="Brutal Politics",npc=5398,npcName="Warug",map=1443,zone="Desolace",x=75,y=68.2},
+{type="ACCEPT",quest=1386,questName="Assault on the Kolkar",npc=5398,npcName="Warug",map=1443,zone="Desolace",x=75,y=68.2},
+{type="KILL",quest=1386,questName="Assault on the Kolkar",npc=4632,target="Kolkar Centaur",count=12,map=1443,zone="Desolace",x=68.6,y=52.2,near=true},
+{type="KILL",quest=1386,questName="Assault on the Kolkar",npc=4633,target="Kolkar Scout",count=12,map=1443,zone="Desolace",x=68.7,y=50,near=true},
+{type="KILL",quest=1386,questName="Assault on the Kolkar",npc=4634,target="Kolkar Mauler",count=12,map=1443,zone="Desolace",x=70.9,y=46.7,near=true},
+{type="TURNIN",quest=1386,questName="Assault on the Kolkar",npc=5398,npcName="Warug",map=1443,zone="Desolace",x=75,y=68.2},
+{type="ACCEPT",quest=1369,questName="Broken Tears",npc=5398,npcName="Warug",map=1443,zone="Desolace",x=75,y=68.2},
+{type="COLLECT",quest=1369,questName="Broken Tears",target="Broken Tears",count=3,map=1443,zone="Desolace",x=40.5,y=91.9,near=true},
+{type="TURNIN",quest=1382,questName="Strange Alliance",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="ACCEPT",quest=1384,questName="Raid on the Kolkar",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="COLLECT",quest=1384,questName="Raid on the Kolkar",target="Crude Charm",count=10,map=1443,zone="Desolace",x=67.7,y=52,near=true},
+{type="TURNIN",quest=1369,questName="Broken Tears",npc=5398,npcName="Warug",map=1443,zone="Desolace",x=75,y=68.2},
+{type="TURNIN",quest=1384,questName="Raid on the Kolkar",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="ACCEPT",quest=1370,questName="Stealing Supplies",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="COLLECT",quest=1370,questName="Stealing Supplies",target="Crudely Dried Meat",count=6,map=1443,zone="Desolace",x=65.8,y=80.5,near=true},
+{type="TURNIN",quest=1370,questName="Stealing Supplies",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="ACCEPT",quest=6161,questName="Claim Rackmore's Treasure!",map=1443,zone="Desolace",x=36.1,y=30.4},
+{type="COLLECT",quest=6161,questName="Claim Rackmore's Treasure!",target="Rackmore's Golden Key",map=1443,zone="Desolace",x=35.9,y=28.8,near=true},
+{type="COLLECT",quest=6161,questName="Claim Rackmore's Treasure!",target="Rackmore's Silver Key",map=1443,zone="Desolace",x=33,y=31.1,near=true},
+{type="TURNIN",quest=6161,questName="Claim Rackmore's Treasure!",map=1443,zone="Desolace",x=30,y=8.7}
+}]],
 })

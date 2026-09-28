@@ -14,15 +14,15 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 44 of the Orc route: level 53 to 53, 5 steps, ~2 min of play in the model (148472 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 9,
-    steps = function() return {
-        { type = "TURNIN", quest = 1476, questName = "Hearts of the Pure", npc = 5675, npcName = "Carendin Halgar", map = 1458, zone = "Undercity", x = 85, y = 25.6, class = { "WARLOCK" }, race = { "Orc" }, note = "reduced xp (10%) - you out-levelled it" }, -- 1
-        { type = "TURNIN", quest = 1801, questName = "Tome of the Cabal", npc = 6293, npcName = "Jorah Annison", map = 1458, zone = "Undercity", x = 76, y = 37.6, class = { "WARLOCK" }, race = { "Orc" }, note = "reduced xp (10%) - you out-levelled it" }, -- 2
-        { type = "TRAVEL", map = 1458, zone = "Undercity", x = 67.7, y = 37.9, radius = 60, note = "use your hearthstone (Undercity)" }, -- 3
-        { type = "ACCEPT", quest = 1803, questName = "Tome of the Cabal", npc = 6293, npcName = "Jorah Annison", map = 1458, zone = "Undercity", x = 76, y = 37.6, class = { "WARLOCK" }, race = { "Orc" } }, -- 4
-        { type = "TRAVEL", map = 1458, zone = "Undercity", x = 59.0, y = 55.4, radius = 60, note = "travel to Undercity (Undercity)" }, -- 5
-        { type = "ACCEPT", quest = 3564, questName = "Andron's Payment to Jediga", npc = 6522, npcName = "Andron Gant", map = 1458, zone = "Undercity", x = 54.6, y = 75.6 }, -- 6
-        { type = "ACCEPT", quest = 4294, questName = "... and a Batch of Ooze", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 7
-        { type = "COLLECT", quest = 4294, questName = "... and a Batch of Ooze", target = "Pure Un'Goro Sample", count = 5, map = 1458, zone = "Undercity", x = 47.7, y = 73.6 }, -- 8
-        { type = "TURNIN", quest = 4294, questName = "... and a Batch of Ooze", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 9
-    } end,
+    steps = [[{
+{type="TURNIN",quest=1476,questName="Hearts of the Pure",npc=5675,npcName="Carendin Halgar",map=1458,zone="Undercity",x=85,y=25.6,class={"WARLOCK"},race={"Orc"},note="reduced xp (10%) - you out-levelled it"},
+{type="TURNIN",quest=1801,questName="Tome of the Cabal",npc=6293,npcName="Jorah Annison",map=1458,zone="Undercity",x=76,y=37.6,class={"WARLOCK"},race={"Orc"},note="reduced xp (10%) - you out-levelled it"},
+{type="TRAVEL",map=1458,zone="Undercity",x=67.7,y=37.9,radius=60,note="use your hearthstone (Undercity)"},
+{type="ACCEPT",quest=1803,questName="Tome of the Cabal",npc=6293,npcName="Jorah Annison",map=1458,zone="Undercity",x=76,y=37.6,class={"WARLOCK"},race={"Orc"}},
+{type="TRAVEL",map=1458,zone="Undercity",x=59.0,y=55.4,radius=60,note="travel to Undercity (Undercity)"},
+{type="ACCEPT",quest=3564,questName="Andron's Payment to Jediga",npc=6522,npcName="Andron Gant",map=1458,zone="Undercity",x=54.6,y=75.6},
+{type="ACCEPT",quest=4294,questName="... and a Batch of Ooze",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4},
+{type="COLLECT",quest=4294,questName="... and a Batch of Ooze",target="Pure Un'Goro Sample",count=5,map=1458,zone="Undercity",x=47.7,y=73.6},
+{type="TURNIN",quest=4294,questName="... and a Batch of Ooze",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4}
+}]],
 })

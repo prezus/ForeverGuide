@@ -14,39 +14,39 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 22 of the Skyborne route: level 40 to 41, 18 steps, ~234 min of play in the model (12777 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 33,
-    steps = function() return {
-        { type = "ACCEPT", quest = 2864, questName = "Tran'rek", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2, optional = true, note = "For Zul'Farrak (dungeon guide)" }, -- 1
-        { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.5, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 2
-        { type = "ACCEPT", quest = 604, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 3
-        { type = "ACCEPT", quest = 617, questName = "Akiris by the Bundle", npc = 2494, npcName = "Privateer Bloads", map = 1434, zone = "Stranglethorn Vale", x = 26.8, y = 76.4 }, -- 4
-        { type = "ACCEPT", quest = 580, questName = "Whiskey Slim's Lost Grog", npc = 2491, npcName = "Whiskey Slim", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.4, optional = true, note = "Elite - group up" }, -- 5
-        { type = "COMPLETE", quest = 604, questName = "The Bloodsail Buccaneers", target = "Bloodsail Orders / Bloodsail Charts / Bloodsail Swashbuckler", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 27, y = 82.6, near = true }, -- 6
-        { type = "TURNIN", quest = 604, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 7
-        { type = "KILL", quest = 617, questName = "Akiris by the Bundle", npc = 1907, target = "Naga Explorer", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 28.2, y = 64.4, near = true, note = "loot Akiris Reed" }, -- 8
-        { type = "TURNIN", quest = 617, questName = "Akiris by the Bundle", npc = 2494, npcName = "Privateer Bloads", map = 1434, zone = "Stranglethorn Vale", x = 26.8, y = 76.4 }, -- 9
-        { type = "COLLECT", quest = 349, questName = "Stranglethorn Fever", target = "Gorilla Fang", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 34.4, y = 62.5, near = true, mobs = "Mistvale Gorilla / Jungle Thunderer / Enraged Silverback Gorilla / Elder Mistvale Gorilla" }, -- 10
-        { type = "TURNIN", quest = 349, questName = "Stranglethorn Fever", npc = 1449, npcName = "Witch Doctor Unbagwa", map = 1434, zone = "Stranglethorn Vale", x = 35.2, y = 60.4 }, -- 11
-        { type = "ACCEPT", quest = 623, questName = "Akiris by the Bundle", npc = 2494, npcName = "Privateer Bloads", map = 1434, zone = "Stranglethorn Vale", x = 26.8, y = 76.4 }, -- 12
-        { type = "GRIND", npc = 696, target = "Skullsplitter Axe Thrower", level = 41, map = 1434, zone = "Stranglethorn Vale", x = 43.8, y = 39.4, near = true, note = "grind Skullsplitter Axe Thrower (level 39-40) to level 41 - nothing worth questing at 40" }, -- 13
-        { type = "ACCEPT", quest = 609, questName = "Voodoo Dues", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 14
-        { type = "ACCEPT", quest = 621, questName = "Zanzil's Secret", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 15
-        { type = "COLLECT", quest = 621, questName = "Zanzil's Secret", target = "Zanzil's Mixture", count = 12, map = 1434, zone = "Stranglethorn Vale", x = 38.7, y = 59.8, near = true }, -- 16
-        { type = "KILL", quest = 609, questName = "Voodoo Dues", npc = 2537, target = "Chucky \"Ten Thumbs\"", map = 1434, zone = "Stranglethorn Vale", x = 40, y = 58.2, note = "loot Chucky's Huge Ring" }, -- 17
-        { type = "KILL", quest = 609, questName = "Voodoo Dues", npc = 2535, target = "Maury \"Club Foot\" Wilkins / Jon-Jon the Crow", map = 1434, zone = "Stranglethorn Vale", x = 35.3, y = 51.3, note = "loot Maury's Clubbed Foot" }, -- 18
-        { type = "COLLECT", quest = 340, questName = "Chapter II", target = "Green Hills of Stranglethorn - Page 10", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 35.3, y = 51.3, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 19
-        { type = "COLLECT", quest = 340, questName = "Chapter II", target = "Green Hills of Stranglethorn - Page 11", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 35.3, y = 51.3, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 20
-        { type = "COLLECT", quest = 340, questName = "Chapter II", target = "Green Hills of Stranglethorn - Page 14", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 28.6, y = 62.2, mobs = "Lord Sakrasis" }, -- 21
-        { type = "COLLECT", quest = 340, questName = "Chapter II", target = "Green Hills of Stranglethorn - Page 16", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 63, near = true, mobs = "Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker" }, -- 22
-        { type = "ACCEPT", quest = 2872, questName = "Stoley's Debt", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77 }, -- 23
-        { type = "TURNIN", quest = 609, questName = "Voodoo Dues", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 24
-        { type = "ACCEPT", quest = 613, questName = "Cracking Maury's Foot", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 25
-        { type = "TURNIN", quest = 621, questName = "Zanzil's Secret", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 26
-        { type = "ACCEPT", quest = 208, questName = "Big Game Hunter", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8, optional = true, note = "Elite - group up" }, -- 27
-        { type = "COLLECT", quest = 208, questName = "Big Game Hunter", target = "Head of Bangalash", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 38.2, y = 35.4, optional = true, mobs = "King Bangalash" }, -- 28
-        { type = "TURNIN", quest = 208, questName = "Big Game Hunter", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8, optional = true }, -- 29
-        { type = "COLLECT", quest = 705, questName = "Pearl Diving", target = "Blue Pearl", count = 9, map = 1434, zone = "Stranglethorn Vale", x = 26.6, y = 26.6, optional = true, near = true, mobs = "Saltscale Warrior / Saltscale Forager / Saltscale Hunter" }, -- 30
-        { type = "TURNIN", quest = 340, questName = "Chapter II", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.4 }, -- 31
-        { type = "COLLECT", quest = 613, questName = "Cracking Maury's Foot", target = "Maury's Key", map = 1434, zone = "Stranglethorn Vale", x = 48.1, y = 30.9, near = true }, -- 32
-        { type = "TURNIN", quest = 613, questName = "Cracking Maury's Foot", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 33
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=2864,questName="Tran'rek",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,optional=true,note="For Zul'Farrak (dungeon guide)"},
+{type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.5,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
+{type="ACCEPT",quest=604,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
+{type="ACCEPT",quest=617,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4},
+{type="ACCEPT",quest=580,questName="Whiskey Slim's Lost Grog",npc=2491,npcName="Whiskey Slim",map=1434,zone="Stranglethorn Vale",x=27,y=77.4,optional=true,note="Elite - group up"},
+{type="COMPLETE",quest=604,questName="The Bloodsail Buccaneers",target="Bloodsail Orders / Bloodsail Charts / Bloodsail Swashbuckler",count=10,map=1434,zone="Stranglethorn Vale",x=27,y=82.6,near=true},
+{type="TURNIN",quest=604,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
+{type="KILL",quest=617,questName="Akiris by the Bundle",npc=1907,target="Naga Explorer",count=10,map=1434,zone="Stranglethorn Vale",x=28.2,y=64.4,near=true,note="loot Akiris Reed"},
+{type="TURNIN",quest=617,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4},
+{type="COLLECT",quest=349,questName="Stranglethorn Fever",target="Gorilla Fang",count=10,map=1434,zone="Stranglethorn Vale",x=34.4,y=62.5,near=true,mobs="Mistvale Gorilla / Jungle Thunderer / Enraged Silverback Gorilla / Elder Mistvale Gorilla"},
+{type="TURNIN",quest=349,questName="Stranglethorn Fever",npc=1449,npcName="Witch Doctor Unbagwa",map=1434,zone="Stranglethorn Vale",x=35.2,y=60.4},
+{type="ACCEPT",quest=623,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4},
+{type="GRIND",npc=696,target="Skullsplitter Axe Thrower",level=41,map=1434,zone="Stranglethorn Vale",x=43.8,y=39.4,near=true,note="grind Skullsplitter Axe Thrower (level 39-40) to level 41 - nothing worth questing at 40"},
+{type="ACCEPT",quest=609,questName="Voodoo Dues",npc=2501,npcName="\"Sea Wolf\" MacKinley",map=1434,zone="Stranglethorn Vale",x=27.8,y=77.1},
+{type="ACCEPT",quest=621,questName="Zanzil's Secret",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
+{type="COLLECT",quest=621,questName="Zanzil's Secret",target="Zanzil's Mixture",count=12,map=1434,zone="Stranglethorn Vale",x=38.7,y=59.8,near=true},
+{type="KILL",quest=609,questName="Voodoo Dues",npc=2537,target="Chucky \"Ten Thumbs\"",map=1434,zone="Stranglethorn Vale",x=40,y=58.2,note="loot Chucky's Huge Ring"},
+{type="KILL",quest=609,questName="Voodoo Dues",npc=2535,target="Maury \"Club Foot\" Wilkins / Jon-Jon the Crow",map=1434,zone="Stranglethorn Vale",x=35.3,y=51.3,note="loot Maury's Clubbed Foot"},
+{type="COLLECT",quest=340,questName="Chapter II",target="Green Hills of Stranglethorn - Page 10",count=1,map=1434,zone="Stranglethorn Vale",x=35.3,y=51.3,near=true,mobs="Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker"},
+{type="COLLECT",quest=340,questName="Chapter II",target="Green Hills of Stranglethorn - Page 11",count=1,map=1434,zone="Stranglethorn Vale",x=35.3,y=51.3,near=true,mobs="Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker"},
+{type="COLLECT",quest=340,questName="Chapter II",target="Green Hills of Stranglethorn - Page 14",count=1,map=1434,zone="Stranglethorn Vale",x=28.6,y=62.2,mobs="Lord Sakrasis"},
+{type="COLLECT",quest=340,questName="Chapter II",target="Green Hills of Stranglethorn - Page 16",count=1,map=1434,zone="Stranglethorn Vale",x=27.2,y=63,near=true,mobs="Bloodscalp Warrior / Bloodscalp Scout / Bloodscalp Hunter / Bloodscalp Berserker"},
+{type="ACCEPT",quest=2872,questName="Stoley's Debt",npc=2501,npcName="\"Sea Wolf\" MacKinley",map=1434,zone="Stranglethorn Vale",x=27.8,y=77},
+{type="TURNIN",quest=609,questName="Voodoo Dues",npc=2501,npcName="\"Sea Wolf\" MacKinley",map=1434,zone="Stranglethorn Vale",x=27.8,y=77.1},
+{type="ACCEPT",quest=613,questName="Cracking Maury's Foot",npc=2501,npcName="\"Sea Wolf\" MacKinley",map=1434,zone="Stranglethorn Vale",x=27.8,y=77.1},
+{type="TURNIN",quest=621,questName="Zanzil's Secret",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
+{type="ACCEPT",quest=208,questName="Big Game Hunter",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.8,optional=true,note="Elite - group up"},
+{type="COLLECT",quest=208,questName="Big Game Hunter",target="Head of Bangalash",count=1,map=1434,zone="Stranglethorn Vale",x=38.2,y=35.4,optional=true,mobs="King Bangalash"},
+{type="TURNIN",quest=208,questName="Big Game Hunter",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.8,optional=true},
+{type="COLLECT",quest=705,questName="Pearl Diving",target="Blue Pearl",count=9,map=1434,zone="Stranglethorn Vale",x=26.6,y=26.6,optional=true,near=true,mobs="Saltscale Warrior / Saltscale Forager / Saltscale Hunter"},
+{type="TURNIN",quest=340,questName="Chapter II",npc=716,npcName="Barnil Stonepot",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.4},
+{type="COLLECT",quest=613,questName="Cracking Maury's Foot",target="Maury's Key",map=1434,zone="Stranglethorn Vale",x=48.1,y=30.9,near=true},
+{type="TURNIN",quest=613,questName="Cracking Maury's Foot",npc=2501,npcName="\"Sea Wolf\" MacKinley",map=1434,zone="Stranglethorn Vale",x=27.8,y=77.1}
+}]],
 })

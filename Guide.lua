@@ -68,27 +68,37 @@ Guide.MANUAL, Guide.OBJECTIVE = MANUAL, OBJECTIVE
 ---@field hasEdit? boolean
 ---@field edited? boolean
 
+---@param steps FGStep[]
+local function prepare(steps)
+    for i, step in ipairs(steps) do
+        step.index = i
+        step.type = string.upper(tostring(step.type or "NOTE"))
+    end
+    return steps
+end
+
 function ns.RegisterGuide(guide)
     if type(guide) ~= "table" or type(guide.id) ~= "string" then
         ns.Error("RegisterGuide: guide needs a string id")
         return
     end
     guide.version = guide.version or 1
-    ---@param steps FGStep[]
-    local function prepare(steps)
-        for i, step in ipairs(steps) do
-            step.index = i
-            step.type = string.upper(tostring(step.type or "NOTE"))
+    if type(guide.steps) == "string" then
+        -- compiled guides hand over their steps as packed text (tools/compile_guides.py)
+        local text, id = guide.steps, guide.id
+        guide.steps = function()
+            local steps, err = ns.DecodeRecord(text)
+            if not steps then ns.ReportOnce("guide " .. id, "steps do not decode: " .. tostring(err)) end
+            return steps
         end
-        return steps
     end
     if type(guide.steps) == "function" then
-        -- compiled guides hand over a loader: the step tables are built the first time a guide's
+        -- a loader: the step tables are built the first time a guide's
         -- steps are read (activation, AutoQuest, the info popup), never for the 400 guides that are
         -- only ever listed in the picker
         local loader = guide.steps
         guide.steps = nil
-        setmetatable(guide, { __index = function(t, k)
+        setmetatable(guide, { loader = loader, __index = function(t, k)
             if k ~= "steps" then return nil end
             local steps = prepare(loader() or {})
             rawset(t, "steps", steps)
@@ -103,6 +113,18 @@ function ns.RegisterGuide(guide)
         Guide.list[#Guide.list + 1] = guide.id
     end
     Guide.registry[guide.id] = guide
+end
+
+--- A guide's steps for a read-only pass (which quests it has): a guide not built yet is built for
+--- this call only, not kept, so scanning the route's chapters does not hold all of their steps.
+---@return FGStep[]
+function Guide:ScanSteps(g)
+    if not g then return {} end
+    local steps = rawget(g, "steps")
+    if steps then return steps end
+    local mt = getmetatable(g)
+    if mt and mt.loader then return prepare(mt.loader() or {}) end
+    return g.steps or {}
 end
 
 function Guide:Get(id)
@@ -164,7 +186,7 @@ function Guide:CoveredQuests()
     if coveredKey == key then return coveredCache end
     local covered = {}
     local function add(g)
-        for _, step in ipairs(g and g.steps or {}) do
+        for _, step in ipairs(self:ScanSteps(g)) do
             if step.quest then covered[step.quest] = true end
         end
     end
@@ -1324,7 +1346,27 @@ function Guide:OnInit()
     end)
 end
 
+--- Forget the other faction's guides: their step loaders (about half of all guide bytecode) are
+--- then free for the collector. A character with no side yet keeps everything; the open guide and
+--- the one a dungeon returns to are always kept. A faction change means a relog, which reloads them.
+function Guide:PruneForFaction()
+    local faction = ns.Player:GetFaction()
+    if not faction then return end
+    local keep = {}
+    for _, id in ipairs(self.list) do
+        local g = self.registry[id]
+        if not g.faction or string.upper(g.faction) == string.upper(faction)
+            or g == self.active or id == ns.char.activeGuide or id == ns.char.returnGuide then
+            keep[#keep + 1] = id
+        else
+            self.registry[id] = nil
+        end
+    end
+    self.list = keep
+end
+
 function Guide:OnEnable()
+    self:PruneForFaction()
     local id = ns.char.activeGuide
     if id and self.registry[id] then
         self:Activate(id, true)

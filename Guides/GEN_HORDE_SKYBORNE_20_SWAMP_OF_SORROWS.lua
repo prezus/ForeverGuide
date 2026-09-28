@@ -14,24 +14,24 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 20 of the Skyborne route: level 42 to 42, 18 steps, ~60 min of play in the model (43033 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 18,
-    steps = function() return {
-        { type = "TRAVEL", map = 1435, zone = "Swamp of Sorrows", x = 34.7, y = 64.0, radius = 60, note = "travel to Swamp of Sorrows (Swamp of Sorrows)" }, -- 1
-        { type = "ACCEPT", quest = 1430, questName = "Fresh Meat", npc = 5591, npcName = "Dar", map = 1435, zone = "Swamp of Sorrows", x = 44.7, y = 57.2 }, -- 2
-        { type = "KILL", quest = 1430, questName = "Fresh Meat", npc = 1088, target = "Monstrous Crawler", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 93.2, near = true, note = "loot Monstrous Crawler Leg" }, -- 3
-        { type = "ACCEPT", quest = 1422, questName = "Threat From the Sea", npc = 5592, npcName = "Tok'Kar", map = 1435, zone = "Swamp of Sorrows", x = 81.3, y = 81 }, -- 4
-        { type = "TURNIN", quest = 1422, questName = "Threat From the Sea", npc = 5593, npcName = "Katar", map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 80.4 }, -- 5
-        { type = "ACCEPT", quest = 1426, questName = "Threat From the Sea", npc = 5593, npcName = "Katar", map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 80.4 }, -- 6
-        { type = "KILL", quest = 1426, questName = "Threat From the Sea", npc = 747, target = "Marsh Murloc", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 84.3, y = 85.4, near = true }, -- 7
-        { type = "KILL", quest = 1426, questName = "Threat From the Sea", npc = 750, target = "Marsh Inkspewer", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 83.5, y = 90.9, near = true }, -- 8
-        { type = "KILL", quest = 1426, questName = "Threat From the Sea", npc = 751, target = "Marsh Flesheater", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 72.6, y = 97.6, near = true }, -- 9
-        { type = "TURNIN", quest = 1426, questName = "Threat From the Sea", npc = 5593, npcName = "Katar", map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 80.4 }, -- 10
-        { type = "ACCEPT", quest = 1427, questName = "Threat From the Sea", npc = 5593, npcName = "Katar", map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 80.4 }, -- 11
-        { type = "TURNIN", quest = 1427, questName = "Threat From the Sea", npc = 5592, npcName = "Tok'Kar", map = 1435, zone = "Swamp of Sorrows", x = 81.3, y = 81 }, -- 12
-        { type = "ACCEPT", quest = 1428, questName = "Continued Threat", npc = 5593, npcName = "Katar", map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 80.4 }, -- 13
-        { type = "KILL", quest = 1428, questName = "Continued Threat", npc = 750, target = "Marsh Inkspewer", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 83.5, y = 90.9, near = true }, -- 14
-        { type = "KILL", quest = 1428, questName = "Continued Threat", npc = 751, target = "Marsh Flesheater", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 72.6, y = 97.6, near = true }, -- 15
-        { type = "KILL", quest = 1428, questName = "Continued Threat", npc = 752, target = "Marsh Oracle", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 63.6, y = 86.8, near = true }, -- 16
-        { type = "TURNIN", quest = 1428, questName = "Continued Threat", npc = 5593, npcName = "Katar", map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 80.4 }, -- 17
-        { type = "TURNIN", quest = 1430, questName = "Fresh Meat", npc = 5591, npcName = "Dar", map = 1435, zone = "Swamp of Sorrows", x = 44.7, y = 57.2 }, -- 18
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1435,zone="Swamp of Sorrows",x=34.7,y=64.0,radius=60,note="travel to Swamp of Sorrows (Swamp of Sorrows)"},
+{type="ACCEPT",quest=1430,questName="Fresh Meat",npc=5591,npcName="Dar",map=1435,zone="Swamp of Sorrows",x=44.7,y=57.2},
+{type="KILL",quest=1430,questName="Fresh Meat",npc=1088,target="Monstrous Crawler",count=10,map=1435,zone="Swamp of Sorrows",x=83.8,y=93.2,near=true,note="loot Monstrous Crawler Leg"},
+{type="ACCEPT",quest=1422,questName="Threat From the Sea",npc=5592,npcName="Tok'Kar",map=1435,zone="Swamp of Sorrows",x=81.3,y=81},
+{type="TURNIN",quest=1422,questName="Threat From the Sea",npc=5593,npcName="Katar",map=1435,zone="Swamp of Sorrows",x=83.8,y=80.4},
+{type="ACCEPT",quest=1426,questName="Threat From the Sea",npc=5593,npcName="Katar",map=1435,zone="Swamp of Sorrows",x=83.8,y=80.4},
+{type="KILL",quest=1426,questName="Threat From the Sea",npc=747,target="Marsh Murloc",count=10,map=1435,zone="Swamp of Sorrows",x=84.3,y=85.4,near=true},
+{type="KILL",quest=1426,questName="Threat From the Sea",npc=750,target="Marsh Inkspewer",count=10,map=1435,zone="Swamp of Sorrows",x=83.5,y=90.9,near=true},
+{type="KILL",quest=1426,questName="Threat From the Sea",npc=751,target="Marsh Flesheater",count=10,map=1435,zone="Swamp of Sorrows",x=72.6,y=97.6,near=true},
+{type="TURNIN",quest=1426,questName="Threat From the Sea",npc=5593,npcName="Katar",map=1435,zone="Swamp of Sorrows",x=83.8,y=80.4},
+{type="ACCEPT",quest=1427,questName="Threat From the Sea",npc=5593,npcName="Katar",map=1435,zone="Swamp of Sorrows",x=83.8,y=80.4},
+{type="TURNIN",quest=1427,questName="Threat From the Sea",npc=5592,npcName="Tok'Kar",map=1435,zone="Swamp of Sorrows",x=81.3,y=81},
+{type="ACCEPT",quest=1428,questName="Continued Threat",npc=5593,npcName="Katar",map=1435,zone="Swamp of Sorrows",x=83.8,y=80.4},
+{type="KILL",quest=1428,questName="Continued Threat",npc=750,target="Marsh Inkspewer",count=10,map=1435,zone="Swamp of Sorrows",x=83.5,y=90.9,near=true},
+{type="KILL",quest=1428,questName="Continued Threat",npc=751,target="Marsh Flesheater",count=10,map=1435,zone="Swamp of Sorrows",x=72.6,y=97.6,near=true},
+{type="KILL",quest=1428,questName="Continued Threat",npc=752,target="Marsh Oracle",count=10,map=1435,zone="Swamp of Sorrows",x=63.6,y=86.8,near=true},
+{type="TURNIN",quest=1428,questName="Continued Threat",npc=5593,npcName="Katar",map=1435,zone="Swamp of Sorrows",x=83.8,y=80.4},
+{type="TURNIN",quest=1430,questName="Fresh Meat",npc=5591,npcName="Dar",map=1435,zone="Swamp of Sorrows",x=44.7,y=57.2}
+}]],
 })

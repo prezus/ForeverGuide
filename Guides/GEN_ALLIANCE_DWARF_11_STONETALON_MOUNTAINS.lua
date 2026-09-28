@@ -14,38 +14,38 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 11 of the Dwarf route: level 25 to 27, 21 steps, ~92 min of play in the model (10837 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 32,
-    steps = function() return {
-        { type = "ACCEPT", quest = 2931, questName = "Castpipe's Task", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.4, y = 67.2, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 1
-        { type = "ACCEPT", quest = 1738, questName = "Heartswood", npc = 6244, npcName = "Takar the Seer", map = 1413, zone = "The Barrens", x = 49.2, y = 57, class = { "WARLOCK" }, race = { "Gnome" } }, -- 2
-        { type = "COLLECT", quest = 1738, questName = "Heartswood", target = "Heartswood", count = 1, map = 1440, zone = "Ashenvale", x = 31.6, y = 31.6, class = { "WARLOCK" }, race = { "Gnome" } }, -- 3
-        { type = "TURNIN", quest = 1738, questName = "Heartswood", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" }, race = { "Gnome" } }, -- 4
-        { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 5
-        { type = "TURNIN", quest = 1070, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.8, y = 66.8 }, -- 6
-        { type = "ACCEPT", quest = 1085, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.9, y = 66.9 }, -- 7
-        { type = "ACCEPT", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 8
-        { type = "TURNIN", quest = 1085, questName = "On Guard in Stonetalon", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 9
-        { type = "ACCEPT", quest = 1071, questName = "A Gnome's Respite", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 10
-        { type = "KILL", quest = 1071, questName = "A Gnome's Respite", npc = 3989, target = "Venture Co. Logger", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 62.7, y = 55.3, near = true }, -- 11
-        { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 62.6, y = 53.9, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 12
-        { type = "KILL", quest = 1071, questName = "A Gnome's Respite", npc = 3991, target = "Venture Co. Deforester", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 65.2, y = 53.5, near = true }, -- 13
-        { type = "TURNIN", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 14
-        { type = "ACCEPT", quest = 1094, questName = "Further Instructions", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 15
-        { type = "TURNIN", quest = 1071, questName = "A Gnome's Respite", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 67.2 }, -- 16
-        { type = "ACCEPT", quest = 1072, questName = "An Old Colleague", npc = 4077, npcName = "Gaxim Rustfizzle", map = 1442, zone = "Stonetalon Mountains", x = 59.4, y = 67.2 }, -- 17
-        { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 18
-        { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 19
-        { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 20
-        { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 21
-        { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 22
-        { type = "FLIGHTPATH", npc = 4407, npcName = "Teloren", map = 1442, zone = "Stonetalon Mountains", x = 36.4, y = 7.2 }, -- 23
-        { type = "COLLECT", quest = 1134, questName = "Pridewings of Stonetalon", target = "Pridewing Venom Sac", count = 12, map = 1442, zone = "Stonetalon Mountains", x = 46.2, y = 46.9, near = true, mobs = "Young Pridewing / Pridewing Wyvern / Pridewing Skyhunter / Pridewing Consort" }, -- 24
-        { type = "ACCEPT", quest = 1739, questName = "The Binding", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" }, race = { "Gnome" } }, -- 25
-        { type = "KILL", quest = 1739, questName = "The Binding", npc = 5677, target = "Summoned Succubus", count = 1, map = 1453, zone = "Stormwind City", x = 25.2, y = 77.4, near = true, class = { "WARLOCK" }, race = { "Gnome" } }, -- 26
-        { type = "TURNIN", quest = 1739, questName = "The Binding", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" }, race = { "Gnome" } }, -- 27
-        { type = "ACCEPT", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 3994, npcName = "Keeper Albagorm", map = 1442, zone = "Stonetalon Mountains", x = 37.1, y = 8.1 }, -- 28
-        { type = "KILL", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 4025, target = "Bloodfury Ambusher / Bloodfury Harpy", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 31.1, y = 58.6, near = true }, -- 29
-        { type = "KILL", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 4024, target = "Bloodfury Slayer / Bloodfury Roguefeather", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 30.1, y = 67.5, near = true }, -- 30
-        { type = "TURNIN", quest = 1057, questName = "Reclaiming the Charred Vale", npc = 3994, npcName = "Keeper Albagorm", map = 1442, zone = "Stonetalon Mountains", x = 37.1, y = 8.1 }, -- 31
-        { type = "GRIND", npc = 4027, target = "Bloodfury Storm Witch", level = 27, map = 1442, zone = "Stonetalon Mountains", x = 35.4, y = 68.6, near = true, note = "grind Bloodfury Storm Witch (level 26-27) to level 27 - nothing worth questing at 26" }, -- 32
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=2931,questName="Castpipe's Task",npc=4077,npcName="Gaxim Rustfizzle",map=1442,zone="Stonetalon Mountains",x=59.4,y=67.2,optional=true,note="For Gnomeregan (dungeon guide)"},
+{type="ACCEPT",quest=1738,questName="Heartswood",npc=6244,npcName="Takar the Seer",map=1413,zone="The Barrens",x=49.2,y=57,class={"WARLOCK"},race={"Gnome"}},
+{type="COLLECT",quest=1738,questName="Heartswood",target="Heartswood",count=1,map=1440,zone="Ashenvale",x=31.6,y=31.6,class={"WARLOCK"},race={"Gnome"}},
+{type="TURNIN",quest=1738,questName="Heartswood",npc=6122,npcName="Gakin the Darkbinder",map=1453,zone="Stormwind City",x=25.4,y=78.4,class={"WARLOCK"},race={"Gnome"}},
+{type="TRAVEL",map=1442,zone="Stonetalon Mountains",x=59.5,y=65.9,radius=60,note="travel to Stonetalon Mountains (Stonetalon Mountains)"},
+{type="TURNIN",quest=1070,questName="On Guard in Stonetalon",npc=4080,npcName="Kaela Shadowspear",map=1442,zone="Stonetalon Mountains",x=59.8,y=66.8},
+{type="ACCEPT",quest=1085,questName="On Guard in Stonetalon",npc=4080,npcName="Kaela Shadowspear",map=1442,zone="Stonetalon Mountains",x=59.9,y=66.9},
+{type="ACCEPT",quest=1093,questName="Super Reaper 6000",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
+{type="TURNIN",quest=1085,questName="On Guard in Stonetalon",npc=4077,npcName="Gaxim Rustfizzle",map=1442,zone="Stonetalon Mountains",x=59.5,y=67.2},
+{type="ACCEPT",quest=1071,questName="A Gnome's Respite",npc=4077,npcName="Gaxim Rustfizzle",map=1442,zone="Stonetalon Mountains",x=59.5,y=67.2},
+{type="KILL",quest=1071,questName="A Gnome's Respite",npc=3989,target="Venture Co. Logger",count=10,map=1442,zone="Stonetalon Mountains",x=62.7,y=55.3,near=true},
+{type="KILL",quest=1093,questName="Super Reaper 6000",npc=3988,target="Venture Co. Operator",map=1442,zone="Stonetalon Mountains",x=62.6,y=53.9,near=true,note="loot Super Reaper 6000 Blueprints"},
+{type="KILL",quest=1071,questName="A Gnome's Respite",npc=3991,target="Venture Co. Deforester",count=10,map=1442,zone="Stonetalon Mountains",x=65.2,y=53.5,near=true},
+{type="TURNIN",quest=1093,questName="Super Reaper 6000",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
+{type="ACCEPT",quest=1094,questName="Further Instructions",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
+{type="TURNIN",quest=1071,questName="A Gnome's Respite",npc=4077,npcName="Gaxim Rustfizzle",map=1442,zone="Stonetalon Mountains",x=59.5,y=67.2},
+{type="ACCEPT",quest=1072,questName="An Old Colleague",npc=4077,npcName="Gaxim Rustfizzle",map=1442,zone="Stonetalon Mountains",x=59.4,y=67.2},
+{type="ACCEPT",quest=1090,questName="Gerenzo's Orders",npc=4276,npcName="Piznik",map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
+{type="KILL",quest=1090,questName="Gerenzo's Orders",npc=4276,target="Piznik",count=1,map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
+{type="TURNIN",quest=1090,questName="Gerenzo's Orders",npc=4276,npcName="Piznik",map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
+{type="ACCEPT",quest=1092,questName="Gerenzo's Orders",npc=4276,npcName="Piznik",map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
+{type="TURNIN",quest=1092,questName="Gerenzo's Orders",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
+{type="FLIGHTPATH",npc=4407,npcName="Teloren",map=1442,zone="Stonetalon Mountains",x=36.4,y=7.2},
+{type="COLLECT",quest=1134,questName="Pridewings of Stonetalon",target="Pridewing Venom Sac",count=12,map=1442,zone="Stonetalon Mountains",x=46.2,y=46.9,near=true,mobs="Young Pridewing / Pridewing Wyvern / Pridewing Skyhunter / Pridewing Consort"},
+{type="ACCEPT",quest=1739,questName="The Binding",npc=6122,npcName="Gakin the Darkbinder",map=1453,zone="Stormwind City",x=25.4,y=78.4,class={"WARLOCK"},race={"Gnome"}},
+{type="KILL",quest=1739,questName="The Binding",npc=5677,target="Summoned Succubus",count=1,map=1453,zone="Stormwind City",x=25.2,y=77.4,near=true,class={"WARLOCK"},race={"Gnome"}},
+{type="TURNIN",quest=1739,questName="The Binding",npc=6122,npcName="Gakin the Darkbinder",map=1453,zone="Stormwind City",x=25.4,y=78.4,class={"WARLOCK"},race={"Gnome"}},
+{type="ACCEPT",quest=1057,questName="Reclaiming the Charred Vale",npc=3994,npcName="Keeper Albagorm",map=1442,zone="Stonetalon Mountains",x=37.1,y=8.1},
+{type="KILL",quest=1057,questName="Reclaiming the Charred Vale",npc=4025,target="Bloodfury Ambusher / Bloodfury Harpy",count=7,map=1442,zone="Stonetalon Mountains",x=31.1,y=58.6,near=true},
+{type="KILL",quest=1057,questName="Reclaiming the Charred Vale",npc=4024,target="Bloodfury Slayer / Bloodfury Roguefeather",count=7,map=1442,zone="Stonetalon Mountains",x=30.1,y=67.5,near=true},
+{type="TURNIN",quest=1057,questName="Reclaiming the Charred Vale",npc=3994,npcName="Keeper Albagorm",map=1442,zone="Stonetalon Mountains",x=37.1,y=8.1},
+{type="GRIND",npc=4027,target="Bloodfury Storm Witch",level=27,map=1442,zone="Stonetalon Mountains",x=35.4,y=68.6,near=true,note="grind Bloodfury Storm Witch (level 26-27) to level 27 - nothing worth questing at 26"}
+}]],
 })

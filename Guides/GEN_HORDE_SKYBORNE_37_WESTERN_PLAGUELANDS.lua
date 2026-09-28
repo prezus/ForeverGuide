@@ -14,24 +14,24 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 37 of the Skyborne route: level 52 to 52, 14 steps, ~45 min of play in the model (38906 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 18,
-    steps = function() return {
-        { type = "TRAVEL", map = 1454, zone = "Orgrimmar", x = 54.1, y = 68.4, radius = 60, note = "use your hearthstone (Orgrimmar)" }, -- 1
-        { type = "TURNIN", quest = 3002, questName = "The Gordunni Orb", npc = 7311, npcName = "Uthel'nay", map = 1454, zone = "Orgrimmar", x = 39, y = 86 }, -- 2
-        { type = "TURNIN", quest = 5093, questName = "A Call to Arms: The Plaguelands!", npc = 10837, npcName = "High Executor Derrington", map = 1420, zone = "Tirisfal Glades", x = 83, y = 69 }, -- 3
-        { type = "ACCEPT", quest = 5341, questName = "Barov Family Fortune", npc = 11022, npcName = "Alexi Barov", map = 1420, zone = "Tirisfal Glades", x = 83, y = 71.4, optional = true, note = "For Scholomance (dungeon guide)" }, -- 4
-        { type = "ACCEPT", quest = 8250, questName = "Magecraft", npc = 7311, npcName = "Uthel'nay", map = 1454, zone = "Orgrimmar", x = 39, y = 86, class = { "MAGE" } }, -- 5
-        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 39.2, y = 63.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 6
-        { type = "ACCEPT", quest = 5021, questName = "Better Late Than Never", npc = 10778, npcName = "Janice Felstone", map = 1422, zone = "Western Plaguelands", x = 38.4, y = 54.1 }, -- 7
-        { type = "TURNIN", quest = 5021, questName = "Better Late Than Never", map = 1422, zone = "Western Plaguelands", x = 38.7, y = 55.2 }, -- 8
-        { type = "ACCEPT", quest = 5023, questName = "Better Late Than Never", map = 1422, zone = "Western Plaguelands", x = 38.7, y = 55.2 }, -- 9
-        { type = "ACCEPT", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 10
-        { type = "TURNIN", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 11
-        { type = "ACCEPT", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 12
-        { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 13
-        { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 14
-        { type = "ACCEPT", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 15
-        { type = "KILL", quest = 4984, questName = "The Wildlife Suffers Too", npc = 1817, target = "Diseased Wolf", count = 8, map = 1422, zone = "Western Plaguelands", x = 52.5, y = 70.5, near = true }, -- 16
-        { type = "ACCEPT", quest = 5142, questName = "Little Pamela", npc = 10927, npcName = "Marlene Redpath", map = 1422, zone = "Western Plaguelands", x = 49.2, y = 78.6 }, -- 17
-        { type = "TURNIN", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 18
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1454,zone="Orgrimmar",x=54.1,y=68.4,radius=60,note="use your hearthstone (Orgrimmar)"},
+{type="TURNIN",quest=3002,questName="The Gordunni Orb",npc=7311,npcName="Uthel'nay",map=1454,zone="Orgrimmar",x=39,y=86},
+{type="TURNIN",quest=5093,questName="A Call to Arms: The Plaguelands!",npc=10837,npcName="High Executor Derrington",map=1420,zone="Tirisfal Glades",x=83,y=69},
+{type="ACCEPT",quest=5341,questName="Barov Family Fortune",npc=11022,npcName="Alexi Barov",map=1420,zone="Tirisfal Glades",x=83,y=71.4,optional=true,note="For Scholomance (dungeon guide)"},
+{type="ACCEPT",quest=8250,questName="Magecraft",npc=7311,npcName="Uthel'nay",map=1454,zone="Orgrimmar",x=39,y=86,class={"MAGE"}},
+{type="TRAVEL",map=1422,zone="Western Plaguelands",x=39.2,y=63.7,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
+{type="ACCEPT",quest=5021,questName="Better Late Than Never",npc=10778,npcName="Janice Felstone",map=1422,zone="Western Plaguelands",x=38.4,y=54.1},
+{type="TURNIN",quest=5021,questName="Better Late Than Never",map=1422,zone="Western Plaguelands",x=38.7,y=55.2},
+{type="ACCEPT",quest=5023,questName="Better Late Than Never",map=1422,zone="Western Plaguelands",x=38.7,y=55.2},
+{type="ACCEPT",quest=5058,questName="Mrs. Dalson's Diary",map=1422,zone="Western Plaguelands",x=47.8,y=50.7},
+{type="TURNIN",quest=5058,questName="Mrs. Dalson's Diary",map=1422,zone="Western Plaguelands",x=47.8,y=50.7},
+{type="ACCEPT",quest=5060,questName="Locked Away",map=1422,zone="Western Plaguelands",x=47.4,y=49.6},
+{type="KILL",quest=5060,questName="Locked Away",npc=10836,target="Farmer Dalson",map=1422,zone="Western Plaguelands",x=48.2,y=49.7,note="loot Dalson Cabinet Key"},
+{type="TURNIN",quest=5060,questName="Locked Away",map=1422,zone="Western Plaguelands",x=47.4,y=49.6},
+{type="ACCEPT",quest=4984,questName="The Wildlife Suffers Too",npc=10739,npcName="Mulgris Deepriver",map=1422,zone="Western Plaguelands",x=53.7,y=64.7},
+{type="KILL",quest=4984,questName="The Wildlife Suffers Too",npc=1817,target="Diseased Wolf",count=8,map=1422,zone="Western Plaguelands",x=52.5,y=70.5,near=true},
+{type="ACCEPT",quest=5142,questName="Little Pamela",npc=10927,npcName="Marlene Redpath",map=1422,zone="Western Plaguelands",x=49.2,y=78.6},
+{type="TURNIN",quest=4984,questName="The Wildlife Suffers Too",npc=10739,npcName="Mulgris Deepriver",map=1422,zone="Western Plaguelands",x=53.7,y=64.7}
+}]],
 })

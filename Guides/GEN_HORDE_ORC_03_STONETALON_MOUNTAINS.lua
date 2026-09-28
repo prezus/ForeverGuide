@@ -14,44 +14,44 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the Orc route: level 19 to 20, 25 steps, ~51 min of play in the model (18349 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 38,
-    steps = function() return {
-        { type = "FLIGHTPATH", npc = 4312, npcName = "Tharm", map = 1442, zone = "Stonetalon Mountains", x = 45.1, y = 59.8 }, -- 1
-        { type = "ACCEPT", quest = 95495, questName = "The Hermit Tanner", npc = 3682, npcName = "Vrang Wildgore", map = 1413, zone = "The Barrens", x = 43.8, y = 12.2, note = "New in Forever" }, -- 2
-        { type = "TURNIN", quest = 95495, questName = "The Hermit Tanner", npc = 261366, npcName = "Walton", map = 1413, zone = "The Barrens", x = 42, y = 11.4 }, -- 3
-        { type = "ACCEPT", quest = 3923, questName = "Rilli Greasygob", npc = 9316, npcName = "Wenikee Boltbucket", map = 1413, zone = "The Barrens", x = 49, y = 11.2 }, -- 4
-        { type = "TURNIN", quest = 3513, questName = "The Runed Scroll", npc = 8582, npcName = "Kadrak", map = 1413, zone = "The Barrens", x = 48, y = 5.4, optional = true }, -- 5
-        { type = "TURNIN", quest = 6541, questName = "Report to Kadrak", npc = 8582, npcName = "Kadrak", map = 1413, zone = "The Barrens", x = 48, y = 5.4 }, -- 6
-        { type = "ACCEPT", quest = 6542, questName = "Report to Kadrak", npc = 11821, npcName = "Darn Talongrip", map = 1442, zone = "Stonetalon Mountains", x = 73.2, y = 94.8 }, -- 7
-        { type = "TURNIN", quest = 6542, questName = "Report to Kadrak", npc = 8582, npcName = "Kadrak", map = 1413, zone = "The Barrens", x = 48, y = 5.4 }, -- 8
-        { type = "ACCEPT", quest = 6562, questName = "Trouble in the Deeps", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64.2, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 9
-        { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 46.9, y = 61.0, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 10
-        { type = "HEARTH", npc = 7731, npcName = "Innkeeper Jayka", map = 1442, zone = "Sun Rock Retreat", x = 47.5, y = 62.1, note = "talk to Innkeeper Jayka and make this inn your home" }, -- 11
-        { type = "ACCEPT", quest = 6421, questName = "Boulderslide Ravine", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64 }, -- 12
-        { type = "ACCEPT", quest = 6481, questName = "Earthen Arise", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 13
-        { type = "KILL", quest = 6481, questName = "Earthen Arise", npc = 11920, target = "Goggeroc", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 57.4, y = 89.4, optional = true }, -- 14
-        { type = "TURNIN", quest = 6481, questName = "Earthen Arise", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64, optional = true }, -- 15
-        { type = "COMPLETE", quest = 6421, questName = "Boulderslide Ravine", target = "Resonite Crystal / Investigate Cave in Boulderslide Ravine", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 57.3, y = 89.2, near = true }, -- 16
-        { type = "TURNIN", quest = 6421, questName = "Boulderslide Ravine", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64 }, -- 17
-        { type = "ACCEPT", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 18
-        { type = "TURNIN", quest = 1483, questName = "Ziz Fizziks", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.4 }, -- 19
-        { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 62.6, y = 53.9, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 20
-        { type = "TURNIN", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 21
-        { type = "ACCEPT", quest = 1094, questName = "Further Instructions", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 22
-        { type = "ACCEPT", quest = 6301, questName = "Cycle of Rebirth", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 23
-        { type = "COLLECT", quest = 6301, questName = "Cycle of Rebirth", target = "Gaea Seed", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 49.7, y = 45.1, near = true }, -- 24
-        { type = "TURNIN", quest = 6301, questName = "Cycle of Rebirth", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 25
-        { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 26
-        { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 27
-        { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 28
-        { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 29
-        { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 30
-        { type = "COLLECT", quest = 1069, questName = "Deepmoss Spider Eggs", target = "Deepmoss Egg", count = 15, map = 1442, zone = "Stonetalon Mountains", x = 61, y = 64.1 }, -- 31
-        { type = "ACCEPT", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 32
-        { type = "TURNIN", quest = 1060, questName = "Letter to Jin'Zil", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 33
-        { type = "ACCEPT", quest = 6523, questName = "Protect Kaya", npc = 11856, npcName = "Kaya Flathoof", map = 1442, zone = "Stonetalon Mountains", x = 73.4, y = 85.6, note = "Objectives: Kaya Escorted to Camp Aparaje" }, -- 34
-        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4005, target = "Deepmoss Creeper", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 60.5, y = 76.5, near = true }, -- 35
-        { type = "ACCEPT", quest = 6284, questName = "Arachnophobia", map = 1442, zone = "Stonetalon Mountains", x = 59.1, y = 75.8, optional = true, note = "Elite - group up" }, -- 36
-        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4007, target = "Deepmoss Venomspitter", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 54.8, y = 73.6, near = true }, -- 37
-        { type = "TURNIN", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 38
-    } end,
+    steps = [[{
+{type="FLIGHTPATH",npc=4312,npcName="Tharm",map=1442,zone="Stonetalon Mountains",x=45.1,y=59.8},
+{type="ACCEPT",quest=95495,questName="The Hermit Tanner",npc=3682,npcName="Vrang Wildgore",map=1413,zone="The Barrens",x=43.8,y=12.2,note="New in Forever"},
+{type="TURNIN",quest=95495,questName="The Hermit Tanner",npc=261366,npcName="Walton",map=1413,zone="The Barrens",x=42,y=11.4},
+{type="ACCEPT",quest=3923,questName="Rilli Greasygob",npc=9316,npcName="Wenikee Boltbucket",map=1413,zone="The Barrens",x=49,y=11.2},
+{type="TURNIN",quest=3513,questName="The Runed Scroll",npc=8582,npcName="Kadrak",map=1413,zone="The Barrens",x=48,y=5.4,optional=true},
+{type="TURNIN",quest=6541,questName="Report to Kadrak",npc=8582,npcName="Kadrak",map=1413,zone="The Barrens",x=48,y=5.4},
+{type="ACCEPT",quest=6542,questName="Report to Kadrak",npc=11821,npcName="Darn Talongrip",map=1442,zone="Stonetalon Mountains",x=73.2,y=94.8},
+{type="TURNIN",quest=6542,questName="Report to Kadrak",npc=8582,npcName="Kadrak",map=1413,zone="The Barrens",x=48,y=5.4},
+{type="ACCEPT",quest=6562,questName="Trouble in the Deeps",npc=11862,npcName="Tsunaman",map=1442,zone="Stonetalon Mountains",x=47.2,y=64.2,optional=true,note="For Blackfathom Deeps (dungeon guide)"},
+{type="TRAVEL",map=1442,zone="Stonetalon Mountains",x=46.9,y=61.0,radius=60,note="travel to Stonetalon Mountains (Stonetalon Mountains)"},
+{type="HEARTH",npc=7731,npcName="Innkeeper Jayka",map=1442,zone="Sun Rock Retreat",x=47.5,y=62.1,note="talk to Innkeeper Jayka and make this inn your home"},
+{type="ACCEPT",quest=6421,questName="Boulderslide Ravine",npc=11861,npcName="Mor'rogal",map=1442,zone="Stonetalon Mountains",x=47.2,y=64},
+{type="ACCEPT",quest=6481,questName="Earthen Arise",npc=11861,npcName="Mor'rogal",map=1442,zone="Stonetalon Mountains",x=47.2,y=64,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="KILL",quest=6481,questName="Earthen Arise",npc=11920,target="Goggeroc",count=1,map=1442,zone="Stonetalon Mountains",x=57.4,y=89.4,optional=true},
+{type="TURNIN",quest=6481,questName="Earthen Arise",npc=11861,npcName="Mor'rogal",map=1442,zone="Stonetalon Mountains",x=47.2,y=64,optional=true},
+{type="COMPLETE",quest=6421,questName="Boulderslide Ravine",target="Resonite Crystal / Investigate Cave in Boulderslide Ravine",count=10,map=1442,zone="Stonetalon Mountains",x=57.3,y=89.2,near=true},
+{type="TURNIN",quest=6421,questName="Boulderslide Ravine",npc=11861,npcName="Mor'rogal",map=1442,zone="Stonetalon Mountains",x=47.2,y=64},
+{type="ACCEPT",quest=1093,questName="Super Reaper 6000",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
+{type="TURNIN",quest=1483,questName="Ziz Fizziks",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.4},
+{type="KILL",quest=1093,questName="Super Reaper 6000",npc=3988,target="Venture Co. Operator",map=1442,zone="Stonetalon Mountains",x=62.6,y=53.9,near=true,note="loot Super Reaper 6000 Blueprints"},
+{type="TURNIN",quest=1093,questName="Super Reaper 6000",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
+{type="ACCEPT",quest=1094,questName="Further Instructions",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
+{type="ACCEPT",quest=6301,questName="Cycle of Rebirth",npc=11864,npcName="Tammra Windfield",map=1442,zone="Stonetalon Mountains",x=47.5,y=58.4},
+{type="COLLECT",quest=6301,questName="Cycle of Rebirth",target="Gaea Seed",count=10,map=1442,zone="Stonetalon Mountains",x=49.7,y=45.1,near=true},
+{type="TURNIN",quest=6301,questName="Cycle of Rebirth",npc=11864,npcName="Tammra Windfield",map=1442,zone="Stonetalon Mountains",x=47.5,y=58.4},
+{type="ACCEPT",quest=1090,questName="Gerenzo's Orders",npc=4276,npcName="Piznik",map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
+{type="KILL",quest=1090,questName="Gerenzo's Orders",npc=4276,target="Piznik",count=1,map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
+{type="TURNIN",quest=1090,questName="Gerenzo's Orders",npc=4276,npcName="Piznik",map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
+{type="ACCEPT",quest=1092,questName="Gerenzo's Orders",npc=4276,npcName="Piznik",map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
+{type="TURNIN",quest=1092,questName="Gerenzo's Orders",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
+{type="COLLECT",quest=1069,questName="Deepmoss Spider Eggs",target="Deepmoss Egg",count=15,map=1442,zone="Stonetalon Mountains",x=61,y=64.1},
+{type="ACCEPT",quest=6461,questName="Blood Feeders",npc=12816,npcName="Xen'Zilla",map=1442,zone="Stonetalon Mountains",x=71.3,y=95},
+{type="TURNIN",quest=1060,questName="Letter to Jin'Zil",npc=3995,npcName="Witch Doctor Jin'Zil",map=1442,zone="Stonetalon Mountains",x=74.5,y=97.9},
+{type="ACCEPT",quest=6523,questName="Protect Kaya",npc=11856,npcName="Kaya Flathoof",map=1442,zone="Stonetalon Mountains",x=73.4,y=85.6,note="Objectives: Kaya Escorted to Camp Aparaje"},
+{type="KILL",quest=6461,questName="Blood Feeders",npc=4005,target="Deepmoss Creeper",count=10,map=1442,zone="Stonetalon Mountains",x=60.5,y=76.5,near=true},
+{type="ACCEPT",quest=6284,questName="Arachnophobia",map=1442,zone="Stonetalon Mountains",x=59.1,y=75.8,optional=true,note="Elite - group up"},
+{type="KILL",quest=6461,questName="Blood Feeders",npc=4007,target="Deepmoss Venomspitter",count=10,map=1442,zone="Stonetalon Mountains",x=54.8,y=73.6,near=true},
+{type="TURNIN",quest=6461,questName="Blood Feeders",npc=12816,npcName="Xen'Zilla",map=1442,zone="Stonetalon Mountains",x=71.3,y=95}
+}]],
 })

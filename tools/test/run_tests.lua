@@ -63,6 +63,61 @@ local function chapterId(prefix)
 end
 
 print("guide active: " .. tostring(G.active and G.active.id))
+-- Listing the route's quests (the Unknown Quests count) reads other chapters' steps without keeping them.
+do
+    local built = {}
+    for _, id in ipairs(G.list) do
+        local g = G.registry[id]
+        if rawget(g, "steps") and g ~= G.active then built[#built + 1] = id end
+    end
+    check(#built == 0, "after login only the open guide's steps are built (" .. #built .. " others: " .. tostring(built[1]) .. ")")
+    local laterQuest
+    local ch3 = G.registry[chapterId("GEN_ALLIANCE_HUMAN_03_")]
+    for _, s in ipairs(G:ScanSteps(ch3)) do if s.quest then laterQuest = s.quest break end end
+    check(laterQuest and G:CoveredQuests()[laterQuest], "a later chapter's quest is still covered by the route")
+    check(rawget(ch3, "steps") == nil, "...and scanning that chapter did not keep its steps")
+end
+-- Compiled guides ship their steps as packed text, decoded to the same steps on first read.
+do
+    local shipped
+    local chunk = assert(loadfile(root .. "Guides/DUNGEON_HORDE_SHADOWFANG_KEEP.lua"))
+    chunk("ForeverGuide", { RegisterGuide = function(g) shipped = g end })
+    check(shipped and type(shipped.steps) == "string", "a compiled guide ships its steps as text")
+    local steps = shipped and ns.DecodeRecord(shipped.steps)
+    check(steps and #steps == shipped.stepCount and steps[1].type == "ACCEPT" and steps[1].quest == 1013,
+        "...which decodes to its steps (" .. tostring(steps and #steps) .. " of " .. tostring(shipped and shipped.stepCount) .. ")")
+end
+-- The other faction's guides are dropped at login, so their step loaders can be collected.
+do
+    local horde, consistent = 0, true
+    for _, id in ipairs(G.list) do
+        local g = G.registry[id]
+        if not g then consistent = false elseif g.faction == "Horde" then horde = horde + 1 end
+    end
+    for id in pairs(G.registry) do if not ns.Contains(G.list, id) then consistent = false end end
+    check(horde == 0, "an Alliance character keeps no Horde guides (" .. horde .. ")")
+    check(consistent, "pruning keeps the guide list and registry in step")
+    check(G.registry["GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST"] ~= nil or chapterId("GEN_ALLIANCE_HUMAN_01") ~= nil,
+        "the character's own route survives")
+    check(G:Dungeons()[1] ~= nil, "the character's dungeon guides survive")
+
+    -- boundary: no faction yet (a Skyborne before choosing a side) prunes nothing
+    local savedFaction = MOCK.faction
+    MOCK.faction, ns.Player.cache = "Neutral", {}
+    ns.RegisterGuide({ id = "TEST_PRUNE_HORDE", name = "prune test", faction = "Horde", steps = {} })
+    G:PruneForFaction()
+    check(G.registry.TEST_PRUNE_HORDE ~= nil, "no faction: nothing is pruned")
+    -- the active guide is never pruned, whatever its faction
+    MOCK.faction, ns.Player.cache = savedFaction, {}
+    local savedActive = G.active
+    G.active = G.registry.TEST_PRUNE_HORDE
+    G:PruneForFaction()
+    check(G.registry.TEST_PRUNE_HORDE ~= nil, "the active guide is never pruned")
+    G.active = savedActive
+    G:PruneForFaction()
+    check(G.registry.TEST_PRUNE_HORDE == nil and not ns.Contains(G.list, "TEST_PRUNE_HORDE"),
+        "an other-faction guide is pruned from list and registry")
+end
 -- Contributing data is one opt-in; old switches, mirrors and SavedVariables cannot opt anyone in.
 do
     check(ns.db.contribute == false and ns.db.scanEnabled == false, "fresh login: contributing and the scanner start off")
@@ -966,9 +1021,9 @@ end
 
 
 -- ---- Forever overlay data merged into the Classic database ---------------------------------
-check(ns.DB.overlayApplied == true, "Forever overlay applied at init")
-check(ns.QuestDB[317] and ns.QuestDB[317].fobj and ns.QuestDB[317].fobj[1].spm ~= nil, "overlay objective evidence attached to vanilla quest 317")
-check(ns.NpcDB[1131] and ns.NpcDB[1131].spm ~= nil, "overlay npc points merged into vanilla npc 1131")
+check(ns.ForeverDB == nil and type(ns.QuestDB[317]) == "string", "the Forever overlay ships merged into the packed records")
+check(ns.DB:GetQuest(317) and ns.DB:GetQuest(317).fobj and ns.DB:GetQuest(317).fobj[1].spm ~= nil, "overlay objective evidence attached to vanilla quest 317")
+check(ns.DB:GetNPC(1131) and ns.DB:GetNPC(1131).spm ~= nil, "overlay npc points merged into vanilla npc 1131")
 do
     local locs = ns.DB:NPCLocations(1131)
     local hasForever = false
@@ -976,9 +1031,46 @@ do
     check(hasForever, "spm points show up in NPCLocations")
     local objs = ns.DB:QuestObjectives(317)
     check(objs[1] and #objs[1].locations > 0, "vanilla objective of 317 keeps its own locations (" .. tostring(objs[1] and #objs[1].locations) .. ")")
-    local fq = ns.QuestDB[99128]
+    local fq = ns.DB:GetQuest(99128)
     check(fq and fq.forever and fq.n == "Slimy Menace", "Forever-only quest 99128 exists with its title")
     check(ns.Quest:XPMultiplier(783, 1) == 1 and ns.Quest:XPMultiplier(783, 7) == 0.8 and ns.Quest:XPMultiplier(783, 12) == 0.1, "xp multiplier follows the Classic reduction table")
+end
+
+-- ---- packed records: the indexes match the records, decoding is safe and cached --------------
+do
+    local DB = ns.DB
+    local byZone, byItem = {}, {}
+    for id, q in DB:EachQuest() do
+        if q.zone and q.zone > 0 then
+            local z = DB:ParentZone(q.zone)
+            byZone[z] = byZone[z] or {}
+            byZone[z][id] = true
+        end
+        for _, e in ipairs(q.item or {}) do
+            if e[1] then byItem[e[1]] = byItem[e[1]] or {} byItem[e[1]][id] = true end
+        end
+    end
+    local function same(built, index)
+        local n = 0
+        for key, set in pairs(built) do
+            local listed = {}
+            for _, id in ipairs(index[key] or {}) do listed[id] = true end
+            for id in pairs(set) do if not listed[id] then return false, key .. ":" .. id end end
+            for id in pairs(listed) do if not set[id] then return false, key .. ":" .. id end end
+            n = n + 1
+        end
+        for key in pairs(index) do if not built[key] then return false, "extra " .. key end end
+        return n > 0, n
+    end
+    local okZ, whyZ = same(byZone, ns.QuestIndex.byZone)
+    local okI, whyI = same(byItem, ns.QuestIndex.byItem)
+    check(okZ, "the zone index lists exactly the quests of each zone (" .. tostring(whyZ) .. ")")
+    check(okI, "the item index lists exactly the quests each item is for (" .. tostring(whyI) .. ")")
+    check(DB:GetQuest(317) == DB:GetQuest(317), "a record read twice is decoded once")
+    check(ns.DecodeRecord("{1,2}")[2] == 2, "a packed constructor decodes")
+    check(ns.DecodeRecord("{") == nil, "broken packed text decodes to nothing, not an error")
+    check(ns.DecodeRecord("{x=print}").x == nil and ns.DecodeRecord("(function() y = 1 end)()") == nil and rawget(_G, "y") == nil,
+        "packed text sees no globals and cannot set any")
 end
 
 -- ---- /fg wrong: feedback reports ----------------------------------------------------------
@@ -1597,7 +1689,7 @@ do
         local activeTop = 4
         for i, entry in ipairs(f.list.entries) do
             if entry.state == "active" then break end
-            activeTop = activeTop + f.list.rows[i]:GetHeight() + 3
+            activeTop = activeTop + ns.QuestRow.HeightFor(entry, ns.db.ui.showSubtitles ~= false) + 3
         end
         local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - 70
         check(activeTop >= f.scroll:GetVerticalScroll() and activeTop <= f.scroll:GetVerticalScroll() + viewport,
@@ -2018,7 +2110,7 @@ end
 -- (Ilya, 2026-09-21: the Dwarf chapter offered 6181 "A Swift Message", a Human-only quest, and the
 --  guide sat on it at Quartermaster Lewis - who has nothing to say to a dwarf)
 do
-    local q = ns.QuestDB and ns.QuestDB[6181]
+    local q = ns.DB:GetQuest(6181)
     check(q ~= nil and q.races ~= nil and q.races ~= 0, "the database knows 6181 is race-restricted")
     local mine = MOCK.race
     MOCK.race = { "Dwarf", "Dwarf" }
@@ -2047,7 +2139,7 @@ end
 
 -- class-only WoW Forever quests: the class comes from the Forever overlay, not the Classic database
 do
-    check(ns.QuestDB[76156] and ns.QuestDB[76156].forever and ns.QuestDB[76156].classes == 64, "the overlay marks Forever's Stalk With The Earthmother as shaman-only")
+    check(ns.DB:GetQuest(76156) and ns.DB:GetQuest(76156).forever and ns.DB:GetQuest(76156).classes == 64, "the overlay marks Forever's Stalk With The Earthmother as shaman-only")
     local mine = MOCK.class
     MOCK.class = { "Warrior", "WARRIOR", 1 }; ns.Player.cache = {}
     check(ns.DB:RaceClassOK(76156) == false, "a warrior cannot take the shaman quest")
@@ -2734,6 +2826,30 @@ do
     check(tb:IsShown(), "...and shows again with it")
     ns.db.ui.height = savedHeight
     ns.QuestGuide:Layout()
+end
+
+-- ---- a long guide builds only the rows on screen -------------------------------------
+-- WoW never frees a frame, so a row per step would keep a few hundred frames for the session.
+do
+    local f = ns.QuestGuide.frame
+    local before = G.active and G.active.id
+    G:Activate(chapterId("GEN_ALLIANCE_HUMAN_01_"), true); ns.UI:Refresh(); settle()
+    local l = f.list
+    local n = #l.entries
+    check(n > 100, "the Elwynn chapter lists its whole route (" .. n .. " rows)")
+    check(#l.rows <= 30, "only the rows in view have a frame (" .. #l.rows .. " for " .. n .. " entries)")
+    check(l.height > 100 * ns.QuestRow.HEIGHT_ONE, "the list still scrolls over the whole guide (" .. l.height .. ")")
+    ns.QuestGuide:ScrollToFraction(1); settle()
+    local last = l:RowFor(n)
+    check(last ~= nil and last:IsShown() and last.entry == l.entries[n], "scrolled to the bottom, the last step has its row")
+    check(l:RowFor(1) == nil, "...and the first step, far off screen, has none")
+    local shown = 0
+    for _, r in ipairs(l.rows) do if r:IsShown() then shown = shown + 1 end end
+    check(#l.rows <= 30 and shown > 0, "scrolling reuses the rows (" .. #l.rows .. " frames)")
+    ns.QuestGuide:ScrollToFraction(0); settle()
+    check(l:RowFor(1) ~= nil and l:RowFor(1).entry == l.entries[1], "back at the top, the first step has its row again")
+    if before then G:Activate(before, true) end
+    ns.UI:Refresh(); settle()
 end
 
 -- ---- no swallowed errors anywhere -------------------------------------------------

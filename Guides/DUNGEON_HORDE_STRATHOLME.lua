@@ -13,53 +13,53 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Stratholme: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 47,
-    steps = function() return {
-        { type = "ACCEPT", quest = 5166, questName = "Breastplate of the Chromatic Flight", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.7 }, -- 1
-        { type = "ACCEPT", quest = 5848, questName = "Of Love and Family", npc = 11936, npcName = "Artist Renfray", map = 1422, zone = "Western Plaguelands", x = 65.6, y = 75.4 }, -- 2
-        { type = "ACCEPT", quest = 5063, questName = "Cap of the Scarlet Savant", map = 1452, zone = "Winterspring", x = 61, y = 38.8 }, -- 3
-        { type = "ACCEPT", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 4
-        { type = "ACCEPT", quest = 5214, questName = "The Great Fras Siabi", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 5
-        { type = "ACCEPT", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 6
-        { type = "ACCEPT", quest = 5251, questName = "The Archivist", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 7
-        { type = "ACCEPT", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.4, y = 33.6 }, -- 8
-        { type = "ACCEPT", quest = 5463, questName = "Menethil's Gift", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 9
-        { type = "ACCEPT", quest = 6163, questName = "Ramstein", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.6, y = 74.8 }, -- 10
-        { type = "NOTE", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4, text = "Find a group for Stratholme", note = "All quests available from level 57; hand them in by level 60 for full XP" }, -- 11
-        { type = "ACCEPT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 12
-        { type = "COLLECT", quest = 5063, questName = "Cap of the Scarlet Savant", target = "Frayed Abomination Stitching", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 13
-        { type = "COLLECT", quest = 5063, questName = "Cap of the Scarlet Savant", target = "Arcane Crystal", count = 8, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 14
-        { type = "COLLECT", quest = 5063, questName = "Cap of the Scarlet Savant", target = "Enchanted Scarlet Thread", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 15
-        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Brilliant Chromatic Scale", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 16
-        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Blood of Heroes", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 17
-        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Frayed Abomination Stitching", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 18
-        { type = "COLLECT", quest = 5212, questName = "The Flesh Does Not Lie", target = "Plagued Flesh Sample", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 19
-        { type = "COLLECT", quest = 5214, questName = "The Great Fras Siabi", target = "Grimm's Premium Tobacco", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 20
-        { type = "COLLECT", quest = 5243, questName = "Houses of the Holy", target = "Stratholme Holy Water", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 21
-        { type = "KILL", quest = 5251, questName = "The Archivist", npc = 10811, target = "Archivist Galford", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 22
-        { type = "COMPLETE", quest = 5251, questName = "The Archivist", target = "Archive Burned", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 23
-        { type = "KILL", quest = 5282, questName = "The Restless Souls", npc = 11122, target = "Souls Freed", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 24
-        { type = "COLLECT", quest = 5848, questName = "Of Love and Family", target = "Of Love and Family", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 25
-        { type = "COLLECT", quest = 6163, questName = "Ramstein", target = "Head of Ramstein the Gorger", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 26
-        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Craftsman's Writ: Truesilver Transformer", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 27
-        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Truesilver Transformer", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 28
-        { type = "TURNIN", quest = 5463, questName = "Menethil's Gift", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 29
-        { type = "TURNIN", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 30
-        { type = "TURNIN", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 31
-        { type = "TURNIN", quest = 5214, questName = "The Great Fras Siabi", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 32
-        { type = "TURNIN", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 33
-        { type = "TURNIN", quest = 5251, questName = "The Archivist", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 34
-        { type = "TURNIN", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.4, y = 33.6 }, -- 35
-        { type = "TURNIN", quest = 5848, questName = "Of Love and Family", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.4, y = 43.6 }, -- 36
-        { type = "TURNIN", quest = 6163, questName = "Ramstein", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.6, y = 74.8 }, -- 37
-        { type = "TURNIN", quest = 5063, questName = "Cap of the Scarlet Savant", npc = 10637, npcName = "Malyfous Darkhammer", map = 1452, zone = "Winterspring", x = 61, y = 38.6 }, -- 38
-        { type = "TURNIN", quest = 5166, questName = "Breastplate of the Chromatic Flight", npc = 10976, npcName = "Jeziba", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.8 }, -- 39
-        { type = "ACCEPT", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 40
-        { type = "TURNIN", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6 }, -- 41
-        { type = "ACCEPT", quest = 5262, questName = "The Truth Comes Crashing Down", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 42
-        { type = "TURNIN", quest = 5262, questName = "The Truth Comes Crashing Down", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 43
-        { type = "ACCEPT", quest = 5263, questName = "Above and Beyond", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 44
-        { type = "TURNIN", quest = 5263, questName = "Above and Beyond", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 45
-        { type = "ACCEPT", quest = 5464, questName = "Menethil's Gift", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 10.4 }, -- 46
-        { type = "TURNIN", quest = 5464, questName = "Menethil's Gift", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8 }, -- 47
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=5166,questName="Breastplate of the Chromatic Flight",map=1422,zone="Western Plaguelands",x=39.4,y=66.7},
+{type="ACCEPT",quest=5848,questName="Of Love and Family",npc=11936,npcName="Artist Renfray",map=1422,zone="Western Plaguelands",x=65.6,y=75.4},
+{type="ACCEPT",quest=5063,questName="Cap of the Scarlet Savant",map=1452,zone="Winterspring",x=61,y=38.8},
+{type="ACCEPT",quest=5212,questName="The Flesh Does Not Lie",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6},
+{type="ACCEPT",quest=5214,questName="The Great Fras Siabi",npc=11033,npcName="Smokey LaRue",map=1423,zone="Eastern Plaguelands",x=80.6,y=58},
+{type="ACCEPT",quest=5243,questName="Houses of the Holy",npc=11036,npcName="Leonid Barthalomew the Revered",map=1423,zone="Eastern Plaguelands",x=81.6,y=57.8},
+{type="ACCEPT",quest=5251,questName="The Archivist",npc=11039,npcName="Duke Nicholas Zverenhoff",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.8},
+{type="ACCEPT",quest=5282,questName="The Restless Souls",npc=11140,npcName="Egan",map=1423,zone="Eastern Plaguelands",x=14.4,y=33.6},
+{type="ACCEPT",quest=5463,questName="Menethil's Gift",npc=11036,npcName="Leonid Barthalomew the Revered",map=1423,zone="Eastern Plaguelands",x=81.6,y=57.8},
+{type="ACCEPT",quest=6163,questName="Ramstein",npc=11878,npcName="Nathanos Blightcaller",map=1423,zone="Eastern Plaguelands",x=26.6,y=74.8},
+{type="NOTE",map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4,text="Find a group for Stratholme",note="All quests available from level 57; hand them in by level 60 for full XP"},
+{type="ACCEPT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=5063,questName="Cap of the Scarlet Savant",target="Frayed Abomination Stitching",count=5,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=5063,questName="Cap of the Scarlet Savant",target="Arcane Crystal",count=8,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=5063,questName="Cap of the Scarlet Savant",target="Enchanted Scarlet Thread",count=5,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=5166,questName="Breastplate of the Chromatic Flight",target="Brilliant Chromatic Scale",count=10,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=5166,questName="Breastplate of the Chromatic Flight",target="Blood of Heroes",count=10,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=5166,questName="Breastplate of the Chromatic Flight",target="Frayed Abomination Stitching",count=10,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=5212,questName="The Flesh Does Not Lie",target="Plagued Flesh Sample",count=20,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=5214,questName="The Great Fras Siabi",target="Grimm's Premium Tobacco",count=1,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=5243,questName="Houses of the Holy",target="Stratholme Holy Water",count=5,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="KILL",quest=5251,questName="The Archivist",npc=10811,target="Archivist Galford",count=1,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COMPLETE",quest=5251,questName="The Archivist",target="Archive Burned",count=1,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="KILL",quest=5282,questName="The Restless Souls",npc=11122,target="Souls Freed",count=15,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=5848,questName="Of Love and Family",target="Of Love and Family",count=1,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=6163,questName="Ramstein",target="Head of Ramstein the Gorger",count=1,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",target="Craftsman's Writ: Truesilver Transformer",count=1,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="COLLECT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",target="Truesilver Transformer",count=1,map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="TURNIN",quest=5463,questName="Menethil's Gift",map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="TURNIN",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="TURNIN",quest=5212,questName="The Flesh Does Not Lie",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6},
+{type="TURNIN",quest=5214,questName="The Great Fras Siabi",npc=11033,npcName="Smokey LaRue",map=1423,zone="Eastern Plaguelands",x=80.6,y=58},
+{type="TURNIN",quest=5243,questName="Houses of the Holy",npc=11036,npcName="Leonid Barthalomew the Revered",map=1423,zone="Eastern Plaguelands",x=81.6,y=57.8},
+{type="TURNIN",quest=5251,questName="The Archivist",npc=11039,npcName="Duke Nicholas Zverenhoff",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.8},
+{type="TURNIN",quest=5282,questName="The Restless Souls",npc=11140,npcName="Egan",map=1423,zone="Eastern Plaguelands",x=14.4,y=33.6},
+{type="TURNIN",quest=5848,questName="Of Love and Family",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.4,y=43.6},
+{type="TURNIN",quest=6163,questName="Ramstein",npc=11878,npcName="Nathanos Blightcaller",map=1423,zone="Eastern Plaguelands",x=26.6,y=74.8},
+{type="TURNIN",quest=5063,questName="Cap of the Scarlet Savant",npc=10637,npcName="Malyfous Darkhammer",map=1452,zone="Winterspring",x=61,y=38.6},
+{type="TURNIN",quest=5166,questName="Breastplate of the Chromatic Flight",npc=10976,npcName="Jeziba",map=1422,zone="Western Plaguelands",x=39.4,y=66.8},
+{type="ACCEPT",quest=5213,questName="The Active Agent",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6},
+{type="TURNIN",quest=5213,questName="The Active Agent",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6},
+{type="ACCEPT",quest=5262,questName="The Truth Comes Crashing Down",map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="TURNIN",quest=5262,questName="The Truth Comes Crashing Down",npc=11039,npcName="Duke Nicholas Zverenhoff",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.8},
+{type="ACCEPT",quest=5263,questName="Above and Beyond",npc=11039,npcName="Duke Nicholas Zverenhoff",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.8},
+{type="TURNIN",quest=5263,questName="Above and Beyond",npc=11039,npcName="Duke Nicholas Zverenhoff",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.8},
+{type="ACCEPT",quest=5464,questName="Menethil's Gift",map=1423,zone="Eastern Plaguelands",x=26.5,y=10.4},
+{type="TURNIN",quest=5464,questName="Menethil's Gift",npc=11036,npcName="Leonid Barthalomew the Revered",map=1423,zone="Eastern Plaguelands",x=81.6,y=57.8}
+}]],
 })

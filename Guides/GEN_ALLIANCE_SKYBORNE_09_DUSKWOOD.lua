@@ -14,39 +14,39 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 9 of the Skyborne route: level 28 to 30, 29 steps, ~191 min of play in the model (7153 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 33,
-    steps = function() return {
-        { type = "TRAVEL", map = 1431, zone = "Duskwood", x = 74.9, y = 47.6, radius = 60, note = "travel to Duskwood (Duskwood)" }, -- 1
-        { type = "ACCEPT", quest = 221, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 2
-        { type = "ACCEPT", quest = 58, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 3
-        { type = "ACCEPT", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 4
-        { type = "KILL", quest = 253, questName = "Bride of the Embalmer", npc = 314, target = "Eliza", map = 1431, zone = "Duskwood", x = 28.8, y = 30.9, optional = true }, -- 5
-        { type = "TURNIN", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4, optional = true }, -- 6
-        { type = "KILL", quest = 221, questName = "Worgen in the Woods", npc = 205, target = "Nightbane Dark Runner", count = 12, map = 1431, zone = "Duskwood", x = 60.8, y = 41.5, near = true }, -- 7
-        { type = "KILL", quest = 58, questName = "The Night Watch", npc = 604, target = "Plague Spreader", count = 20, map = 1431, zone = "Duskwood", x = 25.9, y = 35.2, near = true }, -- 8
-        { type = "ACCEPT", quest = 134, questName = "Ogre Thieves", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 9
-        { type = "ACCEPT", quest = 225, questName = "The Weathered Grave", map = 1431, zone = "Duskwood", x = 17.7, y = 29.2 }, -- 10
-        { type = "COLLECT", quest = 134, questName = "Ogre Thieves", target = "Abercrombie's Crate", map = 1431, zone = "Duskwood", x = 33.4, y = 76.4, near = true }, -- 11
-        { type = "TURNIN", quest = 134, questName = "Ogre Thieves", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 12
-        { type = "ACCEPT", quest = 160, questName = "Note to the Mayor", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 13
-        { type = "TURNIN", quest = 221, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 14
-        { type = "ACCEPT", quest = 222, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 15
-        { type = "TURNIN", quest = 58, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 16
-        { type = "TURNIN", quest = 160, questName = "Note to the Mayor", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 17
-        { type = "ACCEPT", quest = 251, questName = "Translate Abercrombie's Note", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 18
-        { type = "TURNIN", quest = 225, questName = "The Weathered Grave", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 19
-        { type = "TURNIN", quest = 251, questName = "Translate Abercrombie's Note", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 20
-        { type = "ACCEPT", quest = 227, questName = "Morgan Ladimore", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 21
-        { type = "ACCEPT", quest = 401, questName = "Wait for Sirra to Finish", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 22
-        { type = "TURNIN", quest = 401, questName = "Wait for Sirra to Finish", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 23
-        { type = "ACCEPT", quest = 252, questName = "Translation to Ello", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 24
-        { type = "TURNIN", quest = 252, questName = "Translation to Ello", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 25
-        { type = "KILL", quest = 222, questName = "Worgen in the Woods", npc = 206, target = "Nightbane Vile Fang", count = 8, map = 1431, zone = "Duskwood", x = 72.3, y = 68.4, near = true }, -- 26
-        { type = "KILL", quest = 222, questName = "Worgen in the Woods", npc = 920, target = "Nightbane Tainted One", count = 8, map = 1431, zone = "Duskwood", x = 73.5, y = 77, near = true }, -- 27
-        { type = "TURNIN", quest = 222, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 28
-        { type = "ACCEPT", quest = 223, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 29
-        { type = "TURNIN", quest = 223, questName = "Worgen in the Woods", npc = 661, npcName = "Jonathan Carevin", map = 1431, zone = "Duskwood", x = 75.3, y = 49 }, -- 30
-        { type = "TURNIN", quest = 227, questName = "Morgan Ladimore", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.6, y = 46.8 }, -- 31
-        { type = "GRIND", npc = 205, target = "Nightbane Dark Runner", level = 29, map = 1431, zone = "Duskwood", x = 64.7, y = 51.9, near = true, note = "grind Nightbane Dark Runner (level 28-29) to level 29 - nothing worth questing at 28" }, -- 32
-        { type = "GRIND", npc = 205, target = "Nightbane Dark Runner", level = 30, map = 1431, zone = "Duskwood", x = 64.7, y = 51.9, near = true, note = "grind Nightbane Dark Runner (level 28-29) to level 30 - nothing worth questing at 29" }, -- 33
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1431,zone="Duskwood",x=74.9,y=47.6,radius=60,note="travel to Duskwood (Duskwood)"},
+{type="ACCEPT",quest=221,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.8,y=47.6},
+{type="ACCEPT",quest=58,questName="The Night Watch",npc=264,npcName="Commander Althea Ebonlocke",map=1431,zone="Duskwood",x=73.5,y=46.8},
+{type="ACCEPT",quest=253,questName="Bride of the Embalmer",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.9,y=46.4,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="KILL",quest=253,questName="Bride of the Embalmer",npc=314,target="Eliza",map=1431,zone="Duskwood",x=28.8,y=30.9,optional=true},
+{type="TURNIN",quest=253,questName="Bride of the Embalmer",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.9,y=46.4,optional=true},
+{type="KILL",quest=221,questName="Worgen in the Woods",npc=205,target="Nightbane Dark Runner",count=12,map=1431,zone="Duskwood",x=60.8,y=41.5,near=true},
+{type="KILL",quest=58,questName="The Night Watch",npc=604,target="Plague Spreader",count=20,map=1431,zone="Duskwood",x=25.9,y=35.2,near=true},
+{type="ACCEPT",quest=134,questName="Ogre Thieves",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="ACCEPT",quest=225,questName="The Weathered Grave",map=1431,zone="Duskwood",x=17.7,y=29.2},
+{type="COLLECT",quest=134,questName="Ogre Thieves",target="Abercrombie's Crate",map=1431,zone="Duskwood",x=33.4,y=76.4,near=true},
+{type="TURNIN",quest=134,questName="Ogre Thieves",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="ACCEPT",quest=160,questName="Note to the Mayor",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="TURNIN",quest=221,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.8,y=47.6},
+{type="ACCEPT",quest=222,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.8,y=47.6},
+{type="TURNIN",quest=58,questName="The Night Watch",npc=264,npcName="Commander Althea Ebonlocke",map=1431,zone="Duskwood",x=73.5,y=46.8},
+{type="TURNIN",quest=160,questName="Note to the Mayor",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.9,y=46.4},
+{type="ACCEPT",quest=251,questName="Translate Abercrombie's Note",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.9,y=46.4},
+{type="TURNIN",quest=225,questName="The Weathered Grave",npc=268,npcName="Sirra Von'Indi",map=1431,zone="Duskwood",x=72.6,y=47.6},
+{type="TURNIN",quest=251,questName="Translate Abercrombie's Note",npc=268,npcName="Sirra Von'Indi",map=1431,zone="Duskwood",x=72.6,y=47.6},
+{type="ACCEPT",quest=227,questName="Morgan Ladimore",npc=268,npcName="Sirra Von'Indi",map=1431,zone="Duskwood",x=72.6,y=47.6},
+{type="ACCEPT",quest=401,questName="Wait for Sirra to Finish",npc=268,npcName="Sirra Von'Indi",map=1431,zone="Duskwood",x=72.6,y=47.6},
+{type="TURNIN",quest=401,questName="Wait for Sirra to Finish",npc=268,npcName="Sirra Von'Indi",map=1431,zone="Duskwood",x=72.6,y=47.6},
+{type="ACCEPT",quest=252,questName="Translation to Ello",npc=268,npcName="Sirra Von'Indi",map=1431,zone="Duskwood",x=72.6,y=47.6},
+{type="TURNIN",quest=252,questName="Translation to Ello",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.9,y=46.4},
+{type="KILL",quest=222,questName="Worgen in the Woods",npc=206,target="Nightbane Vile Fang",count=8,map=1431,zone="Duskwood",x=72.3,y=68.4,near=true},
+{type="KILL",quest=222,questName="Worgen in the Woods",npc=920,target="Nightbane Tainted One",count=8,map=1431,zone="Duskwood",x=73.5,y=77,near=true},
+{type="TURNIN",quest=222,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.8,y=47.6},
+{type="ACCEPT",quest=223,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.8,y=47.6},
+{type="TURNIN",quest=223,questName="Worgen in the Woods",npc=661,npcName="Jonathan Carevin",map=1431,zone="Duskwood",x=75.3,y=49},
+{type="TURNIN",quest=227,questName="Morgan Ladimore",npc=264,npcName="Commander Althea Ebonlocke",map=1431,zone="Duskwood",x=73.6,y=46.8},
+{type="GRIND",npc=205,target="Nightbane Dark Runner",level=29,map=1431,zone="Duskwood",x=64.7,y=51.9,near=true,note="grind Nightbane Dark Runner (level 28-29) to level 29 - nothing worth questing at 28"},
+{type="GRIND",npc=205,target="Nightbane Dark Runner",level=30,map=1431,zone="Duskwood",x=64.7,y=51.9,near=true,note="grind Nightbane Dark Runner (level 28-29) to level 30 - nothing worth questing at 29"}
+}]],
 })

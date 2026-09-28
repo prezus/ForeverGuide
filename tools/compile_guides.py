@@ -131,7 +131,17 @@ def lua_string(s):
     return '"' + s.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n") + '"'
 
 
-def lua_value(v, indent=0):
+def long_string(s):
+    """s as a Lua long-bracket literal, at the lowest level its text does not close."""
+    eq = ""
+    while "]" + eq + "]" in s:
+        eq += "="
+    return "[" + eq + "[" + s + "]" + eq + "]"
+
+
+def lua_value(v, indent=0, compact=False):
+    """v as Lua; compact leaves out the spaces (packed step text, kept in memory as written)."""
+    sep, eq = ("," , "=") if compact else (", ", " = ")
     if isinstance(v, bool):
         return "true" if v else "false"
     if isinstance(v, int):
@@ -141,11 +151,12 @@ def lua_value(v, indent=0):
     if isinstance(v, str):
         return lua_string(v)
     if isinstance(v, list):
-        return "{ " + ", ".join(lua_value(x, indent) for x in v) + " }"
+        inner = sep.join(lua_value(x, indent, compact) for x in v)
+        return "{" + inner + "}" if compact else "{ " + inner + " }"
     if isinstance(v, dict):
         keys = [k for k in KEY_ORDER if k in v] + sorted(k for k in v if k not in KEY_ORDER)
-        parts = [f"{k} = {lua_value(v[k], indent)}" for k in keys]
-        return "{ " + ", ".join(parts) + " }"
+        inner = sep.join(f"{k}{eq}{lua_value(v[k], indent, compact)}" for k in keys)
+        return "{" + inner + "}" if compact else "{ " + inner + " }"
     raise GuideError(f"cannot serialise {v!r}")
 
 
@@ -158,13 +169,12 @@ def compile_guide(guide):
     for key in ("id", "name", "version", "kind", "faction", "race", "class", "minLevel", "maxLevel", "map", "zone", "next", "author", "notes", "modelMinutes", "modelXph"):
         if key in guide:
             lines.append(f"    {key} = {lua_value(guide[key])},")
-    # steps are built on first use (a closure), not at login: 425 guides x ~40 steps as live
-    # tables cost ~25 MB of addon memory; as bytecode they cost a fraction of that
+    # the steps are one table-constructor string, decoded the first time the guide is read
+    # (Data/README.md, "Storage"): as live tables every guide's steps cost ~25 MB, as bytecode
+    # ~10 MB, as text about a fifth of that
     lines.append(f"    stepCount = {len(guide['steps'])},")
-    lines.append("    steps = function() return {")
-    for i, step in enumerate(guide["steps"], start=1):
-        lines.append(f"        {lua_value(step)}, -- {i}")
-    lines.append("    } end,")
+    body = "{\n" + ",\n".join(lua_value(step, compact=True) for step in guide["steps"]) + "\n}"
+    lines.append(f"    steps = {long_string(body)},")
     lines.append("})")
     return "\n".join(lines) + "\n"
 

@@ -168,7 +168,7 @@ def main():
     folder = sys.argv[1]
     # which ids are Forever-only (no vanilla positions)? everything >= 60000 plus vanilla ids without a giver
     vanilla = set()
-    with open(os.path.join(foreverdb.ROOT, "Data", "QuestDB.lua"), "r", encoding="utf-8", errors="replace") as fh:
+    with open(os.path.join(foreverdb.TABLES, "QuestDB.lua"), "r", encoding="utf-8", errors="replace") as fh:
         for line in fh:
             m = re.match(r"^\[(\d+)\]=\{(.*)", line)
             if m and ("snpc=" in m.group(2) or "sobj=" in m.group(2)):
@@ -182,7 +182,7 @@ def main():
     # vanilla NPC names -> ids (unique names only), to attach RestedXP's positions to Questie's records
     name_to_id = {}
     dup = set()
-    with open(os.path.join(foreverdb.ROOT, "Data", "NpcDB.lua"), "r", encoding="utf-8", errors="replace") as fh:
+    with open(os.path.join(foreverdb.TABLES, "NpcDB.lua"), "r", encoding="utf-8", errors="replace") as fh:
         for line in fh:
             m = re.match(r"^\[(\d+)\]=\{.*?n=\"((?:[^\"\\]|\\.)*)\"", line)
             if m:

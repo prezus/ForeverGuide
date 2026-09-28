@@ -14,26 +14,26 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 16 of the Skyborne route: level 35 to 35, 15 steps, ~65 min of play in the model (26174 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 20,
-    steps = function() return {
-        { type = "ACCEPT", quest = 707, questName = "Ironband Wants You!", npc = 1356, npcName = "Prospector Stormpike", map = 1455, zone = "Ironforge", x = 74.4, y = 12 }, -- 1
-        { type = "TURNIN", quest = 707, questName = "Ironband Wants You!", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.8, y = 65.6 }, -- 2
-        { type = "TRAVEL", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, radius = 60, note = "travel to Badlands (Badlands)" }, -- 3
-        { type = "ACCEPT", quest = 719, questName = "A Dwarf and His Tools", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.4 }, -- 4
-        { type = "ACCEPT", quest = 718, questName = "Mirages", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 5
-        { type = "ACCEPT", quest = 720, questName = "A Sign of Hope", map = 1418, zone = "Badlands", x = 53, y = 33.9 }, -- 6
-        { type = "TURNIN", quest = 720, questName = "A Sign of Hope", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.4 }, -- 7
-        { type = "ACCEPT", quest = 721, questName = "A Sign of Hope", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.2, optional = true, note = "For Uldaman (dungeon guide)" }, -- 8
-        { type = "COLLECT", quest = 719, questName = "A Dwarf and His Tools", target = "Ryedol's Lucky Pick", map = 1418, zone = "Badlands", x = 52.9, y = 34.4, near = true }, -- 9
-        { type = "TURNIN", quest = 719, questName = "A Dwarf and His Tools", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.4 }, -- 10
-        { type = "ACCEPT", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 11
-        { type = "ACCEPT", quest = 705, questName = "Pearl Diving", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8, optional = true, note = "Elite - group up" }, -- 12
-        { type = "COLLECT", quest = 718, questName = "Mirages", target = "Supply Crate", map = 1418, zone = "Badlands", x = 66.6, y = 22 }, -- 13
-        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "Dentrium Power Stone / An'Alleum Power Stone", count = 8, map = 1418, zone = "Badlands", x = 52.2, y = 27.6, near = true }, -- 14
-        { type = "TURNIN", quest = 718, questName = "Mirages", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 15
-        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 16
-        { type = "TURNIN", quest = 1106, questName = "Martek the Exiled", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 17
-        { type = "ACCEPT", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 18
-        { type = "KILL", quest = 710, questName = "Study of the Elements: Rock", npc = 2735, target = "Lesser Rock Elemental", count = 10, map = 1418, zone = "Badlands", x = 23.5, y = 45.5, near = true, note = "loot Small Stone Shard" }, -- 19
-        { type = "TURNIN", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 20
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=707,questName="Ironband Wants You!",npc=1356,npcName="Prospector Stormpike",map=1455,zone="Ironforge",x=74.4,y=12},
+{type="TURNIN",quest=707,questName="Ironband Wants You!",npc=1344,npcName="Prospector Ironband",map=1432,zone="Loch Modan",x=65.8,y=65.6},
+{type="TRAVEL",map=1418,zone="Badlands",x=49.9,y=47.6,radius=60,note="travel to Badlands (Badlands)"},
+{type="ACCEPT",quest=719,questName="A Dwarf and His Tools",npc=2910,npcName="Prospector Ryedol",map=1418,zone="Badlands",x=53.4,y=43.4},
+{type="ACCEPT",quest=718,questName="Mirages",npc=2860,npcName="Sigrun Ironhew",map=1418,zone="Badlands",x=53.8,y=43.3},
+{type="ACCEPT",quest=720,questName="A Sign of Hope",map=1418,zone="Badlands",x=53,y=33.9},
+{type="TURNIN",quest=720,questName="A Sign of Hope",npc=2910,npcName="Prospector Ryedol",map=1418,zone="Badlands",x=53.4,y=43.4},
+{type="ACCEPT",quest=721,questName="A Sign of Hope",npc=2910,npcName="Prospector Ryedol",map=1418,zone="Badlands",x=53.4,y=43.2,optional=true,note="For Uldaman (dungeon guide)"},
+{type="COLLECT",quest=719,questName="A Dwarf and His Tools",target="Ryedol's Lucky Pick",map=1418,zone="Badlands",x=52.9,y=34.4,near=true},
+{type="TURNIN",quest=719,questName="A Dwarf and His Tools",npc=2910,npcName="Prospector Ryedol",map=1418,zone="Badlands",x=53.4,y=43.4},
+{type="ACCEPT",quest=2418,questName="Power Stones",npc=2817,npcName="Rigglefuzz",map=1418,zone="Badlands",x=42.4,y=52.9},
+{type="ACCEPT",quest=705,questName="Pearl Diving",npc=2817,npcName="Rigglefuzz",map=1418,zone="Badlands",x=42.4,y=52.8,optional=true,note="Elite - group up"},
+{type="COLLECT",quest=718,questName="Mirages",target="Supply Crate",map=1418,zone="Badlands",x=66.6,y=22},
+{type="COLLECT",quest=2418,questName="Power Stones",target="Dentrium Power Stone / An'Alleum Power Stone",count=8,map=1418,zone="Badlands",x=52.2,y=27.6,near=true},
+{type="TURNIN",quest=718,questName="Mirages",npc=2860,npcName="Sigrun Ironhew",map=1418,zone="Badlands",x=53.8,y=43.3},
+{type="TURNIN",quest=2418,questName="Power Stones",npc=2817,npcName="Rigglefuzz",map=1418,zone="Badlands",x=42.4,y=52.9},
+{type="TURNIN",quest=1106,questName="Martek the Exiled",npc=4618,npcName="Martek the Exiled",map=1418,zone="Badlands",x=42.2,y=52.6},
+{type="ACCEPT",quest=710,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
+{type="KILL",quest=710,questName="Study of the Elements: Rock",npc=2735,target="Lesser Rock Elemental",count=10,map=1418,zone="Badlands",x=23.5,y=45.5,near=true,note="loot Small Stone Shard"},
+{type="TURNIN",quest=710,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9}
+}]],
 })

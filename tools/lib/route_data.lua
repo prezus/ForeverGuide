@@ -9,12 +9,12 @@ local M = {}
 function M.load(root)
     local ns = {}
     local function loadData(file)
-        local chunk = assert(loadfile(root .. "Data/" .. file))
+        local chunk = assert(loadfile(root .. "data-src/tables/" .. file))
         chunk("ForeverGuide", ns)
     end
     loadData("ZoneDB.lua") loadData("QuestDB.lua") loadData("NpcDB.lua") loadData("ObjectDB.lua") loadData("ItemDB.lua")
     local Q, N, O, I, Z = ns.QuestDB, ns.NpcDB, ns.ObjectDB, ns.ItemDB, ns.ZoneDB
-    local f = io.open(root .. "Data/ForeverQuestIDs.lua", "r")
+    local f = io.open(root .. "data-src/tables/ForeverQuestIDs.lua", "r")
     local gone = 0
     if f then
         f:close()
@@ -29,7 +29,7 @@ function M.load(root)
     return M
 end
 
--- ---- WoW Forever overlay (Data/ForeverDB.lua) ----------------------------------------
+-- ---- WoW Forever overlay (data-src/tables/ForeverDB.lua) ----------------------------------------
 -- New quests / npcs recorded in-game or cross-referenced from other sources get
 -- synthetic areaIDs for maps the vanilla tables do not know (100000 + uiMapID).
 function M.mapToArea(map)
@@ -58,10 +58,10 @@ local function spmToSp(spm)
     return sp
 end
 function M.applyOverlay(root, ns)
-    local f = io.open(root .. "Data/ForeverDB.lua", "r")
+    local f = io.open(root .. "data-src/tables/ForeverDB.lua", "r")
     if not f then return end
     f:close()
-    local chunk = assert(loadfile(root .. "Data/ForeverDB.lua"))
+    local chunk = assert(loadfile(root .. "data-src/tables/ForeverDB.lua"))
     chunk("ForeverGuide", ns)
     local F = ns.ForeverDB
     if not F then return end

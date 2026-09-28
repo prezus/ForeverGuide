@@ -10,7 +10,8 @@ Verify client-dependent behavior in-game; the headless mock is not the client.
 - Guide steps: edit `guides-src/*.json` ([schema](guides-src/SCHEMA.md)), then run
   the guide compiler (command below) and commit the generated `Guides/` changes.
 - Quest data: check [Data/README.md](Data/README.md) for source and redistribution
-  constraints before editing inputs. Generated `Data/*.lua` is not hand-edited.
+  constraints before editing inputs. The tools write the full tables to `data-src/tables/`;
+  `lua5.1 tools/pack_data.lua` packs them into `Data/*.lua`. Neither is hand-edited.
 - Engine: follow the existing `ns` module convention and `.toc` load order. Add a new
   file to the `.toc` only if the feature actually needs it.
 
@@ -63,6 +64,7 @@ Use `luajit` in place of `lua5.1` if necessary, and `py -3` in place of
 ```text
 lua5.1 tools/test/run_tests.lua
 python3 tools/compile_guides.py --check
+lua5.1 tools/pack_data.lua --check
 luacheck --std lua51 --no-global --no-unused-args --no-max-line-length Core.lua Database.lua Events.lua Persist.lua Player.lua Navigation.lua Guide.lua DB.lua
 lua-language-server --check . --checklevel=Warning
 ```

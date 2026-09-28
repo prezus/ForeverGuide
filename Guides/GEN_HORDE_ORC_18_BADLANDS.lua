@@ -14,15 +14,15 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 18 of the Orc route: level 39 to 40, 9 steps, ~81 min of play in the model (7218 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 9,
-    steps = function() return {
-        { type = "TRAVEL", map = 1418, zone = "Kargath", x = 2.8, y = 45.9, radius = 60, note = "use your hearthstone (Kargath)" }, -- 1
-        { type = "TRAVEL", map = 1418, zone = "Badlands", x = 3.5, y = 46.8, radius = 60, note = "travel to Badlands (Badlands)" }, -- 2
-        { type = "ACCEPT", quest = 2202, questName = "Uldaman Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 3
-        { type = "COLLECT", quest = 2202, questName = "Uldaman Reagent Run", target = "Magenta Fungus Cap", count = 12, map = 1418, zone = "Badlands", x = 34, y = 24.4, near = true }, -- 4
-        { type = "TURNIN", quest = 2202, questName = "Uldaman Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 5
-        { type = "ACCEPT", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 6
-        { type = "KILL", quest = 712, questName = "Study of the Elements: Rock", npc = 2736, target = "Greater Rock Elemental", count = 5, map = 1418, zone = "Badlands", x = 6.6, y = 76.3, near = true, note = "loot Bracers of Rock Binding" }, -- 7
-        { type = "TURNIN", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 8
-        { type = "GRIND", npc = 2729, target = "Elder Crag Coyote", level = 40, map = 1418, zone = "Badlands", x = 24.3, y = 58.6, near = true, note = "grind Elder Crag Coyote (level 38-40) to level 40 - nothing worth questing at 39" }, -- 9
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1418,zone="Kargath",x=2.8,y=45.9,radius=60,note="use your hearthstone (Kargath)"},
+{type="TRAVEL",map=1418,zone="Badlands",x=3.5,y=46.8,radius=60,note="travel to Badlands (Badlands)"},
+{type="ACCEPT",quest=2202,questName="Uldaman Reagent Run",npc=6868,npcName="Jarkal Mossmeld",map=1418,zone="Badlands",x=2.4,y=46.1},
+{type="COLLECT",quest=2202,questName="Uldaman Reagent Run",target="Magenta Fungus Cap",count=12,map=1418,zone="Badlands",x=34,y=24.4,near=true},
+{type="TURNIN",quest=2202,questName="Uldaman Reagent Run",npc=6868,npcName="Jarkal Mossmeld",map=1418,zone="Badlands",x=2.4,y=46.1},
+{type="ACCEPT",quest=712,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
+{type="KILL",quest=712,questName="Study of the Elements: Rock",npc=2736,target="Greater Rock Elemental",count=5,map=1418,zone="Badlands",x=6.6,y=76.3,near=true,note="loot Bracers of Rock Binding"},
+{type="TURNIN",quest=712,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
+{type="GRIND",npc=2729,target="Elder Crag Coyote",level=40,map=1418,zone="Badlands",x=24.3,y=58.6,near=true,note="grind Elder Crag Coyote (level 38-40) to level 40 - nothing worth questing at 39"}
+}]],
 })

@@ -13,29 +13,29 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Blackfathom Deeps: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 23,
-    steps = function() return {
-        { type = "ACCEPT", quest = 6562, questName = "Trouble in the Deeps", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64.2 }, -- 1
-        { type = "TURNIN", quest = 6562, questName = "Trouble in the Deeps", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2 }, -- 2
-        { type = "ACCEPT", quest = 6563, questName = "The Essence of Aku'Mai", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2 }, -- 3
-        { type = "ACCEPT", quest = 6921, questName = "Amongst the Ruins", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2 }, -- 4
-        { type = "NOTE", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2, text = "Find a group for Blackfathom Deeps", note = "All quests available from level 25; hand them in by level 27 for full XP" }, -- 5
-        { type = "ACCEPT", quest = 908, questName = "Amongst the Ruins", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 6
-        { type = "ACCEPT", quest = 909, questName = "Baron Aquanis", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 7
-        { type = "ACCEPT", quest = 6561, questName = "Blackfathom Villainy", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 8
-        { type = "ACCEPT", quest = 6564, questName = "Allegiance to the Old Gods", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 9
-        { type = "ACCEPT", quest = 6922, questName = "Baron Aquanis", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 10
-        { type = "COLLECT", quest = 6563, questName = "The Essence of Aku'Mai", target = "Sapphire of Aku'Mai", count = 20, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 11
-        { type = "COLLECT", quest = 6921, questName = "Amongst the Ruins", target = "Fathom Core", count = 1, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 12
-        { type = "COLLECT", quest = 908, questName = "Amongst the Ruins", target = "Fathom Core", count = 1, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 13
-        { type = "COLLECT", quest = 6561, questName = "Blackfathom Villainy", target = "Head of Kelris", count = 1, map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 14
-        { type = "TURNIN", quest = 908, questName = "Amongst the Ruins", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 15
-        { type = "TURNIN", quest = 909, questName = "Baron Aquanis", map = 1440, zone = "Ashenvale", x = 14.5, y = 14.2 }, -- 16
-        { type = "TURNIN", quest = 6563, questName = "The Essence of Aku'Mai", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2 }, -- 17
-        { type = "TURNIN", quest = 6921, questName = "Amongst the Ruins", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2 }, -- 18
-        { type = "TURNIN", quest = 6564, questName = "Allegiance to the Old Gods", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2 }, -- 19
-        { type = "TURNIN", quest = 6922, questName = "Baron Aquanis", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2 }, -- 20
-        { type = "TURNIN", quest = 6561, questName = "Blackfathom Villainy", npc = 9087, npcName = "Bashana Runetotem", map = 1456, zone = "Thunder Bluff", x = 70.8, y = 33.8 }, -- 21
-        { type = "ACCEPT", quest = 6565, questName = "Allegiance to the Old Gods", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2 }, -- 22
-        { type = "TURNIN", quest = 6565, questName = "Allegiance to the Old Gods", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2 }, -- 23
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=6562,questName="Trouble in the Deeps",npc=11862,npcName="Tsunaman",map=1442,zone="Stonetalon Mountains",x=47.2,y=64.2},
+{type="TURNIN",quest=6562,questName="Trouble in the Deeps",npc=12736,npcName="Je'neu Sancrea",map=1440,zone="Ashenvale",x=11.6,y=34.2},
+{type="ACCEPT",quest=6563,questName="The Essence of Aku'Mai",npc=12736,npcName="Je'neu Sancrea",map=1440,zone="Ashenvale",x=11.6,y=34.2},
+{type="ACCEPT",quest=6921,questName="Amongst the Ruins",npc=12736,npcName="Je'neu Sancrea",map=1440,zone="Ashenvale",x=11.6,y=34.2},
+{type="NOTE",map=1440,zone="Ashenvale",x=14.5,y=14.2,text="Find a group for Blackfathom Deeps",note="All quests available from level 25; hand them in by level 27 for full XP"},
+{type="ACCEPT",quest=908,questName="Amongst the Ruins",map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="ACCEPT",quest=909,questName="Baron Aquanis",map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="ACCEPT",quest=6561,questName="Blackfathom Villainy",map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="ACCEPT",quest=6564,questName="Allegiance to the Old Gods",map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="ACCEPT",quest=6922,questName="Baron Aquanis",map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="COLLECT",quest=6563,questName="The Essence of Aku'Mai",target="Sapphire of Aku'Mai",count=20,map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="COLLECT",quest=6921,questName="Amongst the Ruins",target="Fathom Core",count=1,map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="COLLECT",quest=908,questName="Amongst the Ruins",target="Fathom Core",count=1,map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="COLLECT",quest=6561,questName="Blackfathom Villainy",target="Head of Kelris",count=1,map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="TURNIN",quest=908,questName="Amongst the Ruins",map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="TURNIN",quest=909,questName="Baron Aquanis",map=1440,zone="Ashenvale",x=14.5,y=14.2},
+{type="TURNIN",quest=6563,questName="The Essence of Aku'Mai",npc=12736,npcName="Je'neu Sancrea",map=1440,zone="Ashenvale",x=11.6,y=34.2},
+{type="TURNIN",quest=6921,questName="Amongst the Ruins",npc=12736,npcName="Je'neu Sancrea",map=1440,zone="Ashenvale",x=11.6,y=34.2},
+{type="TURNIN",quest=6564,questName="Allegiance to the Old Gods",npc=12736,npcName="Je'neu Sancrea",map=1440,zone="Ashenvale",x=11.6,y=34.2},
+{type="TURNIN",quest=6922,questName="Baron Aquanis",npc=12736,npcName="Je'neu Sancrea",map=1440,zone="Ashenvale",x=11.6,y=34.2},
+{type="TURNIN",quest=6561,questName="Blackfathom Villainy",npc=9087,npcName="Bashana Runetotem",map=1456,zone="Thunder Bluff",x=70.8,y=33.8},
+{type="ACCEPT",quest=6565,questName="Allegiance to the Old Gods",npc=12736,npcName="Je'neu Sancrea",map=1440,zone="Ashenvale",x=11.6,y=34.2},
+{type="TURNIN",quest=6565,questName="Allegiance to the Old Gods",npc=12736,npcName="Je'neu Sancrea",map=1440,zone="Ashenvale",x=11.6,y=34.2}
+}]],
 })

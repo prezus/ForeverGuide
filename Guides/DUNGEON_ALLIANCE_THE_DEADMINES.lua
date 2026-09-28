@@ -13,24 +13,24 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "The Deadmines: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 18,
-    steps = function() return {
-        { type = "ACCEPT", quest = 167, questName = "Oh Brother...", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2 }, -- 1
-        { type = "ACCEPT", quest = 168, questName = "Collecting Memories", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2 }, -- 2
-        { type = "ACCEPT", quest = 2040, questName = "Underground Assault", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6 }, -- 3
-        { type = "ACCEPT", quest = 166, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 4
-        { type = "ACCEPT", quest = 214, questName = "Red Silk Bandanas", npc = 820, npcName = "Scout Riell", map = 1436, zone = "Westfall", x = 56.6, y = 47.4 }, -- 5
-        { type = "NOTE", map = 1436, zone = "Westfall", x = 42.5, y = 71.7, text = "Find a group for The Deadmines", note = "All quests available from level 16; hand them in by level 22 for full XP" }, -- 6
-        { type = "ACCEPT", quest = 373, questName = "The Unsent Letter", map = 1436, zone = "Westfall", x = 42.5, y = 71.7 }, -- 7
-        { type = "COLLECT", quest = 166, questName = "The Defias Brotherhood", target = "Head of VanCleef", count = 1, map = 1436, zone = "Westfall", x = 42.5, y = 71.7 }, -- 8
-        { type = "COLLECT", quest = 167, questName = "Oh Brother...", target = "Thistlenettle's Badge", count = 1, map = 1436, zone = "Westfall", x = 42.5, y = 71.7 }, -- 9
-        { type = "COLLECT", quest = 168, questName = "Collecting Memories", target = "Miners' Union Card", count = 4, map = 1436, zone = "Westfall", x = 42.5, y = 71.7 }, -- 10
-        { type = "COLLECT", quest = 214, questName = "Red Silk Bandanas", target = "Red Silk Bandana", count = 10, map = 1436, zone = "Westfall", x = 42.5, y = 71.7 }, -- 11
-        { type = "COLLECT", quest = 2040, questName = "Underground Assault", target = "Gnoam Sprecklesprocket", count = 1, map = 1436, zone = "Westfall", x = 42.5, y = 71.7 }, -- 12
-        { type = "TURNIN", quest = 166, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.2, y = 47.6 }, -- 13
-        { type = "TURNIN", quest = 214, questName = "Red Silk Bandanas", npc = 820, npcName = "Scout Riell", map = 1436, zone = "Westfall", x = 56.6, y = 47.4 }, -- 14
-        { type = "TURNIN", quest = 167, questName = "Oh Brother...", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2 }, -- 15
-        { type = "TURNIN", quest = 168, questName = "Collecting Memories", npc = 656, npcName = "Wilder Thistlenettle", map = 1453, zone = "Stormwind City", x = 65.2, y = 21.2 }, -- 16
-        { type = "TURNIN", quest = 2040, questName = "Underground Assault", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6 }, -- 17
-        { type = "TURNIN", quest = 373, questName = "The Unsent Letter", npc = 1646, npcName = "Baros Alexston", map = 1453, zone = "Stormwind City", x = 49, y = 30.2 }, -- 18
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=167,questName="Oh Brother...",npc=656,npcName="Wilder Thistlenettle",map=1453,zone="Stormwind City",x=65.2,y=21.2},
+{type="ACCEPT",quest=168,questName="Collecting Memories",npc=656,npcName="Wilder Thistlenettle",map=1453,zone="Stormwind City",x=65.2,y=21.2},
+{type="ACCEPT",quest=2040,questName="Underground Assault",npc=6579,npcName="Shoni the Shilent",map=1453,zone="Stormwind City",x=55.4,y=12.6},
+{type="ACCEPT",quest=166,questName="The Defias Brotherhood",npc=234,npcName="Gryan Stoutmantle",map=1436,zone="Westfall",x=56.2,y=47.6},
+{type="ACCEPT",quest=214,questName="Red Silk Bandanas",npc=820,npcName="Scout Riell",map=1436,zone="Westfall",x=56.6,y=47.4},
+{type="NOTE",map=1436,zone="Westfall",x=42.5,y=71.7,text="Find a group for The Deadmines",note="All quests available from level 16; hand them in by level 22 for full XP"},
+{type="ACCEPT",quest=373,questName="The Unsent Letter",map=1436,zone="Westfall",x=42.5,y=71.7},
+{type="COLLECT",quest=166,questName="The Defias Brotherhood",target="Head of VanCleef",count=1,map=1436,zone="Westfall",x=42.5,y=71.7},
+{type="COLLECT",quest=167,questName="Oh Brother...",target="Thistlenettle's Badge",count=1,map=1436,zone="Westfall",x=42.5,y=71.7},
+{type="COLLECT",quest=168,questName="Collecting Memories",target="Miners' Union Card",count=4,map=1436,zone="Westfall",x=42.5,y=71.7},
+{type="COLLECT",quest=214,questName="Red Silk Bandanas",target="Red Silk Bandana",count=10,map=1436,zone="Westfall",x=42.5,y=71.7},
+{type="COLLECT",quest=2040,questName="Underground Assault",target="Gnoam Sprecklesprocket",count=1,map=1436,zone="Westfall",x=42.5,y=71.7},
+{type="TURNIN",quest=166,questName="The Defias Brotherhood",npc=234,npcName="Gryan Stoutmantle",map=1436,zone="Westfall",x=56.2,y=47.6},
+{type="TURNIN",quest=214,questName="Red Silk Bandanas",npc=820,npcName="Scout Riell",map=1436,zone="Westfall",x=56.6,y=47.4},
+{type="TURNIN",quest=167,questName="Oh Brother...",npc=656,npcName="Wilder Thistlenettle",map=1453,zone="Stormwind City",x=65.2,y=21.2},
+{type="TURNIN",quest=168,questName="Collecting Memories",npc=656,npcName="Wilder Thistlenettle",map=1453,zone="Stormwind City",x=65.2,y=21.2},
+{type="TURNIN",quest=2040,questName="Underground Assault",npc=6579,npcName="Shoni the Shilent",map=1453,zone="Stormwind City",x=55.4,y=12.6},
+{type="TURNIN",quest=373,questName="The Unsent Letter",npc=1646,npcName="Baros Alexston",map=1453,zone="Stormwind City",x=49,y=30.2}
+}]],
 })

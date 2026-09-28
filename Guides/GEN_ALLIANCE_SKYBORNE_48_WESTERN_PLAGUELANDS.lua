@@ -14,30 +14,30 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 48 of the Skyborne route: level 54 to 55, 22 steps, ~192 min of play in the model (15796 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 24,
-    steps = function() return {
-        { type = "TRAVEL", map = 1423, zone = "Light's Hope Chapel", x = 71.8, y = 48.5, radius = 60, note = "use your hearthstone (Light's Hope Chapel)" }, -- 1
-        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.6, y = 83.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 2
-        { type = "ACCEPT", quest = 6023, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 3
-        { type = "KILL", quest = 6023, questName = "Unfinished Business", npc = 11611, target = "Cavalier Durgen", count = 1, map = 1422, zone = "Western Plaguelands", x = 55.2, y = 23.6 }, -- 4
-        { type = "KILL", quest = 6023, questName = "Unfinished Business", npc = 11613, target = "Huntsman Radley", count = 1, map = 1422, zone = "Western Plaguelands", x = 57.8, y = 36.1 }, -- 5
-        { type = "TURNIN", quest = 6023, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 6
-        { type = "GRIND", npc = 1816, target = "Diseased Grizzly", level = 55, map = 1422, zone = "Western Plaguelands", x = 55, y = 45.8, near = true, note = "grind Diseased Grizzly (level 55-56) to level 55 - nothing worth questing at 54" }, -- 7
-        { type = "ACCEPT", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 8
-        { type = "COMPLETE", quest = 6025, questName = "Unfinished Business", target = "Overlook Hearthglen from a high vantage point", map = 1422, zone = "Western Plaguelands", x = 45.8, y = 18.2, note = "Overlook Hearthglen from a high vantage point" }, -- 9
-        { type = "TURNIN", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 10
-        { type = "ACCEPT", quest = 5521, questName = "Chromatic Mantle of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.8, note = "Objectives: Argent Dawn" }, -- 11
-        { type = "ACCEPT", quest = 5533, questName = "Scholomance", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 12
-        { type = "ACCEPT", quest = 5225, questName = "Target: Gahrron's Withering", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 13
-        { type = "TURNIN", quest = 5533, questName = "Scholomance", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 14
-        { type = "ACCEPT", quest = 5537, questName = "Skeletal Fragments", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 15
-        { type = "COLLECT", quest = 5537, questName = "Skeletal Fragments", target = "Skeletal Fragments", count = 15, map = 1422, zone = "Western Plaguelands", x = 42.6, y = 74.9, near = true }, -- 16
-        { type = "TURNIN", quest = 5537, questName = "Skeletal Fragments", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 17
-        { type = "ACCEPT", quest = 5382, questName = "Doctor Theolen Krastinov, the Butcher", npc = 11216, npcName = "Eva Sarkhoff", map = 1422, zone = "Western Plaguelands", x = 70.2, y = 73.8, optional = true, note = "For Scholomance (dungeon guide)" }, -- 18
-        { type = "KILL", quest = 5225, questName = "Target: Gahrron's Withering", npc = 11078, target = "Cauldron Lord Soulwrath", map = 1422, zone = "Western Plaguelands", x = 62.2, y = 59.1, note = "loot Gahrron's Withering Cauldron Key" }, -- 19
-        { type = "TURNIN", quest = 5225, questName = "Target: Gahrron's Withering", map = 1422, zone = "Western Plaguelands", x = 62.5, y = 58.5 }, -- 20
-        { type = "ACCEPT", quest = 5226, questName = "Return to Chillwind Point", map = 1422, zone = "Western Plaguelands", x = 62.5, y = 58.5 }, -- 21
-        { type = "TURNIN", quest = 5226, questName = "Return to Chillwind Point", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 22
-        { type = "ACCEPT", quest = 5237, questName = "Mission Accomplished!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 23
-        { type = "TURNIN", quest = 5237, questName = "Mission Accomplished!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 24
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1423,zone="Light's Hope Chapel",x=71.8,y=48.5,radius=60,note="use your hearthstone (Light's Hope Chapel)"},
+{type="TRAVEL",map=1422,zone="Western Plaguelands",x=43.6,y=83.7,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
+{type="ACCEPT",quest=6023,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=51.9,y=28.1},
+{type="KILL",quest=6023,questName="Unfinished Business",npc=11611,target="Cavalier Durgen",count=1,map=1422,zone="Western Plaguelands",x=55.2,y=23.6},
+{type="KILL",quest=6023,questName="Unfinished Business",npc=11613,target="Huntsman Radley",count=1,map=1422,zone="Western Plaguelands",x=57.8,y=36.1},
+{type="TURNIN",quest=6023,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=51.9,y=28.1},
+{type="GRIND",npc=1816,target="Diseased Grizzly",level=55,map=1422,zone="Western Plaguelands",x=55,y=45.8,near=true,note="grind Diseased Grizzly (level 55-56) to level 55 - nothing worth questing at 54"},
+{type="ACCEPT",quest=6025,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=51.9,y=28.1},
+{type="COMPLETE",quest=6025,questName="Unfinished Business",target="Overlook Hearthglen from a high vantage point",map=1422,zone="Western Plaguelands",x=45.8,y=18.2,note="Overlook Hearthglen from a high vantage point"},
+{type="TURNIN",quest=6025,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=51.9,y=28.1},
+{type="ACCEPT",quest=5521,questName="Chromatic Mantle of the Dawn",npc=10857,npcName="Argent Quartermaster Lightspark",map=1422,zone="Western Plaguelands",x=42.8,y=83.8,note="Objectives: Argent Dawn"},
+{type="ACCEPT",quest=5533,questName="Scholomance",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
+{type="ACCEPT",quest=5225,questName="Target: Gahrron's Withering",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},
+{type="TURNIN",quest=5533,questName="Scholomance",npc=11056,npcName="Alchemist Arbington",map=1422,zone="Western Plaguelands",x=42.7,y=83.8},
+{type="ACCEPT",quest=5537,questName="Skeletal Fragments",npc=11056,npcName="Alchemist Arbington",map=1422,zone="Western Plaguelands",x=42.7,y=83.8},
+{type="COLLECT",quest=5537,questName="Skeletal Fragments",target="Skeletal Fragments",count=15,map=1422,zone="Western Plaguelands",x=42.6,y=74.9,near=true},
+{type="TURNIN",quest=5537,questName="Skeletal Fragments",npc=11056,npcName="Alchemist Arbington",map=1422,zone="Western Plaguelands",x=42.7,y=83.8},
+{type="ACCEPT",quest=5382,questName="Doctor Theolen Krastinov, the Butcher",npc=11216,npcName="Eva Sarkhoff",map=1422,zone="Western Plaguelands",x=70.2,y=73.8,optional=true,note="For Scholomance (dungeon guide)"},
+{type="KILL",quest=5225,questName="Target: Gahrron's Withering",npc=11078,target="Cauldron Lord Soulwrath",map=1422,zone="Western Plaguelands",x=62.2,y=59.1,note="loot Gahrron's Withering Cauldron Key"},
+{type="TURNIN",quest=5225,questName="Target: Gahrron's Withering",map=1422,zone="Western Plaguelands",x=62.5,y=58.5},
+{type="ACCEPT",quest=5226,questName="Return to Chillwind Point",map=1422,zone="Western Plaguelands",x=62.5,y=58.5},
+{type="TURNIN",quest=5226,questName="Return to Chillwind Point",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},
+{type="ACCEPT",quest=5237,questName="Mission Accomplished!",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
+{type="TURNIN",quest=5237,questName="Mission Accomplished!",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84}
+}]],
 })

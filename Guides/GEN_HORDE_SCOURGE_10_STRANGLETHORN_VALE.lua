@@ -14,53 +14,53 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 10 of the Scourge route: level 34 to 35, 39 steps, ~140 min of play in the model (33089 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 47,
-    steps = function() return {
-        { type = "TURNIN", quest = 1270, questName = "Stinky's Escape", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 1
-        { type = "TRAVEL", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, radius = 60, note = "use your hearthstone (Booty Bay)" }, -- 2
-        { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.4, y = 76.3, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 3
-        { type = "ACCEPT", quest = 213, questName = "Hostile Takeover", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 4
-        { type = "ACCEPT", quest = 577, questName = "Some Assembly Required", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 5
-        { type = "ACCEPT", quest = 628, questName = "Excelsior", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 6
-        { type = "TURNIN", quest = 3637, questName = "Gnome Engineering", npc = 7406, npcName = "Oglethorpe Obnoticus", map = 1434, zone = "Stranglethorn Vale", x = 28.2, y = 76.2, profession = "Engineering", skill = 200 }, -- 7
-        { type = "KILL", quest = 628, questName = "Excelsior", npc = 2635, target = "Elder Saltwater Crocolisk", map = 1434, zone = "Stranglethorn Vale", x = 33.4, y = 32.5, optional = true, near = true }, -- 8
-        { type = "TURNIN", quest = 628, questName = "Excelsior", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6, optional = true }, -- 9
-        { type = "KILL", quest = 577, questName = "Some Assembly Required", npc = 1152, target = "Snapjaw Crocolisk", count = 5, map = 1434, zone = "Stranglethorn Vale", x = 38.4, y = 31.4, near = true, note = "loot Snapjaw Crocolisk Skin" }, -- 10
-        { type = "TURNIN", quest = 1240, questName = "The Troll Witchdoctor", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 11
-        { type = "ACCEPT", quest = 568, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 12
-        { type = "ACCEPT", quest = 596, questName = "Bloody Bone Necklaces", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 13
-        { type = "ACCEPT", quest = 629, questName = "The Vile Reef", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 14
-        { type = "ACCEPT", quest = 1261, questName = "Marg Speaks", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.7 }, -- 15
-        { type = "ACCEPT", quest = 582, questName = "Headhunting", npc = 2497, npcName = "Nimboya", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.7 }, -- 16
-        { type = "KILL", quest = 568, questName = "The Defense of Grom'gol", npc = 686, target = "Lashtail Raptor", count = 15, map = 1434, zone = "Stranglethorn Vale", x = 32.4, y = 24.6, near = true }, -- 17
-        { type = "COLLECT", quest = 596, questName = "Bloody Bone Necklaces", target = "Bloody Bone Necklace", count = 25, map = 1434, zone = "Stranglethorn Vale", x = 29.8, y = 21.6, near = true }, -- 18
-        { type = "COLLECT", quest = 629, questName = "The Vile Reef", target = "Tablet Shard", map = 1434, zone = "Stranglethorn Vale", x = 24.8, y = 23 }, -- 19
-        { type = "KILL", quest = 582, questName = "Headhunting", npc = 671, target = "Bloodscalp Headhunter", count = 20, map = 1434, zone = "Stranglethorn Vale", x = 20.1, y = 13.5, near = true, note = "loot Shrunken Head" }, -- 20
-        { type = "KILL", quest = 213, questName = "Hostile Takeover", npc = 1096, target = "Venture Co. Geologist", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 8.1, near = true, note = "loot Tumbled Crystal" }, -- 21
-        { type = "TURNIN", quest = 568, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 22
-        { type = "ACCEPT", quest = 569, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 23
-        { type = "ACCEPT", quest = 638, questName = "Trollbane", npc = 2497, npcName = "Nimboya", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.8 }, -- 24
-        { type = "TURNIN", quest = 582, questName = "Headhunting", npc = 2497, npcName = "Nimboya", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.7 }, -- 25
-        { type = "TURNIN", quest = 596, questName = "Bloody Bone Necklaces", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 26
-        { type = "TURNIN", quest = 629, questName = "The Vile Reef", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 27
-        { type = "KILL", quest = 569, questName = "The Defense of Grom'gol", npc = 1142, target = "Mosh'Ogg Brute / Mosh'Ogg Witch Doctor", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 30.9, near = true }, -- 28
-        { type = "TURNIN", quest = 569, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 29
-        { type = "ACCEPT", quest = 195, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 30
-        { type = "ACCEPT", quest = 188, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 31
-        { type = "TURNIN", quest = 5762, questName = "Hemet Nesingwary", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8 }, -- 32
-        { type = "KILL", quest = 195, questName = "Raptor Mastery", npc = 686, target = "Lashtail Raptor", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 39.3, y = 19.1, near = true }, -- 33
-        { type = "KILL", quest = 188, questName = "Tiger Mastery", npc = 729, target = "Sin'Dall", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 17.4, near = true, note = "loot Paw of Sin'Dall" }, -- 34
-        { type = "TURNIN", quest = 195, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 35
-        { type = "ACCEPT", quest = 192, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 36
-        { type = "TURNIN", quest = 188, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 37
-        { type = "KILL", quest = 192, questName = "Panther Mastery", npc = 684, target = "Shadowmaw Panther", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 46.1, y = 26.2, near = true }, -- 38
-        { type = "TURNIN", quest = 192, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 39
-        { type = "ACCEPT", quest = 570, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 40
-        { type = "COMPLETE", quest = 570, questName = "Mok'thardin's Enchantment", target = "Shadowmaw Claw / Stranglethorn Tigress", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 38.7, y = 32.9, near = true }, -- 41
-        { type = "TURNIN", quest = 570, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 42
-        { type = "ACCEPT", quest = 8552, questName = "The Monogrammed Sash", npc = 1493, npcName = "Mok'rash", map = 1434, zone = "Stranglethorn Vale", x = 23.3, y = 72.1, optional = true, note = "Loot Monogrammed Sash from Mok'rash and use it to start the quest; Elite - group up" }, -- 43
-        { type = "TURNIN", quest = 8552, questName = "The Monogrammed Sash", npc = 2500, npcName = "Captain Hecklebury Smotts", map = 1434, zone = "Stranglethorn Vale", x = 26.6, y = 73.6, optional = true }, -- 44
-        { type = "TURNIN", quest = 213, questName = "Hostile Takeover", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 45
-        { type = "TURNIN", quest = 577, questName = "Some Assembly Required", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 46
-        { type = "ACCEPT", quest = 624, questName = "Cortello's Riddle", map = 1434, zone = "Stranglethorn Vale", x = 29.2, y = 88.6, note = "Take Cortello's Riddle from the Cortello's Riddle and use it to start the quest" }, -- 47
-    } end,
+    steps = [[{
+{type="TURNIN",quest=1270,questName="Stinky's Escape",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6},
+{type="TRAVEL",map=1434,zone="Booty Bay",x=27.0,y=77.3,radius=60,note="use your hearthstone (Booty Bay)"},
+{type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.4,y=76.3,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
+{type="ACCEPT",quest=213,questName="Hostile Takeover",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
+{type="ACCEPT",quest=577,questName="Some Assembly Required",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
+{type="ACCEPT",quest=628,questName="Excelsior",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="TURNIN",quest=3637,questName="Gnome Engineering",npc=7406,npcName="Oglethorpe Obnoticus",map=1434,zone="Stranglethorn Vale",x=28.2,y=76.2,profession="Engineering",skill=200},
+{type="KILL",quest=628,questName="Excelsior",npc=2635,target="Elder Saltwater Crocolisk",map=1434,zone="Stranglethorn Vale",x=33.4,y=32.5,optional=true,near=true},
+{type="TURNIN",quest=628,questName="Excelsior",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6,optional=true},
+{type="KILL",quest=577,questName="Some Assembly Required",npc=1152,target="Snapjaw Crocolisk",count=5,map=1434,zone="Stranglethorn Vale",x=38.4,y=31.4,near=true,note="loot Snapjaw Crocolisk Skin"},
+{type="TURNIN",quest=1240,questName="The Troll Witchdoctor",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7},
+{type="ACCEPT",quest=568,questName="The Defense of Grom'gol",npc=2464,npcName="Commander Aggro'gosh",map=1434,zone="Stranglethorn Vale",x=32.2,y=28.9},
+{type="ACCEPT",quest=596,questName="Bloody Bone Necklaces",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7},
+{type="ACCEPT",quest=629,questName="The Vile Reef",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7},
+{type="ACCEPT",quest=1261,questName="Marg Speaks",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.7},
+{type="ACCEPT",quest=582,questName="Headhunting",npc=2497,npcName="Nimboya",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.7},
+{type="KILL",quest=568,questName="The Defense of Grom'gol",npc=686,target="Lashtail Raptor",count=15,map=1434,zone="Stranglethorn Vale",x=32.4,y=24.6,near=true},
+{type="COLLECT",quest=596,questName="Bloody Bone Necklaces",target="Bloody Bone Necklace",count=25,map=1434,zone="Stranglethorn Vale",x=29.8,y=21.6,near=true},
+{type="COLLECT",quest=629,questName="The Vile Reef",target="Tablet Shard",map=1434,zone="Stranglethorn Vale",x=24.8,y=23},
+{type="KILL",quest=582,questName="Headhunting",npc=671,target="Bloodscalp Headhunter",count=20,map=1434,zone="Stranglethorn Vale",x=20.1,y=13.5,near=true,note="loot Shrunken Head"},
+{type="KILL",quest=213,questName="Hostile Takeover",npc=1096,target="Venture Co. Geologist",count=8,map=1434,zone="Stranglethorn Vale",x=27.6,y=8.1,near=true,note="loot Tumbled Crystal"},
+{type="TURNIN",quest=568,questName="The Defense of Grom'gol",npc=2464,npcName="Commander Aggro'gosh",map=1434,zone="Stranglethorn Vale",x=32.2,y=28.9},
+{type="ACCEPT",quest=569,questName="The Defense of Grom'gol",npc=2464,npcName="Commander Aggro'gosh",map=1434,zone="Stranglethorn Vale",x=32.2,y=28.9},
+{type="ACCEPT",quest=638,questName="Trollbane",npc=2497,npcName="Nimboya",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.8},
+{type="TURNIN",quest=582,questName="Headhunting",npc=2497,npcName="Nimboya",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.7},
+{type="TURNIN",quest=596,questName="Bloody Bone Necklaces",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7},
+{type="TURNIN",quest=629,questName="The Vile Reef",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7},
+{type="KILL",quest=569,questName="The Defense of Grom'gol",npc=1142,target="Mosh'Ogg Brute / Mosh'Ogg Witch Doctor",map=1434,zone="Stranglethorn Vale",x=35.6,y=30.9,near=true},
+{type="TURNIN",quest=569,questName="The Defense of Grom'gol",npc=2464,npcName="Commander Aggro'gosh",map=1434,zone="Stranglethorn Vale",x=32.2,y=28.9},
+{type="ACCEPT",quest=195,questName="Raptor Mastery",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.7,y=10.8},
+{type="ACCEPT",quest=188,questName="Tiger Mastery",npc=717,npcName="Ajeck Rouack",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="TURNIN",quest=5762,questName="Hemet Nesingwary",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.8},
+{type="KILL",quest=195,questName="Raptor Mastery",npc=686,target="Lashtail Raptor",count=10,map=1434,zone="Stranglethorn Vale",x=39.3,y=19.1,near=true},
+{type="KILL",quest=188,questName="Tiger Mastery",npc=729,target="Sin'Dall",map=1434,zone="Stranglethorn Vale",x=32.2,y=17.4,near=true,note="loot Paw of Sin'Dall"},
+{type="TURNIN",quest=195,questName="Raptor Mastery",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.7,y=10.8},
+{type="ACCEPT",quest=192,questName="Panther Mastery",npc=718,npcName="Sir S. J. Erlgadin",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="TURNIN",quest=188,questName="Tiger Mastery",npc=717,npcName="Ajeck Rouack",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="KILL",quest=192,questName="Panther Mastery",npc=684,target="Shadowmaw Panther",count=10,map=1434,zone="Stranglethorn Vale",x=46.1,y=26.2,near=true},
+{type="TURNIN",quest=192,questName="Panther Mastery",npc=718,npcName="Sir S. J. Erlgadin",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="ACCEPT",quest=570,questName="Mok'thardin's Enchantment",npc=2465,npcName="Far Seer Mok'thardin",map=1434,zone="Stranglethorn Vale",x=32.1,y=29.2},
+{type="COMPLETE",quest=570,questName="Mok'thardin's Enchantment",target="Shadowmaw Claw / Stranglethorn Tigress",count=8,map=1434,zone="Stranglethorn Vale",x=38.7,y=32.9,near=true},
+{type="TURNIN",quest=570,questName="Mok'thardin's Enchantment",npc=2465,npcName="Far Seer Mok'thardin",map=1434,zone="Stranglethorn Vale",x=32.1,y=29.2},
+{type="ACCEPT",quest=8552,questName="The Monogrammed Sash",npc=1493,npcName="Mok'rash",map=1434,zone="Stranglethorn Vale",x=23.3,y=72.1,optional=true,note="Loot Monogrammed Sash from Mok'rash and use it to start the quest; Elite - group up"},
+{type="TURNIN",quest=8552,questName="The Monogrammed Sash",npc=2500,npcName="Captain Hecklebury Smotts",map=1434,zone="Stranglethorn Vale",x=26.6,y=73.6,optional=true},
+{type="TURNIN",quest=213,questName="Hostile Takeover",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
+{type="TURNIN",quest=577,questName="Some Assembly Required",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
+{type="ACCEPT",quest=624,questName="Cortello's Riddle",map=1434,zone="Stranglethorn Vale",x=29.2,y=88.6,note="Take Cortello's Riddle from the Cortello's Riddle and use it to start the quest"}
+}]],
 })

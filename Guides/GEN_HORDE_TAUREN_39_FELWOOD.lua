@@ -14,49 +14,49 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 39 of the Tauren route: level 52 to 52, 10 steps, ~55 min of play in the model (41209 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 43,
-    steps = function() return {
-        { type = "TRAVEL", map = 1448, zone = "Felwood", x = 50.2, y = 82.4, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
-        { type = "ACCEPT", quest = 4102, questName = "Cleansing Felwood", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 2
-        { type = "ACCEPT", quest = 5203, questName = "Rescue From Jaedenar", npc = 11016, npcName = "Captured Arko'narin", map = 1448, zone = "Felwood", x = 36.2, y = 55.4, optional = true, note = "Objectives: Protect Arko'narin out of Shadow Hold" }, -- 3
-        { type = "ACCEPT", quest = 4521, questName = "Wild Guardians", npc = 10306, npcName = "Trull Failbane", map = 1448, zone = "Felwood", x = 34.6, y = 52.6 }, -- 4
-        { type = "TURNIN", quest = 8419, questName = "An Imp's Request", npc = 14470, npcName = "Impsy", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, class = { "WARLOCK" } }, -- 5
-        { type = "COLLECT", quest = 4102, questName = "Cleansing Felwood", target = "Blood Amber", count = 15, map = 1448, zone = "Felwood", x = 58, y = 22.4, near = true }, -- 6
-        { type = "ACCEPT", quest = 8461, questName = "Deadwood of the North", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 7
-        { type = "ACCEPT", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.6, y = 2.8 }, -- 8
-        { type = "COLLECT", quest = 6031, questName = "Runecloth", target = "Runecloth", count = 30, map = 1448, zone = "Felwood", x = 65.2, y = 6.4, near = true, mobs = "Jadefire Trickster / Jadefire Betrayer / Jadefire Shadowstalker / Jadefire Hellcaller" }, -- 9
-        { type = "TURNIN", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.6, y = 2.8 }, -- 10
-        { type = "KILL", quest = 8461, questName = "Deadwood of the North", npc = 7157, target = "Deadwood Avenger / Deadwood Den Watcher / Deadwood Shaman", count = 6, map = 1448, zone = "Felwood", x = 63.7, y = 8.2, near = true }, -- 11
-        { type = "ACCEPT", quest = 8470, questName = "Deadwood Ritual Totem", npc = 7158, npcName = "Deadwood Shaman", map = 1448, zone = "Felwood", x = 64, y = 6.8, optional = true, note = "If you looted Deadwood Ritual Totem from Deadwood Den Watcher / Deadwood Avenger / Deadwood Shaman, use it to start the quest" }, -- 12
-        { type = "TURNIN", quest = 8470, questName = "Deadwood Ritual Totem", npc = 11558, npcName = "Kernda", map = 1448, zone = "Felwood", x = 65.4, y = 2.8, optional = true }, -- 13
-        { type = "TURNIN", quest = 8461, questName = "Deadwood of the North", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 14
-        { type = "TURNIN", quest = 8462, questName = "Speak to Nafien", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.2 }, -- 15
-        { type = "ACCEPT", quest = 8465, questName = "Speak to Salfa", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.2 }, -- 16
-        { type = "TURNIN", quest = 5203, questName = "Rescue From Jaedenar", npc = 11019, npcName = "Jessir Moonbow", map = 1448, zone = "Felwood", x = 51.2, y = 82, optional = true }, -- 17
-        { type = "KILL", quest = 4120, questName = "The Strength of Corruption", npc = 8957, target = "Angerclaw Grizzly", count = 12, map = 1448, zone = "Felwood", x = 55.8, y = 10.4 }, -- 18
-        { type = "KILL", quest = 4120, questName = "The Strength of Corruption", npc = 8961, target = "Felpaw Ravager", count = 12, map = 1448, zone = "Felwood", x = 55.8, y = 10.4 }, -- 19
-        { type = "ACCEPT", quest = 8421, questName = "The Wrong Stuff", npc = 14470, npcName = "Impsy", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, class = { "WARLOCK" } }, -- 20
-        { type = "COLLECT", quest = 8421, questName = "The Wrong Stuff", target = "Rotting Wood", count = 10, map = 1448, zone = "Felwood", x = 50.6, y = 18.2, near = true, class = { "WARLOCK" }, mobs = "Irontree Wanderer / Irontree Stomper / Withered Protector" }, -- 21
-        { type = "COLLECT", quest = 8421, questName = "The Wrong Stuff", target = "Bloodvenom Essence", count = 4, map = 1448, zone = "Felwood", x = 40, y = 56.4, class = { "WARLOCK" }, mobs = "Tainted Ooze" }, -- 22
-        { type = "TURNIN", quest = 8421, questName = "The Wrong Stuff", npc = 14470, npcName = "Impsy", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, class = { "WARLOCK" } }, -- 23
-        { type = "TURNIN", quest = 4102, questName = "Cleansing Felwood", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 24
-        { type = "ACCEPT", quest = 5887, questName = "Salve via Hunting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 25
-        { type = "COLLECT", quest = 5887, questName = "Salve via Hunting", target = "Corrupted Soul Shard", map = 1448, zone = "Felwood", x = 47.1, y = 84, near = true }, -- 26
-        { type = "TURNIN", quest = 5887, questName = "Salve via Hunting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 27
-        { type = "ACCEPT", quest = 5204, questName = "Retribution of the Light", npc = 11019, npcName = "Jessir Moonbow", map = 1448, zone = "Felwood", x = 51.2, y = 82, optional = true }, -- 28
-        { type = "KILL", quest = 5204, questName = "Retribution of the Light", npc = 9518, target = "Rakaiah", count = 1, map = 1448, zone = "Felwood", x = 38, y = 50.6, optional = true }, -- 29
-        { type = "TURNIN", quest = 5204, questName = "Retribution of the Light", npc = 11020, npcName = "Remains of Trey Lightforge", map = 1448, zone = "Felwood", x = 38.4, y = 50.4, optional = true }, -- 30
-        { type = "ACCEPT", quest = 8254, questName = "Cenarion Aid", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" } }, -- 31
-        { type = "ACCEPT", quest = 5888, questName = "Salve via Mining", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Mining", skill = 200 }, -- 32
-        { type = "ACCEPT", quest = 5889, questName = "Salve via Gathering", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, optional = true, profession = "Herbalism", skill = 200, note = "Elite - group up" }, -- 33
-        { type = "ACCEPT", quest = 5890, questName = "Salve via Skinning", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Skinning", skill = 200 }, -- 34
-        { type = "ACCEPT", quest = 5891, questName = "Salve via Disenchanting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, optional = true, profession = "Enchanting", skill = 200, note = "Elite - group up" }, -- 35
-        { type = "COLLECT", quest = 5888, questName = "Salve via Mining", target = "Tainted Vitriol", count = 1, map = 1448, zone = "Felwood", x = 34.7, y = 61.8, near = true, profession = "Mining", skill = 200 }, -- 36
-        { type = "TURNIN", quest = 5888, questName = "Salve via Mining", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Mining", skill = 200 }, -- 37
-        { type = "COLLECT", quest = 5889, questName = "Salve via Gathering", target = "Fel Creep", count = 1, map = 1448, zone = "Felwood", x = 62.4, y = 24.2, optional = true, profession = "Herbalism", skill = 200, mobs = "Mishellena" }, -- 38
-        { type = "TURNIN", quest = 5889, questName = "Salve via Gathering", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, optional = true, profession = "Herbalism", skill = 200 }, -- 39
-        { type = "COLLECT", quest = 5890, questName = "Salve via Skinning", target = "item 11512", count = 1, map = 1448, zone = "Felwood", x = 35.4, y = 57.2, near = true, profession = "Skinning", skill = 200, mobs = "Jaedenar Hunter / Angerclaw Grizzly / Felpaw Ravager" }, -- 40
-        { type = "TURNIN", quest = 5890, questName = "Salve via Skinning", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Skinning", skill = 200 }, -- 41
-        { type = "COLLECT", quest = 5891, questName = "Salve via Disenchanting", target = "item 11174", count = 1, map = 1440, zone = "Ashenvale", x = 36.4, y = 49.6, optional = true, near = true, profession = "Enchanting", skill = 200, mobs = "Lieutenant Doren / Archbishop Benedictus / Highlord Bolvar Fordragon / Varimathras" }, -- 42
-        { type = "TURNIN", quest = 5891, questName = "Salve via Disenchanting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, optional = true, profession = "Enchanting", skill = 200 }, -- 43
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1448,zone="Felwood",x=50.2,y=82.4,radius=60,note="travel to Felwood (Felwood)"},
+{type="ACCEPT",quest=4102,questName="Cleansing Felwood",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83.1},
+{type="ACCEPT",quest=5203,questName="Rescue From Jaedenar",npc=11016,npcName="Captured Arko'narin",map=1448,zone="Felwood",x=36.2,y=55.4,optional=true,note="Objectives: Protect Arko'narin out of Shadow Hold"},
+{type="ACCEPT",quest=4521,questName="Wild Guardians",npc=10306,npcName="Trull Failbane",map=1448,zone="Felwood",x=34.6,y=52.6},
+{type="TURNIN",quest=8419,questName="An Imp's Request",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
+{type="COLLECT",quest=4102,questName="Cleansing Felwood",target="Blood Amber",count=15,map=1448,zone="Felwood",x=58,y=22.4,near=true},
+{type="ACCEPT",quest=8461,questName="Deadwood of the North",npc=15395,npcName="Nafien",map=1448,zone="Felwood",x=64.8,y=8.1},
+{type="ACCEPT",quest=6031,questName="Runecloth",npc=11557,npcName="Meilosh",map=1448,zone="Felwood",x=65.6,y=2.8},
+{type="COLLECT",quest=6031,questName="Runecloth",target="Runecloth",count=30,map=1448,zone="Felwood",x=65.2,y=6.4,near=true,mobs="Jadefire Trickster / Jadefire Betrayer / Jadefire Shadowstalker / Jadefire Hellcaller"},
+{type="TURNIN",quest=6031,questName="Runecloth",npc=11557,npcName="Meilosh",map=1448,zone="Felwood",x=65.6,y=2.8},
+{type="KILL",quest=8461,questName="Deadwood of the North",npc=7157,target="Deadwood Avenger / Deadwood Den Watcher / Deadwood Shaman",count=6,map=1448,zone="Felwood",x=63.7,y=8.2,near=true},
+{type="ACCEPT",quest=8470,questName="Deadwood Ritual Totem",npc=7158,npcName="Deadwood Shaman",map=1448,zone="Felwood",x=64,y=6.8,optional=true,note="If you looted Deadwood Ritual Totem from Deadwood Den Watcher / Deadwood Avenger / Deadwood Shaman, use it to start the quest"},
+{type="TURNIN",quest=8470,questName="Deadwood Ritual Totem",npc=11558,npcName="Kernda",map=1448,zone="Felwood",x=65.4,y=2.8,optional=true},
+{type="TURNIN",quest=8461,questName="Deadwood of the North",npc=15395,npcName="Nafien",map=1448,zone="Felwood",x=64.8,y=8.1},
+{type="TURNIN",quest=8462,questName="Speak to Nafien",npc=15395,npcName="Nafien",map=1448,zone="Felwood",x=64.8,y=8.2},
+{type="ACCEPT",quest=8465,questName="Speak to Salfa",npc=15395,npcName="Nafien",map=1448,zone="Felwood",x=64.8,y=8.2},
+{type="TURNIN",quest=5203,questName="Rescue From Jaedenar",npc=11019,npcName="Jessir Moonbow",map=1448,zone="Felwood",x=51.2,y=82,optional=true},
+{type="KILL",quest=4120,questName="The Strength of Corruption",npc=8957,target="Angerclaw Grizzly",count=12,map=1448,zone="Felwood",x=55.8,y=10.4},
+{type="KILL",quest=4120,questName="The Strength of Corruption",npc=8961,target="Felpaw Ravager",count=12,map=1448,zone="Felwood",x=55.8,y=10.4},
+{type="ACCEPT",quest=8421,questName="The Wrong Stuff",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
+{type="COLLECT",quest=8421,questName="The Wrong Stuff",target="Rotting Wood",count=10,map=1448,zone="Felwood",x=50.6,y=18.2,near=true,class={"WARLOCK"},mobs="Irontree Wanderer / Irontree Stomper / Withered Protector"},
+{type="COLLECT",quest=8421,questName="The Wrong Stuff",target="Bloodvenom Essence",count=4,map=1448,zone="Felwood",x=40,y=56.4,class={"WARLOCK"},mobs="Tainted Ooze"},
+{type="TURNIN",quest=8421,questName="The Wrong Stuff",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
+{type="TURNIN",quest=4102,questName="Cleansing Felwood",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83.1},
+{type="ACCEPT",quest=5887,questName="Salve via Hunting",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83.1},
+{type="COLLECT",quest=5887,questName="Salve via Hunting",target="Corrupted Soul Shard",map=1448,zone="Felwood",x=47.1,y=84,near=true},
+{type="TURNIN",quest=5887,questName="Salve via Hunting",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83.1},
+{type="ACCEPT",quest=5204,questName="Retribution of the Light",npc=11019,npcName="Jessir Moonbow",map=1448,zone="Felwood",x=51.2,y=82,optional=true},
+{type="KILL",quest=5204,questName="Retribution of the Light",npc=9518,target="Rakaiah",count=1,map=1448,zone="Felwood",x=38,y=50.6,optional=true},
+{type="TURNIN",quest=5204,questName="Retribution of the Light",npc=11020,npcName="Remains of Trey Lightforge",map=1448,zone="Felwood",x=38.4,y=50.4,optional=true},
+{type="ACCEPT",quest=8254,questName="Cenarion Aid",npc=6018,npcName="Ur'kyo",map=1454,zone="Orgrimmar",x=35.6,y=87.6,class={"PRIEST"}},
+{type="ACCEPT",quest=5888,questName="Salve via Mining",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,profession="Mining",skill=200},
+{type="ACCEPT",quest=5889,questName="Salve via Gathering",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,optional=true,profession="Herbalism",skill=200,note="Elite - group up"},
+{type="ACCEPT",quest=5890,questName="Salve via Skinning",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,profession="Skinning",skill=200},
+{type="ACCEPT",quest=5891,questName="Salve via Disenchanting",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,optional=true,profession="Enchanting",skill=200,note="Elite - group up"},
+{type="COLLECT",quest=5888,questName="Salve via Mining",target="Tainted Vitriol",count=1,map=1448,zone="Felwood",x=34.7,y=61.8,near=true,profession="Mining",skill=200},
+{type="TURNIN",quest=5888,questName="Salve via Mining",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,profession="Mining",skill=200},
+{type="COLLECT",quest=5889,questName="Salve via Gathering",target="Fel Creep",count=1,map=1448,zone="Felwood",x=62.4,y=24.2,optional=true,profession="Herbalism",skill=200,mobs="Mishellena"},
+{type="TURNIN",quest=5889,questName="Salve via Gathering",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,optional=true,profession="Herbalism",skill=200},
+{type="COLLECT",quest=5890,questName="Salve via Skinning",target="item 11512",count=1,map=1448,zone="Felwood",x=35.4,y=57.2,near=true,profession="Skinning",skill=200,mobs="Jaedenar Hunter / Angerclaw Grizzly / Felpaw Ravager"},
+{type="TURNIN",quest=5890,questName="Salve via Skinning",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,profession="Skinning",skill=200},
+{type="COLLECT",quest=5891,questName="Salve via Disenchanting",target="item 11174",count=1,map=1440,zone="Ashenvale",x=36.4,y=49.6,optional=true,near=true,profession="Enchanting",skill=200,mobs="Lieutenant Doren / Archbishop Benedictus / Highlord Bolvar Fordragon / Varimathras"},
+{type="TURNIN",quest=5891,questName="Salve via Disenchanting",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,optional=true,profession="Enchanting",skill=200}
+}]],
 })

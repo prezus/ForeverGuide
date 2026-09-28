@@ -14,40 +14,40 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 26 of the Tauren route: level 43 to 45, 23 steps, ~257 min of play in the model (8473 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 34,
-    steps = function() return {
-        { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.3, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
-        { type = "ACCEPT", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 2
-        { type = "ACCEPT", quest = 348, questName = "Stranglethorn Fever", npc = 2486, npcName = "Fin Fizracket", map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 76.7 }, -- 3
-        { type = "TURNIN", quest = 2874, questName = "Deliver to MacKinley", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77 }, -- 4
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2548, target = "Captain Keelhaul", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 29.3, y = 88.3 }, -- 5
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2546, target = "Fleet Master Firallon", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 30.6, y = 90.6 }, -- 6
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2550, target = "Captain Stillwater", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 32.9, y = 88.2 }, -- 7
-        { type = "COLLECT", quest = 8551, questName = "The Captain's Chest", target = "Smotts' Chest", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 36.4, y = 69.6, optional = true, mobs = "Gorlash" }, -- 8
-        { type = "KILL", quest = 348, questName = "Stranglethorn Fever", npc = 1514, target = "Mokk the Savage", map = 1434, zone = "Stranglethorn Vale", x = 35.1, y = 60.9, note = "loot Heart of Mokk" }, -- 9
-        { type = "TURNIN", quest = 348, questName = "Stranglethorn Fever", npc = 2486, npcName = "Fin Fizracket", map = 1434, zone = "Stranglethorn Vale", x = 27.6, y = 76.7 }, -- 10
-        { type = "TURNIN", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 11
-        { type = "TURNIN", quest = 8551, questName = "The Captain's Chest", npc = 2500, npcName = "Captain Hecklebury Smotts", map = 1434, zone = "Stranglethorn Vale", x = 26.6, y = 73.6, optional = true }, -- 12
-        { type = "ACCEPT", quest = 586, questName = "Speaking with Gan'zulah", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 13
-        { type = "ACCEPT", quest = 591, questName = "The Mind's Eye", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 14
-        { type = "ACCEPT", quest = 208, questName = "Big Game Hunter", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8, optional = true, note = "Elite - group up" }, -- 15
-        { type = "COLLECT", quest = 208, questName = "Big Game Hunter", target = "Head of Bangalash", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 38.2, y = 35.4, optional = true, mobs = "King Bangalash" }, -- 16
-        { type = "TURNIN", quest = 208, questName = "Big Game Hunter", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.8, optional = true }, -- 17
-        { type = "TURNIN", quest = 339, questName = "Chapter I", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.4 }, -- 18
-        { type = "TURNIN", quest = 340, questName = "Chapter II", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.4 }, -- 19
-        { type = "KILL", quest = 591, questName = "The Mind's Eye", npc = 818, target = "Mai'Zoth", map = 1434, zone = "Stranglethorn Vale", x = 52.9, y = 27.6, optional = true }, -- 20
-        { type = "TURNIN", quest = 591, questName = "The Mind's Eye", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7, optional = true }, -- 21
-        { type = "KILL", quest = 586, questName = "Speaking with Gan'zulah", npc = 669, target = "Skullsplitter Hunter", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 45, y = 39.6, near = true }, -- 22
-        { type = "KILL", quest = 586, questName = "Speaking with Gan'zulah", npc = 781, target = "Skullsplitter Headhunter / Skullsplitter Berserker", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 47.7, y = 42.5, near = true }, -- 23
-        { type = "KILL", quest = 586, questName = "Speaking with Gan'zulah", npc = 1059, target = "Ana'thek the Cruel", map = 1434, zone = "Stranglethorn Vale", x = 44.3, y = 45, note = "loot Broken Armor of Ana'thek" }, -- 24
-        { type = "TURNIN", quest = 586, questName = "Speaking with Gan'zulah", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 25
-        { type = "ACCEPT", quest = 588, questName = "The Fate of Yenniku", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 26
-        { type = "TURNIN", quest = 588, questName = "The Fate of Yenniku", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 27
-        { type = "ACCEPT", quest = 589, questName = "The Singing Crystals", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 28
-        { type = "KILL", quest = 589, questName = "The Singing Crystals", npc = 1551, target = "Ironjaw Basilisk", count = 3, map = 1434, zone = "Stranglethorn Vale", x = 42.7, y = 45.8, near = true, note = "loot Pulsing Blue Shard" }, -- 29
-        { type = "TURNIN", quest = 589, questName = "The Singing Crystals", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 30
-        { type = "ACCEPT", quest = 592, questName = "Saving Yenniku", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.8 }, -- 31
-        { type = "COLLECT", quest = 592, questName = "Saving Yenniku", target = "Filled Soul Gem", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 39, y = 58.4, mobs = "Yenniku" }, -- 32
-        { type = "TURNIN", quest = 592, questName = "Saving Yenniku", npc = 2497, npcName = "Nimboya", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.8 }, -- 33
-        { type = "GRIND", npc = 1907, target = "Naga Explorer", level = 45, map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 59.7, near = true, note = "grind Naga Explorer (level 43-44) to level 45 - nothing worth questing at 44" }, -- 34
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.3,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
+{type="ACCEPT",quest=608,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
+{type="ACCEPT",quest=348,questName="Stranglethorn Fever",npc=2486,npcName="Fin Fizracket",map=1434,zone="Stranglethorn Vale",x=27.6,y=76.7},
+{type="TURNIN",quest=2874,questName="Deliver to MacKinley",npc=2501,npcName="\"Sea Wolf\" MacKinley",map=1434,zone="Stranglethorn Vale",x=27.8,y=77},
+{type="KILL",quest=608,questName="The Bloodsail Buccaneers",npc=2548,target="Captain Keelhaul",count=1,map=1434,zone="Stranglethorn Vale",x=29.3,y=88.3},
+{type="KILL",quest=608,questName="The Bloodsail Buccaneers",npc=2546,target="Fleet Master Firallon",count=1,map=1434,zone="Stranglethorn Vale",x=30.6,y=90.6},
+{type="KILL",quest=608,questName="The Bloodsail Buccaneers",npc=2550,target="Captain Stillwater",count=1,map=1434,zone="Stranglethorn Vale",x=32.9,y=88.2},
+{type="COLLECT",quest=8551,questName="The Captain's Chest",target="Smotts' Chest",count=1,map=1434,zone="Stranglethorn Vale",x=36.4,y=69.6,optional=true,mobs="Gorlash"},
+{type="KILL",quest=348,questName="Stranglethorn Fever",npc=1514,target="Mokk the Savage",map=1434,zone="Stranglethorn Vale",x=35.1,y=60.9,note="loot Heart of Mokk"},
+{type="TURNIN",quest=348,questName="Stranglethorn Fever",npc=2486,npcName="Fin Fizracket",map=1434,zone="Stranglethorn Vale",x=27.6,y=76.7},
+{type="TURNIN",quest=608,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
+{type="TURNIN",quest=8551,questName="The Captain's Chest",npc=2500,npcName="Captain Hecklebury Smotts",map=1434,zone="Stranglethorn Vale",x=26.6,y=73.6,optional=true},
+{type="ACCEPT",quest=586,questName="Speaking with Gan'zulah",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.6},
+{type="ACCEPT",quest=591,questName="The Mind's Eye",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="ACCEPT",quest=208,questName="Big Game Hunter",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.8,optional=true,note="Elite - group up"},
+{type="COLLECT",quest=208,questName="Big Game Hunter",target="Head of Bangalash",count=1,map=1434,zone="Stranglethorn Vale",x=38.2,y=35.4,optional=true,mobs="King Bangalash"},
+{type="TURNIN",quest=208,questName="Big Game Hunter",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.8,optional=true},
+{type="TURNIN",quest=339,questName="Chapter I",npc=716,npcName="Barnil Stonepot",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.4},
+{type="TURNIN",quest=340,questName="Chapter II",npc=716,npcName="Barnil Stonepot",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.4},
+{type="KILL",quest=591,questName="The Mind's Eye",npc=818,target="Mai'Zoth",map=1434,zone="Stranglethorn Vale",x=52.9,y=27.6,optional=true},
+{type="TURNIN",quest=591,questName="The Mind's Eye",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7,optional=true},
+{type="KILL",quest=586,questName="Speaking with Gan'zulah",npc=669,target="Skullsplitter Hunter",count=8,map=1434,zone="Stranglethorn Vale",x=45,y=39.6,near=true},
+{type="KILL",quest=586,questName="Speaking with Gan'zulah",npc=781,target="Skullsplitter Headhunter / Skullsplitter Berserker",count=8,map=1434,zone="Stranglethorn Vale",x=47.7,y=42.5,near=true},
+{type="KILL",quest=586,questName="Speaking with Gan'zulah",npc=1059,target="Ana'thek the Cruel",map=1434,zone="Stranglethorn Vale",x=44.3,y=45,note="loot Broken Armor of Ana'thek"},
+{type="TURNIN",quest=586,questName="Speaking with Gan'zulah",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.6},
+{type="ACCEPT",quest=588,questName="The Fate of Yenniku",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.6},
+{type="TURNIN",quest=588,questName="The Fate of Yenniku",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7},
+{type="ACCEPT",quest=589,questName="The Singing Crystals",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7},
+{type="KILL",quest=589,questName="The Singing Crystals",npc=1551,target="Ironjaw Basilisk",count=3,map=1434,zone="Stranglethorn Vale",x=42.7,y=45.8,near=true,note="loot Pulsing Blue Shard"},
+{type="TURNIN",quest=589,questName="The Singing Crystals",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7},
+{type="ACCEPT",quest=592,questName="Saving Yenniku",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.8},
+{type="COLLECT",quest=592,questName="Saving Yenniku",target="Filled Soul Gem",count=1,map=1434,zone="Stranglethorn Vale",x=39,y=58.4,mobs="Yenniku"},
+{type="TURNIN",quest=592,questName="Saving Yenniku",npc=2497,npcName="Nimboya",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.8},
+{type="GRIND",npc=1907,target="Naga Explorer",level=45,map=1434,zone="Stranglethorn Vale",x=27.1,y=59.7,near=true,note="grind Naga Explorer (level 43-44) to level 45 - nothing worth questing at 44"}
+}]],
 })

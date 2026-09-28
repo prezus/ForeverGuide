@@ -14,25 +14,25 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 26 of the Skyborne route: level 46 to 46, 17 steps, ~101 min of play in the model (30473 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 19,
-    steps = function() return {
-        { type = "TRAVEL", map = 1444, zone = "Feralas", x = 74.8, y = 43.4, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
-        { type = "ACCEPT", quest = 2822, questName = "The Mark of Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 2
-        { type = "ACCEPT", quest = 7731, questName = "Stinglasher", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 3
-        { type = "KILL", quest = 7731, questName = "Stinglasher", npc = 14661, target = "Stinglasher", map = 1444, zone = "Feralas", x = 75.6, y = 60.9, note = "loot Stinglasher's Glands" }, -- 4
-        { type = "COLLECT", quest = 2741, questName = "The Super Egg-O-Matic", target = "Hippogryph Egg", count = 1, map = 1444, zone = "Feralas", x = 58.6, y = 75.5 }, -- 5
-        { type = "COLLECT", quest = 2822, questName = "The Mark of Quality", target = "Thick Yeti Hide", count = 10, map = 1444, zone = "Feralas", x = 56.5, y = 56.5, near = true }, -- 6
-        { type = "TURNIN", quest = 2822, questName = "The Mark of Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 7
-        { type = "ACCEPT", quest = 7734, questName = "Improved Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 8
-        { type = "TURNIN", quest = 7731, questName = "Stinglasher", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 9
-        { type = "ACCEPT", quest = 7732, questName = "Zukk'ash Report", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 10
-        { type = "COLLECT", quest = 7734, questName = "Improved Quality", target = "Rage Scar Yeti Hide", count = 10, map = 1444, zone = "Feralas", x = 55.7, y = 33.1, near = true }, -- 11
-        { type = "TURNIN", quest = 7734, questName = "Improved Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 12
-        { type = "KILL", quest = 3520, questName = "Screecher Spirits", npc = 8612, target = "Screecher Spirits Collected", count = 3, map = 1444, zone = "Feralas", x = 46.4, y = 40.6 }, -- 13
-        { type = "ACCEPT", quest = 7003, questName = "Zapped Giants", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 14
-        { type = "ACCEPT", quest = 7721, questName = "Fuel for the Zapping", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 15
-        { type = "COLLECT", quest = 7003, questName = "Zapped Giants", target = "Miniaturization Residue", count = 15, map = 1444, zone = "Feralas", x = 44.3, y = 46.6, near = true }, -- 16
-        { type = "TURNIN", quest = 7003, questName = "Zapped Giants", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 17
-        { type = "COLLECT", quest = 7721, questName = "Fuel for the Zapping", target = "Water Elemental Core", count = 10, map = 1444, zone = "Feralas", x = 44.2, y = 49.7, near = true }, -- 18
-        { type = "TURNIN", quest = 7721, questName = "Fuel for the Zapping", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 19
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1444,zone="Feralas",x=74.8,y=43.4,radius=60,note="travel to Feralas (Feralas)"},
+{type="ACCEPT",quest=2822,questName="The Mark of Quality",npc=7854,npcName="Jangdor Swiftstrider",map=1444,zone="Feralas",x=74.4,y=42.9},
+{type="ACCEPT",quest=7731,questName="Stinglasher",npc=7875,npcName="Hadoken Swiftstrider",map=1444,zone="Feralas",x=74.9,y=42.5},
+{type="KILL",quest=7731,questName="Stinglasher",npc=14661,target="Stinglasher",map=1444,zone="Feralas",x=75.6,y=60.9,note="loot Stinglasher's Glands"},
+{type="COLLECT",quest=2741,questName="The Super Egg-O-Matic",target="Hippogryph Egg",count=1,map=1444,zone="Feralas",x=58.6,y=75.5},
+{type="COLLECT",quest=2822,questName="The Mark of Quality",target="Thick Yeti Hide",count=10,map=1444,zone="Feralas",x=56.5,y=56.5,near=true},
+{type="TURNIN",quest=2822,questName="The Mark of Quality",npc=7854,npcName="Jangdor Swiftstrider",map=1444,zone="Feralas",x=74.4,y=42.9},
+{type="ACCEPT",quest=7734,questName="Improved Quality",npc=7854,npcName="Jangdor Swiftstrider",map=1444,zone="Feralas",x=74.4,y=42.9},
+{type="TURNIN",quest=7731,questName="Stinglasher",npc=7875,npcName="Hadoken Swiftstrider",map=1444,zone="Feralas",x=74.9,y=42.5},
+{type="ACCEPT",quest=7732,questName="Zukk'ash Report",npc=7875,npcName="Hadoken Swiftstrider",map=1444,zone="Feralas",x=74.9,y=42.5},
+{type="COLLECT",quest=7734,questName="Improved Quality",target="Rage Scar Yeti Hide",count=10,map=1444,zone="Feralas",x=55.7,y=33.1,near=true},
+{type="TURNIN",quest=7734,questName="Improved Quality",npc=7854,npcName="Jangdor Swiftstrider",map=1444,zone="Feralas",x=74.4,y=42.9},
+{type="KILL",quest=3520,questName="Screecher Spirits",npc=8612,target="Screecher Spirits Collected",count=3,map=1444,zone="Feralas",x=46.4,y=40.6},
+{type="ACCEPT",quest=7003,questName="Zapped Giants",npc=14637,npcName="Zorbin Fandazzle",map=1444,zone="Feralas",x=44.8,y=43.4},
+{type="ACCEPT",quest=7721,questName="Fuel for the Zapping",npc=14637,npcName="Zorbin Fandazzle",map=1444,zone="Feralas",x=44.8,y=43.4},
+{type="COLLECT",quest=7003,questName="Zapped Giants",target="Miniaturization Residue",count=15,map=1444,zone="Feralas",x=44.3,y=46.6,near=true},
+{type="TURNIN",quest=7003,questName="Zapped Giants",npc=14637,npcName="Zorbin Fandazzle",map=1444,zone="Feralas",x=44.8,y=43.4},
+{type="COLLECT",quest=7721,questName="Fuel for the Zapping",target="Water Elemental Core",count=10,map=1444,zone="Feralas",x=44.2,y=49.7,near=true},
+{type="TURNIN",quest=7721,questName="Fuel for the Zapping",npc=14637,npcName="Zorbin Fandazzle",map=1444,zone="Feralas",x=44.8,y=43.4}
+}]],
 })

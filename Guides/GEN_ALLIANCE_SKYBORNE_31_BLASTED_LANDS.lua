@@ -14,43 +14,43 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 31 of the Skyborne route: level 47 to 47, 22 steps, ~124 min of play in the model (33387 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 37,
-    steps = function() return {
-        { type = "FLIGHTPATH", npc = 8609, npcName = "Alexandra Constantine", map = 1419, zone = "Blasted Lands", x = 65.5, y = 24.3 }, -- 1
-        { type = "ACCEPT", quest = 2990, questName = "Thadius Grimshade", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.4 }, -- 2
-        { type = "TURNIN", quest = 2990, questName = "Thadius Grimshade", npc = 8022, npcName = "Thadius Grimshade", map = 1419, zone = "Blasted Lands", x = 67, y = 19.4 }, -- 3
-        { type = "ACCEPT", quest = 1448, questName = "In Search of The Temple", npc = 5384, npcName = "Brohann Caskbelly", map = 1453, zone = "Stormwind City", x = 64.2, y = 20.8, note = "Objectives: Explore Zone, Search for the Temple of Atal'Hakkar" }, -- 4
-        { type = "TURNIN", quest = 1448, questName = "In Search of The Temple", npc = 5384, npcName = "Brohann Caskbelly", map = 1453, zone = "Stormwind City", x = 64.2, y = 20.8 }, -- 5
-        { type = "ACCEPT", quest = 3636, questName = "Bring the Light", npc = 1284, npcName = "Archbishop Benedictus", map = 1453, zone = "Stormwind City", x = 39.6, y = 27.4, optional = true, note = "For Razorfen Downs (dungeon guide)" }, -- 6
-        { type = "NOTE", optional = true, text = "Ready for Razorfen Downs", note = "Picked up: Bring the Light, A Host of Evil. When you have a group, open Razorfen Downs under Dungeons." }, -- 7
-        { type = "ACCEPT", quest = 2991, questName = "Nekrum's Medallion", npc = 8022, npcName = "Thadius Grimshade", map = 1419, zone = "Blasted Lands", x = 67, y = 19.4, optional = true, note = "For Zul'Farrak (dungeon guide)" }, -- 8
-        { type = "ACCEPT", quest = 3629, questName = "Goblin Engineering", npc = 5174, npcName = "Springspindle Fizzlegear", map = 1455, zone = "Ironforge", x = 68.2, y = 43.4, profession = "Engineering", skill = 200 }, -- 9
-        { type = "ACCEPT", quest = 3630, questName = "Gnome Engineering", npc = 5518, npcName = "Lilliam Sparkspindle", map = 1453, zone = "Stormwind City", x = 54.8, y = 7.8, profession = "Engineering", skill = 200 }, -- 10
-        { type = "ACCEPT", quest = 6612, questName = "I Know A Guy...", npc = 5159, npcName = "Daryl Riknussun", map = 1455, zone = "Ironforge", x = 60, y = 36.8, profession = "Cooking", skill = 225 }, -- 11
-        { type = "TRAVEL", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, radius = 60, note = "travel to Blasted Lands (Blasted Lands)" }, -- 12
-        { type = "ACCEPT", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 13
-        { type = "ACCEPT", quest = 2583, questName = "A Boar's Vitality", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 14
-        { type = "ACCEPT", quest = 2585, questName = "The Decisive Striker", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 15
-        { type = "ACCEPT", quest = 2601, questName = "The Basilisk's Bite", npc = 7506, npcName = "Bloodmage Lynnore", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.3 }, -- 16
-        { type = "ACCEPT", quest = 2603, questName = "Vulture's Vigor", npc = 7506, npcName = "Bloodmage Lynnore", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.3 }, -- 17
-        { type = "COLLECT", quest = 2603, questName = "Vulture's Vigor", target = "Vulture Gizzard", map = 1419, zone = "Blasted Lands", x = 50.2, y = 17.2, near = true }, -- 18
-        { type = "COLLECT", quest = 2601, questName = "The Basilisk's Bite", target = "Vulture Gizzard", map = 1419, zone = "Blasted Lands", x = 50.2, y = 17.2, near = true }, -- 19
-        { type = "COLLECT", quest = 2585, questName = "The Decisive Striker", target = "Vulture Gizzard / Scorpok Pincer", map = 1419, zone = "Blasted Lands", x = 50.2, y = 17.2, near = true }, -- 20
-        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Scorpok Pincer", map = 1419, zone = "Blasted Lands", x = 49.6, y = 16.4, near = true }, -- 21
-        { type = "COLLECT", quest = 2581, questName = "Snickerfang Jowls", target = "Scorpok Pincer / Snickerfang Jowl", map = 1419, zone = "Blasted Lands", x = 49.6, y = 16.4, near = true }, -- 22
-        { type = "COLLECT", quest = 2603, questName = "Vulture's Vigor", target = "Snickerfang Jowl", map = 1419, zone = "Blasted Lands", x = 48.3, y = 17.8, near = true }, -- 23
-        { type = "TURNIN", quest = 2603, questName = "Vulture's Vigor", npc = 7506, npcName = "Bloodmage Lynnore", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.3 }, -- 24
-        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Basilisk Brain", map = 1419, zone = "Blasted Lands", x = 50.2, y = 20.7, near = true }, -- 25
-        { type = "COLLECT", quest = 2601, questName = "The Basilisk's Bite", target = "Basilisk Brain", map = 1419, zone = "Blasted Lands", x = 50.2, y = 20.7, near = true }, -- 26
-        { type = "TURNIN", quest = 2601, questName = "The Basilisk's Bite", npc = 7506, npcName = "Bloodmage Lynnore", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.3 }, -- 27
-        { type = "ACCEPT", quest = 3501, questName = "Everything Counts In Large Amounts", npc = 7363, npcName = "Kum'isha the Collector", map = 1419, zone = "Blasted Lands", x = 51.8, y = 35.6 }, -- 28
-        { type = "COLLECT", quest = 3501, questName = "Everything Counts In Large Amounts", target = "Imperfect Draenethyst Fragment", count = 1, map = 1419, zone = "Blasted Lands", x = 50.6, y = 36, near = true, mobs = "Dreadmaul Ogre / Dreadmaul Ogre Mage / Dreadmaul Brute / Dreadmaul Mauler" }, -- 29
-        { type = "TURNIN", quest = 3501, questName = "Everything Counts In Large Amounts", npc = 7363, npcName = "Kum'isha the Collector", map = 1419, zone = "Blasted Lands", x = 51.8, y = 35.6 }, -- 30
-        { type = "COLLECT", quest = 2581, questName = "Snickerfang Jowls", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 31
-        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 32
-        { type = "COLLECT", quest = 2585, questName = "The Decisive Striker", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 33
-        { type = "TURNIN", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 34
-        { type = "TURNIN", quest = 2583, questName = "A Boar's Vitality", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 35
-        { type = "TURNIN", quest = 2585, questName = "The Decisive Striker", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 36
-        { type = "TURNIN", quest = 1425, questName = "Deliver the Shipment", npc = 5393, npcName = "Quartermaster Lungertz", map = 1419, zone = "Blasted Lands", x = 66.4, y = 21.2 }, -- 37
-    } end,
+    steps = [[{
+{type="FLIGHTPATH",npc=8609,npcName="Alexandra Constantine",map=1419,zone="Blasted Lands",x=65.5,y=24.3},
+{type="ACCEPT",quest=2990,questName="Thadius Grimshade",npc=5636,npcName="Gryphon Master Talonaxe",map=1425,zone="The Hinterlands",x=9.8,y=44.4},
+{type="TURNIN",quest=2990,questName="Thadius Grimshade",npc=8022,npcName="Thadius Grimshade",map=1419,zone="Blasted Lands",x=67,y=19.4},
+{type="ACCEPT",quest=1448,questName="In Search of The Temple",npc=5384,npcName="Brohann Caskbelly",map=1453,zone="Stormwind City",x=64.2,y=20.8,note="Objectives: Explore Zone, Search for the Temple of Atal'Hakkar"},
+{type="TURNIN",quest=1448,questName="In Search of The Temple",npc=5384,npcName="Brohann Caskbelly",map=1453,zone="Stormwind City",x=64.2,y=20.8},
+{type="ACCEPT",quest=3636,questName="Bring the Light",npc=1284,npcName="Archbishop Benedictus",map=1453,zone="Stormwind City",x=39.6,y=27.4,optional=true,note="For Razorfen Downs (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Razorfen Downs",note="Picked up: Bring the Light, A Host of Evil. When you have a group, open Razorfen Downs under Dungeons."},
+{type="ACCEPT",quest=2991,questName="Nekrum's Medallion",npc=8022,npcName="Thadius Grimshade",map=1419,zone="Blasted Lands",x=67,y=19.4,optional=true,note="For Zul'Farrak (dungeon guide)"},
+{type="ACCEPT",quest=3629,questName="Goblin Engineering",npc=5174,npcName="Springspindle Fizzlegear",map=1455,zone="Ironforge",x=68.2,y=43.4,profession="Engineering",skill=200},
+{type="ACCEPT",quest=3630,questName="Gnome Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
+{type="ACCEPT",quest=6612,questName="I Know A Guy...",npc=5159,npcName="Daryl Riknussun",map=1455,zone="Ironforge",x=60,y=36.8,profession="Cooking",skill=225},
+{type="TRAVEL",map=1419,zone="Blasted Lands",x=50.6,y=14.2,radius=60,note="travel to Blasted Lands (Blasted Lands)"},
+{type="ACCEPT",quest=2581,questName="Snickerfang Jowls",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},
+{type="ACCEPT",quest=2583,questName="A Boar's Vitality",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},
+{type="ACCEPT",quest=2585,questName="The Decisive Striker",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},
+{type="ACCEPT",quest=2601,questName="The Basilisk's Bite",npc=7506,npcName="Bloodmage Lynnore",map=1419,zone="Blasted Lands",x=50.6,y=14.3},
+{type="ACCEPT",quest=2603,questName="Vulture's Vigor",npc=7506,npcName="Bloodmage Lynnore",map=1419,zone="Blasted Lands",x=50.6,y=14.3},
+{type="COLLECT",quest=2603,questName="Vulture's Vigor",target="Vulture Gizzard",map=1419,zone="Blasted Lands",x=50.2,y=17.2,near=true},
+{type="COLLECT",quest=2601,questName="The Basilisk's Bite",target="Vulture Gizzard",map=1419,zone="Blasted Lands",x=50.2,y=17.2,near=true},
+{type="COLLECT",quest=2585,questName="The Decisive Striker",target="Vulture Gizzard / Scorpok Pincer",map=1419,zone="Blasted Lands",x=50.2,y=17.2,near=true},
+{type="COLLECT",quest=2583,questName="A Boar's Vitality",target="Scorpok Pincer",map=1419,zone="Blasted Lands",x=49.6,y=16.4,near=true},
+{type="COLLECT",quest=2581,questName="Snickerfang Jowls",target="Scorpok Pincer / Snickerfang Jowl",map=1419,zone="Blasted Lands",x=49.6,y=16.4,near=true},
+{type="COLLECT",quest=2603,questName="Vulture's Vigor",target="Snickerfang Jowl",map=1419,zone="Blasted Lands",x=48.3,y=17.8,near=true},
+{type="TURNIN",quest=2603,questName="Vulture's Vigor",npc=7506,npcName="Bloodmage Lynnore",map=1419,zone="Blasted Lands",x=50.6,y=14.3},
+{type="COLLECT",quest=2583,questName="A Boar's Vitality",target="Basilisk Brain",map=1419,zone="Blasted Lands",x=50.2,y=20.7,near=true},
+{type="COLLECT",quest=2601,questName="The Basilisk's Bite",target="Basilisk Brain",map=1419,zone="Blasted Lands",x=50.2,y=20.7,near=true},
+{type="TURNIN",quest=2601,questName="The Basilisk's Bite",npc=7506,npcName="Bloodmage Lynnore",map=1419,zone="Blasted Lands",x=50.6,y=14.3},
+{type="ACCEPT",quest=3501,questName="Everything Counts In Large Amounts",npc=7363,npcName="Kum'isha the Collector",map=1419,zone="Blasted Lands",x=51.8,y=35.6},
+{type="COLLECT",quest=3501,questName="Everything Counts In Large Amounts",target="Imperfect Draenethyst Fragment",count=1,map=1419,zone="Blasted Lands",x=50.6,y=36,near=true,mobs="Dreadmaul Ogre / Dreadmaul Ogre Mage / Dreadmaul Brute / Dreadmaul Mauler"},
+{type="TURNIN",quest=3501,questName="Everything Counts In Large Amounts",npc=7363,npcName="Kum'isha the Collector",map=1419,zone="Blasted Lands",x=51.8,y=35.6},
+{type="COLLECT",quest=2581,questName="Snickerfang Jowls",target="Blasted Boar Lung",map=1419,zone="Blasted Lands",x=52.4,y=28.9,near=true},
+{type="COLLECT",quest=2583,questName="A Boar's Vitality",target="Blasted Boar Lung",map=1419,zone="Blasted Lands",x=52.4,y=28.9,near=true},
+{type="COLLECT",quest=2585,questName="The Decisive Striker",target="Blasted Boar Lung",map=1419,zone="Blasted Lands",x=52.4,y=28.9,near=true},
+{type="TURNIN",quest=2581,questName="Snickerfang Jowls",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},
+{type="TURNIN",quest=2583,questName="A Boar's Vitality",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},
+{type="TURNIN",quest=2585,questName="The Decisive Striker",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},
+{type="TURNIN",quest=1425,questName="Deliver the Shipment",npc=5393,npcName="Quartermaster Lungertz",map=1419,zone="Blasted Lands",x=66.4,y=21.2}
+}]],
 })

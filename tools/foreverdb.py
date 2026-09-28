@@ -25,7 +25,9 @@ import re
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 SRC = os.path.join(ROOT, "data-src", "forever.json")
-OUT = os.path.join(ROOT, "Data", "ForeverDB.lua")
+# the full data tables the tools read and write; tools/pack_data.lua packs them into Data/ for the addon
+TABLES = os.path.join(ROOT, "data-src", "tables")
+OUT = os.path.join(TABLES, "ForeverDB.lua")
 
 MAX_POINTS = 12
 

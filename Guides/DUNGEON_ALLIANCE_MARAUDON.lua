@@ -13,32 +13,32 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Maraudon: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 26,
-    steps = function() return {
-        { type = "ACCEPT", quest = 7070, questName = "Shadowshard Fragments", npc = 4967, npcName = "Archmage Tervosh", map = 1445, zone = "Dustwallow Marsh", x = 66.4, y = 49.2 }, -- 1
-        { type = "ACCEPT", quest = 7028, questName = "Twisted Evils", npc = 13656, npcName = "Willow", map = 1443, zone = "Desolace", x = 62.2, y = 39.6 }, -- 2
-        { type = "ACCEPT", quest = 7041, questName = "Vyletongue Corruption", npc = 11715, npcName = "Talendria", map = 1443, zone = "Desolace", x = 68.4, y = 8.8 }, -- 3
-        { type = "ACCEPT", quest = 7044, questName = "Legends of Maraudon", npc = 13697, npcName = "Cavindra", map = 1443, zone = "Desolace", x = 31.9, y = 63.8 }, -- 4
-        { type = "ACCEPT", quest = 7065, questName = "Corruption of Earth and Seed", npc = 13698, npcName = "Keeper Marandis", map = 1443, zone = "Desolace", x = 63.8, y = 10.6 }, -- 5
-        { type = "ACCEPT", quest = 7067, questName = "The Pariah's Instructions", npc = 13717, npcName = "Centaur Pariah", map = 1443, zone = "Desolace", x = 50.4, y = 86.6 }, -- 6
-        { type = "NOTE", map = 1443, zone = "Desolace", x = 29.1, y = 62.5, text = "Find a group for Maraudon", note = "All quests available from level 45; hand them in by level 47 for full XP" }, -- 7
-        { type = "ACCEPT", quest = 7066, questName = "Seed of Life", map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 8
-        { type = "COLLECT", quest = 7028, questName = "Twisted Evils", target = "Theradric Crystal Carving", count = 25, map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 9
-        { type = "KILL", quest = 7041, questName = "Vyletongue Corruption", npc = 13696, target = "Vylestem Vines healed", count = 8, map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 10
-        { type = "COLLECT", quest = 7041, questName = "Vyletongue Corruption", target = "Filled Cerulean Vial", count = 1, map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 11
-        { type = "COLLECT", quest = 7044, questName = "Legends of Maraudon", target = "Celebrian Diamond", count = 1, map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 12
-        { type = "COLLECT", quest = 7044, questName = "Legends of Maraudon", target = "Celebrian Rod", count = 1, map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 13
-        { type = "KILL", quest = 7065, questName = "Corruption of Earth and Seed", npc = 12201, target = "Princess Theradras", count = 1, map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 14
-        { type = "COLLECT", quest = 7067, questName = "The Pariah's Instructions", target = "Amulet of Union", count = 1, map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 15
-        { type = "COLLECT", quest = 7067, questName = "The Pariah's Instructions", target = "Amulet of Spirits", count = 1, map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 16
-        { type = "COLLECT", quest = 7070, questName = "Shadowshard Fragments", target = "Shadowshard Fragment", count = 10, map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 17
-        { type = "TURNIN", quest = 7044, questName = "Legends of Maraudon", map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 18
-        { type = "TURNIN", quest = 7028, questName = "Twisted Evils", npc = 13656, npcName = "Willow", map = 1443, zone = "Desolace", x = 62.2, y = 39.6 }, -- 19
-        { type = "TURNIN", quest = 7041, questName = "Vyletongue Corruption", npc = 11715, npcName = "Talendria", map = 1443, zone = "Desolace", x = 68.4, y = 8.8 }, -- 20
-        { type = "TURNIN", quest = 7065, questName = "Corruption of Earth and Seed", npc = 13698, npcName = "Keeper Marandis", map = 1443, zone = "Desolace", x = 63.8, y = 10.6 }, -- 21
-        { type = "TURNIN", quest = 7067, questName = "The Pariah's Instructions", npc = 13717, npcName = "Centaur Pariah", map = 1443, zone = "Desolace", x = 50.4, y = 86.6 }, -- 22
-        { type = "TURNIN", quest = 7070, questName = "Shadowshard Fragments", npc = 4967, npcName = "Archmage Tervosh", map = 1445, zone = "Dustwallow Marsh", x = 66.4, y = 49.2 }, -- 23
-        { type = "TURNIN", quest = 7066, questName = "Seed of Life", npc = 11832, npcName = "Keeper Remulos", map = 1450, zone = "Moonglade", x = 36.2, y = 41.8 }, -- 24
-        { type = "ACCEPT", quest = 7046, questName = "The Scepter of Celebras", map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 25
-        { type = "TURNIN", quest = 7046, questName = "The Scepter of Celebras", map = 1443, zone = "Desolace", x = 29.1, y = 62.5 }, -- 26
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=7070,questName="Shadowshard Fragments",npc=4967,npcName="Archmage Tervosh",map=1445,zone="Dustwallow Marsh",x=66.4,y=49.2},
+{type="ACCEPT",quest=7028,questName="Twisted Evils",npc=13656,npcName="Willow",map=1443,zone="Desolace",x=62.2,y=39.6},
+{type="ACCEPT",quest=7041,questName="Vyletongue Corruption",npc=11715,npcName="Talendria",map=1443,zone="Desolace",x=68.4,y=8.8},
+{type="ACCEPT",quest=7044,questName="Legends of Maraudon",npc=13697,npcName="Cavindra",map=1443,zone="Desolace",x=31.9,y=63.8},
+{type="ACCEPT",quest=7065,questName="Corruption of Earth and Seed",npc=13698,npcName="Keeper Marandis",map=1443,zone="Desolace",x=63.8,y=10.6},
+{type="ACCEPT",quest=7067,questName="The Pariah's Instructions",npc=13717,npcName="Centaur Pariah",map=1443,zone="Desolace",x=50.4,y=86.6},
+{type="NOTE",map=1443,zone="Desolace",x=29.1,y=62.5,text="Find a group for Maraudon",note="All quests available from level 45; hand them in by level 47 for full XP"},
+{type="ACCEPT",quest=7066,questName="Seed of Life",map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="COLLECT",quest=7028,questName="Twisted Evils",target="Theradric Crystal Carving",count=25,map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="KILL",quest=7041,questName="Vyletongue Corruption",npc=13696,target="Vylestem Vines healed",count=8,map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="COLLECT",quest=7041,questName="Vyletongue Corruption",target="Filled Cerulean Vial",count=1,map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="COLLECT",quest=7044,questName="Legends of Maraudon",target="Celebrian Diamond",count=1,map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="COLLECT",quest=7044,questName="Legends of Maraudon",target="Celebrian Rod",count=1,map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="KILL",quest=7065,questName="Corruption of Earth and Seed",npc=12201,target="Princess Theradras",count=1,map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="COLLECT",quest=7067,questName="The Pariah's Instructions",target="Amulet of Union",count=1,map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="COLLECT",quest=7067,questName="The Pariah's Instructions",target="Amulet of Spirits",count=1,map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="COLLECT",quest=7070,questName="Shadowshard Fragments",target="Shadowshard Fragment",count=10,map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="TURNIN",quest=7044,questName="Legends of Maraudon",map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="TURNIN",quest=7028,questName="Twisted Evils",npc=13656,npcName="Willow",map=1443,zone="Desolace",x=62.2,y=39.6},
+{type="TURNIN",quest=7041,questName="Vyletongue Corruption",npc=11715,npcName="Talendria",map=1443,zone="Desolace",x=68.4,y=8.8},
+{type="TURNIN",quest=7065,questName="Corruption of Earth and Seed",npc=13698,npcName="Keeper Marandis",map=1443,zone="Desolace",x=63.8,y=10.6},
+{type="TURNIN",quest=7067,questName="The Pariah's Instructions",npc=13717,npcName="Centaur Pariah",map=1443,zone="Desolace",x=50.4,y=86.6},
+{type="TURNIN",quest=7070,questName="Shadowshard Fragments",npc=4967,npcName="Archmage Tervosh",map=1445,zone="Dustwallow Marsh",x=66.4,y=49.2},
+{type="TURNIN",quest=7066,questName="Seed of Life",npc=11832,npcName="Keeper Remulos",map=1450,zone="Moonglade",x=36.2,y=41.8},
+{type="ACCEPT",quest=7046,questName="The Scepter of Celebras",map=1443,zone="Desolace",x=29.1,y=62.5},
+{type="TURNIN",quest=7046,questName="The Scepter of Celebras",map=1443,zone="Desolace",x=29.1,y=62.5}
+}]],
 })

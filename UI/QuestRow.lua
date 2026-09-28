@@ -125,6 +125,12 @@ function Row.Create(parent, index)
     return r
 end
 
+--- A row's height for an entry: two lines with a subtitle, one without.
+function Row.HeightFor(entry, showSubtitle)
+    local sub = showSubtitle and entry.subtitle or nil
+    return (sub and sub ~= "") and Row.HEIGHT_TWO or Row.HEIGHT_ONE
+end
+
 --- entry: { number, icon, title, subtitle, state, distance (text or nil), onClick, onRightClick, tooltip }
 function Row.Set(r, entry, showSubtitle)
     r.entry = entry
@@ -140,7 +146,8 @@ function Row.Set(r, entry, showSubtitle)
     local sub = showSubtitle and entry.subtitle or nil
     r.sub:SetText(sub or "")
     Theme.Color(r.sub, st.sub)
-    if sub and sub ~= "" then r.sub:Show() r:SetHeight(Row.HEIGHT_TWO) else r.sub:Hide() r:SetHeight(Row.HEIGHT_ONE) end
+    r:SetHeight(Row.HeightFor(entry, showSubtitle))
+    r.sub:SetShown(sub ~= nil and sub ~= "")
     r.bar:SetHeight(r:GetHeight() - 6)
     -- room on the right for the quest item button (QuestGuideFrame places it over the row)
     local right = entry.useItem and 34 or 8
