@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_03_STONETALON_MOUNTAINS",
     name = "3. Stonetalon Mountains 21-22 (Skyborne)",
-    version = 9,
+    version = 10,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 21,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_04_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the Skyborne route: level 21 to 22, 34 steps, ~79 min of play in the model (18567 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 55,
+    stepCount = 53,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 4312, npcName = "Tharm", map = 1442, zone = "Stonetalon Mountains", x = 45.1, y = 59.8 }, -- 1
         { type = "ACCEPT", quest = 95495, questName = "The Hermit Tanner", npc = 3682, npcName = "Vrang Wildgore", map = 1413, zone = "The Barrens", x = 43.8, y = 12.2, note = "New in Forever" }, -- 2
@@ -53,22 +53,20 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 6393, questName = "Elemental War", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.4, y = 64.3 }, -- 36
         { type = "ACCEPT", quest = 1087, questName = "Cenarius' Legacy", npc = 4198, npcName = "Braelyn Firehand", map = 1442, zone = "Stonetalon Mountains", x = 45.9, y = 60.4 }, -- 37
         { type = "ACCEPT", quest = 6381, questName = "New Life", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 38
-        { type = "ACCEPT", quest = 80001, questName = "Rekindle", map = 1442, zone = "Stonetalon Mountains", x = 40.6, y = 52.4 }, -- 39
-        { type = "TURNIN", quest = 80001, questName = "Rekindle", map = 1442, zone = "Stonetalon Mountains", x = 40.6, y = 52.4 }, -- 40
-        { type = "COLLECT", quest = 6393, questName = "Elemental War", target = "Incendrites", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 37.3, y = 60.5, near = true }, -- 41
-        { type = "COMPLETE", quest = 6381, questName = "New Life", target = "Gaea Dirt Mound", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 34.2, y = 61.3, near = true, note = "Gaea seed planted" }, -- 42
-        { type = "TURNIN", quest = 6393, questName = "Elemental War", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.4, y = 64.3 }, -- 43
-        { type = "TURNIN", quest = 6381, questName = "New Life", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 44
-        { type = "KILL", quest = 1087, questName = "Cenarius' Legacy", npc = 4053, target = "Daughter of Cenarius / Cenarion Botanist", count = 4, map = 1442, zone = "Stonetalon Mountains", x = 36.7, y = 15.6, near = true }, -- 45
-        { type = "KILL", quest = 1087, questName = "Cenarius' Legacy", npc = 4057, target = "Son of Cenarius", count = 4, map = 1442, zone = "Stonetalon Mountains", x = 37.5, y = 13.1, near = true }, -- 46
-        { type = "TURNIN", quest = 1087, questName = "Cenarius' Legacy", npc = 4198, npcName = "Braelyn Firehand", map = 1442, zone = "Stonetalon Mountains", x = 45.9, y = 60.4 }, -- 47
-        { type = "ACCEPT", quest = 6284, questName = "Arachnophobia", map = 1442, zone = "Stonetalon Mountains", x = 59.1, y = 75.8, optional = true, note = "Elite - group up" }, -- 48
-        { type = "COLLECT", quest = 6284, questName = "Arachnophobia", target = "Besseleth's Fang", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 52, y = 73.8, optional = true, mobs = "Besseleth" }, -- 49
-        { type = "TURNIN", quest = 6284, questName = "Arachnophobia", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61, optional = true }, -- 50
-        { type = "ACCEPT", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 51
-        { type = "ACCEPT", quest = 6523, questName = "Protect Kaya", npc = 11856, npcName = "Kaya Flathoof", map = 1442, zone = "Stonetalon Mountains", x = 73.4, y = 85.6, note = "Objectives: Kaya Escorted to Camp Aparaje" }, -- 52
-        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4005, target = "Deepmoss Creeper", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 60.5, y = 76.5, near = true }, -- 53
-        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4007, target = "Deepmoss Venomspitter", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 54.8, y = 73.6, near = true }, -- 54
-        { type = "TURNIN", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 55
+        { type = "COLLECT", quest = 6393, questName = "Elemental War", target = "Incendrites", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 37.3, y = 60.5, near = true }, -- 39
+        { type = "COMPLETE", quest = 6381, questName = "New Life", target = "Gaea Dirt Mound", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 34.2, y = 61.3, near = true, note = "Gaea seed planted" }, -- 40
+        { type = "TURNIN", quest = 6393, questName = "Elemental War", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.4, y = 64.3 }, -- 41
+        { type = "TURNIN", quest = 6381, questName = "New Life", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 42
+        { type = "KILL", quest = 1087, questName = "Cenarius' Legacy", npc = 4053, target = "Daughter of Cenarius / Cenarion Botanist", count = 4, map = 1442, zone = "Stonetalon Mountains", x = 36.7, y = 15.6, near = true }, -- 43
+        { type = "KILL", quest = 1087, questName = "Cenarius' Legacy", npc = 4057, target = "Son of Cenarius", count = 4, map = 1442, zone = "Stonetalon Mountains", x = 37.5, y = 13.1, near = true }, -- 44
+        { type = "TURNIN", quest = 1087, questName = "Cenarius' Legacy", npc = 4198, npcName = "Braelyn Firehand", map = 1442, zone = "Stonetalon Mountains", x = 45.9, y = 60.4 }, -- 45
+        { type = "ACCEPT", quest = 6284, questName = "Arachnophobia", map = 1442, zone = "Stonetalon Mountains", x = 59.1, y = 75.8, optional = true, note = "Elite - group up" }, -- 46
+        { type = "COLLECT", quest = 6284, questName = "Arachnophobia", target = "Besseleth's Fang", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 52, y = 73.8, optional = true, mobs = "Besseleth" }, -- 47
+        { type = "TURNIN", quest = 6284, questName = "Arachnophobia", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61, optional = true }, -- 48
+        { type = "ACCEPT", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 49
+        { type = "ACCEPT", quest = 6523, questName = "Protect Kaya", npc = 11856, npcName = "Kaya Flathoof", map = 1442, zone = "Stonetalon Mountains", x = 73.4, y = 85.6, note = "Objectives: Kaya Escorted to Camp Aparaje" }, -- 50
+        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4005, target = "Deepmoss Creeper", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 60.5, y = 76.5, near = true }, -- 51
+        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4007, target = "Deepmoss Venomspitter", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 54.8, y = 73.6, near = true }, -- 52
+        { type = "TURNIN", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 53
     } end,
 })
