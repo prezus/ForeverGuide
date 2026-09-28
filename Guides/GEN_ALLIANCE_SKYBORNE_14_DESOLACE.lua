@@ -14,35 +14,35 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 14 of the Skyborne route: level 32 to 34, 28 steps, ~162 min of play in the model (12842 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 29,
-    steps = function() return {
-        { type = "TRAVEL", map = 1443, zone = "Nijel's Point", x = 66.3, y = 6.5, radius = 60, note = "use your hearthstone (Nijel's Point)" }, -- 1
-        { type = "TRAVEL", map = 1443, zone = "Desolace", x = 66.3, y = 9.5, radius = 60, note = "travel to Desolace (Desolace)" }, -- 2
-        { type = "ACCEPT", quest = 1382, questName = "Strange Alliance", npc = 5396, npcName = "Captain Pentigast", map = 1443, zone = "Desolace", x = 66.7, y = 10.9 }, -- 3
-        { type = "ACCEPT", quest = 1385, questName = "Brutal Politics", npc = 5396, npcName = "Captain Pentigast", map = 1443, zone = "Desolace", x = 66.7, y = 10.9 }, -- 4
-        { type = "ACCEPT", quest = 5821, questName = "Bodyguard for Hire", npc = 11625, npcName = "Cork Gizelton", map = 1443, zone = "Desolace", x = 66.5, y = 37.5 }, -- 5
-        { type = "COMPLETE", quest = 5821, questName = "Bodyguard for Hire", target = "Escort Gizelton Caravan past Kolkar Centaur Village", map = 1443, zone = "Desolace", x = 67.2, y = 56.6, note = "escort - stay close, it can fail: Escort Gizelton Caravan past Kolkar Centaur Village" }, -- 6
-        { type = "TURNIN", quest = 1385, questName = "Brutal Politics", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 7
-        { type = "ACCEPT", quest = 1386, questName = "Assault on the Kolkar", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 8
-        { type = "KILL", quest = 1386, questName = "Assault on the Kolkar", npc = 4632, target = "Kolkar Centaur", count = 12, map = 1443, zone = "Desolace", x = 68.6, y = 52.2, near = true }, -- 9
-        { type = "KILL", quest = 1386, questName = "Assault on the Kolkar", npc = 4633, target = "Kolkar Scout", count = 12, map = 1443, zone = "Desolace", x = 68.7, y = 50, near = true }, -- 10
-        { type = "KILL", quest = 1386, questName = "Assault on the Kolkar", npc = 4634, target = "Kolkar Mauler", count = 12, map = 1443, zone = "Desolace", x = 70.9, y = 46.7, near = true }, -- 11
-        { type = "TURNIN", quest = 1386, questName = "Assault on the Kolkar", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 12
-        { type = "ACCEPT", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 13
-        { type = "TURNIN", quest = 5821, questName = "Bodyguard for Hire", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 14
-        { type = "COLLECT", quest = 1369, questName = "Broken Tears", target = "Broken Tears", count = 3, map = 1443, zone = "Desolace", x = 40.5, y = 91.9, near = true }, -- 15
-        { type = "TURNIN", quest = 1382, questName = "Strange Alliance", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 16
-        { type = "ACCEPT", quest = 1384, questName = "Raid on the Kolkar", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 17
-        { type = "COLLECT", quest = 1384, questName = "Raid on the Kolkar", target = "Crude Charm", count = 10, map = 1443, zone = "Desolace", x = 67.7, y = 52, near = true }, -- 18
-        { type = "TURNIN", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 19
-        { type = "TURNIN", quest = 1384, questName = "Raid on the Kolkar", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 20
-        { type = "ACCEPT", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 21
-        { type = "COLLECT", quest = 1370, questName = "Stealing Supplies", target = "Crudely Dried Meat", count = 6, map = 1443, zone = "Desolace", x = 65.8, y = 80.5, near = true }, -- 22
-        { type = "TURNIN", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 23
-        { type = "ACCEPT", quest = 1373, questName = "Ongeku", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.2, note = "Objectives: Gelkis Clan Centaur" }, -- 24
-        { type = "ACCEPT", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 36.1, y = 30.4 }, -- 25
-        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Golden Key", map = 1443, zone = "Desolace", x = 35.9, y = 28.8, near = true }, -- 26
-        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Silver Key", map = 1443, zone = "Desolace", x = 33, y = 31.1, near = true }, -- 27
-        { type = "TURNIN", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 30, y = 8.7 }, -- 28
-        { type = "GRIND", npc = 4692, target = "Dread Swoop", level = 34, map = 1443, zone = "Desolace", x = 46.7, y = 14.7, near = true, note = "grind Dread Swoop (level 32-33) to level 34 - nothing worth questing at 33" }, -- 29
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1443,zone="Nijel's Point",x=66.3,y=6.5,radius=60,note="use your hearthstone (Nijel's Point)"},
+{type="TRAVEL",map=1443,zone="Desolace",x=66.3,y=9.5,radius=60,note="travel to Desolace (Desolace)"},
+{type="ACCEPT",quest=1382,questName="Strange Alliance",npc=5396,npcName="Captain Pentigast",map=1443,zone="Desolace",x=66.7,y=10.9},
+{type="ACCEPT",quest=1385,questName="Brutal Politics",npc=5396,npcName="Captain Pentigast",map=1443,zone="Desolace",x=66.7,y=10.9},
+{type="ACCEPT",quest=5821,questName="Bodyguard for Hire",npc=11625,npcName="Cork Gizelton",map=1443,zone="Desolace",x=66.5,y=37.5},
+{type="COMPLETE",quest=5821,questName="Bodyguard for Hire",target="Escort Gizelton Caravan past Kolkar Centaur Village",map=1443,zone="Desolace",x=67.2,y=56.6,note="escort - stay close, it can fail: Escort Gizelton Caravan past Kolkar Centaur Village"},
+{type="TURNIN",quest=1385,questName="Brutal Politics",npc=5398,npcName="Warug",map=1443,zone="Desolace",x=75,y=68.2},
+{type="ACCEPT",quest=1386,questName="Assault on the Kolkar",npc=5398,npcName="Warug",map=1443,zone="Desolace",x=75,y=68.2},
+{type="KILL",quest=1386,questName="Assault on the Kolkar",npc=4632,target="Kolkar Centaur",count=12,map=1443,zone="Desolace",x=68.6,y=52.2,near=true},
+{type="KILL",quest=1386,questName="Assault on the Kolkar",npc=4633,target="Kolkar Scout",count=12,map=1443,zone="Desolace",x=68.7,y=50,near=true},
+{type="KILL",quest=1386,questName="Assault on the Kolkar",npc=4634,target="Kolkar Mauler",count=12,map=1443,zone="Desolace",x=70.9,y=46.7,near=true},
+{type="TURNIN",quest=1386,questName="Assault on the Kolkar",npc=5398,npcName="Warug",map=1443,zone="Desolace",x=75,y=68.2},
+{type="ACCEPT",quest=1369,questName="Broken Tears",npc=5398,npcName="Warug",map=1443,zone="Desolace",x=75,y=68.2},
+{type="TURNIN",quest=5821,questName="Bodyguard for Hire",npc=11596,npcName="Smeed Scrabblescrew",map=1443,zone="Desolace",x=60.9,y=61.9},
+{type="COLLECT",quest=1369,questName="Broken Tears",target="Broken Tears",count=3,map=1443,zone="Desolace",x=40.5,y=91.9,near=true},
+{type="TURNIN",quest=1382,questName="Strange Alliance",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="ACCEPT",quest=1384,questName="Raid on the Kolkar",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="COLLECT",quest=1384,questName="Raid on the Kolkar",target="Crude Charm",count=10,map=1443,zone="Desolace",x=67.7,y=52,near=true},
+{type="TURNIN",quest=1369,questName="Broken Tears",npc=5398,npcName="Warug",map=1443,zone="Desolace",x=75,y=68.2},
+{type="TURNIN",quest=1384,questName="Raid on the Kolkar",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="ACCEPT",quest=1370,questName="Stealing Supplies",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="COLLECT",quest=1370,questName="Stealing Supplies",target="Crudely Dried Meat",count=6,map=1443,zone="Desolace",x=65.8,y=80.5,near=true},
+{type="TURNIN",quest=1370,questName="Stealing Supplies",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="ACCEPT",quest=1373,questName="Ongeku",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.2,note="Objectives: Gelkis Clan Centaur"},
+{type="ACCEPT",quest=6161,questName="Claim Rackmore's Treasure!",map=1443,zone="Desolace",x=36.1,y=30.4},
+{type="COLLECT",quest=6161,questName="Claim Rackmore's Treasure!",target="Rackmore's Golden Key",map=1443,zone="Desolace",x=35.9,y=28.8,near=true},
+{type="COLLECT",quest=6161,questName="Claim Rackmore's Treasure!",target="Rackmore's Silver Key",map=1443,zone="Desolace",x=33,y=31.1,near=true},
+{type="TURNIN",quest=6161,questName="Claim Rackmore's Treasure!",map=1443,zone="Desolace",x=30,y=8.7},
+{type="GRIND",npc=4692,target="Dread Swoop",level=34,map=1443,zone="Desolace",x=46.7,y=14.7,near=true,note="grind Dread Swoop (level 32-33) to level 34 - nothing worth questing at 33"}
+}]],
 })

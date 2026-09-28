@@ -77,6 +77,16 @@ do
     check(laterQuest and G:CoveredQuests()[laterQuest], "a later chapter's quest is still covered by the route")
     check(rawget(ch3, "steps") == nil, "...and scanning that chapter did not keep its steps")
 end
+-- Compiled guides ship their steps as packed text, decoded to the same steps on first read.
+do
+    local shipped
+    local chunk = assert(loadfile(root .. "Guides/DUNGEON_HORDE_SHADOWFANG_KEEP.lua"))
+    chunk("ForeverGuide", { RegisterGuide = function(g) shipped = g end })
+    check(shipped and type(shipped.steps) == "string", "a compiled guide ships its steps as text")
+    local steps = shipped and ns.DecodeRecord(shipped.steps)
+    check(steps and #steps == shipped.stepCount and steps[1].type == "ACCEPT" and steps[1].quest == 1013,
+        "...which decodes to its steps (" .. tostring(steps and #steps) .. " of " .. tostring(shipped and shipped.stepCount) .. ")")
+end
 -- The other faction's guides are dropped at login, so their step loaders can be collected.
 do
     local horde, consistent = 0, true

@@ -13,32 +13,32 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Zul'Farrak: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 26,
-    steps = function() return {
-        { type = "ACCEPT", quest = 2861, questName = "Tabetha's Task", npc = 4568, npcName = "Anastasia Hartwell", map = 1458, zone = "Undercity", x = 85, y = 10.2 }, -- 1
-        { type = "TURNIN", quest = 2861, questName = "Tabetha's Task", npc = 6546, npcName = "Tabetha", map = 1445, zone = "Dustwallow Marsh", x = 46, y = 57 }, -- 2
-        { type = "ACCEPT", quest = 2864, questName = "Tran'rek", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.2 }, -- 3
-        { type = "TURNIN", quest = 2864, questName = "Tran'rek", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 4
-        { type = "ACCEPT", quest = 2936, questName = "The Spider God", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.6 }, -- 5
-        { type = "TURNIN", quest = 2936, questName = "The Spider God", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.6 }, -- 6
-        { type = "ACCEPT", quest = 2846, questName = "Tiara of the Deep", npc = 6546, npcName = "Tabetha", map = 1445, zone = "Dustwallow Marsh", x = 46, y = 57 }, -- 7
-        { type = "ACCEPT", quest = 2770, questName = "Gahz'rilla", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78, y = 77 }, -- 8
-        { type = "ACCEPT", quest = 2768, questName = "Divino-matic Rod", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.4, y = 28.4 }, -- 9
-        { type = "ACCEPT", quest = 2865, questName = "Scarab Shells", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 10
-        { type = "ACCEPT", quest = 3042, questName = "Troll Temper", npc = 7804, npcName = "Trenton Lighthammer", map = 1446, zone = "Tanaris", x = 51.4, y = 28.6 }, -- 11
-        { type = "ACCEPT", quest = 3527, questName = "The Prophecy of Mosh'aru", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 12
-        { type = "NOTE", map = 1446, zone = "Tanaris", x = 38.7, y = 20.1, text = "Find a group for Zul'Farrak", note = "All quests available from level 40; hand them in by level 50 for full XP" }, -- 13
-        { type = "COLLECT", quest = 2768, questName = "Divino-matic Rod", target = "Divino-matic Rod", count = 1, map = 1446, zone = "Tanaris", x = 38.7, y = 20.1 }, -- 14
-        { type = "COLLECT", quest = 2770, questName = "Gahz'rilla", target = "Gahz'rilla's Electrified Scale", count = 1, map = 1446, zone = "Tanaris", x = 38.7, y = 20.1 }, -- 15
-        { type = "COLLECT", quest = 2846, questName = "Tiara of the Deep", target = "Tiara of the Deep", count = 1, map = 1446, zone = "Tanaris", x = 38.7, y = 20.1 }, -- 16
-        { type = "COLLECT", quest = 2865, questName = "Scarab Shells", target = "Uncracked Scarab Shell", count = 5, map = 1446, zone = "Tanaris", x = 38.7, y = 20.1 }, -- 17
-        { type = "COLLECT", quest = 3042, questName = "Troll Temper", target = "Troll Temper", count = 20, map = 1446, zone = "Tanaris", x = 38.7, y = 20.1 }, -- 18
-        { type = "COLLECT", quest = 3527, questName = "The Prophecy of Mosh'aru", target = "First Mosh'aru Tablet", count = 1, map = 1446, zone = "Tanaris", x = 38.7, y = 20.1 }, -- 19
-        { type = "COLLECT", quest = 3527, questName = "The Prophecy of Mosh'aru", target = "Second Mosh'aru Tablet", count = 1, map = 1446, zone = "Tanaris", x = 38.7, y = 20.1 }, -- 20
-        { type = "TURNIN", quest = 2768, questName = "Divino-matic Rod", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.4, y = 28.4 }, -- 21
-        { type = "TURNIN", quest = 2865, questName = "Scarab Shells", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 22
-        { type = "TURNIN", quest = 3042, questName = "Troll Temper", npc = 7804, npcName = "Trenton Lighthammer", map = 1446, zone = "Tanaris", x = 51.4, y = 28.6 }, -- 23
-        { type = "TURNIN", quest = 3527, questName = "The Prophecy of Mosh'aru", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 24
-        { type = "TURNIN", quest = 2770, questName = "Gahz'rilla", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78, y = 77 }, -- 25
-        { type = "TURNIN", quest = 2846, questName = "Tiara of the Deep", npc = 6546, npcName = "Tabetha", map = 1445, zone = "Dustwallow Marsh", x = 46, y = 57 }, -- 26
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=2861,questName="Tabetha's Task",npc=4568,npcName="Anastasia Hartwell",map=1458,zone="Undercity",x=85,y=10.2},
+{type="TURNIN",quest=2861,questName="Tabetha's Task",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57},
+{type="ACCEPT",quest=2864,questName="Tran'rek",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2},
+{type="TURNIN",quest=2864,questName="Tran'rek",npc=7876,npcName="Tran'rek",map=1446,zone="Tanaris",x=51.6,y=26.8},
+{type="ACCEPT",quest=2936,questName="The Spider God",npc=3188,npcName="Master Gadrin",map=1411,zone="Durotar",x=56,y=74.6},
+{type="TURNIN",quest=2936,questName="The Spider God",npc=3188,npcName="Master Gadrin",map=1411,zone="Durotar",x=56,y=74.6},
+{type="ACCEPT",quest=2846,questName="Tiara of the Deep",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57},
+{type="ACCEPT",quest=2770,questName="Gahz'rilla",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77},
+{type="ACCEPT",quest=2768,questName="Divino-matic Rod",npc=7407,npcName="Chief Engineer Bilgewhizzle",map=1446,zone="Tanaris",x=52.4,y=28.4},
+{type="ACCEPT",quest=2865,questName="Scarab Shells",npc=7876,npcName="Tran'rek",map=1446,zone="Tanaris",x=51.6,y=26.8},
+{type="ACCEPT",quest=3042,questName="Troll Temper",npc=7804,npcName="Trenton Lighthammer",map=1446,zone="Tanaris",x=51.4,y=28.6},
+{type="ACCEPT",quest=3527,questName="The Prophecy of Mosh'aru",npc=8579,npcName="Yeh'kinya",map=1446,zone="Tanaris",x=67,y=22.4},
+{type="NOTE",map=1446,zone="Tanaris",x=38.7,y=20.1,text="Find a group for Zul'Farrak",note="All quests available from level 40; hand them in by level 50 for full XP"},
+{type="COLLECT",quest=2768,questName="Divino-matic Rod",target="Divino-matic Rod",count=1,map=1446,zone="Tanaris",x=38.7,y=20.1},
+{type="COLLECT",quest=2770,questName="Gahz'rilla",target="Gahz'rilla's Electrified Scale",count=1,map=1446,zone="Tanaris",x=38.7,y=20.1},
+{type="COLLECT",quest=2846,questName="Tiara of the Deep",target="Tiara of the Deep",count=1,map=1446,zone="Tanaris",x=38.7,y=20.1},
+{type="COLLECT",quest=2865,questName="Scarab Shells",target="Uncracked Scarab Shell",count=5,map=1446,zone="Tanaris",x=38.7,y=20.1},
+{type="COLLECT",quest=3042,questName="Troll Temper",target="Troll Temper",count=20,map=1446,zone="Tanaris",x=38.7,y=20.1},
+{type="COLLECT",quest=3527,questName="The Prophecy of Mosh'aru",target="First Mosh'aru Tablet",count=1,map=1446,zone="Tanaris",x=38.7,y=20.1},
+{type="COLLECT",quest=3527,questName="The Prophecy of Mosh'aru",target="Second Mosh'aru Tablet",count=1,map=1446,zone="Tanaris",x=38.7,y=20.1},
+{type="TURNIN",quest=2768,questName="Divino-matic Rod",npc=7407,npcName="Chief Engineer Bilgewhizzle",map=1446,zone="Tanaris",x=52.4,y=28.4},
+{type="TURNIN",quest=2865,questName="Scarab Shells",npc=7876,npcName="Tran'rek",map=1446,zone="Tanaris",x=51.6,y=26.8},
+{type="TURNIN",quest=3042,questName="Troll Temper",npc=7804,npcName="Trenton Lighthammer",map=1446,zone="Tanaris",x=51.4,y=28.6},
+{type="TURNIN",quest=3527,questName="The Prophecy of Mosh'aru",npc=8579,npcName="Yeh'kinya",map=1446,zone="Tanaris",x=67,y=22.4},
+{type="TURNIN",quest=2770,questName="Gahz'rilla",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77},
+{type="TURNIN",quest=2846,questName="Tiara of the Deep",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57}
+}]],
 })

@@ -83,8 +83,17 @@ function ns.RegisterGuide(guide)
         return
     end
     guide.version = guide.version or 1
+    if type(guide.steps) == "string" then
+        -- compiled guides hand over their steps as packed text (tools/compile_guides.py)
+        local text, id = guide.steps, guide.id
+        guide.steps = function()
+            local steps, err = ns.DecodeRecord(text)
+            if not steps then ns.ReportOnce("guide " .. id, "steps do not decode: " .. tostring(err)) end
+            return steps
+        end
+    end
     if type(guide.steps) == "function" then
-        -- compiled guides hand over a loader: the step tables are built the first time a guide's
+        -- a loader: the step tables are built the first time a guide's
         -- steps are read (activation, AutoQuest, the info popup), never for the 400 guides that are
         -- only ever listed in the picker
         local loader = guide.steps

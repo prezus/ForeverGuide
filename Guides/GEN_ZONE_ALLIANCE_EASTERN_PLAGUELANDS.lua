@@ -12,31 +12,31 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Eastern Plaguelands for a Alliance character, 6 quests. The race routes are the faster path; pick this when you just want to quest here.",
     stepCount = 25,
-    steps = function() return {
-        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.3, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
-        { type = "HEARTH", npc = 16256, npcName = "Jessica Chambers", map = 1423, zone = "Light's Hope Chapel", x = 71.8, y = 48.5, note = "talk to Jessica Chambers and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 3
-        { type = "ACCEPT", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 4
-        { type = "KILL", quest = 5211, questName = "Defenders of Darrowshire", npc = 11064, target = "Darrowshire Spirit", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 81.8, y = 42.1, near = true }, -- 5
-        { type = "TURNIN", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 6
-        { type = "KILL", quest = 6021, questName = "Zaeldarr the Outcast", npc = 12250, target = "Zaeldarr the Outcast", map = 1423, zone = "Eastern Plaguelands", x = 27.5, y = 84.9, note = "loot Zaeldarr's Head" }, -- 7
-        { type = "ACCEPT", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 8
-        { type = "ACCEPT", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 9
-        { type = "ACCEPT", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 10
-        { type = "ACCEPT", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 11
-        { type = "ACCEPT", quest = 5742, questName = "Redemption", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 12
-        { type = "KILL", quest = 5742, questName = "Redemption", npc = 1855, target = "Tirion Fordring", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true }, -- 13
-        { type = "TURNIN", quest = 5742, questName = "Redemption", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true }, -- 14
-        { type = "COLLECT", quest = 5544, questName = "Carrion Grubbage", target = "Slab of Carrion Worm Meat", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 6.8, y = 42.2, near = true }, -- 15
-        { type = "TURNIN", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 16
-        { type = "COLLECT", quest = 6164, questName = "Augustus' Receipt Book", target = "Augustus' Receipt Book", map = 1423, zone = "Eastern Plaguelands", x = 17.4, y = 31.1 }, -- 17
-        { type = "TURNIN", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 18
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8598, target = "Frenzied Plaguehound", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 19.6, y = 25.9, near = true }, -- 19
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8596, target = "Plaguehound Runt", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 7.7, y = 53.9, near = true }, -- 20
-        { type = "KILL", quest = 5543, questName = "Blood Tinged Skies", npc = 8600, target = "Plaguebat", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 15, y = 75.5, near = true }, -- 21
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8597, target = "Plaguehound", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 52.3, y = 62.2, near = true }, -- 22
-        { type = "TURNIN", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 23
-        { type = "TURNIN", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 24
-        { type = "TURNIN", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 25
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1423,zone="Eastern Plaguelands",x=81.3,y=59.3,radius=60,note="travel to Eastern Plaguelands (Eastern Plaguelands)"},
+{type="HEARTH",npc=16256,npcName="Jessica Chambers",map=1423,zone="Light's Hope Chapel",x=71.8,y=48.5,note="talk to Jessica Chambers and make this inn your home"},
+{type="ACCEPT",quest=5211,questName="Defenders of Darrowshire",npc=11063,npcName="Carlin Redpath",map=1423,zone="Eastern Plaguelands",x=81.5,y=59.8},
+{type="ACCEPT",quest=6021,questName="Zaeldarr the Outcast",npc=11038,npcName="Caretaker Alen",map=1423,zone="Eastern Plaguelands",x=79.6,y=63.9},
+{type="KILL",quest=5211,questName="Defenders of Darrowshire",npc=11064,target="Darrowshire Spirit",count=15,map=1423,zone="Eastern Plaguelands",x=81.8,y=42.1,near=true},
+{type="TURNIN",quest=5211,questName="Defenders of Darrowshire",npc=11063,npcName="Carlin Redpath",map=1423,zone="Eastern Plaguelands",x=81.5,y=59.8},
+{type="KILL",quest=6021,questName="Zaeldarr the Outcast",npc=12250,target="Zaeldarr the Outcast",map=1423,zone="Eastern Plaguelands",x=27.5,y=84.9,note="loot Zaeldarr's Head"},
+{type="ACCEPT",quest=6164,questName="Augustus' Receipt Book",npc=12384,npcName="Augustus the Touched",map=1423,zone="Eastern Plaguelands",x=14.5,y=33.5},
+{type="ACCEPT",quest=5542,questName="Demon Dogs",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.6,y=43.7},
+{type="ACCEPT",quest=5543,questName="Blood Tinged Skies",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.6,y=43.7},
+{type="ACCEPT",quest=5544,questName="Carrion Grubbage",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.6,y=43.7},
+{type="ACCEPT",quest=5742,questName="Redemption",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.6,y=43.7,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="KILL",quest=5742,questName="Redemption",npc=1855,target="Tirion Fordring",count=1,map=1423,zone="Eastern Plaguelands",x=7.6,y=43.7,optional=true},
+{type="TURNIN",quest=5742,questName="Redemption",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.6,y=43.7,optional=true},
+{type="COLLECT",quest=5544,questName="Carrion Grubbage",target="Slab of Carrion Worm Meat",count=15,map=1423,zone="Eastern Plaguelands",x=6.8,y=42.2,near=true},
+{type="TURNIN",quest=5544,questName="Carrion Grubbage",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.6,y=43.7},
+{type="COLLECT",quest=6164,questName="Augustus' Receipt Book",target="Augustus' Receipt Book",map=1423,zone="Eastern Plaguelands",x=17.4,y=31.1},
+{type="TURNIN",quest=6164,questName="Augustus' Receipt Book",npc=12384,npcName="Augustus the Touched",map=1423,zone="Eastern Plaguelands",x=14.5,y=33.5},
+{type="KILL",quest=5542,questName="Demon Dogs",npc=8598,target="Frenzied Plaguehound",count=5,map=1423,zone="Eastern Plaguelands",x=19.6,y=25.9,near=true},
+{type="KILL",quest=5542,questName="Demon Dogs",npc=8596,target="Plaguehound Runt",count=20,map=1423,zone="Eastern Plaguelands",x=7.7,y=53.9,near=true},
+{type="KILL",quest=5543,questName="Blood Tinged Skies",npc=8600,target="Plaguebat",count=30,map=1423,zone="Eastern Plaguelands",x=15,y=75.5,near=true},
+{type="KILL",quest=5542,questName="Demon Dogs",npc=8597,target="Plaguehound",count=20,map=1423,zone="Eastern Plaguelands",x=52.3,y=62.2,near=true},
+{type="TURNIN",quest=5542,questName="Demon Dogs",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.6,y=43.7},
+{type="TURNIN",quest=5543,questName="Blood Tinged Skies",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.6,y=43.7},
+{type="TURNIN",quest=6021,questName="Zaeldarr the Outcast",npc=11038,npcName="Caretaker Alen",map=1423,zone="Eastern Plaguelands",x=79.6,y=63.9}
+}]],
 })

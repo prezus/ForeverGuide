@@ -14,16 +14,16 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 39 of the Scourge route: level 52 to 52, 9 steps, ~38 min of play in the model (37099 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 10,
-    steps = function() return {
-        { type = "FLIGHTPATH", npc = 12636, npcName = "Georgia", map = 1423, zone = "Eastern Plaguelands", x = 70.5, y = 47.6 }, -- 1
-        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.2, y = 59.2, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 2
-        { type = "HEARTH", npc = 16256, npcName = "Jessica Chambers", map = 1423, zone = "Light's Hope Chapel", x = 71.8, y = 48.5, note = "talk to Jessica Chambers and make this inn your home" }, -- 3
-        { type = "ACCEPT", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 4
-        { type = "ACCEPT", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 5
-        { type = "KILL", quest = 5211, questName = "Defenders of Darrowshire", npc = 11064, target = "Darrowshire Spirit", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 81.8, y = 42.1, near = true }, -- 6
-        { type = "TURNIN", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 7
-        { type = "TURNIN", quest = 5142, questName = "Little Pamela", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 8
-        { type = "KILL", quest = 6021, questName = "Zaeldarr the Outcast", npc = 12250, target = "Zaeldarr the Outcast", map = 1423, zone = "Eastern Plaguelands", x = 27.5, y = 84.9, note = "loot Zaeldarr's Head" }, -- 9
-        { type = "TURNIN", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 10
-    } end,
+    steps = [[{
+{type="FLIGHTPATH",npc=12636,npcName="Georgia",map=1423,zone="Eastern Plaguelands",x=70.5,y=47.6},
+{type="TRAVEL",map=1423,zone="Eastern Plaguelands",x=81.2,y=59.2,radius=60,note="travel to Eastern Plaguelands (Eastern Plaguelands)"},
+{type="HEARTH",npc=16256,npcName="Jessica Chambers",map=1423,zone="Light's Hope Chapel",x=71.8,y=48.5,note="talk to Jessica Chambers and make this inn your home"},
+{type="ACCEPT",quest=5211,questName="Defenders of Darrowshire",npc=11063,npcName="Carlin Redpath",map=1423,zone="Eastern Plaguelands",x=81.5,y=59.8},
+{type="ACCEPT",quest=6021,questName="Zaeldarr the Outcast",npc=11038,npcName="Caretaker Alen",map=1423,zone="Eastern Plaguelands",x=79.6,y=63.9},
+{type="KILL",quest=5211,questName="Defenders of Darrowshire",npc=11064,target="Darrowshire Spirit",count=15,map=1423,zone="Eastern Plaguelands",x=81.8,y=42.1,near=true},
+{type="TURNIN",quest=5211,questName="Defenders of Darrowshire",npc=11063,npcName="Carlin Redpath",map=1423,zone="Eastern Plaguelands",x=81.5,y=59.8},
+{type="TURNIN",quest=5142,questName="Little Pamela",npc=10926,npcName="Pamela Redpath",map=1423,zone="Eastern Plaguelands",x=36.5,y=90.8},
+{type="KILL",quest=6021,questName="Zaeldarr the Outcast",npc=12250,target="Zaeldarr the Outcast",map=1423,zone="Eastern Plaguelands",x=27.5,y=84.9,note="loot Zaeldarr's Head"},
+{type="TURNIN",quest=6021,questName="Zaeldarr the Outcast",npc=11038,npcName="Caretaker Alen",map=1423,zone="Eastern Plaguelands",x=79.6,y=63.9}
+}]],
 })

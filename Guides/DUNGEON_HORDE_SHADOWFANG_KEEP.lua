@@ -13,15 +13,15 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Shadowfang Keep: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 9,
-    steps = function() return {
-        { type = "ACCEPT", quest = 1013, questName = "The Book of Ur", npc = 2934, npcName = "Keeper Bel'dugur", map = 1458, zone = "Undercity", x = 53.6, y = 54 }, -- 1
-        { type = "ACCEPT", quest = 1014, questName = "Arugal Must Die", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 2
-        { type = "ACCEPT", quest = 1098, questName = "Deathstalkers in Shadowfang", npc = 1952, npcName = "High Executor Hadrec", map = 1421, zone = "Silverpine Forest", x = 43.4, y = 40.8 }, -- 3
-        { type = "NOTE", map = 1421, zone = "Silverpine Forest", x = 44.8, y = 67.8, text = "Find a group for Shadowfang Keep", note = "All quests available from level 18; hand them in by level 30 for full XP" }, -- 4
-        { type = "COLLECT", quest = 1013, questName = "The Book of Ur", target = "The Book of Ur", count = 1, map = 1421, zone = "Silverpine Forest", x = 44.8, y = 67.8 }, -- 5
-        { type = "COLLECT", quest = 1014, questName = "Arugal Must Die", target = "Head of Arugal", count = 1, map = 1421, zone = "Silverpine Forest", x = 44.8, y = 67.8 }, -- 6
-        { type = "TURNIN", quest = 1098, questName = "Deathstalkers in Shadowfang", map = 1421, zone = "Silverpine Forest", x = 44.8, y = 67.8 }, -- 7
-        { type = "TURNIN", quest = 1014, questName = "Arugal Must Die", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 8
-        { type = "TURNIN", quest = 1013, questName = "The Book of Ur", npc = 2934, npcName = "Keeper Bel'dugur", map = 1458, zone = "Undercity", x = 53.6, y = 54 }, -- 9
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=1013,questName="The Book of Ur",npc=2934,npcName="Keeper Bel'dugur",map=1458,zone="Undercity",x=53.6,y=54},
+{type="ACCEPT",quest=1014,questName="Arugal Must Die",npc=1938,npcName="Dalar Dawnweaver",map=1421,zone="Silverpine Forest",x=44.2,y=39.8},
+{type="ACCEPT",quest=1098,questName="Deathstalkers in Shadowfang",npc=1952,npcName="High Executor Hadrec",map=1421,zone="Silverpine Forest",x=43.4,y=40.8},
+{type="NOTE",map=1421,zone="Silverpine Forest",x=44.8,y=67.8,text="Find a group for Shadowfang Keep",note="All quests available from level 18; hand them in by level 30 for full XP"},
+{type="COLLECT",quest=1013,questName="The Book of Ur",target="The Book of Ur",count=1,map=1421,zone="Silverpine Forest",x=44.8,y=67.8},
+{type="COLLECT",quest=1014,questName="Arugal Must Die",target="Head of Arugal",count=1,map=1421,zone="Silverpine Forest",x=44.8,y=67.8},
+{type="TURNIN",quest=1098,questName="Deathstalkers in Shadowfang",map=1421,zone="Silverpine Forest",x=44.8,y=67.8},
+{type="TURNIN",quest=1014,questName="Arugal Must Die",npc=1938,npcName="Dalar Dawnweaver",map=1421,zone="Silverpine Forest",x=44.2,y=39.8},
+{type="TURNIN",quest=1013,questName="The Book of Ur",npc=2934,npcName="Keeper Bel'dugur",map=1458,zone="Undercity",x=53.6,y=54}
+}]],
 })

@@ -14,66 +14,66 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 9 of the Human route: level 24 to 25, 49 steps, ~118 min of play in the model (22230 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 60,
-    steps = function() return {
-        { type = "FLIGHTPATH", npc = 4267, npcName = "Daelyshia", map = 1440, zone = "Ashenvale", x = 34.4, y = 48 }, -- 1
-        { type = "ACCEPT", quest = 98461, questName = "Unrequited Love", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8, note = "New in Forever" }, -- 2
-        { type = "TURNIN", quest = 3765, questName = "The Corruption Abroad", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.4, y = 43 }, -- 3
-        { type = "ACCEPT", quest = 1198, questName = "In Search of Thaelrid", npc = 4786, npcName = "Dawnwatcher Shaedlass", map = 1457, zone = "Darnassus", x = 55.4, y = 24.6, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 4
-        { type = "ACCEPT", quest = 1199, questName = "Twilight Falls", npc = 4784, npcName = "Argent Guard Manados", map = 1457, zone = "Darnassus", x = 55.2, y = 23.6, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 5
-        { type = "ACCEPT", quest = 1275, questName = "Researching the Corruption", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.4, y = 43, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 6
-        { type = "ACCEPT", quest = 2925, questName = "Klockmort's Essentials", npc = 6142, npcName = "Mathiel", map = 1457, zone = "Darnassus", x = 59.2, y = 45.4, optional = true, note = "For Gnomeregan (dungeon guide)" }, -- 7
-        { type = "TURNIN", quest = 1716, questName = "Devourer of Souls", npc = 6244, npcName = "Takar the Seer", map = 1413, zone = "The Barrens", x = 49.2, y = 57, class = { "WARLOCK" } }, -- 8
-        { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 36.4, y = 50.2, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 9
-        { type = "HEARTH", npc = 6738, npcName = "Innkeeper Kimlya", map = 1440, zone = "Astranaar", x = 37.0, y = 49.2, note = "talk to Innkeeper Kimlya and make this inn your home" }, -- 10
-        { type = "ACCEPT", quest = 991, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 11
-        { type = "ACCEPT", quest = 1008, questName = "The Zoram Strand", npc = 3845, npcName = "Shindrell Swiftfire", map = 1440, zone = "Ashenvale", x = 34.7, y = 48.8 }, -- 12
-        { type = "ACCEPT", quest = 1054, questName = "Culling the Threat", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 13
-        { type = "KILL", quest = 1054, questName = "Culling the Threat", npc = 3987, target = "Dal Bloodclaw", map = 1440, zone = "Ashenvale", x = 39.6, y = 36.3, note = "loot Dal Bloodclaw's Skull" }, -- 14
-        { type = "TURNIN", quest = 1054, questName = "Culling the Threat", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 15
-        { type = "ACCEPT", quest = 1070, questName = "On Guard in Stonetalon", npc = 4079, npcName = "Sentinel Thenysil", map = 1440, zone = "Ashenvale", x = 34.8, y = 49.8 }, -- 16
-        { type = "ACCEPT", quest = 4581, questName = "Kayneth Stillwind", npc = 3845, npcName = "Shindrell Swiftfire", map = 1440, zone = "Ashenvale", x = 34.6, y = 48.8 }, -- 17
-        { type = "TURNIN", quest = 991, questName = "Raene's Cleansing", npc = 3891, npcName = "Teronis' Corpse", map = 1440, zone = "Ashenvale", x = 20.3, y = 42.3 }, -- 18
-        { type = "ACCEPT", quest = 1023, questName = "Raene's Cleansing", npc = 3891, npcName = "Teronis' Corpse", map = 1440, zone = "Ashenvale", x = 20.3, y = 42.3 }, -- 19
-        { type = "COLLECT", quest = 1023, questName = "Raene's Cleansing", target = "Glowing Gem", map = 1440, zone = "Ashenvale", x = 20.6, y = 42.2, near = true }, -- 20
-        { type = "ACCEPT", quest = 1010, questName = "Bathran's Hair", npc = 3847, npcName = "Orendil Broadleaf", map = 1440, zone = "Ashenvale", x = 26.4, y = 38.6 }, -- 21
-        { type = "COLLECT", quest = 1008, questName = "The Zoram Strand", target = "Wrathtail Head", count = 20, map = 1440, zone = "Ashenvale", x = 13.7, y = 30.9, near = true }, -- 22
-        { type = "ACCEPT", quest = 1007, questName = "The Ancient Statuette", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 23
-        { type = "COLLECT", quest = 1007, questName = "The Ancient Statuette", target = "Ancient Statuette", map = 1440, zone = "Ashenvale", x = 14.2, y = 20.6 }, -- 24
-        { type = "COLLECT", quest = 1010, questName = "Bathran's Hair", target = "Bathran's Hair", count = 5, map = 1440, zone = "Ashenvale", x = 30.1, y = 24.7, near = true }, -- 25
-        { type = "TURNIN", quest = 1007, questName = "The Ancient Statuette", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 26
-        { type = "ACCEPT", quest = 1009, questName = "Ruuzel", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 27
-        { type = "KILL", quest = 1009, questName = "Ruuzel", npc = 3943, target = "Ruuzel", map = 1440, zone = "Ashenvale", x = 7.2, y = 13.1, note = "loot Ring of Zoram" }, -- 28
-        { type = "TURNIN", quest = 1009, questName = "Ruuzel", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 29
-        { type = "TURNIN", quest = 1010, questName = "Bathran's Hair", npc = 3847, npcName = "Orendil Broadleaf", map = 1440, zone = "Ashenvale", x = 26.4, y = 38.6 }, -- 30
-        { type = "ACCEPT", quest = 1020, questName = "Orendil's Cure", npc = 3847, npcName = "Orendil Broadleaf", map = 1440, zone = "Ashenvale", x = 26.4, y = 38.6 }, -- 31
-        { type = "TURNIN", quest = 1008, questName = "The Zoram Strand", npc = 3845, npcName = "Shindrell Swiftfire", map = 1440, zone = "Ashenvale", x = 34.7, y = 48.8, note = "reduced xp (80%) - you out-levelled it" }, -- 32
-        { type = "ACCEPT", quest = 1134, questName = "Pridewings of Stonetalon", npc = 3845, npcName = "Shindrell Swiftfire", map = 1440, zone = "Ashenvale", x = 34.6, y = 48.8 }, -- 33
-        { type = "TURNIN", quest = 1023, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 34
-        { type = "ACCEPT", quest = 1024, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 35
-        { type = "ACCEPT", quest = 1025, questName = "An Aggressive Defense", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 36
-        { type = "TURNIN", quest = 1020, questName = "Orendil's Cure", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 37
-        { type = "ACCEPT", quest = 1033, questName = "Elune's Tear", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 38
-        { type = "COLLECT", quest = 1033, questName = "Elune's Tear", target = "Elune's Tear", map = 1440, zone = "Ashenvale", x = 46.1, y = 46.6, near = true }, -- 39
-        { type = "KILL", quest = 1025, questName = "An Aggressive Defense", npc = 3749, target = "Foulweald Ursa / Foulweald Den Watcher / Foulweald Warrior / Foulweald Totemic", count = 12, map = 1440, zone = "Ashenvale", x = 50.2, y = 59.6, near = true }, -- 40
-        { type = "TURNIN", quest = 1033, questName = "Elune's Tear", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 41
-        { type = "ACCEPT", quest = 1034, questName = "The Ruins of Stardust", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 42
-        { type = "TURNIN", quest = 1025, questName = "An Aggressive Defense", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 43
-        { type = "COLLECT", quest = 1034, questName = "The Ruins of Stardust", target = "Handful of Stardust", count = 5, map = 1440, zone = "Ashenvale", x = 33.9, y = 66.6, near = true }, -- 44
-        { type = "TURNIN", quest = 1034, questName = "The Ruins of Stardust", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 45
-        { type = "TURNIN", quest = 1024, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 46
-        { type = "ACCEPT", quest = 1026, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 47
-        { type = "COLLECT", quest = 1026, questName = "Raene's Cleansing", target = "Iron Shaft", map = 1440, zone = "Ashenvale", x = 54.4, y = 35.4 }, -- 48
-        { type = "TURNIN", quest = 1026, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 49
-        { type = "ACCEPT", quest = 1027, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 50
-        { type = "COLLECT", quest = 1027, questName = "Raene's Cleansing", target = "Iron Pommel", map = 1440, zone = "Ashenvale", x = 69.9, y = 74.1, near = true }, -- 51
-        { type = "TURNIN", quest = 1027, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 52
-        { type = "ACCEPT", quest = 1028, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 53
-        { type = "TURNIN", quest = 1028, questName = "Raene's Cleansing", map = 1440, zone = "Ashenvale", x = 56.4, y = 49.2 }, -- 54
-        { type = "ACCEPT", quest = 1055, questName = "Raene's Cleansing", map = 1440, zone = "Ashenvale", x = 56.4, y = 49.2 }, -- 55
-        { type = "TURNIN", quest = 1055, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 56
-        { type = "ACCEPT", quest = 1029, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 57
-        { type = "TURNIN", quest = 1029, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 58
-        { type = "ACCEPT", quest = 1030, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 59
-        { type = "TURNIN", quest = 1030, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 60
-    } end,
+    steps = [[{
+{type="FLIGHTPATH",npc=4267,npcName="Daelyshia",map=1440,zone="Ashenvale",x=34.4,y=48},
+{type="ACCEPT",quest=98461,questName="Unrequited Love",npc=2913,npcName="Archaeologist Hollee",map=1439,zone="Darkshore",x=37.4,y=41.8,note="New in Forever"},
+{type="TURNIN",quest=3765,questName="The Corruption Abroad",npc=8997,npcName="Gershala Nightwhisper",map=1439,zone="Darkshore",x=38.4,y=43},
+{type="ACCEPT",quest=1198,questName="In Search of Thaelrid",npc=4786,npcName="Dawnwatcher Shaedlass",map=1457,zone="Darnassus",x=55.4,y=24.6,optional=true,note="For Blackfathom Deeps (dungeon guide)"},
+{type="ACCEPT",quest=1199,questName="Twilight Falls",npc=4784,npcName="Argent Guard Manados",map=1457,zone="Darnassus",x=55.2,y=23.6,optional=true,note="For Blackfathom Deeps (dungeon guide)"},
+{type="ACCEPT",quest=1275,questName="Researching the Corruption",npc=8997,npcName="Gershala Nightwhisper",map=1439,zone="Darkshore",x=38.4,y=43,optional=true,note="For Blackfathom Deeps (dungeon guide)"},
+{type="ACCEPT",quest=2925,questName="Klockmort's Essentials",npc=6142,npcName="Mathiel",map=1457,zone="Darnassus",x=59.2,y=45.4,optional=true,note="For Gnomeregan (dungeon guide)"},
+{type="TURNIN",quest=1716,questName="Devourer of Souls",npc=6244,npcName="Takar the Seer",map=1413,zone="The Barrens",x=49.2,y=57,class={"WARLOCK"}},
+{type="TRAVEL",map=1440,zone="Ashenvale",x=36.4,y=50.2,radius=60,note="travel to Ashenvale (Ashenvale)"},
+{type="HEARTH",npc=6738,npcName="Innkeeper Kimlya",map=1440,zone="Astranaar",x=37.0,y=49.2,note="talk to Innkeeper Kimlya and make this inn your home"},
+{type="ACCEPT",quest=991,questName="Raene's Cleansing",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
+{type="ACCEPT",quest=1008,questName="The Zoram Strand",npc=3845,npcName="Shindrell Swiftfire",map=1440,zone="Ashenvale",x=34.7,y=48.8},
+{type="ACCEPT",quest=1054,questName="Culling the Threat",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
+{type="KILL",quest=1054,questName="Culling the Threat",npc=3987,target="Dal Bloodclaw",map=1440,zone="Ashenvale",x=39.6,y=36.3,note="loot Dal Bloodclaw's Skull"},
+{type="TURNIN",quest=1054,questName="Culling the Threat",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
+{type="ACCEPT",quest=1070,questName="On Guard in Stonetalon",npc=4079,npcName="Sentinel Thenysil",map=1440,zone="Ashenvale",x=34.8,y=49.8},
+{type="ACCEPT",quest=4581,questName="Kayneth Stillwind",npc=3845,npcName="Shindrell Swiftfire",map=1440,zone="Ashenvale",x=34.6,y=48.8},
+{type="TURNIN",quest=991,questName="Raene's Cleansing",npc=3891,npcName="Teronis' Corpse",map=1440,zone="Ashenvale",x=20.3,y=42.3},
+{type="ACCEPT",quest=1023,questName="Raene's Cleansing",npc=3891,npcName="Teronis' Corpse",map=1440,zone="Ashenvale",x=20.3,y=42.3},
+{type="COLLECT",quest=1023,questName="Raene's Cleansing",target="Glowing Gem",map=1440,zone="Ashenvale",x=20.6,y=42.2,near=true},
+{type="ACCEPT",quest=1010,questName="Bathran's Hair",npc=3847,npcName="Orendil Broadleaf",map=1440,zone="Ashenvale",x=26.4,y=38.6},
+{type="COLLECT",quest=1008,questName="The Zoram Strand",target="Wrathtail Head",count=20,map=1440,zone="Ashenvale",x=13.7,y=30.9,near=true},
+{type="ACCEPT",quest=1007,questName="The Ancient Statuette",npc=3846,npcName="Talen",map=1440,zone="Ashenvale",x=14.8,y=31.3},
+{type="COLLECT",quest=1007,questName="The Ancient Statuette",target="Ancient Statuette",map=1440,zone="Ashenvale",x=14.2,y=20.6},
+{type="COLLECT",quest=1010,questName="Bathran's Hair",target="Bathran's Hair",count=5,map=1440,zone="Ashenvale",x=30.1,y=24.7,near=true},
+{type="TURNIN",quest=1007,questName="The Ancient Statuette",npc=3846,npcName="Talen",map=1440,zone="Ashenvale",x=14.8,y=31.3},
+{type="ACCEPT",quest=1009,questName="Ruuzel",npc=3846,npcName="Talen",map=1440,zone="Ashenvale",x=14.8,y=31.3},
+{type="KILL",quest=1009,questName="Ruuzel",npc=3943,target="Ruuzel",map=1440,zone="Ashenvale",x=7.2,y=13.1,note="loot Ring of Zoram"},
+{type="TURNIN",quest=1009,questName="Ruuzel",npc=3846,npcName="Talen",map=1440,zone="Ashenvale",x=14.8,y=31.3},
+{type="TURNIN",quest=1010,questName="Bathran's Hair",npc=3847,npcName="Orendil Broadleaf",map=1440,zone="Ashenvale",x=26.4,y=38.6},
+{type="ACCEPT",quest=1020,questName="Orendil's Cure",npc=3847,npcName="Orendil Broadleaf",map=1440,zone="Ashenvale",x=26.4,y=38.6},
+{type="TURNIN",quest=1008,questName="The Zoram Strand",npc=3845,npcName="Shindrell Swiftfire",map=1440,zone="Ashenvale",x=34.7,y=48.8,note="reduced xp (80%) - you out-levelled it"},
+{type="ACCEPT",quest=1134,questName="Pridewings of Stonetalon",npc=3845,npcName="Shindrell Swiftfire",map=1440,zone="Ashenvale",x=34.6,y=48.8},
+{type="TURNIN",quest=1023,questName="Raene's Cleansing",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
+{type="ACCEPT",quest=1024,questName="Raene's Cleansing",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
+{type="ACCEPT",quest=1025,questName="An Aggressive Defense",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
+{type="TURNIN",quest=1020,questName="Orendil's Cure",npc=3894,npcName="Pelturas Whitemoon",map=1440,zone="Ashenvale",x=37.4,y=51.8},
+{type="ACCEPT",quest=1033,questName="Elune's Tear",npc=3894,npcName="Pelturas Whitemoon",map=1440,zone="Ashenvale",x=37.4,y=51.8},
+{type="COLLECT",quest=1033,questName="Elune's Tear",target="Elune's Tear",map=1440,zone="Ashenvale",x=46.1,y=46.6,near=true},
+{type="KILL",quest=1025,questName="An Aggressive Defense",npc=3749,target="Foulweald Ursa / Foulweald Den Watcher / Foulweald Warrior / Foulweald Totemic",count=12,map=1440,zone="Ashenvale",x=50.2,y=59.6,near=true},
+{type="TURNIN",quest=1033,questName="Elune's Tear",npc=3894,npcName="Pelturas Whitemoon",map=1440,zone="Ashenvale",x=37.4,y=51.8},
+{type="ACCEPT",quest=1034,questName="The Ruins of Stardust",npc=3894,npcName="Pelturas Whitemoon",map=1440,zone="Ashenvale",x=37.4,y=51.8},
+{type="TURNIN",quest=1025,questName="An Aggressive Defense",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
+{type="COLLECT",quest=1034,questName="The Ruins of Stardust",target="Handful of Stardust",count=5,map=1440,zone="Ashenvale",x=33.9,y=66.6,near=true},
+{type="TURNIN",quest=1034,questName="The Ruins of Stardust",npc=3894,npcName="Pelturas Whitemoon",map=1440,zone="Ashenvale",x=37.4,y=51.8},
+{type="TURNIN",quest=1024,questName="Raene's Cleansing",npc=3916,npcName="Shael'dryn",map=1440,zone="Ashenvale",x=53.5,y=46.2},
+{type="ACCEPT",quest=1026,questName="Raene's Cleansing",npc=3916,npcName="Shael'dryn",map=1440,zone="Ashenvale",x=53.5,y=46.2},
+{type="COLLECT",quest=1026,questName="Raene's Cleansing",target="Iron Shaft",map=1440,zone="Ashenvale",x=54.4,y=35.4},
+{type="TURNIN",quest=1026,questName="Raene's Cleansing",npc=3916,npcName="Shael'dryn",map=1440,zone="Ashenvale",x=53.5,y=46.2},
+{type="ACCEPT",quest=1027,questName="Raene's Cleansing",npc=3916,npcName="Shael'dryn",map=1440,zone="Ashenvale",x=53.5,y=46.2},
+{type="COLLECT",quest=1027,questName="Raene's Cleansing",target="Iron Pommel",map=1440,zone="Ashenvale",x=69.9,y=74.1,near=true},
+{type="TURNIN",quest=1027,questName="Raene's Cleansing",npc=3916,npcName="Shael'dryn",map=1440,zone="Ashenvale",x=53.5,y=46.2},
+{type="ACCEPT",quest=1028,questName="Raene's Cleansing",npc=3916,npcName="Shael'dryn",map=1440,zone="Ashenvale",x=53.5,y=46.2},
+{type="TURNIN",quest=1028,questName="Raene's Cleansing",map=1440,zone="Ashenvale",x=56.4,y=49.2},
+{type="ACCEPT",quest=1055,questName="Raene's Cleansing",map=1440,zone="Ashenvale",x=56.4,y=49.2},
+{type="TURNIN",quest=1055,questName="Raene's Cleansing",npc=3916,npcName="Shael'dryn",map=1440,zone="Ashenvale",x=53.5,y=46.2},
+{type="ACCEPT",quest=1029,questName="Raene's Cleansing",npc=3916,npcName="Shael'dryn",map=1440,zone="Ashenvale",x=53.5,y=46.2},
+{type="TURNIN",quest=1029,questName="Raene's Cleansing",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
+{type="ACCEPT",quest=1030,questName="Raene's Cleansing",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
+{type="TURNIN",quest=1030,questName="Raene's Cleansing",npc=3897,npcName="Krolg",map=1440,zone="Ashenvale",x=50.8,y=75.1}
+}]],
 })

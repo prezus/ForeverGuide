@@ -14,7 +14,7 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 33 of the Skyborne route: level 47 to 48, 1 steps, ~62 min of play in the model (35061 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 1,
-    steps = function() return {
-        { type = "GRIND", npc = 5424, target = "Scorpid Dunestalker", level = 48, map = 1446, zone = "Tanaris", x = 45.1, y = 50.2, near = true, note = "grind Scorpid Dunestalker (level 46-47) to level 48 - nothing worth questing at 47" }, -- 1
-    } end,
+    steps = [[{
+{type="GRIND",npc=5424,target="Scorpid Dunestalker",level=48,map=1446,zone="Tanaris",x=45.1,y=50.2,near=true,note="grind Scorpid Dunestalker (level 46-47) to level 48 - nothing worth questing at 47"}
+}]],
 })

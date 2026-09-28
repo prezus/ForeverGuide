@@ -14,33 +14,33 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 48 of the Scourge route: level 57 to 57, 21 steps, ~99 min of play in the model (47611 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 27,
-    steps = function() return {
-        { type = "TRAVEL", map = 1451, zone = "Silithus", x = 49.3, y = 37.1, radius = 60, note = "travel to Silithus (Silithus)" }, -- 1
-        { type = "ACCEPT", quest = 8859, questName = "Secrets of the Colossus - Zora", npc = 15797, npcName = "Colossus Researcher Sophia", map = 1451, zone = "Silithus", x = 49.4, y = 37.2 }, -- 2
-        { type = "ACCEPT", quest = 8285, questName = "The Deserter", npc = 15183, npcName = "Geologist Larksbane", map = 1451, zone = "Silithus", x = 49.7, y = 37.5 }, -- 3
-        { type = "ACCEPT", quest = 9416, questName = "Report to General Kirika", npc = 17081, npcName = "Scout Bloodfist", map = 1451, zone = "Silithus", x = 49, y = 36.7 }, -- 4
-        { type = "ACCEPT", quest = 8318, questName = "Secret Communication", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 5
-        { type = "COLLECT", quest = 8318, questName = "Secret Communication", target = "Encrypted Twilight Text", count = 10, map = 1451, zone = "Silithus", x = 40.9, y = 42.2, near = true }, -- 6
-        { type = "TURNIN", quest = 8318, questName = "Secret Communication", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 7
-        { type = "TURNIN", quest = 9416, questName = "Report to General Kirika", npc = 17079, npcName = "General Kirika", map = 1451, zone = "Silithus", x = 50.8, y = 69.5 }, -- 8
-        { type = "ACCEPT", quest = 9422, questName = "Scouring the Desert", npc = 17079, npcName = "General Kirika", map = 1451, zone = "Silithus", x = 50.8, y = 69.5 }, -- 9
-        { type = "KILL", quest = 9422, questName = "Scouring the Desert", npc = 18199, target = "Silithus Dust Turnin Quest Doodad Horde", count = 1, map = 1451, zone = "Silithus", x = 50.9, y = 69.3 }, -- 10
-        { type = "TURNIN", quest = 9422, questName = "Scouring the Desert", npc = 17079, npcName = "General Kirika", map = 1451, zone = "Silithus", x = 50.8, y = 69.5 }, -- 11
-        { type = "TURNIN", quest = 8285, questName = "The Deserter", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 12
-        { type = "ACCEPT", quest = 8279, questName = "The Twilight Lexicon", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 13
-        { type = "KILL", quest = 8279, questName = "The Twilight Lexicon", npc = 11804, target = "Twilight Keeper Havunth", map = 1451, zone = "Silithus", x = 40.9, y = 42.2, note = "loot Twilight Lexicon - Chapter 3" }, -- 14
-        { type = "TURNIN", quest = 8307, questName = "Desert Recipe", map = 1451, zone = "Silithus", x = 38, y = 45.3, profession = "Cooking", skill = 285 }, -- 15
-        { type = "KILL", quest = 8279, questName = "The Twilight Lexicon", npc = 15200, target = "Twilight Keeper Mayna", map = 1451, zone = "Silithus", x = 26.4, y = 36.6, note = "loot Twilight Lexicon - Chapter 1" }, -- 16
-        { type = "KILL", quest = 8279, questName = "The Twilight Lexicon", npc = 11803, target = "Twilight Keeper Exeter", map = 1451, zone = "Silithus", x = 16.1, y = 86.4, note = "loot Twilight Lexicon - Chapter 2" }, -- 17
-        { type = "COLLECT", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", target = "Deathclasp's Pincer", count = 1, map = 1451, zone = "Silithus", x = 44.8, y = 90.8, optional = true, mobs = "Deathclasp" }, -- 18
-        { type = "TURNIN", quest = 8279, questName = "The Twilight Lexicon", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 19
-        { type = "ACCEPT", quest = 8323, questName = "True Believers", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 20
-        { type = "ACCEPT", quest = 8287, questName = "A Terrible Purpose", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 21
-        { type = "ACCEPT", quest = 8313, questName = "Sharing the Knowledge", map = 1451, zone = "Silithus", x = 38, y = 45.3, profession = "Cooking", skill = 285 }, -- 22
-        { type = "COLLECT", quest = 8323, questName = "True Believers", target = "Encrypted Twilight Text", count = 10, map = 1451, zone = "Silithus", x = 41.5, y = 45.2, near = true }, -- 23
-        { type = "TURNIN", quest = 8323, questName = "True Believers", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 24
-        { type = "TURNIN", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", npc = 15182, npcName = "Vish Kozus", map = 1451, zone = "Silithus", x = 50.8, y = 33.6, optional = true }, -- 25
-        { type = "TURNIN", quest = 8313, questName = "Sharing the Knowledge", npc = 15174, npcName = "Calandrath", map = 1451, zone = "Silithus", x = 51.8, y = 39, profession = "Cooking", skill = 285 }, -- 26
-        { type = "TURNIN", quest = 8287, questName = "A Terrible Purpose", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 27
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1451,zone="Silithus",x=49.3,y=37.1,radius=60,note="travel to Silithus (Silithus)"},
+{type="ACCEPT",quest=8859,questName="Secrets of the Colossus - Zora",npc=15797,npcName="Colossus Researcher Sophia",map=1451,zone="Silithus",x=49.4,y=37.2},
+{type="ACCEPT",quest=8285,questName="The Deserter",npc=15183,npcName="Geologist Larksbane",map=1451,zone="Silithus",x=49.7,y=37.5},
+{type="ACCEPT",quest=9416,questName="Report to General Kirika",npc=17081,npcName="Scout Bloodfist",map=1451,zone="Silithus",x=49,y=36.7},
+{type="ACCEPT",quest=8318,questName="Secret Communication",npc=15306,npcName="Bor Wildmane",map=1451,zone="Silithus",x=48.6,y=37.8},
+{type="COLLECT",quest=8318,questName="Secret Communication",target="Encrypted Twilight Text",count=10,map=1451,zone="Silithus",x=40.9,y=42.2,near=true},
+{type="TURNIN",quest=8318,questName="Secret Communication",npc=15306,npcName="Bor Wildmane",map=1451,zone="Silithus",x=48.6,y=37.8},
+{type="TURNIN",quest=9416,questName="Report to General Kirika",npc=17079,npcName="General Kirika",map=1451,zone="Silithus",x=50.8,y=69.5},
+{type="ACCEPT",quest=9422,questName="Scouring the Desert",npc=17079,npcName="General Kirika",map=1451,zone="Silithus",x=50.8,y=69.5},
+{type="KILL",quest=9422,questName="Scouring the Desert",npc=18199,target="Silithus Dust Turnin Quest Doodad Horde",count=1,map=1451,zone="Silithus",x=50.9,y=69.3},
+{type="TURNIN",quest=9422,questName="Scouring the Desert",npc=17079,npcName="General Kirika",map=1451,zone="Silithus",x=50.8,y=69.5},
+{type="TURNIN",quest=8285,questName="The Deserter",npc=15194,npcName="Hermit Ortell",map=1451,zone="Silithus",x=67.2,y=69.8},
+{type="ACCEPT",quest=8279,questName="The Twilight Lexicon",npc=15194,npcName="Hermit Ortell",map=1451,zone="Silithus",x=67.2,y=69.8},
+{type="KILL",quest=8279,questName="The Twilight Lexicon",npc=11804,target="Twilight Keeper Havunth",map=1451,zone="Silithus",x=40.9,y=42.2,note="loot Twilight Lexicon - Chapter 3"},
+{type="TURNIN",quest=8307,questName="Desert Recipe",map=1451,zone="Silithus",x=38,y=45.3,profession="Cooking",skill=285},
+{type="KILL",quest=8279,questName="The Twilight Lexicon",npc=15200,target="Twilight Keeper Mayna",map=1451,zone="Silithus",x=26.4,y=36.6,note="loot Twilight Lexicon - Chapter 1"},
+{type="KILL",quest=8279,questName="The Twilight Lexicon",npc=11803,target="Twilight Keeper Exeter",map=1451,zone="Silithus",x=16.1,y=86.4,note="loot Twilight Lexicon - Chapter 2"},
+{type="COLLECT",quest=8283,questName="Wanted - Deathclasp, Terror of the Sands",target="Deathclasp's Pincer",count=1,map=1451,zone="Silithus",x=44.8,y=90.8,optional=true,mobs="Deathclasp"},
+{type="TURNIN",quest=8279,questName="The Twilight Lexicon",npc=15194,npcName="Hermit Ortell",map=1451,zone="Silithus",x=67.2,y=69.8},
+{type="ACCEPT",quest=8323,questName="True Believers",npc=15194,npcName="Hermit Ortell",map=1451,zone="Silithus",x=67.2,y=69.8},
+{type="ACCEPT",quest=8287,questName="A Terrible Purpose",npc=15194,npcName="Hermit Ortell",map=1451,zone="Silithus",x=67.2,y=69.8},
+{type="ACCEPT",quest=8313,questName="Sharing the Knowledge",map=1451,zone="Silithus",x=38,y=45.3,profession="Cooking",skill=285},
+{type="COLLECT",quest=8323,questName="True Believers",target="Encrypted Twilight Text",count=10,map=1451,zone="Silithus",x=41.5,y=45.2,near=true},
+{type="TURNIN",quest=8323,questName="True Believers",npc=15194,npcName="Hermit Ortell",map=1451,zone="Silithus",x=67.2,y=69.8},
+{type="TURNIN",quest=8283,questName="Wanted - Deathclasp, Terror of the Sands",npc=15182,npcName="Vish Kozus",map=1451,zone="Silithus",x=50.8,y=33.6,optional=true},
+{type="TURNIN",quest=8313,questName="Sharing the Knowledge",npc=15174,npcName="Calandrath",map=1451,zone="Silithus",x=51.8,y=39,profession="Cooking",skill=285},
+{type="TURNIN",quest=8287,questName="A Terrible Purpose",npc=15181,npcName="Commander Mar'alith",map=1451,zone="Silithus",x=49.2,y=34.2}
+}]],
 })

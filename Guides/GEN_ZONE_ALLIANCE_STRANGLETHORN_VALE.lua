@@ -12,104 +12,104 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Stranglethorn Vale for a Alliance character, 30 quests. The race routes are the faster path; pick this when you just want to quest here.",
     stepCount = 98,
-    steps = function() return {
-        { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.5, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
-        { type = "HEARTH", npc = 6807, npcName = "Innkeeper Skindle", map = 1434, zone = "Booty Bay", x = 27.0, y = 77.3, note = "talk to Innkeeper Skindle and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 3
-        { type = "ACCEPT", quest = 628, questName = "Excelsior", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 4
-        { type = "KILL", quest = 628, questName = "Excelsior", npc = 2635, target = "Elder Saltwater Crocolisk", map = 1434, zone = "Stranglethorn Vale", x = 33.4, y = 32.5, optional = true, near = true }, -- 5
-        { type = "TURNIN", quest = 628, questName = "Excelsior", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6, optional = true }, -- 6
-        { type = "KILL", quest = 575, questName = "Supply and Demand", npc = 1150, target = "River Crocolisk", count = 2, map = 1434, zone = "Stranglethorn Vale", x = 39.9, y = 14.4, near = true, note = "loot Large River Crocolisk Skin" }, -- 7
-        { type = "ACCEPT", quest = 583, questName = "Welcome to the Jungle", npc = 716, npcName = "Barnil Stonepot", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.5 }, -- 8
-        { type = "ACCEPT", quest = 193, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 9
-        { type = "KILL", quest = 193, questName = "Panther Mastery", npc = 728, target = "Bhag'thera", map = 1434, zone = "Stranglethorn Vale", x = 48.4, y = 19.2, optional = true, near = true }, -- 10
-        { type = "TURNIN", quest = 193, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6, optional = true }, -- 11
-        { type = "TURNIN", quest = 583, questName = "Welcome to the Jungle", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 12
-        { type = "ACCEPT", quest = 185, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 13
-        { type = "ACCEPT", quest = 190, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 14
-        { type = "KILL", quest = 185, questName = "Tiger Mastery", npc = 681, target = "Young Stranglethorn Tiger", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 36, y = 12.9, near = true }, -- 15
-        { type = "TURNIN", quest = 185, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 16
-        { type = "ACCEPT", quest = 186, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 17
-        { type = "KILL", quest = 186, questName = "Tiger Mastery", npc = 682, target = "Stranglethorn Tiger", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 30.8, y = 11.2, near = true }, -- 18
-        { type = "KILL", quest = 190, questName = "Panther Mastery", npc = 683, target = "Young Panther", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 35.1, y = 15.1, near = true }, -- 19
-        { type = "ACCEPT", quest = 215, questName = "Jungle Secrets", npc = 738, npcName = "Private Thorsen", map = 1434, zone = "Stranglethorn Vale", x = 40.3, y = 8.4 }, -- 20
-        { type = "ACCEPT", quest = 203, questName = "The Second Rebellion", npc = 733, npcName = "Sergeant Yohwa", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3.3 }, -- 21
-        { type = "ACCEPT", quest = 202, questName = "Colonel Kurzen", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 22
-        { type = "KILL", quest = 202, questName = "Colonel Kurzen", npc = 939, target = "Kurzen Elite", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 46.7, y = 6.2, optional = true, near = true }, -- 23
-        { type = "KILL", quest = 202, questName = "Colonel Kurzen", npc = 978, target = "Kurzen Subchief", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 48.8, y = 4.6, optional = true, near = true }, -- 24
-        { type = "KILL", quest = 202, questName = "Colonel Kurzen", npc = 813, target = "Colonel Kurzen", map = 1434, zone = "Stranglethorn Vale", x = 49.9, y = 4, optional = true }, -- 25
-        { type = "TURNIN", quest = 202, questName = "Colonel Kurzen", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3, optional = true }, -- 26
-        { type = "TURNIN", quest = 215, questName = "Jungle Secrets", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3 }, -- 27
-        { type = "KILL", quest = 203, questName = "The Second Rebellion", npc = 937, target = "Kurzen Jungle Fighter", count = 15, map = 1434, zone = "Stranglethorn Vale", x = 43.6, y = 9.7, near = true }, -- 28
-        { type = "TURNIN", quest = 190, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 29
-        { type = "ACCEPT", quest = 191, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 30
-        { type = "TURNIN", quest = 186, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 31
-        { type = "KILL", quest = 191, questName = "Panther Mastery", npc = 736, target = "Panther", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 31, y = 14.6, near = true }, -- 32
-        { type = "TURNIN", quest = 191, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 33
-        { type = "TURNIN", quest = 203, questName = "The Second Rebellion", npc = 733, npcName = "Sergeant Yohwa", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3.3 }, -- 34
-        { type = "TURNIN", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 35
-        { type = "ACCEPT", quest = 194, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 36
-        { type = "ACCEPT", quest = 204, questName = "Bad Medicine", npc = 733, npcName = "Sergeant Yohwa", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3.3 }, -- 37
-        { type = "COLLECT", quest = 204, questName = "Bad Medicine", target = "Jungle Remedy", count = 7, map = 1434, zone = "Stranglethorn Vale", x = 43.9, y = 7.1, near = true }, -- 38
-        { type = "COLLECT", quest = 204, questName = "Bad Medicine", target = "Venom Fern Extract", count = 7, map = 1434, zone = "Stranglethorn Vale", x = 44.1, y = 9.5, near = true }, -- 39
-        { type = "KILL", quest = 194, questName = "Raptor Mastery", npc = 685, target = "Stranglethorn Raptor", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 27.4, y = 15.5, near = true }, -- 40
-        { type = "TURNIN", quest = 194, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 41
-        { type = "TURNIN", quest = 204, questName = "Bad Medicine", npc = 733, npcName = "Sergeant Yohwa", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3.3 }, -- 42
-        { type = "ACCEPT", quest = 198, questName = "Supplies to Private Thorsen", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.2 }, -- 43
-        { type = "TURNIN", quest = 198, questName = "Supplies to Private Thorsen", npc = 738, npcName = "Private Thorsen", map = 1434, zone = "Stranglethorn Vale", x = 40.3, y = 8.4 }, -- 44
-        { type = "ACCEPT", quest = 200, questName = "Bookie Herod", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3 }, -- 45
-        { type = "ACCEPT", quest = 187, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 46
-        { type = "KILL", quest = 187, questName = "Tiger Mastery", npc = 1085, target = "Elder Stranglethorn Tiger", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 34, y = 17.6, near = true }, -- 47
-        { type = "TURNIN", quest = 187, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 48
-        { type = "TURNIN", quest = 200, questName = "Bookie Herod", map = 1434, zone = "Stranglethorn Vale", x = 43.7, y = 9.4 }, -- 49
-        { type = "ACCEPT", quest = 189, questName = "Bloodscalp Ears", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 50
-        { type = "ACCEPT", quest = 605, questName = "Singing Blue Shards", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 51
-        { type = "COLLECT", quest = 605, questName = "Singing Blue Shards", target = "Singing Crystal Shard", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 39.1, y = 52, near = true }, -- 52
-        { type = "TURNIN", quest = 605, questName = "Singing Blue Shards", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 53
-        { type = "COLLECT", quest = 189, questName = "Bloodscalp Ears", target = "Bloodscalp Ear", count = 15, map = 1434, zone = "Stranglethorn Vale", x = 29.8, y = 21.6, near = true }, -- 54
-        { type = "TURNIN", quest = 189, questName = "Bloodscalp Ears", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 55
-        { type = "ACCEPT", quest = 213, questName = "Hostile Takeover", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 56
-        { type = "ACCEPT", quest = 577, questName = "Some Assembly Required", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 57
-        { type = "KILL", quest = 577, questName = "Some Assembly Required", npc = 1152, target = "Snapjaw Crocolisk", count = 5, map = 1434, zone = "Stranglethorn Vale", x = 38.4, y = 31.4, near = true, note = "loot Snapjaw Crocolisk Skin" }, -- 58
-        { type = "KILL", quest = 213, questName = "Hostile Takeover", npc = 1096, target = "Venture Co. Geologist", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 43.6, y = 22.4, near = true, note = "loot Tumbled Crystal" }, -- 59
-        { type = "ACCEPT", quest = 195, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 60
-        { type = "KILL", quest = 195, questName = "Raptor Mastery", npc = 686, target = "Lashtail Raptor", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 39.3, y = 19.1, near = true }, -- 61
-        { type = "TURNIN", quest = 195, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 62
-        { type = "TURNIN", quest = 213, questName = "Hostile Takeover", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 63
-        { type = "TURNIN", quest = 577, questName = "Some Assembly Required", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 64
-        { type = "ACCEPT", quest = 616, questName = "The Haunted Isle", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.2 }, -- 65
-        { type = "TURNIN", quest = 616, questName = "The Haunted Isle", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 66
-        { type = "ACCEPT", quest = 578, questName = "The Stone of the Tides", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 67
-        { type = "COMPLETE", quest = 578, questName = "The Stone of the Tides", target = "Locate the haunted island", map = 1434, zone = "Stranglethorn Vale", x = 20.8, y = 23.1, note = "Locate the haunted island" }, -- 68
-        { type = "ACCEPT", quest = 188, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 69
-        { type = "ACCEPT", quest = 210, questName = "Krazek's Cookery", npc = 770, npcName = "Corporal Kaleb", map = 1434, zone = "Stranglethorn Vale", x = 37.7, y = 3.3 }, -- 70
-        { type = "KILL", quest = 188, questName = "Tiger Mastery", npc = 729, target = "Sin'Dall", map = 1434, zone = "Stranglethorn Vale", x = 31.5, y = 15.5, near = true, note = "loot Paw of Sin'Dall" }, -- 71
-        { type = "TURNIN", quest = 188, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 72
-        { type = "ACCEPT", quest = 328, questName = "The Hidden Key", map = 1434, zone = "Stranglethorn Vale", x = 43.7, y = 9.4 }, -- 73
-        { type = "TURNIN", quest = 328, questName = "The Hidden Key", map = 1434, zone = "Stranglethorn Vale", x = 49.6, y = 7.6 }, -- 74
-        { type = "ACCEPT", quest = 329, questName = "The Spy Revealed!", map = 1434, zone = "Stranglethorn Vale", x = 49.6, y = 7.6 }, -- 75
-        { type = "TURNIN", quest = 329, questName = "The Spy Revealed!", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3 }, -- 76
-        { type = "ACCEPT", quest = 330, questName = "Patrol Schedules", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3 }, -- 77
-        { type = "TURNIN", quest = 330, questName = "Patrol Schedules", npc = 1422, npcName = "Corporal Sethman", map = 1434, zone = "Stranglethorn Vale", x = 37.7, y = 3.4 }, -- 78
-        { type = "ACCEPT", quest = 331, questName = "Report to Doren", npc = 1422, npcName = "Corporal Sethman", map = 1434, zone = "Stranglethorn Vale", x = 37.7, y = 3.4 }, -- 79
-        { type = "TURNIN", quest = 331, questName = "Report to Doren", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3 }, -- 80
-        { type = "TURNIN", quest = 578, questName = "The Stone of the Tides", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 81
-        { type = "ACCEPT", quest = 601, questName = "Water Elementals", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 82
-        { type = "TURNIN", quest = 210, questName = "Krazek's Cookery", npc = 773, npcName = "Krazek", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.2 }, -- 83
-        { type = "KILL", quest = 601, questName = "Water Elementals", npc = 691, target = "Lesser Water Elemental", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 19.9, y = 24.5, near = true, note = "loot Water Elemental Bracers" }, -- 84
-        { type = "TURNIN", quest = 601, questName = "Water Elementals", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 85
-        { type = "ACCEPT", quest = 192, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 86
-        { type = "ACCEPT", quest = 207, questName = "Kurzen's Mystery", npc = 739, npcName = "Brother Nimetz", map = 1434, zone = "Stranglethorn Vale", x = 37.8, y = 3.6 }, -- 87
-        { type = "ACCEPT", quest = 574, questName = "Special Forces", npc = 733, npcName = "Sergeant Yohwa", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3.3 }, -- 88
-        { type = "KILL", quest = 574, questName = "Special Forces", npc = 938, target = "Kurzen Commando", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 44.2, y = 7.9, near = true }, -- 89
-        { type = "KILL", quest = 574, questName = "Special Forces", npc = 941, target = "Kurzen Headshrinker", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 46.3, y = 7, near = true }, -- 90
-        { type = "KILL", quest = 192, questName = "Panther Mastery", npc = 684, target = "Shadowmaw Panther", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 50.7, y = 20.6, near = true }, -- 91
-        { type = "COLLECT", quest = 207, questName = "Kurzen's Mystery", target = "The First Troll Legend", count = 4, map = 1434, zone = "Stranglethorn Vale", x = 29.5, y = 19.1 }, -- 92
-        { type = "COLLECT", quest = 207, questName = "Kurzen's Mystery", target = "The Second Troll Legend", count = 4, map = 1434, zone = "Stranglethorn Vale", x = 24.8, y = 23 }, -- 93
-        { type = "COLLECT", quest = 207, questName = "Kurzen's Mystery", target = "The Third Troll Legend", count = 4, map = 1434, zone = "Stranglethorn Vale", x = 23, y = 12 }, -- 94
-        { type = "COLLECT", quest = 207, questName = "Kurzen's Mystery", target = "The Fourth Troll Legend", count = 4, map = 1434, zone = "Stranglethorn Vale", x = 24.7, y = 8.9 }, -- 95
-        { type = "TURNIN", quest = 192, questName = "Panther Mastery", npc = 718, npcName = "Sir S. J. Erlgadin", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 96
-        { type = "TURNIN", quest = 207, questName = "Kurzen's Mystery", npc = 739, npcName = "Brother Nimetz", map = 1434, zone = "Stranglethorn Vale", x = 37.8, y = 3.6 }, -- 97
-        { type = "TURNIN", quest = 574, questName = "Special Forces", npc = 469, npcName = "Lieutenant Doren", map = 1434, zone = "Stranglethorn Vale", x = 38, y = 3 }, -- 98
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.3,y=76.5,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
+{type="HEARTH",npc=6807,npcName="Innkeeper Skindle",map=1434,zone="Booty Bay",x=27.0,y=77.3,note="talk to Innkeeper Skindle and make this inn your home"},
+{type="ACCEPT",quest=575,questName="Supply and Demand",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
+{type="ACCEPT",quest=628,questName="Excelsior",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="KILL",quest=628,questName="Excelsior",npc=2635,target="Elder Saltwater Crocolisk",map=1434,zone="Stranglethorn Vale",x=33.4,y=32.5,optional=true,near=true},
+{type="TURNIN",quest=628,questName="Excelsior",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6,optional=true},
+{type="KILL",quest=575,questName="Supply and Demand",npc=1150,target="River Crocolisk",count=2,map=1434,zone="Stranglethorn Vale",x=39.9,y=14.4,near=true,note="loot Large River Crocolisk Skin"},
+{type="ACCEPT",quest=583,questName="Welcome to the Jungle",npc=716,npcName="Barnil Stonepot",map=1434,zone="Stranglethorn Vale",x=35.7,y=10.5},
+{type="ACCEPT",quest=193,questName="Panther Mastery",npc=718,npcName="Sir S. J. Erlgadin",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="KILL",quest=193,questName="Panther Mastery",npc=728,target="Bhag'thera",map=1434,zone="Stranglethorn Vale",x=48.4,y=19.2,optional=true,near=true},
+{type="TURNIN",quest=193,questName="Panther Mastery",npc=718,npcName="Sir S. J. Erlgadin",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6,optional=true},
+{type="TURNIN",quest=583,questName="Welcome to the Jungle",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.7,y=10.8},
+{type="ACCEPT",quest=185,questName="Tiger Mastery",npc=717,npcName="Ajeck Rouack",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="ACCEPT",quest=190,questName="Panther Mastery",npc=718,npcName="Sir S. J. Erlgadin",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="KILL",quest=185,questName="Tiger Mastery",npc=681,target="Young Stranglethorn Tiger",count=10,map=1434,zone="Stranglethorn Vale",x=36,y=12.9,near=true},
+{type="TURNIN",quest=185,questName="Tiger Mastery",npc=717,npcName="Ajeck Rouack",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="ACCEPT",quest=186,questName="Tiger Mastery",npc=717,npcName="Ajeck Rouack",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="KILL",quest=186,questName="Tiger Mastery",npc=682,target="Stranglethorn Tiger",count=10,map=1434,zone="Stranglethorn Vale",x=30.8,y=11.2,near=true},
+{type="KILL",quest=190,questName="Panther Mastery",npc=683,target="Young Panther",count=10,map=1434,zone="Stranglethorn Vale",x=35.1,y=15.1,near=true},
+{type="ACCEPT",quest=215,questName="Jungle Secrets",npc=738,npcName="Private Thorsen",map=1434,zone="Stranglethorn Vale",x=40.3,y=8.4},
+{type="ACCEPT",quest=203,questName="The Second Rebellion",npc=733,npcName="Sergeant Yohwa",map=1434,zone="Stranglethorn Vale",x=38,y=3.3},
+{type="ACCEPT",quest=202,questName="Colonel Kurzen",npc=469,npcName="Lieutenant Doren",map=1434,zone="Stranglethorn Vale",x=38,y=3,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="KILL",quest=202,questName="Colonel Kurzen",npc=939,target="Kurzen Elite",count=6,map=1434,zone="Stranglethorn Vale",x=46.7,y=6.2,optional=true,near=true},
+{type="KILL",quest=202,questName="Colonel Kurzen",npc=978,target="Kurzen Subchief",count=6,map=1434,zone="Stranglethorn Vale",x=48.8,y=4.6,optional=true,near=true},
+{type="KILL",quest=202,questName="Colonel Kurzen",npc=813,target="Colonel Kurzen",map=1434,zone="Stranglethorn Vale",x=49.9,y=4,optional=true},
+{type="TURNIN",quest=202,questName="Colonel Kurzen",npc=469,npcName="Lieutenant Doren",map=1434,zone="Stranglethorn Vale",x=38,y=3,optional=true},
+{type="TURNIN",quest=215,questName="Jungle Secrets",npc=469,npcName="Lieutenant Doren",map=1434,zone="Stranglethorn Vale",x=38,y=3},
+{type="KILL",quest=203,questName="The Second Rebellion",npc=937,target="Kurzen Jungle Fighter",count=15,map=1434,zone="Stranglethorn Vale",x=43.6,y=9.7,near=true},
+{type="TURNIN",quest=190,questName="Panther Mastery",npc=718,npcName="Sir S. J. Erlgadin",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="ACCEPT",quest=191,questName="Panther Mastery",npc=718,npcName="Sir S. J. Erlgadin",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="TURNIN",quest=186,questName="Tiger Mastery",npc=717,npcName="Ajeck Rouack",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="KILL",quest=191,questName="Panther Mastery",npc=736,target="Panther",count=10,map=1434,zone="Stranglethorn Vale",x=31,y=14.6,near=true},
+{type="TURNIN",quest=191,questName="Panther Mastery",npc=718,npcName="Sir S. J. Erlgadin",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="TURNIN",quest=203,questName="The Second Rebellion",npc=733,npcName="Sergeant Yohwa",map=1434,zone="Stranglethorn Vale",x=38,y=3.3},
+{type="TURNIN",quest=575,questName="Supply and Demand",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
+{type="ACCEPT",quest=194,questName="Raptor Mastery",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.7,y=10.8},
+{type="ACCEPT",quest=204,questName="Bad Medicine",npc=733,npcName="Sergeant Yohwa",map=1434,zone="Stranglethorn Vale",x=38,y=3.3},
+{type="COLLECT",quest=204,questName="Bad Medicine",target="Jungle Remedy",count=7,map=1434,zone="Stranglethorn Vale",x=43.9,y=7.1,near=true},
+{type="COLLECT",quest=204,questName="Bad Medicine",target="Venom Fern Extract",count=7,map=1434,zone="Stranglethorn Vale",x=44.1,y=9.5,near=true},
+{type="KILL",quest=194,questName="Raptor Mastery",npc=685,target="Stranglethorn Raptor",count=10,map=1434,zone="Stranglethorn Vale",x=27.4,y=15.5,near=true},
+{type="TURNIN",quest=194,questName="Raptor Mastery",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.7,y=10.8},
+{type="TURNIN",quest=204,questName="Bad Medicine",npc=733,npcName="Sergeant Yohwa",map=1434,zone="Stranglethorn Vale",x=38,y=3.3},
+{type="ACCEPT",quest=198,questName="Supplies to Private Thorsen",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=26.9,y=77.2},
+{type="TURNIN",quest=198,questName="Supplies to Private Thorsen",npc=738,npcName="Private Thorsen",map=1434,zone="Stranglethorn Vale",x=40.3,y=8.4},
+{type="ACCEPT",quest=200,questName="Bookie Herod",npc=469,npcName="Lieutenant Doren",map=1434,zone="Stranglethorn Vale",x=38,y=3},
+{type="ACCEPT",quest=187,questName="Tiger Mastery",npc=717,npcName="Ajeck Rouack",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="KILL",quest=187,questName="Tiger Mastery",npc=1085,target="Elder Stranglethorn Tiger",count=10,map=1434,zone="Stranglethorn Vale",x=34,y=17.6,near=true},
+{type="TURNIN",quest=187,questName="Tiger Mastery",npc=717,npcName="Ajeck Rouack",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="TURNIN",quest=200,questName="Bookie Herod",map=1434,zone="Stranglethorn Vale",x=43.7,y=9.4},
+{type="ACCEPT",quest=189,questName="Bloodscalp Ears",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
+{type="ACCEPT",quest=605,questName="Singing Blue Shards",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
+{type="COLLECT",quest=605,questName="Singing Blue Shards",target="Singing Crystal Shard",count=10,map=1434,zone="Stranglethorn Vale",x=39.1,y=52,near=true},
+{type="TURNIN",quest=605,questName="Singing Blue Shards",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
+{type="COLLECT",quest=189,questName="Bloodscalp Ears",target="Bloodscalp Ear",count=15,map=1434,zone="Stranglethorn Vale",x=29.8,y=21.6,near=true},
+{type="TURNIN",quest=189,questName="Bloodscalp Ears",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
+{type="ACCEPT",quest=213,questName="Hostile Takeover",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
+{type="ACCEPT",quest=577,questName="Some Assembly Required",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
+{type="KILL",quest=577,questName="Some Assembly Required",npc=1152,target="Snapjaw Crocolisk",count=5,map=1434,zone="Stranglethorn Vale",x=38.4,y=31.4,near=true,note="loot Snapjaw Crocolisk Skin"},
+{type="KILL",quest=213,questName="Hostile Takeover",npc=1096,target="Venture Co. Geologist",count=8,map=1434,zone="Stranglethorn Vale",x=43.6,y=22.4,near=true,note="loot Tumbled Crystal"},
+{type="ACCEPT",quest=195,questName="Raptor Mastery",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.7,y=10.8},
+{type="KILL",quest=195,questName="Raptor Mastery",npc=686,target="Lashtail Raptor",count=10,map=1434,zone="Stranglethorn Vale",x=39.3,y=19.1,near=true},
+{type="TURNIN",quest=195,questName="Raptor Mastery",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.7,y=10.8},
+{type="TURNIN",quest=213,questName="Hostile Takeover",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
+{type="TURNIN",quest=577,questName="Some Assembly Required",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
+{type="ACCEPT",quest=616,questName="The Haunted Isle",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=26.9,y=77.2},
+{type="TURNIN",quest=616,questName="The Haunted Isle",npc=2496,npcName="Baron Revilgaz",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.9},
+{type="ACCEPT",quest=578,questName="The Stone of the Tides",npc=2496,npcName="Baron Revilgaz",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.9},
+{type="COMPLETE",quest=578,questName="The Stone of the Tides",target="Locate the haunted island",map=1434,zone="Stranglethorn Vale",x=20.8,y=23.1,note="Locate the haunted island"},
+{type="ACCEPT",quest=188,questName="Tiger Mastery",npc=717,npcName="Ajeck Rouack",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="ACCEPT",quest=210,questName="Krazek's Cookery",npc=770,npcName="Corporal Kaleb",map=1434,zone="Stranglethorn Vale",x=37.7,y=3.3},
+{type="KILL",quest=188,questName="Tiger Mastery",npc=729,target="Sin'Dall",map=1434,zone="Stranglethorn Vale",x=31.5,y=15.5,near=true,note="loot Paw of Sin'Dall"},
+{type="TURNIN",quest=188,questName="Tiger Mastery",npc=717,npcName="Ajeck Rouack",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="ACCEPT",quest=328,questName="The Hidden Key",map=1434,zone="Stranglethorn Vale",x=43.7,y=9.4},
+{type="TURNIN",quest=328,questName="The Hidden Key",map=1434,zone="Stranglethorn Vale",x=49.6,y=7.6},
+{type="ACCEPT",quest=329,questName="The Spy Revealed!",map=1434,zone="Stranglethorn Vale",x=49.6,y=7.6},
+{type="TURNIN",quest=329,questName="The Spy Revealed!",npc=469,npcName="Lieutenant Doren",map=1434,zone="Stranglethorn Vale",x=38,y=3},
+{type="ACCEPT",quest=330,questName="Patrol Schedules",npc=469,npcName="Lieutenant Doren",map=1434,zone="Stranglethorn Vale",x=38,y=3},
+{type="TURNIN",quest=330,questName="Patrol Schedules",npc=1422,npcName="Corporal Sethman",map=1434,zone="Stranglethorn Vale",x=37.7,y=3.4},
+{type="ACCEPT",quest=331,questName="Report to Doren",npc=1422,npcName="Corporal Sethman",map=1434,zone="Stranglethorn Vale",x=37.7,y=3.4},
+{type="TURNIN",quest=331,questName="Report to Doren",npc=469,npcName="Lieutenant Doren",map=1434,zone="Stranglethorn Vale",x=38,y=3},
+{type="TURNIN",quest=578,questName="The Stone of the Tides",npc=2496,npcName="Baron Revilgaz",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.9},
+{type="ACCEPT",quest=601,questName="Water Elementals",npc=2496,npcName="Baron Revilgaz",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.9},
+{type="TURNIN",quest=210,questName="Krazek's Cookery",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=26.9,y=77.2},
+{type="KILL",quest=601,questName="Water Elementals",npc=691,target="Lesser Water Elemental",count=6,map=1434,zone="Stranglethorn Vale",x=19.9,y=24.5,near=true,note="loot Water Elemental Bracers"},
+{type="TURNIN",quest=601,questName="Water Elementals",npc=2496,npcName="Baron Revilgaz",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.9},
+{type="ACCEPT",quest=192,questName="Panther Mastery",npc=718,npcName="Sir S. J. Erlgadin",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="ACCEPT",quest=207,questName="Kurzen's Mystery",npc=739,npcName="Brother Nimetz",map=1434,zone="Stranglethorn Vale",x=37.8,y=3.6},
+{type="ACCEPT",quest=574,questName="Special Forces",npc=733,npcName="Sergeant Yohwa",map=1434,zone="Stranglethorn Vale",x=38,y=3.3},
+{type="KILL",quest=574,questName="Special Forces",npc=938,target="Kurzen Commando",count=10,map=1434,zone="Stranglethorn Vale",x=44.2,y=7.9,near=true},
+{type="KILL",quest=574,questName="Special Forces",npc=941,target="Kurzen Headshrinker",count=10,map=1434,zone="Stranglethorn Vale",x=46.3,y=7,near=true},
+{type="KILL",quest=192,questName="Panther Mastery",npc=684,target="Shadowmaw Panther",count=10,map=1434,zone="Stranglethorn Vale",x=50.7,y=20.6,near=true},
+{type="COLLECT",quest=207,questName="Kurzen's Mystery",target="The First Troll Legend",count=4,map=1434,zone="Stranglethorn Vale",x=29.5,y=19.1},
+{type="COLLECT",quest=207,questName="Kurzen's Mystery",target="The Second Troll Legend",count=4,map=1434,zone="Stranglethorn Vale",x=24.8,y=23},
+{type="COLLECT",quest=207,questName="Kurzen's Mystery",target="The Third Troll Legend",count=4,map=1434,zone="Stranglethorn Vale",x=23,y=12},
+{type="COLLECT",quest=207,questName="Kurzen's Mystery",target="The Fourth Troll Legend",count=4,map=1434,zone="Stranglethorn Vale",x=24.7,y=8.9},
+{type="TURNIN",quest=192,questName="Panther Mastery",npc=718,npcName="Sir S. J. Erlgadin",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.6},
+{type="TURNIN",quest=207,questName="Kurzen's Mystery",npc=739,npcName="Brother Nimetz",map=1434,zone="Stranglethorn Vale",x=37.8,y=3.6},
+{type="TURNIN",quest=574,questName="Special Forces",npc=469,npcName="Lieutenant Doren",map=1434,zone="Stranglethorn Vale",x=38,y=3}
+}]],
 })

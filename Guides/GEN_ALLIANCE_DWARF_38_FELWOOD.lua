@@ -14,47 +14,47 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 38 of the Dwarf route: level 51 to 51, 22 steps, ~82 min of play in the model (44117 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 41,
-    steps = function() return {
-        { type = "TRAVEL", map = 1448, zone = "Felwood", x = 51.6, y = 82.7, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
-        { type = "ACCEPT", quest = 8460, questName = "Timbermaw Ally", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 2
-        { type = "ACCEPT", quest = 5155, questName = "Forces of Jaedenar", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 3
-        { type = "ACCEPT", quest = 4421, questName = "The Corruption of the Jadefire", npc = 9116, npcName = "Eridan Bluewind", map = 1448, zone = "Felwood", x = 51.4, y = 81.5 }, -- 4
-        { type = "ACCEPT", quest = 5156, questName = "Verifying the Corruption", npc = 10921, npcName = "Taronn Redfeather", map = 1448, zone = "Felwood", x = 50.9, y = 81.6 }, -- 5
-        { type = "KILL", quest = 8460, questName = "Timbermaw Ally", npc = 7153, target = "Deadwood Warrior / Deadwood Gardener / Deadwood Pathfinder", count = 6, map = 1448, zone = "Felwood", x = 49.7, y = 88.2, near = true }, -- 6
-        { type = "TURNIN", quest = 8460, questName = "Timbermaw Ally", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 7
-        { type = "ACCEPT", quest = 8462, questName = "Speak to Nafien", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 51, y = 85 }, -- 8
-        { type = "KILL", quest = 5155, questName = "Forces of Jaedenar", npc = 7112, target = "Jaedenar Cultist / Jaedenar Adept / Jaedenar Hound / Jaedenar Guardian", count = 4, map = 1448, zone = "Felwood", x = 39, y = 62.2, near = true }, -- 9
-        { type = "KILL", quest = 4421, questName = "The Corruption of the Jadefire", npc = 7106, target = "Jadefire Rogue / Jadefire Shadowstalker", count = 11, map = 1448, zone = "Felwood", x = 37.4, y = 66.1, near = true }, -- 10
-        { type = "KILL", quest = 4421, questName = "The Corruption of the Jadefire", npc = 7109, target = "Jadefire Felsworn / Xavathras", count = 11, map = 1448, zone = "Felwood", x = 33, y = 66.4, near = true }, -- 11
-        { type = "ACCEPT", quest = 5202, questName = "A Strange Red Key", npc = 7120, npcName = "Jaedenar Warlock", map = 1448, zone = "Felwood", x = 40.2, y = 48.8, optional = true, note = "If you looted Blood Red Key from Jaedenar Enforcer / Jaedenar Darkweaver / Jaedenar Warlock / Jaedenar Legionnaire / Ulathek, use it to start the quest" }, -- 12
-        { type = "TURNIN", quest = 5202, questName = "A Strange Red Key", npc = 11016, npcName = "Captured Arko'narin", map = 1448, zone = "Felwood", x = 36.2, y = 55.4, optional = true }, -- 13
-        { type = "ACCEPT", quest = 8420, questName = "Hot and Itchy", npc = 14470, npcName = "Impsy", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, class = { "WARLOCK" } }, -- 14
-        { type = "COLLECT", quest = 8420, questName = "Hot and Itchy", target = "Felcloth", count = 1, map = 1448, zone = "Felwood", x = 33.4, y = 66.6, near = true, class = { "WARLOCK" }, mobs = "Jadefire Rogue / Jadefire Trickster / Jadefire Betrayer / Jadefire Felsworn" }, -- 15
-        { type = "COMPLETE", quest = 5156, questName = "Verifying the Corruption", npc = 9878, target = "Entropic Beast / Entropic Horror / Explore the craters in Shatter Scar Vale", count = 2, map = 1448, zone = "Felwood", x = 41.3, y = 43.8, near = true }, -- 16
-        { type = "ACCEPT", quest = 7601, questName = "What Niby Commands", npc = 14469, npcName = "Niby the Almighty", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, class = { "WARLOCK" } }, -- 17
-        { type = "TURNIN", quest = 7601, questName = "What Niby Commands", npc = 14470, npcName = "Impsy", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, class = { "WARLOCK" } }, -- 18
-        { type = "TURNIN", quest = 8420, questName = "Hot and Itchy", npc = 14470, npcName = "Impsy", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, class = { "WARLOCK" } }, -- 19
-        { type = "TURNIN", quest = 5155, questName = "Forces of Jaedenar", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 20
-        { type = "ACCEPT", quest = 5157, questName = "Collection of the Corrupt Water", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 21
-        { type = "TURNIN", quest = 4421, questName = "The Corruption of the Jadefire", npc = 9116, npcName = "Eridan Bluewind", map = 1448, zone = "Felwood", x = 51.4, y = 81.5 }, -- 22
-        { type = "TURNIN", quest = 5156, questName = "Verifying the Corruption", npc = 10921, npcName = "Taronn Redfeather", map = 1448, zone = "Felwood", x = 50.9, y = 81.6 }, -- 23
-        { type = "ACCEPT", quest = 4906, questName = "Further Corruption", npc = 9116, npcName = "Eridan Bluewind", map = 1448, zone = "Felwood", x = 51.4, y = 81.5 }, -- 24
-        { type = "COLLECT", quest = 5157, questName = "Collection of the Corrupt Water", target = "Corrupt Moonwell Water", map = 1448, zone = "Felwood", x = 35.2, y = 59.8 }, -- 25
-        { type = "TURNIN", quest = 5157, questName = "Collection of the Corrupt Water", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 26
-        { type = "FLIGHTPATH", npc = 12578, npcName = "Mishellena", map = 1448, zone = "Felwood", x = 62.5, y = 24.2 }, -- 27
-        { type = "ACCEPT", quest = 5158, questName = "Seeking Spiritual Aid", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.2 }, -- 28
-        { type = "KILL", quest = 4906, questName = "Further Corruption", npc = 7111, target = "Jadefire Hellcaller", count = 8, map = 1448, zone = "Felwood", x = 41.7, y = 21.7, near = true }, -- 29
-        { type = "KILL", quest = 4906, questName = "Further Corruption", npc = 7108, target = "Jadefire Betrayer / Jadefire Trickster", count = 8, map = 1448, zone = "Felwood", x = 41.6, y = 19.6, near = true }, -- 30
-        { type = "ACCEPT", quest = 939, questName = "Flute of Xavaric", npc = 10648, npcName = "Xavaric", map = 1448, zone = "Felwood", x = 39.1, y = 22.4, note = "Loot Flute of Xavaric from Xavaric and use it to start the quest" }, -- 31
-        { type = "COLLECT", quest = 939, questName = "Flute of Xavaric", target = "Jadefire Felbind", count = 5, map = 1448, zone = "Felwood", x = 42.7, y = 15.9, near = true, mobs = "Jadefire Satyr / Jadefire Rogue / Jadefire Trickster / Jadefire Betrayer" }, -- 32
-        { type = "KILL", quest = 4906, questName = "Further Corruption", npc = 10648, target = "Xavaric", count = 1, map = 1448, zone = "Felwood", x = 39.1, y = 22.4 }, -- 33
-        { type = "ACCEPT", quest = 5203, questName = "Rescue From Jaedenar", npc = 11016, npcName = "Captured Arko'narin", map = 1448, zone = "Felwood", x = 36.2, y = 55.4, optional = true, note = "Objectives: Protect Arko'narin out of Shadow Hold" }, -- 34
-        { type = "ACCEPT", quest = 7602, questName = "Flawless Fel Essence", npc = 14470, npcName = "Impsy", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, class = { "WARLOCK" } }, -- 35
-        { type = "TURNIN", quest = 4906, questName = "Further Corruption", npc = 9116, npcName = "Eridan Bluewind", map = 1448, zone = "Felwood", x = 51.4, y = 81.5 }, -- 36
-        { type = "TURNIN", quest = 939, questName = "Flute of Xavaric", npc = 9116, npcName = "Eridan Bluewind", map = 1448, zone = "Felwood", x = 51.2, y = 81.6 }, -- 37
-        { type = "TURNIN", quest = 5203, questName = "Rescue From Jaedenar", npc = 11019, npcName = "Jessir Moonbow", map = 1448, zone = "Felwood", x = 51.2, y = 82, optional = true }, -- 38
-        { type = "TURNIN", quest = 5158, questName = "Seeking Spiritual Aid", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8 }, -- 39
-        { type = "ACCEPT", quest = 5066, questName = "A Call to Arms: The Plaguelands!", npc = 2198, npcName = "Crier Goodman", map = 1453, zone = "Stormwind City", x = 55, y = 62.8 }, -- 40
-        { type = "ACCEPT", quest = 4126, questName = "Hurley Blackbreath", npc = 1267, npcName = "Ragnar Thunderbrew", map = 1426, zone = "Dun Morogh", x = 46.8, y = 52.4, optional = true, note = "For Blackrock Depths (dungeon guide)" }, -- 41
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1448,zone="Felwood",x=51.6,y=82.7,radius=60,note="travel to Felwood (Felwood)"},
+{type="ACCEPT",quest=8460,questName="Timbermaw Ally",npc=11554,npcName="Grazle",map=1448,zone="Felwood",x=50.9,y=85},
+{type="ACCEPT",quest=5155,questName="Forces of Jaedenar",npc=10922,npcName="Greta Mosshoof",map=1448,zone="Felwood",x=51.2,y=82.1},
+{type="ACCEPT",quest=4421,questName="The Corruption of the Jadefire",npc=9116,npcName="Eridan Bluewind",map=1448,zone="Felwood",x=51.4,y=81.5},
+{type="ACCEPT",quest=5156,questName="Verifying the Corruption",npc=10921,npcName="Taronn Redfeather",map=1448,zone="Felwood",x=50.9,y=81.6},
+{type="KILL",quest=8460,questName="Timbermaw Ally",npc=7153,target="Deadwood Warrior / Deadwood Gardener / Deadwood Pathfinder",count=6,map=1448,zone="Felwood",x=49.7,y=88.2,near=true},
+{type="TURNIN",quest=8460,questName="Timbermaw Ally",npc=11554,npcName="Grazle",map=1448,zone="Felwood",x=50.9,y=85},
+{type="ACCEPT",quest=8462,questName="Speak to Nafien",npc=11554,npcName="Grazle",map=1448,zone="Felwood",x=51,y=85},
+{type="KILL",quest=5155,questName="Forces of Jaedenar",npc=7112,target="Jaedenar Cultist / Jaedenar Adept / Jaedenar Hound / Jaedenar Guardian",count=4,map=1448,zone="Felwood",x=39,y=62.2,near=true},
+{type="KILL",quest=4421,questName="The Corruption of the Jadefire",npc=7106,target="Jadefire Rogue / Jadefire Shadowstalker",count=11,map=1448,zone="Felwood",x=37.4,y=66.1,near=true},
+{type="KILL",quest=4421,questName="The Corruption of the Jadefire",npc=7109,target="Jadefire Felsworn / Xavathras",count=11,map=1448,zone="Felwood",x=33,y=66.4,near=true},
+{type="ACCEPT",quest=5202,questName="A Strange Red Key",npc=7120,npcName="Jaedenar Warlock",map=1448,zone="Felwood",x=40.2,y=48.8,optional=true,note="If you looted Blood Red Key from Jaedenar Enforcer / Jaedenar Darkweaver / Jaedenar Warlock / Jaedenar Legionnaire / Ulathek, use it to start the quest"},
+{type="TURNIN",quest=5202,questName="A Strange Red Key",npc=11016,npcName="Captured Arko'narin",map=1448,zone="Felwood",x=36.2,y=55.4,optional=true},
+{type="ACCEPT",quest=8420,questName="Hot and Itchy",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
+{type="COLLECT",quest=8420,questName="Hot and Itchy",target="Felcloth",count=1,map=1448,zone="Felwood",x=33.4,y=66.6,near=true,class={"WARLOCK"},mobs="Jadefire Rogue / Jadefire Trickster / Jadefire Betrayer / Jadefire Felsworn"},
+{type="COMPLETE",quest=5156,questName="Verifying the Corruption",npc=9878,target="Entropic Beast / Entropic Horror / Explore the craters in Shatter Scar Vale",count=2,map=1448,zone="Felwood",x=41.3,y=43.8,near=true},
+{type="ACCEPT",quest=7601,questName="What Niby Commands",npc=14469,npcName="Niby the Almighty",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
+{type="TURNIN",quest=7601,questName="What Niby Commands",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
+{type="TURNIN",quest=8420,questName="Hot and Itchy",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
+{type="TURNIN",quest=5155,questName="Forces of Jaedenar",npc=10922,npcName="Greta Mosshoof",map=1448,zone="Felwood",x=51.2,y=82.1},
+{type="ACCEPT",quest=5157,questName="Collection of the Corrupt Water",npc=10922,npcName="Greta Mosshoof",map=1448,zone="Felwood",x=51.2,y=82.1},
+{type="TURNIN",quest=4421,questName="The Corruption of the Jadefire",npc=9116,npcName="Eridan Bluewind",map=1448,zone="Felwood",x=51.4,y=81.5},
+{type="TURNIN",quest=5156,questName="Verifying the Corruption",npc=10921,npcName="Taronn Redfeather",map=1448,zone="Felwood",x=50.9,y=81.6},
+{type="ACCEPT",quest=4906,questName="Further Corruption",npc=9116,npcName="Eridan Bluewind",map=1448,zone="Felwood",x=51.4,y=81.5},
+{type="COLLECT",quest=5157,questName="Collection of the Corrupt Water",target="Corrupt Moonwell Water",map=1448,zone="Felwood",x=35.2,y=59.8},
+{type="TURNIN",quest=5157,questName="Collection of the Corrupt Water",npc=10922,npcName="Greta Mosshoof",map=1448,zone="Felwood",x=51.2,y=82.1},
+{type="FLIGHTPATH",npc=12578,npcName="Mishellena",map=1448,zone="Felwood",x=62.5,y=24.2},
+{type="ACCEPT",quest=5158,questName="Seeking Spiritual Aid",npc=10922,npcName="Greta Mosshoof",map=1448,zone="Felwood",x=51.2,y=82.2},
+{type="KILL",quest=4906,questName="Further Corruption",npc=7111,target="Jadefire Hellcaller",count=8,map=1448,zone="Felwood",x=41.7,y=21.7,near=true},
+{type="KILL",quest=4906,questName="Further Corruption",npc=7108,target="Jadefire Betrayer / Jadefire Trickster",count=8,map=1448,zone="Felwood",x=41.6,y=19.6,near=true},
+{type="ACCEPT",quest=939,questName="Flute of Xavaric",npc=10648,npcName="Xavaric",map=1448,zone="Felwood",x=39.1,y=22.4,note="Loot Flute of Xavaric from Xavaric and use it to start the quest"},
+{type="COLLECT",quest=939,questName="Flute of Xavaric",target="Jadefire Felbind",count=5,map=1448,zone="Felwood",x=42.7,y=15.9,near=true,mobs="Jadefire Satyr / Jadefire Rogue / Jadefire Trickster / Jadefire Betrayer"},
+{type="KILL",quest=4906,questName="Further Corruption",npc=10648,target="Xavaric",count=1,map=1448,zone="Felwood",x=39.1,y=22.4},
+{type="ACCEPT",quest=5203,questName="Rescue From Jaedenar",npc=11016,npcName="Captured Arko'narin",map=1448,zone="Felwood",x=36.2,y=55.4,optional=true,note="Objectives: Protect Arko'narin out of Shadow Hold"},
+{type="ACCEPT",quest=7602,questName="Flawless Fel Essence",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
+{type="TURNIN",quest=4906,questName="Further Corruption",npc=9116,npcName="Eridan Bluewind",map=1448,zone="Felwood",x=51.4,y=81.5},
+{type="TURNIN",quest=939,questName="Flute of Xavaric",npc=9116,npcName="Eridan Bluewind",map=1448,zone="Felwood",x=51.2,y=81.6},
+{type="TURNIN",quest=5203,questName="Rescue From Jaedenar",npc=11019,npcName="Jessir Moonbow",map=1448,zone="Felwood",x=51.2,y=82,optional=true},
+{type="TURNIN",quest=5158,questName="Seeking Spiritual Aid",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8},
+{type="ACCEPT",quest=5066,questName="A Call to Arms: The Plaguelands!",npc=2198,npcName="Crier Goodman",map=1453,zone="Stormwind City",x=55,y=62.8},
+{type="ACCEPT",quest=4126,questName="Hurley Blackbreath",npc=1267,npcName="Ragnar Thunderbrew",map=1426,zone="Dun Morogh",x=46.8,y=52.4,optional=true,note="For Blackrock Depths (dungeon guide)"}
+}]],
 })

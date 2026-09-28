@@ -12,30 +12,30 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Arathi Highlands for a Horde character, 7 quests. The race routes are the faster path; pick this when you just want to quest here.",
     stepCount = 24,
-    steps = function() return {
-        { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 33.7, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 1
-        { type = "HEARTH", npc = 9501, npcName = "Innkeeper Adegwa", map = 1417, zone = "Hammerfall", x = 73.8, y = 32.5, note = "talk to Innkeeper Adegwa and make this inn your home" }, -- 2
-        { type = "ACCEPT", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 3
-        { type = "ACCEPT", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 4
-        { type = "ACCEPT", quest = 673, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 5
-        { type = "KILL", quest = 673, questName = "Foul Magics", npc = 2783, target = "Marez Cowl", map = 1417, zone = "Arathi Highlands", x = 29.6, y = 63, optional = true, near = true }, -- 6
-        { type = "TURNIN", quest = 673, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3, optional = true }, -- 7
-        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2555, target = "Witherbark Witch Doctor", count = 10, map = 1417, zone = "Arathi Highlands", x = 71.6, y = 61.8, near = true }, -- 8
-        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2554, target = "Witherbark Axe Thrower", count = 10, map = 1417, zone = "Arathi Highlands", x = 73.7, y = 63.8, near = true }, -- 9
-        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2556, target = "Witherbark Headhunter", count = 10, map = 1417, zone = "Arathi Highlands", x = 71.3, y = 69.9, near = true }, -- 10
-        { type = "TURNIN", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 11
-        { type = "COLLECT", quest = 671, questName = "Foul Magics", target = "Bloodstone Amulet", count = 10, map = 1417, zone = "Arathi Highlands", x = 34.7, y = 29.9, near = true }, -- 12
-        { type = "TURNIN", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 13
-        { type = "ACCEPT", quest = 655, questName = "Hammerfall", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 14
-        { type = "ACCEPT", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 15
-        { type = "TURNIN", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 16
-        { type = "TURNIN", quest = 655, questName = "Hammerfall", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 17
-        { type = "ACCEPT", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 18
-        { type = "COLLECT", quest = 672, questName = "Raising Spirits", target = "Highland Raptor Eye", count = 10, map = 1417, zone = "Arathi Highlands", x = 64.4, y = 40.9, near = true }, -- 19
-        { type = "TURNIN", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 20
-        { type = "ACCEPT", quest = 674, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 21
-        { type = "TURNIN", quest = 674, questName = "Raising Spirits", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 22
-        { type = "ACCEPT", quest = 675, questName = "Raising Spirits", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 23
-        { type = "TURNIN", quest = 675, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 24
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1417,zone="Arathi Highlands",x=73.6,y=33.7,radius=60,note="travel to Arathi Highlands (Arathi Highlands)"},
+{type="HEARTH",npc=9501,npcName="Innkeeper Adegwa",map=1417,zone="Hammerfall",x=73.8,y=32.5,note="talk to Innkeeper Adegwa and make this inn your home"},
+{type="ACCEPT",quest=677,questName="Call to Arms",npc=2771,npcName="Drum Fel",map=1417,zone="Arathi Highlands",x=74.2,y=33.9},
+{type="ACCEPT",quest=671,questName="Foul Magics",npc=2706,npcName="Tor'gan",map=1417,zone="Arathi Highlands",x=74.7,y=36.3},
+{type="ACCEPT",quest=673,questName="Foul Magics",npc=2706,npcName="Tor'gan",map=1417,zone="Arathi Highlands",x=74.7,y=36.3,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="KILL",quest=673,questName="Foul Magics",npc=2783,target="Marez Cowl",map=1417,zone="Arathi Highlands",x=29.6,y=63,optional=true,near=true},
+{type="TURNIN",quest=673,questName="Foul Magics",npc=2706,npcName="Tor'gan",map=1417,zone="Arathi Highlands",x=74.7,y=36.3,optional=true},
+{type="KILL",quest=677,questName="Call to Arms",npc=2555,target="Witherbark Witch Doctor",count=10,map=1417,zone="Arathi Highlands",x=71.6,y=61.8,near=true},
+{type="KILL",quest=677,questName="Call to Arms",npc=2554,target="Witherbark Axe Thrower",count=10,map=1417,zone="Arathi Highlands",x=73.7,y=63.8,near=true},
+{type="KILL",quest=677,questName="Call to Arms",npc=2556,target="Witherbark Headhunter",count=10,map=1417,zone="Arathi Highlands",x=71.3,y=69.9,near=true},
+{type="TURNIN",quest=677,questName="Call to Arms",npc=2771,npcName="Drum Fel",map=1417,zone="Arathi Highlands",x=74.2,y=33.9},
+{type="COLLECT",quest=671,questName="Foul Magics",target="Bloodstone Amulet",count=10,map=1417,zone="Arathi Highlands",x=34.7,y=29.9,near=true},
+{type="TURNIN",quest=671,questName="Foul Magics",npc=2706,npcName="Tor'gan",map=1417,zone="Arathi Highlands",x=74.7,y=36.3},
+{type="ACCEPT",quest=655,questName="Hammerfall",npc=2792,npcName="Gor'mul",map=1417,zone="Arathi Highlands",x=72.6,y=33.9},
+{type="ACCEPT",quest=8263,questName="Defiler's Basic Care Package",npc=15126,npcName="Rutherford Twing",map=1417,zone="Arathi Highlands",x=73.4,y=29.7},
+{type="TURNIN",quest=8263,questName="Defiler's Basic Care Package",npc=15126,npcName="Rutherford Twing",map=1417,zone="Arathi Highlands",x=73.4,y=29.7},
+{type="TURNIN",quest=655,questName="Hammerfall",npc=2706,npcName="Tor'gan",map=1417,zone="Arathi Highlands",x=74.7,y=36.3},
+{type="ACCEPT",quest=672,questName="Raising Spirits",npc=2706,npcName="Tor'gan",map=1417,zone="Arathi Highlands",x=74.7,y=36.3},
+{type="COLLECT",quest=672,questName="Raising Spirits",target="Highland Raptor Eye",count=10,map=1417,zone="Arathi Highlands",x=64.4,y=40.9,near=true},
+{type="TURNIN",quest=672,questName="Raising Spirits",npc=2706,npcName="Tor'gan",map=1417,zone="Arathi Highlands",x=74.7,y=36.3},
+{type="ACCEPT",quest=674,questName="Raising Spirits",npc=2706,npcName="Tor'gan",map=1417,zone="Arathi Highlands",x=74.7,y=36.3},
+{type="TURNIN",quest=674,questName="Raising Spirits",npc=2792,npcName="Gor'mul",map=1417,zone="Arathi Highlands",x=72.6,y=33.9},
+{type="ACCEPT",quest=675,questName="Raising Spirits",npc=2792,npcName="Gor'mul",map=1417,zone="Arathi Highlands",x=72.6,y=33.9},
+{type="TURNIN",quest=675,questName="Raising Spirits",npc=2706,npcName="Tor'gan",map=1417,zone="Arathi Highlands",x=74.7,y=36.3}
+}]],
 })

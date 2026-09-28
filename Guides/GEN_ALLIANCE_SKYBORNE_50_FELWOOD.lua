@@ -14,34 +14,34 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 50 of the Skyborne route: level 55 to 55, 10 steps, ~59 min of play in the model (33030 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 28,
-    steps = function() return {
-        { type = "ACCEPT", quest = 5249, questName = "To Winterspring!", npc = 10924, npcName = "Ivy Leafrunner", map = 1448, zone = "Felwood", x = 50.8, y = 81.6 }, -- 1
-        { type = "ACCEPT", quest = 7065, questName = "Corruption of Earth and Seed", npc = 13698, npcName = "Keeper Marandis", map = 1443, zone = "Desolace", x = 63.8, y = 10.6, optional = true, note = "For Maraudon (dungeon guide)" }, -- 2
-        { type = "NOTE", optional = true, text = "Ready for Maraudon", note = "Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons." }, -- 3
-        { type = "TRAVEL", map = 1448, zone = "Felwood", x = 51.9, y = 83.0, radius = 60, note = "travel to Felwood (Felwood)" }, -- 4
-        { type = "ACCEPT", quest = 4101, questName = "Cleansing Felwood", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8 }, -- 5
-        { type = "ACCEPT", quest = 5204, questName = "Retribution of the Light", npc = 11019, npcName = "Jessir Moonbow", map = 1448, zone = "Felwood", x = 51.2, y = 82, optional = true }, -- 6
-        { type = "KILL", quest = 5204, questName = "Retribution of the Light", npc = 9518, target = "Rakaiah", count = 1, map = 1448, zone = "Felwood", x = 38, y = 50.6, optional = true }, -- 7
-        { type = "TURNIN", quest = 5204, questName = "Retribution of the Light", npc = 11020, npcName = "Remains of Trey Lightforge", map = 1448, zone = "Felwood", x = 38.4, y = 50.4, optional = true }, -- 8
-        { type = "COLLECT", quest = 4101, questName = "Cleansing Felwood", target = "Blood Amber", count = 15, map = 1448, zone = "Felwood", x = 58, y = 22.4, near = true }, -- 9
-        { type = "ACCEPT", quest = 8461, questName = "Deadwood of the North", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 10
-        { type = "ACCEPT", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.6, y = 2.8 }, -- 11
-        { type = "COLLECT", quest = 6031, questName = "Runecloth", target = "Runecloth", count = 30, map = 1448, zone = "Felwood", x = 65.2, y = 6.4, near = true, mobs = "Jadefire Trickster / Jadefire Betrayer / Jadefire Shadowstalker / Jadefire Hellcaller" }, -- 12
-        { type = "TURNIN", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.6, y = 2.8 }, -- 13
-        { type = "KILL", quest = 8461, questName = "Deadwood of the North", npc = 7157, target = "Deadwood Avenger / Deadwood Den Watcher / Deadwood Shaman", count = 6, map = 1448, zone = "Felwood", x = 63.7, y = 8.2, near = true }, -- 14
-        { type = "ACCEPT", quest = 8470, questName = "Deadwood Ritual Totem", npc = 7158, npcName = "Deadwood Shaman", map = 1448, zone = "Felwood", x = 64, y = 6.8, optional = true, note = "If you looted Deadwood Ritual Totem from Deadwood Den Watcher / Deadwood Avenger / Deadwood Shaman, use it to start the quest" }, -- 15
-        { type = "TURNIN", quest = 8470, questName = "Deadwood Ritual Totem", npc = 11558, npcName = "Kernda", map = 1448, zone = "Felwood", x = 65.4, y = 2.8, optional = true }, -- 16
-        { type = "TURNIN", quest = 8461, questName = "Deadwood of the North", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 17
-        { type = "TURNIN", quest = 8462, questName = "Speak to Nafien", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.2 }, -- 18
-        { type = "ACCEPT", quest = 8465, questName = "Speak to Salfa", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.2 }, -- 19
-        { type = "ACCEPT", quest = 5385, questName = "The Remains of Trey Lightforge", npc = 11020, npcName = "Remains of Trey Lightforge", map = 1448, zone = "Felwood", x = 38.4, y = 50.4, optional = true }, -- 20
-        { type = "TURNIN", quest = 5385, questName = "The Remains of Trey Lightforge", npc = 11019, npcName = "Jessir Moonbow", map = 1448, zone = "Felwood", x = 51.2, y = 82, optional = true }, -- 21
-        { type = "TURNIN", quest = 4101, questName = "Cleansing Felwood", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8 }, -- 22
-        { type = "ACCEPT", quest = 5883, questName = "Salve via Mining", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8, profession = "Mining", skill = 200 }, -- 23
-        { type = "ACCEPT", quest = 5884, questName = "Salve via Gathering", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8, optional = true, profession = "Herbalism", skill = 200, note = "Elite - group up" }, -- 24
-        { type = "ACCEPT", quest = 5885, questName = "Salve via Skinning", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8, profession = "Skinning", skill = 200 }, -- 25
-        { type = "ACCEPT", quest = 5882, questName = "Salve via Hunting", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8 }, -- 26
-        { type = "COLLECT", quest = 5882, questName = "Salve via Hunting", target = "Corrupted Soul Shard", map = 1448, zone = "Felwood", x = 55, y = 85.8, near = true }, -- 27
-        { type = "TURNIN", quest = 5882, questName = "Salve via Hunting", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8 }, -- 28
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=5249,questName="To Winterspring!",npc=10924,npcName="Ivy Leafrunner",map=1448,zone="Felwood",x=50.8,y=81.6},
+{type="ACCEPT",quest=7065,questName="Corruption of Earth and Seed",npc=13698,npcName="Keeper Marandis",map=1443,zone="Desolace",x=63.8,y=10.6,optional=true,note="For Maraudon (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Maraudon",note="Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons."},
+{type="TRAVEL",map=1448,zone="Felwood",x=51.9,y=83.0,radius=60,note="travel to Felwood (Felwood)"},
+{type="ACCEPT",quest=4101,questName="Cleansing Felwood",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8},
+{type="ACCEPT",quest=5204,questName="Retribution of the Light",npc=11019,npcName="Jessir Moonbow",map=1448,zone="Felwood",x=51.2,y=82,optional=true},
+{type="KILL",quest=5204,questName="Retribution of the Light",npc=9518,target="Rakaiah",count=1,map=1448,zone="Felwood",x=38,y=50.6,optional=true},
+{type="TURNIN",quest=5204,questName="Retribution of the Light",npc=11020,npcName="Remains of Trey Lightforge",map=1448,zone="Felwood",x=38.4,y=50.4,optional=true},
+{type="COLLECT",quest=4101,questName="Cleansing Felwood",target="Blood Amber",count=15,map=1448,zone="Felwood",x=58,y=22.4,near=true},
+{type="ACCEPT",quest=8461,questName="Deadwood of the North",npc=15395,npcName="Nafien",map=1448,zone="Felwood",x=64.8,y=8.1},
+{type="ACCEPT",quest=6031,questName="Runecloth",npc=11557,npcName="Meilosh",map=1448,zone="Felwood",x=65.6,y=2.8},
+{type="COLLECT",quest=6031,questName="Runecloth",target="Runecloth",count=30,map=1448,zone="Felwood",x=65.2,y=6.4,near=true,mobs="Jadefire Trickster / Jadefire Betrayer / Jadefire Shadowstalker / Jadefire Hellcaller"},
+{type="TURNIN",quest=6031,questName="Runecloth",npc=11557,npcName="Meilosh",map=1448,zone="Felwood",x=65.6,y=2.8},
+{type="KILL",quest=8461,questName="Deadwood of the North",npc=7157,target="Deadwood Avenger / Deadwood Den Watcher / Deadwood Shaman",count=6,map=1448,zone="Felwood",x=63.7,y=8.2,near=true},
+{type="ACCEPT",quest=8470,questName="Deadwood Ritual Totem",npc=7158,npcName="Deadwood Shaman",map=1448,zone="Felwood",x=64,y=6.8,optional=true,note="If you looted Deadwood Ritual Totem from Deadwood Den Watcher / Deadwood Avenger / Deadwood Shaman, use it to start the quest"},
+{type="TURNIN",quest=8470,questName="Deadwood Ritual Totem",npc=11558,npcName="Kernda",map=1448,zone="Felwood",x=65.4,y=2.8,optional=true},
+{type="TURNIN",quest=8461,questName="Deadwood of the North",npc=15395,npcName="Nafien",map=1448,zone="Felwood",x=64.8,y=8.1},
+{type="TURNIN",quest=8462,questName="Speak to Nafien",npc=15395,npcName="Nafien",map=1448,zone="Felwood",x=64.8,y=8.2},
+{type="ACCEPT",quest=8465,questName="Speak to Salfa",npc=15395,npcName="Nafien",map=1448,zone="Felwood",x=64.8,y=8.2},
+{type="ACCEPT",quest=5385,questName="The Remains of Trey Lightforge",npc=11020,npcName="Remains of Trey Lightforge",map=1448,zone="Felwood",x=38.4,y=50.4,optional=true},
+{type="TURNIN",quest=5385,questName="The Remains of Trey Lightforge",npc=11019,npcName="Jessir Moonbow",map=1448,zone="Felwood",x=51.2,y=82,optional=true},
+{type="TURNIN",quest=4101,questName="Cleansing Felwood",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8},
+{type="ACCEPT",quest=5883,questName="Salve via Mining",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8,profession="Mining",skill=200},
+{type="ACCEPT",quest=5884,questName="Salve via Gathering",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8,optional=true,profession="Herbalism",skill=200,note="Elite - group up"},
+{type="ACCEPT",quest=5885,questName="Salve via Skinning",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8,profession="Skinning",skill=200},
+{type="ACCEPT",quest=5882,questName="Salve via Hunting",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8},
+{type="COLLECT",quest=5882,questName="Salve via Hunting",target="Corrupted Soul Shard",map=1448,zone="Felwood",x=55,y=85.8,near=true},
+{type="TURNIN",quest=5882,questName="Salve via Hunting",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8}
+}]],
 })

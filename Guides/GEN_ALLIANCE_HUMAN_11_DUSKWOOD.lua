@@ -14,59 +14,59 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 11 of the Human route: level 27 to 27, 32 steps, ~84 min of play in the model (22836 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 53,
-    steps = function() return {
-        { type = "TURNIN", quest = 79008, questName = "... and that note you found", map = 1413, zone = "The Barrens", x = 46.4, y = 73.9 }, -- 1
-        { type = "ACCEPT", quest = 959, questName = "Trouble at the Docks", npc = 3665, npcName = "Crane Operator Bigglefuzz", map = 1413, zone = "The Barrens", x = 63, y = 37.6, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 2
-        { type = "ACCEPT", quest = 1486, questName = "Deviate Hides", npc = 5767, npcName = "Nalpak", map = 1413, zone = "The Barrens", x = 46, y = 35.7, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 3
-        { type = "ACCEPT", quest = 1487, questName = "Deviate Eradication", npc = 5768, npcName = "Ebru", map = 1413, zone = "The Barrens", x = 46, y = 35.7, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 4
-        { type = "NOTE", optional = true, text = "Ready for Wailing Caverns", note = "Picked up: Trouble at the Docks, Deviate Hides, Deviate Eradication. When you have a group, open Wailing Caverns under Dungeons." }, -- 5
-        { type = "ACCEPT", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6, optional = true, note = "For Razorfen Kraul (dungeon guide)" }, -- 6
-        { type = "NOTE", optional = true, text = "Ready for Razorfen Kraul", note = "Picked up: Blueleaf Tubers. When you have a group, open Razorfen Kraul under Dungeons." }, -- 7
-        { type = "TRAVEL", map = 1431, zone = "Duskwood", x = 74.9, y = 47.6, radius = 60, note = "travel to Duskwood (Duskwood)" }, -- 8
-        { type = "ACCEPT", quest = 173, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 9
-        { type = "ACCEPT", quest = 66, questName = "The Legend of Stalvan", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 10
-        { type = "ACCEPT", quest = 58, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 11
-        { type = "ACCEPT", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 12
-        { type = "KILL", quest = 253, questName = "Bride of the Embalmer", npc = 314, target = "Eliza", map = 1431, zone = "Duskwood", x = 28.8, y = 30.9, optional = true }, -- 13
-        { type = "TURNIN", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4, optional = true }, -- 14
-        { type = "TURNIN", quest = 66, questName = "The Legend of Stalvan", npc = 267, npcName = "Clerk Daltry", map = 1431, zone = "Duskwood", x = 72.5, y = 46.9 }, -- 15
-        { type = "KILL", quest = 173, questName = "Worgen in the Woods", npc = 533, target = "Nightbane Shadow Weaver", count = 6, map = 1431, zone = "Duskwood", x = 64.7, y = 42.9, near = true }, -- 16
-        { type = "KILL", quest = 58, questName = "The Night Watch", npc = 604, target = "Plague Spreader", count = 20, map = 1431, zone = "Duskwood", x = 25.9, y = 35.2, near = true }, -- 17
-        { type = "ACCEPT", quest = 133, questName = "Ghoulish Effigy", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 18
-        { type = "COLLECT", quest = 133, questName = "Ghoulish Effigy", target = "Ghoul Rib", count = 7, map = 1431, zone = "Duskwood", x = 26.9, y = 34.3, near = true }, -- 19
-        { type = "TURNIN", quest = 133, questName = "Ghoulish Effigy", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 20
-        { type = "ACCEPT", quest = 134, questName = "Ogre Thieves", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 21
-        { type = "COLLECT", quest = 134, questName = "Ogre Thieves", target = "Abercrombie's Crate", map = 1431, zone = "Duskwood", x = 33.4, y = 76.4, near = true }, -- 22
-        { type = "TURNIN", quest = 134, questName = "Ogre Thieves", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 23
-        { type = "ACCEPT", quest = 160, questName = "Note to the Mayor", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 24
-        { type = "ACCEPT", quest = 323, questName = "Proving Your Worth", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 25
-        { type = "KILL", quest = 323, questName = "Proving Your Worth", npc = 787, target = "Skeletal Healer / Skeletal Raider / Skeletal Warder", count = 15, map = 1431, zone = "Duskwood", x = 13.5, y = 36.3, near = true }, -- 26
-        { type = "TURNIN", quest = 323, questName = "Proving Your Worth", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 27
-        { type = "ACCEPT", quest = 269, questName = "Seeking Wisdom", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34 }, -- 28
-        { type = "TURNIN", quest = 173, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 29
-        { type = "ACCEPT", quest = 221, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 30
-        { type = "TURNIN", quest = 58, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 31
-        { type = "TURNIN", quest = 160, questName = "Note to the Mayor", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 32
-        { type = "ACCEPT", quest = 251, questName = "Translate Abercrombie's Note", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 33
-        { type = "TURNIN", quest = 251, questName = "Translate Abercrombie's Note", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 34
-        { type = "ACCEPT", quest = 401, questName = "Wait for Sirra to Finish", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 35
-        { type = "TURNIN", quest = 401, questName = "Wait for Sirra to Finish", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 36
-        { type = "ACCEPT", quest = 252, questName = "Translation to Ello", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 37
-        { type = "TURNIN", quest = 252, questName = "Translation to Ello", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 38
-        { type = "KILL", quest = 221, questName = "Worgen in the Woods", npc = 205, target = "Nightbane Dark Runner", count = 12, map = 1431, zone = "Duskwood", x = 60.8, y = 41.5, near = true }, -- 39
-        { type = "TURNIN", quest = 221, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 40
-        { type = "ACCEPT", quest = 222, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.2, y = 48 }, -- 41
-        { type = "KILL", quest = 222, questName = "Worgen in the Woods", npc = 206, target = "Nightbane Vile Fang", count = 8, map = 1431, zone = "Duskwood", x = 60.8, y = 81 }, -- 42
-        { type = "KILL", quest = 222, questName = "Worgen in the Woods", npc = 920, target = "Nightbane Tainted One", count = 8, map = 1431, zone = "Duskwood", x = 73.4, y = 76.8 }, -- 43
-        { type = "TURNIN", quest = 222, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.2, y = 48 }, -- 44
-        { type = "TURNIN", quest = 269, questName = "Seeking Wisdom", npc = 1212, npcName = "Bishop Farthing", map = 1453, zone = "Stormwind City", x = 39.2, y = 28 }, -- 45
-        { type = "TURNIN", quest = 2925, questName = "Klockmort's Essentials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 68.2, y = 46.2, optional = true }, -- 46
-        { type = "TURNIN", quest = 2931, questName = "Castpipe's Task", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.4, optional = true }, -- 47
-        { type = "ACCEPT", quest = 2359, questName = "Klaven's Tower", npc = 7024, npcName = "Agent Kearnen", map = 1436, zone = "Westfall", x = 68.4, y = 70, optional = true, class = { "ROGUE" }, note = "Elite - group up" }, -- 48
-        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Klaven Mortwake's Journal", count = 1, map = 1436, zone = "Westfall", x = 70.4, y = 74.2, optional = true, class = { "ROGUE" }, mobs = "Klaven Mortwake" }, -- 49
-        { type = "COLLECT", quest = 2359, questName = "Klaven's Tower", target = "Defias Tower Key", count = 1, map = 1436, zone = "Westfall", x = 69.4, y = 74.4, optional = true, class = { "ROGUE" }, mobs = "Malformed Defias Drone" }, -- 50
-        { type = "TURNIN", quest = 2359, questName = "Klaven's Tower", npc = 332, npcName = "Master Mathias Shaw", map = 1453, zone = "Stormwind City", x = 75.8, y = 59.8, optional = true, class = { "ROGUE" } }, -- 51
-        { type = "ACCEPT", quest = 1939, questName = "High Sorcerer Andromath", npc = 5497, npcName = "Jennea Cannon", map = 1453, zone = "Stormwind City", x = 38.6, y = 79.4, class = { "MAGE" } }, -- 52
-        { type = "TURNIN", quest = 1939, questName = "High Sorcerer Andromath", npc = 5694, npcName = "High Sorcerer Andromath", map = 1453, zone = "Stormwind City", x = 37.6, y = 81.6, class = { "MAGE" } }, -- 53
-    } end,
+    steps = [[{
+{type="TURNIN",quest=79008,questName="... and that note you found",map=1413,zone="The Barrens",x=46.4,y=73.9},
+{type="ACCEPT",quest=959,questName="Trouble at the Docks",npc=3665,npcName="Crane Operator Bigglefuzz",map=1413,zone="The Barrens",x=63,y=37.6,optional=true,note="For Wailing Caverns (dungeon guide)"},
+{type="ACCEPT",quest=1486,questName="Deviate Hides",npc=5767,npcName="Nalpak",map=1413,zone="The Barrens",x=46,y=35.7,optional=true,note="For Wailing Caverns (dungeon guide)"},
+{type="ACCEPT",quest=1487,questName="Deviate Eradication",npc=5768,npcName="Ebru",map=1413,zone="The Barrens",x=46,y=35.7,optional=true,note="For Wailing Caverns (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Wailing Caverns",note="Picked up: Trouble at the Docks, Deviate Hides, Deviate Eradication. When you have a group, open Wailing Caverns under Dungeons."},
+{type="ACCEPT",quest=1221,questName="Blueleaf Tubers",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6,optional=true,note="For Razorfen Kraul (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Razorfen Kraul",note="Picked up: Blueleaf Tubers. When you have a group, open Razorfen Kraul under Dungeons."},
+{type="TRAVEL",map=1431,zone="Duskwood",x=74.9,y=47.6,radius=60,note="travel to Duskwood (Duskwood)"},
+{type="ACCEPT",quest=173,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.8,y=47.6},
+{type="ACCEPT",quest=66,questName="The Legend of Stalvan",npc=265,npcName="Madame Eva",map=1431,zone="Duskwood",x=75.8,y=45.3},
+{type="ACCEPT",quest=58,questName="The Night Watch",npc=264,npcName="Commander Althea Ebonlocke",map=1431,zone="Duskwood",x=73.5,y=46.8},
+{type="ACCEPT",quest=253,questName="Bride of the Embalmer",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.9,y=46.4,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="KILL",quest=253,questName="Bride of the Embalmer",npc=314,target="Eliza",map=1431,zone="Duskwood",x=28.8,y=30.9,optional=true},
+{type="TURNIN",quest=253,questName="Bride of the Embalmer",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.9,y=46.4,optional=true},
+{type="TURNIN",quest=66,questName="The Legend of Stalvan",npc=267,npcName="Clerk Daltry",map=1431,zone="Duskwood",x=72.5,y=46.9},
+{type="KILL",quest=173,questName="Worgen in the Woods",npc=533,target="Nightbane Shadow Weaver",count=6,map=1431,zone="Duskwood",x=64.7,y=42.9,near=true},
+{type="KILL",quest=58,questName="The Night Watch",npc=604,target="Plague Spreader",count=20,map=1431,zone="Duskwood",x=25.9,y=35.2,near=true},
+{type="ACCEPT",quest=133,questName="Ghoulish Effigy",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="COLLECT",quest=133,questName="Ghoulish Effigy",target="Ghoul Rib",count=7,map=1431,zone="Duskwood",x=26.9,y=34.3,near=true},
+{type="TURNIN",quest=133,questName="Ghoulish Effigy",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="ACCEPT",quest=134,questName="Ogre Thieves",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="COLLECT",quest=134,questName="Ogre Thieves",target="Abercrombie's Crate",map=1431,zone="Duskwood",x=33.4,y=76.4,near=true},
+{type="TURNIN",quest=134,questName="Ogre Thieves",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="ACCEPT",quest=160,questName="Note to the Mayor",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="ACCEPT",quest=323,questName="Proving Your Worth",npc=311,npcName="Sven Yorgen",map=1431,zone="Duskwood",x=7.8,y=34.1},
+{type="KILL",quest=323,questName="Proving Your Worth",npc=787,target="Skeletal Healer / Skeletal Raider / Skeletal Warder",count=15,map=1431,zone="Duskwood",x=13.5,y=36.3,near=true},
+{type="TURNIN",quest=323,questName="Proving Your Worth",npc=311,npcName="Sven Yorgen",map=1431,zone="Duskwood",x=7.8,y=34.1},
+{type="ACCEPT",quest=269,questName="Seeking Wisdom",npc=311,npcName="Sven Yorgen",map=1431,zone="Duskwood",x=7.8,y=34},
+{type="TURNIN",quest=173,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.8,y=47.6},
+{type="ACCEPT",quest=221,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.8,y=47.6},
+{type="TURNIN",quest=58,questName="The Night Watch",npc=264,npcName="Commander Althea Ebonlocke",map=1431,zone="Duskwood",x=73.5,y=46.8},
+{type="TURNIN",quest=160,questName="Note to the Mayor",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.9,y=46.4},
+{type="ACCEPT",quest=251,questName="Translate Abercrombie's Note",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.9,y=46.4},
+{type="TURNIN",quest=251,questName="Translate Abercrombie's Note",npc=268,npcName="Sirra Von'Indi",map=1431,zone="Duskwood",x=72.6,y=47.6},
+{type="ACCEPT",quest=401,questName="Wait for Sirra to Finish",npc=268,npcName="Sirra Von'Indi",map=1431,zone="Duskwood",x=72.6,y=47.6},
+{type="TURNIN",quest=401,questName="Wait for Sirra to Finish",npc=268,npcName="Sirra Von'Indi",map=1431,zone="Duskwood",x=72.6,y=47.6},
+{type="ACCEPT",quest=252,questName="Translation to Ello",npc=268,npcName="Sirra Von'Indi",map=1431,zone="Duskwood",x=72.6,y=47.6},
+{type="TURNIN",quest=252,questName="Translation to Ello",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.9,y=46.4},
+{type="KILL",quest=221,questName="Worgen in the Woods",npc=205,target="Nightbane Dark Runner",count=12,map=1431,zone="Duskwood",x=60.8,y=41.5,near=true},
+{type="TURNIN",quest=221,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.8,y=47.6},
+{type="ACCEPT",quest=222,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.2,y=48},
+{type="KILL",quest=222,questName="Worgen in the Woods",npc=206,target="Nightbane Vile Fang",count=8,map=1431,zone="Duskwood",x=60.8,y=81},
+{type="KILL",quest=222,questName="Worgen in the Woods",npc=920,target="Nightbane Tainted One",count=8,map=1431,zone="Duskwood",x=73.4,y=76.8},
+{type="TURNIN",quest=222,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.2,y=48},
+{type="TURNIN",quest=269,questName="Seeking Wisdom",npc=1212,npcName="Bishop Farthing",map=1453,zone="Stormwind City",x=39.2,y=28},
+{type="TURNIN",quest=2925,questName="Klockmort's Essentials",npc=6169,npcName="Klockmort Spannerspan",map=1455,zone="Ironforge",x=68.2,y=46.2,optional=true},
+{type="TURNIN",quest=2931,questName="Castpipe's Task",npc=7950,npcName="Master Mechanic Castpipe",map=1455,zone="Ironforge",x=69.8,y=48.4,optional=true},
+{type="ACCEPT",quest=2359,questName="Klaven's Tower",npc=7024,npcName="Agent Kearnen",map=1436,zone="Westfall",x=68.4,y=70,optional=true,class={"ROGUE"},note="Elite - group up"},
+{type="COLLECT",quest=2359,questName="Klaven's Tower",target="Klaven Mortwake's Journal",count=1,map=1436,zone="Westfall",x=70.4,y=74.2,optional=true,class={"ROGUE"},mobs="Klaven Mortwake"},
+{type="COLLECT",quest=2359,questName="Klaven's Tower",target="Defias Tower Key",count=1,map=1436,zone="Westfall",x=69.4,y=74.4,optional=true,class={"ROGUE"},mobs="Malformed Defias Drone"},
+{type="TURNIN",quest=2359,questName="Klaven's Tower",npc=332,npcName="Master Mathias Shaw",map=1453,zone="Stormwind City",x=75.8,y=59.8,optional=true,class={"ROGUE"}},
+{type="ACCEPT",quest=1939,questName="High Sorcerer Andromath",npc=5497,npcName="Jennea Cannon",map=1453,zone="Stormwind City",x=38.6,y=79.4,class={"MAGE"}},
+{type="TURNIN",quest=1939,questName="High Sorcerer Andromath",npc=5694,npcName="High Sorcerer Andromath",map=1453,zone="Stormwind City",x=37.6,y=81.6,class={"MAGE"}}
+}]],
 })

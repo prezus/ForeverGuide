@@ -14,27 +14,27 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 42 of the NightElf route: level 53 to 53, 21 steps, ~33 min of play in the model (66573 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 21,
-    steps = function() return {
-        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.5, y = 83.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
-        { type = "ACCEPT", quest = 5097, questName = "All Along the Watchtowers", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 2
-        { type = "KILL", quest = 5097, questName = "All Along the Watchtowers", npc = 10902, target = "Andorhal Tower One", count = 1, map = 1422, zone = "Western Plaguelands", x = 40.1, y = 71.6, note = "Tower One marked" }, -- 3
-        { type = "ACCEPT", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 4
-        { type = "KILL", quest = 5097, questName = "All Along the Watchtowers", npc = 10903, target = "Andorhal Tower Two", count = 1, map = 1422, zone = "Western Plaguelands", x = 42.3, y = 66.2, note = "Tower Two marked" }, -- 5
-        { type = "KILL", quest = 5097, questName = "All Along the Watchtowers", npc = 10904, target = "Andorhal Tower Three", count = 1, map = 1422, zone = "Western Plaguelands", x = 44.3, y = 63.3, note = "Tower Three marked" }, -- 6
-        { type = "KILL", quest = 4971, questName = "A Matter of Time", npc = 10717, target = "Temporal Parasite", count = 10, map = 1422, zone = "Western Plaguelands", x = 45.2, y = 62.8, near = true }, -- 7
-        { type = "TURNIN", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 8
-        { type = "ACCEPT", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 9
-        { type = "COLLECT", quest = 4972, questName = "Counting Out Time", target = "Andorhal Watch", count = 5, map = 1422, zone = "Western Plaguelands", x = 40.3, y = 68.2, near = true }, -- 10
-        { type = "TURNIN", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 11
-        { type = "KILL", quest = 5097, questName = "All Along the Watchtowers", npc = 10905, target = "Andorhal Tower Four", count = 1, map = 1422, zone = "Western Plaguelands", x = 46.6, y = 71.1, note = "Tower Four marked" }, -- 12
-        { type = "TURNIN", quest = 5097, questName = "All Along the Watchtowers", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 13
-        { type = "ACCEPT", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 14
-        { type = "KILL", quest = 4985, questName = "The Wildlife Suffers Too", npc = 1816, target = "Diseased Grizzly", count = 8, map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5, near = true }, -- 15
-        { type = "TURNIN", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 16
-        { type = "ACCEPT", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 17
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1833, target = "Scarlet Knight", count = 2, map = 1422, zone = "Western Plaguelands", x = 49.6, y = 33.2, near = true }, -- 18
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1826, target = "Scarlet Mage", count = 2, map = 1422, zone = "Western Plaguelands", x = 52.8, y = 36.7, near = true }, -- 19
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1831, target = "Scarlet Hunter / Scarlet Medic", count = 2, map = 1422, zone = "Western Plaguelands", x = 52.2, y = 44, near = true }, -- 20
-        { type = "TURNIN", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 21
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1422,zone="Western Plaguelands",x=43.5,y=83.7,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
+{type="ACCEPT",quest=5097,questName="All Along the Watchtowers",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
+{type="KILL",quest=5097,questName="All Along the Watchtowers",npc=10902,target="Andorhal Tower One",count=1,map=1422,zone="Western Plaguelands",x=40.1,y=71.6,note="Tower One marked"},
+{type="ACCEPT",quest=4971,questName="A Matter of Time",npc=10667,npcName="Chromie",map=1422,zone="Western Plaguelands",x=39.5,y=66.8},
+{type="KILL",quest=5097,questName="All Along the Watchtowers",npc=10903,target="Andorhal Tower Two",count=1,map=1422,zone="Western Plaguelands",x=42.3,y=66.2,note="Tower Two marked"},
+{type="KILL",quest=5097,questName="All Along the Watchtowers",npc=10904,target="Andorhal Tower Three",count=1,map=1422,zone="Western Plaguelands",x=44.3,y=63.3,note="Tower Three marked"},
+{type="KILL",quest=4971,questName="A Matter of Time",npc=10717,target="Temporal Parasite",count=10,map=1422,zone="Western Plaguelands",x=45.2,y=62.8,near=true},
+{type="TURNIN",quest=4971,questName="A Matter of Time",npc=10667,npcName="Chromie",map=1422,zone="Western Plaguelands",x=39.5,y=66.8},
+{type="ACCEPT",quest=4972,questName="Counting Out Time",npc=10667,npcName="Chromie",map=1422,zone="Western Plaguelands",x=39.5,y=66.8},
+{type="COLLECT",quest=4972,questName="Counting Out Time",target="Andorhal Watch",count=5,map=1422,zone="Western Plaguelands",x=40.3,y=68.2,near=true},
+{type="TURNIN",quest=4972,questName="Counting Out Time",npc=10667,npcName="Chromie",map=1422,zone="Western Plaguelands",x=39.5,y=66.8},
+{type="KILL",quest=5097,questName="All Along the Watchtowers",npc=10905,target="Andorhal Tower Four",count=1,map=1422,zone="Western Plaguelands",x=46.6,y=71.1,note="Tower Four marked"},
+{type="TURNIN",quest=5097,questName="All Along the Watchtowers",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
+{type="ACCEPT",quest=4985,questName="The Wildlife Suffers Too",npc=10739,npcName="Mulgris Deepriver",map=1422,zone="Western Plaguelands",x=53.7,y=64.7},
+{type="KILL",quest=4985,questName="The Wildlife Suffers Too",npc=1816,target="Diseased Grizzly",count=8,map=1422,zone="Western Plaguelands",x=55.2,y=64.5,near=true},
+{type="TURNIN",quest=4985,questName="The Wildlife Suffers Too",npc=10739,npcName="Mulgris Deepriver",map=1422,zone="Western Plaguelands",x=53.7,y=64.7},
+{type="ACCEPT",quest=6004,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=51.9,y=28.1},
+{type="KILL",quest=6004,questName="Unfinished Business",npc=1833,target="Scarlet Knight",count=2,map=1422,zone="Western Plaguelands",x=49.6,y=33.2,near=true},
+{type="KILL",quest=6004,questName="Unfinished Business",npc=1826,target="Scarlet Mage",count=2,map=1422,zone="Western Plaguelands",x=52.8,y=36.7,near=true},
+{type="KILL",quest=6004,questName="Unfinished Business",npc=1831,target="Scarlet Hunter / Scarlet Medic",count=2,map=1422,zone="Western Plaguelands",x=52.2,y=44,near=true},
+{type="TURNIN",quest=6004,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=51.9,y=28.1}
+}]],
 })

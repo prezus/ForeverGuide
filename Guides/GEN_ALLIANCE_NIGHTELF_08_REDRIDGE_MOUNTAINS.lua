@@ -14,25 +14,25 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 8 of the NightElf route: level 23 to 23, 13 steps, ~43 min of play in the model (24005 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 19,
-    steps = function() return {
-        { type = "ACCEPT", quest = 386, questName = "What Comes Around...", npc = 859, npcName = "Guard Berton", map = 1433, zone = "Redridge Mountains", x = 26.4, y = 46.6, optional = true, note = "For The Stockade (dungeon guide)" }, -- 1
-        { type = "TRAVEL", map = 1433, zone = "Redridge Mountains", x = 29.7, y = 47.4, radius = 60, note = "travel to Redridge Mountains (Redridge Mountains)" }, -- 2
-        { type = "ACCEPT", quest = 1699, questName = "The Rethban Gauntlet", npc = 6166, npcName = "Yorus Barleybrew", map = 1433, zone = "Redridge Mountains", x = 26.6, y = 44.8, class = { "WARRIOR" }, note = "Objectives: Explore Zone, Enter the Rethban Caverns" }, -- 3
-        { type = "TURNIN", quest = 1699, questName = "The Rethban Gauntlet", npc = 6166, npcName = "Yorus Barleybrew", map = 1433, zone = "Redridge Mountains", x = 26.6, y = 44.8, class = { "WARRIOR" } }, -- 4
-        { type = "ACCEPT", quest = 34, questName = "An Unwelcome Guest", npc = 342, npcName = "Martie Jainrose", map = 1433, zone = "Redridge Mountains", x = 21.9, y = 46.3 }, -- 5
-        { type = "ACCEPT", quest = 128, questName = "Blackrock Bounty", npc = 903, npcName = "Guard Howe", map = 1433, zone = "Redridge Mountains", x = 31.5, y = 57.9 }, -- 6
-        { type = "ACCEPT", quest = 180, questName = "Wanted: Lieutenant Fangore", map = 1433, zone = "Redridge Mountains", x = 26.8, y = 46.4 }, -- 7
-        { type = "KILL", quest = 34, questName = "An Unwelcome Guest", npc = 345, target = "Bellygrub", map = 1433, zone = "Redridge Mountains", x = 15.7, y = 49.3, note = "loot Bellygrub's Tusk" }, -- 8
-        { type = "TURNIN", quest = 34, questName = "An Unwelcome Guest", npc = 342, npcName = "Martie Jainrose", map = 1433, zone = "Redridge Mountains", x = 21.9, y = 46.3 }, -- 9
-        { type = "KILL", quest = 128, questName = "Blackrock Bounty", npc = 435, target = "Blackrock Champion", count = 15, map = 1433, zone = "Redridge Mountains", x = 28.2, y = 16.8, near = true }, -- 10
-        { type = "ACCEPT", quest = 219, questName = "Missing In Action", npc = 349, npcName = "Corporal Keeshan", map = 1433, zone = "Redridge Mountains", x = 28.4, y = 12.6 }, -- 11
-        { type = "COMPLETE", quest = 219, questName = "Missing In Action", target = "Escort Corporal Keeshan back to Redridge", map = 1433, zone = "Redridge Mountains", x = 33.4, y = 48.7, note = "escort - stay close, it can fail: Escort Corporal Keeshan back to Redridge" }, -- 12
-        { type = "TURNIN", quest = 219, questName = "Missing In Action", npc = 382, npcName = "Marshal Marris", map = 1433, zone = "Redridge Mountains", x = 33.5, y = 49 }, -- 13
-        { type = "TURNIN", quest = 128, questName = "Blackrock Bounty", npc = 903, npcName = "Guard Howe", map = 1433, zone = "Redridge Mountains", x = 31.5, y = 57.9 }, -- 14
-        { type = "COLLECT", quest = 169, questName = "WANTED: Gath'Ilzogg", target = "Head of Gath'Ilzogg", count = 1, map = 1433, zone = "Redridge Mountains", x = 69.2, y = 55.8, optional = true, mobs = "Gath'Ilzogg" }, -- 15
-        { type = "TURNIN", quest = 94, questName = "A Watchful Eye", map = 1433, zone = "Redridge Mountains", x = 84.3, y = 46.9 }, -- 16
-        { type = "KILL", quest = 180, questName = "Wanted: Lieutenant Fangore", npc = 703, target = "Lieutenant Fangore", map = 1433, zone = "Redridge Mountains", x = 80.2, y = 37.1, note = "loot Fangore's Paw" }, -- 17
-        { type = "TURNIN", quest = 169, questName = "WANTED: Gath'Ilzogg", npc = 344, npcName = "Magistrate Solomon", map = 1433, zone = "Redridge Mountains", x = 30, y = 44.2, optional = true }, -- 18
-        { type = "TURNIN", quest = 180, questName = "Wanted: Lieutenant Fangore", npc = 344, npcName = "Magistrate Solomon", map = 1433, zone = "Redridge Mountains", x = 30, y = 44.5 }, -- 19
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=386,questName="What Comes Around...",npc=859,npcName="Guard Berton",map=1433,zone="Redridge Mountains",x=26.4,y=46.6,optional=true,note="For The Stockade (dungeon guide)"},
+{type="TRAVEL",map=1433,zone="Redridge Mountains",x=29.7,y=47.4,radius=60,note="travel to Redridge Mountains (Redridge Mountains)"},
+{type="ACCEPT",quest=1699,questName="The Rethban Gauntlet",npc=6166,npcName="Yorus Barleybrew",map=1433,zone="Redridge Mountains",x=26.6,y=44.8,class={"WARRIOR"},note="Objectives: Explore Zone, Enter the Rethban Caverns"},
+{type="TURNIN",quest=1699,questName="The Rethban Gauntlet",npc=6166,npcName="Yorus Barleybrew",map=1433,zone="Redridge Mountains",x=26.6,y=44.8,class={"WARRIOR"}},
+{type="ACCEPT",quest=34,questName="An Unwelcome Guest",npc=342,npcName="Martie Jainrose",map=1433,zone="Redridge Mountains",x=21.9,y=46.3},
+{type="ACCEPT",quest=128,questName="Blackrock Bounty",npc=903,npcName="Guard Howe",map=1433,zone="Redridge Mountains",x=31.5,y=57.9},
+{type="ACCEPT",quest=180,questName="Wanted: Lieutenant Fangore",map=1433,zone="Redridge Mountains",x=26.8,y=46.4},
+{type="KILL",quest=34,questName="An Unwelcome Guest",npc=345,target="Bellygrub",map=1433,zone="Redridge Mountains",x=15.7,y=49.3,note="loot Bellygrub's Tusk"},
+{type="TURNIN",quest=34,questName="An Unwelcome Guest",npc=342,npcName="Martie Jainrose",map=1433,zone="Redridge Mountains",x=21.9,y=46.3},
+{type="KILL",quest=128,questName="Blackrock Bounty",npc=435,target="Blackrock Champion",count=15,map=1433,zone="Redridge Mountains",x=28.2,y=16.8,near=true},
+{type="ACCEPT",quest=219,questName="Missing In Action",npc=349,npcName="Corporal Keeshan",map=1433,zone="Redridge Mountains",x=28.4,y=12.6},
+{type="COMPLETE",quest=219,questName="Missing In Action",target="Escort Corporal Keeshan back to Redridge",map=1433,zone="Redridge Mountains",x=33.4,y=48.7,note="escort - stay close, it can fail: Escort Corporal Keeshan back to Redridge"},
+{type="TURNIN",quest=219,questName="Missing In Action",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=33.5,y=49},
+{type="TURNIN",quest=128,questName="Blackrock Bounty",npc=903,npcName="Guard Howe",map=1433,zone="Redridge Mountains",x=31.5,y=57.9},
+{type="COLLECT",quest=169,questName="WANTED: Gath'Ilzogg",target="Head of Gath'Ilzogg",count=1,map=1433,zone="Redridge Mountains",x=69.2,y=55.8,optional=true,mobs="Gath'Ilzogg"},
+{type="TURNIN",quest=94,questName="A Watchful Eye",map=1433,zone="Redridge Mountains",x=84.3,y=46.9},
+{type="KILL",quest=180,questName="Wanted: Lieutenant Fangore",npc=703,target="Lieutenant Fangore",map=1433,zone="Redridge Mountains",x=80.2,y=37.1,note="loot Fangore's Paw"},
+{type="TURNIN",quest=169,questName="WANTED: Gath'Ilzogg",npc=344,npcName="Magistrate Solomon",map=1433,zone="Redridge Mountains",x=30,y=44.2,optional=true},
+{type="TURNIN",quest=180,questName="Wanted: Lieutenant Fangore",npc=344,npcName="Magistrate Solomon",map=1433,zone="Redridge Mountains",x=30,y=44.5}
+}]],
 })

@@ -13,64 +13,64 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Blackrock Spire: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 58,
-    steps = function() return {
-        { type = "ACCEPT", quest = 6821, questName = "Eye of the Emberseer", npc = 13278, npcName = "Duke Hydraxis", map = 1447, zone = "Azshara", x = 79.2, y = 73.6 }, -- 1
-        { type = "ACCEPT", quest = 5166, questName = "Breastplate of the Chromatic Flight", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.7 }, -- 2
-        { type = "ACCEPT", quest = 5167, questName = "Legplates of the Chromatic Defier", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.7 }, -- 3
-        { type = "ACCEPT", quest = 4701, questName = "Put Her Down", npc = 9562, npcName = "Helendis Riverhorn", map = 1428, zone = "Burning Steppes", x = 85.6, y = 69 }, -- 4
-        { type = "ACCEPT", quest = 4729, questName = "Kibler's Exotic Pets", npc = 10260, npcName = "Kibler", map = 1428, zone = "Burning Steppes", x = 65.8, y = 22 }, -- 5
-        { type = "ACCEPT", quest = 4764, questName = "Doomrigger's Clasp", npc = 9565, npcName = "Mayara Brightwing", map = 1428, zone = "Burning Steppes", x = 84.8, y = 69 }, -- 6
-        { type = "ACCEPT", quest = 4862, questName = "En-Ay-Es-Tee-Why", npc = 10260, npcName = "Kibler", map = 1428, zone = "Burning Steppes", x = 65.8, y = 22 }, -- 7
-        { type = "ACCEPT", quest = 5081, questName = "Maxwell's Mission", npc = 9560, npcName = "Marshal Maxwell", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.8 }, -- 8
-        { type = "ACCEPT", quest = 4788, questName = "The Final Tablets", npc = 10460, npcName = "Prospector Ironboot", map = 1446, zone = "Tanaris", x = 66.8, y = 24 }, -- 9
-        { type = "ACCEPT", quest = 6502, questName = "Drakefire Amulet", npc = 10929, npcName = "Haleh", map = 1452, zone = "Winterspring", x = 54.4, y = 51.2 }, -- 10
-        { type = "NOTE", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3, text = "Find a group for Blackrock Spire", note = "All quests available from level 57; hand them in by level 60 for full XP" }, -- 11
-        { type = "ACCEPT", quest = 4742, questName = "Seal of Ascension", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 12
-        { type = "ACCEPT", quest = 4867, questName = "Urok Doomhowl", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 13
-        { type = "ACCEPT", quest = 5001, questName = "Bijou's Belongings", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 14
-        { type = "ACCEPT", quest = 5089, questName = "General Drakkisath's Command", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 15
-        { type = "ACCEPT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 16
-        { type = "KILL", quest = 4701, questName = "Put Her Down", npc = 10220, target = "Halycon", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 17
-        { type = "COLLECT", quest = 4729, questName = "Kibler's Exotic Pets", target = "Caged Worg Pup", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 18
-        { type = "COLLECT", quest = 4764, questName = "Doomrigger's Clasp", target = "Doomrigger's Clasp", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 19
-        { type = "COLLECT", quest = 4788, questName = "The Final Tablets", target = "Fifth Mosh'aru Tablet", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 20
-        { type = "COLLECT", quest = 4788, questName = "The Final Tablets", target = "Sixth Mosh'aru Tablet", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 21
-        { type = "COLLECT", quest = 4862, questName = "En-Ay-Es-Tee-Why", target = "Spire Spider Egg", count = 15, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 22
-        { type = "KILL", quest = 5081, questName = "Maxwell's Mission", npc = 9237, target = "War Master Voone", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 23
-        { type = "KILL", quest = 5081, questName = "Maxwell's Mission", npc = 9196, target = "Highlord Omokk", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 24
-        { type = "KILL", quest = 5081, questName = "Maxwell's Mission", npc = 9568, target = "Overlord Wyrmthalak", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 25
-        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Brilliant Chromatic Scale", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 26
-        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Blood of Heroes", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 27
-        { type = "COLLECT", quest = 5166, questName = "Breastplate of the Chromatic Flight", target = "Frayed Abomination Stitching", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 28
-        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Brilliant Chromatic Scale", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 29
-        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Blood of Heroes", count = 10, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 30
-        { type = "COLLECT", quest = 5167, questName = "Legplates of the Chromatic Defier", target = "Skin of Shadow", count = 5, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 31
-        { type = "COLLECT", quest = 6502, questName = "Drakefire Amulet", target = "Blood of the Black Dragon Champion", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 32
-        { type = "COLLECT", quest = 6821, questName = "Eye of the Emberseer", target = "Eye of the Emberseer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 33
-        { type = "COLLECT", quest = 4742, questName = "Seal of Ascension", target = "Gemstone of Spirestone", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 34
-        { type = "COLLECT", quest = 4742, questName = "Seal of Ascension", target = "Gemstone of Smolderthorn", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 35
-        { type = "COLLECT", quest = 4742, questName = "Seal of Ascension", target = "Gemstone of Bloodaxe", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 36
-        { type = "COLLECT", quest = 4742, questName = "Seal of Ascension", target = "Unadorned Seal of Ascension", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 37
-        { type = "COLLECT", quest = 4867, questName = "Urok Doomhowl", target = "Warosh's Mojo", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 38
-        { type = "COLLECT", quest = 5001, questName = "Bijou's Belongings", target = "Bijou's Belongings", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 39
-        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Craftsman's Writ: Truesilver Transformer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 40
-        { type = "COLLECT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", target = "Truesilver Transformer", count = 1, map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 41
-        { type = "TURNIN", quest = 4742, questName = "Seal of Ascension", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 42
-        { type = "TURNIN", quest = 4867, questName = "Urok Doomhowl", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 43
-        { type = "TURNIN", quest = 5001, questName = "Bijou's Belongings", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 44
-        { type = "TURNIN", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1427, zone = "Searing Gorge", x = 34.8, y = 85.3 }, -- 45
-        { type = "TURNIN", quest = 4701, questName = "Put Her Down", npc = 9562, npcName = "Helendis Riverhorn", map = 1428, zone = "Burning Steppes", x = 85.6, y = 69 }, -- 46
-        { type = "TURNIN", quest = 4729, questName = "Kibler's Exotic Pets", npc = 10260, npcName = "Kibler", map = 1428, zone = "Burning Steppes", x = 65.8, y = 22 }, -- 47
-        { type = "TURNIN", quest = 4764, questName = "Doomrigger's Clasp", npc = 9565, npcName = "Mayara Brightwing", map = 1428, zone = "Burning Steppes", x = 84.8, y = 69 }, -- 48
-        { type = "TURNIN", quest = 4788, questName = "The Final Tablets", npc = 10460, npcName = "Prospector Ironboot", map = 1446, zone = "Tanaris", x = 66.8, y = 24 }, -- 49
-        { type = "TURNIN", quest = 4862, questName = "En-Ay-Es-Tee-Why", npc = 10260, npcName = "Kibler", map = 1428, zone = "Burning Steppes", x = 65.8, y = 22 }, -- 50
-        { type = "TURNIN", quest = 5081, questName = "Maxwell's Mission", npc = 9560, npcName = "Marshal Maxwell", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.8 }, -- 51
-        { type = "TURNIN", quest = 5166, questName = "Breastplate of the Chromatic Flight", npc = 10976, npcName = "Jeziba", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.8 }, -- 52
-        { type = "TURNIN", quest = 5167, questName = "Legplates of the Chromatic Defier", npc = 10976, npcName = "Jeziba", map = 1422, zone = "Western Plaguelands", x = 39.4, y = 66.8 }, -- 53
-        { type = "TURNIN", quest = 6502, questName = "Drakefire Amulet", npc = 10929, npcName = "Haleh", map = 1452, zone = "Winterspring", x = 54.4, y = 51.2 }, -- 54
-        { type = "TURNIN", quest = 6821, questName = "Eye of the Emberseer", npc = 13278, npcName = "Duke Hydraxis", map = 1447, zone = "Azshara", x = 79.2, y = 73.6 }, -- 55
-        { type = "TURNIN", quest = 5089, questName = "General Drakkisath's Command", npc = 9560, npcName = "Marshal Maxwell", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.8 }, -- 56
-        { type = "ACCEPT", quest = 5102, questName = "General Drakkisath's Demise", npc = 9560, npcName = "Marshal Maxwell", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.8 }, -- 57
-        { type = "TURNIN", quest = 5102, questName = "General Drakkisath's Demise", npc = 9560, npcName = "Marshal Maxwell", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.8 }, -- 58
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=6821,questName="Eye of the Emberseer",npc=13278,npcName="Duke Hydraxis",map=1447,zone="Azshara",x=79.2,y=73.6},
+{type="ACCEPT",quest=5166,questName="Breastplate of the Chromatic Flight",map=1422,zone="Western Plaguelands",x=39.4,y=66.7},
+{type="ACCEPT",quest=5167,questName="Legplates of the Chromatic Defier",map=1422,zone="Western Plaguelands",x=39.4,y=66.7},
+{type="ACCEPT",quest=4701,questName="Put Her Down",npc=9562,npcName="Helendis Riverhorn",map=1428,zone="Burning Steppes",x=85.6,y=69},
+{type="ACCEPT",quest=4729,questName="Kibler's Exotic Pets",npc=10260,npcName="Kibler",map=1428,zone="Burning Steppes",x=65.8,y=22},
+{type="ACCEPT",quest=4764,questName="Doomrigger's Clasp",npc=9565,npcName="Mayara Brightwing",map=1428,zone="Burning Steppes",x=84.8,y=69},
+{type="ACCEPT",quest=4862,questName="En-Ay-Es-Tee-Why",npc=10260,npcName="Kibler",map=1428,zone="Burning Steppes",x=65.8,y=22},
+{type="ACCEPT",quest=5081,questName="Maxwell's Mission",npc=9560,npcName="Marshal Maxwell",map=1428,zone="Burning Steppes",x=84.6,y=68.8},
+{type="ACCEPT",quest=4788,questName="The Final Tablets",npc=10460,npcName="Prospector Ironboot",map=1446,zone="Tanaris",x=66.8,y=24},
+{type="ACCEPT",quest=6502,questName="Drakefire Amulet",npc=10929,npcName="Haleh",map=1452,zone="Winterspring",x=54.4,y=51.2},
+{type="NOTE",map=1427,zone="Searing Gorge",x=34.8,y=85.3,text="Find a group for Blackrock Spire",note="All quests available from level 57; hand them in by level 60 for full XP"},
+{type="ACCEPT",quest=4742,questName="Seal of Ascension",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=4867,questName="Urok Doomhowl",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=5001,questName="Bijou's Belongings",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=5089,questName="General Drakkisath's Command",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="ACCEPT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=4701,questName="Put Her Down",npc=10220,target="Halycon",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4729,questName="Kibler's Exotic Pets",target="Caged Worg Pup",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4764,questName="Doomrigger's Clasp",target="Doomrigger's Clasp",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4788,questName="The Final Tablets",target="Fifth Mosh'aru Tablet",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4788,questName="The Final Tablets",target="Sixth Mosh'aru Tablet",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4862,questName="En-Ay-Es-Tee-Why",target="Spire Spider Egg",count=15,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=5081,questName="Maxwell's Mission",npc=9237,target="War Master Voone",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=5081,questName="Maxwell's Mission",npc=9196,target="Highlord Omokk",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="KILL",quest=5081,questName="Maxwell's Mission",npc=9568,target="Overlord Wyrmthalak",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5166,questName="Breastplate of the Chromatic Flight",target="Brilliant Chromatic Scale",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5166,questName="Breastplate of the Chromatic Flight",target="Blood of Heroes",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5166,questName="Breastplate of the Chromatic Flight",target="Frayed Abomination Stitching",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5167,questName="Legplates of the Chromatic Defier",target="Brilliant Chromatic Scale",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5167,questName="Legplates of the Chromatic Defier",target="Blood of Heroes",count=10,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5167,questName="Legplates of the Chromatic Defier",target="Skin of Shadow",count=5,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=6502,questName="Drakefire Amulet",target="Blood of the Black Dragon Champion",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=6821,questName="Eye of the Emberseer",target="Eye of the Emberseer",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4742,questName="Seal of Ascension",target="Gemstone of Spirestone",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4742,questName="Seal of Ascension",target="Gemstone of Smolderthorn",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4742,questName="Seal of Ascension",target="Gemstone of Bloodaxe",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4742,questName="Seal of Ascension",target="Unadorned Seal of Ascension",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=4867,questName="Urok Doomhowl",target="Warosh's Mojo",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=5001,questName="Bijou's Belongings",target="Bijou's Belongings",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",target="Craftsman's Writ: Truesilver Transformer",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="COLLECT",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",target="Truesilver Transformer",count=1,map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=4742,questName="Seal of Ascension",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=4867,questName="Urok Doomhowl",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=5001,questName="Bijou's Belongings",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=94340,questName="Craftsman's Writ: Truesilver Transformer",map=1427,zone="Searing Gorge",x=34.8,y=85.3},
+{type="TURNIN",quest=4701,questName="Put Her Down",npc=9562,npcName="Helendis Riverhorn",map=1428,zone="Burning Steppes",x=85.6,y=69},
+{type="TURNIN",quest=4729,questName="Kibler's Exotic Pets",npc=10260,npcName="Kibler",map=1428,zone="Burning Steppes",x=65.8,y=22},
+{type="TURNIN",quest=4764,questName="Doomrigger's Clasp",npc=9565,npcName="Mayara Brightwing",map=1428,zone="Burning Steppes",x=84.8,y=69},
+{type="TURNIN",quest=4788,questName="The Final Tablets",npc=10460,npcName="Prospector Ironboot",map=1446,zone="Tanaris",x=66.8,y=24},
+{type="TURNIN",quest=4862,questName="En-Ay-Es-Tee-Why",npc=10260,npcName="Kibler",map=1428,zone="Burning Steppes",x=65.8,y=22},
+{type="TURNIN",quest=5081,questName="Maxwell's Mission",npc=9560,npcName="Marshal Maxwell",map=1428,zone="Burning Steppes",x=84.6,y=68.8},
+{type="TURNIN",quest=5166,questName="Breastplate of the Chromatic Flight",npc=10976,npcName="Jeziba",map=1422,zone="Western Plaguelands",x=39.4,y=66.8},
+{type="TURNIN",quest=5167,questName="Legplates of the Chromatic Defier",npc=10976,npcName="Jeziba",map=1422,zone="Western Plaguelands",x=39.4,y=66.8},
+{type="TURNIN",quest=6502,questName="Drakefire Amulet",npc=10929,npcName="Haleh",map=1452,zone="Winterspring",x=54.4,y=51.2},
+{type="TURNIN",quest=6821,questName="Eye of the Emberseer",npc=13278,npcName="Duke Hydraxis",map=1447,zone="Azshara",x=79.2,y=73.6},
+{type="TURNIN",quest=5089,questName="General Drakkisath's Command",npc=9560,npcName="Marshal Maxwell",map=1428,zone="Burning Steppes",x=84.6,y=68.8},
+{type="ACCEPT",quest=5102,questName="General Drakkisath's Demise",npc=9560,npcName="Marshal Maxwell",map=1428,zone="Burning Steppes",x=84.6,y=68.8},
+{type="TURNIN",quest=5102,questName="General Drakkisath's Demise",npc=9560,npcName="Marshal Maxwell",map=1428,zone="Burning Steppes",x=84.6,y=68.8}
+}]],
 })

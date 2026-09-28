@@ -13,72 +13,72 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 52 of the Dwarf route: level 57 to 60, 23 steps, ~729 min of play in the model (7919 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 66,
-    steps = function() return {
-        { type = "ACCEPT", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6, optional = true, note = "For Stratholme (dungeon guide)" }, -- 1
-        { type = "ACCEPT", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.6, optional = true, note = "For Scholomance (dungeon guide)" }, -- 2
-        { type = "ACCEPT", quest = 5214, questName = "The Great Fras Siabi", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58, optional = true, note = "For Stratholme (dungeon guide)" }, -- 3
-        { type = "ACCEPT", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 57.8, optional = true, note = "For Stratholme (dungeon guide)" }, -- 4
-        { type = "ACCEPT", quest = 5251, questName = "The Archivist", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8, optional = true, note = "For Stratholme (dungeon guide)" }, -- 5
-        { type = "NOTE", optional = true, text = "Ready for Scholomance", note = "Picked up: Barov Family Fortune, Doctor Theolen Krastinov, the Butcher, Plagued Hatchlings. When you have a group, open Scholomance under Dungeons." }, -- 6
-        { type = "COLLECT", quest = 7602, questName = "Flawless Fel Essence", target = "Flawless Fel Essence (Azshara)", count = 1, map = 1447, zone = "Azshara", x = 66, y = 16.5, near = true, class = { "WARLOCK" }, mobs = "Legashi Satyr / Legashi Rogue / Legashi Hellcaller" }, -- 7
-        { type = "COLLECT", quest = 7602, questName = "Flawless Fel Essence", target = "Flawless Fel Essence (Jaedenar)", count = 1, map = 1448, zone = "Felwood", x = 37.4, y = 53.2, class = { "WARLOCK" }, mobs = "Jaedenar Legionnaire" }, -- 8
-        { type = "COLLECT", quest = 7602, questName = "Flawless Fel Essence", target = "Flawless Fel Essence (Dark Portal)", count = 1, map = 1419, zone = "Blasted Lands", x = 57.7, y = 50.6, class = { "WARLOCK" }, mobs = "Felguard Sentry" }, -- 9
-        { type = "TURNIN", quest = 7602, questName = "Flawless Fel Essence", npc = 14470, npcName = "Impsy", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, class = { "WARLOCK" } }, -- 10
-        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.0, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 11
-        { type = "ACCEPT", quest = 9664, questName = "Establishing New Outposts", npc = 17069, npcName = "Emmisary Whitebeard", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.4 }, -- 12
-        { type = "ACCEPT", quest = 9128, questName = "The Elemental Equation", npc = 16116, npcName = "Archmage Angela Dosantos", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.3 }, -- 13
-        { type = "TURNIN", quest = 6030, questName = "Duke Nicholas Zverenhoff", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 14
-        { type = "ACCEPT", quest = 5517, questName = "Chromatic Mantle of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60, note = "Objectives: Argent Dawn" }, -- 15
-        { type = "COLLECT", quest = 5517, questName = "Chromatic Mantle of the Dawn", target = "Argent Dawn Valor Token", count = 25, map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 60, near = true, mobs = "Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock" }, -- 16
-        { type = "TURNIN", quest = 5517, questName = "Chromatic Mantle of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 17
-        { type = "ACCEPT", quest = 9200, questName = "Craftsman's Writ - Major Mana Potion", npc = 16131, npcName = "Rohan the Assassin", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.4, optional = true, note = "Loot Craftsman's Writ - Major Mana Potion from Rohan the Assassin and use it to start the quest; Elite - group up" }, -- 18
-        { type = "ACCEPT", quest = 9202, questName = "Craftsman's Writ - Major Healing Potion", npc = 16131, npcName = "Rohan the Assassin", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.4, optional = true, note = "Loot Craftsman's Writ - Major Healing Potion from Rohan the Assassin and use it to start the quest; Elite - group up" }, -- 19
-        { type = "ACCEPT", quest = 5281, questName = "The Restless Souls", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 20
-        { type = "COLLECT", quest = 9128, questName = "The Elemental Equation", target = "Core of Elements", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 72.8, y = 35.2, near = true }, -- 21
-        { type = "KILL", quest = 9664, questName = "Establishing New Outposts", npc = 17690, target = "<TXT>Eastwall Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 67.5, y = 48, note = "Capture Eastwall Tower" }, -- 22
-        { type = "KILL", quest = 9664, questName = "Establishing New Outposts", npc = 17696, target = "<TXT>Northpass Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 56.6, y = 24.4, note = "Capture Northpass Tower" }, -- 23
-        { type = "ACCEPT", quest = 9165, questName = "Writ of Safe Passage", npc = 16226, npcName = "Guard Didier", map = 1423, zone = "Eastern Plaguelands", x = 47.4, y = 43.2, optional = true, note = "Elite - group up" }, -- 24
-        { type = "KILL", quest = 9165, questName = "Writ of Safe Passage", npc = 16254, target = "Writ of Safe Passage Signed", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 47.2, y = 42.6, optional = true }, -- 25
-        { type = "COLLECT", quest = 9200, questName = "Craftsman's Writ - Major Mana Potion", target = "Major Mana Potion", count = 10, map = 1423, zone = "Eastern Plaguelands", x = 57.1, y = 28.1, optional = true, near = true, mobs = "Red Dragonspawn / Red Wyrmkin / Red Scalebane / Scalebane Lieutenant" }, -- 26
-        { type = "COLLECT", quest = 9202, questName = "Craftsman's Writ - Major Healing Potion", target = "Major Healing Potion", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 57.1, y = 26, optional = true, near = true, mobs = "Blue Dragonspawn / Wyrmkin Dreamwalker / Stonard Shaman / Swamp Talker" }, -- 27
-        { type = "KILL", quest = 9664, questName = "Establishing New Outposts", npc = 17689, target = "<TXT>Crown Guard Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 39.7, y = 75.4, note = "Capture Crown Guard Tower" }, -- 28
-        { type = "TURNIN", quest = 9200, questName = "Craftsman's Writ - Major Mana Potion", npc = 16283, npcName = "Packmaster Stonebruiser", map = 1423, zone = "Eastern Plaguelands", x = 80.4, y = 58, optional = true }, -- 29
-        { type = "TURNIN", quest = 9202, questName = "Craftsman's Writ - Major Healing Potion", npc = 16283, npcName = "Packmaster Stonebruiser", map = 1423, zone = "Eastern Plaguelands", x = 80.4, y = 58, optional = true }, -- 30
-        { type = "TURNIN", quest = 9128, questName = "The Elemental Equation", npc = 16116, npcName = "Archmage Angela Dosantos", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.3 }, -- 31
-        { type = "ACCEPT", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 27.3, y = 85.2 }, -- 32
-        { type = "ACCEPT", quest = 5845, questName = "Of Lost Honor", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.4, y = 43.6 }, -- 33
-        { type = "KILL", quest = 9664, questName = "Establishing New Outposts", npc = 17698, target = "<TXT>Plaguewood Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 22, y = 32, note = "Capture Plaguewood Tower" }, -- 34
-        { type = "TURNIN", quest = 5281, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.7 }, -- 35
-        { type = "COLLECT", quest = 5845, questName = "Of Lost Honor", target = "Symbol of Lost Honor", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 62.5, y = 26.8 }, -- 36
-        { type = "TURNIN", quest = 5845, questName = "Of Lost Honor", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.4, y = 43.6 }, -- 37
-        { type = "TURNIN", quest = 5245, questName = "Troubled Spirits of Kel'Theril", npc = 10304, npcName = "Aurora Skycaller", map = 1423, zone = "Eastern Plaguelands", x = 53.4, y = 22 }, -- 38
-        { type = "ACCEPT", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.4, y = 33.6, optional = true, note = "For Stratholme (dungeon guide)" }, -- 39
-        { type = "ACCEPT", quest = 7603, questName = "Kroshius' Infernal Core", npc = 14470, npcName = "Impsy", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, optional = true, class = { "WARLOCK" }, note = "Elite - group up" }, -- 40
-        { type = "COLLECT", quest = 7603, questName = "Kroshius' Infernal Core", target = "Kroshius' Infernal Core", count = 1, map = 1448, zone = "Felwood", x = 45.4, y = 35.4, optional = true, class = { "WARLOCK" }, mobs = "Kroshius" }, -- 41
-        { type = "TURNIN", quest = 7603, questName = "Kroshius' Infernal Core", npc = 14469, npcName = "Niby the Almighty", map = 1448, zone = "Felwood", x = 41.4, y = 44.8, optional = true, class = { "WARLOCK" } }, -- 42
-        { type = "KILL", quest = 6024, questName = "Hameya's Plea", npc = 12248, target = "Infiltrator Hameya", map = 1423, zone = "Eastern Plaguelands", x = 70.7, y = 16.5, note = "loot Hameya's Key" }, -- 43
-        { type = "TURNIN", quest = 8859, questName = "Secrets of the Colossus - Zora", npc = 11034, npcName = "Lord Maxwell Tyrosus", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 58 }, -- 44
-        { type = "ACCEPT", quest = 9141, questName = "They Call Me \"The Rooster\"", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81, y = 57.6 }, -- 45
-        { type = "COLLECT", quest = 9141, questName = "They Call Me \"The Rooster\"", target = "Argent Dawn Valor Token", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 60, near = true, mobs = "Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock" }, -- 46
-        { type = "TURNIN", quest = 9141, questName = "They Call Me \"The Rooster\"", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81, y = 57.6 }, -- 47
-        { type = "TURNIN", quest = 9165, questName = "Writ of Safe Passage", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81, y = 57.4, optional = true }, -- 48
-        { type = "TURNIN", quest = 9664, questName = "Establishing New Outposts", npc = 17069, npcName = "Emmisary Whitebeard", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.4 }, -- 49
-        { type = "ACCEPT", quest = 5846, questName = "Of Love and Family", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.4, y = 43.6 }, -- 50
-        { type = "TURNIN", quest = 5846, questName = "Of Love and Family", npc = 11936, npcName = "Artist Renfray", map = 1422, zone = "Western Plaguelands", x = 65.6, y = 75.4 }, -- 51
-        { type = "ACCEPT", quest = 5848, questName = "Of Love and Family", npc = 11936, npcName = "Artist Renfray", map = 1422, zone = "Western Plaguelands", x = 65.6, y = 75.4, optional = true, note = "For Stratholme (dungeon guide)" }, -- 52
-        { type = "NOTE", optional = true, text = "Ready for Stratholme", note = "Picked up: The Flesh Does Not Lie, The Great Fras Siabi, Houses of the Holy, The Archivist, The Restless Souls, Of Love and Family. When you have a group, open Stratholme under Dungeons." }, -- 53
-        { type = "TURNIN", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 28, y = 86.2 }, -- 54
-        { type = "GRIND", npc = 8532, target = "Diseased Flayer", level = 59, map = 1423, zone = "Eastern Plaguelands", x = 33.6, y = 61.4, near = true, note = "grind Diseased Flayer (level 57-59) to level 59 - nothing worth questing at 58" }, -- 55
-        { type = "GRIND", npc = 8532, target = "Diseased Flayer", level = 60, map = 1423, zone = "Eastern Plaguelands", x = 33.6, y = 61.4, near = true, note = "grind Diseased Flayer (level 57-59) to level 60 - nothing worth questing at 59" }, -- 56
-        { type = "ACCEPT", quest = 9362, questName = "Warlord Krellian", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 57
-        { type = "COLLECT", quest = 9362, questName = "Warlord Krellian", target = "Prismatic Shell", count = 1, map = 1447, zone = "Azshara", x = 40.4, y = 53, near = true, class = { "MAGE" }, mobs = "Warlord Krellian / Scalebeard" }, -- 58
-        { type = "TURNIN", quest = 9362, questName = "Warlord Krellian", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 59
-        { type = "ACCEPT", quest = 7562, questName = "Mor'zul Bloodbringer", npc = 5753, npcName = "Martha Strain", map = 1458, zone = "Undercity", x = 85.8, y = 15.8, class = { "WARLOCK" } }, -- 60
-        { type = "TURNIN", quest = 7562, questName = "Mor'zul Bloodbringer", npc = 14436, npcName = "Mor'zul Bloodbringer", map = 1428, zone = "Burning Steppes", x = 12.6, y = 31.6, class = { "WARLOCK" } }, -- 61
-        { type = "ACCEPT", quest = 7623, questName = "Lord Banehollow", npc = 14437, npcName = "Gorzeeki Wildeyes", map = 1428, zone = "Burning Steppes", x = 12.4, y = 31.6, class = { "WARLOCK" } }, -- 62
-        { type = "TURNIN", quest = 7623, questName = "Lord Banehollow", npc = 9516, npcName = "Lord Banehollow", map = 1448, zone = "Felwood", x = 36, y = 44.6, class = { "WARLOCK" } }, -- 63
-        { type = "ACCEPT", quest = 7582, questName = "The Prison's Casing", npc = 14463, npcName = "Daio the Decrepit", map = 1419, zone = "Blasted Lands", x = 34, y = 50.2, optional = true, class = { "WARLOCK" }, note = "Elite - group up" }, -- 64
-        { type = "COLLECT", quest = 7582, questName = "The Prison's Casing", target = "Tears of the Hederine", count = 5, map = 1452, zone = "Winterspring", x = 55.5, y = 84.2, optional = true, near = true, class = { "WARLOCK" }, mobs = "Hederine Initiate / Hederine Manastalker / Hederine Slayer" }, -- 65
-        { type = "TURNIN", quest = 7582, questName = "The Prison's Casing", npc = 14463, npcName = "Daio the Decrepit", map = 1419, zone = "Blasted Lands", x = 34, y = 50.2, optional = true, class = { "WARLOCK" } }, -- 66
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=5212,questName="The Flesh Does Not Lie",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6,optional=true,note="For Stratholme (dungeon guide)"},
+{type="ACCEPT",quest=5529,questName="Plagued Hatchlings",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6,optional=true,note="For Scholomance (dungeon guide)"},
+{type="ACCEPT",quest=5214,questName="The Great Fras Siabi",npc=11033,npcName="Smokey LaRue",map=1423,zone="Eastern Plaguelands",x=80.6,y=58,optional=true,note="For Stratholme (dungeon guide)"},
+{type="ACCEPT",quest=5243,questName="Houses of the Holy",npc=11036,npcName="Leonid Barthalomew the Revered",map=1423,zone="Eastern Plaguelands",x=81.6,y=57.8,optional=true,note="For Stratholme (dungeon guide)"},
+{type="ACCEPT",quest=5251,questName="The Archivist",npc=11039,npcName="Duke Nicholas Zverenhoff",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.8,optional=true,note="For Stratholme (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Scholomance",note="Picked up: Barov Family Fortune, Doctor Theolen Krastinov, the Butcher, Plagued Hatchlings. When you have a group, open Scholomance under Dungeons."},
+{type="COLLECT",quest=7602,questName="Flawless Fel Essence",target="Flawless Fel Essence (Azshara)",count=1,map=1447,zone="Azshara",x=66,y=16.5,near=true,class={"WARLOCK"},mobs="Legashi Satyr / Legashi Rogue / Legashi Hellcaller"},
+{type="COLLECT",quest=7602,questName="Flawless Fel Essence",target="Flawless Fel Essence (Jaedenar)",count=1,map=1448,zone="Felwood",x=37.4,y=53.2,class={"WARLOCK"},mobs="Jaedenar Legionnaire"},
+{type="COLLECT",quest=7602,questName="Flawless Fel Essence",target="Flawless Fel Essence (Dark Portal)",count=1,map=1419,zone="Blasted Lands",x=57.7,y=50.6,class={"WARLOCK"},mobs="Felguard Sentry"},
+{type="TURNIN",quest=7602,questName="Flawless Fel Essence",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
+{type="TRAVEL",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.0,radius=60,note="travel to Eastern Plaguelands (Eastern Plaguelands)"},
+{type="ACCEPT",quest=9664,questName="Establishing New Outposts",npc=17069,npcName="Emmisary Whitebeard",map=1423,zone="Eastern Plaguelands",x=81.3,y=59.4},
+{type="ACCEPT",quest=9128,questName="The Elemental Equation",npc=16116,npcName="Archmage Angela Dosantos",map=1423,zone="Eastern Plaguelands",x=81.5,y=58.3},
+{type="TURNIN",quest=6030,questName="Duke Nicholas Zverenhoff",npc=11039,npcName="Duke Nicholas Zverenhoff",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.8},
+{type="ACCEPT",quest=5517,questName="Chromatic Mantle of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60,note="Objectives: Argent Dawn"},
+{type="COLLECT",quest=5517,questName="Chromatic Mantle of the Dawn",target="Argent Dawn Valor Token",count=25,map=1423,zone="Eastern Plaguelands",x=81.4,y=60,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
+{type="TURNIN",quest=5517,questName="Chromatic Mantle of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60},
+{type="ACCEPT",quest=9200,questName="Craftsman's Writ - Major Mana Potion",npc=16131,npcName="Rohan the Assassin",map=1423,zone="Eastern Plaguelands",x=81.4,y=58.4,optional=true,note="Loot Craftsman's Writ - Major Mana Potion from Rohan the Assassin and use it to start the quest; Elite - group up"},
+{type="ACCEPT",quest=9202,questName="Craftsman's Writ - Major Healing Potion",npc=16131,npcName="Rohan the Assassin",map=1423,zone="Eastern Plaguelands",x=81.4,y=58.4,optional=true,note="Loot Craftsman's Writ - Major Healing Potion from Rohan the Assassin and use it to start the quest; Elite - group up"},
+{type="ACCEPT",quest=5281,questName="The Restless Souls",npc=11038,npcName="Caretaker Alen",map=1423,zone="Eastern Plaguelands",x=79.6,y=63.9},
+{type="COLLECT",quest=9128,questName="The Elemental Equation",target="Core of Elements",count=30,map=1423,zone="Eastern Plaguelands",x=72.8,y=35.2,near=true},
+{type="KILL",quest=9664,questName="Establishing New Outposts",npc=17690,target="<TXT>Eastwall Capture Quest Doodad",count=1,map=1423,zone="Eastern Plaguelands",x=67.5,y=48,note="Capture Eastwall Tower"},
+{type="KILL",quest=9664,questName="Establishing New Outposts",npc=17696,target="<TXT>Northpass Capture Quest Doodad",count=1,map=1423,zone="Eastern Plaguelands",x=56.6,y=24.4,note="Capture Northpass Tower"},
+{type="ACCEPT",quest=9165,questName="Writ of Safe Passage",npc=16226,npcName="Guard Didier",map=1423,zone="Eastern Plaguelands",x=47.4,y=43.2,optional=true,note="Elite - group up"},
+{type="KILL",quest=9165,questName="Writ of Safe Passage",npc=16254,target="Writ of Safe Passage Signed",count=1,map=1423,zone="Eastern Plaguelands",x=47.2,y=42.6,optional=true},
+{type="COLLECT",quest=9200,questName="Craftsman's Writ - Major Mana Potion",target="Major Mana Potion",count=10,map=1423,zone="Eastern Plaguelands",x=57.1,y=28.1,optional=true,near=true,mobs="Red Dragonspawn / Red Wyrmkin / Red Scalebane / Scalebane Lieutenant"},
+{type="COLLECT",quest=9202,questName="Craftsman's Writ - Major Healing Potion",target="Major Healing Potion",count=20,map=1423,zone="Eastern Plaguelands",x=57.1,y=26,optional=true,near=true,mobs="Blue Dragonspawn / Wyrmkin Dreamwalker / Stonard Shaman / Swamp Talker"},
+{type="KILL",quest=9664,questName="Establishing New Outposts",npc=17689,target="<TXT>Crown Guard Capture Quest Doodad",count=1,map=1423,zone="Eastern Plaguelands",x=39.7,y=75.4,note="Capture Crown Guard Tower"},
+{type="TURNIN",quest=9200,questName="Craftsman's Writ - Major Mana Potion",npc=16283,npcName="Packmaster Stonebruiser",map=1423,zone="Eastern Plaguelands",x=80.4,y=58,optional=true},
+{type="TURNIN",quest=9202,questName="Craftsman's Writ - Major Healing Potion",npc=16283,npcName="Packmaster Stonebruiser",map=1423,zone="Eastern Plaguelands",x=80.4,y=58,optional=true},
+{type="TURNIN",quest=9128,questName="The Elemental Equation",npc=16116,npcName="Archmage Angela Dosantos",map=1423,zone="Eastern Plaguelands",x=81.5,y=58.3},
+{type="ACCEPT",quest=6024,questName="Hameya's Plea",map=1423,zone="Eastern Plaguelands",x=27.3,y=85.2},
+{type="ACCEPT",quest=5845,questName="Of Lost Honor",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.4,y=43.6},
+{type="KILL",quest=9664,questName="Establishing New Outposts",npc=17698,target="<TXT>Plaguewood Capture Quest Doodad",count=1,map=1423,zone="Eastern Plaguelands",x=22,y=32,note="Capture Plaguewood Tower"},
+{type="TURNIN",quest=5281,questName="The Restless Souls",npc=11140,npcName="Egan",map=1423,zone="Eastern Plaguelands",x=14.5,y=33.7},
+{type="COLLECT",quest=5845,questName="Of Lost Honor",target="Symbol of Lost Honor",count=1,map=1423,zone="Eastern Plaguelands",x=62.5,y=26.8},
+{type="TURNIN",quest=5845,questName="Of Lost Honor",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.4,y=43.6},
+{type="TURNIN",quest=5245,questName="Troubled Spirits of Kel'Theril",npc=10304,npcName="Aurora Skycaller",map=1423,zone="Eastern Plaguelands",x=53.4,y=22},
+{type="ACCEPT",quest=5282,questName="The Restless Souls",npc=11140,npcName="Egan",map=1423,zone="Eastern Plaguelands",x=14.4,y=33.6,optional=true,note="For Stratholme (dungeon guide)"},
+{type="ACCEPT",quest=7603,questName="Kroshius' Infernal Core",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,optional=true,class={"WARLOCK"},note="Elite - group up"},
+{type="COLLECT",quest=7603,questName="Kroshius' Infernal Core",target="Kroshius' Infernal Core",count=1,map=1448,zone="Felwood",x=45.4,y=35.4,optional=true,class={"WARLOCK"},mobs="Kroshius"},
+{type="TURNIN",quest=7603,questName="Kroshius' Infernal Core",npc=14469,npcName="Niby the Almighty",map=1448,zone="Felwood",x=41.4,y=44.8,optional=true,class={"WARLOCK"}},
+{type="KILL",quest=6024,questName="Hameya's Plea",npc=12248,target="Infiltrator Hameya",map=1423,zone="Eastern Plaguelands",x=70.7,y=16.5,note="loot Hameya's Key"},
+{type="TURNIN",quest=8859,questName="Secrets of the Colossus - Zora",npc=11034,npcName="Lord Maxwell Tyrosus",map=1423,zone="Eastern Plaguelands",x=81.6,y=58},
+{type="ACCEPT",quest=9141,questName="They Call Me \"The Rooster\"",npc=16212,npcName="Dispatch Commander Metz",map=1423,zone="Eastern Plaguelands",x=81,y=57.6},
+{type="COLLECT",quest=9141,questName="They Call Me \"The Rooster\"",target="Argent Dawn Valor Token",count=1,map=1423,zone="Eastern Plaguelands",x=81.4,y=60,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
+{type="TURNIN",quest=9141,questName="They Call Me \"The Rooster\"",npc=16212,npcName="Dispatch Commander Metz",map=1423,zone="Eastern Plaguelands",x=81,y=57.6},
+{type="TURNIN",quest=9165,questName="Writ of Safe Passage",npc=16212,npcName="Dispatch Commander Metz",map=1423,zone="Eastern Plaguelands",x=81,y=57.4,optional=true},
+{type="TURNIN",quest=9664,questName="Establishing New Outposts",npc=17069,npcName="Emmisary Whitebeard",map=1423,zone="Eastern Plaguelands",x=81.3,y=59.4},
+{type="ACCEPT",quest=5846,questName="Of Love and Family",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.4,y=43.6},
+{type="TURNIN",quest=5846,questName="Of Love and Family",npc=11936,npcName="Artist Renfray",map=1422,zone="Western Plaguelands",x=65.6,y=75.4},
+{type="ACCEPT",quest=5848,questName="Of Love and Family",npc=11936,npcName="Artist Renfray",map=1422,zone="Western Plaguelands",x=65.6,y=75.4,optional=true,note="For Stratholme (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Stratholme",note="Picked up: The Flesh Does Not Lie, The Great Fras Siabi, Houses of the Holy, The Archivist, The Restless Souls, Of Love and Family. When you have a group, open Stratholme under Dungeons."},
+{type="TURNIN",quest=6024,questName="Hameya's Plea",map=1423,zone="Eastern Plaguelands",x=28,y=86.2},
+{type="GRIND",npc=8532,target="Diseased Flayer",level=59,map=1423,zone="Eastern Plaguelands",x=33.6,y=61.4,near=true,note="grind Diseased Flayer (level 57-59) to level 59 - nothing worth questing at 58"},
+{type="GRIND",npc=8532,target="Diseased Flayer",level=60,map=1423,zone="Eastern Plaguelands",x=33.6,y=61.4,near=true,note="grind Diseased Flayer (level 57-59) to level 60 - nothing worth questing at 59"},
+{type="ACCEPT",quest=9362,questName="Warlord Krellian",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
+{type="COLLECT",quest=9362,questName="Warlord Krellian",target="Prismatic Shell",count=1,map=1447,zone="Azshara",x=40.4,y=53,near=true,class={"MAGE"},mobs="Warlord Krellian / Scalebeard"},
+{type="TURNIN",quest=9362,questName="Warlord Krellian",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
+{type="ACCEPT",quest=7562,questName="Mor'zul Bloodbringer",npc=5753,npcName="Martha Strain",map=1458,zone="Undercity",x=85.8,y=15.8,class={"WARLOCK"}},
+{type="TURNIN",quest=7562,questName="Mor'zul Bloodbringer",npc=14436,npcName="Mor'zul Bloodbringer",map=1428,zone="Burning Steppes",x=12.6,y=31.6,class={"WARLOCK"}},
+{type="ACCEPT",quest=7623,questName="Lord Banehollow",npc=14437,npcName="Gorzeeki Wildeyes",map=1428,zone="Burning Steppes",x=12.4,y=31.6,class={"WARLOCK"}},
+{type="TURNIN",quest=7623,questName="Lord Banehollow",npc=9516,npcName="Lord Banehollow",map=1448,zone="Felwood",x=36,y=44.6,class={"WARLOCK"}},
+{type="ACCEPT",quest=7582,questName="The Prison's Casing",npc=14463,npcName="Daio the Decrepit",map=1419,zone="Blasted Lands",x=34,y=50.2,optional=true,class={"WARLOCK"},note="Elite - group up"},
+{type="COLLECT",quest=7582,questName="The Prison's Casing",target="Tears of the Hederine",count=5,map=1452,zone="Winterspring",x=55.5,y=84.2,optional=true,near=true,class={"WARLOCK"},mobs="Hederine Initiate / Hederine Manastalker / Hederine Slayer"},
+{type="TURNIN",quest=7582,questName="The Prison's Casing",npc=14463,npcName="Daio the Decrepit",map=1419,zone="Blasted Lands",x=34,y=50.2,optional=true,class={"WARLOCK"}}
+}]],
 })

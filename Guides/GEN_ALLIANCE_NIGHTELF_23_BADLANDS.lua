@@ -14,31 +14,31 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 23 of the NightElf route: level 39 to 39, 13 steps, ~53 min of play in the model (25198 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 25,
-    steps = function() return {
-        { type = "TRAVEL", map = 1418, zone = "Badlands", x = 49.5, y = 49.2, radius = 60, note = "travel to Badlands (Badlands)" }, -- 1
-        { type = "ACCEPT", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 2
-        { type = "COLLECT", quest = 733, questName = "Scrounging", target = "Scrap Metal", count = 7, map = 1418, zone = "Badlands", x = 64.7, y = 25.6, near = true }, -- 3
-        { type = "ACCEPT", quest = 1108, questName = "Indurium", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 4
-        { type = "TURNIN", quest = 705, questName = "Pearl Diving", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.8, optional = true }, -- 5
-        { type = "ACCEPT", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 6
-        { type = "COLLECT", quest = 1108, questName = "Indurium", target = "Indurium Flake", count = 10, map = 1418, zone = "Badlands", x = 49.8, y = 63.8, near = true, mobs = "Stonevault Seer / Stonevault Bonesnapper / Stonevault Shaman / Stonevault Basher" }, -- 7
-        { type = "TURNIN", quest = 738, questName = "Find Agmond", map = 1418, zone = "Badlands", x = 50.9, y = 62.2 }, -- 8
-        { type = "ACCEPT", quest = 709, questName = "Solution to Doom", npc = 2785, npcName = "Theldurin the Lost", map = 1418, zone = "Badlands", x = 51.4, y = 76.8, optional = true, note = "For Uldaman (dungeon guide)" }, -- 9
-        { type = "COLLECT", quest = 703, questName = "Barbecued Buzzard Wings", target = "Buzzard Wing", count = 4, map = 1418, zone = "Badlands", x = 61.8, y = 55.6, near = true }, -- 10
-        { type = "TURNIN", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 11
-        { type = "ACCEPT", quest = 739, questName = "Murdaloc", map = 1418, zone = "Badlands", x = 50.9, y = 62.2 }, -- 12
-        { type = "KILL", quest = 739, questName = "Murdaloc", npc = 2945, target = "Murdaloc", count = 1, map = 1418, zone = "Badlands", x = 49.6, y = 66.6 }, -- 13
-        { type = "KILL", quest = 739, questName = "Murdaloc", npc = 2893, target = "Stonevault Bonesnapper", count = 12, map = 1418, zone = "Badlands", x = 49.8, y = 63.8 }, -- 14
-        { type = "TURNIN", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 15
-        { type = "TURNIN", quest = 1108, questName = "Indurium", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 16
-        { type = "ACCEPT", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 17
-        { type = "KILL", quest = 711, questName = "Study of the Elements: Rock", npc = 92, target = "Rock Elemental", count = 3, map = 1418, zone = "Badlands", x = 13.4, y = 33.4, near = true, note = "loot Large Stone Slab" }, -- 18
-        { type = "TURNIN", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 19
-        { type = "ACCEPT", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 20
-        { type = "KILL", quest = 712, questName = "Study of the Elements: Rock", npc = 2736, target = "Greater Rock Elemental", count = 5, map = 1418, zone = "Badlands", x = 6.6, y = 76.3, near = true, note = "loot Bracers of Rock Binding" }, -- 21
-        { type = "TURNIN", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 22
-        { type = "ACCEPT", quest = 1137, questName = "News for Fizzle", npc = 4618, npcName = "Martek the Exiled", map = 1418, zone = "Badlands", x = 42.2, y = 52.6 }, -- 23
-        { type = "TURNIN", quest = 739, questName = "Murdaloc", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.8, y = 65.6 }, -- 24
-        { type = "ACCEPT", quest = 704, questName = "Agmond's Fate", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.8, y = 65.6, optional = true, note = "For Uldaman (dungeon guide)" }, -- 25
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1418,zone="Badlands",x=49.5,y=49.2,radius=60,note="travel to Badlands (Badlands)"},
+{type="ACCEPT",quest=733,questName="Scrounging",npc=2860,npcName="Sigrun Ironhew",map=1418,zone="Badlands",x=53.8,y=43.3},
+{type="COLLECT",quest=733,questName="Scrounging",target="Scrap Metal",count=7,map=1418,zone="Badlands",x=64.7,y=25.6,near=true},
+{type="ACCEPT",quest=1108,questName="Indurium",npc=4618,npcName="Martek the Exiled",map=1418,zone="Badlands",x=42.2,y=52.6},
+{type="TURNIN",quest=705,questName="Pearl Diving",npc=2817,npcName="Rigglefuzz",map=1418,zone="Badlands",x=42.4,y=52.8,optional=true},
+{type="ACCEPT",quest=703,questName="Barbecued Buzzard Wings",npc=2817,npcName="Rigglefuzz",map=1418,zone="Badlands",x=42.4,y=52.9},
+{type="COLLECT",quest=1108,questName="Indurium",target="Indurium Flake",count=10,map=1418,zone="Badlands",x=49.8,y=63.8,near=true,mobs="Stonevault Seer / Stonevault Bonesnapper / Stonevault Shaman / Stonevault Basher"},
+{type="TURNIN",quest=738,questName="Find Agmond",map=1418,zone="Badlands",x=50.9,y=62.2},
+{type="ACCEPT",quest=709,questName="Solution to Doom",npc=2785,npcName="Theldurin the Lost",map=1418,zone="Badlands",x=51.4,y=76.8,optional=true,note="For Uldaman (dungeon guide)"},
+{type="COLLECT",quest=703,questName="Barbecued Buzzard Wings",target="Buzzard Wing",count=4,map=1418,zone="Badlands",x=61.8,y=55.6,near=true},
+{type="TURNIN",quest=733,questName="Scrounging",npc=2860,npcName="Sigrun Ironhew",map=1418,zone="Badlands",x=53.8,y=43.3},
+{type="ACCEPT",quest=739,questName="Murdaloc",map=1418,zone="Badlands",x=50.9,y=62.2},
+{type="KILL",quest=739,questName="Murdaloc",npc=2945,target="Murdaloc",count=1,map=1418,zone="Badlands",x=49.6,y=66.6},
+{type="KILL",quest=739,questName="Murdaloc",npc=2893,target="Stonevault Bonesnapper",count=12,map=1418,zone="Badlands",x=49.8,y=63.8},
+{type="TURNIN",quest=703,questName="Barbecued Buzzard Wings",npc=2817,npcName="Rigglefuzz",map=1418,zone="Badlands",x=42.4,y=52.9},
+{type="TURNIN",quest=1108,questName="Indurium",npc=4618,npcName="Martek the Exiled",map=1418,zone="Badlands",x=42.2,y=52.6},
+{type="ACCEPT",quest=711,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
+{type="KILL",quest=711,questName="Study of the Elements: Rock",npc=92,target="Rock Elemental",count=3,map=1418,zone="Badlands",x=13.4,y=33.4,near=true,note="loot Large Stone Slab"},
+{type="TURNIN",quest=711,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
+{type="ACCEPT",quest=712,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
+{type="KILL",quest=712,questName="Study of the Elements: Rock",npc=2736,target="Greater Rock Elemental",count=5,map=1418,zone="Badlands",x=6.6,y=76.3,near=true,note="loot Bracers of Rock Binding"},
+{type="TURNIN",quest=712,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
+{type="ACCEPT",quest=1137,questName="News for Fizzle",npc=4618,npcName="Martek the Exiled",map=1418,zone="Badlands",x=42.2,y=52.6},
+{type="TURNIN",quest=739,questName="Murdaloc",npc=1344,npcName="Prospector Ironband",map=1432,zone="Loch Modan",x=65.8,y=65.6},
+{type="ACCEPT",quest=704,questName="Agmond's Fate",npc=1344,npcName="Prospector Ironband",map=1432,zone="Loch Modan",x=65.8,y=65.6,optional=true,note="For Uldaman (dungeon guide)"}
+}]],
 })

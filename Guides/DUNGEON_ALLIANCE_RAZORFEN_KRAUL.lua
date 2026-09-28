@@ -13,21 +13,21 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Razorfen Kraul: the quests, the run and the turn-ins. Open it when you have a group.",
     stepCount = 15,
-    steps = function() return {
-        { type = "ACCEPT", quest = 1101, questName = "The Crone of the Kraul", npc = 4048, npcName = "Falfindel Waywarder", map = 1444, zone = "Feralas", x = 89.6, y = 46.4 }, -- 1
-        { type = "ACCEPT", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 2
-        { type = "NOTE", map = 1413, zone = "The Barrens", x = 42.9, y = 90.2, text = "Find a group for Razorfen Kraul", note = "All quests available from level 29; hand them in by level 31 for full XP" }, -- 3
-        { type = "ACCEPT", quest = 1142, questName = "Mortality Wanes", map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 4
-        { type = "ACCEPT", quest = 1144, questName = "Willix the Importer", map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 5
-        { type = "COLLECT", quest = 1101, questName = "The Crone of the Kraul", target = "Razorflank's Medallion", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 6
-        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Blueleaf Tuber", count = 6, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 7
-        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Crate With Holes", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 8
-        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Snufflenose Owner's Manual", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 9
-        { type = "COLLECT", quest = 1221, questName = "Blueleaf Tubers", target = "Snufflenose Command Stick", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 10
-        { type = "COLLECT", quest = 1142, questName = "Mortality Wanes", target = "Treshala's Pendant", count = 1, map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 11
-        { type = "TURNIN", quest = 1144, questName = "Willix the Importer", map = 1413, zone = "The Barrens", x = 42.9, y = 90.2 }, -- 12
-        { type = "TURNIN", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 13
-        { type = "TURNIN", quest = 1101, questName = "The Crone of the Kraul", npc = 4048, npcName = "Falfindel Waywarder", map = 1444, zone = "Feralas", x = 89.6, y = 46.4 }, -- 14
-        { type = "TURNIN", quest = 1142, questName = "Mortality Wanes", npc = 4521, npcName = "Treshala Fallowbrook", map = 1457, zone = "Darnassus", x = 69.4, y = 67.4 }, -- 15
-    } end,
+    steps = [[{
+{type="ACCEPT",quest=1101,questName="The Crone of the Kraul",npc=4048,npcName="Falfindel Waywarder",map=1444,zone="Feralas",x=89.6,y=46.4},
+{type="ACCEPT",quest=1221,questName="Blueleaf Tubers",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6},
+{type="NOTE",map=1413,zone="The Barrens",x=42.9,y=90.2,text="Find a group for Razorfen Kraul",note="All quests available from level 29; hand them in by level 31 for full XP"},
+{type="ACCEPT",quest=1142,questName="Mortality Wanes",map=1413,zone="The Barrens",x=42.9,y=90.2},
+{type="ACCEPT",quest=1144,questName="Willix the Importer",map=1413,zone="The Barrens",x=42.9,y=90.2},
+{type="COLLECT",quest=1101,questName="The Crone of the Kraul",target="Razorflank's Medallion",count=1,map=1413,zone="The Barrens",x=42.9,y=90.2},
+{type="COLLECT",quest=1221,questName="Blueleaf Tubers",target="Blueleaf Tuber",count=6,map=1413,zone="The Barrens",x=42.9,y=90.2},
+{type="COLLECT",quest=1221,questName="Blueleaf Tubers",target="Crate With Holes",count=1,map=1413,zone="The Barrens",x=42.9,y=90.2},
+{type="COLLECT",quest=1221,questName="Blueleaf Tubers",target="Snufflenose Owner's Manual",count=1,map=1413,zone="The Barrens",x=42.9,y=90.2},
+{type="COLLECT",quest=1221,questName="Blueleaf Tubers",target="Snufflenose Command Stick",count=1,map=1413,zone="The Barrens",x=42.9,y=90.2},
+{type="COLLECT",quest=1142,questName="Mortality Wanes",target="Treshala's Pendant",count=1,map=1413,zone="The Barrens",x=42.9,y=90.2},
+{type="TURNIN",quest=1144,questName="Willix the Importer",map=1413,zone="The Barrens",x=42.9,y=90.2},
+{type="TURNIN",quest=1221,questName="Blueleaf Tubers",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6},
+{type="TURNIN",quest=1101,questName="The Crone of the Kraul",npc=4048,npcName="Falfindel Waywarder",map=1444,zone="Feralas",x=89.6,y=46.4},
+{type="TURNIN",quest=1142,questName="Mortality Wanes",npc=4521,npcName="Treshala Fallowbrook",map=1457,zone="Darnassus",x=69.4,y=67.4}
+}]],
 })

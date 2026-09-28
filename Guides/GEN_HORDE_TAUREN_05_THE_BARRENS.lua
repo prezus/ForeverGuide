@@ -14,63 +14,63 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 5 of the Tauren route: level 22 to 23, 18 steps, ~96 min of play in the model (19623 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 57,
-    steps = function() return {
-        { type = "TURNIN", quest = 874, questName = "Mahren Skyseer", npc = 3388, npcName = "Mahren Skyseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8 }, -- 1
-        { type = "ACCEPT", quest = 1221, questName = "Blueleaf Tubers", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6, optional = true, note = "For Razorfen Kraul (dungeon guide)" }, -- 2
-        { type = "TRAVEL", map = 1413, zone = "The Barrens", x = 62.7, y = 37.5, radius = 60, note = "travel to The Barrens (The Barrens)" }, -- 3
-        { type = "TURNIN", quest = 1094, questName = "Further Instructions", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 4
-        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Shipment of Boots", count = 1, map = 1413, zone = "The Barrens", x = 62.6, y = 49.6 }, -- 5
-        { type = "COLLECT", quest = 888, questName = "Stolen Booty", target = "Telescopic Lens", count = 1, map = 1413, zone = "The Barrens", x = 63.6, y = 49.3 }, -- 6
-        { type = "TURNIN", quest = 888, questName = "Stolen Booty", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 7
-        { type = "COLLECT", quest = 821, questName = "Chen's Empty Keg", target = "Savannah Lion Tusk", count = 5, map = 1413, zone = "The Barrens", x = 62, y = 33.6, near = true, mobs = "Savannah Patriarch / Savannah Highmane / Savannah Huntress / Savannah Matriarch" }, -- 8
-        { type = "COLLECT", quest = 821, questName = "Chen's Empty Keg", target = "Plainstrider Kidney", count = 5, map = 1413, zone = "The Barrens", x = 53, y = 31.4, near = true, mobs = "Greater Plainstrider / Ornery Plainstrider / Fleeting Plainstrider" }, -- 9
-        { type = "COLLECT", quest = 821, questName = "Chen's Empty Keg", target = "Thunder Lizard Horn", count = 1, map = 1413, zone = "The Barrens", x = 50, y = 52.6, near = true, mobs = "Stormhide / Thunderhead / Stormsnout / Owatanka" }, -- 10
-        { type = "TURNIN", quest = 821, questName = "Chen's Empty Keg", npc = 3292, npcName = "Brewmaster Drohn", map = 1413, zone = "The Barrens", x = 62.2, y = 38.4, note = "reduced xp (80%) - you out-levelled it" }, -- 11
-        { type = "TURNIN", quest = 1069, questName = "Deepmoss Spider Eggs", npc = 3446, npcName = "Mebok Mizzyrix", map = 1413, zone = "The Barrens", x = 62.4, y = 37.6 }, -- 12
-        { type = "ACCEPT", quest = 1095, questName = "Further Instructions", npc = 3442, npcName = "Sputtervalve", map = 1413, zone = "The Barrens", x = 63, y = 37.2 }, -- 13
-        { type = "ACCEPT", quest = 1529, questName = "Call of Water", npc = 5906, npcName = "Xanis Flameweaver", map = 1456, zone = "Thunder Bluff", x = 25.2, y = 21, class = { "SHAMAN" } }, -- 14
-        { type = "TURNIN", quest = 1529, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 15
-        { type = "ACCEPT", quest = 2985, questName = "Call of Water", npc = 3173, npcName = "Swart", map = 1411, zone = "Durotar", x = 54.4, y = 42.6, class = { "SHAMAN" } }, -- 16
-        { type = "TURNIN", quest = 2985, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 17
-        { type = "ACCEPT", quest = 2986, questName = "Call of Water", npc = 3066, npcName = "Narm Skychaser", map = 1412, zone = "Mulgore", x = 48.4, y = 59.2, class = { "SHAMAN" } }, -- 18
-        { type = "TURNIN", quest = 2986, questName = "Call of Water", npc = 5901, npcName = "Islen Waterseer", map = 1413, zone = "The Barrens", x = 65.8, y = 43.8, class = { "SHAMAN" } }, -- 19
-        { type = "ACCEPT", quest = 893, questName = "Weapons of Choice", npc = 3433, npcName = "Tatternack Steelforge", map = 1413, zone = "The Barrens", x = 45.1, y = 57.7 }, -- 20
-        { type = "ACCEPT", quest = 879, questName = "Betrayal from Within", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 21
-        { type = "COMPLETE", quest = 893, questName = "Weapons of Choice", npc = 3458, target = "Razormane Seer / Razormane Warfrenzy / Razormane Backstabber", map = 1413, zone = "The Barrens", x = 42.2, y = 78.3, near = true, note = "loot Charred Razormane Wand" }, -- 22
-        { type = "TURNIN", quest = 893, questName = "Weapons of Choice", npc = 3433, npcName = "Tatternack Steelforge", map = 1413, zone = "The Barrens", x = 45.1, y = 57.7 }, -- 23
-        { type = "KILL", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 268622, target = "Encroaching Soldier", count = 2, map = 1413, zone = "The Barrens", x = 49, y = 77, optional = true, near = true }, -- 24
-        { type = "KILL", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 268623, target = "Outraged Pillager", count = 1, map = 1413, zone = "The Barrens", x = 49, y = 77, optional = true }, -- 25
-        { type = "KILL", quest = 879, questName = "Betrayal from Within", npc = 3436, target = "Kuz", map = 1413, zone = "The Barrens", x = 45.1, y = 80.1, note = "loot Kuz's Skull" }, -- 26
-        { type = "KILL", quest = 879, questName = "Betrayal from Within", npc = 3434, target = "Nak", map = 1413, zone = "The Barrens", x = 43.8, y = 83.3, note = "loot Nak's Skull" }, -- 27
-        { type = "ACCEPT", quest = 885, questName = "Washte Pawne", npc = 3472, npcName = "Washte Pawne", map = 1413, zone = "The Barrens", x = 43.2, y = 80.9, note = "Loot Washte Pawne's Feather from Washte Pawne and use it to start the quest" }, -- 28
-        { type = "KILL", quest = 879, questName = "Betrayal from Within", npc = 3435, target = "Lok Orcbane", map = 1413, zone = "The Barrens", x = 40.2, y = 80.5, note = "loot Lok's Skull" }, -- 29
-        { type = "TURNIN", quest = 879, questName = "Betrayal from Within", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 30
-        { type = "ACCEPT", quest = 906, questName = "Betrayal from Within", npc = 3430, npcName = "Mangletooth", map = 1413, zone = "The Barrens", x = 44.6, y = 59.3 }, -- 31
-        { type = "TURNIN", quest = 97250, questName = "Wrongly Blamed, Justly Corrected", npc = 5911, npcName = "Grunt Logmar", map = 1413, zone = "The Barrens", x = 44.6, y = 59.2, optional = true }, -- 32
-        { type = "TURNIN", quest = 885, questName = "Washte Pawne", npc = 3387, npcName = "Jorn Skyseer", map = 1413, zone = "The Barrens", x = 44.8, y = 59 }, -- 33
-        { type = "TURNIN", quest = 6523, questName = "Protect Kaya", npc = 11857, npcName = "Makaba Flathoof", map = 1413, zone = "The Barrens", x = 35.2, y = 27.8 }, -- 34
-        { type = "TURNIN", quest = 6548, questName = "Avenge My Village", npc = 11857, npcName = "Makaba Flathoof", map = 1413, zone = "The Barrens", x = 35.2, y = 27.8 }, -- 35
-        { type = "TURNIN", quest = 906, questName = "Betrayal from Within", npc = 3429, npcName = "Thork", map = 1413, zone = "The Barrens", x = 51.5, y = 30.9 }, -- 36
-        { type = "COLLECT", quest = 868, questName = "Egg Hunt", target = "Silithid Egg", count = 12, map = 1413, zone = "The Barrens", x = 47.8, y = 70.2, mobs = "Silithid Harvester" }, -- 37
-        { type = "TURNIN", quest = 868, questName = "Egg Hunt", npc = 3428, npcName = "Korran", map = 1413, zone = "The Barrens", x = 51, y = 29.6 }, -- 38
-        { type = "ACCEPT", quest = 6401, questName = "Kaya's Alive", npc = 11857, npcName = "Makaba Flathoof", map = 1413, zone = "The Barrens", x = 35.2, y = 27.8 }, -- 39
-        { type = "TURNIN", quest = 1489, questName = "Hamuul Runetotem", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4, optional = true }, -- 40
-        { type = "ACCEPT", quest = 1490, questName = "Nara Wildmane", npc = 5769, npcName = "Arch Druid Hamuul Runetotem", map = 1456, zone = "Thunder Bluff", x = 78.4, y = 28.4, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 41
-        { type = "TURNIN", quest = 1490, questName = "Nara Wildmane", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true }, -- 42
-        { type = "ACCEPT", quest = 914, questName = "Leaders of the Fang", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.6, y = 31.2, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 43
-        { type = "ACCEPT", quest = 962, questName = "Serpentbloom", npc = 3419, npcName = "Apothecary Zamah", map = 1456, zone = "Thunder Bluff", x = 23, y = 21, optional = true, note = "For Wailing Caverns (dungeon guide)" }, -- 44
-        { type = "NOTE", optional = true, text = "Ready for Wailing Caverns", note = "Picked up: Leaders of the Fang, Serpentbloom, Deviate Eradication. When you have a group, open Wailing Caverns under Dungeons." }, -- 45
-        { type = "TURNIN", quest = 6130, questName = "Power over Poison", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" }, note = "reduced xp (60%) - you out-levelled it" }, -- 46
-        { type = "TURNIN", quest = 862, questName = "Dig Rat Stew", npc = 3443, npcName = "Grub", map = 1413, zone = "The Barrens", x = 55.2, y = 31.8, profession = "Cooking", skill = 15 }, -- 47
-        { type = "ACCEPT", quest = 846, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 48
-        { type = "ACCEPT", quest = 98093, questName = "Field to Clear", npc = 14242, npcName = "Sulhasa", map = 1413, zone = "The Barrens", x = 47.8, y = 77.6, note = "New in Forever" }, -- 49
-        { type = "COLLECT", quest = 846, questName = "Revenge of Gann", target = "Nitroglycerin / Wood Pulp / Sodium Nitrate", count = 6, map = 1413, zone = "The Barrens", x = 48.5, y = 83.8, near = true }, -- 50
-        { type = "TURNIN", quest = 846, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 51
-        { type = "ACCEPT", quest = 849, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 52
-        { type = "COMPLETE", quest = 849, questName = "Revenge of Gann", target = "Bael Modan Flying Machine", map = 1413, zone = "The Barrens", x = 47, y = 85.6, note = "Bael Modan Flying Machine destroyed" }, -- 53
-        { type = "KILL", quest = 98093, questName = "Field to Clear", npc = 4128, target = "Hecklefang Stalker", count = 7, map = 1413, zone = "The Barrens", x = 45.8, y = 82.8 }, -- 54
-        { type = "KILL", quest = 98093, questName = "Field to Clear", npc = 3238, target = "Stormhide", count = 7, map = 1413, zone = "The Barrens", x = 46.4, y = 79.8 }, -- 55
-        { type = "TURNIN", quest = 98093, questName = "Field to Clear", npc = 14242, npcName = "Sulhasa", map = 1413, zone = "The Barrens", x = 47.8, y = 77.6 }, -- 56
-        { type = "TURNIN", quest = 849, questName = "Revenge of Gann", npc = 3341, npcName = "Gann Stonespire", map = 1413, zone = "The Barrens", x = 45.9, y = 77 }, -- 57
-    } end,
+    steps = [[{
+{type="TURNIN",quest=874,questName="Mahren Skyseer",npc=3388,npcName="Mahren Skyseer",map=1413,zone="The Barrens",x=65.8,y=43.8},
+{type="ACCEPT",quest=1221,questName="Blueleaf Tubers",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6,optional=true,note="For Razorfen Kraul (dungeon guide)"},
+{type="TRAVEL",map=1413,zone="The Barrens",x=62.7,y=37.5,radius=60,note="travel to The Barrens (The Barrens)"},
+{type="TURNIN",quest=1094,questName="Further Instructions",npc=3442,npcName="Sputtervalve",map=1413,zone="The Barrens",x=63,y=37.2},
+{type="COLLECT",quest=888,questName="Stolen Booty",target="Shipment of Boots",count=1,map=1413,zone="The Barrens",x=62.6,y=49.6},
+{type="COLLECT",quest=888,questName="Stolen Booty",target="Telescopic Lens",count=1,map=1413,zone="The Barrens",x=63.6,y=49.3},
+{type="TURNIN",quest=888,questName="Stolen Booty",npc=3391,npcName="Gazlowe",map=1413,zone="The Barrens",x=62.6,y=36.2},
+{type="COLLECT",quest=821,questName="Chen's Empty Keg",target="Savannah Lion Tusk",count=5,map=1413,zone="The Barrens",x=62,y=33.6,near=true,mobs="Savannah Patriarch / Savannah Highmane / Savannah Huntress / Savannah Matriarch"},
+{type="COLLECT",quest=821,questName="Chen's Empty Keg",target="Plainstrider Kidney",count=5,map=1413,zone="The Barrens",x=53,y=31.4,near=true,mobs="Greater Plainstrider / Ornery Plainstrider / Fleeting Plainstrider"},
+{type="COLLECT",quest=821,questName="Chen's Empty Keg",target="Thunder Lizard Horn",count=1,map=1413,zone="The Barrens",x=50,y=52.6,near=true,mobs="Stormhide / Thunderhead / Stormsnout / Owatanka"},
+{type="TURNIN",quest=821,questName="Chen's Empty Keg",npc=3292,npcName="Brewmaster Drohn",map=1413,zone="The Barrens",x=62.2,y=38.4,note="reduced xp (80%) - you out-levelled it"},
+{type="TURNIN",quest=1069,questName="Deepmoss Spider Eggs",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6},
+{type="ACCEPT",quest=1095,questName="Further Instructions",npc=3442,npcName="Sputtervalve",map=1413,zone="The Barrens",x=63,y=37.2},
+{type="ACCEPT",quest=1529,questName="Call of Water",npc=5906,npcName="Xanis Flameweaver",map=1456,zone="Thunder Bluff",x=25.2,y=21,class={"SHAMAN"}},
+{type="TURNIN",quest=1529,questName="Call of Water",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8,class={"SHAMAN"}},
+{type="ACCEPT",quest=2985,questName="Call of Water",npc=3173,npcName="Swart",map=1411,zone="Durotar",x=54.4,y=42.6,class={"SHAMAN"}},
+{type="TURNIN",quest=2985,questName="Call of Water",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8,class={"SHAMAN"}},
+{type="ACCEPT",quest=2986,questName="Call of Water",npc=3066,npcName="Narm Skychaser",map=1412,zone="Mulgore",x=48.4,y=59.2,class={"SHAMAN"}},
+{type="TURNIN",quest=2986,questName="Call of Water",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8,class={"SHAMAN"}},
+{type="ACCEPT",quest=893,questName="Weapons of Choice",npc=3433,npcName="Tatternack Steelforge",map=1413,zone="The Barrens",x=45.1,y=57.7},
+{type="ACCEPT",quest=879,questName="Betrayal from Within",npc=3430,npcName="Mangletooth",map=1413,zone="The Barrens",x=44.6,y=59.3},
+{type="COMPLETE",quest=893,questName="Weapons of Choice",npc=3458,target="Razormane Seer / Razormane Warfrenzy / Razormane Backstabber",map=1413,zone="The Barrens",x=42.2,y=78.3,near=true,note="loot Charred Razormane Wand"},
+{type="TURNIN",quest=893,questName="Weapons of Choice",npc=3433,npcName="Tatternack Steelforge",map=1413,zone="The Barrens",x=45.1,y=57.7},
+{type="KILL",quest=97250,questName="Wrongly Blamed, Justly Corrected",npc=268622,target="Encroaching Soldier",count=2,map=1413,zone="The Barrens",x=49,y=77,optional=true,near=true},
+{type="KILL",quest=97250,questName="Wrongly Blamed, Justly Corrected",npc=268623,target="Outraged Pillager",count=1,map=1413,zone="The Barrens",x=49,y=77,optional=true},
+{type="KILL",quest=879,questName="Betrayal from Within",npc=3436,target="Kuz",map=1413,zone="The Barrens",x=45.1,y=80.1,note="loot Kuz's Skull"},
+{type="KILL",quest=879,questName="Betrayal from Within",npc=3434,target="Nak",map=1413,zone="The Barrens",x=43.8,y=83.3,note="loot Nak's Skull"},
+{type="ACCEPT",quest=885,questName="Washte Pawne",npc=3472,npcName="Washte Pawne",map=1413,zone="The Barrens",x=43.2,y=80.9,note="Loot Washte Pawne's Feather from Washte Pawne and use it to start the quest"},
+{type="KILL",quest=879,questName="Betrayal from Within",npc=3435,target="Lok Orcbane",map=1413,zone="The Barrens",x=40.2,y=80.5,note="loot Lok's Skull"},
+{type="TURNIN",quest=879,questName="Betrayal from Within",npc=3430,npcName="Mangletooth",map=1413,zone="The Barrens",x=44.6,y=59.3},
+{type="ACCEPT",quest=906,questName="Betrayal from Within",npc=3430,npcName="Mangletooth",map=1413,zone="The Barrens",x=44.6,y=59.3},
+{type="TURNIN",quest=97250,questName="Wrongly Blamed, Justly Corrected",npc=5911,npcName="Grunt Logmar",map=1413,zone="The Barrens",x=44.6,y=59.2,optional=true},
+{type="TURNIN",quest=885,questName="Washte Pawne",npc=3387,npcName="Jorn Skyseer",map=1413,zone="The Barrens",x=44.8,y=59},
+{type="TURNIN",quest=6523,questName="Protect Kaya",npc=11857,npcName="Makaba Flathoof",map=1413,zone="The Barrens",x=35.2,y=27.8},
+{type="TURNIN",quest=6548,questName="Avenge My Village",npc=11857,npcName="Makaba Flathoof",map=1413,zone="The Barrens",x=35.2,y=27.8},
+{type="TURNIN",quest=906,questName="Betrayal from Within",npc=3429,npcName="Thork",map=1413,zone="The Barrens",x=51.5,y=30.9},
+{type="COLLECT",quest=868,questName="Egg Hunt",target="Silithid Egg",count=12,map=1413,zone="The Barrens",x=47.8,y=70.2,mobs="Silithid Harvester"},
+{type="TURNIN",quest=868,questName="Egg Hunt",npc=3428,npcName="Korran",map=1413,zone="The Barrens",x=51,y=29.6},
+{type="ACCEPT",quest=6401,questName="Kaya's Alive",npc=11857,npcName="Makaba Flathoof",map=1413,zone="The Barrens",x=35.2,y=27.8},
+{type="TURNIN",quest=1489,questName="Hamuul Runetotem",npc=5769,npcName="Arch Druid Hamuul Runetotem",map=1456,zone="Thunder Bluff",x=78.4,y=28.4,optional=true},
+{type="ACCEPT",quest=1490,questName="Nara Wildmane",npc=5769,npcName="Arch Druid Hamuul Runetotem",map=1456,zone="Thunder Bluff",x=78.4,y=28.4,optional=true,note="For Wailing Caverns (dungeon guide)"},
+{type="TURNIN",quest=1490,questName="Nara Wildmane",npc=5770,npcName="Nara Wildmane",map=1456,zone="Thunder Bluff",x=75.6,y=31.2,optional=true},
+{type="ACCEPT",quest=914,questName="Leaders of the Fang",npc=5770,npcName="Nara Wildmane",map=1456,zone="Thunder Bluff",x=75.6,y=31.2,optional=true,note="For Wailing Caverns (dungeon guide)"},
+{type="ACCEPT",quest=962,questName="Serpentbloom",npc=3419,npcName="Apothecary Zamah",map=1456,zone="Thunder Bluff",x=23,y=21,optional=true,note="For Wailing Caverns (dungeon guide)"},
+{type="NOTE",optional=true,text="Ready for Wailing Caverns",note="Picked up: Leaders of the Fang, Serpentbloom, Deviate Eradication. When you have a group, open Wailing Caverns under Dungeons."},
+{type="TURNIN",quest=6130,questName="Power over Poison",npc=3033,npcName="Turak Runetotem",map=1456,zone="Thunder Bluff",x=76.4,y=27.6,class={"DRUID"},note="reduced xp (60%) - you out-levelled it"},
+{type="TURNIN",quest=862,questName="Dig Rat Stew",npc=3443,npcName="Grub",map=1413,zone="The Barrens",x=55.2,y=31.8,profession="Cooking",skill=15},
+{type="ACCEPT",quest=846,questName="Revenge of Gann",npc=3341,npcName="Gann Stonespire",map=1413,zone="The Barrens",x=45.9,y=77},
+{type="ACCEPT",quest=98093,questName="Field to Clear",npc=14242,npcName="Sulhasa",map=1413,zone="The Barrens",x=47.8,y=77.6,note="New in Forever"},
+{type="COLLECT",quest=846,questName="Revenge of Gann",target="Nitroglycerin / Wood Pulp / Sodium Nitrate",count=6,map=1413,zone="The Barrens",x=48.5,y=83.8,near=true},
+{type="TURNIN",quest=846,questName="Revenge of Gann",npc=3341,npcName="Gann Stonespire",map=1413,zone="The Barrens",x=45.9,y=77},
+{type="ACCEPT",quest=849,questName="Revenge of Gann",npc=3341,npcName="Gann Stonespire",map=1413,zone="The Barrens",x=45.9,y=77},
+{type="COMPLETE",quest=849,questName="Revenge of Gann",target="Bael Modan Flying Machine",map=1413,zone="The Barrens",x=47,y=85.6,note="Bael Modan Flying Machine destroyed"},
+{type="KILL",quest=98093,questName="Field to Clear",npc=4128,target="Hecklefang Stalker",count=7,map=1413,zone="The Barrens",x=45.8,y=82.8},
+{type="KILL",quest=98093,questName="Field to Clear",npc=3238,target="Stormhide",count=7,map=1413,zone="The Barrens",x=46.4,y=79.8},
+{type="TURNIN",quest=98093,questName="Field to Clear",npc=14242,npcName="Sulhasa",map=1413,zone="The Barrens",x=47.8,y=77.6},
+{type="TURNIN",quest=849,questName="Revenge of Gann",npc=3341,npcName="Gann Stonespire",map=1413,zone="The Barrens",x=45.9,y=77}
+}]],
 })

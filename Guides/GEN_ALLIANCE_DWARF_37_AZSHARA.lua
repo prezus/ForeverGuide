@@ -14,27 +14,27 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 37 of the Dwarf route: level 50 to 51, 14 steps, ~121 min of play in the model (15848 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 21,
-    steps = function() return {
-        { type = "TRAVEL", map = 1447, zone = "Azshara", x = 60.8, y = 66.4, radius = 60, note = "travel to Azshara (Azshara)" }, -- 1
-        { type = "ACCEPT", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 2
-        { type = "COLLECT", quest = 3601, questName = "Kim'jael Indeed!", target = "Kim'Jael's Compass / Kim'Jael's Scope / Kim'Jael's Stuffed Chicken / Kim'Jael's Wizzlegoober", map = 1447, zone = "Azshara", x = 56.4, y = 28.4, near = true }, -- 3
-        { type = "TURNIN", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 4
-        { type = "ACCEPT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 5
-        { type = "COLLECT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", target = "Some Rune", map = 1447, zone = "Azshara", x = 49.5, y = 42, near = true }, -- 6
-        { type = "TURNIN", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 7
-        { type = "FLIGHTPATH", npc = 12577, npcName = "Jarrodenus", map = 1447, zone = "Azshara", x = 11.9, y = 77.6 }, -- 8
-        { type = "ACCEPT", quest = 8251, questName = "Magic Dust", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 9
-        { type = "COLLECT", quest = 8251, questName = "Magic Dust", target = "Glittering Dust", count = 10, map = 1447, zone = "Azshara", x = 55.4, y = 28.6, near = true, class = { "MAGE" }, mobs = "Blood Elf Surveyor / Blood Elf Reclaimer / Blood Elf Defender" }, -- 10
-        { type = "TURNIN", quest = 8251, questName = "Magic Dust", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 11
-        { type = "ACCEPT", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 12
-        { type = "ACCEPT", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 13
-        { type = "KILL", quest = 5535, questName = "Spiritual Unrest", npc = 6117, target = "Highborne Lichling / Highborne Apparition", count = 6, map = 1447, zone = "Azshara", x = 13.5, y = 73.2, near = true }, -- 14
-        { type = "TURNIN", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 15
-        { type = "KILL", quest = 5536, questName = "A Land Filled with Hatred", npc = 6127, target = "Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr", count = 6, map = 1447, zone = "Azshara", x = 19.1, y = 64, near = true }, -- 16
-        { type = "TURNIN", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 17
-        { type = "GRIND", npc = 6195, target = "Spitelash Siren", level = 51, map = 1447, zone = "Azshara", x = 35.5, y = 58.8, near = true, note = "grind Spitelash Siren (level 50-52) to level 51 - nothing worth questing at 50" }, -- 18
-        { type = "ACCEPT", quest = 8252, questName = "The Siren's Coral", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 19
-        { type = "COLLECT", quest = 8252, questName = "The Siren's Coral", target = "Enchanted Coral", count = 6, map = 1447, zone = "Azshara", x = 40.2, y = 53, class = { "MAGE" }, mobs = "Spitelash Siren" }, -- 20
-        { type = "TURNIN", quest = 8252, questName = "The Siren's Coral", npc = 8379, npcName = "Archmage Xylem", map = 1447, zone = "Azshara", x = 29.2, y = 40.2, class = { "MAGE" } }, -- 21
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1447,zone="Azshara",x=60.8,y=66.4,radius=60,note="travel to Azshara (Azshara)"},
+{type="ACCEPT",quest=3601,questName="Kim'jael Indeed!",npc=8420,npcName="Kim'jael",map=1447,zone="Azshara",x=53.5,y=21.8},
+{type="COLLECT",quest=3601,questName="Kim'jael Indeed!",target="Kim'Jael's Compass / Kim'Jael's Scope / Kim'Jael's Stuffed Chicken / Kim'Jael's Wizzlegoober",map=1447,zone="Azshara",x=56.4,y=28.4,near=true},
+{type="TURNIN",quest=3601,questName="Kim'jael Indeed!",npc=8420,npcName="Kim'jael",map=1447,zone="Azshara",x=53.5,y=21.8},
+{type="ACCEPT",quest=5534,questName="Kim'jael's \"Missing\" Equipment",npc=8420,npcName="Kim'jael",map=1447,zone="Azshara",x=53.5,y=21.8},
+{type="COLLECT",quest=5534,questName="Kim'jael's \"Missing\" Equipment",target="Some Rune",map=1447,zone="Azshara",x=49.5,y=42,near=true},
+{type="TURNIN",quest=5534,questName="Kim'jael's \"Missing\" Equipment",npc=8420,npcName="Kim'jael",map=1447,zone="Azshara",x=53.5,y=21.8},
+{type="FLIGHTPATH",npc=12577,npcName="Jarrodenus",map=1447,zone="Azshara",x=11.9,y=77.6},
+{type="ACCEPT",quest=8251,questName="Magic Dust",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
+{type="COLLECT",quest=8251,questName="Magic Dust",target="Glittering Dust",count=10,map=1447,zone="Azshara",x=55.4,y=28.6,near=true,class={"MAGE"},mobs="Blood Elf Surveyor / Blood Elf Reclaimer / Blood Elf Defender"},
+{type="TURNIN",quest=8251,questName="Magic Dust",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
+{type="ACCEPT",quest=5535,questName="Spiritual Unrest",npc=11548,npcName="Loh'atu",map=1447,zone="Azshara",x=11.4,y=78.2},
+{type="ACCEPT",quest=5536,questName="A Land Filled with Hatred",npc=11548,npcName="Loh'atu",map=1447,zone="Azshara",x=11.4,y=78.2},
+{type="KILL",quest=5535,questName="Spiritual Unrest",npc=6117,target="Highborne Lichling / Highborne Apparition",count=6,map=1447,zone="Azshara",x=13.5,y=73.2,near=true},
+{type="TURNIN",quest=5535,questName="Spiritual Unrest",npc=11548,npcName="Loh'atu",map=1447,zone="Azshara",x=11.4,y=78.2},
+{type="KILL",quest=5536,questName="A Land Filled with Hatred",npc=6127,target="Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr",count=6,map=1447,zone="Azshara",x=19.1,y=64,near=true},
+{type="TURNIN",quest=5536,questName="A Land Filled with Hatred",npc=11548,npcName="Loh'atu",map=1447,zone="Azshara",x=11.4,y=78.2},
+{type="GRIND",npc=6195,target="Spitelash Siren",level=51,map=1447,zone="Azshara",x=35.5,y=58.8,near=true,note="grind Spitelash Siren (level 50-52) to level 51 - nothing worth questing at 50"},
+{type="ACCEPT",quest=8252,questName="The Siren's Coral",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}},
+{type="COLLECT",quest=8252,questName="The Siren's Coral",target="Enchanted Coral",count=6,map=1447,zone="Azshara",x=40.2,y=53,class={"MAGE"},mobs="Spitelash Siren"},
+{type="TURNIN",quest=8252,questName="The Siren's Coral",npc=8379,npcName="Archmage Xylem",map=1447,zone="Azshara",x=29.2,y=40.2,class={"MAGE"}}
+}]],
 })

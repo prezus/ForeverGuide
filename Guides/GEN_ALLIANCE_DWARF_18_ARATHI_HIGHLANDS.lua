@@ -14,46 +14,46 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 18 of the Dwarf route: level 33 to 34, 17 steps, ~90 min of play in the model (23598 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 40,
-    steps = function() return {
-        { type = "FLIGHTPATH", npc = 2835, npcName = "Cedrik Prose", map = 1417, zone = "Arathi Highlands", x = 45.7, y = 46.1 }, -- 1
-        { type = "TURNIN", quest = 79974, questName = "Wet Job", map = 1432, zone = "Loch Modan", x = 49.5, y = 12.8 }, -- 2
-        { type = "ACCEPT", quest = 223, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.2, y = 48 }, -- 3
-        { type = "TURNIN", quest = 223, questName = "Worgen in the Woods", npc = 661, npcName = "Jonathan Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.8 }, -- 4
-        { type = "ACCEPT", quest = 690, questName = "Malin's Request", npc = 2708, npcName = "Archmage Malin", map = 1453, zone = "Stormwind City", x = 39.8, y = 81.2 }, -- 5
-        { type = "ACCEPT", quest = 1453, questName = "Reclaimers' Business in Desolace", npc = 5637, npcName = "Roetten Stonehammer", map = 1455, zone = "Ironforge", x = 69.6, y = 21 }, -- 6
-        { type = "ACCEPT", quest = 1260, questName = "Morgan Stern", npc = 1141, npcName = "Angus Stern", map = 1453, zone = "Stormwind City", x = 41.4, y = 89.2 }, -- 7
-        { type = "ACCEPT", quest = 707, questName = "Ironband Wants You!", npc = 1356, npcName = "Prospector Stormpike", map = 1455, zone = "Ironforge", x = 74.4, y = 12 }, -- 8
-        { type = "TURNIN", quest = 707, questName = "Ironband Wants You!", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.8, y = 65.6 }, -- 9
-        { type = "ACCEPT", quest = 1719, questName = "The Affray", npc = 6236, npcName = "Klannoc Macleod", map = 1413, zone = "The Barrens", x = 68.6, y = 49, class = { "WARRIOR" } }, -- 10
-        { type = "KILL", quest = 1719, questName = "The Affray", npc = 6238, target = "Big Will", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 11
-        { type = "COMPLETE", quest = 1719, questName = "The Affray", target = "Explore Zone", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 12
-        { type = "COMPLETE", quest = 1719, questName = "The Affray", target = "Step on the grate to begin the Affray", count = 1, map = 1413, zone = "The Barrens", x = 68.6, y = 48.6, class = { "WARRIOR" } }, -- 13
-        { type = "TURNIN", quest = 1719, questName = "The Affray", npc = 6236, npcName = "Klannoc Macleod", map = 1413, zone = "The Barrens", x = 68.6, y = 49, class = { "WARRIOR" } }, -- 14
-        { type = "ACCEPT", quest = 1947, questName = "Journey to the Marsh", npc = 5497, npcName = "Jennea Cannon", map = 1453, zone = "Stormwind City", x = 38.6, y = 79.4, class = { "MAGE" } }, -- 15
-        { type = "TURNIN", quest = 1758, questName = "Tome of the Cabal", npc = 6294, npcName = "Krom Stoutarm", map = 1455, zone = "Ironforge", x = 74.2, y = 9.8, class = { "WARLOCK" }, race = { "Gnome" } }, -- 16
-        { type = "ACCEPT", quest = 1798, questName = "Seeking Strahad", npc = 6122, npcName = "Gakin the Darkbinder", map = 1453, zone = "Stormwind City", x = 25.4, y = 78.4, class = { "WARLOCK" }, race = { "Gnome" } }, -- 17
-        { type = "TURNIN", quest = 1798, questName = "Seeking Strahad", npc = 6251, npcName = "Strahad Farsan", map = 1413, zone = "The Barrens", x = 62.6, y = 35.4, class = { "WARLOCK" }, race = { "Gnome" } }, -- 18
-        { type = "ACCEPT", quest = 3629, questName = "Goblin Engineering", npc = 5518, npcName = "Lilliam Sparkspindle", map = 1453, zone = "Stormwind City", x = 54.8, y = 7.8, profession = "Engineering", skill = 200 }, -- 19
-        { type = "ACCEPT", quest = 3630, questName = "Gnome Engineering", npc = 5518, npcName = "Lilliam Sparkspindle", map = 1453, zone = "Stormwind City", x = 54.8, y = 7.8, profession = "Engineering", skill = 200 }, -- 20
-        { type = "ACCEPT", quest = 4181, questName = "Goblin Engineering", npc = 5518, npcName = "Lilliam Sparkspindle", map = 1453, zone = "Stormwind City", x = 54.8, y = 7.8, profession = "Engineering", skill = 200 }, -- 21
-        { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 46.1, y = 46.5, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 22
-        { type = "ACCEPT", quest = 681, questName = "Northfold Manor", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 23
-        { type = "ACCEPT", quest = 8260, questName = "Arathor Basic Care Package", npc = 15127, npcName = "Samuel Hawke", map = 1417, zone = "Arathi Highlands", x = 46, y = 45.2 }, -- 24
-        { type = "TURNIN", quest = 690, questName = "Malin's Request", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.6, y = 47 }, -- 25
-        { type = "ACCEPT", quest = 691, questName = "Worth Its Weight in Gold", npc = 2788, npcName = "Apprentice Kryten", map = 1417, zone = "Arathi Highlands", x = 46.2, y = 47.8 }, -- 26
-        { type = "TURNIN", quest = 8260, questName = "Arathor Basic Care Package", npc = 15127, npcName = "Samuel Hawke", map = 1417, zone = "Arathi Highlands", x = 46, y = 45.2 }, -- 27
-        { type = "KILL", quest = 681, questName = "Northfold Manor", npc = 2586, target = "Syndicate Highwayman / Syndicate Mercenary", count = 10, map = 1417, zone = "Arathi Highlands", x = 33.9, y = 32.9, near = true }, -- 28
-        { type = "COLLECT", quest = 691, questName = "Worth Its Weight in Gold", target = "Witherbark Tusk", count = 10, map = 1417, zone = "Arathi Highlands", x = 34.6, y = 39.5, near = true }, -- 29
-        { type = "KILL", quest = 691, questName = "Worth Its Weight in Gold", npc = 2555, target = "Witherbark Witch Doctor", count = 10, map = 1417, zone = "Arathi Highlands", x = 32.6, y = 44.4, near = true, note = "loot Witherbark Medicine Pouch" }, -- 30
-        { type = "COMPLETE", quest = 633, questName = "The Thandol Span", target = "Cache of Explosives Destroyed", count = 1, map = 1417, zone = "Arathi Highlands", x = 48.8, y = 88.2 }, -- 31
-        { type = "KILL", quest = 691, questName = "Worth Its Weight in Gold", npc = 2557, target = "Witherbark Shadow Hunter", count = 4, map = 1417, zone = "Arathi Highlands", x = 66.3, y = 80.5, near = true, note = "loot Shadow Hunter Knife" }, -- 32
-        { type = "TURNIN", quest = 681, questName = "Northfold Manor", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 33
-        { type = "ACCEPT", quest = 682, questName = "Stromgarde Badges", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 34
-        { type = "TURNIN", quest = 691, questName = "Worth Its Weight in Gold", npc = 2788, npcName = "Apprentice Kryten", map = 1417, zone = "Arathi Highlands", x = 46.2, y = 47.8 }, -- 35
-        { type = "COLLECT", quest = 682, questName = "Stromgarde Badges", target = "Stromgarde Badge", count = 7, map = 1417, zone = "Arathi Highlands", x = 29.2, y = 61.3, near = true }, -- 36
-        { type = "TURNIN", quest = 682, questName = "Stromgarde Badges", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 37
-        { type = "ACCEPT", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 62.5, y = 33.7 }, -- 38
-        { type = "COLLECT", quest = 642, questName = "The Princess Trapped", target = "Mote of Myzrael", count = 12, map = 1417, zone = "Arathi Highlands", x = 76.2, y = 42.5, near = true }, -- 39
-        { type = "TURNIN", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 40
-    } end,
+    steps = [[{
+{type="FLIGHTPATH",npc=2835,npcName="Cedrik Prose",map=1417,zone="Arathi Highlands",x=45.7,y=46.1},
+{type="TURNIN",quest=79974,questName="Wet Job",map=1432,zone="Loch Modan",x=49.5,y=12.8},
+{type="ACCEPT",quest=223,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.2,y=48},
+{type="TURNIN",quest=223,questName="Worgen in the Woods",npc=661,npcName="Jonathan Carevin",map=1431,zone="Duskwood",x=75.2,y=48.8},
+{type="ACCEPT",quest=690,questName="Malin's Request",npc=2708,npcName="Archmage Malin",map=1453,zone="Stormwind City",x=39.8,y=81.2},
+{type="ACCEPT",quest=1453,questName="Reclaimers' Business in Desolace",npc=5637,npcName="Roetten Stonehammer",map=1455,zone="Ironforge",x=69.6,y=21},
+{type="ACCEPT",quest=1260,questName="Morgan Stern",npc=1141,npcName="Angus Stern",map=1453,zone="Stormwind City",x=41.4,y=89.2},
+{type="ACCEPT",quest=707,questName="Ironband Wants You!",npc=1356,npcName="Prospector Stormpike",map=1455,zone="Ironforge",x=74.4,y=12},
+{type="TURNIN",quest=707,questName="Ironband Wants You!",npc=1344,npcName="Prospector Ironband",map=1432,zone="Loch Modan",x=65.8,y=65.6},
+{type="ACCEPT",quest=1719,questName="The Affray",npc=6236,npcName="Klannoc Macleod",map=1413,zone="The Barrens",x=68.6,y=49,class={"WARRIOR"}},
+{type="KILL",quest=1719,questName="The Affray",npc=6238,target="Big Will",count=1,map=1413,zone="The Barrens",x=68.6,y=48.6,class={"WARRIOR"}},
+{type="COMPLETE",quest=1719,questName="The Affray",target="Explore Zone",count=1,map=1413,zone="The Barrens",x=68.6,y=48.6,class={"WARRIOR"}},
+{type="COMPLETE",quest=1719,questName="The Affray",target="Step on the grate to begin the Affray",count=1,map=1413,zone="The Barrens",x=68.6,y=48.6,class={"WARRIOR"}},
+{type="TURNIN",quest=1719,questName="The Affray",npc=6236,npcName="Klannoc Macleod",map=1413,zone="The Barrens",x=68.6,y=49,class={"WARRIOR"}},
+{type="ACCEPT",quest=1947,questName="Journey to the Marsh",npc=5497,npcName="Jennea Cannon",map=1453,zone="Stormwind City",x=38.6,y=79.4,class={"MAGE"}},
+{type="TURNIN",quest=1758,questName="Tome of the Cabal",npc=6294,npcName="Krom Stoutarm",map=1455,zone="Ironforge",x=74.2,y=9.8,class={"WARLOCK"},race={"Gnome"}},
+{type="ACCEPT",quest=1798,questName="Seeking Strahad",npc=6122,npcName="Gakin the Darkbinder",map=1453,zone="Stormwind City",x=25.4,y=78.4,class={"WARLOCK"},race={"Gnome"}},
+{type="TURNIN",quest=1798,questName="Seeking Strahad",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"},race={"Gnome"}},
+{type="ACCEPT",quest=3629,questName="Goblin Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
+{type="ACCEPT",quest=3630,questName="Gnome Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
+{type="ACCEPT",quest=4181,questName="Goblin Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
+{type="TRAVEL",map=1417,zone="Arathi Highlands",x=46.1,y=46.5,radius=60,note="travel to Arathi Highlands (Arathi Highlands)"},
+{type="ACCEPT",quest=681,questName="Northfold Manor",npc=2700,npcName="Captain Nials",map=1417,zone="Arathi Highlands",x=45.8,y=47.6},
+{type="ACCEPT",quest=8260,questName="Arathor Basic Care Package",npc=15127,npcName="Samuel Hawke",map=1417,zone="Arathi Highlands",x=46,y=45.2},
+{type="TURNIN",quest=690,questName="Malin's Request",npc=2789,npcName="Skuerto",map=1417,zone="Arathi Highlands",x=46.6,y=47},
+{type="ACCEPT",quest=691,questName="Worth Its Weight in Gold",npc=2788,npcName="Apprentice Kryten",map=1417,zone="Arathi Highlands",x=46.2,y=47.8},
+{type="TURNIN",quest=8260,questName="Arathor Basic Care Package",npc=15127,npcName="Samuel Hawke",map=1417,zone="Arathi Highlands",x=46,y=45.2},
+{type="KILL",quest=681,questName="Northfold Manor",npc=2586,target="Syndicate Highwayman / Syndicate Mercenary",count=10,map=1417,zone="Arathi Highlands",x=33.9,y=32.9,near=true},
+{type="COLLECT",quest=691,questName="Worth Its Weight in Gold",target="Witherbark Tusk",count=10,map=1417,zone="Arathi Highlands",x=34.6,y=39.5,near=true},
+{type="KILL",quest=691,questName="Worth Its Weight in Gold",npc=2555,target="Witherbark Witch Doctor",count=10,map=1417,zone="Arathi Highlands",x=32.6,y=44.4,near=true,note="loot Witherbark Medicine Pouch"},
+{type="COMPLETE",quest=633,questName="The Thandol Span",target="Cache of Explosives Destroyed",count=1,map=1417,zone="Arathi Highlands",x=48.8,y=88.2},
+{type="KILL",quest=691,questName="Worth Its Weight in Gold",npc=2557,target="Witherbark Shadow Hunter",count=4,map=1417,zone="Arathi Highlands",x=66.3,y=80.5,near=true,note="loot Shadow Hunter Knife"},
+{type="TURNIN",quest=681,questName="Northfold Manor",npc=2700,npcName="Captain Nials",map=1417,zone="Arathi Highlands",x=45.8,y=47.6},
+{type="ACCEPT",quest=682,questName="Stromgarde Badges",npc=2700,npcName="Captain Nials",map=1417,zone="Arathi Highlands",x=45.8,y=47.6},
+{type="TURNIN",quest=691,questName="Worth Its Weight in Gold",npc=2788,npcName="Apprentice Kryten",map=1417,zone="Arathi Highlands",x=46.2,y=47.8},
+{type="COLLECT",quest=682,questName="Stromgarde Badges",target="Stromgarde Badge",count=7,map=1417,zone="Arathi Highlands",x=29.2,y=61.3,near=true},
+{type="TURNIN",quest=682,questName="Stromgarde Badges",npc=2700,npcName="Captain Nials",map=1417,zone="Arathi Highlands",x=45.8,y=47.6},
+{type="ACCEPT",quest=642,questName="The Princess Trapped",map=1417,zone="Arathi Highlands",x=62.5,y=33.7},
+{type="COLLECT",quest=642,questName="The Princess Trapped",target="Mote of Myzrael",count=12,map=1417,zone="Arathi Highlands",x=76.2,y=42.5,near=true},
+{type="TURNIN",quest=642,questName="The Princess Trapped",map=1417,zone="Arathi Highlands",x=84.3,y=31}
+}]],
 })

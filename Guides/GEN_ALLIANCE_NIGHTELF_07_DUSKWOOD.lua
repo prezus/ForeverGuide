@@ -14,78 +14,78 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 7 of the NightElf route: level 21 to 23, 57 steps, ~153 min of play in the model (18777 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 72,
-    steps = function() return {
-        { type = "FLIGHTPATH", npc = 2409, npcName = "Felicia Maline", map = 1431, zone = "Duskwood", x = 77.5, y = 44.3 }, -- 1
-        { type = "TURNIN", quest = 274, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46, y = 13.6 }, -- 2
-        { type = "TURNIN", quest = 2360, questName = "Mathias and the Defias", npc = 7024, npcName = "Agent Kearnen", map = 1436, zone = "Westfall", x = 68.4, y = 70, class = { "ROGUE" } }, -- 3
-        { type = "ACCEPT", quest = 26, questName = "A Lesson to Learn", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 4
-        { type = "TURNIN", quest = 26, questName = "A Lesson to Learn", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 5
-        { type = "TRAVEL", map = 1431, zone = "Duskwood", x = 74.9, y = 47.1, radius = 60, note = "travel to Duskwood (Duskwood)" }, -- 6
-        { type = "HEARTH", npc = 6790, npcName = "Innkeeper Trelayne", map = 1431, zone = "Darkshire", x = 73.9, y = 44.4, note = "talk to Innkeeper Trelayne and make this inn your home" }, -- 7
-        { type = "ACCEPT", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 8
-        { type = "ACCEPT", quest = 163, questName = "Raven Hill", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 9
-        { type = "ACCEPT", quest = 164, questName = "Deliveries to Sven", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 10
-        { type = "ACCEPT", quest = 165, questName = "The Hermit", npc = 633, npcName = "Elaine Carevin", map = 1431, zone = "Duskwood", x = 75.2, y = 48.6 }, -- 11
-        { type = "KILL", quest = 56, questName = "The Night Watch", npc = 203, target = "Skeletal Mage / Skeletal Warrior", count = 8, map = 1431, zone = "Duskwood", x = 79.8, y = 66.1, near = true }, -- 12
-        { type = "TURNIN", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 13
-        { type = "ACCEPT", quest = 245, questName = "Eight-Legged Menaces", npc = 888, npcName = "Watcher Dodds", map = 1431, zone = "Duskwood", x = 45.1, y = 67 }, -- 14
-        { type = "KILL", quest = 245, questName = "Eight-Legged Menaces", npc = 539, target = "Pygmy Venom Web Spider", count = 15, map = 1431, zone = "Duskwood", x = 11.6, y = 62.7, near = true }, -- 15
-        { type = "TURNIN", quest = 245, questName = "Eight-Legged Menaces", npc = 888, npcName = "Watcher Dodds", map = 1431, zone = "Duskwood", x = 45.1, y = 67 }, -- 16
-        { type = "ACCEPT", quest = 5, questName = "Jitters' Growling Gut", npc = 288, npcName = "Jitters", map = 1431, zone = "Duskwood", x = 18.4, y = 56.4 }, -- 17
-        { type = "TURNIN", quest = 163, questName = "Raven Hill", npc = 288, npcName = "Jitters", map = 1431, zone = "Duskwood", x = 18.2, y = 56.4 }, -- 18
-        { type = "ACCEPT", quest = 226, questName = "Wolves at Our Heels", npc = 893, npcName = "Lars", map = 1431, zone = "Duskwood", x = 7.7, y = 33.2 }, -- 19
-        { type = "TURNIN", quest = 164, questName = "Deliveries to Sven", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34 }, -- 20
-        { type = "KILL", quest = 226, questName = "Wolves at Our Heels", npc = 565, target = "Rabid Dire Wolf", count = 12, map = 1431, zone = "Duskwood", x = 9.7, y = 40.5, near = true }, -- 21
-        { type = "KILL", quest = 226, questName = "Wolves at Our Heels", npc = 213, target = "Starving Dire Wolf", count = 12, map = 1431, zone = "Duskwood", x = 31.6, y = 24.4, near = true }, -- 22
-        { type = "ACCEPT", quest = 148, questName = "Supplies from Darkshire", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 23
-        { type = "TURNIN", quest = 165, questName = "The Hermit", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28, y = 31.4 }, -- 24
-        { type = "TURNIN", quest = 226, questName = "Wolves at Our Heels", npc = 893, npcName = "Lars", map = 1431, zone = "Duskwood", x = 7.7, y = 33.2 }, -- 25
-        { type = "TURNIN", quest = 5, questName = "Jitters' Growling Gut", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 26
-        { type = "ACCEPT", quest = 93, questName = "Dusky Crab Cakes", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 27
-        { type = "ACCEPT", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6, profession = "Cooking", skill = 50 }, -- 28
-        { type = "ACCEPT", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 29
-        { type = "TURNIN", quest = 148, questName = "Supplies from Darkshire", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 30
-        { type = "ACCEPT", quest = 149, questName = "Ghost Hair Thread", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 31
-        { type = "COLLECT", quest = 93, questName = "Dusky Crab Cakes", target = "Gooey Spider Leg", count = 6, map = 1431, zone = "Duskwood", x = 85.5, y = 51.7, near = true }, -- 32
-        { type = "TURNIN", quest = 149, questName = "Ghost Hair Thread", npc = 302, npcName = "Blind Mary", map = 1431, zone = "Duskwood", x = 82, y = 59.1 }, -- 33
-        { type = "ACCEPT", quest = 154, questName = "Return the Comb", npc = 302, npcName = "Blind Mary", map = 1431, zone = "Duskwood", x = 82, y = 59.1 }, -- 34
-        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Skeleton Finger", count = 10, map = 1431, zone = "Duskwood", x = 81.2, y = 58, near = true }, -- 35
-        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Vial of Spider Venom", count = 10, map = 1431, zone = "Duskwood", x = 85.5, y = 51.7, near = true }, -- 36
-        { type = "ACCEPT", quest = 377, questName = "Crime and Punishment", npc = 270, npcName = "Councilman Millstipe", map = 1431, zone = "Duskwood", x = 72, y = 47.8, optional = true, note = "For The Stockade (dungeon guide)" }, -- 37
-        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Ghoul Fang", count = 10, map = 1431, zone = "Duskwood", x = 78.7, y = 36.1, near = true }, -- 38
-        { type = "TURNIN", quest = 93, questName = "Dusky Crab Cakes", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 39
-        { type = "ACCEPT", quest = 240, questName = "Return to Jitters", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 40
-        { type = "TURNIN", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 41
-        { type = "TURNIN", quest = 154, questName = "Return the Comb", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 42
-        { type = "ACCEPT", quest = 157, questName = "Deliver the Thread", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 43
-        { type = "TURNIN", quest = 157, questName = "Deliver the Thread", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 44
-        { type = "ACCEPT", quest = 158, questName = "Zombie Juice", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 45
-        { type = "ACCEPT", quest = 95, questName = "Sven's Revenge", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 46
-        { type = "TURNIN", quest = 240, questName = "Return to Jitters", npc = 288, npcName = "Jitters", map = 1431, zone = "Duskwood", x = 18.4, y = 56.4 }, -- 47
-        { type = "TURNIN", quest = 95, questName = "Sven's Revenge", map = 1431, zone = "Duskwood", x = 49.9, y = 77.7 }, -- 48
-        { type = "ACCEPT", quest = 230, questName = "Sven's Camp", map = 1431, zone = "Duskwood", x = 49.9, y = 77.7 }, -- 49
-        { type = "TURNIN", quest = 158, questName = "Zombie Juice", npc = 273, npcName = "Tavernkeep Smitts", map = 1431, zone = "Duskwood", x = 73.8, y = 44.5 }, -- 50
-        { type = "ACCEPT", quest = 156, questName = "Gather Rot Blossoms", npc = 273, npcName = "Tavernkeep Smitts", map = 1431, zone = "Duskwood", x = 73.8, y = 44.5 }, -- 51
-        { type = "COLLECT", quest = 156, questName = "Gather Rot Blossoms", target = "Rot Blossom", count = 8, map = 1431, zone = "Duskwood", x = 81.1, y = 56.2, near = true }, -- 52
-        { type = "TURNIN", quest = 156, questName = "Gather Rot Blossoms", npc = 273, npcName = "Tavernkeep Smitts", map = 1431, zone = "Duskwood", x = 73.8, y = 44.5 }, -- 53
-        { type = "ACCEPT", quest = 159, questName = "Juice Delivery", npc = 273, npcName = "Tavernkeep Smitts", map = 1431, zone = "Duskwood", x = 73.8, y = 44.5 }, -- 54
-        { type = "TURNIN", quest = 159, questName = "Juice Delivery", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 55
-        { type = "TURNIN", quest = 230, questName = "Sven's Camp", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 56
-        { type = "ACCEPT", quest = 262, questName = "The Shadowy Figure", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 57
-        { type = "COLLECT", quest = 90, questName = "Seasoned Wolf Kabobs", target = "Lean Wolf Flank", count = 10, map = 1431, zone = "Duskwood", x = 10.8, y = 32.2, near = true, profession = "Cooking", skill = 50, mobs = "Starving Dire Wolf / Lupos / Rabid Dire Wolf / Black Ravager" }, -- 58
-        { type = "TURNIN", quest = 90, questName = "Seasoned Wolf Kabobs", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.6, profession = "Cooking", skill = 50 }, -- 59
-        { type = "TURNIN", quest = 262, questName = "The Shadowy Figure", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 60
-        { type = "ACCEPT", quest = 265, questName = "The Shadowy Search Continues", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 61
-        { type = "TURNIN", quest = 265, questName = "The Shadowy Search Continues", npc = 267, npcName = "Clerk Daltry", map = 1431, zone = "Duskwood", x = 72.5, y = 46.9 }, -- 62
-        { type = "ACCEPT", quest = 266, questName = "Inquire at the Inn", npc = 267, npcName = "Clerk Daltry", map = 1431, zone = "Duskwood", x = 72.5, y = 46.9 }, -- 63
-        { type = "TURNIN", quest = 266, questName = "Inquire at the Inn", npc = 273, npcName = "Tavernkeep Smitts", map = 1431, zone = "Duskwood", x = 73.8, y = 44.5 }, -- 64
-        { type = "ACCEPT", quest = 453, questName = "Finding the Shadowy Figure", npc = 273, npcName = "Tavernkeep Smitts", map = 1431, zone = "Duskwood", x = 73.8, y = 44.5 }, -- 65
-        { type = "TURNIN", quest = 453, questName = "Finding the Shadowy Figure", npc = 288, npcName = "Jitters", map = 1431, zone = "Duskwood", x = 18.4, y = 56.4 }, -- 66
-        { type = "ACCEPT", quest = 268, questName = "Return to Sven", npc = 288, npcName = "Jitters", map = 1431, zone = "Duskwood", x = 18.4, y = 56.4 }, -- 67
-        { type = "TURNIN", quest = 268, questName = "Return to Sven", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 68
-        { type = "ACCEPT", quest = 57, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 69
-        { type = "KILL", quest = 57, questName = "The Night Watch", npc = 202, target = "Skeletal Horror", count = 15, map = 1431, zone = "Duskwood", x = 81.1, y = 56.2, near = true }, -- 70
-        { type = "KILL", quest = 57, questName = "The Night Watch", npc = 531, target = "Skeletal Fiend", count = 15, map = 1431, zone = "Duskwood", x = 23.8, y = 44, near = true }, -- 71
-        { type = "TURNIN", quest = 57, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 72
-    } end,
+    steps = [[{
+{type="FLIGHTPATH",npc=2409,npcName="Felicia Maline",map=1431,zone="Duskwood",x=77.5,y=44.3},
+{type="TURNIN",quest=274,questName="A Dark Threat Looms",npc=1093,npcName="Chief Engineer Hinderweir VII",map=1432,zone="Loch Modan",x=46,y=13.6},
+{type="TURNIN",quest=2360,questName="Mathias and the Defias",npc=7024,npcName="Agent Kearnen",map=1436,zone="Westfall",x=68.4,y=70,class={"ROGUE"}},
+{type="ACCEPT",quest=26,questName="A Lesson to Learn",npc=4217,npcName="Mathrengyl Bearwalker",map=1457,zone="Darnassus",x=35.2,y=8,class={"DRUID"}},
+{type="TURNIN",quest=26,questName="A Lesson to Learn",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"}},
+{type="TRAVEL",map=1431,zone="Duskwood",x=74.9,y=47.1,radius=60,note="travel to Duskwood (Duskwood)"},
+{type="HEARTH",npc=6790,npcName="Innkeeper Trelayne",map=1431,zone="Darkshire",x=73.9,y=44.4,note="talk to Innkeeper Trelayne and make this inn your home"},
+{type="ACCEPT",quest=56,questName="The Night Watch",npc=264,npcName="Commander Althea Ebonlocke",map=1431,zone="Duskwood",x=73.5,y=46.8},
+{type="ACCEPT",quest=163,questName="Raven Hill",npc=633,npcName="Elaine Carevin",map=1431,zone="Duskwood",x=75.2,y=48.6},
+{type="ACCEPT",quest=164,questName="Deliveries to Sven",npc=633,npcName="Elaine Carevin",map=1431,zone="Duskwood",x=75.2,y=48.6},
+{type="ACCEPT",quest=165,questName="The Hermit",npc=633,npcName="Elaine Carevin",map=1431,zone="Duskwood",x=75.2,y=48.6},
+{type="KILL",quest=56,questName="The Night Watch",npc=203,target="Skeletal Mage / Skeletal Warrior",count=8,map=1431,zone="Duskwood",x=79.8,y=66.1,near=true},
+{type="TURNIN",quest=56,questName="The Night Watch",npc=264,npcName="Commander Althea Ebonlocke",map=1431,zone="Duskwood",x=73.5,y=46.8},
+{type="ACCEPT",quest=245,questName="Eight-Legged Menaces",npc=888,npcName="Watcher Dodds",map=1431,zone="Duskwood",x=45.1,y=67},
+{type="KILL",quest=245,questName="Eight-Legged Menaces",npc=539,target="Pygmy Venom Web Spider",count=15,map=1431,zone="Duskwood",x=11.6,y=62.7,near=true},
+{type="TURNIN",quest=245,questName="Eight-Legged Menaces",npc=888,npcName="Watcher Dodds",map=1431,zone="Duskwood",x=45.1,y=67},
+{type="ACCEPT",quest=5,questName="Jitters' Growling Gut",npc=288,npcName="Jitters",map=1431,zone="Duskwood",x=18.4,y=56.4},
+{type="TURNIN",quest=163,questName="Raven Hill",npc=288,npcName="Jitters",map=1431,zone="Duskwood",x=18.2,y=56.4},
+{type="ACCEPT",quest=226,questName="Wolves at Our Heels",npc=893,npcName="Lars",map=1431,zone="Duskwood",x=7.7,y=33.2},
+{type="TURNIN",quest=164,questName="Deliveries to Sven",npc=311,npcName="Sven Yorgen",map=1431,zone="Duskwood",x=7.8,y=34},
+{type="KILL",quest=226,questName="Wolves at Our Heels",npc=565,target="Rabid Dire Wolf",count=12,map=1431,zone="Duskwood",x=9.7,y=40.5,near=true},
+{type="KILL",quest=226,questName="Wolves at Our Heels",npc=213,target="Starving Dire Wolf",count=12,map=1431,zone="Duskwood",x=31.6,y=24.4,near=true},
+{type="ACCEPT",quest=148,questName="Supplies from Darkshire",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="TURNIN",quest=165,questName="The Hermit",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28,y=31.4},
+{type="TURNIN",quest=226,questName="Wolves at Our Heels",npc=893,npcName="Lars",map=1431,zone="Duskwood",x=7.7,y=33.2},
+{type="TURNIN",quest=5,questName="Jitters' Growling Gut",npc=272,npcName="Chef Grual",map=1431,zone="Duskwood",x=73.8,y=43.5},
+{type="ACCEPT",quest=93,questName="Dusky Crab Cakes",npc=272,npcName="Chef Grual",map=1431,zone="Duskwood",x=73.8,y=43.5},
+{type="ACCEPT",quest=90,questName="Seasoned Wolf Kabobs",npc=272,npcName="Chef Grual",map=1431,zone="Duskwood",x=73.8,y=43.6,profession="Cooking",skill=50},
+{type="ACCEPT",quest=101,questName="The Totem of Infliction",npc=265,npcName="Madame Eva",map=1431,zone="Duskwood",x=75.8,y=45.3},
+{type="TURNIN",quest=148,questName="Supplies from Darkshire",npc=265,npcName="Madame Eva",map=1431,zone="Duskwood",x=75.8,y=45.3},
+{type="ACCEPT",quest=149,questName="Ghost Hair Thread",npc=265,npcName="Madame Eva",map=1431,zone="Duskwood",x=75.8,y=45.3},
+{type="COLLECT",quest=93,questName="Dusky Crab Cakes",target="Gooey Spider Leg",count=6,map=1431,zone="Duskwood",x=85.5,y=51.7,near=true},
+{type="TURNIN",quest=149,questName="Ghost Hair Thread",npc=302,npcName="Blind Mary",map=1431,zone="Duskwood",x=82,y=59.1},
+{type="ACCEPT",quest=154,questName="Return the Comb",npc=302,npcName="Blind Mary",map=1431,zone="Duskwood",x=82,y=59.1},
+{type="COLLECT",quest=101,questName="The Totem of Infliction",target="Skeleton Finger",count=10,map=1431,zone="Duskwood",x=81.2,y=58,near=true},
+{type="COLLECT",quest=101,questName="The Totem of Infliction",target="Vial of Spider Venom",count=10,map=1431,zone="Duskwood",x=85.5,y=51.7,near=true},
+{type="ACCEPT",quest=377,questName="Crime and Punishment",npc=270,npcName="Councilman Millstipe",map=1431,zone="Duskwood",x=72,y=47.8,optional=true,note="For The Stockade (dungeon guide)"},
+{type="COLLECT",quest=101,questName="The Totem of Infliction",target="Ghoul Fang",count=10,map=1431,zone="Duskwood",x=78.7,y=36.1,near=true},
+{type="TURNIN",quest=93,questName="Dusky Crab Cakes",npc=272,npcName="Chef Grual",map=1431,zone="Duskwood",x=73.8,y=43.5},
+{type="ACCEPT",quest=240,questName="Return to Jitters",npc=272,npcName="Chef Grual",map=1431,zone="Duskwood",x=73.8,y=43.5},
+{type="TURNIN",quest=101,questName="The Totem of Infliction",npc=265,npcName="Madame Eva",map=1431,zone="Duskwood",x=75.8,y=45.3},
+{type="TURNIN",quest=154,questName="Return the Comb",npc=265,npcName="Madame Eva",map=1431,zone="Duskwood",x=75.8,y=45.3},
+{type="ACCEPT",quest=157,questName="Deliver the Thread",npc=265,npcName="Madame Eva",map=1431,zone="Duskwood",x=75.8,y=45.3},
+{type="TURNIN",quest=157,questName="Deliver the Thread",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="ACCEPT",quest=158,questName="Zombie Juice",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="ACCEPT",quest=95,questName="Sven's Revenge",npc=311,npcName="Sven Yorgen",map=1431,zone="Duskwood",x=7.8,y=34.1},
+{type="TURNIN",quest=240,questName="Return to Jitters",npc=288,npcName="Jitters",map=1431,zone="Duskwood",x=18.4,y=56.4},
+{type="TURNIN",quest=95,questName="Sven's Revenge",map=1431,zone="Duskwood",x=49.9,y=77.7},
+{type="ACCEPT",quest=230,questName="Sven's Camp",map=1431,zone="Duskwood",x=49.9,y=77.7},
+{type="TURNIN",quest=158,questName="Zombie Juice",npc=273,npcName="Tavernkeep Smitts",map=1431,zone="Duskwood",x=73.8,y=44.5},
+{type="ACCEPT",quest=156,questName="Gather Rot Blossoms",npc=273,npcName="Tavernkeep Smitts",map=1431,zone="Duskwood",x=73.8,y=44.5},
+{type="COLLECT",quest=156,questName="Gather Rot Blossoms",target="Rot Blossom",count=8,map=1431,zone="Duskwood",x=81.1,y=56.2,near=true},
+{type="TURNIN",quest=156,questName="Gather Rot Blossoms",npc=273,npcName="Tavernkeep Smitts",map=1431,zone="Duskwood",x=73.8,y=44.5},
+{type="ACCEPT",quest=159,questName="Juice Delivery",npc=273,npcName="Tavernkeep Smitts",map=1431,zone="Duskwood",x=73.8,y=44.5},
+{type="TURNIN",quest=159,questName="Juice Delivery",npc=289,npcName="Abercrombie",map=1431,zone="Duskwood",x=28.1,y=31.5},
+{type="TURNIN",quest=230,questName="Sven's Camp",npc=311,npcName="Sven Yorgen",map=1431,zone="Duskwood",x=7.8,y=34.1},
+{type="ACCEPT",quest=262,questName="The Shadowy Figure",npc=311,npcName="Sven Yorgen",map=1431,zone="Duskwood",x=7.8,y=34.1},
+{type="COLLECT",quest=90,questName="Seasoned Wolf Kabobs",target="Lean Wolf Flank",count=10,map=1431,zone="Duskwood",x=10.8,y=32.2,near=true,profession="Cooking",skill=50,mobs="Starving Dire Wolf / Lupos / Rabid Dire Wolf / Black Ravager"},
+{type="TURNIN",quest=90,questName="Seasoned Wolf Kabobs",npc=272,npcName="Chef Grual",map=1431,zone="Duskwood",x=73.8,y=43.6,profession="Cooking",skill=50},
+{type="TURNIN",quest=262,questName="The Shadowy Figure",npc=265,npcName="Madame Eva",map=1431,zone="Duskwood",x=75.8,y=45.3},
+{type="ACCEPT",quest=265,questName="The Shadowy Search Continues",npc=265,npcName="Madame Eva",map=1431,zone="Duskwood",x=75.8,y=45.3},
+{type="TURNIN",quest=265,questName="The Shadowy Search Continues",npc=267,npcName="Clerk Daltry",map=1431,zone="Duskwood",x=72.5,y=46.9},
+{type="ACCEPT",quest=266,questName="Inquire at the Inn",npc=267,npcName="Clerk Daltry",map=1431,zone="Duskwood",x=72.5,y=46.9},
+{type="TURNIN",quest=266,questName="Inquire at the Inn",npc=273,npcName="Tavernkeep Smitts",map=1431,zone="Duskwood",x=73.8,y=44.5},
+{type="ACCEPT",quest=453,questName="Finding the Shadowy Figure",npc=273,npcName="Tavernkeep Smitts",map=1431,zone="Duskwood",x=73.8,y=44.5},
+{type="TURNIN",quest=453,questName="Finding the Shadowy Figure",npc=288,npcName="Jitters",map=1431,zone="Duskwood",x=18.4,y=56.4},
+{type="ACCEPT",quest=268,questName="Return to Sven",npc=288,npcName="Jitters",map=1431,zone="Duskwood",x=18.4,y=56.4},
+{type="TURNIN",quest=268,questName="Return to Sven",npc=311,npcName="Sven Yorgen",map=1431,zone="Duskwood",x=7.8,y=34.1},
+{type="ACCEPT",quest=57,questName="The Night Watch",npc=264,npcName="Commander Althea Ebonlocke",map=1431,zone="Duskwood",x=73.5,y=46.8},
+{type="KILL",quest=57,questName="The Night Watch",npc=202,target="Skeletal Horror",count=15,map=1431,zone="Duskwood",x=81.1,y=56.2,near=true},
+{type="KILL",quest=57,questName="The Night Watch",npc=531,target="Skeletal Fiend",count=15,map=1431,zone="Duskwood",x=23.8,y=44,near=true},
+{type="TURNIN",quest=57,questName="The Night Watch",npc=264,npcName="Commander Althea Ebonlocke",map=1431,zone="Duskwood",x=73.5,y=46.8}
+}]],
 })

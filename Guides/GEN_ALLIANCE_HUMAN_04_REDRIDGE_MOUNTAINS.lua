@@ -14,81 +14,81 @@ ns.RegisterGuide({
     author = "ForeverGuide route planner",
     notes = "Chapter 4 of the Human route: level 17 to 20, 45 steps, ~175 min of play in the model (12316 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
     stepCount = 75,
-    steps = function() return {
-        { type = "TRAVEL", map = 1436, zone = "Sentinel Hill", x = 52.9, y = 53.7, radius = 60, note = "use your hearthstone (Sentinel Hill)" }, -- 1
-        { type = "FLIGHTPATH", npc = 931, npcName = "Ariena Stormfeather", map = 1433, zone = "Redridge Mountains", x = 25.5, y = 59.4 }, -- 2
-        { type = "COLLECT", quest = 92911, questName = "Harvesting the Harvesters", target = "Golem Isospring", count = 8, map = 1436, zone = "Westfall", x = 56.4, y = 35, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper / Rusty Harvest Golem" }, -- 3
-        { type = "COLLECT", quest = 92911, questName = "Harvesting the Harvesters", target = "Copper Modulator", count = 4, map = 1436, zone = "Westfall", x = 43.6, y = 32.6, mobs = "Foe Reaper 4000" }, -- 4
-        { type = "COLLECT", quest = 92911, questName = "Harvesting the Harvesters", target = "Crude Scope", count = 1, map = 1436, zone = "Westfall", x = 43.9, y = 67.8, near = true }, -- 5
-        { type = "TURNIN", quest = 92911, questName = "Harvesting the Harvesters", npc = 253395, npcName = "Ozwin Ironsprocket", map = 1436, zone = "Westfall", x = 51.6, y = 32.2 }, -- 6
-        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 126, target = "Murloc Coastrunner", count = 7, map = 1436, zone = "Westfall", x = 56.2, y = 9.4 }, -- 7
-        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 171, target = "Murloc Warrior", count = 7, map = 1436, zone = "Westfall", x = 26, y = 50.4 }, -- 8
-        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 127, target = "Murloc Tidehunter", count = 7, map = 1436, zone = "Westfall", x = 33.8, y = 84.8 }, -- 9
-        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 517, target = "Murloc Oracle", count = 7, map = 1436, zone = "Westfall", x = 33.8, y = 84.6 }, -- 10
-        { type = "TURNIN", quest = 152, questName = "The Coast Isn't Clear", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 11
-        { type = "ACCEPT", quest = 118, questName = "The Price of Shoes", npc = 415, npcName = "Verner Osgood", map = 1433, zone = "Redridge Mountains", x = 31, y = 47.4 }, -- 12
-        { type = "TURNIN", quest = 118, questName = "The Price of Shoes", npc = 514, npcName = "Smith Argus", map = 1429, zone = "Elwynn Forest", x = 41.6, y = 65.6 }, -- 13
-        { type = "ACCEPT", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" }, note = "New in Forever" }, -- 14
-        { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Fire Tar", count = 1, map = 1432, zone = "Loch Modan", x = 35.6, y = 20, class = { "SHAMAN" }, mobs = "Tunnel Rat Geomancer" }, -- 15
-        { type = "COLLECT", quest = 94466, questName = "Call of Fire", target = "Reagent Pouch", count = 1, map = 1432, zone = "Loch Modan", x = 34.8, y = 84.4, class = { "SHAMAN" }, mobs = "Stonesplinter Seer" }, -- 16
-        { type = "TURNIN", quest = 94466, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" } }, -- 17
-        { type = "TRAVEL", map = 1433, zone = "Redridge Mountains", x = 29.1, y = 48.2, radius = 60, note = "travel to Redridge Mountains (Redridge Mountains)" }, -- 18
-        { type = "TURNIN", quest = 65, questName = "The Defias Brotherhood", npc = 266, npcName = "Wiley the Black", map = 1433, zone = "Redridge Mountains", x = 26.6, y = 45.2 }, -- 19
-        { type = "HEARTH", npc = 6727, npcName = "Innkeeper Brianna", map = 1433, zone = "Lakeshire", x = 21.9, y = 44.8, note = "talk to Innkeeper Brianna and make this inn your home" }, -- 20
-        { type = "ACCEPT", quest = 129, questName = "A Free Lunch", npc = 379, npcName = "Darcy", map = 1433, zone = "Redridge Mountains", x = 26.6, y = 44.3 }, -- 21
-        { type = "ACCEPT", quest = 92, questName = "Redridge Goulash", npc = 343, npcName = "Chef Breanna", map = 1433, zone = "Redridge Mountains", x = 22.7, y = 43.8 }, -- 22
-        { type = "COLLECT", quest = 92, questName = "Redridge Goulash", target = "Great Goretusk Snout", map = 1433, zone = "Redridge Mountains", x = 15.7, y = 49.3, near = true }, -- 23
-        { type = "COLLECT", quest = 92, questName = "Redridge Goulash", target = "Crisp Spider Meat", map = 1433, zone = "Redridge Mountains", x = 20.2, y = 65.4, near = true }, -- 24
-        { type = "ACCEPT", quest = 244, questName = "Encroaching Gnolls", npc = 464, npcName = "Guard Parker", map = 1433, zone = "Redridge Mountains", x = 15.3, y = 71.5 }, -- 25
-        { type = "TURNIN", quest = 129, questName = "A Free Lunch", npc = 464, npcName = "Guard Parker", map = 1433, zone = "Redridge Mountains", x = 15.3, y = 71.5 }, -- 26
-        { type = "ACCEPT", quest = 130, questName = "Visit the Herbalist", npc = 464, npcName = "Guard Parker", map = 1433, zone = "Redridge Mountains", x = 15.3, y = 71.5 }, -- 27
-        { type = "ACCEPT", quest = 98407, questName = "Show of Force", npc = 1070, npcName = "Deputy Feldon", map = 1433, zone = "Redridge Mountains", x = 30.8, y = 60, note = "New in Forever" }, -- 28
-        { type = "COLLECT", quest = 98407, questName = "Show of Force", target = "Spiked Collar", count = 5, map = 1433, zone = "Redridge Mountains", x = 30, y = 81.2, mobs = "Redridge Thrasher" }, -- 29
-        { type = "TURNIN", quest = 2281, questName = "Redridge Rendezvous", npc = 6966, npcName = "Lucius", map = 1433, zone = "Redridge Mountains", x = 28.2, y = 52.2, class = { "ROGUE" } }, -- 30
-        { type = "ACCEPT", quest = 94467, questName = "Call of Fire", npc = 257808, npcName = "Braldir Ashmantle", map = 1432, zone = "Loch Modan", x = 32, y = 66, class = { "SHAMAN" }, note = "New in Forever" }, -- 31
-        { type = "COLLECT", quest = 94467, questName = "Call of Fire", target = "Glowing Ember", count = 1, map = 1411, zone = "Durotar", x = 38.7, y = 58.3, class = { "SHAMAN" }, mobs = "Minor Manifestation of Fire" }, -- 32
-        { type = "TURNIN", quest = 94467, questName = "Call of Fire", map = 1411, zone = "Durotar", x = 38.9, y = 58.2, class = { "SHAMAN" } }, -- 33
-        { type = "KILL", quest = 92, questName = "Redridge Goulash", npc = 428, target = "Dire Condor", map = 1433, zone = "Redridge Mountains", x = 47.3, y = 32.5, near = true, note = "loot Tough Condor Meat" }, -- 34
-        { type = "TURNIN", quest = 130, questName = "Visit the Herbalist", npc = 342, npcName = "Martie Jainrose", map = 1433, zone = "Redridge Mountains", x = 21.9, y = 46.3 }, -- 35
-        { type = "ACCEPT", quest = 131, questName = "Delivering Daffodils", npc = 342, npcName = "Martie Jainrose", map = 1433, zone = "Redridge Mountains", x = 21.9, y = 46.3 }, -- 36
-        { type = "TURNIN", quest = 92, questName = "Redridge Goulash", npc = 343, npcName = "Chef Breanna", map = 1433, zone = "Redridge Mountains", x = 22.7, y = 43.8 }, -- 37
-        { type = "TURNIN", quest = 131, questName = "Delivering Daffodils", npc = 379, npcName = "Darcy", map = 1433, zone = "Redridge Mountains", x = 26.6, y = 44.3 }, -- 38
-        { type = "ACCEPT", quest = 3741, questName = "Hilary's Necklace", npc = 8965, npcName = "Shawn", map = 1433, zone = "Redridge Mountains", x = 29.3, y = 53.6 }, -- 39
-        { type = "ACCEPT", quest = 125, questName = "The Lost Tools", npc = 341, npcName = "Foreman Oslow", map = 1433, zone = "Redridge Mountains", x = 32.1, y = 48.6 }, -- 40
-        { type = "ACCEPT", quest = 115, questName = "Shadow Magic", npc = 382, npcName = "Marshal Marris", map = 1433, zone = "Redridge Mountains", x = 33.5, y = 49, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 41
-        { type = "ACCEPT", quest = 94468, questName = "Call of Fire", map = 1432, zone = "Loch Modan", x = 31.9, y = 64.5, class = { "SHAMAN" }, note = "New in Forever" }, -- 42
-        { type = "TURNIN", quest = 94468, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" } }, -- 43
-        { type = "KILL", quest = 115, questName = "Shadow Magic", npc = 436, target = "Blackrock Shadowcaster", count = 3, map = 1433, zone = "Redridge Mountains", x = 66.4, y = 53.3, optional = true, near = true }, -- 44
-        { type = "TURNIN", quest = 115, questName = "Shadow Magic", npc = 382, npcName = "Marshal Marris", map = 1433, zone = "Redridge Mountains", x = 33.5, y = 49, optional = true }, -- 45
-        { type = "TURNIN", quest = 98407, questName = "Show of Force", npc = 1070, npcName = "Deputy Feldon", map = 1433, zone = "Redridge Mountains", x = 30.8, y = 60 }, -- 46
-        { type = "TURNIN", quest = 244, questName = "Encroaching Gnolls", npc = 1070, npcName = "Deputy Feldon", map = 1433, zone = "Redridge Mountains", x = 30.7, y = 60 }, -- 47
-        { type = "ACCEPT", quest = 246, questName = "Assessing the Threat", npc = 1070, npcName = "Deputy Feldon", map = 1433, zone = "Redridge Mountains", x = 30.7, y = 60 }, -- 48
-        { type = "COLLECT", quest = 3741, questName = "Hilary's Necklace", target = "Hilary's Necklace", map = 1433, zone = "Redridge Mountains", x = 28, y = 56, near = true }, -- 49
-        { type = "TURNIN", quest = 3741, questName = "Hilary's Necklace", npc = 8962, npcName = "Hilary", map = 1433, zone = "Redridge Mountains", x = 29.2, y = 53.6 }, -- 50
-        { type = "COLLECT", quest = 125, questName = "The Lost Tools", target = "Oslow's Toolbox", map = 1433, zone = "Redridge Mountains", x = 41.5, y = 54.7 }, -- 51
-        { type = "KILL", quest = 246, questName = "Assessing the Threat", npc = 424, target = "Redridge Poacher / Redridge Mongrel", count = 10, map = 1433, zone = "Redridge Mountains", x = 43.2, y = 70.6, near = true }, -- 52
-        { type = "TURNIN", quest = 125, questName = "The Lost Tools", npc = 341, npcName = "Foreman Oslow", map = 1433, zone = "Redridge Mountains", x = 32.1, y = 48.6 }, -- 53
-        { type = "ACCEPT", quest = 89, questName = "The Everstill Bridge", npc = 341, npcName = "Foreman Oslow", map = 1433, zone = "Redridge Mountains", x = 32.1, y = 48.6 }, -- 54
-        { type = "TURNIN", quest = 246, questName = "Assessing the Threat", npc = 1070, npcName = "Deputy Feldon", map = 1433, zone = "Redridge Mountains", x = 30.7, y = 60 }, -- 55
-        { type = "COLLECT", quest = 89, questName = "The Everstill Bridge", target = "Iron Pike / Iron Rivet", count = 5, map = 1433, zone = "Redridge Mountains", x = 27, y = 37.2, near = true }, -- 56
-        { type = "ACCEPT", quest = 127, questName = "Selling Fish", npc = 381, npcName = "Dockmaster Baren", map = 1433, zone = "Redridge Mountains", x = 27.7, y = 47.4 }, -- 57
-        { type = "TURNIN", quest = 89, questName = "The Everstill Bridge", npc = 341, npcName = "Foreman Oslow", map = 1433, zone = "Redridge Mountains", x = 32.1, y = 48.6 }, -- 58
-        { type = "ACCEPT", quest = 20, questName = "Blackrock Menace", npc = 382, npcName = "Marshal Marris", map = 1433, zone = "Redridge Mountains", x = 33.5, y = 49 }, -- 59
-        { type = "COLLECT", quest = 127, questName = "Selling Fish", target = "Spotted Sunfish", count = 10, map = 1433, zone = "Redridge Mountains", x = 38.4, y = 52.7, near = true }, -- 60
-        { type = "COLLECT", quest = 20, questName = "Blackrock Menace", target = "Battleworn Axe", count = 10, map = 1433, zone = "Redridge Mountains", x = 38.2, y = 41.2, near = true }, -- 61
-        { type = "TURNIN", quest = 20, questName = "Blackrock Menace", npc = 382, npcName = "Marshal Marris", map = 1433, zone = "Redridge Mountains", x = 33.5, y = 49 }, -- 62
-        { type = "TURNIN", quest = 127, questName = "Selling Fish", npc = 381, npcName = "Dockmaster Baren", map = 1433, zone = "Redridge Mountains", x = 27.7, y = 47.4 }, -- 63
-        { type = "GRIND", npc = 440, target = "Blackrock Grunt", level = 19, map = 1433, zone = "Redridge Mountains", x = 37.1, y = 45.2, near = true, note = "grind Blackrock Grunt (level 19-20) to level 19 - nothing worth questing at 18" }, -- 64
-        { type = "GRIND", npc = 485, target = "Blackrock Outrunner", level = 20, map = 1433, zone = "Redridge Mountains", x = 40.6, y = 41.5, near = true, note = "grind Blackrock Outrunner (level 20-21) to level 20 - nothing worth questing at 19" }, -- 65
-        { type = "ACCEPT", quest = 169, questName = "WANTED: Gath'Ilzogg", map = 1433, zone = "Redridge Mountains", x = 29.6, y = 46.3, optional = true, note = "Elite - group up" }, -- 66
-        { type = "ACCEPT", quest = 150, questName = "Murloc Poachers", npc = 381, npcName = "Dockmaster Baren", map = 1433, zone = "Redridge Mountains", x = 27.7, y = 47.4 }, -- 67
-        { type = "ACCEPT", quest = 91, questName = "Solomon's Law", npc = 900, npcName = "Bailiff Conacher", map = 1433, zone = "Redridge Mountains", x = 29.7, y = 44.3 }, -- 68
-        { type = "COLLECT", quest = 150, questName = "Murloc Poachers", target = "Murloc Fin", count = 8, map = 1433, zone = "Redridge Mountains", x = 39.2, y = 49.1, near = true }, -- 69
-        { type = "COLLECT", quest = 91, questName = "Solomon's Law", target = "Shadowhide Pendant", count = 10, map = 1433, zone = "Redridge Mountains", x = 71.4, y = 54.2, near = true }, -- 70
-        { type = "ACCEPT", quest = 19, questName = "Tharil'zun", npc = 382, npcName = "Marshal Marris", map = 1433, zone = "Redridge Mountains", x = 33.4, y = 48.8, optional = true, note = "Elite - group up" }, -- 71
-        { type = "COLLECT", quest = 19, questName = "Tharil'zun", target = "Tharil'zun's Head", count = 1, map = 1433, zone = "Redridge Mountains", x = 69.2, y = 59.4, optional = true, mobs = "Tharil'zun" }, -- 72
-        { type = "TURNIN", quest = 19, questName = "Tharil'zun", npc = 382, npcName = "Marshal Marris", map = 1433, zone = "Redridge Mountains", x = 33.4, y = 48.8, optional = true }, -- 73
-        { type = "TURNIN", quest = 150, questName = "Murloc Poachers", npc = 381, npcName = "Dockmaster Baren", map = 1433, zone = "Redridge Mountains", x = 27.7, y = 47.4 }, -- 74
-        { type = "TURNIN", quest = 91, questName = "Solomon's Law", npc = 900, npcName = "Bailiff Conacher", map = 1433, zone = "Redridge Mountains", x = 29.7, y = 44.3 }, -- 75
-    } end,
+    steps = [[{
+{type="TRAVEL",map=1436,zone="Sentinel Hill",x=52.9,y=53.7,radius=60,note="use your hearthstone (Sentinel Hill)"},
+{type="FLIGHTPATH",npc=931,npcName="Ariena Stormfeather",map=1433,zone="Redridge Mountains",x=25.5,y=59.4},
+{type="COLLECT",quest=92911,questName="Harvesting the Harvesters",target="Golem Isospring",count=8,map=1436,zone="Westfall",x=56.4,y=35,near=true,mobs="Harvest Golem / Harvest Watcher / Harvest Reaper / Rusty Harvest Golem"},
+{type="COLLECT",quest=92911,questName="Harvesting the Harvesters",target="Copper Modulator",count=4,map=1436,zone="Westfall",x=43.6,y=32.6,mobs="Foe Reaper 4000"},
+{type="COLLECT",quest=92911,questName="Harvesting the Harvesters",target="Crude Scope",count=1,map=1436,zone="Westfall",x=43.9,y=67.8,near=true},
+{type="TURNIN",quest=92911,questName="Harvesting the Harvesters",npc=253395,npcName="Ozwin Ironsprocket",map=1436,zone="Westfall",x=51.6,y=32.2},
+{type="KILL",quest=152,questName="The Coast Isn't Clear",npc=126,target="Murloc Coastrunner",count=7,map=1436,zone="Westfall",x=56.2,y=9.4},
+{type="KILL",quest=152,questName="The Coast Isn't Clear",npc=171,target="Murloc Warrior",count=7,map=1436,zone="Westfall",x=26,y=50.4},
+{type="KILL",quest=152,questName="The Coast Isn't Clear",npc=127,target="Murloc Tidehunter",count=7,map=1436,zone="Westfall",x=33.8,y=84.8},
+{type="KILL",quest=152,questName="The Coast Isn't Clear",npc=517,target="Murloc Oracle",count=7,map=1436,zone="Westfall",x=33.8,y=84.6},
+{type="TURNIN",quest=152,questName="The Coast Isn't Clear",npc=392,npcName="Captain Grayson",map=1436,zone="Westfall",x=30,y=86},
+{type="ACCEPT",quest=118,questName="The Price of Shoes",npc=415,npcName="Verner Osgood",map=1433,zone="Redridge Mountains",x=31,y=47.4},
+{type="TURNIN",quest=118,questName="The Price of Shoes",npc=514,npcName="Smith Argus",map=1429,zone="Elwynn Forest",x=41.6,y=65.6},
+{type="ACCEPT",quest=94466,questName="Call of Fire",npc=257808,npcName="Braldir Ashmantle",map=1432,zone="Loch Modan",x=32,y=66,class={"SHAMAN"},note="New in Forever"},
+{type="COLLECT",quest=94466,questName="Call of Fire",target="Fire Tar",count=1,map=1432,zone="Loch Modan",x=35.6,y=20,class={"SHAMAN"},mobs="Tunnel Rat Geomancer"},
+{type="COLLECT",quest=94466,questName="Call of Fire",target="Reagent Pouch",count=1,map=1432,zone="Loch Modan",x=34.8,y=84.4,class={"SHAMAN"},mobs="Stonesplinter Seer"},
+{type="TURNIN",quest=94466,questName="Call of Fire",npc=257808,npcName="Braldir Ashmantle",map=1432,zone="Loch Modan",x=32,y=66,class={"SHAMAN"}},
+{type="TRAVEL",map=1433,zone="Redridge Mountains",x=29.1,y=48.2,radius=60,note="travel to Redridge Mountains (Redridge Mountains)"},
+{type="TURNIN",quest=65,questName="The Defias Brotherhood",npc=266,npcName="Wiley the Black",map=1433,zone="Redridge Mountains",x=26.6,y=45.2},
+{type="HEARTH",npc=6727,npcName="Innkeeper Brianna",map=1433,zone="Lakeshire",x=21.9,y=44.8,note="talk to Innkeeper Brianna and make this inn your home"},
+{type="ACCEPT",quest=129,questName="A Free Lunch",npc=379,npcName="Darcy",map=1433,zone="Redridge Mountains",x=26.6,y=44.3},
+{type="ACCEPT",quest=92,questName="Redridge Goulash",npc=343,npcName="Chef Breanna",map=1433,zone="Redridge Mountains",x=22.7,y=43.8},
+{type="COLLECT",quest=92,questName="Redridge Goulash",target="Great Goretusk Snout",map=1433,zone="Redridge Mountains",x=15.7,y=49.3,near=true},
+{type="COLLECT",quest=92,questName="Redridge Goulash",target="Crisp Spider Meat",map=1433,zone="Redridge Mountains",x=20.2,y=65.4,near=true},
+{type="ACCEPT",quest=244,questName="Encroaching Gnolls",npc=464,npcName="Guard Parker",map=1433,zone="Redridge Mountains",x=15.3,y=71.5},
+{type="TURNIN",quest=129,questName="A Free Lunch",npc=464,npcName="Guard Parker",map=1433,zone="Redridge Mountains",x=15.3,y=71.5},
+{type="ACCEPT",quest=130,questName="Visit the Herbalist",npc=464,npcName="Guard Parker",map=1433,zone="Redridge Mountains",x=15.3,y=71.5},
+{type="ACCEPT",quest=98407,questName="Show of Force",npc=1070,npcName="Deputy Feldon",map=1433,zone="Redridge Mountains",x=30.8,y=60,note="New in Forever"},
+{type="COLLECT",quest=98407,questName="Show of Force",target="Spiked Collar",count=5,map=1433,zone="Redridge Mountains",x=30,y=81.2,mobs="Redridge Thrasher"},
+{type="TURNIN",quest=2281,questName="Redridge Rendezvous",npc=6966,npcName="Lucius",map=1433,zone="Redridge Mountains",x=28.2,y=52.2,class={"ROGUE"}},
+{type="ACCEPT",quest=94467,questName="Call of Fire",npc=257808,npcName="Braldir Ashmantle",map=1432,zone="Loch Modan",x=32,y=66,class={"SHAMAN"},note="New in Forever"},
+{type="COLLECT",quest=94467,questName="Call of Fire",target="Glowing Ember",count=1,map=1411,zone="Durotar",x=38.7,y=58.3,class={"SHAMAN"},mobs="Minor Manifestation of Fire"},
+{type="TURNIN",quest=94467,questName="Call of Fire",map=1411,zone="Durotar",x=38.9,y=58.2,class={"SHAMAN"}},
+{type="KILL",quest=92,questName="Redridge Goulash",npc=428,target="Dire Condor",map=1433,zone="Redridge Mountains",x=47.3,y=32.5,near=true,note="loot Tough Condor Meat"},
+{type="TURNIN",quest=130,questName="Visit the Herbalist",npc=342,npcName="Martie Jainrose",map=1433,zone="Redridge Mountains",x=21.9,y=46.3},
+{type="ACCEPT",quest=131,questName="Delivering Daffodils",npc=342,npcName="Martie Jainrose",map=1433,zone="Redridge Mountains",x=21.9,y=46.3},
+{type="TURNIN",quest=92,questName="Redridge Goulash",npc=343,npcName="Chef Breanna",map=1433,zone="Redridge Mountains",x=22.7,y=43.8},
+{type="TURNIN",quest=131,questName="Delivering Daffodils",npc=379,npcName="Darcy",map=1433,zone="Redridge Mountains",x=26.6,y=44.3},
+{type="ACCEPT",quest=3741,questName="Hilary's Necklace",npc=8965,npcName="Shawn",map=1433,zone="Redridge Mountains",x=29.3,y=53.6},
+{type="ACCEPT",quest=125,questName="The Lost Tools",npc=341,npcName="Foreman Oslow",map=1433,zone="Redridge Mountains",x=32.1,y=48.6},
+{type="ACCEPT",quest=115,questName="Shadow Magic",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=33.5,y=49,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
+{type="ACCEPT",quest=94468,questName="Call of Fire",map=1432,zone="Loch Modan",x=31.9,y=64.5,class={"SHAMAN"},note="New in Forever"},
+{type="TURNIN",quest=94468,questName="Call of Fire",npc=257597,npcName="Bruegs Kindleborn",map=1426,zone="Dun Morogh",x=87.6,y=43.6,class={"SHAMAN"}},
+{type="KILL",quest=115,questName="Shadow Magic",npc=436,target="Blackrock Shadowcaster",count=3,map=1433,zone="Redridge Mountains",x=66.4,y=53.3,optional=true,near=true},
+{type="TURNIN",quest=115,questName="Shadow Magic",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=33.5,y=49,optional=true},
+{type="TURNIN",quest=98407,questName="Show of Force",npc=1070,npcName="Deputy Feldon",map=1433,zone="Redridge Mountains",x=30.8,y=60},
+{type="TURNIN",quest=244,questName="Encroaching Gnolls",npc=1070,npcName="Deputy Feldon",map=1433,zone="Redridge Mountains",x=30.7,y=60},
+{type="ACCEPT",quest=246,questName="Assessing the Threat",npc=1070,npcName="Deputy Feldon",map=1433,zone="Redridge Mountains",x=30.7,y=60},
+{type="COLLECT",quest=3741,questName="Hilary's Necklace",target="Hilary's Necklace",map=1433,zone="Redridge Mountains",x=28,y=56,near=true},
+{type="TURNIN",quest=3741,questName="Hilary's Necklace",npc=8962,npcName="Hilary",map=1433,zone="Redridge Mountains",x=29.2,y=53.6},
+{type="COLLECT",quest=125,questName="The Lost Tools",target="Oslow's Toolbox",map=1433,zone="Redridge Mountains",x=41.5,y=54.7},
+{type="KILL",quest=246,questName="Assessing the Threat",npc=424,target="Redridge Poacher / Redridge Mongrel",count=10,map=1433,zone="Redridge Mountains",x=43.2,y=70.6,near=true},
+{type="TURNIN",quest=125,questName="The Lost Tools",npc=341,npcName="Foreman Oslow",map=1433,zone="Redridge Mountains",x=32.1,y=48.6},
+{type="ACCEPT",quest=89,questName="The Everstill Bridge",npc=341,npcName="Foreman Oslow",map=1433,zone="Redridge Mountains",x=32.1,y=48.6},
+{type="TURNIN",quest=246,questName="Assessing the Threat",npc=1070,npcName="Deputy Feldon",map=1433,zone="Redridge Mountains",x=30.7,y=60},
+{type="COLLECT",quest=89,questName="The Everstill Bridge",target="Iron Pike / Iron Rivet",count=5,map=1433,zone="Redridge Mountains",x=27,y=37.2,near=true},
+{type="ACCEPT",quest=127,questName="Selling Fish",npc=381,npcName="Dockmaster Baren",map=1433,zone="Redridge Mountains",x=27.7,y=47.4},
+{type="TURNIN",quest=89,questName="The Everstill Bridge",npc=341,npcName="Foreman Oslow",map=1433,zone="Redridge Mountains",x=32.1,y=48.6},
+{type="ACCEPT",quest=20,questName="Blackrock Menace",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=33.5,y=49},
+{type="COLLECT",quest=127,questName="Selling Fish",target="Spotted Sunfish",count=10,map=1433,zone="Redridge Mountains",x=38.4,y=52.7,near=true},
+{type="COLLECT",quest=20,questName="Blackrock Menace",target="Battleworn Axe",count=10,map=1433,zone="Redridge Mountains",x=38.2,y=41.2,near=true},
+{type="TURNIN",quest=20,questName="Blackrock Menace",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=33.5,y=49},
+{type="TURNIN",quest=127,questName="Selling Fish",npc=381,npcName="Dockmaster Baren",map=1433,zone="Redridge Mountains",x=27.7,y=47.4},
+{type="GRIND",npc=440,target="Blackrock Grunt",level=19,map=1433,zone="Redridge Mountains",x=37.1,y=45.2,near=true,note="grind Blackrock Grunt (level 19-20) to level 19 - nothing worth questing at 18"},
+{type="GRIND",npc=485,target="Blackrock Outrunner",level=20,map=1433,zone="Redridge Mountains",x=40.6,y=41.5,near=true,note="grind Blackrock Outrunner (level 20-21) to level 20 - nothing worth questing at 19"},
+{type="ACCEPT",quest=169,questName="WANTED: Gath'Ilzogg",map=1433,zone="Redridge Mountains",x=29.6,y=46.3,optional=true,note="Elite - group up"},
+{type="ACCEPT",quest=150,questName="Murloc Poachers",npc=381,npcName="Dockmaster Baren",map=1433,zone="Redridge Mountains",x=27.7,y=47.4},
+{type="ACCEPT",quest=91,questName="Solomon's Law",npc=900,npcName="Bailiff Conacher",map=1433,zone="Redridge Mountains",x=29.7,y=44.3},
+{type="COLLECT",quest=150,questName="Murloc Poachers",target="Murloc Fin",count=8,map=1433,zone="Redridge Mountains",x=39.2,y=49.1,near=true},
+{type="COLLECT",quest=91,questName="Solomon's Law",target="Shadowhide Pendant",count=10,map=1433,zone="Redridge Mountains",x=71.4,y=54.2,near=true},
+{type="ACCEPT",quest=19,questName="Tharil'zun",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=33.4,y=48.8,optional=true,note="Elite - group up"},
+{type="COLLECT",quest=19,questName="Tharil'zun",target="Tharil'zun's Head",count=1,map=1433,zone="Redridge Mountains",x=69.2,y=59.4,optional=true,mobs="Tharil'zun"},
+{type="TURNIN",quest=19,questName="Tharil'zun",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=33.4,y=48.8,optional=true},
+{type="TURNIN",quest=150,questName="Murloc Poachers",npc=381,npcName="Dockmaster Baren",map=1433,zone="Redridge Mountains",x=27.7,y=47.4},
+{type="TURNIN",quest=91,questName="Solomon's Law",npc=900,npcName="Bailiff Conacher",map=1433,zone="Redridge Mountains",x=29.7,y=44.3}
+}]],
 })
