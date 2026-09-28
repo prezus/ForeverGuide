@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_10_ASHENVALE",
     name = "10. Ashenvale 24-25 (Night Elf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 24,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_11_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 10 of the NightElf route: level 24 to 25, 49 steps, ~118 min of play in the model (22230 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 68,
+    stepCount = 65,
     steps = [[{
 {type="FLIGHTPATH",npc=4267,npcName="Daelyshia",map=1440,zone="Ashenvale",x=34.4,y=48},
 {type="ACCEPT",quest=98461,questName="Unrequited Love",npc=2913,npcName="Archaeologist Hollee",map=1439,zone="Darkshore",x=37.4,y=41.8,note="New in Forever"},
@@ -24,9 +24,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2925,questName="Klockmort's Essentials",npc=6142,npcName="Mathiel",map=1457,zone="Darnassus",x=59.2,y=45.4,optional=true,note="For Gnomeregan (dungeon guide)"},
 {type="ACCEPT",quest=5672,questName="Elune's Grace",npc=11401,npcName="Priestess Alathea",map=1457,zone="Darnassus",x=39.2,y=81,class={"PRIEST"}},
 {type="TURNIN",quest=5672,questName="Elune's Grace",npc=11401,npcName="Priestess Alathea",map=1457,zone="Darnassus",x=39.2,y=81,class={"PRIEST"}},
-{type="TURNIN",quest=5673,questName="Elune's Grace",npc=11401,npcName="Priestess Alathea",map=1457,zone="Darnassus",x=39.2,y=81,class={"PRIEST"}},
-{type="TURNIN",quest=5674,questName="Elune's Grace",npc=11401,npcName="Priestess Alathea",map=1457,zone="Darnassus",x=39.2,y=81,class={"PRIEST"}},
-{type="TURNIN",quest=5675,questName="Elune's Grace",npc=11401,npcName="Priestess Alathea",map=1457,zone="Darnassus",x=39.2,y=81,class={"PRIEST"}},
 {type="ACCEPT",quest=98393,questName="The Great Cat Spirit",npc=4217,npcName="Mathrengyl Bearwalker",map=1457,zone="Darnassus",x=35.2,y=8,class={"DRUID"},note="New in Forever"},
 {type="TURNIN",quest=98393,questName="The Great Cat Spirit",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"}},
 {type="TRAVEL",map=1440,zone="Ashenvale",x=36.4,y=50.2,radius=60,note="travel to Ashenvale (Ashenvale)"},
