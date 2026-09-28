@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_13_WETLANDS",
   "name": "13. Wetlands 27-29 (Dwarf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 27,
@@ -51,6 +51,8 @@
     {"type": "ACCEPT", "quest": 290, "questName": "Lifting the Curse", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.8, "y": 59.6},
     {"type": "COLLECT", "quest": 290, "questName": "Lifting the Curse", "target": "Intrepid Strongbox Key", "count": 1, "mobs": "Captain Halyndor", "map": 1437, "zone": "Wetlands", "x": 15.6, "y": 23.4},
     {"type": "TURNIN", "quest": 290, "questName": "Lifting the Curse", "map": 1437, "zone": "Wetlands", "x": 14.3, "y": 24},
-    {"type": "TURNIN", "quest": 474, "questName": "Defeat Nek'rosh", "npc": 2104, "npcName": "Captain Stoutfist", "map": 1437, "zone": "Wetlands", "x": 9.8, "y": 57.4, "optional": true}
+    {"type": "TURNIN", "quest": 474, "questName": "Defeat Nek'rosh", "npc": 2104, "npcName": "Captain Stoutfist", "map": 1437, "zone": "Wetlands", "x": 9.8, "y": 57.4, "optional": true},
+    {"type": "ACCEPT", "quest": 1651, "questName": "The Tome of Valor", "npc": 6182, "npcName": "Daphne Stilwell", "map": 1436, "zone": "Westfall", "x": 42.2, "y": 88.6, "note": "Objectives: Protect Daphne Stilwell", "class": ["PALADIN"], "race": ["Dwarf"]},
+    {"type": "TURNIN", "quest": 1651, "questName": "The Tome of Valor", "npc": 6182, "npcName": "Daphne Stilwell", "map": 1436, "zone": "Westfall", "x": 42.2, "y": 88.6, "class": ["PALADIN"], "race": ["Dwarf"]}
   ]
 }
