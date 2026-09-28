@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_35_AZSHARA",
     name = "35. Azshara 50-50 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 50,
@@ -13,9 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_36_FELWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 35 of the Orc route: level 50 to 50, 21 steps, ~69 min of play in the model (37854 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 32,
+    stepCount = 33,
     steps = [[{
 {type="FLIGHTPATH",npc=8610,npcName="Kroum",map=1447,zone="Azshara",x=22,y=49.6},
+{type="ACCEPT",quest=4292,questName="The Bait for Lar'korwi",npc=9619,npcName="Torwa Pathfinder",map=1449,zone="Un'Goro Crater",x=71.6,y=76},
 {type="TURNIN",quest=4147,questName="Marvon's Workshop",npc=8496,npcName="Liv Rizzlefix",map=1413,zone="The Barrens",x=62.4,y=38.6},
 {type="ACCEPT",quest=6921,questName="Amongst the Ruins",npc=12736,npcName="Je'neu Sancrea",map=1440,zone="Ashenvale",x=11.6,y=34.2,optional=true,note="For Blackfathom Deeps (dungeon guide)"},
 {type="NOTE",optional=true,text="Ready for Blackfathom Deeps",note="Picked up: The Essence of Aku'Mai, Amongst the Ruins. When you have a group, open Blackfathom Deeps under Dungeons."},
