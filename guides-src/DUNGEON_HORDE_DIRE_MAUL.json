@@ -1,7 +1,7 @@
 {
   "id": "DUNGEON_HORDE_DIRE_MAUL",
   "name": "Dire Maul 56-60",
-  "version": 4,
+  "version": 5,
   "kind": "dungeon",
   "faction": "Horde",
   "minLevel": 56,
@@ -19,7 +19,6 @@
     {"type": "ACCEPT", "quest": 7441, "questName": "Pusillin and the Elder Azj'Tordin", "npc": 14355, "npcName": "Azj'Tordin", "map": 1444, "zone": "Feralas", "x": 76.8, "y": 37.4},
     {"type": "ACCEPT", "quest": 7489, "questName": "Lethtendris's Web", "npc": 7776, "npcName": "Talo Thornhoof", "map": 1444, "zone": "Feralas", "x": 76, "y": 43.8},
     {"type": "NOTE", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1, "note": "All quests available from level 56; hand them in by level 60 for full XP", "text": "Find a group for Dire Maul"},
-    {"type": "ACCEPT", "quest": 1318, "questName": "Unfinished Gordok Business", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "ACCEPT", "quest": 5518, "questName": "The Gordok Ogre Suit", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "ACCEPT", "quest": 5525, "questName": "Free Knot!", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "ACCEPT", "quest": 7461, "questName": "The Madness Within", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
@@ -30,7 +29,6 @@
     {"type": "COLLECT", "quest": 5526, "questName": "Shards of the Felvine", "target": "Felvine Shard", "count": 1, "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "COLLECT", "quest": 7441, "questName": "Pusillin and the Elder Azj'Tordin", "target": "Book of Incantations", "count": 1, "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "COLLECT", "quest": 7489, "questName": "Lethtendris's Web", "target": "Lethtendris's Web", "count": 1, "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
-    {"type": "COLLECT", "quest": 1318, "questName": "Unfinished Gordok Business", "target": "Gauntlet of Gordok Might", "count": 1, "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "COLLECT", "quest": 5518, "questName": "The Gordok Ogre Suit", "target": "Bolt of Runecloth", "count": 4, "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "COLLECT", "quest": 5518, "questName": "The Gordok Ogre Suit", "target": "Rugged Leather", "count": 8, "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "COLLECT", "quest": 5518, "questName": "The Gordok Ogre Suit", "target": "Rune Thread", "count": 2, "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
@@ -41,7 +39,6 @@
     {"type": "COLLECT", "quest": 7703, "questName": "Unfinished Gordok Business", "target": "Gauntlet of Gordok Might", "count": 1, "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "COLLECT", "quest": 94340, "questName": "Craftsman's Writ: Truesilver Transformer", "target": "Craftsman's Writ: Truesilver Transformer", "count": 1, "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "COLLECT", "quest": 94340, "questName": "Craftsman's Writ: Truesilver Transformer", "target": "Truesilver Transformer", "count": 1, "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
-    {"type": "TURNIN", "quest": 1318, "questName": "Unfinished Gordok Business", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "TURNIN", "quest": 5518, "questName": "The Gordok Ogre Suit", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "TURNIN", "quest": 5525, "questName": "Free Knot!", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "TURNIN", "quest": 7461, "questName": "The Madness Within", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
@@ -53,8 +50,6 @@
     {"type": "TURNIN", "quest": 5526, "questName": "Shards of the Felvine", "npc": 11801, "npcName": "Rabine Saturna", "map": 1450, "zone": "Moonglade", "x": 51.6, "y": 44.8},
     {"type": "ACCEPT", "quest": 5519, "questName": "The Gordok Ogre Suit", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "TURNIN", "quest": 5519, "questName": "The Gordok Ogre Suit", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
-    {"type": "ACCEPT", "quest": 7462, "questName": "The Treasure of the Shen'dralar", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
-    {"type": "TURNIN", "quest": 7462, "questName": "The Treasure of the Shen'dralar", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "ACCEPT", "quest": 7877, "questName": "The Treasure of the Shen'dralar", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1},
     {"type": "TURNIN", "quest": 7877, "questName": "The Treasure of the Shen'dralar", "map": 1444, "zone": "Feralas", "x": 59.2, "y": 45.1}
   ]
