@@ -624,7 +624,15 @@ function QG:ShowMenu(row, items)
     for i = #items + 1, #m.buttons do m.buttons[i].item = nil m.buttons[i]:Hide() end
     m:SetHeight(12 + #items * 26 - 4)
     m:ClearAllPoints()
-    if row then m:SetPoint("TOPRIGHT", row, "TOPLEFT", -4, 0) else m:SetPoint("CENTER") end
+    if row and info and info:IsShown() then
+        -- the Details popup already sits left of the window: go left of it, level with the row
+        m:SetPoint("RIGHT", info, "LEFT", -4, 0)
+        m:SetPoint("TOP", row, "TOP", 0, 0)
+    elseif row then
+        m:SetPoint("TOPRIGHT", row, "TOPLEFT", -4, 0)
+    else
+        m:SetPoint("CENTER")
+    end
     m.row = row
     m:Show()
 end
@@ -640,21 +648,18 @@ function QG:StepMenuItems(idx)
     if G:IsOpen(idx) then
         if idx ~= G.current then
             items[#items + 1] = { "Do now", function() G:DoNow(idx) end,
-                "Make this the current step. The step you are on comes right after it; nothing in between is marked done." }
+                "Becomes the current step; the one you're on comes next." }
         end
         items[#items + 1] = { "Later", function() G:Later(idx) end,
-            "Put this step off: it comes back after the next 5 open steps" .. (s.quest and ", and the rest of its quest moves with it" or "")
-            .. ". It is not marked done." }
+            "Comes back after the next 5 steps" .. (s.quest and ", with its quest" or "") .. ". Not marked done." }
         items[#items + 1] = { "Skip", function()
             ns.Printf("Skipped step %d: %s", G:PosOf(idx), G:GetStepText(s))
             G:MarkDone(idx, "skip")
-        end, (quest and "Skip this quest: its accept, objectives and turn-in are marked done."
-                    or "Mark this step done and move on.")
-            .. " It is listed under Details > Skipped, where a click brings it back." }
+        end, (quest and "Skips the whole quest." or "Marked done.") .. " Undo it under Details > Skipped." }
     elseif p.done[idx] and G:StepApplies(s) and not G:IsStepDone(s, idx) then
         -- marked done or skipped by hand, not by the game: it can come back
         items[#items + 1] = { "Do now", function() G:DoNow(idx) end,
-            "Bring this step back and make it the current step" .. (quest and ", with the rest of its quest." or ".") }
+            "Brings it back as the current step" .. (quest and ", with its quest." or ".") }
     end
     return items
 end
@@ -668,12 +673,12 @@ function QG:QuestMenuItems(questID)
     local T = ns.Tracker
     local items = {
         { "Do first", function() T:Pin(questID, "first") end,
-          "Keep this quest at the top of the list, with the arrow on it, however far away it is." },
+          "Always at the top, with the arrow on it." },
         { "Do last", function() T:Pin(questID, "last") end,
-          "Keep this quest at the bottom of the list until you have done the others." },
+          "Always at the bottom." },
     }
     if (T:Prio()[questID] or 0) ~= 0 then
-        items[#items + 1] = { "Nearest order", function() T:Pin(questID, nil) end, "Sort this quest by distance again, like the rest." }
+        items[#items + 1] = { "Nearest order", function() T:Pin(questID, nil) end, "Sorted by distance again." }
     end
     return items
 end
@@ -841,6 +846,7 @@ end
 
 function QG:ToggleInfo()
     local p = self:CreateInfo()
+    if menu then menu:Hide() end        -- both open left of the window
     if p:IsShown() then p:Hide() return end
     p:ClearAllPoints()
     if frame then p:SetPoint("TOPRIGHT", frame, "TOPLEFT", -12, 0) else p:SetPoint("CENTER") end

@@ -1766,9 +1766,21 @@ do
             return text
         end
         local laterTip, skipTip = hover(m.buttons[2]), hover(m.buttons[3])
-        check(laterTip:find("next 5", 1, true) ~= nil and laterTip:find("not marked done", 1, true) ~= nil, "Later explains itself on hover: " .. laterTip)
+        check(laterTip:find("next 5", 1, true) ~= nil and laterTip:find("Not marked done", 1, true) ~= nil, "Later explains itself on hover: " .. laterTip)
         check(skipTip:find("Skipped", 1, true) ~= nil, "Skip says where a skipped step can be brought back: " .. skipTip)
-        check(hover(m.buttons[1]):find("current step", 1, true) ~= nil, "Do now explains itself on hover")
+        local nowTip = hover(m.buttons[1])
+        check(nowTip:find("current step", 1, true) ~= nil, "Do now explains itself on hover")
+        for _, tip in ipairs({ laterTip, skipTip, nowTip }) do
+            check(#tip <= 80, "the explanation is short (" .. #tip .. "): " .. tip)
+        end
+        -- the menu and the Details popup both open left of the window: they must not cover each other
+        ns.QuestGuide:ToggleInfo()
+        check(ForeverGuideInfo:IsShown() and not m:IsShown(), "opening Details closes the menu")
+        row:GetScript("OnClick")(row, "RightButton")
+        local besideInfo = false
+        for _, pt in ipairs(m.points or {}) do if pt[2] == ForeverGuideInfo then besideInfo = true end end
+        check(m:IsShown() and besideInfo, "with Details open, the menu opens beside it, not on top of it")
+        ns.QuestGuide:ToggleInfo()
         local later = m.buttons[2]
         later:GetScript("OnClick")(later)
         check(not m:IsShown() and G:IsMoved(5), "Later from the menu moves the step and closes the menu")
