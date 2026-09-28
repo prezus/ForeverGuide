@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_09_WETLANDS",
     name = "9. Wetlands 23-24 (Dwarf)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 23,
@@ -13,10 +13,12 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_10_ASHENVALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 9 of the Dwarf route: level 23 to 24, 23 steps, ~62 min of play in the model (22607 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 28,
+    stepCount = 30,
     steps = [[{
 {type="ACCEPT",quest=387,questName="Quell the Uprising",npc=1719,npcName="Warden Thelwater",map=1453,zone="Stormwind City",x=41.2,y=58,optional=true,note="For The Stockade (dungeon guide)"},
 {type="ACCEPT",quest=388,questName="The Color of Blood",npc=1721,npcName="Nikova Raskol",map=1453,zone="Stormwind City",x=73.4,y=46.6,optional=true,note="For The Stockade (dungeon guide)"},
+{type="ACCEPT",quest=1649,questName="The Tome of Valor",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"},race={"Dwarf"}},
+{type="TURNIN",quest=1649,questName="The Tome of Valor",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"},race={"Dwarf"}},
 {type="TRAVEL",map=1437,zone="Wetlands",x=10.4,y=59.8,radius=60,note="travel to Wetlands (Wetlands)"},
 {type="ACCEPT",quest=281,questName="Reclaiming Goods",npc=1242,npcName="Karl Boran",map=1437,zone="Wetlands",x=8.3,y=58.6},
 {type="ACCEPT",quest=471,questName="Apprentice's Duties",npc=2094,npcName="James Halloran",map=1437,zone="Wetlands",x=8.6,y=55.7},
