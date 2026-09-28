@@ -1757,6 +1757,18 @@ do
         local labels = {}
         for _, b in ipairs(m.buttons) do if b:IsShown() then labels[#labels + 1] = b.label:GetText() end end
         check(m:IsShown() and table.concat(labels, ",") == "Do now,Later,Skip", "right click opens Do now / Later / Skip (" .. table.concat(labels, ",") .. ")")
+        -- hovering a choice says what it does
+        local function hover(b)
+            GameTooltip.lines = nil
+            b:GetScript("OnEnter")(b)
+            local text = table.concat(GameTooltip.lines or {}, " ")
+            b:GetScript("OnLeave")(b)
+            return text
+        end
+        local laterTip, skipTip = hover(m.buttons[2]), hover(m.buttons[3])
+        check(laterTip:find("next 5", 1, true) ~= nil and laterTip:find("not marked done", 1, true) ~= nil, "Later explains itself on hover: " .. laterTip)
+        check(skipTip:find("Skipped", 1, true) ~= nil, "Skip says where a skipped step can be brought back: " .. skipTip)
+        check(hover(m.buttons[1]):find("current step", 1, true) ~= nil, "Do now explains itself on hover")
         local later = m.buttons[2]
         later:GetScript("OnClick")(later)
         check(not m:IsShown() and G:IsMoved(5), "Later from the menu moves the step and closes the menu")

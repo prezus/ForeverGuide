@@ -583,7 +583,8 @@ function QG:RowMenu()
     return m
 end
 
---- A small menu beside `row`: items = { { label, fn }, ... }. Right-clicking the same row again closes it.
+--- A small menu beside `row`: items = { { label, fn, tooltip }, ... }. Right-clicking the same row
+--- again closes it; hovering a choice says what it does.
 function QG:ShowMenu(row, items)
     local m = self:RowMenu()
     if m:IsShown() and m.row == row then m:Hide() return end
@@ -598,6 +599,21 @@ function QG:ShowMenu(row, items)
                 if it then it[2]() end
             end)
             btn:SetPoint("TOPLEFT", m, "TOPLEFT", 6, -6 - (i - 1) * 26)
+            btn:SetScript("OnEnter", function(self)
+                Theme.Color(self.label, Theme.C.goldLight)
+                local tt = rawget(_G, "GameTooltip")
+                if tt and self.item and self.item[3] then
+                    tt:SetOwner(self, "ANCHOR_LEFT")
+                    tt:AddLine(self.item[1], 1, 0.88, 0.55)
+                    tt:AddLine(self.item[3], 0.85, 0.82, 0.75, true)
+                    tt:Show()
+                end
+            end)
+            btn:SetScript("OnLeave", function(self)
+                Theme.Color(self.label, Theme.C.gold)
+                local tt = rawget(_G, "GameTooltip")
+                if tt then tt:Hide() end
+            end)
             m.buttons[i] = btn
             b = btn
         end
@@ -620,16 +636,25 @@ function QG:StepMenuItems(idx)
     local s = G.active and G.active.steps[idx]
     if not s or not p then return {} end
     local items = {}
+    local quest = s.type == "ACCEPT" and s.quest
     if G:IsOpen(idx) then
-        if idx ~= G.current then items[#items + 1] = { "Do now", function() G:DoNow(idx) end } end
-        items[#items + 1] = { "Later", function() G:Later(idx) end }
+        if idx ~= G.current then
+            items[#items + 1] = { "Do now", function() G:DoNow(idx) end,
+                "Make this the current step. The step you are on comes right after it; nothing in between is marked done." }
+        end
+        items[#items + 1] = { "Later", function() G:Later(idx) end,
+            "Put this step off: it comes back after the next 5 open steps" .. (s.quest and ", and the rest of its quest moves with it" or "")
+            .. ". It is not marked done." }
         items[#items + 1] = { "Skip", function()
             ns.Printf("Skipped step %d: %s", G:PosOf(idx), G:GetStepText(s))
             G:MarkDone(idx, "skip")
-        end }
+        end, (quest and "Skip this quest: its accept, objectives and turn-in are marked done."
+                    or "Mark this step done and move on.")
+            .. " It is listed under Details > Skipped, where a click brings it back." }
     elseif p.done[idx] and G:StepApplies(s) and not G:IsStepDone(s, idx) then
         -- marked done or skipped by hand, not by the game: it can come back
-        items[#items + 1] = { "Do now", function() G:DoNow(idx) end }
+        items[#items + 1] = { "Do now", function() G:DoNow(idx) end,
+            "Bring this step back and make it the current step" .. (quest and ", with the rest of its quest." or ".") }
     end
     return items
 end
@@ -642,10 +667,14 @@ end
 function QG:QuestMenuItems(questID)
     local T = ns.Tracker
     local items = {
-        { "Do first", function() T:Pin(questID, "first") end },
-        { "Do last", function() T:Pin(questID, "last") end },
+        { "Do first", function() T:Pin(questID, "first") end,
+          "Keep this quest at the top of the list, with the arrow on it, however far away it is." },
+        { "Do last", function() T:Pin(questID, "last") end,
+          "Keep this quest at the bottom of the list until you have done the others." },
     }
-    if (T:Prio()[questID] or 0) ~= 0 then items[#items + 1] = { "Nearest order", function() T:Pin(questID, nil) end } end
+    if (T:Prio()[questID] or 0) ~= 0 then
+        items[#items + 1] = { "Nearest order", function() T:Pin(questID, nil) end, "Sort this quest by distance again, like the rest." }
+    end
     return items
 end
 
