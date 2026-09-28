@@ -458,9 +458,11 @@ function Guide:IsZoneEntry(step, idx)
     if not step or not step.map or not idx then return false end
     local steps = self.active and self.active.steps
     if not steps then return false end
-    for k = idx - 1, 1, -1 do
+    local k = self:PrevIdx(idx)
+    while k do
         local s = steps[k]
         if s and s.map then return s.map ~= step.map end
+        k = self:PrevIdx(k)
     end
     return true      -- nothing mapped before it: the chapter starts by going there
 end
@@ -525,13 +527,259 @@ function Guide:IsStepBlocked(step)
     return false
 end
 
+--- The quest's ACCEPT step at or before `before` in the walking order (anywhere when nil).
 function Guide:FindAcceptStep(questID, before)
     local steps = self.active.steps
-    for i = 1, (before or #steps) do
-        local s = steps[i]
-        if s.type == "ACCEPT" and s.quest == questID then return i end
+    local seq = self:Order()
+    local limit = before and self:PosOf(before) or #seq
+    for k = 1, math.min(limit, #seq) do
+        local s = steps[seq[k]]
+        if s.type == "ACCEPT" and s.quest == questID then return seq[k] end
     end
     return nil
+end
+
+-- ------------------------------------------------------------
+-- Step order: the player's own order on top of the guide's
+-- ------------------------------------------------------------
+-- A step offered at a bad moment can be put off (Later) or pulled forward (Do now) instead of
+-- skipped for good. progress.order lists the moves in the order they were made, { idx, after }:
+-- step idx goes right after step `after` (0 = first); every other step keeps its file order. A
+-- step's index never changes, so done, deferred, edits and the nav target keep working; only the
+-- walk (next / previous / before) goes through Order().
+
+local LATER = 5          -- open steps a "Later" step is put behind
+
+--- seq[pos] = step index and pos[step index] = position, for the active guide.
+function Guide:Order()
+    local g, p = self.active, self.progress
+    if not g then return {}, {} end
+    local steps = g.steps
+    local n = #steps
+    local c = self.orderCache
+    local moves = p and p.order
+    if c and c.g == g and c.p == p and c.n == n and c.moves == moves and c.count == (moves and #moves or 0) then
+        return c.seq, c.pos
+    end
+    local moved = {}
+    for _, m in ipairs(moves or {}) do
+        if steps[m[1]] and (m[2] == 0 or steps[m[2]]) and m[1] ~= m[2] then moved[m[1]] = m end
+    end
+    local seq, placed = {}, {}
+    for i = 1, n do
+        if not moved[i] then seq[#seq + 1] = i placed[i] = true end
+    end
+    -- each move right after its anchor, in the order the moves were made (the latest move sits
+    -- closest to the anchor); a move whose anchor is itself moved waits until the anchor is placed
+    local pending = {}
+    for _, m in ipairs(moves or {}) do if moved[m[1]] == m then pending[#pending + 1] = m end end
+    local progressed = true
+    while #pending > 0 and progressed do
+        progressed = false
+        local rest = {}
+        for _, m in ipairs(pending) do
+            local idx, after = m[1], m[2]
+            if after == 0 or placed[after] then
+                local at = 1
+                if after ~= 0 then
+                    for k, v in ipairs(seq) do if v == after then at = k + 1 break end end
+                end
+                table.insert(seq, at, idx)
+                placed[idx] = true
+                progressed = true
+            else
+                rest[#rest + 1] = m
+            end
+        end
+        pending = rest
+    end
+    -- anchors that never resolve (moves that point at each other): back to the file order
+    for _, m in ipairs(pending) do
+        local at = #seq + 1
+        for k, v in ipairs(seq) do if v > m[1] then at = k break end end
+        table.insert(seq, at, m[1])
+    end
+    local pos = {}
+    for k, idx in ipairs(seq) do pos[idx] = k end
+    self.orderCache = { g = g, p = p, n = n, moves = moves, count = moves and #moves or 0, seq = seq, pos = pos }
+    return seq, pos
+end
+
+--- Position of a step in the walking order; past the end (#steps + 1) is the "finished" slot.
+function Guide:PosOf(idx)
+    local seq, pos = self:Order()
+    return pos[idx] or (#seq + 1)
+end
+
+--- The step after `idx` in the walking order, or #steps + 1 past the last one.
+function Guide:NextIdx(idx)
+    local seq, pos = self:Order()
+    local k = pos[idx]
+    if not k then return #seq + 1 end
+    return seq[k + 1] or (#seq + 1)
+end
+
+--- The step before `idx` in the walking order, or nil at the first one.
+function Guide:PrevIdx(idx)
+    local seq, pos = self:Order()
+    local k = pos[idx] or (#seq + 1)
+    return seq[k - 1]
+end
+
+--- The first step in the walking order.
+function Guide:FirstIdx()
+    local seq = self:Order()
+    return seq[1] or 1
+end
+
+--- Step indices from `idx` (included) to the end, in the walking order.
+function Guide:OrderFrom(idx)
+    local seq, pos = self:Order()
+    local out = {}
+    for k = pos[idx] or 1, #seq do out[#out + 1] = seq[k] end
+    return out
+end
+
+--- The player moved this step (Later / Do now).
+function Guide:IsMoved(idx)
+    for _, m in ipairs(self.progress and self.progress.order or {}) do if m[1] == idx then return true end end
+    return false
+end
+
+--- A step the walk would still stop at: applies to this character and is not done.
+function Guide:IsOpen(idx)
+    local s = self.active and self.active.steps[idx]
+    if not s or not self:StepApplies(s) then return false end
+    return not (self.progress.done[idx] or self:IsStepDone(s, idx))
+end
+
+--- Put the steps of `block` right after `after`, in that order.
+function Guide:PlaceAfter(block, after)
+    local p = self.progress
+    p.order = p.order or {}
+    local inBlock = {}
+    for _, idx in ipairs(block) do inBlock[idx] = true end
+    local kept = {}
+    for _, m in ipairs(p.order) do if not inBlock[m[1]] then kept[#kept + 1] = m end end
+    -- the anchor is the step before the block's new place, so it must not be in the block itself
+    for i, idx in ipairs(block) do kept[#kept + 1] = { idx, i == 1 and after or block[i - 1] } end
+    p.order = kept
+    self.orderCache = nil
+end
+
+--- Put a step off: it comes back after the next few open steps. The same quest's later steps in
+--- between (its objective and turn-in behind a postponed accept) go with it, so they stay in order.
+function Guide:Later(idx)
+    local g, p = self.active, self.progress
+    if not g or not p then return false end
+    idx = idx or self.current
+    local step = idx and g.steps[idx]
+    if not step then return false end
+    if not self:IsOpen(idx) then ns.Print("that step is already done.") return false end
+    local anchor, seen, k = nil, 0, self:NextIdx(idx)
+    local block = { idx }
+    while g.steps[k] do
+        local s = g.steps[k]
+        if step.quest and s.quest == step.quest then
+            block[#block + 1] = k
+        elseif self:IsOpen(k) then
+            seen = seen + 1
+            anchor = k
+            if seen >= LATER then break end
+        end
+        k = self:NextIdx(k)
+    end
+    if not anchor then ns.Print("that is already the last step.") return false end
+    -- steps of the quest past the anchor stay where they are
+    local within = { idx }
+    for i = 2, #block do
+        if self:PosOf(block[i]) < self:PosOf(anchor) then within[#within + 1] = block[i] end
+    end
+    -- putting off the current step: the walk goes on at the first step that stays where it is
+    local moving = {}
+    for _, b in ipairs(within) do moving[b] = true end
+    local cur = self.current
+    if cur and moving[cur] then
+        local start = cur
+        while moving[start] do start = self:NextIdx(start) end
+        p.step = start
+    end
+    self:PlaceAfter(within, anchor)
+    self.hold, self.current = nil, nil
+    ns.Printf("Later: %s", self:GetStepText(step))
+    self:Evaluate("later")
+    return true
+end
+
+--- Do this step next: it becomes the current step and the old current step follows it. A skipped
+--- step comes back (a skipped accept brings its whole quest back); the same quest's open steps
+--- that belong before it (its accept, before a turn-in) come along.
+function Guide:DoNow(idx)
+    local g, p = self.active, self.progress
+    if not g or not p then return false end
+    local step = idx and g.steps[idx]
+    if not step then return false end
+    if not self:StepApplies(step) then ns.Print("that step is not for this character.") return false end
+    if p.skipped and p.skipped[idx] then
+        if step.type == "ACCEPT" and step.quest then
+            for j, s in ipairs(g.steps) do if s.quest == step.quest then p.done[j] = nil p.skipped[j] = nil end end
+        end
+        p.skipped[idx] = nil
+    end
+    p.done[idx] = nil
+    local cur = self.current
+    if cur == idx then return true end
+    local after = cur and g.steps[cur] and self:PrevIdx(cur) or nil
+    local block = {}
+    if step.quest then
+        -- this quest's open steps that come before it in its own order and are not already behind us
+        local from = cur and g.steps[cur] and self:PosOf(cur) or 1
+        for _, j in ipairs(self:Order()) do
+            if j == idx then break end
+            if g.steps[j].quest == step.quest and self:PosOf(j) >= from and self:IsOpen(j) then block[#block + 1] = j end
+        end
+    end
+    block[#block + 1] = idx
+    if cur and g.steps[cur] then
+        local inBlock = {}
+        for _, b in ipairs(block) do inBlock[b] = true end
+        while after and inBlock[after] do after = self:PrevIdx(after) end
+        self:PlaceAfter(block, after or 0)
+    end
+    p.step = block[1]
+    self.hold, self.current = nil, nil
+    ns.Printf("Now: %s", self:GetStepText(step))
+    self:Evaluate("now")
+    return true
+end
+
+--- Back to the guide's own order.
+function Guide:ResetOrder()
+    local p = self.progress
+    if not p or not p.order or #p.order == 0 then return false end
+    -- restart the walk at the earliest step the player had moved or is on, so nothing that was put
+    -- off ends up behind the walk
+    local start = self.current
+    for _, m in ipairs(p.order) do
+        if self:IsOpen(m[1]) and (not start or m[1] < start) then start = m[1] end
+    end
+    p.order = nil
+    self.orderCache = nil
+    if start then p.step = start end
+    self.hold, self.current = nil, nil
+    self:Evaluate("order")
+    return true
+end
+
+--- Steps skipped by hand in the active guide that are still skipped, in walking order.
+function Guide:SkippedSteps()
+    local p = self.progress
+    local out = {}
+    if not self.active or not p or not p.skipped then return out end
+    for _, idx in ipairs(self:Order()) do
+        if p.skipped[idx] and p.done[idx] then out[#out + 1] = idx end
+    end
+    return out
 end
 
 --- Recompute the current step from the persisted position and game state.
@@ -565,13 +813,13 @@ function Guide:Evaluate(reason)
             -- the player took the quest by hand (a level-independent giver, or a level we misjudged):
             -- its objective steps were passed over as deferred, so go back and work them
             p.deferred[quest] = nil
-            if acceptIdx < i then
+            if self:PosOf(acceptIdx) < self:PosOf(i) then
                 i = acceptIdx
                 self.note = string.format("%s is in your log - back to it.", ns.Quest:GetTitle(quest) or ("quest " .. quest))
             end
         elseif not self:LevelGate(s) then
             p.deferred[quest] = nil
-            if acceptIdx < i then
+            if self:PosOf(acceptIdx) < self:PosOf(i) then
                 i = acceptIdx
                 self.note = string.format("level reached - back to %s.", ns.Quest:GetTitle(quest) or ("quest " .. quest))
             end
@@ -584,7 +832,7 @@ function Guide:Evaluate(reason)
         local s = steps[idx]
         if not s or s.quest ~= quest or p.done[idx] or ns.Quest:IsCompleted(quest) then
             self.optionalPassed[quest] = nil
-        elseif ns.Quest:IsOnQuest(quest) and idx < i then
+        elseif ns.Quest:IsOnQuest(quest) and self:PosOf(idx) < self:PosOf(i) then
             self.optionalPassed[quest] = nil
             i = idx
             self.note = string.format("%s is in your log - back to it.", ns.Quest:GetTitle(quest) or ("quest " .. quest))
@@ -631,7 +879,7 @@ function Guide:Evaluate(reason)
                 if not ns.Quest:IsCompleted(step.quest) then
                     self.optionalPassed = self.optionalPassed or {}
                     local at = self.optionalPassed[step.quest]
-                    if not at or i < at then self.optionalPassed[step.quest] = i end
+                    if not at or self:PosOf(i) < self:PosOf(at) then self.optionalPassed[step.quest] = i end
                 end
             end
         end
@@ -640,7 +888,7 @@ function Guide:Evaluate(reason)
             -- look at the next few automatic steps, not only the first one: quests accepted out of
             -- order (or a hub already visited) are proof the player is past this travel / note step,
             -- even when the step right after it is still open.
-            local k, seen = i + 1, 0
+            local k, seen = self:NextIdx(i), 0
             while steps[k] and seen < LOOKAHEAD do
                 if not (MANUAL[steps[k].type] or not self:StepApplies(steps[k])) then
                     seen = seen + 1
@@ -650,11 +898,11 @@ function Guide:Evaluate(reason)
                         break
                     end
                 end
-                k = k + 1
+                k = self:NextIdx(k)
             end
         end
         if not done then break end
-        i = i + 1
+        i = self:NextIdx(i)
     end
 
     -- a standing reminder while something is skipped for level
@@ -673,7 +921,7 @@ function Guide:Evaluate(reason)
         local n, max = ns.Quest:GetNumQuests()
         if max and max > 0 and n >= max then
             local needed = {}
-            for k = i, #steps do if steps[k].quest then needed[steps[k].quest] = true end end
+            for _, k in ipairs(self:OrderFrom(i)) do if steps[k].quest then needed[steps[k].quest] = true end end
             local spare = {}
             for _, id in ipairs(ns.Quest.order or {}) do
                 if not needed[id] then spare[#spare + 1] = ns.Quest:GetTitle(id) or ("quest " .. id) end
@@ -826,6 +1074,11 @@ function Guide:MarkDone(idx, reason)
     local step = self.active.steps[idx]
     if not step then return end
     self.progress.done[idx] = true
+    if reason == "skip" then
+        -- remembered, so /fg skipped can bring it back
+        self.progress.skipped = self.progress.skipped or {}
+        self.progress.skipped[idx] = true
+    end
     if self.hold == idx then self.hold = nil end
     -- skipping an ACCEPT step means skipping that quest entirely
     if step.type == "ACCEPT" and step.quest and reason == "skip" then
@@ -839,16 +1092,17 @@ end
 function Guide:Skip()
     local step = self:GetCurrentStep()
     if not step then return end
-    ns.Printf("Skipped step %d: %s", step.index, self:GetStepText(step))
+    ns.Printf("Skipped step %d: %s (/fg skipped brings it back)", self:PosOf(step.index), self:GetStepText(step))
     self:MarkDone(step.index, "skip")
 end
 
 function Guide:Back()
     if not self.active or not self.progress then return end
-    local i = math.max(1, (self.current or 1) - 1)
+    local i = self:PrevIdx(self.current or self:FirstIdx()) or self:FirstIdx()
     -- walk back over steps that do not apply to this character
-    while i > 1 and not self:StepApplies(self.active.steps[i]) do i = i - 1 end
+    while self:PrevIdx(i) and not self:StepApplies(self.active.steps[i]) do i = self:PrevIdx(i) end
     self.progress.done[i] = nil
+    if self.progress.skipped then self.progress.skipped[i] = nil end
     self.progress.step = i
     self.current = nil
     self.hold = i        -- stay here even if the game says it is done (until /fg skip or a real change)
@@ -860,7 +1114,10 @@ function Guide:SetStep(n)
     if not self.active or not self.progress then return end
     n = math.max(1, math.min(#self.active.steps, math.floor(n)))
     self.hold = nil
-    for j = n, #self.active.steps do self.progress.done[j] = nil end
+    for _, j in ipairs(self:OrderFrom(n)) do
+        self.progress.done[j] = nil
+        if self.progress.skipped then self.progress.skipped[j] = nil end
+    end
     self.progress.step = n
     self.current = nil
     self:Evaluate("jump")
@@ -898,16 +1155,18 @@ function Guide:Resync()
     end
     -- everything before the furthest thing you have actually done is behind you: travel, notes and
     -- talk steps left open there would otherwise hold the guide at the top of the chapter forever
+    local seq = self:Order()
     local last = 0
-    for i, s in ipairs(steps) do
-        if p.done[i] or (self:StepApplies(s) and self:IsStepDone(s, i)) then last = i end
+    for k, i in ipairs(seq) do
+        local s = steps[i]
+        if p.done[i] or (self:StepApplies(s) and self:IsStepDone(s, i)) then last = k end
     end
-    for i = 1, last - 1 do
-        if MANUAL[steps[i].type] then p.done[i] = true end
+    for k = 1, last - 1 do
+        if MANUAL[steps[seq[k]].type] then p.done[seq[k]] = true end
     end
     self.hold = nil
     self.current = nil
-    p.step = 1               -- re-walk from the top so done steps are skipped in one pass
+    p.step = self:FirstIdx()  -- re-walk from the top so done steps are skipped in one pass
     self:Evaluate("resync")
     return skipped
 end
@@ -994,9 +1253,10 @@ function Guide:GetStepProgress(step)
     return step.note or ""
 end
 
+--- Position of the current step in the walking order (past the end when finished), and the total.
 function Guide:GetStepCount()
     if not self.active then return 0, 0 end
-    return self.current or 0, #self.active.steps
+    return self.current and self:PosOf(self.current) or 0, #self.active.steps
 end
 
 -- ------------------------------------------------------------

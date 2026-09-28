@@ -70,7 +70,11 @@ local function WriteChunks(prefix, n, str)
     if #str > CHUNK * n then
         if not warnedFull[prefix] then
             warnedFull[prefix] = true
-            ns.Warn(string.format("cvar mirror: %s state is %d characters, only %d fit - the tail (step edits) will not survive a beta login. Fold edits in with tools/apply_edits.py.", prefix == ACCT_PREFIX and "account" or "character", #str, CHUNK * n))
+            if prefix == ACCT_PREFIX then
+                ns.Warn(string.format("cvar mirror: account state is %d characters, only %d fit - the tail (step edits) will not survive a beta login. Fold edits in with tools/apply_edits.py.", #str, CHUNK * n))
+            else
+                ns.Warn(string.format("cvar mirror: character state is %d characters, only %d fit - the tail (other guides' positions, then moved steps) will not survive a beta login. /fg order reset frees room.", #str, CHUNK * n))
+            end
         end
         str = str:sub(1, CHUNK * n)
     end
@@ -150,7 +154,18 @@ function Persist:EncodeChar()
         for quest, idx in pairs(active.deferred or {}) do df[#df + 1] = quest .. ":" .. idx end
         table.sort(df)
         if #df > 0 then t.df = table.concat(df, ",") end
+        -- steps the player moved (Later / Do now), in the order they were moved: "idx>after"
+        local o = {}
+        for _, m in ipairs(active.order or {}) do o[#o + 1] = m[1] .. ">" .. m[2] end
+        if #o > 0 then t.o = table.concat(o, ",") end
+        local sk = encodeRanges(active.skipped)
+        if sk ~= "" then t.sk = sk end
     end
+    -- quests pinned first (+) or last (-) in auto mode
+    local tp = {}
+    for quest, n in pairs(ch.trackerPrio or {}) do if n ~= 0 then tp[#tp + 1] = quest .. ":" .. n end end
+    table.sort(tp)
+    if #tp > 0 then t.tp = table.concat(tp, ",") end
     -- other guides: step only
     local others = {}
     for id, p in pairs(ch.guides or {}) do
@@ -158,7 +173,7 @@ function Persist:EncodeChar()
     end
     table.sort(others)
     if #others > 0 then t.p = table.concat(others, ",") end
-    return encodePairs(t, { "v", "g", "m", "a", "r", "tr", "s", "gv", "d", "df", "p" })
+    return encodePairs(t, { "v", "g", "m", "a", "r", "tr", "s", "gv", "d", "df", "o", "sk", "tp", "p" })
 end
 
 function Persist:DecodeChar(s)
@@ -179,7 +194,17 @@ function Persist:DecodeChar(s)
         if t.df and t.df ~= "" then
             for quest, idx in string.gmatch(t.df, "(%d+):(%d+)") do p.deferred[tonumber(quest)] = tonumber(idx) end
         end
+        p.order = nil
+        for idx, after in string.gmatch(t.o or "", "(%d+)>(%d+)") do
+            p.order = p.order or {}
+            p.order[#p.order + 1] = { tonumber(idx), tonumber(after) }
+        end
+        p.skipped = t.sk and decodeRanges(t.sk, {}) or nil
         ch.guides[ch.activeGuide] = p
+    end
+    if t.tp then
+        ch.trackerPrio = {}
+        for quest, n in string.gmatch(t.tp, "(%d+):(%-?%d+)") do ch.trackerPrio[tonumber(quest)] = tonumber(n) end
     end
     for id, step in string.gmatch(t.p or "", "([^,:]+):(%d+)") do
         ch.guides[id] = ch.guides[id] or { step = tonumber(step), done = {}, version = 1 }

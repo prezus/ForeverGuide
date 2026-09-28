@@ -25,6 +25,7 @@ local QG = ns:NewModule("QuestGuide")
 local FOOTER = 70       -- two button rows
 local DRAWER_ROWS_HEIGHT = 180
 local frame
+local info      -- the Details popup (created on first use)
 
 local ICON_FOR = { ACCEPT = "accept", TURNIN = "turnin", KILL = "kill", COLLECT = "collect", COMPLETE = "collect",
                    GRIND = "kill", TRAVEL = "travel", FLY = "travel", HEARTH = "travel", TALK = "accept", NOTE = "travel",
@@ -127,6 +128,8 @@ function QG:Create()
 
     -- quests in the log that no guide covers, under the window while its button is on
     f.extra = self:NewDrawer(f, "UNKNOWN QUESTS")
+    -- steps skipped by hand, to bring back (opened from Details)
+    f.skipped = self:NewDrawer(f, "SKIPPED STEPS")
 
     f.footerLine = f:CreateTexture(nil, "ARTWORK")
     f.footerLine:SetHeight(1)
@@ -453,40 +456,44 @@ end
 function QG:BuildGuideEntries()
     local G = ns.Guide
     local g = G.active
-    local cur, total = G:GetStepCount()
+    local cur, total = G:GetStepCount()     -- position of the current step in the player's order
+    local curIdx = G.current
+    local seq = G:Order()
     local cfg = ns.db.ui
     local maxRows = math.max(3, cfg.maxRows or 7)
     local prevWanted = cfg.showCompleted ~= false and math.min(cfg.showPrevious or 2, 2) or 0
     local entries = {}
-    -- previous (done) rows
+    -- previous (done) rows, as positions
     local prev = {}
-    local i = cur - 1
-    while i >= 1 and #prev < prevWanted do
-        local s = g.steps[i]
-        if s and G:StepApplies(s) then table.insert(prev, 1, i) end
-        i = i - 1
+    local k = cur - 1
+    while k >= 1 and #prev < prevWanted do
+        local s = g.steps[seq[k]]
+        if s and G:StepApplies(s) then table.insert(prev, 1, k) end
+        k = k - 1
     end
     -- current + upcoming
-    local idxs = {}
-    for _, p in ipairs(prev) do idxs[#idxs + 1] = p end
-    local j = cur
-    while j <= total and #idxs < maxRows do
+    local poss = {}
+    for _, p in ipairs(prev) do poss[#poss + 1] = p end
+    k = cur
+    while k <= total and #poss < maxRows do
+        local j = seq[k]
         local s = g.steps[j]
-        if s and G:StepApplies(s) and (j == cur or not G:IsStepDone(s, j) or cfg.showCompleted ~= false) then idxs[#idxs + 1] = j end
-        j = j + 1
+        if s and G:StepApplies(s) and (k == cur or not G:IsStepDone(s, j) or cfg.showCompleted ~= false) then poss[#poss + 1] = k end
+        k = k + 1
     end
     local upcoming = 0
-    for _, idx in ipairs(idxs) do
+    for _, pos in ipairs(poss) do
+        local idx = seq[pos]
         local s = g.steps[idx]
         local state
-        if idx < cur or (idx > cur and G:IsStepDone(s, idx)) then state = "done"
-        elseif idx == cur then state = "active"
+        if pos < cur or (pos > cur and G:IsStepDone(s, idx)) then state = "done"
+        elseif idx == curIdx then state = "active"
         elseif s.optional then state = "optional"
         else
             upcoming = upcoming + 1
             state = upcoming <= 2 and "available" or "future"
         end
-        if idx == cur and G.IsStepBlocked and G:IsStepBlocked(s) and G.note then state = "blocked" end
+        if idx == curIdx and G.IsStepBlocked and G:IsStepBlocked(s) and G.note then state = "blocked" end
         local sub = subtitle(G, s, idx)
         local gate = G.LevelGate and G:LevelGate(s)
         local deferred = s.quest and G.progress and G.progress.deferred and G.progress.deferred[s.quest]
@@ -496,11 +503,11 @@ function QG:BuildGuideEntries()
             sub = string.format("Needs level %d - skipped until then", gate or (q and q.req) or 0)
         end
         local e = {
-            number = idx, index = idx, step = s, icon = ICON_FOR[s.type] or "accept", state = state,
+            number = pos, index = idx, step = s, icon = ICON_FOR[s.type] or "accept", state = state,
             title = (forTag(s) and ((rowTitle(G, s) or "") .. " " .. forTag(s))) or rowTitle(G, s), subtitle = sub, questID = s.quest,
-            useItem = idx == cur and G:StepUseItem(s) or nil,
+            useItem = idx == curIdx and G:StepUseItem(s) or nil,
             onClick = function() G:SetStep(idx) end,
-            onRightClick = function() if idx == G.current then G:Skip() end end,
+            onRightClick = function(_, row) QG:ShowStepMenu(row, idx) end,
         }
         local tip = {}
         local eff = ns.Editor and ns.Editor:Effective(s) or s
@@ -509,7 +516,8 @@ function QG:BuildGuideEntries()
             local grey = ns.Quest:GreyWarning(s.quest)
             if grey then tip[#tip + 1] = "|cffff8040" .. grey .. "|r" end
         end
-        tip[#tip + 1] = "|cff8a8070Left click: jump here.  Right click on the current step: skip it.|r"
+        if G:IsMoved(idx) then tip[#tip + 1] = "|cff8a8070Moved by you (/fg order reset puts it back).|r" end
+        tip[#tip + 1] = "|cff8a8070Left click: jump here.  Right click: do it now, later, or skip it.|r"
         e.tooltip = tip
         entries[#entries + 1] = e
     end
@@ -525,7 +533,9 @@ function QG:BuildTrackerEntries()
             number = i, icon = c.kind == "turnin" and "turnin" or (c.kind == "kill" and "kill" or "collect"), state = i == 1 and "active" or (i <= 3 and "available" or "future"),
             title = ns.Quest:TitleWithLevel(c.questID, c.title), subtitle = c.what, loc = c.loc, questID = c.questID,
             useItem = i == 1 and c.kind ~= "turnin" and ns.Quest:UsableItem(c.questID) or nil,
-            tooltip = { c.loc and ns.DB:DescribeLocation(c.loc) or "", c.grey and ("|cffff8040" .. c.grey .. "|r") or nil },
+            tooltip = { c.loc and ns.DB:DescribeLocation(c.loc) or "", c.grey and ("|cffff8040" .. c.grey .. "|r") or nil,
+                        "|cff8a8070Right click: do it first, last, or in nearest order.|r" },
+            onRightClick = function(_, row) QG:ShowMenu(row, QG:QuestMenuItems(c.questID)) end,
         }
     end
     return entries
@@ -538,6 +548,8 @@ function QG:SetDrawer(which)
     self.drawer = which
     frame.extra:SetShown(which == "unknown")
     if which == "unknown" then self:RefreshExtra() end
+    frame.skipped:SetShown(which == "skipped")
+    if which == "skipped" then self:RefreshSkipped() end
     if ns.Dungeons.SetDrawerShown then ns.Dungeons:SetDrawerShown(which == "dungeons") end
     for name, btn in pairs({ unknown = frame.unknownBtn, dungeons = frame.dungeonsBtn }) do
         local on = which == name
@@ -549,7 +561,116 @@ function QG:ToggleDrawer(which)
     self:SetDrawer(self.drawer ~= which and which or nil)
 end
 
+-- ---- the right-click menu on a row -----------------------------------------------------------
+local menu
+local MENU_W = 116
+
+function QG:RowMenu()
+    if menu then return menu end
+    local ok, m = pcall(CreateFrame, "Frame", "ForeverGuideRowMenu", UIParent, "BackdropTemplate")
+    if not ok or not m then m = CreateFrame("Frame", "ForeverGuideRowMenu", UIParent) end
+    menu = m
+    m:SetFrameStrata("DIALOG")
+    m:EnableMouse(true)
+    m:SetClampedToScreen(true)
+    m:SetWidth(MENU_W)
+    Theme.Backdrop(m, "panel", 0.92)
+    m.buttons = {}
+    m:Hide()
+    -- Escape closes it, like the game's own menus
+    local special = rawget(_G, "UISpecialFrames")
+    if type(special) == "table" then table.insert(special, "ForeverGuideRowMenu") end
+    return m
+end
+
+--- A small menu beside `row`: items = { { label, fn }, ... }. Right-clicking the same row again closes it.
+function QG:ShowMenu(row, items)
+    local m = self:RowMenu()
+    if m:IsShown() and m.row == row then m:Hide() return end
+    if #items == 0 then m:Hide() return end
+    for i, item in ipairs(items) do
+        local b = m.buttons[i]
+        if not b then
+            local btn
+            btn = Theme.NewButton(m, "", MENU_W - 12, 22, function()
+                local it = btn.item
+                m:Hide()
+                if it then it[2]() end
+            end)
+            btn:SetPoint("TOPLEFT", m, "TOPLEFT", 6, -6 - (i - 1) * 26)
+            m.buttons[i] = btn
+            b = btn
+        end
+        b.item = item
+        b.label:SetText(item[1])
+        b:Show()
+    end
+    for i = #items + 1, #m.buttons do m.buttons[i].item = nil m.buttons[i]:Hide() end
+    m:SetHeight(12 + #items * 26 - 4)
+    m:ClearAllPoints()
+    if row then m:SetPoint("TOPRIGHT", row, "TOPLEFT", -4, 0) else m:SetPoint("CENTER") end
+    m.row = row
+    m:Show()
+end
+
+--- What can be done with a guide step: now, later, skip - or bring back a skipped one.
+function QG:StepMenuItems(idx)
+    local G = ns.Guide
+    local p = G.progress
+    local s = G.active and G.active.steps[idx]
+    if not s or not p then return {} end
+    local items = {}
+    if G:IsOpen(idx) then
+        if idx ~= G.current then items[#items + 1] = { "Do now", function() G:DoNow(idx) end } end
+        items[#items + 1] = { "Later", function() G:Later(idx) end }
+        items[#items + 1] = { "Skip", function()
+            ns.Printf("Skipped step %d: %s", G:PosOf(idx), G:GetStepText(s))
+            G:MarkDone(idx, "skip")
+        end }
+    elseif p.done[idx] and G:StepApplies(s) and not G:IsStepDone(s, idx) then
+        -- marked done or skipped by hand, not by the game: it can come back
+        items[#items + 1] = { "Do now", function() G:DoNow(idx) end }
+    end
+    return items
+end
+
+function QG:ShowStepMenu(row, idx)
+    self:ShowMenu(row, self:StepMenuItems(idx))
+end
+
+--- Auto mode: pin a quest first or last, or back to distance order.
+function QG:QuestMenuItems(questID)
+    local T = ns.Tracker
+    local items = {
+        { "Do first", function() T:Pin(questID, "first") end },
+        { "Do last", function() T:Pin(questID, "last") end },
+    }
+    if (T:Prio()[questID] or 0) ~= 0 then items[#items + 1] = { "Nearest order", function() T:Pin(questID, nil) end } end
+    return items
+end
+
 -- ---- refresh -------------------------------------------------------------------------------
+function QG:RefreshSkipped()
+    local f = frame
+    local G = ns.Guide
+    local entries = {}
+    for _, idx in ipairs(G.active and G:SkippedSteps() or {}) do
+        local s = G.active.steps[idx]
+        entries[#entries + 1] = {
+            number = G:PosOf(idx), index = idx, step = s, icon = ICON_FOR[s.type] or "accept", state = "future",
+            title = rowTitle(G, s), subtitle = "Skipped - click to do it now", questID = s.quest,
+            tooltip = { "|cff8a8070Left click: do it now (it comes back into the guide).|r" },
+            onClick = function() G:DoNow(idx) end,
+        }
+    end
+    if info and info.skippedBtn then
+        info.skippedBtn.label:SetText(#entries > 0 and string.format("Skipped (%d)", #entries) or "Skipped")
+    end
+    if not f.skipped:IsShown() then return end
+    f.skipped.list:Set(entries, "Nothing skipped in this guide.")
+    f.skipped:Fit()
+end
+
 function QG:RefreshExtra()
     local f = frame
     local covered = ns.Guide:CoveredQuests()
@@ -578,6 +699,7 @@ function QG:Refresh()
     local f = frame
     self:ApplyTracker()
     self:RefreshExtra()
+    self:RefreshSkipped()
     local G, T = ns.Guide, ns.Tracker
     local g = G.active
     local level = ns.Player:GetLevel()
@@ -611,7 +733,6 @@ function QG:Refresh()
 end
 
 -- ---- the "Details" info popup --------------------------------------------------------------
-local info
 function QG:CreateInfo()
     if info then return info end
     local ok, p = pcall(CreateFrame, "Frame", "ForeverGuideInfo", UIParent, "BackdropTemplate")
@@ -636,11 +757,13 @@ function QG:CreateInfo()
     p.skip = Theme.NewButton(p, "Skip", 66, 22, function() ns.Guide:Skip() QG:RefreshInfo() end)
     p.auto = Theme.NewButton(p, "Auto", 66, 22, function() ns.Tracker:SetMode(ns.char.mode == "auto" and "guide" or "auto") QG:RefreshInfo() end)
     p.resync = Theme.NewButton(p, "Resync", 66, 22, function() ns.Commands:Run("resync") QG:RefreshInfo() end)
+    p.skippedBtn = Theme.NewButton(p, "Skipped", 138, 22, function() QG:ToggleDrawer("skipped") end)
     p.close = Theme.NewButton(p, "x", 26, 20, function() info:Hide() end)
     p.back:SetPoint("BOTTOMLEFT", p, "BOTTOMLEFT", 12, 10)
     p.skip:SetPoint("LEFT", p.back, "RIGHT", 6, 0)
     p.auto:SetPoint("LEFT", p.skip, "RIGHT", 6, 0)
     p.resync:SetPoint("LEFT", p.auto, "RIGHT", 6, 0)
+    p.skippedBtn:SetPoint("BOTTOMLEFT", p.back, "TOPLEFT", 0, 6)
     p.close:SetPoint("TOPRIGHT", p, "TOPRIGHT", -8, -8)
     p:Hide()
     return p
@@ -668,6 +791,10 @@ function QG:RefreshInfo()
             lines[#lines + 1] = "Guide complete!" .. (g.next and ("  Next: " .. g.next) or "")
         end
         if G.note then lines[#lines + 1] = "|cffff8040" .. G.note .. "|r" end
+        local moved = G.progress and G.progress.order and #G.progress.order or 0
+        if moved > 0 then
+            lines[#lines + 1] = string.format("|cff8a8070%d step%s moved by you - /fg order reset puts them back.|r", moved, moved == 1 and "" or "s")
+        end
         if g.notes then lines[#lines + 1] = " " lines[#lines + 1] = "|cff8a8070" .. g.notes .. "|r" end
         info.auto:SetText(ns.char.mode == "auto" and "Guide" or "Auto")
         info.auto.label:SetText(ns.char.mode == "auto" and "Guide" or "Auto")
@@ -678,8 +805,9 @@ function QG:RefreshInfo()
     info.body:SetText(table.concat(lines, "\n"))
     local titleH = info.title.GetStringHeight and info.title:GetStringHeight() or 18
     local bodyH = info.body.GetStringHeight and info.body:GetStringHeight() or 60
-    info:SetHeight(math.max(140, 12 + titleH + 8 + bodyH + 16 + 22 + 12))
-    info.back:SetShown(g ~= nil) info.skip:SetShown(g ~= nil) info.resync:SetShown(g ~= nil)
+    info:SetHeight(math.max(140, 12 + titleH + 8 + bodyH + 16 + 22 + 12 + 28))
+    info.back:SetShown(g ~= nil) info.skip:SetShown(g ~= nil) info.resync:SetShown(g ~= nil) info.skippedBtn:SetShown(g ~= nil)
+    if frame then self:RefreshSkipped() end
 end
 
 function QG:ToggleInfo()

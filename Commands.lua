@@ -14,6 +14,7 @@ local HELP = {
     "/fg guides          list guides   |  /fg guide <name>   start a guide",
     "/fg dungeons        list dungeon guides  |  /fg resume   back to your chapter",
     "/fg skip | back | step <n> | reset     move through the guide",
+    "/fg later | now <n> | skipped | order reset   put the current step off, do step n now, bring back skipped steps, undo your moves",
     "/fg quests          quest log with objectives and states",
     "/fg mode auto|guide   auto = navigate your quest log (no guide needed), guide = follow the active guide",
     "/fg quest <id|name>   everything the database knows about a quest (giver, turn-in, objectives, coords)",
@@ -103,7 +104,7 @@ function handlers.status()
             ns.Printf("Now:  %s> %s%s  (%s)", OK, G:GetStepText(step), END, G:GetStepProgress(step))
             if N.target then ns.Printf("      %s", N:Describe()) end
             if G.note then ns.Warn(G.note) end
-            local nxt = G.active.steps[cur + 1]
+            local nxt = G.active.steps[G:NextIdx(G.current)]
             if nxt then ns.Printf("Next: %s%s%s", D, G:GetStepText(nxt), END) end
         else
             ns.Print("Guide complete.")
@@ -450,7 +451,46 @@ function handlers.next() ns.Guide:Skip() end
 function handlers.step(rest)
     local n = tonumber(rest)
     if not n then ns.Print("usage: /fg step <number>") return end
-    ns.Guide:SetStep(n)
+    -- the number the window shows is the step's place in your order
+    local seq = ns.Guide:Order()
+    ns.Guide:SetStep(seq[math.floor(n)] or n)
+end
+
+function handlers.later()
+    if not ns.Guide.active then ns.Print("no guide active.") return end
+    ns.Guide:Later()
+end
+
+function handlers.now(rest)
+    local G = ns.Guide
+    if not G.active then ns.Print("no guide active.") return end
+    local n = tonumber(rest)
+    local idx = n and G:Order()[math.floor(n)]
+    if not idx then ns.Print("usage: /fg now <step number, as the window shows it>") return end
+    G:DoNow(idx)
+end
+
+function handlers.skipped()
+    local G = ns.Guide
+    if not G.active then ns.Print("no guide active.") return end
+    local list = G:SkippedSteps()
+    if #list == 0 then ns.Print("nothing skipped in this guide.") return end
+    ns.Printf("skipped in %s (/fg now <n> brings one back):", G.active.name or G.active.id)
+    for _, idx in ipairs(list) do ns.Printf("  %d. %s", G:PosOf(idx), G:GetStepText(G.active.steps[idx])) end
+    if ns.QuestGuide and ns.UI then ns.UI:Show() ns.QuestGuide:SetDrawer("skipped") end
+end
+
+function handlers.order(rest)
+    local G = ns.Guide
+    if rest == "reset" then
+        local any = false
+        if G.active and G:ResetOrder() then any = true end
+        if ns.char.trackerPrio and next(ns.char.trackerPrio) then ns.Tracker:ResetPriority() any = true end
+        ns.Print(any and "back to the guide's own order." or "nothing was moved.")
+        return
+    end
+    local moved = G.progress and G.progress.order and #G.progress.order or 0
+    ns.Printf("%d step%s moved in this guide. Right-click a step for Do now / Later; /fg order reset undoes all moves.", moved, moved == 1 and "" or "s")
 end
 
 function handlers.reset(rest)
@@ -731,7 +771,7 @@ function handlers.resync()
     local n = ns.Guide:Resync()
     local step = ns.Guide:GetCurrentStep()
     local _, total = ns.Guide:GetStepCount()      -- (current, total): only the total is wanted here
-    local where = step and string.format("step %d/%d: %s", step.index, total or 0, ns.Guide:GetStepText(step)) or "the end of the guide"
+    local where = step and string.format("step %d/%d: %s", ns.Guide:PosOf(step.index), total or 0, ns.Guide:GetStepText(step)) or "the end of the guide"
     if n > 0 then
         ns.Printf("resynced: %d out-levelled quest%s skipped - now at %s", n, n == 1 and "" or "s", where)
     elseif before == ns.Guide.current then

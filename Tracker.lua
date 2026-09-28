@@ -75,6 +75,34 @@ function Tracker:BestForQuest(entry)
              loc = loc, distance = dist }
 end
 
+-- ---- the player's own order: Do first / Do last ----------------------------------------------
+--- questID -> tier (above 0: pinned first, below 0: pinned last), per character.
+function Tracker:Prio()
+    ns.char.trackerPrio = ns.char.trackerPrio or {}
+    return ns.char.trackerPrio
+end
+
+--- Pin a quest above (dir "first") or below (dir "last") every other, or back to distance order (nil).
+function Tracker:Pin(questID, dir)
+    if not questID then return end
+    local prio = self:Prio()
+    local hi, lo = 0, 0
+    for quest, n in pairs(prio) do
+        if quest ~= questID then hi, lo = math.max(hi, n), math.min(lo, n) end
+    end
+    if dir == "first" then prio[questID] = hi + 1
+    elseif dir == "last" then prio[questID] = lo - 1
+    else prio[questID] = nil end
+    self:Rethink()
+    ns.Events:Fire("FG_TRACKER_CHANGED", self.current)
+end
+
+function Tracker:ResetPriority()
+    ns.char.trackerPrio = {}
+    self:Rethink()
+    ns.Events:Fire("FG_TRACKER_CHANGED", self.current)
+end
+
 function Tracker:Rethink()
     local list = {}
     for entry in ns.Quest:Iterate() do
@@ -91,7 +119,15 @@ function Tracker:Rethink()
         c.score = (c.distance or 1e9) + margin * URGENCY_YARDS
         c.grey = Q:GreyWarning(c.questID)
     end
+    -- quests the player pinned first (Do first) or last (Do last) keep that place; within a tier
+    -- the nearest still wins, so the list keeps following you around
+    local prio = self:Prio()
+    if #ns.Quest.order > 0 then
+        for quest in pairs(prio) do if not ns.Quest:IsOnQuest(quest) then prio[quest] = nil end end
+    end
+    for _, c in ipairs(list) do c.prio = prio[c.questID] or 0 end
     table.sort(list, function(a, b)
+        if a.prio ~= b.prio then return a.prio > b.prio end
         if a.score ~= b.score then return a.score < b.score end
         return a.questID < b.questID
     end)

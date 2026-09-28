@@ -96,7 +96,7 @@ function Row.Create(parent, index)
         if not e then return end
         local fn = button == "RightButton" and e.onRightClick or e.onClick
         if fn then
-            local okc, err = pcall(fn, e)
+            local okc, err = pcall(fn, e, self)
             if not okc then ns.ReportOnce("row:click", err) end
         end
     end)

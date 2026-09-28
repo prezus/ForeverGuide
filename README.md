@@ -90,6 +90,7 @@ In game:
 | `/fg help` | every command |
 | `/fg guides` / `/fg guide <name>` | list / start a guide |
 | `/fg skip` `/fg back` `/fg step <n>` `/fg reset` | move through the guide |
+| `/fg later` `/fg now <n>` `/fg skipped` `/fg order reset` | put the current step off, do step n now, bring back skipped steps, undo your moves (or right-click a step) |
 | `/fg pos` | your uiMapID + coordinates, printed as a ready-to-paste TRAVEL step |
 | `/fg target` | npc id, level, reaction of your target |
 | `/fg way 42.3 71.8` | point the arrow at a coordinate on your current map |

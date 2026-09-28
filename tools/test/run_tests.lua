@@ -1688,6 +1688,117 @@ do
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
 end
 
+-- ---- the player's own order: Later / Do now, and skipped steps that come back ------------
+do
+    local function obj() return { { text = "Test mob slain: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } } end
+    local function acc(q) return { type = "ACCEPT", quest = q, questName = "Order " .. q, map = 1429, x = 40, y = 40 } end
+    ns.RegisterGuide({ id = "TEST_ORDER", name = "order test", version = 1, faction = "Alliance", minLevel = 1, maxLevel = 60, map = 1429, zone = "Elwynn Forest",
+        steps = {
+            acc(990701), acc(990702), acc(990703),
+            { type = "KILL", quest = 990701, questName = "Order 990701", target = "Test mob", map = 1429, x = 41, y = 41 },
+            acc(990704), acc(990705), acc(990706),
+            { type = "TURNIN", quest = 990701, questName = "Order 990701", map = 1429, x = 40, y = 40 },
+            acc(990707),
+        } })
+    G:Activate("TEST_ORDER", true); settle()
+    local function seqString() return table.concat(G:Order(), ",") end
+    check(G.current == 1 and seqString() == "1,2,3,4,5,6,7,8,9", "nothing moved: the guide's own order (" .. seqString() .. ")")
+
+    -- Later on the current accept: it comes back after the next five open steps, and the quest's own
+    -- objective in between goes with it; the turn-in further on stays where it is
+    check(G:Later() == true, "Later on the current step works")
+    check(seqString() == "2,3,5,6,7,1,4,8,9", "the accept and its objective moved behind five open steps (" .. seqString() .. ")")
+    check(G.current == 2, "the walk goes on at the next step (" .. tostring(G.current) .. ")")
+    check(not G.progress.done[1], "a step put off is not done")
+    ns.UI:Refresh(); settle()
+    local first = ForeverGuideFrame.list.entries[1]
+    check(first and first.index == 2 and first.number == 1, "the window lists the new order, numbered by place (" .. tostring(first and first.index) .. ")")
+
+    MOCK_ACCEPT(990702, "Order 990702", obj()); settle()
+    check(G.current == 3, "finishing a step moves on in the new order (" .. tostring(G.current) .. ")")
+    MOCK_ACCEPT(990703, "Order 990703", obj()); settle()
+    check(G.current == 5, "the walk passes over the moved steps' old places (" .. tostring(G.current) .. ")")
+
+    -- Do now: a step further down becomes the current one, and the old current one follows it
+    check(G:DoNow(1) == true and G.current == 1, "Do now makes that step current (" .. tostring(G.current) .. ")")
+    check(G:PosOf(5) > G:PosOf(1) and not G.progress.done[5], "the old current step is still ahead, not done")
+    check(G:PosOf(4) > G:PosOf(1) and G:PosOf(8) > G:PosOf(4), "the quest's objective and turn-in still come after its accept (" .. seqString() .. ")")
+
+    -- Skip is no longer for good: the skipped step is listed and Do now brings its whole quest back
+    G:Skip(); settle()
+    check(G.progress.done[1] and G.progress.done[4] and G.progress.done[8], "skipping an accept skips its quest")
+    local skipped = G:SkippedSteps()
+    check(#skipped == 1 and skipped[1] == 1, "the skipped step is listed (" .. #skipped .. ")")
+    check(G:DoNow(1) == true and G.current == 1, "Do now brings a skipped step back (" .. tostring(G.current) .. ")")
+    check(not G.progress.done[4] and not G.progress.done[8] and #G:SkippedSteps() == 0, "...with the rest of its quest, and it is no longer listed")
+    check(G:DoNow(99) == false, "Do now on a step that does not exist does nothing")
+
+    -- the moves and the skipped list survive a beta login (cvar mirror)
+    G.progress.done[9] = true G.progress.skipped = { [9] = true }
+    local before = seqString()
+    local enc = ns.Persist:EncodeChar()
+    check(enc:find("o=", 1, true) ~= nil and enc:find("sk=9", 1, true) ~= nil, "moves and skipped steps are in the mirror")
+    G.progress.order, G.progress.skipped = nil, nil
+    ns.Persist:DecodeChar(enc)
+    G.progress = ns.char.guides.TEST_ORDER
+    check(seqString() == before, "the order comes back from the mirror (" .. seqString() .. " vs " .. before .. ")")
+    check(G.progress.skipped and G.progress.skipped[9], "the skipped list comes back too")
+
+    -- the right-click menu on a row: Do now / Later / Skip
+    ns.UI:Refresh(); settle()
+    local row
+    for _, r in ipairs(ForeverGuideFrame.list.rows) do
+        if r:IsShown() and r.entry and r.entry.index == 5 then row = r end
+    end
+    check(row ~= nil, "step 5 has a row")
+    if row then
+        row:GetScript("OnClick")(row, "RightButton")
+        local m = ForeverGuideRowMenu
+        local labels = {}
+        for _, b in ipairs(m.buttons) do if b:IsShown() then labels[#labels + 1] = b.label:GetText() end end
+        check(m:IsShown() and table.concat(labels, ",") == "Do now,Later,Skip", "right click opens Do now / Later / Skip (" .. table.concat(labels, ",") .. ")")
+        local later = m.buttons[2]
+        later:GetScript("OnClick")(later)
+        check(not m:IsShown() and G:IsMoved(5), "Later from the menu moves the step and closes the menu")
+    end
+
+    -- reset: back to the guide's order; a new guide version drops the moves
+    check(G:ResetOrder() == true and seqString() == "1,2,3,4,5,6,7,8,9", "/fg order reset restores the guide's order (" .. seqString() .. ")")
+    G.progress.order = { { 3, 0 } }
+    ns.Database:GuideProgress("TEST_ORDER", 2)
+    check(G.progress.order == nil and G.progress.skipped == nil, "a new guide version drops the moves and the skipped list")
+
+    for _, q in ipairs({ 990702, 990703 }) do MOCK_ABANDON(q) end
+    settle()
+    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
+end
+
+-- ---- auto mode: Do first / Do last pins a quest over the distance order -------------------------
+do
+    MOCK_ACCEPT(990801, "Near Quest", { { text = "Near: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } })
+    MOCK_ACCEPT(990802, "Far Quest", { { text = "Far: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } })
+    settle()
+    MOCK_MOVE(40, 40)
+    MOCK.questPins = { [1429] = { { questID = 990801, x = 0.41, y = 0.40 }, { questID = 990802, x = 0.80, y = 0.80 } } }
+    ns.Tracker:SetMode("auto"); settle()
+    local function pos(q) for i, c in ipairs(ns.Tracker.candidates) do if c.questID == q then return i end end return 99 end
+    ns.Tracker:Rethink()
+    check(pos(990801) < pos(990802), "nearest first (" .. pos(990801) .. " vs " .. pos(990802) .. ")")
+    ns.Tracker:Pin(990802, "first")
+    check(pos(990802) == 1 and ns.Tracker.current.questID == 990802, "Do first puts a far quest on top and the arrow on it")
+    ns.Tracker:Pin(990801, "last")
+    check(pos(990801) == #ns.Tracker.candidates, "Do last sends a quest to the bottom")
+    check(ns.Persist:EncodeChar():find("tp=", 1, true) ~= nil, "the pins are in the mirror")
+    ns.Tracker:Pin(990801, nil)
+    MOCK_ABANDON(990802); settle()
+    ns.Tracker:Rethink()
+    check(ns.char.trackerPrio[990802] == nil, "a quest that left the log loses its pin")
+    ns.Tracker:ResetPriority()
+    MOCK_ABANDON(990801); settle()
+    MOCK.questPins = nil
+    ns.Tracker:SetMode("guide"); settle()
+end
+
 -- ---- sweep: every command, every UI script, options, keybinds ------------------------
 do
     local before = #reportedErrors
@@ -1697,7 +1808,7 @@ do
         "way 40 60", "lock", "unlock", "resetpos", "auto", "auto accept guide", "auto turnin off", "auto accept on", "auto turnin on",
         "minimap off", "minimap on", "arrow off", "arrow on", "scale 1.2", "scale 1", "share status", "share", "scan status",
         "harvest status", "bliz off", "bliz on", "wrong", "wrong test text", "reports", "options", "debug", "debug", "eval",
-        "reports clear", "bogus", "reset",
+        "reports clear", "bogus", "later", "now 2", "now", "skipped", "order", "order reset", "reset",
     }
     for _, c in ipairs(cmds) do ns.Commands:Run(c) end
     -- UI window scripts

@@ -109,8 +109,9 @@ function Database:GuideProgress(guideID, guideVersion)
         ns.char.guides[guideID] = p
     elseif guideVersion and p.version ~= guideVersion then
         -- step indices may have shifted between guide versions: keep the
-        -- step number (best effort) but drop manual completions.
+        -- step number (best effort) but drop manual completions and moves.
         p.done = {}
+        p.order, p.skipped = nil, nil
         p.version = guideVersion
     end
     if type(p.done) ~= "table" then p.done = {} end
