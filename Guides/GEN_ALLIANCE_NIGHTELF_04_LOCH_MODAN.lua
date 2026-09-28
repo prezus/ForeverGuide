@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_04_LOCH_MODAN",
     name = "4. Loch Modan 16-18 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 16,
@@ -16,30 +16,30 @@ ns.RegisterGuide({
     stepCount = 102,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 1572, npcName = "Thorgrum Borrelson", map = 1432, zone = "Loch Modan", x = 33.9, y = 51 }, -- 1
-        { type = "ACCEPT", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.6, y = 56 }, -- 2
-        { type = "KILL", quest = 433, questName = "The Public Servant", npc = 1117, target = "Rockjaw Bonesnapper", count = 10, map = 1426, zone = "Dun Morogh", x = 70.8, y = 56 }, -- 3
-        { type = "TURNIN", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.6, y = 56 }, -- 4
-        { type = "ACCEPT", quest = 314, questName = "Protecting the Herd", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, optional = true, note = "Elite - group up" }, -- 5
-        { type = "COLLECT", quest = 314, questName = "Protecting the Herd", target = "Fang of Vagash", count = 1, map = 1426, zone = "Dun Morogh", x = 62.4, y = 46.2, optional = true, mobs = "Vagash" }, -- 6
-        { type = "TURNIN", quest = 314, questName = "Protecting the Herd", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, optional = true }, -- 7
-        { type = "ACCEPT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.6 }, -- 8
-        { type = "COLLECT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", target = "MacGrann's Dried Meats", count = 1, map = 1426, zone = "Dun Morogh", x = 38.5, y = 53.9 }, -- 9
-        { type = "TURNIN", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.6 }, -- 10
-        { type = "ACCEPT", quest = 353, questName = "Stormpike's Delivery", npc = 1416, npcName = "Grimand Elmore", map = 1453, zone = "Stormwind City", x = 51.6, y = 12.2 }, -- 11
-        { type = "ACCEPT", quest = 6661, questName = "Deeprun Rat Roundup", npc = 12997, npcName = "Monty", map = 1453, zone = "Stormwind City", x = 72, y = 27.6, note = "Inside Deeprun Tram" }, -- 12
-        { type = "KILL", quest = 6661, questName = "Deeprun Rat Roundup", npc = 13017, target = "Rats captured", count = 5, map = 1453, zone = "Stormwind City", x = 72, y = 27.6, near = true, note = "Inside Deeprun Tram" }, -- 13
-        { type = "TURNIN", quest = 6661, questName = "Deeprun Rat Roundup", npc = 12997, npcName = "Monty", map = 1453, zone = "Stormwind City", x = 72, y = 27.6, note = "Inside Deeprun Tram" }, -- 14
-        { type = "ACCEPT", quest = 2039, questName = "Find Bingles", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6 }, -- 15
-        { type = "ACCEPT", quest = 2041, questName = "Speak with Shoni", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6 }, -- 16
-        { type = "ACCEPT", quest = 96391, questName = "Underground Map", npc = 6124, npcName = "Captain Beld", map = 1426, zone = "Dun Morogh", x = 77.8, y = 62.4, optional = true, note = "If you looted Dark Iron Map from Captain Beld / Dark Iron Spy, use it to start the quest; New in Forever" }, -- 17
-        { type = "TURNIN", quest = 96391, questName = "Underground Map", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true }, -- 18
-        { type = "TURNIN", quest = 2041, questName = "Speak with Shoni", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6 }, -- 19
-        { type = "ACCEPT", quest = 96393, questName = "Old Ironforge Incursion", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 20
-        { type = "COLLECT", quest = 1678, questName = "Vejrek", target = "Vejrek's Head", count = 1, map = 1426, zone = "Dun Morogh", x = 27.8, y = 58, class = { "WARRIOR" }, mobs = "Vejrek" }, -- 21
-        { type = "TURNIN", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 22
-        { type = "ACCEPT", quest = 2281, questName = "Redridge Rendezvous", npc = 6946, npcName = "Renzik \"The Shiv\"", map = 1453, zone = "Stormwind City", x = 75.8, y = 60.2, class = { "ROGUE" } }, -- 23
-        { type = "ACCEPT", quest = 2299, questName = "To Hulfdan!", npc = 1234, npcName = "Hogral Bakkan", map = 1426, zone = "Dun Morogh", x = 47.6, y = 52.6, class = { "ROGUE" } }, -- 24
-        { type = "TURNIN", quest = 94375, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "reduced xp (10%) - you out-levelled it" }, -- 25
+        { type = "COLLECT", quest = 92744, questName = "Murloc Gills", target = "Longshore Murloc Gill", count = 7, map = 1436, zone = "Westfall", x = 33.8, y = 84.8, near = true, mobs = "Murloc Coastrunner / Murloc Tidehunter / Murloc Warrior / Murloc Minor Oracle" }, -- 2
+        { type = "ACCEPT", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.6, y = 56 }, -- 3
+        { type = "KILL", quest = 433, questName = "The Public Servant", npc = 1117, target = "Rockjaw Bonesnapper", count = 10, map = 1426, zone = "Dun Morogh", x = 70.8, y = 56 }, -- 4
+        { type = "TURNIN", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.6, y = 56 }, -- 5
+        { type = "ACCEPT", quest = 314, questName = "Protecting the Herd", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, optional = true, note = "Elite - group up" }, -- 6
+        { type = "COLLECT", quest = 314, questName = "Protecting the Herd", target = "Fang of Vagash", count = 1, map = 1426, zone = "Dun Morogh", x = 62.4, y = 46.2, optional = true, mobs = "Vagash" }, -- 7
+        { type = "TURNIN", quest = 314, questName = "Protecting the Herd", npc = 1265, npcName = "Rudra Amberstill", map = 1426, zone = "Dun Morogh", x = 63, y = 49.8, optional = true }, -- 8
+        { type = "ACCEPT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.6 }, -- 9
+        { type = "COLLECT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", target = "MacGrann's Dried Meats", count = 1, map = 1426, zone = "Dun Morogh", x = 38.5, y = 53.9 }, -- 10
+        { type = "TURNIN", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.6 }, -- 11
+        { type = "ACCEPT", quest = 353, questName = "Stormpike's Delivery", npc = 1416, npcName = "Grimand Elmore", map = 1453, zone = "Stormwind City", x = 51.6, y = 12.2 }, -- 12
+        { type = "ACCEPT", quest = 6661, questName = "Deeprun Rat Roundup", npc = 12997, npcName = "Monty", map = 1453, zone = "Stormwind City", x = 72, y = 27.6, note = "Inside Deeprun Tram" }, -- 13
+        { type = "KILL", quest = 6661, questName = "Deeprun Rat Roundup", npc = 13017, target = "Rats captured", count = 5, map = 1453, zone = "Stormwind City", x = 72, y = 27.6, near = true, note = "Inside Deeprun Tram" }, -- 14
+        { type = "TURNIN", quest = 6661, questName = "Deeprun Rat Roundup", npc = 12997, npcName = "Monty", map = 1453, zone = "Stormwind City", x = 72, y = 27.6, note = "Inside Deeprun Tram" }, -- 15
+        { type = "ACCEPT", quest = 2039, questName = "Find Bingles", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6 }, -- 16
+        { type = "ACCEPT", quest = 2041, questName = "Speak with Shoni", npc = 6569, npcName = "Gnoarn", map = 1455, zone = "Ironforge", x = 69.4, y = 50.6 }, -- 17
+        { type = "ACCEPT", quest = 96391, questName = "Underground Map", npc = 6124, npcName = "Captain Beld", map = 1426, zone = "Dun Morogh", x = 77.8, y = 62.4, optional = true, note = "If you looted Dark Iron Map from Captain Beld / Dark Iron Spy, use it to start the quest; New in Forever" }, -- 18
+        { type = "TURNIN", quest = 96391, questName = "Underground Map", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true }, -- 19
+        { type = "TURNIN", quest = 2041, questName = "Speak with Shoni", npc = 6579, npcName = "Shoni the Shilent", map = 1453, zone = "Stormwind City", x = 55.4, y = 12.6 }, -- 20
+        { type = "ACCEPT", quest = 96393, questName = "Old Ironforge Incursion", npc = 264936, npcName = "Earthseer Farsen", map = 1426, zone = "Dun Morogh", x = 64.8, y = 58.4, optional = true, note = "New in Forever; For The Hall of Thanes (dungeon guide)" }, -- 21
+        { type = "COLLECT", quest = 1678, questName = "Vejrek", target = "Vejrek's Head", count = 1, map = 1426, zone = "Dun Morogh", x = 27.8, y = 58, class = { "WARRIOR" }, mobs = "Vejrek" }, -- 22
+        { type = "TURNIN", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 23
+        { type = "ACCEPT", quest = 2281, questName = "Redridge Rendezvous", npc = 6946, npcName = "Renzik \"The Shiv\"", map = 1453, zone = "Stormwind City", x = 75.8, y = 60.2, class = { "ROGUE" } }, -- 24
+        { type = "ACCEPT", quest = 2299, questName = "To Hulfdan!", npc = 1234, npcName = "Hogral Bakkan", map = 1426, zone = "Dun Morogh", x = 47.6, y = 52.6, class = { "ROGUE" } }, -- 25
         { type = "ACCEPT", quest = 94465, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" }, note = "New in Forever" }, -- 26
         { type = "TRAVEL", map = 1432, zone = "Loch Modan", x = 61.2, y = 64.2, radius = 60, note = "travel to Loch Modan (Loch Modan)" }, -- 27
         { type = "ACCEPT", quest = 298, questName = "Excavation Progress Report", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.9, y = 65.6 }, -- 28
