@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_01_TIRISFAL_GLADES",
     name = "1. Tirisfal Glades 1-12 (Undead)",
-    version = 9,
+    version = 10,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 1,
@@ -128,7 +128,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 99152, questName = "As Above, So Below", npc = 246389, npcName = "Hilda the Breaker", map = 1420, zone = "Tirisfal Glades", x = 22, y = 47.2 }, -- 111
         { type = "KILL", quest = 427, questName = "At War With The Scarlet Crusade", npc = 1535, target = "Scarlet Warrior", count = 10, map = 1420, zone = "Tirisfal Glades", x = 36.9, y = 48.2, near = true }, -- 112
         { type = "COLLECT", quest = 375, questName = "The Chill of Death", target = "Duskbat Pelt", count = 5, map = 1420, zone = "Tirisfal Glades", x = 48.6, y = 57.8, near = true, mobs = "Greater Duskbat / Vampiric Duskbat" }, -- 113
-        { type = "COLLECT", quest = 375, questName = "The Chill of Death", target = "Coarse Thread", count = 1, map = 1420, zone = "Tirisfal Glades", x = 61, y = 52.4, near = true, mobs = "Tharynn Bouden / Amy Davenport / Gina MacGregor / Gunder Thornbush" }, -- 114
+        { type = "COLLECT", quest = 375, questName = "The Chill of Death", target = "Coarse Thread", count = 1, map = 1420, zone = "Tirisfal Glades", x = 61, y = 52.4, near = true }, -- 114
         { type = "TURNIN", quest = 375, questName = "The Chill of Death", npc = 1521, npcName = "Gretchen Dedmar", map = 1420, zone = "Tirisfal Glades", x = 61.8, y = 52.6 }, -- 115
         { type = "TURNIN", quest = 5482, questName = "Doom Weed", npc = 10665, npcName = "Junior Apothecary Holland", map = 1420, zone = "Tirisfal Glades", x = 57.4, y = 48.9 }, -- 116
         { type = "TURNIN", quest = 426, questName = "The Mills Overrun", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.5 }, -- 117

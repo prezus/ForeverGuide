@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_03_STONETALON_MOUNTAINS",
     name = "3. Stonetalon Mountains 20-21 (Tauren)",
-    version = 8,
+    version = 9,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 20,
@@ -50,12 +50,12 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 33
         { type = "TURNIN", quest = 1060, questName = "Letter to Jin'Zil", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 34
         { type = "ACCEPT", quest = 6523, questName = "Protect Kaya", npc = 11856, npcName = "Kaya Flathoof", map = 1442, zone = "Stonetalon Mountains", x = 73.4, y = 85.6, note = "Objectives: Kaya Escorted to Camp Aparaje" }, -- 35
-        { type = "ACCEPT", quest = 6129, questName = "Curing the Sick", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.2, y = 31.8, class = { "DRUID" } }, -- 36
-        { type = "KILL", quest = 6129, questName = "Curing the Sick", npc = 12297, target = "Sickly Gazelle cured", count = 10, map = 1413, zone = "The Barrens", x = 48.8, y = 23.8, class = { "DRUID" } }, -- 37
-        { type = "TURNIN", quest = 6129, questName = "Curing the Sick", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 38
-        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4005, target = "Deepmoss Creeper", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 60.5, y = 76.5, near = true }, -- 39
-        { type = "ACCEPT", quest = 6284, questName = "Arachnophobia", map = 1442, zone = "Stonetalon Mountains", x = 59.1, y = 75.8, optional = true, note = "Elite - group up" }, -- 40
-        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4007, target = "Deepmoss Venomspitter", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 54.8, y = 73.6, near = true }, -- 41
+        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4005, target = "Deepmoss Creeper", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 60.5, y = 76.5, near = true }, -- 36
+        { type = "ACCEPT", quest = 6284, questName = "Arachnophobia", map = 1442, zone = "Stonetalon Mountains", x = 59.1, y = 75.8, optional = true, note = "Elite - group up" }, -- 37
+        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4007, target = "Deepmoss Venomspitter", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 54.8, y = 73.6, near = true }, -- 38
+        { type = "ACCEPT", quest = 6129, questName = "Curing the Sick", npc = 3448, npcName = "Tonga Runetotem", map = 1413, zone = "The Barrens", x = 52.2, y = 31.8, class = { "DRUID" } }, -- 39
+        { type = "KILL", quest = 6129, questName = "Curing the Sick", npc = 12297, target = "Sickly Gazelle cured", count = 10, map = 1413, zone = "The Barrens", x = 48.8, y = 23.8, class = { "DRUID" } }, -- 40
+        { type = "TURNIN", quest = 6129, questName = "Curing the Sick", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 41
         { type = "TURNIN", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 42
     } end,
 })

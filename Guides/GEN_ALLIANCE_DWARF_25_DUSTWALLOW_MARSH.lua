@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_25_DUSTWALLOW_MARSH",
     name = "25. Dustwallow Marsh 39-40 (Dwarf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 39,
@@ -30,7 +30,7 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 1204, questName = "Mudrock Soup and Bugs", target = "Forked Mudrock Tongue", count = 8, map = 1445, zone = "Dustwallow Marsh", x = 64.6, y = 40, near = true }, -- 13
         { type = "TURNIN", quest = 1204, questName = "Mudrock Soup and Bugs", npc = 4794, npcName = "Morgan Stern", map = 1445, zone = "Dustwallow Marsh", x = 66.3, y = 45.5 }, -- 14
         { type = "ACCEPT", quest = 1218, questName = "Soothing Spices", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.2 }, -- 15
-        { type = "COLLECT", quest = 1218, questName = "Soothing Spices", target = "Soothing Spices", count = 3, map = 1445, zone = "Dustwallow Marsh", x = 66.4, y = 51.5, near = true, mobs = "Gunder Thornbush / Banalash / Nerrist / Edna Mullby" }, -- 16
+        { type = "COLLECT", quest = 1218, questName = "Soothing Spices", target = "Soothing Spices", count = 3, map = 1445, zone = "Dustwallow Marsh", x = 66.4, y = 51.5, near = true }, -- 16
         { type = "TURNIN", quest = 1218, questName = "Soothing Spices", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.2 }, -- 17
         { type = "ACCEPT", quest = 1219, questName = "The Orc Report", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 25.9 }, -- 18
         { type = "ACCEPT", quest = 1206, questName = "Jarl Needs Eyes", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.2 }, -- 19

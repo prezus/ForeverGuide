@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_01_DUN_MOROGH",
   "name": "1. Dun Morogh 1-10 (Dwarf)",
-  "version": 9,
+  "version": 10,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 1,
@@ -91,7 +91,7 @@
     {"type": "TURNIN", "quest": 1598, "questName": "The Stolen Tome", "npc": 459, "npcName": "Drusilla La Salle", "map": 1429, "zone": "Elwynn Forest", "x": 49.8, "y": 42.6, "class": ["WARLOCK"], "race": ["Gnome"]},
     {"type": "ACCEPT", "quest": 384, "questName": "Beer Basted Boar Ribs", "npc": 1267, "npcName": "Ragnar Thunderbrew", "map": 1426, "zone": "Dun Morogh", "x": 46.8, "y": 52.4, "profession": "Cooking"},
     {"type": "COLLECT", "quest": 384, "questName": "Beer Basted Boar Ribs", "target": "Crag Boar Rib", "count": 6, "mobs": "Rockjaw Skullthumper / Rockjaw Bonesnapper / Crag Boar / Large Crag Boar", "map": 1426, "zone": "Dun Morogh", "x": 36.8, "y": 60.8, "near": true, "profession": "Cooking"},
-    {"type": "COLLECT", "quest": 384, "questName": "Beer Basted Boar Ribs", "target": "Rhapsody Malt", "count": 1, "mobs": "Innkeeper Belm / Yanni Stoutheart / Innkeeper Thulfram", "map": 1426, "zone": "Dun Morogh", "x": 47.4, "y": 52.5, "near": true, "profession": "Cooking"},
+    {"type": "COLLECT", "quest": 384, "questName": "Beer Basted Boar Ribs", "target": "Rhapsody Malt", "count": 1, "map": 1426, "zone": "Dun Morogh", "x": 47.4, "y": 52.5, "near": true, "profession": "Cooking"},
     {"type": "TURNIN", "quest": 420, "questName": "Senir's Observations", "npc": 1252, "npcName": "Senir Whitebeard", "map": 1426, "zone": "Dun Morogh", "x": 46.7, "y": 53.8},
     {"type": "ACCEPT", "quest": 96608, "questName": "The Great Outdoors", "npc": 265813, "npcName": "Eric Brighthammer", "map": 1426, "zone": "Dun Morogh", "x": 46.6, "y": 53.8, "note": "New in Forever; Objectives: Use the /sit emote near the campfire, Gain the Boosted Rest buff"},
     {"type": "TURNIN", "quest": 96608, "questName": "The Great Outdoors", "npc": 265813, "npcName": "Eric Brighthammer", "map": 1426, "zone": "Dun Morogh", "x": 46.6, "y": 53.8},
