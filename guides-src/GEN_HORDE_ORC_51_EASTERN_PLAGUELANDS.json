@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_51_EASTERN_PLAGUELANDS",
   "name": "51. Eastern Plaguelands 57-60 (Orc)",
-  "version": 5,
+  "version": 6,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 57,
@@ -27,7 +27,6 @@
     {"type": "TRAVEL", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.3, "y": 58.8, "radius": 60, "note": "travel to Eastern Plaguelands (Eastern Plaguelands)"},
     {"type": "ACCEPT", "quest": 9200, "questName": "Craftsman's Writ - Major Mana Potion", "npc": 16131, "npcName": "Rohan the Assassin", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.4, "y": 58.4, "note": "Loot Craftsman's Writ - Major Mana Potion from Rohan the Assassin and use it to start the quest; Elite - group up", "optional": true},
     {"type": "ACCEPT", "quest": 9128, "questName": "The Elemental Equation", "npc": 16116, "npcName": "Archmage Angela Dosantos", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.5, "y": 58.3},
-    {"type": "TURNIN", "quest": 8859, "questName": "Secrets of the Colossus - Zora", "npc": 11034, "npcName": "Lord Maxwell Tyrosus", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.6, "y": 58},
     {"type": "ACCEPT", "quest": 9141, "questName": "They Call Me \"The Rooster\"", "npc": 16212, "npcName": "Dispatch Commander Metz", "map": 1423, "zone": "Eastern Plaguelands", "x": 81, "y": 57.6},
     {"type": "TURNIN", "quest": 9202, "questName": "Craftsman's Writ - Major Healing Potion", "npc": 16283, "npcName": "Packmaster Stonebruiser", "map": 1423, "zone": "Eastern Plaguelands", "x": 80.4, "y": 58, "optional": true},
     {"type": "ACCEPT", "quest": 9665, "questName": "Bolstering Our Defenses", "npc": 17072, "npcName": "Emmisary Gormok", "map": 1423, "zone": "Eastern Plaguelands", "x": 80, "y": 57.4},
