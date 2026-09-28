@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_03_WESTFALL",
   "name": "3. Westfall 11-15 (Dwarf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 11,
@@ -116,6 +116,7 @@
     {"type": "COLLECT", "quest": 64, "questName": "The Forgotten Heirloom", "target": "Furlbrow's Pocket Watch", "map": 1436, "zone": "Westfall", "x": 49.3, "y": 19.3},
     {"type": "COLLECT", "quest": 151, "questName": "Poor Old Blanchy", "target": "Handful of Oats", "count": 8, "map": 1436, "zone": "Westfall", "x": 51.5, "y": 31.9, "near": true},
     {"type": "ACCEPT", "quest": 92909, "questName": "Harvesting the Harvesters", "npc": 253395, "npcName": "Ozwin Ironsprocket", "map": 1436, "zone": "Westfall", "x": 51.6, "y": 32.2, "note": "New in Forever"},
+    {"type": "ACCEPT", "quest": 92911, "questName": "Harvesting the Harvesters", "npc": 253395, "npcName": "Ozwin Ironsprocket", "map": 1436, "zone": "Westfall", "x": 51.6, "y": 32.2, "note": "New in Forever"},
     {"type": "TURNIN", "quest": 22, "questName": "Goretusk Liver Pie", "npc": 235, "npcName": "Salma Saldean", "map": 1436, "zone": "Westfall", "x": 56.4, "y": 30.5},
     {"type": "TURNIN", "quest": 36, "questName": "Westfall Stew", "npc": 235, "npcName": "Salma Saldean", "map": 1436, "zone": "Westfall", "x": 56.4, "y": 30.5},
     {"type": "ACCEPT", "quest": 38, "questName": "Westfall Stew", "npc": 235, "npcName": "Salma Saldean", "map": 1436, "zone": "Westfall", "x": 56.4, "y": 30.5},
