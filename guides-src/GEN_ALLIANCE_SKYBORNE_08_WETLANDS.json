@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_08_WETLANDS",
   "name": "8. Wetlands 25-28 (Skyborne)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 25,
@@ -22,7 +22,6 @@
     {"type": "TURNIN", "quest": 2923, "questName": "Tinkmaster Overspark", "npc": 7944, "npcName": "Tinkmaster Overspark", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 50.2, "optional": true},
     {"type": "ACCEPT", "quest": 2926, "questName": "Gnogaine", "npc": 1268, "npcName": "Ozzie Togglevolt", "map": 1426, "zone": "Dun Morogh", "x": 45.8, "y": 49.2, "note": "For Gnomeregan (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 2928, "questName": "Gyrodrillmatic Excavationators", "npc": 6579, "npcName": "Shoni the Shilent", "map": 1453, "zone": "Stormwind City", "x": 55.4, "y": 12.6, "note": "For Gnomeregan (dungeon guide)", "optional": true},
-    {"type": "ACCEPT", "quest": 288, "questName": "The Third Fleet", "npc": 1239, "npcName": "First Mate Fitzsimmons", "map": 1437, "zone": "Wetlands", "x": 10.8, "y": 59.6, "note": "For Dire Maul (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 2360, "questName": "Mathias and the Defias", "npc": 332, "npcName": "Master Mathias Shaw", "map": 1453, "zone": "Stormwind City", "x": 75.8, "y": 59.8, "class": ["ROGUE"]},
     {"type": "TURNIN", "quest": 2360, "questName": "Mathias and the Defias", "npc": 7024, "npcName": "Agent Kearnen", "map": 1436, "zone": "Westfall", "x": 68.4, "y": 70, "class": ["ROGUE"]},
     {"type": "ACCEPT", "quest": 94495, "questName": "Call of Water", "npc": 258043, "npcName": "Norric Lochthane", "map": 1432, "zone": "Loch Modan", "x": 41.8, "y": 19, "note": "New in Forever", "class": ["SHAMAN"]},
