@@ -2689,6 +2689,7 @@ do
     check(tb:IsShown(), "the skull button shows with the window")
 
     local savedHeight = ns.db.ui.height
+    local before = f:GetHeight()
     MOCK.blocked = {}
     MOCK.inCombat = true
     MOCK_FIRE("PLAYER_REGEN_DISABLED")
@@ -2705,9 +2706,25 @@ do
     ns.UI:Toggle()
     check(not f:IsShown(), "in combat the window's key still hides it")
     ns.UI:Toggle()
-    check(f:IsShown() and f:GetHeight() == 420, "in combat the window still shows and resizes (" .. tostring(f:GetHeight()) .. ")")
+    check(f:IsShown(), "in combat the window's key still shows it")
+    -- the skull button on the bottom edge cannot follow the window in combat, so it holds still
+    check(f:GetHeight() == before, "in combat the window keeps its height (" .. tostring(f:GetHeight()) .. ", was " .. tostring(before) .. ")")
+    f.scripts.OnDragStart(f)
+    check(not f.moving, "in combat the window cannot be dragged")
+    f.resizeGrip.scripts.OnMouseDown(f.resizeGrip)
+    check(not f.sizing and not f.resizing, "...or resized")
+    f.resizeGrip.scripts.OnMouseUp(f.resizeGrip)
+    check(ns.db.ui.height == 420, "...and letting go of the grip saves nothing")
     check(#MOCK.blocked == 0, "no blocked actions in combat (" .. table.concat(MOCK.blocked, ", ") .. ")")
 
+    MOCK.inCombat = false
+    MOCK_FIRE("PLAYER_REGEN_ENABLED"); settle()
+    check(f:GetHeight() == 420, "after combat the window takes its new height (" .. tostring(f:GetHeight()) .. ")")
+    f.scripts.OnDragStart(f)
+    check(f.moving, "...and can be dragged again")
+    f.scripts.OnDragStop(f)
+
+    MOCK.inCombat = true
     ns.UI:Hide()
     MOCK.inCombat = false
     MOCK_FIRE("PLAYER_REGEN_ENABLED"); settle()

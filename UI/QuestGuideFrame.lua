@@ -26,6 +26,10 @@ local FOOTER = 70       -- two button rows
 local BAR_ROOM = 14     -- right of the list: the scroll bar
 local LIST_INSET = 6 + BAR_ROOM
 local DRAWER_ROWS_HEIGHT = 180
+
+local function inCombat()
+    return ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true
+end
 local frame
 local info      -- the Details popup (created on first use)
 
@@ -78,7 +82,8 @@ function QG:Create()
     f:SetClampedToScreen(true)
     f:EnableMouse(true)
     f:RegisterForDrag("LeftButton")
-    f:SetScript("OnDragStart", function(self) if not ns.db.ui.locked then self:StartMoving() end end)
+    -- not in combat: the secure buttons over the window cannot follow it until combat ends
+    f:SetScript("OnDragStart", function(self) if not ns.db.ui.locked and not inCombat() then self:StartMoving() end end)
     f:SetScript("OnDragStop", function(self)
         self:StopMovingOrSizing()
         local point, _, _, x, y = self:GetPoint(1)
@@ -95,9 +100,10 @@ function QG:Create()
     handle:SetAllPoints()
     handle:SetTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
     grip:SetScript("OnMouseDown", function()
-        if not ns.db.ui.locked then f.resizing = true f:StartSizing("BOTTOMRIGHT") end
+        if not ns.db.ui.locked and not inCombat() then f.resizing = true f:StartSizing("BOTTOMRIGHT") end
     end)
     grip:SetScript("OnMouseUp", function()
+        if not f.resizing and inCombat() then return end     -- the grip did not start a resize
         f.resizing = false
         f:StopMovingOrSizing()
         ns.db.ui.width = math.floor(math.max(240, math.min(520, f:GetWidth())) + 0.5)
@@ -378,6 +384,13 @@ function QG:Layout()
     local f = frame
     local natural = ns.QuestGuideHeader.HEIGHT + 2 + math.min(f.list.height or 40, rowsHeight()) + 4 + FOOTER
     local height = math.max(150, math.min(800, ns.db.ui.height or natural))
+    -- in combat the height is held: the skull button sits on the bottom edge and cannot follow it
+    if inCombat() and f:GetHeight() > 0 then
+        if height ~= f:GetHeight() then self.layoutPending = true end
+        height = f:GetHeight()
+    else
+        self.layoutPending = nil
+    end
     f:SetHeight(height)
     f.footerLine:ClearAllPoints()
     f.footerLine:SetPoint("TOPLEFT", f, "TOPLEFT", 12, -(height - FOOTER))
@@ -409,10 +422,6 @@ function QG:Layout()
         self:UpdateScrollBar()
     end
     self:PlaceItemButton()
-end
-
-local function inCombat()
-    return ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true
 end
 
 -- ---- the secure buttons over the window ------------------------------------------------------
@@ -1007,7 +1016,9 @@ function QG:ToggleInfo()
 end
 
 function QG:OnInit()
-    ns.Events:Register("PLAYER_REGEN_ENABLED", function() if QG.securePending then QG:PlaceItemButton() end end)
+    ns.Events:Register("PLAYER_REGEN_ENABLED", function()
+        if QG.layoutPending then QG:Layout() elseif QG.securePending then QG:PlaceItemButton() end
+    end)
     ns.Events:Register("FG_LOCK_CHANGED", function(_, locked)
         if frame and frame.resizeGrip then frame.resizeGrip:SetShown(not locked) end
     end)
