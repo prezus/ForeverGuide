@@ -63,6 +63,37 @@ local function chapterId(prefix)
 end
 
 print("guide active: " .. tostring(G.active and G.active.id))
+-- The other faction's guides are dropped at login, so their step loaders can be collected.
+do
+    local horde, consistent = 0, true
+    for _, id in ipairs(G.list) do
+        local g = G.registry[id]
+        if not g then consistent = false elseif g.faction == "Horde" then horde = horde + 1 end
+    end
+    for id in pairs(G.registry) do if not ns.Contains(G.list, id) then consistent = false end end
+    check(horde == 0, "an Alliance character keeps no Horde guides (" .. horde .. ")")
+    check(consistent, "pruning keeps the guide list and registry in step")
+    check(G.registry["GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST"] ~= nil or chapterId("GEN_ALLIANCE_HUMAN_01") ~= nil,
+        "the character's own route survives")
+    check(G:Dungeons()[1] ~= nil, "the character's dungeon guides survive")
+
+    -- boundary: no faction yet (a Skyborne before choosing a side) prunes nothing
+    local savedFaction = MOCK.faction
+    MOCK.faction, ns.Player.cache = "Neutral", {}
+    ns.RegisterGuide({ id = "TEST_PRUNE_HORDE", name = "prune test", faction = "Horde", steps = {} })
+    G:PruneForFaction()
+    check(G.registry.TEST_PRUNE_HORDE ~= nil, "no faction: nothing is pruned")
+    -- the active guide is never pruned, whatever its faction
+    MOCK.faction, ns.Player.cache = savedFaction, {}
+    local savedActive = G.active
+    G.active = G.registry.TEST_PRUNE_HORDE
+    G:PruneForFaction()
+    check(G.registry.TEST_PRUNE_HORDE ~= nil, "the active guide is never pruned")
+    G.active = savedActive
+    G:PruneForFaction()
+    check(G.registry.TEST_PRUNE_HORDE == nil and not ns.Contains(G.list, "TEST_PRUNE_HORDE"),
+        "an other-faction guide is pruned from list and registry")
+end
 -- Contributing data is one opt-in; old switches, mirrors and SavedVariables cannot opt anyone in.
 do
     check(ns.db.contribute == false and ns.db.scanEnabled == false, "fresh login: contributing and the scanner start off")

@@ -1324,7 +1324,27 @@ function Guide:OnInit()
     end)
 end
 
+--- Forget the other faction's guides: their step loaders (about half of all guide bytecode) are
+--- then free for the collector. A character with no side yet keeps everything; the open guide and
+--- the one a dungeon returns to are always kept. A faction change means a relog, which reloads them.
+function Guide:PruneForFaction()
+    local faction = ns.Player:GetFaction()
+    if not faction then return end
+    local keep = {}
+    for _, id in ipairs(self.list) do
+        local g = self.registry[id]
+        if not g.faction or string.upper(g.faction) == string.upper(faction)
+            or g == self.active or id == ns.char.activeGuide or id == ns.char.returnGuide then
+            keep[#keep + 1] = id
+        else
+            self.registry[id] = nil
+        end
+    end
+    self.list = keep
+end
+
 function Guide:OnEnable()
+    self:PruneForFaction()
     local id = ns.char.activeGuide
     if id and self.registry[id] then
         self:Activate(id, true)
