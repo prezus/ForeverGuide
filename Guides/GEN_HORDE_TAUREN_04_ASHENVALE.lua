@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_04_ASHENVALE",
     name = "4. Ashenvale 21-22 (Tauren)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 21,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_05_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 4 of the Tauren route: level 21 to 22, 25 steps, ~84 min of play in the model (18200 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 45,
+    stepCount = 43,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 12616, npcName = "Vhulgra", map = 1440, zone = "Ashenvale", x = 73.2, y = 61.6 }, -- 1
         { type = "KILL", quest = 6548, questName = "Avenge My Village", npc = 11910, target = "Grimtotem Ruffian", count = 8, map = 1442, zone = "Stonetalon Mountains", x = 76.6, y = 91 }, -- 2
@@ -53,12 +53,10 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 6921, questName = "Amongst the Ruins", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.2, optional = true, note = "For Blackfathom Deeps (dungeon guide)" }, -- 36
         { type = "NOTE", optional = true, text = "Ready for Blackfathom Deeps", note = "Picked up: The Essence of Aku'Mai, Amongst the Ruins. When you have a group, open Blackfathom Deeps under Dungeons." }, -- 37
         { type = "TURNIN", quest = 6462, questName = "Troll Charm", npc = 12721, npcName = "Mitsuwa", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 38
-        { type = "ACCEPT", quest = 247, questName = "The Hunt Completed", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 39
-        { type = "TURNIN", quest = 247, questName = "The Hunt Completed", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.6, y = 61.4 }, -- 40
-        { type = "ACCEPT", quest = 6130, questName = "Power over Poison", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 41
-        { type = "TURNIN", quest = 27, questName = "A Lesson to Learn", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 42
-        { type = "ACCEPT", quest = 98340, questName = "The Great Cat Spirit", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" }, note = "New in Forever" }, -- 43
-        { type = "TURNIN", quest = 98340, questName = "The Great Cat Spirit", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 44
-        { type = "TURNIN", quest = 6482, questName = "Freedom to Ruul", npc = 12837, npcName = "Yama Snowhoof", map = 1440, zone = "Ashenvale", x = 74.1, y = 60.9 }, -- 45
+        { type = "ACCEPT", quest = 6130, questName = "Power over Poison", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 39
+        { type = "TURNIN", quest = 27, questName = "A Lesson to Learn", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 40
+        { type = "ACCEPT", quest = 98340, questName = "The Great Cat Spirit", npc = 3033, npcName = "Turak Runetotem", map = 1456, zone = "Thunder Bluff", x = 76.4, y = 27.6, class = { "DRUID" }, note = "New in Forever" }, -- 41
+        { type = "TURNIN", quest = 98340, questName = "The Great Cat Spirit", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 42
+        { type = "TURNIN", quest = 6482, questName = "Freedom to Ruul", npc = 12837, npcName = "Yama Snowhoof", map = 1440, zone = "Ashenvale", x = 74.1, y = 60.9 }, -- 43
     } end,
 })

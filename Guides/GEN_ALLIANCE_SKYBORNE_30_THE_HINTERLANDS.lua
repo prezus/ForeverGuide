@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_30_THE_HINTERLANDS",
     name = "30. The Hinterlands 46-47 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 46,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_31_BLASTED_LANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 30 of the Skyborne route: level 46 to 47, 16 steps, ~48 min of play in the model (31664 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 26,
+    stepCount = 27,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 8018, npcName = "Guthrum Thunderfist", map = 1425, zone = "The Hinterlands", x = 11.1, y = 46.2 }, -- 1
         { type = "TURNIN", quest = 3181, questName = "The Horn of the Beast", npc = 3836, npcName = "Mountaineer Pebblebitty", map = 1432, zone = "Loch Modan", x = 18.2, y = 83.8, optional = true }, -- 2
@@ -35,11 +35,12 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2880, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 18
         { type = "TURNIN", quest = 2877, questName = "Skulk Rock Clean-up", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 19
         { type = "ACCEPT", quest = 2881, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.4 }, -- 20
-        { type = "TURNIN", quest = 2881, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.4 }, -- 21
-        { type = "TURNIN", quest = 2988, questName = "Witherbark Cages", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 22
-        { type = "ACCEPT", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 23
-        { type = "COLLECT", quest = 2641, questName = "Sprinkle's Secret Ingredient", target = "Violet Tragan", count = 1, map = 1425, zone = "The Hinterlands", x = 41.6, y = 58.9 }, -- 24
-        { type = "COMPLETE", quest = 2989, questName = "The Altar of Zul", target = "Search the Altar of Zul", map = 1425, zone = "The Hinterlands", x = 49.0, y = 68.7, note = "Search the Altar of Zul" }, -- 25
-        { type = "TURNIN", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 26
+        { type = "TURNIN", quest = 2988, questName = "Witherbark Cages", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 21
+        { type = "ACCEPT", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 22
+        { type = "COLLECT", quest = 2641, questName = "Sprinkle's Secret Ingredient", target = "Violet Tragan", count = 1, map = 1425, zone = "The Hinterlands", x = 41.6, y = 58.9 }, -- 23
+        { type = "COMPLETE", quest = 2989, questName = "The Altar of Zul", target = "Search the Altar of Zul", map = 1425, zone = "The Hinterlands", x = 49.0, y = 68.7, note = "Search the Altar of Zul" }, -- 24
+        { type = "COLLECT", quest = 2881, questName = "Troll Necklace Bounty", target = "Troll Tribal Necklace", count = 1, map = 1425, zone = "The Hinterlands", x = 48.6, y = 68, near = true, mobs = "Vilebranch Axe Thrower / Vilebranch Witch Doctor / Vilebranch Headhunter / Vilebranch Shadowcaster" }, -- 25
+        { type = "TURNIN", quest = 2881, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.4 }, -- 26
+        { type = "TURNIN", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 27
     } end,
 })

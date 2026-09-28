@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_08_WETLANDS",
   "name": "8. Wetlands 25-28 (Skyborne)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 25,
@@ -13,8 +13,6 @@
   "notes": "Chapter 8 of the Skyborne route: level 25 to 28, 58 steps, ~192 min of play in the model (18961 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "FLIGHTPATH", "npc": 1571, "npcName": "Shellei Brondir", "map": 1437, "zone": "Wetlands", "x": 9.5, "y": 59.7},
-    {"type": "ACCEPT", "quest": 7791, "questName": "A Donation of Wool", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
-    {"type": "TURNIN", "quest": 7791, "questName": "A Donation of Wool", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
     {"type": "TURNIN", "quest": 1075, "questName": "A Scroll from Mauren", "npc": 4078, "npcName": "Collin Mauren", "map": 1453, "zone": "Stormwind City", "x": 43, "y": 80.2},
     {"type": "TURNIN", "quest": 269, "questName": "Seeking Wisdom", "npc": 1212, "npcName": "Bishop Farthing", "map": 1453, "zone": "Stormwind City", "x": 39.2, "y": 28},
     {"type": "ACCEPT", "quest": 96393, "questName": "Old Ironforge Incursion", "npc": 264936, "npcName": "Earthseer Farsen", "map": 1426, "zone": "Dun Morogh", "x": 64.8, "y": 58.4, "note": "New in Forever; For The Hall of Thanes (dungeon guide)", "optional": true},
@@ -94,8 +92,6 @@
     {"type": "TURNIN", "quest": 465, "questName": "Nek'rosh's Gambit", "map": 1437, "zone": "Wetlands", "x": 47.5, "y": 46.9},
     {"type": "ACCEPT", "quest": 631, "questName": "The Thandol Span", "npc": 1075, "npcName": "Rhag Garmason", "map": 1437, "zone": "Wetlands", "x": 49.8, "y": 18.2},
     {"type": "TURNIN", "quest": 631, "questName": "The Thandol Span", "map": 1437, "zone": "Wetlands", "x": 51.2, "y": 8},
-    {"type": "ACCEPT", "quest": 7793, "questName": "A Donation of Silk", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
-    {"type": "TURNIN", "quest": 7793, "questName": "A Donation of Silk", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
     {"type": "ACCEPT", "quest": 1179, "questName": "The Brassbolts Brothers", "npc": 2092, "npcName": "Pilot Longbeard", "map": 1455, "zone": "Ironforge", "x": 72.4, "y": 93.6},
     {"type": "KILL", "quest": 303, "questName": "The Dark Iron War", "npc": 1051, "target": "Dark Iron Dwarf", "count": 15, "map": 1437, "zone": "Wetlands", "x": 48, "y": 16.8, "optional": true},
     {"type": "KILL", "quest": 303, "questName": "The Dark Iron War", "npc": 1053, "target": "Dark Iron Tunneler", "count": 5, "map": 1437, "zone": "Wetlands", "x": 47, "y": 17.4, "optional": true},

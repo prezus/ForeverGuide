@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_43_UNDERCITY",
   "name": "43. Undercity 53-53 (Tauren)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 53,
@@ -12,13 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 43 of the Tauren route: level 53 to 53, 5 steps, ~2 min of play in the model (148472 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
-    {"type": "ACCEPT", "quest": 7813, "questName": "A Donation of Wool", "npc": 14729, "npcName": "Ralston Farnsley", "map": 1458, "zone": "Undercity", "x": 71.6, "y": 28.8},
-    {"type": "ACCEPT", "quest": 7814, "questName": "A Donation of Silk", "npc": 14729, "npcName": "Ralston Farnsley", "map": 1458, "zone": "Undercity", "x": 71.6, "y": 28.8},
-    {"type": "TURNIN", "quest": 7813, "questName": "A Donation of Wool", "npc": 14729, "npcName": "Ralston Farnsley", "map": 1458, "zone": "Undercity", "x": 71.6, "y": 28.8},
-    {"type": "TURNIN", "quest": 7814, "questName": "A Donation of Silk", "npc": 14729, "npcName": "Ralston Farnsley", "map": 1458, "zone": "Undercity", "x": 71.6, "y": 28.8},
     {"type": "TRAVEL", "map": 1458, "zone": "Undercity", "x": 67.7, "y": 37.9, "radius": 60, "note": "use your hearthstone (Undercity)"},
-    {"type": "ACCEPT", "quest": 7818, "questName": "A Donation of Runecloth", "npc": 14729, "npcName": "Ralston Farnsley", "map": 1458, "zone": "Undercity", "x": 71.6, "y": 28.8},
-    {"type": "TURNIN", "quest": 7818, "questName": "A Donation of Runecloth", "npc": 14729, "npcName": "Ralston Farnsley", "map": 1458, "zone": "Undercity", "x": 71.6, "y": 28.8},
     {"type": "TRAVEL", "map": 1458, "zone": "Undercity", "x": 59.0, "y": 55.4, "radius": 60, "note": "travel to Undercity (Undercity)"},
     {"type": "ACCEPT", "quest": 3564, "questName": "Andron's Payment to Jediga", "npc": 6522, "npcName": "Andron Gant", "map": 1458, "zone": "Undercity", "x": 54.6, "y": 75.6},
     {"type": "ACCEPT", "quest": 4294, "questName": "... and a Batch of Ooze", "npc": 10136, "npcName": "Chemist Fuely", "map": 1458, "zone": "Undercity", "x": 47.5, "y": 73.4},

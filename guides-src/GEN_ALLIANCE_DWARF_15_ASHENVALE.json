@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_15_ASHENVALE",
   "name": "15. Ashenvale 29-30 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 29,
@@ -22,8 +22,6 @@
     {"type": "ACCEPT", "quest": 1045, "questName": "Raene's Cleansing", "npc": 3897, "npcName": "Krolg", "map": 1440, "zone": "Ashenvale", "x": 50.8, "y": 75.1},
     {"type": "KILL", "quest": 1045, "questName": "Raene's Cleansing", "npc": 3932, "target": "Bloodtooth Guard", "count": 4, "map": 1440, "zone": "Ashenvale", "x": 54.9, "y": 76, "near": true},
     {"type": "KILL", "quest": 1045, "questName": "Raene's Cleansing", "npc": 3696, "target": "Ran Bloodtooth", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 54.8, "y": 79.6},
-    {"type": "ACCEPT", "quest": 7863, "questName": "Sentinel Basic Care Package", "npc": 14753, "npcName": "Illiyana Moonblaze", "map": 1440, "zone": "Ashenvale", "x": 61.4, "y": 83.8},
-    {"type": "TURNIN", "quest": 7863, "questName": "Sentinel Basic Care Package", "npc": 14753, "npcName": "Illiyana Moonblaze", "map": 1440, "zone": "Ashenvale", "x": 61.4, "y": 83.8},
     {"type": "KILL", "quest": 1035, "questName": "Fallen Sky Lake", "npc": 3931, "target": "Shadethicket Oracle", "map": 1440, "zone": "Ashenvale", "x": 66.7, "y": 82.2, "note": "loot Fallen Moonstone"},
     {"type": "TURNIN", "quest": 1045, "questName": "Raene's Cleansing", "npc": 3897, "npcName": "Krolg", "map": 1440, "zone": "Ashenvale", "x": 50.8, "y": 75.1},
     {"type": "TURNIN", "quest": 1035, "questName": "Fallen Sky Lake", "npc": 3894, "npcName": "Pelturas Whitemoon", "map": 1440, "zone": "Ashenvale", "x": 37.4, "y": 51.8},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_34_BLASTED_LANDS",
     name = "34. Blasted Lands 47-49 (Night Elf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 47,
@@ -19,8 +19,8 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 626, questName = "Cortello's Riddle", map = 1425, zone = "The Hinterlands", x = 80.8, y = 46.8 }, -- 2
         { type = "ACCEPT", quest = 1425, questName = "Deliver the Shipment", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.8, y = 59.6 }, -- 3
         { type = "TURNIN", quest = 1425, questName = "Deliver the Shipment", npc = 5393, npcName = "Quartermaster Lungertz", map = 1419, zone = "Blasted Lands", x = 66.4, y = 21.2 }, -- 4
-        { type = "ACCEPT", quest = 7794, questName = "A Donation of Mageweave", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, zone = "Stormwind City", x = 44.2, y = 73.6 }, -- 5
-        { type = "TURNIN", quest = 7794, questName = "A Donation of Mageweave", npc = 14722, npcName = "Clavicus Knavingham", map = 1453, zone = "Stormwind City", x = 44.2, y = 73.6 }, -- 6
+        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1426, zone = "Dun Morogh", x = 26.4, y = 68, class = { "SHAMAN" }, note = "New in Forever" }, -- 5
+        { type = "TURNIN", quest = 94375, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "reduced xp (10%) - you out-levelled it" }, -- 6
         { type = "TRAVEL", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, radius = 60, note = "travel to Blasted Lands (Blasted Lands)" }, -- 7
         { type = "ACCEPT", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 8
         { type = "ACCEPT", quest = 2583, questName = "A Boar's Vitality", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 9

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST",
     name = "1. Elwynn Forest 1-11 (Human)",
-    version = 9,
+    version = 10,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 1,
@@ -149,7 +149,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 91723, questName = "Delicate Instruments", npc = 248242, npcName = "Hamish Bergwort", map = 1429, zone = "Elwynn Forest", x = 65, y = 69.8 }, -- 132
         { type = "ACCEPT", quest = 91724, questName = "Delicate Instruments", npc = 248242, npcName = "Hamish Bergwort", map = 1429, zone = "Elwynn Forest", x = 65, y = 69.8, note = "New in Forever" }, -- 133
         { type = "ACCEPT", quest = 94374, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 134
-        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" } }, -- 135
+        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1426, zone = "Dun Morogh", x = 26.4, y = 68, class = { "SHAMAN" } }, -- 135
         { type = "KILL", quest = 88, questName = "Princess Must Die!", npc = 330, target = "Princess", map = 1429, zone = "Elwynn Forest", x = 69.7, y = 79.3, note = "loot Brass Collar" }, -- 136
         { type = "COLLECT", quest = 147, questName = "Manhunt", target = "The Collector's Ring", count = 1, map = 1429, zone = "Elwynn Forest", x = 71, y = 80.6, optional = true, mobs = "Morgan the Collector" }, -- 137
         { type = "TURNIN", quest = 85, questName = "Lost Necklace", npc = 247, npcName = "Billy Maclure", map = 1429, zone = "Elwynn Forest", x = 43.1, y = 85.7 }, -- 138
@@ -171,7 +171,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 114, questName = "The Escape", npc = 253, npcName = "William Pestle", map = 1429, zone = "Elwynn Forest", x = 43.3, y = 65.7 }, -- 154
         { type = "TURNIN", quest = 114, questName = "The Escape", npc = 251, npcName = "Maybell Maclure", map = 1429, zone = "Elwynn Forest", x = 43.2, y = 89.6 }, -- 155
         { type = "TURNIN", quest = 91724, questName = "Delicate Instruments", npc = 248242, npcName = "Hamish Bergwort", map = 1429, zone = "Elwynn Forest", x = 65, y = 69.8 }, -- 156
-        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" }, note = "New in Forever" }, -- 157
+        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1426, zone = "Dun Morogh", x = 26.4, y = 68, class = { "SHAMAN" }, note = "New in Forever" }, -- 157
         { type = "TURNIN", quest = 94375, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" } }, -- 158
         { type = "TURNIN", quest = 35, questName = "Further Concerns", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 159
         { type = "ACCEPT", quest = 37, questName = "Find the Lost Guards", npc = 261, npcName = "Guard Thomas", map = 1429, zone = "Elwynn Forest", x = 74, y = 72.2 }, -- 160

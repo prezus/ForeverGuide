@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_30_TANARIS",
   "name": "30. Tanaris 45-46 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 45,
@@ -13,6 +13,7 @@
   "notes": "Chapter 30 of the Human route: level 45 to 46, 26 steps, ~151 min of play in the model (14556 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1446, "zone": "Gadgetzan", "x": 52.5, "y": 27.9, "radius": 60, "note": "use your hearthstone (Gadgetzan)"},
+    {"type": "TURNIN", "quest": 2741, "questName": "The Super Egg-O-Matic", "map": 1446, "zone": "Tanaris", "x": 52.4, "y": 27},
     {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51.7, "y": 27.4, "radius": 60, "note": "travel to Tanaris (Tanaris)"},
     {"type": "ACCEPT", "quest": 82, "questName": "Noxious Lair Investigation", "npc": 7724, "npcName": "Senior Surveyor Fizzledowser", "map": 1446, "zone": "Tanaris", "x": 50.2, "y": 27.5},
     {"type": "COLLECT", "quest": 82, "questName": "Noxious Lair Investigation", "target": "Centipaar Insect Parts", "map": 1446, "zone": "Tanaris", "x": 36.1, "y": 39.5, "near": true},

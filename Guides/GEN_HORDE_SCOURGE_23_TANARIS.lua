@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_23_TANARIS",
     name = "23. Tanaris 42-43 (Undead)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 42,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_24_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 23 of the Scourge route: level 42 to 43, 31 steps, ~117 min of play in the model (41334 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 42,
+    stepCount = 41,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 7824, npcName = "Bulkrek Ragefist", map = 1446, zone = "Tanaris", x = 51.6, y = 25.4 }, -- 1
         { type = "ACCEPT", quest = 2768, questName = "Divino-matic Rod", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.4, y = 28.4, optional = true, note = "For Zul'Farrak (dungeon guide)" }, -- 2
@@ -25,37 +25,36 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1690, questName = "Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 8
         { type = "ACCEPT", quest = 1707, questName = "Water Pouch Bounty", npc = 7408, npcName = "Spigot Operator Luglunket", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 9
         { type = "ACCEPT", quest = 2875, questName = "WANTED: Andre Firebeard", map = 1446, zone = "Tanaris", x = 51.8, y = 27 }, -- 10
-        { type = "ACCEPT", quest = 2741, questName = "The Super Egg-O-Matic", map = 1446, zone = "Tanaris", x = 52.4, y = 27 }, -- 11
-        { type = "TURNIN", quest = 2741, questName = "The Super Egg-O-Matic", map = 1446, zone = "Tanaris", x = 52.4, y = 27 }, -- 12
-        { type = "TURNIN", quest = 3633, questName = "Goblin Engineering", npc = 8126, npcName = "Nixx Sprocketspring", map = 1446, zone = "Tanaris", x = 52.4, y = 27.2, profession = "Engineering", skill = 200 }, -- 13
-        { type = "KILL", quest = 1690, questName = "Wastewander Justice", npc = 5618, target = "Wastewander Bandit / Wastewander Thief", count = 10, map = 1446, zone = "Tanaris", x = 59.4, y = 24.7, near = true }, -- 14
-        { type = "COLLECT", quest = 1707, questName = "Water Pouch Bounty", target = "Wastewander Water Pouch", count = 5, map = 1446, zone = "Tanaris", x = 60, y = 23.4, near = true }, -- 15
-        { type = "TURNIN", quest = 1690, questName = "Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 16
-        { type = "ACCEPT", quest = 1691, questName = "More Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 17
-        { type = "ACCEPT", quest = 2781, questName = "WANTED: Caliph Scorpidsting", map = 1446, zone = "Tanaris", x = 51.8, y = 27 }, -- 18
-        { type = "ACCEPT", quest = 992, questName = "Gadgetzan Water Survey", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 19
-        { type = "TURNIN", quest = 1707, questName = "Water Pouch Bounty", npc = 7408, npcName = "Spigot Operator Luglunket", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 20
-        { type = "KILL", quest = 1691, questName = "More Wastewander Justice", npc = 5623, target = "Wastewander Assassin / Wastewander Shadow Mage", count = 10, map = 1446, zone = "Tanaris", x = 58.8, y = 36.4, near = true }, -- 21
-        { type = "KILL", quest = 1691, questName = "More Wastewander Justice", npc = 5615, target = "Wastewander Rogue", count = 10, map = 1446, zone = "Tanaris", x = 59, y = 38.5, near = true }, -- 22
-        { type = "KILL", quest = 2781, questName = "WANTED: Caliph Scorpidsting", npc = 7847, target = "Caliph Scorpidsting", map = 1446, zone = "Tanaris", x = 61.8, y = 38.2, note = "loot Caliph Scorpidsting's Head" }, -- 23
-        { type = "COLLECT", quest = 992, questName = "Gadgetzan Water Survey", target = "Tapped Dowsing Widget", map = 1446, zone = "Tanaris", x = 39, y = 29 }, -- 24
-        { type = "TURNIN", quest = 1691, questName = "More Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 25
-        { type = "TURNIN", quest = 2781, questName = "WANTED: Caliph Scorpidsting", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 26
-        { type = "TURNIN", quest = 992, questName = "Gadgetzan Water Survey", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 27
-        { type = "ACCEPT", quest = 8365, questName = "Pirate Hats Ahoy!", npc = 15165, npcName = "Haughty Modiste", map = 1446, zone = "Tanaris", x = 66.6, y = 22.3 }, -- 28
-        { type = "ACCEPT", quest = 3520, questName = "Screecher Spirits", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 29
-        { type = "TURNIN", quest = 2872, questName = "Stoley's Debt", npc = 7881, npcName = "Stoley", map = 1446, zone = "Tanaris", x = 67, y = 23.8 }, -- 30
-        { type = "ACCEPT", quest = 8366, questName = "Southsea Shakedown", npc = 7882, npcName = "Security Chief Bilgewhizzle", map = 1446, zone = "Tanaris", x = 67.1, y = 23.9 }, -- 31
-        { type = "ACCEPT", quest = 2873, questName = "Stoley's Shipment", npc = 7881, npcName = "Stoley", map = 1446, zone = "Tanaris", x = 67.1, y = 24 }, -- 32
-        { type = "COLLECT", quest = 8365, questName = "Pirate Hats Ahoy!", target = "Southsea Pirate Hat", count = 20, map = 1446, zone = "Tanaris", x = 71.4, y = 43, near = true }, -- 33
-        { type = "KILL", quest = 8366, questName = "Southsea Shakedown", npc = 7855, target = "Southsea Pirate / Southsea Freebooter", count = 10, map = 1446, zone = "Tanaris", x = 71.4, y = 43, near = true }, -- 34
-        { type = "COLLECT", quest = 2873, questName = "Stoley's Shipment", target = "Stoley's Shipment", map = 1446, zone = "Tanaris", x = 72.1, y = 46.7, near = true }, -- 35
-        { type = "KILL", quest = 8366, questName = "Southsea Shakedown", npc = 7858, target = "Southsea Swashbuckler / Southsea Dock Worker", count = 10, map = 1446, zone = "Tanaris", x = 72.4, y = 46.9, near = true }, -- 36
-        { type = "KILL", quest = 2875, questName = "WANTED: Andre Firebeard", npc = 7883, target = "Andre Firebeard", map = 1446, zone = "Tanaris", x = 73.4, y = 47.1, note = "loot Firebeard's Head" }, -- 37
-        { type = "TURNIN", quest = 2873, questName = "Stoley's Shipment", npc = 7881, npcName = "Stoley", map = 1446, zone = "Tanaris", x = 67.1, y = 24 }, -- 38
-        { type = "TURNIN", quest = 2875, questName = "WANTED: Andre Firebeard", npc = 7882, npcName = "Security Chief Bilgewhizzle", map = 1446, zone = "Tanaris", x = 67.1, y = 23.9 }, -- 39
-        { type = "TURNIN", quest = 8366, questName = "Southsea Shakedown", npc = 7882, npcName = "Security Chief Bilgewhizzle", map = 1446, zone = "Tanaris", x = 67.1, y = 23.9 }, -- 40
-        { type = "ACCEPT", quest = 2874, questName = "Deliver to MacKinley", npc = 7881, npcName = "Stoley", map = 1446, zone = "Tanaris", x = 67, y = 23.8 }, -- 41
-        { type = "TURNIN", quest = 8365, questName = "Pirate Hats Ahoy!", npc = 15165, npcName = "Haughty Modiste", map = 1446, zone = "Tanaris", x = 66.6, y = 22.3 }, -- 42
+        { type = "TURNIN", quest = 3633, questName = "Goblin Engineering", npc = 8126, npcName = "Nixx Sprocketspring", map = 1446, zone = "Tanaris", x = 52.4, y = 27.2, profession = "Engineering", skill = 200 }, -- 11
+        { type = "KILL", quest = 1690, questName = "Wastewander Justice", npc = 5618, target = "Wastewander Bandit / Wastewander Thief", count = 10, map = 1446, zone = "Tanaris", x = 59.4, y = 24.7, near = true }, -- 12
+        { type = "COLLECT", quest = 1707, questName = "Water Pouch Bounty", target = "Wastewander Water Pouch", count = 5, map = 1446, zone = "Tanaris", x = 60, y = 23.4, near = true }, -- 13
+        { type = "TURNIN", quest = 1690, questName = "Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 14
+        { type = "ACCEPT", quest = 1691, questName = "More Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 15
+        { type = "ACCEPT", quest = 2781, questName = "WANTED: Caliph Scorpidsting", map = 1446, zone = "Tanaris", x = 51.8, y = 27 }, -- 16
+        { type = "ACCEPT", quest = 992, questName = "Gadgetzan Water Survey", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 17
+        { type = "TURNIN", quest = 1707, questName = "Water Pouch Bounty", npc = 7408, npcName = "Spigot Operator Luglunket", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 18
+        { type = "KILL", quest = 1691, questName = "More Wastewander Justice", npc = 5623, target = "Wastewander Assassin / Wastewander Shadow Mage", count = 10, map = 1446, zone = "Tanaris", x = 58.8, y = 36.4, near = true }, -- 19
+        { type = "KILL", quest = 1691, questName = "More Wastewander Justice", npc = 5615, target = "Wastewander Rogue", count = 10, map = 1446, zone = "Tanaris", x = 59, y = 38.5, near = true }, -- 20
+        { type = "KILL", quest = 2781, questName = "WANTED: Caliph Scorpidsting", npc = 7847, target = "Caliph Scorpidsting", map = 1446, zone = "Tanaris", x = 61.8, y = 38.2, note = "loot Caliph Scorpidsting's Head" }, -- 21
+        { type = "COLLECT", quest = 992, questName = "Gadgetzan Water Survey", target = "Tapped Dowsing Widget", map = 1446, zone = "Tanaris", x = 39, y = 29 }, -- 22
+        { type = "TURNIN", quest = 1691, questName = "More Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 23
+        { type = "TURNIN", quest = 2781, questName = "WANTED: Caliph Scorpidsting", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 24
+        { type = "TURNIN", quest = 992, questName = "Gadgetzan Water Survey", npc = 7724, npcName = "Senior Surveyor Fizzledowser", map = 1446, zone = "Tanaris", x = 50.2, y = 27.5 }, -- 25
+        { type = "ACCEPT", quest = 2741, questName = "The Super Egg-O-Matic", map = 1446, zone = "Tanaris", x = 52.4, y = 27 }, -- 26
+        { type = "ACCEPT", quest = 8365, questName = "Pirate Hats Ahoy!", npc = 15165, npcName = "Haughty Modiste", map = 1446, zone = "Tanaris", x = 66.6, y = 22.3 }, -- 27
+        { type = "ACCEPT", quest = 3520, questName = "Screecher Spirits", npc = 8579, npcName = "Yeh'kinya", map = 1446, zone = "Tanaris", x = 67, y = 22.4 }, -- 28
+        { type = "TURNIN", quest = 2872, questName = "Stoley's Debt", npc = 7881, npcName = "Stoley", map = 1446, zone = "Tanaris", x = 67, y = 23.8 }, -- 29
+        { type = "ACCEPT", quest = 8366, questName = "Southsea Shakedown", npc = 7882, npcName = "Security Chief Bilgewhizzle", map = 1446, zone = "Tanaris", x = 67.1, y = 23.9 }, -- 30
+        { type = "ACCEPT", quest = 2873, questName = "Stoley's Shipment", npc = 7881, npcName = "Stoley", map = 1446, zone = "Tanaris", x = 67.1, y = 24 }, -- 31
+        { type = "COLLECT", quest = 8365, questName = "Pirate Hats Ahoy!", target = "Southsea Pirate Hat", count = 20, map = 1446, zone = "Tanaris", x = 71.4, y = 43, near = true }, -- 32
+        { type = "KILL", quest = 8366, questName = "Southsea Shakedown", npc = 7855, target = "Southsea Pirate / Southsea Freebooter", count = 10, map = 1446, zone = "Tanaris", x = 71.4, y = 43, near = true }, -- 33
+        { type = "COLLECT", quest = 2873, questName = "Stoley's Shipment", target = "Stoley's Shipment", map = 1446, zone = "Tanaris", x = 72.1, y = 46.7, near = true }, -- 34
+        { type = "KILL", quest = 8366, questName = "Southsea Shakedown", npc = 7858, target = "Southsea Swashbuckler / Southsea Dock Worker", count = 10, map = 1446, zone = "Tanaris", x = 72.4, y = 46.9, near = true }, -- 35
+        { type = "KILL", quest = 2875, questName = "WANTED: Andre Firebeard", npc = 7883, target = "Andre Firebeard", map = 1446, zone = "Tanaris", x = 73.4, y = 47.1, note = "loot Firebeard's Head" }, -- 36
+        { type = "TURNIN", quest = 2873, questName = "Stoley's Shipment", npc = 7881, npcName = "Stoley", map = 1446, zone = "Tanaris", x = 67.1, y = 24 }, -- 37
+        { type = "TURNIN", quest = 2875, questName = "WANTED: Andre Firebeard", npc = 7882, npcName = "Security Chief Bilgewhizzle", map = 1446, zone = "Tanaris", x = 67.1, y = 23.9 }, -- 38
+        { type = "TURNIN", quest = 8366, questName = "Southsea Shakedown", npc = 7882, npcName = "Security Chief Bilgewhizzle", map = 1446, zone = "Tanaris", x = 67.1, y = 23.9 }, -- 39
+        { type = "ACCEPT", quest = 2874, questName = "Deliver to MacKinley", npc = 7881, npcName = "Stoley", map = 1446, zone = "Tanaris", x = 67, y = 23.8 }, -- 40
+        { type = "TURNIN", quest = 8365, questName = "Pirate Hats Ahoy!", npc = 15165, npcName = "Haughty Modiste", map = 1446, zone = "Tanaris", x = 66.6, y = 22.3 }, -- 41
     } end,
 })

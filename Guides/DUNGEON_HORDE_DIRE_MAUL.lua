@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_DIRE_MAUL",
     name = "Dire Maul 60-60",
-    version = 2,
+    version = 3,
     kind = "dungeon",
     faction = "Horde",
     minLevel = 60,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Feralas",
     author = "ForeverGuide route planner",
     notes = "Dire Maul: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 99,
+    stepCount = 98,
     steps = function() return {
         { type = "ACCEPT", quest = 7481, questName = "Elven Legends", npc = 14373, npcName = "Sage Korolusk", map = 1444, zone = "Feralas", x = 75, y = 43.8 }, -- 1
         { type = "TURNIN", quest = 7481, questName = "Elven Legends", npc = 14373, npcName = "Sage Korolusk", map = 1444, zone = "Feralas", x = 75, y = 43.8 }, -- 2
@@ -26,28 +26,28 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1318, questName = "Unfinished Gordok Business", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 10
         { type = "ACCEPT", quest = 5518, questName = "The Gordok Ogre Suit", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 11
         { type = "ACCEPT", quest = 5525, questName = "Free Knot!", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 12
-        { type = "ACCEPT", quest = 5528, questName = "The Gordok Taste Test", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 13
-        { type = "ACCEPT", quest = 7461, questName = "The Madness Within", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 14
-        { type = "ACCEPT", quest = 7499, questName = "Codex of Defense", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 15
-        { type = "ACCEPT", quest = 7507, questName = "Foror's Compendium", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 16
-        { type = "ACCEPT", quest = 7703, questName = "Unfinished Gordok Business", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 17
-        { type = "ACCEPT", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 18
-        { type = "ACCEPT", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 19
-        { type = "ACCEPT", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 20
-        { type = "ACCEPT", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 21
-        { type = "ACCEPT", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 22
-        { type = "ACCEPT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 23
-        { type = "ACCEPT", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 24
-        { type = "ACCEPT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 25
-        { type = "COLLECT", quest = 5526, questName = "Shards of the Felvine", target = "Sealed Reliquary of Purity", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 26
-        { type = "COLLECT", quest = 5526, questName = "Shards of the Felvine", target = "Felvine Shard", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 27
-        { type = "COLLECT", quest = 7441, questName = "Pusillin and the Elder Azj'Tordin", target = "Book of Incantations", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 28
-        { type = "COLLECT", quest = 7489, questName = "Lethtendris's Web", target = "Lethtendris's Web", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 29
-        { type = "COLLECT", quest = 1318, questName = "Unfinished Gordok Business", target = "Gauntlet of Gordok Might", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 30
-        { type = "COLLECT", quest = 5518, questName = "The Gordok Ogre Suit", target = "Bolt of Runecloth", count = 4, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 31
-        { type = "COLLECT", quest = 5518, questName = "The Gordok Ogre Suit", target = "Rugged Leather", count = 8, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 32
-        { type = "COLLECT", quest = 5518, questName = "The Gordok Ogre Suit", target = "Rune Thread", count = 2, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 33
-        { type = "COLLECT", quest = 5518, questName = "The Gordok Ogre Suit", target = "Ogre Tannin", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 34
+        { type = "ACCEPT", quest = 7461, questName = "The Madness Within", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 13
+        { type = "ACCEPT", quest = 7499, questName = "Codex of Defense", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 14
+        { type = "ACCEPT", quest = 7507, questName = "Foror's Compendium", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 15
+        { type = "ACCEPT", quest = 7703, questName = "Unfinished Gordok Business", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 16
+        { type = "ACCEPT", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 17
+        { type = "ACCEPT", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 18
+        { type = "ACCEPT", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 19
+        { type = "ACCEPT", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 20
+        { type = "ACCEPT", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 21
+        { type = "ACCEPT", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 22
+        { type = "ACCEPT", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 23
+        { type = "ACCEPT", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 24
+        { type = "COLLECT", quest = 5526, questName = "Shards of the Felvine", target = "Sealed Reliquary of Purity", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 25
+        { type = "COLLECT", quest = 5526, questName = "Shards of the Felvine", target = "Felvine Shard", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 26
+        { type = "COLLECT", quest = 7441, questName = "Pusillin and the Elder Azj'Tordin", target = "Book of Incantations", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 27
+        { type = "COLLECT", quest = 7489, questName = "Lethtendris's Web", target = "Lethtendris's Web", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 28
+        { type = "COLLECT", quest = 1318, questName = "Unfinished Gordok Business", target = "Gauntlet of Gordok Might", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 29
+        { type = "COLLECT", quest = 5518, questName = "The Gordok Ogre Suit", target = "Bolt of Runecloth", count = 4, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 30
+        { type = "COLLECT", quest = 5518, questName = "The Gordok Ogre Suit", target = "Rugged Leather", count = 8, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 31
+        { type = "COLLECT", quest = 5518, questName = "The Gordok Ogre Suit", target = "Rune Thread", count = 2, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 32
+        { type = "COLLECT", quest = 5518, questName = "The Gordok Ogre Suit", target = "Ogre Tannin", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 33
+        { type = "COLLECT", quest = 5525, questName = "Free Knot!", target = "Gordok Shackle Key", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 34
         { type = "KILL", quest = 7461, questName = "The Madness Within", npc = 11496, target = "Immol'thar", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 35
         { type = "KILL", quest = 7461, questName = "The Madness Within", npc = 11486, target = "Prince Tortheldrin", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 36
         { type = "COLLECT", quest = 7703, questName = "Unfinished Gordok Business", target = "Gauntlet of Gordok Might", count = 1, map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 37
@@ -83,35 +83,34 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1318, questName = "Unfinished Gordok Business", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 67
         { type = "TURNIN", quest = 5518, questName = "The Gordok Ogre Suit", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 68
         { type = "TURNIN", quest = 5525, questName = "Free Knot!", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 69
-        { type = "TURNIN", quest = 5528, questName = "The Gordok Taste Test", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 70
-        { type = "TURNIN", quest = 7461, questName = "The Madness Within", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 71
-        { type = "TURNIN", quest = 7499, questName = "Codex of Defense", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 72
-        { type = "TURNIN", quest = 7507, questName = "Foror's Compendium", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 73
-        { type = "TURNIN", quest = 7703, questName = "Unfinished Gordok Business", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 74
-        { type = "TURNIN", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 75
-        { type = "TURNIN", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 76
-        { type = "TURNIN", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 77
-        { type = "TURNIN", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 78
-        { type = "TURNIN", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 79
-        { type = "TURNIN", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 80
-        { type = "TURNIN", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 81
-        { type = "TURNIN", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 82
-        { type = "TURNIN", quest = 7441, questName = "Pusillin and the Elder Azj'Tordin", npc = 14355, npcName = "Azj'Tordin", map = 1444, zone = "Feralas", x = 76.8, y = 37.4 }, -- 83
-        { type = "TURNIN", quest = 7489, questName = "Lethtendris's Web", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76, y = 43.8 }, -- 84
-        { type = "TURNIN", quest = 5526, questName = "Shards of the Felvine", npc = 11801, npcName = "Rabine Saturna", map = 1450, zone = "Moonglade", x = 51.6, y = 44.8 }, -- 85
-        { type = "ACCEPT", quest = 5519, questName = "The Gordok Ogre Suit", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 86
-        { type = "TURNIN", quest = 5519, questName = "The Gordok Ogre Suit", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 87
-        { type = "ACCEPT", quest = 7462, questName = "The Treasure of the Shen'dralar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 88
-        { type = "TURNIN", quest = 7462, questName = "The Treasure of the Shen'dralar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 89
-        { type = "ACCEPT", quest = 7508, questName = "The Forging of Quel'Serrar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 90
-        { type = "TURNIN", quest = 7508, questName = "The Forging of Quel'Serrar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 91
-        { type = "ACCEPT", quest = 7877, questName = "The Treasure of the Shen'dralar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 92
-        { type = "TURNIN", quest = 7877, questName = "The Treasure of the Shen'dralar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 93
-        { type = "ACCEPT", quest = 8949, questName = "Falrin's Vendetta", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 94
-        { type = "TURNIN", quest = 8949, questName = "Falrin's Vendetta", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 95
-        { type = "ACCEPT", quest = 8950, questName = "The Instigator's Enchantment", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 96
-        { type = "TURNIN", quest = 8950, questName = "The Instigator's Enchantment", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 97
-        { type = "ACCEPT", quest = 9015, questName = "The Challenge", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 98
-        { type = "TURNIN", quest = 9015, questName = "The Challenge", npc = 16016, npcName = "Anthion Harmon", map = 1423, zone = "Eastern Plaguelands", x = 26.1, y = 11.3 }, -- 99
+        { type = "TURNIN", quest = 7461, questName = "The Madness Within", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 70
+        { type = "TURNIN", quest = 7499, questName = "Codex of Defense", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 71
+        { type = "TURNIN", quest = 7507, questName = "Foror's Compendium", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 72
+        { type = "TURNIN", quest = 7703, questName = "Unfinished Gordok Business", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 73
+        { type = "TURNIN", quest = 8966, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 74
+        { type = "TURNIN", quest = 8967, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 75
+        { type = "TURNIN", quest = 8969, questName = "The Left Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 76
+        { type = "TURNIN", quest = 8989, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 77
+        { type = "TURNIN", quest = 8990, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 78
+        { type = "TURNIN", quest = 8991, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 79
+        { type = "TURNIN", quest = 8992, questName = "The Right Piece of Lord Valthalak's Amulet", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 80
+        { type = "TURNIN", quest = 94340, questName = "Craftsman's Writ: Truesilver Transformer", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 81
+        { type = "TURNIN", quest = 7441, questName = "Pusillin and the Elder Azj'Tordin", npc = 14355, npcName = "Azj'Tordin", map = 1444, zone = "Feralas", x = 76.8, y = 37.4 }, -- 82
+        { type = "TURNIN", quest = 7489, questName = "Lethtendris's Web", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76, y = 43.8 }, -- 83
+        { type = "TURNIN", quest = 5526, questName = "Shards of the Felvine", npc = 11801, npcName = "Rabine Saturna", map = 1450, zone = "Moonglade", x = 51.6, y = 44.8 }, -- 84
+        { type = "ACCEPT", quest = 5519, questName = "The Gordok Ogre Suit", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 85
+        { type = "TURNIN", quest = 5519, questName = "The Gordok Ogre Suit", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 86
+        { type = "ACCEPT", quest = 7462, questName = "The Treasure of the Shen'dralar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 87
+        { type = "TURNIN", quest = 7462, questName = "The Treasure of the Shen'dralar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 88
+        { type = "ACCEPT", quest = 7508, questName = "The Forging of Quel'Serrar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 89
+        { type = "TURNIN", quest = 7508, questName = "The Forging of Quel'Serrar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 90
+        { type = "ACCEPT", quest = 7877, questName = "The Treasure of the Shen'dralar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 91
+        { type = "TURNIN", quest = 7877, questName = "The Treasure of the Shen'dralar", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 92
+        { type = "ACCEPT", quest = 8949, questName = "Falrin's Vendetta", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 93
+        { type = "TURNIN", quest = 8949, questName = "Falrin's Vendetta", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 94
+        { type = "ACCEPT", quest = 8950, questName = "The Instigator's Enchantment", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 95
+        { type = "TURNIN", quest = 8950, questName = "The Instigator's Enchantment", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 96
+        { type = "ACCEPT", quest = 9015, questName = "The Challenge", map = 1444, zone = "Feralas", x = 59.2, y = 45.1 }, -- 97
+        { type = "TURNIN", quest = 9015, questName = "The Challenge", npc = 16016, npcName = "Anthion Harmon", map = 1423, zone = "Eastern Plaguelands", x = 26.1, y = 11.3 }, -- 98
     } end,
 })

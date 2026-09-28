@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_11_THOUSAND_NEEDLES",
   "name": "11. Thousand Needles 30-31 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 30,
@@ -21,8 +21,6 @@
     {"type": "TRAVEL", "map": 1441, "zone": "Thousand Needles", "x": 78.8, "y": 76.8, "radius": 60, "note": "travel to Thousand Needles (Thousand Needles)"},
     {"type": "ACCEPT", "quest": 1104, "questName": "Salt Flat Venom", "npc": 4454, "npcName": "Fizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
     {"type": "ACCEPT", "quest": 1105, "questName": "Hardened Shells", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
-    {"type": "ACCEPT", "quest": 1191, "questName": "Zamek's Distraction", "npc": 4709, "npcName": "Zamek", "map": 1441, "zone": "Thousand Needles", "x": 79.8, "y": 77},
-    {"type": "TURNIN", "quest": 1191, "questName": "Zamek's Distraction", "npc": 4709, "npcName": "Zamek", "map": 1441, "zone": "Thousand Needles", "x": 79.8, "y": 77},
     {"type": "ACCEPT", "quest": 1176, "questName": "Load Lightening", "npc": 4630, "npcName": "Pozzik", "map": 1441, "zone": "Thousand Needles", "x": 80.2, "y": 75.9},
     {"type": "ACCEPT", "quest": 1175, "questName": "A Bump in the Road", "npc": 4629, "npcName": "Trackmaster Zherin", "map": 1441, "zone": "Thousand Needles", "x": 81.6, "y": 78},
     {"type": "COLLECT", "quest": 1104, "questName": "Salt Flat Venom", "target": "Salty Scorpid Venom", "count": 6, "map": 1441, "zone": "Thousand Needles", "x": 82.8, "y": 79.7, "near": true},

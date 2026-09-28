@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_22_BADLANDS",
   "name": "22. Badlands 39-39 (Human)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 39,
@@ -26,8 +26,6 @@
     {"type": "ACCEPT", "quest": 739, "questName": "Murdaloc", "map": 1418, "zone": "Badlands", "x": 50.9, "y": 62.2},
     {"type": "KILL", "quest": 739, "questName": "Murdaloc", "npc": 2945, "target": "Murdaloc", "count": 1, "map": 1418, "zone": "Badlands", "x": 49.6, "y": 66.6},
     {"type": "KILL", "quest": 739, "questName": "Murdaloc", "npc": 2893, "target": "Stonevault Bonesnapper", "count": 12, "map": 1418, "zone": "Badlands", "x": 49.8, "y": 63.8},
-    {"type": "ACCEPT", "quest": 1559, "questName": "Flash Bomb Recipe", "npc": 2817, "npcName": "Rigglefuzz", "map": 1418, "zone": "Badlands", "x": 42.4, "y": 52.8, "profession": "Engineering"},
-    {"type": "TURNIN", "quest": 1559, "questName": "Flash Bomb Recipe", "npc": 2817, "npcName": "Rigglefuzz", "map": 1418, "zone": "Badlands", "x": 42.4, "y": 52.8, "profession": "Engineering"},
     {"type": "TURNIN", "quest": 703, "questName": "Barbecued Buzzard Wings", "npc": 2817, "npcName": "Rigglefuzz", "map": 1418, "zone": "Badlands", "x": 42.4, "y": 52.9},
     {"type": "TURNIN", "quest": 1108, "questName": "Indurium", "npc": 4618, "npcName": "Martek the Exiled", "map": 1418, "zone": "Badlands", "x": 42.2, "y": 52.6},
     {"type": "ACCEPT", "quest": 711, "questName": "Study of the Elements: Rock", "npc": 2921, "npcName": "Lotwil Veriatus", "map": 1418, "zone": "Badlands", "x": 26, "y": 44.9},

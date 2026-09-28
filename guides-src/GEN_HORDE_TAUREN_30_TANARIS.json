@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_30_TANARIS",
   "name": "30. Tanaris 46-47 (Tauren)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 46,
@@ -16,6 +16,7 @@
     {"type": "ACCEPT", "quest": 82, "questName": "Noxious Lair Investigation", "npc": 7724, "npcName": "Senior Surveyor Fizzledowser", "map": 1446, "zone": "Tanaris", "x": 50.2, "y": 27.5},
     {"type": "ACCEPT", "quest": 2605, "questName": "The Thirsty Goblin", "npc": 7564, "npcName": "Marin Noggenfogger", "map": 1446, "zone": "Tanaris", "x": 51.8, "y": 28.7},
     {"type": "ACCEPT", "quest": 5863, "questName": "The Dunemaul Compound", "npc": 11758, "npcName": "Andi Lynn", "map": 1446, "zone": "Tanaris", "x": 52.8, "y": 27.4},
+    {"type": "TURNIN", "quest": 2741, "questName": "The Super Egg-O-Matic", "map": 1446, "zone": "Tanaris", "x": 52.4, "y": 27},
     {"type": "COLLECT", "quest": 82, "questName": "Noxious Lair Investigation", "target": "Centipaar Insect Parts", "map": 1446, "zone": "Tanaris", "x": 36.1, "y": 39.5, "near": true},
     {"type": "KILL", "quest": 5863, "questName": "The Dunemaul Compound", "npc": 5474, "target": "Dunemaul Brute / Dunemaul Enforcer", "count": 10, "map": 1446, "zone": "Tanaris", "x": 38.9, "y": 51.3, "near": true},
     {"type": "KILL", "quest": 5863, "questName": "The Dunemaul Compound", "npc": 12046, "target": "Gor'marok the Ravager", "count": 1, "map": 1446, "zone": "Tanaris", "x": 41.5, "y": 57.8},

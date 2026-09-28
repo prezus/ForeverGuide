@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_02_DARKSHORE",
     name = "2. Darkshore 9-12 (Night Elf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 9,
@@ -23,7 +23,7 @@ ns.RegisterGuide({
         { type = "HEARTH", npc = 6737, npcName = "Innkeeper Shaussiy", map = 1439, zone = "Auberdine", x = 37.0, y = 44.1, note = "talk to Innkeeper Shaussiy and make this inn your home" }, -- 6
         { type = "ACCEPT", quest = 983, questName = "Buzzbox 827", npc = 3666, npcName = "Wizbang Cranktoggle", map = 1439, zone = "Darkshore", x = 37.0, y = 44.1 }, -- 7
         { type = "ACCEPT", quest = 94374, questName = "Call of Earth", npc = 257446, npcName = "Teo Hammerstorm", map = 1426, zone = "Dun Morogh", x = 28.8, y = 66.2, class = { "SHAMAN" }, note = "New in Forever" }, -- 8
-        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" } }, -- 9
+        { type = "TURNIN", quest = 94374, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1426, zone = "Dun Morogh", x = 26.4, y = 68, class = { "SHAMAN" } }, -- 9
         { type = "COLLECT", quest = 983, questName = "Buzzbox 827", target = "Crawler Leg", count = 6, map = 1439, zone = "Darkshore", x = 36.2, y = 44.5, near = true }, -- 10
         { type = "TURNIN", quest = 983, questName = "Buzzbox 827", map = 1439, zone = "Darkshore", x = 36.6, y = 46.3 }, -- 11
         { type = "ACCEPT", quest = 1001, questName = "Buzzbox 411", map = 1439, zone = "Darkshore", x = 36.6, y = 46.3 }, -- 12

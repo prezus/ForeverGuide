@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_13_ASHENVALE",
     name = "13. Ashenvale 31-32 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 31,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_14_DESOLACE",
     author = "ForeverGuide route planner",
     notes = "Chapter 13 of the Skyborne route: level 31 to 32, 50 steps, ~130 min of play in the model (22269 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 54,
+    stepCount = 52,
     steps = function() return {
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 54.1, y = 46.9, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
         { type = "ACCEPT", quest = 1026, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 2
@@ -43,31 +43,29 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1045, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 26
         { type = "KILL", quest = 1045, questName = "Raene's Cleansing", npc = 3932, target = "Bloodtooth Guard", count = 4, map = 1440, zone = "Ashenvale", x = 54.9, y = 76, near = true }, -- 27
         { type = "KILL", quest = 1045, questName = "Raene's Cleansing", npc = 3696, target = "Ran Bloodtooth", count = 1, map = 1440, zone = "Ashenvale", x = 54.8, y = 79.6 }, -- 28
-        { type = "ACCEPT", quest = 7863, questName = "Sentinel Basic Care Package", npc = 14753, npcName = "Illiyana Moonblaze", map = 1440, zone = "Ashenvale", x = 61.4, y = 83.8 }, -- 29
-        { type = "TURNIN", quest = 7863, questName = "Sentinel Basic Care Package", npc = 14753, npcName = "Illiyana Moonblaze", map = 1440, zone = "Ashenvale", x = 61.4, y = 83.8 }, -- 30
-        { type = "KILL", quest = 1035, questName = "Fallen Sky Lake", npc = 3931, target = "Shadethicket Oracle", map = 1440, zone = "Ashenvale", x = 66.7, y = 82.2, note = "loot Fallen Moonstone" }, -- 31
-        { type = "TURNIN", quest = 1045, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 32
-        { type = "TURNIN", quest = 1035, questName = "Fallen Sky Lake", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 33
-        { type = "COMPLETE", quest = 1022, questName = "The Howling Vale", target = "Tome of Mel'Thandris", map = 1440, zone = "Ashenvale", x = 50.5, y = 39.1, note = "View the Tome of Mel'Thandris" }, -- 34
-        { type = "ACCEPT", quest = 4581, questName = "Kayneth Stillwind", npc = 3845, npcName = "Shindrell Swiftfire", map = 1440, zone = "Ashenvale", x = 34.6, y = 48.8 }, -- 35
-        { type = "TURNIN", quest = 1022, questName = "The Howling Vale", npc = 3880, npcName = "Sentinel Melyria Frostshadow", map = 1440, zone = "Ashenvale", x = 22.2, y = 53 }, -- 36
-        { type = "COMPLETE", quest = 1140, questName = "The Tower of Althalaxx", target = "Circle of Imprisonment", map = 1440, zone = "Ashenvale", x = 66.6, y = 57, note = "Free the Highborne soul in Night Run" }, -- 37
-        { type = "COMPLETE", quest = 1140, questName = "The Tower of Althalaxx", target = "Circle of Imprisonment", map = 1440, zone = "Ashenvale", x = 81.6, y = 48.6, note = "Free the Highborne soul in Satyrnaar" }, -- 38
-        { type = "ACCEPT", quest = 1011, questName = "Forsaken Diseases", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 39
-        { type = "TURNIN", quest = 4581, questName = "Kayneth Stillwind", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.6 }, -- 40
-        { type = "TURNIN", quest = 1021, questName = "Vile Satyr! Dryads in Danger!", npc = 3920, npcName = "Anilia", map = 1440, zone = "Ashenvale", x = 78.3, y = 44.8 }, -- 41
-        { type = "ACCEPT", quest = 1031, questName = "The Branch of Cenarius", npc = 3920, npcName = "Anilia", map = 1440, zone = "Ashenvale", x = 78.3, y = 44.8 }, -- 42
-        { type = "KILL", quest = 1031, questName = "The Branch of Cenarius", npc = 4619, target = "Geltharis", map = 1440, zone = "Ashenvale", x = 78, y = 42.4, note = "loot Branch of Cenarius" }, -- 43
-        { type = "COLLECT", quest = 1011, questName = "Forsaken Diseases", target = "Bottle of Disease", map = 1440, zone = "Ashenvale", x = 75.3, y = 71.8, near = true }, -- 44
-        { type = "TURNIN", quest = 1011, questName = "Forsaken Diseases", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 45
-        { type = "ACCEPT", quest = 1012, questName = "Insane Druids", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 46
-        { type = "KILL", quest = 1012, questName = "Insane Druids", npc = 3941, target = "Uthil Mooncall / Taneel Darkwood", count = 1, map = 1440, zone = "Ashenvale", x = 78, y = 72.7 }, -- 47
-        { type = "KILL", quest = 1012, questName = "Insane Druids", npc = 3942, target = "Mavoris Cloudsbreak", count = 1, map = 1440, zone = "Ashenvale", x = 75.1, y = 74.2 }, -- 48
-        { type = "TURNIN", quest = 1012, questName = "Insane Druids", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 49
-        { type = "TURNIN", quest = 1140, questName = "The Tower of Althalaxx", npc = 3663, npcName = "Delgren the Purifier", map = 1440, zone = "Ashenvale", x = 26.2, y = 38.7 }, -- 50
-        { type = "TURNIN", quest = 1031, questName = "The Branch of Cenarius", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 51
-        { type = "ACCEPT", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 52
-        { type = "COLLECT", quest = 1032, questName = "Satyr Slaying!", target = "Satyr Horns", count = 16, map = 1440, zone = "Ashenvale", x = 66.1, y = 53.4, near = true }, -- 53
-        { type = "TURNIN", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 54
+        { type = "KILL", quest = 1035, questName = "Fallen Sky Lake", npc = 3931, target = "Shadethicket Oracle", map = 1440, zone = "Ashenvale", x = 66.7, y = 82.2, note = "loot Fallen Moonstone" }, -- 29
+        { type = "TURNIN", quest = 1045, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 30
+        { type = "TURNIN", quest = 1035, questName = "Fallen Sky Lake", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 31
+        { type = "COMPLETE", quest = 1022, questName = "The Howling Vale", target = "Tome of Mel'Thandris", map = 1440, zone = "Ashenvale", x = 50.5, y = 39.1, note = "View the Tome of Mel'Thandris" }, -- 32
+        { type = "ACCEPT", quest = 4581, questName = "Kayneth Stillwind", npc = 3845, npcName = "Shindrell Swiftfire", map = 1440, zone = "Ashenvale", x = 34.6, y = 48.8 }, -- 33
+        { type = "TURNIN", quest = 1022, questName = "The Howling Vale", npc = 3880, npcName = "Sentinel Melyria Frostshadow", map = 1440, zone = "Ashenvale", x = 22.2, y = 53 }, -- 34
+        { type = "COMPLETE", quest = 1140, questName = "The Tower of Althalaxx", target = "Circle of Imprisonment", map = 1440, zone = "Ashenvale", x = 66.6, y = 57, note = "Free the Highborne soul in Night Run" }, -- 35
+        { type = "COMPLETE", quest = 1140, questName = "The Tower of Althalaxx", target = "Circle of Imprisonment", map = 1440, zone = "Ashenvale", x = 81.6, y = 48.6, note = "Free the Highborne soul in Satyrnaar" }, -- 36
+        { type = "ACCEPT", quest = 1011, questName = "Forsaken Diseases", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 37
+        { type = "TURNIN", quest = 4581, questName = "Kayneth Stillwind", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.6 }, -- 38
+        { type = "TURNIN", quest = 1021, questName = "Vile Satyr! Dryads in Danger!", npc = 3920, npcName = "Anilia", map = 1440, zone = "Ashenvale", x = 78.3, y = 44.8 }, -- 39
+        { type = "ACCEPT", quest = 1031, questName = "The Branch of Cenarius", npc = 3920, npcName = "Anilia", map = 1440, zone = "Ashenvale", x = 78.3, y = 44.8 }, -- 40
+        { type = "KILL", quest = 1031, questName = "The Branch of Cenarius", npc = 4619, target = "Geltharis", map = 1440, zone = "Ashenvale", x = 78, y = 42.4, note = "loot Branch of Cenarius" }, -- 41
+        { type = "COLLECT", quest = 1011, questName = "Forsaken Diseases", target = "Bottle of Disease", map = 1440, zone = "Ashenvale", x = 75.3, y = 71.8, near = true }, -- 42
+        { type = "TURNIN", quest = 1011, questName = "Forsaken Diseases", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 43
+        { type = "ACCEPT", quest = 1012, questName = "Insane Druids", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 44
+        { type = "KILL", quest = 1012, questName = "Insane Druids", npc = 3941, target = "Uthil Mooncall / Taneel Darkwood", count = 1, map = 1440, zone = "Ashenvale", x = 78, y = 72.7 }, -- 45
+        { type = "KILL", quest = 1012, questName = "Insane Druids", npc = 3942, target = "Mavoris Cloudsbreak", count = 1, map = 1440, zone = "Ashenvale", x = 75.1, y = 74.2 }, -- 46
+        { type = "TURNIN", quest = 1012, questName = "Insane Druids", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 47
+        { type = "TURNIN", quest = 1140, questName = "The Tower of Althalaxx", npc = 3663, npcName = "Delgren the Purifier", map = 1440, zone = "Ashenvale", x = 26.2, y = 38.7 }, -- 48
+        { type = "TURNIN", quest = 1031, questName = "The Branch of Cenarius", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 49
+        { type = "ACCEPT", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 50
+        { type = "COLLECT", quest = 1032, questName = "Satyr Slaying!", target = "Satyr Horns", count = 16, map = 1440, zone = "Ashenvale", x = 66.1, y = 53.4, near = true }, -- 51
+        { type = "TURNIN", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 52
     } end,
 })

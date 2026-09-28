@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_30_FERALAS",
   "name": "30. Feralas 46-46 (Orc)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 46,
@@ -16,6 +16,7 @@
     {"type": "ACCEPT", "quest": 2822, "questName": "The Mark of Quality", "npc": 7854, "npcName": "Jangdor Swiftstrider", "map": 1444, "zone": "Feralas", "x": 74.4, "y": 42.9},
     {"type": "ACCEPT", "quest": 7731, "questName": "Stinglasher", "npc": 7875, "npcName": "Hadoken Swiftstrider", "map": 1444, "zone": "Feralas", "x": 74.9, "y": 42.5},
     {"type": "KILL", "quest": 7731, "questName": "Stinglasher", "npc": 14661, "target": "Stinglasher", "map": 1444, "zone": "Feralas", "x": 75.6, "y": 60.9, "note": "loot Stinglasher's Glands"},
+    {"type": "COLLECT", "quest": 2741, "questName": "The Super Egg-O-Matic", "target": "Hippogryph Egg", "count": 1, "map": 1444, "zone": "Feralas", "x": 58.6, "y": 75.5},
     {"type": "COLLECT", "quest": 2822, "questName": "The Mark of Quality", "target": "Thick Yeti Hide", "count": 10, "map": 1444, "zone": "Feralas", "x": 56.5, "y": 56.5, "near": true},
     {"type": "TURNIN", "quest": 2822, "questName": "The Mark of Quality", "npc": 7854, "npcName": "Jangdor Swiftstrider", "map": 1444, "zone": "Feralas", "x": 74.4, "y": 42.9},
     {"type": "ACCEPT", "quest": 7734, "questName": "Improved Quality", "npc": 7854, "npcName": "Jangdor Swiftstrider", "map": 1444, "zone": "Feralas", "x": 74.4, "y": 42.9},

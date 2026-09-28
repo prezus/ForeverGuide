@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_43_UNDERCITY",
   "name": "43. Undercity 53-53 (Undead)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 53,
@@ -14,8 +14,6 @@
   "steps": [
     {"type": "ACCEPT", "quest": 3564, "questName": "Andron's Payment to Jediga", "npc": 6522, "npcName": "Andron Gant", "map": 1458, "zone": "Undercity", "x": 54.6, "y": 75.6},
     {"type": "TURNIN", "quest": 3564, "questName": "Andron's Payment to Jediga", "npc": 8587, "npcName": "Jediga", "map": 1447, "zone": "Azshara", "x": 22.4, "y": 51.4},
-    {"type": "ACCEPT", "quest": 7818, "questName": "A Donation of Runecloth", "npc": 14729, "npcName": "Ralston Farnsley", "map": 1458, "zone": "Undercity", "x": 71.6, "y": 28.8},
-    {"type": "TURNIN", "quest": 7818, "questName": "A Donation of Runecloth", "npc": 14729, "npcName": "Ralston Farnsley", "map": 1458, "zone": "Undercity", "x": 71.6, "y": 28.8},
     {"type": "ACCEPT", "quest": 8153, "questName": "Courser Antlers", "npc": 8405, "npcName": "Ogtinc", "map": 1447, "zone": "Azshara", "x": 42.4, "y": 42.6, "class": ["HUNTER"]},
     {"type": "ACCEPT", "quest": 8255, "questName": "Of Coursers We Know", "npc": 8405, "npcName": "Ogtinc", "map": 1447, "zone": "Azshara", "x": 42.4, "y": 42.6, "class": ["PRIEST"]},
     {"type": "COLLECT", "quest": 8153, "questName": "Courser Antlers", "target": "Perfect Courser Antler", "count": 2, "mobs": "Mosshoof Courser", "map": 1447, "zone": "Azshara", "x": 37.8, "y": 69.2, "class": ["HUNTER"]},

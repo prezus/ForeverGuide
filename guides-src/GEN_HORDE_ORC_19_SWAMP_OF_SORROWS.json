@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_19_SWAMP_OF_SORROWS",
   "name": "19. Swamp of Sorrows 40-40 (Orc)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 40,
@@ -19,8 +19,6 @@
     {"type": "ACCEPT", "quest": 782, "questName": "Broken Alliances", "npc": 1068, "npcName": "Gorn", "map": 1418, "zone": "Badlands", "x": 2.8, "y": 45.8},
     {"type": "COLLECT", "quest": 782, "questName": "Broken Alliances", "target": "Sign of the Earth", "count": 1, "mobs": "Boss Tho'grun", "map": 1418, "zone": "Badlands", "x": 61.6, "y": 67.8},
     {"type": "TURNIN", "quest": 782, "questName": "Broken Alliances", "npc": 1068, "npcName": "Gorn", "map": 1418, "zone": "Badlands", "x": 2.8, "y": 45.8},
-    {"type": "ACCEPT", "quest": 795, "questName": "Seal of the Earth", "map": 1418, "zone": "Badlands", "x": 81.7, "y": 49.9},
-    {"type": "TURNIN", "quest": 795, "questName": "Seal of the Earth", "map": 1418, "zone": "Badlands", "x": 81.7, "y": 49.9},
     {"type": "TURNIN", "quest": 687, "questName": "Theldurin the Lost", "npc": 2785, "npcName": "Theldurin the Lost", "map": 1418, "zone": "Badlands", "x": 51.4, "y": 76.8},
     {"type": "ACCEPT", "quest": 1137, "questName": "News for Fizzle", "npc": 4618, "npcName": "Martek the Exiled", "map": 1418, "zone": "Badlands", "x": 42.2, "y": 52.6},
     {"type": "ACCEPT", "quest": 709, "questName": "Solution to Doom", "npc": 2785, "npcName": "Theldurin the Lost", "map": 1418, "zone": "Badlands", "x": 51.4, "y": 76.8, "note": "For Uldaman (dungeon guide)", "optional": true},

@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_46_SILITHUS",
   "name": "46. Silithus 55-55 (Undead)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 55,
@@ -12,8 +12,6 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 46 of the Scourge route: level 55 to 55, 24 steps, ~94 min of play in the model (40991 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
-    {"type": "ACCEPT", "quest": 3570, "questName": "Seeping Corruption", "npc": 8390, "npcName": "Chemist Cuely", "map": 1458, "zone": "Undercity", "x": 48.6, "y": 71.8},
-    {"type": "TURNIN", "quest": 3570, "questName": "Seeping Corruption", "npc": 8390, "npcName": "Chemist Cuely", "map": 1458, "zone": "Undercity", "x": 48.6, "y": 71.8},
     {"type": "ACCEPT", "quest": 5961, "questName": "The Champion of the Banshee Queen", "npc": 10181, "npcName": "Lady Sylvanas Windrunner", "map": 1458, "zone": "Undercity", "x": 57.8, "y": 91.8},
     {"type": "ACCEPT", "quest": 6025, "questName": "Unfinished Business", "npc": 11610, "npcName": "Kirsta Deepshadow", "map": 1422, "zone": "Western Plaguelands", "x": 52, "y": 28, "note": "Objectives: Explore Zone, Overlook Hearthglen from a high vantage point"},
     {"type": "TURNIN", "quest": 6025, "questName": "Unfinished Business", "npc": 11610, "npcName": "Kirsta Deepshadow", "map": 1422, "zone": "Western Plaguelands", "x": 52, "y": 28},

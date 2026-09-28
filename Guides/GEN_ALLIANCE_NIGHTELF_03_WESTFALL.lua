@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_03_WESTFALL",
     name = "3. Westfall 12-16 (Night Elf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 12,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_04_LOCH_MODAN",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the NightElf route: level 12 to 16, 50 steps, ~169 min of play in the model (16062 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 144,
+    stepCount = 141,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 523, npcName = "Thor", map = 1436, zone = "Westfall", x = 56.6, y = 52.6 }, -- 1
         { type = "TURNIN", quest = 963, questName = "For Love Eternal", npc = 3644, npcName = "Cerellean Whiteclaw", map = 1439, zone = "Darkshore", x = 35.8, y = 43.6 }, -- 2
@@ -47,117 +47,114 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5632, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39, y = 80.2, class = { "PRIEST" } }, -- 30
         { type = "ACCEPT", quest = 5633, questName = "Returning Home", npc = 5142, npcName = "Braenna Flintcrag", map = 1455, zone = "Ironforge", x = 24.6, y = 9.2, class = { "PRIEST" } }, -- 31
         { type = "TURNIN", quest = 5633, questName = "Returning Home", npc = 11401, npcName = "Priestess Alathea", map = 1457, zone = "Darnassus", x = 39.2, y = 81, class = { "PRIEST" } }, -- 32
-        { type = "ACCEPT", quest = 94375, questName = "Call of Earth", npc = 5891, npcName = "Minor Manifestation of Earth", map = 1411, zone = "Durotar", x = 44, y = 76, class = { "SHAMAN" }, note = "New in Forever" }, -- 33
-        { type = "ACCEPT", quest = 94449, questName = "Call of Fire", npc = 258113, npcName = "Ingrid Dunwald", map = 1426, zone = "Dun Morogh", x = 47.4, y = 52, class = { "SHAMAN" }, note = "New in Forever" }, -- 34
-        { type = "TURNIN", quest = 94449, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" } }, -- 35
-        { type = "ACCEPT", quest = 5923, questName = "Heeding the Call", npc = 4218, npcName = "Denatharion", map = 1457, zone = "Darnassus", x = 34.8, y = 7.8, class = { "DRUID" } }, -- 36
-        { type = "TURNIN", quest = 5923, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 37
-        { type = "ACCEPT", quest = 5924, questName = "Heeding the Call", npc = 5505, npcName = "Theridran", map = 1453, zone = "Stormwind City", x = 21.4, y = 51.4, class = { "DRUID" } }, -- 38
-        { type = "TURNIN", quest = 5924, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 39
-        { type = "ACCEPT", quest = 5925, questName = "Heeding the Call", npc = 3602, npcName = "Kal", map = 1438, zone = "Teldrassil", x = 56, y = 61.6, class = { "DRUID" } }, -- 40
-        { type = "TURNIN", quest = 5925, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 41
-        { type = "TRAVEL", map = 1436, zone = "Westfall", x = 56.1, y = 43.1, radius = 60, note = "travel to Westfall (Westfall)" }, -- 42
-        { type = "ACCEPT", quest = 92742, questName = "Testing the Wells", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 43
-        { type = "ACCEPT", quest = 92744, questName = "Murloc Gills", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 44
-        { type = "HEARTH", npc = 8931, npcName = "Innkeeper Heather", map = 1436, zone = "Sentinel Hill", x = 52.9, y = 53.7, note = "talk to Innkeeper Heather and make this inn your home" }, -- 45
-        { type = "ACCEPT", quest = 153, questName = "Red Leather Bandanas", npc = 878, npcName = "Scout Galiaan", map = 1436, zone = "Westfall", x = 54, y = 53 }, -- 46
-        { type = "ACCEPT", quest = 12, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 47
-        { type = "ACCEPT", quest = 102, questName = "Patrolling Westfall", npc = 821, npcName = "Captain Danuvin", map = 1436, zone = "Westfall", x = 56.4, y = 47.6 }, -- 48
-        { type = "ACCEPT", quest = 109, questName = "Report to Gryan Stoutmantle", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 49
-        { type = "ACCEPT", quest = 22, questName = "Goretusk Liver Pie", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 50
-        { type = "ACCEPT", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 51
-        { type = "COLLECT", quest = 22, questName = "Goretusk Liver Pie", target = "Goretusk Liver", count = 8, map = 1436, zone = "Westfall", x = 61.2, y = 36.5, near = true }, -- 52
-        { type = "KILL", quest = 12, questName = "The People's Militia", npc = 504, target = "Defias Trapper / Defias Smuggler", count = 15, map = 1436, zone = "Westfall", x = 49.8, y = 19.8, near = true }, -- 53
-        { type = "COLLECT", quest = 153, questName = "Red Leather Bandanas", target = "Red Leather Bandana", count = 15, map = 1436, zone = "Westfall", x = 49.4, y = 19.2, near = true }, -- 54
-        { type = "COLLECT", quest = 102, questName = "Patrolling Westfall", target = "Gnoll Paw", count = 8, map = 1436, zone = "Westfall", x = 52.1, y = 14.8, near = true }, -- 55
-        { type = "ACCEPT", quest = 92909, questName = "Harvesting the Harvesters", npc = 253395, npcName = "Ozwin Ironsprocket", map = 1436, zone = "Westfall", x = 51.6, y = 32.2, note = "New in Forever" }, -- 56
-        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Golem Isospring", count = 14, map = 1436, zone = "Westfall", x = 57.6, y = 19.4, near = true, mobs = "Rusty Harvest Golem / Decrepit Harvester" }, -- 57
-        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Harvester Gyrostabilizer", count = 5, map = 1436, zone = "Westfall", x = 54.2, y = 30.8, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper" }, -- 58
-        { type = "TURNIN", quest = 92909, questName = "Harvesting the Harvesters", npc = 253395, npcName = "Ozwin Ironsprocket", map = 1436, zone = "Westfall", x = 51.6, y = 32.2 }, -- 59
-        { type = "KILL", quest = 9, questName = "The Killing Fields", npc = 114, target = "Harvest Watcher", count = 20, map = 1436, zone = "Westfall", x = 53.3, y = 33.6, near = true }, -- 60
-        { type = "TURNIN", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 61
-        { type = "TURNIN", quest = 22, questName = "Goretusk Liver Pie", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 62
-        { type = "ACCEPT", quest = 36, questName = "Westfall Stew", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 63
-        { type = "ACCEPT", quest = 64, questName = "The Forgotten Heirloom", npc = 237, npcName = "Farmer Furlbrow", map = 1436, zone = "Westfall", x = 60, y = 19.4 }, -- 64
-        { type = "ACCEPT", quest = 151, questName = "Poor Old Blanchy", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 65
-        { type = "COLLECT", quest = 92742, questName = "Testing the Wells", target = "Jansen Stead Water Sample", count = 1, map = 1436, zone = "Westfall", x = 56.7, y = 18.7, near = true }, -- 66
-        { type = "COLLECT", quest = 92742, questName = "Testing the Wells", target = "Molsen Farm Water Sample", count = 1, map = 1436, zone = "Westfall", x = 56.7, y = 18.7, near = true }, -- 67
-        { type = "COLLECT", quest = 64, questName = "The Forgotten Heirloom", target = "Furlbrow's Pocket Watch", map = 1436, zone = "Westfall", x = 49.3, y = 19.3 }, -- 68
-        { type = "COLLECT", quest = 151, questName = "Poor Old Blanchy", target = "Handful of Oats", count = 8, map = 1436, zone = "Westfall", x = 51.5, y = 31.9, near = true }, -- 69
-        { type = "TURNIN", quest = 36, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 70
-        { type = "ACCEPT", quest = 38, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 71
-        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Okra", count = 3, map = 1436, zone = "Westfall", x = 56.9, y = 34.3, near = true }, -- 72
-        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Goretusk Snout", count = 3, map = 1436, zone = "Westfall", x = 61.2, y = 36.5, near = true }, -- 73
-        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Stringy Vulture Meat", count = 3, map = 1436, zone = "Westfall", x = 60.9, y = 28, near = true }, -- 74
-        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Murloc Eye", count = 3, map = 1436, zone = "Westfall", x = 56.3, y = 9.6, near = true }, -- 75
-        { type = "COLLECT", quest = 92744, questName = "Murloc Gills", target = "Longshore Murloc Gill", count = 7, map = 1436, zone = "Westfall", x = 56.2, y = 9.4, near = true, mobs = "Murloc Coastrunner / Murloc Tidehunter / Murloc Warrior / Murloc Minor Oracle" }, -- 76
-        { type = "TURNIN", quest = 64, questName = "The Forgotten Heirloom", npc = 237, npcName = "Farmer Furlbrow", map = 1436, zone = "Westfall", x = 60, y = 19.4 }, -- 77
-        { type = "TURNIN", quest = 151, questName = "Poor Old Blanchy", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 78
-        { type = "TURNIN", quest = 38, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 79
-        { type = "TURNIN", quest = 109, questName = "Report to Gryan Stoutmantle", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 80
-        { type = "TURNIN", quest = 12, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 81
-        { type = "TURNIN", quest = 102, questName = "Patrolling Westfall", npc = 821, npcName = "Captain Danuvin", map = 1436, zone = "Westfall", x = 56.4, y = 47.6 }, -- 82
-        { type = "TURNIN", quest = 153, questName = "Red Leather Bandanas", npc = 878, npcName = "Scout Galiaan", map = 1436, zone = "Westfall", x = 54, y = 53 }, -- 83
-        { type = "ACCEPT", quest = 13, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 84
-        { type = "ACCEPT", quest = 65, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 85
-        { type = "KILL", quest = 13, questName = "The People's Militia", npc = 589, target = "Defias Pillager / Defias Looter", count = 15, map = 1436, zone = "Westfall", x = 46.3, y = 67.4, near = true }, -- 86
-        { type = "TURNIN", quest = 13, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 87
-        { type = "ACCEPT", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 88
-        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 121, target = "Defias Pathstalker / Defias Highwayman", count = 15, map = 1436, zone = "Westfall", x = 52.8, y = 73.5, near = true }, -- 89
-        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 449, target = "Defias Knuckleduster", count = 15, map = 1436, zone = "Westfall", x = 51.6, y = 78.2, near = true }, -- 90
-        { type = "TURNIN", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 91
-        { type = "TURNIN", quest = 92742, questName = "Testing the Wells", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 92
-        { type = "TURNIN", quest = 92744, questName = "Murloc Gills", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 93
-        { type = "ACCEPT", quest = 117, questName = "Thunderbrew", npc = 239, npcName = "Grimbooze Thunderbrew", map = 1436, zone = "Westfall", x = 44.6, y = 80.2 }, -- 94
-        { type = "COLLECT", quest = 117, questName = "Thunderbrew", target = "Hops", count = 5, map = 1436, zone = "Westfall", x = 51.4, y = 46.6, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper / Rusty Harvest Golem" }, -- 95
-        { type = "ACCEPT", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 96
-        { type = "ACCEPT", quest = 1639, questName = "Bartleby the Drunk", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 97
-        { type = "TURNIN", quest = 1639, questName = "Bartleby the Drunk", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 98
-        { type = "ACCEPT", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 99
-        { type = "ACCEPT", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 100
-        { type = "COLLECT", quest = 1683, questName = "Vorlus Vilehoof", target = "Horn of Vorlus", count = 1, map = 1438, zone = "Teldrassil", x = 47.3, y = 63.6, class = { "WARRIOR" }, mobs = "Vorlus Vilehoof" }, -- 101
-        { type = "TURNIN", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 102
-        { type = "ACCEPT", quest = 94863, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever; Objectives: Tame a Gray Forest Wolf" }, -- 103
-        { type = "TURNIN", quest = 94863, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" } }, -- 104
-        { type = "ACCEPT", quest = 6063, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" }, note = "Objectives: Tame a Webwood Lurker" }, -- 105
-        { type = "TURNIN", quest = 6063, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 106
-        { type = "ACCEPT", quest = 5921, questName = "Moonglade", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 107
-        { type = "TURNIN", quest = 5921, questName = "Moonglade", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 108
-        { type = "ACCEPT", quest = 103, questName = "Keeper of the Flame", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 109
-        { type = "TURNIN", quest = 117, questName = "Thunderbrew", npc = 239, npcName = "Grimbooze Thunderbrew", map = 1436, zone = "Westfall", x = 44.6, y = 80.2 }, -- 110
-        { type = "ACCEPT", quest = 1640, questName = "Beat Bartleby", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" }, note = "Objectives: Beat Bartleby" }, -- 111
-        { type = "TURNIN", quest = 1640, questName = "Beat Bartleby", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 112
-        { type = "ACCEPT", quest = 94864, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever; Objectives: Tame a Young Forest Bear" }, -- 113
-        { type = "TURNIN", quest = 94864, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" } }, -- 114
-        { type = "ACCEPT", quest = 6101, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" }, note = "Objectives: Tame a Nightsaber Stalker" }, -- 115
-        { type = "TURNIN", quest = 6101, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 116
-        { type = "ACCEPT", quest = 5929, questName = "Great Bear Spirit", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" }, note = "Objectives: Seek out the Great Bear Spirit and learn what it has to share with you about the nature of the bear." }, -- 117
-        { type = "TURNIN", quest = 5929, questName = "Great Bear Spirit", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 118
-        { type = "COLLECT", quest = 103, questName = "Keeper of the Flame", target = "Flask of Oil", count = 5, map = 1436, zone = "Westfall", x = 46.5, y = 69.1, near = true }, -- 119
-        { type = "ACCEPT", quest = 1665, questName = "Bartleby's Mug", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 120
-        { type = "TURNIN", quest = 1665, questName = "Bartleby's Mug", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 121
-        { type = "ACCEPT", quest = 6102, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" }, note = "Objectives: Tame a Strigid Screecher" }, -- 122
-        { type = "TURNIN", quest = 6102, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 123
-        { type = "ACCEPT", quest = 94793, questName = "Training the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever" }, -- 124
-        { type = "TURNIN", quest = 94793, questName = "Training the Beast", npc = 258930, npcName = "Isaac Chan", map = 1429, zone = "Elwynn Forest", x = 41.8, y = 66.4, class = { "HUNTER" } }, -- 125
-        { type = "ACCEPT", quest = 5931, questName = "Back to Darnassus", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 126
-        { type = "TURNIN", quest = 5931, questName = "Back to Darnassus", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 127
-        { type = "TURNIN", quest = 103, questName = "Keeper of the Flame", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 128
-        { type = "ACCEPT", quest = 152, questName = "The Coast Isn't Clear", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 129
-        { type = "ACCEPT", quest = 6103, questName = "Training the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 130
-        { type = "TURNIN", quest = 6103, questName = "Training the Beast", npc = 4146, npcName = "Jocaste", map = 1457, zone = "Darnassus", x = 40.2, y = 8.8, class = { "HUNTER" } }, -- 131
-        { type = "ACCEPT", quest = 6001, questName = "Body and Heart", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" }, note = "Objectives: Face Lunaclaw and earn the strength of body and heart it possesses." }, -- 132
-        { type = "TURNIN", quest = 6001, questName = "Body and Heart", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 133
-        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 127, target = "Murloc Tidehunter", map = 1436, zone = "Westfall", x = 34.1, y = 86.3, near = true }, -- 134
-        { type = "COLLECT", quest = 104, questName = "The Coastal Menace", target = "Scale of Old Murk-Eye", count = 1, map = 1436, zone = "Westfall", x = 34.2, y = 83.8, mobs = "Old Murk-Eye" }, -- 135
-        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 517, target = "Murloc Oracle", map = 1436, zone = "Westfall", x = 26.1, y = 74.4, near = true }, -- 136
-        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 171, target = "Murloc Warrior", map = 1436, zone = "Westfall", x = 25.2, y = 49.8, near = true }, -- 137
-        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 126, target = "Murloc Coastrunner", map = 1436, zone = "Westfall", x = 42, y = 12.1, near = true }, -- 138
-        { type = "ACCEPT", quest = 92745, questName = "The State of the Mines", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 139
-        { type = "KILL", quest = 92745, questName = "The State of the Mines", npc = 1236, target = "Kobold Digger", count = 4, map = 1436, zone = "Westfall", x = 44.6, y = 23.4 }, -- 140
-        { type = "KILL", quest = 92745, questName = "The State of the Mines", npc = 1426, target = "Riverpaw Miner", count = 6, map = 1436, zone = "Westfall", x = 30, y = 47.4 }, -- 141
-        { type = "TURNIN", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 142
-        { type = "ACCEPT", quest = 79008, questName = "... and that note you found", map = 1436, zone = "Westfall", x = 37.5, y = 50.7 }, -- 143
-        { type = "TURNIN", quest = 152, questName = "The Coast Isn't Clear", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 144
+        { type = "ACCEPT", quest = 94449, questName = "Call of Fire", npc = 258113, npcName = "Ingrid Dunwald", map = 1426, zone = "Dun Morogh", x = 47.4, y = 52, class = { "SHAMAN" }, note = "New in Forever" }, -- 33
+        { type = "TURNIN", quest = 94449, questName = "Call of Fire", npc = 257597, npcName = "Bruegs Kindleborn", map = 1426, zone = "Dun Morogh", x = 87.6, y = 43.6, class = { "SHAMAN" } }, -- 34
+        { type = "ACCEPT", quest = 5923, questName = "Heeding the Call", npc = 4218, npcName = "Denatharion", map = 1457, zone = "Darnassus", x = 34.8, y = 7.8, class = { "DRUID" } }, -- 35
+        { type = "TURNIN", quest = 5923, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 36
+        { type = "ACCEPT", quest = 5924, questName = "Heeding the Call", npc = 5505, npcName = "Theridran", map = 1453, zone = "Stormwind City", x = 21.4, y = 51.4, class = { "DRUID" } }, -- 37
+        { type = "TURNIN", quest = 5924, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 38
+        { type = "ACCEPT", quest = 5925, questName = "Heeding the Call", npc = 3602, npcName = "Kal", map = 1438, zone = "Teldrassil", x = 56, y = 61.6, class = { "DRUID" } }, -- 39
+        { type = "TURNIN", quest = 5925, questName = "Heeding the Call", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 40
+        { type = "TRAVEL", map = 1436, zone = "Westfall", x = 56.1, y = 43.1, radius = 60, note = "travel to Westfall (Westfall)" }, -- 41
+        { type = "ACCEPT", quest = 92742, questName = "Testing the Wells", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 42
+        { type = "HEARTH", npc = 8931, npcName = "Innkeeper Heather", map = 1436, zone = "Sentinel Hill", x = 52.9, y = 53.7, note = "talk to Innkeeper Heather and make this inn your home" }, -- 43
+        { type = "ACCEPT", quest = 153, questName = "Red Leather Bandanas", npc = 878, npcName = "Scout Galiaan", map = 1436, zone = "Westfall", x = 54, y = 53 }, -- 44
+        { type = "ACCEPT", quest = 12, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 45
+        { type = "ACCEPT", quest = 102, questName = "Patrolling Westfall", npc = 821, npcName = "Captain Danuvin", map = 1436, zone = "Westfall", x = 56.4, y = 47.6 }, -- 46
+        { type = "ACCEPT", quest = 109, questName = "Report to Gryan Stoutmantle", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 47
+        { type = "ACCEPT", quest = 22, questName = "Goretusk Liver Pie", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 48
+        { type = "ACCEPT", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 49
+        { type = "COLLECT", quest = 22, questName = "Goretusk Liver Pie", target = "Goretusk Liver", count = 8, map = 1436, zone = "Westfall", x = 61.2, y = 36.5, near = true }, -- 50
+        { type = "KILL", quest = 12, questName = "The People's Militia", npc = 504, target = "Defias Trapper / Defias Smuggler", count = 15, map = 1436, zone = "Westfall", x = 49.8, y = 19.8, near = true }, -- 51
+        { type = "COLLECT", quest = 153, questName = "Red Leather Bandanas", target = "Red Leather Bandana", count = 15, map = 1436, zone = "Westfall", x = 49.4, y = 19.2, near = true }, -- 52
+        { type = "COLLECT", quest = 102, questName = "Patrolling Westfall", target = "Gnoll Paw", count = 8, map = 1436, zone = "Westfall", x = 52.1, y = 14.8, near = true }, -- 53
+        { type = "ACCEPT", quest = 92909, questName = "Harvesting the Harvesters", npc = 253395, npcName = "Ozwin Ironsprocket", map = 1436, zone = "Westfall", x = 51.6, y = 32.2, note = "New in Forever" }, -- 54
+        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Golem Isospring", count = 14, map = 1436, zone = "Westfall", x = 57.6, y = 19.4, near = true, mobs = "Rusty Harvest Golem / Decrepit Harvester" }, -- 55
+        { type = "COLLECT", quest = 92909, questName = "Harvesting the Harvesters", target = "Harvester Gyrostabilizer", count = 5, map = 1436, zone = "Westfall", x = 54.2, y = 30.8, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper" }, -- 56
+        { type = "TURNIN", quest = 92909, questName = "Harvesting the Harvesters", npc = 253395, npcName = "Ozwin Ironsprocket", map = 1436, zone = "Westfall", x = 51.6, y = 32.2 }, -- 57
+        { type = "KILL", quest = 9, questName = "The Killing Fields", npc = 114, target = "Harvest Watcher", count = 20, map = 1436, zone = "Westfall", x = 53.3, y = 33.6, near = true }, -- 58
+        { type = "TURNIN", quest = 9, questName = "The Killing Fields", npc = 233, npcName = "Farmer Saldean", map = 1436, zone = "Westfall", x = 56, y = 31.2 }, -- 59
+        { type = "TURNIN", quest = 22, questName = "Goretusk Liver Pie", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 60
+        { type = "ACCEPT", quest = 36, questName = "Westfall Stew", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 61
+        { type = "ACCEPT", quest = 64, questName = "The Forgotten Heirloom", npc = 237, npcName = "Farmer Furlbrow", map = 1436, zone = "Westfall", x = 60, y = 19.4 }, -- 62
+        { type = "ACCEPT", quest = 151, questName = "Poor Old Blanchy", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 63
+        { type = "COLLECT", quest = 92742, questName = "Testing the Wells", target = "Jansen Stead Water Sample", count = 1, map = 1436, zone = "Westfall", x = 56.7, y = 18.7, near = true }, -- 64
+        { type = "COLLECT", quest = 92742, questName = "Testing the Wells", target = "Molsen Farm Water Sample", count = 1, map = 1436, zone = "Westfall", x = 56.7, y = 18.7, near = true }, -- 65
+        { type = "COLLECT", quest = 64, questName = "The Forgotten Heirloom", target = "Furlbrow's Pocket Watch", map = 1436, zone = "Westfall", x = 49.3, y = 19.3 }, -- 66
+        { type = "COLLECT", quest = 151, questName = "Poor Old Blanchy", target = "Handful of Oats", count = 8, map = 1436, zone = "Westfall", x = 51.5, y = 31.9, near = true }, -- 67
+        { type = "TURNIN", quest = 36, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 68
+        { type = "ACCEPT", quest = 38, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 69
+        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Okra", count = 3, map = 1436, zone = "Westfall", x = 56.9, y = 34.3, near = true }, -- 70
+        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Goretusk Snout", count = 3, map = 1436, zone = "Westfall", x = 61.2, y = 36.5, near = true }, -- 71
+        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Stringy Vulture Meat", count = 3, map = 1436, zone = "Westfall", x = 60.9, y = 28, near = true }, -- 72
+        { type = "COLLECT", quest = 38, questName = "Westfall Stew", target = "Murloc Eye", count = 3, map = 1436, zone = "Westfall", x = 56.3, y = 9.6, near = true }, -- 73
+        { type = "TURNIN", quest = 64, questName = "The Forgotten Heirloom", npc = 237, npcName = "Farmer Furlbrow", map = 1436, zone = "Westfall", x = 60, y = 19.4 }, -- 74
+        { type = "TURNIN", quest = 151, questName = "Poor Old Blanchy", npc = 238, npcName = "Verna Furlbrow", map = 1436, zone = "Westfall", x = 59.9, y = 19.4 }, -- 75
+        { type = "TURNIN", quest = 38, questName = "Westfall Stew", npc = 235, npcName = "Salma Saldean", map = 1436, zone = "Westfall", x = 56.4, y = 30.5 }, -- 76
+        { type = "TURNIN", quest = 109, questName = "Report to Gryan Stoutmantle", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 77
+        { type = "TURNIN", quest = 12, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 78
+        { type = "TURNIN", quest = 102, questName = "Patrolling Westfall", npc = 821, npcName = "Captain Danuvin", map = 1436, zone = "Westfall", x = 56.4, y = 47.6 }, -- 79
+        { type = "TURNIN", quest = 153, questName = "Red Leather Bandanas", npc = 878, npcName = "Scout Galiaan", map = 1436, zone = "Westfall", x = 54, y = 53 }, -- 80
+        { type = "ACCEPT", quest = 13, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 81
+        { type = "ACCEPT", quest = 65, questName = "The Defias Brotherhood", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 82
+        { type = "KILL", quest = 13, questName = "The People's Militia", npc = 589, target = "Defias Pillager / Defias Looter", count = 15, map = 1436, zone = "Westfall", x = 46.3, y = 67.4, near = true }, -- 83
+        { type = "TURNIN", quest = 13, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 84
+        { type = "ACCEPT", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 85
+        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 121, target = "Defias Pathstalker / Defias Highwayman", count = 15, map = 1436, zone = "Westfall", x = 52.8, y = 73.5, near = true }, -- 86
+        { type = "KILL", quest = 14, questName = "The People's Militia", npc = 449, target = "Defias Knuckleduster", count = 15, map = 1436, zone = "Westfall", x = 51.6, y = 78.2, near = true }, -- 87
+        { type = "TURNIN", quest = 14, questName = "The People's Militia", npc = 234, npcName = "Gryan Stoutmantle", map = 1436, zone = "Westfall", x = 56.3, y = 47.5 }, -- 88
+        { type = "TURNIN", quest = 92742, questName = "Testing the Wells", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53 }, -- 89
+        { type = "ACCEPT", quest = 117, questName = "Thunderbrew", npc = 239, npcName = "Grimbooze Thunderbrew", map = 1436, zone = "Westfall", x = 44.6, y = 80.2 }, -- 90
+        { type = "COLLECT", quest = 117, questName = "Thunderbrew", target = "Hops", count = 5, map = 1436, zone = "Westfall", x = 51.4, y = 46.6, near = true, mobs = "Harvest Golem / Harvest Watcher / Harvest Reaper / Rusty Harvest Golem" }, -- 91
+        { type = "ACCEPT", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 92
+        { type = "ACCEPT", quest = 1639, questName = "Bartleby the Drunk", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 93
+        { type = "TURNIN", quest = 1639, questName = "Bartleby the Drunk", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 94
+        { type = "ACCEPT", quest = 1678, questName = "Vejrek", npc = 6114, npcName = "Muren Stormpike", map = 1455, zone = "Ironforge", x = 70.6, y = 90.4, class = { "WARRIOR" } }, -- 95
+        { type = "ACCEPT", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 96
+        { type = "COLLECT", quest = 1683, questName = "Vorlus Vilehoof", target = "Horn of Vorlus", count = 1, map = 1438, zone = "Teldrassil", x = 47.3, y = 63.6, class = { "WARRIOR" }, mobs = "Vorlus Vilehoof" }, -- 97
+        { type = "TURNIN", quest = 1683, questName = "Vorlus Vilehoof", npc = 4088, npcName = "Elanaria", map = 1457, zone = "Darnassus", x = 57.4, y = 34.8, class = { "WARRIOR" } }, -- 98
+        { type = "ACCEPT", quest = 94863, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever; Objectives: Tame a Gray Forest Wolf" }, -- 99
+        { type = "TURNIN", quest = 94863, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" } }, -- 100
+        { type = "ACCEPT", quest = 6063, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" }, note = "Objectives: Tame a Webwood Lurker" }, -- 101
+        { type = "TURNIN", quest = 6063, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 102
+        { type = "ACCEPT", quest = 5921, questName = "Moonglade", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 103
+        { type = "TURNIN", quest = 5921, questName = "Moonglade", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 104
+        { type = "ACCEPT", quest = 103, questName = "Keeper of the Flame", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 105
+        { type = "TURNIN", quest = 117, questName = "Thunderbrew", npc = 239, npcName = "Grimbooze Thunderbrew", map = 1436, zone = "Westfall", x = 44.6, y = 80.2 }, -- 106
+        { type = "ACCEPT", quest = 1640, questName = "Beat Bartleby", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" }, note = "Objectives: Beat Bartleby" }, -- 107
+        { type = "TURNIN", quest = 1640, questName = "Beat Bartleby", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 108
+        { type = "ACCEPT", quest = 94864, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever; Objectives: Tame a Young Forest Bear" }, -- 109
+        { type = "TURNIN", quest = 94864, questName = "Taming the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" } }, -- 110
+        { type = "ACCEPT", quest = 6101, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" }, note = "Objectives: Tame a Nightsaber Stalker" }, -- 111
+        { type = "TURNIN", quest = 6101, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 112
+        { type = "ACCEPT", quest = 5929, questName = "Great Bear Spirit", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" }, note = "Objectives: Seek out the Great Bear Spirit and learn what it has to share with you about the nature of the bear." }, -- 113
+        { type = "TURNIN", quest = 5929, questName = "Great Bear Spirit", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 114
+        { type = "COLLECT", quest = 103, questName = "Keeper of the Flame", target = "Flask of Oil", count = 5, map = 1436, zone = "Westfall", x = 46.5, y = 69.1, near = true }, -- 115
+        { type = "ACCEPT", quest = 1665, questName = "Bartleby's Mug", npc = 6090, npcName = "Bartleby", map = 1453, zone = "Stormwind City", x = 73.8, y = 36.6, class = { "WARRIOR" } }, -- 116
+        { type = "TURNIN", quest = 1665, questName = "Bartleby's Mug", npc = 6089, npcName = "Harry Burlguard", map = 1453, zone = "Stormwind City", x = 74, y = 37.2, class = { "WARRIOR" } }, -- 117
+        { type = "ACCEPT", quest = 6102, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" }, note = "Objectives: Tame a Strigid Screecher" }, -- 118
+        { type = "TURNIN", quest = 6102, questName = "Taming the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 119
+        { type = "ACCEPT", quest = 94793, questName = "Training the Beast", npc = 251507, npcName = "Josephine Carson", map = 1429, zone = "Elwynn Forest", x = 41.2, y = 66.2, class = { "HUNTER" }, note = "New in Forever" }, -- 120
+        { type = "TURNIN", quest = 94793, questName = "Training the Beast", npc = 258930, npcName = "Isaac Chan", map = 1429, zone = "Elwynn Forest", x = 41.8, y = 66.4, class = { "HUNTER" } }, -- 121
+        { type = "ACCEPT", quest = 5931, questName = "Back to Darnassus", npc = 11802, npcName = "Dendrite Starblaze", map = 1450, zone = "Moonglade", x = 56.2, y = 30.4, class = { "DRUID" } }, -- 122
+        { type = "TURNIN", quest = 5931, questName = "Back to Darnassus", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 123
+        { type = "TURNIN", quest = 103, questName = "Keeper of the Flame", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 124
+        { type = "ACCEPT", quest = 152, questName = "The Coast Isn't Clear", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 125
+        { type = "ACCEPT", quest = 6103, questName = "Training the Beast", npc = 3601, npcName = "Dazalar", map = 1438, zone = "Teldrassil", x = 56.6, y = 59.6, class = { "HUNTER" } }, -- 126
+        { type = "TURNIN", quest = 6103, questName = "Training the Beast", npc = 4146, npcName = "Jocaste", map = 1457, zone = "Darnassus", x = 40.2, y = 8.8, class = { "HUNTER" } }, -- 127
+        { type = "ACCEPT", quest = 6001, questName = "Body and Heart", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" }, note = "Objectives: Face Lunaclaw and earn the strength of body and heart it possesses." }, -- 128
+        { type = "TURNIN", quest = 6001, questName = "Body and Heart", npc = 4217, npcName = "Mathrengyl Bearwalker", map = 1457, zone = "Darnassus", x = 35.2, y = 8, class = { "DRUID" } }, -- 129
+        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 127, target = "Murloc Tidehunter", map = 1436, zone = "Westfall", x = 34.1, y = 86.3, near = true }, -- 130
+        { type = "COLLECT", quest = 104, questName = "The Coastal Menace", target = "Scale of Old Murk-Eye", count = 1, map = 1436, zone = "Westfall", x = 34.2, y = 83.8, mobs = "Old Murk-Eye" }, -- 131
+        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 517, target = "Murloc Oracle", map = 1436, zone = "Westfall", x = 26.1, y = 74.4, near = true }, -- 132
+        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 171, target = "Murloc Warrior", map = 1436, zone = "Westfall", x = 25.2, y = 49.8, near = true }, -- 133
+        { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 126, target = "Murloc Coastrunner", map = 1436, zone = "Westfall", x = 42, y = 12.1, near = true }, -- 134
+        { type = "ACCEPT", quest = 92744, questName = "Murloc Gills", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 135
+        { type = "ACCEPT", quest = 92745, questName = "The State of the Mines", npc = 253092, npcName = "Alba Fairmoon", map = 1436, zone = "Westfall", x = 52.4, y = 53, note = "New in Forever" }, -- 136
+        { type = "KILL", quest = 92745, questName = "The State of the Mines", npc = 1236, target = "Kobold Digger", count = 4, map = 1436, zone = "Westfall", x = 44.6, y = 23.4 }, -- 137
+        { type = "KILL", quest = 92745, questName = "The State of the Mines", npc = 1426, target = "Riverpaw Miner", count = 6, map = 1436, zone = "Westfall", x = 30, y = 47.4 }, -- 138
+        { type = "TURNIN", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 139
+        { type = "ACCEPT", quest = 79008, questName = "... and that note you found", map = 1436, zone = "Westfall", x = 37.5, y = 50.7 }, -- 140
+        { type = "TURNIN", quest = 152, questName = "The Coast Isn't Clear", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 141
     } end,
 })

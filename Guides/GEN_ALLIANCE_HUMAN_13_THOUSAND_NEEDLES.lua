@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_13_THOUSAND_NEEDLES",
     name = "13. Thousand Needles 29-29 (Human)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 29,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_14_ASHENVALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 13 of the Human route: level 29 to 29, 11 steps, ~40 min of play in the model (25277 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 19,
+    stepCount = 17,
     steps = function() return {
         { type = "TRAVEL", map = 1440, zone = "Astranaar", x = 37.0, y = 49.2, radius = 60, note = "use your hearthstone (Astranaar)" }, -- 1
         { type = "ACCEPT", quest = 79192, questName = "Stepping Stones", map = 1413, zone = "The Barrens", x = 46.4, y = 73.9, note = "Cozy Sleeping Bag chain: keep it going" }, -- 2
@@ -24,15 +24,13 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 7
         { type = "COLLECT", quest = 1105, questName = "Hardened Shells", target = "Hardened Tortoise Shell", count = 9, map = 1441, zone = "Thousand Needles", x = 78.2, y = 72.1, near = true }, -- 8
         { type = "TURNIN", quest = 1105, questName = "Hardened Shells", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 9
-        { type = "ACCEPT", quest = 1191, questName = "Zamek's Distraction", npc = 4709, npcName = "Zamek", map = 1441, zone = "Thousand Needles", x = 79.8, y = 77 }, -- 10
-        { type = "TURNIN", quest = 1191, questName = "Zamek's Distraction", npc = 4709, npcName = "Zamek", map = 1441, zone = "Thousand Needles", x = 79.8, y = 77 }, -- 11
-        { type = "COLLECT", quest = 1104, questName = "Salt Flat Venom", target = "Salty Scorpid Venom", count = 6, map = 1441, zone = "Thousand Needles", x = 82.8, y = 79.7, near = true }, -- 12
-        { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", count = 10, map = 1441, zone = "Thousand Needles", x = 83, y = 70.7, near = true }, -- 13
-        { type = "TURNIN", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 14
-        { type = "ACCEPT", quest = 1178, questName = "Goblin Sponsorship", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80, y = 75.8 }, -- 15
-        { type = "TURNIN", quest = 1104, questName = "Salt Flat Venom", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 16
-        { type = "ACCEPT", quest = 1106, questName = "Martek the Exiled", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78, y = 77 }, -- 17
-        { type = "ACCEPT", quest = 5762, questName = "Hemet Nesingwary", npc = 4452, npcName = "Kravel Koalbeard", map = 1441, zone = "Thousand Needles", x = 77.8, y = 77.2 }, -- 18
-        { type = "TURNIN", quest = 1178, questName = "Goblin Sponsorship", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 19
+        { type = "COLLECT", quest = 1104, questName = "Salt Flat Venom", target = "Salty Scorpid Venom", count = 6, map = 1441, zone = "Thousand Needles", x = 82.8, y = 79.7, near = true }, -- 10
+        { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", count = 10, map = 1441, zone = "Thousand Needles", x = 83, y = 70.7, near = true }, -- 11
+        { type = "TURNIN", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 12
+        { type = "ACCEPT", quest = 1178, questName = "Goblin Sponsorship", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80, y = 75.8 }, -- 13
+        { type = "TURNIN", quest = 1104, questName = "Salt Flat Venom", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 14
+        { type = "ACCEPT", quest = 1106, questName = "Martek the Exiled", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78, y = 77 }, -- 15
+        { type = "ACCEPT", quest = 5762, questName = "Hemet Nesingwary", npc = 4452, npcName = "Kravel Koalbeard", map = 1441, zone = "Thousand Needles", x = 77.8, y = 77.2 }, -- 16
+        { type = "TURNIN", quest = 1178, questName = "Goblin Sponsorship", npc = 3391, npcName = "Gazlowe", map = 1413, zone = "The Barrens", x = 62.6, y = 36.2 }, -- 17
     } end,
 })

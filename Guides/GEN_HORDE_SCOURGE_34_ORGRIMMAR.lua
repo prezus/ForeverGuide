@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_34_ORGRIMMAR",
     name = "34. Orgrimmar 51-51 (Undead)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 51,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_35_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 34 of the Scourge route: level 51 to 51, 11 steps, ~19 min of play in the model (50058 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 40,
+    stepCount = 32,
     steps = function() return {
         { type = "FLIGHTPATH", npc = 3310, npcName = "Doras", map = 1454, zone = "Orgrimmar", x = 45.1, y = 63.9 }, -- 1
         { type = "TURNIN", quest = 1262, questName = "Report to Zor", npc = 4047, npcName = "Zor Lonetree", map = 1454, zone = "Orgrimmar", x = 39, y = 38, note = "reduced xp (10%) - you out-levelled it" }, -- 2
@@ -39,21 +39,13 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 649, questName = "Ripple Recovery", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.5, y = 36.6 }, -- 22
         { type = "ACCEPT", quest = 3563, questName = "Jes'rimon's Payment to Jediga", npc = 8659, npcName = "Jes'rimon", map = 1454, zone = "Orgrimmar", x = 55.6, y = 34 }, -- 23
         { type = "ACCEPT", quest = 4494, questName = "March of the Silithid", npc = 7010, npcName = "Zilzibin Drumlore", map = 1454, zone = "Orgrimmar", x = 56.3, y = 46.7 }, -- 24
-        { type = "ACCEPT", quest = 7826, questName = "A Donation of Wool", npc = 14726, npcName = "Rashona Straglash", map = 1454, zone = "Orgrimmar", x = 63.4, y = 51 }, -- 25
-        { type = "ACCEPT", quest = 7827, questName = "A Donation of Silk", npc = 14726, npcName = "Rashona Straglash", map = 1454, zone = "Orgrimmar", x = 63.4, y = 51 }, -- 26
-        { type = "ACCEPT", quest = 7831, questName = "A Donation of Mageweave", npc = 14726, npcName = "Rashona Straglash", map = 1454, zone = "Orgrimmar", x = 63.4, y = 51 }, -- 27
-        { type = "TURNIN", quest = 7826, questName = "A Donation of Wool", npc = 14726, npcName = "Rashona Straglash", map = 1454, zone = "Orgrimmar", x = 63.4, y = 51 }, -- 28
-        { type = "TURNIN", quest = 7827, questName = "A Donation of Silk", npc = 14726, npcName = "Rashona Straglash", map = 1454, zone = "Orgrimmar", x = 63.4, y = 51 }, -- 29
-        { type = "TURNIN", quest = 7831, questName = "A Donation of Mageweave", npc = 14726, npcName = "Rashona Straglash", map = 1454, zone = "Orgrimmar", x = 63.4, y = 51 }, -- 30
-        { type = "TURNIN", quest = 649, questName = "Ripple Recovery", npc = 6987, npcName = "Malton Droffers", map = 1454, zone = "Orgrimmar", x = 59.7, y = 36.9 }, -- 31
-        { type = "ACCEPT", quest = 7824, questName = "A Donation of Runecloth", npc = 14726, npcName = "Rashona Straglash", map = 1454, zone = "Orgrimmar", x = 63.4, y = 51 }, -- 32
-        { type = "TURNIN", quest = 7824, questName = "A Donation of Runecloth", npc = 14726, npcName = "Rashona Straglash", map = 1454, zone = "Orgrimmar", x = 63.4, y = 51 }, -- 33
-        { type = "TURNIN", quest = 96877, questName = "Halikor's Hoof", npc = 5811, npcName = "Kamari", map = 1454, zone = "Orgrimmar", x = 63, y = 45, optional = true, note = "reduced xp (10%) - you out-levelled it" }, -- 34
-        { type = "TURNIN", quest = 1145, questName = "The Swarm Grows", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75, y = 34.2, note = "reduced xp (10%) - you out-levelled it" }, -- 35
-        { type = "ACCEPT", quest = 8151, questName = "The Hunter's Charm", npc = 3352, npcName = "Ormak Grimshot", map = 1454, zone = "Orgrimmar", x = 66.2, y = 18.2, class = { "HUNTER" } }, -- 36
-        { type = "ACCEPT", quest = 3504, questName = "Betrayed", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 37
-        { type = "TURNIN", quest = 2976, questName = "A Grim Discovery", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2, note = "reduced xp (80%) - you out-levelled it" }, -- 38
-        { type = "TURNIN", quest = 3923, questName = "Rilli Greasygob", npc = 9317, npcName = "Rilli Greasygob", map = 1454, zone = "Orgrimmar", x = 76.2, y = 24.6, note = "reduced xp (10%) - you out-levelled it" }, -- 39
-        { type = "COLLECT", quest = 1501, questName = "Creature of the Void", target = "Tablet of Verga", count = 1, map = 1411, zone = "Durotar", x = 51.6, y = 9.8, class = { "WARLOCK" } }, -- 40
+        { type = "TURNIN", quest = 649, questName = "Ripple Recovery", npc = 6987, npcName = "Malton Droffers", map = 1454, zone = "Orgrimmar", x = 59.7, y = 36.9 }, -- 25
+        { type = "TURNIN", quest = 96877, questName = "Halikor's Hoof", npc = 5811, npcName = "Kamari", map = 1454, zone = "Orgrimmar", x = 63, y = 45, optional = true, note = "reduced xp (10%) - you out-levelled it" }, -- 26
+        { type = "TURNIN", quest = 1145, questName = "The Swarm Grows", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75, y = 34.2, note = "reduced xp (10%) - you out-levelled it" }, -- 27
+        { type = "ACCEPT", quest = 8151, questName = "The Hunter's Charm", npc = 3352, npcName = "Ormak Grimshot", map = 1454, zone = "Orgrimmar", x = 66.2, y = 18.2, class = { "HUNTER" } }, -- 28
+        { type = "ACCEPT", quest = 3504, questName = "Betrayed", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 29
+        { type = "TURNIN", quest = 2976, questName = "A Grim Discovery", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2, note = "reduced xp (80%) - you out-levelled it" }, -- 30
+        { type = "TURNIN", quest = 3923, questName = "Rilli Greasygob", npc = 9317, npcName = "Rilli Greasygob", map = 1454, zone = "Orgrimmar", x = 76.2, y = 24.6, note = "reduced xp (10%) - you out-levelled it" }, -- 31
+        { type = "COLLECT", quest = 1501, questName = "Creature of the Void", target = "Tablet of Verga", count = 1, map = 1411, zone = "Durotar", x = 51.6, y = 9.8, class = { "WARLOCK" } }, -- 32
     } end,
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_41_WESTERN_PLAGUELANDS",
     name = "41. Western Plaguelands 52-52 (Orc)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 52,
@@ -13,56 +13,28 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_42_UNDERCITY",
     author = "ForeverGuide route planner",
     notes = "Chapter 41 of the Orc route: level 52 to 52, 14 steps, ~45 min of play in the model (38906 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 49,
+    stepCount = 21,
     steps = function() return {
-        { type = "ACCEPT", quest = 7833, questName = "A Donation of Wool", npc = 14727, npcName = "Vehena", map = 1454, zone = "Orgrimmar", x = 37.8, y = 87.6 }, -- 1
-        { type = "ACCEPT", quest = 7834, questName = "A Donation of Silk", npc = 14727, npcName = "Vehena", map = 1454, zone = "Orgrimmar", x = 37.8, y = 87.6 }, -- 2
-        { type = "ACCEPT", quest = 7835, questName = "A Donation of Mageweave", npc = 14727, npcName = "Vehena", map = 1454, zone = "Orgrimmar", x = 37.8, y = 87.6 }, -- 3
-        { type = "TURNIN", quest = 7833, questName = "A Donation of Wool", npc = 14727, npcName = "Vehena", map = 1454, zone = "Orgrimmar", x = 37.8, y = 87.6 }, -- 4
-        { type = "TURNIN", quest = 7834, questName = "A Donation of Silk", npc = 14727, npcName = "Vehena", map = 1454, zone = "Orgrimmar", x = 37.8, y = 87.6 }, -- 5
-        { type = "TURNIN", quest = 7835, questName = "A Donation of Mageweave", npc = 14727, npcName = "Vehena", map = 1454, zone = "Orgrimmar", x = 37.8, y = 87.6 }, -- 6
-        { type = "ACCEPT", quest = 5204, questName = "Retribution of the Light", npc = 11019, npcName = "Jessir Moonbow", map = 1448, zone = "Felwood", x = 51.2, y = 82, optional = true }, -- 7
-        { type = "KILL", quest = 5204, questName = "Retribution of the Light", npc = 9518, target = "Rakaiah", count = 1, map = 1448, zone = "Felwood", x = 38, y = 50.6, optional = true }, -- 8
-        { type = "TURNIN", quest = 5204, questName = "Retribution of the Light", npc = 11020, npcName = "Remains of Trey Lightforge", map = 1448, zone = "Felwood", x = 38.4, y = 50.4, optional = true }, -- 9
-        { type = "ACCEPT", quest = 8254, questName = "Cenarion Aid", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" } }, -- 10
-        { type = "TURNIN", quest = 5654, questName = "Hex of Weakness", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" }, note = "reduced xp (10%) - you out-levelled it" }, -- 11
-        { type = "TURNIN", quest = 5656, questName = "Hex of Weakness", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" }, note = "reduced xp (10%) - you out-levelled it" }, -- 12
-        { type = "TURNIN", quest = 5657, questName = "Hex of Weakness", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" }, note = "reduced xp (10%) - you out-levelled it" }, -- 13
-        { type = "TURNIN", quest = 5642, questName = "Shadowguard", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" }, note = "reduced xp (10%) - you out-levelled it" }, -- 14
-        { type = "TURNIN", quest = 5643, questName = "Shadowguard", npc = 6018, npcName = "Ur'kyo", map = 1454, zone = "Orgrimmar", x = 35.6, y = 87.6, class = { "PRIEST" }, race = { "Troll" }, note = "reduced xp (10%) - you out-levelled it" }, -- 15
-        { type = "TURNIN", quest = 1501, questName = "Creature of the Void", npc = 5875, npcName = "Gan'rul Bloodeye", map = 1454, zone = "Orgrimmar", x = 48.2, y = 45.6, class = { "WARLOCK" }, race = { "Orc" }, note = "reduced xp (10%) - you out-levelled it" }, -- 16
-        { type = "ACCEPT", quest = 5888, questName = "Salve via Mining", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Mining", skill = 200 }, -- 17
-        { type = "ACCEPT", quest = 5889, questName = "Salve via Gathering", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Herbalism", skill = 200 }, -- 18
-        { type = "ACCEPT", quest = 5890, questName = "Salve via Skinning", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Skinning", skill = 200 }, -- 19
-        { type = "ACCEPT", quest = 5891, questName = "Salve via Disenchanting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Enchanting", skill = 200 }, -- 20
-        { type = "TURNIN", quest = 5888, questName = "Salve via Mining", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Mining", skill = 200 }, -- 21
-        { type = "TURNIN", quest = 5889, questName = "Salve via Gathering", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Herbalism", skill = 200 }, -- 22
-        { type = "TURNIN", quest = 5890, questName = "Salve via Skinning", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Skinning", skill = 200 }, -- 23
-        { type = "TURNIN", quest = 5891, questName = "Salve via Disenchanting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83, profession = "Enchanting", skill = 200 }, -- 24
-        { type = "TRAVEL", map = 1454, zone = "Orgrimmar", x = 54.1, y = 68.4, radius = 60, note = "use your hearthstone (Orgrimmar)" }, -- 25
-        { type = "TURNIN", quest = 3002, questName = "The Gordunni Orb", npc = 7311, npcName = "Uthel'nay", map = 1454, zone = "Orgrimmar", x = 39, y = 86 }, -- 26
-        { type = "ACCEPT", quest = 7836, questName = "A Donation of Runecloth", npc = 14727, npcName = "Vehena", map = 1454, zone = "Orgrimmar", x = 37.8, y = 87.6 }, -- 27
-        { type = "TURNIN", quest = 7836, questName = "A Donation of Runecloth", npc = 14727, npcName = "Vehena", map = 1454, zone = "Orgrimmar", x = 37.8, y = 87.6 }, -- 28
-        { type = "TURNIN", quest = 5093, questName = "A Call to Arms: The Plaguelands!", npc = 10837, npcName = "High Executor Derrington", map = 1420, zone = "Tirisfal Glades", x = 83, y = 69 }, -- 29
-        { type = "ACCEPT", quest = 5405, questName = "Argent Dawn Commission", npc = 10839, npcName = "Argent Officer Garush", map = 1420, zone = "Tirisfal Glades", x = 83.2, y = 68.4 }, -- 30
-        { type = "TURNIN", quest = 5405, questName = "Argent Dawn Commission", npc = 10839, npcName = "Argent Officer Garush", map = 1420, zone = "Tirisfal Glades", x = 83.2, y = 68.4 }, -- 31
-        { type = "ACCEPT", quest = 5341, questName = "Barov Family Fortune", npc = 11022, npcName = "Alexi Barov", map = 1420, zone = "Tirisfal Glades", x = 83, y = 71.4, optional = true, note = "For Scholomance (dungeon guide)" }, -- 32
-        { type = "ACCEPT", quest = 8250, questName = "Magecraft", npc = 7311, npcName = "Uthel'nay", map = 1454, zone = "Orgrimmar", x = 39, y = 86, class = { "MAGE" } }, -- 33
-        { type = "ACCEPT", quest = 1504, questName = "The Binding", npc = 5875, npcName = "Gan'rul Bloodeye", map = 1454, zone = "Orgrimmar", x = 48.2, y = 45.6, class = { "WARLOCK" }, race = { "Orc" } }, -- 34
-        { type = "KILL", quest = 1504, questName = "The Binding", npc = 5676, target = "Summoned Voidwalker", count = 1, map = 1454, zone = "Orgrimmar", x = 49.4, y = 50, near = true, class = { "WARLOCK" }, race = { "Orc" } }, -- 35
-        { type = "TURNIN", quest = 1504, questName = "The Binding", npc = 5875, npcName = "Gan'rul Bloodeye", map = 1454, zone = "Orgrimmar", x = 48.2, y = 45.6, class = { "WARLOCK" }, race = { "Orc" }, note = "reduced xp (10%) - you out-levelled it" }, -- 36
-        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 39.2, y = 63.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 37
-        { type = "ACCEPT", quest = 5021, questName = "Better Late Than Never", npc = 10778, npcName = "Janice Felstone", map = 1422, zone = "Western Plaguelands", x = 38.4, y = 54.1 }, -- 38
-        { type = "TURNIN", quest = 5021, questName = "Better Late Than Never", map = 1422, zone = "Western Plaguelands", x = 38.7, y = 55.2 }, -- 39
-        { type = "ACCEPT", quest = 5023, questName = "Better Late Than Never", map = 1422, zone = "Western Plaguelands", x = 38.7, y = 55.2 }, -- 40
-        { type = "ACCEPT", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 41
-        { type = "TURNIN", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 42
-        { type = "ACCEPT", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 43
-        { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 44
-        { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 45
-        { type = "ACCEPT", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 46
-        { type = "KILL", quest = 4984, questName = "The Wildlife Suffers Too", npc = 1817, target = "Diseased Wolf", count = 8, map = 1422, zone = "Western Plaguelands", x = 52.5, y = 70.5, near = true }, -- 47
-        { type = "ACCEPT", quest = 5142, questName = "Little Pamela", npc = 10927, npcName = "Marlene Redpath", map = 1422, zone = "Western Plaguelands", x = 49.2, y = 78.6 }, -- 48
-        { type = "TURNIN", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 49
+        { type = "TRAVEL", map = 1454, zone = "Orgrimmar", x = 54.1, y = 68.4, radius = 60, note = "use your hearthstone (Orgrimmar)" }, -- 1
+        { type = "TURNIN", quest = 3002, questName = "The Gordunni Orb", npc = 7311, npcName = "Uthel'nay", map = 1454, zone = "Orgrimmar", x = 39, y = 86 }, -- 2
+        { type = "TURNIN", quest = 5093, questName = "A Call to Arms: The Plaguelands!", npc = 10837, npcName = "High Executor Derrington", map = 1420, zone = "Tirisfal Glades", x = 83, y = 69 }, -- 3
+        { type = "ACCEPT", quest = 5341, questName = "Barov Family Fortune", npc = 11022, npcName = "Alexi Barov", map = 1420, zone = "Tirisfal Glades", x = 83, y = 71.4, optional = true, note = "For Scholomance (dungeon guide)" }, -- 4
+        { type = "ACCEPT", quest = 8250, questName = "Magecraft", npc = 7311, npcName = "Uthel'nay", map = 1454, zone = "Orgrimmar", x = 39, y = 86, class = { "MAGE" } }, -- 5
+        { type = "ACCEPT", quest = 1504, questName = "The Binding", npc = 5875, npcName = "Gan'rul Bloodeye", map = 1454, zone = "Orgrimmar", x = 48.2, y = 45.6, class = { "WARLOCK" }, race = { "Orc" } }, -- 6
+        { type = "KILL", quest = 1504, questName = "The Binding", npc = 5676, target = "Summoned Voidwalker", count = 1, map = 1454, zone = "Orgrimmar", x = 49.4, y = 50, near = true, class = { "WARLOCK" }, race = { "Orc" } }, -- 7
+        { type = "TURNIN", quest = 1504, questName = "The Binding", npc = 5875, npcName = "Gan'rul Bloodeye", map = 1454, zone = "Orgrimmar", x = 48.2, y = 45.6, class = { "WARLOCK" }, race = { "Orc" }, note = "reduced xp (10%) - you out-levelled it" }, -- 8
+        { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 39.2, y = 63.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 9
+        { type = "ACCEPT", quest = 5021, questName = "Better Late Than Never", npc = 10778, npcName = "Janice Felstone", map = 1422, zone = "Western Plaguelands", x = 38.4, y = 54.1 }, -- 10
+        { type = "TURNIN", quest = 5021, questName = "Better Late Than Never", map = 1422, zone = "Western Plaguelands", x = 38.7, y = 55.2 }, -- 11
+        { type = "ACCEPT", quest = 5023, questName = "Better Late Than Never", map = 1422, zone = "Western Plaguelands", x = 38.7, y = 55.2 }, -- 12
+        { type = "ACCEPT", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 13
+        { type = "TURNIN", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 14
+        { type = "ACCEPT", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 15
+        { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 16
+        { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 17
+        { type = "ACCEPT", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 18
+        { type = "KILL", quest = 4984, questName = "The Wildlife Suffers Too", npc = 1817, target = "Diseased Wolf", count = 8, map = 1422, zone = "Western Plaguelands", x = 52.5, y = 70.5, near = true }, -- 19
+        { type = "ACCEPT", quest = 5142, questName = "Little Pamela", npc = 10927, npcName = "Marlene Redpath", map = 1422, zone = "Western Plaguelands", x = 49.2, y = 78.6 }, -- 20
+        { type = "TURNIN", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 21
     } end,
 })
