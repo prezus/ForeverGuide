@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- ForeverGuide uses about a third of the memory it did (39 MB down to 13 MB on a test character) and loads faster. The quest database and the guides are stored as compact text and read when needed. Only your faction's guides stay loaded, and the step list keeps a handful of rows that it reuses as you scroll, instead of one per step. Nothing changes in what the guide shows or in your saved progress.
 - Guides: items you buy are bought, not farmed: The Third Fleet in Wetlands (buy the mead from Innkeeper Helbrek beside the quest giver) now leads on to The Cursed Crew and Lifting the Curse, and steps that buy an item point at the vendor instead of marking vendors as quest mobs. Harvesting the Harvesters is in Westfall.
 - Guides: Blackrock Depths is listed at 52-57 and Dire Maul at 56-60 instead of 60, and Blackrock Spire, Scholomance and Stratholme at 57-60: the Molten Core attunement, the Dungeon Set 2 upgrade chain and The Forging of Quel'Serrar are out of the dungeon guides. Alliance characters pick up The True Masters in Burning Steppes on the way to Blackrock Depths.
 - Guides: Ahn'Qiraj War Effort quests are out of the dungeon guides (Armor Kits for the Field, The Ultimate Deception, Eranikus, Tyrant of the Dream), so Uldaman is listed at 40-41 instead of 60, Sunken Temple at 48-55, and Scholomance and Stratholme at 58-60.
