@@ -1370,6 +1370,15 @@ do
     ns.NpcDB[990501] = nil
 end
 
+-- ---- distances: yards, abbreviated from a thousand on, like the game's own waypoint --------
+do
+    local N = ns.Navigation
+    local got = { N:FormatDistance(85), N:FormatDistance(999.4), N:FormatDistance(999.6), N:FormatDistance(1500), N:FormatDistance(2000), N:FormatDistance(12345) }
+    local want = { "85 yd", "999 yd", "1k yd", "1.5k yd", "2k yd", "12.3k yd" }
+    check(table.concat(got, "|") == table.concat(want, "|"), "distances read in yards, 1.5k yd past a thousand (" .. table.concat(got, "|") .. ")")
+    check(N:FormatDistance(nil) == "?", "an unknown distance is ?")
+end
+
 -- ---- Blizzard's quest map pin is the primary target of an objective step ----------------
 do
     -- the world map's numbered pin marks where the client wants the player to go for a quest in

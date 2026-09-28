@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Distances are always in yards, like the game's own waypoint: "85 yd", and "1.5k yd" from a thousand yards on, instead of switching to kilometres.
 - Steps offered at a bad moment no longer have to be skipped for good. Right-click a step in the window for **Do now** (it becomes the current step, and the one you were on follows it), **Later** (it comes back after the next five steps, with the rest of its quest), or **Skip**. Skipped steps stay in the list, marked **Skipped**; right-click > Do now brings one back, together with its quest. The window now holds the whole guide: scroll to see every step, done and to come; a scroll bar on the right shows where you are in it, with a gold mark at the current step (drag it, or click the bar to jump). Your order is kept per character, even through the beta's login bug; `/fg order reset` goes back to the guide's order. In auto mode, right-click a quest for **Do first** or **Do last**. Chat commands: `/fg later`, `/fg now <n>`, `/fg skipped`, `/fg order reset`.
 - Reports: each report (/fg wrong, and a missing quest from Unknown Quests) records your race, class and faction, shown in /fg reports and in /fg share, so a report still says who made it after you switch characters.
 - Guides: quests that need items a levelling character doesn't carry are out (cloth donations, Felwood's corrupted plants and salves, Argent Dawn commissions, care packages, A Sealed Crate).

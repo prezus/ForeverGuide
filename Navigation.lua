@@ -222,10 +222,13 @@ end)
 -- ------------------------------------------------------------
 -- Formatting
 -- ------------------------------------------------------------
+--- "85 yd", "1.5k yd": yards like the game's own waypoint, abbreviated from a thousand on.
 function Nav:FormatDistance(yards)
     if not yards then return "?" end
-    if yards >= 1000 then return string.format("%.1f km", yards / 1000 * 0.9144) end
-    return string.format("%d yd", math.floor(yards + 0.5))
+    local n = math.floor(yards + 0.5)
+    if n < 1000 then return string.format("%d yd", n) end
+    local k = string.format("%.1f", n / 1000):gsub("%.0$", "")
+    return k .. "k yd"
 end
 
 --- "ahead", "ahead-left", "left", "behind-left", "behind", ... from a relative angle.
