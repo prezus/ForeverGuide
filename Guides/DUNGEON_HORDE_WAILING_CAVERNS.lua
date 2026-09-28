@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_WAILING_CAVERNS",
     name = "Wailing Caverns 15-22",
-    version = 2,
+    version = 3,
     kind = "dungeon",
     faction = "Horde",
     minLevel = 15,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "The Barrens",
     author = "ForeverGuide route planner",
     notes = "Wailing Caverns: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 33,
+    stepCount = 31,
     steps = [[{
 {type="ACCEPT",quest=1489,questName="Hamuul Runetotem",npc=3448,npcName="Tonga Runetotem",map=1413,zone="The Barrens",x=52.2,y=31.8},
 {type="TURNIN",quest=1489,questName="Hamuul Runetotem",npc=5769,npcName="Arch Druid Hamuul Runetotem",map=1456,zone="Thunder Bluff",x=78.4,y=28.4},
@@ -25,7 +25,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1487,questName="Deviate Eradication",npc=5768,npcName="Ebru",map=1413,zone="The Barrens",x=46,y=35.7},
 {type="ACCEPT",quest=1491,questName="Smart Drinks",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6},
 {type="NOTE",map=1413,zone="The Barrens",x=46,y=36.5,text="Find a group for Wailing Caverns",note="All quests available from level 15; hand them in by level 22 for full XP"},
-{type="ACCEPT",quest=3366,questName="The Glowing Shard",map=1413,zone="The Barrens",x=46,y=36.5},
 {type="ACCEPT",quest=6981,questName="The Glowing Shard",map=1413,zone="The Barrens",x=46,y=36.5},
 {type="COLLECT",quest=914,questName="Leaders of the Fang",target="Gem of Cobrahn",count=1,map=1413,zone="The Barrens",x=46,y=36.5},
 {type="COLLECT",quest=914,questName="Leaders of the Fang",target="Gem of Anacondra",count=1,map=1413,zone="The Barrens",x=46,y=36.5},
@@ -39,7 +38,6 @@ ns.RegisterGuide({
 {type="KILL",quest=1487,questName="Deviate Eradication",npc=5761,target="Deviate Shambler",count=7,map=1413,zone="The Barrens",x=46,y=36.5},
 {type="KILL",quest=1487,questName="Deviate Eradication",npc=5056,target="Deviate Dreadfang",count=7,map=1413,zone="The Barrens",x=46,y=36.5},
 {type="COLLECT",quest=1491,questName="Smart Drinks",target="Wailing Essence",count=6,map=1413,zone="The Barrens",x=46,y=36.5},
-{type="TURNIN",quest=3366,questName="The Glowing Shard",map=1413,zone="The Barrens",x=46,y=36.5},
 {type="TURNIN",quest=959,questName="Trouble at the Docks",npc=3665,npcName="Crane Operator Bigglefuzz",map=1413,zone="The Barrens",x=63,y=37.6},
 {type="TURNIN",quest=1486,questName="Deviate Hides",npc=5767,npcName="Nalpak",map=1413,zone="The Barrens",x=46,y=35.7},
 {type="TURNIN",quest=1487,questName="Deviate Eradication",npc=5768,npcName="Ebru",map=1413,zone="The Barrens",x=46,y=35.7},
