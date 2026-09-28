@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_25_DUSTWALLOW_MARSH",
     name = "25. Dustwallow Marsh 39-40 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 39,
@@ -63,12 +63,12 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1320,questName="The Black Shield",npc=4944,npcName="Captain Garran Vimes",map=1445,zone="Dustwallow Marsh",x=68.2,y=48.6},
 {type="ACCEPT",quest=1286,questName="The Deserters",npc=4944,npcName="Captain Garran Vimes",map=1445,zone="Dustwallow Marsh",x=68.2,y=48.6},
 {type="ACCEPT",quest=626,questName="Cortello's Riddle",map=1445,zone="Dustwallow Marsh",x=31.1,y=66.1},
-{type="TURNIN",quest=1947,questName="Journey to the Marsh",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57,class={"MAGE"}},
+{type="TURNIN",quest=1947,questName="Journey to the Marsh",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57,class={"MAGE"},race={"Gnome"}},
 {type="TURNIN",quest=6609,questName="I Got Nothin' Left!",npc=12919,npcName="Nat Pagle",map=1445,zone="Dustwallow Marsh",x=58.4,y=60,profession="Fishing",skill=225},
 {type="TURNIN",quest=6625,questName="Alliance Trauma",npc=12939,npcName="Doctor Gustaf VanHowzen",map=1445,zone="Dustwallow Marsh",x=67.6,y=48.8,profession="First Aid",skill=225},
 {type="TURNIN",quest=1286,questName="The Deserters",npc=5089,npcName="Balos Jacken",map=1445,zone="Dustwallow Marsh",x=36.1,y=54.3},
 {type="ACCEPT",quest=1287,questName="The Deserters",npc=5089,npcName="Balos Jacken",map=1445,zone="Dustwallow Marsh",x=36.1,y=54.3},
-{type="ACCEPT",quest=1949,questName="Hidden Secrets",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57,class={"MAGE"}},
+{type="ACCEPT",quest=1949,questName="Hidden Secrets",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57,class={"MAGE"},race={"Gnome"}},
 {type="TURNIN",quest=1287,questName="The Deserters",npc=4944,npcName="Captain Garran Vimes",map=1445,zone="Dustwallow Marsh",x=68.2,y=48.6}
 }]],
 })
