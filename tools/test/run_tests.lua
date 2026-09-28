@@ -1370,6 +1370,15 @@ do
     ns.NpcDB[990501] = nil
 end
 
+-- ---- distances: yards, abbreviated from a thousand on, like the game's own waypoint --------
+do
+    local N = ns.Navigation
+    local got = { N:FormatDistance(85), N:FormatDistance(999.4), N:FormatDistance(999.6), N:FormatDistance(1500), N:FormatDistance(2000), N:FormatDistance(12345) }
+    local want = { "85 yd", "999 yd", "1k yd", "1.5k yd", "2k yd", "12.3k yd" }
+    check(table.concat(got, "|") == table.concat(want, "|"), "distances read in yards, 1.5k yd past a thousand (" .. table.concat(got, "|") .. ")")
+    check(N:FormatDistance(nil) == "?", "an unknown distance is ?")
+end
+
 -- ---- Blizzard's quest map pin is the primary target of an objective step ----------------
 do
     -- the world map's numbered pin marks where the client wants the player to go for a quest in
@@ -1513,7 +1522,27 @@ do
         shownRows = shownRows + 1
         if e.state == "active" then activeRows = activeRows + 1 activeIdx = e.index end
     end
-    check(shownRows >= 3 and shownRows <= (ns.db.ui.maxRows or 7), "list shows a sensible number of rows (" .. shownRows .. ")")
+    local applicable = 0
+    for _, st in ipairs(G.active.steps) do if G:StepApplies(st) then applicable = applicable + 1 end end
+    check(shownRows == applicable, "the list holds the whole guide, to scroll through (" .. shownRows .. " of " .. applicable .. ")")
+    -- the window keeps its own height and scrolls; a refresh does not yank the list back while you read ahead
+    local viewH = f:GetHeight()
+    check(viewH < ns.QuestGuideHeader.HEIGHT + f.list.height, "the window is shorter than the list: it scrolls")
+    f.scroll:SetVerticalScroll(0)
+    ns.UI:Refresh(); settle()
+    check(f.scroll:GetVerticalScroll() == 0, "a refresh keeps where you scrolled to (" .. f.scroll:GetVerticalScroll() .. ")")
+    -- the scroll bar: shows where the view is in the guide, and where the current step is
+    local bar = f.scrollBar
+    check(bar and bar:IsShown(), "a long list gets a scroll bar")
+    if bar then
+        check(bar.thumbHeight < bar.trackHeight and bar.thumbOffset == 0, string.format("at the top: a short thumb at the top (%s of %s, at %s)", tostring(bar.thumbHeight), tostring(bar.trackHeight), tostring(bar.thumbOffset)))
+        check(bar.mark:IsShown() and bar.markOffset > 0, "a mark shows where the current step is in the guide")
+        ns.QuestGuide:ScrollToFraction(1)
+        check(math.abs(bar.thumbOffset - (bar.trackHeight - bar.thumbHeight)) < 0.5, "scrolled to the end: the thumb sits at the bottom")
+        check(f.scroll:GetVerticalScroll() > 0, "and the list moved with it")
+        ns.QuestGuide:ScrollToFraction(0)
+        check(bar.thumbOffset == 0 and f.scroll:GetVerticalScroll() == 0, "and back to the top")
+    end
     check(activeRows == 1 and activeIdx == G.current, "exactly one row is the active step and it is the current one")
     check(f.header.count:GetText():find("^%d+ / %d+$") ~= nil, "header shows current / total (" .. tostring(f.header.count:GetText()) .. ")")
     local e1 = f.list.entries[1]
@@ -1557,14 +1586,22 @@ do
         check(f.list:GetWidth() > 0 and f.list:GetWidth() < f:GetWidth() and f.list:GetHeight() > 0,
             "scroll child has a real width and height so quest text renders")
         f.scroll:SetVerticalScroll(0)
-        ns.UI:Refresh()
+        -- jump to an accept further down: the list follows the new current step
+        local target
+        for _, e in ipairs(f.list.entries) do
+            if e.number > G:PosOf(G.current) + 5 and e.step.type == "ACCEPT" and e.state ~= "done" then target = e.index break end
+        end
+        local beforeStep = G.current
+        G:SetStep(target); settle()
+        check(G.current ~= beforeStep, "the jump changed the current step (" .. tostring(beforeStep) .. " -> " .. tostring(G.current) .. ")")
         local activeTop = 4
         for i, entry in ipairs(f.list.entries) do
             if entry.state == "active" then break end
             activeTop = activeTop + f.list.rows[i]:GetHeight() + 3
         end
-        check(activeTop <= f.scroll:GetVerticalScroll() + 64,
-            "resized guide keeps the current step inside the visible list")
+        local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - 70
+        check(activeTop >= f.scroll:GetVerticalScroll() and activeTop <= f.scroll:GetVerticalScroll() + viewport,
+            "a new current step is scrolled into view (" .. activeTop .. " at scroll " .. f.scroll:GetVerticalScroll() .. ")")
         f:SetHeight(520)
         f.resizeGrip:GetScript("OnMouseUp")(f.resizeGrip)
         check(ns.db.ui.maxRows > 7 and #f.list.entries > 7,
@@ -1577,7 +1614,9 @@ do
     check(math.abs((ns.db.ui.opacity or 0) - 0.7) < 1e-6, "/fg qg opacity sets the window opacity")
     ns.Commands:Run("qg rows 4"); settle()
     ns.UI:Refresh(); settle()
-    check(#f.list.entries <= 4, "/fg qg rows limits the list (" .. #f.list.entries .. ")")
+    local fourRows = f:GetHeight()
+    ns.Commands:Run("qg rows 7"); ns.UI:Refresh(); settle()
+    check(fourRows < f:GetHeight(), "/fg qg rows sets how many rows the window shows (" .. fourRows .. " < " .. f:GetHeight() .. ")")
     ns.Commands:Run("qg rows 7"); ns.UI:Refresh(); settle()
     ns.Commands:Run("qg subtitles off"); ns.UI:Refresh(); settle()
     check(ns.db.ui.showSubtitles == false and f.list.rows[1]:GetHeight() == ns.QuestRow.HEIGHT_ONE, "subtitles off makes single-line rows")
@@ -1688,6 +1727,151 @@ do
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
 end
 
+-- ---- the player's own order: Later / Do now, and skipped steps that come back ------------
+do
+    local function obj() return { { text = "Test mob slain: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } } end
+    local function acc(q) return { type = "ACCEPT", quest = q, questName = "Order " .. q, map = 1429, x = 40, y = 40 } end
+    ns.RegisterGuide({ id = "TEST_ORDER", name = "order test", version = 1, faction = "Alliance", minLevel = 1, maxLevel = 60, map = 1429, zone = "Elwynn Forest",
+        steps = {
+            acc(990701), acc(990702), acc(990703),
+            { type = "KILL", quest = 990701, questName = "Order 990701", target = "Test mob", map = 1429, x = 41, y = 41 },
+            acc(990704), acc(990705), acc(990706),
+            { type = "TURNIN", quest = 990701, questName = "Order 990701", map = 1429, x = 40, y = 40 },
+            acc(990707),
+        } })
+    G:Activate("TEST_ORDER", true); settle()
+    local function seqString() return table.concat(G:Order(), ",") end
+    check(G.current == 1 and seqString() == "1,2,3,4,5,6,7,8,9", "nothing moved: the guide's own order (" .. seqString() .. ")")
+
+    -- Later on the current accept: it comes back after the next five open steps, and the quest's own
+    -- objective in between goes with it; the turn-in further on stays where it is
+    check(G:Later() == true, "Later on the current step works")
+    check(seqString() == "2,3,5,6,7,1,4,8,9", "the accept and its objective moved behind five open steps (" .. seqString() .. ")")
+    check(G.current == 2, "the walk goes on at the next step (" .. tostring(G.current) .. ")")
+    check(not G.progress.done[1], "a step put off is not done")
+    ns.UI:Refresh(); settle()
+    local first = ForeverGuideFrame.list.entries[1]
+    check(first and first.index == 2 and first.number == 1, "the window lists the new order, numbered by place (" .. tostring(first and first.index) .. ")")
+
+    MOCK_ACCEPT(990702, "Order 990702", obj()); settle()
+    check(G.current == 3, "finishing a step moves on in the new order (" .. tostring(G.current) .. ")")
+    MOCK_ACCEPT(990703, "Order 990703", obj()); settle()
+    check(G.current == 5, "the walk passes over the moved steps' old places (" .. tostring(G.current) .. ")")
+
+    -- Do now: a step further down becomes the current one, and the old current one follows it
+    check(G:DoNow(1) == true and G.current == 1, "Do now makes that step current (" .. tostring(G.current) .. ")")
+    check(G:PosOf(5) > G:PosOf(1) and not G.progress.done[5], "the old current step is still ahead, not done")
+    check(G:PosOf(4) > G:PosOf(1) and G:PosOf(8) > G:PosOf(4), "the quest's objective and turn-in still come after its accept (" .. seqString() .. ")")
+
+    -- Skip is no longer for good: the skipped step is listed and Do now brings its whole quest back
+    G:Skip(); settle()
+    check(G.progress.done[1] and G.progress.done[4] and G.progress.done[8], "skipping an accept skips its quest")
+    local skipped = G:SkippedSteps()
+    check(#skipped == 1 and skipped[1] == 1, "the skipped step is listed (" .. #skipped .. ")")
+    ns.UI:Refresh(); settle()
+    local byIdx = {}
+    for _, e in ipairs(ForeverGuideFrame.list.entries) do byIdx[e.index] = e end
+    check(#ForeverGuideFrame.list.entries == 9, "the window lists every step of the guide (" .. #ForeverGuideFrame.list.entries .. ")")
+    check(byIdx[1] and byIdx[1].state == "skipped" and (byIdx[1].title or ""):find("Skipped", 1, true) ~= nil,
+        "a skipped step stays in the list, marked skipped (" .. tostring(byIdx[1] and byIdx[1].state) .. ")")
+    check(byIdx[8] and byIdx[8].state == "skipped", "so does the rest of the skipped quest")
+    local labels = {}
+    for _, item in ipairs(ns.QuestGuide:StepMenuItems(1)) do labels[#labels + 1] = item[1] end
+    check(table.concat(labels, ",") == "Do now", "right click on a skipped row offers Do now (" .. table.concat(labels, ",") .. ")")
+    check(G:DoNow(1) == true and G.current == 1, "Do now brings a skipped step back (" .. tostring(G.current) .. ")")
+    check(not G.progress.done[4] and not G.progress.done[8] and #G:SkippedSteps() == 0, "...with the rest of its quest, and it is no longer listed")
+    check(G:DoNow(99) == false, "Do now on a step that does not exist does nothing")
+
+    -- the moves and the skipped list survive a beta login (cvar mirror)
+    G.progress.done[9] = true G.progress.skipped = { [9] = true }
+    local before = seqString()
+    local enc = ns.Persist:EncodeChar()
+    check(enc:find("o=", 1, true) ~= nil and enc:find("sk=9", 1, true) ~= nil, "moves and skipped steps are in the mirror")
+    G.progress.order, G.progress.skipped = nil, nil
+    ns.Persist:DecodeChar(enc)
+    G.progress = ns.char.guides.TEST_ORDER
+    check(seqString() == before, "the order comes back from the mirror (" .. seqString() .. " vs " .. before .. ")")
+    check(G.progress.skipped and G.progress.skipped[9], "the skipped list comes back too")
+
+    -- the right-click menu on a row: Do now / Later / Skip
+    ns.UI:Refresh(); settle()
+    local row
+    for _, r in ipairs(ForeverGuideFrame.list.rows) do
+        if r:IsShown() and r.entry and r.entry.index == 5 then row = r end
+    end
+    check(row ~= nil, "step 5 has a row")
+    if row then
+        row:GetScript("OnClick")(row, "RightButton")
+        local m = ForeverGuideRowMenu
+        local labels = {}
+        for _, b in ipairs(m.buttons) do if b:IsShown() then labels[#labels + 1] = b.label:GetText() end end
+        check(m:IsShown() and table.concat(labels, ",") == "Do now,Later,Skip", "right click opens Do now / Later / Skip (" .. table.concat(labels, ",") .. ")")
+        -- hovering a choice says what it does
+        local function hover(b)
+            GameTooltip.lines = nil
+            b:GetScript("OnEnter")(b)
+            local text = table.concat(GameTooltip.lines or {}, " ")
+            b:GetScript("OnLeave")(b)
+            return text
+        end
+        local laterTip, skipTip = hover(m.buttons[2]), hover(m.buttons[3])
+        check(laterTip:find("next 5", 1, true) ~= nil and laterTip:find("Not marked done", 1, true) ~= nil, "Later explains itself on hover: " .. laterTip)
+        check(skipTip:find("stays in the list", 1, true) ~= nil, "Skip says the step stays in the list to undo: " .. skipTip)
+        local nowTip = hover(m.buttons[1])
+        check(nowTip:find("current step", 1, true) ~= nil, "Do now explains itself on hover")
+        for _, tip in ipairs({ laterTip, skipTip, nowTip }) do
+            check(#tip <= 80, "the explanation is short (" .. #tip .. "): " .. tip)
+        end
+        -- the menu and the Details popup both open left of the window: they must not cover each other
+        ns.QuestGuide:ToggleInfo()
+        check(ForeverGuideInfo:IsShown() and not m:IsShown(), "opening Details closes the menu")
+        row:GetScript("OnClick")(row, "RightButton")
+        local besideInfo = false
+        for _, pt in ipairs(m.points or {}) do if pt[2] == ForeverGuideInfo then besideInfo = true end end
+        check(m:IsShown() and besideInfo, "with Details open, the menu opens beside it, not on top of it")
+        ns.QuestGuide:ToggleInfo()
+        local later = m.buttons[2]
+        later:GetScript("OnClick")(later)
+        check(not m:IsShown() and G:IsMoved(5), "Later from the menu moves the step and closes the menu")
+    end
+
+    -- reset: back to the guide's order; a new guide version drops the moves
+    check(G:ResetOrder() == true and seqString() == "1,2,3,4,5,6,7,8,9", "/fg order reset restores the guide's order (" .. seqString() .. ")")
+    G.progress.order = { { 3, 0 } }
+    ns.Database:GuideProgress("TEST_ORDER", 2)
+    check(G.progress.order == nil and G.progress.skipped == nil, "a new guide version drops the moves and the skipped list")
+
+    for _, q in ipairs({ 990702, 990703 }) do MOCK_ABANDON(q) end
+    settle()
+    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
+end
+
+-- ---- auto mode: Do first / Do last pins a quest over the distance order -------------------------
+do
+    MOCK_ACCEPT(990801, "Near Quest", { { text = "Near: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } })
+    MOCK_ACCEPT(990802, "Far Quest", { { text = "Far: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } })
+    settle()
+    MOCK_MOVE(40, 40)
+    MOCK.questPins = { [1429] = { { questID = 990801, x = 0.41, y = 0.40 }, { questID = 990802, x = 0.80, y = 0.80 } } }
+    ns.Tracker:SetMode("auto"); settle()
+    local function pos(q) for i, c in ipairs(ns.Tracker.candidates) do if c.questID == q then return i end end return 99 end
+    ns.Tracker:Rethink()
+    check(pos(990801) < pos(990802), "nearest first (" .. pos(990801) .. " vs " .. pos(990802) .. ")")
+    ns.Tracker:Pin(990802, "first")
+    check(pos(990802) == 1 and ns.Tracker.current.questID == 990802, "Do first puts a far quest on top and the arrow on it")
+    ns.Tracker:Pin(990801, "last")
+    check(pos(990801) == #ns.Tracker.candidates, "Do last sends a quest to the bottom")
+    check(ns.Persist:EncodeChar():find("tp=", 1, true) ~= nil, "the pins are in the mirror")
+    ns.Tracker:Pin(990801, nil)
+    MOCK_ABANDON(990802); settle()
+    ns.Tracker:Rethink()
+    check(ns.char.trackerPrio[990802] == nil, "a quest that left the log loses its pin")
+    ns.Tracker:ResetPriority()
+    MOCK_ABANDON(990801); settle()
+    MOCK.questPins = nil
+    ns.Tracker:SetMode("guide"); settle()
+end
+
 -- ---- sweep: every command, every UI script, options, keybinds ------------------------
 do
     local before = #reportedErrors
@@ -1697,7 +1881,7 @@ do
         "way 40 60", "lock", "unlock", "resetpos", "auto", "auto accept guide", "auto turnin off", "auto accept on", "auto turnin on",
         "minimap off", "minimap on", "arrow off", "arrow on", "scale 1.2", "scale 1", "share status", "share", "scan status",
         "harvest status", "bliz off", "bliz on", "wrong", "wrong test text", "reports", "options", "debug", "debug", "eval",
-        "reports clear", "bogus", "reset",
+        "reports clear", "bogus", "later", "now 2", "now", "skipped", "order", "order reset", "reset",
     }
     for _, c in ipairs(cmds) do ns.Commands:Run(c) end
     -- UI window scripts

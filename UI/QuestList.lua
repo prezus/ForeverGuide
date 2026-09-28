@@ -64,6 +64,7 @@ function List.Layout(l)
         r:ClearAllPoints()
         r:SetPoint("TOPLEFT", l, "TOPLEFT", 2, -y)
         r:SetPoint("TOPRIGHT", l, "TOPRIGHT", -2, -y)
+        r.top = y
         y = y + r:GetHeight() + GAP
     end
     if #l.entries == 0 then y = y + 40 end
@@ -71,17 +72,22 @@ function List.Layout(l)
     l:SetHeight(l.height)
 end
 
---- Distances: the active row shows the navigation distance, the others their own.
+--- Distances: the active row shows the navigation distance, the others their own. When the
+--- owner says which part is on screen (viewTop / viewBottom), rows outside it are left blank:
+--- a whole guide is a few hundred rows, and each one resolves a location.
 function List.UpdateDistances(l, force)
     if ns.db.ui.showDistances == false then
         for i in ipairs(l.entries) do l.rows[i]:SetDistance("") end
         return
     end
     local Nav, DB = ns.Navigation, ns.DB
+    local from, to = l.viewTop and l.viewTop - 60, l.viewBottom and l.viewBottom + 60
     for i, e in ipairs(l.entries) do
         local r = l.rows[i]
         local text
-        if e.state == "active" and Nav.target and Nav.state and Nav.state.distance then
+        if from and r.top and (r.top + r:GetHeight() < from or r.top > to) then
+            text = ""
+        elseif e.state == "active" and Nav.target and Nav.state and Nav.state.distance then
             text = Nav:FormatDistance(Nav.state.distance)
         elseif e.distanceText then
             text = e.distanceText

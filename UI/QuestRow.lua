@@ -3,7 +3,7 @@
 -- One row of the quest list:
 --   (06) [icon]  Hilary's Necklace                     85 yd
 --                Find Hilary's Necklace
--- States: available | active | done | blocked | optional | future
+-- States: available | active | done | skipped | blocked | optional | future
 -- Rows are created once and reused (QuestList keeps the pool).
 -- ============================================================
 
@@ -25,6 +25,8 @@ local STATE = {
     blocked   = { title = Theme.C.blocked,   sub = Theme.C.muted,   dist = Theme.C.muted,   icon = 0.8,  alpha = 0.8,  ring = Theme.C.blocked },
     optional  = { title = Theme.C.textDim,   sub = Theme.C.muted,   dist = Theme.C.muted,   icon = 0.7,  alpha = 0.7,  ring = Theme.C.goldDim },
     future    = { title = Theme.C.textDim,   sub = Theme.C.muted,   dist = Theme.C.muted,   icon = 0.75, alpha = 0.78, ring = Theme.C.goldDim },
+    -- skipped by hand: still in the list, dimmed, with an orange ring so it reads differently from done
+    skipped   = { title = Theme.C.done,      sub = Theme.C.skipped, dist = Theme.C.muted,   icon = 0.5,  alpha = 0.7,  ring = Theme.C.skipped },
 }
 
 function Row.Create(parent, index)
@@ -96,7 +98,7 @@ function Row.Create(parent, index)
         if not e then return end
         local fn = button == "RightButton" and e.onRightClick or e.onClick
         if fn then
-            local okc, err = pcall(fn, e)
+            local okc, err = pcall(fn, e, self)
             if not okc then ns.ReportOnce("row:click", err) end
         end
     end)

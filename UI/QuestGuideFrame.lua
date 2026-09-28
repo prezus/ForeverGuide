@@ -23,8 +23,11 @@ local Theme = ns.Theme
 local QG = ns:NewModule("QuestGuide")
 
 local FOOTER = 70       -- two button rows
+local BAR_ROOM = 14     -- right of the list: the scroll bar
+local LIST_INSET = 6 + BAR_ROOM
 local DRAWER_ROWS_HEIGHT = 180
 local frame
+local info      -- the Details popup (created on first use)
 
 local ICON_FOR = { ACCEPT = "accept", TURNIN = "turnin", KILL = "kill", COLLECT = "collect", COMPLETE = "collect",
                    GRIND = "kill", TRAVEL = "travel", FLY = "travel", HEARTH = "travel", TALK = "accept", NOTE = "travel",
@@ -102,6 +105,7 @@ function QG:Create()
         local rowHeight = ns.db.ui.showSubtitles ~= false and ns.QuestRow.HEIGHT_TWO + 3 or ns.QuestRow.HEIGHT_ONE + 3
         ns.db.ui.maxRows = math.max(3, math.min(15,
             math.floor((ns.db.ui.height - ns.QuestGuideHeader.HEIGHT - FOOTER - 6) / rowHeight)))
+        QG.scrolledTo = nil          -- keep the current step in view in the new size
         QG:Apply()
         QG:Refresh()
     end)
@@ -111,17 +115,18 @@ function QG:Create()
     f.header = ns.QuestGuideHeader.Create(f)
     local scroll = CreateFrame("ScrollFrame", nil, f)
     scroll:SetPoint("TOPLEFT", f.header, "BOTTOMLEFT", 6, -2)
-    scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -6, FOOTER + 4)
+    scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -BAR_ROOM, FOOTER + 4)
     scroll:EnableMouseWheel(true)
     scroll:SetScript("OnMouseWheel", function(self, delta)
         local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
         local range = math.max(self:GetVerticalScrollRange(), f.list.height - viewport, 0)
         self:SetVerticalScroll(math.max(0, math.min(range, self:GetVerticalScroll() - delta * 40)))
-        QG:PlaceItemButton()
+        QG:Scrolled()
     end)
     f.scroll = scroll
     f.list = ns.QuestList.Create(scroll)
-    f.list:SetSize(cfg.width - 12, 40)
+    f.list:SetSize(cfg.width - LIST_INSET, 40)
+    self:CreateScrollBar(f)
     f.list:SetPoint("TOPLEFT", scroll, "TOPLEFT", 0, 0)
     scroll:SetScrollChild(f.list)
 
@@ -134,7 +139,7 @@ function QG:Create()
     f.footerLine:SetVertexColor(0.3, 0.3, 0.3, 1)
     f:SetScript("OnSizeChanged", function(self, width, height)
         if not self.resizing then return end
-        self.list:SetWidth(width - 12)
+        self.list:SetWidth(width - LIST_INSET)
         for _, d in ipairs(self.drawers) do d.list:SetWidth(width - 12) end
         self.footerLine:ClearAllPoints()
         self.footerLine:SetPoint("TOPLEFT", self, "TOPLEFT", 12, -(height - FOOTER))
@@ -203,7 +208,7 @@ function QG:Create()
         if not okU then ns.ReportOnce("qg:distances", err) end
     end)
 
-    f:SetScript("OnShow", function() QG:ApplyTracker() end)
+    f:SetScript("OnShow", function() QG.scrolledTo = nil QG:ApplyTracker() end)
     f:SetScript("OnHide", function() QG:ApplyTracker() end)
     self.frame = f
     self:Apply()
@@ -245,7 +250,7 @@ function QG:Apply()
     local cfg = ns.db.ui
     pcall(frame.SetScale, frame, cfg.scale or 1)
     frame:SetWidth(math.max(cfg.width or 300, 240))
-    frame.list:SetWidth(frame:GetWidth() - 12)
+    frame.list:SetWidth(frame:GetWidth() - LIST_INSET)
     for _, d in ipairs(frame.drawers) do
         d.list:SetWidth(frame:GetWidth() - 12)
         if d.SetBackdropColor then pcall(d.SetBackdropColor, d, 0, 0, 0, cfg.opacity or 0.75) end
@@ -254,10 +259,127 @@ function QG:Apply()
     self:Layout()
 end
 
+-- ---- the scroll bar ---------------------------------------------------------------------------
+-- A thin track right of the list: the thumb shows which part of the guide is on screen and how
+-- much of it, a gold mark where the current step is. Drag the thumb or click the track to move.
+-- Drawn by hand: the scroll bar templates are not the same on every client.
+local BAR_W = 5
+
+local function viewportHeight(f)
+    return f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
+end
+
+function QG:CreateScrollBar(f)
+    local bar = CreateFrame("Button", nil, f)
+    bar:SetWidth(BAR_W + 6)
+    bar:SetPoint("TOPRIGHT", f.scroll, "TOPRIGHT", BAR_ROOM - 2, 0)
+    bar:SetPoint("BOTTOMRIGHT", f.scroll, "BOTTOMRIGHT", BAR_ROOM - 2, 0)
+    bar:SetFrameLevel(f:GetFrameLevel() + 4)
+    bar.track = bar:CreateTexture(nil, "BACKGROUND")
+    bar.track:SetWidth(BAR_W)
+    bar.track:SetPoint("TOP", bar, "TOP", 0, 0)
+    bar.track:SetPoint("BOTTOM", bar, "BOTTOM", 0, 0)
+    pcall(bar.track.SetTexture, bar.track, Theme.TEX.white)
+    bar.track:SetVertexColor(1, 1, 1, 0.08)
+    bar.thumb = bar:CreateTexture(nil, "ARTWORK")
+    bar.thumb:SetWidth(BAR_W)
+    pcall(bar.thumb.SetTexture, bar.thumb, Theme.TEX.white)
+    bar.thumb:SetVertexColor(0.75, 0.80, 0.87, 0.55)
+    bar.mark = bar:CreateTexture(nil, "OVERLAY")
+    bar.mark:SetSize(BAR_W + 4, 2)
+    pcall(bar.mark.SetTexture, bar.mark, Theme.TEX.white)
+    bar.mark:SetVertexColor(1.0, 0.82, 0.30, 1)
+    bar.thumbHeight, bar.thumbOffset, bar.trackHeight, bar.markOffset = 0, 0, 0, 0
+    -- click the track: that part of the guide; hold and drag: follow the mouse
+    local function fractionAtCursor()
+        local _, cy = GetCursorPosition()
+        local scale = bar.GetEffectiveScale and bar:GetEffectiveScale() or 1
+        local top = bar:GetTop() or 0
+        local free = bar.trackHeight - bar.thumbHeight
+        if free <= 0 then return 0 end
+        return ((top - cy / scale) - bar.thumbHeight / 2) / free
+    end
+    bar:RegisterForClicks("LeftButtonDown")
+    bar:SetScript("OnMouseDown", function(b) b.dragging = true QG:ScrollToFraction(fractionAtCursor()) end)
+    bar:SetScript("OnMouseUp", function(b) b.dragging = false end)
+    bar:SetScript("OnUpdate", function(b)
+        if b.dragging then QG:ScrollToFraction(fractionAtCursor()) end
+    end)
+    bar:SetScript("OnMouseWheel", function(_, delta) f.scroll:GetScript("OnMouseWheel")(f.scroll, delta) end)
+    bar:Hide()
+    f.scrollBar = bar
+end
+
+--- Put the thumb and the current-step mark where the list is.
+function QG:UpdateScrollBar()
+    local f = frame
+    local bar = f and f.scrollBar
+    if not bar then return end
+    local viewport = viewportHeight(f)
+    local total = f.list.height or 0
+    if viewport <= 0 or total <= viewport + 1 then bar:Hide() return end
+    local track = viewport
+    local thumbH = math.max(16, math.floor(track * viewport / total))
+    local range = total - viewport
+    local at = math.max(0, math.min(range, f.scroll:GetVerticalScroll()))
+    local offset = (track - thumbH) * at / range
+    bar.trackHeight, bar.thumbHeight, bar.thumbOffset = track, thumbH, offset
+    bar.thumb:SetHeight(thumbH)
+    bar.thumb:ClearAllPoints()
+    bar.thumb:SetPoint("TOP", bar, "TOP", 0, -offset)
+    -- the current step's place in the whole list
+    local top, markAt = 4, nil
+    for i, e in ipairs(f.list.entries) do
+        if e.state == "active" then markAt = top + f.list.rows[i]:GetHeight() / 2 break end
+        top = top + f.list.rows[i]:GetHeight() + 3
+    end
+    if markAt then
+        bar.markOffset = math.floor(track * markAt / total)
+        bar.mark:ClearAllPoints()
+        bar.mark:SetPoint("TOP", bar, "TOP", 0, -bar.markOffset)
+        bar.mark:Show()
+    else
+        bar.markOffset = 0
+        bar.mark:Hide()
+    end
+    bar:Show()
+end
+
+--- Scroll so the view starts `fraction` (0 = top, 1 = bottom) of the way down the list.
+function QG:ScrollToFraction(fraction)
+    local f = frame
+    if not f then return end
+    local range = math.max(0, (f.list.height or 0) - viewportHeight(f))
+    f.scroll:SetVerticalScroll(math.floor(range * math.max(0, math.min(1, fraction or 0)) + 0.5))
+    self:Scrolled()
+end
+
+--- After any scroll: the rows on screen, their distances, the item button and the bar.
+function QG:Scrolled()
+    local f = frame
+    self:SetView(f.scroll:GetVerticalScroll())
+    f.list:UpdateDistances(false)
+    self:PlaceItemButton()
+    self:UpdateScrollBar()
+end
+
+--- The rows the window shows at once (the list itself holds the whole guide and scrolls).
+local function rowsHeight()
+    local rowH = (ns.db.ui.showSubtitles ~= false and ns.QuestRow.HEIGHT_TWO or ns.QuestRow.HEIGHT_ONE) + 3
+    return math.max(3, ns.db.ui.maxRows or 7) * rowH + 6
+end
+
+--- Tell the list which part of it is on screen: only those rows work out a distance.
+function QG:SetView(at)
+    local f = frame
+    local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
+    f.list.viewTop, f.list.viewBottom = at, at + viewport
+end
+
 function QG:Layout()
     if not frame then return end
     local f = frame
-    local natural = ns.QuestGuideHeader.HEIGHT + 2 + (f.list.height or 40) + 4 + FOOTER
+    local natural = ns.QuestGuideHeader.HEIGHT + 2 + math.min(f.list.height or 40, rowsHeight()) + 4 + FOOTER
     local height = math.max(150, math.min(800, ns.db.ui.height or natural))
     f:SetHeight(height)
     f.footerLine:ClearAllPoints()
@@ -266,16 +388,28 @@ function QG:Layout()
     if f.scroll then
         local viewport = height - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
         local at = f.scroll:GetVerticalScroll()
-        local top = 4
+        local top, tops, activeI = 4, {}, nil
         for i, entry in ipairs(f.list.entries) do
-            if entry.state == "active" then
-                local bottom = top + f.list.rows[i]:GetHeight()
-                if top < at then at = top elseif bottom > at + viewport then at = bottom - viewport end
-                break
-            end
+            tops[i] = top
+            if entry.state == "active" and not activeI then activeI = i end
             top = top + f.list.rows[i]:GetHeight() + 3
         end
-        f.scroll:SetVerticalScroll(math.max(0, math.min(at, math.max(0, f.list.height - viewport))))
+        -- scroll to the current step only when it changes: a refresh must not pull the list back
+        -- while the player reads further down
+        local e = activeI and f.list.entries[activeI]
+        local key = e and (e.index or e.questID)
+        if key and key ~= self.scrolledTo then
+            at = tops[math.max(1, activeI - 2)]        -- two steps of context above it
+            local bottom = tops[activeI] + f.list.rows[activeI]:GetHeight()
+            -- too little room for the context: the current step itself, its top first
+            if bottom > at + viewport then at = math.min(tops[activeI], bottom - viewport) end
+            self.scrolledTo = key
+        end
+        at = math.max(0, math.min(at, math.max(0, f.list.height - viewport)))
+        f.scroll:SetVerticalScroll(at)
+        self:SetView(at)
+        f.list:UpdateDistances(false)
+        self:UpdateScrollBar()
     end
     self:PlaceItemButton()
 end
@@ -453,65 +587,74 @@ end
 function QG:BuildGuideEntries()
     local G = ns.Guide
     local g = G.active
-    local cur, total = G:GetStepCount()
+    local p = G.progress
+    local cur, total = G:GetStepCount()     -- position of the current step in the player's order
+    local curIdx = G.current
+    local seq = G:Order()
     local cfg = ns.db.ui
-    local maxRows = math.max(3, cfg.maxRows or 7)
-    local prevWanted = cfg.showCompleted ~= false and math.min(cfg.showPrevious or 2, 2) or 0
+    local showDone = cfg.showCompleted ~= false
     local entries = {}
-    -- previous (done) rows
-    local prev = {}
-    local i = cur - 1
-    while i >= 1 and #prev < prevWanted do
-        local s = g.steps[i]
-        if s and G:StepApplies(s) then table.insert(prev, 1, i) end
-        i = i - 1
-    end
-    -- current + upcoming
-    local idxs = {}
-    for _, p in ipairs(prev) do idxs[#idxs + 1] = p end
-    local j = cur
-    while j <= total and #idxs < maxRows do
-        local s = g.steps[j]
-        if s and G:StepApplies(s) and (j == cur or not G:IsStepDone(s, j) or cfg.showCompleted ~= false) then idxs[#idxs + 1] = j end
-        j = j + 1
-    end
-    local upcoming = 0
-    for _, idx in ipairs(idxs) do
+    -- quests skipped by hand: all their steps read as skipped, not done
+    local skippedQuest = {}
+    for idx in pairs(p and p.skipped or {}) do
         local s = g.steps[idx]
-        local state
-        if idx < cur or (idx > cur and G:IsStepDone(s, idx)) then state = "done"
-        elseif idx == cur then state = "active"
-        elseif s.optional then state = "optional"
-        else
-            upcoming = upcoming + 1
-            state = upcoming <= 2 and "available" or "future"
+        if s and s.quest and p.done[idx] then skippedQuest[s.quest] = true end
+    end
+    local function isSkipped(idx, s)
+        if not (p and p.done[idx]) then return false end
+        return (p.skipped and p.skipped[idx]) or (s.quest and skippedQuest[s.quest]) or false
+    end
+    -- the whole guide, in the player's order: the window scrolls, it does not cut the list
+    local upcoming = 0
+    for pos = 1, total do
+        local idx = seq[pos]
+        local s = g.steps[idx]
+        local skipped = s and isSkipped(idx, s)
+        local done = s and pos ~= cur and (pos < cur or G:IsStepDone(s, idx))
+        if s and G:StepApplies(s) and (pos == cur or skipped or not done or showDone) then
+            local state
+            if skipped then state = "skipped"
+            elseif done then state = "done"
+            elseif idx == curIdx then state = "active"
+            elseif s.optional then state = "optional"
+            else
+                upcoming = upcoming + 1
+                state = upcoming <= 2 and "available" or "future"
+            end
+            if idx == curIdx and G.IsStepBlocked and G:IsStepBlocked(s) and G.note then state = "blocked" end
+            local sub = subtitle(G, s, idx)
+            local gate = G.LevelGate and G:LevelGate(s)
+            local deferred = s.quest and G.progress and G.progress.deferred and G.progress.deferred[s.quest]
+            if state ~= "done" and state ~= "skipped" and (gate or (deferred and not ns.Quest:IsOnQuest(s.quest))) then
+                state = "blocked"
+                local q = ns.DB and ns.DB:GetQuest(s.quest)
+                sub = string.format("Needs level %d - skipped until then", gate or (q and q.req) or 0)
+            end
+            local title = (forTag(s) and ((rowTitle(G, s) or "") .. " " .. forTag(s))) or rowTitle(G, s)
+            if state == "skipped" then
+                title = "|cffd99a4dSkipped:|r " .. (title or "")
+                sub = "Right-click > Do now brings it back"
+            end
+            local e = {
+                number = pos, index = idx, step = s, icon = ICON_FOR[s.type] or "accept", state = state,
+                title = title, subtitle = sub, questID = s.quest,
+                useItem = idx == curIdx and G:StepUseItem(s) or nil,
+                onClick = function() G:SetStep(idx) end,
+                onRightClick = function(_, row) QG:ShowStepMenu(row, idx) end,
+            }
+            local tip = {}
+            local eff = ns.Editor and ns.Editor:Effective(s) or s
+            if eff.note and eff.note ~= "" then tip[#tip + 1] = eff.note .. (eff.hasEdit and "  (edited)" or "") end
+            if s.quest and ns.Quest then
+                local grey = ns.Quest:GreyWarning(s.quest)
+                if grey then tip[#tip + 1] = "|cffff8040" .. grey .. "|r" end
+            end
+            if G:IsMoved(idx) then tip[#tip + 1] = "|cff8a8070Moved by you (/fg order reset puts it back).|r" end
+            tip[#tip + 1] = state == "skipped" and "|cff8a8070You skipped this. Right click: Do now brings it back.|r"
+                or "|cff8a8070Left click: jump here.  Right click: do it now, later, or skip it.|r"
+            e.tooltip = tip
+            entries[#entries + 1] = e
         end
-        if idx == cur and G.IsStepBlocked and G:IsStepBlocked(s) and G.note then state = "blocked" end
-        local sub = subtitle(G, s, idx)
-        local gate = G.LevelGate and G:LevelGate(s)
-        local deferred = s.quest and G.progress and G.progress.deferred and G.progress.deferred[s.quest]
-        if state ~= "done" and (gate or (deferred and not ns.Quest:IsOnQuest(s.quest))) then
-            state = "blocked"
-            local q = ns.DB and ns.DB:GetQuest(s.quest)
-            sub = string.format("Needs level %d - skipped until then", gate or (q and q.req) or 0)
-        end
-        local e = {
-            number = idx, index = idx, step = s, icon = ICON_FOR[s.type] or "accept", state = state,
-            title = (forTag(s) and ((rowTitle(G, s) or "") .. " " .. forTag(s))) or rowTitle(G, s), subtitle = sub, questID = s.quest,
-            useItem = idx == cur and G:StepUseItem(s) or nil,
-            onClick = function() G:SetStep(idx) end,
-            onRightClick = function() if idx == G.current then G:Skip() end end,
-        }
-        local tip = {}
-        local eff = ns.Editor and ns.Editor:Effective(s) or s
-        if eff.note and eff.note ~= "" then tip[#tip + 1] = eff.note .. (eff.hasEdit and "  (edited)" or "") end
-        if s.quest and ns.Quest then
-            local grey = ns.Quest:GreyWarning(s.quest)
-            if grey then tip[#tip + 1] = "|cffff8040" .. grey .. "|r" end
-        end
-        tip[#tip + 1] = "|cff8a8070Left click: jump here.  Right click on the current step: skip it.|r"
-        e.tooltip = tip
-        entries[#entries + 1] = e
     end
     return entries, cur, total
 end
@@ -520,12 +663,13 @@ function QG:BuildTrackerEntries()
     local T = ns.Tracker
     local entries = {}
     for i, c in ipairs(T.candidates) do
-        if i > (ns.db.ui.maxRows or 7) then break end
         entries[#entries + 1] = {
             number = i, icon = c.kind == "turnin" and "turnin" or (c.kind == "kill" and "kill" or "collect"), state = i == 1 and "active" or (i <= 3 and "available" or "future"),
             title = ns.Quest:TitleWithLevel(c.questID, c.title), subtitle = c.what, loc = c.loc, questID = c.questID,
             useItem = i == 1 and c.kind ~= "turnin" and ns.Quest:UsableItem(c.questID) or nil,
-            tooltip = { c.loc and ns.DB:DescribeLocation(c.loc) or "", c.grey and ("|cffff8040" .. c.grey .. "|r") or nil },
+            tooltip = { c.loc and ns.DB:DescribeLocation(c.loc) or "", c.grey and ("|cffff8040" .. c.grey .. "|r") or nil,
+                        "|cff8a8070Right click: do it first, last, or in nearest order.|r" },
+            onRightClick = function(_, row) QG:ShowMenu(row, QG:QuestMenuItems(c.questID)) end,
         }
     end
     return entries
@@ -547,6 +691,128 @@ end
 
 function QG:ToggleDrawer(which)
     self:SetDrawer(self.drawer ~= which and which or nil)
+end
+
+-- ---- the right-click menu on a row -----------------------------------------------------------
+local menu
+local MENU_W = 116
+
+function QG:RowMenu()
+    if menu then return menu end
+    local ok, m = pcall(CreateFrame, "Frame", "ForeverGuideRowMenu", UIParent, "BackdropTemplate")
+    if not ok or not m then m = CreateFrame("Frame", "ForeverGuideRowMenu", UIParent) end
+    menu = m
+    m:SetFrameStrata("DIALOG")
+    m:EnableMouse(true)
+    m:SetClampedToScreen(true)
+    m:SetWidth(MENU_W)
+    Theme.Backdrop(m, "panel", 0.92)
+    m.buttons = {}
+    m:Hide()
+    -- Escape closes it, like the game's own menus
+    local special = rawget(_G, "UISpecialFrames")
+    if type(special) == "table" then table.insert(special, "ForeverGuideRowMenu") end
+    return m
+end
+
+--- A small menu beside `row`: items = { { label, fn, tooltip }, ... }. Right-clicking the same row
+--- again closes it; hovering a choice says what it does.
+function QG:ShowMenu(row, items)
+    local m = self:RowMenu()
+    if m:IsShown() and m.row == row then m:Hide() return end
+    if #items == 0 then m:Hide() return end
+    for i, item in ipairs(items) do
+        local b = m.buttons[i]
+        if not b then
+            local btn
+            btn = Theme.NewButton(m, "", MENU_W - 12, 22, function()
+                local it = btn.item
+                m:Hide()
+                if it then it[2]() end
+            end)
+            btn:SetPoint("TOPLEFT", m, "TOPLEFT", 6, -6 - (i - 1) * 26)
+            btn:SetScript("OnEnter", function(self)
+                Theme.Color(self.label, Theme.C.goldLight)
+                local tt = rawget(_G, "GameTooltip")
+                if tt and self.item and self.item[3] then
+                    tt:SetOwner(self, "ANCHOR_LEFT")
+                    tt:AddLine(self.item[1], 1, 0.88, 0.55)
+                    tt:AddLine(self.item[3], 0.85, 0.82, 0.75, true)
+                    tt:Show()
+                end
+            end)
+            btn:SetScript("OnLeave", function(self)
+                Theme.Color(self.label, Theme.C.gold)
+                local tt = rawget(_G, "GameTooltip")
+                if tt then tt:Hide() end
+            end)
+            m.buttons[i] = btn
+            b = btn
+        end
+        b.item = item
+        b.label:SetText(item[1])
+        b:Show()
+    end
+    for i = #items + 1, #m.buttons do m.buttons[i].item = nil m.buttons[i]:Hide() end
+    m:SetHeight(12 + #items * 26 - 4)
+    m:ClearAllPoints()
+    if row and info and info:IsShown() then
+        -- the Details popup already sits left of the window: go left of it, level with the row
+        m:SetPoint("RIGHT", info, "LEFT", -4, 0)
+        m:SetPoint("TOP", row, "TOP", 0, 0)
+    elseif row then
+        m:SetPoint("TOPRIGHT", row, "TOPLEFT", -4, 0)
+    else
+        m:SetPoint("CENTER")
+    end
+    m.row = row
+    m:Show()
+end
+
+--- What can be done with a guide step: now, later, skip - or bring back a skipped one.
+function QG:StepMenuItems(idx)
+    local G = ns.Guide
+    local p = G.progress
+    local s = G.active and G.active.steps[idx]
+    if not s or not p then return {} end
+    local items = {}
+    local quest = s.type == "ACCEPT" and s.quest
+    if G:IsOpen(idx) then
+        if idx ~= G.current then
+            items[#items + 1] = { "Do now", function() G:DoNow(idx) end,
+                "Becomes the current step; the one you're on comes next." }
+        end
+        items[#items + 1] = { "Later", function() G:Later(idx) end,
+            "Comes back after the next 5 steps" .. (s.quest and ", with its quest" or "") .. ". Not marked done." }
+        items[#items + 1] = { "Skip", function()
+            ns.Printf("Skipped step %d: %s", G:PosOf(idx), G:GetStepText(s))
+            G:MarkDone(idx, "skip")
+        end, (quest and "Skips the whole quest." or "Marked done.") .. " It stays in the list to undo." }
+    elseif p.done[idx] and G:StepApplies(s) and not G:IsStepDone(s, idx, true) then
+        -- marked done or skipped by hand, not by the game: it can come back
+        items[#items + 1] = { "Do now", function() G:DoNow(idx) end,
+            "Brings it back as the current step" .. (quest and ", with its quest." or ".") }
+    end
+    return items
+end
+
+function QG:ShowStepMenu(row, idx)
+    self:ShowMenu(row, self:StepMenuItems(idx))
+end
+
+--- Auto mode: pin a quest first or last, or back to distance order.
+function QG:QuestMenuItems(questID)
+    local T = ns.Tracker
+    local items = {
+        { "Do first", function() T:Pin(questID, "first") end,
+          "Always at the top, with the arrow on it." },
+        { "Do last", function() T:Pin(questID, "last") end,
+          "Always at the bottom." },
+    }
+    if (T:Prio()[questID] or 0) ~= 0 then
+        items[#items + 1] = { "Nearest order", function() T:Pin(questID, nil) end, "Sorted by distance again." }
+    end
+    return items
 end
 
 -- ---- refresh -------------------------------------------------------------------------------
@@ -611,7 +877,6 @@ function QG:Refresh()
 end
 
 -- ---- the "Details" info popup --------------------------------------------------------------
-local info
 function QG:CreateInfo()
     if info then return info end
     local ok, p = pcall(CreateFrame, "Frame", "ForeverGuideInfo", UIParent, "BackdropTemplate")
@@ -668,6 +933,10 @@ function QG:RefreshInfo()
             lines[#lines + 1] = "Guide complete!" .. (g.next and ("  Next: " .. g.next) or "")
         end
         if G.note then lines[#lines + 1] = "|cffff8040" .. G.note .. "|r" end
+        local moved = G.progress and G.progress.order and #G.progress.order or 0
+        if moved > 0 then
+            lines[#lines + 1] = string.format("|cff8a8070%d step%s moved by you - /fg order reset puts them back.|r", moved, moved == 1 and "" or "s")
+        end
         if g.notes then lines[#lines + 1] = " " lines[#lines + 1] = "|cff8a8070" .. g.notes .. "|r" end
         info.auto:SetText(ns.char.mode == "auto" and "Guide" or "Auto")
         info.auto.label:SetText(ns.char.mode == "auto" and "Guide" or "Auto")
@@ -684,6 +953,7 @@ end
 
 function QG:ToggleInfo()
     local p = self:CreateInfo()
+    if menu then menu:Hide() end        -- both open left of the window
     if p:IsShown() then p:Hide() return end
     p:ClearAllPoints()
     if frame then p:SetPoint("TOPRIGHT", frame, "TOPLEFT", -12, 0) else p:SetPoint("CENTER") end

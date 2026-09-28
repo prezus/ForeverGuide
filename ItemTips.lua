@@ -74,7 +74,7 @@ function Tips:Leftover(itemID, itemName)
         local ahead = {}
         local active = ns.Guide and ns.Guide.active
         if active and rawget(active, "steps") then
-            for i = (ns.Guide.current or 1), #active.steps do local s = active.steps[i] if s.quest then ahead[s.quest] = true end end
+            for _, i in ipairs(ns.Guide:OrderFrom(ns.Guide.current or ns.Guide:FirstIdx())) do local s = active.steps[i] if s.quest then ahead[s.quest] = true end end
         end
         for _, qid in ipairs(index()[itemID] or {}) do
             if not ns.DB:IsRemoved(qid) then
@@ -119,7 +119,7 @@ function Tips:LinesFor(itemID, itemName)
         local active = ns.Guide and ns.Guide.active
         local ahead = {}
         if active and rawget(active, "steps") then
-            for i = (ns.Guide.current or 1), #active.steps do
+            for _, i in ipairs(ns.Guide:OrderFrom(ns.Guide.current or ns.Guide:FirstIdx())) do
                 local s = active.steps[i]
                 if s.quest then ahead[s.quest] = true end
             end
