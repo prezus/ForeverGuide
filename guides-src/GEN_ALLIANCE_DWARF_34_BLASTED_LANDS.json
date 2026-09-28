@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_34_BLASTED_LANDS",
   "name": "34. Blasted Lands 47-49 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 47,
@@ -16,8 +16,6 @@
     {"type": "TURNIN", "quest": 626, "questName": "Cortello's Riddle", "map": 1425, "zone": "The Hinterlands", "x": 80.8, "y": 46.8},
     {"type": "ACCEPT", "quest": 1425, "questName": "Deliver the Shipment", "npc": 5476, "npcName": "Watcher Biggs", "map": 1435, "zone": "Swamp of Sorrows", "x": 26.8, "y": 59.6},
     {"type": "TURNIN", "quest": 1425, "questName": "Deliver the Shipment", "npc": 5393, "npcName": "Quartermaster Lungertz", "map": 1419, "zone": "Blasted Lands", "x": 66.4, "y": 21.2},
-    {"type": "ACCEPT", "quest": 7794, "questName": "A Donation of Mageweave", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
-    {"type": "TURNIN", "quest": 7794, "questName": "A Donation of Mageweave", "npc": 14722, "npcName": "Clavicus Knavingham", "map": 1453, "zone": "Stormwind City", "x": 44.2, "y": 73.6},
     {"type": "TRAVEL", "map": 1419, "zone": "Blasted Lands", "x": 50.6, "y": 14.2, "radius": 60, "note": "travel to Blasted Lands (Blasted Lands)"},
     {"type": "ACCEPT", "quest": 2581, "questName": "Snickerfang Jowls", "npc": 7505, "npcName": "Bloodmage Drazial", "map": 1419, "zone": "Blasted Lands", "x": 50.6, "y": 14.2},
     {"type": "ACCEPT", "quest": 2583, "questName": "A Boar's Vitality", "npc": 7505, "npcName": "Bloodmage Drazial", "map": 1419, "zone": "Blasted Lands", "x": 50.6, "y": 14.2},
