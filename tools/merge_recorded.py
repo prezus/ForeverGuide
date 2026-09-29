@@ -28,7 +28,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import foreverdb  # noqa: E402
 
-DEFAULT_WTF = r"C:\Program Files (x86)\World of Warcraft\_classic_beta_\WTF\Account"
+# the beta client's WTF\Account folder: the default Windows install, or the WOW_WTF_ACCOUNT env var
+DEFAULT_WTF = os.environ.get("WOW_WTF_ACCOUNT") or r"C:\Program Files (x86)\World of Warcraft\_classic_beta_\WTF\Account"
 PLACEHOLDER = re.compile(r"^\s*(None|<[^>]*>.*|REUSE|reuse|.*\(\d+\)aa|\[(DEPRECATED|DNT|Never used|PH|NYI|TEMP)\b[^\]]*\].*|UNUSED.*|z*test.*|DEPRECATED.*)\s*$", re.I)
 
 

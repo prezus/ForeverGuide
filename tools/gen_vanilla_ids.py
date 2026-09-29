@@ -18,7 +18,8 @@ from questie_lookup import load_db, QUEST_KEYS, DEFAULT_QUESTIE  # noqa: E402
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--questie", default=os.environ.get("QUESTIE", DEFAULT_QUESTIE))
+    ap.add_argument("--questie", default=DEFAULT_QUESTIE, required=not DEFAULT_QUESTIE,
+                    help="Questie checkout (default: the QUESTIE env var)")
     args = ap.parse_args()
     db = load_db(os.path.join(args.questie, "Database", "Classic", "classicQuestDB.lua"), QUEST_KEYS)
     ids = sorted(db)

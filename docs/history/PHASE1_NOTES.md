@@ -1,3 +1,7 @@
+> **Historical.** RevoltLive85's development log from the original project
+> (github.com/RevoltLive85/ForeverGuide), kept as written. Paths, repo links and workflows
+> in it (e.g. `tools/sync_to_github.cmd`) describe that setup, not this repository.
+
 # ForeverGuide — Phase 1 status (2026-09-18)
 
 Free, data-driven leveling guide addon for WoW Forever (TOC 16001). Installed at

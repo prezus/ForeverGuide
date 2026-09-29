@@ -92,7 +92,7 @@ local function MakeCheck(parent, item, y)
 end
 
 --- A plain base "Slider" widget (not a named FrameXML template - those are unconfirmed on
---- Forever's client, see tools/PHASE1_NOTES.md) with hand-drawn track/thumb textures, so it
+--- Forever's client, see docs/history/PHASE1_NOTES.md) with hand-drawn track/thumb textures, so it
 --- needs nothing beyond the core widget API every WoW client has always shipped.
 local function MakeSlider(parent, item, y)
     local label = parent:CreateFontString(nil, "ARTWORK", "GameFontHighlight")

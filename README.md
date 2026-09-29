@@ -11,11 +11,18 @@ ForeverGuide DB (JSON)  ->  tools/compile_guides.py  ->  Guides/*.lua  ->  addon
 
 ## License
 
-The [MIT license](LICENSE) covers only original ForeverGuide code and assets owned by RevoltLive85. It does **not** grant rights to redistribute the bundled Questie-derived database or other third-party-sourced material. **Redistributors:** bundled data has unresolved third-party licensing questions; see [Data/README.md](Data/README.md#redistribution-status-unresolved) before publishing a package.
+The [MIT license](LICENSE) covers only original ForeverGuide code and assets owned by its copyright holders (see [Credits](#credits)). It does **not** grant rights to redistribute the bundled Questie-derived database or other third-party-sourced material. **Redistributors:** bundled data has unresolved third-party licensing questions; see [Data/README.md](Data/README.md#redistribution-status-unresolved) before publishing a package.
+
+## Credits
+
+ForeverGuide was created by [RevoltLive85](https://github.com/RevoltLive85/ForeverGuide) and is now
+maintained by [prezus](https://github.com/prezus/ForeverGuide). The original development log is kept in
+[docs/history/PHASE1_NOTES.md](docs/history/PHASE1_NOTES.md). Data sources are credited in
+[Data/README.md](Data/README.md).
 
 ## Install
 
-1. Download `ForeverGuide-<version>.zip` from the [releases page](https://github.com/RevoltLive85/ForeverGuide/releases)
+1. Download `ForeverGuide-<version>.zip` from the [releases page](https://github.com/prezus/ForeverGuide/releases)
    (or clone this repo) and unzip it so that you get `World of Warcraft\_classic_beta_\Interface\AddOns\ForeverGuide\ForeverGuide.toc`.
 2. Log in, enable **ForeverGuide** on the AddOns screen. If the beta has moved to a newer build than the addon's
    TOC number, tick **Load out of date AddOns** on that screen - the addon reads game state defensively and keeps
@@ -163,7 +170,7 @@ ForeverGuide/
     plan_route.lua      Data/*.lua -> guides-src/GEN_*.json  (one 1-60 route per starting race, see Route logic)
     lib/route_model.lua xp / time model; lib/route_data.lua zones, map sizes, travel graph, overlay
     import_rxp.py       factual quest positions from RestedXP's free Forever guides -> overlay
-    questie_lookup.py   quest/NPC/object/item facts + step JSON from the Questie DB
+    questie_lookup.py   quest/NPC/object/item facts + step JSON from the Questie DB (--questie or QUESTIE=<Questie checkout>)
     scan_diff.py        /fg scan results vs Questie: new / removed / renamed quests
     decode_share.py     decode + validate a /fg share string with only Python's standard library (docs/SHARE-FORMAT.md)
     share_schema.lua    writes docs/share-format.schema.json (the share allowlist as JSON Schema) from Share.lua
@@ -171,7 +178,6 @@ ForeverGuide/
     import_db2.py       wago.tools CSV exports of Forever's own quest tables (QuestV2, QuestObjective, QuestPOI*) -> same overlay
     collect_reports.py  "/fg wrong" reports -> local-only data-src/reports.json + review list
     apply_edits.py      "/fg edit" corrections -> guides-src/*.json (then compile_guides.py)
-    sync_to_github.cmd  commit + push this folder to github.com/RevoltLive85/ForeverGuide (double-click after editing)
     package.py          dist/ForeverGuide-<version>.zip (--dev includes tools and sources)
     test/               headless engine test: lua5.1 tools/test/run_tests.lua
     screenshots/        addon windows as PNGs without the game: dump_ui.lua opens them headless and writes
@@ -215,7 +221,7 @@ exchanges; they are excluded from routes and `/fg avail`) and which ids are Fore
 Opt in to Scanner under Options → Data collection (or `/fg scan on`) first.
 **`/fg scan new`** asks the server for exactly those ids and records title, level and objective texts
 as they arrive (the server throttles; run it in the background over a few sessions, `/fg scan status`
-shows progress), then `tools\sync_to_github.cmd` / `merge_recorded.py` folds them in. Positions of
+shows progress), then `python tools/merge_recorded.py` folds them in. Positions of
 the new quests come from contributed data while you play them.
 
 ## Route logic (the planner)
@@ -278,7 +284,8 @@ each zone to learn Forever's real IDs; while contributing data, the addon also k
   and restored when the SavedVariables come back empty. `/fg persist` shows the state. Big data
   (contributed facts, scan/harvest data, `/fg wrong` reports) still only lives in the SavedVariables *files*, which are
   overwritten at every reload: `/fg share` copies facts and reports out before you log out, and on your
-  own machine `tools\sync_to_github.cmd` harvests the files (merge_recorded / collect_reports) before committing.
+  own machine `python tools/merge_recorded.py` and `python tools/collect_reports.py` harvest the files
+  (set `WOW_WTF_ACCOUNT` if your `WTF\Account` folder is not in the default Windows install).
 * Everything from the game can be a secret value in combat. All reads go through `ns.Plain*` helpers.
 * The classic quest IDs / NPC IDs in the sample guide come from Questie's Classic Era data and must be
   verified on Forever (`/fg quest <id>`, contributed data).

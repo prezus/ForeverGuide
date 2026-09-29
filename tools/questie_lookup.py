@@ -10,8 +10,8 @@ print them as ForeverGuide step JSON. Research helper for writing guides.
     python tools/questie_lookup.py steps 783 7 33      # emits ACCEPT/KILL/TURNIN steps for the quests
     python tools/questie_lookup.py search "Kobold"     # search quest and NPC names
 
-Questie path: --questie <folder> or the QUESTIE env var, default
-  C:\\Program Files (x86)\\World of Warcraft\\_classic_beta_\\Interface\\Questie-11.21.7
+Questie path: --questie <folder> or the QUESTIE env var (a checkout of
+https://github.com/Questie/Questie; required, there is no default).
 Only the Classic (Era) tables are read: Database/Classic/classic*DB.lua.
 Reads only; nothing is modified.
 """
@@ -22,7 +22,7 @@ import os
 import re
 import sys
 
-DEFAULT_QUESTIE = r"C:\Program Files (x86)\World of Warcraft\_classic_beta_\Interface\Questie-11.21.7"
+DEFAULT_QUESTIE = os.environ.get("QUESTIE")  # Questie checkout; --questie overrides
 
 QUEST_KEYS = ["name", "startedBy", "finishedBy", "requiredLevel", "questLevel", "requiredRaces", "requiredClasses",
               "objectivesText", "triggerEnd", "objectives", "sourceItemId", "preQuestGroup", "preQuestSingle",
@@ -305,7 +305,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("kind", choices=["quest", "npc", "object", "item", "steps", "search"])
     ap.add_argument("ids", nargs="+")
-    ap.add_argument("--questie", default=os.environ.get("QUESTIE", DEFAULT_QUESTIE))
+    ap.add_argument("--questie", default=DEFAULT_QUESTIE, required=not DEFAULT_QUESTIE,
+                    help="Questie checkout (default: the QUESTIE env var)")
     args = ap.parse_args()
 
     if not os.path.isdir(os.path.join(args.questie, "Database", "Classic")):
