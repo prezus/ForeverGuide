@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_28_THE_HINTERLANDS",
   "name": "28. The Hinterlands 45-45 (Orc)",
-  "version": 4,
+  "version": 5,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 45,
@@ -13,6 +13,9 @@
   "notes": "Chapter 28 of the Orc route: level 45 to 45, 32 steps, ~146 min of play in the model (37557 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "FLIGHTPATH", "npc": 4314, "npcName": "Gorkas", "map": 1425, "zone": "The Hinterlands", "x": 81.7, "y": 81.8},
+    {"type": "ACCEPT", "quest": 592, "questName": "Saving Yenniku", "npc": 2519, "npcName": "Kin'weelay", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.2, "y": 27.8},
+    {"type": "COLLECT", "quest": 592, "questName": "Saving Yenniku", "target": "Filled Soul Gem", "count": 1, "mobs": "Yenniku", "map": 1434, "zone": "Stranglethorn Vale", "x": 39, "y": 58.4},
+    {"type": "TURNIN", "quest": 592, "questName": "Saving Yenniku", "npc": 2497, "npcName": "Nimboya", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.2, "y": 27.8},
     {"type": "COLLECT", "quest": 2932, "questName": "Grim Message", "target": "Witherbark Skull", "count": 20, "mobs": "Witherbark Scalper / Witherbark Zealot / Witherbark Hideskinner / Witherbark Venomblood", "map": 1425, "zone": "The Hinterlands", "x": 22.4, "y": 57.7, "near": true},
     {"type": "TURNIN", "quest": 2932, "questName": "Grim Message", "npc": 2497, "npcName": "Nimboya", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.2, "y": 27.8},
     {"type": "COLLECT", "quest": 580, "questName": "Whiskey Slim's Lost Grog", "target": "Pupellyverbos Port", "count": 12, "mobs": "Gammerita", "map": 1425, "zone": "The Hinterlands", "x": 81.6, "y": 51.8, "near": true, "optional": true},
@@ -20,7 +23,8 @@
     {"type": "ACCEPT", "quest": 594, "questName": "Message in a Bottle", "map": 1434, "zone": "Stranglethorn Vale", "x": 36.3, "y": 70.6, "note": "Take Carefully Folded Note from the Half-Buried Bottle and use it to start the quest"},
     {"type": "TURNIN", "quest": 594, "questName": "Message in a Bottle", "npc": 2634, "npcName": "Princess Poobah", "map": 1434, "zone": "Stranglethorn Vale", "x": 38.4, "y": 80.6},
     {"type": "TURNIN", "quest": 670, "questName": "Sunken Treasure", "npc": 2610, "npcName": "Shakes O'Breen", "map": 1417, "zone": "Arathi Highlands", "x": 32.2, "y": 81.4},
-    {"type": "ACCEPT", "quest": 96, "questName": "Call of Water", "npc": 5895, "npcName": "Minor Manifestation of Water", "map": 1421, "zone": "Silverpine Forest", "x": 38.6, "y": 44.6, "class": ["SHAMAN"]},
+    {"type": "COLLECT", "quest": 63, "questName": "Call of Water", "target": "Corrupt Manifestation's Bracers", "count": 1, "mobs": "Corrupt Minor Manifestation of Water", "map": 1421, "zone": "Silverpine Forest", "x": 38.8, "y": 44.3, "class": ["SHAMAN"]},
+    {"type": "TURNIN", "quest": 63, "questName": "Call of Water", "map": 1421, "zone": "Silverpine Forest", "x": 38.2, "y": 44.5, "note": "reduced xp (10%) - you out-levelled it", "class": ["SHAMAN"]},
     {"type": "TRAVEL", "map": 1425, "zone": "The Hinterlands", "x": 78.9, "y": 79.9, "radius": 60, "note": "travel to The Hinterlands (The Hinterlands)"},
     {"type": "HEARTH", "npc": 14731, "npcName": "Lard", "map": 1425, "zone": "Revantusk Village", "x": 78.1, "y": 81.4, "note": "talk to Lard and make this inn your home"},
     {"type": "ACCEPT", "quest": 7839, "questName": "Vilebranch Hooligans", "npc": 14737, "npcName": "Smith Slagtree", "map": 1425, "zone": "The Hinterlands", "x": 77.2, "y": 80.1},
