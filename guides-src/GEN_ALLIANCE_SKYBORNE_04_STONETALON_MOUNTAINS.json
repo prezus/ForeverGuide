@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_04_STONETALON_MOUNTAINS",
   "name": "4. Stonetalon Mountains 19-20 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 19,
@@ -13,6 +13,7 @@
   "notes": "Chapter 4 of the Skyborne route: level 19 to 20, 16 steps, ~28 min of play in the model (26161 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 65.9, "radius": 60, "note": "travel to Stonetalon Mountains (Stonetalon Mountains)"},
+    {"type": "TURNIN", "quest": 1070, "questName": "On Guard in Stonetalon", "npc": 4080, "npcName": "Kaela Shadowspear", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.8, "y": 66.8},
     {"type": "ACCEPT", "quest": 1085, "questName": "On Guard in Stonetalon", "npc": 4080, "npcName": "Kaela Shadowspear", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.9, "y": 66.9},
     {"type": "ACCEPT", "quest": 1093, "questName": "Super Reaper 6000", "npc": 4201, "npcName": "Ziz Fizziks", "map": 1442, "zone": "Stonetalon Mountains", "x": 59, "y": 62.6},
     {"type": "TURNIN", "quest": 1085, "questName": "On Guard in Stonetalon", "npc": 4077, "npcName": "Gaxim Rustfizzle", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 67.2},
