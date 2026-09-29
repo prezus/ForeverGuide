@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_04_LOCH_MODAN",
   "name": "4. Loch Modan 15-16 (Dwarf)",
-  "version": 6,
+  "version": 7,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 15,
@@ -18,9 +18,6 @@
     {"type": "COLLECT", "quest": 1678, "questName": "Vejrek", "target": "Vejrek's Head", "count": 1, "mobs": "Vejrek", "map": 1426, "zone": "Dun Morogh", "x": 27.8, "y": 58, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 1678, "questName": "Vejrek", "npc": 6114, "npcName": "Muren Stormpike", "map": 1455, "zone": "Ironforge", "x": 70.6, "y": 90.4, "class": ["WARRIOR"]},
     {"type": "ACCEPT", "quest": 2997, "questName": "Tome of Divinity", "npc": 1232, "npcName": "Azar Stronghammer", "map": 1426, "zone": "Dun Morogh", "x": 47.6, "y": 52, "class": ["PALADIN"], "race": ["Dwarf"]},
-    {"type": "ACCEPT", "quest": 2999, "questName": "Tome of Divinity", "npc": 5149, "npcName": "Brandur Ironhammer", "map": 1455, "zone": "Ironforge", "x": 23.4, "y": 6.2, "class": ["PALADIN"], "race": ["Dwarf"]},
-    {"type": "TURNIN", "quest": 2999, "questName": "Tome of Divinity", "npc": 6179, "npcName": "Tiza Battleforge", "map": 1455, "zone": "Ironforge", "x": 27.4, "y": 12, "class": ["PALADIN"], "race": ["Dwarf"]},
-    {"type": "ACCEPT", "quest": 3000, "questName": "Tome of Divinity", "npc": 928, "npcName": "Lord Grayson Shadowbreaker", "map": 1453, "zone": "Stormwind City", "x": 37.2, "y": 33, "class": ["PALADIN"], "race": ["Dwarf"]},
     {"type": "ACCEPT", "quest": 94863, "questName": "Taming the Beast", "npc": 251507, "npcName": "Josephine Carson", "map": 1429, "zone": "Elwynn Forest", "x": 41.2, "y": 66.2, "note": "New in Forever; Objectives: Tame a Gray Forest Wolf", "class": ["HUNTER"], "race": ["Dwarf"]},
     {"type": "TURNIN", "quest": 94863, "questName": "Taming the Beast", "npc": 251507, "npcName": "Josephine Carson", "map": 1429, "zone": "Elwynn Forest", "x": 41.2, "y": 66.2, "class": ["HUNTER"], "race": ["Dwarf"]},
     {"type": "ACCEPT", "quest": 6064, "questName": "Taming the Beast", "npc": 1231, "npcName": "Grif Wildheart", "map": 1426, "zone": "Dun Morogh", "x": 45.8, "y": 53, "note": "Objectives: Tame a Large Crag Boar", "class": ["HUNTER"], "race": ["Dwarf"]},
