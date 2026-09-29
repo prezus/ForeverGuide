@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_01_DUROTAR",
     name = "1. Durotar 1-10 (Orc)",
-    version = 11,
+    version = 12,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 1,
@@ -13,11 +13,9 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_02_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 1 of the Orc route: level 1 to 10, 75 steps, ~156 min of play in the model (12487 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 174,
+    stepCount = 172,
     steps = [[{
 {type="ACCEPT",quest=788,questName="Cutting Teeth",npc=3143,npcName="Gornek",map=1411,zone="Durotar",x=42.1,y=68.3},
-{type="ACCEPT",quest=4641,questName="Your Place in the World",npc=10176,npcName="Kaltunk",map=1411,zone="Durotar",x=43.2,y=68.6},
-{type="TURNIN",quest=4641,questName="Your Place in the World",npc=3143,npcName="Gornek",map=1411,zone="Durotar",x=42,y=68.4},
 {type="ACCEPT",quest=98576,questName="Glyphic Parchment",npc=3143,npcName="Gornek",map=1411,zone="Durotar",x=42,y=68.4,class={"MAGE"},race={"Orc"},note="New in Forever"},
 {type="ACCEPT",quest=98575,questName="Tainted Tablet",npc=3143,npcName="Gornek",map=1411,zone="Durotar",x=42,y=68.4,class={"WARLOCK"},race={"Troll"},note="New in Forever"},
 {type="TURNIN",quest=98576,questName="Glyphic Parchment",npc=5884,npcName="Mai'ah",map=1411,zone="Durotar",x=42.4,y=69,class={"MAGE"},race={"Orc"}},
