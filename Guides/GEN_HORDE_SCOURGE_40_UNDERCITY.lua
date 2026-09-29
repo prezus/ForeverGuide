@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_40_UNDERCITY",
     name = "40. Undercity 52-52 (Undead)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 52,
@@ -57,6 +57,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=8250,questName="Magecraft",npc=4567,npcName="Pierce Shackleton",map=1458,zone="Undercity",x=85.4,y=13.8,class={"MAGE"}},
 {type="TURNIN",quest=1478,questName="Halgar's Summons",npc=5675,npcName="Carendin Halgar",map=1458,zone="Undercity",x=85,y=25.6,class={"WARLOCK"},note="reduced xp (10%) - you out-levelled it"},
 {type="TURNIN",quest=1801,questName="Tome of the Cabal",npc=6293,npcName="Jorah Annison",map=1458,zone="Undercity",x=76,y=37.6,class={"WARLOCK"},note="reduced xp (10%) - you out-levelled it"},
+{type="TURNIN",quest=97952,questName="Camping 101: Blacksmithing",npc=4605,npcName="Basil Frye",map=1458,zone="Undercity",x=60,y=28.6,profession="Blacksmithing",note="reduced xp (10%) - you out-levelled it"},
 {type="ACCEPT",quest=3526,questName="Goblin Engineering",npc=4586,npcName="Graham Van Talen",map=1458,zone="Undercity",x=75.6,y=73.2,profession="Engineering",skill=200},
 {type="TURNIN",quest=238,questName="Errand for Apothecary Zinge",npc=5204,npcName="Apothecary Zinge",map=1458,zone="Undercity",x=50.1,y=68,note="reduced xp (60%) - you out-levelled it"},
 {type="TURNIN",quest=1359,questName="Zinge's Delivery",npc=5204,npcName="Apothecary Zinge",map=1458,zone="Undercity",x=50,y=68.4,note="reduced xp (10%) - you out-levelled it"},
@@ -64,7 +65,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=4293,questName="A Sample of Slime...",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4},
 {type="COLLECT",quest=4293,questName="A Sample of Slime...",target="Corrupted Felwood Sample",count=5,map=1458,zone="Undercity",x=47.9,y=73.5},
 {type="TURNIN",quest=4293,questName="A Sample of Slime...",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4},
-{type="TURNIN",quest=550,questName="Battle of Hillsbrad",npc=2425,npcName="Varimathras",map=1458,zone="Undercity",x=56.2,y=92.6,note="reduced xp (10%) - you out-levelled it"},
 {type="TURNIN",quest=3542,questName="Delivery to Andron Gant",npc=6522,npcName="Andron Gant",map=1458,zone="Undercity",x=54.6,y=75.6},
 {type="TURNIN",quest=95803,questName="A Token of Good Faith",npc=10181,npcName="Lady Sylvanas Windrunner",map=1458,zone="Undercity",x=57.8,y=91.8,class={"PALADIN"},note="reduced xp (10%) - you out-levelled it"},
 {type="TURNIN",quest=3526,questName="Goblin Engineering",npc=8126,npcName="Nixx Sprocketspring",map=1446,zone="Tanaris",x=52.4,y=27.2,profession="Engineering",skill=200}
