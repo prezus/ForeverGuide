@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_09_STRANGLETHORN_VALE",
     name = "9. Stranglethorn Vale 32-32 (Tauren)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 32,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_10_THOUSAND_NEEDLES",
     author = "ForeverGuide route planner",
     notes = "Chapter 9 of the Tauren route: level 32 to 32, 34 steps, ~116 min of play in the model (23704 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 45,
+    stepCount = 44,
     steps = [[{
 {type="FLIGHTPATH",npc=2858,npcName="Gringer",map=1434,zone="Stranglethorn Vale",x=26.9,y=77.1},
 {type="ACCEPT",quest=1718,questName="The Islander",npc=4595,npcName="Baltus Fowler",map=1458,zone="Undercity",x=47.2,y=17,class={"WARRIOR"}},
@@ -33,7 +33,6 @@ ns.RegisterGuide({
 {type="COLLECT",quest=189,questName="Bloodscalp Ears",target="Bloodscalp Ear",count=15,map=1434,zone="Stranglethorn Vale",x=29.8,y=21.6,near=true},
 {type="COLLECT",quest=581,questName="Hunt for Yenniku",target="Bloodscalp Tusk",count=9,map=1434,zone="Stranglethorn Vale",x=29.8,y=21.6,near=true},
 {type="KILL",quest=575,questName="Supply and Demand",npc=1150,target="River Crocolisk",count=2,map=1434,zone="Stranglethorn Vale",x=34.6,y=10.5,near=true,note="loot Large River Crocolisk Skin"},
-{type="ACCEPT",quest=339,questName="Chapter I",npc=716,npcName="Barnil Stonepot",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.4},
 {type="ACCEPT",quest=340,questName="Chapter II",npc=716,npcName="Barnil Stonepot",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.4},
 {type="ACCEPT",quest=341,questName="Chapter III",npc=716,npcName="Barnil Stonepot",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.4},
 {type="ACCEPT",quest=342,questName="Chapter IV",npc=716,npcName="Barnil Stonepot",map=1434,zone="Stranglethorn Vale",x=35.6,y=10.4},
