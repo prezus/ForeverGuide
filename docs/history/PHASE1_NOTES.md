@@ -1,5 +1,5 @@
-> **Historical.** RevoltLive85's development log from the original project
-> (github.com/RevoltLive85/ForeverGuide), kept as written. Paths, repo links and workflows
+> **Historical.** RevoltLive85's development log from the original project, kept as written
+> apart from its repository links. Paths and workflows
 > in it (e.g. `tools/sync_to_github.cmd`) describe that setup, not this repository.
 
 # ForeverGuide — Phase 1 status (2026-09-18)
@@ -171,7 +171,7 @@ now: Coldridge -> Kharanos -> Brewnall -> Rumbleshot -> Kharanos -> east -> Iron
 quests are routed as `optional`; objective steps with many spawns carry `near` (runtime picks the nearest DB spawn).
 **Editor** (`Editor.lua`): `/fg edit here|npc|note|radius|clear`, `/fg edits`, applied at runtime via `Editor:Effective`,
 folded into guides-src by `tools/apply_edits.py`. `/fg resync` skips out-levelled quests.
-**GitHub**: the AddOns folder is a git checkout of https://github.com/RevoltLive85/ForeverGuide (initialised and pushed from
+**GitHub**: the AddOns folder is a git checkout of the original repository (initialised and pushed from
 the PC through the cc-shell tool, `core.autocrlf=false`); `tools/sync_to_github.cmd` for manual edits. Claude commits + pushes
 after every install via `cc_run` in that folder. Tests: 96 checks.
 

@@ -15,7 +15,7 @@ The [MIT license](LICENSE) covers only original ForeverGuide code and assets own
 
 ## Credits
 
-ForeverGuide was created by [RevoltLive85](https://github.com/RevoltLive85/ForeverGuide) and is now
+ForeverGuide was created by RevoltLive85 and is now
 maintained by [prezus](https://github.com/prezus/ForeverGuide). The original development log is kept in
 [docs/history/PHASE1_NOTES.md](docs/history/PHASE1_NOTES.md). Data sources are credited in
 [Data/README.md](Data/README.md).
