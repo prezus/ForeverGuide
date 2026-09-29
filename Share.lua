@@ -76,6 +76,20 @@ local SCHEMA = Obj {
             { "text", Str(160) }, { "numFulfilled", "int" }, { "numRequired", "int" }, { "finished", "bool" },
         }, 20) },
     }, 300) },
+    -- one segment of a recorded run (Run.lua); a segment share carries it instead of the facts
+    { "run", Obj {
+        { "id", Str(16) }, { "seg", "int" }, { "done", "bool" },
+        { "entries", List(Obj {
+            { "e", Str(10) }, { "t", "num" }, { "lvl", "int" }, { "m", "int" }, { "x", "num" }, { "y", "num" },
+            { "g", Str(80) }, { "s", "int" },
+            { "q", "int" }, { "xp", "int" }, { "money", "int" },
+            { "obj", "int" }, { "f", "int" }, { "r", "int" }, { "done", "bool" },
+            { "l", "int" }, { "rested", "int" },
+            { "npc", "int" }, { "mobLevel", "int" }, { "elite", "bool" }, { "secs", "num" },
+            { "mounted", "bool" }, { "taxi", "bool" }, { "cost", "int" },
+            { "action", Str(10) },
+        }, 2500) },
+    } },
 }
 
 Share.SCHEMA = SCHEMA   -- tools/share_schema.lua turns it into docs/share-format.schema.json
@@ -232,6 +246,19 @@ function Share:Doc()
     return Filter(Build(), SCHEMA) or {}
 end
 
+--- The allowlisted copy of a run segment's share (Run.lua): the profile, the maps its entries
+--- stand on, and the segment. The contributed facts and reports stay out of it.
+function Share:RunDoc(segment)
+    local doc = Build()
+    local maps = {}
+    for _, e in ipairs(segment.entries or {}) do
+        local m = PlainNumber(e.m)
+        if m and not maps[m] then maps[m] = ns.Recorder:MapInfo(m) end
+    end
+    return Filter({ format = doc.format, addon = doc.addon, build = doc.build, profile = doc.profile, maps = maps,
+        run = segment }, SCHEMA) or {}
+end
+
 --- The share as JSON (pretty = indented, for the JSON view).
 function Share:Json(pretty, doc)
     return Encode(doc or self:Doc(), SCHEMA, pretty and "  " or nil, 0)
@@ -309,7 +336,7 @@ function Share:Summary(doc)
     end
     add("WHAT THIS SHARE CONTAINS")
     add("Everything below is in the share string, and nothing else is.")
-    add("Never included: other players, your character name, realm or account, GUIDs, chat, or the time.")
+    add("Never included: other players, your character name, realm or account, GUIDs, chat, or the date and time of day.")
     add("To check it yourself: the string is base64 of zlib-compressed JSON. docs/SHARE-FORMAT.md in the")
     add("ForeverGuide repository shows how to decode it with common tools and validate it against its schema.")
     add("")
@@ -383,6 +410,22 @@ function Share:Summary(doc)
                 tostring(e.step or "-"), tostring(e.map or "-"))
         end
     end
+    if doc.run then
+        local entries, kinds, order = doc.run.entries or {}, {}, {}
+        for _, e in ipairs(entries) do
+            local k = e.e or "?"
+            if not kinds[k] then kinds[k] = 0 order[#order + 1] = k end
+            kinds[k] = kinds[k] + 1
+        end
+        section("RUN SEGMENT", #entries, "a timed log of what you did while the run recorded")
+        add("Run %s, segment %d%s.", doc.run.id or "?", doc.run.seg or 0, doc.run.done and " (the last one)" or "")
+        add("Times count seconds of recording since the run started, never the clock: this segment covers %s to %s s.",
+            entries[1] and Num(entries[1].t or 0) or "0", entries[#entries] and Num(entries[#entries].t or 0) or "0")
+        local counts = {}
+        for i, k in ipairs(order) do counts[i] = k .. " x" .. kinds[k] end
+        add("Entries: %s", table.concat(counts, ", "))
+        add("Each entry has your level, map position and guide step; JSON shows every one.")
+    end
     if doc.reports then
         section("YOUR REPORTS", #doc.reports, "what you reported with /fg wrong")
         for i, r in ipairs(doc.reports) do
@@ -427,8 +470,7 @@ local function Render(win)
     if #win.parts > 1 and win.view == "string" then win.nextPart:Show() else win.nextPart:Hide() end
 end
 
---- Open the share window with a fresh string.
-function Share:Show()
+local function Open(doc)
     local win = ns.Reports:ShowText(WINDOW, "Share data", "")
     if not win.views then
         local Theme = ns.Theme
@@ -449,11 +491,24 @@ function Share:Show()
         end)
         win.nextPart:SetPoint("RIGHT", anchor, "LEFT", -6, 0)
     end
-    local doc = self:Doc()
-    win.parts, win.part, win.view = self:Strings(doc), 1, "string"
-    win.summary, win.json = self:Summary(doc), self:Json(true, doc)
+    win.parts, win.part, win.view = Share:Strings(doc), 1, "string"
+    win.summary, win.json = Share:Summary(doc), Share:Json(true, doc)
     Render(win)
+    return win
+end
+
+--- Open the share window with a fresh string.
+function Share:Show()
+    local win = Open(self:Doc())
     local quests, npcs = ns.Recorder:Counts()
     ns.Printf("share: %d quests, %d NPCs, %d reports in %d part%s. Copy each part (Ctrl+C) into the feedback form; "
         .. "Readable shows what it holds.", quests, npcs, #(ns.db.reports or {}), #win.parts, #win.parts == 1 and "" or "s")
+end
+
+--- Open the share window with one segment of a recorded run (Run.lua).
+function Share:ShowRun(segment)
+    local win = Open(self:RunDoc(segment))
+    ns.Printf("run segment %d: %d entries in %d part%s. Copy each part (Ctrl+C) into the feedback form%s; "
+        .. "Readable shows what it holds.", segment.seg or 0, #(segment.entries or {}), #win.parts, #win.parts == 1 and "" or "s",
+        segment.done and " - this is the run's last segment" or "")
 end

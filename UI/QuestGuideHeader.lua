@@ -65,6 +65,10 @@ function Header.Create(parent)
     pcall(h.line.SetTexture, h.line, Theme.TEX.headerLine)
     h.line:SetVertexColor(0.3, 0.3, 0.3, 1)
 
+    -- the run controls, while Record runs is on (UI/RunStrip.lua)
+    h.run = ns.RunStrip.Create(h)
+    ns.RunStrip.Apply(h)
+
     h.Set = Header.Set
     return h
 end

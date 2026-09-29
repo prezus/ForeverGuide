@@ -102,6 +102,7 @@ In game:
 | `/fg target` | npc id, level, reaction of your target |
 | `/fg way 42.3 71.8` | point the arrow at a coordinate on your current map |
 | `/fg share on` / `/fg share` | opt in to contributing quest data (off by default) / copy it, with your reports, as one string for the feedback form (**Readable** shows what it holds in words, **JSON** as data) |
+| `/fg run start` `pause` `resume` `stop` `send` | record a run for route calibration; **Record runs** under Options → Data collection (off by default) puts these on the guide window as buttons, and Send pastes a segment into the feedback form |
 | `/fg mode auto` | navigate your quest log directly (nearest objective / turn-in), no guide needed; `/fg mode guide` to follow the guide |
 | `/fg quest 783` / `/fg quest kobold` | everything the database knows: giver, objectives with coordinates, turn-in, prerequisites |
 | `/fg avail` | quests you could pick up in the current zone, with their givers and distances |
@@ -139,6 +140,7 @@ ForeverGuide/
   DB.lua            access to the bundled quest database (where does a quest start / end / its objectives)
   Tracker.lua       auto mode: navigates the quest log using the database
   Recorder.lua      Contribute data: quest givers / enders, NPC and objective spots, target votes (opt-in, no names or times)
+  Run.lua           Record runs: a timed log of play, sent in segments (opt-in, no names or clock time)
   Share.lua         /fg share: the allowlisted export string for the feedback form (docs/SHARE-FORMAT.md)
   Scanner.lua       quest id scanner (/fg scan) -> which quest ids exist on Forever's server
   UI.lua            coordinator of the interface + the guide picker
@@ -184,6 +186,12 @@ unknown ids become new records flagged `forever`). Two sources:
   offered at, and zone maps. Only creatures are kept: a quest shared by another player is flagged
   `shared`, never with who shared it, and nothing records the time. `/fg share` turns it into one
   string for the feedback form ([format](docs/SHARE-FORMAT.md)).
+* **Players recording runs** (a separate opt-in, **Record runs** under Options → Data collection):
+  Start, Pause, Stop and Send on the guide window. A run is a timed log of quests, kills, movement,
+  flights, deaths and the hearthstone, with the guide step being followed; its clock counts seconds
+  since Start, never the time of day. Send puts a segment into the share window for the feedback
+  form ([format](docs/SHARE-FORMAT.md#run-segments)). The maintainer's route planner calibrates
+  travel and kill times from them.
 * **The client's own tables**: `QuestV2`, `QuestV2CliTask`, `QuestObjective`, `QuestPOIBlob` and
   `QuestPOIPoint`, exported as CSV from wago.tools, are imported by the maintainer's data build
   (see [Routes](#routes)). Objective

@@ -182,7 +182,7 @@ section("contributing data is one opt-in; old switches, mirrors and SavedVariabl
     ns.Options:Create()
     local contribute, scan = ns.Options:GetWidget("contribute"), ns.Options:GetWidget("scanner")
     need(contribute and scan and not ns.Options:GetWidget("recorder") and not ns.Options:GetWidget("harvest"),
-        "data collection has two options: contribute and scanner")
+        "contribute and scanner are separate options; the old recorder and harvest switches are gone")
     do
         contribute:SetChecked(true); contribute:GetScript("OnClick")(contribute)
         check(ns.db.contribute and not ns.db.scanEnabled, "contributing does not enable the scanner")
@@ -428,6 +428,216 @@ section("/fg share: one string for the feedback form, holding only allowlisted f
     ns.Print = realPrint
     ns.Commands:Run("share clear")
     ns.db.reports = {}
+end)
+-- Record runs: an opt-in of its own that shows run controls on the guide window. The player
+-- starts, pauses and stops a run and sends it in segments through the share window. Times count
+-- seconds of recording since the run started: never the clock.
+section("record runs: an opt-in, run controls on the guide window, segments through the share window", function()
+    local json = dofile(root .. "tools/test/json.lua")
+    local R = ns.Run
+    need(R ~= nil, "the run recorder module exists")
+    local function last() local run = ns.char.run return run and run.entries[#run.entries] end
+    local function find(kind)
+        local out = {}
+        for _, e in ipairs(ns.char.run and ns.char.run.entries or {}) do if e.e == kind then out[#out + 1] = e end end
+        return out
+    end
+    ns.UI:Show()
+    local header = ForeverGuideFrame.header
+    -- off by default: no controls, nothing recorded, Start refuses
+    check(ns.db.recordRuns == false, "recording runs is off by default")
+    check(not (header.run and header.run:IsShown()) and ns.QuestGuideHeader.HEIGHT == 50, "with it off the guide window shows no run controls")
+    R:Start()
+    MOCK_ACCEPT(7101, "Run Off Quest")
+    check(ns.char.run == nil, "with it off a run cannot start and nothing is recorded")
+    -- the option shows the controls; nothing records until Start
+    ns.Options:Create()
+    local opt = ns.Options:GetWidget("runs")
+    need(opt ~= nil, "Record runs has its own switch under Data collection")
+    local contributeWas = ns.db.contribute
+    opt:SetChecked(true); opt:GetScript("OnClick")(opt)
+    local strip = header.run
+    need(ns.db.recordRuns and strip and strip:IsShown(), "switching Record runs on shows the run controls on the guide window")
+    check(ns.QuestGuideHeader.HEIGHT > 50, "the header grows to hold the controls")
+    check(ns.db.contribute == contributeWas, "Record runs does not touch Contribute data")
+    check(R:State() == "idle" and ns.char.run == nil and strip.start:IsShown() and not strip.stop:IsShown(),
+        "the controls start idle with only Start offered")
+    -- Start: the run begins at t = 0
+    strip.start:GetScript("OnClick")(strip.start)
+    local run = ns.char.run
+    need(R:State() == "recording" and run and run.id and run.seg == 1, "Start begins a run in its first segment")
+    check(type(run.id) == "string" and run.id:match("^%x+$") and #run.id >= 8, "the run id is random hex, not the character")
+    check(run.entries[1].e == "START" and run.entries[1].t == 0, "the run opens with START at t = 0")
+    check(strip.pause:IsShown() and strip.stop:IsShown() and strip.send:IsShown() and not strip.start:IsShown(),
+        "while recording the controls offer Pause, Stop and Send")
+    -- quest events carry the common fields and the guide step being followed
+    MOCK_ADVANCE(10)
+    MOCK_ACCEPT(7102, "Run Quest", { { text = "Run Wolf slain: 0/2", finished = false, numFulfilled = 0, numRequired = 2 } })
+    settle()
+    local a = find("ACCEPT")[1]
+    check(a and a.q == 7102 and a.lvl == MOCK.level and a.m == MOCK.mapID and a.x and a.y, "an accept is kept with the quest, level and position")
+    check(a and a.t >= 10 and a.t < 13, "t counts seconds since the run started (" .. tostring(a and a.t) .. ")")
+    check(a and a.g == G.active.id and a.s == G.current, "each entry names the guide and step being followed")
+    -- movement: sampled every 5 s while the player moves, with the mount flag
+    local moves = #find("MOVE")
+    MOCK_ADVANCE(6)
+    check(#find("MOVE") == moves, "standing still records no movement")
+    MOCK.mapX, MOCK.mounted = MOCK.mapX + 0.01, true
+    MOCK_ADVANCE(6)
+    local mv = find("MOVE")[moves + 1]
+    check(mv and mv.mounted == true and mv.taxi == false and math.abs(mv.x - MOCK.mapX * 100) < 0.01, "moving records a sample with the mount and taxi flags")
+    MOCK.mounted = false
+    -- a kill: the mob's level and class, and the seconds from the pull
+    MOCK.target = { name = "Run Wolf", npcID = 7201, level = 6, hostile = true, classification = "elite" }
+    MOCK_FIRE("PLAYER_TARGET_CHANGED")
+    MOCK_FIRE("PLAYER_REGEN_DISABLED")
+    MOCK_ADVANCE(8)
+    local wolf = UnitGUID("target")
+    MOCK_FIRE("PARTY_KILL", UnitGUID("player"), wolf)
+    local k = find("KILL")[1]
+    check(k and k.npc == 7201 and k.mobLevel == 6 and k.elite == true and k.secs and math.abs(k.secs - 8) < 1.5,
+        "a kill keeps the creature, its level, elite, and seconds from the pull (" .. tostring(k and k.secs) .. ")")
+    MOCK_FIRE("UNIT_DIED", wolf)
+    check(#find("KILL") == 1, "the same death reported twice is one kill")
+    MOCK_FIRE("PARTY_KILL", "Player-1-000099", "Creature-0-1-1-1-7202-0000000009")
+    check(#find("KILL") == 1, "a kill by someone else on a mob the player never fought is not the player's")
+    MOCK.target = { name = "Run Boar", npcID = 7203, level = 5, hostile = true }
+    MOCK_FIRE("PLAYER_TARGET_CHANGED")
+    MOCK_FIRE("PARTY_KILL", UnitGUID("player"), UnitGUID("target"))
+    MOCK_FIRE("PARTY_KILL", UnitGUID("player"), "Creature-0-1-1-1-7204-0000000011")
+    local boar, unseen = find("KILL")[2], find("KILL")[3]
+    check(boar and boar.npc == 7203 and boar.elite == false and unseen and unseen.npc == 7204 and unseen.elite == nil
+        and unseen.mobLevel == nil, "a normal mob is recorded not elite; one never targeted leaves level and class unknown")
+    table.remove(ns.char.run.entries) table.remove(ns.char.run.entries)
+    MOCK.target = nil
+    MOCK_FIRE("PLAYER_TARGET_CHANGED")
+    MOCK_FIRE("PLAYER_REGEN_ENABLED")
+    -- objective progress, turn-in and a level
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7102, 1, 1, 2, false, "Run Wolf slain: 1/2")
+    local o = find("OBJ")[1]
+    check(o and o.q == 7102 and o.obj == 1 and o.f == 1 and o.r == 2 and o.done == false, "objective progress is kept with its count")
+    ns.Events:Fire("FG_QUEST_TURNED_IN", 7102, "Run Quest", 450, 125)
+    local ti = find("TURNIN")[1]
+    check(ti and ti.q == 7102 and ti.xp == 450 and ti.money == 125, "a turn-in keeps its xp and money")
+    ns.Events:Fire("FG_LEVEL_CHANGED", MOCK.level + 1)
+    check(last().e == "LEVEL" and last().l == MOCK.level + 1 and last().rested ~= nil, "a level-up keeps the new level and rested xp")
+    -- a flight: the fare when it starts, the seconds when it lands
+    MOCK.money = 1000
+    MOCK_FIRE("TAXIMAP_OPENED")
+    MOCK.money, MOCK.onTaxi = 900, true
+    MOCK_ADVANCE(1)
+    local tx = find("TAXI")[1]
+    check(tx and tx.cost == 100, "taking a flight keeps where it started and its fare (" .. tostring(tx and tx.cost) .. ")")
+    MOCK_ADVANCE(60)
+    MOCK.onTaxi = false
+    MOCK_ADVANCE(1)
+    local land = find("LAND")[1]
+    check(land and land.secs and math.abs(land.secs - 61) < 2, "landing keeps where and how long the flight took (" .. tostring(land and land.secs) .. ")")
+    -- death and the way back
+    MOCK_DIE(40, 40)
+    check(#find("DEATH") == 1 and #find("RESURRECT") == 0, "dying is kept; releasing the spirit is not a resurrection")
+    MOCK_ADVANCE(30)
+    MOCK_REVIVE()
+    local res = find("RESURRECT")[1]
+    check(res and res.secs and math.abs(res.secs - 30) < 2, "coming back keeps the seconds dead")
+    -- the hearthstone
+    MOCK_FIRE("UNIT_SPELLCAST_SUCCEEDED", "player", "Cast-1", 8690)
+    check(last().e == "HEARTH" and last().action == "use", "using the hearthstone is kept")
+    MOCK_FIRE("HEARTHSTONE_BOUND")
+    check(last().e == "HEARTH" and last().action == "bind", "setting the hearthstone is kept")
+    -- Pause: nothing is recorded, and paused time does not count
+    strip.pause:GetScript("OnClick")(strip.pause)
+    local pausedAt = last().t
+    check(R:State() == "paused" and last().e == "PAUSE" and strip.pause.label:GetText():find("Resume"), "Pause stops the clock and offers Resume")
+    local n = #ns.char.run.entries
+    MOCK_ADVANCE(100)
+    MOCK_ACCEPT(7103, "Paused Quest")
+    MOCK.mapX = MOCK.mapX + 0.02
+    MOCK_ADVANCE(6)
+    check(#ns.char.run.entries == n, "while paused nothing is recorded")
+    strip.pause:GetScript("OnClick")(strip.pause)
+    check(R:State() == "recording" and last().e == "RESUME" and last().t == pausedAt, "Resume carries on from the paused time")
+    -- no clock, no identity, only allowlisted fields
+    local stamps = true
+    for _, e in ipairs(ns.char.run.entries) do if e.t > 100000 then stamps = false end end
+    check(stamps and not mentions(ns.char.run, "Tester") and not mentions(ns.char.run, "Player-")
+        and not mentions(ns.char.run, "Creature-"), "a run holds no clock time, names or GUIDs")
+    -- Send: the segment goes to the share window; recording carries on in the next segment
+    local sentCount = #ns.char.run.entries
+    strip.send:GetScript("OnClick")(strip.send)
+    local win = rawget(_G, "ForeverGuideShare")
+    need(win and win:IsShown(), "Send opens the share window")
+    check((win.text:GetText() or ""):find("^FG2J?:1/1:"), "the segment is one share string to paste into the feedback form")
+    local doc = json.decode(win.json)
+    check(doc.format == 2 and doc.profile and doc.profile.class and doc.run and doc.run.id == ns.char.run.id and doc.run.seg == 1
+        and #doc.run.entries == sentCount, "the share holds the profile and the run's first segment, every entry of it")
+    check(doc.quests == nil and doc.npcs == nil and doc.reports == nil, "a segment share holds the run, not the contributed facts")
+    check(doc.maps and doc.maps[tostring(MOCK.mapID)] ~= nil, "a segment share names the maps its entries stand on")
+    local raw = win.json
+    check(not raw:find("Tester", 1, true) and not raw:find("Player-", 1, true) and not raw:find("Creature-", 1, true),
+        "the segment share holds no names or GUIDs")
+    win.views.readable:GetScript("OnClick")()
+    check((win.text:GetText() or ""):find("RUN SEGMENT", 1, true), "Readable describes the run segment")
+    win:Hide()
+    check(R:State() == "recording" and ns.char.run.seg == 2 and #ns.char.run.entries == 0, "after Send recording carries on in segment 2")
+    MOCK_ADVANCE(5)
+    MOCK_ACCEPT(7104, "Second Segment Quest")
+    local nextT = find("ACCEPT")[1]
+    check(nextT and nextT.t > doc.run.entries[#doc.run.entries].t, "segment 2 carries on the run's clock")
+    -- logout pauses the run; a login with SavedVariables carries it on as it was
+    MOCK_FIRE("PLAYER_LOGOUT")
+    check(R:State() == "paused" and last().e == "PAUSE", "logging out pauses the run")
+    ns.Database:Init()
+    check(ns.char.run and ns.char.run.seg == 2 and #find("ACCEPT") == 1, "SavedVariables carry the paused run and its entries")
+    -- a login without SavedVariables (the beta bug): the cvar mirror brings back the run, and says entries were lost
+    local id, mirror = ns.char.run.id, ns.Persist:EncodeChar()
+    ns.char.run = nil
+    ns.Persist:DecodeChar(mirror)
+    check(ns.char.run and ns.char.run.id == id and ns.char.run.seg == 2 and R:State() == "paused",
+        "the cvar mirror restores the run's id, segment and paused state")
+    R:Resume()
+    local gap = ns.char.run.entries[1]
+    check(gap and gap.e == "GAP" and last().e == "RESUME" and last().t >= nextT.t, "entries lost with the SavedVariables are marked as a gap")
+    -- a full segment pauses itself and asks to be sent
+    local printed, realPrint = {}, ns.Print
+    ns.Print = function(msg) printed[#printed + 1] = tostring(msg) end
+    for _ = #ns.char.run.entries, R.MAX_ENTRIES do ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7104, 1, 1, 2, false, "x") end
+    ns.Print = realPrint
+    check(R:State() == "paused" and #ns.char.run.entries <= R.MAX_ENTRIES + 1, "a full segment pauses the run")
+    check(table.concat(printed, "\n"):find("Send", 1, true), "and tells the player to send it")
+    R:Send()
+    rawget(_G, "ForeverGuideShare"):Hide()
+    -- Stop: the last segment goes out marked done; the run ends; Send shows it again to copy
+    R:Resume()
+    MOCK_ACCEPT(7105, "Last Quest")
+    strip.stop:GetScript("OnClick")(strip.stop)
+    win = rawget(_G, "ForeverGuideShare")
+    doc = json.decode(win.json)
+    check(doc.run and doc.run.seg == 3 and doc.run.done == true and doc.run.entries[#doc.run.entries].e == "STOP",
+        "Stop sends the last segment, marked done")
+    check(R:State() == "idle" and ns.char.run == nil and strip.start:IsShown(), "after Stop the controls are idle again")
+    win:Hide()
+    R:Send()
+    check(win:IsShown() and json.decode(win.json).run.seg == 3, "Send while idle shows the last segment again, to copy it")
+    win:Hide()
+    -- commands mirror the buttons
+    ns.Commands:Run("run start")
+    check(R:State() == "recording", "/fg run start starts a run")
+    ns.Commands:Run("run pause")
+    check(R:State() == "paused", "/fg run pause pauses it")
+    ns.Commands:Run("run discard")
+    check(R:State() == "idle" and ns.char.run == nil, "/fg run discard throws the run away")
+    -- switching the option off while recording pauses the run and hides the controls
+    R:Start()
+    opt:SetChecked(false); opt:GetScript("OnClick")(opt)
+    check(not ns.db.recordRuns and R:State() == "paused" and not strip:IsShown() and ns.QuestGuideHeader.HEIGHT == 50,
+        "switching Record runs off pauses the run and hides the controls")
+    n = #ns.char.run.entries
+    MOCK_ACCEPT(7106, "Off Again Quest")
+    R:Resume()
+    check(#ns.char.run.entries == n and R:State() == "paused", "with the option off nothing records and Resume refuses")
+    ns.char.run = nil
+    for q = 7101, 7106 do MOCK.log[q] = nil end
 end)
 section("engine walkthrough of the fixture guide", function()
 check(ns.db.ding.enabled == false and ns.db.nav.blizzardWaypoint == false

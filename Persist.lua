@@ -144,7 +144,8 @@ end
 -- ---- character state ------------------------------------------------------------
 function Persist:EncodeChar()
     local ch = ns.char
-    local t = { v = 1, g = ch.activeGuide, m = ch.mode, a = b01(ch.autoPickGuide ~= false), r = ch.route, tr = ch.lastTrained }
+    local t = { v = 1, g = ch.activeGuide, m = ch.mode, a = b01(ch.autoPickGuide ~= false), r = ch.route, tr = ch.lastTrained,
+                rn = ns.Run and ns.Run:MirrorString() }
     local active = ch.activeGuide and ch.guides[ch.activeGuide]
     if active then
         t.s = active.step
@@ -173,7 +174,7 @@ function Persist:EncodeChar()
     end
     table.sort(others)
     if #others > 0 then t.p = table.concat(others, ",") end
-    return encodePairs(t, { "v", "g", "m", "a", "r", "tr", "s", "gv", "d", "df", "o", "sk", "tp", "p" })
+    return encodePairs(t, { "v", "g", "m", "a", "r", "tr", "rn", "s", "gv", "d", "df", "o", "sk", "tp", "p" })
 end
 
 function Persist:DecodeChar(s)
@@ -185,6 +186,7 @@ function Persist:DecodeChar(s)
     if t.a then ch.autoPickGuide = bool(t.a) end
     if t.r and t.r ~= "" then ch.route = t.r end
     if num(t.tr) then ch.lastTrained = num(t.tr) end
+    if t.rn and ns.Run then ns.Run:RestoreMirror(t.rn) end
     if ch.activeGuide and t.s then
         local p = ch.guides[ch.activeGuide] or { step = 1, done = {}, version = 1 }
         p.step = num(t.s) or 1
@@ -213,7 +215,7 @@ function Persist:DecodeChar(s)
 end
 
 -- ---- account settings + edits ----------------------------------------------------
-local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "con", "sco", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "su", "w", "h", "ht", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "sq", "sa", "e" }
+local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "con", "sco", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "su", "w", "h", "ht", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "sq", "sa", "rr", "e" }
 
 function Persist:EncodeAcct()
     local db = ns.db
@@ -233,7 +235,7 @@ function Persist:EncodeAcct()
         mm = b01(mm.shown ~= false), ma = mm.angle,
         bliz = b01(nav.blizzardWaypoint), rad = nav.arrivalRadius,
         acc = auto.accept, ti = b01(auto.turnin), ann = b01(auto.announce), sq = b01(auto.share), sa = b01(auto.shared),
-        con = b01(db.contribute), sco = b01(db.scanEnabled),
+        con = b01(db.contribute), sco = b01(db.scanEnabled), rr = b01(db.recordRuns),
         dg = b01(db.ding == nil or db.ding.enabled ~= false), dc = db.ding and db.ding.channel,
         rmf = b01(db.reminders == nil or db.reminders.flight ~= false), rmt = b01(db.reminders == nil or db.reminders.trainer ~= false),
         dn = b01(db.instance == nil or db.instance.hide ~= false),
@@ -304,6 +306,7 @@ function Persist:DecodeAcct(s)
     if t.v == "2" then
         if t.con then db.contribute = bool(t.con) end
         if t.sco then db.scanEnabled = bool(t.sco) end
+        if t.rr then db.recordRuns = bool(t.rr) end
     end
     if t.dn then
         db.instance = db.instance or {}

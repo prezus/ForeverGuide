@@ -35,6 +35,7 @@ local HELP = {
     "/fg auto [accept on|off|guide] [turnin on|off]   auto-accept / auto-turn-in quests (hold SHIFT at an NPC to do it by hand)",
     "/fg auto share|shared on|off   share quests you accept with your group / accept quests (and escorts) your group shares",
     "/fg share [on|off|status|clear]   contribute quest data (off by default): /fg share copies it for the feedback form",
+    "/fg run start|pause|resume|stop|send|discard|status   record a run (Record runs in /fg options shows these as buttons)",
     "/fg scan on|off | new | [from] [to] | stop | resume | status   opt in before requesting quest data from the server",
     "/fg harvest | sweep [from to] | probe | status   quest discovery and map requests (needs /fg share on)",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
@@ -696,6 +697,22 @@ function handlers.share(rest)
             ns.db.contribute and "on" or "off", quests, npcs, errors)
     else
         ns.Share:Show()
+    end
+end
+
+function handlers.run(rest)
+    local R = ns.Run
+    if rest == "start" then R:Start()
+    elseif rest == "pause" then R:Pause()
+    elseif rest == "resume" then R:Resume()
+    elseif rest == "stop" then R:Stop()
+    elseif rest == "send" then R:Send()
+    elseif rest == "discard" then
+        R:Discard()
+        ns.Print("run discarded.")
+    else
+        ns.Printf("record runs %s; run %s, %d entries in this segment, %d s recorded.",
+            ns.db.recordRuns and "on" or "off", R:State(), R:Count(), math.floor(R:Elapsed()))
     end
 end
 
