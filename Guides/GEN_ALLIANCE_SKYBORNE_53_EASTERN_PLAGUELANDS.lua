@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_53_EASTERN_PLAGUELANDS",
     name = "53. Eastern Plaguelands 57-57 (Skyborne)",
-    version = 9,
+    version = 10,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 57,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_54_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 53 of the Skyborne route: level 57 to 57, 22 steps, ~153 min of play in the model (37723 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 40,
+    stepCount = 37,
     steps = [[{
 {type="TURNIN",quest=5163,questName="Are We There, Yeti?",npc=10305,npcName="Umi Rumplesnicker",map=1452,zone="Winterspring",x=60.8,y=37.6},
 {type="TRAVEL",map=1452,zone="Everlook",x=61.4,y=38.8,radius=60,note="use your hearthstone (Everlook)"},
@@ -27,10 +27,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=9664,questName="Establishing New Outposts",npc=17069,npcName="Emmisary Whitebeard",map=1423,zone="Eastern Plaguelands",x=81.3,y=59.4},
 {type="ACCEPT",quest=9128,questName="The Elemental Equation",npc=16116,npcName="Archmage Angela Dosantos",map=1423,zone="Eastern Plaguelands",x=81.5,y=58.3},
 {type="TURNIN",quest=6030,questName="Duke Nicholas Zverenhoff",npc=11039,npcName="Duke Nicholas Zverenhoff",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.8},
-{type="ACCEPT",quest=5513,questName="Mantles of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60,note="Objectives: Argent Dawn"},
 {type="ACCEPT",quest=5517,questName="Chromatic Mantle of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60,note="Objectives: Argent Dawn"},
-{type="COLLECT",quest=5513,questName="Mantles of the Dawn",target="Argent Dawn Valor Token",count=10,map=1423,zone="Eastern Plaguelands",x=81.4,y=60,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
-{type="TURNIN",quest=5513,questName="Mantles of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60},
 {type="COLLECT",quest=5517,questName="Chromatic Mantle of the Dawn",target="Argent Dawn Valor Token",count=25,map=1423,zone="Eastern Plaguelands",x=81.4,y=60,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
 {type="TURNIN",quest=5517,questName="Chromatic Mantle of the Dawn",npc=11536,npcName="Quartermaster Miranda Breechlock",map=1423,zone="Eastern Plaguelands",x=81.6,y=60},
 {type="ACCEPT",quest=5281,questName="The Restless Souls",npc=11038,npcName="Caretaker Alen",map=1423,zone="Eastern Plaguelands",x=79.6,y=63.9},
