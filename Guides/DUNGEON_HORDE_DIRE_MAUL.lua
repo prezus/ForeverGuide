@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_HORDE_DIRE_MAUL",
     name = "Dire Maul 56-60",
-    version = 5,
+    version = 6,
     kind = "dungeon",
     faction = "Horde",
     minLevel = 56,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Feralas",
     author = "ForeverGuide route planner",
     notes = "Dire Maul: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 41,
+    stepCount = 39,
     steps = [[{
 {type="ACCEPT",quest=7481,questName="Elven Legends",npc=14373,npcName="Sage Korolusk",map=1444,zone="Feralas",x=75,y=43.8},
 {type="TURNIN",quest=7481,questName="Elven Legends",npc=14373,npcName="Sage Korolusk",map=1444,zone="Feralas",x=75,y=43.8},
@@ -51,8 +51,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=7441,questName="Pusillin and the Elder Azj'Tordin",npc=14355,npcName="Azj'Tordin",map=1444,zone="Feralas",x=76.8,y=37.4},
 {type="TURNIN",quest=7489,questName="Lethtendris's Web",npc=7776,npcName="Talo Thornhoof",map=1444,zone="Feralas",x=76,y=43.8},
 {type="TURNIN",quest=5526,questName="Shards of the Felvine",npc=11801,npcName="Rabine Saturna",map=1450,zone="Moonglade",x=51.6,y=44.8},
-{type="ACCEPT",quest=5519,questName="The Gordok Ogre Suit",map=1444,zone="Feralas",x=59.2,y=45.1},
-{type="TURNIN",quest=5519,questName="The Gordok Ogre Suit",map=1444,zone="Feralas",x=59.2,y=45.1},
 {type="ACCEPT",quest=7877,questName="The Treasure of the Shen'dralar",map=1444,zone="Feralas",x=59.2,y=45.1},
 {type="TURNIN",quest=7877,questName="The Treasure of the Shen'dralar",map=1444,zone="Feralas",x=59.2,y=45.1}
 }]],
