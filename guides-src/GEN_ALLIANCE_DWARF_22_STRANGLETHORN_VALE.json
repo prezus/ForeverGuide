@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_22_STRANGLETHORN_VALE",
   "name": "22. Stranglethorn Vale 38-39 (Dwarf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 38,
@@ -32,7 +32,6 @@
     {"type": "TURNIN", "quest": 599, "questName": "The Bloodsail Buccaneers", "npc": 2487, "npcName": "Fleet Master Seahorn", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.2, "y": 77},
     {"type": "COLLECT", "quest": 587, "questName": "Up to Snuff", "target": "Snuff", "count": 15, "map": 1434, "zone": "Stranglethorn Vale", "x": 29.7, "y": 80.8, "near": true},
     {"type": "TURNIN", "quest": 587, "questName": "Up to Snuff", "npc": 2488, "npcName": "Deeg", "map": 1434, "zone": "Stranglethorn Vale", "x": 26.9, "y": 77.4},
-    {"type": "ACCEPT", "quest": 349, "questName": "Stranglethorn Fever", "npc": 1449, "npcName": "Witch Doctor Unbagwa", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.2, "y": 60.4},
     {"type": "ACCEPT", "quest": 627, "questName": "Favor for Krazek", "npc": 773, "npcName": "Krazek", "map": 1434, "zone": "Stranglethorn Vale", "x": 27, "y": 77.2},
     {"type": "COLLECT", "quest": 600, "questName": "Venture Company Mining", "target": "Singing Blue Crystal", "count": 10, "map": 1434, "zone": "Stranglethorn Vale", "x": 42, "y": 46.3, "near": true},
     {"type": "ACCEPT", "quest": 196, "questName": "Raptor Mastery", "npc": 715, "npcName": "Hemet Nesingwary", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.7, "y": 10.8},
