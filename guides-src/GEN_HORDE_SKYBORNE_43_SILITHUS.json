@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_43_SILITHUS",
   "name": "43. Silithus 55-55 (Skyborne)",
-  "version": 4,
+  "version": 5,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 55,
@@ -21,8 +21,6 @@
     {"type": "TURNIN", "quest": 7481, "questName": "Elven Legends", "npc": 14373, "npcName": "Sage Korolusk", "map": 1444, "zone": "Feralas", "x": 75, "y": 43.8, "optional": true},
     {"type": "ACCEPT", "quest": 7489, "questName": "Lethtendris's Web", "npc": 7776, "npcName": "Talo Thornhoof", "map": 1444, "zone": "Feralas", "x": 76, "y": 43.8, "note": "For Dire Maul (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: Pusillin and the Elder Azj'Tordin, Lethtendris's Web. When you have a group, open Dire Maul under Dungeons.", "text": "Ready for Dire Maul", "optional": true},
-    {"type": "ACCEPT", "quest": 7492, "questName": "Camp Mojache", "npc": 10879, "npcName": "Harbinger Balthazad", "map": 1458, "zone": "Undercity", "x": 68.2, "y": 47.6, "note": "For Dire Maul (dungeon guide)", "optional": true},
-    {"type": "TURNIN", "quest": 7492, "questName": "Camp Mojache", "npc": 7776, "npcName": "Talo Thornhoof", "map": 1444, "zone": "Feralas", "x": 76, "y": 43.8, "optional": true},
     {"type": "ACCEPT", "quest": 5212, "questName": "The Flesh Does Not Lie", "npc": 11035, "npcName": "Betina Bigglezink", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.4, "y": 59.6, "note": "For Stratholme (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 5529, "questName": "Plagued Hatchlings", "npc": 11035, "npcName": "Betina Bigglezink", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.4, "y": 59.6, "note": "For Scholomance (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 5214, "questName": "The Great Fras Siabi", "npc": 11033, "npcName": "Smokey LaRue", "map": 1423, "zone": "Eastern Plaguelands", "x": 80.6, "y": 58, "note": "For Stratholme (dungeon guide)", "optional": true},
