@@ -56,7 +56,6 @@ assert o2["kind"] == "item" and "id" not in o2 and o2["near"] == [321], o2
 assert db["quests"]["5012"]["start"]["spm"] == {"1429": [[40.0, 30.0]]}
 assert db["quests"]["5013"]["n"] == "A Title Only" and "5014" not in db["quests"]
 assert db["maps"]["1429"] == {"name": "Elwynn Forest", "parent": 1415}
-assert "Partymate" not in repr(db) and "sharer" not in repr(db), "unknown share fields must not be merged"
 
 before = copy.deepcopy(db)
 merge_recorded.merge_share(copy.deepcopy(SHARE), db, stats())

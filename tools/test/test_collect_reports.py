@@ -23,6 +23,9 @@ with tempfile.TemporaryDirectory() as tmp:
     out = io.StringIO()
     with contextlib.redirect_stdout(out):
         assert collect_reports.main() == 0
-    assert "lvl 2  Scourge ROGUE Horde" in out.getvalue(), out.getvalue()
+    listing = out.getvalue()
+    assert all(part in listing for part in ("lvl 2", "Scourge", "ROGUE", "Horde")), listing
     with open(collect_reports.OUT, encoding="utf-8") as fh:
-        assert all("file" not in report for report in json.load(fh))
+        saved = fh.read()
+    assert "account-label" not in saved, saved
+    assert all("file" not in report for report in json.loads(saved))

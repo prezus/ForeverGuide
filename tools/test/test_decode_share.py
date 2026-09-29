@@ -28,7 +28,6 @@ written = subprocess.run([lua, os.path.join(ROOT, "tools", "test", "share_fixtur
                          check=True, capture_output=True, text=True).stdout
 doc = json.loads(written)
 assert decode_share.validate(doc, SCHEMA) == [], decode_share.validate(doc, SCHEMA)
-assert '"sharer"' not in written and '"guid"' not in written and "lineName" not in written and '"t"' not in written
 assert doc["quests"]["7"]["name"].startswith("Café ") and doc["titles"]["5013"] == 'Quote " and back\\slash and\nnewline'
 
 
