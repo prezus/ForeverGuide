@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_48_SILITHUS",
     name = "48. Silithus 57-57 (Undead)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 57,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_49_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 48 of the Scourge route: level 57 to 57, 21 steps, ~99 min of play in the model (47611 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 26,
+    stepCount = 28,
     steps = [[{
+{type="TRAVEL",map=1452,zone="Winterspring",x=60.5,y=36.3,radius=30,note="go to Yugrek, the flight master (Everlook, Winterspring)"},
+{type="FLY",map=1451,zone="Silithus",x=48.7,y=36.7,radius=30,note="fly to Cenarion Hold, Silithus"},
 {type="TRAVEL",map=1451,zone="Silithus",x=49.3,y=37.1,radius=60,note="travel to Silithus (Silithus)"},
 {type="ACCEPT",quest=8285,questName="The Deserter",npc=15183,npcName="Geologist Larksbane",map=1451,zone="Silithus",x=49.7,y=37.5},
 {type="ACCEPT",quest=9416,questName="Report to General Kirika",npc=17081,npcName="Scout Bloodfist",map=1451,zone="Silithus",x=49,y=36.7},

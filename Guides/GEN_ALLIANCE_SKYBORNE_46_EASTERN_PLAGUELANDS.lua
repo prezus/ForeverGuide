@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_46_EASTERN_PLAGUELANDS",
     name = "46. Eastern Plaguelands 53-54 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 53,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_47_BURNING_STEPPES",
     author = "ForeverGuide route planner",
     notes = "Chapter 46 of the Skyborne route: level 53 to 54, 26 steps, ~113 min of play in the model (41017 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 26,
+    stepCount = 28,
     steps = [[{
+{type="TRAVEL",map=1422,zone="Western Plaguelands",x=42.9,y=85.1,radius=30,note="go to Bibilfaz Featherwhistle, the flight master (Chillwind Camp, Western Plaguelands)"},
+{type="FLY",map=1423,zone="Eastern Plaguelands",x=71.8,y=49.6,radius=30,note="fly to Light's Hope Chapel, Eastern Plaguelands"},
 {type="FLIGHTPATH",npc=12617,npcName="Khaelyn Steelwing",map=1423,zone="Eastern Plaguelands",x=71.8,y=49.6},
 {type="TRAVEL",map=1423,zone="Eastern Plaguelands",x=81.3,y=59.3,radius=60,note="travel to Eastern Plaguelands (Eastern Plaguelands)"},
 {type="HEARTH",npc=16256,npcName="Jessica Chambers",map=1423,zone="Light's Hope Chapel",x=71.8,y=48.5,note="talk to Jessica Chambers and make this inn your home"},

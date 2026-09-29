@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_23_TANARIS",
   "name": "23. Tanaris 42-43 (Undead)",
-  "version": 5,
+  "version": 6,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 42,
@@ -12,7 +12,14 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 23 of the Scourge route: level 42 to 43, 31 steps, ~117 min of play in the model (41334 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 75.5, "y": 44.4, "radius": 30, "note": "go to Shyn, the flight master (Camp Mojache, Feralas)"},
+    {"type": "FLY", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 25.4, "radius": 30, "note": "fly to Gadgetzan, Tanaris"},
     {"type": "FLIGHTPATH", "npc": 7824, "npcName": "Bulkrek Ragefist", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 25.4},
+    {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 25.4, "radius": 30, "note": "go to Bulkrek Ragefist, the flight master (Gadgetzan, Tanaris)"},
+    {"type": "FLY", "map": 1444, "zone": "Feralas", "x": 75.5, "y": 44.4, "radius": 30, "note": "fly to Camp Mojache, Feralas"},
+    {"type": "TURNIN", "quest": 2979, "questName": "Dark Ceremony", "npc": 7777, "npcName": "Rok Orhan", "map": 1444, "zone": "Feralas", "x": 75.4, "y": 43.6},
+    {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 75.5, "y": 44.4, "radius": 30, "note": "go to Shyn, the flight master (Camp Mojache, Feralas)"},
+    {"type": "FLY", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 25.4, "radius": 30, "note": "fly to Gadgetzan, Tanaris"},
     {"type": "ACCEPT", "quest": 2768, "questName": "Divino-matic Rod", "npc": 7407, "npcName": "Chief Engineer Bilgewhizzle", "map": 1446, "zone": "Tanaris", "x": 52.4, "y": 28.4, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
     {"type": "TURNIN", "quest": 2864, "questName": "Tran'rek", "npc": 7876, "npcName": "Tran'rek", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 26.8, "optional": true},
     {"type": "ACCEPT", "quest": 2865, "questName": "Scarab Shells", "npc": 7876, "npcName": "Tran'rek", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 26.8, "note": "For Zul'Farrak (dungeon guide)", "optional": true},

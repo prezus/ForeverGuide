@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_30_BLASTED_LANDS",
     name = "30. Blasted Lands 47-50 (Undead)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 47,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_31_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 30 of the Scourge route: level 47 to 50, 25 steps, ~603 min of play in the model (6872 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 28,
+    stepCount = 30,
     steps = [[{
+{type="TRAVEL",map=1425,zone="The Hinterlands",x=81.7,y=81.8,radius=30,note="go to Gorkas, the flight master (Revantusk Village, The Hinterlands)"},
+{type="FLY",map=1435,zone="Swamp of Sorrows",x=46.1,y=54.8,radius=30,note="fly to Stonard, Swamp of Sorrows"},
 {type="TRAVEL",map=1419,zone="Blasted Lands",x=50.6,y=14.2,radius=60,note="travel to Blasted Lands (Blasted Lands)"},
 {type="ACCEPT",quest=2581,questName="Snickerfang Jowls",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},
 {type="ACCEPT",quest=2583,questName="A Boar's Vitality",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},

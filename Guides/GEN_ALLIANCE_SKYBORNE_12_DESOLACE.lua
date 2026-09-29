@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_12_DESOLACE",
     name = "12. Desolace 31-31 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 31,
@@ -13,10 +13,9 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_13_ASHENVALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 12 of the Skyborne route: level 31 to 31, 23 steps, ~81 min of play in the model (27288 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 25,
+    stepCount = 24,
     steps = [[{
 {type="FLIGHTPATH",npc=6706,npcName="Baritanas Skyriver",map=1443,zone="Desolace",x=64.7,y=10.5},
-{type="TURNIN",quest=1100,questName="Lonebrow's Journal",npc=4048,npcName="Falfindel Waywarder",map=1444,zone="Feralas",x=89.6,y=46.4},
 {type="TRAVEL",map=1443,zone="Desolace",x=66.4,y=10.0,radius=60,note="travel to Desolace (Desolace)"},
 {type="HEARTH",npc=11103,npcName="Innkeeper Lyshaerya",map=1443,zone="Nijel's Point",x=66.3,y=6.5,note="talk to Innkeeper Lyshaerya and make this inn your home"},
 {type="ACCEPT",quest=1387,questName="Centaur Bounty",npc=5752,npcName="Corporal Melkins",map=1443,zone="Desolace",x=66.7,y=10.9},

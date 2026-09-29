@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_18_BADLANDS",
     name = "18. Badlands 37-37 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 37,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_19_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
     notes = "Chapter 18 of the Skyborne route: level 37 to 37, 10 steps, ~41 min of play in the model (23531 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 16,
+    stepCount = 15,
     steps = [[{
 {type="TRAVEL",map=1418,zone="Badlands",x=49.5,y=49.2,radius=60,note="travel to Badlands (Badlands)"},
 {type="ACCEPT",quest=733,questName="Scrounging",npc=2860,npcName="Sigrun Ironhew",map=1418,zone="Badlands",x=53.8,y=43.3},
@@ -29,7 +29,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1108,questName="Indurium",npc=4618,npcName="Martek the Exiled",map=1418,zone="Badlands",x=42.2,y=52.6},
 {type="ACCEPT",quest=711,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
 {type="KILL",quest=711,questName="Study of the Elements: Rock",npc=92,target="Rock Elemental",count=3,map=1418,zone="Badlands",x=13.4,y=33.4,near=true,note="loot Large Stone Slab"},
-{type="TURNIN",quest=711,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
-{type="ACCEPT",quest=1137,questName="News for Fizzle",npc=4618,npcName="Martek the Exiled",map=1418,zone="Badlands",x=42.2,y=52.6}
+{type="TURNIN",quest=711,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9}
 }]],
 })

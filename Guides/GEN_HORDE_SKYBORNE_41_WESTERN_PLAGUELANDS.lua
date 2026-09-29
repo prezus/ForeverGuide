@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_41_WESTERN_PLAGUELANDS",
     name = "41. Western Plaguelands 53-53 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 53,
@@ -13,9 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_42_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 41 of the Skyborne route: level 53 to 53, 15 steps, ~39 min of play in the model (47801 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 16,
+    stepCount = 17,
     steps = [[{
-{type="TURNIN",quest=5050,questName="Good Luck Charm",npc=10778,npcName="Janice Felstone",map=1422,zone="Western Plaguelands",x=38.4,y=54},
+{type="TRAVEL",map=1458,zone="Undercity",x=63.3,y=48.6,radius=30,note="go to Michael Garrett, the flight master (Undercity, Tirisfal)"},
+{type="FLY",map=1424,zone="Hillsbrad Foothills",x=60.1,y=18.6,radius=30,note="fly to Tarren Mill, Hillsbrad"},
 {type="TRAVEL",map=1422,zone="Western Plaguelands",x=39.3,y=66.0,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
 {type="ACCEPT",quest=4971,questName="A Matter of Time",npc=10667,npcName="Chromie",map=1422,zone="Western Plaguelands",x=39.5,y=66.8},
 {type="KILL",quest=4971,questName="A Matter of Time",npc=10717,target="Temporal Parasite",count=10,map=1422,zone="Western Plaguelands",x=45.2,y=62.8,near=true},

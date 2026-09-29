@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_38_FELWOOD",
     name = "38. Felwood 51-51 (Night Elf)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 51,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_39_IRONFORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 38 of the NightElf route: level 51 to 51, 22 steps, ~82 min of play in the model (44117 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 36,
+    stepCount = 41,
     steps = [[{
 {type="TRAVEL",map=1448,zone="Felwood",x=51.6,y=82.7,radius=60,note="travel to Felwood (Felwood)"},
 {type="ACCEPT",quest=8460,questName="Timbermaw Ally",npc=11554,npcName="Grazle",map=1448,zone="Felwood",x=50.9,y=85},
@@ -49,7 +49,12 @@ ns.RegisterGuide({
 {type="TURNIN",quest=4906,questName="Further Corruption",npc=9116,npcName="Eridan Bluewind",map=1448,zone="Felwood",x=51.4,y=81.5},
 {type="TURNIN",quest=939,questName="Flute of Xavaric",npc=9116,npcName="Eridan Bluewind",map=1448,zone="Felwood",x=51.2,y=81.6},
 {type="TURNIN",quest=5203,questName="Rescue From Jaedenar",npc=11019,npcName="Jessir Moonbow",map=1448,zone="Felwood",x=51.2,y=82,optional=true},
-{type="TURNIN",quest=5158,questName="Seeking Spiritual Aid",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8},
-{type="ACCEPT",quest=4126,questName="Hurley Blackbreath",npc=1267,npcName="Ragnar Thunderbrew",map=1426,zone="Dun Morogh",x=46.8,y=52.4,optional=true,note="For Blackrock Depths (dungeon guide)"}
+{type="TRAVEL",map=1437,zone="Wetlands",x=9.5,y=59.7,radius=30,note="go to Shellei Brondir, the flight master (Menethil Harbor, Wetlands)"},
+{type="FLY",map=1455,zone="Ironforge",x=55.5,y=47.7,radius=30,note="fly to Ironforge, Dun Morogh"},
+{type="ACCEPT",quest=5090,questName="A Call to Arms: The Plaguelands!",npc=10877,npcName="Courier Hammerfall",map=1455,zone="Ironforge",x=31.6,y=67},
+{type="TRAVEL",map=1455,zone="Ironforge",x=55.5,y=47.7,radius=30,note="go to Gryth Thurden, the flight master (Ironforge, Dun Morogh)"},
+{type="FLY",map=1437,zone="Wetlands",x=9.5,y=59.7,radius=30,note="fly to Menethil Harbor, Wetlands"},
+{type="TURNIN",quest=2939,questName="In Search of Knowledge",npc=7907,npcName="Daryn Lightwind",map=1438,zone="Teldrassil",x=55.4,y=92.2},
+{type="TURNIN",quest=3022,questName="Handle With Care",npc=7916,npcName="Erelas Ambersky",map=1438,zone="Teldrassil",x=55.4,y=92}
 }]],
 })

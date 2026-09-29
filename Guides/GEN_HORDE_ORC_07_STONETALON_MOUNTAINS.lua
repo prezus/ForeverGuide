@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_07_STONETALON_MOUNTAINS",
     name = "7. Stonetalon Mountains 24-25 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 24,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_08_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route planner",
     notes = "Chapter 7 of the Orc route: level 24 to 25, 29 steps, ~123 min of play in the model (23447 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 34,
+    stepCount = 37,
     steps = [[{
+{type="TRAVEL",map=1413,zone="The Barrens",x=63.1,y=37.2,radius=30,note="go to Bragok, the flight master (Ratchet, The Barrens)"},
+{type="FLY",map=1442,zone="Stonetalon Mountains",x=45.1,y=59.8,radius=30,note="fly to Sun Rock Retreat, Stonetalon Mountains"},
 {type="TRAVEL",map=1442,zone="Stonetalon Mountains",x=46.7,y=60.9,radius=60,note="travel to Stonetalon Mountains (Stonetalon Mountains)"},
 {type="ACCEPT",quest=1087,questName="Cenarius' Legacy",npc=4198,npcName="Braelyn Firehand",map=1442,zone="Stonetalon Mountains",x=45.9,y=60.4},
 {type="ACCEPT",quest=6381,questName="New Life",npc=11864,npcName="Tammra Windfield",map=1442,zone="Stonetalon Mountains",x=47.5,y=58.4},
@@ -34,6 +36,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1096,questName="Gerenzo Wrenchwhistle",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
 {type="KILL",quest=1096,questName="Gerenzo Wrenchwhistle",npc=4202,target="Gerenzo Wrenchwhistle",map=1442,zone="Stonetalon Mountains",x=64.5,y=40.3,note="loot Gerenzo's Mechanical Arm"},
 {type="TURNIN",quest=1096,questName="Gerenzo Wrenchwhistle",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
+{type="ACCEPT",quest=6542,questName="Report to Kadrak",npc=11821,npcName="Darn Talongrip",map=1442,zone="Stonetalon Mountains",x=73.2,y=94.8},
 {type="ACCEPT",quest=1058,questName="Jin'Zil's Forest Magic",npc=3995,npcName="Witch Doctor Jin'Zil",map=1442,zone="Stonetalon Mountains",x=74.5,y=97.9},
 {type="COLLECT",quest=1058,questName="Jin'Zil's Forest Magic",target="Courser Eye",count=30,map=1442,zone="Stonetalon Mountains",x=50.4,y=36.6,near=true},
 {type="KILL",quest=1087,questName="Cenarius' Legacy",npc=4053,target="Daughter of Cenarius / Cenarion Botanist",count=4,map=1442,zone="Stonetalon Mountains",x=36.7,y=15.6,near=true},

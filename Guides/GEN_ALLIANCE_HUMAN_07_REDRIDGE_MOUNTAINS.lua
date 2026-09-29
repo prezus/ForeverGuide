@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_07_REDRIDGE_MOUNTAINS",
     name = "7. Redridge Mountains 23-23 (Human)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 23,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_08_WETLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 7 of the Human route: level 23 to 23, 13 steps, ~43 min of play in the model (24005 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 22,
+    stepCount = 24,
     steps = [[{
+{type="TRAVEL",map=1431,zone="Duskwood",x=77.5,y=44.3,radius=30,note="go to Felicia Maline, the flight master (Darkshire, Duskwood)"},
+{type="FLY",map=1433,zone="Redridge Mountains",x=25.5,y=59.4,radius=30,note="fly to Lakeshire, Redridge"},
 {type="ACCEPT",quest=386,questName="What Comes Around...",npc=859,npcName="Guard Berton",map=1433,zone="Redridge Mountains",x=26.4,y=46.6,optional=true,note="For The Stockade (dungeon guide)"},
 {type="TRAVEL",map=1433,zone="Redridge Mountains",x=29.7,y=47.4,radius=60,note="travel to Redridge Mountains (Redridge Mountains)"},
 {type="ACCEPT",quest=1699,questName="The Rethban Gauntlet",npc=6166,npcName="Yorus Barleybrew",map=1433,zone="Redridge Mountains",x=26.6,y=44.8,class={"WARRIOR"},note="Objectives: Explore Zone, Enter the Rethban Caverns"},

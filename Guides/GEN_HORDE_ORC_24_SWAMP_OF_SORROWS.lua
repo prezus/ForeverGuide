@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_24_SWAMP_OF_SORROWS",
     name = "24. Swamp of Sorrows 42-42 (Orc)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 42,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_25_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 24 of the Orc route: level 42 to 42, 18 steps, ~60 min of play in the model (43033 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 18,
+    stepCount = 20,
     steps = [[{
+{type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=32.5,y=29.4,radius=30,note="go to Thysta, the flight master (Grom'gol, Stranglethorn)"},
+{type="FLY",map=1435,zone="Swamp of Sorrows",x=46.1,y=54.8,radius=30,note="fly to Stonard, Swamp of Sorrows"},
 {type="TRAVEL",map=1435,zone="Swamp of Sorrows",x=34.7,y=64.0,radius=60,note="travel to Swamp of Sorrows (Swamp of Sorrows)"},
 {type="ACCEPT",quest=1430,questName="Fresh Meat",npc=5591,npcName="Dar",map=1435,zone="Swamp of Sorrows",x=44.7,y=57.2},
 {type="KILL",quest=1430,questName="Fresh Meat",npc=1088,target="Monstrous Crawler",count=10,map=1435,zone="Swamp of Sorrows",x=83.8,y=93.2,near=true,note="loot Monstrous Crawler Leg"},

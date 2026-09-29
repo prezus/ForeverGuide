@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_01_TIRISFAL_GLADES",
   "name": "1. Tirisfal Glades 1-12 (Undead)",
-  "version": 12,
+  "version": 13,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 1,
@@ -136,7 +136,6 @@
     {"type": "ACCEPT", "quest": 405, "questName": "The Prodigal Lich", "npc": 1499, "npcName": "Magistrate Sevren", "map": 1420, "zone": "Tirisfal Glades", "x": 61.3, "y": 50.8},
     {"type": "ACCEPT", "quest": 359, "questName": "Forsaken Duties", "npc": 1499, "npcName": "Magistrate Sevren", "map": 1420, "zone": "Tirisfal Glades", "x": 61.3, "y": 50.8},
     {"type": "ACCEPT", "quest": 91282, "questName": "A Second Home", "npc": 246152, "npcName": "Shari Stilwell", "map": 1420, "zone": "Tirisfal Glades", "x": 60.2, "y": 52.6, "note": "New in Forever", "class": ["PALADIN"]},
-    {"type": "ACCEPT", "quest": 97952, "questName": "Camping 101: Blacksmithing", "npc": 265812, "npcName": "Eleanor Shackleton", "map": 1420, "zone": "Tirisfal Glades", "x": 57.2, "y": 55.4, "note": "New in Forever; Objectives: Raise your blacksmithing skill to 20", "profession": "Blacksmithing"},
     {"type": "ACCEPT", "quest": 97953, "questName": "Camping 101: Enchanting", "npc": 265812, "npcName": "Eleanor Shackleton", "map": 1420, "zone": "Tirisfal Glades", "x": 57.2, "y": 55.4, "note": "New in Forever; Objectives: Raise your enchanting skill to 20", "profession": "Enchanting"},
     {"type": "ACCEPT", "quest": 97955, "questName": "Camping 101: First Aid", "npc": 265812, "npcName": "Eleanor Shackleton", "map": 1420, "zone": "Tirisfal Glades", "x": 57.2, "y": 55.4, "note": "New in Forever; Objectives: Raise your first aid skill to 20", "profession": "First Aid"},
     {"type": "ACCEPT", "quest": 97956, "questName": "Camping 101: Fishing", "npc": 265812, "npcName": "Eleanor Shackleton", "map": 1420, "zone": "Tirisfal Glades", "x": 57.2, "y": 55.4, "note": "New in Forever; Objectives: Raise your fishing skill to 20", "profession": "Fishing"},

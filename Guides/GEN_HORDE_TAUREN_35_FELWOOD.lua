@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_35_FELWOOD",
     name = "35. Felwood 50-51 (Tauren)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 50,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_36_ORGRIMMAR",
     author = "ForeverGuide route planner",
     notes = "Chapter 35 of the Tauren route: level 50 to 51, 22 steps, ~65 min of play in the model (48050 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 27,
+    stepCount = 28,
     steps = [[{
+{type="TRAVEL",map=1447,zone="Azshara",x=22,y=49.6,radius=30,note="go to Kroum, the flight master (Valormok, Azshara)"},
+{type="FLY",map=1448,zone="Felwood",x=34.4,y=54,radius=30,note="fly to Bloodvenom Post, Felwood"},
 {type="FLIGHTPATH",npc=11900,npcName="Brakkar",map=1448,zone="Felwood",x=34.4,y=54},
 {type="TRAVEL",map=1448,zone="Felwood",x=50.5,y=82.5,radius=60,note="travel to Felwood (Felwood)"},
 {type="ACCEPT",quest=8460,questName="Timbermaw Ally",npc=11554,npcName="Grazle",map=1448,zone="Felwood",x=50.9,y=85},
@@ -40,7 +42,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=5156,questName="Verifying the Corruption",npc=10921,npcName="Taronn Redfeather",map=1448,zone="Felwood",x=50.9,y=81.6},
 {type="COMPLETE",quest=5156,questName="Verifying the Corruption",npc=9878,target="Entropic Beast / Entropic Horror / Explore the craters in Shatter Scar Vale",count=2,map=1448,zone="Felwood",x=41.3,y=43.8,near=true},
 {type="ACCEPT",quest=5202,questName="A Strange Red Key",npc=7118,npcName="Jaedenar Darkweaver",map=1448,zone="Felwood",x=40.7,y=48.4,optional=true,note="If you looted Blood Red Key from Jaedenar Enforcer / Jaedenar Darkweaver / Jaedenar Warlock / Jaedenar Legionnaire / Ulathek, use it to start the quest"},
-{type="TURNIN",quest=5202,questName="A Strange Red Key",npc=11016,npcName="Captured Arko'narin",map=1448,zone="Felwood",x=36.2,y=55.4,optional=true},
 {type="TURNIN",quest=5156,questName="Verifying the Corruption",npc=10921,npcName="Taronn Redfeather",map=1448,zone="Felwood",x=50.9,y=81.6}
 }]],
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_10_STONETALON_MOUNTAINS",
     name = "10. Stonetalon Mountains 25-27 (Human)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 25,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_11_DUSKWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 10 of the Human route: level 25 to 27, 21 steps, ~92 min of play in the model (10837 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 36,
+    stepCount = 38,
     steps = [[{
 {type="ACCEPT",quest=2931,questName="Castpipe's Task",npc=4077,npcName="Gaxim Rustfizzle",map=1442,zone="Stonetalon Mountains",x=59.4,y=67.2,optional=true,note="For Gnomeregan (dungeon guide)"},
 {type="ACCEPT",quest=1738,questName="Heartswood",npc=6244,npcName="Takar the Seer",map=1413,zone="The Barrens",x=49.2,y=57,class={"WARLOCK"}},
@@ -33,6 +33,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1094,questName="Further Instructions",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
 {type="TURNIN",quest=1071,questName="A Gnome's Respite",npc=4077,npcName="Gaxim Rustfizzle",map=1442,zone="Stonetalon Mountains",x=59.5,y=67.2},
 {type="ACCEPT",quest=1072,questName="An Old Colleague",npc=4077,npcName="Gaxim Rustfizzle",map=1442,zone="Stonetalon Mountains",x=59.4,y=67.2},
+{type="ACCEPT",quest=1075,questName="A Scroll from Mauren",npc=4077,npcName="Gaxim Rustfizzle",map=1442,zone="Stonetalon Mountains",x=59.4,y=67.2},
 {type="ACCEPT",quest=1090,questName="Gerenzo's Orders",npc=4276,npcName="Piznik",map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
 {type="KILL",quest=1090,questName="Gerenzo's Orders",npc=4276,target="Piznik",count=1,map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
 {type="TURNIN",quest=1090,questName="Gerenzo's Orders",npc=4276,npcName="Piznik",map=1442,zone="Stonetalon Mountains",x=71.9,y=60},
@@ -50,6 +51,7 @@ ns.RegisterGuide({
 {type="KILL",quest=1057,questName="Reclaiming the Charred Vale",npc=4025,target="Bloodfury Ambusher / Bloodfury Harpy",count=7,map=1442,zone="Stonetalon Mountains",x=31.1,y=58.6,near=true},
 {type="KILL",quest=1057,questName="Reclaiming the Charred Vale",npc=4024,target="Bloodfury Slayer / Bloodfury Roguefeather",count=7,map=1442,zone="Stonetalon Mountains",x=30.1,y=67.5,near=true},
 {type="TURNIN",quest=1057,questName="Reclaiming the Charred Vale",npc=3994,npcName="Keeper Albagorm",map=1442,zone="Stonetalon Mountains",x=37.1,y=8.1},
+{type="ACCEPT",quest=1059,questName="Reclaiming the Charred Vale",npc=3994,npcName="Keeper Albagorm",map=1442,zone="Stonetalon Mountains",x=37,y=8},
 {type="GRIND",npc=4027,target="Bloodfury Storm Witch",level=27,map=1442,zone="Stonetalon Mountains",x=35.4,y=68.6,near=true,note="grind Bloodfury Storm Witch (level 26-27) to level 27 - nothing worth questing at 26"}
 }]],
 })

@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_31_TANARIS",
   "name": "31. Tanaris 45-46 (Dwarf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 45,
@@ -12,6 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 31 of the Dwarf route: level 45 to 46, 26 steps, ~151 min of play in the model (14556 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 30.2, "y": 43.3, "radius": 30, "note": "go to Fyldren Moonfeather, the flight master (Feathermoon, Feralas)"},
+    {"type": "FLY", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "fly to Gadgetzan, Tanaris"},
     {"type": "TRAVEL", "map": 1446, "zone": "Gadgetzan", "x": 52.5, "y": 27.9, "radius": 60, "note": "use your hearthstone (Gadgetzan)"},
     {"type": "TURNIN", "quest": 2741, "questName": "The Super Egg-O-Matic", "map": 1446, "zone": "Tanaris", "x": 52.4, "y": 27},
     {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51.7, "y": 27.4, "radius": 60, "note": "travel to Tanaris (Tanaris)"},
@@ -37,6 +39,7 @@
     {"type": "KILL", "quest": 5863, "questName": "The Dunemaul Compound", "npc": 12046, "target": "Gor'marok the Ravager", "count": 1, "map": 1446, "zone": "Tanaris", "x": 41.5, "y": 57.8},
     {"type": "KILL", "quest": 2605, "questName": "The Thirsty Goblin", "npc": 5481, "target": "Thistleshrub Dew Collector", "map": 1446, "zone": "Tanaris", "x": 31.2, "y": 64.7, "near": true, "note": "loot Laden Dew Gland"},
     {"type": "ACCEPT", "quest": 1560, "questName": "Tooga's Quest", "npc": 5955, "npcName": "Tooga", "map": 1446, "zone": "Tanaris", "x": 29.6, "y": 60.6, "note": "Objectives: Lead Tooga to Torta"},
+    {"type": "TURNIN", "quest": 1560, "questName": "Tooga's Quest", "npc": 6015, "npcName": "Torta", "map": 1446, "zone": "Tanaris", "x": 66.6, "y": 25.6},
     {"type": "KILL", "quest": 3362, "questName": "Thistleshrub Valley", "npc": 5490, "target": "Gnarled Thistleshrub", "count": 8, "map": 1446, "zone": "Tanaris", "x": 28, "y": 65.4},
     {"type": "KILL", "quest": 3362, "questName": "Thistleshrub Valley", "npc": 5485, "target": "Thistleshrub Rootshaper", "count": 8, "map": 1446, "zone": "Tanaris", "x": 27.4, "y": 65.6},
     {"type": "TURNIN", "quest": 2605, "questName": "The Thirsty Goblin", "npc": 7564, "npcName": "Marin Noggenfogger", "map": 1446, "zone": "Tanaris", "x": 51.8, "y": 28.7},

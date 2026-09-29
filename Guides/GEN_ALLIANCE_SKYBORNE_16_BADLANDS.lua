@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_16_BADLANDS",
     name = "16. Badlands 35-35 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 35,
@@ -13,8 +13,11 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_17_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 16 of the Skyborne route: level 35 to 35, 15 steps, ~65 min of play in the model (26174 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 18,
+    stepCount = 21,
     steps = [[{
+{type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.5,y=77.8,radius=30,note="go to Gyll, the flight master (Booty Bay, Stranglethorn)"},
+{type="FLY",map=1431,zone="Duskwood",x=77.5,y=44.3,radius=30,note="fly to Darkshire, Duskwood"},
+{type="ACCEPT",quest=707,questName="Ironband Wants You!",npc=1356,npcName="Prospector Stormpike",map=1455,zone="Ironforge",x=74.4,y=12},
 {type="TRAVEL",map=1418,zone="Badlands",x=49.9,y=47.6,radius=60,note="travel to Badlands (Badlands)"},
 {type="ACCEPT",quest=719,questName="A Dwarf and His Tools",npc=2910,npcName="Prospector Ryedol",map=1418,zone="Badlands",x=53.4,y=43.4},
 {type="ACCEPT",quest=718,questName="Mirages",npc=2860,npcName="Sigrun Ironhew",map=1418,zone="Badlands",x=53.8,y=43.3},

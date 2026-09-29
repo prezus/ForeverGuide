@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_18_BADLANDS",
   "name": "18. Badlands 39-40 (Orc)",
-  "version": 2,
+  "version": 3,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 39,
@@ -12,6 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 18 of the Orc route: level 39 to 40, 9 steps, ~81 min of play in the model (7218 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 26.9, "y": 77.1, "radius": 30, "note": "go to Gringer, the flight master (Booty Bay, Stranglethorn)"},
+    {"type": "FLY", "map": 1418, "zone": "Badlands", "x": 4, "y": 44.8, "radius": 30, "note": "fly to Kargath, Badlands"},
     {"type": "TRAVEL", "map": 1418, "zone": "Kargath", "x": 2.8, "y": 45.9, "radius": 60, "note": "use your hearthstone (Kargath)"},
     {"type": "TRAVEL", "map": 1418, "zone": "Badlands", "x": 3.5, "y": 46.8, "radius": 60, "note": "travel to Badlands (Badlands)"},
     {"type": "ACCEPT", "quest": 2202, "questName": "Uldaman Reagent Run", "npc": 6868, "npcName": "Jarkal Mossmeld", "map": 1418, "zone": "Badlands", "x": 2.4, "y": 46.1},

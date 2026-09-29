@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_12_DUSKWOOD",
   "name": "12. Duskwood 27-27 (Night Elf)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 27,
@@ -13,12 +13,6 @@
   "notes": "Chapter 12 of the NightElf route: level 27 to 27, 32 steps, ~84 min of play in the model (22836 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TURNIN", "quest": 79008, "questName": "... and that note you found", "map": 1413, "zone": "The Barrens", "x": 46.4, "y": 73.9},
-    {"type": "ACCEPT", "quest": 959, "questName": "Trouble at the Docks", "npc": 3665, "npcName": "Crane Operator Bigglefuzz", "map": 1413, "zone": "The Barrens", "x": 63, "y": 37.6, "note": "For Wailing Caverns (dungeon guide)", "optional": true},
-    {"type": "ACCEPT", "quest": 1486, "questName": "Deviate Hides", "npc": 5767, "npcName": "Nalpak", "map": 1413, "zone": "The Barrens", "x": 46, "y": 35.7, "note": "For Wailing Caverns (dungeon guide)", "optional": true},
-    {"type": "ACCEPT", "quest": 1487, "questName": "Deviate Eradication", "npc": 5768, "npcName": "Ebru", "map": 1413, "zone": "The Barrens", "x": 46, "y": 35.7, "note": "For Wailing Caverns (dungeon guide)", "optional": true},
-    {"type": "NOTE", "note": "Picked up: Trouble at the Docks, Deviate Hides, Deviate Eradication. When you have a group, open Wailing Caverns under Dungeons.", "text": "Ready for Wailing Caverns", "optional": true},
-    {"type": "ACCEPT", "quest": 1221, "questName": "Blueleaf Tubers", "npc": 3446, "npcName": "Mebok Mizzyrix", "map": 1413, "zone": "The Barrens", "x": 62.4, "y": 37.6, "note": "For Razorfen Kraul (dungeon guide)", "optional": true},
-    {"type": "NOTE", "note": "Picked up: Blueleaf Tubers. When you have a group, open Razorfen Kraul under Dungeons.", "text": "Ready for Razorfen Kraul", "optional": true},
     {"type": "TRAVEL", "map": 1431, "zone": "Duskwood", "x": 74.9, "y": 47.6, "radius": 60, "note": "travel to Duskwood (Duskwood)"},
     {"type": "ACCEPT", "quest": 173, "questName": "Worgen in the Woods", "npc": 663, "npcName": "Calor", "map": 1431, "zone": "Duskwood", "x": 75.8, "y": 47.6},
     {"type": "ACCEPT", "quest": 66, "questName": "The Legend of Stalvan", "npc": 265, "npcName": "Madame Eva", "map": 1431, "zone": "Duskwood", "x": 75.8, "y": 45.3},
@@ -37,6 +31,7 @@
     {"type": "KILL", "quest": 323, "questName": "Proving Your Worth", "npc": 787, "target": "Skeletal Healer / Skeletal Raider / Skeletal Warder", "count": 15, "map": 1431, "zone": "Duskwood", "x": 13.5, "y": 36.3, "near": true},
     {"type": "TURNIN", "quest": 323, "questName": "Proving Your Worth", "npc": 311, "npcName": "Sven Yorgen", "map": 1431, "zone": "Duskwood", "x": 7.8, "y": 34.1},
     {"type": "ACCEPT", "quest": 269, "questName": "Seeking Wisdom", "npc": 311, "npcName": "Sven Yorgen", "map": 1431, "zone": "Duskwood", "x": 7.8, "y": 34},
+    {"type": "ACCEPT", "quest": 67, "questName": "The Legend of Stalvan", "npc": 267, "npcName": "Clerk Daltry", "map": 1431, "zone": "Duskwood", "x": 72.6, "y": 46.8},
     {"type": "TURNIN", "quest": 173, "questName": "Worgen in the Woods", "npc": 663, "npcName": "Calor", "map": 1431, "zone": "Duskwood", "x": 75.8, "y": 47.6},
     {"type": "ACCEPT", "quest": 221, "questName": "Worgen in the Woods", "npc": 663, "npcName": "Calor", "map": 1431, "zone": "Duskwood", "x": 75.8, "y": 47.6},
     {"type": "TURNIN", "quest": 58, "questName": "The Night Watch", "npc": 264, "npcName": "Commander Althea Ebonlocke", "map": 1431, "zone": "Duskwood", "x": 73.5, "y": 46.8},
@@ -56,12 +51,8 @@
     {"type": "KILL", "quest": 222, "questName": "Worgen in the Woods", "npc": 206, "target": "Nightbane Vile Fang", "count": 8, "map": 1431, "zone": "Duskwood", "x": 60.8, "y": 81},
     {"type": "KILL", "quest": 222, "questName": "Worgen in the Woods", "npc": 920, "target": "Nightbane Tainted One", "count": 8, "map": 1431, "zone": "Duskwood", "x": 73.4, "y": 76.8},
     {"type": "TURNIN", "quest": 222, "questName": "Worgen in the Woods", "npc": 663, "npcName": "Calor", "map": 1431, "zone": "Duskwood", "x": 75.2, "y": 48},
-    {"type": "TURNIN", "quest": 269, "questName": "Seeking Wisdom", "npc": 1212, "npcName": "Bishop Farthing", "map": 1453, "zone": "Stormwind City", "x": 39.2, "y": 28},
-    {"type": "TURNIN", "quest": 2925, "questName": "Klockmort's Essentials", "npc": 6169, "npcName": "Klockmort Spannerspan", "map": 1455, "zone": "Ironforge", "x": 68.2, "y": 46.2, "optional": true},
-    {"type": "TURNIN", "quest": 2931, "questName": "Castpipe's Task", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.4, "optional": true},
-    {"type": "ACCEPT", "quest": 2359, "questName": "Klaven's Tower", "npc": 7024, "npcName": "Agent Kearnen", "map": 1436, "zone": "Westfall", "x": 68.4, "y": 70, "note": "Elite - group up", "optional": true, "class": ["ROGUE"]},
-    {"type": "COLLECT", "quest": 2359, "questName": "Klaven's Tower", "target": "Klaven Mortwake's Journal", "count": 1, "mobs": "Klaven Mortwake", "map": 1436, "zone": "Westfall", "x": 70.4, "y": 74.2, "optional": true, "class": ["ROGUE"]},
-    {"type": "COLLECT", "quest": 2359, "questName": "Klaven's Tower", "target": "Defias Tower Key", "count": 1, "mobs": "Malformed Defias Drone", "map": 1436, "zone": "Westfall", "x": 69.4, "y": 74.4, "optional": true, "class": ["ROGUE"]},
-    {"type": "TURNIN", "quest": 2359, "questName": "Klaven's Tower", "npc": 332, "npcName": "Master Mathias Shaw", "map": 1453, "zone": "Stormwind City", "x": 75.8, "y": 59.8, "optional": true, "class": ["ROGUE"]}
+    {"type": "TRAVEL", "map": 1431, "zone": "Duskwood", "x": 77.5, "y": 44.3, "radius": 30, "note": "go to Felicia Maline, the flight master (Darkshire, Duskwood)"},
+    {"type": "FLY", "map": 1436, "zone": "Westfall", "x": 56.6, "y": 52.6, "radius": 30, "note": "fly to Sentinel Hill, Westfall"},
+    {"type": "TURNIN", "quest": 67, "questName": "The Legend of Stalvan", "map": 1436, "zone": "Westfall", "x": 41.5, "y": 66.8}
   ]
 }

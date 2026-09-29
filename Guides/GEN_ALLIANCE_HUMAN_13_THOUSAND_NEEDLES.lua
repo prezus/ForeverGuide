@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_13_THOUSAND_NEEDLES",
     name = "13. Thousand Needles 29-29 (Human)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 29,
@@ -13,11 +13,11 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_14_ASHENVALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 13 of the Human route: level 29 to 29, 11 steps, ~40 min of play in the model (25277 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 17,
+    stepCount = 18,
     steps = [[{
 {type="TRAVEL",map=1440,zone="Astranaar",x=37.0,y=49.2,radius=60,note="use your hearthstone (Astranaar)"},
 {type="ACCEPT",quest=79192,questName="Stepping Stones",map=1413,zone="The Barrens",x=46.4,y=73.9,note="Cozy Sleeping Bag chain: keep it going"},
-{type="ACCEPT",quest=6626,questName="A Host of Evil",npc=12866,npcName="Myriam Moonsinger",map=1413,zone="The Barrens",x=49,y=94.8,optional=true,note="For Razorfen Downs (dungeon guide)"},
+{type="TURNIN",quest=79192,questName="Stepping Stones",map=1442,zone="Stonetalon Mountains",x=40.8,y=52.5},
 {type="TRAVEL",map=1441,zone="Thousand Needles",x=78.8,y=76.8,radius=60,note="travel to Thousand Needles (Thousand Needles)"},
 {type="ACCEPT",quest=1104,questName="Salt Flat Venom",npc=4454,npcName="Fizzle Brassbolts",map=1441,zone="Thousand Needles",x=78.1,y=77.1},
 {type="ACCEPT",quest=1105,questName="Hardened Shells",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78.1,y=77.1},
@@ -31,6 +31,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1104,questName="Salt Flat Venom",npc=4454,npcName="Fizzle Brassbolts",map=1441,zone="Thousand Needles",x=78.1,y=77.1},
 {type="ACCEPT",quest=1106,questName="Martek the Exiled",npc=4454,npcName="Fizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77},
 {type="ACCEPT",quest=5762,questName="Hemet Nesingwary",npc=4452,npcName="Kravel Koalbeard",map=1441,zone="Thousand Needles",x=77.8,y=77.2},
-{type="TURNIN",quest=1178,questName="Goblin Sponsorship",npc=3391,npcName="Gazlowe",map=1413,zone="The Barrens",x=62.6,y=36.2}
+{type="TURNIN",quest=1178,questName="Goblin Sponsorship",npc=3391,npcName="Gazlowe",map=1413,zone="The Barrens",x=62.6,y=36.2},
+{type="ACCEPT",quest=1100,questName="Lonebrow's Journal",map=1441,zone="Thousand Needles",x=30.7,y=24.4,note="Take Henrig Lonebrow's Journal from the Henrig Lonebrow's Journal and use it to start the quest"}
 }]],
 })

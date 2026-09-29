@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_10_STRANGLETHORN_VALE",
     name = "10. Stranglethorn Vale 30-30 (Skyborne)",
-    version = 8,
+    version = 9,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 30,
@@ -15,9 +15,9 @@ ns.RegisterGuide({
     notes = "Chapter 10 of the Skyborne route: level 30 to 30, 24 steps, ~60 min of play in the model (22476 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
     stepCount = 31,
     steps = [[{
+{type="TRAVEL",map=1431,zone="Duskwood",x=77.5,y=44.3,radius=30,note="go to Felicia Maline, the flight master (Darkshire, Duskwood)"},
+{type="FLY",map=1434,zone="Stranglethorn Vale",x=27.5,y=77.8,radius=30,note="fly to Booty Bay, Stranglethorn"},
 {type="FLIGHTPATH",npc=2859,npcName="Gyll",map=1434,zone="Stranglethorn Vale",x=27.5,y=77.8},
-{type="COLLECT",quest=253,questName="Bride of the Embalmer",target="The Embalmer's Heart",count=1,map=1431,zone="Duskwood",x=28.8,y=31,optional=true,mobs="Eliza"},
-{type="TURNIN",quest=253,questName="Bride of the Embalmer",npc=263,npcName="Lord Ello Ebonlocke",map=1431,zone="Duskwood",x=71.8,y=46.4,optional=true},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.3,y=76.5,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
 {type="ACCEPT",quest=201,questName="Investigate the Camp",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,note="Objectives: Explore Zone, Locate the hunters' camp"},
 {type="TURNIN",quest=201,questName="Investigate the Camp",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2},

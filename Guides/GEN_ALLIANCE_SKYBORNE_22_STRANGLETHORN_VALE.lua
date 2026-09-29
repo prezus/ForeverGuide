@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_22_STRANGLETHORN_VALE",
     name = "22. Stranglethorn Vale 40-41 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 40,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_23_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 22 of the Skyborne route: level 40 to 41, 18 steps, ~234 min of play in the model (12777 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 32,
+    stepCount = 34,
     steps = [[{
+{type="TRAVEL",map=1431,zone="Duskwood",x=77.5,y=44.3,radius=30,note="go to Felicia Maline, the flight master (Darkshire, Duskwood)"},
+{type="FLY",map=1434,zone="Stranglethorn Vale",x=27.5,y=77.8,radius=30,note="fly to Booty Bay, Stranglethorn"},
 {type="ACCEPT",quest=2864,questName="Tran'rek",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.5,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
 {type="ACCEPT",quest=604,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},

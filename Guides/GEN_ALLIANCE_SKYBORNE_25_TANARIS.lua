@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_25_TANARIS",
     name = "25. Tanaris 42-43 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 42,
@@ -13,9 +13,13 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_26_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 25 of the Skyborne route: level 42 to 43, 33 steps, ~183 min of play in the model (26753 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 42,
+    stepCount = 46,
     steps = [[{
+{type="TRAVEL",map=1443,zone="Desolace",x=64.7,y=10.5,radius=30,note="go to Baritanas Skyriver, the flight master (Nijel's Point, Desolace)"},
+{type="FLY",map=1444,zone="Feralas",x=30.2,y=43.3,radius=30,note="fly to Feathermoon, Feralas"},
 {type="TRAVEL",map=1444,zone="Feathermoon Stronghold",x=31.0,y=43.5,radius=60,note="use your hearthstone (Feathermoon Stronghold)"},
+{type="TRAVEL",map=1444,zone="Feralas",x=30.2,y=43.3,radius=30,note="go to Fyldren Moonfeather, the flight master (Feathermoon, Feralas)"},
+{type="FLY",map=1446,zone="Tanaris",x=51,y=29.3,radius=30,note="fly to Gadgetzan, Tanaris"},
 {type="FLIGHTPATH",npc=7823,npcName="Bera Stonehammer",map=1446,zone="Tanaris",x=51,y=29.3},
 {type="ACCEPT",quest=2768,questName="Divino-matic Rod",npc=7407,npcName="Chief Engineer Bilgewhizzle",map=1446,zone="Tanaris",x=52.4,y=28.4,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="TURNIN",quest=2864,questName="Tran'rek",npc=7876,npcName="Tran'rek",map=1446,zone="Tanaris",x=51.6,y=26.8,optional=true},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_14_DESOLACE",
     name = "14. Desolace 32-34 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 32,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_15_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 14 of the Skyborne route: level 32 to 34, 28 steps, ~162 min of play in the model (12842 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 29,
+    stepCount = 31,
     steps = [[{
+{type="TRAVEL",map=1440,zone="Ashenvale",x=34.4,y=48,radius=30,note="go to Daelyshia, the flight master (Astranaar, Ashenvale)"},
+{type="FLY",map=1443,zone="Desolace",x=64.7,y=10.5,radius=30,note="fly to Nijel's Point, Desolace"},
 {type="TRAVEL",map=1443,zone="Nijel's Point",x=66.3,y=6.5,radius=60,note="use your hearthstone (Nijel's Point)"},
 {type="TRAVEL",map=1443,zone="Desolace",x=66.3,y=9.5,radius=60,note="travel to Desolace (Desolace)"},
 {type="ACCEPT",quest=1382,questName="Strange Alliance",npc=5396,npcName="Captain Pentigast",map=1443,zone="Desolace",x=66.7,y=10.9},

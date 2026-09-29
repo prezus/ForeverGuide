@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_02_DARKSHORE",
     name = "2. Darkshore 13-18 (Skyborne)",
-    version = 15,
+    version = 16,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 13,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_03_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Skyborne route: level 13 to 18, 139 steps, ~206 min of play in the model (20366 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 187,
+    stepCount = 188,
     steps = [[{
 {type="FLIGHTPATH",npc=3841,npcName="Caylais Moonfeather",map=1439,zone="Darkshore",x=36.3,y=45.6},
 {type="ACCEPT",quest=1684,questName="Elanaria",npc=3657,npcName="Sentinel Elissa Starbreeze",map=1439,zone="Darkshore",x=39,y=43.4,class={"WARRIOR"}},
@@ -68,6 +68,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=984,questName="How Big a Threat?",npc=3693,npcName="Terenthis",map=1439,zone="Darkshore",x=39.4,y=43.5},
 {type="TURNIN",quest=2178,questName="Easy Strider Living",npc=3702,npcName="Alanndarian Nightsong",map=1439,zone="Darkshore",x=37.6,y=40.6,profession="Cooking",skill=10},
 {type="TURNIN",quest=958,questName="Tools of the Highborne",npc=3649,npcName="Thundris Windweaver",map=1439,zone="Darkshore",x=37.4,y=40.1},
+{type="ACCEPT",quest=97914,questName="Expanding Horizons",npc=3649,npcName="Thundris Windweaver",map=1439,zone="Darkshore",x=37.4,y=40.2,note="New in Forever"},
 {type="ACCEPT",quest=4812,questName="As Water Cascades",npc=2930,npcName="Sentinel Glynda Nal'Shea",map=1439,zone="Darkshore",x=37.7,y=43.4},
 {type="ACCEPT",quest=2138,questName="Cleansing of the Infected",npc=3701,npcName="Tharnariun Treetender",map=1439,zone="Darkshore",x=38.8,y=43.4},
 {type="ACCEPT",quest=982,questName="Deep Ocean, Vast Sea",npc=6301,npcName="Gorbold Steelhand",map=1439,zone="Darkshore",x=38.1,y=41.2},

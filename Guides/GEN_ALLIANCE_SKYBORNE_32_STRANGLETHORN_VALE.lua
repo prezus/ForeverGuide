@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_32_STRANGLETHORN_VALE",
     name = "32. Stranglethorn Vale 47-47 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 47,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_33_TANARIS",
     author = "ForeverGuide route planner",
     notes = "Chapter 32 of the Skyborne route: level 47 to 47, 9 steps, ~25 min of play in the model (34971 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 20,
+    stepCount = 22,
     steps = [[{
+{type="TRAVEL",map=1419,zone="Blasted Lands",x=65.5,y=24.3,radius=30,note="go to Alexandra Constantine, the flight master (Nethergarde Keep, Blasted Lands)"},
+{type="FLY",map=1434,zone="Stranglethorn Vale",x=27.5,y=77.8,radius=30,note="fly to Booty Bay, Stranglethorn"},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.4,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
 {type="ACCEPT",quest=608,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
 {type="ACCEPT",quest=348,questName="Stranglethorn Fever",npc=2486,npcName="Fin Fizracket",map=1434,zone="Stranglethorn Vale",x=27.6,y=76.7},
@@ -31,9 +33,9 @@ ns.RegisterGuide({
 {type="TURNIN",quest=608,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
 {type="COLLECT",quest=206,questName="Mai'Zoth",target="Mind's Eye",count=1,map=1434,zone="Stranglethorn Vale",x=52.8,y=27.8,optional=true,mobs="Mai'Zoth"},
 {type="TURNIN",quest=206,questName="Mai'Zoth",npc=739,npcName="Brother Nimetz",map=1434,zone="Stranglethorn Vale",x=37.8,y=3.6,optional=true},
-{type="TURNIN",quest=580,questName="Whiskey Slim's Lost Grog",npc=2491,npcName="Whiskey Slim",map=1434,zone="Stranglethorn Vale",x=27,y=77.4,optional=true},
 {type="ACCEPT",quest=630,questName="Message in a Bottle",npc=2634,npcName="Princess Poobah",map=1434,zone="Stranglethorn Vale",x=38.4,y=80.6,optional=true,note="Elite - group up"},
 {type="COLLECT",quest=630,questName="Message in a Bottle",target="Shackle Key",count=1,map=1434,zone="Stranglethorn Vale",x=40.6,y=83.2,optional=true,mobs="King Mukla"},
-{type="TURNIN",quest=630,questName="Message in a Bottle",npc=2634,npcName="Princess Poobah",map=1434,zone="Stranglethorn Vale",x=38.4,y=80.6,optional=true}
+{type="TURNIN",quest=630,questName="Message in a Bottle",npc=2634,npcName="Princess Poobah",map=1434,zone="Stranglethorn Vale",x=38.4,y=80.6,optional=true},
+{type="TURNIN",quest=2769,questName="The Brassbolts Brothers",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77}
 }]],
 })

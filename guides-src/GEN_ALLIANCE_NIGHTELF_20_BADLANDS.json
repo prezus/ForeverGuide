@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_20_BADLANDS",
   "name": "20. Badlands 35-35 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 35,
@@ -29,6 +29,7 @@
     {"type": "TURNIN", "quest": 1106, "questName": "Martek the Exiled", "npc": 4618, "npcName": "Martek the Exiled", "map": 1418, "zone": "Badlands", "x": 42.2, "y": 52.6},
     {"type": "ACCEPT", "quest": 710, "questName": "Study of the Elements: Rock", "npc": 2921, "npcName": "Lotwil Veriatus", "map": 1418, "zone": "Badlands", "x": 26, "y": 44.9},
     {"type": "KILL", "quest": 710, "questName": "Study of the Elements: Rock", "npc": 2735, "target": "Lesser Rock Elemental", "count": 10, "map": 1418, "zone": "Badlands", "x": 23.5, "y": 45.5, "near": true, "note": "loot Small Stone Shard"},
-    {"type": "TURNIN", "quest": 710, "questName": "Study of the Elements: Rock", "npc": 2921, "npcName": "Lotwil Veriatus", "map": 1418, "zone": "Badlands", "x": 26, "y": 44.9}
+    {"type": "TURNIN", "quest": 710, "questName": "Study of the Elements: Rock", "npc": 2921, "npcName": "Lotwil Veriatus", "map": 1418, "zone": "Badlands", "x": 26, "y": 44.9},
+    {"type": "TURNIN", "quest": 721, "questName": "A Sign of Hope", "npc": 2909, "npcName": "Hammertoe Grez", "map": 1418, "zone": "Badlands", "x": 37.9, "y": 10.6, "optional": true}
   ]
 }

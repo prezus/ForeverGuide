@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_15_BADLANDS",
     name = "15. Badlands 39-40 (Undead)",
-    version = 2,
+    version = 3,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 39,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_16_SWAMP_OF_SORROWS",
     author = "ForeverGuide route planner",
     notes = "Chapter 15 of the Scourge route: level 39 to 40, 9 steps, ~81 min of play in the model (7218 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 9,
+    stepCount = 11,
     steps = [[{
+{type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=26.9,y=77.1,radius=30,note="go to Gringer, the flight master (Booty Bay, Stranglethorn)"},
+{type="FLY",map=1418,zone="Badlands",x=4,y=44.8,radius=30,note="fly to Kargath, Badlands"},
 {type="TRAVEL",map=1418,zone="Kargath",x=2.8,y=45.9,radius=60,note="use your hearthstone (Kargath)"},
 {type="TRAVEL",map=1418,zone="Badlands",x=3.5,y=46.8,radius=60,note="travel to Badlands (Badlands)"},
 {type="ACCEPT",quest=2202,questName="Uldaman Reagent Run",npc=6868,npcName="Jarkal Mossmeld",map=1418,zone="Badlands",x=2.4,y=46.1},

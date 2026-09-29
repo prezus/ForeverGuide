@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_45_EASTERN_PLAGUELANDS",
     name = "45. Eastern Plaguelands 53-55 (Undead)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 53,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_46_SILITHUS",
     author = "ForeverGuide route planner",
     notes = "Chapter 45 of the Scourge route: level 53 to 55, 20 steps, ~470 min of play in the model (6913 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 28,
+    stepCount = 23,
     steps = [[{
 {type="TRAVEL",map=1423,zone="Eastern Plaguelands",x=81.3,y=58.8,radius=60,note="travel to Eastern Plaguelands (Eastern Plaguelands)"},
 {type="ACCEPT",quest=5542,questName="Demon Dogs",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.6,y=43.7},
@@ -35,13 +35,8 @@ ns.RegisterGuide({
 {type="GRIND",npc=8603,target="Carrion Grub",level=54,map=1423,zone="Eastern Plaguelands",x=6.8,y=42.2,near=true,note="grind Carrion Grub (level 54-55) to level 54 - nothing worth questing at 53"},
 {type="GRIND",npc=8603,target="Carrion Grub",level=55,map=1423,zone="Eastern Plaguelands",x=6.8,y=42.2,near=true,note="grind Carrion Grub (level 54-55) to level 55 - nothing worth questing at 54"},
 {type="ACCEPT",quest=5781,questName="Of Forgotten Memories",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.4,y=43.6},
-{type="ACCEPT",quest=5961,questName="The Champion of the Banshee Queen",npc=10181,npcName="Lady Sylvanas Windrunner",map=1458,zone="Undercity",x=57.8,y=91.8},
-{type="ACCEPT",quest=6025,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=52,y=28,note="Objectives: Explore Zone, Overlook Hearthglen from a high vantage point"},
-{type="TURNIN",quest=6025,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=52,y=28},
-{type="ACCEPT",quest=7492,questName="Camp Mojache",npc=10879,npcName="Harbinger Balthazad",map=1458,zone="Undercity",x=68.2,y=47.6,optional=true,note="For Dire Maul (dungeon guide)"},
-{type="ACCEPT",quest=5382,questName="Doctor Theolen Krastinov, the Butcher",npc=11216,npcName="Eva Sarkhoff",map=1422,zone="Western Plaguelands",x=70.2,y=73.8,optional=true,note="For Scholomance (dungeon guide)"},
-{type="ACCEPT",quest=1471,questName="The Binding",npc=5675,npcName="Carendin Halgar",map=1458,zone="Undercity",x=85,y=25.6,class={"WARLOCK"}},
-{type="KILL",quest=1471,questName="The Binding",npc=5676,target="Summoned Voidwalker",count=1,map=1458,zone="Undercity",x=86.6,y=27,near=true,class={"WARLOCK"}},
-{type="TURNIN",quest=1471,questName="The Binding",npc=5675,npcName="Carendin Halgar",map=1458,zone="Undercity",x=85,y=25.6,class={"WARLOCK"},note="reduced xp (10%) - you out-levelled it"}
+{type="TRAVEL",map=1423,zone="Eastern Plaguelands",x=70.5,y=47.6,radius=30,note="go to Georgia, the flight master (Light's Hope Chapel, Eastern Plaguelands)"},
+{type="FLY",map=1458,zone="Undercity",x=63.3,y=48.6,radius=30,note="fly to Undercity, Tirisfal"},
+{type="ACCEPT",quest=7492,questName="Camp Mojache",npc=10879,npcName="Harbinger Balthazad",map=1458,zone="Undercity",x=68.2,y=47.6,optional=true,note="For Dire Maul (dungeon guide)"}
 }]],
 })

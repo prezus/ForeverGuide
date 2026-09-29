@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_18_BADLANDS",
   "name": "18. Badlands 37-37 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 37,
@@ -26,7 +26,6 @@
     {"type": "TURNIN", "quest": 1108, "questName": "Indurium", "npc": 4618, "npcName": "Martek the Exiled", "map": 1418, "zone": "Badlands", "x": 42.2, "y": 52.6},
     {"type": "ACCEPT", "quest": 711, "questName": "Study of the Elements: Rock", "npc": 2921, "npcName": "Lotwil Veriatus", "map": 1418, "zone": "Badlands", "x": 26, "y": 44.9},
     {"type": "KILL", "quest": 711, "questName": "Study of the Elements: Rock", "npc": 92, "target": "Rock Elemental", "count": 3, "map": 1418, "zone": "Badlands", "x": 13.4, "y": 33.4, "near": true, "note": "loot Large Stone Slab"},
-    {"type": "TURNIN", "quest": 711, "questName": "Study of the Elements: Rock", "npc": 2921, "npcName": "Lotwil Veriatus", "map": 1418, "zone": "Badlands", "x": 26, "y": 44.9},
-    {"type": "ACCEPT", "quest": 1137, "questName": "News for Fizzle", "npc": 4618, "npcName": "Martek the Exiled", "map": 1418, "zone": "Badlands", "x": 42.2, "y": 52.6}
+    {"type": "TURNIN", "quest": 711, "questName": "Study of the Elements: Rock", "npc": 2921, "npcName": "Lotwil Veriatus", "map": 1418, "zone": "Badlands", "x": 26, "y": 44.9}
   ]
 }

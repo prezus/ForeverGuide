@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_24_DESOLACE",
     name = "24. Desolace 41-42 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 41,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_25_TANARIS",
     author = "ForeverGuide route planner",
     notes = "Chapter 24 of the Skyborne route: level 41 to 42, 20 steps, ~69 min of play in the model (24196 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 31,
+    stepCount = 33,
     steps = [[{
+{type="TRAVEL",map=1444,zone="Feralas",x=30.2,y=43.3,radius=30,note="go to Fyldren Moonfeather, the flight master (Feathermoon, Feralas)"},
+{type="FLY",map=1443,zone="Desolace",x=64.7,y=10.5,radius=30,note="fly to Nijel's Point, Desolace"},
 {type="TRAVEL",map=1443,zone="Desolace",x=66.3,y=9.3,radius=60,note="travel to Desolace (Desolace)"},
 {type="ACCEPT",quest=261,questName="Down the Scarlet Path",npc=1182,npcName="Brother Anton",map=1443,zone="Desolace",x=66.5,y=7.9},
 {type="ACCEPT",quest=7028,questName="Twisted Evils",npc=13656,npcName="Willow",map=1443,zone="Desolace",x=62.2,y=39.6,optional=true,note="For Maraudon (dungeon guide)"},

@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_33_TANARIS",
   "name": "33. Tanaris 47-48 (Skyborne)",
-  "version": 2,
+  "version": 3,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 47,
@@ -12,6 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 33 of the Skyborne route: level 47 to 48, 1 steps, ~62 min of play in the model (35061 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1413, "zone": "The Barrens", "x": 63.1, "y": 37.2, "radius": 30, "note": "go to Bragok, the flight master (Ratchet, The Barrens)"},
+    {"type": "FLY", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "fly to Gadgetzan, Tanaris"},
     {"type": "GRIND", "npc": 5424, "target": "Scorpid Dunestalker", "level": 48, "map": 1446, "zone": "Tanaris", "x": 45.1, "y": 50.2, "near": true, "note": "grind Scorpid Dunestalker (level 46-47) to level 48 - nothing worth questing at 47"}
   ]
 }

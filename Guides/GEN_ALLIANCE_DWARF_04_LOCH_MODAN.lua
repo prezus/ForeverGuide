@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_04_LOCH_MODAN",
     name = "4. Loch Modan 15-16 (Dwarf)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 15,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_05_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 4 of the Dwarf route: level 15 to 16, 33 steps, ~76 min of play in the model (18482 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 79,
+    stepCount = 81,
     steps = [[{
 {type="ACCEPT",quest=436,questName="Ironband's Excavation",npc=1105,npcName="Jern Hornhelm",map=1432,zone="Loch Modan",x=37.2,y=47.4},
 {type="ACCEPT",quest=2039,questName="Find Bingles",npc=6569,npcName="Gnoarn",map=1455,zone="Ironforge",x=69.4,y=50.6},
@@ -21,6 +21,7 @@ ns.RegisterGuide({
 {type="COLLECT",quest=1678,questName="Vejrek",target="Vejrek's Head",count=1,map=1426,zone="Dun Morogh",x=27.8,y=58,class={"WARRIOR"},mobs="Vejrek"},
 {type="TURNIN",quest=1678,questName="Vejrek",npc=6114,npcName="Muren Stormpike",map=1455,zone="Ironforge",x=70.6,y=90.4,class={"WARRIOR"}},
 {type="ACCEPT",quest=2997,questName="Tome of Divinity",npc=1232,npcName="Azar Stronghammer",map=1426,zone="Dun Morogh",x=47.6,y=52,class={"PALADIN"},race={"Dwarf"}},
+{type="TURNIN",quest=2997,questName="Tome of Divinity",npc=6179,npcName="Tiza Battleforge",map=1455,zone="Ironforge",x=27.4,y=12,class={"PALADIN"},race={"Dwarf"}},
 {type="ACCEPT",quest=94863,questName="Taming the Beast",npc=251507,npcName="Josephine Carson",map=1429,zone="Elwynn Forest",x=41.2,y=66.2,class={"HUNTER"},race={"Dwarf"},note="New in Forever; Objectives: Tame a Gray Forest Wolf"},
 {type="TURNIN",quest=94863,questName="Taming the Beast",npc=251507,npcName="Josephine Carson",map=1429,zone="Elwynn Forest",x=41.2,y=66.2,class={"HUNTER"},race={"Dwarf"}},
 {type="ACCEPT",quest=6064,questName="Taming the Beast",npc=1231,npcName="Grif Wildheart",map=1426,zone="Dun Morogh",x=45.8,y=53,class={"HUNTER"},race={"Dwarf"},note="Objectives: Tame a Large Crag Boar"},
@@ -68,6 +69,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1338,questName="Stormpike's Order",npc=1343,npcName="Mountaineer Stormpike",map=1432,zone="Loch Modan",x=24.8,y=18.2},
 {type="COLLECT",quest=307,questName="Filthy Paws",target="Miners' Gear",count=4,map=1432,zone="Loch Modan",x=34.9,y=23.4,near=true},
 {type="TURNIN",quest=307,questName="Filthy Paws",npc=1343,npcName="Mountaineer Stormpike",map=1432,zone="Loch Modan",x=24.8,y=18.4},
+{type="ACCEPT",quest=255,questName="Mercenaries",npc=1139,npcName="Magistrate Bluntnose",map=1432,zone="Loch Modan",x=34.6,y=44.6,optional=true,note="Elite - group up"},
 {type="TURNIN",quest=298,questName="Excavation Progress Report",npc=1105,npcName="Jern Hornhelm",map=1432,zone="Loch Modan",x=37.2,y=47.4},
 {type="ACCEPT",quest=6391,questName="Ride to Ironforge",npc=1572,npcName="Thorgrum Borrelson",map=1432,zone="Loch Modan",x=33.8,y=50.8},
 {type="ACCEPT",quest=301,questName="Report to Ironforge",npc=1105,npcName="Jern Hornhelm",map=1432,zone="Loch Modan",x=37.2,y=47.4},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_43_UNDERCITY",
     name = "43. Undercity 53-53 (Tauren)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 53,
@@ -13,13 +13,18 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_44_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 43 of the Tauren route: level 53 to 53, 5 steps, ~2 min of play in the model (148472 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 6,
+    stepCount = 11,
     steps = [[{
+{type="TRAVEL",map=1449,zone="Un'Goro Crater",x=45.2,y=5.8,radius=30,note="go to Gryfe, the flight master (Marshal's Refuge, Un'Goro Crater)"},
+{type="FLY",map=1454,zone="Orgrimmar",x=45.1,y=63.9,radius=30,note="fly to Orgrimmar, Durotar"},
 {type="TRAVEL",map=1458,zone="Undercity",x=67.7,y=37.9,radius=60,note="use your hearthstone (Undercity)"},
 {type="TRAVEL",map=1458,zone="Undercity",x=59.0,y=55.4,radius=60,note="travel to Undercity (Undercity)"},
-{type="ACCEPT",quest=3564,questName="Andron's Payment to Jediga",npc=6522,npcName="Andron Gant",map=1458,zone="Undercity",x=54.6,y=75.6},
 {type="ACCEPT",quest=4294,questName="... and a Batch of Ooze",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4},
 {type="COLLECT",quest=4294,questName="... and a Batch of Ooze",target="Pure Un'Goro Sample",count=5,map=1458,zone="Undercity",x=47.7,y=73.6},
-{type="TURNIN",quest=4294,questName="... and a Batch of Ooze",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4}
+{type="TURNIN",quest=4294,questName="... and a Batch of Ooze",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4},
+{type="ACCEPT",quest=3564,questName="Andron's Payment to Jediga",npc=6522,npcName="Andron Gant",map=1458,zone="Undercity",x=54.6,y=75.6},
+{type="TRAVEL",map=1458,zone="Undercity",x=63.3,y=48.6,radius=30,note="go to Michael Garrett, the flight master (Undercity, Tirisfal)"},
+{type="FLY",map=1424,zone="Hillsbrad Foothills",x=60.1,y=18.6,radius=30,note="fly to Tarren Mill, Hillsbrad"},
+{type="TURNIN",quest=5050,questName="Good Luck Charm",npc=10778,npcName="Janice Felstone",map=1422,zone="Western Plaguelands",x=38.4,y=54}
 }]],
 })

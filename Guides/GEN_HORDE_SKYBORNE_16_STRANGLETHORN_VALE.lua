@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_16_STRANGLETHORN_VALE",
     name = "16. Stranglethorn Vale 40-40 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 40,
@@ -13,9 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_17_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 16 of the Skyborne route: level 40 to 40, 7 steps, ~37 min of play in the model (24949 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 10,
+    stepCount = 11,
     steps = [[{
-{type="ACCEPT",quest=2864,questName="Tran'rek",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,optional=true,note="For Zul'Farrak (dungeon guide)"},
+{type="TRAVEL",map=1435,zone="Swamp of Sorrows",x=46.1,y=54.8,radius=30,note="go to Breyk, the flight master (Stonard, Swamp of Sorrows)"},
+{type="FLY",map=1434,zone="Stranglethorn Vale",x=26.9,y=77.1,radius=30,note="fly to Booty Bay, Stranglethorn"},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.3,y=76.5,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
 {type="ACCEPT",quest=604,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
 {type="ACCEPT",quest=617,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4},
