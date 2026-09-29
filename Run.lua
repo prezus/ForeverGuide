@@ -115,8 +115,10 @@ local function Recording() return Enabled() and Run:State() == "recording" end
 local function Rested() return select(3, ns.Player:GetXP()) end
 
 -- ---- the run's lifecycle ---------------------------------------------------------------------
+-- four 16-bit draws: Lua 5.1's math.random(m, n) overflows on a range as wide as 2^31
 local function NewId()
-    return string.format("%08x%08x", math.random(0, 0x7fffffff), math.random(0, 0x7fffffff))
+    return string.format("%04x%04x%04x%04x", math.random(0, 0xffff), math.random(0, 0xffff),
+        math.random(0, 0xffff), math.random(0, 0xffff))
 end
 
 local function StartClock()

@@ -466,7 +466,8 @@ section("record runs: an opt-in, run controls on the guide window, segments thro
     strip.start:GetScript("OnClick")(strip.start)
     local run = ns.char.run
     need(R:State() == "recording" and run and run.id and run.seg == 1, "Start begins a run in its first segment")
-    check(type(run.id) == "string" and run.id:match("^%x+$") and #run.id >= 8, "the run id is random hex, not the character")
+    check(type(run.id) == "string" and run.id:match("^%x+$") and #run.id == 16 and run.id:find("[1-9a-f]"),
+        "the run id is random hex, not the character (" .. tostring(run.id) .. ")")
     check(run.entries[1].e == "START" and run.entries[1].t == 0, "the run opens with START at t = 0")
     check(strip.pause:IsShown() and strip.stop:IsShown() and strip.send:IsShown() and not strip.start:IsShown(),
         "while recording the controls offer Pause, Stop and Send")
