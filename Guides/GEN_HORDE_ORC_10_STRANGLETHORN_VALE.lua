@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_10_STRANGLETHORN_VALE",
     name = "10. Stranglethorn Vale 32-32 (Orc)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 32,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_11_THOUSAND_NEEDLES",
     author = "ForeverGuide route planner",
     notes = "Chapter 10 of the Orc route: level 32 to 32, 34 steps, ~116 min of play in the model (23704 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 51,
+    stepCount = 50,
     steps = [[{
 {type="FLIGHTPATH",npc=2858,npcName="Gringer",map=1434,zone="Stranglethorn Vale",x=26.9,y=77.1},
 {type="ACCEPT",quest=1718,questName="The Islander",npc=4595,npcName="Baltus Fowler",map=1458,zone="Undercity",x=47.2,y=17,class={"WARRIOR"}},
@@ -30,7 +30,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=605,questName="Singing Blue Shards",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
 {type="ACCEPT",quest=189,questName="Bloodscalp Ears",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
 {type="COLLECT",quest=605,questName="Singing Blue Shards",target="Singing Crystal Shard",count=10,map=1434,zone="Stranglethorn Vale",x=39.1,y=52,near=true},
-{type="ACCEPT",quest=349,questName="Stranglethorn Fever",npc=1449,npcName="Witch Doctor Unbagwa",map=1434,zone="Stranglethorn Vale",x=35.2,y=60.4},
 {type="TURNIN",quest=605,questName="Singing Blue Shards",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
 {type="FLIGHTPATH",npc=1387,npcName="Thysta",map=1434,zone="Stranglethorn Vale",x=32.5,y=29.4},
 {type="ACCEPT",quest=7810,questName="Arena Master",map=1434,zone="Stranglethorn Vale",x=30.5,y=47.9,note="Take Arena Master from the Arena Treasure Chest and use it to start the quest"},
