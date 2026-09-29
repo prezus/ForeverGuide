@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_12_DUSTWALLOW_MARSH",
   "name": "12. Dustwallow Marsh 33-34 (Orc)",
-  "version": 4,
+  "version": 5,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 33,
@@ -20,6 +20,7 @@
     {"type": "COMPLETE", "quest": 1719, "questName": "The Affray", "target": "Explore Zone", "count": 1, "map": 1413, "zone": "The Barrens", "x": 68.6, "y": 48.6, "class": ["WARRIOR"]},
     {"type": "COMPLETE", "quest": 1719, "questName": "The Affray", "target": "Step on the grate to begin the Affray", "count": 1, "map": 1413, "zone": "The Barrens", "x": 68.6, "y": 48.6, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 1719, "questName": "The Affray", "npc": 6236, "npcName": "Klannoc Macleod", "map": 1413, "zone": "The Barrens", "x": 68.6, "y": 49, "class": ["WARRIOR"]},
+    {"type": "ACCEPT", "quest": 63, "questName": "Call of Water", "npc": 5901, "npcName": "Islen Waterseer", "map": 1413, "zone": "The Barrens", "x": 65.8, "y": 43.8, "class": ["SHAMAN"]},
     {"type": "TRAVEL", "map": 1445, "zone": "Dustwallow Marsh", "x": 36.4, "y": 32.1, "radius": 60, "note": "travel to Dustwallow Marsh (Dustwallow Marsh)"},
     {"type": "ACCEPT", "quest": 1201, "questName": "Theramore Spies", "npc": 4791, "npcName": "Nazeer Bloodpike", "map": 1445, "zone": "Dustwallow Marsh", "x": 35.2, "y": 30.7},
     {"type": "KILL", "quest": 1201, "questName": "Theramore Spies", "npc": 4834, "target": "Theramore Infiltrator", "count": 9, "map": 1445, "zone": "Dustwallow Marsh", "x": 37.6, "y": 27, "near": true},
