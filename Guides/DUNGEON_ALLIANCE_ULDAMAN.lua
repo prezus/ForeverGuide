@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_ALLIANCE_ULDAMAN",
     name = "Uldaman 40-41",
-    version = 4,
+    version = 5,
     kind = "dungeon",
     faction = "Alliance",
     minLevel = 40,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Badlands",
     author = "ForeverGuide route planner",
     notes = "Uldaman: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 46,
+    stepCount = 44,
     steps = [[{
 {type="ACCEPT",quest=721,questName="A Sign of Hope",npc=2910,npcName="Prospector Ryedol",map=1418,zone="Badlands",x=53.4,y=43.2},
 {type="TURNIN",quest=721,questName="A Sign of Hope",npc=2909,npcName="Hammertoe Grez",map=1418,zone="Badlands",x=37.9,y=10.6},
@@ -57,8 +57,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2204,questName="Restoring the Necklace",map=1418,zone="Badlands",x=44.7,y=12.6},
 {type="TURNIN",quest=2204,questName="Restoring the Necklace",npc=6826,npcName="Talvash del Kissel",map=1455,zone="Ironforge",x=36,y=4},
 {type="ACCEPT",quest=2279,questName="The Platinum Discs",map=1418,zone="Badlands",x=44.6,y=12.1},
-{type="TURNIN",quest=2279,questName="The Platinum Discs",npc=5387,npcName="High Explorer Magellas",map=1455,zone="Ironforge",x=69.6,y=18.6},
-{type="ACCEPT",quest=3375,questName="Replacement Phial",npc=6826,npcName="Talvash del Kissel",map=1455,zone="Ironforge",x=36,y=4},
-{type="TURNIN",quest=3375,questName="Replacement Phial",npc=6826,npcName="Talvash del Kissel",map=1455,zone="Ironforge",x=36,y=4}
+{type="TURNIN",quest=2279,questName="The Platinum Discs",npc=5387,npcName="High Explorer Magellas",map=1455,zone="Ironforge",x=69.6,y=18.6}
 }]],
 })
