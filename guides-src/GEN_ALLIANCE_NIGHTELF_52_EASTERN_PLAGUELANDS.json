@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_52_EASTERN_PLAGUELANDS",
   "name": "52. Eastern Plaguelands 57-60 (Night Elf)",
-  "version": 9,
+  "version": 10,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 57,
@@ -17,6 +17,7 @@
     {"type": "ACCEPT", "quest": 5243, "questName": "Houses of the Holy", "npc": 11036, "npcName": "Leonid Barthalomew the Revered", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.6, "y": 57.8, "note": "For Stratholme (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 5251, "questName": "The Archivist", "npc": 11039, "npcName": "Duke Nicholas Zverenhoff", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.4, "y": 59.8, "note": "For Stratholme (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: Barov Family Fortune, Doctor Theolen Krastinov, the Butcher, Plagued Hatchlings. When you have a group, open Scholomance under Dungeons.", "text": "Ready for Scholomance", "optional": true},
+    {"type": "TURNIN", "quest": 98397, "questName": "To Darnassus", "npc": 4217, "npcName": "Mathrengyl Bearwalker", "map": 1457, "zone": "Darnassus", "x": 35.2, "y": 8, "note": "reduced xp (10%) - you out-levelled it", "class": ["DRUID"]},
     {"type": "TRAVEL", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.4, "y": 59.0, "radius": 60, "note": "travel to Eastern Plaguelands (Eastern Plaguelands)"},
     {"type": "ACCEPT", "quest": 9664, "questName": "Establishing New Outposts", "npc": 17069, "npcName": "Emmisary Whitebeard", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.3, "y": 59.4},
     {"type": "ACCEPT", "quest": 9128, "questName": "The Elemental Equation", "npc": 16116, "npcName": "Archmage Angela Dosantos", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.5, "y": 58.3},
