@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_37_ORGRIMMAR",
     name = "37. Orgrimmar 51-51 (Orc)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 51,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_38_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 37 of the Orc route: level 51 to 51, 12 steps, ~19 min of play in the model (49895 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 46,
+    stepCount = 47,
     steps = [[{
 {type="FLIGHTPATH",npc=3310,npcName="Doras",map=1454,zone="Orgrimmar",x=45.1,y=63.9},
 {type="TURNIN",quest=831,questName="The Admiral's Orders",npc=3230,npcName="Nazgrel",map=1454,zone="Orgrimmar",x=32.4,y=36,note="reduced xp (10%) - you out-levelled it"},
@@ -57,6 +57,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1145,questName="The Swarm Grows",npc=4485,npcName="Belgrom Rockmaul",map=1454,zone="Orgrimmar",x=75,y=34.2,note="reduced xp (10%) - you out-levelled it"},
 {type="ACCEPT",quest=8151,questName="The Hunter's Charm",npc=3352,npcName="Ormak Grimshot",map=1454,zone="Orgrimmar",x=66.2,y=18.2,class={"HUNTER"}},
 {type="TURNIN",quest=97906,questName="Camping 101: Leatherworking",npc=3365,npcName="Karolek",map=1454,zone="Orgrimmar",x=62.8,y=44.4,profession="Leatherworking",note="reduced xp (10%) - you out-levelled it"},
+{type="TURNIN",quest=97908,questName="Camping 101: Skinning",npc=7088,npcName="Thuwd",map=1454,zone="Orgrimmar",x=63.2,y=45.2,profession="Skinning",note="reduced xp (10%) - you out-levelled it"},
 {type="ACCEPT",quest=3504,questName="Betrayed",npc=4485,npcName="Belgrom Rockmaul",map=1454,zone="Orgrimmar",x=75.2,y=34.2},
 {type="TURNIN",quest=2976,questName="A Grim Discovery",npc=4485,npcName="Belgrom Rockmaul",map=1454,zone="Orgrimmar",x=75.2,y=34.2,note="reduced xp (80%) - you out-levelled it"},
 {type="TURNIN",quest=3923,questName="Rilli Greasygob",npc=9317,npcName="Rilli Greasygob",map=1454,zone="Orgrimmar",x=76.2,y=24.6,note="reduced xp (10%) - you out-levelled it"},
