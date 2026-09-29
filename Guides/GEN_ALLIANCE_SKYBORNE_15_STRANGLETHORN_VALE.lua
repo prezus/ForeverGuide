@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_15_STRANGLETHORN_VALE",
     name = "15. Stranglethorn Vale 34-35 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 34,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_16_BADLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 15 of the Skyborne route: level 34 to 35, 66 steps, ~184 min of play in the model (27094 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 85,
+    stepCount = 84,
     steps = [[{
 {type="TURNIN",quest=1178,questName="Goblin Sponsorship",npc=3391,npcName="Gazlowe",map=1413,zone="The Barrens",x=62.6,y=36.2},
 {type="ACCEPT",quest=1718,questName="The Islander",npc=3354,npcName="Sorek",map=1454,zone="Orgrimmar",x=80.2,y=32.4,class={"WARRIOR"}},
@@ -30,7 +30,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=616,questName="The Haunted Isle",npc=2496,npcName="Baron Revilgaz",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.9},
 {type="ACCEPT",quest=578,questName="The Stone of the Tides",npc=2496,npcName="Baron Revilgaz",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.9},
 {type="COLLECT",quest=605,questName="Singing Blue Shards",target="Singing Crystal Shard",count=10,map=1434,zone="Stranglethorn Vale",x=39.1,y=52,near=true},
-{type="ACCEPT",quest=349,questName="Stranglethorn Fever",npc=1449,npcName="Witch Doctor Unbagwa",map=1434,zone="Stranglethorn Vale",x=35.2,y=60.4},
 {type="TURNIN",quest=605,questName="Singing Blue Shards",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
 {type="COMPLETE",quest=578,questName="The Stone of the Tides",target="Locate the haunted island",map=1434,zone="Stranglethorn Vale",x=20.8,y=23.1,note="Locate the haunted island"},
 {type="COLLECT",quest=189,questName="Bloodscalp Ears",target="Bloodscalp Ear",count=15,map=1434,zone="Stranglethorn Vale",x=20.9,y=15.4,near=true},

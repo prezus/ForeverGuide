@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_15_STRANGLETHORN_VALE",
   "name": "15. Stranglethorn Vale 34-35 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 34,
@@ -27,7 +27,6 @@
     {"type": "TURNIN", "quest": 616, "questName": "The Haunted Isle", "npc": 2496, "npcName": "Baron Revilgaz", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.2, "y": 76.9},
     {"type": "ACCEPT", "quest": 578, "questName": "The Stone of the Tides", "npc": 2496, "npcName": "Baron Revilgaz", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.2, "y": 76.9},
     {"type": "COLLECT", "quest": 605, "questName": "Singing Blue Shards", "target": "Singing Crystal Shard", "count": 10, "map": 1434, "zone": "Stranglethorn Vale", "x": 39.1, "y": 52, "near": true},
-    {"type": "ACCEPT", "quest": 349, "questName": "Stranglethorn Fever", "npc": 1449, "npcName": "Witch Doctor Unbagwa", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.2, "y": 60.4},
     {"type": "TURNIN", "quest": 605, "questName": "Singing Blue Shards", "npc": 2498, "npcName": "Crank Fizzlebub", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.1, "y": 77.2},
     {"type": "COMPLETE", "quest": 578, "questName": "The Stone of the Tides", "target": "Locate the haunted island", "map": 1434, "zone": "Stranglethorn Vale", "x": 20.8, "y": 23.1, "note": "Locate the haunted island"},
     {"type": "COLLECT", "quest": 189, "questName": "Bloodscalp Ears", "target": "Bloodscalp Ear", "count": 15, "map": 1434, "zone": "Stranglethorn Vale", "x": 20.9, "y": 15.4, "near": true},
