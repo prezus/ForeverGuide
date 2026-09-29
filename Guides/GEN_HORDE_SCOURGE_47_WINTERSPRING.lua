@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_47_WINTERSPRING",
     name = "47. Winterspring 55-57 (Undead)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 55,
@@ -13,11 +13,9 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_48_SILITHUS",
     author = "ForeverGuide route planner",
     notes = "Chapter 47 of the Scourge route: level 55 to 57, 22 steps, ~498 min of play in the model (5376 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 56,
+    stepCount = 54,
     steps = [[{
 {type="FLIGHTPATH",npc=11139,npcName="Yugrek",map=1452,zone="Winterspring",x=60.5,y=36.3},
-{type="ACCEPT",quest=6605,questName="A Strange One",npc=11755,npcName="Harlo Wigglesworth",map=1452,zone="Winterspring",x=61,y=38.4},
-{type="TURNIN",quest=6605,questName="A Strange One",npc=9996,npcName="Winna Hazzard",map=1448,zone="Felwood",x=34.2,y=52.4},
 {type="TRAVEL",map=1452,zone="Winterspring",x=61.4,y=38.2,radius=60,note="travel to Winterspring (Winterspring)"},
 {type="ACCEPT",quest=6603,questName="Trouble in Winterspring!",npc=11754,npcName="Meggi Peppinrocker",map=1452,zone="Winterspring",x=61.4,y=38.4},
 {type="HEARTH",npc=11118,npcName="Innkeeper Vizzie",map=1452,zone="Everlook",x=61.4,y=38.8,note="talk to Innkeeper Vizzie and make this inn your home"},
