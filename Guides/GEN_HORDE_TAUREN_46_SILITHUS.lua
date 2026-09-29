@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_46_SILITHUS",
     name = "46. Silithus 55-55 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 55,
@@ -13,10 +13,9 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_47_WINTERSPRING",
     author = "ForeverGuide route planner",
     notes = "Chapter 46 of the Tauren route: level 55 to 55, 23 steps, ~107 min of play in the model (36133 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 44,
+    stepCount = 43,
     steps = [[{
 {type="FLIGHTPATH",npc=15178,npcName="Runk Windtamer",map=1451,zone="Silithus",x=48.7,y=36.7},
-{type="ACCEPT",quest=9202,questName="Craftsman's Writ - Major Healing Potion",npc=16131,npcName="Rohan the Assassin",map=1423,zone="Eastern Plaguelands",x=81.4,y=58.4,optional=true,note="Loot Craftsman's Writ - Major Healing Potion from Rohan the Assassin and use it to start the quest; Elite - group up"},
 {type="TURNIN",quest=4120,questName="The Strength of Corruption",npc=7776,npcName="Talo Thornhoof",map=1444,zone="Feralas",x=76,y=43.8},
 {type="ACCEPT",quest=6025,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=52,y=28,note="Objectives: Explore Zone, Overlook Hearthglen from a high vantage point"},
 {type="TURNIN",quest=6025,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=52,y=28},
