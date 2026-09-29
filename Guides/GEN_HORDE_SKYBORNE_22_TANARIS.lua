@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_22_TANARIS",
     name = "22. Tanaris 42-43 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 42,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_23_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 22 of the Skyborne route: level 42 to 43, 31 steps, ~117 min of play in the model (41334 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 41,
+    stepCount = 40,
     steps = [[{
 {type="FLIGHTPATH",npc=7824,npcName="Bulkrek Ragefist",map=1446,zone="Tanaris",x=51.6,y=25.4},
 {type="ACCEPT",quest=2768,questName="Divino-matic Rod",npc=7407,npcName="Chief Engineer Bilgewhizzle",map=1446,zone="Tanaris",x=52.4,y=28.4,optional=true,note="For Zul'Farrak (dungeon guide)"},
@@ -25,7 +25,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1690,questName="Wastewander Justice",npc=7407,npcName="Chief Engineer Bilgewhizzle",map=1446,zone="Tanaris",x=52.5,y=28.5},
 {type="ACCEPT",quest=1707,questName="Water Pouch Bounty",npc=7408,npcName="Spigot Operator Luglunket",map=1446,zone="Tanaris",x=52.5,y=28.5},
 {type="ACCEPT",quest=2875,questName="WANTED: Andre Firebeard",map=1446,zone="Tanaris",x=51.8,y=27},
-{type="TURNIN",quest=3633,questName="Goblin Engineering",npc=8126,npcName="Nixx Sprocketspring",map=1446,zone="Tanaris",x=52.4,y=27.2,profession="Engineering",skill=200},
 {type="KILL",quest=1690,questName="Wastewander Justice",npc=5618,target="Wastewander Bandit / Wastewander Thief",count=10,map=1446,zone="Tanaris",x=59.4,y=24.7,near=true},
 {type="COLLECT",quest=1707,questName="Water Pouch Bounty",target="Wastewander Water Pouch",count=5,map=1446,zone="Tanaris",x=60,y=23.4,near=true},
 {type="TURNIN",quest=1690,questName="Wastewander Justice",npc=7407,npcName="Chief Engineer Bilgewhizzle",map=1446,zone="Tanaris",x=52.5,y=28.5},
