@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_01_DUN_MOROGH",
     name = "1. Dun Morogh 1-10 (Dwarf)",
-    version = 11,
+    version = 12,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 1,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_02_LOCH_MODAN",
     author = "ForeverGuide route planner",
     notes = "Chapter 1 of the Dwarf route: level 1 to 10, 76 steps, ~127 min of play in the model (13684 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 182,
+    stepCount = 180,
     steps = [[{
 {type="ACCEPT",quest=179,questName="Dwarven Outfitters",npc=658,npcName="Sten Stoutarm",map=1426,zone="Dun Morogh",x=29.9,y=71.2},
 {type="COLLECT",quest=179,questName="Dwarven Outfitters",target="Tough Wolf Meat",count=8,map=1426,zone="Dun Morogh",x=28.7,y=72.4,near=true},
@@ -156,9 +156,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=310,questName="Bitter Rivals",map=1426,zone="Dun Morogh",x=47.7,y=52.7},
 {type="ACCEPT",quest=311,questName="Return to Marleth",map=1426,zone="Dun Morogh",x=47.7,y=52.7},
 {type="TURNIN",quest=320,questName="Return to Bellowfiz",npc=1378,npcName="Pilot Bellowfiz",map=1426,zone="Dun Morogh",x=49.4,y=48.4},
-{type="ACCEPT",quest=415,questName="Rejold's New Brew",npc=1378,npcName="Pilot Bellowfiz",map=1426,zone="Dun Morogh",x=49.4,y=48.4},
 {type="TURNIN",quest=311,questName="Return to Marleth",npc=1375,npcName="Marleth Barleybrew",map=1426,zone="Dun Morogh",x=30.2,y=45.5},
-{type="TURNIN",quest=415,questName="Rejold's New Brew",npc=1374,npcName="Rejold Barleybrew",map=1426,zone="Dun Morogh",x=30.2,y=45.8},
 {type="ACCEPT",quest=312,questName="Tundra MacGrann's Stolen Stash",npc=1266,npcName="Tundra MacGrann",map=1426,zone="Dun Morogh",x=34.6,y=51.7},
 {type="COLLECT",quest=312,questName="Tundra MacGrann's Stolen Stash",target="MacGrann's Dried Meats",map=1426,zone="Dun Morogh",x=38.5,y=53.9},
 {type="TURNIN",quest=312,questName="Tundra MacGrann's Stolen Stash",npc=1266,npcName="Tundra MacGrann",map=1426,zone="Dun Morogh",x=34.6,y=51.7},
