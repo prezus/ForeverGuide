@@ -87,4 +87,23 @@ except compile_guides.GuideError as e:
     assert "quest" in str(e), e
 else:
     raise AssertionError("an ACCEPT step without a quest was accepted")
+
+# guide text only ever becomes Lua data: a key that is not a plain name is refused, since
+# Guides/*.lua runs as addon code and `--check` only proves it is the compiler's output
+for field in ("race", "class"):
+    injected = copy.deepcopy(source)
+    injected[field] = ["Human", {"x=print('injected'),y": 1}]
+    try:
+        compile_guides.validate(injected, "injected.json")
+    except compile_guides.GuideError as e:
+        assert field in str(e), e
+    else:
+        raise AssertionError("a guide %s list holding an object was accepted" % field)
+try:
+    compile_guides.lua_value({"x=print('injected'),y": 1})
+except compile_guides.GuideError:
+    pass
+else:
+    raise AssertionError("a table key that is not a Lua name was written out")
+assert compile_guides.lua_value({"race": ["Human"]}) == '{ race = { "Human" } }'
 print("compile_guides: ok")
