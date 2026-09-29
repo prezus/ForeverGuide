@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_28_TANARIS",
     name = "28. Tanaris 42-43 (Human)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 42,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_29_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 28 of the Human route: level 42 to 43, 33 steps, ~155 min of play in the model (31686 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 48,
+    stepCount = 46,
     steps = [[{
 {type="ACCEPT",quest=4490,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"}},
 {type="TURNIN",quest=4490,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"}},
@@ -31,8 +31,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2875,questName="WANTED: Andre Firebeard",map=1446,zone="Tanaris",x=51.8,y=27},
 {type="ACCEPT",quest=2741,questName="The Super Egg-O-Matic",map=1446,zone="Tanaris",x=52.4,y=27},
 {type="TURNIN",quest=3629,questName="Goblin Engineering",npc=8126,npcName="Nixx Sprocketspring",map=1446,zone="Tanaris",x=52.4,y=27.2,profession="Engineering",skill=200},
-{type="TURNIN",quest=3633,questName="Goblin Engineering",npc=8126,npcName="Nixx Sprocketspring",map=1446,zone="Tanaris",x=52.4,y=27.2,profession="Engineering",skill=200},
-{type="TURNIN",quest=4181,questName="Goblin Engineering",npc=8126,npcName="Nixx Sprocketspring",map=1446,zone="Tanaris",x=52.4,y=27.2,profession="Engineering",skill=200},
 {type="KILL",quest=1690,questName="Wastewander Justice",npc=5618,target="Wastewander Bandit / Wastewander Thief",count=10,map=1446,zone="Tanaris",x=59.4,y=24.7,near=true},
 {type="COLLECT",quest=1707,questName="Water Pouch Bounty",target="Wastewander Water Pouch",count=5,map=1446,zone="Tanaris",x=60,y=23.4,near=true},
 {type="TURNIN",quest=1690,questName="Wastewander Justice",npc=7407,npcName="Chief Engineer Bilgewhizzle",map=1446,zone="Tanaris",x=52.5,y=28.5},
