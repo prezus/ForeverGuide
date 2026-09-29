@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_04_REDRIDGE_MOUNTAINS",
     name = "4. Redridge Mountains 17-20 (Human)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 17,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_05_WETLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 4 of the Human route: level 17 to 20, 45 steps, ~175 min of play in the model (12316 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 66,
+    stepCount = 63,
     steps = [[{
 {type="TRAVEL",map=1436,zone="Sentinel Hill",x=52.9,y=53.7,radius=60,note="use your hearthstone (Sentinel Hill)"},
 {type="FLIGHTPATH",npc=931,npcName="Ariena Stormfeather",map=1433,zone="Redridge Mountains",x=25.5,y=59.4},
@@ -48,9 +48,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=131,questName="Delivering Daffodils",npc=379,npcName="Darcy",map=1433,zone="Redridge Mountains",x=26.6,y=44.3},
 {type="ACCEPT",quest=3741,questName="Hilary's Necklace",npc=8965,npcName="Shawn",map=1433,zone="Redridge Mountains",x=29.3,y=53.6},
 {type="ACCEPT",quest=125,questName="The Lost Tools",npc=341,npcName="Foreman Oslow",map=1433,zone="Redridge Mountains",x=32.1,y=48.6},
-{type="ACCEPT",quest=115,questName="Shadow Magic",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=33.5,y=49,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
-{type="KILL",quest=115,questName="Shadow Magic",npc=436,target="Blackrock Shadowcaster",count=3,map=1433,zone="Redridge Mountains",x=66.4,y=53.3,optional=true,near=true},
-{type="TURNIN",quest=115,questName="Shadow Magic",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=33.5,y=49,optional=true},
 {type="TURNIN",quest=98407,questName="Show of Force",npc=1070,npcName="Deputy Feldon",map=1433,zone="Redridge Mountains",x=30.8,y=60},
 {type="TURNIN",quest=244,questName="Encroaching Gnolls",npc=1070,npcName="Deputy Feldon",map=1433,zone="Redridge Mountains",x=30.7,y=60},
 {type="ACCEPT",quest=246,questName="Assessing the Threat",npc=1070,npcName="Deputy Feldon",map=1433,zone="Redridge Mountains",x=30.7,y=60},
