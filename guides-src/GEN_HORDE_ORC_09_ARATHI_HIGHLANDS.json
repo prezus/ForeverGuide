@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_09_ARATHI_HIGHLANDS",
   "name": "9. Arathi Highlands 31-32 (Orc)",
-  "version": 4,
+  "version": 5,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 31,
@@ -13,6 +13,11 @@
   "notes": "Chapter 9 of the Orc route: level 31 to 32, 22 steps, ~110 min of play in the model (13074 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "FLIGHTPATH", "npc": 2851, "npcName": "Urda", "map": 1417, "zone": "Arathi Highlands", "x": 73, "y": 32.7},
+    {"type": "KILL", "quest": 541, "questName": "Battle of Hillsbrad", "npc": 2344, "target": "Dun Garok Mountaineer", "count": 10, "map": 1424, "zone": "Hillsbrad Foothills", "x": 70.6, "y": 79.8, "optional": true},
+    {"type": "KILL", "quest": 541, "questName": "Battle of Hillsbrad", "npc": 2345, "target": "Dun Garok Rifleman", "count": 8, "map": 1424, "zone": "Hillsbrad Foothills", "x": 71, "y": 80.4, "optional": true},
+    {"type": "KILL", "quest": 541, "questName": "Battle of Hillsbrad", "npc": 2346, "target": "Dun Garok Priest", "count": 4, "map": 1424, "zone": "Hillsbrad Foothills", "x": 71, "y": 78.6, "optional": true},
+    {"type": "KILL", "quest": 541, "questName": "Battle of Hillsbrad", "npc": 2304, "target": "Captain Ironhill", "count": 1, "map": 1424, "zone": "Hillsbrad Foothills", "x": 72.6, "y": 80, "optional": true},
+    {"type": "TURNIN", "quest": 541, "questName": "Battle of Hillsbrad", "npc": 2215, "npcName": "High Executor Darthalia", "map": 1424, "zone": "Hillsbrad Foothills", "x": 62.2, "y": 20.2, "optional": true},
     {"type": "ACCEPT", "quest": 552, "questName": "Helcular's Revenge", "npc": 2429, "npcName": "Novice Thaivand", "map": 1424, "zone": "Hillsbrad Foothills", "x": 63.8, "y": 19.6},
     {"type": "COLLECT", "quest": 552, "questName": "Helcular's Revenge", "target": "Helcular's Rod", "count": 1, "mobs": "Cave Yeti / Ferocious Yeti", "map": 1424, "zone": "Hillsbrad Foothills", "x": 44.8, "y": 28.4, "near": true},
     {"type": "TURNIN", "quest": 552, "questName": "Helcular's Revenge", "npc": 2429, "npcName": "Novice Thaivand", "map": 1424, "zone": "Hillsbrad Foothills", "x": 63.8, "y": 19.6},
