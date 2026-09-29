@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_01_DUROTAR",
     name = "1. Durotar 1-10 (Orc)",
-    version = 9,
+    version = 10,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 1,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_02_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 1 of the Orc route: level 1 to 10, 75 steps, ~156 min of play in the model (12487 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 178,
+    stepCount = 179,
     steps = [[{
 {type="ACCEPT",quest=788,questName="Cutting Teeth",npc=3143,npcName="Gornek",map=1411,zone="Durotar",x=42.1,y=68.3},
 {type="ACCEPT",quest=4641,questName="Your Place in the World",npc=10176,npcName="Kaltunk",map=1411,zone="Durotar",x=43.2,y=68.6},
@@ -138,6 +138,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=97904,questName="Camping 101: Fishing",npc=265809,npcName="Brakk",map=1411,zone="Durotar",x=52,y=47.4,profession="Fishing",note="New in Forever; Objectives: Raise your fishing skill to 20"},
 {type="ACCEPT",quest=97905,questName="Camping 101: Herbalism",npc=265809,npcName="Brakk",map=1411,zone="Durotar",x=52,y=47.4,profession="Herbalism",note="New in Forever; Objectives: Raise your herbalism skill to 20"},
 {type="ACCEPT",quest=97906,questName="Camping 101: Leatherworking",npc=265809,npcName="Brakk",map=1411,zone="Durotar",x=52,y=47.4,profession="Leatherworking",note="New in Forever; Objectives: Raise your leatherworking skill to 20"},
+{type="ACCEPT",quest=97908,questName="Camping 101: Skinning",npc=265809,npcName="Brakk",map=1411,zone="Durotar",x=52,y=47.4,profession="Skinning",note="New in Forever; Objectives: Raise your skinning skill to 20"},
 {type="COLLECT",quest=825,questName="From The Wreckage....",target="Gnomish Tools",count=3,map=1411,zone="Durotar",x=61.8,y=45.8,near=true},
 {type="TURNIN",quest=825,questName="From The Wreckage....",npc=3139,npcName="Gar'Thok",map=1411,zone="Durotar",x=52,y=43.5},
 {type="TURNIN",quest=837,questName="Encroachment",npc=3139,npcName="Gar'Thok",map=1411,zone="Durotar",x=52,y=43.5},
