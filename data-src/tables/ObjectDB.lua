@@ -1,6 +1,5 @@
--- AUTO-GENERATED upstream from WoW Forever quest data - DO NOT EDIT
+-- AUTO-GENERATED from WoW Forever quest data - DO NOT EDIT
 -- quest-relevant game objects (name, spawns per areaID)
--- Data derived from Questie (https://github.com/Questie/Questie) and Wowhead (https://www.wowhead.com); see Data/README.md.
 local _, ns = ...
 ns.ObjectDB = {
 [31]={ends={94},n="Old Lion Statue",sp={[44]={{79.4,46.8}}},starts={248,249},zone=44},

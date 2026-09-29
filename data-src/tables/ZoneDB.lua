@@ -1,6 +1,5 @@
--- AUTO-GENERATED upstream from WoW Forever quest data - DO NOT EDIT
+-- AUTO-GENERATED from WoW Forever quest data - DO NOT EDIT
 -- areaID -> uiMapID for the WoW Forever 1.60.1 client, zone names, and sub-zone parents
--- Data derived from Questie (https://github.com/Questie/Questie) and Wowhead (https://www.wowhead.com); see Data/README.md.
 local _, ns = ...
 ns.ZoneDB = { areaToMap = {
 [0]=0,

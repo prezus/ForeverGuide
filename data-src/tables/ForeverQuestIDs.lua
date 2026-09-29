@@ -1,6 +1,5 @@
--- AUTO-GENERATED upstream from WoW Forever quest data - DO NOT EDIT
+-- AUTO-GENERATED from WoW Forever quest data - DO NOT EDIT
 -- Every quest id client 1.60.1.69913 knows (its QuestV2 table); ids the main table lacks are Forever's own.
--- Data derived from Questie (https://github.com/Questie/Questie) and Wowhead (https://www.wowhead.com); see Data/README.md.
 local _, ns = ...
 local ranges = {
 {1,2},

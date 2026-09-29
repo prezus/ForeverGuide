@@ -1,6 +1,5 @@
--- AUTO-GENERATED upstream from WoW Forever quest data - DO NOT EDIT
+-- AUTO-GENERATED from WoW Forever quest data - DO NOT EDIT
 -- WoW Forever additions and changes, merged over the main tables by tools/pack_data.lua
--- Data derived from Questie (https://github.com/Questie/Questie) and Wowhead (https://www.wowhead.com); see Data/README.md.
 local _, ns = ...
 ns.ForeverDB = {
 quests = {

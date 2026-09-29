@@ -1,6 +1,5 @@
--- AUTO-GENERATED upstream from WoW Forever quest data - DO NOT EDIT
+-- AUTO-GENERATED from WoW Forever quest data - DO NOT EDIT
 -- quest-relevant NPCs (name, level, spawns per areaID)
--- Data derived from Questie (https://github.com/Questie/Questie) and Wowhead (https://www.wowhead.com); see Data/README.md.
 local _, ns = ...
 ns.NpcDB = {
 [3]={max=25,min=24,n="Flesh Eater",rank=0,sp={[10]={{25.1,38.2},{25.4,36},{25.7,34.5},{23.8,39.2},{22.8,39.1},{22,32.6},{21.7,38.3},{22.2,37},{25.4,39}}},zone=10},
