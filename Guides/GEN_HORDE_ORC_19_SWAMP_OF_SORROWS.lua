@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_19_SWAMP_OF_SORROWS",
     name = "19. Swamp of Sorrows 40-40 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 40,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_20_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 19 of the Orc route: level 40 to 40, 17 steps, ~53 min of play in the model (26151 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 35,
+    stepCount = 34,
     steps = [[{
 {type="FLIGHTPATH",npc=6026,npcName="Breyk",map=1435,zone="Swamp of Sorrows",x=46.1,y=54.8},
 {type="ACCEPT",quest=1418,questName="Neeka Bloodscar",npc=1442,npcName="Helgrum the Swift",map=1435,zone="Swamp of Sorrows",x=47.8,y=55.2},
@@ -22,7 +22,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=782,questName="Broken Alliances",npc=1068,npcName="Gorn",map=1418,zone="Badlands",x=2.8,y=45.8},
 {type="COLLECT",quest=782,questName="Broken Alliances",target="Sign of the Earth",count=1,map=1418,zone="Badlands",x=61.6,y=67.8,mobs="Boss Tho'grun"},
 {type="TURNIN",quest=782,questName="Broken Alliances",npc=1068,npcName="Gorn",map=1418,zone="Badlands",x=2.8,y=45.8},
-{type="TURNIN",quest=687,questName="Theldurin the Lost",npc=2785,npcName="Theldurin the Lost",map=1418,zone="Badlands",x=51.4,y=76.8},
 {type="ACCEPT",quest=1137,questName="News for Fizzle",npc=4618,npcName="Martek the Exiled",map=1418,zone="Badlands",x=42.2,y=52.6},
 {type="ACCEPT",quest=709,questName="Solution to Doom",npc=2785,npcName="Theldurin the Lost",map=1418,zone="Badlands",x=51.4,y=76.8,optional=true,note="For Uldaman (dungeon guide)"},
 {type="ACCEPT",quest=2203,questName="Badlands Reagent Run II",npc=6868,npcName="Jarkal Mossmeld",map=1418,zone="Badlands",x=2.6,y=46,optional=true,profession="Alchemy",skill=210,note="Elite - group up"},
