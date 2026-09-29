@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_46_FELWOOD",
     name = "46. Felwood 54-54 (Night Elf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 54,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_47_WINTERSPRING",
     author = "ForeverGuide route planner",
     notes = "Chapter 46 of the NightElf route: level 54 to 54, 10 steps, ~60 min of play in the model (33274 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 26,
+    stepCount = 27,
     steps = [[{
 {type="ACCEPT",quest=5249,questName="To Winterspring!",npc=10924,npcName="Ivy Leafrunner",map=1448,zone="Felwood",x=50.8,y=81.6},
 {type="TRAVEL",map=1448,zone="Felwood",x=51.9,y=83.0,radius=60,note="travel to Felwood (Felwood)"},
@@ -34,6 +34,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=8465,questName="Speak to Salfa",npc=15395,npcName="Nafien",map=1448,zone="Felwood",x=64.8,y=8.2},
 {type="ACCEPT",quest=5385,questName="The Remains of Trey Lightforge",npc=11020,npcName="Remains of Trey Lightforge",map=1448,zone="Felwood",x=38.4,y=50.4,optional=true},
 {type="TURNIN",quest=5385,questName="The Remains of Trey Lightforge",npc=11019,npcName="Jessir Moonbow",map=1448,zone="Felwood",x=51.2,y=82,optional=true},
+{type="ACCEPT",quest=98397,questName="To Darnassus",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"},note="New in Forever"},
 {type="TURNIN",quest=4101,questName="Cleansing Felwood",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8},
 {type="ACCEPT",quest=5883,questName="Salve via Mining",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8,profession="Mining",skill=200},
 {type="ACCEPT",quest=5884,questName="Salve via Gathering",npc=9528,npcName="Arathandris Silversky",map=1448,zone="Felwood",x=54.2,y=86.8,optional=true,profession="Herbalism",skill=200,note="Elite - group up"},
