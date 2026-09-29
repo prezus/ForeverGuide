@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_46_SILITHUS",
     name = "46. Silithus 55-55 (Tauren)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 55,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_47_WINTERSPRING",
     author = "ForeverGuide route planner",
     notes = "Chapter 46 of the Tauren route: level 55 to 55, 23 steps, ~107 min of play in the model (36133 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 43,
+    stepCount = 41,
     steps = [[{
 {type="FLIGHTPATH",npc=15178,npcName="Runk Windtamer",map=1451,zone="Silithus",x=48.7,y=36.7},
 {type="TURNIN",quest=4120,questName="The Strength of Corruption",npc=7776,npcName="Talo Thornhoof",map=1444,zone="Feralas",x=76,y=43.8},
@@ -24,8 +24,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=7481,questName="Elven Legends",npc=14373,npcName="Sage Korolusk",map=1444,zone="Feralas",x=75,y=43.8,optional=true},
 {type="ACCEPT",quest=7489,questName="Lethtendris's Web",npc=7776,npcName="Talo Thornhoof",map=1444,zone="Feralas",x=76,y=43.8,optional=true,note="For Dire Maul (dungeon guide)"},
 {type="NOTE",optional=true,text="Ready for Dire Maul",note="Picked up: Pusillin and the Elder Azj'Tordin, Lethtendris's Web. When you have a group, open Dire Maul under Dungeons."},
-{type="ACCEPT",quest=7492,questName="Camp Mojache",npc=10879,npcName="Harbinger Balthazad",map=1458,zone="Undercity",x=68.2,y=47.6,optional=true,note="For Dire Maul (dungeon guide)"},
-{type="TURNIN",quest=7492,questName="Camp Mojache",npc=7776,npcName="Talo Thornhoof",map=1444,zone="Feralas",x=76,y=43.8,optional=true},
 {type="ACCEPT",quest=5212,questName="The Flesh Does Not Lie",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6,optional=true,note="For Stratholme (dungeon guide)"},
 {type="ACCEPT",quest=5529,questName="Plagued Hatchlings",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6,optional=true,note="For Scholomance (dungeon guide)"},
 {type="ACCEPT",quest=5214,questName="The Great Fras Siabi",npc=11033,npcName="Smokey LaRue",map=1423,zone="Eastern Plaguelands",x=80.6,y=58,optional=true,note="For Stratholme (dungeon guide)"},

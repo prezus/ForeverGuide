@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_27_THE_HINTERLANDS",
     name = "27. The Hinterlands 45-45 (Tauren)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 45,
@@ -13,9 +13,12 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_28_SEARING_GORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 27 of the Tauren route: level 45 to 45, 32 steps, ~146 min of play in the model (37557 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 44,
+    stepCount = 47,
     steps = [[{
 {type="FLIGHTPATH",npc=4314,npcName="Gorkas",map=1425,zone="The Hinterlands",x=81.7,y=81.8},
+{type="ACCEPT",quest=592,questName="Saving Yenniku",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.8},
+{type="COLLECT",quest=592,questName="Saving Yenniku",target="Filled Soul Gem",count=1,map=1434,zone="Stranglethorn Vale",x=39,y=58.4,mobs="Yenniku"},
+{type="TURNIN",quest=592,questName="Saving Yenniku",npc=2497,npcName="Nimboya",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.8},
 {type="COLLECT",quest=2932,questName="Grim Message",target="Witherbark Skull",count=20,map=1425,zone="The Hinterlands",x=22.4,y=57.7,near=true,mobs="Witherbark Scalper / Witherbark Zealot / Witherbark Hideskinner / Witherbark Venomblood"},
 {type="TURNIN",quest=2932,questName="Grim Message",npc=2497,npcName="Nimboya",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.8},
 {type="COLLECT",quest=580,questName="Whiskey Slim's Lost Grog",target="Pupellyverbos Port",count=12,map=1425,zone="The Hinterlands",x=81.6,y=51.8,optional=true,near=true,mobs="Gammerita"},

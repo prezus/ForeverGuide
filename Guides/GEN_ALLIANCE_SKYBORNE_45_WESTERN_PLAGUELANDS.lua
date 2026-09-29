@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_45_WESTERN_PLAGUELANDS",
     name = "45. Western Plaguelands 53-53 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 53,
@@ -13,8 +13,9 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_46_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 45 of the Skyborne route: level 53 to 53, 22 steps, ~50 min of play in the model (44228 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 26,
+    stepCount = 27,
     steps = [[{
+{type="TURNIN",quest=3566,questName="Rise, Obsidion!",npc=8256,npcName="Curator Thorius",map=1455,zone="Ironforge",x=71.4,y=16.2,optional=true},
 {type="TURNIN",quest=4513,questName="A Little Slime Goes a Long Way",npc=9616,npcName="Laris Geardawdle",map=1455,zone="Ironforge",x=75.4,y=23},
 {type="TURNIN",quest=5022,questName="Better Late Than Never",npc=10782,npcName="Royal Factor Bathrilor",map=1453,zone="Stormwind City",x=48.6,y=30.6},
 {type="TURNIN",quest=3701,questName="The Smoldering Ruins of Thaurissan",npc=8879,npcName="Royal Historian Archesonus",map=1455,zone="Ironforge",x=38.6,y=55.4},

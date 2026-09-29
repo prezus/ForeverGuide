@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_03_THE_BARRENS",
     name = "3. The Barrens 18-19 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 18,
@@ -13,11 +13,12 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_04_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the Skyborne route: level 18 to 19, 40 steps, ~87 min of play in the model (19464 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 60,
+    stepCount = 61,
     steps = [[{
 {type="FLIGHTPATH",npc=16227,npcName="Bragok",map=1413,zone="The Barrens",x=63.1,y=37.2},
 {type="TURNIN",quest=98013,questName="Swelling Forces",npc=270269,npcName="Arbal",map=1439,zone="Darkshore",x=43.6,y=76.4},
 {type="TURNIN",quest=98028,questName="Baron Marinous",npc=3616,npcName="Onu",map=1439,zone="Darkshore",x=43.6,y=76.4,optional=true},
+{type="ACCEPT",quest=1070,questName="On Guard in Stonetalon",npc=4079,npcName="Sentinel Thenysil",map=1440,zone="Ashenvale",x=34.8,y=49.8},
 {type="TRAVEL",map=1413,zone="The Barrens",x=62.8,y=37.4,radius=60,note="travel to The Barrens (The Barrens)"},
 {type="HEARTH",npc=6791,npcName="Innkeeper Wiley",map=1413,zone="Ratchet",x=62.0,y=39.4,note="talk to Innkeeper Wiley and make this inn your home"},
 {type="ACCEPT",quest=895,questName="WANTED: Baron Longshore",map=1413,zone="The Barrens",x=62.6,y=37.5},

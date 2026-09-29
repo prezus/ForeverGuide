@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_23_FERALAS",
     name = "23. Feralas 41-41 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 41,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_24_DESOLACE",
     author = "ForeverGuide route planner",
     notes = "Chapter 23 of the Skyborne route: level 41 to 41, 28 steps, ~61 min of play in the model (30375 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 46,
+    stepCount = 45,
     steps = [[{
 {type="TURNIN",quest=1258,questName="... and Bugs",npc=4794,npcName="Morgan Stern",map=1445,zone="Dustwallow Marsh",x=66.2,y=45.4},
 {type="TURNIN",quest=625,questName="Cortello's Riddle",map=1445,zone="Dustwallow Marsh",x=31.1,y=66.1},
@@ -24,7 +24,6 @@ ns.RegisterGuide({
 {type="FLIGHTPATH",npc=8019,npcName="Fyldren Moonfeather",map=1444,zone="Feralas",x=30.2,y=43.3},
 {type="ACCEPT",quest=626,questName="Cortello's Riddle",map=1445,zone="Dustwallow Marsh",x=31.1,y=66.1},
 {type="TURNIN",quest=1137,questName="News for Fizzle",npc=4454,npcName="Fizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77},
-{type="ACCEPT",quest=2770,questName="Gahz'rilla",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="TRAVEL",map=1444,zone="Feralas",x=31.2,y=45.1,radius=60,note="travel to Feralas (Feralas)"},
 {type="HEARTH",npc=7736,npcName="Innkeeper Shyria",map=1444,zone="Feathermoon Stronghold",x=31.0,y=43.5,note="talk to Innkeeper Shyria and make this inn your home"},
 {type="ACCEPT",quest=2847,questName="Wild Leather Armor",npc=7852,npcName="Pratt McGrubben",map=1444,zone="Feralas",x=30.6,y=42.6,profession="Leatherworking",skill=200},

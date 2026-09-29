@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_31_TANARIS",
   "name": "31. Tanaris 46-47 (Orc)",
-  "version": 4,
+  "version": 5,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 46,
@@ -50,6 +50,8 @@
     {"type": "TURNIN", "quest": 2641, "questName": "Sprinkle's Secret Ingredient", "npc": 7583, "npcName": "Sprinkle", "map": 1446, "zone": "Tanaris", "x": 51, "y": 26.8},
     {"type": "TURNIN", "quest": 2933, "questName": "Venom Bottles", "npc": 2216, "npcName": "Apothecary Lydon", "map": 1424, "zone": "Hillsbrad Foothills", "x": 61.4, "y": 19.2},
     {"type": "ACCEPT", "quest": 3527, "questName": "The Prophecy of Mosh'aru", "npc": 8579, "npcName": "Yeh'kinya", "map": 1446, "zone": "Tanaris", "x": 67, "y": 22.4, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
-    {"type": "NOTE", "note": "Picked up: Divino-matic Rod, Gahz'rilla, Tiara of the Deep, Scarab Shells, Troll Temper, The Prophecy of Mosh'aru. When you have a group, open Zul'Farrak under Dungeons.", "text": "Ready for Zul'Farrak", "optional": true}
+    {"type": "NOTE", "note": "Picked up: Divino-matic Rod, Gahz'rilla, Tiara of the Deep, Scarab Shells, Troll Temper, The Prophecy of Mosh'aru. When you have a group, open Zul'Farrak under Dungeons.", "text": "Ready for Zul'Farrak", "optional": true},
+    {"type": "ACCEPT", "quest": 100, "questName": "Call of Water", "map": 1421, "zone": "Silverpine Forest", "x": 38.2, "y": 44.5, "class": ["SHAMAN"]},
+    {"type": "TURNIN", "quest": 100, "questName": "Call of Water", "npc": 5895, "npcName": "Minor Manifestation of Water", "map": 1421, "zone": "Silverpine Forest", "x": 38.6, "y": 44.6, "note": "reduced xp (10%) - you out-levelled it", "class": ["SHAMAN"]}
   ]
 }

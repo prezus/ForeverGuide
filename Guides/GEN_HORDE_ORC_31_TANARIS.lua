@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_31_TANARIS",
     name = "31. Tanaris 46-47 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 46,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_32_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 31 of the Orc route: level 46 to 47, 31 steps, ~86 min of play in the model (36168 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 39,
+    stepCount = 41,
     steps = [[{
 {type="TRAVEL",map=1446,zone="Tanaris",x=51.7,y=27.5,radius=60,note="travel to Tanaris (Tanaris)"},
 {type="ACCEPT",quest=82,questName="Noxious Lair Investigation",npc=7724,npcName="Senior Surveyor Fizzledowser",map=1446,zone="Tanaris",x=50.2,y=27.5},
@@ -53,6 +53,8 @@ ns.RegisterGuide({
 {type="TURNIN",quest=2641,questName="Sprinkle's Secret Ingredient",npc=7583,npcName="Sprinkle",map=1446,zone="Tanaris",x=51,y=26.8},
 {type="TURNIN",quest=2933,questName="Venom Bottles",npc=2216,npcName="Apothecary Lydon",map=1424,zone="Hillsbrad Foothills",x=61.4,y=19.2},
 {type="ACCEPT",quest=3527,questName="The Prophecy of Mosh'aru",npc=8579,npcName="Yeh'kinya",map=1446,zone="Tanaris",x=67,y=22.4,optional=true,note="For Zul'Farrak (dungeon guide)"},
-{type="NOTE",optional=true,text="Ready for Zul'Farrak",note="Picked up: Divino-matic Rod, Gahz'rilla, Tiara of the Deep, Scarab Shells, Troll Temper, The Prophecy of Mosh'aru. When you have a group, open Zul'Farrak under Dungeons."}
+{type="NOTE",optional=true,text="Ready for Zul'Farrak",note="Picked up: Divino-matic Rod, Gahz'rilla, Tiara of the Deep, Scarab Shells, Troll Temper, The Prophecy of Mosh'aru. When you have a group, open Zul'Farrak under Dungeons."},
+{type="ACCEPT",quest=100,questName="Call of Water",map=1421,zone="Silverpine Forest",x=38.2,y=44.5,class={"SHAMAN"}},
+{type="TURNIN",quest=100,questName="Call of Water",npc=5895,npcName="Minor Manifestation of Water",map=1421,zone="Silverpine Forest",x=38.6,y=44.6,class={"SHAMAN"},note="reduced xp (10%) - you out-levelled it"}
 }]],
 })

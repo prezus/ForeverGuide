@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_05_WETLANDS",
     name = "5. Wetlands 20-21 (Human)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 20,
@@ -13,9 +13,11 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_06_DUSKWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 5 of the Human route: level 20 to 21, 25 steps, ~90 min of play in the model (18513 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 60,
+    stepCount = 62,
     steps = [[{
 {type="FLIGHTPATH",npc=1571,npcName="Shellei Brondir",map=1437,zone="Wetlands",x=9.5,y=59.7},
+{type="ACCEPT",quest=531,questName="Vyrin's Revenge",npc=1187,npcName="Daryl the Youngling",map=1432,zone="Loch Modan",x=83.4,y=65.2},
+{type="TURNIN",quest=531,questName="Vyrin's Revenge",npc=1156,npcName="Vyrin Swiftwind",map=1432,zone="Loch Modan",x=81.8,y=64.2},
 {type="ACCEPT",quest=94,questName="A Watchful Eye",npc=313,npcName="Theocritus",map=1429,zone="Elwynn Forest",x=65.2,y=69.8},
 {type="ACCEPT",quest=3765,questName="The Corruption Abroad",npc=4984,npcName="Argos Nightwhisper",map=1453,zone="Stormwind City",x=21.4,y=55.6},
 {type="ACCEPT",quest=132,questName="The Defias Brotherhood",npc=266,npcName="Wiley the Black",map=1433,zone="Redridge Mountains",x=26.6,y=45.2},

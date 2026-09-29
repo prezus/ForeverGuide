@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_35_TANARIS",
   "name": "35. Tanaris 48-49 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 48,
@@ -26,7 +26,6 @@
     {"type": "ACCEPT", "quest": 2661, "questName": "Delivery for Marin", "npc": 7583, "npcName": "Sprinkle", "map": 1446, "zone": "Tanaris", "x": 51, "y": 26.8},
     {"type": "TURNIN", "quest": 2661, "questName": "Delivery for Marin", "npc": 7564, "npcName": "Marin Noggenfogger", "map": 1446, "zone": "Tanaris", "x": 51.8, "y": 28.6},
     {"type": "ACCEPT", "quest": 3527, "questName": "The Prophecy of Mosh'aru", "npc": 8579, "npcName": "Yeh'kinya", "map": 1446, "zone": "Tanaris", "x": 67, "y": 22.4, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
-    {"type": "NOTE", "note": "Picked up: Divino-matic Rod, Gahz'rilla, Tiara of the Deep, Scarab Shells, Nekrum's Medallion, Troll Temper, The Prophecy of Mosh'aru. When you have a group, open Zul'Farrak under Dungeons.", "text": "Ready for Zul'Farrak", "optional": true},
     {"type": "ACCEPT", "quest": 4324, "questName": "Yuka Screwspigot", "npc": 9706, "npcName": "Yorba Screwspigot", "map": 1446, "zone": "Tanaris", "x": 67, "y": 24, "note": "For Blackrock Depths (dungeon guide)", "optional": true},
     {"type": "TURNIN", "quest": 3629, "questName": "Goblin Engineering", "npc": 8126, "npcName": "Nixx Sprocketspring", "map": 1446, "zone": "Tanaris", "x": 52.4, "y": 27.2, "profession": "Engineering", "skill": 200},
     {"type": "TURNIN", "quest": 6612, "questName": "I Know A Guy...", "npc": 8125, "npcName": "Dirge Quikcleave", "map": 1446, "zone": "Tanaris", "x": 52.6, "y": 28, "profession": "Cooking", "skill": 225},

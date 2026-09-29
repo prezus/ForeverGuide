@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: no step asks for a quest before the quest it needs is handed in (Excelsior, Shadow Magic, Battle of Hillsbrad, Call to Arms and others now follow it), and breadcrumbs come before the quest they lead to or not at all (Your Place in the World, Eagan Peltskinner, Rejold's New Brew, Rude Awakening, Tabetha's Task, Camp Mojache).
 - Guides: Zephras Isle's Call of Earth is shown only to Skyborne shamans, not to every Skyborne; Orc and Tauren shamans keep their own Call of Earth.
 - Quest database: Stalk With The Earthmother (76160) is for shamans and druids, and the library book quests at the mage trainers (Nar'thalas Almanac, The Lessons of Ta'zo, Friend of the Library and the rest) are open to every class, as WoW Forever has them.
 - Guides: Skyborne are offered the quests WoW Forever opened to them, and quests only Skyborne may take are no longer offered to other races. Alliance Skyborne druids get The Principal Source in Darkshore and learn Cure Poison.

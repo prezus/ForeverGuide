@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_05_ASHENVALE",
     name = "5. Ashenvale 20-21 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 20,
@@ -13,13 +13,11 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_06_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 5 of the Skyborne route: level 20 to 21, 36 steps, ~103 min of play in the model (22397 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 55,
+    stepCount = 53,
     steps = [[{
 {type="FLIGHTPATH",npc=4267,npcName="Daelyshia",map=1440,zone="Ashenvale",x=34.4,y=48},
 {type="ACCEPT",quest=79980,questName="Scramble",map=1442,zone="Stonetalon Mountains",x=40.8,y=52.5},
 {type="TURNIN",quest=79980,questName="Scramble",map=1442,zone="Stonetalon Mountains",x=39.6,y=49.9},
-{type="ACCEPT",quest=1070,questName="On Guard in Stonetalon",npc=4079,npcName="Sentinel Thenysil",map=1440,zone="Ashenvale",x=34.8,y=49.8},
-{type="TURNIN",quest=1070,questName="On Guard in Stonetalon",npc=4080,npcName="Kaela Shadowspear",map=1442,zone="Stonetalon Mountains",x=59.8,y=66.8},
 {type="ACCEPT",quest=1056,questName="Journey to Stonetalon Peak",npc=3996,npcName="Faldreas Goeth'Shael",map=1440,zone="Ashenvale",x=35.6,y=49.2},
 {type="TURNIN",quest=1056,questName="Journey to Stonetalon Peak",npc=3994,npcName="Keeper Albagorm",map=1442,zone="Stonetalon Mountains",x=37,y=8},
 {type="TRAVEL",map=1440,zone="Ashenvale",x=36.4,y=50.2,radius=60,note="travel to Ashenvale (Ashenvale)"},

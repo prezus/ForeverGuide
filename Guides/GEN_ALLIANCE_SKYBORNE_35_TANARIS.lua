@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_35_TANARIS",
     name = "35. Tanaris 48-49 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 48,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_36_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 35 of the Skyborne route: level 48 to 49, 10 steps, ~213 min of play in the model (5390 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 23,
+    stepCount = 22,
     steps = [[{
 {type="TRAVEL",map=1446,zone="Tanaris",x=52.0,y=27.4,radius=60,note="travel to Tanaris (Tanaris)"},
 {type="ACCEPT",quest=4504,questName="Super Sticky",npc=7876,npcName="Tran'rek",map=1446,zone="Tanaris",x=51.6,y=26.8},
@@ -29,7 +29,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2661,questName="Delivery for Marin",npc=7583,npcName="Sprinkle",map=1446,zone="Tanaris",x=51,y=26.8},
 {type="TURNIN",quest=2661,questName="Delivery for Marin",npc=7564,npcName="Marin Noggenfogger",map=1446,zone="Tanaris",x=51.8,y=28.6},
 {type="ACCEPT",quest=3527,questName="The Prophecy of Mosh'aru",npc=8579,npcName="Yeh'kinya",map=1446,zone="Tanaris",x=67,y=22.4,optional=true,note="For Zul'Farrak (dungeon guide)"},
-{type="NOTE",optional=true,text="Ready for Zul'Farrak",note="Picked up: Divino-matic Rod, Gahz'rilla, Tiara of the Deep, Scarab Shells, Nekrum's Medallion, Troll Temper, The Prophecy of Mosh'aru. When you have a group, open Zul'Farrak under Dungeons."},
 {type="ACCEPT",quest=4324,questName="Yuka Screwspigot",npc=9706,npcName="Yorba Screwspigot",map=1446,zone="Tanaris",x=67,y=24,optional=true,note="For Blackrock Depths (dungeon guide)"},
 {type="TURNIN",quest=3629,questName="Goblin Engineering",npc=8126,npcName="Nixx Sprocketspring",map=1446,zone="Tanaris",x=52.4,y=27.2,profession="Engineering",skill=200},
 {type="TURNIN",quest=6612,questName="I Know A Guy...",npc=8125,npcName="Dirge Quikcleave",map=1446,zone="Tanaris",x=52.6,y=28,profession="Cooking",skill=225},

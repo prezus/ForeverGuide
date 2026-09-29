@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_22_STRANGLETHORN_VALE",
     name = "22. Stranglethorn Vale 40-41 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 40,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_23_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 22 of the Skyborne route: level 40 to 41, 18 steps, ~234 min of play in the model (12777 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 31,
+    stepCount = 32,
     steps = [[{
 {type="ACCEPT",quest=2864,questName="Tran'rek",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.5,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
@@ -23,6 +23,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=604,questName="The Bloodsail Buccaneers",target="Bloodsail Orders / Bloodsail Charts / Bloodsail Swashbuckler",count=10,map=1434,zone="Stranglethorn Vale",x=27,y=82.6,near=true},
 {type="TURNIN",quest=604,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
 {type="KILL",quest=617,questName="Akiris by the Bundle",npc=1907,target="Naga Explorer",count=10,map=1434,zone="Stranglethorn Vale",x=28.2,y=64.4,near=true,note="loot Akiris Reed"},
+{type="ACCEPT",quest=8551,questName="The Captain's Chest",npc=2500,npcName="Captain Hecklebury Smotts",map=1434,zone="Stranglethorn Vale",x=26.6,y=73.6,optional=true,note="Elite - group up"},
 {type="TURNIN",quest=617,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4},
 {type="ACCEPT",quest=623,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4},
 {type="GRIND",npc=696,target="Skullsplitter Axe Thrower",level=41,map=1434,zone="Stranglethorn Vale",x=43.8,y=39.4,near=true,note="grind Skullsplitter Axe Thrower (level 39-40) to level 41 - nothing worth questing at 40"},

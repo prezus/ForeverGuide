@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_06_WETLANDS",
   "name": "6. Wetlands 20-21 (Dwarf)",
-  "version": 6,
+  "version": 7,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 20,
@@ -14,7 +14,6 @@
   "steps": [
     {"type": "FLIGHTPATH", "npc": 1571, "npcName": "Shellei Brondir", "map": 1437, "zone": "Wetlands", "x": 9.5, "y": 59.7},
     {"type": "TURNIN", "quest": 92748, "questName": "Explosive Consultation", "npc": 11026, "npcName": "Sprite Jumpsprocket", "map": 1453, "zone": "Stormwind City", "x": 54.6, "y": 8},
-    {"type": "TURNIN", "quest": 1097, "questName": "Elmore's Task", "npc": 1416, "npcName": "Grimand Elmore", "map": 1453, "zone": "Stormwind City", "x": 51.6, "y": 12.2},
     {"type": "ACCEPT", "quest": 531, "questName": "Vyrin's Revenge", "npc": 1187, "npcName": "Daryl the Youngling", "map": 1432, "zone": "Loch Modan", "x": 83.4, "y": 65.2},
     {"type": "TURNIN", "quest": 531, "questName": "Vyrin's Revenge", "npc": 1156, "npcName": "Vyrin Swiftwind", "map": 1432, "zone": "Loch Modan", "x": 81.8, "y": 64.2},
     {"type": "ACCEPT", "quest": 94, "questName": "A Watchful Eye", "npc": 313, "npcName": "Theocritus", "map": 1429, "zone": "Elwynn Forest", "x": 65.2, "y": 69.8},

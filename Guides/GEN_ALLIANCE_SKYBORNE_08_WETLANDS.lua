@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_08_WETLANDS",
     name = "8. Wetlands 25-28 (Skyborne)",
-    version = 8,
+    version = 9,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 25,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_09_DUSKWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 8 of the Skyborne route: level 25 to 28, 58 steps, ~192 min of play in the model (18961 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 98,
+    stepCount = 99,
     steps = [[{
 {type="FLIGHTPATH",npc=1571,npcName="Shellei Brondir",map=1437,zone="Wetlands",x=9.5,y=59.7},
 {type="TURNIN",quest=1075,questName="A Scroll from Mauren",npc=4078,npcName="Collin Mauren",map=1453,zone="Stormwind City",x=43,y=80.2},
@@ -76,6 +76,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=469,questName="Daily Delivery",npc=2094,npcName="James Halloran",map=1437,zone="Wetlands",x=8.6,y=55.7},
 {type="TURNIN",quest=484,questName="Young Crocolisk Skins",npc=2094,npcName="James Halloran",map=1437,zone="Wetlands",x=8.6,y=55.7},
 {type="TURNIN",quest=464,questName="War Banners",npc=2104,npcName="Captain Stoutfist",map=1437,zone="Wetlands",x=9.9,y=57.5},
+{type="ACCEPT",quest=1132,questName="Fiora Longears",npc=4455,npcName="Red Jack Flint",map=1437,zone="Wetlands",x=9.8,y=57.8},
 {type="ACCEPT",quest=465,questName="Nek'rosh's Gambit",npc=2104,npcName="Captain Stoutfist",map=1437,zone="Wetlands",x=9.8,y=57.4},
 {type="TURNIN",quest=279,questName="Claws from the Deep",npc=1242,npcName="Karl Boran",map=1437,zone="Wetlands",x=8.3,y=58.6},
 {type="ACCEPT",quest=289,questName="The Cursed Crew",npc=1239,npcName="First Mate Fitzsimmons",map=1437,zone="Wetlands",x=10.8,y=59.6},

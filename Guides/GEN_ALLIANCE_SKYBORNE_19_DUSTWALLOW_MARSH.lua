@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_19_DUSTWALLOW_MARSH",
     name = "19. Dustwallow Marsh 37-39 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 37,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_20_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 19 of the Skyborne route: level 37 to 39, 38 steps, ~238 min of play in the model (8070 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 48,
+    stepCount = 49,
     steps = [[{
 {type="TRAVEL",map=1443,zone="Nijel's Point",x=66.3,y=6.5,radius=60,note="use your hearthstone (Nijel's Point)"},
 {type="FLIGHTPATH",npc=4321,npcName="Baldruc",map=1445,zone="Dustwallow Marsh",x=67.5,y=51.3},
@@ -22,6 +22,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1282,questName="They Call Him Smiling Jim",npc=4921,npcName="Guard Byron",map=1445,zone="Dustwallow Marsh",x=66.2,y=46.1},
 {type="ACCEPT",quest=1204,questName="Mudrock Soup and Bugs",npc=4794,npcName="Morgan Stern",map=1445,zone="Dustwallow Marsh",x=66.3,y=45.5},
 {type="TURNIN",quest=1282,questName="They Call Him Smiling Jim",npc=4944,npcName="Captain Garran Vimes",map=1445,zone="Dustwallow Marsh",x=68.2,y=48.6},
+{type="TURNIN",quest=1132,questName="Fiora Longears",npc=4456,npcName="Fiora Longears",map=1445,zone="Dustwallow Marsh",x=66.4,y=45.2,note="reduced xp (10%) - you out-levelled it"},
 {type="COLLECT",quest=1204,questName="Mudrock Soup and Bugs",target="Forked Mudrock Tongue",count=8,map=1445,zone="Dustwallow Marsh",x=64.6,y=40,near=true},
 {type="TURNIN",quest=1204,questName="Mudrock Soup and Bugs",npc=4794,npcName="Morgan Stern",map=1445,zone="Dustwallow Marsh",x=66.3,y=45.5},
 {type="ACCEPT",quest=1218,questName="Soothing Spices",npc=4792,npcName="\"Swamp Eye\" Jarl",map=1445,zone="Dustwallow Marsh",x=55.4,y=26.2},

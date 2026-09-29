@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_43_BURNING_STEPPES",
     name = "43. Burning Steppes 53-53 (Human)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 53,
@@ -13,10 +13,11 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_44_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 43 of the Human route: level 53 to 53, 23 steps, ~125 min of play in the model (35015 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 60,
+    stepCount = 61,
     steps = [[{
 {type="FLIGHTPATH",npc=2299,npcName="Borgus Stoutarm",map=1428,zone="Burning Steppes",x=84.3,y=68.3},
-{type="TURNIN",quest=5781,questName="Of Forgotten Memories",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.4,y=43.6},
+{type="ACCEPT",quest=5742,questName="Redemption",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.4,y=43.6,note="Objectives: Tirion's Tale"},
+{type="TURNIN",quest=5742,questName="Redemption",npc=1855,npcName="Tirion Fordring",map=1423,zone="Eastern Plaguelands",x=7.4,y=43.6},
 {type="ACCEPT",quest=3453,questName="The Torch of Retribution",npc=8479,npcName="Velarok Windblade",map=1427,zone="Searing Gorge",x=39,y=39,note="Objectives: Torch Creation"},
 {type="TURNIN",quest=3453,questName="The Torch of Retribution",npc=8479,npcName="Velarok Windblade",map=1427,zone="Searing Gorge",x=39,y=39},
 {type="TURNIN",quest=3371,questName="Dwarven Justice",npc=8417,npcName="Dying Archaeologist",map=1427,zone="Searing Gorge",x=41.2,y=25.6},

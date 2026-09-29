@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_45_AZSHARA",
   "name": "45. Azshara 55-57 (Skyborne)",
-  "version": 4,
+  "version": 5,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 55,
@@ -13,7 +13,6 @@
   "notes": "Chapter 45 of the Skyborne route: level 55 to 57, 12 steps, ~421 min of play in the model (3016 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "ACCEPT", "quest": 6805, "questName": "Stormers and Rumblers", "npc": 13278, "npcName": "Duke Hydraxis", "map": 1447, "zone": "Azshara", "x": 79.2, "y": 73.6},
-    {"type": "TURNIN", "quest": 6605, "questName": "A Strange One", "npc": 9996, "npcName": "Winna Hazzard", "map": 1448, "zone": "Felwood", "x": 34.2, "y": 52.4},
     {"type": "TURNIN", "quest": 4521, "questName": "Wild Guardians", "npc": 10306, "npcName": "Trull Failbane", "map": 1448, "zone": "Felwood", "x": 34.6, "y": 52.6},
     {"type": "TRAVEL", "map": 1447, "zone": "Azshara", "x": 60.8, "y": 66.4, "radius": 60, "note": "travel to Azshara (Azshara)"},
     {"type": "TURNIN", "quest": 3504, "questName": "Betrayed", "npc": 8576, "npcName": "Ag'tor Bloodfist", "map": 1447, "zone": "Azshara", "x": 22.3, "y": 51.5},

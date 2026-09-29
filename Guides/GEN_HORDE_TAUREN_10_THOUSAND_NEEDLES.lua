@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_10_THOUSAND_NEEDLES",
     name = "10. Thousand Needles 32-33 (Tauren)",
-    version = 6,
+    version = 7,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 32,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_11_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
     notes = "Chapter 10 of the Tauren route: level 32 to 33, 39 steps, ~112 min of play in the model (25095 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 73,
+    stepCount = 72,
     steps = [[{
 {type="ACCEPT",quest=1145,questName="The Swarm Grows",npc=3428,npcName="Korran",map=1413,zone="The Barrens",x=51,y=29.6},
 {type="ACCEPT",quest=1111,questName="Wharfmaster Dizzywig",npc=4452,npcName="Kravel Koalbeard",map=1441,zone="Thousand Needles",x=77.8,y=77.2},
@@ -50,7 +50,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1178,questName="Goblin Sponsorship",npc=4630,npcName="Pozzik",map=1441,zone="Thousand Needles",x=80,y=75.8},
 {type="ACCEPT",quest=1149,questName="Test of Faith",npc=2986,npcName="Dorn Plainstalker",map=1441,zone="Thousand Needles",x=54,y=41.5},
 {type="ACCEPT",quest=4881,questName="Assassination Plot",npc=10617,npcName="Galak Messenger",map=1441,zone="Thousand Needles",x=39.4,y=33.1,note="Loot Assassination Note from Galak Messenger and use it to start the quest"},
-{type="TURNIN",quest=5881,questName="Calling in the Reserves",npc=12576,npcName="Grish Longrunner",map=1441,zone="Thousand Needles",x=31.8,y=21.6},
 {type="COMPLETE",quest=1149,questName="Test of Faith",target="If you have faith, leap from the planks overlooking Thousand Needles.",map=1441,zone="Thousand Needles",x=26.4,y=32.9,note="If you have faith, leap from the planks overlooking Thousand Needles."},
 {type="TURNIN",quest=1149,questName="Test of Faith",npc=2986,npcName="Dorn Plainstalker",map=1441,zone="Thousand Needles",x=54,y=41.5,note="reduced xp (60%) - you out-levelled it"},
 {type="ACCEPT",quest=1150,questName="Test of Endurance",npc=2986,npcName="Dorn Plainstalker",map=1441,zone="Thousand Needles",x=54,y=41.5},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_42_IRONFORGE",
     name = "42. Ironforge 52-52 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 52,
@@ -13,13 +13,15 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_43_SEARING_GORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 42 of the Skyborne route: level 52 to 52, 6 steps, ~2 min of play in the model (20486 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 7,
+    stepCount = 9,
     steps = [[{
 {type="TRAVEL",map=1455,zone="Ironforge",x=18.1,y=51.5,radius=60,note="use your hearthstone (Ironforge)"},
 {type="TURNIN",quest=3461,questName="Return to Tymor",npc=8507,npcName="Tymor",map=1455,zone="Ironforge",x=31.2,y=4.6},
 {type="TRAVEL",map=1455,zone="Ironforge",x=56.8,y=34.6,radius=60,note="travel to Ironforge (Ironforge)"},
 {type="ACCEPT",quest=3702,questName="The Smoldering Ruins of Thaurissan",npc=8879,npcName="Royal Historian Archesonus",map=1455,zone="Ironforge",x=38.4,y=55.3},
+{type="TURNIN",quest=4512,questName="A Little Slime Goes a Long Way",npc=9616,npcName="Laris Geardawdle",map=1455,zone="Ironforge",x=75.4,y=23},
 {type="ACCEPT",quest=3371,questName="Dwarven Justice",npc=8256,npcName="Curator Thorius",map=1455,zone="Ironforge",x=71.5,y=15.7},
+{type="ACCEPT",quest=4513,questName="A Little Slime Goes a Long Way",npc=9616,npcName="Laris Geardawdle",map=1455,zone="Ironforge",x=75.4,y=23},
 {type="KILL",quest=3702,questName="The Smoldering Ruins of Thaurissan",npc=8879,target="Royal Historian Archesonus",count=1,map=1455,zone="Ironforge",x=38.4,y=55.3},
 {type="TURNIN",quest=3702,questName="The Smoldering Ruins of Thaurissan",npc=8879,npcName="Royal Historian Archesonus",map=1455,zone="Ironforge",x=38.4,y=55.3}
 }]],

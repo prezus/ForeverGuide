@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_09_STRANGLETHORN_VALE",
     name = "9. Stranglethorn Vale 34-35 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 34,
@@ -13,17 +13,14 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_10_DESOLACE",
     author = "ForeverGuide route planner",
     notes = "Chapter 9 of the Skyborne route: level 34 to 35, 39 steps, ~140 min of play in the model (33089 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 47,
+    stepCount = 45,
     steps = [[{
 {type="TURNIN",quest=1270,questName="Stinky's Escape",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6},
 {type="TRAVEL",map=1434,zone="Booty Bay",x=27.0,y=77.3,radius=60,note="use your hearthstone (Booty Bay)"},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.4,y=76.3,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
 {type="ACCEPT",quest=213,questName="Hostile Takeover",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
 {type="ACCEPT",quest=577,questName="Some Assembly Required",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
-{type="ACCEPT",quest=628,questName="Excelsior",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6,optional=true,note="group quest (elite mobs) - optional, take it only with company"},
 {type="TURNIN",quest=3637,questName="Gnome Engineering",npc=7406,npcName="Oglethorpe Obnoticus",map=1434,zone="Stranglethorn Vale",x=28.2,y=76.2,profession="Engineering",skill=200},
-{type="KILL",quest=628,questName="Excelsior",npc=2635,target="Elder Saltwater Crocolisk",map=1434,zone="Stranglethorn Vale",x=33.4,y=32.5,optional=true,near=true},
-{type="TURNIN",quest=628,questName="Excelsior",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6,optional=true},
 {type="KILL",quest=577,questName="Some Assembly Required",npc=1152,target="Snapjaw Crocolisk",count=5,map=1434,zone="Stranglethorn Vale",x=38.4,y=31.4,near=true,note="loot Snapjaw Crocolisk Skin"},
 {type="TURNIN",quest=1240,questName="The Troll Witchdoctor",npc=2519,npcName="Kin'weelay",map=1434,zone="Stranglethorn Vale",x=32.3,y=27.7},
 {type="ACCEPT",quest=568,questName="The Defense of Grom'gol",npc=2464,npcName="Commander Aggro'gosh",map=1434,zone="Stranglethorn Vale",x=32.2,y=28.9},
@@ -61,6 +58,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=8552,questName="The Monogrammed Sash",npc=2500,npcName="Captain Hecklebury Smotts",map=1434,zone="Stranglethorn Vale",x=26.6,y=73.6,optional=true},
 {type="TURNIN",quest=213,questName="Hostile Takeover",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
 {type="TURNIN",quest=577,questName="Some Assembly Required",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
+{type="ACCEPT",quest=628,questName="Excelsior",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.2,y=77.4,optional=true,note="Elite - group up"},
 {type="ACCEPT",quest=624,questName="Cortello's Riddle",map=1434,zone="Stranglethorn Vale",x=29.2,y=88.6,note="Take Cortello's Riddle from the Cortello's Riddle and use it to start the quest"}
 }]],
 })

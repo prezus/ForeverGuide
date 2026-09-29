@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_38_UNDERCITY",
     name = "38. Undercity 52-52 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 52,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_39_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 38 of the Skyborne route: level 52 to 52, 13 steps, ~20 min of play in the model (40462 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 37,
+    stepCount = 36,
     steps = [[{
 {type="FLIGHTPATH",npc=4551,npcName="Michael Garrett",map=1458,zone="Undercity",x=63.3,y=48.6},
 {type="ACCEPT",quest=5725,questName="The Power to Destroy...",npc=2425,npcName="Varimathras",map=1458,zone="Undercity",x=56.2,y=92.6,optional=true,note="For Ragefire Chasm (dungeon guide)"},
@@ -49,7 +49,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=4293,questName="A Sample of Slime...",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4},
 {type="COLLECT",quest=4293,questName="A Sample of Slime...",target="Corrupted Felwood Sample",count=5,map=1458,zone="Undercity",x=47.9,y=73.5},
 {type="TURNIN",quest=4293,questName="A Sample of Slime...",npc=10136,npcName="Chemist Fuely",map=1458,zone="Undercity",x=47.5,y=73.4},
-{type="TURNIN",quest=550,questName="Battle of Hillsbrad",npc=2425,npcName="Varimathras",map=1458,zone="Undercity",x=56.2,y=92.6,note="reduced xp (10%) - you out-levelled it"},
 {type="TURNIN",quest=3542,questName="Delivery to Andron Gant",npc=6522,npcName="Andron Gant",map=1458,zone="Undercity",x=54.6,y=75.6},
 {type="TURNIN",quest=3526,questName="Goblin Engineering",npc=8126,npcName="Nixx Sprocketspring",map=1446,zone="Tanaris",x=52.4,y=27.2,profession="Engineering",skill=200}
 }]],

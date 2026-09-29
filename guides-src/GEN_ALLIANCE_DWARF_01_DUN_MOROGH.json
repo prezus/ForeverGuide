@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_01_DUN_MOROGH",
   "name": "1. Dun Morogh 1-10 (Dwarf)",
-  "version": 11,
+  "version": 12,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 1,
@@ -153,9 +153,7 @@
     {"type": "TURNIN", "quest": 310, "questName": "Bitter Rivals", "map": 1426, "zone": "Dun Morogh", "x": 47.7, "y": 52.7},
     {"type": "ACCEPT", "quest": 311, "questName": "Return to Marleth", "map": 1426, "zone": "Dun Morogh", "x": 47.7, "y": 52.7},
     {"type": "TURNIN", "quest": 320, "questName": "Return to Bellowfiz", "npc": 1378, "npcName": "Pilot Bellowfiz", "map": 1426, "zone": "Dun Morogh", "x": 49.4, "y": 48.4},
-    {"type": "ACCEPT", "quest": 415, "questName": "Rejold's New Brew", "npc": 1378, "npcName": "Pilot Bellowfiz", "map": 1426, "zone": "Dun Morogh", "x": 49.4, "y": 48.4},
     {"type": "TURNIN", "quest": 311, "questName": "Return to Marleth", "npc": 1375, "npcName": "Marleth Barleybrew", "map": 1426, "zone": "Dun Morogh", "x": 30.2, "y": 45.5},
-    {"type": "TURNIN", "quest": 415, "questName": "Rejold's New Brew", "npc": 1374, "npcName": "Rejold Barleybrew", "map": 1426, "zone": "Dun Morogh", "x": 30.2, "y": 45.8},
     {"type": "ACCEPT", "quest": 312, "questName": "Tundra MacGrann's Stolen Stash", "npc": 1266, "npcName": "Tundra MacGrann", "map": 1426, "zone": "Dun Morogh", "x": 34.6, "y": 51.7},
     {"type": "COLLECT", "quest": 312, "questName": "Tundra MacGrann's Stolen Stash", "target": "MacGrann's Dried Meats", "map": 1426, "zone": "Dun Morogh", "x": 38.5, "y": 53.9},
     {"type": "TURNIN", "quest": 312, "questName": "Tundra MacGrann's Stolen Stash", "npc": 1266, "npcName": "Tundra MacGrann", "map": 1426, "zone": "Dun Morogh", "x": 34.6, "y": 51.7},

@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST",
   "name": "1. Elwynn Forest 1-11 (Human)",
-  "version": 11,
+  "version": 12,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 1,
@@ -19,8 +19,6 @@
     {"type": "ACCEPT", "quest": 33, "questName": "Wolves Across the Border", "npc": 196, "npcName": "Eagan Peltskinner", "map": 1429, "zone": "Elwynn Forest", "x": 48.9, "y": 40.2},
     {"type": "TURNIN", "quest": 783, "questName": "A Threat Within", "npc": 197, "npcName": "Marshal McBride", "map": 1429, "zone": "Elwynn Forest", "x": 48.9, "y": 41.6},
     {"type": "ACCEPT", "quest": 7, "questName": "Kobold Camp Cleanup", "npc": 197, "npcName": "Marshal McBride", "map": 1429, "zone": "Elwynn Forest", "x": 48.9, "y": 41.6},
-    {"type": "ACCEPT", "quest": 5261, "questName": "Eagan Peltskinner", "npc": 823, "npcName": "Deputy Willem", "map": 1429, "zone": "Elwynn Forest", "x": 48.2, "y": 42.8},
-    {"type": "TURNIN", "quest": 5261, "questName": "Eagan Peltskinner", "npc": 196, "npcName": "Eagan Peltskinner", "map": 1429, "zone": "Elwynn Forest", "x": 48.8, "y": 40.2},
     {"type": "ACCEPT", "quest": 92479, "questName": "A Scribbled Letter", "npc": 197, "npcName": "Marshal McBride", "map": 1429, "zone": "Elwynn Forest", "x": 48.8, "y": 41.6, "note": "New in Forever", "class": ["WARRIOR"]},
     {"type": "COLLECT", "quest": 33, "questName": "Wolves Across the Border", "target": "Tough Wolf Meat", "count": 8, "map": 1429, "zone": "Elwynn Forest", "x": 48, "y": 39.6, "near": true},
     {"type": "ACCEPT", "quest": 18, "questName": "Brotherhood of Thieves", "npc": 823, "npcName": "Deputy Willem", "map": 1429, "zone": "Elwynn Forest", "x": 48.2, "y": 42.9},

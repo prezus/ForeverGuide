@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_47_BURNING_STEPPES",
     name = "47. Burning Steppes 54-54 (Skyborne)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 54,
@@ -13,11 +13,11 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_48_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 47 of the Skyborne route: level 54 to 54, 23 steps, ~117 min of play in the model (36448 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 65,
+    stepCount = 61,
     steps = [[{
 {type="FLIGHTPATH",npc=2299,npcName="Borgus Stoutarm",map=1428,zone="Burning Steppes",x=84.3,y=68.3},
-{type="ACCEPT",quest=3462,questName="Squire Maltrake",npc=8479,npcName="Velarok Windblade",map=1427,zone="Searing Gorge",x=39,y=39},
-{type="TURNIN",quest=3462,questName="Squire Maltrake",npc=8509,npcName="Squire Maltrake",map=1427,zone="Searing Gorge",x=39,y=39},
+{type="ACCEPT",quest=3454,questName="The Torch of Retribution",npc=8479,npcName="Velarok Windblade",map=1427,zone="Searing Gorge",x=39,y=39},
+{type="TURNIN",quest=3454,questName="The Torch of Retribution",map=1427,zone="Searing Gorge",x=39,y=39.1},
 {type="ACCEPT",quest=4286,questName="The Good Stuff",npc=9177,npcName="Oralius",map=1428,zone="Burning Steppes",x=84.6,y=68.6,optional=true,note="For Blackrock Depths (dungeon guide)"},
 {type="TRAVEL",map=1428,zone="Burning Steppes",x=84.7,y=68.8,radius=60,note="travel to Burning Steppes (Burning Steppes)"},
 {type="ACCEPT",quest=3823,questName="Extinguish the Firegut",npc=9177,npcName="Oralius",map=1428,zone="Burning Steppes",x=84.6,y=68.7},
@@ -73,12 +73,8 @@ ns.RegisterGuide({
 {type="COLLECT",quest=4296,questName="Tablet of the Seven",target="Tablet Transcript",map=1428,zone="Burning Steppes",x=54.1,y=40.8},
 {type="TURNIN",quest=4296,questName="Tablet of the Seven",npc=9536,npcName="Maxwort Uberglint",map=1428,zone="Burning Steppes",x=65.2,y=23.9},
 {type="TURNIN",quest=4726,questName="Broodling Essence",npc=10267,npcName="Tinkee Steamboil",map=1428,zone="Burning Steppes",x=65.2,y=23.8},
-{type="ACCEPT",quest=3463,questName="Set Them Ablaze!",npc=8509,npcName="Squire Maltrake",map=1427,zone="Searing Gorge",x=39,y=39},
-{type="COMPLETE",quest=3463,questName="Set Them Ablaze!",target="Western Tower Ablaze",count=1,map=1427,zone="Searing Gorge",x=35.7,y=60.7},
-{type="COMPLETE",quest=3463,questName="Set Them Ablaze!",target="Southern Tower Ablaze",count=1,map=1427,zone="Searing Gorge",x=44,y=60.9},
-{type="COMPLETE",quest=3463,questName="Set Them Ablaze!",target="Eastern Tower Ablaze",count=1,map=1427,zone="Searing Gorge",x=50.1,y=54.7},
-{type="COMPLETE",quest=3463,questName="Set Them Ablaze!",target="Northern Tower Ablaze",count=1,map=1427,zone="Searing Gorge",x=33.3,y=54.5},
-{type="TURNIN",quest=3463,questName="Set Them Ablaze!",npc=8509,npcName="Squire Maltrake",map=1427,zone="Searing Gorge",x=39,y=39},
+{type="ACCEPT",quest=3462,questName="Squire Maltrake",npc=8479,npcName="Velarok Windblade",map=1427,zone="Searing Gorge",x=39,y=39},
+{type="TURNIN",quest=3462,questName="Squire Maltrake",npc=8509,npcName="Squire Maltrake",map=1427,zone="Searing Gorge",x=39,y=39},
 {type="ACCEPT",quest=7494,questName="Feathermoon Stronghold",npc=2198,npcName="Crier Goodman",map=1453,zone="Stormwind City",x=55,y=62.8,optional=true,note="For Dire Maul (dungeon guide)"}
 }]],
 })

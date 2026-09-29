@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_15_DESOLACE",
     name = "15. Desolace 30-32 (Human)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 30,
@@ -13,10 +13,12 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_16_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 15 of the Human route: level 30 to 32, 46 steps, ~261 min of play in the model (14712 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 48,
+    stepCount = 50,
     steps = [[{
 {type="FLIGHTPATH",npc=6706,npcName="Baritanas Skyriver",map=1443,zone="Desolace",x=64.7,y=10.5},
 {type="ACCEPT",quest=79974,questName="Wet Job",map=1442,zone="Stonetalon Mountains",x=39.6,y=49.9,note="Cozy Sleeping Bag chain: keep it going"},
+{type="ACCEPT",quest=1798,questName="Seeking Strahad",npc=6122,npcName="Gakin the Darkbinder",map=1453,zone="Stormwind City",x=25.4,y=78.4,class={"WARLOCK"}},
+{type="TURNIN",quest=1798,questName="Seeking Strahad",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"}},
 {type="TRAVEL",map=1443,zone="Desolace",x=66.4,y=10.0,radius=60,note="travel to Desolace (Desolace)"},
 {type="HEARTH",npc=11103,npcName="Innkeeper Lyshaerya",map=1443,zone="Nijel's Point",x=66.3,y=6.5,note="talk to Innkeeper Lyshaerya and make this inn your home"},
 {type="ACCEPT",quest=1387,questName="Centaur Bounty",npc=5752,npcName="Corporal Melkins",map=1443,zone="Desolace",x=66.7,y=10.9},
