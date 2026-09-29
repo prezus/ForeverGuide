@@ -1,22 +1,32 @@
 name: Check addon
 
+# Changes reach main only through PRs (the main ruleset requires this job), so PRs are what's checked.
 on:
-  push:
   pull_request:
+  push:
+    branches: [main]
 
 permissions:
   contents: read
 
-# A newer push to the same branch or PR supersedes the run in progress; every main commit keeps its run.
+# A newer push to a PR supersedes its run in progress.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  validate:
+  # A PR can restore caches saved on main, not on another PR: keep the built Lua cached on main.
+  lua-cache:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    # A same-repo PR's commits are already checked by the push run; only fork PRs run here.
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
+    steps:
+      - uses: leafo/gh-actions-lua@6919171ccf181b826f44b9bca76307b577217377 # v13.0.0
+        with:
+          luaVersion: "5.1"
+
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       # Builds Lua 5.1.5 from lua.org once, then restores it from the Actions cache.

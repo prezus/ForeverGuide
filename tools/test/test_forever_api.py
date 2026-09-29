@@ -24,6 +24,18 @@ class InterfaceTest(unittest.TestCase):
                 check_forever_api.check_interface(toc)
 
 
+class AddonFilesTest(unittest.TestCase):
+    def test_lists_lua_files_not_directories(self):
+        """A folder named like a Lua file (CI's .lua/ install) is not read as source."""
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "UI").mkdir()
+            (root / ".lua" / "bin").mkdir(parents=True)
+            (root / "Core.lua").write_text("")
+            (root / "UI" / "Panel.lua").write_text("")
+            self.assertEqual(check_forever_api.addon_files(root), [root / "Core.lua", root / "UI" / "Panel.lua"])
+
+
 @unittest.skipUnless(SOURCE, "set FOREVER_UI_SOURCE to a pinned Forever UI source checkout")
 class ForeverAPITest(unittest.TestCase):
     def test_known_path_passes_and_typo_fails(self):
