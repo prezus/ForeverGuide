@@ -71,7 +71,9 @@ Fields of a decoded record:
 
 Only NPCs, objects and items that matter for quests are included. Coordinates are 0-100 on the
 zone's uiMapID. Race bits: Human 1, Orc 2, Dwarf 4, Night Elf 8, Undead 16, Tauren 32, Gnome 64,
-Troll 128 (77 = all Alliance, 178 = all Horde). Class bits: Warrior 1, Paladin 2, Hunter 4, Rogue 8,
+Troll 128 (77 = all Alliance, 178 = all Horde), and WoW Forever's Skyborne, one bit per faction:
+Alliance Skyborne 65536, Horde Skyborne 131072. A Skyborne also takes any quest open to every
+Classic race of its faction (77 or 178). Class bits: Warrior 1, Paladin 2, Hunter 4, Rogue 8,
 Priest 16, Shaman 64, Mage 128, Warlock 256, Druid 1024.
 
 ## ForeverDB.lua (WoW Forever additions)
