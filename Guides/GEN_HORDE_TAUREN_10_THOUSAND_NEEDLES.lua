@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_10_THOUSAND_NEEDLES",
     name = "10. Thousand Needles 32-33 (Tauren)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 32,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_11_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
     notes = "Chapter 10 of the Tauren route: level 32 to 33, 39 steps, ~112 min of play in the model (25095 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 74,
+    stepCount = 73,
     steps = [[{
 {type="ACCEPT",quest=1145,questName="The Swarm Grows",npc=3428,npcName="Korran",map=1413,zone="The Barrens",x=51,y=29.6},
 {type="ACCEPT",quest=1111,questName="Wharfmaster Dizzywig",npc=4452,npcName="Kravel Koalbeard",map=1441,zone="Thousand Needles",x=77.8,y=77.2},
@@ -25,7 +25,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1532,questName="Call of Air",npc=5906,npcName="Xanis Flameweaver",map=1456,zone="Thunder Bluff",x=25.2,y=21,class={"SHAMAN"}},
 {type="ACCEPT",quest=220,questName="Call of Water",npc=5899,npcName="Brine",map=1413,zone="The Barrens",x=43.4,y=77.4,class={"SHAMAN"}},
 {type="TURNIN",quest=220,questName="Call of Water",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8,class={"SHAMAN"},note="reduced xp (20%) - you out-levelled it"},
-{type="ACCEPT",quest=3633,questName="Goblin Engineering",npc=3494,npcName="Tinkerwiz",map=1413,zone="The Barrens",x=62.6,y=36.2,profession="Engineering",skill=200},
 {type="ACCEPT",quest=3637,questName="Gnome Engineering",npc=3494,npcName="Tinkerwiz",map=1413,zone="The Barrens",x=62.6,y=36.2,profession="Engineering",skill=200},
 {type="TRAVEL",map=1441,zone="Thousand Needles",x=78.8,y=76.9,radius=60,note="travel to Thousand Needles (Thousand Needles)"},
 {type="ACCEPT",quest=1104,questName="Salt Flat Venom",npc=4454,npcName="Fizzle Brassbolts",map=1441,zone="Thousand Needles",x=78.1,y=77.1},
