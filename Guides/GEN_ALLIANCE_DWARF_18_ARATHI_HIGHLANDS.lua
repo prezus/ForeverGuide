@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_18_ARATHI_HIGHLANDS",
     name = "18. Arathi Highlands 33-34 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 33,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_19_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 18 of the Dwarf route: level 33 to 34, 17 steps, ~90 min of play in the model (23598 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 40,
+    stepCount = 39,
     steps = [[{
 {type="FLIGHTPATH",npc=2835,npcName="Cedrik Prose",map=1417,zone="Arathi Highlands",x=45.7,y=46.1},
 {type="TURNIN",quest=79974,questName="Wet Job",map=1432,zone="Loch Modan",x=49.5,y=12.8},
@@ -35,7 +35,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1798,questName="Seeking Strahad",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"},race={"Gnome"}},
 {type="ACCEPT",quest=3629,questName="Goblin Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
 {type="ACCEPT",quest=3630,questName="Gnome Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
-{type="ACCEPT",quest=4181,questName="Goblin Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
 {type="TRAVEL",map=1417,zone="Arathi Highlands",x=46.1,y=46.5,radius=60,note="travel to Arathi Highlands (Arathi Highlands)"},
 {type="ACCEPT",quest=681,questName="Northfold Manor",npc=2700,npcName="Captain Nials",map=1417,zone="Arathi Highlands",x=45.8,y=47.6},
 {type="ACCEPT",quest=8260,questName="Arathor Basic Care Package",npc=15127,npcName="Samuel Hawke",map=1417,zone="Arathi Highlands",x=46,y=45.2},
