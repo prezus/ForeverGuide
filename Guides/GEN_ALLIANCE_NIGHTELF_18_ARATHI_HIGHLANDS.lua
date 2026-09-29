@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_18_ARATHI_HIGHLANDS",
     name = "18. Arathi Highlands 33-34 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 33,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_19_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 18 of the NightElf route: level 33 to 34, 17 steps, ~90 min of play in the model (23598 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 35,
+    stepCount = 34,
     steps = [[{
 {type="FLIGHTPATH",npc=2835,npcName="Cedrik Prose",map=1417,zone="Arathi Highlands",x=45.7,y=46.1},
 {type="ACCEPT",quest=223,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.2,y=48},
@@ -30,7 +30,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1719,questName="The Affray",npc=6236,npcName="Klannoc Macleod",map=1413,zone="The Barrens",x=68.6,y=49,class={"WARRIOR"}},
 {type="ACCEPT",quest=3629,questName="Goblin Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
 {type="ACCEPT",quest=3630,questName="Gnome Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
-{type="ACCEPT",quest=4181,questName="Goblin Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
 {type="TRAVEL",map=1417,zone="Arathi Highlands",x=46.1,y=46.5,radius=60,note="travel to Arathi Highlands (Arathi Highlands)"},
 {type="ACCEPT",quest=681,questName="Northfold Manor",npc=2700,npcName="Captain Nials",map=1417,zone="Arathi Highlands",x=45.8,y=47.6},
 {type="ACCEPT",quest=8260,questName="Arathor Basic Care Package",npc=15127,npcName="Samuel Hawke",map=1417,zone="Arathi Highlands",x=46,y=45.2},
