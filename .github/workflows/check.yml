@@ -1,16 +1,41 @@
 name: Check addon
 
+# Changes reach main only through PRs (the main ruleset requires this job), so PRs are what's checked.
 on:
-  push:
   pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# A newer push to a PR supersedes its run in progress.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  # A PR can restore caches saved on main, not on another PR: keep the built Lua cached on main.
+  lua-cache:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: leafo/gh-actions-lua@6919171ccf181b826f44b9bca76307b577217377 # v13.0.0
+        with:
+          luaVersion: "5.1"
+
   validate:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      # Builds Lua 5.1.5 from lua.org once, then restores it from the Actions cache.
       - name: Install Lua 5.1
-        run: sudo apt-get update && sudo apt-get install -y lua5.1
+        uses: leafo/gh-actions-lua@6919171ccf181b826f44b9bca76307b577217377 # v13.0.0
+        with:
+          luaVersion: "5.1"
+      - name: Name it lua5.1
+        run: ln -s lua "$GITHUB_WORKSPACE/.lua/bin/lua5.1"
       - name: Test engine
         run: lua5.1 tools/test/run_tests.lua
       - name: Validate guide sources

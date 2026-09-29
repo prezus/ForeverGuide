@@ -20,6 +20,12 @@ DIRECT = re.compile(r"\b(C_\w+)\s*\.\s*(\w+)\b")
 STRING = re.compile(r"\"(?:\\.|[^\"\\])*\"|'(?:\\.|[^'\\])*'")
 
 
+def addon_files(root):
+    """The handwritten Lua files: root and UI/."""
+    paths = sorted(root.glob("*.lua")) + sorted((root / "UI").glob("*.lua"))
+    return [path for path in paths if path.is_file()]
+
+
 def check_interface(toc):
     major, minor, patch = map(int, VERSION.split(".")[:3])
     expected = major * 10000 + minor * 100 + patch
@@ -47,7 +53,7 @@ def main():
         if namespace:
             available.update(namespace.group(1) + "." + name for name in FUNCTION.findall(text))
 
-    files = [Path(p) for p in sys.argv[2:]] or sorted(ROOT.glob("*.lua")) + sorted((ROOT / "UI").glob("*.lua"))
+    files = [Path(p) for p in sys.argv[2:]] or addon_files(ROOT)
     missing = []
     literal_count = direct_count = 0
     for path in files:
