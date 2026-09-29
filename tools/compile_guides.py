@@ -44,6 +44,8 @@ GUIDE_FIELDS = {
     "modelMinutes": int, "modelXph": int, "steps": list,
 }
 ID_RE = re.compile(r"^[A-Z0-9_]+$")
+LUA_NAME = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*\Z")
+LUA_KEYWORDS = set("and break do else elseif end false for function if in local nil not or repeat return then true until while".split())
 GUIDE_KINDS = {"dungeon"}
 
 
@@ -83,6 +85,9 @@ def validate(guide, filename):
         raise GuideError(f"{filename}: kind '{guide['kind']}' must be one of {sorted(GUIDE_KINDS)}")
     if not guide["steps"]:
         raise GuideError(f"{filename}: no steps")
+    for listkey in ("class", "race"):
+        if listkey in guide and not all(isinstance(v, str) for v in guide[listkey]):
+            raise GuideError(f"{filename}: {listkey} must be a list of strings")
 
     for i, step in enumerate(guide["steps"], start=1):
         where = f"{filename} step {i}"
@@ -155,6 +160,10 @@ def lua_value(v, indent=0, compact=False):
         return "{" + inner + "}" if compact else "{ " + inner + " }"
     if isinstance(v, dict):
         keys = [k for k in KEY_ORDER if k in v] + sorted(k for k in v if k not in KEY_ORDER)
+        for k in keys:
+            # a key is written unquoted: anything but a plain name would be Lua code
+            if not (isinstance(k, str) and LUA_NAME.match(k) and k not in LUA_KEYWORDS):
+                raise GuideError(f"cannot serialise key {k!r}")
         inner = sep.join(f"{k}{eq}{lua_value(v[k], indent, compact)}" for k in keys)
         return "{" + inner + "}" if compact else "{ " + inner + " }"
     raise GuideError(f"cannot serialise {v!r}")
