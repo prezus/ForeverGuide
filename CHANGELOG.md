@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: fly between learned flight paths where it's faster (about 1,400 flights across the routes), and about 280 more quests placed
 - Data: quest database tables regenerated; refined positions for 38 objects, and the tables no longer carry source attribution lines.
 - Guides: druids learn Cat Form (The Great Cat Spirit's relics at the Stormrage Barrow Dens) and dwarf shamans the Healing Stream Totem (Call of Water's waterskins placed); step distances recomputed with corrected map sizes for Mulgore, Eastern Plaguelands, Blasted Lands and Zephras Isle.
 - Guides: no step asks for a quest before the quest it needs is handed in (Excelsior, Shadow Magic, Battle of Hillsbrad, Call to Arms and others now follow it), and breadcrumbs come before the quest they lead to or not at all (Your Place in the World, Eagan Peltskinner, Rejold's New Brew, Rude Awakening, Tabetha's Task, Camp Mojache).
