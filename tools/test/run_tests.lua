@@ -2137,18 +2137,21 @@ do
     MOCK_ABANDON(413); settle()
 end
 
--- class-only WoW Forever quests: the class comes from the Forever overlay, not the Classic database
+-- class-limited WoW Forever quests: the second Stalk With The Earthmother is for shamans (the first
+-- is open to Tauren, Orc and Troll warriors, shamans and druids, so it cannot stand for it)
 do
-    check(ns.DB:GetQuest(76156) and ns.DB:GetQuest(76156).forever and ns.DB:GetQuest(76156).classes == 64, "the overlay marks Forever's Stalk With The Earthmother as shaman-only")
-    local mine = MOCK.class
+    local q = ns.DB:GetQuest(76160)
+    check(q and q.classes and q.classes > 0, "Forever's Stalk With The Earthmother (76160) is limited by class")
+    local class, race, faction = MOCK.class, MOCK.race, MOCK.faction
+    MOCK.race, MOCK.faction = { "Tauren", "Tauren" }, "Horde"
     MOCK.class = { "Warrior", "WARRIOR", 1 }; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(76156) == false, "a warrior cannot take the shaman quest")
-    check(G:StepApplies({ type = "ACCEPT", quest = 76156 }) == false, "...so its step is not in a warrior's route")
+    check(ns.DB:RaceClassOK(76160) == false, "a warrior cannot take the shaman quest")
+    check(G:StepApplies({ type = "ACCEPT", quest = 76160 }) == false, "...so its step is not in a warrior's route")
     MOCK.class = { "Shaman", "SHAMAN", 7 }; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(76156) == true and G:StepApplies({ type = "ACCEPT", quest = 76156 }) == true, "a shaman gets it")
+    check(ns.DB:RaceClassOK(76160) == true and G:StepApplies({ type = "ACCEPT", quest = 76160 }) == true, "a shaman gets it")
     MOCK.class = { "Mage", "MAGE", 8 }; ns.Player.cache = {}
     check(G:StepApplies({ type = "ACCEPT", quest = 7, class = { "WARRIOR" } }) == false, "a warrior-only guide step is not a mage's")
-    MOCK.class = mine; ns.Player.cache = {}
+    MOCK.class, MOCK.race, MOCK.faction = class, race, faction; ns.Player.cache = {}
 end
 
 -- Skyborne (WoW Forever's race, file name "Skyborne", on both factions) has no bit in the Classic
