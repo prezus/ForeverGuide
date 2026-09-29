@@ -21,13 +21,13 @@ A `/fg wrong <description>` report is saved locally; it does not open a GitHub i
 1. Branch from `main` and keep each pull request focused on one fix or guide correction. Read the
    [client and player-control policy](COMPATIBILITY_POLICY.md) before changing runtime Lua, UI or loaded data.
    In the PR, identify new game API calls, what triggers them, and whether they act on the player's behalf.
-2. Edit `guides-src/*.json`, **not** generated `Guides/*.lua` or `Guides/Guides.xml`.
-   The step format is in [guides-src/SCHEMA.md](guides-src/SCHEMA.md).
+2. Leave the routes and quest data alone: `guides-src/`, `Guides/`, `data-src/tables/` and `Data/`
+   are published by the maintainer's route planner, and the next publish replaces hand edits. Report
+   a wrong step in an issue instead ([README, "Routes"](README.md#routes)).
 3. From the addon root, run the relevant checks:
 
    ```sh
-   python3 tools/compile_guides.py           # after guide edits; commit generated outputs
-   python3 tools/compile_guides.py --check   # validate without writing
+   python3 tools/compile_guides.py --check   # guides compile to what Guides/ holds
    lua5.1 tools/test/run_tests.lua           # headless engine checks
    ```
 

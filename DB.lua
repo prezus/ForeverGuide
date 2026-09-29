@@ -1,8 +1,8 @@
 -- ============================================================
 -- ForeverGuide / DB.lua
 -- Access to the bundled quest database (Data/*.lua, packed by tools/pack_data.lua
--- from data-src/tables, which tools/build_questdb.lua builds from Questie's Classic
--- Era data and the Forever tools extend). Each record is stored as a string and
+-- from data-src/tables, which the maintainer's data build writes from Questie's Classic
+-- Era data and Forever's own sources). Each record is stored as a string and
 -- decoded the first time it is read; the tables below are what DB:Get* returns.
 --
 --   ns.QuestDB[id]  = { n, lvl, req, maxlvl, races, classes, zone, text,

@@ -1,7 +1,7 @@
 -- ============================================================
 -- ForeverGuide / tools/pack_data.lua
--- Pack the full data tables (data-src/tables/*.lua, written by build_questdb.lua,
--- merge_recorded.py, import_db2.py, import_rxp.py, gen_vanilla_ids.py) into
+-- Pack the full data tables (data-src/tables/*.lua, published by the maintainer's data build,
+-- or written by merge_recorded.py / import_rxp.py) into
 -- the addon's Data/*.lua:
 --
 --     lua5.1 tools/pack_data.lua            write Data/

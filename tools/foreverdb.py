@@ -3,9 +3,9 @@
 Shared code for the Forever data overlay.
 
 Vanilla data lives in Data/QuestDB.lua etc. (built from Questie). Everything
-Forever adds or changes is accumulated in data-src/forever.json by two tools
+Forever adds or changes is accumulated in data-src/forever.json by
     tools/merge_recorded.py   evidence collected in-game by the addon (contributed facts / harvest / scan)
-    tools/import_db2.py       the client's own DB2 tables (CSV exports from wago.tools)
+and the maintainer's data build (the client's own DB2 tables, CSV exports from wago.tools),
 and emitted to Data/ForeverDB.lua, which DB.lua merges over the vanilla tables at load.
 
 forever.json / ForeverDB.lua shape:
