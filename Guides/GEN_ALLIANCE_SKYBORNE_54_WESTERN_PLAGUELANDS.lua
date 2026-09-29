@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_54_WESTERN_PLAGUELANDS",
     name = "54. Western Plaguelands 57-60 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 57,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Chapter 54 of the Skyborne route: level 57 to 60, 6 steps, ~644 min of play in the model (773 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 23,
+    stepCount = 21,
     steps = [[{
 {type="TRAVEL",map=1422,zone="Western Plaguelands",x=44.0,y=83.5,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
 {type="TURNIN",quest=5903,questName="A Plague Upon Thee",npc=11616,npcName="Nathaniel Dumah",map=1422,zone="Western Plaguelands",x=43.4,y=84.8},
@@ -26,8 +26,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=5507,questName="Mantles of the Dawn",npc=10857,npcName="Argent Quartermaster Lightspark",map=1422,zone="Western Plaguelands",x=42.8,y=83.8,note="Objectives: Argent Dawn"},
 {type="COLLECT",quest=5507,questName="Mantles of the Dawn",target="Argent Dawn Valor Token",count=10,map=1422,zone="Western Plaguelands",x=42.8,y=83.8,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
 {type="TURNIN",quest=5507,questName="Mantles of the Dawn",npc=10857,npcName="Argent Quartermaster Lightspark",map=1422,zone="Western Plaguelands",x=42.8,y=83.8},
-{type="COLLECT",quest=5521,questName="Chromatic Mantle of the Dawn",target="Argent Dawn Valor Token",count=25,map=1422,zone="Western Plaguelands",x=42.8,y=83.8,near=true,mobs="Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock"},
-{type="TURNIN",quest=5521,questName="Chromatic Mantle of the Dawn",npc=10857,npcName="Argent Quartermaster Lightspark",map=1422,zone="Western Plaguelands",x=42.8,y=83.8},
 {type="ACCEPT",quest=5848,questName="Of Love and Family",npc=11936,npcName="Artist Renfray",map=1422,zone="Western Plaguelands",x=65.6,y=75.4,optional=true,note="For Stratholme (dungeon guide)"},
 {type="NOTE",optional=true,text="Ready for Stratholme",note="Picked up: The Flesh Does Not Lie, The Great Fras Siabi, Houses of the Holy, The Archivist, The Restless Souls, Of Love and Family. When you have a group, open Stratholme under Dungeons."},
 {type="GRIND",npc=1802,target="Hungering Wraith",level=59,map=1422,zone="Western Plaguelands",x=62.2,y=60.2,near=true,note="grind Hungering Wraith (level 56-58) to level 59 - nothing worth questing at 58"},
