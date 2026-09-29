@@ -14,14 +14,12 @@ import check_forever_api
 
 
 class InterfaceTest(unittest.TestCase):
-    def test_interface_matches_client_version(self):
+    def test_interface_check_can_fail(self):
+        """The shipped TOC passes; a TOC for another client build is rejected."""
+        check_forever_api.check_interface(ROOT / "ForeverGuide.toc")
         with tempfile.TemporaryDirectory() as directory:
             toc = Path(directory) / "ForeverGuide.toc"
-            major, minor, patch = map(int, check_forever_api.VERSION.split(".")[:3])
-            expected = major * 10000 + minor * 100 + patch
-            toc.write_text("## Interface: %d\n" % expected)
-            check_forever_api.check_interface(toc)
-            toc.write_text("## Interface: %d\n" % (expected - 1))
+            toc.write_text("## Interface: 11500\n")
             with self.assertRaises(SystemExit):
                 check_forever_api.check_interface(toc)
 

@@ -9,6 +9,9 @@ Verify client-dependent behavior in-game; the headless mock is not the client.
 
 - Guide steps: edit `guides-src/*.json` ([schema](guides-src/SCHEMA.md)), then run
   the guide compiler (command below) and commit the generated `Guides/` changes.
+  The engine test plays the frozen guides in `tools/test/fixtures/guides-src/`, compiled
+  the same way into `tools/test/fixtures/Guides/`; `--check` fails when either set is stale.
+  Regenerating a shipped route must not touch the fixtures.
 - Quest data: check [Data/README.md](Data/README.md) for source and redistribution
   constraints before editing inputs. The tools write the full tables to `data-src/tables/`;
   `lua5.1 tools/pack_data.lua` packs them into `Data/*.lua`. Neither is hand-edited.
@@ -40,6 +43,9 @@ When Forever ships a new build, move the pin (the commit in `check.yml`, `VERSIO
 1. For a bug, reproduce it with a check that fails **before** changing production code.
    For a feature, state an observable expected result independently of the implementation.
 2. Use the existing `tools/test/run_tests.lua` mock for behavior it can actually simulate.
+   Put the checks in their own `section(...)`, use `need()` for a precondition the section
+   cannot do without, and register synthetic guides or `ns.QuestDB[id]` records rather than
+   asserting what a shipped guide or the database happens to contain today.
    Assert the meaningful outcome and at least one failure/boundary case when relevant.
    A check that only mirrors a new constant or mock implementation does not prove behavior.
 3. Keep existing assertions intact unless the intended behavior changed; explain that
