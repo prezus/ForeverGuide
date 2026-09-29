@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_47_WINTERSPRING",
     name = "47. Winterspring 55-55 (Tauren)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 55,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_48_AZSHARA",
     author = "ForeverGuide route planner",
     notes = "Chapter 47 of the Tauren route: level 55 to 55, 20 steps, ~84 min of play in the model (31915 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 37,
+    stepCount = 36,
     steps = [[{
 {type="FLIGHTPATH",npc=11139,npcName="Yugrek",map=1452,zone="Winterspring",x=60.5,y=36.3},
 {type="TRAVEL",map=1452,zone="Winterspring",x=61.4,y=38.2,radius=60,note="travel to Winterspring (Winterspring)"},
@@ -33,7 +33,6 @@ ns.RegisterGuide({
 {type="KILL",quest=5082,questName="Threat of the Winterfall",npc=7442,target="Winterfall Pathfinder / Winterfall Totemic",count=8,map=1452,zone="Winterspring",x=33.4,y=37.7,near=true},
 {type="KILL",quest=5082,questName="Threat of the Winterfall",npc=7440,target="Winterfall Den Watcher",count=8,map=1452,zone="Winterspring",x=30.5,y=36.9,near=true},
 {type="ACCEPT",quest=8464,questName="Winterfall Activity",npc=11556,npcName="Salfa",map=1452,zone="Winterspring",x=27.7,y=34.5},
-{type="COLLECT",quest=9202,questName="Craftsman's Writ - Major Healing Potion",target="Major Healing Potion",count=20,map=1452,zone="Winterspring",x=28,y=34.5,optional=true,near=true,mobs="Blue Dragonspawn / Wyrmkin Dreamwalker / Stonard Shaman / Swamp Talker"},
 {type="KILL",quest=8464,questName="Winterfall Activity",npc=7440,target="Winterfall Den Watcher",count=8,map=1452,zone="Winterspring",x=30.3,y=36.3,near=true},
 {type="TURNIN",quest=3908,questName="It's a Secret to Everybody",npc=9298,npcName="Donova Snowden",map=1452,zone="Winterspring",x=31.2,y=45.2},
 {type="TURNIN",quest=980,questName="The New Springs",npc=9298,npcName="Donova Snowden",map=1452,zone="Winterspring",x=31.2,y=45.2},
