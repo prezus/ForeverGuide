@@ -1450,7 +1450,11 @@ section("a stray Forever position must not pull a giver step away from its own s
     local bare = { type = "ACCEPT", quest = 990501, npc = 990501 }
     local _, bx, by = ns.Navigation:ResolveStep(bare)
     check(math.abs(bx - 43.0) < 0.2 and math.abs(by - 47.4) < 0.2, "a giver step without coordinates still takes the Forever point nearest the player")
-    ns.NpcDB[990501] = nil
+    -- boundary: the spot's nearest spawn is chosen by distance, not by its place in the list
+    ns.NpcDB[990502] = { n = "Two Spawns", spm = { [1429] = { { 43.0, 47.4 }, { 34.7, 51.6 } } } }
+    local _, cx, cy = ns.Navigation:ResolveStep({ type = "ACCEPT", quest = 990502, npc = 990502, map = 1429, x = 34.6, y = 51.7 })
+    check(math.abs(cx - 34.7) < 0.2 and math.abs(cy - 51.6) < 0.2, "the spawn nearest the step's spot wins even when listed last (" .. tostring(cx) .. "," .. tostring(cy) .. ")")
+    ns.NpcDB[990501], ns.NpcDB[990502] = nil, nil
 end)
 
 -- ---- distances: yards, abbreviated from a thousand on, like the game's own waypoint --------
@@ -1582,6 +1586,26 @@ section("the Quest Guide window: rows, header, states, settings, waypoint fallba
     ns.Tracker:SetMode("guide"); settle()
     ns.UI:Show(); settle()
     local f = ForeverGuideFrame
+    -- the distance column: a row in view says how far its step is, and follows the player
+    do
+        local px, py = MOCK.mapX, MOCK.mapY
+        f.list:UpdateDistances(true)
+        local row
+        for i = f.list.first or 1, f.list.last or 0 do
+            local e = f.list.entries[i]
+            if e and e.step and e.state ~= "active" then row = f.list:RowFor(i) break end
+        end
+        need(row ~= nil, "a step other than the current one is in view")
+        local d1 = row.dist:GetText()
+        check(type(d1) == "string" and d1:find("yd", 1, true) ~= nil, "a row in view shows its step's distance (" .. tostring(d1) .. ")")
+        MOCK_MOVE(95, 95); f.list:UpdateDistances(true)
+        local d2 = row.dist:GetText()
+        check(d2 ~= d1, "...and it follows the player (" .. tostring(d1) .. " -> " .. tostring(d2) .. ")")
+        ns.Commands:Run("qg distances off"); f.list:UpdateDistances(true)
+        check((row.dist:GetText() or "") == "", "distances off clears the column")
+        ns.Commands:Run("qg distances on")
+        MOCK.mapX, MOCK.mapY = px, py
+    end
     local shownRows, activeRows, activeIdx = 0, 0, nil
     for i, e in ipairs(f.list.entries) do
         shownRows = shownRows + 1
@@ -1769,6 +1793,17 @@ section("level-gated quests: skipped until the level is reached, then revisited"
     ns.Persist:DecodeChar(enc)
     G.progress = ns.char.guides.TEST_GATE
     check(G.progress.deferred and G.progress.deferred[20] == 2, "the deferred quest comes back from the cvar mirror")
+    -- where the player is in the other chapters travels too
+    ns.char.guides.TEST_OTHER_CHAPTER = { step = 7, done = {}, version = 1 }
+    enc = ns.Persist:EncodeChar()
+    ns.char.guides.TEST_OTHER_CHAPTER = nil
+    ns.Persist:DecodeChar(enc)
+    check(ns.char.guides.TEST_OTHER_CHAPTER and ns.char.guides.TEST_OTHER_CHAPTER.step == 7, "another chapter's position comes back from the cvar mirror")
+    ns.char.guides.TEST_OTHER_CHAPTER = nil
+    -- an older mirror spelt flags out in full
+    ns.char.autoPickGuide = false
+    ns.Persist:DecodeChar("v=1;a=true")
+    check(ns.char.autoPickGuide == true, "a flag written as 'true' by an older build still reads as on")
     MOCK_LEVEL(18); settle()
     check(G.current == 2, "reaching the level goes back to the deferred accept (" .. tostring(G.current) .. ")")
     MOCK.log[125] = nil
@@ -1795,8 +1830,8 @@ section("the player's own order: Later / Do now, and skipped steps that come bac
 
     -- Later on the current accept: it comes back after the next five open steps, and the quest's own
     -- objective in between goes with it; the turn-in further on stays where it is
-    check(G:Later() == true, "Later on the current step works")
-    check(seqString() == "2,3,5,6,7,1,4,8,9", "the accept and its objective moved behind five open steps (" .. seqString() .. ")")
+    ns.Commands:Run("later")
+    check(seqString() == "2,3,5,6,7,1,4,8,9", "/fg later moves the accept and its objective behind five open steps (" .. seqString() .. ")")
     check(G.current == 2, "the walk goes on at the next step (" .. tostring(G.current) .. ")")
     check(not G.progress.done[1], "a step put off is not done")
     ns.UI:Refresh(); settle()
@@ -2092,6 +2127,23 @@ section("a quest this character's race can never take is not part of the route",
     if ns.Quest:IsOnQuest(4010) then MOCK_ABANDON(4010); settle() end
 end)
 
+-- a quest the client no longer has (vanilla data, no Forever id) is walked past like a race-only one
+section("a quest gone from Forever is not part of the route", function()
+    ns.QuestDB[990701] = { n = "Gone Quest", removed = true }
+    ns.QuestDB[990702] = { n = "Still Here" }
+    ns.RegisterGuide({ id = "TEST_REMOVED", name = "removed test", version = 1, faction = "Alliance", minLevel = 1, maxLevel = 10, map = 1429, zone = "Elwynn Forest",
+        steps = {
+            { type = "ACCEPT", quest = 990701, questName = "Gone Quest", map = 1429, x = 40, y = 40 },
+            { type = "TURNIN", quest = 990701, questName = "Gone Quest", map = 1429, x = 40, y = 40 },
+            { type = "ACCEPT", quest = 990702, questName = "Still Here", map = 1429, x = 41, y = 41 },
+        } })
+    G:Activate("TEST_REMOVED", true); settle()
+    check(cur() == 3 and step().quest == 990702, "a removed quest's accept and turn-in are passed over (" .. tostring(cur()) .. ")")
+    check(G:StepApplies({ type = "ACCEPT", quest = 990702 }) == true, "a quest the client still has applies")
+    ns.QuestDB[990701], ns.QuestDB[990702] = nil, nil
+    G:Activate("HUMAN_NORTHSHIRE_1_6", true); settle()
+end)
+
 -- a breadcrumb is passed once its quest is taken: Rejold's New Brew (415) leads to Shimmer Stout (413)
 section("a breadcrumb is passed once its quest is taken", function()
     local bread = { type = "ACCEPT", quest = 415 }
@@ -2228,6 +2280,23 @@ section("level-up announcement", function()
     ns.Commands:Run("ding auto")
 end)
 
+-- ---- a quest about to stop paying is flagged where the tracker lists it ----
+section("a quest about to stop paying is flagged in the tracker", function()
+    local was = ns.Player:GetLevel()
+    local function cand(q) for _, c in ipairs(ns.Tracker.candidates or {}) do if c.questID == q then return c end end end
+    MOCK_LEVEL(1); settle()
+    MOCK_ACCEPT(783, "A Threat Within"); settle()
+    ns.Tracker:SetMode("auto"); ns.Tracker:Rethink()
+    need(cand(783) ~= nil, "the level-1 quest is a tracker candidate")
+    check(cand(783).grey == nil, "at level 1 it carries no warning (" .. tostring(cand(783).grey) .. ")")
+    MOCK_LEVEL(12); settle()
+    ns.Tracker:Rethink()
+    check(cand(783) and cand(783).grey and cand(783).grey:find("xp", 1, true) ~= nil, "at level 12 the tracker says the quest is out-levelled (" .. tostring(cand(783) and cand(783).grey) .. ")")
+    MOCK_ABANDON(783); settle()
+    ns.Tracker:SetMode("guide")
+    MOCK_LEVEL(was); settle()
+end)
+
 -- ---- the options panel fits in the settings canvas -------------------------------------------
 -- (Ilya, 2026-09-21: "the text is overflowing" - the checkbox list ran off the bottom of the
 --  Options window and drew over the game)
@@ -2308,15 +2377,18 @@ section("a chapter of another race's route", function()
     need(route ~= nil and mine ~= nil, "the followed route has a chapter for level 20 (" .. tostring(mine and mine.id) .. ")")
     need(ns.Guide:ForMyRace(mine) == true, "and it is one for this character's race")
 
+    local said, realPrint = {}, ns.Print
+    ns.Print = function(msg) said[#said + 1] = tostring(msg) end
     ns.Guide:Activate(chapterId("GEN_ALLIANCE_NIGHTELF_06_"), true); settle()
     local race, instead = ns.Guide:OffRouteChapter()
     check(race == "NIGHTELF" and instead ~= nil, "a night elf chapter is spotted as off-route (" .. tostring(race) .. " -> " .. tostring(instead and instead.id) .. ")")
+    check(#said == 1 and said[1]:find("your own route has", 1, true) ~= nil, "and the player is told once, with the way back (" .. #said .. ": " .. tostring(said[1]) .. ")")
+    ns.Guide:WarnOffRoute()
+    check(#said == 1, "the warning is not repeated for the same chapter")
+    ns.Print = realPrint
 
     ns.Guide:Activate(mine.id, true); settle()
     check(ns.Guide:OffRouteChapter() == nil, "our own chapter raises nothing")
-
-    -- and auto-pick prefers our own route's chapter over another race's
-    local pick = ns.Guide:AutoPick()
 
     -- asking for another route by hand is not second-guessed
     ns.char.route = "GEN_ALLIANCE_NIGHTELF"
@@ -2356,11 +2428,11 @@ section("flight points and the trainer nudge", function()
     check(R:CheckFlight("tick") == nil, "and does not say it twice")
 
     -- /fg fp points the arrow at it and hands the marker back on arrival
-    local go = R:GoToFlightPoint()
-    check(go ~= nil and ns.Navigation.override == "flightpoint" and ns.Navigation.target.owner == "fp",
+    ns.Commands:Run("fp")
+    check(ns.Navigation.override == "flightpoint" and ns.Navigation.target.owner == "fp",
         "/fg fp takes the marker (" .. tostring(ns.Navigation.target and ns.Navigation.target.label) .. ")")
-    R:ReleaseFlightPoint()
-    check(ns.Navigation.override == nil, "and gives it back")
+    ns.Commands:Run("fp off")
+    check(ns.Navigation.override == nil, "/fg fp off gives it back")
 
     -- standing at a flight master teaches us what we already have
     MOCK_TAXIMAP({ { name = "Darkshire", state = 0 }, { name = "Menethil Harbor", state = 1 }, { name = "Grom'gol", state = 2 } })
