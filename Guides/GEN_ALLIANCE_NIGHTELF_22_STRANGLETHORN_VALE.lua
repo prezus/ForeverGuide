@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_22_STRANGLETHORN_VALE",
     name = "22. Stranglethorn Vale 38-39 (Night Elf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 38,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_23_BADLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 22 of the NightElf route: level 38 to 39, 43 steps, ~193 min of play in the model (18426 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (3 here).",
-    stepCount = 56,
+    stepCount = 55,
     steps = [[{
 {type="TRAVEL",map=1434,zone="Booty Bay",x=27.0,y=77.3,radius=60,note="use your hearthstone (Booty Bay)"},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.3,y=76.3,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
@@ -35,7 +35,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=599,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
 {type="COLLECT",quest=587,questName="Up to Snuff",target="Snuff",count=15,map=1434,zone="Stranglethorn Vale",x=29.7,y=80.8,near=true},
 {type="TURNIN",quest=587,questName="Up to Snuff",npc=2488,npcName="Deeg",map=1434,zone="Stranglethorn Vale",x=26.9,y=77.4},
-{type="ACCEPT",quest=349,questName="Stranglethorn Fever",npc=1449,npcName="Witch Doctor Unbagwa",map=1434,zone="Stranglethorn Vale",x=35.2,y=60.4},
 {type="ACCEPT",quest=627,questName="Favor for Krazek",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2},
 {type="COLLECT",quest=600,questName="Venture Company Mining",target="Singing Blue Crystal",count=10,map=1434,zone="Stranglethorn Vale",x=42,y=46.3,near=true},
 {type="ACCEPT",quest=196,questName="Raptor Mastery",npc=715,npcName="Hemet Nesingwary",map=1434,zone="Stranglethorn Vale",x=35.7,y=10.8},
