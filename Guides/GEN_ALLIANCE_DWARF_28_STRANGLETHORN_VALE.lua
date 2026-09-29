@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_28_STRANGLETHORN_VALE",
     name = "28. Stranglethorn Vale 41-42 (Dwarf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 41,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_29_TANARIS",
     author = "ForeverGuide route planner",
     notes = "Chapter 28 of the Dwarf route: level 41 to 42, 26 steps, ~148 min of play in the model (26642 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 41,
+    stepCount = 39,
     steps = [[{
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.5,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
 {type="ACCEPT",quest=604,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
@@ -27,8 +27,6 @@ ns.RegisterGuide({
 {type="COLLECT",quest=621,questName="Zanzil's Secret",target="Zanzil's Mixture",count=12,map=1434,zone="Stranglethorn Vale",x=34.4,y=52.2,near=true},
 {type="KILL",quest=609,questName="Voodoo Dues",npc=2536,target="Jon-Jon the Crow / Maury \"Club Foot\" Wilkins",map=1434,zone="Stranglethorn Vale",x=34.9,y=51.8,note="loot Jon-Jon's Golden Spyglass"},
 {type="KILL",quest=609,questName="Voodoo Dues",npc=2537,target="Chucky \"Ten Thumbs\"",map=1434,zone="Stranglethorn Vale",x=40,y=58.2,note="loot Chucky's Huge Ring"},
-{type="COLLECT",quest=349,questName="Stranglethorn Fever",target="Gorilla Fang",count=10,map=1434,zone="Stranglethorn Vale",x=38.1,y=61.1,near=true,mobs="Mistvale Gorilla / Jungle Thunderer / Enraged Silverback Gorilla / Elder Mistvale Gorilla"},
-{type="TURNIN",quest=349,questName="Stranglethorn Fever",npc=1449,npcName="Witch Doctor Unbagwa",map=1434,zone="Stranglethorn Vale",x=35.2,y=60.4,note="reduced xp (80%) - you out-levelled it"},
 {type="TURNIN",quest=617,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4},
 {type="TURNIN",quest=621,questName="Zanzil's Secret",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
 {type="TURNIN",quest=609,questName="Voodoo Dues",npc=2501,npcName="\"Sea Wolf\" MacKinley",map=1434,zone="Stranglethorn Vale",x=27.8,y=77.1},
