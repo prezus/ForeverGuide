@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_02_DARKSHORE",
     name = "2. Darkshore 13-18 (Skyborne)",
-    version = 13,
+    version = 14,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 13,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_03_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Skyborne route: level 13 to 18, 139 steps, ~206 min of play in the model (20366 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 184,
+    stepCount = 187,
     steps = [[{
 {type="FLIGHTPATH",npc=3841,npcName="Caylais Moonfeather",map=1439,zone="Darkshore",x=36.3,y=45.6},
 {type="ACCEPT",quest=1684,questName="Elanaria",npc=3657,npcName="Sentinel Elissa Starbreeze",map=1439,zone="Darkshore",x=39,y=43.4,class={"WARRIOR"}},
@@ -198,6 +198,9 @@ ns.RegisterGuide({
 {type="KILL",quest=98013,questName="Swelling Forces",npc=2183,target="Stormscale Warrior",count=6,map=1439,zone="Darkshore",x=61.2,y=19.8},
 {type="ACCEPT",quest=98028,questName="Baron Marinous",npc=270294,npcName="Baron Marinous",map=1439,zone="Darkshore",x=59.2,y=22.6,optional=true,note="Loot Clouded Water Globe from Baron Marinous and use it to start the quest; New in Forever; Elite - group up"},
 {type="TURNIN",quest=2098,questName="Gyromast's Retrieval",npc=6667,npcName="Gelkak Gyromast",map=1439,zone="Darkshore",x=56.6,y=13.5},
+{type="ACCEPT",quest=6122,questName="The Principal Source",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"}},
+{type="COLLECT",quest=6122,questName="The Principal Source",target="Filled Cliffspring Falls Sampler",count=1,map=1439,zone="Darkshore",x=54.9,y=33.3,class={"DRUID"}},
+{type="TURNIN",quest=6122,questName="The Principal Source",npc=3702,npcName="Alanndarian Nightsong",map=1439,zone="Darkshore",x=37.6,y=40.6,class={"DRUID"}},
 {type="TURNIN",quest=951,questName="Mathystra Relics",npc=3616,npcName="Onu",map=1439,zone="Darkshore",x=43.5,y=76.3}
 }]],
 })

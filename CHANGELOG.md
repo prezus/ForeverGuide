@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: Skyborne are offered the quests WoW Forever opened to them, and quests only Skyborne may take are no longer offered to other races. Alliance Skyborne druids get The Principal Source in Darkshore and learn Cure Poison.
 - Guides: when the game lets you take only one of a set of quests, the guide offers one: one engineering specialisation, one Argent Dawn mantle, your own faction's A Call to Arms: The Plaguelands!, and one race version of Call of Fire, Call of Water, The Hunter's Path, Heeding the Call, Summon Felsteed and Hot and Itchy.
 - Guides: quests that aren't in the game client are out: Thunderbrew, Stranglethorn Fever, Troll Necklace Bounty, Writ of Safe Passage and two Craftsman's Writs. Paladins' Tome of Divinity and Tome of Valor steps (Redemption, Sense Undead) are out again: the quests that start them aren't in the client. Felwood and Winterspring collect steps name the item instead of "item 11512".
 - The quest database comes from WoW Forever's own data instead of Classic Era's: Forever's NPC and object positions, zone names, quest XP, levels and names; 241 more complete quests; givers, turn-ins and next-in-chain for about 500 quests; exact race lists. Quests Questie only keeps off the map are no longer marked "not obtainable".
