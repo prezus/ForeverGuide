@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_06_STRANGLETHORN_VALE",
   "name": "6. Stranglethorn Vale 32-32 (Skyborne)",
-  "version": 7,
+  "version": 8,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 32,
@@ -30,7 +30,6 @@
     {"type": "COLLECT", "quest": 189, "questName": "Bloodscalp Ears", "target": "Bloodscalp Ear", "count": 15, "map": 1434, "zone": "Stranglethorn Vale", "x": 29.8, "y": 21.6, "near": true},
     {"type": "COLLECT", "quest": 581, "questName": "Hunt for Yenniku", "target": "Bloodscalp Tusk", "count": 9, "map": 1434, "zone": "Stranglethorn Vale", "x": 29.8, "y": 21.6, "near": true},
     {"type": "KILL", "quest": 575, "questName": "Supply and Demand", "npc": 1150, "target": "River Crocolisk", "count": 2, "map": 1434, "zone": "Stranglethorn Vale", "x": 34.6, "y": 10.5, "near": true, "note": "loot Large River Crocolisk Skin"},
-    {"type": "ACCEPT", "quest": 339, "questName": "Chapter I", "npc": 716, "npcName": "Barnil Stonepot", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.4},
     {"type": "ACCEPT", "quest": 340, "questName": "Chapter II", "npc": 716, "npcName": "Barnil Stonepot", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.4},
     {"type": "ACCEPT", "quest": 341, "questName": "Chapter III", "npc": 716, "npcName": "Barnil Stonepot", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.4},
     {"type": "ACCEPT", "quest": 342, "questName": "Chapter IV", "npc": 716, "npcName": "Barnil Stonepot", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.4},
