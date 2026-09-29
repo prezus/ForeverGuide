@@ -2,7 +2,7 @@
 -- ForeverGuide / Guide.lua
 -- Guide registry and the step engine (the "interpreter").
 --
--- A guide is data (see guides-src/SCHEMA.md). The engine answers one
+-- A guide is data (see docs/GUIDE-SCHEMA.md). The engine answers one
 -- question from live game state: "what is the player doing now?"
 --
 -- Step types and how they complete:
@@ -84,7 +84,7 @@ function ns.RegisterGuide(guide)
     end
     guide.version = guide.version or 1
     if type(guide.steps) == "string" then
-        -- compiled guides hand over their steps as packed text (tools/compile_guides.py)
+        -- published guides hand over their steps as packed text, decoded on first read
         local text, id = guide.steps, guide.id
         guide.steps = function()
             local steps, err = ns.DecodeRecord(text)

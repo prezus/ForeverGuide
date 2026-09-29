@@ -450,7 +450,7 @@ function Scanner:Finish()
         return
     end
     self.pass = nil
-    ns.Printf("scan finished in %ds: %d quests exist, %d ids silent (assumed not to exist / removed), %d unanswered during throttling. /reload to save, then run tools/scan_diff.py.",
+    ns.Printf("scan finished in %ds: %d quests exist, %d ids silent (assumed not to exist / removed), %d unanswered during throttling. /reload to save.",
         math.floor(ns.Now() - self.startedAt), total, missing, un)
 end
 

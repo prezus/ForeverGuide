@@ -1,7 +1,7 @@
 -- ============================================================
 -- ForeverGuide / DB.lua
--- Access to the bundled quest database (Data/*.lua, packed by tools/pack_data.lua
--- from data-src/tables, which the maintainer's data build writes from Questie's Classic
+-- Access to the bundled quest database (Data/*.lua, packed and published by the maintainer's
+-- data build from Questie's Classic
 -- Era data and Forever's own sources). Each record is stored as a string and
 -- decoded the first time it is read; the tables below are what DB:Get* returns.
 --
@@ -14,7 +14,7 @@
 --   ns.ItemDB[id]   = { n, npc = {npcIDs}, obj = {objectIDs}, startq, vendors, quests }
 --   ns.ZoneDB       = { areaToMap = { [areaID] = uiMapID }, names = { [areaID] = name }, parent = { [areaID] = areaID },
 --                       mapNames = { [uiMapID] = name } }
---   WoW Forever additions are merged in by tools/pack_data.lua: new quests/npcs have `forever = true`,
+--   WoW Forever additions are merged in when the data is packed: new quests/npcs have `forever = true`,
 --   quests the client lacks `removed = true`; recorded points live in `spm` (map coords per uiMapID)
 --   / `spw` (world coords), objective evidence in `fobj`.
 --   ns.QuestIndex   = { byZone = { [top-level areaID] = { questIDs } }, byItem = { [itemID] = { questIDs } } }
@@ -90,7 +90,7 @@ function DB:EachQuest()
     end
 end
 
---- The quests whose objectives name an item (built by tools/pack_data.lua).
+--- The quests whose objectives name an item (built when the data is packed).
 function DB:QuestsForItem(itemID)
     local index = ns.QuestIndex and ns.QuestIndex.byItem
     return index and index[itemID] or {}

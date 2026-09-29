@@ -8,8 +8,8 @@
 --   /fg edit clear           forget my edits for this step
 --   /fg edits [clear]        list (or wipe) every edit of the active guide
 -- Edits live in ForeverGuideDB.edits[guideID][stepIndex] and are applied
--- at runtime (Navigation:ResolveStep / Guide:GetStepText); the route
--- fixer folds them into guides-src/*.json with tools/apply_edits.py.
+-- at runtime (Navigation:ResolveStep / Guide:GetStepText); the maintainer's
+-- route planner folds them into the published guides from SavedVariables.
 -- ============================================================
 
 local _, ns = ...
@@ -129,7 +129,7 @@ function Editor:List()
             n = n + 1
         end
     end
-    ns.Printf("%d edited step%s in %s. tools/apply_edits.py folds them into the guide source.", n, n == 1 and "" or "s", G.active.name or G.active.id)
+    ns.Printf("%d edited step%s in %s, kept on this account.", n, n == 1 and "" or "s", G.active.name or G.active.id)
 end
 
 --- Apply the edit on top of a step for navigation: returns a step-like table

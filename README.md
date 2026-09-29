@@ -6,7 +6,7 @@ Auto-accept and auto-turn-in are enabled by default; other player-facing actions
 are described in the [client and player-control policy](COMPATIBILITY_POLICY.md).
 
 ```
-ForeverGuide DB (JSON)  ->  tools/compile_guides.py  ->  Guides/*.lua  ->  addon engine  ->  WoW Forever
+route planner + data build  ->  Guides/*.lua, Data/*.lua (published here)  ->  addon engine  ->  WoW Forever
 ```
 
 ## License
@@ -35,9 +35,9 @@ maintained by [prezus](https://github.com/prezus/ForeverGuide). The original dev
 
 **Beta caveat:** this client build never reads SavedVariables back, so the addon mirrors your progress and settings
 into CVars every 30 s and restores them at login ("beta workaround" line in chat). Step edits and reports live in the
-SavedVariables file and can be lost - `tools/apply_edits.py` folds them into the guide source.
+SavedVariables file and can be lost - the maintainer folds step edits into the published guides from that file.
 
-Developers: the addon folder doubles as the repo (`tools/`, `guides-src/`, `data-src/` are not loaded by the game);
+Developers: the addon folder doubles as the repo (`tools/` and `docs/` are not loaded by the game);
 `python tools/package.py` builds the release zip. For a private Mac-to-Windows test build, run
 `python3 tools/package.py --test`: it validates a runtime-only ZIP in ignored `dist/`, names it
 after the commit (`ForeverGuide-<commit>.zip`), and prints its SHA-256. Send that same ZIP to the Windows tester; it extracts
@@ -50,7 +50,7 @@ For local checks, install Lua 5.1 or LuaJIT,
 
 ```sh
 luajit tools/test/run_tests.lua            # or lua5.1 tools/test/run_tests.lua
-python3 tools/compile_guides.py --check  # Windows: py -3 tools/compile_guides.py --check
+lua5.1 tools/test/check_data_only.lua     # Guides/ and Data/ hold data and nothing else
 luacheck Core.lua Database.lua Events.lua Persist.lua Player.lua Navigation.lua Guide.lua DB.lua
 lua-language-server --check . --checklevel=Warning
 ```
@@ -62,8 +62,8 @@ client API, secret-value, or combat-lockdown issue: verify behavior in-game too.
 ### LuaLS (local editor diagnostics, not a type-check gate)
 
 Open this folder as the workspace in an editor with Lua Language Server. `.luarc.json` uses Lua 5.1 and
-checks the handwritten addon Lua files at the root and in `UI/` (40 files); `Guides/`, `Data/`,
-`guides-src/`, `data-src/`, and `tools/` are excluded from workspace diagnostics. These exclusions
+checks the handwritten addon Lua files at the root and in `UI/` (40 files); `Guides/`, `Data/`
+and `tools/` are excluded from workspace diagnostics. These exclusions
 are not a guarantee that an individually opened file will have no diagnostics.
 
 LuaCATS hints describe the `Plain*` helpers' nullable results, the string path to `ns.Call`, and
@@ -112,12 +112,12 @@ In game:
 | `/fg path` / `/fg path dwarf` / `/fg path race` | leveling routes are a **choice**: list every route of your faction, follow another race's one, or go back to your race's own (the recommended default) |
 | `/fg qg scale\|opacity\|width\|rows\|wpsize <n>` | Quest Guide look; `/fg qg completed\|distances\|subtitles on\|off` |
 | `/fg hideall [on\|off]` | hide the window *and* the arrow at once (same as alt-clicking the minimap button); the guide keeps running in the background |
-| `/fg scan` | ask the server about every quest id 1-100000; log out, then `python tools/scan_diff.py` lists Forever's new quests vs Questie |
-| `/fg wrong <text>` / `/fg reports` | report the current step as wrong (saved with your position + target); `python tools/collect_reports.py` turns the reports into a review list |
+| `/fg scan` | ask the server about every quest id 1-100000; the results stay in your SavedVariables for the maintainer |
+| `/fg wrong <text>` / `/fg reports` | report the current step as wrong (saved with your position + target); `/fg share` sends your reports with the feedback form |
 | `/fg options` | options panel (also Esc -> Options -> AddOns -> ForeverGuide); key bindings under Key Bindings -> AddOns |
 | `/fg persist [save]` | state of the SavedVariables workaround (see *Beta caveats*) |
 | `/fg resync` | levelled elsewhere? skips the quests that would give 20% xp or less and continues from the first open step |
-| `/fg edit here` / `npc` / `note <text>` / `radius <yd>` / `clear`, `/fg edits` | fix the current step in place (position = where you stand, npc = your target); saved per guide, `python tools/apply_edits.py` folds the edits into the guide source |
+| `/fg edit here` / `npc` / `note <text>` / `radius <yd>` / `clear`, `/fg edits` | fix the current step in place (position = where you stand, npc = your target); saved per guide and account; the maintainer folds them into the published guides |
 
 The window and the floating arrow are draggable while unlocked (`/fg unlock` / `/fg lock`); `/fg arrow off` hides the arrow, `/fg bliz off` disables the Blizzard map-pin arrow. The **Guides** button opens a picker (auto mode, a route or a chapter); **Auto**/**Guide** switches modes. Below them, **Unknown Quests** opens a panel under the window with the quests in your log that no guide covers (left click opens one in the quest log, right click reports it), and **Dungeon Quests** opens a panel listing your dungeons - pick one to see its quests and where each stands, with a Waypoint to the entrance, without moving the guide off its step.
 
@@ -158,24 +158,15 @@ ForeverGuide/
   Keybinds.lua      key binding names + functions for Bindings.xml
   Commands.lua      /fg
   Init.lua          boots the lifecycle (last in the TOC)
-  Data/             bundled quest database built from Questie's Classic data (see Data/README.md)
-                    + ForeverDB.lua: WoW Forever additions (recorded in-game / client tables), merged at load
-  data-src/         forever.json (collected Forever data), corrections.json (hand fixes, win over everything),
-                    db2/ (the wago.tools CSV exports of the client's quest tables)
-  Guides/           compiled guides (generated - do not edit)
-  guides-src/       guide sources in JSON (SCHEMA.md documents the format), published by the route planner
+  Data/             bundled quest database, WoW Forever's additions merged in (published - do not edit; see Data/README.md)
+  Guides/           the routes, zone and dungeon guides as data-only Lua (published - do not edit;
+                    docs/GUIDE-SCHEMA.md documents a guide's fields)
   tools/
-    compile_guides.py   JSON -> Lua  (python tools/compile_guides.py)
-    import_rxp.py       factual quest positions from RestedXP's free Forever guides -> overlay
-    questie_lookup.py   quest/NPC/object/item facts + step JSON from the Questie DB (--questie or QUESTIE=<Questie checkout>)
-    scan_diff.py        /fg scan results vs Questie: new / removed / renamed quests
     decode_share.py     decode + validate a /fg share string with only Python's standard library (docs/SHARE-FORMAT.md)
     share_schema.lua    writes docs/share-format.schema.json (the share allowlist as JSON Schema) from Share.lua
-    merge_recorded.py   SavedVariables (contributed facts/harvest/scan, incl. .bak, every account) -> data-src/forever.json -> Data/ForeverDB.lua
-    collect_reports.py  "/fg wrong" reports -> local-only data-src/reports.json + review list
-    apply_edits.py      "/fg edit" corrections -> guides-src/*.json (then compile_guides.py)
     package.py          dist/ForeverGuide-<version>.zip (--dev includes tools and sources)
-    test/               headless engine test: lua5.1 tools/test/run_tests.lua
+    test/               headless engine test (lua5.1 tools/test/run_tests.lua) and the data-only
+                        check on Guides/ and Data/ (lua5.1 tools/test/check_data_only.lua)
     screenshots/        addon windows as PNGs without the game: dump_ui.lua opens them headless and writes
                         their frame trees, render.py paints them (luajit tools/screenshots/dump_ui.lua build/screenshots
                         && uv run tools/screenshots/render.py build/screenshots)
@@ -183,26 +174,24 @@ ForeverGuide/
 
 ## WoW Forever data (the ~1000 new quests)
 
-Vanilla quests come from Questie. Everything Forever adds is collected into `data-src/forever.json`
-and shipped as `Data/ForeverDB.lua`, which `DB.lua` merges over the vanilla tables at load (vanilla
-records only gain what they lack; unknown ids become new records flagged `forever`). Two sources:
+Vanilla quests come from Questie. Everything Forever adds is collected by the maintainer's data build
+and merged over the vanilla tables before `Data/` is packed (vanilla records only gain what they lack;
+unknown ids become new records flagged `forever`). Two sources:
 
 * **Players contributing data** (opt in under Options → Data collection or `/fg share on`): the
   creatures that give and end each quest, where NPCs stand and objectives progress (rounded to half
   a map unit), which mobs were targeted when an objective moved, the player level a quest was
   offered at, and zone maps. Only creatures are kept: a quest shared by another player is flagged
   `shared`, never with who shared it, and nothing records the time. `/fg share` turns it into one
-  string for the feedback form ([format](docs/SHARE-FORMAT.md)). On your own machine,
-  `python tools/merge_recorded.py` reads the same facts from every
-  `WTF\Account\*\SavedVariables\ForeverGuide.lua` and `.bak`.
+  string for the feedback form ([format](docs/SHARE-FORMAT.md)).
 * **The client's own tables**: `QuestV2`, `QuestV2CliTask`, `QuestObjective`, `QuestPOIBlob` and
-  `QuestPOIPoint`, exported as CSV from `https://wago.tools/db2/<Table>?build=1.60.1.69913` into
-  `data-src/db2/`, are imported by the maintainer's data build (see [Routes](#routes)). Objective
+  `QuestPOIPoint`, exported as CSV from wago.tools, are imported by the maintainer's data build
+  (see [Routes](#routes)). Objective
   positions are world coordinates (`spw`) and are converted to map coordinates in-game.
 
-Hand fixes go into `data-src/corrections.json` (applied last). Player reports (`/fg wrong`) are
-collected with `tools/collect_reports.py`. `data-src/reports.json` and SavedVariables snapshots
-are private local files, ignored by Git. Before posting a report or committing a derived
+Hand fixes are applied last by the data build. Player reports (`/fg wrong`) reach the maintainer
+through `/fg share` and the feedback form. SavedVariables snapshots are private local files, ignored
+by Git. Before posting a report or committing a derived
 correction, scrub account, character, and realm names (including free text and file paths),
 and omit timestamps or player locations unless needed to reproduce the bug. Share the
 smallest correction, not a raw SavedVariables file. Gitignore and deleting a tracked file
@@ -216,19 +205,19 @@ exchanges; they are excluded from routes and `/fg avail`) and which ids are Fore
 Opt in to Scanner under Options → Data collection (or `/fg scan on`) first.
 **`/fg scan new`** asks the server for exactly those ids and records title, level and objective texts
 as they arrive (the server throttles; run it in the background over a few sessions, `/fg scan status`
-shows progress), then `python tools/merge_recorded.py` folds them in. Positions of
+shows progress), and `/fg share` carries them to the maintainer. Positions of
 the new quests come from contributed data while you play them.
 
 ## Routes
 
 The routes - one continuous 1-60 route per starting race, as a chain of zone chapters
-(`guides-src/GEN_<FACTION>_<RACE>_<nn>_<ZONE>.json`), plus the zone and dungeon guides - and the quest
-database tables in `data-src/tables/` are generated by the maintainer's route planner and data build,
-which live outside this repository. It publishes them here as pull requests; this repository compiles,
-packs and checks what it receives.
+(`GEN_<FACTION>_<RACE>_<nn>_<ZONE>`), plus the zone and dungeon guides - and the quest database are
+generated by the maintainer's route planner and data build, which live outside this repository. It
+publishes them here as pull requests of finished Lua in `Guides/` and `Data/`; this repository checks
+that they are data and nothing else (`tools/test/check_data_only.lua`) and runs the engine tests.
 
-Do not edit or regenerate `guides-src/`, `Guides/`, `data-src/tables/` or `Data/` by hand: the next
-publish replaces them. To report a wrong or slow step, open an issue or use `/fg wrong` in game;
+Do not edit `Guides/` or `Data/` by hand: the next publish replaces them, and CI refuses a fork's pull
+request that changes them. To report a wrong or slow step, open an issue or use `/fg wrong` in game;
 `/fg edit` fixes a step for you right away.
 
 ## Guide format
@@ -236,8 +225,8 @@ publish replaces them. To report a wrong or slow step, open an issue or use `/fg
 Steps only need a type and a quest id when the bundled database knows the quest:
 `{ "type": "ACCEPT", "quest": 783 }`, `{ "type": "KILL", "quest": 7 }`, `{ "type": "TURNIN", "quest": 7 }`.
 Names and coordinates come from the database at runtime (explicit `x`/`y` override them).
-[guides-src/SCHEMA.md](guides-src/SCHEMA.md) documents every field; `python tools/compile_guides.py`
-validates the sources and writes `Guides/<ID>.lua` + `Guides/Guides.xml`.
+[docs/GUIDE-SCHEMA.md](docs/GUIDE-SCHEMA.md) documents every field. The route planner validates the
+guides against it and publishes them as `Guides/*.lua` + `Guides/Guides.xml`.
 
 Coordinates use `map` (uiMapID) plus a `zone` name as fallback: if Forever does not know the Classic
 Era uiMapID, the engine matches the zone by name against the player's current map. Run `/fg pos` in
@@ -250,9 +239,7 @@ each zone to learn Forever's real IDs; while contributing data, the addon also k
   mode, settings and step edits are mirrored into addon-registered CVars (which the client does persist)
   and restored when the SavedVariables come back empty. `/fg persist` shows the state. Big data
   (contributed facts, scan/harvest data, `/fg wrong` reports) still only lives in the SavedVariables *files*, which are
-  overwritten at every reload: `/fg share` copies facts and reports out before you log out, and on your
-  own machine `python tools/merge_recorded.py` and `python tools/collect_reports.py` harvest the files
-  (set `WOW_WTF_ACCOUNT` if your `WTF\Account` folder is not in the default Windows install).
+  overwritten at every reload: `/fg share` copies facts and reports out before you log out.
 * Everything from the game can be a secret value in combat. All reads go through `ns.Plain*` helpers.
 * The classic quest IDs / NPC IDs in the sample guide come from Questie's Classic Era data and must be
   verified on Forever (`/fg quest <id>`, contributed data).

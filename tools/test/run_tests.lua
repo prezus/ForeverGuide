@@ -25,9 +25,8 @@ local function xmlFiles(xmlPath)
     end
     return files
 end
--- The engine plays a frozen set of guides (tools/test/fixtures/guides-src, compiled by
--- tools/compile_guides.py like the shipped ones): a route that is regenerated must not move
--- these checks. The shipped guides are only checked to decode (see the section below).
+-- The engine plays a frozen set of compiled guides (tools/test/fixtures/Guides): a route that
+-- is republished must not move these checks. The shipped guides are only checked to decode (see the section below).
 local FIXTURE_GUIDES = "tools/test/fixtures/Guides/Guides.xml"
 local order, shippedGuides = {}, nil
 for line in io.lines(root .. "ForeverGuide.toc") do
