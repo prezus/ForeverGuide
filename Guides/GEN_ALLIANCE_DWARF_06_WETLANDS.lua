@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_06_WETLANDS",
     name = "6. Wetlands 20-21 (Dwarf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 20,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_07_DUSKWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 6 of the Dwarf route: level 20 to 21, 25 steps, ~90 min of play in the model (18513 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 68,
+    stepCount = 66,
     steps = [[{
 {type="FLIGHTPATH",npc=1571,npcName="Shellei Brondir",map=1437,zone="Wetlands",x=9.5,y=59.7},
 {type="TURNIN",quest=92748,questName="Explosive Consultation",npc=11026,npcName="Sprite Jumpsprocket",map=1453,zone="Stormwind City",x=54.6,y=8},
@@ -45,8 +45,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2926,questName="Gnogaine",npc=1268,npcName="Ozzie Togglevolt",map=1426,zone="Dun Morogh",x=45.8,y=49.2,optional=true,note="For Gnomeregan (dungeon guide)"},
 {type="ACCEPT",quest=1698,questName="Yorus Barleybrew",npc=5479,npcName="Wu Shen",map=1453,zone="Stormwind City",x=78.8,y=45.6,class={"WARRIOR"}},
 {type="TURNIN",quest=1698,questName="Yorus Barleybrew",npc=6166,npcName="Yorus Barleybrew",map=1433,zone="Redridge Mountains",x=26.6,y=44.8,class={"WARRIOR"}},
-{type="ACCEPT",quest=1794,questName="The Tome of Valor",npc=6179,npcName="Tiza Battleforge",map=1455,zone="Ironforge",x=27.4,y=12,class={"PALADIN"},race={"Dwarf"}},
-{type="TURNIN",quest=1794,questName="The Tome of Valor",npc=6179,npcName="Tiza Battleforge",map=1455,zone="Ironforge",x=27.4,y=12,class={"PALADIN"},race={"Dwarf"}},
 {type="ACCEPT",quest=2360,questName="Mathias and the Defias",npc=332,npcName="Master Mathias Shaw",map=1453,zone="Stormwind City",x=75.8,y=59.8,class={"ROGUE"}},
 {type="ACCEPT",quest=5641,questName="Chastise",npc=11406,npcName="High Priest Rohan",map=1455,zone="Ironforge",x=25,y=8.4,class={"PRIEST"},race={"Dwarf"}},
 {type="TURNIN",quest=5641,questName="Chastise",npc=11406,npcName="High Priest Rohan",map=1455,zone="Ironforge",x=25,y=8.4,class={"PRIEST"},race={"Dwarf"}},
