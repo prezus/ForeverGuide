@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_01_MULGORE",
     name = "1. Mulgore 1-11 (Tauren)",
-    version = 11,
+    version = 12,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 1,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_02_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 1 of the Tauren route: level 1 to 11, 87 steps, ~189 min of play in the model (13318 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 136,
+    stepCount = 134,
     steps = [[{
 {type="ACCEPT",quest=747,questName="The Hunt Begins",npc=2980,npcName="Grull Hawkwind",map=1412,zone="Mulgore",x=44.9,y=77.1},
 {type="ACCEPT",quest=752,questName="A Humble Task",npc=2981,npcName="Chief Hawkwind",map=1412,zone="Mulgore",x=44.2,y=76},
@@ -127,8 +127,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=861,questName="The Hunter's Way",npc=3052,npcName="Skorn Whitecloud",map=1412,zone="Mulgore",x=46.8,y=60.2},
 {type="COMPLETE",quest=758,questName="Thunderhorn Cleansing",target="Cleanse the Thunderhorn Water Well",map=1412,zone="Mulgore",x=44.5,y=45.5,note="Cleanse the Thunderhorn Water Well"},
 {type="KILL",quest=861,questName="The Hunter's Way",npc=3566,target="Flatland Prowler",count=4,map=1412,zone="Mulgore",x=45,y=33.4,near=true,note="loot Flatland Prowler Claw"},
-{type="ACCEPT",quest=2984,questName="Call of Fire",npc=3066,npcName="Narm Skychaser",map=1412,zone="Mulgore",x=48.4,y=59.2,class={"SHAMAN"}},
-{type="ACCEPT",quest=5928,questName="Heeding the Call",npc=3064,npcName="Gennia Runetotem",map=1412,zone="Mulgore",x=48.4,y=59.6,class={"DRUID"}},
 {type="TURNIN",quest=758,questName="Thunderhorn Cleansing",npc=2948,npcName="Mull Thunderhorn",map=1412,zone="Mulgore",x=48.5,y=60.4},
 {type="ACCEPT",quest=759,questName="Wildmane Totem",npc=2948,npcName="Mull Thunderhorn",map=1412,zone="Mulgore",x=48.5,y=60.4},
 {type="ACCEPT",quest=99081,questName="Grim Tidings",npc=275789,npcName="Malah Longwind",map=1412,zone="Mulgore",x=57.6,y=63.2,note="New in Forever"},
