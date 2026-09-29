@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_15_SWAMP_OF_SORROWS",
   "name": "15. Swamp of Sorrows 40-40 (Skyborne)",
-  "version": 4,
+  "version": 5,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 40,
@@ -19,7 +19,6 @@
     {"type": "ACCEPT", "quest": 782, "questName": "Broken Alliances", "npc": 1068, "npcName": "Gorn", "map": 1418, "zone": "Badlands", "x": 2.8, "y": 45.8},
     {"type": "COLLECT", "quest": 782, "questName": "Broken Alliances", "target": "Sign of the Earth", "count": 1, "mobs": "Boss Tho'grun", "map": 1418, "zone": "Badlands", "x": 61.6, "y": 67.8},
     {"type": "TURNIN", "quest": 782, "questName": "Broken Alliances", "npc": 1068, "npcName": "Gorn", "map": 1418, "zone": "Badlands", "x": 2.8, "y": 45.8},
-    {"type": "TURNIN", "quest": 687, "questName": "Theldurin the Lost", "npc": 2785, "npcName": "Theldurin the Lost", "map": 1418, "zone": "Badlands", "x": 51.4, "y": 76.8},
     {"type": "ACCEPT", "quest": 1137, "questName": "News for Fizzle", "npc": 4618, "npcName": "Martek the Exiled", "map": 1418, "zone": "Badlands", "x": 42.2, "y": 52.6},
     {"type": "ACCEPT", "quest": 709, "questName": "Solution to Doom", "npc": 2785, "npcName": "Theldurin the Lost", "map": 1418, "zone": "Badlands", "x": 51.4, "y": 76.8, "note": "For Uldaman (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 2203, "questName": "Badlands Reagent Run II", "npc": 6868, "npcName": "Jarkal Mossmeld", "map": 1418, "zone": "Badlands", "x": 2.6, "y": 46, "note": "Elite - group up", "optional": true, "profession": "Alchemy", "skill": 210},
