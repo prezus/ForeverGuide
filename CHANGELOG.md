@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Quest database: Stalk With The Earthmother (76160) is for shamans and druids, and the library book quests at the mage trainers (Nar'thalas Almanac, The Lessons of Ta'zo, Friend of the Library and the rest) are open to every class, as WoW Forever has them.
 - Guides: Skyborne are offered the quests WoW Forever opened to them, and quests only Skyborne may take are no longer offered to other races. Alliance Skyborne druids get The Principal Source in Darkshore and learn Cure Poison.
 - Guides: when the game lets you take only one of a set of quests, the guide offers one: one engineering specialisation, one Argent Dawn mantle, your own faction's A Call to Arms: The Plaguelands!, and one race version of Call of Fire, Call of Water, The Hunter's Path, Heeding the Call, Summon Felsteed and Hot and Itchy.
 - Guides: quests that aren't in the game client are out: Thunderbrew, Stranglethorn Fever, Troll Necklace Bounty, Writ of Safe Passage and two Craftsman's Writs. Paladins' Tome of Divinity and Tome of Valor steps (Redemption, Sense Undead) are out again: the quests that start them aren't in the client. Felwood and Winterspring collect steps name the item instead of "item 11512".
