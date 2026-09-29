@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_04_HILLSBRAD_FOOTHILLS",
     name = "4. Hillsbrad Foothills 22-31 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 22,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_05_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 4 of the Skyborne route: level 22 to 31, 67 steps, ~715 min of play in the model (5256 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 95,
+    stepCount = 93,
     steps = [[{
 {type="FLIGHTPATH",npc=2389,npcName="Zarise",map=1424,zone="Hillsbrad Foothills",x=60.1,y=18.6},
 {type="TURNIN",quest=1060,questName="Letter to Jin'Zil",npc=3995,npcName="Witch Doctor Jin'Zil",map=1442,zone="Stonetalon Mountains",x=74.4,y=97.8},
@@ -30,8 +30,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2380,questName="To Orgrimmar!",npc=3170,npcName="Kaplak",map=1411,zone="Durotar",x=52,y=43.6,class={"ROGUE"}},
 {type="ACCEPT",quest=2985,questName="Call of Water",npc=3173,npcName="Swart",map=1411,zone="Durotar",x=54.4,y=42.6,class={"SHAMAN"}},
 {type="TURNIN",quest=2985,questName="Call of Water",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8,class={"SHAMAN"}},
-{type="ACCEPT",quest=2986,questName="Call of Water",npc=3066,npcName="Narm Skychaser",map=1412,zone="Mulgore",x=48.4,y=59.2,class={"SHAMAN"}},
-{type="TURNIN",quest=2986,questName="Call of Water",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8,class={"SHAMAN"}},
 {type="ACCEPT",quest=98340,questName="The Great Cat Spirit",npc=3033,npcName="Turak Runetotem",map=1456,zone="Thunder Bluff",x=76.4,y=27.6,class={"DRUID"},note="New in Forever"},
 {type="TURNIN",quest=98340,questName="The Great Cat Spirit",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"}},
 {type="ACCEPT",quest=98362,questName="To Thunder Bluff",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"},note="New in Forever"},
