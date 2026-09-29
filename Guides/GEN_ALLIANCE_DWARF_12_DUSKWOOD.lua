@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_12_DUSKWOOD",
     name = "12. Duskwood 27-27 (Dwarf)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 27,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_13_WETLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 12 of the Dwarf route: level 27 to 27, 32 steps, ~84 min of play in the model (22836 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 53,
+    stepCount = 55,
     steps = [[{
 {type="TURNIN",quest=79008,questName="... and that note you found",map=1413,zone="The Barrens",x=46.4,y=73.9},
 {type="ACCEPT",quest=959,questName="Trouble at the Docks",npc=3665,npcName="Crane Operator Bigglefuzz",map=1413,zone="The Barrens",x=63,y=37.6,optional=true,note="For Wailing Caverns (dungeon guide)"},
@@ -22,6 +22,8 @@ ns.RegisterGuide({
 {type="NOTE",optional=true,text="Ready for Wailing Caverns",note="Picked up: Trouble at the Docks, Deviate Hides, Deviate Eradication. When you have a group, open Wailing Caverns under Dungeons."},
 {type="ACCEPT",quest=1221,questName="Blueleaf Tubers",npc=3446,npcName="Mebok Mizzyrix",map=1413,zone="The Barrens",x=62.4,y=37.6,optional=true,note="For Razorfen Kraul (dungeon guide)"},
 {type="NOTE",optional=true,text="Ready for Razorfen Kraul",note="Picked up: Blueleaf Tubers. When you have a group, open Razorfen Kraul under Dungeons."},
+{type="ACCEPT",quest=94500,questName="Call of Water",npc=258203,npcName="Hervdana Saegrund",map=1437,zone="Wetlands",x=65.6,y=76.4,class={"SHAMAN"},race={"Dwarf"},note="New in Forever"},
+{type="COLLECT",quest=94500,questName="Call of Water",target="Full Blue Waterskin",count=1,map=1440,zone="Ashenvale",x=36.1,y=50.8,class={"SHAMAN"},race={"Dwarf"}},
 {type="TRAVEL",map=1431,zone="Duskwood",x=74.9,y=47.6,radius=60,note="travel to Duskwood (Duskwood)"},
 {type="ACCEPT",quest=173,questName="Worgen in the Woods",npc=663,npcName="Calor",map=1431,zone="Duskwood",x=75.8,y=47.6},
 {type="ACCEPT",quest=66,questName="The Legend of Stalvan",npc=265,npcName="Madame Eva",map=1431,zone="Duskwood",x=75.8,y=45.3},
