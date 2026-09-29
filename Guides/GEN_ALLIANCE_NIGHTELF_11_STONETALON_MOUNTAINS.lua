@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_11_STONETALON_MOUNTAINS",
     name = "11. Stonetalon Mountains 25-27 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 25,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_12_DUSKWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 11 of the NightElf route: level 25 to 27, 21 steps, ~92 min of play in the model (10837 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 28,
+    stepCount = 35,
     steps = [[{
 {type="ACCEPT",quest=2931,questName="Castpipe's Task",npc=4077,npcName="Gaxim Rustfizzle",map=1442,zone="Stonetalon Mountains",x=59.4,y=67.2,optional=true,note="For Gnomeregan (dungeon guide)"},
 {type="ACCEPT",quest=98394,questName="The Great Cat Spirit",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"},note="New in Forever"},
@@ -38,10 +38,17 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1092,questName="Gerenzo's Orders",npc=4201,npcName="Ziz Fizziks",map=1442,zone="Stonetalon Mountains",x=59,y=62.6},
 {type="FLIGHTPATH",npc=4407,npcName="Teloren",map=1442,zone="Stonetalon Mountains",x=36.4,y=7.2},
 {type="COLLECT",quest=1134,questName="Pridewings of Stonetalon",target="Pridewing Venom Sac",count=12,map=1442,zone="Stonetalon Mountains",x=46.2,y=46.9,near=true,mobs="Young Pridewing / Pridewing Wyvern / Pridewing Skyhunter / Pridewing Consort"},
+{type="ACCEPT",quest=98396,questName="The Great Cat Spirit",npc=11957,npcName="Great Cat Spirit",map=1450,zone="Moonglade",x=54.6,y=75,class={"DRUID"},note="New in Forever"},
+{type="COLLECT",quest=98396,questName="The Great Cat Spirit",target="Relic of the Fang",count=1,map=1450,zone="Moonglade",x=68,y=60.2,near=true,class={"DRUID"}},
+{type="COLLECT",quest=98396,questName="The Great Cat Spirit",target="Relic of the Claw",count=1,map=1450,zone="Moonglade",x=68,y=60.2,near=true,class={"DRUID"}},
+{type="COLLECT",quest=98396,questName="The Great Cat Spirit",target="Relic of the Silent Shadow",count=1,map=1450,zone="Moonglade",x=68,y=60.2,near=true,class={"DRUID"}},
+{type="TURNIN",quest=98396,questName="The Great Cat Spirit",npc=11957,npcName="Great Cat Spirit",map=1450,zone="Moonglade",x=54.6,y=75,class={"DRUID"}},
 {type="ACCEPT",quest=1057,questName="Reclaiming the Charred Vale",npc=3994,npcName="Keeper Albagorm",map=1442,zone="Stonetalon Mountains",x=37.1,y=8.1},
 {type="KILL",quest=1057,questName="Reclaiming the Charred Vale",npc=4025,target="Bloodfury Ambusher / Bloodfury Harpy",count=7,map=1442,zone="Stonetalon Mountains",x=31.1,y=58.6,near=true},
 {type="KILL",quest=1057,questName="Reclaiming the Charred Vale",npc=4024,target="Bloodfury Slayer / Bloodfury Roguefeather",count=7,map=1442,zone="Stonetalon Mountains",x=30.1,y=67.5,near=true},
 {type="TURNIN",quest=1057,questName="Reclaiming the Charred Vale",npc=3994,npcName="Keeper Albagorm",map=1442,zone="Stonetalon Mountains",x=37.1,y=8.1},
+{type="ACCEPT",quest=98731,questName="Blessings of the Great Cat Spirit",npc=11957,npcName="Great Cat Spirit",map=1450,zone="Moonglade",x=54.6,y=75,class={"DRUID"},note="New in Forever"},
+{type="TURNIN",quest=98731,questName="Blessings of the Great Cat Spirit",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"}},
 {type="GRIND",npc=4027,target="Bloodfury Storm Witch",level=27,map=1442,zone="Stonetalon Mountains",x=35.4,y=68.6,near=true,note="grind Bloodfury Storm Witch (level 26-27) to level 27 - nothing worth questing at 26"}
 }]],
 })
