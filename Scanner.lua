@@ -366,7 +366,7 @@ function Scanner:Start(from, to)
     if from == "new" then
         -- exactly the ids the client knows and Questie does not (Data/ForeverQuestIDs.lua)
         local src = ns.ForeverNewQuestIDRanges
-        if not src or #src == 0 then ns.Warn("no Forever quest id list bundled (Data/ForeverQuestIDs.lua) - run tools/import_db2.py first.") return end
+        if not src or #src == 0 then ns.Warn("no Forever quest id list bundled (Data/ForeverQuestIDs.lua).") return end
         s.ranges = {}
         for i, r in ipairs(src) do s.ranges[i] = { r[1], r[2] } end
     elseif from then
