@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_13_WETLANDS",
     name = "13. Wetlands 27-29 (Dwarf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 27,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_14_THOUSAND_NEEDLES",
     author = "ForeverGuide route planner",
     notes = "Chapter 13 of the Dwarf route: level 27 to 29, 25 steps, ~117 min of play in the model (10980 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 42,
+    stepCount = 40,
     steps = [[{
 {type="TRAVEL",map=1437,zone="Wetlands",x=10.7,y=60.2,radius=60,note="travel to Wetlands (Wetlands)"},
 {type="ACCEPT",quest=289,questName="The Cursed Crew",npc=1239,npcName="First Mate Fitzsimmons",map=1437,zone="Wetlands",x=10.8,y=59.6},
@@ -54,8 +54,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=290,questName="Lifting the Curse",npc=1239,npcName="First Mate Fitzsimmons",map=1437,zone="Wetlands",x=10.8,y=59.6},
 {type="COLLECT",quest=290,questName="Lifting the Curse",target="Intrepid Strongbox Key",count=1,map=1437,zone="Wetlands",x=15.6,y=23.4,mobs="Captain Halyndor"},
 {type="TURNIN",quest=290,questName="Lifting the Curse",map=1437,zone="Wetlands",x=14.3,y=24},
-{type="TURNIN",quest=474,questName="Defeat Nek'rosh",npc=2104,npcName="Captain Stoutfist",map=1437,zone="Wetlands",x=9.8,y=57.4,optional=true},
-{type="ACCEPT",quest=1651,questName="The Tome of Valor",npc=6182,npcName="Daphne Stilwell",map=1436,zone="Westfall",x=42.2,y=88.6,class={"PALADIN"},race={"Dwarf"},note="Objectives: Protect Daphne Stilwell"},
-{type="TURNIN",quest=1651,questName="The Tome of Valor",npc=6182,npcName="Daphne Stilwell",map=1436,zone="Westfall",x=42.2,y=88.6,class={"PALADIN"},race={"Dwarf"}}
+{type="TURNIN",quest=474,questName="Defeat Nek'rosh",npc=2104,npcName="Captain Stoutfist",map=1437,zone="Wetlands",x=9.8,y=57.4,optional=true}
 }]],
 })

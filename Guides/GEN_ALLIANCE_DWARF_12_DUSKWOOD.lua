@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_12_DUSKWOOD",
     name = "12. Duskwood 27-27 (Dwarf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 27,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_13_WETLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 12 of the Dwarf route: level 27 to 27, 32 steps, ~84 min of play in the model (22836 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 55,
+    stepCount = 53,
     steps = [[{
 {type="TURNIN",quest=79008,questName="... and that note you found",map=1413,zone="The Barrens",x=46.4,y=73.9},
 {type="ACCEPT",quest=959,questName="Trouble at the Docks",npc=3665,npcName="Crane Operator Bigglefuzz",map=1413,zone="The Barrens",x=63,y=37.6,optional=true,note="For Wailing Caverns (dungeon guide)"},
@@ -62,8 +62,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=269,questName="Seeking Wisdom",npc=1212,npcName="Bishop Farthing",map=1453,zone="Stormwind City",x=39.2,y=28},
 {type="TURNIN",quest=2925,questName="Klockmort's Essentials",npc=6169,npcName="Klockmort Spannerspan",map=1455,zone="Ironforge",x=68.2,y=46.2,optional=true},
 {type="TURNIN",quest=2931,questName="Castpipe's Task",npc=7950,npcName="Master Mechanic Castpipe",map=1455,zone="Ironforge",x=69.8,y=48.4,optional=true},
-{type="ACCEPT",quest=1650,questName="The Tome of Valor",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"},race={"Dwarf"}},
-{type="TURNIN",quest=1650,questName="The Tome of Valor",npc=6182,npcName="Daphne Stilwell",map=1436,zone="Westfall",x=42.2,y=88.6,class={"PALADIN"},race={"Dwarf"}},
 {type="ACCEPT",quest=2359,questName="Klaven's Tower",npc=7024,npcName="Agent Kearnen",map=1436,zone="Westfall",x=68.4,y=70,optional=true,class={"ROGUE"},note="Elite - group up"},
 {type="COLLECT",quest=2359,questName="Klaven's Tower",target="Klaven Mortwake's Journal",count=1,map=1436,zone="Westfall",x=70.4,y=74.2,optional=true,class={"ROGUE"},mobs="Klaven Mortwake"},
 {type="COLLECT",quest=2359,questName="Klaven's Tower",target="Defias Tower Key",count=1,map=1436,zone="Westfall",x=69.4,y=74.4,optional=true,class={"ROGUE"},mobs="Malformed Defias Drone"},

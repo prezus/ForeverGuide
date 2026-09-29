@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_03_WESTFALL",
     name = "3. Westfall 11-15 (Dwarf)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 11,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_04_LOCH_MODAN",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the Dwarf route: level 11 to 15, 43 steps, ~137 min of play in the model (17457 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 137,
+    stepCount = 134,
     steps = [[{
 {type="FLIGHTPATH",npc=523,npcName="Thor",map=1436,zone="Westfall",x=56.6,y=52.6},
 {type="ACCEPT",quest=95998,questName="The Great Outdoors",npc=263399,npcName="Sam Sarsaparilla",map=1429,zone="Elwynn Forest",x=44.8,y=63.2,note="New in Forever; Objectives: Use the /sit emote near the campfire, Gain the Boosted Rest buff"},
@@ -144,11 +144,8 @@ ns.RegisterGuide({
 {type="KILL",quest=92745,questName="The State of the Mines",npc=1236,target="Kobold Digger",count=4,map=1436,zone="Westfall",x=44.6,y=23.4},
 {type="KILL",quest=92745,questName="The State of the Mines",npc=1426,target="Riverpaw Miner",count=6,map=1436,zone="Westfall",x=30,y=47.4},
 {type="TURNIN",quest=92745,questName="The State of the Mines",npc=253092,npcName="Alba Fairmoon",map=1436,zone="Westfall",x=52.4,y=53},
-{type="ACCEPT",quest=117,questName="Thunderbrew",npc=239,npcName="Grimbooze Thunderbrew",map=1436,zone="Westfall",x=44.6,y=80.2},
-{type="COLLECT",quest=117,questName="Thunderbrew",target="Hops",count=5,map=1436,zone="Westfall",x=51.4,y=46.6,near=true,mobs="Harvest Golem / Harvest Watcher / Harvest Reaper / Rusty Harvest Golem"},
 {type="ACCEPT",quest=152,questName="The Coast Isn't Clear",npc=392,npcName="Captain Grayson",map=1436,zone="Westfall",x=30,y=86},
 {type="ACCEPT",quest=103,questName="Keeper of the Flame",npc=392,npcName="Captain Grayson",map=1436,zone="Westfall",x=30,y=86},
-{type="TURNIN",quest=117,questName="Thunderbrew",npc=239,npcName="Grimbooze Thunderbrew",map=1436,zone="Westfall",x=44.6,y=80.2},
 {type="COLLECT",quest=103,questName="Keeper of the Flame",target="Flask of Oil",count=5,map=1436,zone="Westfall",x=46.5,y=69.1,near=true},
 {type="COLLECT",quest=92744,questName="Murloc Gills",target="Longshore Murloc Gill",count=7,map=1436,zone="Westfall",x=33.8,y=84.6,near=true,mobs="Murloc Coastrunner / Murloc Tidehunter / Murloc Warrior / Murloc Minor Oracle"},
 {type="TURNIN",quest=103,questName="Keeper of the Flame",npc=392,npcName="Captain Grayson",map=1436,zone="Westfall",x=30,y=86}

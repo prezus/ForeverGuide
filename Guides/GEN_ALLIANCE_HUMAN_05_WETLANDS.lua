@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_05_WETLANDS",
     name = "5. Wetlands 20-21 (Human)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 20,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_06_DUSKWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 5 of the Human route: level 20 to 21, 25 steps, ~90 min of play in the model (18513 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 62,
+    stepCount = 60,
     steps = [[{
 {type="FLIGHTPATH",npc=1571,npcName="Shellei Brondir",map=1437,zone="Wetlands",x=9.5,y=59.7},
 {type="ACCEPT",quest=94,questName="A Watchful Eye",npc=313,npcName="Theocritus",map=1429,zone="Elwynn Forest",x=65.2,y=69.8},
@@ -41,8 +41,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2926,questName="Gnogaine",npc=1268,npcName="Ozzie Togglevolt",map=1426,zone="Dun Morogh",x=45.8,y=49.2,optional=true,note="For Gnomeregan (dungeon guide)"},
 {type="ACCEPT",quest=1698,questName="Yorus Barleybrew",npc=5479,npcName="Wu Shen",map=1453,zone="Stormwind City",x=78.8,y=45.6,class={"WARRIOR"}},
 {type="TURNIN",quest=1698,questName="Yorus Barleybrew",npc=6166,npcName="Yorus Barleybrew",map=1433,zone="Redridge Mountains",x=26.6,y=44.8,class={"WARRIOR"}},
-{type="ACCEPT",quest=1794,questName="The Tome of Valor",npc=6179,npcName="Tiza Battleforge",map=1455,zone="Ironforge",x=27.4,y=12,class={"PALADIN"}},
-{type="TURNIN",quest=1794,questName="The Tome of Valor",npc=6179,npcName="Tiza Battleforge",map=1455,zone="Ironforge",x=27.4,y=12,class={"PALADIN"}},
 {type="ACCEPT",quest=2360,questName="Mathias and the Defias",npc=332,npcName="Master Mathias Shaw",map=1453,zone="Stormwind City",x=75.8,y=59.8,class={"ROGUE"}},
 {type="ACCEPT",quest=5676,questName="Arcane Feedback",npc=376,npcName="High Priestess Laurena",map=1453,zone="Stormwind City",x=38.8,y=26.4,class={"PRIEST"}},
 {type="TURNIN",quest=5676,questName="Arcane Feedback",npc=376,npcName="High Priestess Laurena",map=1453,zone="Stormwind City",x=38.8,y=26.4,class={"PRIEST"}},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_39_FELWOOD",
     name = "39. Felwood 52-52 (Tauren)",
-    version = 5,
+    version = 6,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 52,
@@ -48,9 +48,9 @@ ns.RegisterGuide({
 {type="TURNIN",quest=5888,questName="Salve via Mining",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,profession="Mining",skill=200},
 {type="COLLECT",quest=5889,questName="Salve via Gathering",target="Fel Creep",count=1,map=1448,zone="Felwood",x=62.4,y=24.2,optional=true,profession="Herbalism",skill=200,mobs="Mishellena"},
 {type="TURNIN",quest=5889,questName="Salve via Gathering",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,optional=true,profession="Herbalism",skill=200},
-{type="COLLECT",quest=5890,questName="Salve via Skinning",target="item 11512",count=1,map=1448,zone="Felwood",x=35.4,y=57.2,near=true,profession="Skinning",skill=200,mobs="Jaedenar Hunter / Angerclaw Grizzly / Felpaw Ravager"},
+{type="COLLECT",quest=5890,questName="Salve via Skinning",target="Patch of Tainted Skin",count=1,map=1448,zone="Felwood",x=35.4,y=57.8,near=true,profession="Skinning",skill=200,mobs="Jaedenar Hunter / Angerclaw Grizzly / Felpaw Ravager"},
 {type="TURNIN",quest=5890,questName="Salve via Skinning",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,profession="Skinning",skill=200},
-{type="COLLECT",quest=5891,questName="Salve via Disenchanting",target="item 11174",count=1,map=1440,zone="Ashenvale",x=36.4,y=49.6,optional=true,near=true,profession="Enchanting",skill=200,mobs="Lieutenant Doren / Archbishop Benedictus / Highlord Bolvar Fordragon / Varimathras"},
+{type="COLLECT",quest=5891,questName="Salve via Disenchanting",target="Lesser Nether Essence",count=1,map=1440,zone="Ashenvale",x=36.4,y=49.6,optional=true,near=true,profession="Enchanting",skill=200,mobs="Lieutenant Doren / Archbishop Benedictus / Highlord Bolvar Fordragon / Varimathras"},
 {type="TURNIN",quest=5891,questName="Salve via Disenchanting",npc=9529,npcName="Maybess Riverbreeze",map=1448,zone="Felwood",x=46.8,y=83,optional=true,profession="Enchanting",skill=200}
 }]],
 })

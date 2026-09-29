@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_08_THOUSAND_NEEDLES",
   "name": "8. Thousand Needles 32-33 (Undead)",
-  "version": 4,
+  "version": 5,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 32,
@@ -12,6 +12,7 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 8 of the Scourge route: level 32 to 33, 39 steps, ~112 min of play in the model (25095 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "ACCEPT", "quest": 1145, "questName": "The Swarm Grows", "npc": 3428, "npcName": "Korran", "map": 1413, "zone": "The Barrens", "x": 51, "y": 29.6},
     {"type": "ACCEPT", "quest": 1111, "questName": "Wharfmaster Dizzywig", "npc": 4452, "npcName": "Kravel Koalbeard", "map": 1441, "zone": "Thousand Needles", "x": 77.8, "y": 77.2},
     {"type": "TURNIN", "quest": 1111, "questName": "Wharfmaster Dizzywig", "npc": 3453, "npcName": "Wharfmaster Dizzywig", "map": 1413, "zone": "The Barrens", "x": 63.2, "y": 38.4},
     {"type": "ACCEPT", "quest": 1102, "questName": "A Vengeful Fate", "npc": 4451, "npcName": "Auld Stonespire", "map": 1456, "zone": "Thunder Bluff", "x": 36.2, "y": 59.8, "note": "For Razorfen Kraul (dungeon guide)", "optional": true},

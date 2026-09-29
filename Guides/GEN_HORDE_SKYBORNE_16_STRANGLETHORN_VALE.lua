@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_16_STRANGLETHORN_VALE",
     name = "16. Stranglethorn Vale 40-40 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 40,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_17_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 16 of the Skyborne route: level 40 to 40, 7 steps, ~37 min of play in the model (24949 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 12,
+    stepCount = 10,
     steps = [[{
 {type="ACCEPT",quest=2864,questName="Tran'rek",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.3,y=76.5,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
@@ -22,8 +22,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=580,questName="Whiskey Slim's Lost Grog",npc=2491,npcName="Whiskey Slim",map=1434,zone="Stranglethorn Vale",x=27,y=77.4,optional=true,note="Elite - group up"},
 {type="COMPLETE",quest=604,questName="The Bloodsail Buccaneers",target="Bloodsail Orders / Bloodsail Charts / Bloodsail Swashbuckler",count=10,map=1434,zone="Stranglethorn Vale",x=27,y=82.6,near=true},
 {type="TURNIN",quest=604,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
-{type="COLLECT",quest=349,questName="Stranglethorn Fever",target="Gorilla Fang",count=10,map=1434,zone="Stranglethorn Vale",x=34.4,y=62.5,near=true,mobs="Mistvale Gorilla / Jungle Thunderer / Enraged Silverback Gorilla / Elder Mistvale Gorilla"},
-{type="TURNIN",quest=349,questName="Stranglethorn Fever",npc=1449,npcName="Witch Doctor Unbagwa",map=1434,zone="Stranglethorn Vale",x=35.2,y=60.4},
 {type="KILL",quest=617,questName="Akiris by the Bundle",npc=1907,target="Naga Explorer",count=10,map=1434,zone="Stranglethorn Vale",x=28.2,y=64.4,near=true,note="loot Akiris Reed"},
 {type="ACCEPT",quest=8551,questName="The Captain's Chest",npc=2500,npcName="Captain Hecklebury Smotts",map=1434,zone="Stranglethorn Vale",x=26.6,y=73.6,optional=true,note="Elite - group up"},
 {type="TURNIN",quest=617,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4}

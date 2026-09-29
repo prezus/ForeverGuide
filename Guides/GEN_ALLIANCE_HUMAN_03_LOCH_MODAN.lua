@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_03_LOCH_MODAN",
     name = "3. Loch Modan 14-17 (Human)",
-    version = 9,
+    version = 10,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 14,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_04_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the Human route: level 14 to 17, 50 steps, ~104 min of play in the model (20009 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 136,
+    stepCount = 132,
     steps = [[{
 {type="FLIGHTPATH",npc=1572,npcName="Thorgrum Borrelson",map=1432,zone="Loch Modan",x=33.9,y=51},
 {type="TURNIN",quest=92748,questName="Explosive Consultation",npc=11026,npcName="Sprite Jumpsprocket",map=1453,zone="Stormwind City",x=54.6,y=8},
@@ -42,8 +42,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=96391,questName="Underground Map",npc=264936,npcName="Earthseer Farsen",map=1426,zone="Dun Morogh",x=64.8,y=58.4,optional=true},
 {type="ACCEPT",quest=96393,questName="Old Ironforge Incursion",npc=264936,npcName="Earthseer Farsen",map=1426,zone="Dun Morogh",x=64.8,y=58.4,optional=true,note="New in Forever; For The Hall of Thanes (dungeon guide)"},
 {type="TURNIN",quest=1638,questName="A Warrior's Training",npc=6089,npcName="Harry Burlguard",map=1453,zone="Stormwind City",x=74,y=37.2,class={"WARRIOR"}},
-{type="ACCEPT",quest=1641,questName="The Tome of Divinity",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"}},
-{type="TURNIN",quest=1641,questName="The Tome of Divinity",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"}},
 {type="ACCEPT",quest=2998,questName="Tome of Divinity",npc=927,npcName="Brother Wilhelm",map=1429,zone="Elwynn Forest",x=41,y=66,class={"PALADIN"}},
 {type="TURNIN",quest=2998,questName="Tome of Divinity",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"}},
 {type="ACCEPT",quest=3681,questName="Tome of Divinity",npc=5149,npcName="Brandur Ironhammer",map=1455,zone="Ironforge",x=23.4,y=6.2,class={"PALADIN"}},
@@ -147,8 +145,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=86667,questName="Snowbound",npc=258043,npcName="Norric Lochthane",map=1432,zone="Loch Modan",x=41.8,y=19},
 {type="ACCEPT",quest=2041,questName="Speak with Shoni",npc=6569,npcName="Gnoarn",map=1455,zone="Ironforge",x=69.4,y=50.6},
 {type="TURNIN",quest=2041,questName="Speak with Shoni",npc=6579,npcName="Shoni the Shilent",map=1453,zone="Stormwind City",x=55.4,y=12.6},
-{type="ACCEPT",quest=1642,questName="The Tome of Divinity",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"}},
-{type="TURNIN",quest=1642,questName="The Tome of Divinity",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"}},
 {type="ACCEPT",quest=2281,questName="Redridge Rendezvous",npc=6946,npcName="Renzik \"The Shiv\"",map=1453,zone="Stormwind City",x=75.8,y=60.2,class={"ROGUE"}},
 {type="ACCEPT",quest=2299,questName="To Hulfdan!",npc=1234,npcName="Hogral Bakkan",map=1426,zone="Dun Morogh",x=47.6,y=52.6,class={"ROGUE"}}
 }]],
