@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_36_FELWOOD",
     name = "36. Felwood 50-51 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 50,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_37_ORGRIMMAR",
     author = "ForeverGuide route planner",
     notes = "Chapter 36 of the Orc route: level 50 to 51, 22 steps, ~65 min of play in the model (48050 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 33,
+    stepCount = 30,
     steps = [[{
 {type="FLIGHTPATH",npc=11900,npcName="Brakkar",map=1448,zone="Felwood",x=34.4,y=54},
 {type="TRAVEL",map=1448,zone="Felwood",x=50.5,y=82.5,radius=60,note="travel to Felwood (Felwood)"},
@@ -40,12 +40,9 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=5156,questName="Verifying the Corruption",npc=10921,npcName="Taronn Redfeather",map=1448,zone="Felwood",x=50.9,y=81.6},
 {type="ACCEPT",quest=7601,questName="What Niby Commands",npc=14469,npcName="Niby the Almighty",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
 {type="TURNIN",quest=7601,questName="What Niby Commands",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
-{type="ACCEPT",quest=8420,questName="Hot and Itchy",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
 {type="COMPLETE",quest=5156,questName="Verifying the Corruption",npc=9878,target="Entropic Beast / Entropic Horror / Explore the craters in Shatter Scar Vale",count=2,map=1448,zone="Felwood",x=41.3,y=43.8,near=true},
 {type="ACCEPT",quest=5202,questName="A Strange Red Key",npc=7118,npcName="Jaedenar Darkweaver",map=1448,zone="Felwood",x=40.7,y=48.4,optional=true,note="If you looted Blood Red Key from Jaedenar Enforcer / Jaedenar Darkweaver / Jaedenar Warlock / Jaedenar Legionnaire / Ulathek, use it to start the quest"},
 {type="TURNIN",quest=5202,questName="A Strange Red Key",npc=11016,npcName="Captured Arko'narin",map=1448,zone="Felwood",x=36.2,y=55.4,optional=true},
-{type="COLLECT",quest=8420,questName="Hot and Itchy",target="Felcloth",count=1,map=1448,zone="Felwood",x=38.8,y=46.8,near=true,class={"WARLOCK"},mobs="Jadefire Rogue / Jadefire Trickster / Jadefire Betrayer / Jadefire Felsworn"},
-{type="TURNIN",quest=8420,questName="Hot and Itchy",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
 {type="ACCEPT",quest=7602,questName="Flawless Fel Essence",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"}},
 {type="TURNIN",quest=5156,questName="Verifying the Corruption",npc=10921,npcName="Taronn Redfeather",map=1448,zone="Felwood",x=50.9,y=81.6}
 }]],
