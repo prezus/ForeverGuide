@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: routes move less - quests at one stop are judged together, and out-levelled dungeon quests are no longer picked up: about a quarter less travel, and about 290 detours dropped. Guides and the quest database ship as a dozen bundled files.
 - `/fg wrong`, `/fg edits`, `/fg scan` and the harvest no longer point you at developer tools: `/fg wrong` says `/fg share` sends your reports with the feedback form.
 - Guides: fly between learned flight paths where it's faster (about 1,400 flights across the routes), and about 280 more quests placed
 - Data: quest database tables regenerated; refined positions for 38 objects, and the tables no longer carry source attribution lines.
