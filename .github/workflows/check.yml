@@ -4,13 +4,28 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
+# A newer push to the same branch or PR supersedes the run in progress; every main commit keeps its run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    # A same-repo PR's commits are already checked by the push run; only fork PRs run here.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     steps:
       - uses: actions/checkout@v5
+      # Builds Lua 5.1.5 from lua.org once, then restores it from the Actions cache.
       - name: Install Lua 5.1
-        run: sudo apt-get update && sudo apt-get install -y lua5.1
+        uses: leafo/gh-actions-lua@6919171ccf181b826f44b9bca76307b577217377 # v13.0.0
+        with:
+          luaVersion: "5.1"
+      - name: Name it lua5.1
+        run: ln -s lua "$GITHUB_WORKSPACE/.lua/bin/lua5.1"
       - name: Test engine
         run: lua5.1 tools/test/run_tests.lua
       - name: Validate guide sources
