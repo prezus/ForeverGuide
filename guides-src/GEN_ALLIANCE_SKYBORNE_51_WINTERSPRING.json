@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_51_WINTERSPRING",
   "name": "51. Winterspring 55-57 (Skyborne)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 55,
@@ -17,7 +17,7 @@
     {"type": "TURNIN", "quest": 5883, "questName": "Salve via Mining", "npc": 9528, "npcName": "Arathandris Silversky", "map": 1448, "zone": "Felwood", "x": 54.2, "y": 86.8, "profession": "Mining", "skill": 200},
     {"type": "COLLECT", "quest": 5884, "questName": "Salve via Gathering", "target": "Fel Creep", "count": 1, "mobs": "Mishellena", "map": 1448, "zone": "Felwood", "x": 62.4, "y": 24.2, "optional": true, "profession": "Herbalism", "skill": 200},
     {"type": "TURNIN", "quest": 5884, "questName": "Salve via Gathering", "npc": 9528, "npcName": "Arathandris Silversky", "map": 1448, "zone": "Felwood", "x": 54.2, "y": 86.8, "optional": true, "profession": "Herbalism", "skill": 200},
-    {"type": "COLLECT", "quest": 5885, "questName": "Salve via Skinning", "target": "item 11512", "count": 1, "mobs": "Jaedenar Hunter / Angerclaw Grizzly / Felpaw Ravager", "map": 1448, "zone": "Felwood", "x": 35.4, "y": 57.2, "near": true, "profession": "Skinning", "skill": 200},
+    {"type": "COLLECT", "quest": 5885, "questName": "Salve via Skinning", "target": "Patch of Tainted Skin", "count": 1, "mobs": "Jaedenar Hunter / Angerclaw Grizzly / Felpaw Ravager", "map": 1448, "zone": "Felwood", "x": 35.4, "y": 57.8, "near": true, "profession": "Skinning", "skill": 200},
     {"type": "TURNIN", "quest": 5885, "questName": "Salve via Skinning", "npc": 9528, "npcName": "Arathandris Silversky", "map": 1448, "zone": "Felwood", "x": 54.2, "y": 86.8, "profession": "Skinning", "skill": 200},
     {"type": "TRAVEL", "map": 1452, "zone": "Winterspring", "x": 61.4, "y": 38.2, "radius": 60, "note": "travel to Winterspring (Winterspring)"},
     {"type": "ACCEPT", "quest": 6603, "questName": "Trouble in Winterspring!", "npc": 11754, "npcName": "Meggi Peppinrocker", "map": 1452, "zone": "Winterspring", "x": 61.4, "y": 38.4},
