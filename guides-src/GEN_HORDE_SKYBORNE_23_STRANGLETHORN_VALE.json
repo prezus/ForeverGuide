@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SKYBORNE_23_STRANGLETHORN_VALE",
   "name": "23. Stranglethorn Vale 43-45 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Skyborne"],
   "minLevel": 43,
@@ -25,14 +25,9 @@
     {"type": "TURNIN", "quest": 608, "questName": "The Bloodsail Buccaneers", "npc": 2487, "npcName": "Fleet Master Seahorn", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.2, "y": 77},
     {"type": "TURNIN", "quest": 8551, "questName": "The Captain's Chest", "npc": 2500, "npcName": "Captain Hecklebury Smotts", "map": 1434, "zone": "Stranglethorn Vale", "x": 26.6, "y": 73.6, "optional": true},
     {"type": "ACCEPT", "quest": 586, "questName": "Speaking with Gan'zulah", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.2, "y": 27.6},
-    {"type": "ACCEPT", "quest": 591, "questName": "The Mind's Eye", "npc": 2519, "npcName": "Kin'weelay", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.3, "y": 27.7, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
     {"type": "ACCEPT", "quest": 208, "questName": "Big Game Hunter", "npc": 715, "npcName": "Hemet Nesingwary", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.8, "note": "Elite - group up", "optional": true},
     {"type": "COLLECT", "quest": 208, "questName": "Big Game Hunter", "target": "Head of Bangalash", "count": 1, "mobs": "King Bangalash", "map": 1434, "zone": "Stranglethorn Vale", "x": 38.2, "y": 35.4, "optional": true},
     {"type": "TURNIN", "quest": 208, "questName": "Big Game Hunter", "npc": 715, "npcName": "Hemet Nesingwary", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.8, "optional": true},
-    {"type": "TURNIN", "quest": 339, "questName": "Chapter I", "npc": 716, "npcName": "Barnil Stonepot", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.4},
-    {"type": "TURNIN", "quest": 340, "questName": "Chapter II", "npc": 716, "npcName": "Barnil Stonepot", "map": 1434, "zone": "Stranglethorn Vale", "x": 35.6, "y": 10.4},
-    {"type": "KILL", "quest": 591, "questName": "The Mind's Eye", "npc": 818, "target": "Mai'Zoth", "map": 1434, "zone": "Stranglethorn Vale", "x": 52.9, "y": 27.6, "optional": true},
-    {"type": "TURNIN", "quest": 591, "questName": "The Mind's Eye", "npc": 2519, "npcName": "Kin'weelay", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.3, "y": 27.7, "optional": true},
     {"type": "KILL", "quest": 586, "questName": "Speaking with Gan'zulah", "npc": 669, "target": "Skullsplitter Hunter", "count": 8, "map": 1434, "zone": "Stranglethorn Vale", "x": 45, "y": 39.6, "near": true},
     {"type": "KILL", "quest": 586, "questName": "Speaking with Gan'zulah", "npc": 781, "target": "Skullsplitter Headhunter / Skullsplitter Berserker", "count": 8, "map": 1434, "zone": "Stranglethorn Vale", "x": 47.7, "y": 42.5, "near": true},
     {"type": "KILL", "quest": 586, "questName": "Speaking with Gan'zulah", "npc": 1059, "target": "Ana'thek the Cruel", "map": 1434, "zone": "Stranglethorn Vale", "x": 44.3, "y": 45, "note": "loot Broken Armor of Ana'thek"},
@@ -42,9 +37,9 @@
     {"type": "ACCEPT", "quest": 589, "questName": "The Singing Crystals", "npc": 2519, "npcName": "Kin'weelay", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.3, "y": 27.7},
     {"type": "KILL", "quest": 589, "questName": "The Singing Crystals", "npc": 1551, "target": "Ironjaw Basilisk", "count": 3, "map": 1434, "zone": "Stranglethorn Vale", "x": 42.7, "y": 45.8, "near": true, "note": "loot Pulsing Blue Shard"},
     {"type": "TURNIN", "quest": 589, "questName": "The Singing Crystals", "npc": 2519, "npcName": "Kin'weelay", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.3, "y": 27.7},
-    {"type": "ACCEPT", "quest": 592, "questName": "Saving Yenniku", "npc": 2519, "npcName": "Kin'weelay", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.2, "y": 27.8},
-    {"type": "COLLECT", "quest": 592, "questName": "Saving Yenniku", "target": "Filled Soul Gem", "count": 1, "mobs": "Yenniku", "map": 1434, "zone": "Stranglethorn Vale", "x": 39, "y": 58.4},
-    {"type": "TURNIN", "quest": 592, "questName": "Saving Yenniku", "npc": 2497, "npcName": "Nimboya", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.2, "y": 27.8},
+    {"type": "ACCEPT", "quest": 591, "questName": "The Mind's Eye", "npc": 2519, "npcName": "Kin'weelay", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.2, "y": 27.8, "note": "Elite - group up", "optional": true},
+    {"type": "COLLECT", "quest": 591, "questName": "The Mind's Eye", "target": "Mind's Eye", "count": 1, "mobs": "Mai'Zoth", "map": 1434, "zone": "Stranglethorn Vale", "x": 52.8, "y": 27.8, "optional": true},
+    {"type": "TURNIN", "quest": 591, "questName": "The Mind's Eye", "npc": 2519, "npcName": "Kin'weelay", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.2, "y": 27.8, "optional": true},
     {"type": "GRIND", "npc": 1907, "target": "Naga Explorer", "level": 45, "map": 1434, "zone": "Stranglethorn Vale", "x": 27.1, "y": 59.7, "near": true, "note": "grind Naga Explorer (level 43-44) to level 45 - nothing worth questing at 44"}
   ]
 }
