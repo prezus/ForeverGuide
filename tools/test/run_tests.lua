@@ -53,6 +53,19 @@ local passed, failed = 0, 0
 local function check(cond, msg)
     if cond then passed = passed + 1 else failed = failed + 1 print("  FAIL: " .. msg) end
 end
+--- a precondition the rest of its section cannot do without: a failure is counted and ends the section
+local function need(cond, msg)
+    check(cond, msg)
+    if not cond then error("precondition failed: " .. msg, 2) end
+end
+--- one test section: a Lua error inside it is one failure, and the sections after it still run
+local function section(name, fn)
+    local ok, err = pcall(fn)
+    if not ok then
+        failed = failed + 1
+        print("  FAIL: section '" .. name .. "' errored: " .. tostring(err))
+    end
+end
 local G = ns.Guide
 local function cur() return G.current end
 local function step() return G:GetCurrentStep() end
@@ -64,7 +77,7 @@ end
 
 print("guide active: " .. tostring(G.active and G.active.id))
 -- Listing the route's quests (the Unknown Quests count) reads other chapters' steps without keeping them.
-do
+section("listing the route's quests reads other chapters' steps without keeping them", function()
     local built = {}
     for _, id in ipairs(G.list) do
         local g = G.registry[id]
@@ -76,9 +89,9 @@ do
     for _, s in ipairs(G:ScanSteps(ch3)) do if s.quest then laterQuest = s.quest break end end
     check(laterQuest and G:CoveredQuests()[laterQuest], "a later chapter's quest is still covered by the route")
     check(rawget(ch3, "steps") == nil, "...and scanning that chapter did not keep its steps")
-end
+end)
 -- Compiled guides ship their steps as packed text, decoded to the same steps on first read.
-do
+section("Compiled guides ship their steps as packed text, decoded to the same steps on first read", function()
     local shipped
     local chunk = assert(loadfile(root .. "Guides/DUNGEON_HORDE_SHADOWFANG_KEEP.lua"))
     chunk("ForeverGuide", { RegisterGuide = function(g) shipped = g end })
@@ -86,9 +99,9 @@ do
     local steps = shipped and ns.DecodeRecord(shipped.steps)
     check(steps and #steps == shipped.stepCount and steps[1].type == "ACCEPT" and steps[1].quest == 1013,
         "...which decodes to its steps (" .. tostring(steps and #steps) .. " of " .. tostring(shipped and shipped.stepCount) .. ")")
-end
+end)
 -- The other faction's guides are dropped at login, so their step loaders can be collected.
-do
+section("The other faction's guides are dropped at login, so their step loaders can be collected", function()
     local horde, consistent = 0, true
     for _, id in ipairs(G.list) do
         local g = G.registry[id]
@@ -117,9 +130,9 @@ do
     G:PruneForFaction()
     check(G.registry.TEST_PRUNE_HORDE == nil and not ns.Contains(G.list, "TEST_PRUNE_HORDE"),
         "an other-faction guide is pruned from list and registry")
-end
+end)
 -- Contributing data is one opt-in; old switches, mirrors and SavedVariables cannot opt anyone in.
-do
+section("contributing data is one opt-in; old switches, mirrors and SavedVariables cannot opt anyone in", function()
     check(ns.db.contribute == false and ns.db.scanEnabled == false, "fresh login: contributing and the scanner start off")
     check(next(ns.db.contrib.quests) == nil and next(ns.db.contrib.npcs) == nil and #ns.db.contrib.order == 0
         and ns.db.scan == nil and ns.db.harvest == nil, "fresh login does not collect session data")
@@ -148,9 +161,9 @@ do
     check(not ns.Harvest.sweeping, "harvest sweep refuses to run before opt-in")
     ns.Options:Create()
     local contribute, scan = ns.Options:GetWidget("contribute"), ns.Options:GetWidget("scanner")
-    check(contribute and scan and not ns.Options:GetWidget("recorder") and not ns.Options:GetWidget("harvest"),
+    need(contribute and scan and not ns.Options:GetWidget("recorder") and not ns.Options:GetWidget("harvest"),
         "data collection has two options: contribute and scanner")
-    if contribute and scan then
+    do
         contribute:SetChecked(true); contribute:GetScript("OnClick")(contribute)
         check(ns.db.contribute and not ns.db.scanEnabled, "contributing does not enable the scanner")
         check(calls == 1, "contributing permits map quest-line requests")
@@ -190,9 +203,9 @@ do
     _G.C_QuestLine = priorQuestLine
     ns.Database:Init()
     check(ns.db.contribute and ns.db.scanEnabled, "explicit v2 opt-ins survive a normal SavedVariables login")
-end
+end)
 -- Addon Lua errors join the contribution while contributing is on.
-do
+section("Addon Lua errors join the contribution while contributing is on", function()
     local errors = ns.db.contrib.errors
     local before, errorsBefore = #errors, #reportedErrors
     ns.ReportOnce("test:ui-error", "broken button")
@@ -207,7 +220,7 @@ do
     ns.db.contribute = true
     while #errors > before do table.remove(errors) end
     while #reportedErrors > errorsBefore do table.remove(reportedErrors) end
-end
+end)
 -- Contributing keeps facts, not an event log: who gives and ends a quest, where, at what level,
 -- and what was targeted when an objective moved. Never another player, never the time.
 local function mentions(t, needle, seen)
@@ -220,7 +233,7 @@ local function mentions(t, needle, seen)
     end
     return false
 end
-do
+section("contributing keeps facts, not an event log; never another player, never the time", function()
     local c = ns.db.contrib
     local npc, offered, fromPlayer, target = MOCK.npc, MOCK.offeredQuest, MOCK.offerFromPlayer, MOCK.target
     local autoShared = ns.AutoQuest.Cfg().shared
@@ -284,9 +297,9 @@ do
     check(c.npcs[9003] == nil, "with contributing off nothing is kept")
     MOCK.npc = npc
     ns.db.contribute = true
-end
+end)
 -- /fg share: one string for the feedback form, holding only allowlisted fields.
-do
+section("/fg share: one string for the feedback form, holding only allowlisted fields", function()
     local json = dofile(root .. "tools/test/json.lua")
     local c = ns.db.contrib
     -- data that must never leave, planted where the store could hold it
@@ -397,7 +410,8 @@ do
     ns.Print = realPrint
     ns.Commands:Run("share clear")
     ns.db.reports = {}
-end
+end)
+section("engine walkthrough of the fixture guide", function()
 check(ns.db.ding.enabled == false and ns.db.nav.blizzardWaypoint == false
     and ns.db.nav.waypoint.enabled == false and ns.db.nav.waypoint.route == false
     and ns.db.ui.arrow.enabled == true, "quiet defaults: no ding, pin or dotted route; arrow on")
@@ -547,8 +561,9 @@ check(cur() == 4 and step().quest == 3100 and next(G.progress.done) == nil,
     "reset forgets manual skips (3100 is back) but still passes completed quests 783 and 7 (" .. tostring(cur()) .. ")")
 
 ns.UI:Refresh()
+end)
 -- The extra quest panel follows the guide window but never duplicates a routed quest.
-do
+section("The extra quest panel follows the guide window but never duplicates a routed quest", function()
     local f = ns.QuestGuide.frame
     MOCK_ACCEPT(999991, "Unplanned errand", { { text = "Gather 2 things", finished = false, numFulfilled = 1, numRequired = 2 } }); settle()
     local extra = f.extra
@@ -605,10 +620,10 @@ do
     f.unknownBtn:GetScript("OnClick")(f.unknownBtn)
     check(not extra:IsShown(), "the Unknown Quests button closes its panel again")
     MOCK_ABANDON(783); settle()
-end
+end)
 
 -- ---- quest database: lean steps resolve through the DB ----
-do
+section("quest database: lean steps resolve through the DB", function()
     check(ns.DB:IsLoaded(), "quest database loaded")
     check(ns.DB:QuestName(783) == "A Threat Within", "DB knows quest 783: " .. tostring(ns.DB:QuestName(783)))
     local starts = ns.DB:QuestStarts(783)
@@ -662,8 +677,8 @@ do
     check(#routes >= 3, "an Alliance character sees every Alliance route (" .. #routes .. ")")
     local other
     for _, r in ipairs(routes) do if not r.mine then other = r break end end
-    check(other ~= nil, "routes of other races are offered too")
-    if other then
+    need(other ~= nil, "routes of other races are offered too")
+    do
         local r, pick = ns.Guide:ChooseRoute(other.key)
         check(r and r.key == other.key and pick ~= nil and ns.char.route == other.key and ns.Guide.active and ns.Guide.active.id == pick.id, string.format("choosing another race's route activates its fitting chapter (r=%s pick=%s active=%s route=%s)", tostring(r and r.key), tostring(pick and pick.id), tostring(ns.Guide.active and ns.Guide.active.id), tostring(ns.char.route)))
         check(ns.Persist:EncodeChar():find("r=" .. other.key, 1, true) ~= nil, "the chosen route is mirrored in the cvars")
@@ -673,10 +688,10 @@ do
         check(ns.char.route == nil, "/fg path race goes back to the race's own route")
     end
     ns.Tracker:SetMode("guide")
-end
+end)
 
 -- ---- auto quest + minimap ----
-do
+section("auto quest + minimap", function()
     check(ForeverGuideMinimapButton ~= nil, "minimap button created")
     MOCK.offeredQuest = 60
     MOCK.log[60] = { title = "Kobold Candles", level = 7, objectives = {} }
@@ -714,8 +729,8 @@ do
     do
         ns.Options:Create()
         local slider = ns.Options:GetWidget("arrowsize")
-        check(slider ~= nil, "the panel built a slider for arrow size")
-        if slider then
+        need(slider ~= nil, "the panel built a slider for arrow size")
+        do
             -- drive it the way a player drags it, then confirm Refresh() reads the change back
             slider:SetValue(2.0)
             check(ns.Arrow:GetScale() == 2.0, "dragging the panel slider resizes the arrow")
@@ -808,10 +823,10 @@ do
     ns.Commands:Run("auto")
     MOCK.log[60], MOCK.log[62], MOCK.log[5001], MOCK.log[5002], MOCK.log[5003], MOCK.log[5004] = nil, nil, nil, nil, nil, nil
     MOCK.trivial, MOCK.repeatable = nil, nil
-end
+end)
 
 -- ---- party quest sharing: share what you accept, accept what the party shares ----
-do
+section("party quest sharing: share what you accept, accept what the party shares", function()
     local A = ns.AutoQuest
     check(A.Cfg().share == true and A.Cfg().shared == true, "sharing and accepting shared quests are on by default")
     local function pushed(qid)
@@ -904,10 +919,10 @@ do
 
     for _, qid in ipairs({ 7001, 7002, 7003, 7004, 7005, 7007 }) do MOCK_ABANDON(qid) end
     MOCK.group, MOCK.pushed, MOCK.acceptedViaFrame, MOCK.offeredQuest = false, {}, nil, nil
-end
+end)
 
 -- ---- multi-objective steps: each KILL/COLLECT step tracks its own objective ----
-do
+section("multi-objective steps: each KILL/COLLECT step tracks its own objective", function()
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
     local steps = G.active.steps
     local a, b
@@ -916,8 +931,8 @@ do
             if not a then a = i elseif not b then b = i end
         end
     end
-    check(a and b, "Elwynn guide has two objective steps for quest 52 (" .. tostring(a) .. "," .. tostring(b) .. ")")
-    if a and b then
+    need(a and b, "Elwynn guide has two objective steps for quest 52 (" .. tostring(a) .. "," .. tostring(b) .. ")")
+    do
         MOCK_ACCEPT(52, "Young Forest Bear... no: Rolf and Malakai", {
             { text = "Young Forest Bear slain: 0/8", finished = false, numFulfilled = 0, numRequired = 8 },
             { text = "Prowler slain: 0/8", finished = false, numFulfilled = 0, numRequired = 8 },
@@ -952,10 +967,10 @@ do
             for i, id in ipairs(MOCK.logOrder) do if id == qid then table.remove(MOCK.logOrder, i) break end end
         end
     end
-end
+end)
 
 -- ---- scanner: simulated server with silence for unknown ids and a throttle ----
-do
+section("scanner: simulated server with silence for unknown ids and a throttle", function()
     local server = { [5]=true,[6]=true,[7]=true,[8]=true,[9]=true,[11]=true,[12]=true,[13]=true,[14]=true,[15]=true,
                      [16]=true,[18]=true,[19]=true,[20]=true,[21]=true,[22]=true,[26]=true,[27]=true,[28]=true,[29]=true,
                      [30]=true,[31]=true,[33]=true,[34]=true,[35]=true,[36]=true,[37]=true,[38]=true,[39]=true,[40]=true,
@@ -963,6 +978,7 @@ do
     local answered, requests, throttleUntil = 0, 0, nil
     MOCK.titles = {}
     for id in pairs(server) do MOCK.titles[id] = "Quest " .. id end
+    local realHave, realRequest = rawget(_G, "HaveQuestData"), C_QuestLog.RequestLoadQuestByID
     _G.HaveQuestData = function() return false end
     local realTitle = C_QuestLog.GetTitleForQuestID
     C_QuestLog.GetTitleForQuestID = function(id) return nil end
@@ -1016,15 +1032,16 @@ do
     ns.Commands:Run("scan on")
     C_QuestLog.GetTitleForQuestID = realTitle
     C_QuestLog.GetQuestDifficultyLevel, C_QuestLog.GetQuestObjectives = realDifficulty, realObjectives
+    _G.HaveQuestData, C_QuestLog.RequestLoadQuestByID = realHave, realRequest
     ns.Quest:Refresh()
-end
+end)
 
 
 -- ---- Forever overlay data merged into the Classic database ---------------------------------
 check(ns.ForeverDB == nil and type(ns.QuestDB[317]) == "string", "the Forever overlay ships merged into the packed records")
 check(ns.DB:GetQuest(317) and ns.DB:GetQuest(317).fobj and ns.DB:GetQuest(317).fobj[1].spm ~= nil, "overlay objective evidence attached to vanilla quest 317")
 check(ns.DB:GetNPC(1131) and ns.DB:GetNPC(1131).spm ~= nil, "overlay npc points merged into vanilla npc 1131")
-do
+section("Forever overlay data merged into the Classic database", function()
     local locs = ns.DB:NPCLocations(1131)
     local hasForever = false
     for _, l in ipairs(locs) do if l.forever and l.map == 1426 then hasForever = true end end
@@ -1034,10 +1051,10 @@ do
     local fq = ns.DB:GetQuest(99128)
     check(fq and fq.forever and fq.n == "Slimy Menace", "Forever-only quest 99128 exists with its title")
     check(ns.Quest:XPMultiplier(783, 1) == 1 and ns.Quest:XPMultiplier(783, 7) == 0.8 and ns.Quest:XPMultiplier(783, 12) == 0.1, "xp multiplier follows the Classic reduction table")
-end
+end)
 
 -- ---- packed records: the indexes match the records, decoding is safe and cached --------------
-do
+section("packed records: the indexes match the records, decoding is safe and cached", function()
     local DB = ns.DB
     local byZone, byItem = {}, {}
     for id, q in DB:EachQuest() do
@@ -1071,10 +1088,10 @@ do
     check(ns.DecodeRecord("{") == nil, "broken packed text decodes to nothing, not an error")
     check(ns.DecodeRecord("{x=print}").x == nil and ns.DecodeRecord("(function() y = 1 end)()") == nil and rawget(_G, "y") == nil,
         "packed text sees no globals and cannot set any")
-end
+end)
 
 -- ---- /fg wrong: feedback reports ----------------------------------------------------------
-do
+section("/fg wrong: feedback reports", function()
     ns.Commands:Run("wrong the giver is 10 yards north")
     check(ns.db.reports and #ns.db.reports == 1 and ns.db.reports[1].text == "the giver is 10 yards north" and (ns.db.reports[1].guide == (ns.Guide.active and ns.Guide.active.id) or ns.db.reports[1].mode == "auto"), "/fg wrong stores a report with guide + step")
     ns.Commands:Run("wrong")
@@ -1106,10 +1123,10 @@ do
     ForeverGuideReports.clear:GetScript("OnClick")()
     check(#ns.db.reports == 0 and ForeverGuideReports.text:GetText():find("No reports yet", 1, true),
         "confirmed clear deletes feedback and refreshes the list")
-end
+end)
 
 -- ---- audit regressions (2026-09-20) --------------------------------------------------------
-do
+section("audit regressions (2026-09-20)", function()
     -- 1. an objective step whose wording matches no live objective must not count as done
     ns.RegisterGuide({ id = "AUDIT_OBJ", name = "audit obj", steps = {
         { type = "ACCEPT", quest = 11 },
@@ -1138,10 +1155,10 @@ do
     MOCK_MOVE(40, 60); ns.Navigation:Update(); settle()
     ns.Navigation:Update(); settle()
     check(cur() == 5, "two TRAVEL steps to the same spot both complete on arrival (" .. tostring(cur()) .. ")")
-end
+end)
 
 -- ---- optional group quests ------------------------------------------------------------------
-do
+section("optional group quests", function()
     ns.RegisterGuide({ id = "AUDIT_GROUP", name = "group", steps = {
         { type = "ACCEPT", quest = 990001 },
         { type = "ACCEPT", quest = 990002, optional = true, note = "group quest" },
@@ -1157,10 +1174,10 @@ do
     MOCK_ABANDON(990002); settle()
     check(cur() == 5, "dropping it walks past again (" .. tostring(cur()) .. ")")
     MOCK_TURNIN(990001); settle()
-end
+end)
 
 -- ---- full quest log ---------------------------------------------------------------------------
-do
+section("full quest log", function()
     ns.RegisterGuide({ id = "AUDIT_FULL", name = "full log", steps = {
         { type = "ACCEPT", quest = 4010 }, { type = "TURNIN", quest = 4010 } } })
     G:Activate("AUDIT_FULL", true); settle()
@@ -1176,10 +1193,10 @@ do
     G:Evaluate("test")
     check(not (G.note and G.note:find("Quest log full", 1, true)), "room again: the note goes away")
     MOCK_ABANDON(4011); MOCK_ABANDON(4012); settle()
-end
+end)
 
 -- ---- corpse run ---------------------------------------------------------------------------------
-do
+section("corpse run", function()
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
     local before = ns.Navigation.target
     check(before and before.owner == "guide", "guide target before dying")
@@ -1190,10 +1207,10 @@ do
     check(ns.Navigation.target and ns.Navigation.target.owner == "corpse", "the guide does not steal the target back while a ghost")
     MOCK_REVIVE(); settle()
     check(ns.Navigation.target and ns.Navigation.target.owner == "guide" and ns.Navigation.override == nil, "alive again: the guide's target returns (" .. tostring(ns.Navigation.target and ns.Navigation.target.owner) .. ")")
-end
+end)
 
 -- ---- mob tooltips: live progress, only for objectives this mob actually serves ----------------
-do
+section("mob tooltips: live progress, only for objectives this mob actually serves", function()
     MOCK_ACCEPT(52, "Protect the Frontier", { { text = "Young Forest Bear slain: 2/5", finished = false, numFulfilled = 2, numRequired = 5 } }); settle()
     local lines = ns.ItemTips:MobLinesFor("Young Forest Bear")
     check(#lines == 1 and lines[1] == "2/5 Young Forest Bear slain", "hovering a kill mob shows the count, then its objective (" .. tostring(lines[1]) .. ")")
@@ -1216,10 +1233,10 @@ do
     check(#lines == 1 and lines[1]:find("5/5", 1, true), "completed kills show their final count until turn-in")
     MOCK_ABANDON(52); MOCK_ABANDON(11); settle()
     check(#ns.ItemTips:MobLinesFor("Riverpaw Runt") == 0, "abandoned quests no longer show mob progress")
-end
+end)
 
 -- ---- item tooltips ------------------------------------------------------------------------------
-do
+section("item tooltips", function()
     -- Riverpaw Gnoll Bounty (11) collects Painted Gnoll Armband (782)
     if not ns.Quest:IsOnQuest(11) then MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Painted Gnoll Armband", finished = false, numFulfilled = 3, numRequired = 8 } }); settle() end
     local lines = ns.ItemTips:LinesFor(782, "Painted Gnoll Armband")
@@ -1237,10 +1254,10 @@ do
     lines = ns.ItemTips:LinesFor(1080, "Tough Condor Meat")
     check(#lines == 1 and lines[1][2] == "leftover" and lines[1][1]:find("safe to sell", 1, true), "tooltip: no longer needed, safe to sell (" .. tostring(lines[1] and lines[1][1]) .. ")")
     do local l = ns.ItemTips:LinesFor(999999, "Broken Sword") check(#l == 0, "an ordinary item gets no line (" .. tostring(l[1] and l[1][1]) .. ")") end
-end
+end)
 
 -- ---- a COLLECT step names the creatures that drop its item --------------------------------------
-do
+section("a COLLECT step names the creatures that drop its item", function()
     ns.RegisterGuide({ id = "AUDIT_MOBS", name = "mobs", steps = {
         { type = "ACCEPT", quest = 990700 },
         { type = "COLLECT", quest = 990700, target = "Pristine Leopard Pelt", count = 6, mobs = "Elder Snow Leopard / Snow Leopard" },
@@ -1250,10 +1267,10 @@ do
     local names = ns.MobMarker:WantedNames()
     check(step().type == "COLLECT" and names["elder snow leopard"] == "Elder Snow Leopard" and names["snow leopard"] == "Snow Leopard", "a COLLECT step's mobs are the creatures the marker and target key look for")
     check(names["pristine leopard pelt"] == nil, "the item itself is not a creature to look for")
-end
+end)
 
 -- ---- skulls over quest mobs ----------------------------------------------------------------
-do
+section("skulls over quest mobs", function()
     ns.RegisterGuide({ id = "AUDIT_SKULL", name = "skull", steps = {
         { type = "ACCEPT", quest = 11 },
         { type = "KILL", quest = 11, target = "Kobold Vermin", npc = 6, near = true },
@@ -1406,13 +1423,13 @@ do
         settle()
     end
     for i = 1, 4 do MOCK_PLATE("nameplate" .. i, nil) end
-end
+end)
 
 -- ---- combat lockdown: nameplate cvars are protected, must never be touched mid-fight -------
 -- (Ilya, 2026-09-24: live "Interface action failed because of an AddOn" - forcePlates() called
 -- SetCVar unconditionally, and Scan() retries every 0.5s while a kill step is current, so it kept
 -- retrying - and kept getting denied - for the whole fight it fired in.)
-do
+section("combat lockdown: nameplate cvars are protected, must never be touched mid-fight", function()
     ns.RegisterGuide({ id = "AUDIT_COMBAT_PLATES", name = "combat plates", steps = {
         { type = "ACCEPT", quest = 990010 },
         { type = "KILL", quest = 990010, target = "Test Grunt", npc = 990010, near = true },
@@ -1445,10 +1462,10 @@ do
     check(GetCVar("nameplateShowEnemies") == "1", "leaving the step mid-combat (already forced) doesn't touch the cvar either")
     MOCK.inCombat = false
     MOCK_ABANDON(990010); settle()
-end
+end)
 
 -- ---- a stray Forever position must not pull a giver step away from its own spot ---------
-do
+section("a stray Forever position must not pull a giver step away from its own spot", function()
     -- Tundra MacGrann (1266): four Forever points at the giver, one stray far off. A player standing
     -- by the stray one was sent there instead of to the step's giver.
     ns.NpcDB[990501] = { n = "Stray Giver", spm = { [1429] = { { 34.6, 51.7 }, { 34.7, 51.6 }, { 43.0, 47.4 } } } }
@@ -1460,19 +1477,19 @@ do
     local _, bx, by = ns.Navigation:ResolveStep(bare)
     check(math.abs(bx - 43.0) < 0.2 and math.abs(by - 47.4) < 0.2, "a giver step without coordinates still takes the Forever point nearest the player")
     ns.NpcDB[990501] = nil
-end
+end)
 
 -- ---- distances: yards, abbreviated from a thousand on, like the game's own waypoint --------
-do
+section("distances: yards, abbreviated from a thousand on, like the game's own waypoint", function()
     local N = ns.Navigation
     local got = { N:FormatDistance(85), N:FormatDistance(999.4), N:FormatDistance(999.6), N:FormatDistance(1500), N:FormatDistance(2000), N:FormatDistance(12345) }
     local want = { "85 yd", "999 yd", "1k yd", "1.5k yd", "2k yd", "12.3k yd" }
     check(table.concat(got, "|") == table.concat(want, "|"), "distances read in yards, 1.5k yd past a thousand (" .. table.concat(got, "|") .. ")")
     check(N:FormatDistance(nil) == "?", "an unknown distance is ?")
-end
+end)
 
 -- ---- Blizzard's quest map pin is the primary target of an objective step ----------------
-do
+section("Blizzard's quest map pin is the primary target of an objective step", function()
     -- the world map's numbered pin marks where the client wants the player to go for a quest in
     -- the log; our spawn data (vanilla-era, or none for new Forever quests) only fills in
     ns.NpcDB[990601] = { n = "Pin Wolf", spm = { [1429] = { { 40.0, 60.0 } } } }
@@ -1519,10 +1536,10 @@ do
     check(nx ~= 70, "quest not in the log: its pin is not used (" .. tostring(nx) .. ")")
     MOCK.questPins = nil
     ns.NpcDB[990601] = nil
-end
+end)
 
 -- ---- editor + resync -------------------------------------------------------------------
-do
+section("editor + resync", function()
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
     local step = G:GetCurrentStep()
     MOCK_MOVE(33.3, 44.4)
@@ -1587,10 +1604,10 @@ do
     check(pick and (pick.id:find("^GEN_ALLIANCE_HUMAN_0[12]_") ~= nil), "level-11 human in Elwynn auto-picks the Human route's chapter 1 or 2, not another race's chapter (" .. tostring(pick and pick.id) .. ")")
     MOCK_LEVEL(5); settle()
     G:Reset(); settle()
-end
+end)
 
 -- ---- the Quest Guide window: rows, header, states, settings, waypoint fallback ----------
-do
+section("the Quest Guide window: rows, header, states, settings, waypoint fallback", function()
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true)
     -- a step this character follows and has not done, with a done step before it and an undone one
     -- soon after: placed class steps come and go, and earlier tests have finished much of Northshire
@@ -1784,10 +1801,10 @@ do
     ns.Commands:Run("route on")
     ns.Navigation:Clear()
     G:SetStep(5); settle()
-end
+end)
 
 -- ---- level-gated quests: skipped until the level is reached, then revisited ---------------
-do
+section("level-gated quests: skipped until the level is reached, then revisited", function()
     -- a small synthetic chapter: The Lost Tools (125, req low) then Blackrock Menace (20, req 18)
     ns.RegisterGuide({ id = "TEST_GATE", name = "gate test", version = 1, faction = "Alliance", minLevel = 15, maxLevel = 20, map = 1433, zone = "Redridge Mountains",
         steps = {
@@ -1817,10 +1834,10 @@ do
     for i, id in ipairs(MOCK.logOrder) do if id == 125 then table.remove(MOCK.logOrder, i) break end end
     MOCK_LEVEL(5); settle()
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
-end
+end)
 
 -- ---- the player's own order: Later / Do now, and skipped steps that come back ------------
-do
+section("the player's own order: Later / Do now, and skipped steps that come back", function()
     local function obj() return { { text = "Test mob slain: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } } end
     local function acc(q) return { type = "ACCEPT", quest = q, questName = "Order " .. q, map = 1429, x = 40, y = 40 } end
     ns.RegisterGuide({ id = "TEST_ORDER", name = "order test", version = 1, faction = "Alliance", minLevel = 1, maxLevel = 60, map = 1429, zone = "Elwynn Forest",
@@ -1936,10 +1953,10 @@ do
     for _, q in ipairs({ 990702, 990703 }) do MOCK_ABANDON(q) end
     settle()
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
-end
+end)
 
 -- ---- auto mode: Do first / Do last pins a quest over the distance order -------------------------
-do
+section("auto mode: Do first / Do last pins a quest over the distance order", function()
     MOCK_ACCEPT(990801, "Near Quest", { { text = "Near: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } })
     MOCK_ACCEPT(990802, "Far Quest", { { text = "Far: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } })
     settle()
@@ -1962,10 +1979,10 @@ do
     MOCK_ABANDON(990801); settle()
     MOCK.questPins = nil
     ns.Tracker:SetMode("guide"); settle()
-end
+end)
 
 -- ---- sweep: every command, every UI script, options, keybinds ------------------------
-do
+section("sweep: every command, every UI script, options, keybinds", function()
     local before = #reportedErrors
     local cmds = {
         "", "help", "show", "hide", "toggle", "show", "guides", "guide GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", "skip", "back", "next", "step 3",
@@ -1977,15 +1994,26 @@ do
     }
     for _, c in ipairs(cmds) do ns.Commands:Run(c) end
     -- UI window scripts
+    local frames = {}
     for name, f in pairs(_G) do
-        if type(name) == "string" and name:find("^ForeverGuide") and type(f) == "table" and type(rawget(f, "scripts")) == "table" then
-            for sname, fn in pairs(f.scripts) do
+        if type(name) == "string" and name:find("^ForeverGuide") and type(f) == "table" and type(rawget(f, "scripts")) == "table" then frames[#frames + 1] = name end
+    end
+    table.sort(frames)   -- pairs() order is not stable: a stable sweep fails the same way every run
+    for _, name in ipairs(frames) do
+        local f = _G[name]
+        do
+            local snames = {}
+            for sname in pairs(f.scripts) do snames[#snames + 1] = sname end
+            table.sort(snames)
+            for _, sname in ipairs(snames) do
+                local fn = f.scripts[sname]
                 if sname == "OnUpdate" then fn(f, 0.5) fn(f, 0.5)
                 elseif sname == "OnClick" then fn(f, "LeftButton") fn(f, "RightButton")
                 elseif sname == "OnEnter" or sname == "OnLeave" or sname == "OnShow" or sname == "OnHide" then fn(f)
                 elseif sname == "OnDragStart" or sname == "OnDragStop" then fn(f)
                 end
             end
+            f.moving, f.sizing = false, false   -- OnDragStop may have run before OnDragStart: leave no drag open
         end
     end
     -- options panel: flip every checkbox both ways
@@ -2018,10 +2046,10 @@ do
         if not e:find("unknown command", 1, true) then unexpected = unexpected + 1 end
     end
     check(unexpected == 0, "command / UI sweep produced no errors (" .. unexpected .. ")")
-end
+end)
 
 -- ---- beta SavedVariables bug: state survives a login with empty SavedVariables via cvars ----
-do
+section("beta SavedVariables bug: state survives a login with empty SavedVariables via cvars", function()
     G:Activate("GEN_ALLIANCE_DWARF_01_DUN_MOROGH", true); settle()
     G:SetStep(20); settle()
     G.progress.done[7] = true G.progress.done[8] = true G.progress.done[12] = true
@@ -2057,12 +2085,12 @@ do
     ns.AutoQuest:Set("accept", "on")
     ns.db.edits = {}
     G:Activate(savedGuide, true); G:Reset(); settle()
-end
+end)
 
 -- ---- arriving in the zone finishes the chapter's travel step; resync moves forward ----
 -- (Ilya, 2026-09-21: level 18 in Westfall with the Westfall chapter open, the guide sat on
 --  "Travel to Westfall - 640 yd" forever and every /fg resync answered "now at step 1")
-do
+section("arriving in the zone finishes the chapter's travel step; resync moves forward", function()
     local savedMap, savedZone = MOCK.mapID, MOCK.zone
     -- a chapter that opens by travelling into its zone (the Westfall chapter as generated before
     -- quests were added to it; live chapters change, the rule under test does not)
@@ -2104,12 +2132,12 @@ do
     MOCK_ZONE(savedMap, savedZone, 48, 43); settle()
     MOCK_LEVEL(savedLevel); settle()
     G:Activate("HUMAN_NORTHSHIRE_1_6", true); G:Reset(); settle()
-end
+end)
 
 -- ---- a quest this character's race can never take is not part of the route ----
 -- (Ilya, 2026-09-21: the Dwarf chapter offered 6181 "A Swift Message", a Human-only quest, and the
 --  guide sat on it at Quartermaster Lewis - who has nothing to say to a dwarf)
-do
+section("a quest this character's race can never take is not part of the route", function()
     local q = ns.DB:GetQuest(6181)
     check(q ~= nil and q.races ~= nil and q.races ~= 0, "the database knows 6181 is race-restricted")
     local mine = MOCK.race
@@ -2125,21 +2153,21 @@ do
     MOCK.race = mine
     ns.Player.cache = {}
     if ns.Quest:IsOnQuest(4010) then MOCK_ABANDON(4010); settle() end
-end
+end)
 
 -- a breadcrumb is passed once its quest is taken: Rejold's New Brew (415) leads to Shimmer Stout (413)
-do
+section("a breadcrumb is passed once its quest is taken", function()
     local bread = { type = "ACCEPT", quest = 415 }
     check(G:IsStepDone(bread, 9999) == false, "a breadcrumb's accept waits while its quest is not taken")
     MOCK_ACCEPT(413, "Shimmer Stout"); settle()
     local done, why = G:IsStepDone(bread, 9999)
     check(done == true and why == "breadcrumb passed", "...and is passed once Shimmer Stout is in the log (" .. tostring(why) .. ")")
     MOCK_ABANDON(413); settle()
-end
+end)
 
 -- class-limited WoW Forever quests: the second Stalk With The Earthmother is for shamans (the first
 -- is open to Tauren, Orc and Troll warriors, shamans and druids, so it cannot stand for it)
-do
+section("class-limited WoW Forever quests", function()
     local q = ns.DB:GetQuest(76160)
     check(q and q.classes and q.classes > 0, "Forever's Stalk With The Earthmother (76160) is limited by class")
     local class, race, faction = MOCK.class, MOCK.race, MOCK.faction
@@ -2152,11 +2180,11 @@ do
     MOCK.class = { "Mage", "MAGE", 8 }; ns.Player.cache = {}
     check(G:StepApplies({ type = "ACCEPT", quest = 7, class = { "WARRIOR" } }) == false, "a warrior-only guide step is not a mage's")
     MOCK.class, MOCK.race, MOCK.faction = class, race, faction; ns.Player.cache = {}
-end
+end)
 
 -- Skyborne (WoW Forever's race, file name "Skyborne", on both factions) has no bit in the Classic
 -- race masks: it takes what every race of its faction can take, and nothing race-specific
-do
+section("race masks: it takes what every race of its faction can take, and nothing race-specific", function()
     local mine, faction = MOCK.race, MOCK.faction
     MOCK.race, MOCK.faction = { "Skyborne", "Skyborne" }, "Alliance"; ns.Player.cache = {}
     check(ns.DB:RaceClassOK(6181) == false, "a Skyborne cannot take the Human-only 6181")
@@ -2165,7 +2193,7 @@ do
     MOCK.faction = "Horde"; ns.Player.cache = {}
     check(ns.DB:RaceClassOK(2) == true and ns.DB:RaceClassOK(5) == false, "a Horde Skyborne: the Horde quest yes, the Alliance one no")
     MOCK.race, MOCK.faction = mine, faction; ns.Player.cache = {}
-end
+end)
 
 -- Skyborne's own bits (65536 Alliance, 131072 Horde): a quest Forever opened to Skyborne says so,
 -- as The Principal Source (6122) is open to Night Elf and Alliance Skyborne druids
@@ -2191,7 +2219,7 @@ end
 
 -- ---- level-up announcement ------------------------------------------------------------------
 -- (Ilya, 2026-09-21: "when we level up there should be a party message/emote message ...")
-do
+section("level-up announcement", function()
     local D = ns.Ding
     check(D.FormatTime(42) == "42 sec" and D.FormatTime(1080) == "18 min"
         and D.FormatTime(5040) == "1h 24m" and D.FormatTime(183600) == "2d 3h",
@@ -2262,12 +2290,12 @@ do
     ns.Persist:DecodeAcct(encoded)
     check(ns.db.ding.channel == "emote", "the channel is kept in the beta cvar mirror (" .. tostring(ns.db.ding.channel) .. ")")
     ns.Commands:Run("ding auto")
-end
+end)
 
 -- ---- the options panel fits in the settings canvas -------------------------------------------
 -- (Ilya, 2026-09-21: "the text is overflowing" - the checkbox list ran off the bottom of the
 --  Options window and drew over the game)
-do
+section("the options panel fits in the settings canvas", function()
     local p = ns.Options:Create()
     check(p ~= nil and p.body ~= nil and p.body ~= p, "the options list lives on a scrolling child")
     check(p.scroll ~= nil and p.scroll:GetScrollChild() == p.body, "the scroll frame holds it")
@@ -2289,10 +2317,10 @@ do
         check(ns.db.ding.enabled == not was, "clicking the switch flips the announcement")
         ding:SetChecked(was); ding:GetScript("OnClick")(ding)
     end
-end
+end)
 
 -- ---- levelling pace ---------------------------------------------------------------------------
-do
+section("levelling pace", function()
     local P = ns.Pace
     check(P.Number(19600) == "19 600" and P.Number(940) == "940", "numbers are grouped for reading (" .. P.Number(19600) .. ")")
 
@@ -2335,12 +2363,12 @@ do
     local allText = #lines >= 3
     for _, line in ipairs(lines) do if type(line) ~= "string" or #line == 0 then allText = false end end
     check(allText, "/fg xp has something to say, one line of text each (" .. #lines .. " lines)")
-end
+end)
 
 -- ---- a chapter of another race's route ---------------------------------------------------------
 -- (seen live 2026-09-22: a level-20 dwarf in Duskwood was following "6. Ashenvale 19-22 (Night Elf)"
 --  while /fg path said the Dwarf route; the race-only quests in it are skipped, so say so)
-do
+section("a chapter of another race's route", function()
     local mineBefore = ns.char.route
     ns.char.route = nil
     MOCK.level = 20
@@ -2366,10 +2394,10 @@ do
     check(ns.Guide:OffRouteChapter() == nil, "a route the player chose is left alone")
     ns.char.route = mineBefore
     ns.Guide:Activate("HUMAN_NORTHSHIRE_1_6", true); ns.Guide:Reset(); settle()
-end
+end)
 
 -- ---- flight points and the trainer nudge -------------------------------------------------------
-do
+section("flight points and the trainer nudge", function()
     local R = ns.Reminders
     local map = 1415          -- taxi nodes are listed per continent (Eastern Kingdoms here)
     MOCK_TAXI(map, {})
@@ -2456,11 +2484,11 @@ do
     check(ns.char.lastTrained == 22, "and the level you last trained at (" .. tostring(ns.char.lastTrained) .. ")")
     ns.Commands:Run("remind flight on")
     ns.char.lastTrained = nil
-end
+end)
 
 -- ---- dungeons: the guide steps aside -----------------------------------------------------------
 -- (Ilya, 2026-09-22: "when in a dungeon, we need to disable the quest guide, so it doesnt interfere")
-do
+section("dungeons: the guide steps aside", function()
     local I = ns.Instance
     ns.UI:Show()
 
@@ -2495,10 +2523,10 @@ do
     ns.Persist:DecodeAcct(acct)
     check(ns.db.instance.hide == false, "the dungeon switch is kept in the mirror")
     ns.Commands:Run("dungeon on")
-end
+end)
 
 -- ---- a dungeon's own guide: listed apart, never auto-picked, back to the chapter afterwards ----
-do
+section("a dungeon's own guide: listed apart, never auto-picked, back to the chapter afterwards", function()
     local CHAPTER = "GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST"
     local function dungeon(id, quest)
         ns.RegisterGuide({ id = id, name = id, version = 1, kind = "dungeon", faction = "Alliance", minLevel = 1, maxLevel = 60, map = 1429, zone = "Elwynn Forest",
@@ -2535,10 +2563,10 @@ do
     G:Activate(chapterId("GEN_ALLIANCE_HUMAN_03_"), true); settle()
     check(ns.char.returnGuide == nil, "choosing a chapter by hand clears the chapter to return to")
     G:Activate(CHAPTER, true); settle()
-end
+end)
 
 -- ---- dungeon status and the Dungeon Quests panel: each dungeon, its quests, and where they stand ----
-do
+section("dungeon status and the Dungeon Quests panel: each dungeon, its quests, and where they stand", function()
     local D = ns.Dungeons
     local levelBefore = ns.Player:GetLevel()
     ns.RegisterGuide({ id = "DUNGEON_ALLIANCE_TEST_BADGE", name = "Test Badge 15-22", version = 1, kind = "dungeon", faction = "Alliance", minLevel = 15, maxLevel = 22, map = 1436, zone = "Westfall",
@@ -2605,10 +2633,10 @@ do
     check(not pickerDungeon, "the guide picker no longer switches to a dungeon guide")
 
     MOCK_LEVEL(levelBefore); settle()
-end
+end)
 
 -- ---- flight path steps: learnt at the flight master, skipped when already known ----------------
-do
+section("flight path steps: learnt at the flight master, skipped when already known", function()
     local R = ns.Reminders
     local known = ns.char.flightpoints
     local function flightGuide(id, npc, name, x, y)
@@ -2646,10 +2674,10 @@ do
     ns.char.flightpoints = known
     MOCK_TAXI(1436, {})
     G:Activate("HUMAN_NORTHSHIRE_1_6", true); G:Reset(); settle()
-end
+end)
 
 -- ---- profession steps: shown only to characters with that profession (and the skill) ----------
-do
+section("profession steps: shown only to characters with that profession (and the skill)", function()
     ns.RegisterGuide({ id = "TEST_PROFESSION", name = "profession", version = 1, faction = "Alliance", minLevel = 1, maxLevel = 60, map = 1426, zone = "Dun Morogh",
         steps = {
             { type = "ACCEPT", quest = 384, questName = "Beer Basted Boar Ribs", profession = "Cooking", map = 1426, x = 46.8, y = 52.4 },
@@ -2693,10 +2721,10 @@ do
     _G.C_SkillInfo = nil
     _G.GetNumSkillLines, _G.GetSkillLineInfo = num, info
     MOCK_SKILLS({}); settle()
-end
+end)
 
 -- ---- quest items you click: a button on the step's row, and the target key uses them ------------
-do
+section("quest items you click: a button on the step's row, and the target key uses them", function()
     MOCK_LEVEL(40); settle()
     MOCK.itemSpells = MOCK.itemSpells or {}
     ns.RegisterGuide({ id = "AUDIT_USEITEM", name = "use item", steps = {
@@ -2791,13 +2819,13 @@ do
     MOCK_ABANDON(99931); settle(); refresh()
     check(not btn():IsShown(), "quest dropped: the button goes")
     MOCK.items[8584], MOCK.items[7297], MOCK.items[99932] = nil, nil, nil
-end
+end)
 
 -- ---- combat: the window is not a protected frame --------------------------------------
 -- The secure item and target buttons protect every frame they are parented under or anchored to.
 -- The window must not be one of those, or the client blocks its every resize, show and hide in
 -- combat (ADDON_ACTION_BLOCKED on ForeverGuideFrame:SetHeight() and :Hide(), from players' BugSack).
-do
+section("combat: the window is not a protected frame", function()
     ns.UI:Show(); settle()
     local f = ForeverGuideFrame
     local tb, ib = ForeverGuideTargetButton, ForeverGuideItemButton
@@ -2826,7 +2854,6 @@ do
     check(f:IsShown(), "in combat the window's key still shows it")
     -- the skull button on the bottom edge cannot follow the window in combat, so it holds still
     check(f:GetHeight() == before, "in combat the window keeps its height (" .. tostring(f:GetHeight()) .. ", was " .. tostring(before) .. ")")
-    f.moving, f.sizing = false, false   -- the script sweep above can leave a drag open, in pairs() order
     f.scripts.OnDragStart(f)
     check(not f.moving, "in combat the window cannot be dragged")
     f.resizeGrip.scripts.OnMouseDown(f.resizeGrip)
@@ -2851,11 +2878,11 @@ do
     check(tb:IsShown(), "...and shows again with it")
     ns.db.ui.height = savedHeight
     ns.QuestGuide:Layout()
-end
+end)
 
 -- ---- a long guide builds only the rows on screen -------------------------------------
 -- WoW never frees a frame, so a row per step would keep a few hundred frames for the session.
-do
+section("a long guide builds only the rows on screen", function()
     local f = ns.QuestGuide.frame
     local before = G.active and G.active.id
     G:Activate(chapterId("GEN_ALLIANCE_HUMAN_01_"), true); ns.UI:Refresh(); settle()
@@ -2875,17 +2902,17 @@ do
     check(l:RowFor(1) ~= nil and l:RowFor(1).entry == l.entries[1], "back at the top, the first step has its row again")
     if before then G:Activate(before, true) end
     ns.UI:Refresh(); settle()
-end
+end)
 
 -- ---- no swallowed errors anywhere -------------------------------------------------
-do
+section("no swallowed errors anywhere", function()
     local expected = 0
     for _, e in ipairs(reportedErrors) do
         if e:find("command failed", 1, true) and e:find("expected", 1, true) then expected = expected + 1 end
     end
     check(#reportedErrors == expected, "no errors were reported by any module (" .. #reportedErrors .. ")")
     for _, e in ipairs(reportedErrors) do print("   reported: " .. e) end
-end
+end)
 
 print(string.format("\n%d passed, %d failed", passed, failed))
 os.exit(failed == 0 and 0 or 1)
