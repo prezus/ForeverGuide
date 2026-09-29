@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_11_THOUSAND_NEEDLES",
   "name": "11. Thousand Needles 30-31 (Skyborne)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 30,
@@ -16,8 +16,6 @@
     {"type": "TURNIN", "quest": 1111, "questName": "Wharfmaster Dizzywig", "npc": 3453, "npcName": "Wharfmaster Dizzywig", "map": 1413, "zone": "The Barrens", "x": 63.2, "y": 38.4},
     {"type": "ACCEPT", "quest": 1100, "questName": "Lonebrow's Journal", "map": 1441, "zone": "Thousand Needles", "x": 30.7, "y": 24.4, "note": "Take Henrig Lonebrow's Journal from the Henrig Lonebrow's Journal and use it to start the quest"},
     {"type": "ACCEPT", "quest": 6626, "questName": "A Host of Evil", "npc": 12866, "npcName": "Myriam Moonsinger", "map": 1413, "zone": "The Barrens", "x": 49, "y": 94.8, "note": "For Razorfen Downs (dungeon guide)", "optional": true},
-    {"type": "ACCEPT", "quest": 3633, "questName": "Goblin Engineering", "npc": 3494, "npcName": "Tinkerwiz", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 36.2, "profession": "Engineering", "skill": 200},
-    {"type": "ACCEPT", "quest": 3634, "questName": "Gnome Engineering", "npc": 3494, "npcName": "Tinkerwiz", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 36.2, "profession": "Engineering", "skill": 200},
     {"type": "TRAVEL", "map": 1441, "zone": "Thousand Needles", "x": 78.8, "y": 76.8, "radius": 60, "note": "travel to Thousand Needles (Thousand Needles)"},
     {"type": "ACCEPT", "quest": 1104, "questName": "Salt Flat Venom", "npc": 4454, "npcName": "Fizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
     {"type": "ACCEPT", "quest": 1105, "questName": "Hardened Shells", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
