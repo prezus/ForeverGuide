@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_01_MULGORE",
   "name": "1. Mulgore 1-11 (Tauren)",
-  "version": 12,
+  "version": 13,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 1,
@@ -12,8 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 1 of the Tauren route: level 1 to 11, 87 steps, ~189 min of play in the model (13318 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
-    {"type": "ACCEPT", "quest": 747, "questName": "The Hunt Begins", "npc": 2980, "npcName": "Grull Hawkwind", "map": 1412, "zone": "Mulgore", "x": 44.9, "y": 77.1},
     {"type": "ACCEPT", "quest": 752, "questName": "A Humble Task", "npc": 2981, "npcName": "Chief Hawkwind", "map": 1412, "zone": "Mulgore", "x": 44.2, "y": 76},
+    {"type": "ACCEPT", "quest": 747, "questName": "The Hunt Begins", "npc": 2980, "npcName": "Grull Hawkwind", "map": 1412, "zone": "Mulgore", "x": 44.9, "y": 77.1},
     {"type": "ACCEPT", "quest": 753, "questName": "A Humble Task", "npc": 2991, "npcName": "Greatmother Hawkwind", "map": 1412, "zone": "Mulgore", "x": 50, "y": 81.2},
     {"type": "TURNIN", "quest": 752, "questName": "A Humble Task", "npc": 2991, "npcName": "Greatmother Hawkwind", "map": 1412, "zone": "Mulgore", "x": 50, "y": 81},
     {"type": "KILL", "quest": 747, "questName": "The Hunt Begins", "npc": 2955, "target": "Plainstrider / Plainstrider", "count": 7, "map": 1412, "zone": "Mulgore", "x": 50.6, "y": 79.1, "near": true, "note": "loot Plainstrider Meat"},
