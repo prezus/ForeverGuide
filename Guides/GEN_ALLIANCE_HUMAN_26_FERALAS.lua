@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_26_FERALAS",
     name = "26. Feralas 41-41 (Human)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 41,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_27_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 26 of the Human route: level 41 to 41, 27 steps, ~54 min of play in the model (34132 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 48,
+    stepCount = 47,
     steps = [[{
 {type="FLIGHTPATH",npc=8019,npcName="Fyldren Moonfeather",map=1444,zone="Feralas",x=30.2,y=43.3},
 {type="ACCEPT",quest=1374,questName="Khan Jehn",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.2,note="Objectives: Gelkis Clan Centaur"},
@@ -56,7 +56,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=4281,questName="Thalanaar Delivery",map=1444,zone="Feralas",x=73.3,y=56.3,note="Take Undelivered Parcel from the Large Leather Backpacks and use it to start the quest"},
 {type="TURNIN",quest=4281,questName="Thalanaar Delivery",npc=4048,npcName="Falfindel Waywarder",map=1444,zone="Feralas",x=89.6,y=46.4},
 {type="TURNIN",quest=1137,questName="News for Fizzle",npc=4454,npcName="Fizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77},
-{type="ACCEPT",quest=2770,questName="Gahz'rilla",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="ACCEPT",quest=2864,questName="Tran'rek",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="ACCEPT",quest=1661,questName="The Tome of Nobility",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"}},
 {type="TURNIN",quest=1661,questName="The Tome of Nobility",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"}},
