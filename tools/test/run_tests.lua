@@ -2222,15 +2222,16 @@ end)
 
 -- Skyborne's own bits (65536 Alliance, 131072 Horde): a quest Forever opened to Skyborne says so,
 -- as The Principal Source (6122) is open to Night Elf and Alliance Skyborne druids
-do
+section("Skyborne's own race bits", function()
     local race, faction, class = MOCK.race, MOCK.faction, MOCK.class
-    local nightElfAndSkyborne, skyborneOnly = 999901, 999902
+    local nightElfAndSkyborne, skyborneOnly, humanOnly = 999901, 999902, 999903
     ns.QuestDB[nightElfAndSkyborne] = { n = "Night Elf and Alliance Skyborne druids", races = 8 + 65536, classes = 1024 }
     ns.QuestDB[skyborneOnly] = { n = "Alliance Skyborne only", races = 65536 }
+    ns.QuestDB[humanOnly] = { n = "Human only", races = 1 }
     MOCK.class = { "Druid", "DRUID", 11 }
     MOCK.race, MOCK.faction = { "Skyborne", "Skyborne" }, "Alliance"; ns.Player.cache = {}
     check(ns.DB:RaceClassOK(nightElfAndSkyborne) == true, "an Alliance Skyborne druid takes a quest that names Alliance Skyborne")
-    check(ns.DB:RaceClassOK(skyborneOnly) == true and ns.DB:RaceClassOK(6181) == false, "...and still nothing race-specific of another race")
+    check(ns.DB:RaceClassOK(skyborneOnly) == true and ns.DB:RaceClassOK(humanOnly) == false, "...and still nothing race-specific of another race")
     MOCK.faction = "Horde"; ns.Player.cache = {}
     check(ns.DB:RaceClassOK(nightElfAndSkyborne) == false, "a Horde Skyborne does not: the bit is per faction")
     MOCK.race, MOCK.faction = { "Human", "Human" }, "Alliance"; ns.Player.cache = {}
@@ -2238,9 +2239,9 @@ do
     MOCK.race = { "NightElf", "NightElf" }; ns.Player.cache = {}
     check(ns.DB:RaceClassOK(nightElfAndSkyborne) == true, "a Night Elf druid does")
     check(ns.DB:QuestFaction(skyborneOnly) == "Alliance", "a quest only Alliance Skyborne may take is an Alliance quest")
-    ns.QuestDB[nightElfAndSkyborne], ns.QuestDB[skyborneOnly] = nil, nil
+    ns.QuestDB[nightElfAndSkyborne], ns.QuestDB[skyborneOnly], ns.QuestDB[humanOnly] = nil, nil, nil
     MOCK.race, MOCK.faction, MOCK.class = race, faction, class; ns.Player.cache = {}
-end
+end)
 
 -- ---- level-up announcement ------------------------------------------------------------------
 -- (Ilya, 2026-09-21: "when we level up there should be a party message/emote message ...")
