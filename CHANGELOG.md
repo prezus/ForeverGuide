@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Data: quest database tables regenerated; refined positions for 38 objects, and the tables no longer carry source attribution lines.
 - Guides: druids learn Cat Form (The Great Cat Spirit's relics at the Stormrage Barrow Dens) and dwarf shamans the Healing Stream Totem (Call of Water's waterskins placed); step distances recomputed with corrected map sizes for Mulgore, Eastern Plaguelands, Blasted Lands and Zephras Isle.
 - Guides: no step asks for a quest before the quest it needs is handed in (Excelsior, Shadow Magic, Battle of Hillsbrad, Call to Arms and others now follow it), and breadcrumbs come before the quest they lead to or not at all (Your Place in the World, Eagan Peltskinner, Rejold's New Brew, Rude Awakening, Tabetha's Task, Camp Mojache).
 - Guides: Zephras Isle's Call of Earth is shown only to Skyborne shamans, not to every Skyborne; Orc and Tauren shamans keep their own Call of Earth.
