@@ -5,6 +5,9 @@ ForeverGuide runs on WoW Forever's beta client. The `.toc` file determines Lua l
 `Core.lua`'s `ns.Plain*`/`ns.Safe` helpers before comparing, converting, or displaying them.
 Verify client-dependent behavior in-game; the headless mock is not the client.
 
+This repository (prezus/ForeverGuide) is the project's only home: issues, PRs, commits, and docs
+link here alone. The original author's credit lives in `LICENSE`, the `.toc`, and the README credits.
+
 ## Change the source of truth
 
 - Guide steps: edit `guides-src/*.json` ([schema](guides-src/SCHEMA.md)), then run
