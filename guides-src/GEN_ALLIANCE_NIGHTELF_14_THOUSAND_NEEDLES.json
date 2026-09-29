@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_14_THOUSAND_NEEDLES",
   "name": "14. Thousand Needles 29-29 (Night Elf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 29,
@@ -12,8 +12,9 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 14 of the NightElf route: level 29 to 29, 11 steps, ~40 min of play in the model (25277 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1439, "zone": "Darkshore", "x": 36.3, "y": 45.6, "radius": 30, "note": "go to Caylais Moonfeather, the flight master (Auberdine, Darkshore)"},
+    {"type": "FLY", "map": 1440, "zone": "Ashenvale", "x": 34.4, "y": 48, "radius": 30, "note": "fly to Astranaar, Ashenvale"},
     {"type": "TRAVEL", "map": 1440, "zone": "Astranaar", "x": 37.0, "y": 49.2, "radius": 60, "note": "use your hearthstone (Astranaar)"},
-    {"type": "ACCEPT", "quest": 6626, "questName": "A Host of Evil", "npc": 12866, "npcName": "Myriam Moonsinger", "map": 1413, "zone": "The Barrens", "x": 49, "y": 94.8, "note": "For Razorfen Downs (dungeon guide)", "optional": true},
     {"type": "TRAVEL", "map": 1441, "zone": "Thousand Needles", "x": 78.8, "y": 76.8, "radius": 60, "note": "travel to Thousand Needles (Thousand Needles)"},
     {"type": "ACCEPT", "quest": 1104, "questName": "Salt Flat Venom", "npc": 4454, "npcName": "Fizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
     {"type": "ACCEPT", "quest": 1105, "questName": "Hardened Shells", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
@@ -27,6 +28,7 @@
     {"type": "TURNIN", "quest": 1104, "questName": "Salt Flat Venom", "npc": 4454, "npcName": "Fizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78.1, "y": 77.1},
     {"type": "ACCEPT", "quest": 1106, "questName": "Martek the Exiled", "npc": 4454, "npcName": "Fizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78, "y": 77},
     {"type": "ACCEPT", "quest": 5762, "questName": "Hemet Nesingwary", "npc": 4452, "npcName": "Kravel Koalbeard", "map": 1441, "zone": "Thousand Needles", "x": 77.8, "y": 77.2},
-    {"type": "TURNIN", "quest": 1178, "questName": "Goblin Sponsorship", "npc": 3391, "npcName": "Gazlowe", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 36.2}
+    {"type": "TURNIN", "quest": 1178, "questName": "Goblin Sponsorship", "npc": 3391, "npcName": "Gazlowe", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 36.2},
+    {"type": "ACCEPT", "quest": 1100, "questName": "Lonebrow's Journal", "map": 1441, "zone": "Thousand Needles", "x": 30.7, "y": 24.4, "note": "Take Henrig Lonebrow's Journal from the Henrig Lonebrow's Journal and use it to start the quest"}
   ]
 }

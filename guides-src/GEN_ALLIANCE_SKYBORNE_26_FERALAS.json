@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_26_FERALAS",
   "name": "26. Feralas 43-45 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 43,
@@ -12,6 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 26 of the Skyborne route: level 43 to 45, 34 steps, ~419 min of play in the model (11882 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "go to Bera Stonehammer, the flight master (Gadgetzan, Tanaris)"},
+    {"type": "FLY", "map": 1444, "zone": "Feralas", "x": 30.2, "y": 43.3, "radius": 30, "note": "fly to Feathermoon, Feralas"},
     {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 31.0, "y": 44.7, "radius": 60, "note": "travel to Feralas (Feralas)"},
     {"type": "ACCEPT", "quest": 2870, "questName": "Against Lord Shalzaru", "npc": 7877, "npcName": "Latronicus Moonspear", "map": 1444, "zone": "Feralas", "x": 30.4, "y": 46.2},
     {"type": "ACCEPT", "quest": 2821, "questName": "The Mark of Quality", "npc": 7852, "npcName": "Pratt McGrubben", "map": 1444, "zone": "Feralas", "x": 30.6, "y": 42.7},

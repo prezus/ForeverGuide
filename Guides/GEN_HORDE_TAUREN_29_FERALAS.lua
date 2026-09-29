@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_29_FERALAS",
     name = "29. Feralas 46-46 (Tauren)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 46,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_30_TANARIS",
     author = "ForeverGuide route planner",
     notes = "Chapter 29 of the Tauren route: level 46 to 46, 17 steps, ~101 min of play in the model (30473 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 19,
+    stepCount = 21,
     steps = [[{
+{type="TRAVEL",map=1427,zone="Searing Gorge",x=34.8,y=30.9,radius=30,note="go to Grisha, the flight master (Thorium Point, Searing Gorge)"},
+{type="FLY",map=1434,zone="Stranglethorn Vale",x=32.5,y=29.4,radius=30,note="fly to Grom'gol, Stranglethorn"},
 {type="TRAVEL",map=1444,zone="Feralas",x=74.8,y=43.4,radius=60,note="travel to Feralas (Feralas)"},
 {type="ACCEPT",quest=2822,questName="The Mark of Quality",npc=7854,npcName="Jangdor Swiftstrider",map=1444,zone="Feralas",x=74.4,y=42.9},
 {type="ACCEPT",quest=7731,questName="Stinglasher",npc=7875,npcName="Hadoken Swiftstrider",map=1444,zone="Feralas",x=74.9,y=42.5},

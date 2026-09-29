@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_30_THE_HINTERLANDS",
   "name": "30. The Hinterlands 46-47 (Skyborne)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 46,
@@ -12,10 +12,9 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 30 of the Skyborne route: level 46 to 47, 16 steps, ~48 min of play in the model (31664 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1437, "zone": "Wetlands", "x": 9.5, "y": 59.7, "radius": 30, "note": "go to Shellei Brondir, the flight master (Menethil Harbor, Wetlands)"},
+    {"type": "FLY", "map": 1425, "zone": "The Hinterlands", "x": 11.1, "y": 46.2, "radius": 30, "note": "fly to Aerie Peak, The Hinterlands"},
     {"type": "FLIGHTPATH", "npc": 8018, "npcName": "Guthrum Thunderfist", "map": 1425, "zone": "The Hinterlands", "x": 11.1, "y": 46.2},
-    {"type": "TURNIN", "quest": 3181, "questName": "The Horn of the Beast", "npc": 3836, "npcName": "Mountaineer Pebblebitty", "map": 1432, "zone": "Loch Modan", "x": 18.2, "y": 83.8, "optional": true},
-    {"type": "TURNIN", "quest": 739, "questName": "Murdaloc", "npc": 1344, "npcName": "Prospector Ironband", "map": 1432, "zone": "Loch Modan", "x": 65.8, "y": 65.6},
-    {"type": "ACCEPT", "quest": 704, "questName": "Agmond's Fate", "npc": 1344, "npcName": "Prospector Ironband", "map": 1432, "zone": "Loch Modan", "x": 65.8, "y": 65.6, "note": "For Uldaman (dungeon guide)", "optional": true},
     {"type": "TRAVEL", "map": 1425, "zone": "The Hinterlands", "x": 12.0, "y": 44.5, "radius": 60, "note": "travel to The Hinterlands (The Hinterlands)"},
     {"type": "HEARTH", "npc": 7744, "npcName": "Innkeeper Thulfram", "map": 1425, "zone": "Aerie Peak", "x": 14.2, "y": 41.6, "note": "talk to Innkeeper Thulfram and make this inn your home"},
     {"type": "ACCEPT", "quest": 2880, "questName": "Troll Necklace Bounty", "npc": 7884, "npcName": "Fraggar Thundermantle", "map": 1425, "zone": "The Hinterlands", "x": 14.8, "y": 44.6},

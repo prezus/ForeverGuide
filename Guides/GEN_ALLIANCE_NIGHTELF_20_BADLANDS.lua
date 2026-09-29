@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_20_BADLANDS",
     name = "20. Badlands 35-35 (Night Elf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 35,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_21_SWAMP_OF_SORROWS",
     author = "ForeverGuide route planner",
     notes = "Chapter 20 of the NightElf route: level 35 to 35, 15 steps, ~65 min of play in the model (26174 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 18,
+    stepCount = 19,
     steps = [[{
 {type="TRAVEL",map=1418,zone="Badlands",x=49.9,y=47.6,radius=60,note="travel to Badlands (Badlands)"},
 {type="ACCEPT",quest=719,questName="A Dwarf and His Tools",npc=2910,npcName="Prospector Ryedol",map=1418,zone="Badlands",x=53.4,y=43.4},
@@ -32,6 +32,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1106,questName="Martek the Exiled",npc=4618,npcName="Martek the Exiled",map=1418,zone="Badlands",x=42.2,y=52.6},
 {type="ACCEPT",quest=710,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
 {type="KILL",quest=710,questName="Study of the Elements: Rock",npc=2735,target="Lesser Rock Elemental",count=10,map=1418,zone="Badlands",x=23.5,y=45.5,near=true,note="loot Small Stone Shard"},
-{type="TURNIN",quest=710,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9}
+{type="TURNIN",quest=710,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
+{type="TURNIN",quest=721,questName="A Sign of Hope",npc=2909,npcName="Hammertoe Grez",map=1418,zone="Badlands",x=37.9,y=10.6,optional=true}
 }]],
 })

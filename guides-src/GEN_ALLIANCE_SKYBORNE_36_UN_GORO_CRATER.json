@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_36_UN_GORO_CRATER",
   "name": "36. Un'Goro Crater 49-49 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 49,
@@ -12,9 +12,21 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 36 of the Skyborne route: level 49 to 49, 17 steps, ~63 min of play in the model (40433 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "go to Bera Stonehammer, the flight master (Gadgetzan, Tanaris)"},
+    {"type": "FLY", "map": 1449, "zone": "Un'Goro Crater", "x": 45.2, "y": 5.8, "radius": 30, "note": "fly to Marshal's Refuge, Un'Goro Crater"},
     {"type": "FLIGHTPATH", "npc": 10583, "npcName": "Gryfe", "map": 1449, "zone": "Un'Goro Crater", "x": 45.2, "y": 5.8},
-    {"type": "COLLECT", "quest": 4504, "questName": "Super Sticky", "target": "Super Sticky Tar", "count": 12, "mobs": "Tar Beast / Tar Lurker / Tar Lord / Tar Creeper", "map": 1449, "zone": "Un'Goro Crater", "x": 47.1, "y": 34.6, "near": true},
+    {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 45.2, "y": 5.8, "radius": 30, "note": "go to Gryfe, the flight master (Marshal's Refuge, Un'Goro Crater)"},
+    {"type": "FLY", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "fly to Gadgetzan, Tanaris"},
+    {"type": "ACCEPT", "quest": 2662, "questName": "Noggenfogger Elixir", "npc": 7564, "npcName": "Marin Noggenfogger", "map": 1446, "zone": "Tanaris", "x": 51.8, "y": 28.6},
+    {"type": "TURNIN", "quest": 2662, "questName": "Noggenfogger Elixir", "npc": 7564, "npcName": "Marin Noggenfogger", "map": 1446, "zone": "Tanaris", "x": 51.8, "y": 28.6},
+    {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "go to Bera Stonehammer, the flight master (Gadgetzan, Tanaris)"},
+    {"type": "FLY", "map": 1449, "zone": "Un'Goro Crater", "x": 45.2, "y": 5.8, "radius": 30, "note": "fly to Marshal's Refuge, Un'Goro Crater"},
+    {"type": "COLLECT", "quest": 4504, "questName": "Super Sticky", "target": "Super Sticky Tar", "count": 12, "mobs": "Tar Beast / Tar Lurker / Tar Lord / Tar Creeper", "map": 1449, "zone": "Un'Goro Crater", "x": 48.1, "y": 22.4, "near": true},
+    {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 45.2, "y": 5.8, "radius": 30, "note": "go to Gryfe, the flight master (Marshal's Refuge, Un'Goro Crater)"},
+    {"type": "FLY", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "fly to Gadgetzan, Tanaris"},
     {"type": "TURNIN", "quest": 4504, "questName": "Super Sticky", "npc": 7876, "npcName": "Tran'rek", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 26.8},
+    {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "go to Bera Stonehammer, the flight master (Gadgetzan, Tanaris)"},
+    {"type": "FLY", "map": 1449, "zone": "Un'Goro Crater", "x": 45.2, "y": 5.8, "radius": 30, "note": "fly to Marshal's Refuge, Un'Goro Crater"},
     {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 43.2, "y": 6.5, "radius": 60, "note": "travel to Un'Goro Crater (Un'Goro Crater)"},
     {"type": "ACCEPT", "quest": 3882, "questName": "Roll the Bones", "npc": 9272, "npcName": "Spark Nilminer", "map": 1449, "zone": "Un'Goro Crater", "x": 43.5, "y": 7.4},
     {"type": "ACCEPT", "quest": 4503, "questName": "Shizzle's Flyer", "npc": 9998, "npcName": "Shizzle", "map": 1449, "zone": "Un'Goro Crater", "x": 44.2, "y": 11.6},
@@ -33,10 +45,10 @@
     {"type": "ACCEPT", "quest": 3844, "questName": "It's a Secret to Everybody", "map": 1449, "zone": "Un'Goro Crater", "x": 63, "y": 68.6},
     {"type": "TURNIN", "quest": 3844, "questName": "It's a Secret to Everybody", "map": 1449, "zone": "Un'Goro Crater", "x": 63.1, "y": 69.1},
     {"type": "ACCEPT", "quest": 3845, "questName": "It's a Secret to Everybody", "map": 1449, "zone": "Un'Goro Crater", "x": 63.1, "y": 69, "note": "Elite - group up", "optional": true},
-    {"type": "COLLECT", "quest": 3444, "questName": "The Stone Circle", "target": "Stone Circle", "count": 1, "map": 1413, "zone": "The Barrens", "x": 62.5, "y": 38.5},
-    {"type": "TURNIN", "quest": 3444, "questName": "The Stone Circle", "npc": 7771, "npcName": "Marvon Rivetseeker", "map": 1446, "zone": "Tanaris", "x": 52.6, "y": 45.8},
-    {"type": "ACCEPT", "quest": 3446, "questName": "Into the Depths", "npc": 7771, "npcName": "Marvon Rivetseeker", "map": 1446, "zone": "Tanaris", "x": 52.6, "y": 45.8, "note": "For The Temple of Atal'Hakkar (dungeon guide)", "optional": true},
-    {"type": "ACCEPT", "quest": 3447, "questName": "Secret of the Circle", "npc": 7771, "npcName": "Marvon Rivetseeker", "map": 1446, "zone": "Tanaris", "x": 52.6, "y": 45.8, "note": "For The Temple of Atal'Hakkar (dungeon guide)", "optional": true},
-    {"type": "NOTE", "note": "Picked up: Jammal'an the Prophet, Into the Depths, Secret of the Circle. When you have a group, open The Temple of Atal'Hakkar under Dungeons.", "text": "Ready for The Temple of Atal'Hakkar", "optional": true}
+    {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 45.2, "y": 5.8, "radius": 30, "note": "go to Gryfe, the flight master (Marshal's Refuge, Un'Goro Crater)"},
+    {"type": "FLY", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.5, "y": 51.3, "radius": 30, "note": "fly to Theramore, Dustwallow Marsh"},
+    {"type": "ACCEPT", "quest": 2846, "questName": "Tiara of the Deep", "npc": 6546, "npcName": "Tabetha", "map": 1445, "zone": "Dustwallow Marsh", "x": 46, "y": 57, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
+    {"type": "TURNIN", "quest": 2861, "questName": "Tabetha's Task", "npc": 6546, "npcName": "Tabetha", "map": 1445, "zone": "Dustwallow Marsh", "x": 46, "y": 57, "optional": true},
+    {"type": "TURNIN", "quest": 6609, "questName": "I Got Nothin' Left!", "npc": 12919, "npcName": "Nat Pagle", "map": 1445, "zone": "Dustwallow Marsh", "x": 58.4, "y": 60, "profession": "Fishing", "skill": 225}
   ]
 }

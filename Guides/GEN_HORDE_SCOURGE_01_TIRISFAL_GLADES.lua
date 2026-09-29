@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_01_TIRISFAL_GLADES",
     name = "1. Tirisfal Glades 1-12 (Undead)",
-    version = 12,
+    version = 13,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 1,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_02_SILVERPINE_FOREST",
     author = "ForeverGuide route planner",
     notes = "Chapter 1 of the Scourge route: level 1 to 12, 105 steps, ~189 min of play in the model (14879 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 199,
+    stepCount = 198,
     steps = [[{
 {type="ACCEPT",quest=98601,questName="A Difficult Path",npc=1569,npcName="Shadow Priest Sarvis",map=1420,zone="Tirisfal Glades",x=30.8,y=66.2,class={"PALADIN"},note="New in Forever"},
 {type="ACCEPT",quest=364,questName="The Mindless Ones",npc=1569,npcName="Shadow Priest Sarvis",map=1420,zone="Tirisfal Glades",x=30.8,y=66.2},
@@ -139,7 +139,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=405,questName="The Prodigal Lich",npc=1499,npcName="Magistrate Sevren",map=1420,zone="Tirisfal Glades",x=61.3,y=50.8},
 {type="ACCEPT",quest=359,questName="Forsaken Duties",npc=1499,npcName="Magistrate Sevren",map=1420,zone="Tirisfal Glades",x=61.3,y=50.8},
 {type="ACCEPT",quest=91282,questName="A Second Home",npc=246152,npcName="Shari Stilwell",map=1420,zone="Tirisfal Glades",x=60.2,y=52.6,class={"PALADIN"},note="New in Forever"},
-{type="ACCEPT",quest=97952,questName="Camping 101: Blacksmithing",npc=265812,npcName="Eleanor Shackleton",map=1420,zone="Tirisfal Glades",x=57.2,y=55.4,profession="Blacksmithing",note="New in Forever; Objectives: Raise your blacksmithing skill to 20"},
 {type="ACCEPT",quest=97953,questName="Camping 101: Enchanting",npc=265812,npcName="Eleanor Shackleton",map=1420,zone="Tirisfal Glades",x=57.2,y=55.4,profession="Enchanting",note="New in Forever; Objectives: Raise your enchanting skill to 20"},
 {type="ACCEPT",quest=97955,questName="Camping 101: First Aid",npc=265812,npcName="Eleanor Shackleton",map=1420,zone="Tirisfal Glades",x=57.2,y=55.4,profession="First Aid",note="New in Forever; Objectives: Raise your first aid skill to 20"},
 {type="ACCEPT",quest=97956,questName="Camping 101: Fishing",npc=265812,npcName="Eleanor Shackleton",map=1420,zone="Tirisfal Glades",x=57.2,y=55.4,profession="Fishing",note="New in Forever; Objectives: Raise your fishing skill to 20"},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_34_FERALAS",
     name = "34. Feralas 51-51 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 51,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_35_AZSHARA",
     author = "ForeverGuide route planner",
     notes = "Chapter 34 of the Skyborne route: level 51 to 51, 15 steps, ~57 min of play in the model (39422 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 17,
+    stepCount = 19,
     steps = [[{
+{type="TRAVEL",map=1454,zone="Orgrimmar",x=45.1,y=63.9,radius=30,note="go to Doras, the flight master (Orgrimmar, Durotar)"},
+{type="FLY",map=1444,zone="Feralas",x=75.5,y=44.4,radius=30,note="fly to Camp Mojache, Feralas"},
 {type="TRAVEL",map=1444,zone="Feralas",x=74.9,y=43.5,radius=60,note="travel to Feralas (Feralas)"},
 {type="ACCEPT",quest=3002,questName="The Gordunni Orb",npc=7777,npcName="Rok Orhan",map=1444,zone="Feralas",x=75.4,y=43.6},
 {type="ACCEPT",quest=3063,questName="Vengeance on the Northspring",npc=7776,npcName="Talo Thornhoof",map=1444,zone="Feralas",x=76.2,y=43.8},

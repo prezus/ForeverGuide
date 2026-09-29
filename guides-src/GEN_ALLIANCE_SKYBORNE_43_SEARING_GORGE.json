@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_43_SEARING_GORGE",
   "name": "43. Searing Gorge 52-52 (Skyborne)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 52,
@@ -12,14 +12,10 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 43 of the Skyborne route: level 52 to 52, 15 steps, ~21 min of play in the model (46594 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
-    {"type": "ACCEPT", "quest": 3452, "questName": "The Flame's Casing", "npc": 8479, "npcName": "Velarok Windblade", "map": 1427, "zone": "Searing Gorge", "x": 39, "y": 39, "note": "Elite - group up", "optional": true},
-    {"type": "ACCEPT", "quest": 3701, "questName": "The Smoldering Ruins of Thaurissan", "npc": 8879, "npcName": "Royal Historian Archesonus", "map": 1455, "zone": "Ironforge", "x": 38.6, "y": 55.4},
-    {"type": "ACCEPT", "quest": 3385, "questName": "The Undermarket", "npc": 8439, "npcName": "Nilith Lokrav", "map": 1427, "zone": "Searing Gorge", "x": 41, "y": 74.8, "note": "Elite - group up", "optional": true, "profession": "Tailoring", "skill": 230},
-    {"type": "KILL", "quest": 3385, "questName": "The Undermarket", "npc": 8444, "target": "Trade Master Kovic", "count": 1, "map": 1427, "zone": "Searing Gorge", "x": 34.8, "y": 52, "optional": true, "profession": "Tailoring", "skill": 230},
-    {"type": "KILL", "quest": 3385, "questName": "The Undermarket", "npc": 8447, "target": "Clunk", "count": 1, "map": 1427, "zone": "Searing Gorge", "x": 34.8, "y": 52, "optional": true, "profession": "Tailoring", "skill": 230},
-    {"type": "COLLECT", "quest": 3385, "questName": "The Undermarket", "target": "Trader's Satchel", "count": 1, "mobs": "Trade Master Kovic", "map": 1427, "zone": "Searing Gorge", "x": 34.8, "y": 52, "optional": true, "profession": "Tailoring", "skill": 230},
-    {"type": "TURNIN", "quest": 3385, "questName": "The Undermarket", "npc": 8439, "npcName": "Nilith Lokrav", "map": 1427, "zone": "Searing Gorge", "x": 41, "y": 74.8, "optional": true, "profession": "Tailoring", "skill": 230},
+    {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 55.5, "y": 47.7, "radius": 30, "note": "go to Gryth Thurden, the flight master (Ironforge, Dun Morogh)"},
+    {"type": "FLY", "map": 1427, "zone": "Searing Gorge", "x": 37.9, "y": 30.9, "radius": 30, "note": "fly to Thorium Point, Searing Gorge"},
     {"type": "TRAVEL", "map": 1427, "zone": "Searing Gorge", "x": 38.1, "y": 34.5, "radius": 60, "note": "travel to Searing Gorge (Searing Gorge)"},
+    {"type": "ACCEPT", "quest": 3452, "questName": "The Flame's Casing", "npc": 8479, "npcName": "Velarok Windblade", "map": 1427, "zone": "Searing Gorge", "x": 39, "y": 39, "note": "Elite - group up", "optional": true},
     {"type": "ACCEPT", "quest": 7722, "questName": "What the Flux?", "npc": 14624, "npcName": "Master Smith Burninate", "map": 1427, "zone": "Searing Gorge", "x": 38.8, "y": 28.5},
     {"type": "COLLECT", "quest": 3452, "questName": "The Flame's Casing", "target": "Symbol of Ragnaros", "count": 1, "mobs": "Twilight Dark Shaman / Twilight Fire Guard / Twilight Geomancer / Twilight Idolater", "map": 1427, "zone": "Searing Gorge", "x": 30.4, "y": 26.8, "near": true, "optional": true},
     {"type": "ACCEPT", "quest": 3377, "questName": "Prayer to Elune", "npc": 8436, "npcName": "Zamael Lunthistle", "map": 1427, "zone": "Searing Gorge", "x": 29.6, "y": 26.3},
@@ -41,9 +37,17 @@
     {"type": "COLLECT", "quest": 3566, "questName": "Rise, Obsidion!", "target": "Head of Lathoric the Black", "count": 1, "mobs": "Lathoric the Black", "map": 1427, "zone": "Searing Gorge", "x": 41.4, "y": 25.6, "optional": true},
     {"type": "COLLECT", "quest": 3566, "questName": "Rise, Obsidion!", "target": "Heart of Obsidion", "count": 1, "mobs": "Obsidion", "map": 1427, "zone": "Searing Gorge", "x": 41.4, "y": 25.6, "optional": true},
     {"type": "COLLECT", "quest": 4244, "questName": "Chasing A-Me 01", "target": "Mithril Casing", "count": 1, "mobs": "Clunk / 7:XT", "map": 1427, "zone": "Searing Gorge", "x": 34.7, "y": 51.9, "near": true},
-    {"type": "TURNIN", "quest": 5158, "questName": "Seeking Spiritual Aid", "npc": 5901, "npcName": "Islen Waterseer", "map": 1413, "zone": "The Barrens", "x": 65.8, "y": 43.8},
-    {"type": "COMPLETE", "quest": 3701, "questName": "The Smoldering Ruins of Thaurissan", "target": "Information Recovered", "count": 12, "map": 1428, "zone": "Burning Steppes", "x": 59.7, "y": 37.7},
-    {"type": "ACCEPT", "quest": 3402, "questName": "The Undermarket", "npc": 8439, "npcName": "Nilith Lokrav", "map": 1427, "zone": "Searing Gorge", "x": 41, "y": 74.8, "profession": "Tailoring", "skill": 230},
-    {"type": "TURNIN", "quest": 3402, "questName": "The Undermarket", "npc": 6568, "npcName": "Vizzklick", "map": 1446, "zone": "Tanaris", "x": 51, "y": 27.4, "profession": "Tailoring", "skill": 230}
+    {"type": "TRAVEL", "map": 1427, "zone": "Searing Gorge", "x": 37.9, "y": 30.9, "radius": 30, "note": "go to Lanie Reed, the flight master (Thorium Point, Searing Gorge)"},
+    {"type": "FLY", "map": 1455, "zone": "Ironforge", "x": 55.5, "y": 47.7, "radius": 30, "note": "fly to Ironforge, Dun Morogh"},
+    {"type": "ACCEPT", "quest": 3701, "questName": "The Smoldering Ruins of Thaurissan", "npc": 8879, "npcName": "Royal Historian Archesonus", "map": 1455, "zone": "Ironforge", "x": 38.6, "y": 55.4},
+    {"type": "ACCEPT", "quest": 4126, "questName": "Hurley Blackbreath", "npc": 1267, "npcName": "Ragnar Thunderbrew", "map": 1426, "zone": "Dun Morogh", "x": 46.8, "y": 52.4, "note": "For Blackrock Depths (dungeon guide)", "optional": true},
+    {"type": "ACCEPT", "quest": 8250, "questName": "Magecraft", "npc": 7312, "npcName": "Dink", "map": 1455, "zone": "Ironforge", "x": 26.8, "y": 8.4, "class": ["MAGE"]},
+    {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 55.5, "y": 47.7, "radius": 30, "note": "go to Gryth Thurden, the flight master (Ironforge, Dun Morogh)", "optional": true, "profession": "Tailoring", "skill": 230},
+    {"type": "FLY", "map": 1427, "zone": "Searing Gorge", "x": 37.9, "y": 30.9, "radius": 30, "note": "fly to Thorium Point, Searing Gorge", "optional": true, "profession": "Tailoring", "skill": 230},
+    {"type": "ACCEPT", "quest": 3385, "questName": "The Undermarket", "npc": 8439, "npcName": "Nilith Lokrav", "map": 1427, "zone": "Searing Gorge", "x": 41, "y": 74.8, "note": "Elite - group up", "optional": true, "profession": "Tailoring", "skill": 230},
+    {"type": "KILL", "quest": 3385, "questName": "The Undermarket", "npc": 8444, "target": "Trade Master Kovic", "count": 1, "map": 1427, "zone": "Searing Gorge", "x": 34.8, "y": 52, "optional": true, "profession": "Tailoring", "skill": 230},
+    {"type": "KILL", "quest": 3385, "questName": "The Undermarket", "npc": 8447, "target": "Clunk", "count": 1, "map": 1427, "zone": "Searing Gorge", "x": 34.8, "y": 52, "optional": true, "profession": "Tailoring", "skill": 230},
+    {"type": "COLLECT", "quest": 3385, "questName": "The Undermarket", "target": "Trader's Satchel", "count": 1, "mobs": "Trade Master Kovic", "map": 1427, "zone": "Searing Gorge", "x": 34.8, "y": 52, "optional": true, "profession": "Tailoring", "skill": 230},
+    {"type": "TURNIN", "quest": 3385, "questName": "The Undermarket", "npc": 8439, "npcName": "Nilith Lokrav", "map": 1427, "zone": "Searing Gorge", "x": 41, "y": 74.8, "optional": true, "profession": "Tailoring", "skill": 230}
   ]
 }

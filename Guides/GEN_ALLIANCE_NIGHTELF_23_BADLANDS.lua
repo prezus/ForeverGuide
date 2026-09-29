@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_23_BADLANDS",
     name = "23. Badlands 39-39 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 39,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_24_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 23 of the NightElf route: level 39 to 39, 13 steps, ~53 min of play in the model (25198 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 25,
+    stepCount = 23,
     steps = [[{
+{type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.5,y=77.8,radius=30,note="go to Gyll, the flight master (Booty Bay, Stranglethorn)"},
+{type="FLY",map=1433,zone="Redridge Mountains",x=25.5,y=59.4,radius=30,note="fly to Lakeshire, Redridge"},
 {type="TRAVEL",map=1418,zone="Badlands",x=49.5,y=49.2,radius=60,note="travel to Badlands (Badlands)"},
 {type="ACCEPT",quest=733,questName="Scrounging",npc=2860,npcName="Sigrun Ironhew",map=1418,zone="Badlands",x=53.8,y=43.3},
 {type="COLLECT",quest=733,questName="Scrounging",target="Scrap Metal",count=7,map=1418,zone="Badlands",x=64.7,y=25.6,near=true},
@@ -22,13 +24,9 @@ ns.RegisterGuide({
 {type="TURNIN",quest=705,questName="Pearl Diving",npc=2817,npcName="Rigglefuzz",map=1418,zone="Badlands",x=42.4,y=52.8,optional=true},
 {type="ACCEPT",quest=703,questName="Barbecued Buzzard Wings",npc=2817,npcName="Rigglefuzz",map=1418,zone="Badlands",x=42.4,y=52.9},
 {type="COLLECT",quest=1108,questName="Indurium",target="Indurium Flake",count=10,map=1418,zone="Badlands",x=49.8,y=63.8,near=true,mobs="Stonevault Seer / Stonevault Bonesnapper / Stonevault Shaman / Stonevault Basher"},
-{type="TURNIN",quest=738,questName="Find Agmond",map=1418,zone="Badlands",x=50.9,y=62.2},
 {type="ACCEPT",quest=709,questName="Solution to Doom",npc=2785,npcName="Theldurin the Lost",map=1418,zone="Badlands",x=51.4,y=76.8,optional=true,note="For Uldaman (dungeon guide)"},
 {type="COLLECT",quest=703,questName="Barbecued Buzzard Wings",target="Buzzard Wing",count=4,map=1418,zone="Badlands",x=61.8,y=55.6,near=true},
 {type="TURNIN",quest=733,questName="Scrounging",npc=2860,npcName="Sigrun Ironhew",map=1418,zone="Badlands",x=53.8,y=43.3},
-{type="ACCEPT",quest=739,questName="Murdaloc",map=1418,zone="Badlands",x=50.9,y=62.2},
-{type="KILL",quest=739,questName="Murdaloc",npc=2945,target="Murdaloc",count=1,map=1418,zone="Badlands",x=49.6,y=66.6},
-{type="KILL",quest=739,questName="Murdaloc",npc=2893,target="Stonevault Bonesnapper",count=12,map=1418,zone="Badlands",x=49.8,y=63.8},
 {type="TURNIN",quest=703,questName="Barbecued Buzzard Wings",npc=2817,npcName="Rigglefuzz",map=1418,zone="Badlands",x=42.4,y=52.9},
 {type="TURNIN",quest=1108,questName="Indurium",npc=4618,npcName="Martek the Exiled",map=1418,zone="Badlands",x=42.2,y=52.6},
 {type="ACCEPT",quest=711,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
@@ -38,7 +36,7 @@ ns.RegisterGuide({
 {type="KILL",quest=712,questName="Study of the Elements: Rock",npc=2736,target="Greater Rock Elemental",count=5,map=1418,zone="Badlands",x=6.6,y=76.3,near=true,note="loot Bracers of Rock Binding"},
 {type="TURNIN",quest=712,questName="Study of the Elements: Rock",npc=2921,npcName="Lotwil Veriatus",map=1418,zone="Badlands",x=26,y=44.9},
 {type="ACCEPT",quest=1137,questName="News for Fizzle",npc=4618,npcName="Martek the Exiled",map=1418,zone="Badlands",x=42.2,y=52.6},
-{type="TURNIN",quest=739,questName="Murdaloc",npc=1344,npcName="Prospector Ironband",map=1432,zone="Loch Modan",x=65.8,y=65.6},
-{type="ACCEPT",quest=704,questName="Agmond's Fate",npc=1344,npcName="Prospector Ironband",map=1432,zone="Loch Modan",x=65.8,y=65.6,optional=true,note="For Uldaman (dungeon guide)"}
+{type="ACCEPT",quest=738,questName="Find Agmond",npc=1344,npcName="Prospector Ironband",map=1432,zone="Loch Modan",x=65.8,y=65.6},
+{type="TURNIN",quest=738,questName="Find Agmond",map=1418,zone="Badlands",x=50.9,y=62.2}
 }]],
 })

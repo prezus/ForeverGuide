@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_28_STRANGLETHORN_VALE",
     name = "28. Stranglethorn Vale 41-42 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 41,
@@ -13,9 +13,10 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_29_TANARIS",
     author = "ForeverGuide route planner",
     notes = "Chapter 28 of the Dwarf route: level 41 to 42, 26 steps, ~148 min of play in the model (26642 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 39,
+    stepCount = 41,
     steps = [[{
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.5,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
+{type="ACCEPT",quest=670,questName="Sunken Treasure",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
 {type="ACCEPT",quest=604,questName="The Bloodsail Buccaneers",npc=2487,npcName="Fleet Master Seahorn",map=1434,zone="Stranglethorn Vale",x=27.2,y=77},
 {type="ACCEPT",quest=617,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4},
 {type="ACCEPT",quest=622,questName="Return to Corporal Kaleb",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2},
@@ -28,6 +29,7 @@ ns.RegisterGuide({
 {type="KILL",quest=609,questName="Voodoo Dues",npc=2536,target="Jon-Jon the Crow / Maury \"Club Foot\" Wilkins",map=1434,zone="Stranglethorn Vale",x=34.9,y=51.8,note="loot Jon-Jon's Golden Spyglass"},
 {type="KILL",quest=609,questName="Voodoo Dues",npc=2537,target="Chucky \"Ten Thumbs\"",map=1434,zone="Stranglethorn Vale",x=40,y=58.2,note="loot Chucky's Huge Ring"},
 {type="TURNIN",quest=617,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4},
+{type="ACCEPT",quest=623,questName="Akiris by the Bundle",npc=2494,npcName="Privateer Bloads",map=1434,zone="Stranglethorn Vale",x=26.8,y=76.4},
 {type="TURNIN",quest=621,questName="Zanzil's Secret",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
 {type="TURNIN",quest=609,questName="Voodoo Dues",npc=2501,npcName="\"Sea Wolf\" MacKinley",map=1434,zone="Stranglethorn Vale",x=27.8,y=77.1},
 {type="ACCEPT",quest=613,questName="Cracking Maury's Foot",npc=2501,npcName="\"Sea Wolf\" MacKinley",map=1434,zone="Stranglethorn Vale",x=27.8,y=77.1},

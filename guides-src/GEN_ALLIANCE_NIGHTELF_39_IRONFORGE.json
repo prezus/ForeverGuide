@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_39_IRONFORGE",
   "name": "39. Ironforge 51-51 (Night Elf)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 51,
@@ -12,9 +12,11 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 39 of the NightElf route: level 51 to 51, 5 steps, ~1 min of play in the model (38414 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1437, "zone": "Wetlands", "x": 9.5, "y": 59.7, "radius": 30, "note": "go to Shellei Brondir, the flight master (Menethil Harbor, Wetlands)"},
+    {"type": "FLY", "map": 1455, "zone": "Ironforge", "x": 55.5, "y": 47.7, "radius": 30, "note": "fly to Ironforge, Dun Morogh"},
     {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 18.1, "y": 51.5, "radius": 60, "note": "use your hearthstone (Ironforge)"},
     {"type": "TURNIN", "quest": 3461, "questName": "Return to Tymor", "npc": 8507, "npcName": "Tymor", "map": 1455, "zone": "Ironforge", "x": 31.2, "y": 4.6},
-    {"type": "ACCEPT", "quest": 5090, "questName": "A Call to Arms: The Plaguelands!", "npc": 10877, "npcName": "Courier Hammerfall", "map": 1455, "zone": "Ironforge", "x": 31.6, "y": 67},
+    {"type": "ACCEPT", "quest": 8254, "questName": "Cenarion Aid", "npc": 11406, "npcName": "High Priest Rohan", "map": 1455, "zone": "Ironforge", "x": 25, "y": 8.4, "class": ["PRIEST"]},
     {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 57.0, "y": 34.3, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
     {"type": "TURNIN", "quest": 4512, "questName": "A Little Slime Goes a Long Way", "npc": 9616, "npcName": "Laris Geardawdle", "map": 1455, "zone": "Ironforge", "x": 75.4, "y": 23},
     {"type": "ACCEPT", "quest": 3702, "questName": "The Smoldering Ruins of Thaurissan", "npc": 8879, "npcName": "Royal Historian Archesonus", "map": 1455, "zone": "Ironforge", "x": 38.4, "y": 55.3},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_04_LOCH_MODAN",
     name = "4. Loch Modan 16-18 (Night Elf)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 16,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_05_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 4 of the NightElf route: level 16 to 18, 50 steps, ~95 min of play in the model (20756 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 92,
+    stepCount = 90,
     steps = [[{
 {type="FLIGHTPATH",npc=1572,npcName="Thorgrum Borrelson",map=1432,zone="Loch Modan",x=33.9,y=51},
 {type="COLLECT",quest=92744,questName="Murloc Gills",target="Longshore Murloc Gill",count=7,map=1436,zone="Westfall",x=33.8,y=84.8,near=true,mobs="Murloc Coastrunner / Murloc Tidehunter / Murloc Warrior / Murloc Minor Oracle"},
@@ -36,9 +36,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=96391,questName="Underground Map",npc=6124,npcName="Captain Beld",map=1426,zone="Dun Morogh",x=77.8,y=62.4,optional=true,note="If you looted Dark Iron Map from Captain Beld / Dark Iron Spy, use it to start the quest; New in Forever"},
 {type="TURNIN",quest=96391,questName="Underground Map",npc=264936,npcName="Earthseer Farsen",map=1426,zone="Dun Morogh",x=64.8,y=58.4,optional=true},
 {type="TURNIN",quest=2041,questName="Speak with Shoni",npc=6579,npcName="Shoni the Shilent",map=1453,zone="Stormwind City",x=55.4,y=12.6},
-{type="ACCEPT",quest=96393,questName="Old Ironforge Incursion",npc=264936,npcName="Earthseer Farsen",map=1426,zone="Dun Morogh",x=64.8,y=58.4,optional=true,note="New in Forever; For The Hall of Thanes (dungeon guide)"},
 {type="ACCEPT",quest=2281,questName="Redridge Rendezvous",npc=6946,npcName="Renzik \"The Shiv\"",map=1453,zone="Stormwind City",x=75.8,y=60.2,class={"ROGUE"}},
-{type="ACCEPT",quest=2299,questName="To Hulfdan!",npc=1234,npcName="Hogral Bakkan",map=1426,zone="Dun Morogh",x=47.6,y=52.6,class={"ROGUE"}},
 {type="TRAVEL",map=1432,zone="Loch Modan",x=61.2,y=64.2,radius=60,note="travel to Loch Modan (Loch Modan)"},
 {type="ACCEPT",quest=298,questName="Excavation Progress Report",npc=1344,npcName="Prospector Ironband",map=1432,zone="Loch Modan",x=65.9,y=65.6},
 {type="TURNIN",quest=436,questName="Ironband's Excavation",npc=1345,npcName="Magmar Fellhew",map=1432,zone="Loch Modan",x=64.8,y=66.6},

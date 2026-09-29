@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_43_EASTERN_PLAGUELANDS",
   "name": "43. Eastern Plaguelands 53-53 (Night Elf)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 53,
@@ -12,6 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 43 of the NightElf route: level 53 to 53, 19 steps, ~78 min of play in the model (41775 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
+    {"type": "TRAVEL", "map": 1422, "zone": "Western Plaguelands", "x": 42.9, "y": 85.1, "radius": 30, "note": "go to Bibilfaz Featherwhistle, the flight master (Chillwind Camp, Western Plaguelands)"},
+    {"type": "FLY", "map": 1423, "zone": "Eastern Plaguelands", "x": 71.8, "y": 49.6, "radius": 30, "note": "fly to Light's Hope Chapel, Eastern Plaguelands"},
     {"type": "TRAVEL", "map": 1423, "zone": "Light's Hope Chapel", "x": 71.8, "y": 48.5, "radius": 60, "note": "use your hearthstone (Light's Hope Chapel)"},
     {"type": "TRAVEL", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.4, "y": 59.0, "radius": 60, "note": "travel to Eastern Plaguelands (Eastern Plaguelands)"},
     {"type": "ACCEPT", "quest": 5542, "questName": "Demon Dogs", "npc": 1855, "npcName": "Tirion Fordring", "map": 1423, "zone": "Eastern Plaguelands", "x": 7.6, "y": 43.7},
@@ -23,7 +25,6 @@
     {"type": "KILL", "quest": 5543, "questName": "Blood Tinged Skies", "npc": 8600, "target": "Plaguebat", "count": 30, "map": 1423, "zone": "Eastern Plaguelands", "x": 15, "y": 75.5, "near": true},
     {"type": "ACCEPT", "quest": 6164, "questName": "Augustus' Receipt Book", "npc": 12384, "npcName": "Augustus the Touched", "map": 1423, "zone": "Eastern Plaguelands", "x": 14.5, "y": 33.5},
     {"type": "KILL", "quest": 5542, "questName": "Demon Dogs", "npc": 8598, "target": "Frenzied Plaguehound", "count": 5, "map": 1423, "zone": "Eastern Plaguelands", "x": 19.6, "y": 25.9, "near": true},
-    {"type": "COLLECT", "quest": 5903, "questName": "A Plague Upon Thee", "target": "Plagueland Termites", "count": 100, "mobs": "Lord Darkscythe / Ziggurat Protector / Crimson Courier", "map": 1423, "zone": "Eastern Plaguelands", "x": 25, "y": 32.8, "near": true},
     {"type": "KILL", "quest": 5542, "questName": "Demon Dogs", "npc": 8597, "target": "Plaguehound", "count": 20, "map": 1423, "zone": "Eastern Plaguelands", "x": 53.1, "y": 57.9, "near": true},
     {"type": "COLLECT", "quest": 6164, "questName": "Augustus' Receipt Book", "target": "Augustus' Receipt Book", "map": 1423, "zone": "Eastern Plaguelands", "x": 17.4, "y": 31.1},
     {"type": "TURNIN", "quest": 6164, "questName": "Augustus' Receipt Book", "npc": 12384, "npcName": "Augustus the Touched", "map": 1423, "zone": "Eastern Plaguelands", "x": 14.5, "y": 33.5},

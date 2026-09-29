@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_24_DUSTWALLOW_MARSH",
   "name": "24. Dustwallow Marsh 39-40 (Human)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 39,
@@ -12,6 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 24 of the Human route: level 39 to 40, 36 steps, ~69 min of play in the model (27025 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1417, "zone": "Arathi Highlands", "x": 45.7, "y": 46.1, "radius": 30, "note": "go to Cedrik Prose, the flight master (Refuge Pointe, Arathi)"},
+    {"type": "FLY", "map": 1432, "zone": "Loch Modan", "x": 33.9, "y": 51, "radius": 30, "note": "fly to Thelsamar, Loch Modan"},
     {"type": "TRAVEL", "map": 1434, "zone": "Booty Bay", "x": 27.0, "y": 77.3, "radius": 60, "note": "use your hearthstone (Booty Bay)"},
     {"type": "FLIGHTPATH", "npc": 4321, "npcName": "Baldruc", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.5, "y": 51.3},
     {"type": "ACCEPT", "quest": 7070, "questName": "Shadowshard Fragments", "npc": 4967, "npcName": "Archmage Tervosh", "map": 1445, "zone": "Dustwallow Marsh", "x": 66.4, "y": 49.2, "note": "For Maraudon (dungeon guide)", "optional": true},
@@ -61,11 +63,12 @@
     {"type": "ACCEPT", "quest": 1286, "questName": "The Deserters", "npc": 4944, "npcName": "Captain Garran Vimes", "map": 1445, "zone": "Dustwallow Marsh", "x": 68.2, "y": 48.6},
     {"type": "ACCEPT", "quest": 626, "questName": "Cortello's Riddle", "map": 1445, "zone": "Dustwallow Marsh", "x": 31.1, "y": 66.1},
     {"type": "TURNIN", "quest": 1947, "questName": "Journey to the Marsh", "npc": 6546, "npcName": "Tabetha", "map": 1445, "zone": "Dustwallow Marsh", "x": 46, "y": 57, "class": ["MAGE"]},
-    {"type": "TURNIN", "quest": 6609, "questName": "I Got Nothin' Left!", "npc": 12919, "npcName": "Nat Pagle", "map": 1445, "zone": "Dustwallow Marsh", "x": 58.4, "y": 60, "profession": "Fishing", "skill": 225},
+    {"type": "TURNIN", "quest": 1953, "questName": "Return to the Marsh", "npc": 6546, "npcName": "Tabetha", "map": 1445, "zone": "Dustwallow Marsh", "x": 46, "y": 57, "class": ["MAGE"]},
     {"type": "TURNIN", "quest": 6625, "questName": "Alliance Trauma", "npc": 12939, "npcName": "Doctor Gustaf VanHowzen", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.6, "y": 48.8, "profession": "First Aid", "skill": 225},
     {"type": "TURNIN", "quest": 1286, "questName": "The Deserters", "npc": 5089, "npcName": "Balos Jacken", "map": 1445, "zone": "Dustwallow Marsh", "x": 36.1, "y": 54.3},
     {"type": "ACCEPT", "quest": 1287, "questName": "The Deserters", "npc": 5089, "npcName": "Balos Jacken", "map": 1445, "zone": "Dustwallow Marsh", "x": 36.1, "y": 54.3},
     {"type": "ACCEPT", "quest": 1949, "questName": "Hidden Secrets", "npc": 6546, "npcName": "Tabetha", "map": 1445, "zone": "Dustwallow Marsh", "x": 46, "y": 57, "class": ["MAGE"]},
+    {"type": "ACCEPT", "quest": 1954, "questName": "The Infernal Orb", "npc": 6546, "npcName": "Tabetha", "map": 1445, "zone": "Dustwallow Marsh", "x": 46, "y": 57, "class": ["MAGE"]},
     {"type": "TURNIN", "quest": 1287, "questName": "The Deserters", "npc": 4944, "npcName": "Captain Garran Vimes", "map": 1445, "zone": "Dustwallow Marsh", "x": 68.2, "y": 48.6}
   ]
 }

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_13_DESOLACE",
     name = "13. Desolace 35-36 (Tauren)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 35,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_14_BADLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 13 of the Tauren route: level 35 to 36, 61 steps, ~196 min of play in the model (27554 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 64,
+    stepCount = 65,
     steps = [[{
 {type="TRAVEL",map=1443,zone="Desolace",x=54.2,y=57.2,radius=60,note="travel to Desolace (Desolace)"},
 {type="ACCEPT",quest=1367,questName="Magram Alliance",npc=5412,npcName="Gurda Wildmane",map=1443,zone="Desolace",x=56.3,y=59.7},
@@ -65,6 +65,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1370,questName="Stealing Supplies",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
 {type="COLLECT",quest=1370,questName="Stealing Supplies",target="Crudely Dried Meat",count=6,map=1443,zone="Desolace",x=65.8,y=80.5,near=true},
 {type="TURNIN",quest=1370,questName="Stealing Supplies",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.3},
+{type="ACCEPT",quest=1373,questName="Ongeku",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.2,note="Objectives: Gelkis Clan Centaur"},
 {type="ACCEPT",quest=5943,questName="Gizelton Caravan",npc=11626,npcName="Rigger Gizelton",map=1443,zone="Desolace",x=45.4,y=75.3},
 {type="COMPLETE",quest=5943,questName="Gizelton Caravan",target="Escort Gizelton Caravan past Mannoroc Coven",map=1443,zone="Desolace",x=55.7,y=67.8,note="escort - stay close, it can fail: Escort Gizelton Caravan past Mannoroc Coven"},
 {type="TURNIN",quest=5943,questName="Gizelton Caravan",npc=11596,npcName="Smeed Scrabblescrew",map=1443,zone="Desolace",x=60.9,y=61.9},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_39_AZSHARA",
     name = "39. Azshara 51-52 (Orc)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 51,
@@ -13,15 +13,12 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_40_FELWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 39 of the Orc route: level 51 to 52, 1 steps, ~128 min of play in the model (36303 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 8,
+    stepCount = 5,
     steps = [[{
-{type="ACCEPT",quest=7028,questName="Twisted Evils",npc=13656,npcName="Willow",map=1443,zone="Desolace",x=62.2,y=39.6,optional=true,note="For Maraudon (dungeon guide)"},
-{type="ACCEPT",quest=7029,questName="Vyletongue Corruption",npc=11823,npcName="Vark Battlescar",map=1443,zone="Desolace",x=23.2,y=70.2,optional=true,note="For Maraudon (dungeon guide)"},
-{type="ACCEPT",quest=7044,questName="Legends of Maraudon",npc=13697,npcName="Cavindra",map=1443,zone="Desolace",x=31.9,y=63.8,optional=true,note="For Maraudon (dungeon guide)"},
-{type="ACCEPT",quest=7064,questName="Corruption of Earth and Seed",npc=13699,npcName="Selendra",map=1443,zone="Desolace",x=26.8,y=77.6,optional=true,note="For Maraudon (dungeon guide)"},
-{type="ACCEPT",quest=7067,questName="The Pariah's Instructions",npc=13717,npcName="Centaur Pariah",map=1443,zone="Desolace",x=50.4,y=86.6,optional=true,note="For Maraudon (dungeon guide)"},
-{type="NOTE",optional=true,text="Ready for Maraudon",note="Picked up: Twisted Evils, Vyletongue Corruption, Legends of Maraudon, Corruption of Earth and Seed, The Pariah's Instructions, Shadowshard Fragments. When you have a group, open Maraudon under Dungeons."},
-{type="GRIND",npc=8761,target="Mosshoof Courser",level=52,map=1447,zone="Azshara",x=66.4,y=27.4,near=true,note="grind Mosshoof Courser (level 52-53) to level 52 - nothing worth questing at 51"},
-{type="COLLECT",quest=8419,questName="An Imp's Request",target="Felcloth",count=1,map=1447,zone="Azshara",x=62.8,y=25.5,near=true,class={"WARLOCK"},mobs="Felguard Sentry / Legashi Satyr / Legashi Rogue / Legashi Hellcaller"}
+{type="TRAVEL",map=1444,zone="Feralas",x=75.5,y=44.4,radius=30,note="go to Shyn, the flight master (Camp Mojache, Feralas)"},
+{type="FLY",map=1447,zone="Azshara",x=22,y=49.6,radius=30,note="fly to Valormok, Azshara"},
+{type="TURNIN",quest=3563,questName="Jes'rimon's Payment to Jediga",npc=8587,npcName="Jediga",map=1447,zone="Azshara",x=22.4,y=51.4},
+{type="TURNIN",quest=8151,questName="The Hunter's Charm",npc=8405,npcName="Ogtinc",map=1447,zone="Azshara",x=42.4,y=42.6,class={"HUNTER"}},
+{type="GRIND",npc=8761,target="Mosshoof Courser",level=52,map=1447,zone="Azshara",x=66.4,y=27.4,near=true,note="grind Mosshoof Courser (level 52-53) to level 52 - nothing worth questing at 51"}
 }]],
 })

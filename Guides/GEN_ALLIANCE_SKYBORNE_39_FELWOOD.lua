@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_39_FELWOOD",
     name = "39. Felwood 51-51 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 51,
@@ -13,8 +13,10 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_40_AZSHARA",
     author = "ForeverGuide route planner",
     notes = "Chapter 39 of the Skyborne route: level 51 to 51, 22 steps, ~93 min of play in the model (38924 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 32,
+    stepCount = 34,
     steps = [[{
+{type="TRAVEL",map=1449,zone="Un'Goro Crater",x=45.2,y=5.8,radius=30,note="go to Gryfe, the flight master (Marshal's Refuge, Un'Goro Crater)"},
+{type="FLY",map=1413,zone="The Barrens",x=63.1,y=37.2,radius=30,note="fly to Ratchet, The Barrens"},
 {type="TRAVEL",map=1448,zone="Felwood",x=51.6,y=82.7,radius=60,note="travel to Felwood (Felwood)"},
 {type="ACCEPT",quest=8460,questName="Timbermaw Ally",npc=11554,npcName="Grazle",map=1448,zone="Felwood",x=50.9,y=85},
 {type="ACCEPT",quest=5155,questName="Forces of Jaedenar",npc=10922,npcName="Greta Mosshoof",map=1448,zone="Felwood",x=51.2,y=82.1},

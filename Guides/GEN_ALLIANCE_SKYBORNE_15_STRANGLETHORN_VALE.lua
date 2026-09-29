@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_15_STRANGLETHORN_VALE",
     name = "15. Stranglethorn Vale 34-35 (Skyborne)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 34,
@@ -13,9 +13,8 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_16_BADLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 15 of the Skyborne route: level 34 to 35, 66 steps, ~184 min of play in the model (27094 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 83,
+    stepCount = 78,
     steps = [[{
-{type="TURNIN",quest=1178,questName="Goblin Sponsorship",npc=3391,npcName="Gazlowe",map=1413,zone="The Barrens",x=62.6,y=36.2},
 {type="ACCEPT",quest=1718,questName="The Islander",npc=3354,npcName="Sorek",map=1454,zone="Orgrimmar",x=80.2,y=32.4,class={"WARRIOR"}},
 {type="TURNIN",quest=1718,questName="The Islander",npc=6236,npcName="Klannoc Macleod",map=1413,zone="The Barrens",x=68.6,y=49,class={"WARRIOR"}},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.3,y=76.4,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
@@ -93,10 +92,6 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=1719,questName="The Affray",target="Explore Zone",count=1,map=1413,zone="The Barrens",x=68.6,y=48.6,class={"WARRIOR"}},
 {type="COMPLETE",quest=1719,questName="The Affray",target="Step on the grate to begin the Affray",count=1,map=1413,zone="The Barrens",x=68.6,y=48.6,class={"WARRIOR"}},
 {type="TURNIN",quest=1719,questName="The Affray",npc=6236,npcName="Klannoc Macleod",map=1413,zone="The Barrens",x=68.6,y=49,class={"WARRIOR"}},
-{type="TURNIN",quest=601,questName="Water Elementals",npc=2496,npcName="Baron Revilgaz",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.9},
-{type="ACCEPT",quest=8553,questName="The Captain's Cutlass",npc=2500,npcName="Captain Hecklebury Smotts",map=1434,zone="Stranglethorn Vale",x=26.6,y=73.6},
-{type="TURNIN",quest=8553,questName="The Captain's Cutlass",npc=2594,npcName="Sprogger",map=1434,zone="Stranglethorn Vale",x=26.6,y=73.6},
-{type="ACCEPT",quest=707,questName="Ironband Wants You!",npc=1356,npcName="Prospector Stormpike",map=1455,zone="Ironforge",x=74.4,y=12},
-{type="TURNIN",quest=707,questName="Ironband Wants You!",npc=1344,npcName="Prospector Ironband",map=1432,zone="Loch Modan",x=65.8,y=65.6}
+{type="TURNIN",quest=601,questName="Water Elementals",npc=2496,npcName="Baron Revilgaz",map=1434,zone="Stranglethorn Vale",x=27.2,y=76.9}
 }]],
 })

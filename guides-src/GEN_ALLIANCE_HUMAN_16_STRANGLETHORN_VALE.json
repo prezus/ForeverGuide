@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_16_STRANGLETHORN_VALE",
   "name": "16. Stranglethorn Vale 32-33 (Human)",
-  "version": 4,
+  "version": 5,
   "faction": "Alliance",
   "race": ["Human"],
   "minLevel": 32,
@@ -13,6 +13,7 @@
   "notes": "Chapter 16 of the Human route: level 32 to 33, 52 steps, ~166 min of play in the model (24434 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "FLIGHTPATH", "npc": 2859, "npcName": "Gyll", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.5, "y": 77.8},
+    {"type": "ACCEPT", "quest": 79974, "questName": "Wet Job", "map": 1442, "zone": "Stonetalon Mountains", "x": 39.6, "y": 49.9, "note": "Cozy Sleeping Bag chain: keep it going"},
     {"type": "ACCEPT", "quest": 1373, "questName": "Ongeku", "npc": 5397, "npcName": "Uthek the Wise", "map": 1443, "zone": "Desolace", "x": 36.2, "y": 79.2, "note": "Objectives: Gelkis Clan Centaur"},
     {"type": "ACCEPT", "quest": 1718, "questName": "The Islander", "npc": 3354, "npcName": "Sorek", "map": 1454, "zone": "Orgrimmar", "x": 80.2, "y": 32.4, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 1718, "questName": "The Islander", "npc": 6236, "npcName": "Klannoc Macleod", "map": 1413, "zone": "The Barrens", "x": 68.6, "y": 49, "class": ["WARRIOR"]},

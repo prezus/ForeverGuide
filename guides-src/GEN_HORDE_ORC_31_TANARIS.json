@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_31_TANARIS",
   "name": "31. Tanaris 46-47 (Orc)",
-  "version": 5,
+  "version": 6,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 46,
@@ -12,6 +12,8 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 31 of the Orc route: level 46 to 47, 31 steps, ~86 min of play in the model (36168 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 75.5, "y": 44.4, "radius": 30, "note": "go to Shyn, the flight master (Camp Mojache, Feralas)"},
+    {"type": "FLY", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 25.4, "radius": 30, "note": "fly to Gadgetzan, Tanaris"},
     {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51.7, "y": 27.5, "radius": 60, "note": "travel to Tanaris (Tanaris)"},
     {"type": "ACCEPT", "quest": 82, "questName": "Noxious Lair Investigation", "npc": 7724, "npcName": "Senior Surveyor Fizzledowser", "map": 1446, "zone": "Tanaris", "x": 50.2, "y": 27.5},
     {"type": "ACCEPT", "quest": 2605, "questName": "The Thirsty Goblin", "npc": 7564, "npcName": "Marin Noggenfogger", "map": 1446, "zone": "Tanaris", "x": 51.8, "y": 28.7},
@@ -46,12 +48,27 @@
     {"type": "COMPLETE", "quest": 1560, "questName": "Tooga's Quest", "target": "Lead Tooga to Torta", "map": 1446, "zone": "Tanaris", "x": 66.6, "y": 25.6, "note": "Lead Tooga to Torta"},
     {"type": "TURNIN", "quest": 1560, "questName": "Tooga's Quest", "npc": 6015, "npcName": "Torta", "map": 1446, "zone": "Tanaris", "x": 66.6, "y": 25.7},
     {"type": "TURNIN", "quest": 3520, "questName": "Screecher Spirits", "npc": 8579, "npcName": "Yeh'kinya", "map": 1446, "zone": "Tanaris", "x": 67, "y": 22.4},
+    {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.5, "y": 29.4, "radius": 30, "note": "go to Thysta, the flight master (Grom'gol, Stranglethorn)"},
+    {"type": "FLY", "map": 1425, "zone": "The Hinterlands", "x": 81.7, "y": 81.8, "radius": 30, "note": "fly to Revantusk Village, The Hinterlands"},
     {"type": "COLLECT", "quest": 2641, "questName": "Sprinkle's Secret Ingredient", "target": "Violet Tragan", "count": 1, "map": 1425, "zone": "The Hinterlands", "x": 41.6, "y": 58.9},
+    {"type": "TRAVEL", "map": 1425, "zone": "The Hinterlands", "x": 81.7, "y": 81.8, "radius": 30, "note": "go to Gorkas, the flight master (Revantusk Village, The Hinterlands)"},
+    {"type": "FLY", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.5, "y": 29.4, "radius": 30, "note": "fly to Grom'gol, Stranglethorn"},
     {"type": "TURNIN", "quest": 2641, "questName": "Sprinkle's Secret Ingredient", "npc": 7583, "npcName": "Sprinkle", "map": 1446, "zone": "Tanaris", "x": 51, "y": 26.8},
+    {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 25.4, "radius": 30, "note": "go to Bulkrek Ragefist, the flight master (Gadgetzan, Tanaris)"},
+    {"type": "FLY", "map": 1445, "zone": "Dustwallow Marsh", "x": 35.6, "y": 31.9, "radius": 30, "note": "fly to Brackenwall Village, Dustwallow Marsh"},
+    {"type": "ACCEPT", "quest": 1173, "questName": "Challenge Overlord Mok'Morokk", "npc": 4500, "npcName": "Overlord Mok'Morokk", "map": 1445, "zone": "Dustwallow Marsh", "x": 36.2, "y": 31.4, "note": "Objectives: Drive Overlord Mok'Morokk from Brackenwall Village"},
+    {"type": "TURNIN", "quest": 1173, "questName": "Challenge Overlord Mok'Morokk", "npc": 4501, "npcName": "Draz'Zilb", "map": 1445, "zone": "Dustwallow Marsh", "x": 37, "y": 33},
+    {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.5, "y": 29.4, "radius": 30, "note": "go to Thysta, the flight master (Grom'gol, Stranglethorn)"},
+    {"type": "FLY", "map": 1424, "zone": "Hillsbrad Foothills", "x": 60.1, "y": 18.6, "radius": 30, "note": "fly to Tarren Mill, Hillsbrad"},
     {"type": "TURNIN", "quest": 2933, "questName": "Venom Bottles", "npc": 2216, "npcName": "Apothecary Lydon", "map": 1424, "zone": "Hillsbrad Foothills", "x": 61.4, "y": 19.2},
+    {"type": "TRAVEL", "map": 1424, "zone": "Hillsbrad Foothills", "x": 60.1, "y": 18.6, "radius": 30, "note": "go to Zarise, the flight master (Tarren Mill, Hillsbrad)"},
+    {"type": "FLY", "map": 1427, "zone": "Searing Gorge", "x": 34.8, "y": 30.9, "radius": 30, "note": "fly to Thorium Point, Searing Gorge"},
+    {"type": "ACCEPT", "quest": 3443, "questName": "Forging the Shaft", "npc": 8479, "npcName": "Velarok Windblade", "map": 1427, "zone": "Searing Gorge", "x": 39, "y": 39},
+    {"type": "COLLECT", "quest": 3443, "questName": "Forging the Shaft", "target": "Thorium Plated Dagger", "count": 8, "mobs": "Dark Iron Geologist / Dark Iron Steamsmith / Slave Worker / Dark Iron Slaver", "map": 1427, "zone": "Searing Gorge", "x": 42.6, "y": 51.4, "near": true},
+    {"type": "TURNIN", "quest": 3443, "questName": "Forging the Shaft", "npc": 8479, "npcName": "Velarok Windblade", "map": 1427, "zone": "Searing Gorge", "x": 39, "y": 39},
+    {"type": "TRAVEL", "map": 1427, "zone": "Searing Gorge", "x": 34.8, "y": 30.9, "radius": 30, "note": "go to Grisha, the flight master (Thorium Point, Searing Gorge)"},
+    {"type": "FLY", "map": 1434, "zone": "Stranglethorn Vale", "x": 32.5, "y": 29.4, "radius": 30, "note": "fly to Grom'gol, Stranglethorn"},
     {"type": "ACCEPT", "quest": 3527, "questName": "The Prophecy of Mosh'aru", "npc": 8579, "npcName": "Yeh'kinya", "map": 1446, "zone": "Tanaris", "x": 67, "y": 22.4, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
-    {"type": "NOTE", "note": "Picked up: Divino-matic Rod, Gahz'rilla, Tiara of the Deep, Scarab Shells, Troll Temper, The Prophecy of Mosh'aru. When you have a group, open Zul'Farrak under Dungeons.", "text": "Ready for Zul'Farrak", "optional": true},
-    {"type": "ACCEPT", "quest": 100, "questName": "Call of Water", "map": 1421, "zone": "Silverpine Forest", "x": 38.2, "y": 44.5, "class": ["SHAMAN"]},
-    {"type": "TURNIN", "quest": 100, "questName": "Call of Water", "npc": 5895, "npcName": "Minor Manifestation of Water", "map": 1421, "zone": "Silverpine Forest", "x": 38.6, "y": 44.6, "note": "reduced xp (10%) - you out-levelled it", "class": ["SHAMAN"]}
+    {"type": "NOTE", "note": "Picked up: Divino-matic Rod, Gahz'rilla, Tiara of the Deep, Scarab Shells, Troll Temper, The Prophecy of Mosh'aru. When you have a group, open Zul'Farrak under Dungeons.", "text": "Ready for Zul'Farrak", "optional": true}
   ]
 }

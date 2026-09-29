@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_28_SEARING_GORGE",
   "name": "28. Searing Gorge 46-46 (Skyborne)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 46,
@@ -12,8 +12,14 @@
   "author": "ForeverGuide route planner",
   "notes": "Chapter 28 of the Skyborne route: level 46 to 46, 26 steps, ~120 min of play in the model (34200 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
+    {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "go to Bera Stonehammer, the flight master (Gadgetzan, Tanaris)"},
+    {"type": "FLY", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.5, "y": 51.3, "radius": 30, "note": "fly to Theramore, Dustwallow Marsh"},
     {"type": "FLIGHTPATH", "npc": 2941, "npcName": "Lanie Reed", "map": 1427, "zone": "Searing Gorge", "x": 37.9, "y": 30.9},
+    {"type": "TRAVEL", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.5, "y": 51.3, "radius": 30, "note": "go to Baldruc, the flight master (Theramore, Dustwallow Marsh)"},
+    {"type": "FLY", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "fly to Gadgetzan, Tanaris"},
     {"type": "ACCEPT", "quest": 2641, "questName": "Sprinkle's Secret Ingredient", "npc": 7583, "npcName": "Sprinkle", "map": 1446, "zone": "Tanaris", "x": 51, "y": 26.8},
+    {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 51, "y": 29.3, "radius": 30, "note": "go to Bera Stonehammer, the flight master (Gadgetzan, Tanaris)"},
+    {"type": "FLY", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.5, "y": 51.3, "radius": 30, "note": "fly to Theramore, Dustwallow Marsh"},
     {"type": "TRAVEL", "map": 1427, "zone": "Searing Gorge", "x": 38.1, "y": 32.5, "radius": 60, "note": "travel to Searing Gorge (Searing Gorge)"},
     {"type": "ACCEPT", "quest": 7728, "questName": "STOLEN: Smithing Tuyere and Lookout's Spyglass", "map": 1427, "zone": "Searing Gorge", "x": 37.7, "y": 26.5},
     {"type": "ACCEPT", "quest": 7729, "questName": "JOB OPPORTUNITY: Culling the Competition", "map": 1427, "zone": "Searing Gorge", "x": 37.7, "y": 26.5},
