@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_35_IRONFORGE",
     name = "35. Ironforge 49-49 (Night Elf)",
-    version = 7,
+    version = 8,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 49,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_36_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 35 of the NightElf route: level 49 to 49, 9 steps, ~23 min of play in the model (47455 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 35,
+    stepCount = 34,
     steps = [[{
 {type="FLIGHTPATH",npc=1573,npcName="Gryth Thurden",map=1455,zone="Ironforge",x=55.5,y=47.7},
 {type="TURNIN",quest=2990,questName="Thadius Grimshade",npc=8022,npcName="Thadius Grimshade",map=1419,zone="Blasted Lands",x=67,y=19.4},
@@ -30,7 +30,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1360,questName="Reclaimed Treasures",npc=6294,npcName="Krom Stoutarm",map=1455,zone="Ironforge",x=74.2,y=9.8,optional=true,note="For Uldaman (dungeon guide)"},
 {type="ACCEPT",quest=2398,questName="The Lost Dwarves",npc=1356,npcName="Prospector Stormpike",map=1455,zone="Ironforge",x=74.4,y=12,optional=true,note="For Uldaman (dungeon guide)"},
 {type="NOTE",optional=true,text="Ready for Uldaman",note="Picked up: Agmond's Fate, Solution to Doom, Amulet of Secrets, Reclaimed Treasures, The Lost Dwarves. When you have a group, open Uldaman under Dungeons."},
-{type="ACCEPT",quest=2861,questName="Tabetha's Task",npc=5144,npcName="Bink",map=1455,zone="Ironforge",x=27,y=8.2,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="ACCEPT",quest=2991,questName="Nekrum's Medallion",npc=8022,npcName="Thadius Grimshade",map=1419,zone="Blasted Lands",x=67,y=19.4,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="TRAVEL",map=1455,zone="Ironforge",x=57.3,y=35.5,radius=60,note="travel to Ironforge (Ironforge)"},
 {type="HEARTH",npc=5111,npcName="Innkeeper Firebrew",map=1455,zone="Ironforge",x=18.1,y=51.5,note="talk to Innkeeper Firebrew and make this inn your home"},
