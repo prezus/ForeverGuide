@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_10_THOUSAND_NEEDLES",
   "name": "10. Thousand Needles 32-33 (Tauren)",
-  "version": 6,
+  "version": 7,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 32,
@@ -47,7 +47,6 @@
     {"type": "ACCEPT", "quest": 1178, "questName": "Goblin Sponsorship", "npc": 4630, "npcName": "Pozzik", "map": 1441, "zone": "Thousand Needles", "x": 80, "y": 75.8},
     {"type": "ACCEPT", "quest": 1149, "questName": "Test of Faith", "npc": 2986, "npcName": "Dorn Plainstalker", "map": 1441, "zone": "Thousand Needles", "x": 54, "y": 41.5},
     {"type": "ACCEPT", "quest": 4881, "questName": "Assassination Plot", "npc": 10617, "npcName": "Galak Messenger", "map": 1441, "zone": "Thousand Needles", "x": 39.4, "y": 33.1, "note": "Loot Assassination Note from Galak Messenger and use it to start the quest"},
-    {"type": "TURNIN", "quest": 5881, "questName": "Calling in the Reserves", "npc": 12576, "npcName": "Grish Longrunner", "map": 1441, "zone": "Thousand Needles", "x": 31.8, "y": 21.6},
     {"type": "COMPLETE", "quest": 1149, "questName": "Test of Faith", "target": "If you have faith, leap from the planks overlooking Thousand Needles.", "map": 1441, "zone": "Thousand Needles", "x": 26.4, "y": 32.9, "note": "If you have faith, leap from the planks overlooking Thousand Needles."},
     {"type": "TURNIN", "quest": 1149, "questName": "Test of Faith", "npc": 2986, "npcName": "Dorn Plainstalker", "map": 1441, "zone": "Thousand Needles", "x": 54, "y": 41.5, "note": "reduced xp (60%) - you out-levelled it"},
     {"type": "ACCEPT", "quest": 1150, "questName": "Test of Endurance", "npc": 2986, "npcName": "Dorn Plainstalker", "map": 1441, "zone": "Thousand Needles", "x": 54, "y": 41.5},
