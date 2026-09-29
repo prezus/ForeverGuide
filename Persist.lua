@@ -11,8 +11,8 @@
 -- mirror is simply never needed (a loaded SV always wins).
 --
 -- Big data (contributed facts, reports) stays in SavedVariables: the files
--- ARE written, tools/merge_recorded.py and collect_reports.py read them
--- (and the .bak) from disk, so run them before two more reloads.
+-- ARE written, and /fg share or the SavedVariables file itself carries them
+-- to the maintainer.
 -- ============================================================
 
 local _, ns = ...
@@ -71,7 +71,7 @@ local function WriteChunks(prefix, n, str)
         if not warnedFull[prefix] then
             warnedFull[prefix] = true
             if prefix == ACCT_PREFIX then
-                ns.Warn(string.format("cvar mirror: account state is %d characters, only %d fit - the tail (step edits) will not survive a beta login. Fold edits in with tools/apply_edits.py.", #str, CHUNK * n))
+                ns.Warn(string.format("cvar mirror: account state is %d characters, only %d fit - the tail (step edits) will not survive a beta login.", #str, CHUNK * n))
             else
                 ns.Warn(string.format("cvar mirror: character state is %d characters, only %d fit - the tail (other guides' positions, then moved steps) will not survive a beta login. /fg order reset frees room.", #str, CHUNK * n))
             end

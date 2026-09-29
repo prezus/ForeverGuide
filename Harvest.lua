@@ -15,7 +15,7 @@
 --      out with its title.                        /fg harvest sweep
 --
 -- Runs only while contributing data is on (Options -> Data collection, or /fg share on).
--- Everything is stored next to the scanner's data so scan_diff.py sees it:
+-- Everything is stored next to the scanner's data:
 --   ForeverGuideDB.scan.quests[id] = title
 --   ForeverGuideDB.harvest.lines[id] = { map, x, y, line, lineName, name }
 --   ForeverGuideDB.harvest.maps[uiMapID] = { name, lines = n }
@@ -149,7 +149,7 @@ function Harvest:HarvestAllMaps()
                     local s = Store()
                     local total = 0
                     for _ in pairs(s.quests) do total = total + 1 end
-                    ns.Printf("harvest: %d quest-line entries across %d maps, %d quests new; %d quests known in total. /reload to save, then tools/scan_diff.py.",
+                    ns.Printf("harvest: %d quest-line entries across %d maps, %d quests new; %d quests known in total. /reload to save.",
                         totalLines, #maps, totalNew, total)
                     Harvest.harvesting = nil
                 end)

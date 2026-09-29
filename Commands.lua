@@ -44,7 +44,7 @@ local HELP = {
     "/fg xp              levelling pace: xp/h, time to the next level, and how you compare with the route model",
     "/fg ding on|off|test|<channel>   announce a level-up (\"I leveled up to 18 in 1h 24m\") to your party, or as an emote when solo",
     "/fg resync          skip quests you out-levelled (<=20% xp) and continue from the first open step",
-    "/fg edit here|npc|note <text>|radius <yd>|clear   correct the current step in place (saved; tools/apply_edits.py folds it into the guide)",
+    "/fg edit here|npc|note <text>|radius <yd>|clear   correct the current step in place (saved on this account)",
     "/fg edits [clear]   list / wipe your edits of the active guide",
     "/fg wrong [text]    open feedback dialog (or save the supplied text with your step/position)",
     "/fg reports [clear] open a copyable list of feedback (clear deletes it)",
@@ -754,7 +754,7 @@ function handlers.wrong(rest)
     end
     table.insert(ns.db.reports, r)
     while #ns.db.reports > 300 do table.remove(ns.db.reports, 1) end
-    ns.Printf("noted (%d report%s). Thanks - run tools/collect_reports.py to turn these into corrections.", #ns.db.reports, #ns.db.reports == 1 and "" or "s")
+    ns.Printf("noted (%d report%s). Thanks - /fg share sends them with the feedback form.", #ns.db.reports, #ns.db.reports == 1 and "" or "s")
 end
 handlers.report = handlers.wrong
 

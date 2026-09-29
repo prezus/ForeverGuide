@@ -38,16 +38,25 @@ jobs:
         run: ln -s lua "$GITHUB_WORKSPACE/.lua/bin/lua5.1"
       - name: Test engine
         run: lua5.1 tools/test/run_tests.lua
-      - name: Validate guide sources
-        run: python3 tools/compile_guides.py --check
-      - name: Packed data matches its tables
-        run: lua5.1 tools/pack_data.lua --check
-      - name: Test data tools
+      # Guides/ and Data/ are published by the maintainer's route planner and data build and run with
+      # the addon's full permissions: they must be data and nothing else.
+      - name: Guides and data are data only
         run: |
-          python3 tools/test/test_compile_guides.py
-          python3 tools/test/test_merge_recorded.py
-          python3 tools/test/test_decode_share.py
-          python3 tools/test/test_collect_reports.py
+          lua5.1 tools/test/test_check_data_only.lua
+          lua5.1 tools/test/check_data_only.lua
+      # Only the maintainer publishes routes and data; a fork's PR may not change them.
+      - name: Routes and data come from the publisher
+        if: github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          git fetch -q --depth=1 origin "${{ github.base_ref }}"
+          changed="$(git diff --name-only FETCH_HEAD HEAD -- Guides Data)"
+          if [ -n "$changed" ]; then
+            echo "This PR changes published routes or data; report a wrong step as an issue instead:"
+            echo "$changed"
+            exit 1
+          fi
+      - name: Test data tools
+        run: python3 tools/test/test_decode_share.py
       - name: Check Forever API paths
         run: |
           source="$RUNNER_TEMP/forever-ui-source"

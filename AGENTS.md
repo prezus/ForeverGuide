@@ -10,15 +10,15 @@ link here alone. The original author's credit lives in `LICENSE`, the `.toc`, an
 
 ## Change the source of truth
 
-- Routes and quest data are published: `guides-src/`, `Guides/`, `data-src/tables/` and
-  `Data/` arrive by pull request from the maintainer's route planner and data build, which live
-  outside this repository ([README](README.md#routes)). Route or data changes belong there; here,
-  a wrong step becomes an issue. [Data/README.md](Data/README.md) holds the sources and their
-  redistribution constraints.
-- Engine test guides: the engine test plays the frozen guides in
-  `tools/test/fixtures/guides-src/` ([schema](guides-src/SCHEMA.md)), compiled into
-  `tools/test/fixtures/Guides/` by the guide compiler (command below); `--check` fails when
-  either set is stale.
+- Routes and quest data are published: `Guides/` and `Data/` arrive as finished Lua by pull
+  request from the maintainer's route planner and data build, which live outside this repository
+  ([README](README.md#routes)). Route or data changes belong there; here, a wrong step becomes an
+  issue. CI refuses anything in them but data (`tools/test/check_data_only.lua`) and a fork's PR
+  that changes them. [Data/README.md](Data/README.md) holds the sources and their redistribution
+  constraints.
+- Engine test guides: the engine test plays the frozen, compiled guides in
+  `tools/test/fixtures/Guides/` ([schema](docs/GUIDE-SCHEMA.md)). Change them only to test new
+  engine behaviour, and keep them data only.
 - Engine: follow the existing `ns` module convention and `.toc` load order. Add a new
   file to the `.toc` only if the feature actually needs it.
 
@@ -69,12 +69,12 @@ executable names provided by your installation (`lua -v` must report 5.1; plain 
 be newer). On Windows, `py -3` often replaces `python3`. No Unix shell script is required.
 
 Use `luajit` in place of `lua5.1` if necessary, and `py -3` in place of
-`python3` on Windows. Run the compiler without `--check` only after editing the fixture guides:
+`python3` on Windows:
 
 ```text
 lua5.1 tools/test/run_tests.lua
-python3 tools/compile_guides.py --check
-lua5.1 tools/pack_data.lua --check
+lua5.1 tools/test/test_check_data_only.lua
+lua5.1 tools/test/check_data_only.lua
 luacheck --std lua51 --no-global --no-unused-args --no-max-line-length Core.lua Database.lua Events.lua Persist.lua Player.lua Navigation.lua Guide.lua DB.lua
 lua-language-server --check . --checklevel=Warning
 ```

@@ -1,13 +1,10 @@
-# ForeverGuide guide format (JSON)
+# ForeverGuide guide format
 
-Guides are written as JSON in `guides-src/`, compiled to Lua by
-`tools/compile_guides.py`, and loaded by the addon from `Guides/`.
-The addon never contains quest logic for a specific guide; it only
-interprets these steps.
-
-```
-guides-src/*.json  --compile_guides.py-->  Guides/<ID>.lua + Guides/Guides.xml
-```
+The maintainer's route planner writes guides in this format, validates them against it and
+publishes them as data-only Lua in `Guides/`: one file per route (its chapters in order), per
+faction's zone guides and per faction's dungeon guides, each guide an `ns.RegisterGuide({...})`
+call whose steps travel as one packed string. `Guides/Guides.xml` lists the files. The addon never
+contains quest logic for a specific guide; it only interprets these steps.
 
 ## Guide
 

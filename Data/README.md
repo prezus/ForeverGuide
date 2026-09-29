@@ -1,17 +1,13 @@
 # ForeverGuide bundled quest database
 
-The files in `Data/` are packed by `tools/pack_data.lua` from the full tables in `data-src/tables/`;
-neither is edited by hand. The tables come from **Questie**'s Classic Era database
-(https://github.com/Questie/Questie, `Database/Classic/*.lua` + `Database/Corrections/classic*Fixes.lua`)
-and from the WoW Forever sources below. The maintainer's data build, outside this repository, writes
-the tables and publishes them here by pull request (README, "Routes"); Questie's own corrections are
-applied the same way Questie applies them at load time, and quests on Questie's blacklist are marked
-`hidden`. Pack them with:
+The files in `Data/` are published, packed, by the maintainer's data build, which lives outside this
+repository, by pull request (README, "Routes"); they are not edited by hand. The records come from
+**Questie**'s Classic Era database (https://github.com/Questie/Questie, `Database/Classic/*.lua` +
+`Database/Corrections/classic*Fixes.lua`) and from the WoW Forever sources below. Questie's own
+corrections are applied the same way Questie applies them at load time, and quests on Questie's
+blacklist are marked `hidden`. The WoW Forever overlay is merged in before packing.
 
-    lua5.1 tools/pack_data.lua
-
-The addon reads only `Data/`. `lua5.1 tools/pack_data.lua --check` fails when
-`Data/` is not what the tables pack to.
+The addon reads only `Data/`. CI checks every file is data only (`lua5.1 tools/test/check_data_only.lua`).
 
 ## Storage
 
@@ -52,11 +48,11 @@ vmangos database projects). **Redistribution rights are not established by this 
 
 | Shipped material | Source | What remains to check |
 |---|---|---|
-| `Data/{Quest,Npc,Object,Item,Zone}DB.lua`, `Data/VanillaQuestIDs.lua` (and their tables in `data-src/tables/`) | Questie Classic tables and corrections, via the maintainer's data build | Confirm the license and obligations for the *specific Questie source version used*, including upstream database contributions. [Questie's license question](https://github.com/Questie/Questie/issues/4447) and [licensing proposal](https://github.com/Questie/Questie/pull/4660) have not resolved this for this bundle. |
-| `data-src/forever.json` (`src: "rxp"`), generated `data-src/tables/ForeverDB.lua` (merged into the packed `Data/` records), and guides built using the overlay | [RestedXP/RXPGuides](https://github.com/RestedXP/RXPGuides) Forever guides, via `tools/import_rxp.py` | Its [license](https://github.com/RestedXP/RXPGuides/blob/main/LICENSE) is CC BY-NC-SA 4.0. Confirm whether the imported material may be redistributed in this form and what attribution/share-alike terms apply; otherwise replace it with independently collected in-game data and regenerate affected outputs. |
-| `data-src/db2/`, `data-src/tables/ForeverQuestIDs.lua`, `Data/ForeverQuestIDs.lua`, and other `src: "db2"` records | WoW Forever client tables exported via wago.tools | Check the applicable game-data/export terms before redistribution; attribution to an export service alone does not grant rights. |
+| `Data/{Quest,Npc,Object,Item,Zone}DB.lua`, `Data/VanillaQuestIDs.lua` | Questie Classic tables and corrections, via the maintainer's data build | Confirm the license and obligations for the *specific Questie source version used*, including upstream database contributions. [Questie's license question](https://github.com/Questie/Questie/issues/4447) and [licensing proposal](https://github.com/Questie/Questie/pull/4660) have not resolved this for this bundle. |
+| WoW Forever overlay records with `src: "rxp"` (merged into the packed `Data/` records), and guides built using the overlay | [RestedXP/RXPGuides](https://github.com/RestedXP/RXPGuides) Forever guides, via the maintainer's data build | Its [license](https://github.com/RestedXP/RXPGuides/blob/main/LICENSE) is CC BY-NC-SA 4.0. Confirm whether the imported material may be redistributed in this form and what attribution/share-alike terms apply; otherwise replace it with independently collected in-game data and regenerate affected outputs. |
+| `Data/ForeverQuestIDs.lua`, and other `src: "db2"` records | WoW Forever client tables exported via wago.tools | Check the applicable game-data/export terms before redistribution; attribution to an export service alone does not grant rights. |
 
-`guides-src/GEN_*.json` and `Guides/GEN_*.lua` are produced by the maintainer's route planner from the bundled database; they are not automatically free of upstream obligations just because the route is computed. Before publishing a release, the project owner should record the source revision and permission/terms for each input, meet those terms, or remove and regenerate from cleared inputs. Do not treat the proposed MIT license for original code as a license for this data. This is a provenance checklist, **not** a claim that any rights have been granted or denied.
+`Guides/` is produced by the maintainer's route planner from the bundled database; they are not automatically free of upstream obligations just because the route is computed. Before publishing a release, the project owner should record the source revision and permission/terms for each input, meet those terms, or remove and regenerate from cleared inputs. Do not treat the proposed MIT license for original code as a license for this data. This is a provenance checklist, **not** a claim that any rights have been granted or denied.
 
 Fields of a decoded record:
 
@@ -75,25 +71,21 @@ Alliance Skyborne 65536, Horde Skyborne 131072. A Skyborne also takes any quest 
 Classic race of its faction (77 or 178). Class bits: Warrior 1, Paladin 2, Hunter 4, Rogue 8,
 Priest 16, Shaman 64, Mage 128, Warlock 256, Druid 1024.
 
-## ForeverDB.lua (WoW Forever additions)
+## The WoW Forever overlay
 
-`data-src/tables/ForeverDB.lua`, generated from `data-src/forever.json` (by `tools/merge_recorded.py`
-or the maintainer's data build). `ns.ForeverDB = { quests, npcs, objects, maps }`; `tools/pack_data.lua`
-merges it over the tables above (vanilla records only gain what they lack) before packing.
+The maintainer's data build merges WoW Forever's own facts over the tables above before packing:
+vanilla records only gain what they lack, quest ids only the client knows become new records
+flagged `forever = true`, and vanilla quests the client does not have are flagged `removed = true`.
+The overlay itself is not shipped. Its records are
 
 * `quests[id] = { n, lvl, req, zone, xp, snpc, enpc, obj = { { kind, id, name, text, spm, spw, near } }, start = { spm/spw }, seen, src }`
 * `npcs[id] = { n, lvl, spm, spw, starts, ends }`, `objects[id] = { n, spm, spw }`, `maps[uiMapID] = { name, parent }`
 * `spm = { [uiMapID] = { {x, y}, ... } }` map coordinates (0-100); `spw = { [uiMapID] = { {instanceID, worldX, worldY}, ... } }`
   world coordinates converted in-game with `C_Map.GetMapPosFromWorldPos`.
-* `src` lists where a record came from: `rec` (contributed data), `harvest`, `scan`, `db2`, `fix` (data-src/corrections.json).
-
-## ForeverDB.lua (WoW Forever overlay)
-
-Generated from `data-src/forever.json` by `tools/merge_recorded.py`, the maintainer's data build and
-`tools/import_rxp.py`. Sources per record (`src`): `rec` = recorded in-game by this addon, `scan` =
-`/fg scan new` (titles, levels, objective texts from the client), `db2` = the client's own tables
-(wago.tools export), `rxp` = material imported from the free WoW Forever guides shipped with
-**RestedXP Guides** (https://github.com/RestedXP/RXPGuides, CC BY-NC-SA 4.0).
-`tools/import_rxp.py` imports positions, **and can also import quest titles, objective text, NPC/mob
-names, and prerequisites**. It does not copy their route ordering or step prose; ForeverGuide's routes
-are computed by the maintainer's route planner. See the unresolved redistribution status above.
+* `src` lists where a record came from: `rec` = recorded in-game by this addon, `harvest`, `scan` =
+  `/fg scan new` (titles, levels, objective texts from the client), `db2` = the client's own tables
+  (wago.tools export), `fix` = a hand correction, `rxp` = material from the free WoW Forever guides
+  shipped with **RestedXP Guides** (https://github.com/RestedXP/RXPGuides, CC BY-NC-SA 4.0): positions,
+  and possibly quest titles, objective text, NPC/mob names and prerequisites. Their route ordering and
+  step prose are not copied; ForeverGuide's routes are computed by the maintainer's route planner. See
+  the unresolved redistribution status above.
