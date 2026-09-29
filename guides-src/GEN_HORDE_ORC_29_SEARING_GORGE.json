@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_ORC_29_SEARING_GORGE",
   "name": "29. Searing Gorge 45-46 (Orc)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Orc", "Troll"],
   "minLevel": 45,
@@ -59,7 +59,6 @@
     {"type": "TURNIN", "quest": 4449, "questName": "Caught!", "map": 1427, "zone": "Searing Gorge", "x": 65.6, "y": 62.2},
     {"type": "ACCEPT", "quest": 3453, "questName": "The Torch of Retribution", "npc": 8479, "npcName": "Velarok Windblade", "map": 1427, "zone": "Searing Gorge", "x": 39, "y": 39, "note": "Objectives: Torch Creation"},
     {"type": "TURNIN", "quest": 3453, "questName": "The Torch of Retribution", "npc": 8479, "npcName": "Velarok Windblade", "map": 1427, "zone": "Searing Gorge", "x": 39, "y": 39},
-    {"type": "TURNIN", "quest": 96, "questName": "Call of Water", "npc": 5901, "npcName": "Islen Waterseer", "map": 1413, "zone": "The Barrens", "x": 65.8, "y": 43.8, "note": "reduced xp (10%) - you out-levelled it", "class": ["SHAMAN"]},
     {"type": "ACCEPT", "quest": 3385, "questName": "The Undermarket", "npc": 8439, "npcName": "Nilith Lokrav", "map": 1427, "zone": "Searing Gorge", "x": 41, "y": 74.8, "note": "Elite - group up", "optional": true, "profession": "Tailoring", "skill": 230},
     {"type": "KILL", "quest": 3385, "questName": "The Undermarket", "npc": 8444, "target": "Trade Master Kovic", "count": 1, "map": 1427, "zone": "Searing Gorge", "x": 34.8, "y": 52, "optional": true, "profession": "Tailoring", "skill": 230},
     {"type": "KILL", "quest": 3385, "questName": "The Undermarket", "npc": 8447, "target": "Clunk", "count": 1, "map": 1427, "zone": "Searing Gorge", "x": 34.8, "y": 52, "optional": true, "profession": "Tailoring", "skill": 230},

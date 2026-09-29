@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_29_SEARING_GORGE",
     name = "29. Searing Gorge 45-46 (Orc)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 45,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_30_FERALAS",
     author = "ForeverGuide route planner",
     notes = "Chapter 29 of the Orc route: level 45 to 46, 22 steps, ~102 min of play in the model (37890 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 53,
+    stepCount = 52,
     steps = [[{
 {type="FLIGHTPATH",npc=3305,npcName="Grisha",map=1427,zone="Searing Gorge",x=34.8,y=30.9},
 {type="ACCEPT",quest=2782,questName="Rin'ji's Secret",map=1425,zone="The Hinterlands",x=86.3,y=59.1},
@@ -62,7 +62,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=4449,questName="Caught!",map=1427,zone="Searing Gorge",x=65.6,y=62.2},
 {type="ACCEPT",quest=3453,questName="The Torch of Retribution",npc=8479,npcName="Velarok Windblade",map=1427,zone="Searing Gorge",x=39,y=39,note="Objectives: Torch Creation"},
 {type="TURNIN",quest=3453,questName="The Torch of Retribution",npc=8479,npcName="Velarok Windblade",map=1427,zone="Searing Gorge",x=39,y=39},
-{type="TURNIN",quest=96,questName="Call of Water",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8,class={"SHAMAN"},note="reduced xp (10%) - you out-levelled it"},
 {type="ACCEPT",quest=3385,questName="The Undermarket",npc=8439,npcName="Nilith Lokrav",map=1427,zone="Searing Gorge",x=41,y=74.8,optional=true,profession="Tailoring",skill=230,note="Elite - group up"},
 {type="KILL",quest=3385,questName="The Undermarket",npc=8444,target="Trade Master Kovic",count=1,map=1427,zone="Searing Gorge",x=34.8,y=52,optional=true,profession="Tailoring",skill=230},
 {type="KILL",quest=3385,questName="The Undermarket",npc=8447,target="Clunk",count=1,map=1427,zone="Searing Gorge",x=34.8,y=52,optional=true,profession="Tailoring",skill=230},
