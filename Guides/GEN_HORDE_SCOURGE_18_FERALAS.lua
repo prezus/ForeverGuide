@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_18_FERALAS",
     name = "18. Feralas 40-40 (Undead)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 40,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SCOURGE_19_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
     notes = "Chapter 18 of the Scourge route: level 40 to 40, 19 steps, ~59 min of play in the model (32131 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 32,
+    stepCount = 30,
     steps = [[{
 {type="FLIGHTPATH",npc=8020,npcName="Shyn",map=1444,zone="Feralas",x=75.5,y=44.4},
 {type="TURNIN",quest=1107,questName="Encrusted Tail Fins",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77,optional=true},
@@ -21,8 +21,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2770,questName="Gahz'rilla",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="ACCEPT",quest=3631,questName="Summon Felsteed",npc=3326,npcName="Zevrost",map=1454,zone="Orgrimmar",x=48.4,y=45.6,class={"WARLOCK"}},
 {type="TURNIN",quest=3631,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"}},
-{type="ACCEPT",quest=4489,questName="Summon Felsteed",npc=4563,npcName="Kaal Soulreaper",map=1458,zone="Undercity",x=86,y=15.6,class={"WARLOCK"}},
-{type="TURNIN",quest=4489,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"}},
 {type="TRAVEL",map=1444,zone="Feralas",x=75.0,y=43.2,radius=60,note="travel to Feralas (Feralas)"},
 {type="HEARTH",npc=7737,npcName="Innkeeper Greul",map=1444,zone="Camp Mojache",x=74.8,y=45.2,note="talk to Innkeeper Greul and make this inn your home"},
 {type="ACCEPT",quest=2862,questName="War on the Woodpaw",npc=7875,npcName="Hadoken Swiftstrider",map=1444,zone="Feralas",x=74.9,y=42.5},

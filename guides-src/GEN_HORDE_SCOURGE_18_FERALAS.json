@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_SCOURGE_18_FERALAS",
   "name": "18. Feralas 40-40 (Undead)",
-  "version": 3,
+  "version": 4,
   "faction": "Horde",
   "race": ["Scourge"],
   "minLevel": 40,
@@ -18,8 +18,6 @@
     {"type": "ACCEPT", "quest": 2770, "questName": "Gahz'rilla", "npc": 4453, "npcName": "Wizzle Brassbolts", "map": 1441, "zone": "Thousand Needles", "x": 78, "y": 77, "note": "For Zul'Farrak (dungeon guide)", "optional": true},
     {"type": "ACCEPT", "quest": 3631, "questName": "Summon Felsteed", "npc": 3326, "npcName": "Zevrost", "map": 1454, "zone": "Orgrimmar", "x": 48.4, "y": 45.6, "class": ["WARLOCK"]},
     {"type": "TURNIN", "quest": 3631, "questName": "Summon Felsteed", "npc": 6251, "npcName": "Strahad Farsan", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 35.4, "class": ["WARLOCK"]},
-    {"type": "ACCEPT", "quest": 4489, "questName": "Summon Felsteed", "npc": 4563, "npcName": "Kaal Soulreaper", "map": 1458, "zone": "Undercity", "x": 86, "y": 15.6, "class": ["WARLOCK"]},
-    {"type": "TURNIN", "quest": 4489, "questName": "Summon Felsteed", "npc": 6251, "npcName": "Strahad Farsan", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 35.4, "class": ["WARLOCK"]},
     {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 75.0, "y": 43.2, "radius": 60, "note": "travel to Feralas (Feralas)"},
     {"type": "HEARTH", "npc": 7737, "npcName": "Innkeeper Greul", "map": 1444, "zone": "Camp Mojache", "x": 74.8, "y": 45.2, "note": "talk to Innkeeper Greul and make this inn your home"},
     {"type": "ACCEPT", "quest": 2862, "questName": "War on the Woodpaw", "npc": 7875, "npcName": "Hadoken Swiftstrider", "map": 1444, "zone": "Feralas", "x": 74.9, "y": 42.5},

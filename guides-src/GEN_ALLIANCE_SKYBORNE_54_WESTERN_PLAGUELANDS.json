@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_SKYBORNE_54_WESTERN_PLAGUELANDS",
   "name": "54. Western Plaguelands 57-60 (Skyborne)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["Skyborne"],
   "minLevel": 57,
@@ -23,8 +23,6 @@
     {"type": "ACCEPT", "quest": 5507, "questName": "Mantles of the Dawn", "npc": 10857, "npcName": "Argent Quartermaster Lightspark", "map": 1422, "zone": "Western Plaguelands", "x": 42.8, "y": 83.8, "note": "Objectives: Argent Dawn"},
     {"type": "COLLECT", "quest": 5507, "questName": "Mantles of the Dawn", "target": "Argent Dawn Valor Token", "count": 10, "mobs": "Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock", "map": 1422, "zone": "Western Plaguelands", "x": 42.8, "y": 83.8, "near": true},
     {"type": "TURNIN", "quest": 5507, "questName": "Mantles of the Dawn", "npc": 10857, "npcName": "Argent Quartermaster Lightspark", "map": 1422, "zone": "Western Plaguelands", "x": 42.8, "y": 83.8},
-    {"type": "COLLECT", "quest": 5521, "questName": "Chromatic Mantle of the Dawn", "target": "Argent Dawn Valor Token", "count": 25, "mobs": "Argent Quartermaster Hasana / Argent Quartermaster Lightspark / Quartermaster Miranda Breechlock", "map": 1422, "zone": "Western Plaguelands", "x": 42.8, "y": 83.8, "near": true},
-    {"type": "TURNIN", "quest": 5521, "questName": "Chromatic Mantle of the Dawn", "npc": 10857, "npcName": "Argent Quartermaster Lightspark", "map": 1422, "zone": "Western Plaguelands", "x": 42.8, "y": 83.8},
     {"type": "ACCEPT", "quest": 5848, "questName": "Of Love and Family", "npc": 11936, "npcName": "Artist Renfray", "map": 1422, "zone": "Western Plaguelands", "x": 65.6, "y": 75.4, "note": "For Stratholme (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: The Flesh Does Not Lie, The Great Fras Siabi, Houses of the Holy, The Archivist, The Restless Souls, Of Love and Family. When you have a group, open Stratholme under Dungeons.", "text": "Ready for Stratholme", "optional": true},
     {"type": "GRIND", "npc": 1802, "target": "Hungering Wraith", "level": 59, "map": 1422, "zone": "Western Plaguelands", "x": 62.2, "y": 60.2, "near": true, "note": "grind Hungering Wraith (level 56-58) to level 59 - nothing worth questing at 58"},

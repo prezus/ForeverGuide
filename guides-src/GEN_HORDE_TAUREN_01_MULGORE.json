@@ -1,7 +1,7 @@
 {
   "id": "GEN_HORDE_TAUREN_01_MULGORE",
   "name": "1. Mulgore 1-11 (Tauren)",
-  "version": 11,
+  "version": 12,
   "faction": "Horde",
   "race": ["Tauren"],
   "minLevel": 1,
@@ -124,8 +124,6 @@
     {"type": "ACCEPT", "quest": 861, "questName": "The Hunter's Way", "npc": 3052, "npcName": "Skorn Whitecloud", "map": 1412, "zone": "Mulgore", "x": 46.8, "y": 60.2},
     {"type": "COMPLETE", "quest": 758, "questName": "Thunderhorn Cleansing", "target": "Cleanse the Thunderhorn Water Well", "map": 1412, "zone": "Mulgore", "x": 44.5, "y": 45.5, "note": "Cleanse the Thunderhorn Water Well"},
     {"type": "KILL", "quest": 861, "questName": "The Hunter's Way", "npc": 3566, "target": "Flatland Prowler", "count": 4, "map": 1412, "zone": "Mulgore", "x": 45, "y": 33.4, "near": true, "note": "loot Flatland Prowler Claw"},
-    {"type": "ACCEPT", "quest": 2984, "questName": "Call of Fire", "npc": 3066, "npcName": "Narm Skychaser", "map": 1412, "zone": "Mulgore", "x": 48.4, "y": 59.2, "class": ["SHAMAN"]},
-    {"type": "ACCEPT", "quest": 5928, "questName": "Heeding the Call", "npc": 3064, "npcName": "Gennia Runetotem", "map": 1412, "zone": "Mulgore", "x": 48.4, "y": 59.6, "class": ["DRUID"]},
     {"type": "TURNIN", "quest": 758, "questName": "Thunderhorn Cleansing", "npc": 2948, "npcName": "Mull Thunderhorn", "map": 1412, "zone": "Mulgore", "x": 48.5, "y": 60.4},
     {"type": "ACCEPT", "quest": 759, "questName": "Wildmane Totem", "npc": 2948, "npcName": "Mull Thunderhorn", "map": 1412, "zone": "Mulgore", "x": 48.5, "y": 60.4},
     {"type": "ACCEPT", "quest": 99081, "questName": "Grim Tidings", "npc": 275789, "npcName": "Malah Longwind", "map": 1412, "zone": "Mulgore", "x": 57.6, "y": 63.2, "note": "New in Forever"},

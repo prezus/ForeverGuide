@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_27_FERALAS",
     name = "27. Feralas 41-41 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 41,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_28_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 27 of the Dwarf route: level 41 to 41, 27 steps, ~54 min of play in the model (34132 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 50,
+    stepCount = 48,
     steps = [[{
 {type="FLIGHTPATH",npc=8019,npcName="Fyldren Moonfeather",map=1444,zone="Feralas",x=30.2,y=43.3},
 {type="ACCEPT",quest=1374,questName="Khan Jehn",npc=5397,npcName="Uthek the Wise",map=1443,zone="Desolace",x=36.2,y=79.2,note="Objectives: Gelkis Clan Centaur"},
@@ -62,8 +62,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1661,questName="The Tome of Nobility",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"},race={"Dwarf"}},
 {type="TURNIN",quest=1949,questName="Hidden Secrets",npc=6548,npcName="Magus Tirth",map=1441,zone="Thousand Needles",x=78.2,y=75.8,class={"MAGE"},race={"Gnome"}},
 {type="ACCEPT",quest=4487,questName="Summon Felsteed",npc=5172,npcName="Briarthorn",map=1455,zone="Ironforge",x=50.2,y=6,class={"WARLOCK"},race={"Gnome"}},
-{type="TURNIN",quest=4487,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"},race={"Gnome"}},
-{type="ACCEPT",quest=4488,questName="Summon Felsteed",npc=461,npcName="Demisette Cloyce",map=1453,zone="Stormwind City",x=25.4,y=78.2,class={"WARLOCK"},race={"Gnome"}},
-{type="TURNIN",quest=4488,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"},race={"Gnome"}}
+{type="TURNIN",quest=4487,questName="Summon Felsteed",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"},race={"Gnome"}}
 }]],
 })

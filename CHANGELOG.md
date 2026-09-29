@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: when the game lets you take only one of a set of quests, the guide offers one: one engineering specialisation, one Argent Dawn mantle, your own faction's A Call to Arms: The Plaguelands!, and one race version of Call of Fire, Call of Water, The Hunter's Path, Heeding the Call, Summon Felsteed and Hot and Itchy.
 - Guides: quests that aren't in the game client are out: Thunderbrew, Stranglethorn Fever, Troll Necklace Bounty, Writ of Safe Passage and two Craftsman's Writs. Paladins' Tome of Divinity and Tome of Valor steps (Redemption, Sense Undead) are out again: the quests that start them aren't in the client. Felwood and Winterspring collect steps name the item instead of "item 11512".
 - The quest database comes from WoW Forever's own data instead of Classic Era's: Forever's NPC and object positions, zone names, quest XP, levels and names; 241 more complete quests; givers, turn-ins and next-in-chain for about 500 quests; exact race lists. Quests Questie only keeps off the map are no longer marked "not obtainable".
 - Guides: dungeon guides list each quest once, under the id the game uses; the old duplicates (Amongst the Ruins, Baron Aquanis, The Glowing Shard, The Sparklematic 5200! and two Dire Maul quests) are gone. The Hunter's Path, A Little Luck, The Darkmoon Faire and Secrets of the Colossus - Zora are no longer suggested: they are not in the game, or belong to an event.

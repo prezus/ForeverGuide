@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_41_WESTERN_PLAGUELANDS",
     name = "41. Western Plaguelands 51-52 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 51,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_42_IRONFORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 41 of the Skyborne route: level 51 to 52, 36 steps, ~91 min of play in the model (55752 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 51,
+    stepCount = 50,
     steps = [[{
 {type="ACCEPT",quest=5090,questName="A Call to Arms: The Plaguelands!",npc=10877,npcName="Courier Hammerfall",map=1455,zone="Ironforge",x=31.6,y=67},
 {type="ACCEPT",quest=1198,questName="In Search of Thaelrid",npc=4786,npcName="Dawnwatcher Shaedlass",map=1457,zone="Darnassus",x=55.4,y=24.6,optional=true,note="For Blackfathom Deeps (dungeon guide)"},
@@ -32,7 +32,6 @@ ns.RegisterGuide({
 {type="KILL",quest=5092,questName="Clear the Way",npc=1791,target="Slavering Ghoul",count=10,map=1422,zone="Western Plaguelands",x=48.7,y=80.4,near=true},
 {type="KILL",quest=5092,questName="Clear the Way",npc=1783,target="Skeletal Flayer",count=10,map=1422,zone="Western Plaguelands",x=54.5,y=80.9,near=true},
 {type="TURNIN",quest=5090,questName="A Call to Arms: The Plaguelands!",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.8,y=84},
-{type="TURNIN",quest=5066,questName="A Call to Arms: The Plaguelands!",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.8,y=84},
 {type="TURNIN",quest=5092,questName="Clear the Way",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
 {type="ACCEPT",quest=5215,questName="The Scourge Cauldrons",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
 {type="TURNIN",quest=5215,questName="The Scourge Cauldrons",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},

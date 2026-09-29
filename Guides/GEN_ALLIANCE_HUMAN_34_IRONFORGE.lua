@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_34_IRONFORGE",
     name = "34. Ironforge 49-49 (Human)",
-    version = 6,
+    version = 7,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 49,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_35_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
     notes = "Chapter 34 of the Human route: level 49 to 49, 9 steps, ~23 min of play in the model (47455 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 38,
+    stepCount = 35,
     steps = [[{
 {type="FLIGHTPATH",npc=1573,npcName="Gryth Thurden",map=1455,zone="Ironforge",x=55.5,y=47.7},
 {type="TURNIN",quest=2990,questName="Thadius Grimshade",npc=8022,npcName="Thadius Grimshade",map=1419,zone="Blasted Lands",x=67,y=19.4},
@@ -47,9 +47,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2769,questName="The Brassbolts Brothers",npc=6169,npcName="Klockmort Spannerspan",map=1455,zone="Ironforge",x=68.2,y=46.2},
 {type="TURNIN",quest=1879,questName="Speak with Bink",npc=5144,npcName="Bink",map=1455,zone="Ironforge",x=27,y=8.2,class={"MAGE"},note="reduced xp (10%) - you out-levelled it"},
 {type="TURNIN",quest=3630,questName="Gnome Engineering",npc=7944,npcName="Tinkmaster Overspark",map=1455,zone="Ironforge",x=69.8,y=50.2,profession="Engineering",skill=200},
-{type="ACCEPT",quest=3632,questName="Gnome Engineering",npc=5174,npcName="Springspindle Fizzlegear",map=1455,zone="Ironforge",x=68.4,y=44,profession="Engineering",skill=200},
-{type="TURNIN",quest=3632,questName="Gnome Engineering",npc=7944,npcName="Tinkmaster Overspark",map=1455,zone="Ironforge",x=69.8,y=50.2,profession="Engineering",skill=200},
-{type="TURNIN",quest=3634,questName="Gnome Engineering",npc=7944,npcName="Tinkmaster Overspark",map=1455,zone="Ironforge",x=69.8,y=50.2,profession="Engineering",skill=200},
 {type="TURNIN",quest=3450,questName="An Easy Pickup",npc=8517,npcName="Xiggs Fuselighter",map=1455,zone="Ironforge",x=70.9,y=94.6},
 {type="ACCEPT",quest=3451,questName="Signal for Pickup",npc=8517,npcName="Xiggs Fuselighter",map=1455,zone="Ironforge",x=70.9,y=94.6},
 {type="TURNIN",quest=3451,questName="Signal for Pickup",npc=8517,npcName="Xiggs Fuselighter",map=1455,zone="Ironforge",x=70.9,y=94.6}

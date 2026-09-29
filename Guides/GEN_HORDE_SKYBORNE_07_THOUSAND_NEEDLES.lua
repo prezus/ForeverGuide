@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_07_THOUSAND_NEEDLES",
     name = "7. Thousand Needles 32-33 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Horde",
     race = { "Skyborne" },
     minLevel = 32,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_SKYBORNE_08_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
     notes = "Chapter 7 of the Skyborne route: level 32 to 33, 39 steps, ~112 min of play in the model (25095 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 68,
+    stepCount = 67,
     steps = [[{
 {type="ACCEPT",quest=1145,questName="The Swarm Grows",npc=3428,npcName="Korran",map=1413,zone="The Barrens",x=51,y=29.6},
 {type="ACCEPT",quest=1111,questName="Wharfmaster Dizzywig",npc=4452,npcName="Kravel Koalbeard",map=1441,zone="Thousand Needles",x=77.8,y=77.2},
@@ -21,7 +21,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1102,questName="A Vengeful Fate",npc=4451,npcName="Auld Stonespire",map=1456,zone="Thunder Bluff",x=36.2,y=59.8,optional=true,note="For Razorfen Kraul (dungeon guide)"},
 {type="ACCEPT",quest=6626,questName="A Host of Evil",npc=12866,npcName="Myriam Moonsinger",map=1413,zone="The Barrens",x=49,y=94.8,optional=true,note="For Razorfen Downs (dungeon guide)"},
 {type="TURNIN",quest=1718,questName="The Islander",npc=6236,npcName="Klannoc Macleod",map=1413,zone="The Barrens",x=68.6,y=49,class={"WARRIOR"}},
-{type="ACCEPT",quest=3633,questName="Goblin Engineering",npc=3494,npcName="Tinkerwiz",map=1413,zone="The Barrens",x=62.6,y=36.2,profession="Engineering",skill=200},
 {type="ACCEPT",quest=3637,questName="Gnome Engineering",npc=3494,npcName="Tinkerwiz",map=1413,zone="The Barrens",x=62.6,y=36.2,profession="Engineering",skill=200},
 {type="TRAVEL",map=1441,zone="Thousand Needles",x=78.8,y=76.9,radius=60,note="travel to Thousand Needles (Thousand Needles)"},
 {type="ACCEPT",quest=1104,questName="Salt Flat Venom",npc=4454,npcName="Fizzle Brassbolts",map=1441,zone="Thousand Needles",x=78.1,y=77.1},

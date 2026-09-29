@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_40_WESTERN_PLAGUELANDS",
     name = "40. Western Plaguelands 51-52 (Night Elf)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 51,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_41_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 40 of the NightElf route: level 51 to 52, 36 steps, ~189 min of play in the model (26951 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 42,
+    stepCount = 41,
     steps = [[{
 {type="FLIGHTPATH",npc=12596,npcName="Bibilfaz Featherwhistle",map=1422,zone="Western Plaguelands",x=42.9,y=85.1},
 {type="ACCEPT",quest=3701,questName="The Smoldering Ruins of Thaurissan",npc=8879,npcName="Royal Historian Archesonus",map=1455,zone="Ironforge",x=38.6,y=55.4},
@@ -23,7 +23,6 @@ ns.RegisterGuide({
 {type="KILL",quest=5092,questName="Clear the Way",npc=1783,target="Skeletal Flayer",count=10,map=1422,zone="Western Plaguelands",x=54.5,y=80.9,near=true},
 {type="ACCEPT",quest=5903,questName="A Plague Upon Thee",npc=11616,npcName="Nathaniel Dumah",map=1422,zone="Western Plaguelands",x=43.4,y=84.8},
 {type="TURNIN",quest=5090,questName="A Call to Arms: The Plaguelands!",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.8,y=84},
-{type="TURNIN",quest=5066,questName="A Call to Arms: The Plaguelands!",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.8,y=84},
 {type="TURNIN",quest=5092,questName="Clear the Way",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
 {type="ACCEPT",quest=5215,questName="The Scourge Cauldrons",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
 {type="TURNIN",quest=5215,questName="The Scourge Cauldrons",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},

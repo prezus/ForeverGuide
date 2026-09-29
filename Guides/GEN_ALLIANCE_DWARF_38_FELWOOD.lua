@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_38_FELWOOD",
     name = "38. Felwood 51-51 (Dwarf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 51,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_39_IRONFORGE",
     author = "ForeverGuide route planner",
     notes = "Chapter 38 of the Dwarf route: level 51 to 51, 22 steps, ~82 min of play in the model (44117 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 43,
+    stepCount = 39,
     steps = [[{
 {type="TRAVEL",map=1448,zone="Felwood",x=51.6,y=82.7,radius=60,note="travel to Felwood (Felwood)"},
 {type="ACCEPT",quest=8460,questName="Timbermaw Ally",npc=11554,npcName="Grazle",map=1448,zone="Felwood",x=50.9,y=85},
@@ -28,12 +28,9 @@ ns.RegisterGuide({
 {type="KILL",quest=4421,questName="The Corruption of the Jadefire",npc=7109,target="Jadefire Felsworn / Xavathras",count=11,map=1448,zone="Felwood",x=33,y=66.4,near=true},
 {type="ACCEPT",quest=5202,questName="A Strange Red Key",npc=7120,npcName="Jaedenar Warlock",map=1448,zone="Felwood",x=40.2,y=48.8,optional=true,note="If you looted Blood Red Key from Jaedenar Enforcer / Jaedenar Darkweaver / Jaedenar Warlock / Jaedenar Legionnaire / Ulathek, use it to start the quest"},
 {type="TURNIN",quest=5202,questName="A Strange Red Key",npc=11016,npcName="Captured Arko'narin",map=1448,zone="Felwood",x=36.2,y=55.4,optional=true},
-{type="ACCEPT",quest=8420,questName="Hot and Itchy",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"},race={"Gnome"}},
-{type="COLLECT",quest=8420,questName="Hot and Itchy",target="Felcloth",count=1,map=1448,zone="Felwood",x=33.4,y=66.6,near=true,class={"WARLOCK"},race={"Gnome"},mobs="Jadefire Rogue / Jadefire Trickster / Jadefire Betrayer / Jadefire Felsworn"},
 {type="COMPLETE",quest=5156,questName="Verifying the Corruption",npc=9878,target="Entropic Beast / Entropic Horror / Explore the craters in Shatter Scar Vale",count=2,map=1448,zone="Felwood",x=41.3,y=43.8,near=true},
 {type="ACCEPT",quest=7601,questName="What Niby Commands",npc=14469,npcName="Niby the Almighty",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"},race={"Gnome"}},
 {type="TURNIN",quest=7601,questName="What Niby Commands",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"},race={"Gnome"}},
-{type="TURNIN",quest=8420,questName="Hot and Itchy",npc=14470,npcName="Impsy",map=1448,zone="Felwood",x=41.4,y=44.8,class={"WARLOCK"},race={"Gnome"}},
 {type="TURNIN",quest=5155,questName="Forces of Jaedenar",npc=10922,npcName="Greta Mosshoof",map=1448,zone="Felwood",x=51.2,y=82.1},
 {type="ACCEPT",quest=5157,questName="Collection of the Corrupt Water",npc=10922,npcName="Greta Mosshoof",map=1448,zone="Felwood",x=51.2,y=82.1},
 {type="TURNIN",quest=4421,questName="The Corruption of the Jadefire",npc=9116,npcName="Eridan Bluewind",map=1448,zone="Felwood",x=51.4,y=81.5},
@@ -56,7 +53,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=939,questName="Flute of Xavaric",npc=9116,npcName="Eridan Bluewind",map=1448,zone="Felwood",x=51.2,y=81.6},
 {type="TURNIN",quest=5203,questName="Rescue From Jaedenar",npc=11019,npcName="Jessir Moonbow",map=1448,zone="Felwood",x=51.2,y=82,optional=true},
 {type="TURNIN",quest=5158,questName="Seeking Spiritual Aid",npc=5901,npcName="Islen Waterseer",map=1413,zone="The Barrens",x=65.8,y=43.8},
-{type="ACCEPT",quest=5066,questName="A Call to Arms: The Plaguelands!",npc=2198,npcName="Crier Goodman",map=1453,zone="Stormwind City",x=55,y=62.8},
 {type="ACCEPT",quest=4126,questName="Hurley Blackbreath",npc=1267,npcName="Ragnar Thunderbrew",map=1426,zone="Dun Morogh",x=46.8,y=52.4,optional=true,note="For Blackrock Depths (dungeon guide)"}
 }]],
 })

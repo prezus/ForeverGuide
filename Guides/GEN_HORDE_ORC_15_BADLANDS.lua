@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_15_BADLANDS",
     name = "15. Badlands 36-37 (Orc)",
-    version = 3,
+    version = 4,
     faction = "Horde",
     race = { "Orc", "Troll" },
     minLevel = 36,
@@ -13,9 +13,8 @@ ns.RegisterGuide({
     next = "GEN_HORDE_ORC_16_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 15 of the Orc route: level 36 to 37, 23 steps, ~124 min of play in the model (28543 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 30,
+    stepCount = 29,
     steps = [[{
-{type="ACCEPT",quest=3633,questName="Goblin Engineering",npc=3494,npcName="Tinkerwiz",map=1413,zone="The Barrens",x=62.6,y=36.2,profession="Engineering",skill=200},
 {type="TRAVEL",map=1434,zone="Booty Bay",x=27.0,y=77.3,radius=60,note="use your hearthstone (Booty Bay)"},
 {type="FLIGHTPATH",npc=2861,npcName="Gorrik",map=1418,zone="Badlands",x=4,y=44.8},
 {type="TRAVEL",map=1418,zone="Badlands",x=3.7,y=46.8,radius=60,note="travel to Badlands (Badlands)"},

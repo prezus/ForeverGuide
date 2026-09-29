@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_03_LOCH_MODAN",
     name = "3. Loch Modan 14-17 (Human)",
-    version = 10,
+    version = 11,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 14,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_04_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 3 of the Human route: level 14 to 17, 50 steps, ~104 min of play in the model (20009 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 132,
+    stepCount = 130,
     steps = [[{
 {type="FLIGHTPATH",npc=1572,npcName="Thorgrum Borrelson",map=1432,zone="Loch Modan",x=33.9,y=51},
 {type="TURNIN",quest=92748,questName="Explosive Consultation",npc=11026,npcName="Sprite Jumpsprocket",map=1453,zone="Stormwind City",x=54.6,y=8},
@@ -44,8 +44,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1638,questName="A Warrior's Training",npc=6089,npcName="Harry Burlguard",map=1453,zone="Stormwind City",x=74,y=37.2,class={"WARRIOR"}},
 {type="ACCEPT",quest=2998,questName="Tome of Divinity",npc=927,npcName="Brother Wilhelm",map=1429,zone="Elwynn Forest",x=41,y=66,class={"PALADIN"}},
 {type="TURNIN",quest=2998,questName="Tome of Divinity",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"}},
-{type="ACCEPT",quest=3681,questName="Tome of Divinity",npc=5149,npcName="Brandur Ironhammer",map=1455,zone="Ironforge",x=23.4,y=6.2,class={"PALADIN"}},
-{type="TURNIN",quest=3681,questName="Tome of Divinity",npc=6171,npcName="Duthorian Rall",map=1453,zone="Stormwind City",x=40,y=29.8,class={"PALADIN"}},
 {type="TURNIN",quest=2205,questName="Seek out SI: 7",npc=332,npcName="Master Mathias Shaw",map=1453,zone="Stormwind City",x=75.8,y=59.8,class={"ROGUE"}},
 {type="ACCEPT",quest=5634,questName="Desperate Prayer",npc=376,npcName="High Priestess Laurena",map=1453,zone="Stormwind City",x=38.4,y=26.2,class={"PRIEST"}},
 {type="ACCEPT",quest=94773,questName="Divine Grace",npc=376,npcName="High Priestess Laurena",map=1453,zone="Stormwind City",x=38.8,y=26.4,class={"PRIEST"},note="New in Forever"},
