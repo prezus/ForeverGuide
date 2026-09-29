@@ -23,8 +23,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from questie_lookup import LuaParser, load_db, QUEST_KEYS, DEFAULT_QUESTIE  # noqa: E402
-
-DEFAULT_WTF = r"C:\Program Files (x86)\World of Warcraft\_classic_beta_\WTF\Account"
+from merge_recorded import DEFAULT_WTF  # noqa: E402
 
 
 def find_saved_variables():
@@ -59,7 +58,8 @@ def is_placeholder(title):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--sv", default=None, help="path to ForeverGuide.lua (SavedVariables)")
-    ap.add_argument("--questie", default=os.environ.get("QUESTIE", DEFAULT_QUESTIE))
+    ap.add_argument("--questie", default=DEFAULT_QUESTIE, required=not DEFAULT_QUESTIE,
+                    help="Questie checkout (default: the QUESTIE env var)")
     ap.add_argument("--out", default=None, help="write new quests as JSON")
     ap.add_argument("--limit", type=int, default=60, help="max lines per list to print")
     args = ap.parse_args()
