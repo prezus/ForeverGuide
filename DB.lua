@@ -28,8 +28,11 @@
 local _, ns = ...
 local DB = ns:NewModule("DB")
 
-local RACE_ALLIANCE = { 1, 4, 8, 64 }      -- Human, Dwarf, Night Elf, Gnome
-local RACE_HORDE = { 2, 16, 32, 128 }      -- Orc, Undead, Tauren, Troll
+-- WoW Forever's Skyborne plays on both factions and has no Classic race bit; it gets one bit per
+-- faction, well above the Classic races: 65536 for Alliance Skyborne, 131072 for Horde Skyborne.
+local SKYBORNE_BIT = { Alliance = 65536, Horde = 131072 }
+local RACE_ALLIANCE = { 1, 4, 8, 64, SKYBORNE_BIT.Alliance }   -- Human, Dwarf, Night Elf, Gnome, Skyborne
+local RACE_HORDE = { 2, 16, 32, 128, SKYBORNE_BIT.Horde }      -- Orc, Undead, Tauren, Troll, Skyborne
 local RACE_BIT = { Human = 1, Orc = 2, Dwarf = 4, NightElf = 8, Scourge = 16, Tauren = 32, Gnome = 64, Troll = 128 }
 local CLASS_BIT = { WARRIOR = 1, PALADIN = 2, HUNTER = 4, ROGUE = 8, PRIEST = 16, SHAMAN = 64, MAGE = 128, WARLOCK = 256, DRUID = 1024 }
 
@@ -398,15 +401,18 @@ end
 
 local FACTION_RACES = { Alliance = 77, Horde = 178 }
 
---- May this race take a quest with this Classic race mask? A race without a Classic bit (WoW
---- Forever's Skyborne, on both factions) takes what every race of its faction can take, nothing
---- race-specific. Unknown race and faction: not ours to judge.
+--- May this race take a quest with this race mask? A Skyborne takes a quest that names its
+--- faction's Skyborne bit, and what every Classic race of its faction can take (a faction-wide
+--- quest). Unknown race and faction: not ours to judge.
 local function RaceAllowed(races, raceFile)
     if not races or races == 0 or not raceFile then return true end
     local rbit = RACE_BIT[raceFile]
     if rbit then return band(races, rbit) ~= 0 end
-    local all = FACTION_RACES[ns.Player:GetFaction() or ""]
+    local faction = ns.Player:GetFaction() or ""
+    local all = FACTION_RACES[faction]
     if not all then return true end
+    local sky = raceFile == "Skyborne" and SKYBORNE_BIT[faction]
+    if sky and band(races, sky) ~= 0 then return true end
     return band(races, all) == all
 end
 
