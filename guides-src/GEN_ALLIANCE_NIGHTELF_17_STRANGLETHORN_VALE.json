@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_17_STRANGLETHORN_VALE",
   "name": "17. Stranglethorn Vale 32-33 (Night Elf)",
-  "version": 3,
+  "version": 4,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 32,
@@ -16,8 +16,6 @@
     {"type": "ACCEPT", "quest": 1373, "questName": "Ongeku", "npc": 5397, "npcName": "Uthek the Wise", "map": 1443, "zone": "Desolace", "x": 36.2, "y": 79.2, "note": "Objectives: Gelkis Clan Centaur"},
     {"type": "ACCEPT", "quest": 1718, "questName": "The Islander", "npc": 3354, "npcName": "Sorek", "map": 1454, "zone": "Orgrimmar", "x": 80.2, "y": 32.4, "class": ["WARRIOR"]},
     {"type": "TURNIN", "quest": 1718, "questName": "The Islander", "npc": 6236, "npcName": "Klannoc Macleod", "map": 1413, "zone": "The Barrens", "x": 68.6, "y": 49, "class": ["WARRIOR"]},
-    {"type": "ACCEPT", "quest": 3633, "questName": "Goblin Engineering", "npc": 3494, "npcName": "Tinkerwiz", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 36.2, "profession": "Engineering", "skill": 200},
-    {"type": "ACCEPT", "quest": 3634, "questName": "Gnome Engineering", "npc": 3494, "npcName": "Tinkerwiz", "map": 1413, "zone": "The Barrens", "x": 62.6, "y": 36.2, "profession": "Engineering", "skill": 200},
     {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.3, "y": 76.5, "radius": 60, "note": "travel to Stranglethorn Vale (Stranglethorn Vale)"},
     {"type": "ACCEPT", "quest": 201, "questName": "Investigate the Camp", "npc": 773, "npcName": "Krazek", "map": 1434, "zone": "Stranglethorn Vale", "x": 27, "y": 77.2, "note": "Objectives: Explore Zone, Locate the hunters' camp"},
     {"type": "TURNIN", "quest": 201, "questName": "Investigate the Camp", "npc": 773, "npcName": "Krazek", "map": 1434, "zone": "Stranglethorn Vale", "x": 27, "y": 77.2},
