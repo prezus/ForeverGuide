@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_NIGHTELF_25_DUSTWALLOW_MARSH",
   "name": "25. Dustwallow Marsh 39-40 (Night Elf)",
-  "version": 5,
+  "version": 6,
   "faction": "Alliance",
   "race": ["NightElf"],
   "minLevel": 39,
@@ -23,8 +23,8 @@
     {"type": "TURNIN", "quest": 6624, "questName": "Triage", "npc": 12939, "npcName": "Doctor Gustaf VanHowzen", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.6, "y": 48.8, "profession": "First Aid", "skill": 225},
     {"type": "TURNIN", "quest": 1282, "questName": "They Call Him Smiling Jim", "npc": 4944, "npcName": "Captain Garran Vimes", "map": 1445, "zone": "Dustwallow Marsh", "x": 68.2, "y": 48.6},
     {"type": "TURNIN", "quest": 1132, "questName": "Fiora Longears", "npc": 4456, "npcName": "Fiora Longears", "map": 1445, "zone": "Dustwallow Marsh", "x": 66.4, "y": 45.2, "note": "reduced xp (10%) - you out-levelled it"},
-    {"type": "TURNIN", "quest": 1260, "questName": "Morgan Stern", "npc": 4794, "npcName": "Morgan Stern", "map": 1445, "zone": "Dustwallow Marsh", "x": 66.2, "y": 45.4},
     {"type": "COLLECT", "quest": 1204, "questName": "Mudrock Soup and Bugs", "target": "Forked Mudrock Tongue", "count": 8, "map": 1445, "zone": "Dustwallow Marsh", "x": 64.6, "y": 40, "near": true},
+    {"type": "TURNIN", "quest": 1260, "questName": "Morgan Stern", "npc": 4794, "npcName": "Morgan Stern", "map": 1445, "zone": "Dustwallow Marsh", "x": 66.2, "y": 45.4},
     {"type": "TURNIN", "quest": 1204, "questName": "Mudrock Soup and Bugs", "npc": 4794, "npcName": "Morgan Stern", "map": 1445, "zone": "Dustwallow Marsh", "x": 66.3, "y": 45.5},
     {"type": "ACCEPT", "quest": 1218, "questName": "Soothing Spices", "npc": 4792, "npcName": "\"Swamp Eye\" Jarl", "map": 1445, "zone": "Dustwallow Marsh", "x": 55.4, "y": 26.2},
     {"type": "COLLECT", "quest": 1218, "questName": "Soothing Spices", "target": "Soothing Spices", "count": 3, "map": 1445, "zone": "Dustwallow Marsh", "x": 66.4, "y": 51.5, "near": true},
