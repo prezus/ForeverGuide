@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "DUNGEON_ALLIANCE_SCHOLOMANCE",
     name = "Scholomance 57-60",
-    version = 4,
+    version = 5,
     kind = "dungeon",
     faction = "Alliance",
     minLevel = 57,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Scholomance: the quests, the run and the turn-ins. Open it when you have a group.",
-    stepCount = 34,
+    stepCount = 32,
     steps = [[{
 {type="ACCEPT",quest=5531,questName="Betina Bigglezink",npc=11036,npcName="Leonid Barthalomew the Revered",map=1423,zone="Eastern Plaguelands",x=81.6,y=57.8},
 {type="TURNIN",quest=5531,questName="Betina Bigglezink",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6},
@@ -45,8 +45,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=5515,questName="Krastinov's Bag of Horrors",npc=11216,npcName="Eva Sarkhoff",map=1422,zone="Western Plaguelands",x=70.2,y=73.8},
 {type="TURNIN",quest=5515,questName="Krastinov's Bag of Horrors",npc=11216,npcName="Eva Sarkhoff",map=1422,zone="Western Plaguelands",x=70.2,y=73.8},
 {type="ACCEPT",quest=5384,questName="Kirtonos the Herald",npc=11216,npcName="Eva Sarkhoff",map=1422,zone="Western Plaguelands",x=70.2,y=73.8},
-{type="TURNIN",quest=5384,questName="Kirtonos the Herald",npc=11216,npcName="Eva Sarkhoff",map=1422,zone="Western Plaguelands",x=70.2,y=73.8},
-{type="ACCEPT",quest=5582,questName="Healthy Dragon Scale",map=1422,zone="Western Plaguelands",x=69.7,y=73.2},
-{type="TURNIN",quest=5582,questName="Healthy Dragon Scale",npc=11035,npcName="Betina Bigglezink",map=1423,zone="Eastern Plaguelands",x=81.4,y=59.6}
+{type="TURNIN",quest=5384,questName="Kirtonos the Herald",npc=11216,npcName="Eva Sarkhoff",map=1422,zone="Western Plaguelands",x=70.2,y=73.8}
 }]],
 })
