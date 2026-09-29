@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_06_WETLANDS",
     name = "6. Wetlands 20-21 (Night Elf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 20,
@@ -13,10 +13,9 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_NIGHTELF_07_DUSKWOOD",
     author = "ForeverGuide route planner",
     notes = "Chapter 6 of the NightElf route: level 20 to 21, 25 steps, ~90 min of play in the model (18513 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 56,
+    stepCount = 55,
     steps = [[{
 {type="FLIGHTPATH",npc=1571,npcName="Shellei Brondir",map=1437,zone="Wetlands",x=9.5,y=59.7},
-{type="TURNIN",quest=1097,questName="Elmore's Task",npc=1416,npcName="Grimand Elmore",map=1453,zone="Stormwind City",x=51.6,y=12.2},
 {type="ACCEPT",quest=94,questName="A Watchful Eye",npc=313,npcName="Theocritus",map=1429,zone="Elwynn Forest",x=65.2,y=69.8},
 {type="ACCEPT",quest=132,questName="The Defias Brotherhood",npc=266,npcName="Wiley the Black",map=1433,zone="Redridge Mountains",x=26.6,y=45.2},
 {type="TURNIN",quest=132,questName="The Defias Brotherhood",npc=234,npcName="Gryan Stoutmantle",map=1436,zone="Westfall",x=56.2,y=47.6},
