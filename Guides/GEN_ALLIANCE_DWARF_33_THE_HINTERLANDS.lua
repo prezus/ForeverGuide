@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_33_THE_HINTERLANDS",
     name = "33. The Hinterlands 46-47 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 46,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_34_BLASTED_LANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 33 of the Dwarf route: level 46 to 47, 17 steps, ~67 min of play in the model (22566 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 30,
+    stepCount = 27,
     steps = [[{
 {type="FLIGHTPATH",npc=8018,npcName="Guthrum Thunderfist",map=1425,zone="The Hinterlands",x=11.1,y=46.2},
 {type="ACCEPT",quest=3452,questName="The Flame's Casing",npc=8479,npcName="Velarok Windblade",map=1427,zone="Searing Gorge",x=39,y=39,optional=true,note="Elite - group up"},
@@ -35,14 +35,11 @@ ns.RegisterGuide({
 {type="KILL",quest=2877,questName="Skulk Rock Clean-up",npc=2656,target="Jade Ooze",count=10,map=1425,zone="The Hinterlands",x=56.6,y=44.7,near=true},
 {type="TURNIN",quest=2880,questName="Troll Necklace Bounty",npc=7884,npcName="Fraggar Thundermantle",map=1425,zone="The Hinterlands",x=14.8,y=44.6},
 {type="TURNIN",quest=2877,questName="Skulk Rock Clean-up",npc=7884,npcName="Fraggar Thundermantle",map=1425,zone="The Hinterlands",x=14.8,y=44.6},
-{type="ACCEPT",quest=2881,questName="Troll Necklace Bounty",npc=7884,npcName="Fraggar Thundermantle",map=1425,zone="The Hinterlands",x=14.8,y=44.4},
 {type="TURNIN",quest=2988,questName="Witherbark Cages",npc=5636,npcName="Gryphon Master Talonaxe",map=1425,zone="The Hinterlands",x=9.8,y=44.5},
 {type="ACCEPT",quest=2989,questName="The Altar of Zul",npc=5636,npcName="Gryphon Master Talonaxe",map=1425,zone="The Hinterlands",x=9.8,y=44.5},
 {type="COLLECT",quest=2641,questName="Sprinkle's Secret Ingredient",target="Violet Tragan",count=1,map=1425,zone="The Hinterlands",x=41.6,y=58.9},
 {type="COMPLETE",quest=2989,questName="The Altar of Zul",target="Search the Altar of Zul",map=1425,zone="The Hinterlands",x=49.0,y=68.7,note="Search the Altar of Zul"},
-{type="COLLECT",quest=2881,questName="Troll Necklace Bounty",target="Troll Tribal Necklace",count=1,map=1425,zone="The Hinterlands",x=48.6,y=68,near=true,mobs="Vilebranch Axe Thrower / Vilebranch Witch Doctor / Vilebranch Headhunter / Vilebranch Shadowcaster"},
 {type="TURNIN",quest=2989,questName="The Altar of Zul",npc=5636,npcName="Gryphon Master Talonaxe",map=1425,zone="The Hinterlands",x=9.8,y=44.5},
-{type="TURNIN",quest=2881,questName="Troll Necklace Bounty",npc=7884,npcName="Fraggar Thundermantle",map=1425,zone="The Hinterlands",x=14.8,y=44.4},
 {type="ACCEPT",quest=2990,questName="Thadius Grimshade",npc=5636,npcName="Gryphon Master Talonaxe",map=1425,zone="The Hinterlands",x=9.8,y=44.4},
 {type="GRIND",npc=2659,target="Razorbeak Skylord",level=47,map=1425,zone="The Hinterlands",x=47.8,y=43.6,near=true,note="grind Razorbeak Skylord (level 46-48) to level 47 - nothing worth questing at 46"}
 }]],
