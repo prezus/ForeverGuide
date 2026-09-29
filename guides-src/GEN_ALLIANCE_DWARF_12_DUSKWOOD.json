@@ -1,7 +1,7 @@
 {
   "id": "GEN_ALLIANCE_DWARF_12_DUSKWOOD",
   "name": "12. Duskwood 27-27 (Dwarf)",
-  "version": 7,
+  "version": 8,
   "faction": "Alliance",
   "race": ["Dwarf", "Gnome"],
   "minLevel": 27,
@@ -19,6 +19,8 @@
     {"type": "NOTE", "note": "Picked up: Trouble at the Docks, Deviate Hides, Deviate Eradication. When you have a group, open Wailing Caverns under Dungeons.", "text": "Ready for Wailing Caverns", "optional": true},
     {"type": "ACCEPT", "quest": 1221, "questName": "Blueleaf Tubers", "npc": 3446, "npcName": "Mebok Mizzyrix", "map": 1413, "zone": "The Barrens", "x": 62.4, "y": 37.6, "note": "For Razorfen Kraul (dungeon guide)", "optional": true},
     {"type": "NOTE", "note": "Picked up: Blueleaf Tubers. When you have a group, open Razorfen Kraul under Dungeons.", "text": "Ready for Razorfen Kraul", "optional": true},
+    {"type": "ACCEPT", "quest": 94500, "questName": "Call of Water", "npc": 258203, "npcName": "Hervdana Saegrund", "map": 1437, "zone": "Wetlands", "x": 65.6, "y": 76.4, "note": "New in Forever", "class": ["SHAMAN"], "race": ["Dwarf"]},
+    {"type": "COLLECT", "quest": 94500, "questName": "Call of Water", "target": "Full Blue Waterskin", "count": 1, "map": 1440, "zone": "Ashenvale", "x": 36.1, "y": 50.8, "class": ["SHAMAN"], "race": ["Dwarf"]},
     {"type": "TRAVEL", "map": 1431, "zone": "Duskwood", "x": 74.9, "y": 47.6, "radius": 60, "note": "travel to Duskwood (Duskwood)"},
     {"type": "ACCEPT", "quest": 173, "questName": "Worgen in the Woods", "npc": 663, "npcName": "Calor", "map": 1431, "zone": "Duskwood", "x": 75.8, "y": 47.6},
     {"type": "ACCEPT", "quest": 66, "questName": "The Legend of Stalvan", "npc": 265, "npcName": "Madame Eva", "map": 1431, "zone": "Duskwood", "x": 75.8, "y": 45.3},

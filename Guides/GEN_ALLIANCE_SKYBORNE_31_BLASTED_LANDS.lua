@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_31_BLASTED_LANDS",
     name = "31. Blasted Lands 47-47 (Skyborne)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 47,
@@ -16,6 +16,7 @@ ns.RegisterGuide({
     stepCount = 37,
     steps = [[{
 {type="FLIGHTPATH",npc=8609,npcName="Alexandra Constantine",map=1419,zone="Blasted Lands",x=65.5,y=24.3},
+{type="TURNIN",quest=1425,questName="Deliver the Shipment",npc=5393,npcName="Quartermaster Lungertz",map=1419,zone="Blasted Lands",x=66.4,y=21.2},
 {type="ACCEPT",quest=2990,questName="Thadius Grimshade",npc=5636,npcName="Gryphon Master Talonaxe",map=1425,zone="The Hinterlands",x=9.8,y=44.4},
 {type="TURNIN",quest=2990,questName="Thadius Grimshade",npc=8022,npcName="Thadius Grimshade",map=1419,zone="Blasted Lands",x=67,y=19.4},
 {type="ACCEPT",quest=1448,questName="In Search of The Temple",npc=5384,npcName="Brohann Caskbelly",map=1453,zone="Stormwind City",x=64.2,y=20.8,note="Objectives: Explore Zone, Search for the Temple of Atal'Hakkar"},
@@ -50,7 +51,6 @@ ns.RegisterGuide({
 {type="COLLECT",quest=2585,questName="The Decisive Striker",target="Blasted Boar Lung",map=1419,zone="Blasted Lands",x=52.4,y=28.9,near=true},
 {type="TURNIN",quest=2581,questName="Snickerfang Jowls",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},
 {type="TURNIN",quest=2583,questName="A Boar's Vitality",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},
-{type="TURNIN",quest=2585,questName="The Decisive Striker",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2},
-{type="TURNIN",quest=1425,questName="Deliver the Shipment",npc=5393,npcName="Quartermaster Lungertz",map=1419,zone="Blasted Lands",x=66.4,y=21.2}
+{type="TURNIN",quest=2585,questName="The Decisive Striker",npc=7505,npcName="Bloodmage Drazial",map=1419,zone="Blasted Lands",x=50.6,y=14.2}
 }]],
 })

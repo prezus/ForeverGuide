@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_04_ASHENVALE",
     name = "4. Ashenvale 21-22 (Tauren)",
-    version = 8,
+    version = 9,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 21,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_HORDE_TAUREN_05_THE_BARRENS",
     author = "ForeverGuide route planner",
     notes = "Chapter 4 of the Tauren route: level 21 to 22, 25 steps, ~84 min of play in the model (18200 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 54,
+    stepCount = 59,
     steps = [[{
 {type="FLIGHTPATH",npc=12616,npcName="Vhulgra",map=1440,zone="Ashenvale",x=73.2,y=61.6},
 {type="KILL",quest=6548,questName="Avenge My Village",npc=11910,target="Grimtotem Ruffian",count=8,map=1442,zone="Stonetalon Mountains",x=76.6,y=91},
@@ -68,6 +68,11 @@ ns.RegisterGuide({
 {type="TURNIN",quest=27,questName="A Lesson to Learn",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"}},
 {type="ACCEPT",quest=98340,questName="The Great Cat Spirit",npc=3033,npcName="Turak Runetotem",map=1456,zone="Thunder Bluff",x=76.4,y=27.6,class={"DRUID"},note="New in Forever"},
 {type="TURNIN",quest=98340,questName="The Great Cat Spirit",npc=11802,npcName="Dendrite Starblaze",map=1450,zone="Moonglade",x=56.2,y=30.4,class={"DRUID"}},
+{type="ACCEPT",quest=98342,questName="The Great Cat Spirit",npc=11957,npcName="Great Cat Spirit",map=1450,zone="Moonglade",x=54.6,y=75,class={"DRUID"},note="New in Forever"},
+{type="COLLECT",quest=98342,questName="The Great Cat Spirit",target="Relic of the Fang",count=1,map=1450,zone="Moonglade",x=68,y=60.2,near=true,class={"DRUID"}},
+{type="COLLECT",quest=98342,questName="The Great Cat Spirit",target="Relic of the Claw",count=1,map=1450,zone="Moonglade",x=68,y=60.2,near=true,class={"DRUID"}},
+{type="COLLECT",quest=98342,questName="The Great Cat Spirit",target="Relic of the Silent Shadow",count=1,map=1450,zone="Moonglade",x=68,y=60.2,near=true,class={"DRUID"}},
+{type="TURNIN",quest=98342,questName="The Great Cat Spirit",npc=11957,npcName="Great Cat Spirit",map=1450,zone="Moonglade",x=54.6,y=75,class={"DRUID"}},
 {type="TURNIN",quest=6482,questName="Freedom to Ruul",npc=12837,npcName="Yama Snowhoof",map=1440,zone="Ashenvale",x=74.1,y=60.9}
 }]],
 })
