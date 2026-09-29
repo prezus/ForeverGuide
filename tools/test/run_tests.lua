@@ -16,24 +16,33 @@ local function loadAddonFile(path)
     assert(chunk, err)
     chunk("ForeverGuide", ns)
 end
-local order = {}
+--- the files a guides .xml lists, addon-relative
+local function xmlFiles(xmlPath)
+    local dir, files = xmlPath:match("^(.*)/[^/]+$") or "", {}
+    for xl in io.lines(root .. xmlPath) do
+        local f = xl:match('file="([^"]+)"')
+        if f then files[#files + 1] = (dir .. "/" .. f):gsub("\\", "/") end
+    end
+    return files
+end
+-- The engine plays a frozen set of guides (tools/test/fixtures/guides-src, compiled by
+-- tools/compile_guides.py like the shipped ones): a route that is regenerated must not move
+-- these checks. The shipped guides are only checked to decode (see the section below).
+local FIXTURE_GUIDES = "tools/test/fixtures/Guides/Guides.xml"
+local order, shippedGuides = {}, nil
 for line in io.lines(root .. "ForeverGuide.toc") do
     line = line:gsub("\r", "")
     if line ~= "" and not line:match("^#") then
         if line:match("%.xml$") then
-            local dir = line:match("^(.*)[/\\][^/\\]+$") or ""
-            for xl in io.lines(root .. line:gsub("\\", "/")) do
-                local f = xl:match('file="([^"]+)"')
-                if f then order[#order + 1] = (dir .. "/" .. f):gsub("\\", "/") end
-            end
+            shippedGuides = line:gsub("\\", "/")
+            for _, f in ipairs(xmlFiles(FIXTURE_GUIDES)) do order[#order + 1] = f end
         else
             order[#order + 1] = line:gsub("\\", "/")
         end
     end
 end
+assert(shippedGuides, "the TOC lists no guides .xml")
 for _, f in ipairs(order) do loadAddonFile(f) end
--- the engine walkthrough plays a small hand-written guide that no longer ships with the addon
-loadAddonFile("tools/test/fixtures/HUMAN_NORTHSHIRE_1_6.lua")
 
 -- every error the addon swallows and reports must surface here
 local reportedErrors = {}
@@ -93,11 +102,24 @@ end)
 -- Compiled guides ship their steps as packed text, decoded to the same steps on first read.
 section("Compiled guides ship their steps as packed text, decoded to the same steps on first read", function()
     local shipped
-    local chunk = assert(loadfile(root .. "Guides/DUNGEON_HORDE_SHADOWFANG_KEEP.lua"))
+    local chunk = assert(loadfile(root .. "tools/test/fixtures/Guides/DUNGEON_HORDE_SHADOWFANG_KEEP.lua"))
     chunk("ForeverGuide", { RegisterGuide = function(g) shipped = g end })
     local steps = shipped and ns.DecodeRecord(shipped.steps)
     check(steps and #steps == shipped.stepCount and steps[1].type == "ACCEPT" and steps[1].quest == 1013,
         "...which decodes to its steps (" .. tostring(steps and #steps) .. " of " .. tostring(shipped and shipped.stepCount) .. ")")
+end)
+-- Every guide that ships loads and decodes to as many steps as it says it has.
+section("every shipped guide decodes to its steps", function()
+    local count, bad = 0, {}
+    for _, path in ipairs(xmlFiles(shippedGuides)) do
+        local shipped
+        local chunk = assert(loadfile(root .. path))
+        chunk("ForeverGuide", { RegisterGuide = function(g) shipped = g end })
+        local steps = shipped and type(shipped.steps) == "string" and ns.DecodeRecord(shipped.steps)
+        count = count + 1
+        if not (steps and #steps > 0 and #steps == shipped.stepCount) then bad[#bad + 1] = path end
+    end
+    check(count > 0 and #bad == 0, count .. " shipped guides decode to their steps (" .. #bad .. " do not: " .. tostring(bad[1]) .. ")")
 end)
 -- The other faction's guides are dropped at login, so their step loaders can be collected.
 section("The other faction's guides are dropped at login, so their step loaders can be collected", function()
@@ -2110,21 +2132,25 @@ end)
 -- (Ilya, 2026-09-21: the Dwarf chapter offered 6181 "A Swift Message", a Human-only quest, and the
 --  guide sat on it at Quartermaster Lewis - who has nothing to say to a dwarf)
 section("a quest this character's race can never take is not part of the route", function()
-    local q = ns.DB:GetQuest(6181)
-    need(q ~= nil and q.races ~= nil and q.races ~= 0, "the database knows 6181 is race-restricted")
+    -- A Swift Message (6181) is Human-only (race mask 1) and was on the Dwarf route, seen 2026-09-21
+    ns.QuestDB[990811] = { n = "Human Only", races = 1 }
+    ns.QuestDB[990812] = { n = "For Everyone" }
     local mine = MOCK.race
     MOCK.race = { "Dwarf", "Dwarf" }
     ns.Player.cache = {}
     ns.RegisterGuide({ id = "AUDIT_RACE", name = "race", steps = {
-        { type = "ACCEPT", quest = 6181, npc = 491 },
-        { type = "TURNIN", quest = 6181, npc = 523 },
-        { type = "ACCEPT", quest = 4010 } } })
+        { type = "ACCEPT", quest = 990811 },
+        { type = "TURNIN", quest = 990811 },
+        { type = "ACCEPT", quest = 990812 } } })
     G:Activate("AUDIT_RACE", true); settle()
-    check(ns.DB:RaceClassOK(6181) == false, "a dwarf cannot take the human quest 6181")
+    check(ns.DB:RaceClassOK(990811) == false, "a dwarf cannot take a human-only quest")
     check(cur() == 3, "its accept and turn-in are not part of the route for a dwarf (" .. tostring(cur()) .. ")")
+    MOCK.race = { "Human", "Human" }
+    ns.Player.cache = {}
+    check(ns.DB:RaceClassOK(990811) == true, "a human can")
     MOCK.race = mine
     ns.Player.cache = {}
-    if ns.Quest:IsOnQuest(4010) then MOCK_ABANDON(4010); settle() end
+    ns.QuestDB[990811], ns.QuestDB[990812] = nil, nil
 end)
 
 -- a quest the client no longer has (vanilla data, no Forever id) is walked past like a race-only one
@@ -2146,26 +2172,31 @@ end)
 
 -- a breadcrumb is passed once its quest is taken: Rejold's New Brew (415) leads to Shimmer Stout (413)
 section("a breadcrumb is passed once its quest is taken", function()
-    local bread = { type = "ACCEPT", quest = 415 }
+    -- Rejold's New Brew (415) leads to Shimmer Stout (413): with Shimmer Stout taken at Rejold's first, 415 is never offered
+    ns.QuestDB[990816] = { n = "Breadcrumb", breadcrumb = 990817 }
+    ns.QuestDB[990817] = { n = "Where It Leads" }
+    local bread = { type = "ACCEPT", quest = 990816 }
     check(G:IsStepDone(bread, 9999) == false, "a breadcrumb's accept waits while its quest is not taken")
-    MOCK_ACCEPT(413, "Shimmer Stout"); settle()
+    MOCK_ACCEPT(990817, "Where It Leads"); settle()
     local done, why = G:IsStepDone(bread, 9999)
-    check(done == true and why == "breadcrumb passed", "...and is passed once Shimmer Stout is in the log (" .. tostring(why) .. ")")
-    MOCK_ABANDON(413); settle()
+    check(done == true and why == "breadcrumb passed", "...and is passed once the quest it leads to is in the log (" .. tostring(why) .. ")")
+    MOCK_ABANDON(990817); settle()
+    ns.QuestDB[990816], ns.QuestDB[990817] = nil, nil
 end)
 
 -- class-limited WoW Forever quests: the second Stalk With The Earthmother is for shamans (the first
 -- is open to Tauren, Orc and Troll warriors, shamans and druids, so it cannot stand for it)
 section("class-limited WoW Forever quests", function()
-    local q = ns.DB:GetQuest(76160)
-    need(q and q.classes and q.classes > 0, "Forever's Stalk With The Earthmother (76160) is limited by class")
+    -- the second Stalk With The Earthmother (76160) is for shamans only (class mask 64)
+    ns.QuestDB[990813] = { n = "Shaman Only", classes = 64 }
     local class, race, faction = MOCK.class, MOCK.race, MOCK.faction
     MOCK.race, MOCK.faction = { "Tauren", "Tauren" }, "Horde"
     MOCK.class = { "Warrior", "WARRIOR", 1 }; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(76160) == false, "a warrior cannot take the shaman quest")
-    check(G:StepApplies({ type = "ACCEPT", quest = 76160 }) == false, "...so its step is not in a warrior's route")
+    check(ns.DB:RaceClassOK(990813) == false, "a warrior cannot take the shaman quest")
+    check(G:StepApplies({ type = "ACCEPT", quest = 990813 }) == false, "...so its step is not in a warrior's route")
     MOCK.class = { "Shaman", "SHAMAN", 7 }; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(76160) == true and G:StepApplies({ type = "ACCEPT", quest = 76160 }) == true, "a shaman gets it")
+    check(ns.DB:RaceClassOK(990813) == true and G:StepApplies({ type = "ACCEPT", quest = 990813 }) == true, "a shaman gets it")
+    ns.QuestDB[990813] = nil
     MOCK.class = { "Mage", "MAGE", 8 }; ns.Player.cache = {}
     check(G:StepApplies({ type = "ACCEPT", quest = 7, class = { "WARRIOR" } }) == false, "a warrior-only guide step is not a mage's")
     MOCK.class, MOCK.race, MOCK.faction = class, race, faction; ns.Player.cache = {}
@@ -2174,14 +2205,19 @@ end)
 -- Skyborne (WoW Forever's race, file name "Skyborne", on both factions) has no bit in the Classic
 -- race masks: it takes what every race of its faction can take, and nothing race-specific
 section("race masks: it takes what every race of its faction can take, and nothing race-specific", function()
+    -- Classic race masks: Human 1, the four Alliance races 77, the four Horde races 178
+    ns.QuestDB[990811] = { n = "Human Only", races = 1 }
+    ns.QuestDB[990814] = { n = "All Alliance", races = 77 }
+    ns.QuestDB[990815] = { n = "All Horde", races = 178 }
     local mine, faction = MOCK.race, MOCK.faction
     MOCK.race, MOCK.faction = { "Skyborne", "Skyborne" }, "Alliance"; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(6181) == false, "a Skyborne cannot take the Human-only 6181")
-    check(ns.DB:RaceClassOK(5) == true, "an Alliance Skyborne takes an all-Alliance quest (5)")
-    check(ns.DB:RaceClassOK(2) == false, "an Alliance Skyborne cannot take a Horde quest (2)")
+    check(ns.DB:RaceClassOK(990811) == false, "a Skyborne cannot take a Human-only quest")
+    check(ns.DB:RaceClassOK(990814) == true, "an Alliance Skyborne takes an all-Alliance quest")
+    check(ns.DB:RaceClassOK(990815) == false, "an Alliance Skyborne cannot take a Horde quest")
     MOCK.faction = "Horde"; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(2) == true and ns.DB:RaceClassOK(5) == false, "a Horde Skyborne: the Horde quest yes, the Alliance one no")
+    check(ns.DB:RaceClassOK(990815) == true and ns.DB:RaceClassOK(990814) == false, "a Horde Skyborne: the Horde quest yes, the Alliance one no")
     MOCK.race, MOCK.faction = mine, faction; ns.Player.cache = {}
+    ns.QuestDB[990811], ns.QuestDB[990814], ns.QuestDB[990815] = nil, nil, nil
 end)
 
 -- Skyborne's own bits (65536 Alliance, 131072 Horde): a quest Forever opened to Skyborne says so,
@@ -2326,9 +2362,10 @@ section("levelling pace", function()
     check(P.Number(19600) == "19 600" and P.Number(940) == "940", "numbers are grouped for reading (" .. P.Number(19600) .. ")")
 
     -- a chapter's model comes from the planner, through the notes of the guides already generated
-    local g = ns.Guide.registry[chapterId("GEN_ALLIANCE_DWARF_0[2-9]_")]
+    local g = ns.Guide.registry[chapterId("GEN_ALLIANCE_HUMAN_02_")]
     local minutes, xph = P.Model(g)
-    check(minutes and minutes > 0 and xph and xph > 0, "the model minutes / xp-h are read off a generated chapter (" .. tostring(minutes) .. ", " .. tostring(xph) .. ")")
+    check(minutes == 136 and xph == 17747, "the model minutes / xp-h are read off a generated chapter's notes (" .. tostring(minutes) .. ", " .. tostring(xph) .. ")")
+    check(P.Model({ notes = "a hand-written guide" }) == nil and P.Model({}) == nil, "a guide without a model has none")
 
     -- earn xp over measured play and the rate follows
     P.samples, P.earned, P.played = {}, 0, 0

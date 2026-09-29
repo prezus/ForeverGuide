@@ -6,7 +6,7 @@ ForeverGuide guide compiler.
 
 Usage (from the addon folder, or anywhere):
     python tools/compile_guides.py            # compile everything
-    python tools/compile_guides.py --check    # validate only, write nothing
+    python tools/compile_guides.py --check    # validate only; fail if Guides/ or the test fixtures are stale
     python tools/compile_guides.py --src guides-src --out Guides
 
 No dependencies beyond the Python standard library.
@@ -191,23 +191,19 @@ def compile_xml(ids):
 # ------------------------------------------------------------
 # Main
 # ------------------------------------------------------------
-def main():
-    here = os.path.dirname(os.path.abspath(__file__))
-    root = os.path.dirname(here)
-    ap = argparse.ArgumentParser(description="Compile ForeverGuide JSON guides to Lua.")
-    ap.add_argument("--src", default=os.path.join(root, "guides-src"))
-    ap.add_argument("--out", default=os.path.join(root, "Guides"))
-    ap.add_argument("--check", action="store_true", help="validate only")
-    args = ap.parse_args()
+FIXTURE_SRC = os.path.join("tools", "test", "fixtures", "guides-src")
+FIXTURE_OUT = os.path.join("tools", "test", "fixtures", "Guides")
 
-    files = sorted(f for f in os.listdir(args.src) if f.lower().endswith(".json") and not f.startswith("_"))
+
+def load_guides(src):
+    """Validate every guide in src. Returns (guides, error count)."""
+    files = sorted(f for f in os.listdir(src) if f.lower().endswith(".json") and not f.startswith("_"))
     if not files:
-        print(f"no guide files in {args.src}")
-        return 1
-
+        print(f"no guide files in {src}")
+        return [], 1
     guides, errors = [], 0
     for fn in files:
-        path = os.path.join(args.src, fn)
+        path = os.path.join(src, fn)
         try:
             with open(path, "r", encoding="utf-8") as fh:
                 data = json.load(fh)
@@ -220,7 +216,6 @@ def main():
         except (GuideError, json.JSONDecodeError) as e:
             errors += 1
             print(f"FAIL {fn}: {e}")
-
     ids = [g["id"] for g in guides]
     if len(ids) != len(set(ids)):
         print("FAIL duplicate guide ids")
@@ -229,27 +224,86 @@ def main():
     for g in guides:
         if "next" in g and g["next"] not in known:
             print(f"warn {g['id']}: next guide '{g['next']}' is not compiled (fine if it lives in another addon)")
+    return guides, errors
 
+
+def outputs(guides):
+    """The files a guide set compiles to: {name: text}."""
+    files = {g["id"] + ".lua": compile_guide(g) for g in guides}
+    files["Guides.xml"] = compile_xml([g["id"] for g in guides])
+    return files
+
+
+def check_drift(guides, out):
+    """Count the compiled files in out that differ from what the sources compile to now."""
+    wanted = outputs(guides)
+    stale = 0
+    for name, text in wanted.items():
+        path = os.path.join(out, name)
+        try:
+            with open(path, "r", encoding="utf-8", newline="") as fh:
+                current = fh.read()
+        except OSError:
+            current = None
+        if current != text:
+            stale += 1
+            print(f"STALE {path}: {'missing' if current is None else 'differs from its source'}")
+    for fn in os.listdir(out) if os.path.isdir(out) else []:
+        if fn.endswith(".lua") and fn not in wanted:
+            stale += 1
+            print(f"STALE {os.path.join(out, fn)}: no source for it")
+    return stale
+
+
+def write_guides(guides, out):
+    os.makedirs(out, exist_ok=True)
+    wanted = outputs(guides)
+    for name, text in wanted.items():
+        with open(os.path.join(out, name), "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(text)
+    # remove stale compiled guides
+    for fn in os.listdir(out):
+        if fn.endswith(".lua") and fn not in wanted:
+            os.remove(os.path.join(out, fn))
+            print(f"removed stale {fn}")
+    print(f"wrote {len(guides)} guide(s) to {out}")
+
+
+def main():
+    here = os.path.dirname(os.path.abspath(__file__))
+    root = os.path.dirname(here)
+    ap = argparse.ArgumentParser(description="Compile ForeverGuide JSON guides to Lua.")
+    ap.add_argument("--src", help="guide sources (default: guides-src, and the engine test's fixture guides)")
+    ap.add_argument("--out", help="compiled guides folder (default: Guides, and the fixture folder)")
+    ap.add_argument("--check", action="store_true", help="validate only, and fail if the compiled guides are stale")
+    args = ap.parse_args()
+
+    if args.src or args.out:
+        sets = [(args.src or os.path.join(root, "guides-src"), args.out or os.path.join(root, "Guides"))]
+    else:
+        # the shipped route, and the frozen guides the engine test plays (tools/test/run_tests.lua)
+        sets = [(os.path.join(root, "guides-src"), os.path.join(root, "Guides")),
+                (os.path.join(root, FIXTURE_SRC), os.path.join(root, FIXTURE_OUT))]
+
+    errors, stale = 0, 0
+    loaded = []
+    for src, out in sets:
+        guides, bad = load_guides(src)
+        errors += bad
+        loaded.append((guides, out))
     if errors:
         print(f"{errors} error(s), nothing written")
         return 1
     if args.check:
-        print("all guides valid")
+        for guides, out in loaded:
+            stale += check_drift(guides, out)
+        if stale:
+            print(f"{stale} compiled guide file(s) stale: run tools/compile_guides.py and commit the result")
+            return 1
+        print("all guides valid, compiled guides match their sources")
         return 0
-
-    os.makedirs(args.out, exist_ok=True)
-    for g in guides:
-        out = os.path.join(args.out, g["id"] + ".lua")
-        with open(out, "w", encoding="utf-8", newline="\n") as fh:
-            fh.write(compile_guide(g))
-    with open(os.path.join(args.out, "Guides.xml"), "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(compile_xml(ids))
-    # remove stale compiled guides
-    for fn in os.listdir(args.out):
-        if fn.endswith(".lua") and fn[:-4] not in known:
-            os.remove(os.path.join(args.out, fn))
-            print(f"removed stale {fn}")
-    print(f"wrote {len(guides)} guide(s) to {args.out}")
+    for guides, out in loaded:
+        write_guides(guides, out)
     return 0
 
 
