@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_08_REDRIDGE_MOUNTAINS",
     name = "8. Redridge Mountains 23-23 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 23,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_DWARF_09_WETLANDS",
     author = "ForeverGuide route planner",
     notes = "Chapter 8 of the Dwarf route: level 23 to 23, 13 steps, ~43 min of play in the model (24005 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 22,
+    stepCount = 23,
     steps = [[{
 {type="ACCEPT",quest=386,questName="What Comes Around...",npc=859,npcName="Guard Berton",map=1433,zone="Redridge Mountains",x=26.4,y=46.6,optional=true,note="For The Stockade (dungeon guide)"},
 {type="TRAVEL",map=1433,zone="Redridge Mountains",x=29.7,y=47.4,radius=60,note="travel to Redridge Mountains (Redridge Mountains)"},
@@ -33,6 +33,7 @@ ns.RegisterGuide({
 {type="COLLECT",quest=169,questName="WANTED: Gath'Ilzogg",target="Head of Gath'Ilzogg",count=1,map=1433,zone="Redridge Mountains",x=69.2,y=55.8,optional=true,mobs="Gath'Ilzogg"},
 {type="COLLECT",quest=115,questName="Shadow Magic",target="Midnight Orb",count=3,map=1433,zone="Redridge Mountains",x=68.4,y=54.6,optional=true,near=true,mobs="Blackrock Shadowcaster / Incinerator Gar'im"},
 {type="TURNIN",quest=94,questName="A Watchful Eye",map=1433,zone="Redridge Mountains",x=84.3,y=46.9},
+{type="COLLECT",quest=94499,questName="Call of Water",target="Full Red Waterskin",count=1,map=1433,zone="Redridge Mountains",x=81,y=62.7,class={"SHAMAN"},race={"Dwarf"}},
 {type="KILL",quest=180,questName="Wanted: Lieutenant Fangore",npc=703,target="Lieutenant Fangore",map=1433,zone="Redridge Mountains",x=80.2,y=37.1,note="loot Fangore's Paw"},
 {type="TURNIN",quest=169,questName="WANTED: Gath'Ilzogg",npc=344,npcName="Magistrate Solomon",map=1433,zone="Redridge Mountains",x=30,y=44.2,optional=true},
 {type="TURNIN",quest=115,questName="Shadow Magic",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=33.4,y=48.8,optional=true},
