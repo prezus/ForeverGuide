@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_36_UN_GORO_CRATER",
     name = "36. Un'Goro Crater 49-50 (Dwarf)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 49,
@@ -20,7 +20,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=2641,questName="Sprinkle's Secret Ingredient",npc=7583,npcName="Sprinkle",map=1446,zone="Tanaris",x=51,y=26.8},
 {type="KILL",quest=3520,questName="Screecher Spirits",npc=8612,target="Screecher Spirits Collected",count=3,map=1444,zone="Feralas",x=46.4,y=40.6},
 {type="TURNIN",quest=3520,questName="Screecher Spirits",npc=8579,npcName="Yeh'kinya",map=1446,zone="Tanaris",x=67,y=22.4},
-{type="TURNIN",quest=2861,questName="Tabetha's Task",npc=6546,npcName="Tabetha",map=1445,zone="Dustwallow Marsh",x=46,y=57,optional=true},
+{type="ACCEPT",quest=2770,questName="Gahz'rilla",npc=4453,npcName="Wizzle Brassbolts",map=1441,zone="Thousand Needles",x=78,y=77,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="ACCEPT",quest=3527,questName="The Prophecy of Mosh'aru",npc=8579,npcName="Yeh'kinya",map=1446,zone="Tanaris",x=67,y=22.4,optional=true,note="For Zul'Farrak (dungeon guide)"},
 {type="NOTE",optional=true,text="Ready for Zul'Farrak",note="Picked up: Divino-matic Rod, Gahz'rilla, Tiara of the Deep, Scarab Shells, Nekrum's Medallion, Troll Temper, The Prophecy of Mosh'aru. When you have a group, open Zul'Farrak under Dungeons."},
 {type="ACCEPT",quest=4324,questName="Yuka Screwspigot",npc=9706,npcName="Yorba Screwspigot",map=1446,zone="Tanaris",x=67,y=24,optional=true,note="For Blackrock Depths (dungeon guide)"},
