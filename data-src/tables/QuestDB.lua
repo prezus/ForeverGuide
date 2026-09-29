@@ -1,6 +1,5 @@
--- AUTO-GENERATED upstream from WoW Forever quest data - DO NOT EDIT
+-- AUTO-GENERATED from WoW Forever quest data - DO NOT EDIT
 -- quests (name, levels, races/classes, givers, enders, objectives, chain)
--- Data derived from Questie (https://github.com/Questie/Questie) and Wowhead (https://www.wowhead.com); see Data/README.md.
 local _, ns = ...
 ns.QuestDB = {
 [1]={hidden=true,lvl=4,n="The \"Chow\" Quest (123)aa",races=0,req=1,text={"Kill Kobold Vermin, 2 of em."},xp=540,zone=15},
