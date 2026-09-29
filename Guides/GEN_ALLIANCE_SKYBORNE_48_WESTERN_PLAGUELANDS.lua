@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_48_WESTERN_PLAGUELANDS",
     name = "48. Western Plaguelands 54-55 (Skyborne)",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 54,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_SKYBORNE_49_SILITHUS",
     author = "ForeverGuide route planner",
     notes = "Chapter 48 of the Skyborne route: level 54 to 55, 22 steps, ~192 min of play in the model (15796 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 24,
+    stepCount = 23,
     steps = [[{
 {type="TRAVEL",map=1423,zone="Light's Hope Chapel",x=71.8,y=48.5,radius=60,note="use your hearthstone (Light's Hope Chapel)"},
 {type="TRAVEL",map=1422,zone="Western Plaguelands",x=43.6,y=83.7,radius=60,note="travel to Western Plaguelands (Western Plaguelands)"},
@@ -25,7 +25,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=6025,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=51.9,y=28.1},
 {type="COMPLETE",quest=6025,questName="Unfinished Business",target="Overlook Hearthglen from a high vantage point",map=1422,zone="Western Plaguelands",x=45.8,y=18.2,note="Overlook Hearthglen from a high vantage point"},
 {type="TURNIN",quest=6025,questName="Unfinished Business",npc=11610,npcName="Kirsta Deepshadow",map=1422,zone="Western Plaguelands",x=51.9,y=28.1},
-{type="ACCEPT",quest=5521,questName="Chromatic Mantle of the Dawn",npc=10857,npcName="Argent Quartermaster Lightspark",map=1422,zone="Western Plaguelands",x=42.8,y=83.8,note="Objectives: Argent Dawn"},
 {type="ACCEPT",quest=5533,questName="Scholomance",npc=10838,npcName="Commander Ashlam Valorfist",map=1422,zone="Western Plaguelands",x=42.7,y=84},
 {type="ACCEPT",quest=5225,questName="Target: Gahrron's Withering",npc=11053,npcName="High Priestess MacDonnell",map=1422,zone="Western Plaguelands",x=43,y=84.5},
 {type="TURNIN",quest=5533,questName="Scholomance",npc=11056,npcName="Alchemist Arbington",map=1422,zone="Western Plaguelands",x=42.7,y=83.8},
