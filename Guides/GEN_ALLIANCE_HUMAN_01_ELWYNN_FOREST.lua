@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST",
     name = "1. Elwynn Forest 1-11 (Human)",
-    version = 11,
+    version = 12,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 1,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_02_WESTFALL",
     author = "ForeverGuide route planner",
     notes = "Chapter 1 of the Human route: level 1 to 11, 106 steps, ~154 min of play in the model (13768 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
-    stepCount = 198,
+    stepCount = 196,
     steps = [[{
 {type="ACCEPT",quest=783,questName="A Threat Within",npc=823,npcName="Deputy Willem",map=1429,zone="Elwynn Forest",x=48.2,y=42.9},
 {type="ACCEPT",quest=1598,questName="The Stolen Tome",npc=459,npcName="Drusilla La Salle",map=1429,zone="Elwynn Forest",x=49.8,y=42.6,class={"WARLOCK"}},
@@ -22,8 +22,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=33,questName="Wolves Across the Border",npc=196,npcName="Eagan Peltskinner",map=1429,zone="Elwynn Forest",x=48.9,y=40.2},
 {type="TURNIN",quest=783,questName="A Threat Within",npc=197,npcName="Marshal McBride",map=1429,zone="Elwynn Forest",x=48.9,y=41.6},
 {type="ACCEPT",quest=7,questName="Kobold Camp Cleanup",npc=197,npcName="Marshal McBride",map=1429,zone="Elwynn Forest",x=48.9,y=41.6},
-{type="ACCEPT",quest=5261,questName="Eagan Peltskinner",npc=823,npcName="Deputy Willem",map=1429,zone="Elwynn Forest",x=48.2,y=42.8},
-{type="TURNIN",quest=5261,questName="Eagan Peltskinner",npc=196,npcName="Eagan Peltskinner",map=1429,zone="Elwynn Forest",x=48.8,y=40.2},
 {type="ACCEPT",quest=92479,questName="A Scribbled Letter",npc=197,npcName="Marshal McBride",map=1429,zone="Elwynn Forest",x=48.8,y=41.6,class={"WARRIOR"},note="New in Forever"},
 {type="COLLECT",quest=33,questName="Wolves Across the Border",target="Tough Wolf Meat",count=8,map=1429,zone="Elwynn Forest",x=48,y=39.6,near=true},
 {type="ACCEPT",quest=18,questName="Brotherhood of Thieves",npc=823,npcName="Deputy Willem",map=1429,zone="Elwynn Forest",x=48.2,y=42.9},
