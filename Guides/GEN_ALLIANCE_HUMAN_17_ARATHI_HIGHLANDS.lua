@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_17_ARATHI_HIGHLANDS",
     name = "17. Arathi Highlands 33-34 (Human)",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 33,
@@ -13,7 +13,7 @@ ns.RegisterGuide({
     next = "GEN_ALLIANCE_HUMAN_18_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
     notes = "Chapter 17 of the Human route: level 33 to 34, 17 steps, ~90 min of play in the model (23598 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
-    stepCount = 39,
+    stepCount = 37,
     steps = [[{
 {type="FLIGHTPATH",npc=2835,npcName="Cedrik Prose",map=1417,zone="Arathi Highlands",x=45.7,y=46.1},
 {type="TURNIN",quest=79974,questName="Wet Job",map=1432,zone="Loch Modan",x=49.5,y=12.8},
@@ -31,8 +31,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1719,questName="The Affray",npc=6236,npcName="Klannoc Macleod",map=1413,zone="The Barrens",x=68.6,y=49,class={"WARRIOR"}},
 {type="ACCEPT",quest=1947,questName="Journey to the Marsh",npc=5497,npcName="Jennea Cannon",map=1453,zone="Stormwind City",x=38.6,y=79.4,class={"MAGE"}},
 {type="TURNIN",quest=1758,questName="Tome of the Cabal",npc=6294,npcName="Krom Stoutarm",map=1455,zone="Ironforge",x=74.2,y=9.8,class={"WARLOCK"}},
-{type="ACCEPT",quest=1798,questName="Seeking Strahad",npc=6122,npcName="Gakin the Darkbinder",map=1453,zone="Stormwind City",x=25.4,y=78.4,class={"WARLOCK"}},
-{type="TURNIN",quest=1798,questName="Seeking Strahad",npc=6251,npcName="Strahad Farsan",map=1413,zone="The Barrens",x=62.6,y=35.4,class={"WARLOCK"}},
 {type="ACCEPT",quest=3629,questName="Goblin Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
 {type="ACCEPT",quest=3630,questName="Gnome Engineering",npc=5518,npcName="Lilliam Sparkspindle",map=1453,zone="Stormwind City",x=54.8,y=7.8,profession="Engineering",skill=200},
 {type="TRAVEL",map=1417,zone="Arathi Highlands",x=46.1,y=46.5,radius=60,note="travel to Arathi Highlands (Arathi Highlands)"},
