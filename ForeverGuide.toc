@@ -37,6 +37,7 @@ Pace.lua
 Reminders.lua
 Instance.lua
 Recorder.lua
+Run.lua
 Data\VanillaQuestIDs.lua
 Scanner.lua
 Harvest.lua
@@ -46,6 +47,7 @@ UI\Theme.lua
 UI\Reports.lua
 UI\QuestGuideConfig.lua
 UI\QuestGuideHeader.lua
+UI\RunStrip.lua
 UI\QuestRow.lua
 UI\QuestList.lua
 UI\QuestGuideFrame.lua

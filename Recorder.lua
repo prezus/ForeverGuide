@@ -137,17 +137,22 @@ local function ObjectiveTargets()
     return {}
 end
 
+--- A uiMapID's name, parent and world bounds (the bounds let the tools convert world
+--- coordinates offline). Run.lua's segments name their maps with it too.
+function Recorder:MapInfo(mapID)
+    local name, _, parent = ns.Player:GetMapName(mapID)
+    local entry = { name = name, parent = parent }
+    local inst0, x0, y0 = ns.Navigation:MapToWorld(mapID, 0, 0)
+    local inst1, x1, y1 = ns.Navigation:MapToWorld(mapID, 100, 100)
+    if inst0 and x0 and x1 and inst0 == inst1 then entry.bounds = { inst0, x0, y0, x1, y1 } end
+    return entry
+end
+
 function Recorder:NoteMap()
     if not Enabled() then return end
     local mapID = ns.Player:GetMapID()
     if not mapID then return end
-    local name, _, parent = ns.Player:GetMapName(mapID)
-    local entry = { name = name, parent = parent }
-    -- the map's world bounds: lets the tools convert world coordinates offline
-    local inst0, x0, y0 = ns.Navigation:MapToWorld(mapID, 0, 0)
-    local inst1, x1, y1 = ns.Navigation:MapToWorld(mapID, 100, 100)
-    if inst0 and x0 and x1 and inst0 == inst1 then entry.bounds = { inst0, x0, y0, x1, y1 } end
-    Store().maps[mapID] = entry
+    Store().maps[mapID] = self:MapInfo(mapID)
 end
 
 --- A ForeverGuide Lua error (called by ns.ReportOnce, once per key per session).

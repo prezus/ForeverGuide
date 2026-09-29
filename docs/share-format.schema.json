@@ -398,6 +398,110 @@
           }
         }
       }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "seg": {
+          "type": "integer"
+        },
+        "done": {
+          "type": "boolean"
+        },
+        "entries": {
+          "type": "array",
+          "maxItems": 2500,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "e": {
+                "type": "string",
+                "maxLength": 10
+              },
+              "t": {
+                "type": "number"
+              },
+              "lvl": {
+                "type": "integer"
+              },
+              "m": {
+                "type": "integer"
+              },
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "g": {
+                "type": "string",
+                "maxLength": 80
+              },
+              "s": {
+                "type": "integer"
+              },
+              "q": {
+                "type": "integer"
+              },
+              "xp": {
+                "type": "integer"
+              },
+              "money": {
+                "type": "integer"
+              },
+              "obj": {
+                "type": "integer"
+              },
+              "f": {
+                "type": "integer"
+              },
+              "r": {
+                "type": "integer"
+              },
+              "done": {
+                "type": "boolean"
+              },
+              "l": {
+                "type": "integer"
+              },
+              "rested": {
+                "type": "integer"
+              },
+              "npc": {
+                "type": "integer"
+              },
+              "mobLevel": {
+                "type": "integer"
+              },
+              "elite": {
+                "type": "boolean"
+              },
+              "secs": {
+                "type": "number"
+              },
+              "mounted": {
+                "type": "boolean"
+              },
+              "taxi": {
+                "type": "boolean"
+              },
+              "cost": {
+                "type": "integer"
+              },
+              "action": {
+                "type": "string",
+                "maxLength": 10
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

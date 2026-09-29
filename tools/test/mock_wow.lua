@@ -517,6 +517,15 @@ function _G.MOCK_BAG(freeSlots, junk, questItems)
     fire("BAG_UPDATE_DELAYED")
 end
 _G.UnitIsGhost = function(unit) return unit == "player" and world.ghost == true end
+-- movement and money (Run.lua): world.mounted, world.onTaxi, world.money in copper
+world.money = 0
+_G.IsMounted = function() return world.mounted == true end
+_G.UnitOnTaxi = function(unit) return unit == "player" and world.onTaxi == true end
+_G.GetMoney = function() return world.money end
+_G.UnitClassification = function(unit)
+    local u = unit == "target" and world.target or unit == "npc" and world.npc
+    return u and (u.classification or "normal") or "normal"
+end
 _G.C_DeathInfo = { GetCorpseMapPosition = function(mapID) if world.corpse and world.corpse.map == mapID then return { x = world.corpse.x / 100, y = world.corpse.y / 100 } end return nil end }
 function _G.MOCK_DIE(x, y) world.ghost = true world.corpse = { map = world.mapID, x = x, y = y } fire("PLAYER_DEAD") fire("PLAYER_ALIVE") end
 function _G.MOCK_REVIVE() world.ghost = false world.corpse = nil fire("PLAYER_UNGHOST") end

@@ -2,8 +2,10 @@
 
 A player who opts in to **Contribute data** (Options → Data collection, or `/fg share on`)
 collects quest facts while they play. `/fg share` turns those facts, their `/fg wrong` reports
-and any addon errors into one string that they paste into the feedback form. This page is the
-contract between the addon (`Share.lua`) and the code that reads the string on our side.
+and any addon errors into one string that they paste into the feedback form. A player who opts
+in to **Record runs** sends a recorded run the same way, one segment per string (see
+[Run segments](#run-segments)). This page is the contract between the addon (`Share.lua`) and the
+code that reads the string on our side.
 
 ## Privacy
 
@@ -21,8 +23,10 @@ A share never contains:
 - **Who the player is.** No character name, realm, account, GUID, guild or chat. The profile
   holds only race, class and faction. Each report carries the same three for the character that
   made it, since reports outlive the character that ran `/fg share`.
-- **Time.** No timestamps or dates. `order` is the only sequence: the order in which quests
-  were accepted and turned in during the session.
+- **Time.** No timestamps, dates or time of day. `order` is the order in which quests were
+  accepted and turned in during the session. A run segment's `t` counts seconds of recording
+  since the player pressed Start, with paused time left out: it measures how long things took,
+  never when.
 - **Exact positions.** Spots are rounded to half a map unit (`cells`).
 
 Free text appears only in `/fg wrong` reports (`reports[].text`, up to 200 characters). The
@@ -81,6 +85,39 @@ zlib checksum and validates the result against the schema:
 ```sh
 python3 tools/decode_share.py share.txt
 ```
+
+## Run segments
+
+**Record runs** (Options → Data collection) is its own opt-in, off by default. It shows run
+controls on the guide window: **Start**, **Pause**/**Resume**, **Stop** and **Send**. Nothing is
+recorded until Start. **Send** opens the share window with every entry since the last Send, and
+recording carries on in the next segment. **Stop** ends the run and opens its last segment,
+marked `done`. `/fg run start|pause|resume|stop|send|discard|status` does the same by command.
+
+A segment share holds `format`, `addon`, `build`, `profile`, the `maps` its entries stand on, and
+`run`. It never holds the contributed facts or reports. Join a run's segments by `run.id`, in
+`run.seg` order. `t` never goes back across a run's segments.
+
+Every entry has `e` (its kind), `t`, `lvl`, and where the player stood (`m`, `x`, `y`) when the
+map gives a position. `g` and `s` name the guide and step being followed (`g` is `auto` in auto
+mode). The kinds:
+
+| Kind | Fields | When |
+|---|---|---|
+| START, STOP | | The run starts; the run ends (in the `done` segment) |
+| PAUSE, RESUME | | Recording paused and resumed, at the same `t`. Logging out pauses. A segment that fills up (2,500 entries) pauses too |
+| GAP | | The client lost the SavedVariables: this segment's entries before `GAP` are missing |
+| ACCEPT, ABANDON | `q` | A quest accepted or abandoned |
+| TURNIN | `q`, `xp`, `money` | A quest turned in, with its reward (copper) |
+| OBJ | `q`, `obj`, `f`, `r`, `done` | Objective `obj` moved to `f` of `r` |
+| LEVEL | `l`, `rested` | A new level, with rested xp |
+| KILL | `npc`, `mobLevel`, `elite`, `secs`, `rested` | A creature the player killed; `secs` since the pull (or the fight's previous kill) |
+| MOVE | `mounted`, `taxi` | Every 5 s while the player moves |
+| TAXI | `cost` | A flight starts here, for this fare (copper) |
+| LAND | `secs` | The flight lands here, after `secs` |
+| DEATH | | The player died |
+| RESURRECT | `secs` | The player came back, `secs` after dying |
+| HEARTH | `action` | `use`: the hearthstone was cast; `bind`: it was set here |
 
 ## The JSON
 
@@ -155,6 +192,34 @@ the uiMapID's 0-100 map.
 | `reports[].objectives[].numFulfilled` | integer | Objective progress |
 | `reports[].objectives[].numRequired` | integer | Objective goal |
 | `reports[].objectives[].finished` | boolean | Objective done |
+| `run.id` | string | The run: random hex made when it started, not tied to the player |
+| `run.seg` | integer | Segment number, from 1 |
+| `run.done` | boolean | The run's last segment |
+| `run.entries[].e` | string | Entry kind ([Run segments](#run-segments)) |
+| `run.entries[].t` | number | Seconds of recording since the run started (one decimal) |
+| `run.entries[].lvl` | integer | Player level |
+| `run.entries[].m` | integer | Where the player stood: uiMapID |
+| `run.entries[].x` | number | Where the player stood: x (two decimals) |
+| `run.entries[].y` | number | Where the player stood: y (two decimals) |
+| `run.entries[].g` | string | Guide being followed, or `auto` |
+| `run.entries[].s` | integer | Guide step being followed |
+| `run.entries[].q` | integer | Quest id |
+| `run.entries[].xp` | integer | Turn-in xp |
+| `run.entries[].money` | integer | Turn-in money (copper) |
+| `run.entries[].obj` | integer | Objective index |
+| `run.entries[].f` | integer | Objective progress |
+| `run.entries[].r` | integer | Objective goal |
+| `run.entries[].done` | boolean | Objective done |
+| `run.entries[].l` | integer | New level |
+| `run.entries[].rested` | integer | Rested xp left |
+| `run.entries[].npc` | integer | Creature id killed |
+| `run.entries[].mobLevel` | integer | Its level, when it was targeted |
+| `run.entries[].elite` | boolean | It was elite, rare elite or a world boss |
+| `run.entries[].secs` | number | Seconds the kill, flight or death took |
+| `run.entries[].mounted` | boolean | Mounted |
+| `run.entries[].taxi` | boolean | On a flight |
+| `run.entries[].cost` | integer | Flight fare (copper) |
+| `run.entries[].action` | string | Hearthstone: `use` or `bind` |
 
 ## Limits
 
@@ -165,6 +230,7 @@ These are the most the addon writes. A reader may reject a share that exceeds th
   and 20 targets per objective;
 - 12 cells per NPC per map;
 - 1,000 `order` entries, 500 maps, 3,000 `starts` and 3,000 `titles`;
-- 50 errors and 300 reports.
+- 50 errors and 300 reports;
+- 2,500 entries per run segment.
 
 Strings are cut to the lengths in `Share.lua`.
