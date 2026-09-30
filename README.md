@@ -11,9 +11,10 @@ for you is listed in the [client and player-control policy](COMPATIBILITY_POLICY
    and unzip it so that you get `_classic_beta_\Interface\AddOns\ForeverGuide\ForeverGuide.toc`.
 2. Enable **ForeverGuide** on the AddOns screen. If the beta has a newer build than the addon, tick
    **Load out of date AddOns**.
-3. Log in. The guide window picks the route for your race and level. **Guides** lists every route
-   of your faction, its chapters, the zone guides and the dungeon guides. **Details** shows the
-   current step, with Back, Skip, Auto and Resync.
+3. Log in. The guide window picks the route for your race and level. **Guides** switches to another
+   route of your faction or another chapter; `/fg guides` lists every guide, zone guides included.
+   **Dungeon Quests** shows your dungeons and their quests. **Details** shows the current step, with
+   Back, Skip, Auto and Resync.
 
 The beta client does not read SavedVariables back at login. ForeverGuide keeps your guide, progress,
 settings and step edits in CVars instead and restores them ("beta workaround" in chat). Reports,
