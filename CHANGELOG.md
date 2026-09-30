@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: every class of a race follows the same route; only a class's own quests and a profession's own quests are shown to just the characters they are for. The Camping 101 quests in Durotar appear only with their profession, Speak with Belann on Zephras Isle only for mages, and Codex of Defense in Dire Maul only for warriors.
 
 ## 0.4.0 - 2026-09-30
 
