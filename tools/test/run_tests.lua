@@ -1,7 +1,7 @@
 -- Headless test of the ForeverGuide engine against the mock WoW API.
 --     cd <addon folder>;  lua5.1 tools/test/run_tests.lua
 -- Loads the files in TOC order exactly like the client would, then plays
--- through the sample guide with simulated quest events.
+-- through the fixture guides (tools/test/fixtures/Guides) with simulated quest events.
 
 local root = arg and arg[0] and arg[0]:match("^(.*)tools[/\\]test[/\\]run_tests%.lua$") or "./"
 if root == "" then root = "./" end
@@ -3151,6 +3151,76 @@ section("a long guide builds only the rows on screen", function()
     check(l:RowFor(1) ~= nil and l:RowFor(1).entry == l.entries[1], "back at the top, the first step has its row again")
     if before then G:Activate(before, true) end
     ns.UI:Refresh(); settle()
+end)
+
+-- ---- the docs agree with the code ------------------------------------------------------------
+-- The README ships in the release zip: every command it names must exist, every command must be in
+-- it, and no doc may link a file or heading that is gone. Read as text, never run: several commands
+-- change the guide's state.
+section("docs agree with the code", function()
+    local function read(path)
+        local f = io.open(root .. path)
+        if not f then return nil end
+        local s = f:read("*a")
+        f:close()
+        return s
+    end
+    local source = read("Commands.lua") or ""
+    local handlers = {}
+    for name in source:gmatch("\nfunction handlers%.([%w_]+)") do handlers[name] = true end
+    for name in source:gmatch("\nhandlers%.([%w_]+)%s*=") do handlers[name] = true end
+    need(handlers.status and handlers.help and handlers.run, "Commands.lua's handlers are readable as text")
+
+    local commands = (read("README.md") or ""):match("\n## Commands\n(.-)\n## ")
+    need(commands ~= nil, "the README has a Commands section")
+    -- `/fg show` `hide` names two commands; `/fg` alone is the status readout
+    local documented = { status = commands:find("`/fg`", 1, true) ~= nil }
+    for chunk in commands:gmatch("`([^`]+)`") do
+        local word = chunk:match("^/fg%s+([%w_]+)") or chunk:match("^([%a_]+)")
+        if word and word ~= "fg" then documented[word] = true end
+    end
+    local unknown, missing = {}, {}
+    for word in pairs(documented) do if not handlers[word] then unknown[#unknown + 1] = word end end
+    for name in pairs(handlers) do if not documented[name] then missing[#missing + 1] = name end end
+    table.sort(unknown) table.sort(missing)
+    check(#unknown == 0, "every command the README names exists (unknown: " .. table.concat(unknown, ", ") .. ")")
+    check(#missing == 0, "every command is in the README (missing: " .. table.concat(missing, ", ") .. ")")
+
+    local help, stale = source:match("\nlocal HELP = {(.-)\n}") or "", {}
+    for word in help:gmatch("/fg%s+([%a_]+)") do if not handlers[word] then stale[#stale + 1] = word end end
+    check(help ~= "" and #stale == 0, "every command /fg help names exists (unknown: " .. table.concat(stale, ", ") .. ")")
+
+    -- relative links in the docs point at files and headings that exist
+    local function anchors(text)
+        local out = {}
+        for heading in (text .. "\n"):gmatch("\n#+%s+([^\n]+)") do
+            out[heading:lower():gsub("[^%w%s%-]", ""):gsub("%s", "-")] = true
+        end
+        return out
+    end
+    local list = io.popen("git -C '" .. root .. "' ls-files '*.md'")
+    local files = {}
+    for line in list:lines() do if not line:match("^docs/history/") then files[#files + 1] = line end end
+    list:close()
+    need(#files > 3, "the docs are listed by git (" .. #files .. ")")
+    local broken = {}
+    for _, file in ipairs(files) do
+        local text = (read(file) or ""):gsub("```.-```", "")
+        local dir = file:match("^(.*/)") or ""
+        for target in text:gmatch("%]%(([^)%s]+)%)") do
+            if not target:match("^%a+:") then
+                local path, anchor = target:match("^([^#]*)#?(.*)$")
+                local resolved = path == "" and file or dir .. path
+                local body = read(resolved)
+                if not body then
+                    broken[#broken + 1] = file .. " -> " .. target
+                elseif anchor ~= "" and resolved:match("%.md$") and not anchors(body)[anchor] then
+                    broken[#broken + 1] = file .. " -> " .. target .. " (no such heading)"
+                end
+            end
+        end
+    end
+    check(#broken == 0, "every relative link in the docs resolves (" .. table.concat(broken, "; ") .. ")")
 end)
 
 -- ---- no swallowed errors anywhere -------------------------------------------------

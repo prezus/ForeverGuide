@@ -1,6 +1,6 @@
 # ForeverGuide guide format
 
-The maintainer's route planner writes guides in this format, validates them against it and
+[forever-codex](https://github.com/prezus/forever-codex)'s route planner writes guides in this format, validates them against it and
 publishes them as data-only Lua in `Guides/`: one file per route (its chapters in order), per
 faction's zone guides and per faction's dungeon guides, each guide an `ns.RegisterGuide({...})`
 call whose steps travel as one packed string. `Guides/Guides.xml` lists the files. The addon never
@@ -89,6 +89,8 @@ objective/turn-in step whose quest is not in the log sends the player back
 to that quest's `ACCEPT` step.
 
 ## Example
+
+The engine test's fixture guide (`tools/test/fixtures/Guides/`), before packing:
 
 ```json
 {

@@ -1,7 +1,7 @@
 # ForeverGuide bundled quest database
 
-The files in `Data/` are published, packed, by the maintainer's data build, which lives outside this
-repository, by pull request (README, "Routes"); they are not edited by hand. The records come from
+The files in `Data/` are published, packed, by [forever-codex](https://github.com/prezus/forever-codex)'s
+data build, by pull request ([README](../README.md#how-this-repository-is-managed)); they are not edited by hand. The records come from
 **Questie**'s Classic Era database (https://github.com/Questie/Questie, `Database/Classic/*.lua` +
 `Database/Corrections/classic*Fixes.lua`) and from the WoW Forever sources below. Questie's own
 corrections are applied the same way Questie applies them at load time, and quests on Questie's
@@ -52,7 +52,7 @@ vmangos database projects). **Redistribution rights are not established by this 
 | WoW Forever overlay records with `src: "rxp"` (merged into the packed `Data/` records), and guides built using the overlay | [RestedXP/RXPGuides](https://github.com/RestedXP/RXPGuides) Forever guides, via the maintainer's data build | Its [license](https://github.com/RestedXP/RXPGuides/blob/main/LICENSE) is CC BY-NC-SA 4.0. Confirm whether the imported material may be redistributed in this form and what attribution/share-alike terms apply; otherwise replace it with independently collected in-game data and regenerate affected outputs. |
 | `Data/ForeverQuestIDs.lua`, and other `src: "db2"` records | WoW Forever client tables exported via wago.tools | Check the applicable game-data/export terms before redistribution; attribution to an export service alone does not grant rights. |
 
-`Guides/` is produced by the maintainer's route planner from the bundled database; they are not automatically free of upstream obligations just because the route is computed. Before publishing a release, the project owner should record the source revision and permission/terms for each input, meet those terms, or remove and regenerate from cleared inputs. Do not treat the proposed MIT license for original code as a license for this data. This is a provenance checklist, **not** a claim that any rights have been granted or denied.
+`Guides/` is produced by the maintainer's route planner from the bundled database; they are not automatically free of upstream obligations just because the route is computed. Before publishing a release, the project owner should record the source revision and permission/terms for each input, meet those terms, or remove and regenerate from cleared inputs. Do not treat the MIT license for original code as a license for this data. This is a provenance checklist, **not** a claim that any rights have been granted or denied.
 
 Fields of a decoded record:
 

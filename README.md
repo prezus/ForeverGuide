@@ -1,253 +1,93 @@
 # ForeverGuide
 
-Free, data-driven leveling guide engine for **WoW Forever** (beta 1.60.x, Retail 12.x engine, TOC `16001`).
-It reads game state and shows you the next step. It does not automate casting, movement, or combat.
-Auto-accept and auto-turn-in are enabled by default; other player-facing actions and existing exceptions
-are described in the [client and player-control policy](COMPATIBILITY_POLICY.md).
-
-```
-route planner + data build  ->  Guides/*.lua, Data/*.lua (published here)  ->  addon engine  ->  WoW Forever
-```
-
-## License
-
-The [MIT license](LICENSE) covers only original ForeverGuide code and assets owned by its copyright holders (see [Credits](#credits)). It does **not** grant rights to redistribute the bundled Questie-derived database or other third-party-sourced material. **Redistributors:** bundled data has unresolved third-party licensing questions; see [Data/README.md](Data/README.md#redistribution-status-unresolved) before publishing a package.
-
-## Credits
-
-ForeverGuide was created by RevoltLive85 and is now
-maintained by [prezus](https://github.com/prezus/ForeverGuide). The original development log is kept in
-[docs/history/PHASE1_NOTES.md](docs/history/PHASE1_NOTES.md). Data sources are credited in
-[Data/README.md](Data/README.md).
+A free leveling guide for **WoW Forever** (beta 1.60.x, TOC `16001`). It reads the game and shows
+you the next step: a quest window, an arrow, a waypoint and skulls over the mobs you need. It never
+casts, moves or fights for you. Auto-accept and auto-turn-in are on by default. Everything it does
+for you is listed in the [client and player-control policy](COMPATIBILITY_POLICY.md).
 
 ## Install
 
 1. Download `ForeverGuide-<version>.zip` from the [releases page](https://github.com/prezus/ForeverGuide/releases)
-   (or clone this repo) and unzip it so that you get `World of Warcraft\_classic_beta_\Interface\AddOns\ForeverGuide\ForeverGuide.toc`.
-2. Log in, enable **ForeverGuide** on the AddOns screen. If the beta has moved to a newer build than the addon's
-   TOC number, tick **Load out of date AddOns** on that screen - the addon reads game state defensively and keeps
-   working across builds.
-3. First login: the Quest Guide window picks the leveling route for your race and level on its own and the gold
-   diamond in the world points at the first step. **Guides** (button or `/fg guides`) lists every route of your
-   faction, the chapters of the one you follow, and standalone zone guides - the race route is only a
-   recommendation. **Guide** opens the step details with Back / Skip / Auto / Resync.
-4. Alt-click the minimap button (or `/fg hideall`) hides everything while the guide keeps running.
+   and unzip it so that you get `_classic_beta_\Interface\AddOns\ForeverGuide\ForeverGuide.toc`.
+2. Enable **ForeverGuide** on the AddOns screen. If the beta has a newer build than the addon, tick
+   **Load out of date AddOns**.
+3. Log in. The guide window picks the route for your race and level. **Guides** lists every route
+   of your faction, its chapters, the zone guides and the dungeon guides. **Details** shows the
+   current step, with Back, Skip, Auto and Resync.
 
-**Beta caveat:** this client build never reads SavedVariables back, so the addon mirrors your progress and settings
-into CVars every 30 s and restores them at login ("beta workaround" line in chat). Step edits and reports live in the
-SavedVariables file and can be lost - the maintainer folds step edits into the published guides from that file.
+The beta client does not read SavedVariables back at login. ForeverGuide keeps your guide, progress,
+settings and step edits in CVars instead and restores them ("beta workaround" in chat). Reports,
+collected data and runs live only in the SavedVariables file, so send them (below) before you log out.
 
-Developers: the addon folder doubles as the repo (`tools/` and `docs/` are not loaded by the game);
-`python tools/package.py` builds the release zip. For a private Mac-to-Windows test build, run
-`python3 tools/package.py --test`: it validates a runtime-only ZIP in ignored `dist/`, names it
-after the commit (`ForeverGuide-<commit>.zip`), and prints its SHA-256. Send that same ZIP to the Windows tester; it extracts
-into `_classic_beta_\Interface\AddOns\ForeverGuide\`. No Python is needed on Windows to install it.
-The ZIP holds only files from the last commit (any branch), never the folder on disk: this folder is
-also the live addon, so it collects player reports, SavedVariables copies and local edits that must
-not ship. Commit what you want in a build first; the ZIP itself does not go into Git.
-For local checks, install Lua 5.1 or LuaJIT,
-[Luacheck](https://github.com/lunarmodules/luacheck), and optionally Lua Language Server, then run:
+## Commands
 
-```sh
-luajit tools/test/run_tests.lua            # or lua5.1 tools/test/run_tests.lua
-lua5.1 tools/test/check_data_only.lua     # Guides/ and Data/ hold data and nothing else
-luacheck Core.lua Database.lua Events.lua Persist.lua Player.lua Navigation.lua Guide.lua DB.lua
-lua-language-server --check . --checklevel=Warning
-```
+`/fg help` lists them all in game. Options: `/fg options`, or Esc → Options → AddOns → ForeverGuide.
 
-Luacheck covers eight clean engine files, not the whole addon; its config suppresses WoW-provided
-global warnings, not local-variable or control-flow warnings. Headless mocks cannot catch every
-client API, secret-value, or combat-lockdown issue: verify behavior in-game too.
-
-### LuaLS (local editor diagnostics, not a type-check gate)
-
-Open this folder as the workspace in an editor with Lua Language Server. `.luarc.json` uses Lua 5.1 and
-checks the handwritten addon Lua files at the root and in `UI/` (40 files); `Guides/`, `Data/`
-and `tools/` are excluded from workspace diagnostics. These exclusions
-are not a guarantee that an individually opened file will have no diagnostics.
-
-LuaCATS hints describe the `Plain*` helpers' nullable results, the string path to `ns.Call`, and
-selected fields of a registered guide step. `Player.lua` also casts the shared namespace to its
-small core-helper contract so LuaLS can complete and check those calls across files. LuaLS can flag
-incompatible annotated step fields (e.g. a string quest ID), or misuse of typed helpers where their types are known; generated
-steps are **not** checked by LuaLS. There is no WoW Forever API definition here: undefined-game-global
-warnings remain, and static types cannot validate API availability, secret values in combat, or
-whether a game result is safe to use without `Plain*`/`Safe`. Treat warnings as leads to inspect,
-not proof of a passing type check. With the playable UI stack, the CLI reports 177 warnings in 29 files
-(LuaLS 3.19.1: 156 undefined globals and 21 possible nil accesses) and exits nonzero.
-
-### WoW client smoke test and error capture
-
-In the beta client, enter `/console scriptErrors 1`, then `/reload`. Open `/fg` and `/fg guides`,
-select a guide, try Guide/Auto mode and a waypoint, and repeat while in combat (game API results
-may become secret). Capture the **full first Lua error** from the client's error popup, including
-stack trace, and note the client build (`/fg`), what you clicked, and whether you were in combat.
-ForeverGuide also catches some callback errors with `pcall` and prints `ForeverGuide: error in
-<key>: <message>` in chat **once per key per reload**; capture those lines too. The popup will
-not show errors caught by the addon; while Contribute data is on, ForeverGuide keeps those errors
-with the guide step and map, and `/fg share` includes them in the string for the feedback form.
-`/reload` resets the once-per-key reporting. Redact character, realm, account, and local path
-details before sharing anything you copy by hand.
-
-In game:
-
-| command | what |
+| Command | What it does |
 |---|---|
-| `/fg` | status: level, zone, map id + coords, quest log with objective progress, current guide step, target info |
-| `/fg help` | every command |
-| `/fg guides` / `/fg guide <name>` | list / start a guide |
-| `/fg skip` `/fg back` `/fg step <n>` `/fg reset` | move through the guide |
-| `/fg later` `/fg now <n>` `/fg skipped` `/fg order reset` | put the current step off, do step n now, bring back skipped steps, undo your moves (or right-click a step) |
-| `/fg pos` | your uiMapID + coordinates, printed as a ready-to-paste TRAVEL step |
-| `/fg target` | npc id, level, reaction of your target |
-| `/fg way 42.3 71.8` | point the arrow at a coordinate on your current map |
-| `/fg share on` / `/fg share` | opt in to contributing quest data (off by default) / copy it, with your reports, as one string for the feedback form (**Readable** shows what it holds in words, **JSON** as data) |
-| `/fg run start` `pause` `resume` `stop` `send` | record a run for route calibration; **Record runs** under Options → Data collection (off by default) puts these on the guide window as buttons, and Send pastes a segment into the feedback form |
-| `/fg mode auto` | navigate your quest log directly (nearest objective / turn-in), no guide needed; `/fg mode guide` to follow the guide |
-| `/fg quest 783` / `/fg quest kobold` | everything the database knows: giver, objectives with coordinates, turn-in, prerequisites |
-| `/fg avail` | quests you could pick up in the current zone, with their givers and distances |
-| `/fg auto accept on\|off\|guide`, `/fg auto turnin on\|off` | auto-accept / auto-turn-in at NPCs (on by default; hold SHIFT to do it by hand; multi-choice rewards are left to you) |
-| `/fg minimap on\|off` | minimap button: left click window, right click guide picker, shift-click arrow, **alt-click hide everything**, drag to move |
-| `/fg waypoint on\|off`, `/fg route on\|off` | the in-world gold waypoint and the dotted path towards it (`/fg wpdbg` prints what places it; `/fg waypoint engine on` rides the client's own pin instead of our projection - off by default, the Forever client cannot project it) |
-| `/fg skull on\|off`, `/fg skull others\|plates on\|off` | skull over the nearest untagged mob of the current kill/collect step, small skulls over the other quest mobs around, none on mobs tagged by others; the skull button in the window (or its key binding) targets the nearest mob of the step; enemy nameplates are switched on during kill steps (the skulls ride on them) |
-| `/fg path` / `/fg path dwarf` / `/fg path race` | leveling routes are a **choice**: list every route of your faction, follow another race's one, or go back to your race's own (the recommended default) |
-| `/fg qg scale\|opacity\|width\|rows\|wpsize <n>` | Quest Guide look; `/fg qg completed\|distances\|subtitles on\|off` |
-| `/fg hideall [on\|off]` | hide the window *and* the arrow at once (same as alt-clicking the minimap button); the guide keeps running in the background |
-| `/fg scan` | ask the server about every quest id 1-100000; the results stay in your SavedVariables for the maintainer |
-| `/fg wrong <text>` / `/fg reports` | report the current step as wrong (saved with your position + target); `/fg share` sends your reports with the feedback form |
-| `/fg options` | options panel (also Esc -> Options -> AddOns -> ForeverGuide); key bindings under Key Bindings -> AddOns |
-| `/fg persist [save]` | state of the SavedVariables workaround (see *Beta caveats*) |
-| `/fg resync` | levelled elsewhere? skips the quests that would give 20% xp or less and continues from the first open step |
-| `/fg edit here` / `npc` / `note <text>` / `radius <yd>` / `clear`, `/fg edits` | fix the current step in place (position = where you stand, npc = your target); saved per guide and account; the maintainer folds them into the published guides |
+| `/fg` | Status: level, zone, coordinates, quest log, current step, target |
+| `/fg show` `hide` `toggle`, `/fg hideall` | The guide window; hideall hides the window and the arrow (alt-click the minimap button) |
+| `/fg guides`, `/fg guide <name>`, `/fg path [name\|race]` | List or start a guide; follow another race's route |
+| `/fg dungeons`, `/fg resume` | Dungeon guides; back to your chapter |
+| `/fg skip` `back` `next` `step <n>` `reset`, `/fg resync` | Move through the guide; resync skips quests you out-levelled |
+| `/fg later` `now <n>` `skipped` `order reset` | Put a step off, do one now, bring back skipped steps (or right-click a step) |
+| `/fg mode auto\|guide`, `/fg track` | Auto mode follows your quest log without a guide |
+| `/fg quests`, `/fg quest <id\|name>`, `/fg avail` | Your quest log; what the database knows about a quest; quests to pick up here |
+| `/fg nav`, `/fg way <x> <y>`, `/fg pos`, `/fg target` | Distance to the step; point the arrow at a spot; your position; your target |
+| `/fg fp`, `/fg remind`, `/fg xp`, `/fg ding` | Untaken flight points; flight and trainer nudges; levelling pace; level-up announcement |
+| `/fg auto accept\|turnin\|share\|shared\|announce` | Auto-accept, auto-turn-in, and quest sharing with your group (hold SHIFT to do it by hand) |
+| `/fg arrow`, `/fg waypoint`, `/fg route`, `/fg skull`, `/fg bliz` | The arrow, the in-world waypoint and its path, skulls over quest mobs, Blizzard's map pin |
+| `/fg lock` `unlock` `scale <n>` `resetpos`, `/fg qg <setting> <value>`, `/fg minimap` | Window look and position |
+| `/fg dungeon on\|off` | Put the guide away inside instances |
+| `/fg edit`, `/fg edits` | Fix the current step where you stand (position, npc, note, radius) |
+| `/fg wrong [text]` (or `report`), `/fg reports` | Report a wrong step; list your reports |
+| `/fg share`, `/fg run`, `/fg scan` | Data collection (below) |
+| `/fg options`, `/fg persist` | Options panel; state of the beta workaround |
 
-The window and the floating arrow are draggable while unlocked (`/fg unlock` / `/fg lock`); `/fg arrow off` hides the arrow, `/fg bliz off` disables the Blizzard map-pin arrow. The **Guides** button opens a picker (auto mode, a route or a chapter); **Auto**/**Guide** switches modes. Below them, **Unknown Quests** opens a panel under the window with the quests in your log that no guide covers (left click opens one in the quest log, right click reports it), and **Dungeon Quests** opens a panel listing your dungeons - pick one to see its quests and where each stands, with a Waypoint to the entrance, without moving the guide off its step.
+For debugging: `/fg debug`, `perf`, `eval`, `tracker`, `npdbg`, `wpdbg`, `harvest`.
 
-Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md) for bug reports, guide edits, and testing.
+## Data collection and privacy
 
-## Layout
+All three are off until you turn them on under Options → Data collection. None of them records
+other players, your name, realm or account, or the time of day.
 
-```
-ForeverGuide/
-  ForeverGuide.toc
-  Core.lua          namespace, secret-value-safe helpers, module registry, lifecycle
-  Database.lua      SavedVariables (ForeverGuideDB account, ForeverGuideCharDB per char)
-  Events.lua        one event frame + internal FG_* message bus + debounce
-  Persist.lua       beta workaround: mirrors guide/progress/settings into CVars (SavedVariables are not read back)
-  Player.lua        level, faction, class, race, map, zone, coords, facing, target/npc info
-  Quest.lua         quest log snapshot, states, objective diffing, titles, Blizzard waypoints
-  Navigation.lua    map coords -> distance/direction, arrival detection, Blizzard user waypoint
-  Guide.lua         guide registry + the step interpreter (advance / recovery / skip)
-  DB.lua            access to the bundled quest database (where does a quest start / end / its objectives)
-  Tracker.lua       auto mode: navigates the quest log using the database
-  Recorder.lua      Contribute data: quest givers / enders, NPC and objective spots, target votes (opt-in, no names or times)
-  Run.lua           Record runs: a timed log of play, sent in segments (opt-in, no names or clock time)
-  Share.lua         /fg share: the allowlisted export string for the feedback form (docs/SHARE-FORMAT.md)
-  Scanner.lua       quest id scanner (/fg scan) -> which quest ids exist on Forever's server
-  UI.lua            coordinator of the interface + the guide picker
-  UI/Theme.lua      textures, colours, fonts, backdrops, buttons, pulse ticker (Textures/*.tga from tools/make_textures.py)
-  UI/QuestGuideFrame.lua   the Quest Guide window (parchment + gold), header, list, Guide / Guides buttons
-  UI/QuestGuideHeader.lua, QuestList.lua, QuestRow.lua   the rows: number ring, kind icon, title, objective line, distance
-  UI/QuestWaypoint.lua     the in-world gold waypoint: rides on the engine's super-tracked pin when the client can
-                           project it, otherwise placed by a chase-camera perspective model; the camera's direction is
-                           recovered from where the engine parks its (invalid) pin (+ QuestRoute.lua dotted path)
-  UI/MobMarker.lua         skulls over quest mobs, anchored to enemy nameplates (raid icons are blocked for addons here)
-  UI/QuestGuideConfig.lua  settings (/fg qg ..., options panel)
-  Arrow.lua         compact gold chevron - fallback when the world pin cannot show (Textures/chevron.tga)
-  AutoQuest.lua     auto-accept / auto-turn-in through the normal quest windows
-  Minimap.lua       minimap button
-  Options.lua       options panel (Settings canvas category)
-  Editor.lua        in-game step corrections (/fg edit) applied over the guide data
-  Keybinds.lua      key binding names + functions for Bindings.xml
-  Commands.lua      /fg
-  Init.lua          boots the lifecycle (last in the TOC)
-  Data/             bundled quest database, WoW Forever's additions merged in (published - do not edit; see Data/README.md)
-  Guides/           the routes, zone and dungeon guides as data-only Lua (published - do not edit;
-                    docs/GUIDE-SCHEMA.md documents a guide's fields)
-  tools/
-    decode_share.py     decode + validate a /fg share string with only Python's standard library (docs/SHARE-FORMAT.md)
-    share_schema.lua    writes docs/share-format.schema.json (the share allowlist as JSON Schema) from Share.lua
-    package.py          dist/ForeverGuide-<version>.zip (--dev includes tools and sources)
-    test/               headless engine test (lua5.1 tools/test/run_tests.lua) and the data-only
-                        check on Guides/ and Data/ (lua5.1 tools/test/check_data_only.lua)
-    screenshots/        addon windows as PNGs without the game: dump_ui.lua opens them headless and writes
-                        their frame trees, render.py paints them (luajit tools/screenshots/dump_ui.lua build/screenshots
-                        && uv run tools/screenshots/render.py build/screenshots)
-```
+- **Contribute data** (`/fg share on`) collects who gives and takes each quest and where objectives
+  progress. `/fg share` copies it, with your reports, as one string.
+- **Scanner** (`/fg scan on`, then `/fg scan new`) asks the server about quest ids the addon does not
+  know yet.
+- **Record runs** adds Start, Pause, Stop and Send to the guide window: a timed log of your play for
+  tuning the routes. Send copies one segment.
 
-## WoW Forever data (the ~1000 new quests)
+Paste what you copy into the feedback form, "Send feedback" at
+[codex.ironpipe.dev](https://codex.ironpipe.dev/). In the share window, **Readable** shows exactly
+what the string holds. [docs/SHARE-FORMAT.md](docs/SHARE-FORMAT.md) documents every field and how to decode it yourself.
 
-Vanilla quests come from Questie. Everything Forever adds is collected by the maintainer's data build
-and merged over the vanilla tables before `Data/` is packed (vanilla records only gain what they lack;
-unknown ids become new records flagged `forever`). Two sources:
+## Reporting a problem
 
-* **Players contributing data** (opt in under Options → Data collection or `/fg share on`): the
-  creatures that give and end each quest, where NPCs stand and objectives progress (rounded to half
-  a map unit), which mobs were targeted when an objective moved, the player level a quest was
-  offered at, and zone maps. Only creatures are kept: a quest shared by another player is flagged
-  `shared`, never with who shared it, and nothing records the time. `/fg share` turns it into one
-  string for the feedback form ([format](docs/SHARE-FORMAT.md)).
-* **Players recording runs** (a separate opt-in, **Record runs** under Options → Data collection):
-  Start, Pause, Stop and Send on the guide window. A run is a timed log of quests, kills, movement,
-  flights, deaths and the hearthstone, with the guide step being followed; its clock counts seconds
-  since Start, never the time of day. Send puts a segment into the share window for the feedback
-  form ([format](docs/SHARE-FORMAT.md#run-segments)). The maintainer's route planner calibrates
-  travel and kill times from them.
-* **The client's own tables**: `QuestV2`, `QuestV2CliTask`, `QuestObjective`, `QuestPOIBlob` and
-  `QuestPOIPoint`, exported as CSV from wago.tools, are imported by the maintainer's data build
-  (see [Routes](#routes)). Objective
-  positions are world coordinates (`spw`) and are converted to map coordinates in-game.
+Stand where the step should be and use the window's **!** button (or `/fg wrong <text>`), then
+`/fg share` and paste the string into the feedback form. For a Lua error, turn on
+`/console scriptErrors 1`, `/reload`, and paste the first error with its stack trace. ForeverGuide
+prints the errors it catches itself once per reload as `ForeverGuide: error in …`.
 
-Hand fixes are applied last by the data build. Player reports (`/fg wrong`) reach the maintainer
-through `/fg share` and the feedback form. SavedVariables snapshots are private local files, ignored
-by Git. Before posting a report or committing a derived
-correction, scrub account, character, and realm names (including free text and file paths),
-and omit timestamps or player locations unless needed to reproduce the bug. Share the
-smallest correction, not a raw SavedVariables file. Gitignore and deleting a tracked file
-do not remove copies from past commits.
+## How this repository is managed
 
-What the client's tables actually contain on build 69913: `QuestV2` is only the **list of quest ids**
-(6600 - no titles, levels or zones; those are server-side), and the POI tables hold ~50 static
-points. The id list is still gold: it is shipped as `Data/ForeverQuestIDs.lua` and tells the addon
-which vanilla quests are gone from Forever (711 - later-phase content, battlegrounds, mount
-exchanges; they are excluded from routes and `/fg avail`) and which ids are Forever's own (3054).
-Opt in to Scanner under Options → Data collection (or `/fg scan on`) first.
-**`/fg scan new`** asks the server for exactly those ids and records title, level and objective texts
-as they arrive (the server throttles; run it in the background over a few sessions, `/fg scan status`
-shows progress), and `/fg share` carries them to the maintainer. Positions of
-the new quests come from contributed data while you play them.
+- **Guides and data** (`Guides/`, `Data/`) are planned and built in
+  [forever-codex](https://github.com/prezus/forever-codex) and arrive here as pull requests of
+  finished Lua. Don't edit them by hand: CI checks that they are data only, and refuses a fork's PR
+  that changes them. [Data/README.md](Data/README.md) lists the sources.
+- **The engine** (everything else) changes by pull request. CI runs the checks in
+  [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Releases** are cut by the maintainer ([CONTRIBUTING.md](CONTRIBUTING.md#releases)).
+- **Problems** go through the feedback form, or as issues on
+  [forever-codex](https://github.com/prezus/forever-codex/issues). This repository has issues turned off.
 
-## Routes
+Developers start with [CONTRIBUTING.md](CONTRIBUTING.md). Coding agents start with [AGENTS.md](AGENTS.md).
 
-The routes - one continuous 1-60 route per starting race, as a chain of zone chapters
-(`GEN_<FACTION>_<RACE>_<nn>_<ZONE>`), plus the zone and dungeon guides - and the quest database are
-generated by the maintainer's route planner and data build, which live outside this repository. It
-publishes them here as pull requests of finished Lua in `Guides/` and `Data/`; this repository checks
-that they are data and nothing else (`tools/test/check_data_only.lua`) and runs the engine tests.
+## License and credits
 
-Do not edit `Guides/` or `Data/` by hand: the next publish replaces them, and CI refuses a fork's pull
-request that changes them. To report a wrong or slow step, open an issue or use `/fg wrong` in game;
-`/fg edit` fixes a step for you right away.
+The [MIT license](LICENSE) covers original ForeverGuide code and assets only. It does not cover the
+bundled Questie-derived database: see [Data/README.md](Data/README.md#redistribution-status-unresolved)
+before redistributing a package.
 
-## Guide format
-
-Steps only need a type and a quest id when the bundled database knows the quest:
-`{ "type": "ACCEPT", "quest": 783 }`, `{ "type": "KILL", "quest": 7 }`, `{ "type": "TURNIN", "quest": 7 }`.
-Names and coordinates come from the database at runtime (explicit `x`/`y` override them).
-[docs/GUIDE-SCHEMA.md](docs/GUIDE-SCHEMA.md) documents every field. The route planner validates the
-guides against it and publishes them as `Guides/*.lua` + `Guides/Guides.xml`.
-
-Coordinates use `map` (uiMapID) plus a `zone` name as fallback: if Forever does not know the Classic
-Era uiMapID, the engine matches the zone by name against the player's current map. Run `/fg pos` in
-each zone to learn Forever's real IDs; while contributing data, the addon also keeps every map it sees.
-
-## Beta caveats (1.60.1)
-
-* **SavedVariables are written at logout but never read back at login** (confirmed on build 69913 -
-  every session started from scratch). `Persist.lua` works around it: the active guide, step, progress,
-  mode, settings and step edits are mirrored into addon-registered CVars (which the client does persist)
-  and restored when the SavedVariables come back empty. `/fg persist` shows the state. Big data
-  (contributed facts, scan/harvest data, `/fg wrong` reports) still only lives in the SavedVariables *files*, which are
-  overwritten at every reload: `/fg share` copies facts and reports out before you log out.
-* Everything from the game can be a secret value in combat. All reads go through `ns.Plain*` helpers.
-* The classic quest IDs / NPC IDs in the sample guide come from Questie's Classic Era data and must be
-  verified on Forever (`/fg quest <id>`, contributed data).
+ForeverGuide was created by RevoltLive85 and is maintained by [prezus](https://github.com/prezus).
+The original development log is [docs/history/PHASE1_NOTES.md](docs/history/PHASE1_NOTES.md).
