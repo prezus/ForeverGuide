@@ -135,7 +135,7 @@ function handlers.path(rest)
     if rest == "" then
         local cur = G:CurrentRoute()
         for _, r in ipairs(G:Routes()) do
-            ns.Printf("  %s route - %d chapters%s%s", r.label, #r.chapters, r.mine and "  (your race)" or "", cur and cur.key == r.key and "  <- following" or "")
+            ns.Printf("  %s route - %d chapters%s%s", r.label, #r.chapters, r.mine and "  (your race)" or (r.alternate and "  (alternate)" or ""), cur and cur.key == r.key and "  <- following" or "")
         end
         ns.Print("/fg path <name> follows that route (e.g. /fg path dwarf); /fg path race goes back to your race's own.")
         return

@@ -168,7 +168,7 @@ function UI:RefreshPicker()
     if #routes > 0 then
         add("ROUTES", "", nil, false, false, true)
         for _, r in ipairs(routes) do
-            local sub = string.format("%d chapters%s", #r.chapters, r.mine and "  ·  your race" or "")
+            local sub = string.format("%d chapters%s", #r.chapters, r.mine and "  ·  your race" or (r.alternate and "  ·  alternate, chosen by hand" or ""))
             add(r.label .. " route", sub, nil, not r.mine and not r.chosen, current and current.key == r.key, false,
                 function() G:ChooseRoute(r.key) end)
         end

@@ -163,6 +163,13 @@ function Guide:IsDungeon(guide)
     return type(guide) == "table" and guide.kind == "dungeon"
 end
 
+--- A chapter of an alternate route (`kind = "alternate"`, e.g. TUGs' route beside ours): listed in
+--- the route list under its `routeLabel`, followed only once the player chooses it, never the
+--- race's default and never auto-picked otherwise.
+function Guide:IsAlternate(guide)
+    return type(guide) == "table" and guide.kind == "alternate"
+end
+
 --- The dungeon guides this character may follow, by level then name.
 function Guide:Dungeons()
     local out = {}
@@ -224,7 +231,7 @@ function Guide:RouteOf(guide)
     return "GEN_" .. faction .. "_" .. key, key
 end
 
---- The routes this character's faction can follow: { key, label, chapters = {guide...}, mine = bool, chosen = bool }
+--- The routes this character's faction can follow: { key, label, chapters = {guide...}, mine = bool, alternate = bool, chosen = bool }
 function Guide:Routes()
     local byKey, order = {}, {}
     for _, id in ipairs(self.list) do
@@ -233,7 +240,9 @@ function Guide:Routes()
         if key and self:Applicable(g) then
             local r = byKey[key]
             if not r then
-                r = { key = key, race = race, label = ROUTE_LABEL[race] or race, chapters = {}, mine = self:ForMyRace(g) }
+                local alternate = self:IsAlternate(g)
+                r = { key = key, race = race, label = g.routeLabel or ROUTE_LABEL[race] or race, chapters = {},
+                      mine = self:ForMyRace(g) and not alternate, alternate = alternate }
                 byKey[key] = r
                 order[#order + 1] = r
             end
@@ -256,7 +265,8 @@ function Guide:CurrentRoute()
     local routes = self:Routes()
     for _, r in ipairs(routes) do if r.chosen then return r end end
     for _, r in ipairs(routes) do if r.mine then return r end end
-    return routes[1]
+    for _, r in ipairs(routes) do if not r.alternate then return r end end
+    return nil
 end
 
 --- Choose a route (key or label); activates the chapter that fits the level.
@@ -304,7 +314,7 @@ function Guide:OffRouteChapter()
     if not g then return nil end
     local key, race = self:RouteOf(g)
     if not key then return nil end                        -- GEN_ZONE_* / hand-written guides: fine
-    if self:ForMyRace(g) then return nil end              -- our own route
+    if self:ForMyRace(g) and not self:IsAlternate(g) then return nil end   -- our own route
     if ns.char.route == key then return nil end           -- the player asked for this one
     local mine = self:RouteChapterForLevel()
     if not mine or mine.id == g.id then return nil end
@@ -323,7 +333,8 @@ function Guide:AutoPick()
     local best, bestScore = nil, nil
     for _, id in ipairs(self.list) do
         local g = self.registry[id]
-        if self:Applicable(g) and not self:IsDungeon(g) then
+        -- an alternate route's chapter only once the player has chosen that route
+        if self:Applicable(g) and not self:IsDungeon(g) and (chain[g.id] or not self:IsAlternate(g)) then
             local minL, maxL = g.minLevel or 1, g.maxLevel or 60
             local score = 0
             if level < minL or level > maxL then
