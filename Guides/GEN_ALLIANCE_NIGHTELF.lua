@@ -1336,7 +1336,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_17_STRANGLETHORN_VALE",
     name = "17. Stranglethorn Vale 32-33 (Night Elf)",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 32,
@@ -1350,11 +1350,11 @@ ns.RegisterGuide({
     steps = [[{
 {type="FLIGHTPATH",npc=2859,npcName="Gyll",map=1434,zone="Stranglethorn Vale",x=27.5,y=77.8},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=27.3,y=76.5,radius=60,note="travel to Stranglethorn Vale (Stranglethorn Vale)"},
-{type="ACCEPT",quest=201,questName="Investigate the Camp",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,note="Objectives: Explore Zone, Locate the hunters' camp"},
-{type="TURNIN",quest=201,questName="Investigate the Camp",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2},
 {type="HEARTH",npc=6807,npcName="Innkeeper Skindle",map=1434,zone="Booty Bay",x=27,y=77.3,note="talk to Innkeeper Skindle and make this inn your home"},
 {type="ACCEPT",quest=575,questName="Supply and Demand",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
 {type="ACCEPT",quest=605,questName="Singing Blue Shards",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
+{type="ACCEPT",quest=201,questName="Investigate the Camp",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,note="Objectives: Explore Zone, Locate the hunters' camp"},
+{type="TURNIN",quest=201,questName="Investigate the Camp",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2},
 {type="ACCEPT",quest=189,questName="Bloodscalp Ears",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
 {type="COLLECT",quest=605,questName="Singing Blue Shards",target="Singing Crystal Shard",count=10,map=1434,zone="Stranglethorn Vale",x=39.1,y=52,near=true},
 {type="TURNIN",quest=605,questName="Singing Blue Shards",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},

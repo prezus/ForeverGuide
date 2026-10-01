@@ -919,7 +919,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_09_STRANGLETHORN_VALE",
     name = "9. Stranglethorn Vale 32-32 (Tauren)",
-    version = 8,
+    version = 9,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 32,
@@ -937,6 +937,8 @@ ns.RegisterGuide({
 {type="HEARTH",npc=6807,npcName="Innkeeper Skindle",map=1434,zone="Booty Bay",x=27,y=77.3,note="talk to Innkeeper Skindle and make this inn your home"},
 {type="ACCEPT",quest=575,questName="Supply and Demand",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
 {type="ACCEPT",quest=605,questName="Singing Blue Shards",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
+{type="ACCEPT",quest=201,questName="Investigate the Camp",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,note="Objectives: Explore Zone, Locate the hunters' camp"},
+{type="TURNIN",quest=201,questName="Investigate the Camp",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2},
 {type="ACCEPT",quest=189,questName="Bloodscalp Ears",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1},
 {type="COLLECT",quest=605,questName="Singing Blue Shards",target="Singing Crystal Shard",count=10,map=1434,zone="Stranglethorn Vale",x=39.1,y=52,near=true},
 {type="TURNIN",quest=605,questName="Singing Blue Shards",npc=2498,npcName="Crank Fizzlebub",map=1434,zone="Stranglethorn Vale",x=27.1,y=77.2},
@@ -972,8 +974,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=581,questName="Hunt for Yenniku",npc=2497,npcName="Nimboya",map=1434,zone="Stranglethorn Vale",x=32.2,y=27.7},
 {type="TRAVEL",map=1434,zone="Stranglethorn Vale",x=32.5,y=29.4,radius=30,note="go to Thysta, the flight master (Grom'gol, Stranglethorn)"},
 {type="FLY",map=1434,zone="Stranglethorn Vale",x=26.9,y=77.1,radius=30,note="fly to Booty Bay, Stranglethorn"},
-{type="ACCEPT",quest=201,questName="Investigate the Camp",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2,note="Objectives: Explore Zone, Locate the hunters' camp"},
-{type="TURNIN",quest=201,questName="Investigate the Camp",npc=773,npcName="Krazek",map=1434,zone="Stranglethorn Vale",x=27,y=77.2},
 {type="TURNIN",quest=575,questName="Supply and Demand",npc=2495,npcName="Drizzlik",map=1434,zone="Stranglethorn Vale",x=28.3,y=77.6},
 {type="TURNIN",quest=189,questName="Bloodscalp Ears",npc=737,npcName="Kebok",map=1434,zone="Stranglethorn Vale",x=27,y=77.1}
 }]],
