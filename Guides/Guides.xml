@@ -6,6 +6,7 @@
     <Script file="GEN_ALLIANCE_HUMAN.lua"/>
     <Script file="GEN_ALLIANCE_NIGHTELF.lua"/>
     <Script file="GEN_ALLIANCE_SKYBORNE.lua"/>
+    <Script file="GEN_ALLIANCE_TUGSDWARF.lua"/>
     <Script file="GEN_HORDE_ORC.lua"/>
     <Script file="GEN_HORDE_SCOURGE.lua"/>
     <Script file="GEN_HORDE_SKYBORNE.lua"/>
