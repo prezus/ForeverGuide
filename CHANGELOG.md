@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Chat stays quiet: ForeverGuide writes to chat only to answer a `/fg` command you typed, or to warn about something you need to fix (a collapsed quest log header, progress that would not survive a login). Gone: the login line, "Guide: …" and chapter-complete lines, skip / later / do-now lines from the window and key bindings, the dungeon step-aside lines, "X is taken", "noted N flight points", the facts-collected reminder, the cvar-mirror restore line, the share window's instructions, and Record runs' start and segment lines (its dialog asks instead). Auto accept and turn-in no longer announce each quest; `/fg auto announce on` brings that back. Flight point and trainer reminders stay (`/fg remind` turns them off), and `/fg debug on` shows the rest.
 - Record runs: a dialog asks you to **Send** when a run segment is nearly full, sends and resumes in one click when it is full, and asks you to **Resume** when you log in to a paused run, so a long recording does not lose play.
 - Guides: your quest log stays under 40 on every route: optional dungeon quests are picked up on the way only where they fit, and the dungeon guides pick up the rest. Routes are timed at real walking pace, so they take fewer detours, change zone less often and have fewer long walks.
 - Guides: a second Dwarf / Gnome route, TUGs' levelling route, to choose in **Guides** if you want to try it. Your race's own route stays the default.

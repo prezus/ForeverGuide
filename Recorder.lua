@@ -63,8 +63,7 @@ local function Remind()
     for _, at in ipairs(REMIND_AT) do
         if facts >= at and not reminded[at] then
             reminded[at] = true
-            ns.Print(string.format("%d quest and NPC facts collected. The game forgets them at logout: "
-                .. "/fg share copies them for the feedback form.", facts))
+            ns.Debug("contribute:", facts, "quest and NPC facts collected")
         end
     end
 end

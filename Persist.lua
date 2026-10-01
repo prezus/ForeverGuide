@@ -397,7 +397,7 @@ end
 function Persist:OnEnable()
     local D = ns.Database
     if (D.freshAccount or D.freshChar) and (self.restored.acct or self.restored.char) then
-        ns.Print("beta workaround: the client did not load SavedVariables - restored your guide, progress and settings from the cvar mirror.")
+        ns.Debug("persist: SavedVariables not loaded; restored from the cvar mirror")
     end
     -- settings can change without an event (options panel, drag); mirror every 30 s and at logout
     local function tick()

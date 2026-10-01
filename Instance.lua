@@ -43,10 +43,9 @@ function Instance:Check(reason)
     ns.UI:Suspend(want, "dungeon")
     if want then
         self.kind = kind
-        ns.Printf("%s - the guide is out of the way until you leave (/fg dungeon off keeps it up).",
-            (LABEL[kind] or "instance"):gsub("^%l", string.upper))
+        ns.Debug("instance: guide steps aside in", LABEL[kind] or "instance")
     else
-        ns.Print("out of the instance - the guide is back.")
+        ns.Debug("instance: guide is back")
     end
     ns.Events:Fire("FG_INSTANCE_CHANGED", want, kind)
     return true

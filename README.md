@@ -17,7 +17,7 @@ for you is listed in the [client and player-control policy](COMPATIBILITY_POLICY
    Back, Skip, Auto and Resync.
 
 The beta client does not read SavedVariables back at login. ForeverGuide keeps your guide, progress,
-settings and step edits in CVars instead and restores them ("beta workaround" in chat). Reports,
+settings and step edits in CVars instead and restores them. Reports,
 collected data and runs live only in the SavedVariables file, so send them (below) before you log out.
 
 ## Commands
