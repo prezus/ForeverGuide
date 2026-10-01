@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_01_1_6_COLDRIDGE_VALLEY",
     name = "1. 1-6 Coldridge Valley (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -76,6 +77,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_02_6_9_DWARF_GNOME",
     name = "2. 6-9 Dwarf&Gnome (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -151,6 +153,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_03_9_11_DUN_MOROGH_LOCH_MODAN",
     name = "3. 9-11 Dun Morogh, Loch Modan (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -244,6 +247,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_04_11_14_DARKSHORE",
     name = "4. 11-14 Darkshore (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -368,6 +372,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_05_14_17_LOCH_MODAN",
     name = "5. 14-17 Loch Modan (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -456,6 +461,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_06_17_19_DARKSHORE",
     name = "6. 17-19 Darkshore (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -545,6 +551,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_07_19_21_DEADMINES",
     name = "7. 19-21 Deadmines (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -582,6 +589,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_08_19_21_REDRIDGE_MOUNTAINS",
     name = "8. 19-21 Redridge Mountains (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -653,6 +661,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_09_21_22_ASHENVALE",
     name = "9. 21-22 Ashenvale (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -708,6 +717,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_10_22_23_DUSKWOOD",
     name = "10. 22-23 Duskwood (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -784,6 +794,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_11_23_24_REDRIDGE_MOUNTAINS",
     name = "11. 23-24 Redridge Mountains (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -853,6 +864,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_12_24_25_ASHENVALE",
     name = "12. 24-25 Ashenvale (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -926,6 +938,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_13_25_27_WETLANDS",
     name = "13. 25-27 Wetlands (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -1020,6 +1033,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_14_26_28_ASHENVALE_WETLANDS",
     name = "14. 26-28 Ashenvale&Wetlands (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -1125,6 +1139,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_15_29_31_DUSKWOOD_HILLSBRAD",
     name = "15. 29-31 Duskwood,Hillsbrad (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -1293,6 +1308,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_16_31_36STV_DESOLACE",
     name = "16. 31-36STV,Desolace (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -1553,6 +1569,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_17_36_37ARATHI",
     name = "17. 36-37Arathi (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -1631,6 +1648,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_18_38_39DUSTWALLOW_MARSH_STV",
     name = "18. 38-39Dustwallow Marsh,STV (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -1742,6 +1760,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_19_40_43BADLANDS_ULDAMAN",
     name = "19. 40-43Badlands,Uldaman (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -1875,6 +1894,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_20_41_44TANARIS_STV",
     name = "20. 41-44Tanaris,STV (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -2049,6 +2069,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_21_44_45FERALAS",
     name = "21. 44-45Feralas (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -2128,6 +2149,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_22_45_47TANARIS_HINTERLANDS",
     name = "22. 45-47Tanaris,Hinterlands (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -2262,6 +2284,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_23_47_49SEARING_GORGE",
     name = "23. 47-49Searing Gorge (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -2460,6 +2483,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_24_49_51UN_GORO",
     name = "24. 49-51Un'Goro (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -2552,6 +2576,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_25_52_53FELWOOD",
     name = "25. 52-53Felwood (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -2785,6 +2810,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_26_55_56BS_WPL",
     name = "26. 55-56BS,WPL (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
@@ -2899,6 +2925,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_TUGSDWARF_27_56_60WPL_EPL_BS",
     name = "27. 56-60WPL,EPL,BS (TUGs)",
+    version = 1,
     kind = "alternate",
     routeLabel = "Dwarf / Gnome (TUGs)",
     faction = "Alliance",
