@@ -1408,6 +1408,56 @@ section("full quest log", function()
 end)
 
 -- ---- corpse run ---------------------------------------------------------------------------------
+-- ---- a run near its limit, full, or paused at login asks the player with a dialog --------------
+-- (a long recording must not lose play: the chat line at 2,000 entries is easy to miss)
+section("a run near its limit, full, or paused at login asks the player with a dialog", function()
+    local R = ns.Run
+    need(R ~= nil and R.NOTICE_AT ~= nil, "the recorder knows when to ask")
+    local recordWas = ns.db.recordRuns
+    ns.db.recordRuns = true
+    ns.char.run = nil
+    R:Start()
+    local function fill(to) while #ns.char.run.entries < to do ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7104, 1, 1, 2, false, "x") end end
+    local function notice() return rawget(_G, "ForeverGuideRunNotice") end
+    local function shown() local n = notice() return n ~= nil and n:IsShown() end
+
+    fill(R.NOTICE_AT - 1)
+    check(not shown(), "below the mark nothing interrupts play")
+    fill(R.NOTICE_AT)
+    check(shown() and notice().kind == "near", "near the limit a dialog asks to send the segment")
+    local seg = ns.char.run.seg
+    notice().send:GetScript("OnClick")(notice().send)
+    local share = rawget(_G, "ForeverGuideShare")
+    check(share and share:IsShown() and ns.char.run.seg == seg + 1 and R:State() == "recording" and not shown(),
+        "Send now hands the segment to the share window and recording carries on in the next one")
+    share:Hide()
+
+    fill(R.NOTICE_AT)
+    notice().later:GetScript("OnClick")(notice().later)
+    check(not shown(), "Later closes the dialog")
+    fill(R.MAX_ENTRIES + 1)
+    check(R:State() == "paused" and shown() and notice().kind == "full", "a full segment pauses the run and the dialog says so")
+    seg = ns.char.run.seg
+    notice().send:GetScript("OnClick")(notice().send)
+    check(rawget(_G, "ForeverGuideShare"):IsShown() and ns.char.run.seg == seg + 1 and R:State() == "recording",
+        "Send and resume sends the full segment and records on from the same step")
+    rawget(_G, "ForeverGuideShare"):Hide()
+
+    R:Pause()
+    notice():Hide()
+    R:OnEnterWorld(true, false)
+    check(shown() and notice().kind == "paused", "logging in to a paused run asks to resume it")
+    notice().send:GetScript("OnClick")(notice().send)
+    check(R:State() == "recording" and not shown(), "Resume recording resumes the run")
+    R:Pause()
+    R:OnEnterWorld(true, false)
+    R:Resume()
+    check(not shown(), "resuming from the guide window closes the dialog too")
+
+    ns.Commands:Run("run discard")
+    ns.db.recordRuns = recordWas
+end)
+
 section("corpse run", function()
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
     local before = ns.Navigation.target

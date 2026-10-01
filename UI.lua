@@ -337,6 +337,63 @@ function UI:OnMap(open)
     if f then f:SetFrameStrata(open and "FULLSCREEN_DIALOG" or "HIGH") end
 end
 
+-- ------------------------------------------------------------
+-- Record runs: the dialog that keeps a long recording from losing play
+-- ------------------------------------------------------------
+local NOTICE = {
+    near = { text = "Your run segment is %d of %d entries full. Send it now so nothing is lost: paste it into the feedback form, and recording carries on from here.",
+             action = "Send now", later = "Later" },
+    full = { text = "Your run segment is full (%d of %d entries), so recording is paused. Send it, and recording resumes from this step.",
+             action = "Send and resume", later = "Later" },
+    paused = { text = "Your run is paused: logging out pauses it. Resume to keep recording this session.",
+               action = "Resume recording", later = "Not now" },
+}
+
+local notice
+local function CreateNotice()
+    local ok, f = pcall(CreateFrame, "Frame", "ForeverGuideRunNotice", UIParent, "BackdropTemplate")
+    if not ok or not f then f = CreateFrame("Frame", "ForeverGuideRunNotice", UIParent) end
+    f:SetSize(340, 128)
+    f:SetPoint("TOP", UIParent, "TOP", 0, -160)
+    f:SetFrameStrata("DIALOG")
+    f:EnableMouse(true)
+    f:SetClampedToScreen(true)
+    Theme.Backdrop(f, "panel", 0.85)
+    f.title = Theme.NewText(f, { fancy = true, size = 15, color = Theme.C.goldLight, oneLine = true })
+    f.title:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -10)
+    f.title:SetText("RECORD RUNS")
+    f.text = Theme.NewText(f, { size = 12 })
+    f.text:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -34)
+    f.text:SetPoint("TOPRIGHT", f, "TOPRIGHT", -PAD, -34)
+    f.send = Theme.NewButton(f, "", 150, 24, function()
+        local R = ns.Run
+        if f.kind == "near" then R:Send() elseif f.kind == "full" then R:SendAndResume() else R:Resume() end
+        f:Hide()
+    end)
+    f.send:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", PAD, 10)
+    f.later = Theme.NewButton(f, "", 110, 24, function() f:Hide() end)
+    f.later:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -PAD, 10)
+    f:Hide()
+    return f
+end
+
+--- Ask about the run: `kind` is "near" (send soon), "full" (paused until sent) or "paused" (resume).
+function UI:ShowRunNotice(kind, count, max)
+    local spec = NOTICE[kind]
+    if not spec then return end
+    notice = notice or CreateNotice()
+    notice.kind = kind
+    notice.text:SetText(string.format(spec.text, count or 0, max or 0))
+    notice.send.label:SetText(spec.action)
+    notice.later.label:SetText(spec.later)
+    notice:Show()
+end
+
+--- Close the run dialog: the segment was sent or the run resumed, from the dialog or the guide window.
+function UI:HideRunNotice()
+    if notice then notice:Hide() end
+end
+
 -- hide in combat (optional): remember what was showing, restore afterwards
 local combatHidden
 function UI:OnCombat(inCombat)
