@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Record runs: a dialog asks you to **Send** when a run segment is nearly full, sends and resumes in one click when it is full, and asks you to **Resume** when you log in to a paused run, so a long recording does not lose play.
 - Guides: your quest log stays under 40 on every route: optional dungeon quests are picked up on the way only where they fit, and the dungeon guides pick up the rest. Routes are timed at real walking pace, so they take fewer detours, change zone less often and have fewer long walks.
 - Guides: a second Dwarf / Gnome route, TUGs' levelling route, to choose in **Guides** if you want to try it. Your race's own route stays the default.
 - Routes: a route can be an alternate one, listed under its own name in **Guides** and `/fg path` but followed only when you choose it. Your race's own route stays the default, and auto-pick never switches you to an alternate route.

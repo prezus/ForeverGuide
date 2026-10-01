@@ -28,7 +28,8 @@ local Run = ns:NewModule("Run")
 local PlainNumber, PlainString, PlainBool = ns.PlainNumber, ns.PlainString, ns.PlainBool
 
 Run.MAX_ENTRIES = 2500     -- one segment: about one 50,000-character share part
-local WARN_AT = 2000       -- entries: remind to send the segment
+local WARN_AT = 2000       -- entries: remind to send the segment (a chat line)
+Run.NOTICE_AT = 2250       -- entries: ask with a dialog to send the segment before it fills
 local MOVE_EVERY = 5       -- seconds between movement samples
 local MOVE_MIN = 0.05      -- map units the player must have moved for a sample
 local HEARTHSTONE = 8690
@@ -46,9 +47,17 @@ local fightStart, lastKill
 local taxiMoney, taxiStart, onTaxi
 local deadAt
 local warned = false
+local noticed = false        -- the near-full dialog has been shown for this segment
 
 local function Enabled() return ns.db and ns.db.recordRuns == true end
 local function Current() return ns.char and ns.char.run end
+
+--- Ask the player with the run dialog (UI:ShowRunNotice): "near" the limit, "full" and paused, or
+--- "paused" at login. A long recording must not lose play to a chat line nobody read.
+local function Notice(kind)
+    local run = Current()
+    if run and ns.UI and ns.UI.ShowRunNotice then ns.UI:ShowRunNotice(kind, #run.entries, Run.MAX_ENTRIES) end
+end
 
 local function Round(n, places) return n and ns.Round(n, places) end
 
@@ -93,6 +102,7 @@ local function Add(kind, fields, force)
         Run:Pause()
         ns.Warn(string.format("run segment full (%d entries): recording paused. Press Send on the guide window "
             .. "to paste it into the feedback form, then Resume.", #run.entries))
+        Notice("full")
         return nil
     end
     local e = fields or {}
@@ -104,6 +114,10 @@ local function Add(kind, fields, force)
     if #run.entries >= WARN_AT and not warned then
         warned = true
         ns.Print(string.format("run segment at %d of %d entries: press Send on the guide window soon.", #run.entries, Run.MAX_ENTRIES))
+    end
+    if #run.entries >= Run.NOTICE_AT and not noticed and not force then
+        noticed = true
+        Notice("near")
     end
     ns.Events:Fire("FG_RUN_ENTRY", kind)
     return e
@@ -164,6 +178,7 @@ function Run:Resume()
         Add("GAP")
     end
     Add("RESUME")
+    if ns.UI and ns.UI.HideRunNotice then ns.UI:HideRunNotice() end
     Changed()
 end
 
@@ -172,7 +187,7 @@ local function CloseSegment(done)
     local run = Current()
     local segment = { id = run.id, seg = run.seg, done = done or nil, entries = run.entries }
     ns.char.runSent = segment
-    run.seg, run.entries, warned = run.seg + 1, {}, false
+    run.seg, run.entries, warned, noticed = run.seg + 1, {}, false, false
     return segment
 end
 
@@ -182,6 +197,7 @@ function Run:Send()
     local run = Current()
     if run and #run.entries > 0 then
         ns.Share:ShowRun(CloseSegment(false))
+        if ns.UI and ns.UI.HideRunNotice then ns.UI:HideRunNotice() end
         Changed()
     elseif ns.char.runSent then
         ns.Share:ShowRun(ns.char.runSent)
@@ -350,6 +366,15 @@ end
 
 function Run:OnEnterWorld()
     Changed()
+    -- logging out pauses the run: say so, or the session goes unrecorded
+    local run = Current()
+    if run and Enabled() and run.state == "paused" then Notice(#run.entries >= self.MAX_ENTRIES and "full" or "paused") end
+end
+
+--- Send a full segment and record on from here: the dialog's "Send and resume".
+function Run:SendAndResume()
+    self:Send()
+    self:Resume()
 end
 
 function Run:OnLogout()
