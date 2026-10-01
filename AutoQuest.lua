@@ -29,7 +29,8 @@ local function Cfg()
     local a = ns.db.auto
     if a.accept == nil then a.accept = "on" end        -- "on" | "off" | "guide"
     if a.turnin == nil then a.turnin = true end
-    if a.announce == nil then a.announce = true end
+    -- announce used to default on; "announce2" marks a choice made since it defaults off
+    if a.announce2 == nil then a.announce, a.announce2 = false, true end
     if a.share == nil then a.share = true end
     if a.shared == nil then a.shared = true end
     return a

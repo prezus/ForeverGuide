@@ -28,7 +28,6 @@ local Run = ns:NewModule("Run")
 local PlainNumber, PlainString, PlainBool = ns.PlainNumber, ns.PlainString, ns.PlainBool
 
 Run.MAX_ENTRIES = 2500     -- one segment: about one 50,000-character share part
-local WARN_AT = 2000       -- entries: remind to send the segment (a chat line)
 Run.NOTICE_AT = 2250       -- entries: ask with a dialog to send the segment before it fills
 local MOVE_EVERY = 5       -- seconds between movement samples
 local MOVE_MIN = 0.05      -- map units the player must have moved for a sample
@@ -46,7 +45,6 @@ local killed = {}            -- guid -> true: deaths already recorded
 local fightStart, lastKill
 local taxiMoney, taxiStart, onTaxi
 local deadAt
-local warned = false
 local noticed = false        -- the near-full dialog has been shown for this segment
 
 local function Enabled() return ns.db and ns.db.recordRuns == true end
@@ -100,8 +98,6 @@ local function Add(kind, fields, force)
     if run.state ~= "recording" and not force then return nil end
     if #run.entries >= Run.MAX_ENTRIES and not force then
         Run:Pause()
-        ns.Warn(string.format("run segment full (%d entries): recording paused. Press Send on the guide window "
-            .. "to paste it into the feedback form, then Resume.", #run.entries))
         Notice("full")
         return nil
     end
@@ -111,10 +107,6 @@ local function Add(kind, fields, force)
     e.m, e.x, e.y = m, Round(x, 2), Round(y, 2)
     e.g, e.s = GuideStep()
     run.entries[#run.entries + 1] = e
-    if #run.entries >= WARN_AT and not warned then
-        warned = true
-        ns.Print(string.format("run segment at %d of %d entries: press Send on the guide window soon.", #run.entries, Run.MAX_ENTRIES))
-    end
     if #run.entries >= Run.NOTICE_AT and not noticed and not force then
         noticed = true
         Notice("near")
@@ -149,11 +141,9 @@ function Run:Start()
         return
     end
     ns.char.run = { id = NewId(), seg = 1, elapsed = 0, state = "recording", entries = {} }
-    warned = false
     StartClock()
     Add("START")
     Changed()
-    ns.Print("run recording. Pause, Stop and Send are on the guide window.")
 end
 
 function Run:Pause()
@@ -187,7 +177,7 @@ local function CloseSegment(done)
     local run = Current()
     local segment = { id = run.id, seg = run.seg, done = done or nil, entries = run.entries }
     ns.char.runSent = segment
-    run.seg, run.entries, warned, noticed = run.seg + 1, {}, false, false
+    run.seg, run.entries, noticed = run.seg + 1, {}, false
     return segment
 end
 

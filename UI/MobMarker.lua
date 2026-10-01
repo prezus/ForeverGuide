@@ -431,8 +431,7 @@ function MM:Scan()
         local tl = tName and string.lower(tName)
         if tl and names[tl] and tagged("target") then
             self.taggedWarned = targetGUID
-            local key = self:TargetKey()
-            ns.Printf("%s is taken - %s to target the next one.", tName, key and ("press " .. key) or "click the skull button (or bind a key: Key Bindings > AddOns > ForeverGuide)")
+            ns.Debug("mob marker:", tName, "is tagged by someone else")
         end
     end
     if not targetGUID or self.taggedWarned ~= targetGUID then self.taggedWarned = nil end

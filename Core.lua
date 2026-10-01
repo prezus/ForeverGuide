@@ -291,9 +291,6 @@ function ns.Boot()
             if not ns.state.enabled then
                 ns.state.enabled = true
                 CallHook("OnEnable")
-                local build = PlainString(select(2, Safe(GetBuildInfo))) or "?"
-                ns.Printf("v%s loaded (build %s). Type %s/fg%s for status, %s/fg help%s for commands.",
-                    ns.version, build, ns.COLOR_OK, ns.COLOR_END, ns.COLOR_OK, ns.COLOR_END)
             end
             CallHook("OnEnterWorld", PlainBool(isLogin), PlainBool(isReload))
         elseif event == "PLAYER_LOGOUT" then

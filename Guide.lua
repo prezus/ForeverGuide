@@ -740,7 +740,6 @@ function Guide:Later(idx)
     end
     self:PlaceAfter(within, anchor)
     self.hold, self.current = nil, nil
-    ns.Printf("Later: %s", self:GetStepText(step))
     self:Evaluate("later")
     return true
 end
@@ -782,7 +781,6 @@ function Guide:DoNow(idx)
     end
     p.step = block[1]
     self.hold, self.current = nil, nil
-    ns.Printf("Now: %s", self:GetStepText(step))
     self:Evaluate("now")
     return true
 end
@@ -886,9 +884,7 @@ function Guide:Evaluate(reason)
                 self.notForYou = self.notForYou or {}
                 if not self.notForYou[step.quest] then
                     self.notForYou[step.quest] = true
-                    ns.Printf("%s is %s - not one you can take; the route skips it.",
-                        ns.DB:QuestName(step.quest) or ("quest " .. step.quest),
-                        why == "wrong class" and "for another class" or "for another race")
+                    ns.Debug("route skips", ns.DB:QuestName(step.quest) or step.quest, why)
                 end
             end
         end
@@ -992,14 +988,12 @@ function Guide:Evaluate(reason)
         -- guide finished: a dungeon guide hands back to the chapter it was opened from
         local back = self:IsDungeon(g) and ns.char.returnGuide and self.registry[ns.char.returnGuide]
         if back and back ~= g and (self.chainDepth or 0) < 10 then
-            ns.Printf("%s done - back to '%s'.", g.name or g.id, back.name or back.id)
             self.chainDepth = (self.chainDepth or 0) + 1
             self:Activate(back.id)
             self.chainDepth = self.chainDepth - 1
             return
         end
         if g.next and self.registry[g.next] and self.registry[g.next] ~= g and (self.chainDepth or 0) < 10 then
-            ns.Printf("Guide '%s' complete - continuing with '%s'.", g.name or g.id, self.registry[g.next].name or g.next)
             self.chainDepth = (self.chainDepth or 0) + 1
             self:Activate(g.next)
             self.chainDepth = self.chainDepth - 1
@@ -1043,7 +1037,7 @@ end
 -- ------------------------------------------------------------
 -- Activation / manual control
 -- ------------------------------------------------------------
-function Guide:Activate(id, silent)
+function Guide:Activate(id)
     local g = self.registry[id]
     if not g then
         ns.Error("unknown guide: " .. tostring(id))
@@ -1060,7 +1054,6 @@ function Guide:Activate(id, silent)
     self.current = nil
     self.hold, self.recovery = nil, nil
     ns.char.activeGuide = g.id
-    if not silent then ns.Printf("Guide: %s%s%s (%d steps)", ns.COLOR_OK, g.name or g.id, ns.COLOR_END, #g.steps) end
     self:Evaluate("activate")
     if self.active ~= g then return true end   -- finished instantly and chained into the next guide
     ns.Events:Fire("FG_GUIDE_CHANGED", g)
@@ -1126,7 +1119,6 @@ end
 function Guide:Skip()
     local step = self:GetCurrentStep()
     if not step then return end
-    ns.Printf("Skipped step %d: %s (still in the list: right-click > Do now brings it back)", self:PosOf(step.index), self:GetStepText(step))
     self:MarkDone(step.index, "skip")
 end
 
@@ -1141,7 +1133,6 @@ function Guide:Back()
     self.current = nil
     self.hold = i        -- stay here even if the game says it is done (until /fg skip or a real change)
     self:Evaluate("back")
-    if self.current == i then ns.Printf("Back to step %d (held; /fg skip to move on).", i) end
 end
 
 function Guide:SetStep(n)
@@ -1380,7 +1371,7 @@ function Guide:OnEnable()
     self:PruneForFaction()
     local id = ns.char.activeGuide
     if id and self.registry[id] then
-        self:Activate(id, true)
+        self:Activate(id)
     elseif ns.char.autoPickGuide then
         local g = self:AutoPick()
         if g then self:Activate(g.id) end

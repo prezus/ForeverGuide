@@ -499,16 +499,10 @@ end
 
 --- Open the share window with a fresh string.
 function Share:Show()
-    local win = Open(self:Doc())
-    local quests, npcs = ns.Recorder:Counts()
-    ns.Printf("share: %d quests, %d NPCs, %d reports in %d part%s. Copy each part (Ctrl+C) into the feedback form; "
-        .. "Readable shows what it holds.", quests, npcs, #(ns.db.reports or {}), #win.parts, #win.parts == 1 and "" or "s")
+    Open(self:Doc())
 end
 
 --- Open the share window with one segment of a recorded run (Run.lua).
 function Share:ShowRun(segment)
-    local win = Open(self:RunDoc(segment))
-    ns.Printf("run segment %d: %d entries in %d part%s. Copy each part (Ctrl+C) into the feedback form%s; "
-        .. "Readable shows what it holds.", segment.seg or 0, #(segment.entries or {}), #win.parts, #win.parts == 1 and "" or "s",
-        segment.done and " - this is the run's last segment" or "")
+    Open(self:RunDoc(segment))
 end
