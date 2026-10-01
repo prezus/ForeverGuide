@@ -443,11 +443,22 @@ function handlers.guide(rest)
     local g = ns.Guide:Find(rest)
     if not g then ns.Error("no guide matches '" .. rest .. "'") return end
     ns.Guide:Activate(g.id)
+    ns.Printf("Guide: %s%s%s (%d steps)", ns.COLOR_OK, g.name or g.id, ns.COLOR_END, #g.steps)
 end
 
-function handlers.skip() ns.Guide:Skip() end
-function handlers.back() ns.Guide:Back() end
-function handlers.next() ns.Guide:Skip() end
+function handlers.skip()
+    local G = ns.Guide
+    local step = G:GetCurrentStep()
+    if not step then return end
+    G:Skip()
+    ns.Printf("Skipped step %d: %s (still in the list: right-click > Do now brings it back)", G:PosOf(step.index), G:GetStepText(step))
+end
+function handlers.back()
+    local G = ns.Guide
+    G:Back()
+    if G.hold and G.current == G.hold then ns.Printf("Back to step %d (held; /fg skip to move on).", G:PosOf(G.current)) end
+end
+handlers.next = handlers.skip
 
 function handlers.step(rest)
     local n = tonumber(rest)
@@ -458,8 +469,10 @@ function handlers.step(rest)
 end
 
 function handlers.later()
-    if not ns.Guide.active then ns.Print("no guide active.") return end
-    ns.Guide:Later()
+    local G = ns.Guide
+    if not G.active then ns.Print("no guide active.") return end
+    local step = G:GetCurrentStep()
+    if G:Later() and step then ns.Printf("Later: %s", G:GetStepText(step)) end
 end
 
 function handlers.now(rest)
@@ -468,7 +481,7 @@ function handlers.now(rest)
     local n = tonumber(rest)
     local idx = n and G:Order()[math.floor(n)]
     if not idx then ns.Print("usage: /fg now <step number, as the window shows it>") return end
-    G:DoNow(idx)
+    if G:DoNow(idx) then ns.Printf("Now: %s", G:GetStepText(G.active.steps[idx])) end
 end
 
 function handlers.skipped()

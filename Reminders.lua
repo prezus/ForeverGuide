@@ -319,7 +319,7 @@ function Rem:OnInit()
     end)
     ns.Events:RegisterMany({ "TAXIMAP_OPENED", "TAXI_NODE_STATUS_CHANGED" }, function()
         local learned = Rem:LearnFromTaxiMap()
-        if learned > 0 then ns.Printf("noted %d flight point%s you already have.", learned, learned == 1 and "" or "s") end
+        if learned > 0 then ns.Debug("reminders: noted", learned, "known flight points") end
     end)
     ns.Events:Register("TAXIMAP_CLOSED", function()
         Rem.said = {}

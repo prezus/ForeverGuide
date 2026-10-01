@@ -834,10 +834,7 @@ function QG:StepMenuItems(idx)
         end
         items[#items + 1] = { "Later", function() G:Later(idx) end,
             "Comes back after the next 5 steps" .. (s.quest and ", with its quest" or "") .. ". Not marked done." }
-        items[#items + 1] = { "Skip", function()
-            ns.Printf("Skipped step %d: %s", G:PosOf(idx), G:GetStepText(s))
-            G:MarkDone(idx, "skip")
-        end, (quest and "Skips the whole quest." or "Marked done.") .. " It stays in the list to undo." }
+        items[#items + 1] = { "Skip", function() G:MarkDone(idx, "skip") end, (quest and "Skips the whole quest." or "Marked done.") .. " It stays in the list to undo." }
     elseif p.done[idx] and G:StepApplies(s) and not G:IsStepDone(s, idx, true) then
         -- marked done or skipped by hand, not by the game: it can come back
         items[#items + 1] = { "Do now", function() G:DoNow(idx) end,

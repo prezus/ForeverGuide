@@ -415,18 +415,8 @@ section("/fg share: one string for the feedback form, holding only allowlisted f
     for path in pairs(documented) do extra[#extra + 1] = path end
     check(#missing == 0 and #extra == 0, "docs/SHARE-FORMAT.md documents exactly the allowlist (missing: "
         .. table.concat(missing, ", ") .. "; extra: " .. table.concat(extra, ", ") .. ")")
-    -- the session reminder: once per threshold, pointing at /fg share
-    local printed = {}
-    local realPrint = ns.Print
-    ns.Print = function(msg) printed[#printed + 1] = tostring(msg) end
     ns.Commands:Run("share clear")
     check(next(c.quests) == nil and next(c.npcs) == nil and #c.order == 0, "/fg share clear empties the collected facts")
-    for i = 1, 60 do ns.Events:Fire("FG_QUEST_ACCEPTED", 60000 + i, "Filler " .. i) end
-    local reminders = 0
-    for _, m in ipairs(printed) do if m:find("/fg share", 1, true) then reminders = reminders + 1 end end
-    check(reminders == 1, "a reminder to share before logging out comes once when facts pile up (" .. reminders .. ")")
-    ns.Print = realPrint
-    ns.Commands:Run("share clear")
     ns.db.reports = {}
 end)
 -- Record runs: an opt-in of its own that shows run controls on the guide window. The player
@@ -599,13 +589,9 @@ section("record runs: an opt-in, run controls on the guide window, segments thro
     R:Resume()
     local gap = ns.char.run.entries[1]
     check(gap and gap.e == "GAP" and last().e == "RESUME" and last().t >= nextT.t, "entries lost with the SavedVariables are marked as a gap")
-    -- a full segment pauses itself and asks to be sent
-    local printed, realPrint = {}, ns.Print
-    ns.Print = function(msg) printed[#printed + 1] = tostring(msg) end
+    -- a full segment pauses itself (the run notice dialog asks to send it: its own section)
     for _ = #ns.char.run.entries, R.MAX_ENTRIES do ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7104, 1, 1, 2, false, "x") end
-    ns.Print = realPrint
     check(R:State() == "paused" and #ns.char.run.entries <= R.MAX_ENTRIES + 1, "a full segment pauses the run")
-    check(table.concat(printed, "\n"):find("Send", 1, true), "and tells the player to send it")
     R:Send()
     rawget(_G, "ForeverGuideShare"):Hide()
     -- Stop: the last segment goes out marked done; the run ends; Send shows it again to copy
@@ -3249,6 +3235,67 @@ end)
 -- The README ships in the release zip: every command it names must exist, every command must be in
 -- it, and no doc may link a file or heading that is gone. Read as text, never run: several commands
 -- change the guide's state.
+-- ---- chat: only typed commands and things the player must act on ------------------------------
+-- (2026-10-01: "I want to reduce the amount of bullshit sent to chat")
+section("chat stays quiet unless the player typed a command", function()
+    local G, R = ns.Guide, ns.Run
+    local lines = {}
+    local realPrint = _G.print
+    -- the addon's chat lines (ns.Print, Warn, Error, Debug); the test's own output passes through
+    _G.print = function(msg, ...)
+        local m = tostring(msg)
+        if m:find("ForeverGuide", 1, true) or m:find("[FG]", 1, true) then lines[#lines + 1] = m else realPrint(msg, ...) end
+    end
+    local function said() local n = #lines lines = {} return n end
+    local recordWas, announceWas = ns.db.recordRuns, ns.AutoQuest.Cfg().announce
+
+    ns.RegisterGuide({ id = "QUIET_A", name = "Quiet A", next = "QUIET_B", steps = {
+        { type = "TRAVEL", map = 1429, x = 40, y = 60, text = "one" }, { type = "TRAVEL", map = 1429, x = 41, y = 60, text = "two" },
+        { type = "TRAVEL", map = 1429, x = 42, y = 60, text = "three" }, { type = "TRAVEL", map = 1429, x = 43, y = 60, text = "four" },
+        { type = "TRAVEL", map = 1429, x = 44, y = 60, text = "five" }, { type = "TRAVEL", map = 1429, x = 45, y = 60, text = "six" },
+        { type = "TRAVEL", map = 1429, x = 46, y = 60, text = "seven" } } })
+    ns.RegisterGuide({ id = "QUIET_B", name = "Quiet B", steps = { { type = "TRAVEL", map = 1429, x = 50, y = 60, text = "b" } } })
+    said()
+
+    -- play: picking a guide, the window's Skip, Later and Do now, finishing a chapter
+    G:Activate("QUIET_A")
+    G:Skip()
+    G:Later()
+    G:DoNow(G.current and G:NextIdx(G.current) or 1)
+    for _, item in ipairs(ns.QuestGuide:StepMenuItems(G.current)) do if item[1] == "Skip" then item[2]() end end
+    G:Back()
+    for i = 1, #G.active.steps do G:MarkDone(i, "skip") end
+    check(G.active and G.active.id == "QUIET_B", "finishing a chapter moves on to the next")
+    check(said() == 0, "guide play prints nothing: the window shows it")
+
+    -- a dungeon, auto accept and turn-in, a run recorded to a full segment and sent
+    MOCK_INSTANCE("party")
+    MOCK_INSTANCE(nil)
+    ns.AutoQuest.Cfg()
+    check(ns.AutoQuest.Cfg().announce == false, "auto accept and turn-in announce nothing by default")
+    ns.db.recordRuns = true
+    ns.char.run = nil
+    R:Start()
+    while R:State() == "recording" do ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7104, 1, 1, 2, false, "x") end
+    R:Send()
+    rawget(_G, "ForeverGuideShare"):Hide()
+    local notice = rawget(_G, "ForeverGuideRunNotice")
+    if notice then notice:Hide() end
+    check(said() == 0, "a dungeon, and a run filling its segment and being sent, print nothing: the dialogs and windows speak")
+
+    -- a typed command answers
+    ns.RegisterGuide({ id = "QUIET_C", name = "Quiet C", steps = {
+        { type = "TRAVEL", map = 1429, x = 60, y = 60, text = "c1" }, { type = "TRAVEL", map = 1429, x = 61, y = 60, text = "c2" } } })
+    ns.Commands:Run("guide QUIET_C")
+    check(said() == 1, "/fg guide answers with one line")
+    ns.Commands:Run("skip")
+    check(said() == 1, "/fg skip answers with one line")
+
+    _G.print = realPrint
+    ns.char.run, ns.db.recordRuns = nil, recordWas
+    ns.AutoQuest.Cfg().announce = announceWas
+end)
+
 section("docs agree with the code", function()
     local function read(path)
         local f = io.open(root .. path)
