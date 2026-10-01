@@ -2774,6 +2774,48 @@ section("dungeons: the guide steps aside", function()
     ns.Commands:Run("dungeon on")
 end)
 
+-- ---- an alternate route: listed under its own name, never the default, followed once chosen ----
+-- (forever-codex ships TUGs' route beside ours as kind = "alternate"; a player must choose it)
+section("an alternate route: listed under its own name, never the default, followed once chosen", function()
+    local KEY = "GEN_ALLIANCE_TUGSHUMAN"
+    local routeBefore, activeBefore, levelBefore = ns.char.route, G.active and G.active.id, MOCK.level
+    ns.char.route = nil
+    -- a level our own route has a chapter for, so leaving it has somewhere to go back to
+    MOCK.level = 20
+    ns.Player.cache.level = 20
+    for n, name in ipairs({ "01_ELWYNN_FOREST", "02_WESTFALL" }) do
+        ns.RegisterGuide({ id = KEY .. "_" .. name, name = n .. ". Alternate " .. name, version = 1, kind = "alternate", routeLabel = "Human (TUGs)",
+            faction = "Alliance", race = { "Human" }, minLevel = 1, maxLevel = 60, map = 1429, zone = "Elwynn Forest",
+            steps = { { type = "NOTE", text = "Kill 8 boars now." } } })
+    end
+
+    local alt
+    for _, r in ipairs(G:Routes()) do if r.key == KEY then alt = r end end
+    need(alt ~= nil, "the alternate route is listed")
+    check(alt.label == "Human (TUGs)", "it is listed under its routeLabel (" .. tostring(alt.label) .. ")")
+    check(not alt.mine, "it is not the race's own route, though its chapters are for the race")
+    local current = G:CurrentRoute()
+    check(current ~= nil and current.key ~= KEY, "the race's own route stays the default (" .. tostring(current and current.key) .. ")")
+    local pick = G:AutoPick()
+    check(pick ~= nil and G:RouteOf(pick) ~= KEY, "auto-pick never lands on it, though it fits the level and the zone better (" .. tostring(pick and pick.id) .. ")")
+    G:Activate(KEY .. "_01_ELWYNN_FOREST", true); settle()
+    check(G:OffRouteChapter() ~= nil, "opening one of its chapters without choosing the route is off-route")
+
+    local r = G:ChooseRoute("Human (TUGs)")
+    check(r ~= nil and ns.char.route == KEY and G:CurrentRoute().key == KEY, "choosing it by its label follows it (" .. tostring(ns.char.route) .. ")")
+    local chosen = G:AutoPick()
+    check(chosen ~= nil and G:RouteOf(chosen) == KEY, "once chosen, auto-pick stays on it (" .. tostring(chosen and chosen.id) .. ")")
+    check(G:OffRouteChapter() == nil, "and its chapters are no longer off-route")
+    ns.Commands:Run("path race")
+    check(ns.char.route == nil and G:CurrentRoute().key ~= KEY, "/fg path race goes back to the race's own route")
+
+    ns.char.route = routeBefore
+    MOCK.level = levelBefore
+    ns.Player.cache.level = levelBefore
+    if activeBefore then G:Activate(activeBefore, true) end
+    G:Reset(); settle()
+end)
+
 -- ---- a dungeon's own guide: listed apart, never auto-picked, back to the chapter afterwards ----
 section("a dungeon's own guide: listed apart, never auto-picked, back to the chapter afterwards", function()
     local CHAPTER = "GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST"

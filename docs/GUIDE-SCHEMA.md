@@ -13,7 +13,8 @@ contains quest logic for a specific guide; it only interprets these steps.
 | `id`       | string   | yes      | unique, `[A-Z0-9_]`, used as file name and saved-variable key |
 | `name`     | string   | yes      | shown in the UI |
 | `version`  | int      | no       | bump when steps are re-ordered; manual completions are reset |
-| `kind`     | string   | no       | `"dungeon"`: a dungeon's own guide, listed under Dungeons, never auto-picked; finishing it returns to the chapter you left. Its ACCEPT steps before the `NOTE` "Find a group for ..." are the quests to bring (the badge counts them); those after it are given inside |
+| `kind`     | string   | no       | `"dungeon"`: a dungeon's own guide, listed under Dungeons, never auto-picked; finishing it returns to the chapter you left. Its ACCEPT steps before the `NOTE` "Find a group for ..." are the quests to bring (the badge counts them); those after it are given inside. `"alternate"`: a chapter of an alternate route (e.g. TUGs' route beside ours), listed in the route list under its `routeLabel`; it is never a race's default route and never auto-picked until the player chooses that route (`/fg path`, or the Guides list) |
+| `routeLabel` | string | no       | the route's name in the route list when its race alone does not name it, e.g. `"Dwarf / Gnome (TUGs)"`; the same on every chapter of the route |
 | `faction`  | string   | no       | `"Alliance"` / `"Horde"` |
 | `race`     | [string] | no       | English race file names: `"Human"`, `"Orc"`, `"NightElf"`, ... |
 | `class`    | [string] | no       | `"WARRIOR"`, `"MAGE"`, ... |
