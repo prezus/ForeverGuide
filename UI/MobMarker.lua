@@ -11,8 +11,9 @@
 -- When the current step wants no kill and has no item for the key, the quests in
 -- the log take over: the nearest of their mobs gets the big skull and the target
 -- key, so a quest the player picked up on their own is marked like a route one.
--- An open kill or loot objective that names no mob falls back on the client's
--- "related to an active quest" flag.
+-- A mob's own tooltip (C_TooltipInfo.GetUnit: the quest lines the client shows on
+-- mouseover) settles what the names cannot: an objective of yours still open there
+-- marks it, every one of them completed takes its skull away.
 --
 -- Raid target icons (SetRaidTarget) are blocked for addons on this client
 -- (ADDON_ACTION_FORBIDDEN, the same reason RestedXP disables them on 12.x),
@@ -93,9 +94,6 @@ local function mobFromText(text)
 end
 MM.MobFromText = mobFromText
 
--- live objective types that are about a creature: what the client flags as quest-related
-local MOB_TYPES = { monster = true, item = true, [""] = true }
-
 --- lower-case names of the mobs the current step still needs ({} when it is not a kill/loot step)
 function MM:WantedNames()
     local step = ns.Guide and ns.Guide:GetCurrentStep()
@@ -132,13 +130,12 @@ function MM:WantedNames()
     return set, step
 end
 
---- Names from open log objectives: kill names and item-drop mobs, respectively, and whether an
---- open kill or loot objective names no mob at all (then the client's quest-related flag decides).
+--- Names from open log objectives: kill names and item-drop mobs, respectively.
 --- A quest ready to turn in has no open mobs, even if the client still calls them quest-related.
 function MM:OpenKillNames()
-    local set, loot, unresolved = {}, {}, false
+    local set, loot = {}, {}
     local DB = ns.DB
-    if not DB or not DB:IsLoaded() or not ns.Quest then return set, loot, unresolved end
+    if not DB or not DB:IsLoaded() or not ns.Quest then return set, loot end
     for _, questID in ipairs(ns.Quest.order or {}) do
         local entry = ns.Quest:GetEntry(questID)
         if entry and not entry.ready then
@@ -147,23 +144,14 @@ function MM:OpenKillNames()
                 if not o.finished then
                     local d = liveToDB(DB, questID, k, live)
                     if d and (d.kind == "kill" or d.kind == "credit") then addName(set, d.name)
-                    elseif d and d.kind == "item" then
-                        local found = {}
-                        objectiveMobs(DB, d, found)
-                        for lower, name in pairs(found) do loot[lower] = name end
-                        if not next(found) then unresolved = true end    -- no known drops
-                    end
+                    elseif d and d.kind == "item" then objectiveMobs(DB, d, loot) end
                     -- no database match: the wording itself may name the mob ("0/4 X slain")
-                    if not d then
-                        local mob = mobFromText(o.text)
-                        if mob then addName(set, mob)
-                        elseif MOB_TYPES[o.type or ""] then unresolved = true end
-                    end
+                    if not d then addName(set, mobFromText(o.text)) end
                 end
             end
         end
     end
-    return set, loot, unresolved
+    return set, loot
 end
 
 --- lower-case names of mobs whose objective is already complete for every quest in the log:
@@ -227,9 +215,56 @@ local function tagged(u)
     return ns.Plain(ns.Safe(UnitIsTapDenied, u)) == true
 end
 
-local function questRelated(u)
-    return ns.Plain(ns.Call("C_QuestLog.UnitIsRelatedToActiveQuest", u)) == true
+-- ---- the mob's own tooltip ------------------------------------------------------------
+-- The client builds a mob's mouseover tooltip from your quest log: a title line per quest, then
+-- its objectives with `completed`, and in a group a player line before each member's own.
+-- Read through C_TooltipInfo, it says per mob what the names cannot (a loot quest whose drops
+-- nobody recorded, a quest the database lacks). Cached by GUID until the quest log changes;
+-- a tooltip that cannot be read (secret in combat) keeps the last answer.
+local LINE_FALLBACK = { QuestObjective = 8, QuestTitle = 17, QuestPlayer = 18 }
+local function lineType(name)
+    local E = rawget(_G, "Enum")
+    local T = E and E.TooltipDataLineType
+    return T and T[name] or LINE_FALLBACK[name]
 end
+
+local tipCache = {}       -- GUID -> "open" | "done" | false (no quest lines)
+
+--- "open" when the mob's tooltip lists an objective of yours not yet completed, "done" when it
+--- lists only completed ones, false when it lists none, nil when it cannot be read.
+local function readTooltip(u)
+    local data = ns.Call("C_TooltipInfo.GetUnit", u)
+    if type(data) ~= "table" or ns.IsSecret(data) or type(data.lines) ~= "table" then return nil end
+    local OBJ, TITLE, PLAYER = lineType("QuestObjective"), lineType("QuestTitle"), lineType("QuestPlayer")
+    local me = ns.Player:GetName()
+    local mine, any, open = true, false, false
+    for _, line in ipairs(data.lines) do
+        local t = ns.PlainNumber(line.type)
+        if t == nil and ns.IsSecret(line.type) then return nil end
+        if t == TITLE then
+            mine = true
+        elseif t == PLAYER then
+            mine = ns.PlainString(line.leftText) == me     -- a group member's objectives follow
+        elseif t == OBJ and mine then
+            local done = ns.Plain(line.completed)
+            if done == nil and ns.IsSecret(line.completed) then return nil end
+            any = true
+            if done ~= true then open = true end
+        end
+    end
+    if open then return "open" end
+    return any and "done" or false
+end
+
+function MM:TooltipQuest(u)
+    local guid = ns.PlainString(ns.Safe(UnitGUID, u))
+    if guid and tipCache[guid] ~= nil then return tipCache[guid] end
+    local state = readTooltip(u)
+    if guid and state ~= nil then tipCache[guid] = state end
+    return state
+end
+
+function MM:ForgetTooltips() tipCache = {} end
 
 local MACRO_NAMES = 8         -- names in the target macro when it serves quests off the route
 
@@ -423,7 +458,7 @@ function MM:Scan()
     if c.enabled == false or (ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()) then forcePlates(false) return end
     local names, step = self:WantedNames()
     local finished = self:FinishedNames()
-    local openKills, openLoot, unresolved = self:OpenKillNames()
+    local openKills, openLoot = self:OpenKillNames()
     local killStep = step ~= nil
     local current = ns.Guide and ns.Guide:GetCurrentStep()
     local stepItem = c.useItem ~= false and current and ns.Guide:StepUseItem(current) or nil
@@ -455,12 +490,13 @@ function MM:Scan()
             local lower = name and string.lower(name)
             local isWanted = lower and names[lower] ~= nil
             -- Only proven open objectives (or the current step) earn skulls; the client's
-            -- quest-related flag stays true for quests already ready to turn in, so it counts
-            -- only while some open objective names no mob, and never for a finished mob.
+            -- quest-related flag stays true for quests already ready to turn in, so it is not used.
+            -- The mob's tooltip is: an open objective there marks it, only completed ones unmark it.
             local open = lower and (openKills[lower] or openLoot[lower])
-            local flagged = unresolved and lower and not isWanted and not open and not finished[lower] and questRelated(u)
-            if flagged and offRoute then isWanted = true end
-            local related = (not lower or not finished[lower] or open) and (isWanted or open or flagged)
+            local tip = self:TooltipQuest(u)
+            if tip == "open" and offRoute then isWanted = true end
+            local related = tip ~= "done" and (not lower or not finished[lower] or open or tip == "open")
+                and (isWanted or open or tip == "open")
             -- a mob tagged by someone else is nobody's kill: no skull at all
             if related and not tagged(u) then
                 local isTarget = targetGUID and ns.PlainString(ns.Safe(UnitGUID, u)) == targetGUID
@@ -515,6 +551,7 @@ function MM:OnInit()
     ns.Events:RegisterMany({ "NAME_PLATE_UNIT_ADDED", "NAME_PLATE_UNIT_REMOVED", "PLAYER_TARGET_CHANGED", "UNIT_FLAGS", "PLAYER_REGEN_ENABLED" },
         function() ns.Events:Debounce("mobmarker", 0.1, function() MM:Scan() end) end)
     ns.Events:Register("PLAYER_REGEN_ENABLED", function() if macroPending then MM:UpdateTargetMacro(macroPending.names, macroPending.item) end end)
+    ns.Events:RegisterMany({ "FG_QUEST_LOG_CHANGED", "FG_OBJECTIVE_PROGRESS" }, function() tipCache = {} end)
     ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_GUIDE_CHANGED", "FG_MODE_CHANGED", "FG_QUEST_LOG_CHANGED", "FG_HIDDEN_ALL_CHANGED", "BAG_UPDATE_DELAYED" },
         function() ns.Events:Debounce("mobmarker", 0.1, function() MM:Scan() end) end)
 end
