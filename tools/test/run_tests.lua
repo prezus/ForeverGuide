@@ -3381,9 +3381,15 @@ section("XP buff indicators: each icon shows while its buff is missing", functio
     need(shown("food") and shown("bag"), "a UNIT_AURA for the player puts both icons on screen")
     check(XB.frames.bag.count:GetText() == "0/3" and XB.frames.food.count:GetText() == "", "the bag icon counts stacks, the food icon does not")
 
+    MOCK.auraNames["Well Fed"] = { spellId = 1225778, applications = 0 }
+    refresh()
+    check(not shown("food") and shown("bag"), "eating any food that makes you Well Fed hides only the food icon")
+    MOCK.auraNames = {}
+    refresh()
+    check(shown("food"), "the Well Fed buff gone: the food icon is back")
     MOCK.auras[FOOD] = { applications = 0 }
     refresh()
-    check(not shown("food") and shown("bag"), "eating the XP food hides only the food icon")
+    check(not shown("food") and shown("bag"), "Well Fed XP Boost itself counts too")
 
     MOCK.auras[BAG] = { applications = 2 }
     refresh()
@@ -3408,7 +3414,20 @@ section("XP buff indicators: each icon shows while its buff is missing", functio
     refresh()
     check(not shown("food") and not shown("bag"), "with XP turned off neither icon shows")
 
-    MOCK.level, MOCK.xpDisabled, MOCK.auras = levelWas, nil, {}
+    -- both icons sit in one holder: dragging either moves the holder, and one position is saved
+    local h = XB:Holder()
+    check(XB.frames.food.parent == h and XB.frames.bag.parent == h, "both icons sit in the one holder")
+    MOCK.shift = true
+    XB.frames.bag:GetScript("OnDragStart")(XB.frames.bag)
+    check(h.moving == true and not XB.frames.bag.moving, "shift-dragging the bag icon moves the holder, not the icon alone")
+    XB.frames.bag:GetScript("OnDragStop")(XB.frames.bag)
+    MOCK.shift = nil
+    check(not h.moving and type(XB.Cfg().point) == "table" and XB.Cfg().food.point == nil and XB.Cfg().bag.point == nil,
+        "dropping saves one position for both icons")
+    ns.Commands:Run("remind buffs reset")
+    check(XB.Cfg().point == nil, "/fg remind buffs reset clears it")
+
+    MOCK.level, MOCK.xpDisabled, MOCK.auras, MOCK.auraNames = levelWas, nil, {}, {}
     for _, f in pairs(XB.frames) do f:Hide() end
 end)
 
