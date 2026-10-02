@@ -1,0 +1,178 @@
+-- ============================================================
+-- ForeverGuide / XPBuffs.lua
+-- Two XP buffs a levelling character forgets, each with its own icon on screen
+-- while it is missing:
+--
+--   * food: Well Fed XP Boost (spell 1243969), +5% XP, the aura Forever's XP foods give.
+--   * bag:  Well-Rested (spell 429959) from the Cozy Sleeping Bag (item 211527), +1% XP per
+--           stack up to 3; the icon stays up below 3 stacks and shows the count (1/3).
+--
+-- Display only: plain frames, no secure buttons, so they show and hide in combat too.
+-- Both hide at max level or with XP turned off. Shift-drag (or drag while the window is
+-- unlocked) moves an icon; `/fg remind food|bag on|off` turns one off.
+-- ============================================================
+
+local _, ns = ...
+local Theme = ns.Theme
+local XB = ns:NewModule("XPBuffs")
+
+local SIZE = 36
+local RECHECK = 30           -- seconds between fallback checks (UNIT_AURA can be secret)
+local MAX_LEVEL = 60
+
+-- The client's own tables (build 1.60.1.70094): spell, stacks for the full bonus, wording.
+XB.BUFFS = {
+    food = { spellID = 1243969, needed = 1, x = -22, name = "Well Fed XP Boost",
+             bonus = "+5% experience", hint = "Eat a food that gives Well Fed XP Boost." },
+    bag  = { spellID = 429959, needed = 3, x = 22, name = "Well-Rested",
+             bonus = "+1% experience per stack, up to 3", hint = "Rest near your Cozy Sleeping Bag." },
+}
+XB.ORDER = { "food", "bag" }
+
+local function cfg()
+    ns.db.xpbuffs = ns.db.xpbuffs or {}
+    local c = ns.db.xpbuffs
+    for _, key in ipairs(XB.ORDER) do
+        c[key] = c[key] or {}
+        if c[key].enabled == nil then c[key].enabled = true end
+    end
+    return c
+end
+XB.Cfg = cfg
+
+--- Stacks of the player's aura: 0 when it is gone, nil when the client will not say (secret).
+function XB:Stacks(spellID)
+    local aura = ns.Call("C_UnitAuras.GetPlayerAuraBySpellID", spellID)
+    if aura == nil then return 0 end
+    if ns.IsSecret(aura) or type(aura) ~= "table" then return nil end
+    local n = ns.PlainNumber(aura.applications)
+    if n == nil and ns.IsSecret(aura.applications) then return nil end
+    return math.max(n or 1, 1)              -- 0 applications = an aura that does not stack
+end
+
+--- Below max level with XP on.
+function XB:Leveling()
+    local maxLevel = ns.PlainNumber(ns.Safe(rawget(_G, "GetMaxPlayerLevel"))) or MAX_LEVEL
+    if ns.Player:GetLevel() >= maxLevel then return false end
+    return ns.PlainBool(ns.Safe(rawget(_G, "IsXPUserDisabled"))) ~= true
+end
+
+--- Should the indicator show? true/false with stacks and needed, or nil when the aura is unreadable.
+function XB:Missing(key)
+    local buff = self.BUFFS[key]
+    if not buff or cfg()[key].enabled == false or not self:Leveling() then return false end
+    local stacks = self:Stacks(buff.spellID)
+    if stacks == nil then return nil end
+    return stacks < buff.needed, stacks, buff.needed
+end
+
+-- ---- the icons --------------------------------------------------------------------------
+
+local function place(f, key)
+    local p = cfg()[key].point
+    f:ClearAllPoints()
+    if p then
+        f:SetPoint(p.point or "CENTER", UIParent, p.point or "CENTER", p.x or 0, p.y or 0)
+    else
+        f:SetPoint("CENTER", UIParent, "CENTER", XB.BUFFS[key].x, 220)
+    end
+end
+
+local function tooltip(f)
+    local tt = rawget(_G, "GameTooltip")
+    if not tt then return end
+    local buff, stacks = XB.BUFFS[f.key], f.stacks or 0
+    tt:SetOwner(f, "ANCHOR_BOTTOM")
+    tt:AddLine(buff.needed > 1 and string.format("%s %d/%d", buff.name, stacks, buff.needed) or ("Missing: " .. buff.name), 1, 0.82, 0)
+    tt:AddLine(buff.bonus, 1, 1, 1, true)
+    tt:AddLine(buff.hint, 1, 1, 1, true)
+    tt:AddLine("Shift-drag to move.  /fg remind " .. f.key .. " off hides it.", 0.66, 0.61, 0.52, true)
+    tt:Show()
+end
+
+local function newIndicator(key)
+    local buff = XB.BUFFS[key]
+    local f = CreateFrame("Frame", "ForeverGuideXPBuff_" .. key, UIParent)
+    f.key = key
+    f:SetSize(SIZE, SIZE)
+    f:SetFrameStrata("MEDIUM")
+    f:SetMovable(true)
+    f:SetClampedToScreen(true)
+    f:EnableMouse(true)
+    f:RegisterForDrag("LeftButton")
+    Theme.Backdrop(f, "plain", 0.8)
+    f.icon = f:CreateTexture(nil, "ARTWORK")
+    f.icon:SetPoint("TOPLEFT", f, "TOPLEFT", 2, -2)
+    f.icon:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -2, 2)
+    local tex = ns.Call("C_Spell.GetSpellTexture", buff.spellID)
+    pcall(f.icon.SetTexture, f.icon, ns.Plain(tex) or "Interface\\Icons\\INV_Misc_QuestionMark")
+    pcall(f.icon.SetTexCoord, f.icon, 0.08, 0.92, 0.08, 0.92)
+    f.count = Theme.NewText(f, { size = 12, justify = "RIGHT", color = Theme.C.warn, oneLine = true, outline = "OUTLINE" })
+    f.count:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -1, 2)
+    f:SetScript("OnDragStart", function(self)
+        if IsShiftKeyDown() or not ns.db.ui.locked then self:StartMoving() end
+    end)
+    f:SetScript("OnDragStop", function(self)
+        self:StopMovingOrSizing()
+        local point, _, _, x, y = self:GetPoint(1)
+        cfg()[key].point = { point = point or "CENTER", x = x or 0, y = y or 0 }
+    end)
+    f:SetScript("OnEnter", tooltip)
+    f:SetScript("OnLeave", function() local tt = rawget(_G, "GameTooltip") if tt then tt:Hide() end end)
+    place(f, key)
+    f:Hide()
+    return f
+end
+
+--- Show the icons whose buff is missing; an unreadable aura leaves its icon as it was.
+function XB:Refresh()
+    self.frames = self.frames or {}
+    for _, key in ipairs(self.ORDER) do
+        local show, stacks, needed = self:Missing(key)
+        if show ~= nil then
+            local f = self.frames[key]
+            if show and not f then
+                f = newIndicator(key)
+                self.frames[key] = f
+            end
+            if f then
+                f.stacks = stacks
+                f.count:SetText(show and needed > 1 and string.format("%d/%d", stacks, needed) or "")
+                f:SetShown(show)
+            end
+        end
+    end
+end
+
+--- Put the icons back where they start (/fg remind buffs reset).
+function XB:ResetPositions()
+    local c = cfg()
+    for _, key in ipairs(self.ORDER) do
+        c[key].point = nil
+        if self.frames and self.frames[key] then place(self.frames[key], key) end
+    end
+end
+
+-- ---- events -----------------------------------------------------------------------------
+
+local function soon() ns.Events:Debounce("xpbuffs", 0.5, function() XB:Refresh() end) end
+
+function XB:OnInit()
+    ns.Events:Register("UNIT_AURA", function(_, unit)
+        local u = ns.PlainString(unit)
+        if u == nil or u == "player" then soon() end
+    end)
+    ns.Events:Register("FG_LEVEL_CHANGED", soon)
+end
+
+function XB:OnEnterWorld()
+    soon()
+    if not self.ticker then
+        self.ticker = true
+        local function beat()
+            XB:Refresh()
+            ns.Events:After(RECHECK, beat)
+        end
+        ns.Events:After(RECHECK, beat)
+    end
+end

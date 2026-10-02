@@ -35,7 +35,7 @@ collected data and runs live only in the SavedVariables file, so send them (belo
 | `/fg mode auto\|guide`, `/fg track` | Auto mode follows your quest log without a guide |
 | `/fg quests`, `/fg quest <id\|name>`, `/fg avail` | Your quest log; what the database knows about a quest; quests to pick up here |
 | `/fg nav`, `/fg way <x> <y>`, `/fg pos`, `/fg target` | Distance to the step; point the arrow at a spot; your position; your target |
-| `/fg fp`, `/fg remind`, `/fg xp`, `/fg ding` | Untaken flight points; flight and trainer nudges; levelling pace; level-up announcement |
+| `/fg fp`, `/fg remind`, `/fg xp`, `/fg ding` | Untaken flight points; flight and trainer nudges, and the XP food and sleeping bag icons (`/fg remind food|bag on|off`, `/fg remind buffs reset`); levelling pace; level-up announcement |
 | `/fg auto accept\|turnin\|share\|shared\|announce` | Auto-accept, auto-turn-in, and quest sharing with your group (hold SHIFT to do it by hand) |
 | `/fg arrow`, `/fg waypoint`, `/fg route`, `/fg skull`, `/fg bliz` | The arrow, the in-world waypoint and its path, skulls over quest mobs, Blizzard's map pin |
 | `/fg lock` `unlock` `scale <n>` `resetpos`, `/fg qg <setting> <value>`, `/fg minimap` | Window look and position |

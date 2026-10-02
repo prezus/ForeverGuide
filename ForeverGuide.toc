@@ -55,6 +55,7 @@ UI\DungeonPanel.lua
 UI\QuestWaypoint.lua
 UI\QuestRoute.lua
 UI\MobMarker.lua
+XPBuffs.lua
 UI.lua
 Arrow.lua
 AutoQuest.lua
