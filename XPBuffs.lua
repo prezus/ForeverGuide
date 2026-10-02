@@ -3,9 +3,10 @@
 -- Two XP buffs a levelling character forgets, each with its own icon on screen
 -- while it is missing:
 --
---   * food: Well Fed, +5% XP. On Forever the food's own Well Fed buff carries the bonus (the
---           server adds it; no Well Fed spell in the client's tables has an XP effect), so
---           any buff named Well Fed counts, and so does Well Fed XP Boost (spell 1243969).
+--   * food: Well Fed, +5% XP. On Forever the food's own Well Fed buff carries the bonus: 13 of
+--           the client's 30 Well Fed spells show "Experience gained from kills increased by 5%"
+--           (from 1243969), and the 106 XP foods all give one of them. The other 17 (holiday
+--           treats, Prowler Steak...) say nothing about XP and do not count.
 --   * bag:  Well-Rested (spell 429959) from the Cozy Sleeping Bag (item 211527), +1% XP per
 --           stack up to 3; the icon stays up below 3 stacks and shows the count (1/3).
 --
@@ -24,13 +25,16 @@ local GAP = 8                -- between the two icons
 local RECHECK = 30           -- seconds between fallback checks (UNIT_AURA can be secret)
 local MAX_LEVEL = 60
 
--- The client's own tables (build 1.60.1.70094): spell, stacks for the full bonus, wording.
--- `byName`: a spell whose (localized) name also counts, whatever the aura's own id: every food
--- has its own Well Fed spell (19705 is the classic one).
+-- The client's own tables (build 1.60.1.70094): the spells that count, stacks for the full bonus,
+-- the icon, wording. Food: Well Fed XP Boost itself, then the Well Fed spells whose text carries
+-- its XP line, by stat (Stamina, Intellect, Strength, Agility, Attack Power, Spell Damage,
+-- Fishing, Spirit, Healing, Crit, Westfall Stew's speed, Goldthorn Tea's Herbalism, Armor).
 XB.BUFFS = {
-    food = { spellID = 1243969, byName = 19705, byNameFallback = "Well Fed", needed = 1, slot = 0, name = "Well Fed",
-             bonus = "+5% experience", hint = "Eat any food that makes you Well Fed." },
-    bag  = { spellID = 429959, needed = 3, slot = 1, name = "Well-Rested",
+    food = { spellIDs = { 1243969, 1248406, 1248421, 1248422, 1248420, 1249519, 1249520, 1249521,
+                          1249926, 1249927, 1249523, 1248688, 1249907, 1319310 },
+             icon = 19705, needed = 1, slot = 0, name = "Well Fed",
+             bonus = "+5% experience", hint = "Eat a food whose Well Fed buff gives experience (most cooked food does)." },
+    bag  = { spellIDs = { 429959 }, needed = 3, slot = 1, name = "Well-Rested",
              bonus = "+1% experience per stack, up to 3", hint = "Rest near your Cozy Sleeping Bag." },
 }
 XB.ORDER = { "food", "bag" }
@@ -55,12 +59,16 @@ local function auraStacks(aura)
     return math.max(n or 1, 1)              -- 0 applications = an aura that does not stack
 end
 
---- Stacks of a buff on the player: 0 when it is gone, nil when the client will not say (secret).
+--- Stacks of a buff on the player (the most of any of its spells): 0 when it is gone, nil when
+--- the client will not say (secret) and no readable spell has it.
 function XB:Stacks(buff)
-    local n = auraStacks(ns.Call("C_UnitAuras.GetPlayerAuraBySpellID", buff.spellID))
-    if n ~= 0 or not buff.byName then return n end
-    local name = ns.PlainString(ns.Call("C_Spell.GetSpellName", buff.byName)) or buff.byNameFallback
-    return auraStacks(ns.Call("C_UnitAuras.GetAuraDataBySpellName", "player", name, "HELPFUL"))
+    local best, unreadable = 0, false
+    for _, id in ipairs(buff.spellIDs) do
+        local n = auraStacks(ns.Call("C_UnitAuras.GetPlayerAuraBySpellID", id))
+        if n == nil then unreadable = true elseif n > best then best = n end
+    end
+    if best == 0 and unreadable then return nil end
+    return best
 end
 
 --- Below max level with XP on.
@@ -129,7 +137,7 @@ local function newIndicator(key)
     f.icon = f:CreateTexture(nil, "ARTWORK")
     f.icon:SetPoint("TOPLEFT", f, "TOPLEFT", 2, -2)
     f.icon:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -2, 2)
-    local tex = ns.Call("C_Spell.GetSpellTexture", buff.byName or buff.spellID)
+    local tex = ns.Call("C_Spell.GetSpellTexture", buff.icon or buff.spellIDs[1])
     pcall(f.icon.SetTexture, f.icon, ns.Plain(tex) or "Interface\\Icons\\INV_Misc_QuestionMark")
     pcall(f.icon.SetTexCoord, f.icon, 0.08, 0.92, 0.08, 0.92)
     f.count = Theme.NewText(f, { size = 12, justify = "RIGHT", color = Theme.C.warn, oneLine = true, outline = "OUTLINE" })
