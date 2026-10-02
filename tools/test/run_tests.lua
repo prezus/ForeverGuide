@@ -1637,20 +1637,69 @@ section("skulls over quest mobs", function()
     local getStep = G.GetCurrentStep
     G.GetCurrentStep = function() return { type = "KILL", quest = 999994, target = "Unlisted Ravager" } end
     ns.MobMarker:Scan()
-    check(not ns.MobMarker.markedUnits["nameplate5"] and ns.MobMarker.primaryUnit == nil,
+    check(not ns.MobMarker.markedUnits["nameplate5"] and ns.MobMarker.primaryUnit ~= "nameplate5",
         "ready-to-turn-in quest has no large skull even if the guide step has not advanced")
     G.GetCurrentStep = getStep
     MOCK_PLATE("nameplate5", nil); MOCK_ABANDON(999994); settle()
+    -- Quests off the route. Forever writes the count first ("0/2 X slain").
+    check(ns.MobMarker.MobFromText("0/8 Murloc slain") == "Murloc" and ns.MobMarker.MobFromText("Murloc slain: 3/8") == "Murloc"
+        and ns.MobMarker.MobFromText("Murloc Streamrunners slain (4)") == "Murloc Streamrunners"
+        and ns.MobMarker.MobFromText("0/3 Thing defeated") == "Thing" and ns.MobMarker.MobFromText("6/6 Crag Boar Rib") == nil,
+        "kill wording names its mob in every format, and an item objective names none")
+    local function macro() local b = rawget(_G, "ForeverGuideTargetButton") return b and b:GetAttribute("macrotext") or "" end
+    G.GetCurrentStep = function() return { type = "TRAVEL", map = 1429, x = 50, y = 50, text = "walk" } end
+    MOCK_ACCEPT(999995, "Count-first hunt", { { text = "0/2 Unlisted Stalker slain", type = "monster", finished = false, numFulfilled = 0, numRequired = 2 } }); settle()
+    MOCK_PLATE("nameplate7", { name = "Unlisted Stalker", npcID = 999995, scale = 2.0, y = 330 })
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.primaryUnit == "nameplate7", "a quest off the route, worded count first: its mob gets the big skull while the route wants no kill ("
+        .. tostring(ns.MobMarker.primaryUnit) .. ")")
+    check(macro():find("Unlisted Stalker", 1, true) ~= nil, "...and the target key targets it (" .. macro():gsub("\n", " | ") .. ")")
+    MOCK.log[999995].objectives[1].text = "2/2 Unlisted Stalker slain"; MOCK_PROGRESS(999995, 1, 2); settle(); ns.MobMarker:Scan()
+    check(not ns.MobMarker.markedUnits["nameplate7"], "its objective done: the skull goes")
+    MOCK_PLATE("nameplate7", nil); MOCK_ABANDON(999995); settle()
+    -- a route kill step keeps the big skull; the off-route mob stays small
+    G.GetCurrentStep = function() return { type = "KILL", quest = 999996, target = "Route Boar" } end
+    MOCK_ACCEPT(999996, "Route hunt", { { text = "0/4 Route Boar slain", type = "monster", finished = false, numFulfilled = 0, numRequired = 4 } })
+    MOCK_ACCEPT(999997, "Side hunt", { { text = "0/4 Side Wolf slain", type = "monster", finished = false, numFulfilled = 0, numRequired = 4 } }); settle()
+    MOCK_PLATE("nameplate7", { name = "Route Boar", npcID = 999996, scale = 1.0, y = 330 })
+    MOCK_PLATE("nameplate8", { name = "Side Wolf", npcID = 999997, scale = 2.0, y = 330 })
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.primaryUnit == "nameplate7" and ns.MobMarker.markedUnits["nameplate8"] == "other",
+        "during a route kill step its mob keeps the big skull and the side quest's mob gets a small one")
+    check(macro():find("Route Boar", 1, true) ~= nil and not macro():find("Side Wolf", 1, true), "...and the target key stays on the route's mob")
+    MOCK_PLATE("nameplate7", nil); MOCK_PLATE("nameplate8", nil); MOCK_ABANDON(999996); MOCK_ABANDON(999997); settle()
+    -- a loot objective nothing names: the client's quest-related flag marks its mob, never once it is done.
+    -- Alone in the log: any other objective nothing names would keep the flag in play.
+    local parked = {}
+    for _, qid in ipairs(ns.Quest.order) do
+        local objs = {}
+        for i, o in ipairs(ns.Quest:GetObjectives(qid) or {}) do objs[i] = { text = o.text, type = o.type, finished = o.finished, numFulfilled = o.numFulfilled, numRequired = o.numRequired } end
+        parked[#parked + 1] = { id = qid, title = ns.Quest:GetTitle(qid), objs = objs }
+    end
+    for _, q in ipairs(parked) do MOCK_ABANDON(q.id) end
+    G.GetCurrentStep = function() return { type = "TRAVEL", map = 1429, x = 50, y = 50, text = "walk" } end
+    MOCK_ACCEPT(999998, "Gem hunt", { { text = "0/4 Strange Gem", type = "item", finished = false, numFulfilled = 0, numRequired = 4 } }); settle()
+    MOCK_PLATE("nameplate7", { name = "Gem Hoarder", npcID = 999998, scale = 2.0, y = 330, quest = true })
+    MOCK_PLATE("nameplate8", { name = "Plain Hoarder", npcID = 999999, scale = 2.0, y = 330 })
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.markedUnits["nameplate7"] and not ns.MobMarker.markedUnits["nameplate8"],
+        "an unnamed loot objective: the mob the client calls quest-related is marked, a plain one is not")
+    MOCK.log[999998].objectives[1].text = "4/4 Strange Gem"; MOCK_PROGRESS(999998, 1, 4); settle(); ns.MobMarker:Scan()
+    check(not ns.MobMarker.markedUnits["nameplate7"], "the loot objective done: the client's flag alone marks nothing")
+    MOCK_PLATE("nameplate7", nil); MOCK_PLATE("nameplate8", nil); MOCK_ABANDON(999998)
+    for _, q in ipairs(parked) do MOCK_ACCEPT(q.id, q.title, q.objs) end
+    settle()
+    G.GetCurrentStep = getStep
     ns.Commands:Run("skull off"); ns.MobMarker:Scan()
     check(ns.MobMarker.markedCount == 0 and GetCVar("nameplateShowEnemies") == "0", "/fg skull off removes the skulls and restores the nameplate setting")
     ns.Commands:Run("skull on")
     MOCK_ABANDON(11); settle()
-    -- plates also stay while any quest in the log has an open kill objective: drop those first
+    -- plates also stay while any quest in the log has an open kill or loot objective: drop those first
     do
         local drop = {}
         for _, qid in ipairs(ns.Quest.order) do
             for _, o in ipairs(ns.Quest:GetObjectives(qid) or {}) do
-                if not o.finished and o.text and o.text:find("slain", 1, true) then
+                if not o.finished then
                     local copy = {}
                     for i, oo in ipairs(ns.Quest:GetObjectives(qid)) do copy[i] = { text = oo.text, finished = oo.finished, numFulfilled = oo.numFulfilled, numRequired = oo.numRequired } end
                     drop[#drop + 1] = { id = qid, title = ns.Quest:GetTitle(qid), objs = copy }

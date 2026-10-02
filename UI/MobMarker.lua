@@ -8,6 +8,12 @@
 --        [skull]     <- smaller: other mobs with identifiable open objectives
 --                       in the quest log (including quests off the route)
 --
+-- When the current step wants no kill and has no item for the key, the quests in
+-- the log take over: the nearest of their mobs gets the big skull and the target
+-- key, so a quest the player picked up on their own is marked like a route one.
+-- An open kill or loot objective that names no mob falls back on the client's
+-- "related to an active quest" flag.
+--
 -- Raid target icons (SetRaidTarget) are blocked for addons on this client
 -- (ADDON_ACTION_FORBIDDEN, the same reason RestedXP disables them on 12.x),
 -- so the skulls are our own textures anchored to the enemy nameplates.
@@ -73,6 +79,23 @@ local function liveToDB(DB, questID, k, live)
     return nil
 end
 
+-- The mob a kill objective's own wording names, whatever the format: Forever writes the count
+-- first ("0/8 Murloc slain"), the old client after (": 0/8"), the tracker sometimes "(4)".
+local KILL_VERBS = { "slain", "killed", "defeated" }
+local function mobFromText(text)
+    if type(text) ~= "string" then return nil end
+    local t = text:gsub("^%s*%d+%s*/%s*%d+%s+", ""):gsub("%s*:%s*%d+%s*/%s*%d+%s*$", ""):gsub("%s*%(%d+%)%s*$", "")
+    for _, verb in ipairs(KILL_VERBS) do
+        local mob = t:match("^(.-)%s+" .. verb .. "$")
+        if mob and mob ~= "" then return mob end
+    end
+    return nil
+end
+MM.MobFromText = mobFromText
+
+-- live objective types that are about a creature: what the client flags as quest-related
+local MOB_TYPES = { monster = true, item = true, [""] = true }
+
 --- lower-case names of the mobs the current step still needs ({} when it is not a kill/loot step)
 function MM:WantedNames()
     local step = ns.Guide and ns.Guide:GetCurrentStep()
@@ -109,12 +132,13 @@ function MM:WantedNames()
     return set, step
 end
 
---- Names from open log objectives: kill names and item-drop mobs, respectively.
+--- Names from open log objectives: kill names and item-drop mobs, respectively, and whether an
+--- open kill or loot objective names no mob at all (then the client's quest-related flag decides).
 --- A quest ready to turn in has no open mobs, even if the client still calls them quest-related.
 function MM:OpenKillNames()
-    local set, loot = {}, {}
+    local set, loot, unresolved = {}, {}, false
     local DB = ns.DB
-    if not DB or not DB:IsLoaded() or not ns.Quest then return set, loot end
+    if not DB or not DB:IsLoaded() or not ns.Quest then return set, loot, unresolved end
     for _, questID in ipairs(ns.Quest.order or {}) do
         local entry = ns.Quest:GetEntry(questID)
         if entry and not entry.ready then
@@ -123,17 +147,23 @@ function MM:OpenKillNames()
                 if not o.finished then
                     local d = liveToDB(DB, questID, k, live)
                     if d and (d.kind == "kill" or d.kind == "credit") then addName(set, d.name)
-                    elseif d and d.kind == "item" then objectiveMobs(DB, d, loot) end
-                    -- "X slain: 4/10" with no database match: the wording itself names the mob
-                    if not d and o.text then
-                        local mob = o.text:match("^(.-)%s+slain")
-                        if mob and mob ~= "" then addName(set, mob) end
+                    elseif d and d.kind == "item" then
+                        local found = {}
+                        objectiveMobs(DB, d, found)
+                        for lower, name in pairs(found) do loot[lower] = name end
+                        if not next(found) then unresolved = true end    -- no known drops
+                    end
+                    -- no database match: the wording itself may name the mob ("0/4 X slain")
+                    if not d then
+                        local mob = mobFromText(o.text)
+                        if mob then addName(set, mob)
+                        elseif MOB_TYPES[o.type or ""] then unresolved = true end
                     end
                 end
             end
         end
     end
-    return set, loot
+    return set, loot, unresolved
 end
 
 --- lower-case names of mobs whose objective is already complete for every quest in the log:
@@ -149,9 +179,8 @@ function MM:FinishedNames()
             if o.finished then
                 local d = liveToDB(DB, questID, k, live)
                 if d then objectiveMobs(DB, d, set)
-                elseif o.text then
-                    local mob = o.text:match("^(.-)%s+slain")
-                    if mob and mob ~= "" then addName(set, mob) end
+                else
+                    addName(set, mobFromText(o.text))
                 end
             end
         end
@@ -178,10 +207,7 @@ function MM:ObjectiveNames(questID, index, live)
         if d then objectiveMobs(DB, d, set) end
     end
     -- Forever-only quests may not have database entries. Only kill wording names a mob.
-    if not next(set) and o.text then
-        local mob = o.text:match("^(.-)%s+slain") or o.text:match("^(.-)%s+defeated")
-        if mob then addName(set, mob) end
-    end
+    if not next(set) then addName(set, mobFromText(o.text)) end
     return set
 end
 
@@ -200,6 +226,12 @@ end
 local function tagged(u)
     return ns.Plain(ns.Safe(UnitIsTapDenied, u)) == true
 end
+
+local function questRelated(u)
+    return ns.Plain(ns.Call("C_QuestLog.UnitIsRelatedToActiveQuest", u)) == true
+end
+
+local MACRO_NAMES = 8         -- names in the target macro when it serves quests off the route
 
 -- Closeness proxy. Nameplate frames are "restricted regions" on this client:
 -- measuring them (GetCenter/GetScale) throws in combat, anchoring to them is
@@ -362,6 +394,22 @@ function MM:UpdateTargetMacro(names, itemID)
     ns.Events:Fire("FG_TARGET_MACRO_CHANGED", list, itemID)
 end
 
+--- The names the target macro gets off the route: the mobs on screen, nearest first, then the
+--- rest by name, at most MACRO_NAMES of them.
+function MM:MacroNames(names, seen)
+    local list = {}
+    for lower in pairs(names) do list[#list + 1] = lower end
+    table.sort(list, function(a, b)
+        local sa, sb = seen[a], seen[b]
+        if sa and sb then return sa > sb end
+        if sa or sb then return sa ~= nil end
+        return a < b
+    end)
+    local out = {}
+    for i = 1, math.min(#list, MACRO_NAMES) do out[list[i]] = names[list[i]] end
+    return out
+end
+
 function MM:TargetKey()
     local k = ns.PlainString(ns.Safe(rawget(_G, "GetBindingKey"), "CLICK ForeverGuideTargetButton:LeftButton"))
     return k
@@ -375,20 +423,31 @@ function MM:Scan()
     if c.enabled == false or (ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()) then forcePlates(false) return end
     local names, step = self:WantedNames()
     local finished = self:FinishedNames()
-    local openKills, openLoot = self:OpenKillNames()
+    local openKills, openLoot, unresolved = self:OpenKillNames()
     local killStep = step ~= nil
-    -- plates also while an off-guide kill objective is open, e.g. a quest the
-    -- player picked up on their own
-    local anyKill = killStep or next(openKills) ~= nil
-    forcePlates(anyKill)
     local current = ns.Guide and ns.Guide:GetCurrentStep()
-    self:UpdateTargetMacro(names, c.useItem ~= false and current and ns.Guide:StepUseItem(current) or nil)
+    local stepItem = c.useItem ~= false and current and ns.Guide:StepUseItem(current) or nil
+    -- the route wants no kill and has no item for the key: the quests in the log, on the route or
+    -- not, get the big skull and the target key (a quest the player picked up on their own)
+    local offRoute = next(names) == nil and stepItem == nil
+    if offRoute then
+        for lower, name in pairs(openKills) do names[lower] = name end
+        for lower, name in pairs(openLoot) do names[lower] = name end
+    end
+    -- plates also while an off-guide kill or loot objective is open
+    local anyKill = killStep or next(openKills) ~= nil or next(openLoot) ~= nil
+    forcePlates(anyKill)
+    if not offRoute then self:UpdateTargetMacro(names, stepItem) end
     local NP = rawget(_G, "C_NamePlate")
-    if not NP or type(NP.GetNamePlates) ~= "function" then return end
+    if not NP or type(NP.GetNamePlates) ~= "function" then
+        if offRoute then self:UpdateTargetMacro(self:MacroNames(names, {})) end
+        return
+    end
     local plates = ns.Safe(NP.GetNamePlates) or {}
     local best, bestScore, mine
     local others = {}
     local targetGUID = ns.PlainString(ns.Safe(UnitGUID, "target"))
+    local seen = {}               -- lower name -> best closeness of a living, untagged plate
     for _, plate in ipairs(plates) do
         local u = plateUnit(plate)
         if u and isMob(u) then
@@ -396,14 +455,18 @@ function MM:Scan()
             local lower = name and string.lower(name)
             local isWanted = lower and names[lower] ~= nil
             -- Only proven open objectives (or the current step) earn skulls; the client's
-            -- quest-related flag stays true for quests already ready to turn in.
+            -- quest-related flag stays true for quests already ready to turn in, so it counts
+            -- only while some open objective names no mob, and never for a finished mob.
             local open = lower and (openKills[lower] or openLoot[lower])
-            local related = (not lower or not finished[lower] or open) and (isWanted or open)
+            local flagged = unresolved and lower and not isWanted and not open and not finished[lower] and questRelated(u)
+            if flagged and offRoute then isWanted = true end
+            local related = (not lower or not finished[lower] or open) and (isWanted or open or flagged)
             -- a mob tagged by someone else is nobody's kill: no skull at all
             if related and not tagged(u) then
                 local isTarget = targetGUID and ns.PlainString(ns.Safe(UnitGUID, u)) == targetGUID
                 if isWanted then
                     local score = closeness(plate, u) + (isTarget and 5000 or 0)
+                    if names[lower] and (not seen[lower] or score > seen[lower]) then seen[lower] = score end
                     if not bestScore or score > bestScore then
                         if best then others[#others + 1] = best end
                         best, bestScore = plate, score
@@ -416,6 +479,7 @@ function MM:Scan()
             end
         end
     end
+    if offRoute then self:UpdateTargetMacro(self:MacroNames(names, seen)) end
     if best then dress(acquire(), best, true, 30 * (c.size or 1)) end
     if c.others ~= false then
         for _, plate in ipairs(others) do dress(acquire(), plate, false, 18 * (c.size or 1)) end
