@@ -441,6 +441,8 @@ _G.GetQuestLogSpecialItemInfo = function(i)
 end
 _G.C_SpellBook = { IsSpellKnown = function(id) return world.spells[id] == true end }
 _G.C_UnitAuras = { GetPlayerAuraBySpellID = function(id) return world.auras[id] end }
+-- a plate's `tooltip` is the lines C_TooltipInfo would give: { type = 17 title | 8 objective | 18 player, leftText, completed }
+_G.C_TooltipInfo = { GetUnit = function(unit) local p = world.plates and world.plates[unit] return p and { lines = p.tooltip or {} } or nil end }
 _G.C_Spell = _G.C_Spell or {}
 _G.C_Spell.GetSpellTexture = _G.C_Spell.GetSpellTexture or function() return 136000 end
 _G.GetMaxPlayerLevel = function() return 60 end

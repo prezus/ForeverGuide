@@ -1637,20 +1637,87 @@ section("skulls over quest mobs", function()
     local getStep = G.GetCurrentStep
     G.GetCurrentStep = function() return { type = "KILL", quest = 999994, target = "Unlisted Ravager" } end
     ns.MobMarker:Scan()
-    check(not ns.MobMarker.markedUnits["nameplate5"] and ns.MobMarker.primaryUnit == nil,
+    check(not ns.MobMarker.markedUnits["nameplate5"] and ns.MobMarker.primaryUnit ~= "nameplate5",
         "ready-to-turn-in quest has no large skull even if the guide step has not advanced")
     G.GetCurrentStep = getStep
     MOCK_PLATE("nameplate5", nil); MOCK_ABANDON(999994); settle()
+    -- Quests off the route. Forever writes the count first ("0/2 X slain").
+    check(ns.MobMarker.MobFromText("0/8 Murloc slain") == "Murloc" and ns.MobMarker.MobFromText("Murloc slain: 3/8") == "Murloc"
+        and ns.MobMarker.MobFromText("Murloc Streamrunners slain (4)") == "Murloc Streamrunners"
+        and ns.MobMarker.MobFromText("0/3 Thing defeated") == "Thing" and ns.MobMarker.MobFromText("6/6 Crag Boar Rib") == nil,
+        "kill wording names its mob in every format, and an item objective names none")
+    local function macro() local b = rawget(_G, "ForeverGuideTargetButton") return b and b:GetAttribute("macrotext") or "" end
+    G.GetCurrentStep = function() return { type = "TRAVEL", map = 1429, x = 50, y = 50, text = "walk" } end
+    MOCK_ACCEPT(999995, "Count-first hunt", { { text = "0/2 Unlisted Stalker slain", type = "monster", finished = false, numFulfilled = 0, numRequired = 2 } }); settle()
+    MOCK_PLATE("nameplate7", { name = "Unlisted Stalker", npcID = 999995, scale = 2.0, y = 330 })
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.primaryUnit == "nameplate7", "a quest off the route, worded count first: its mob gets the big skull while the route wants no kill ("
+        .. tostring(ns.MobMarker.primaryUnit) .. ")")
+    check(macro():find("Unlisted Stalker", 1, true) ~= nil, "...and the target key targets it (" .. macro():gsub("\n", " | ") .. ")")
+    MOCK.log[999995].objectives[1].text = "2/2 Unlisted Stalker slain"; MOCK_PROGRESS(999995, 1, 2); settle(); ns.MobMarker:Scan()
+    check(not ns.MobMarker.markedUnits["nameplate7"], "its objective done: the skull goes")
+    MOCK_PLATE("nameplate7", nil); MOCK_ABANDON(999995); settle()
+    -- a route kill step keeps the big skull; the off-route mob stays small
+    G.GetCurrentStep = function() return { type = "KILL", quest = 999996, target = "Route Boar" } end
+    MOCK_ACCEPT(999996, "Route hunt", { { text = "0/4 Route Boar slain", type = "monster", finished = false, numFulfilled = 0, numRequired = 4 } })
+    MOCK_ACCEPT(999997, "Side hunt", { { text = "0/4 Side Wolf slain", type = "monster", finished = false, numFulfilled = 0, numRequired = 4 } }); settle()
+    MOCK_PLATE("nameplate7", { name = "Route Boar", npcID = 999996, scale = 1.0, y = 330 })
+    MOCK_PLATE("nameplate8", { name = "Side Wolf", npcID = 999997, scale = 2.0, y = 330 })
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.primaryUnit == "nameplate7" and ns.MobMarker.markedUnits["nameplate8"] == "other",
+        "during a route kill step its mob keeps the big skull and the side quest's mob gets a small one")
+    check(macro():find("Route Boar", 1, true) ~= nil and not macro():find("Side Wolf", 1, true), "...and the target key stays on the route's mob")
+    MOCK_PLATE("nameplate7", nil); MOCK_PLATE("nameplate8", nil); MOCK_ABANDON(999996); MOCK_ABANDON(999997); settle()
+    -- a loot objective nothing names: the mob's own tooltip says it is for your open objective
+    G.GetCurrentStep = function() return { type = "TRAVEL", map = 1429, x = 50, y = 50, text = "walk" } end
+    local function tip(done, player)
+        local lines = { { type = 17, leftText = "Gem hunt" } }
+        if player then lines[#lines + 1] = { type = 18, leftText = player } end
+        lines[#lines + 1] = { type = 8, leftText = (done and "4/4" or "0/4") .. " Strange Gem", completed = done }
+        return lines
+    end
+    MOCK_ACCEPT(999998, "Gem hunt", { { text = "0/4 Strange Gem", type = "item", finished = false, numFulfilled = 0, numRequired = 4 } }); settle()
+    MOCK_PLATE("nameplate7", { name = "Gem Hoarder", npcID = 999998, scale = 2.0, y = 330, quest = true, tooltip = tip(false) })
+    MOCK_PLATE("nameplate8", { name = "Plain Hoarder", npcID = 999999, scale = 2.0, y = 330, quest = true })
+    MOCK_PLATE("nameplate9", { name = "Party Hoarder", npcID = 999990, scale = 2.0, y = 330, tooltip = tip(false, "Partymate") })
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.markedUnits["nameplate7"] and ns.MobMarker.primaryUnit == "nameplate7",
+        "an unnamed loot objective: the mob whose tooltip lists it open gets the big skull")
+    check(not ns.MobMarker.markedUnits["nameplate8"], "the client's quest-related flag alone marks nothing")
+    check(ns.MobMarker.Cfg().party == nil, "party skulls have no saved setting yet")
+    check(ns.MobMarker.markedUnits["nameplate9"] == "party" and ns.MobMarker.primaryUnit == "nameplate7",
+        "party skulls are on by default: a party member's objective marks its mob with a small party skull, never the big one ("
+        .. tostring(ns.MobMarker.markedUnits["nameplate9"]) .. ")")
+    MOCK.plates.nameplate7.tooltip[#MOCK.plates.nameplate7.tooltip + 1] = { type = 18, leftText = "Partymate" }
+    MOCK.plates.nameplate7.tooltip[#MOCK.plates.nameplate7.tooltip + 1] = { type = 8, leftText = "1/4 Strange Gem", completed = false }
+    ns.MobMarker:ForgetTooltips(); ns.MobMarker:Scan()
+    check(ns.MobMarker.primaryUnit == "nameplate7", "a mob both of you need keeps your own big skull")
+    ns.Commands:Run("skull party off"); ns.MobMarker:Scan()
+    check(not ns.MobMarker.markedUnits["nameplate9"], "/fg skull party off takes the party skulls away")
+    ns.Commands:Run("skull party on")
+    MOCK.plates.nameplate7.tooltip = tip(false)
+    MOCK.plates.nameplate7.tooltip = tip(true)
+    MOCK.log[999998].objectives[1].text = "4/4 Strange Gem"; MOCK_PROGRESS(999998, 1, 4); settle(); ns.MobMarker:Scan()
+    check(not ns.MobMarker.markedUnits["nameplate7"], "the objective done: the tooltip lists it completed and the skull goes")
+    MOCK_PLATE("nameplate7", nil); MOCK_PLATE("nameplate8", nil); MOCK_PLATE("nameplate9", nil); MOCK_ABANDON(999998); settle()
+    -- the tooltip also overrules a name: a mob whose tooltip shows only completed objectives has none left
+    MOCK_ACCEPT(999997, "Side hunt", { { text = "0/4 Side Wolf slain", type = "monster", finished = false, numFulfilled = 0, numRequired = 4 } }); settle()
+    MOCK_PLATE("nameplate8", { name = "Side Wolf", npcID = 999997, scale = 2.0, y = 330,
+        tooltip = { { type = 17, leftText = "Other hunt" }, { type = 8, leftText = "4/4 Side Wolf slain", completed = true } } })
+    ns.MobMarker:Scan()
+    check(not ns.MobMarker.markedUnits["nameplate8"], "a mob whose tooltip lists only completed objectives gets no skull, whatever its name")
+    MOCK_PLATE("nameplate8", nil); MOCK_ABANDON(999997); settle()
+    G.GetCurrentStep = getStep
     ns.Commands:Run("skull off"); ns.MobMarker:Scan()
     check(ns.MobMarker.markedCount == 0 and GetCVar("nameplateShowEnemies") == "0", "/fg skull off removes the skulls and restores the nameplate setting")
     ns.Commands:Run("skull on")
     MOCK_ABANDON(11); settle()
-    -- plates also stay while any quest in the log has an open kill objective: drop those first
+    -- plates also stay while any quest in the log has an open kill or loot objective: drop those first
     do
         local drop = {}
         for _, qid in ipairs(ns.Quest.order) do
             for _, o in ipairs(ns.Quest:GetObjectives(qid) or {}) do
-                if not o.finished and o.text and o.text:find("slain", 1, true) then
+                if not o.finished then
                     local copy = {}
                     for i, oo in ipairs(ns.Quest:GetObjectives(qid)) do copy[i] = { text = oo.text, finished = oo.finished, numFulfilled = oo.numFulfilled, numRequired = oo.numRequired } end
                     drop[#drop + 1] = { id = qid, title = ns.Quest:GetTitle(qid), objs = copy }

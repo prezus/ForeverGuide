@@ -59,6 +59,8 @@ Config.TOGGLES = {
                    set = function(v) if ns.MobMarker then ns.MobMarker:SetEnabled(v) end end },
     skullothers = { label = "small skulls over the other quest mobs around", get = function() return ns.MobMarker and ns.MobMarker.Cfg().others ~= false end,
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().others = v ns.MobMarker:Scan() end end },
+    skullparty = { label = "blue skulls over the mobs a party member still needs (from the mob's tooltip)", get = function() return ns.MobMarker ~= nil and ns.MobMarker.Cfg().party ~= false end,
+                   set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().party = v ns.MobMarker:Scan() end end },
     skullplates = { label = "switch enemy nameplates on during kill steps (needed for the skulls)", get = function() return ns.MobMarker and ns.MobMarker.Cfg().plates ~= false end,
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().plates = v ns.MobMarker:Scan() end end },
     skulluse   = { label = "the target-quest-mob key also uses the step's quest item", get = function() return ns.MobMarker and ns.MobMarker.Cfg().useItem ~= false end,
@@ -109,7 +111,7 @@ function Config.OptionItems()
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end
     items[#items + 1] = { header = "Quest mobs" }
-    for _, key in ipairs({ "skull", "skullothers", "skullplates", "skulluse" }) do
+    for _, key in ipairs({ "skull", "skullothers", "skullparty", "skullplates", "skulluse" }) do
         local t = Config.TOGGLES[key]
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end
