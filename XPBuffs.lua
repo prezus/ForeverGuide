@@ -59,12 +59,29 @@ local function auraStacks(aura)
     return math.max(n or 1, 1)              -- 0 applications = an aura that does not stack
 end
 
+-- While auras are secret (combat restrictions), GetPlayerAuraBySpellID returns no values at all
+-- for an aura the player has (RequiresNonSecretAura): that is "cannot tell", not "gone".
+local function auraSecret(id)
+    local s = ns.Plain(ns.Call("C_Secrets.ShouldSpellAuraBeSecret", id))
+    if s == nil then s = ns.Plain(ns.Call("C_Secrets.ShouldAurasBeSecret")) end
+    return s == true
+end
+
+local function counted(...) return select("#", ...), (...) end
+
+local function readAura(id)
+    if auraSecret(id) then return nil end
+    local n, aura = counted(ns.Call("C_UnitAuras.GetPlayerAuraBySpellID", id))
+    if n == 0 then return nil end         -- no values: withheld
+    return auraStacks(aura)
+end
+
 --- Stacks of a buff on the player (the most of any of its spells): 0 when it is gone, nil when
 --- the client will not say (secret) and no readable spell has it.
 function XB:Stacks(buff)
     local best, unreadable = 0, false
     for _, id in ipairs(buff.spellIDs) do
-        local n = auraStacks(ns.Call("C_UnitAuras.GetPlayerAuraBySpellID", id))
+        local n = readAura(id)
         if n == nil then unreadable = true elseif n > best then best = n end
     end
     if best == 0 and unreadable then return nil end

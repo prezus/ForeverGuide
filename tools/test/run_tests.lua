@@ -3401,6 +3401,21 @@ section("XP buff indicators: each icon shows while its buff is missing", functio
     MOCK.auras[BAG] = { applications = 3 }
     refresh()
     check(not shown("bag"), "three stacks of Well-Rested: the bag icon hides")
+    -- in combat the client withholds auras: the icons keep their state, whether it says so or not
+    MOCK.auras[FOOD] = { applications = 0 }
+    refresh()
+    need(not shown("food") and not shown("bag"), "both buffs up: no icons")
+    MOCK.secretAuras = { [BAG] = true, [FOOD] = true }
+    for _, id in ipairs(XB.BUFFS.food.spellIDs) do MOCK.secretAuras[id] = true end
+    refresh()
+    check(not shown("food") and not shown("bag"), "auras withheld (no values returned): the icons stay hidden")
+    MOCK.secretAurasAnnounced = true
+    refresh()
+    check(not shown("food") and not shown("bag"), "auras the client calls secret: the icons stay hidden")
+    MOCK.secretAuras, MOCK.secretAurasAnnounced = {}, nil
+    MOCK.auras[FOOD] = nil
+    refresh()
+    check(shown("food") and not shown("bag"), "readable again: the food buff gone shows its icon, the bag still at 3 stays hidden")
 
     MOCK.auras = {}
     refresh()
@@ -3431,7 +3446,7 @@ section("XP buff indicators: each icon shows while its buff is missing", functio
     ns.Commands:Run("remind buffs reset")
     check(XB.Cfg().point == nil, "/fg remind buffs reset clears it")
 
-    MOCK.level, MOCK.xpDisabled, MOCK.auras = levelWas, nil, {}
+    MOCK.level, MOCK.xpDisabled, MOCK.auras, MOCK.secretAuras = levelWas, nil, {}, {}
     for _, f in pairs(XB.frames) do f:Hide() end
 end)
 

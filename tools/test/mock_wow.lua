@@ -440,7 +440,10 @@ _G.GetQuestLogSpecialItemInfo = function(i)
     return "|cffffffff|Hitem:" .. q.specialItem .. "::::::::1:::::::|h[Quest Thing]|h|r", "icon:" .. q.specialItem, 1, false
 end
 _G.C_SpellBook = { IsSpellKnown = function(id) return world.spells[id] == true end }
-_G.C_UnitAuras = { GetPlayerAuraBySpellID = function(id) return world.auras[id] end }
+-- world.secretAuras[id]: the client withholds that aura (combat restrictions): no values at all
+world.secretAuras = {}
+_G.C_UnitAuras = { GetPlayerAuraBySpellID = function(id) if world.secretAuras[id] then return end return world.auras[id] end }
+_G.C_Secrets = { ShouldSpellAuraBeSecret = function(id) return world.secretAurasAnnounced == true and world.secretAuras[id] == true end }
 -- a plate's `tooltip` is the lines C_TooltipInfo would give: { type = 17 title | 8 objective | 18 player, leftText, completed }
 _G.C_TooltipInfo = { GetUnit = function(unit) local p = world.plates and world.plates[unit] return p and { lines = p.tooltip or {} } or nil end }
 _G.C_Spell = _G.C_Spell or {}
