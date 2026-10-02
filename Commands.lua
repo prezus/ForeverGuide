@@ -41,7 +41,7 @@ local HELP = {
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
     "/fg dungeon on|off  put the guide away while you are in an instance (on by default)",
     "/fg fp              list / walk to the flight points in this zone you have not taken yet",
-    "/fg remind [flight|trainer] on|off   the flight-point and trainer nudges",
+    "/fg remind [flight|trainer|food|bag] on|off | buffs reset   the flight-point and trainer nudges, the XP food and sleeping bag icons",
     "/fg xp              levelling pace: xp/h, time to the next level, and how you compare with the route model",
     "/fg ding on|off|test|<channel>   announce a level-up (\"I leveled up to 18 in 1h 24m\") to your party, or as an emote when solo",
     "/fg resync          skip quests you out-levelled (<=20% xp) and continue from the first open step",
@@ -296,20 +296,27 @@ function handlers.fp(rest)
     if go then ns.Printf("pointing at %s; /fg fp off gives the guide its marker back.", go.name) end
 end
 
---- /fg remind [flight|trainer] on|off - the two nudges
+--- /fg remind [flight|trainer|food|bag] on|off | buffs reset - the two nudges and the two XP buff icons
 function handlers.remind(rest)
-    local R = ns.Reminders
+    local R, XB = ns.Reminders, ns.XPBuffs
     if not R then return end
     rest = (rest or ""):lower():gsub("^%s+", ""):gsub("%s+$", "")
     local c = R.Cfg()
+    local b = XB and XB.Cfg()
     local what, state = rest:match("^(%a*)%s*(%a*)$")
     if what == "flight" or what == "trainer" then
         if state == "on" then c[what] = true elseif state == "off" then c[what] = false end
+    elseif b and (what == "food" or what == "bag") then
+        if state == "on" then b[what].enabled = true elseif state == "off" then b[what].enabled = false end
+        XB:Refresh()
+    elseif XB and what == "buffs" and state == "reset" then
+        XB:ResetPositions()
     elseif what == "on" or what == "off" then
         c.flight, c.trainer = what == "on", what == "on"
     end
-    ns.Printf("reminders: flight points %s, trainer %s  (/fg remind flight|trainer on|off)",
-        c.flight == false and "off" or "on", c.trainer == false and "off" or "on")
+    local function onOff(v) return v == false and "off" or "on" end
+    ns.Printf("reminders: flight points %s, trainer %s, XP food %s, sleeping bag %s  (/fg remind flight|trainer|food|bag on|off)",
+        onOff(c.flight), onOff(c.trainer), onOff(b and b.food.enabled), onOff(b and b.bag.enabled))
 end
 
 --- /fg xp - how fast you are levelling and what the route model says about the rest

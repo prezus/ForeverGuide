@@ -12,6 +12,7 @@ local world = {
     completed = {},    -- questID -> true
     items = {},        -- itemID -> count
     spells = {},       -- spellID -> true
+    auras = {},        -- spellID -> { applications = n }: the player's auras
     target = nil,
     npc = nil,
     bind = "Northshire Abbey",
@@ -439,6 +440,11 @@ _G.GetQuestLogSpecialItemInfo = function(i)
     return "|cffffffff|Hitem:" .. q.specialItem .. "::::::::1:::::::|h[Quest Thing]|h|r", "icon:" .. q.specialItem, 1, false
 end
 _G.C_SpellBook = { IsSpellKnown = function(id) return world.spells[id] == true end }
+_G.C_UnitAuras = { GetPlayerAuraBySpellID = function(id) return world.auras[id] end }
+_G.C_Spell = _G.C_Spell or {}
+_G.C_Spell.GetSpellTexture = _G.C_Spell.GetSpellTexture or function() return 136000 end
+_G.GetMaxPlayerLevel = function() return 60 end
+_G.IsXPUserDisabled = function() return world.xpDisabled == true end
 _G.C_GossipInfo = { GetAvailableQuests = function() return {} end, GetActiveQuests = function() return {} end }
 _G.C_AddOns = { GetAddOnMetadata = function() return "0.1.0-test" end }
 

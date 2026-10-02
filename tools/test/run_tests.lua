@@ -3296,6 +3296,55 @@ section("chat stays quiet unless the player typed a command", function()
     ns.AutoQuest.Cfg().announce = announceWas
 end)
 
+section("XP buff indicators: each icon shows while its buff is missing", function()
+    local XB = ns.XPBuffs
+    need(XB ~= nil, "the XPBuffs module loads")
+    local FOOD, BAG = XB.BUFFS.food.spellID, XB.BUFFS.bag.spellID
+    local levelWas = MOCK.level
+    local function refresh() MOCK_FIRE("UNIT_AURA", "player", {}) MOCK_ADVANCE(1) end
+    local function shown(key) local f = XB.frames and XB.frames[key] return f ~= nil and f:IsShown() end
+    MOCK.level, MOCK.auras = 12, {}
+    XB.Cfg().food.enabled, XB.Cfg().bag.enabled = true, true
+
+    local show, stacks, needed = XB:Missing("food")
+    check(show == true and stacks == 0 and needed == 1, "no food buff: the food icon shows")
+    show, stacks, needed = XB:Missing("bag")
+    check(show == true and stacks == 0 and needed == 3, "no Well-Rested: the bag icon shows at 0 of 3")
+    refresh()
+    need(shown("food") and shown("bag"), "a UNIT_AURA for the player puts both icons on screen")
+    check(XB.frames.bag.count:GetText() == "0/3" and XB.frames.food.count:GetText() == "", "the bag icon counts stacks, the food icon does not")
+
+    MOCK.auras[FOOD] = { applications = 0 }
+    refresh()
+    check(not shown("food") and shown("bag"), "eating the XP food hides only the food icon")
+
+    MOCK.auras[BAG] = { applications = 2 }
+    refresh()
+    check(shown("bag") and XB.frames.bag.count:GetText() == "2/3", "two stacks of Well-Rested: the bag icon stays, at 2/3")
+    MOCK.auras[BAG] = { applications = 3 }
+    refresh()
+    check(not shown("bag"), "three stacks of Well-Rested: the bag icon hides")
+
+    MOCK.auras = {}
+    refresh()
+    check(shown("food") and shown("bag"), "the buffs running out bring both icons back")
+    ns.Commands:Run("remind food off")
+    check(XB:Missing("food") == false and not shown("food") and shown("bag"), "/fg remind food off hides the food icon and keeps the bag's")
+    ns.Commands:Run("remind food on")
+    check(shown("food"), "/fg remind food on brings it back")
+
+    MOCK.level = 60
+    refresh()
+    check(XB:Missing("food") == false and XB:Missing("bag") == false and not shown("food") and not shown("bag"),
+        "at max level neither icon shows")
+    MOCK.level, MOCK.xpDisabled = 30, true
+    refresh()
+    check(not shown("food") and not shown("bag"), "with XP turned off neither icon shows")
+
+    MOCK.level, MOCK.xpDisabled, MOCK.auras = levelWas, nil, {}
+    for _, f in pairs(XB.frames) do f:Hide() end
+end)
+
 section("docs agree with the code", function()
     local function read(path)
         local f = io.open(root .. path)
