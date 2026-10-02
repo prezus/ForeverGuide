@@ -440,16 +440,11 @@ _G.GetQuestLogSpecialItemInfo = function(i)
     return "|cffffffff|Hitem:" .. q.specialItem .. "::::::::1:::::::|h[Quest Thing]|h|r", "icon:" .. q.specialItem, 1, false
 end
 _G.C_SpellBook = { IsSpellKnown = function(id) return world.spells[id] == true end }
-world.auraNames = {}        -- name -> { applications = n }: auras found by name (each food has its own Well Fed id)
-_G.C_UnitAuras = {
-    GetPlayerAuraBySpellID = function(id) return world.auras[id] end,
-    GetAuraDataBySpellName = function(unit, name) return unit == "player" and world.auraNames[name] or nil end,
-}
+_G.C_UnitAuras = { GetPlayerAuraBySpellID = function(id) return world.auras[id] end }
 -- a plate's `tooltip` is the lines C_TooltipInfo would give: { type = 17 title | 8 objective | 18 player, leftText, completed }
 _G.C_TooltipInfo = { GetUnit = function(unit) local p = world.plates and world.plates[unit] return p and { lines = p.tooltip or {} } or nil end }
 _G.C_Spell = _G.C_Spell or {}
 _G.C_Spell.GetSpellTexture = _G.C_Spell.GetSpellTexture or function() return 136000 end
-_G.C_Spell.GetSpellName = _G.C_Spell.GetSpellName or function(id) return id == 19705 and "Well Fed" or nil end
 _G.GetMaxPlayerLevel = function() return 60 end
 _G.IsXPUserDisabled = function() return world.xpDisabled == true end
 _G.C_GossipInfo = { GetAvailableQuests = function() return {} end, GetActiveQuests = function() return {} end }

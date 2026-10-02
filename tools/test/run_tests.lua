@@ -3366,7 +3366,7 @@ end)
 section("XP buff indicators: each icon shows while its buff is missing", function()
     local XB = ns.XPBuffs
     need(XB ~= nil, "the XPBuffs module loads")
-    local FOOD, BAG = XB.BUFFS.food.spellID, XB.BUFFS.bag.spellID
+    local FOOD, BAG = 1243969, 429959
     local levelWas = MOCK.level
     local function refresh() MOCK_FIRE("UNIT_AURA", "player", {}) MOCK_ADVANCE(1) end
     local function shown(key) local f = XB.frames and XB.frames[key] return f ~= nil and f:IsShown() end
@@ -3381,12 +3381,16 @@ section("XP buff indicators: each icon shows while its buff is missing", functio
     need(shown("food") and shown("bag"), "a UNIT_AURA for the player puts both icons on screen")
     check(XB.frames.bag.count:GetText() == "0/3" and XB.frames.food.count:GetText() == "", "the bag icon counts stacks, the food icon does not")
 
-    MOCK.auraNames["Well Fed"] = { spellId = 1225778, applications = 0 }
+    MOCK.auras[1248422] = { applications = 0 }          -- Goretusk Liver Pie's Well Fed (Strength, +5% XP)
     refresh()
-    check(not shown("food") and shown("bag"), "eating any food that makes you Well Fed hides only the food icon")
-    MOCK.auraNames = {}
+    check(not shown("food") and shown("bag"), "a Well Fed that carries the XP bonus hides only the food icon")
+    MOCK.auras[1248422] = nil
     refresh()
     check(shown("food"), "the Well Fed buff gone: the food icon is back")
+    MOCK.auras[1225778] = { applications = 0 }          -- Prowler Steak's Well Fed: no XP line
+    refresh()
+    check(shown("food"), "a Well Fed without the XP bonus does not count")
+    MOCK.auras[1225778] = nil
     MOCK.auras[FOOD] = { applications = 0 }
     refresh()
     check(not shown("food") and shown("bag"), "Well Fed XP Boost itself counts too")
@@ -3427,7 +3431,7 @@ section("XP buff indicators: each icon shows while its buff is missing", functio
     ns.Commands:Run("remind buffs reset")
     check(XB.Cfg().point == nil, "/fg remind buffs reset clears it")
 
-    MOCK.level, MOCK.xpDisabled, MOCK.auras, MOCK.auraNames = levelWas, nil, {}, {}
+    MOCK.level, MOCK.xpDisabled, MOCK.auras = levelWas, nil, {}
     for _, f in pairs(XB.frames) do f:Hide() end
 end)
 
