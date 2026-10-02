@@ -3381,9 +3381,15 @@ section("XP buff indicators: each icon shows while its buff is missing", functio
     need(shown("food") and shown("bag"), "a UNIT_AURA for the player puts both icons on screen")
     check(XB.frames.bag.count:GetText() == "0/3" and XB.frames.food.count:GetText() == "", "the bag icon counts stacks, the food icon does not")
 
+    MOCK.auraNames["Well Fed"] = { spellId = 1225778, applications = 0 }
+    refresh()
+    check(not shown("food") and shown("bag"), "eating any food that makes you Well Fed hides only the food icon")
+    MOCK.auraNames = {}
+    refresh()
+    check(shown("food"), "the Well Fed buff gone: the food icon is back")
     MOCK.auras[FOOD] = { applications = 0 }
     refresh()
-    check(not shown("food") and shown("bag"), "eating the XP food hides only the food icon")
+    check(not shown("food") and shown("bag"), "Well Fed XP Boost itself counts too")
 
     MOCK.auras[BAG] = { applications = 2 }
     refresh()
@@ -3421,7 +3427,7 @@ section("XP buff indicators: each icon shows while its buff is missing", functio
     ns.Commands:Run("remind buffs reset")
     check(XB.Cfg().point == nil, "/fg remind buffs reset clears it")
 
-    MOCK.level, MOCK.xpDisabled, MOCK.auras = levelWas, nil, {}
+    MOCK.level, MOCK.xpDisabled, MOCK.auras, MOCK.auraNames = levelWas, nil, {}, {}
     for _, f in pairs(XB.frames) do f:Hide() end
 end)
 

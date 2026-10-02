@@ -3,7 +3,9 @@
 -- Two XP buffs a levelling character forgets, each with its own icon on screen
 -- while it is missing:
 --
---   * food: Well Fed XP Boost (spell 1243969), +5% XP, the aura Forever's XP foods give.
+--   * food: Well Fed, +5% XP. On Forever the food's own Well Fed buff carries the bonus (the
+--           server adds it; no Well Fed spell in the client's tables has an XP effect), so
+--           any buff named Well Fed counts, and so does Well Fed XP Boost (spell 1243969).
 --   * bag:  Well-Rested (spell 429959) from the Cozy Sleeping Bag (item 211527), +1% XP per
 --           stack up to 3; the icon stays up below 3 stacks and shows the count (1/3).
 --
@@ -23,9 +25,11 @@ local RECHECK = 30           -- seconds between fallback checks (UNIT_AURA can b
 local MAX_LEVEL = 60
 
 -- The client's own tables (build 1.60.1.70094): spell, stacks for the full bonus, wording.
+-- `byName`: a spell whose (localized) name also counts, whatever the aura's own id: every food
+-- has its own Well Fed spell (19705 is the classic one).
 XB.BUFFS = {
-    food = { spellID = 1243969, needed = 1, slot = 0, name = "Well Fed XP Boost",
-             bonus = "+5% experience", hint = "Eat a food that gives Well Fed XP Boost." },
+    food = { spellID = 1243969, byName = 19705, byNameFallback = "Well Fed", needed = 1, slot = 0, name = "Well Fed",
+             bonus = "+5% experience", hint = "Eat any food that makes you Well Fed." },
     bag  = { spellID = 429959, needed = 3, slot = 1, name = "Well-Rested",
              bonus = "+1% experience per stack, up to 3", hint = "Rest near your Cozy Sleeping Bag." },
 }
@@ -43,14 +47,20 @@ local function cfg()
 end
 XB.Cfg = cfg
 
---- Stacks of the player's aura: 0 when it is gone, nil when the client will not say (secret).
-function XB:Stacks(spellID)
-    local aura = ns.Call("C_UnitAuras.GetPlayerAuraBySpellID", spellID)
+local function auraStacks(aura)
     if aura == nil then return 0 end
     if ns.IsSecret(aura) or type(aura) ~= "table" then return nil end
     local n = ns.PlainNumber(aura.applications)
     if n == nil and ns.IsSecret(aura.applications) then return nil end
     return math.max(n or 1, 1)              -- 0 applications = an aura that does not stack
+end
+
+--- Stacks of a buff on the player: 0 when it is gone, nil when the client will not say (secret).
+function XB:Stacks(buff)
+    local n = auraStacks(ns.Call("C_UnitAuras.GetPlayerAuraBySpellID", buff.spellID))
+    if n ~= 0 or not buff.byName then return n end
+    local name = ns.PlainString(ns.Call("C_Spell.GetSpellName", buff.byName)) or buff.byNameFallback
+    return auraStacks(ns.Call("C_UnitAuras.GetAuraDataBySpellName", "player", name, "HELPFUL"))
 end
 
 --- Below max level with XP on.
@@ -64,7 +74,7 @@ end
 function XB:Missing(key)
     local buff = self.BUFFS[key]
     if not buff or cfg()[key].enabled == false or not self:Leveling() then return false end
-    local stacks = self:Stacks(buff.spellID)
+    local stacks = self:Stacks(buff)
     if stacks == nil then return nil end
     return stacks < buff.needed, stacks, buff.needed
 end
@@ -119,7 +129,7 @@ local function newIndicator(key)
     f.icon = f:CreateTexture(nil, "ARTWORK")
     f.icon:SetPoint("TOPLEFT", f, "TOPLEFT", 2, -2)
     f.icon:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -2, 2)
-    local tex = ns.Call("C_Spell.GetSpellTexture", buff.spellID)
+    local tex = ns.Call("C_Spell.GetSpellTexture", buff.byName or buff.spellID)
     pcall(f.icon.SetTexture, f.icon, ns.Plain(tex) or "Interface\\Icons\\INV_Misc_QuestionMark")
     pcall(f.icon.SetTexCoord, f.icon, 0.08, 0.92, 0.08, 0.92)
     f.count = Theme.NewText(f, { size = 12, justify = "RIGHT", color = Theme.C.warn, oneLine = true, outline = "OUTLINE" })
