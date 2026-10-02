@@ -14,7 +14,7 @@
 -- A mob's own tooltip (C_TooltipInfo.GetUnit: the quest lines the client shows on
 -- mouseover) settles what the names cannot: an objective of yours still open there
 -- marks it, every one of them completed takes its skull away. With `party` on (off by
--- default), a mob a party member still needs gets a small blue skull of its own.
+-- default; `/fg skull party off`), a mob a party member still needs gets a small blue skull of its own.
 --
 -- Raid target icons (SetRaidTarget) are blocked for addons on this client
 -- (ADDON_ACTION_FORBIDDEN, the same reason RestedXP disables them on 12.x),
@@ -523,7 +523,7 @@ function MM:Scan()
                 elseif c.others ~= false then
                     others[#others + 1] = plate
                 end
-            elseif c.party == true and partyOpen and not tagged(u) then
+            elseif c.party ~= false and partyOpen and not tagged(u) then
                 partyPlates[#partyPlates + 1] = plate
             end
         end

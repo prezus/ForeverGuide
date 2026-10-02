@@ -1684,17 +1684,17 @@ section("skulls over quest mobs", function()
     check(ns.MobMarker.markedUnits["nameplate7"] and ns.MobMarker.primaryUnit == "nameplate7",
         "an unnamed loot objective: the mob whose tooltip lists it open gets the big skull")
     check(not ns.MobMarker.markedUnits["nameplate8"], "the client's quest-related flag alone marks nothing")
-    check(not ns.MobMarker.markedUnits["nameplate9"], "a group member's objective in the tooltip is not yours: no skull")
-    check(ns.MobMarker.Cfg().party ~= true, "party skulls are off by default")
-    ns.Commands:Run("skull party on"); ns.MobMarker:Scan()
+    check(ns.MobMarker.Cfg().party == nil, "party skulls have no saved setting yet")
     check(ns.MobMarker.markedUnits["nameplate9"] == "party" and ns.MobMarker.primaryUnit == "nameplate7",
-        "party skulls on: the party member's mob gets a small party skull, never the big one (" .. tostring(ns.MobMarker.markedUnits["nameplate9"]) .. ")")
+        "party skulls are on by default: a party member's objective marks its mob with a small party skull, never the big one ("
+        .. tostring(ns.MobMarker.markedUnits["nameplate9"]) .. ")")
     MOCK.plates.nameplate7.tooltip[#MOCK.plates.nameplate7.tooltip + 1] = { type = 18, leftText = "Partymate" }
     MOCK.plates.nameplate7.tooltip[#MOCK.plates.nameplate7.tooltip + 1] = { type = 8, leftText = "1/4 Strange Gem", completed = false }
     ns.MobMarker:ForgetTooltips(); ns.MobMarker:Scan()
     check(ns.MobMarker.primaryUnit == "nameplate7", "a mob both of you need keeps your own big skull")
     ns.Commands:Run("skull party off"); ns.MobMarker:Scan()
     check(not ns.MobMarker.markedUnits["nameplate9"], "/fg skull party off takes the party skulls away")
+    ns.Commands:Run("skull party on")
     MOCK.plates.nameplate7.tooltip = tip(false)
     MOCK.plates.nameplate7.tooltip = tip(true)
     MOCK.log[999998].objectives[1].text = "4/4 Strange Gem"; MOCK_PROGRESS(999998, 1, 4); settle(); ns.MobMarker:Scan()

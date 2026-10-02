@@ -59,7 +59,7 @@ Config.TOGGLES = {
                    set = function(v) if ns.MobMarker then ns.MobMarker:SetEnabled(v) end end },
     skullothers = { label = "small skulls over the other quest mobs around", get = function() return ns.MobMarker and ns.MobMarker.Cfg().others ~= false end,
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().others = v ns.MobMarker:Scan() end end },
-    skullparty = { label = "blue skulls over the mobs a party member still needs (from the mob's tooltip)", get = function() return ns.MobMarker ~= nil and ns.MobMarker.Cfg().party == true end,
+    skullparty = { label = "blue skulls over the mobs a party member still needs (from the mob's tooltip)", get = function() return ns.MobMarker ~= nil and ns.MobMarker.Cfg().party ~= false end,
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().party = v ns.MobMarker:Scan() end end },
     skullplates = { label = "switch enemy nameplates on during kill steps (needed for the skulls)", get = function() return ns.MobMarker and ns.MobMarker.Cfg().plates ~= false end,
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().plates = v ns.MobMarker:Scan() end end },
