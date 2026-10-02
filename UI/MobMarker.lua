@@ -13,7 +13,8 @@
 -- key, so a quest the player picked up on their own is marked like a route one.
 -- A mob's own tooltip (C_TooltipInfo.GetUnit: the quest lines the client shows on
 -- mouseover) settles what the names cannot: an objective of yours still open there
--- marks it, every one of them completed takes its skull away.
+-- marks it, every one of them completed takes its skull away. With `party` on (off by
+-- default), a mob a party member still needs gets a small blue skull of its own.
 --
 -- Raid target icons (SetRaidTarget) are blocked for addons on this client
 -- (ADDON_ACTION_FORBIDDEN, the same reason RestedXP disables them on 12.x),
@@ -228,16 +229,17 @@ local function lineType(name)
     return T and T[name] or LINE_FALLBACK[name]
 end
 
-local tipCache = {}       -- GUID -> "open" | "done" | false (no quest lines)
+local tipCache = {}       -- GUID -> { state, party }
 
 --- "open" when the mob's tooltip lists an objective of yours not yet completed, "done" when it
---- lists only completed ones, false when it lists none, nil when it cannot be read.
+--- lists only completed ones, false when it lists none, nil when it cannot be read; and whether
+--- it lists a party member's objective not yet completed.
 local function readTooltip(u)
     local data = ns.Call("C_TooltipInfo.GetUnit", u)
     if type(data) ~= "table" or ns.IsSecret(data) or type(data.lines) ~= "table" then return nil end
     local OBJ, TITLE, PLAYER = lineType("QuestObjective"), lineType("QuestTitle"), lineType("QuestPlayer")
     local me = ns.Player:GetName()
-    local mine, any, open = true, false, false
+    local mine, any, open, party = true, false, false, false
     for _, line in ipairs(data.lines) do
         local t = ns.PlainNumber(line.type)
         if t == nil and ns.IsSecret(line.type) then return nil end
@@ -245,23 +247,29 @@ local function readTooltip(u)
             mine = true
         elseif t == PLAYER then
             mine = ns.PlainString(line.leftText) == me     -- a group member's objectives follow
-        elseif t == OBJ and mine then
+        elseif t == OBJ then
             local done = ns.Plain(line.completed)
             if done == nil and ns.IsSecret(line.completed) then return nil end
-            any = true
-            if done ~= true then open = true end
+            if not mine then
+                if done ~= true then party = true end
+            else
+                any = true
+                if done ~= true then open = true end
+            end
         end
     end
-    if open then return "open" end
-    return any and "done" or false
+    if open then return "open", party end
+    return any and "done" or false, party
 end
 
+--- The mob's tooltip state and whether a party member still needs it (see readTooltip).
 function MM:TooltipQuest(u)
     local guid = ns.PlainString(ns.Safe(UnitGUID, u))
-    if guid and tipCache[guid] ~= nil then return tipCache[guid] end
-    local state = readTooltip(u)
-    if guid and state ~= nil then tipCache[guid] = state end
-    return state
+    local hit = guid and tipCache[guid]
+    if hit then return hit[1], hit[2] end
+    local state, party = readTooltip(u)
+    if guid and state ~= nil then tipCache[guid] = { state, party } end
+    return state, party
 end
 
 function MM:ForgetTooltips() tipCache = {} end
@@ -324,8 +332,11 @@ local function releaseAll()
     used = {}
 end
 
-local function dress(f, plate, primary, size)
+local PARTY_TINT = { 0.45, 0.75, 1.00 }   -- a party member's mob: the skull in blue
+
+local function dress(f, plate, primary, size, tint)
     f:ClearAllPoints()
+    pcall(f.tex.SetVertexColor, f.tex, unpack(tint or { 1, 1, 1 }))
     f:SetSize(size, size)
     f:SetPoint("BOTTOM", plate, "TOP", 0, primary and 6 or 2)
     f.ring:SetSize(size * 1.9, size * 1.9)
@@ -480,7 +491,7 @@ function MM:Scan()
     end
     local plates = ns.Safe(NP.GetNamePlates) or {}
     local best, bestScore, mine
-    local others = {}
+    local others, partyPlates = {}, {}
     local targetGUID = ns.PlainString(ns.Safe(UnitGUID, "target"))
     local seen = {}               -- lower name -> best closeness of a living, untagged plate
     for _, plate in ipairs(plates) do
@@ -493,7 +504,7 @@ function MM:Scan()
             -- quest-related flag stays true for quests already ready to turn in, so it is not used.
             -- The mob's tooltip is: an open objective there marks it, only completed ones unmark it.
             local open = lower and (openKills[lower] or openLoot[lower])
-            local tip = self:TooltipQuest(u)
+            local tip, partyOpen = self:TooltipQuest(u)
             if tip == "open" and offRoute then isWanted = true end
             local related = tip ~= "done" and (not lower or not finished[lower] or open or tip == "open")
                 and (isWanted or open or tip == "open")
@@ -512,6 +523,8 @@ function MM:Scan()
                 elseif c.others ~= false then
                     others[#others + 1] = plate
                 end
+            elseif c.party == true and partyOpen and not tagged(u) then
+                partyPlates[#partyPlates + 1] = plate
             end
         end
     end
@@ -520,11 +533,13 @@ function MM:Scan()
     if c.others ~= false then
         for _, plate in ipairs(others) do dress(acquire(), plate, false, 18 * (c.size or 1)) end
     end
+    for _, plate in ipairs(partyPlates) do dress(acquire(), plate, false, 18 * (c.size or 1), PARTY_TINT) end
     self.primaryUnit = best and plateUnit(best) or nil
     self.markedCount = #used
     self.markedUnits = {}
     if best then self.markedUnits[plateUnit(best)] = "primary" end
     if c.others ~= false then for _, plate in ipairs(others) do self.markedUnits[plateUnit(plate)] = "other" end end
+    for _, plate in ipairs(partyPlates) do self.markedUnits[plateUnit(plate)] = "party" end
     -- the player's own target got taken by someone else: say so once (we cannot retarget for them)
     if killStep and targetGUID and not self.taggedWarned then
         local tName = ns.PlainString(ns.Safe(UnitName, "target"))

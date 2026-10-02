@@ -28,7 +28,7 @@ local HELP = {
     "/fg arrow on|off|size <0.5-2.5>   the compact chevron above your head (the everyday indicator) and its size",
     "/fg path [name|race] follow another race's leveling route (any of your faction's)",
     "/fg waypoint on|off  the in-world gold waypoint diamond (advanced)  |  /fg waypoint engine on|off  ride the client's own pin instead of the arrow  |  /fg route on|off  its dotted path",
-    "/fg skull on|off  skull over the nearest quest mob  |  /fg skull others|plates|item on|off",
+    "/fg skull on|off  skull over the nearest quest mob  |  /fg skull others|party|plates|item on|off",
     "/fg perf  what the addon costs per frame",
     "/fg qg <scale|opacity|width|rows|wpsize> <value>   Quest Guide look  |  /fg qg completed|distances|subtitles on|off",
     "/fg minimap on|off  the minimap button",
@@ -225,6 +225,7 @@ function handlers.skull(rest)
     local key = "skull"
     if rest:match("^plates") then key = "skullplates" rest = rest:gsub("^plates%s*", "")
     elseif rest:match("^others") then key = "skullothers" rest = rest:gsub("^others%s*", "")
+    elseif rest:match("^party") then key = "skullparty" rest = rest:gsub("^party%s*", "")
     elseif rest:match("^item") then key = "skulluse" rest = rest:gsub("^item%s*", "") end
     local on
     if rest == "on" then on = true elseif rest == "off" then on = false end
