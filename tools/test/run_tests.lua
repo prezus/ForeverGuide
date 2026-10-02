@@ -3408,6 +3408,19 @@ section("XP buff indicators: each icon shows while its buff is missing", functio
     refresh()
     check(not shown("food") and not shown("bag"), "with XP turned off neither icon shows")
 
+    -- both icons sit in one holder: dragging either moves the holder, and one position is saved
+    local h = XB:Holder()
+    check(XB.frames.food.parent == h and XB.frames.bag.parent == h, "both icons sit in the one holder")
+    MOCK.shift = true
+    XB.frames.bag:GetScript("OnDragStart")(XB.frames.bag)
+    check(h.moving == true and not XB.frames.bag.moving, "shift-dragging the bag icon moves the holder, not the icon alone")
+    XB.frames.bag:GetScript("OnDragStop")(XB.frames.bag)
+    MOCK.shift = nil
+    check(not h.moving and type(XB.Cfg().point) == "table" and XB.Cfg().food.point == nil and XB.Cfg().bag.point == nil,
+        "dropping saves one position for both icons")
+    ns.Commands:Run("remind buffs reset")
+    check(XB.Cfg().point == nil, "/fg remind buffs reset clears it")
+
     MOCK.level, MOCK.xpDisabled, MOCK.auras = levelWas, nil, {}
     for _, f in pairs(XB.frames) do f:Hide() end
 end)

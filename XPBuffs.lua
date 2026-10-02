@@ -8,8 +8,9 @@
 --           stack up to 3; the icon stays up below 3 stacks and shows the count (1/3).
 --
 -- Display only: plain frames, no secure buttons, so they show and hide in combat too.
--- Both hide at max level or with XP turned off. Shift-drag (or drag while the window is
--- unlocked) moves an icon; `/fg remind food|bag on|off` turns one off.
+-- Both hide at max level or with XP turned off. The two sit side by side in one holder:
+-- shift-drag either icon (or drag while the window is unlocked) and both move together.
+-- `/fg remind food|bag on|off` turns one off.
 -- ============================================================
 
 local _, ns = ...
@@ -17,14 +18,15 @@ local Theme = ns.Theme
 local XB = ns:NewModule("XPBuffs")
 
 local SIZE = 36
+local GAP = 8                -- between the two icons
 local RECHECK = 30           -- seconds between fallback checks (UNIT_AURA can be secret)
 local MAX_LEVEL = 60
 
 -- The client's own tables (build 1.60.1.70094): spell, stacks for the full bonus, wording.
 XB.BUFFS = {
-    food = { spellID = 1243969, needed = 1, x = -22, name = "Well Fed XP Boost",
+    food = { spellID = 1243969, needed = 1, slot = 0, name = "Well Fed XP Boost",
              bonus = "+5% experience", hint = "Eat a food that gives Well Fed XP Boost." },
-    bag  = { spellID = 429959, needed = 3, x = 22, name = "Well-Rested",
+    bag  = { spellID = 429959, needed = 3, slot = 1, name = "Well-Rested",
              bonus = "+1% experience per stack, up to 3", hint = "Rest near your Cozy Sleeping Bag." },
 }
 XB.ORDER = { "food", "bag" }
@@ -35,6 +37,7 @@ local function cfg()
     for _, key in ipairs(XB.ORDER) do
         c[key] = c[key] or {}
         if c[key].enabled == nil then c[key].enabled = true end
+        c[key].point = nil       -- each icon had its own position before they moved together
     end
     return c
 end
@@ -68,14 +71,27 @@ end
 
 -- ---- the icons --------------------------------------------------------------------------
 
-local function place(f, key)
-    local p = cfg()[key].point
-    f:ClearAllPoints()
+local function place(h)
+    local p = cfg().point
+    h:ClearAllPoints()
     if p then
-        f:SetPoint(p.point or "CENTER", UIParent, p.point or "CENTER", p.x or 0, p.y or 0)
+        h:SetPoint(p.point or "CENTER", UIParent, p.point or "CENTER", p.x or 0, p.y or 0)
     else
-        f:SetPoint("CENTER", UIParent, "CENTER", XB.BUFFS[key].x, 220)
+        h:SetPoint("CENTER", UIParent, "CENTER", 0, 220)
     end
+end
+
+--- The frame both icons sit in; it is what moves.
+function XB:Holder()
+    if self.holder then return self.holder end
+    local h = CreateFrame("Frame", "ForeverGuideXPBuffs", UIParent)
+    h:SetSize(SIZE * 2 + GAP, SIZE)
+    h:SetFrameStrata("MEDIUM")
+    h:SetMovable(true)
+    h:SetClampedToScreen(true)
+    place(h)
+    self.holder = h
+    return h
 end
 
 local function tooltip(f)
@@ -86,18 +102,17 @@ local function tooltip(f)
     tt:AddLine(buff.needed > 1 and string.format("%s %d/%d", buff.name, stacks, buff.needed) or ("Missing: " .. buff.name), 1, 0.82, 0)
     tt:AddLine(buff.bonus, 1, 1, 1, true)
     tt:AddLine(buff.hint, 1, 1, 1, true)
-    tt:AddLine("Shift-drag to move.  /fg remind " .. f.key .. " off hides it.", 0.66, 0.61, 0.52, true)
+    tt:AddLine("Shift-drag to move both icons.  /fg remind " .. f.key .. " off hides this one.", 0.66, 0.61, 0.52, true)
     tt:Show()
 end
 
 local function newIndicator(key)
     local buff = XB.BUFFS[key]
-    local f = CreateFrame("Frame", "ForeverGuideXPBuff_" .. key, UIParent)
+    local h = XB:Holder()
+    local f = CreateFrame("Frame", "ForeverGuideXPBuff_" .. key, h)
     f.key = key
     f:SetSize(SIZE, SIZE)
-    f:SetFrameStrata("MEDIUM")
-    f:SetMovable(true)
-    f:SetClampedToScreen(true)
+    f:SetPoint("LEFT", h, "LEFT", buff.slot * (SIZE + GAP), 0)
     f:EnableMouse(true)
     f:RegisterForDrag("LeftButton")
     Theme.Backdrop(f, "plain", 0.8)
@@ -109,17 +124,17 @@ local function newIndicator(key)
     pcall(f.icon.SetTexCoord, f.icon, 0.08, 0.92, 0.08, 0.92)
     f.count = Theme.NewText(f, { size = 12, justify = "RIGHT", color = Theme.C.warn, oneLine = true, outline = "OUTLINE" })
     f.count:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -1, 2)
-    f:SetScript("OnDragStart", function(self)
-        if IsShiftKeyDown() or not ns.db.ui.locked then self:StartMoving() end
+    -- either icon drags the holder, so the two move together
+    f:SetScript("OnDragStart", function()
+        if IsShiftKeyDown() or not ns.db.ui.locked then h:StartMoving() end
     end)
-    f:SetScript("OnDragStop", function(self)
-        self:StopMovingOrSizing()
-        local point, _, _, x, y = self:GetPoint(1)
-        cfg()[key].point = { point = point or "CENTER", x = x or 0, y = y or 0 }
+    f:SetScript("OnDragStop", function()
+        h:StopMovingOrSizing()
+        local point, _, _, x, y = h:GetPoint(1)
+        cfg().point = { point = point or "CENTER", x = x or 0, y = y or 0 }
     end)
     f:SetScript("OnEnter", tooltip)
     f:SetScript("OnLeave", function() local tt = rawget(_G, "GameTooltip") if tt then tt:Hide() end end)
-    place(f, key)
     f:Hide()
     return f
 end
@@ -146,11 +161,8 @@ end
 
 --- Put the icons back where they start (/fg remind buffs reset).
 function XB:ResetPositions()
-    local c = cfg()
-    for _, key in ipairs(self.ORDER) do
-        c[key].point = nil
-        if self.frames and self.frames[key] then place(self.frames[key], key) end
-    end
+    cfg().point = nil
+    if self.holder then place(self.holder) end
 end
 
 -- ---- events -----------------------------------------------------------------------------
