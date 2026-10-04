@@ -1692,6 +1692,21 @@ section("skulls over quest mobs", function()
     MOCK.plates.nameplate7.tooltip[#MOCK.plates.nameplate7.tooltip + 1] = { type = 8, leftText = "1/4 Strange Gem", completed = false }
     ns.MobMarker:ForgetTooltips(); ns.MobMarker:Scan()
     check(ns.MobMarker.primaryUnit == "nameplate7", "a mob both of you need keeps your own big skull")
+    -- the party member finishes their objective: your log does not change, the blue skull still goes
+    MOCK.plates.nameplate9.tooltip = { { type = 17, leftText = "Gem hunt" }, { type = 18, leftText = "Partymate" },
+        { type = 8, leftText = "4/4 Strange Gem", completed = true } }
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.markedUnits["nameplate9"] == "party", "precondition: just after, the cached answer still stands")
+    MOCK_ADVANCE(4); ns.MobMarker:Scan()
+    check(not ns.MobMarker.markedUnits["nameplate9"], "a party member's objective done: the blue skull clears within seconds, without your log changing")
+    MOCK.plates.nameplate9.tooltip = tip(false, "Partymate")
+    ns.MobMarker:ForgetTooltips(); ns.MobMarker:Scan()
+    need(ns.MobMarker.markedUnits["nameplate9"] == "party", "the party member's objective open again: blue skull back")
+    MOCK.plates.nameplate9.tooltip = {}
+    MOCK_FIRE("UNIT_QUEST_LOG_CHANGED", "party1"); ns.MobMarker:Scan()
+    check(not ns.MobMarker.markedUnits["nameplate9"], "the party member's quest log changing (turned in) clears the blue skull at once")
+    MOCK.plates.nameplate9.tooltip = tip(false, "Partymate")
+    ns.MobMarker:ForgetTooltips()
     ns.Commands:Run("skull party off"); ns.MobMarker:Scan()
     check(not ns.MobMarker.markedUnits["nameplate9"], "/fg skull party off takes the party skulls away")
     ns.Commands:Run("skull party on")
