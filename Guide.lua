@@ -283,7 +283,7 @@ function Guide:ChooseRoute(which)
         if (g.maxLevel or 60) >= level and (g.minLevel or 1) <= level + 2 then pick = g break end
         if (g.minLevel or 1) <= level then pick = g end
     end
-    if pick then self:Activate(pick.id) end
+    if pick then self:Pick(pick.id) end
     if ns.Tracker then ns.Tracker:SetMode("guide") end
     return target, pick
 end
@@ -986,14 +986,15 @@ function Guide:Evaluate(reason)
 
     if not steps[i] then
         -- guide finished: a dungeon guide hands back to the chapter it was opened from
-        local back = self:IsDungeon(g) and ns.char.returnGuide and self.registry[ns.char.returnGuide]
+        -- (never while the player is picking this guide: they asked for it)
+        local back = self.picking ~= g and self:IsDungeon(g) and ns.char.returnGuide and self.registry[ns.char.returnGuide]
         if back and back ~= g and (self.chainDepth or 0) < 10 then
             self.chainDepth = (self.chainDepth or 0) + 1
             self:Activate(back.id)
             self.chainDepth = self.chainDepth - 1
             return
         end
-        if g.next and self.registry[g.next] and self.registry[g.next] ~= g and (self.chainDepth or 0) < 10 then
+        if self.picking ~= g and g.next and self.registry[g.next] and self.registry[g.next] ~= g and (self.chainDepth or 0) < 10 then
             self.chainDepth = (self.chainDepth or 0) + 1
             self:Activate(g.next)
             self.chainDepth = self.chainDepth - 1
@@ -1059,6 +1060,22 @@ function Guide:Activate(id)
     ns.Events:Fire("FG_GUIDE_CHANGED", g)
     self:WarnOffRoute()
     return true
+end
+
+--- The player chose this guide (the guide list, /fg guide, a route): open it there, whatever
+--- position is saved. Its steps are walked again from the first with this character's own quest
+--- log (manual done / skip marks stay), so a stale or foreign position - one at or past the last
+--- step - can no longer send the pick on to the next chapter. A guide picked when it is complete
+--- stays open; finishing it in play chains on as usual.
+function Guide:Pick(id)
+    local g = self.registry[id]
+    if not g then return self:Activate(id) end
+    ns.Database:GuideProgress(g.id, g.version).step = 1
+    self.picking = g
+    local ok, res = pcall(self.Activate, self, id)
+    self.picking = nil
+    if not ok then error(res, 0) end
+    return res
 end
 
 --- One line when the active chapter is another race's (a zone switch or a hand-picked chapter left

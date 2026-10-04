@@ -450,7 +450,7 @@ function handlers.guide(rest)
     end
     local g = ns.Guide:Find(rest)
     if not g then ns.Error("no guide matches '" .. rest .. "'") return end
-    ns.Guide:Activate(g.id)
+    ns.Guide:Pick(g.id)
     ns.Printf("Guide: %s%s%s (%d steps)", ns.COLOR_OK, g.name or g.id, ns.COLOR_END, #g.steps)
 end
 

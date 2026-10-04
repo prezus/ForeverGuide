@@ -3304,6 +3304,58 @@ end)
 -- change the guide's state.
 -- ---- chat: only typed commands and things the player must act on ------------------------------
 -- (2026-10-01: "I want to reduce the amount of bullshit sent to chat")
+section("picking a guide opens that guide, whatever position is saved", function()
+    local G = ns.Guide
+    local wasActive, wasMode = G.active and G.active.id, ns.char.mode
+    ns.RegisterGuide({ id = "PICK_A", name = "Pick A", next = "PICK_B", steps = {
+        { type = "TRAVEL", map = 1429, x = 10, y = 80, text = "a1" }, { type = "TRAVEL", map = 1429, x = 11, y = 80, text = "a2" },
+        { type = "TRAVEL", map = 1429, x = 12, y = 80, text = "a3" } } })
+    ns.RegisterGuide({ id = "PICK_B", name = "Pick B", steps = { { type = "TRAVEL", map = 1429, x = 20, y = 80, text = "b1" } } })
+    local function past() ns.char.guides.PICK_A = { step = 99, done = {}, version = 1 } end   -- another character's position
+
+    -- the bug: activating a chapter whose saved position is past its end bounces to the next one
+    past(); G:Activate("PICK_A")
+    need(G.active and G.active.id == "PICK_B", "precondition: plain activation chains past a finished position (" .. tostring(G.active and G.active.id) .. ")")
+
+    ns.char.guides.PICK_A = nil; G:Pick("PICK_A")
+    local fresh = G.current
+    need(G.active and G.active.id == "PICK_A" and fresh ~= nil, "precondition: with nothing saved the pick opens the guide")
+    past(); G:Pick("PICK_A")
+    check(G.active and G.active.id == "PICK_A" and G.current == fresh,
+        "a picked guide opens where a fresh start would, not where another position left it (" .. tostring(G.active and G.active.id) .. " step " .. tostring(G.current) .. ")")
+    past(); ns.Commands:Run("guide PICK_A")
+    check(G.active and G.active.id == "PICK_A" and G.current == fresh, "/fg guide opens the guide named")
+
+    ns.char.guides.PICK_A = { step = 3, done = { [1] = true, [2] = true }, version = 1 }
+    G:Pick("PICK_A")
+    check(G.active.id == "PICK_A" and G.current == 3, "steps marked done stay done: the pick opens at the first step still open (" .. tostring(G.current) .. ")")
+
+    ns.char.guides.PICK_A = { step = 4, done = { [1] = true, [2] = true, [3] = true }, version = 1 }
+    G:Pick("PICK_A")
+    check(G.active and G.active.id == "PICK_A", "a guide picked when it is complete stays open (" .. tostring(G.active and G.active.id) .. ")")
+
+    ns.char.guides.PICK_A = nil
+    G:Pick("PICK_A")
+    for i = 1, 3 do G:MarkDone(i, "skip") end
+    check(G.active and G.active.id == "PICK_B", "finishing a picked guide in play still moves on to the next chapter")
+
+    -- the guide list: clicking a chapter row picks it
+    ns.UI:RefreshPicker()
+    local picker = ns.UI:CreatePicker()
+    local row
+    for _, r in ipairs(picker.rows or {}) do
+        if r:IsShown() and r.guideID and r.guideID ~= "__auto" and not r.onClick and ns.Guide.registry[r.guideID] then row = r break end
+    end
+    need(row ~= nil, "the guide list shows a chapter row")
+    ns.char.guides[row.guideID] = { step = 9999, done = {}, version = ns.Guide.registry[row.guideID].version or 1 }
+    row:GetScript("OnClick")(row)
+    check(G.active and G.active.id == row.guideID, "clicking a chapter in the guide list opens that chapter (" .. tostring(G.active and G.active.id) .. " for " .. row.guideID .. ")")
+
+    ns.char.guides.PICK_A, ns.char.guides.PICK_B = nil, nil
+    if wasActive then G:Activate(wasActive) end
+    ns.char.mode = wasMode
+end)
+
 section("chat stays quiet unless the player typed a command", function()
     local G, R = ns.Guide, ns.Run
     local lines = {}

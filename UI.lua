@@ -110,7 +110,7 @@ local function PickerRow(p, i)
         elseif self.guideID == "__auto" then
             ns.Tracker:SetMode("auto")
         elseif self.guideID then
-            ns.Guide:Activate(self.guideID)
+            ns.Guide:Pick(self.guideID)
             ns.Tracker:SetMode("guide")
         end
         p:Hide()
