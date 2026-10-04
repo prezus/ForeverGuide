@@ -229,7 +229,10 @@ local function lineType(name)
     return T and T[name] or LINE_FALLBACK[name]
 end
 
-local tipCache = {}       -- GUID -> { state, party }
+local tipCache = {}       -- GUID -> { state, party, read at }
+-- A party member's progress does not touch your quest log, so the events that clear the cache may
+-- never come for it: a mob marked for a party member is read again after this many seconds.
+local PARTY_RECHECK = 3
 
 --- "open" when the mob's tooltip lists an objective of yours not yet completed, "done" when it
 --- lists only completed ones, false when it lists none, nil when it cannot be read; and whether
@@ -266,9 +269,10 @@ end
 function MM:TooltipQuest(u)
     local guid = ns.PlainString(ns.Safe(UnitGUID, u))
     local hit = guid and tipCache[guid]
-    if hit then return hit[1], hit[2] end
+    if hit and not (hit[2] and ns.Now() - hit[3] >= PARTY_RECHECK) then return hit[1], hit[2] end
     local state, party = readTooltip(u)
-    if guid and state ~= nil then tipCache[guid] = { state, party } end
+    if guid and state ~= nil then tipCache[guid] = { state, party, ns.Now() } end
+    if state == nil and hit then return hit[1], hit[2] end      -- unreadable now: keep the last answer
     return state, party
 end
 
@@ -566,7 +570,9 @@ function MM:OnInit()
     ns.Events:RegisterMany({ "NAME_PLATE_UNIT_ADDED", "NAME_PLATE_UNIT_REMOVED", "PLAYER_TARGET_CHANGED", "UNIT_FLAGS", "PLAYER_REGEN_ENABLED" },
         function() ns.Events:Debounce("mobmarker", 0.1, function() MM:Scan() end) end)
     ns.Events:Register("PLAYER_REGEN_ENABLED", function() if macroPending then MM:UpdateTargetMacro(macroPending.names, macroPending.item) end end)
-    ns.Events:RegisterMany({ "FG_QUEST_LOG_CHANGED", "FG_OBJECTIVE_PROGRESS" }, function() tipCache = {} end)
+    -- your log changing, a party member's (UNIT_QUEST_LOG_CHANGED names their unit) or the group's
+    ns.Events:RegisterMany({ "FG_QUEST_LOG_CHANGED", "FG_OBJECTIVE_PROGRESS", "UNIT_QUEST_LOG_CHANGED", "GROUP_ROSTER_UPDATE" },
+        function() tipCache = {} end)
     ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_GUIDE_CHANGED", "FG_MODE_CHANGED", "FG_QUEST_LOG_CHANGED", "FG_HIDDEN_ALL_CHANGED", "BAG_UPDATE_DELAYED" },
         function() ns.Events:Debounce("mobmarker", 0.1, function() MM:Scan() end) end)
 end
