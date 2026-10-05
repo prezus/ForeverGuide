@@ -120,7 +120,8 @@ section("every shipped guide decodes to its steps", function()
         chunk("ForeverGuide", { RegisterGuide = function(g) shipped = g end })
         local steps = shipped and type(shipped.steps) == "string" and ns.DecodeRecord(shipped.steps)
         count = count + 1
-        if not (steps and #steps > 0 and #steps == shipped.stepCount) then bad[#bad + 1] = path end
+        local some = steps and (#steps > 0 or shipped.source ~= nil)   -- TUGs' 6-9 Teldrassil has none
+        if not (some and #steps == shipped.stepCount) then bad[#bad + 1] = path end
     end
     check(count > 0 and #bad == 0, count .. " shipped guides decode to their steps (" .. #bad .. " do not: " .. tostring(bad[1]) .. ")")
 end)
@@ -3621,6 +3622,128 @@ section("the Interact Key: on by default, and ForeverGuide's own key for it, set
     MOCK.bindings = bindingsWas
     MOCK_FIRE("UPDATE_BINDINGS")
     ns.Options:Refresh()
+end)
+
+-- ---- TUGs' guides as shipped: a group, Guidelime's start, links, and its step types ----------
+-- (2026-10-04: "keep the tugs layout. and maintain that structure")
+section("a guide group as TUGs ships it: listed in Guidelime's order, started and linked as Guidelime does", function()
+    local before = { active = G.active and G.active.id, char = ns.char.activeGuide, level = MOCK.level, race = MOCK.race, route = ns.char.route }
+    local GROUP = "TUGs Test Guides"
+    local function reg(id, name, minL, maxL, faction, next, steps)
+        ns.RegisterGuide({ id = id, name = name, group = GROUP, source = "TUGs/" .. id .. ".lua", minLevel = minL, maxLevel = maxL,
+            faction = faction, next = next, author = "TUGs | The Unprofessional Gamer", steps = steps or { { type = "NOTE", text = name } } })
+    end
+    reg("TUGT_ELWYNN", "6-9 Elwynn Forest", 6, 9, "Alliance", nil)
+    reg("TUGT_NORTHSHIRE", "1-6 Northshire", 1, 6, "Alliance", "TUGT_ELWYNN")
+    reg("TUGT_COLDRIDGE", "1-6 Coldridge Valley", 1, 6, "Alliance", nil)
+    reg("TUGT_COOKING", "Cooking", nil, nil, nil, nil)
+    reg("TUGT_VALLEY", "1-6 Valley of Trials", 1, 6, "Horde", nil)
+
+    local grp
+    for _, gr in ipairs(G:Groups()) do if gr.name == GROUP then grp = gr end end
+    need(grp ~= nil, "the group is listed")
+    local names = {}
+    for _, g in ipairs(grp.guides) do names[#names + 1] = g.name end
+    check(table.concat(names, " | ") == "Cooking | 1-6 Coldridge Valley | 1-6 Northshire | 6-9 Elwynn Forest",
+        "its guides for this faction, by min level (none first), max level, name: " .. table.concat(names, " | "))
+
+    -- Guidelime's starting guide: Human has none in TUGs, Dwarf starts in Coldridge Valley
+    MOCK.level = 1
+    ns.Player.cache.level = 1
+    local function asRace(race) MOCK.race = { race, race } ns.Player.cache.raceFile = nil end
+    asRace("Human")
+    local start = G:StartGuide()
+    check(start == nil or start.group ~= GROUP, "a Human gets no starting guide from TUGs' titles (" .. tostring(start and start.name) .. ")")
+    asRace("Dwarf")
+    start = G:StartGuide()
+    check(start ~= nil and start.id == "TUGT_COLDRIDGE", "a Dwarf starts in Coldridge Valley (" .. tostring(start and start.id) .. ")")
+    asRace("Human")
+
+    -- a link that resolved is followed; at a guide with none the list opens
+    local finished
+    ns.Events:Register("FG_GUIDE_FINISHED", function(_, g) finished = g or "gone" end)
+    G:Activate("TUGT_NORTHSHIRE"); settle()
+    G:MarkDone(G.current, "test"); settle()
+    check(G.active and G.active.id == "TUGT_ELWYNN", "finishing Northshire goes on to the guide it links to (" .. tostring(G.active and G.active.id) .. ")")
+    G:MarkDone(G.current, "test"); settle()
+    check(finished ~= nil and finished.id == "TUGT_ELWYNN", "finishing Elwynn, which links to no guide, asks the player to choose")
+    check(rawget(_G, "ForeverGuidePicker") and ForeverGuidePicker:IsShown(), "and the list opens")
+    ForeverGuidePicker:Hide()
+
+    -- a saved guide that is gone: the list, with the guide for the level suggested
+    finished = nil
+    MOCK.level = 7
+    ns.Player.cache.level = 7
+    ns.char.route = nil
+    ns.char.activeGuide = "GEN_ALLIANCE_HUMAN_05_GONE"
+    local routeChapter = G:RouteChapterForLevel()
+    if not routeChapter then
+        G:OnEnable(); settle()
+        check(finished == "gone" and G.suggested ~= nil and G.suggested.id == "TUGT_ELWYNN", "a gone guide opens the list with the guide for the level suggested ("
+            .. tostring(G.suggested and G.suggested.id) .. ")")
+        if rawget(_G, "ForeverGuidePicker") then ForeverGuidePicker:Hide() end
+    end
+
+    -- zone names as TUGs writes them
+    check(ns.DB:MapForZoneName("The Barrens") == 1413 and ns.DB:MapForZoneName("Un'Goro Crater") ~= nil and ns.DB:MapForZoneName("Nowhere") == nil,
+        "TUGs' zone names find their maps")
+
+    MOCK.level, MOCK.race, ns.char.route = before.level, before.race, before.route
+    ns.Player.cache.level, ns.Player.cache.raceFile = before.level, nil
+    ns.char.activeGuide = before.char
+    if before.active and G.registry[before.active] then G:Activate(before.active) end
+    G:Reset(); settle()
+end)
+
+section("TUGs' step types complete as Guidelime's do", function()
+    local before = { active = G.active and G.active.id, level = MOCK.level, xp = MOCK.xp, xpMax = MOCK.xpMax, skills = MOCK.skills }
+    local n = 0
+    local function at(steps)
+        n = n + 1
+        local id = "TUGT_STEPS_" .. n          -- a fresh guide each time: no progress carried over
+        ns.RegisterGuide({ id = id, name = "steps", group = "TUGs Test Guides", source = "TUGs/" .. id .. ".lua", steps = steps })
+        G:Activate(id); settle()
+        return G:GetCurrentStep()
+    end
+    MOCK.level, MOCK.xp, MOCK.xpMax = 10, 1000, 2000
+    ns.Player.cache.level = 10
+
+    -- GRIND with xp: into the level, short of it, a fraction of it
+    check(G:IsStepDone({ type = "GRIND", level = 10, xp = 900, xpKind = "plus" }, 1) == true, "[XP10+900] is done 1000 xp into 10")
+    check(G:IsStepDone({ type = "GRIND", level = 10, xp = 1100, xpKind = "plus" }, 1) == false, "[XP10+1100] is not")
+    check(G:IsStepDone({ type = "GRIND", level = 11, xp = 1000, xpKind = "remaining" }, 1) == true, "[XP11-1000] is done 1000 xp short of 11")
+    check(G:IsStepDone({ type = "GRIND", level = 11, xp = 500, xpKind = "remaining" }, 1) == false, "[XP11-500] is not")
+    check(G:IsStepDone({ type = "GRIND", level = 10, xp = 0.5, xpKind = "percent" }, 1) == true, "[XP10.5] is done halfway into 10")
+
+    -- SKILL, TRAIN without a spell, the hearthstone, a flight by place
+    MOCK_SKILLS({ { name = "First Aid", rank = 19 } })
+    check(G:IsStepDone({ type = "SKILL", profession = "First Aid", skill = 20 }, 1) == false, "First Aid 19 is short of [SK First Aid 20]")
+    MOCK_SKILLS({ { name = "First Aid", rank = 20 } })
+    check(G:IsStepDone({ type = "SKILL", profession = "First Aid", skill = 20 }, 1) == true, "and 20 reaches it")
+
+    local step = at({ { type = "TRAIN" }, { type = "NOTE", text = "after" } })
+    MOCK_FIRE("TRAINER_SHOW"); settle()
+    check(G:GetCurrentStep() ~= step, "[T] is done when a trainer's window opens")
+
+    step = at({ { type = "USEHEARTH" }, { type = "NOTE", text = "after" } })
+    MOCK_FIRE("UNIT_SPELLCAST_SUCCEEDED", "player", "cast", 8690); settle()
+    check(G:GetCurrentStep() ~= step, "[H] is done when the hearthstone is cast")
+
+    step = at({ { type = "FLY", place = "Stormwind City" }, { type = "NOTE", text = "after" } })
+    MOCK.onTaxi = true
+    MOCK_FIRE("PLAYER_CONTROL_LOST"); settle()
+    MOCK.onTaxi = false
+    check(G:GetCurrentStep() ~= step, "[F Place] is done when the flight takes off")
+
+    -- [C]: done when the next step is
+    step = at({ { type = "NOTE", text = "loot the note", completeWithNext = true }, { type = "GRIND", level = 5 }, { type = "GRIND", level = 99 } })
+    check(G:GetCurrentStep() and G:GetCurrentStep().level == 99, "a step marked complete-with-next is passed once the next step is done")
+
+    MOCK.level, MOCK.xp, MOCK.xpMax = before.level, before.xp, before.xpMax
+    ns.Player.cache.level = before.level
+    MOCK_SKILLS(before.skills)
+    if before.active and G.registry[before.active] then G:Activate(before.active) end
+    G:Reset(); settle()
 end)
 
 section("docs agree with the code", function()

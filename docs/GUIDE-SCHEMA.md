@@ -21,6 +21,10 @@ contains quest logic for a specific guide; it only interprets these steps.
 | `minLevel` | int      | no       | used for auto-picking a guide |
 | `maxLevel` | int      | no       | |
 | `next`     | string   | no       | guide id to continue with when this one is finished |
+| `group`    | string   | no       | the guide group it is listed under (TUGs' Guidelime group): the Guides list shows a group's guides by min level, max level, name; a group guide that ends with no `next` opens that list, and a new character starts on its race's starting guide (Guidelime's rule) |
+| `source`   | string   | no       | the file it was imported from (`TUGs/Alliance/1-6 Northshire.lua`), which is where it ships under `Guides/` |
+| `nextName` | [string] | no       | the guides its author names next, as written (`next` is the one that resolved) |
+| `order`    | int      | no       | its source's load order |
 | `author`   | string   | no       | |
 | `notes`    | string   | no       | free text |
 | `steps`    | [step]   | yes      | |
@@ -63,7 +67,10 @@ Common fields (all optional unless the type needs them):
 | `class`     | [string] | step only for these classes |
 | `race`      | [string] | step only for these races |
 | `profession` | string | step only for characters with this profession or secondary skill (English name: `"Cooking"`, `"First Aid"`, `"Blacksmithing"`, ...); shown when the client lists no skills |
-| `skill`     | int    | with `profession`: the rank the step needs (default 1) |
+| `skill`     | int    | with `profession`: the rank the step needs (default 1); on a SKILL step, the rank to reach |
+| `place`     | string | FLY / FLIGHTPATH: the flight point by name, when no coordinates are given |
+| `completeWithNext` | bool | done when the next step that applies is (Guidelime's `[C]`) |
+| `xp`, `xpKind` | number, string | GRIND: xp into `level` (`plus`), xp short of it (`remaining`), or the fraction of it (`percent`) |
 
 ### Types and completion
 
@@ -76,12 +83,14 @@ Common fields (all optional unless the type needs them):
 | `COLLECT`  | same as COMPLETE     | (display: "Collect N target") |
 | `GRIND`    | `level`              | player level >= level |
 | `BUY`      | `item`, `count`      | bag count >= count |
-| `TRAIN`    | `spell`              | spell known |
-| `HEARTH`   | `npc` (`zone`)       | hearthstone bound while talking to that innkeeper (`HEARTHSTONE_BOUND`); or, for a bind made earlier, `GetBindLocation()` equals `zone` |
+| `TRAIN`    | [`spell`]            | spell known; without a spell, a trainer's window opening |
+| `SKILL`    | `profession`, `skill` | the profession at that rank |
+| `USEHEARTH` |                     | the hearthstone cast (or manual) |
+| `HEARTH`   | [`npc`] [`zone`]     | hearthstone bound while talking to that innkeeper (`HEARTHSTONE_BOUND`); or, for a bind made earlier, `GetBindLocation()` equals `zone` |
 | `TRAVEL`   | `map`/`zone`, `x`, `y` | player within `radius` yards |
 | `FLY`      | like TRAVEL          | (display: "Fly to") |
 | `TALK`     | `npc`                | a gossip / quest / vendor / trainer window opens with that NPC |
-| `FLIGHTPATH` | `npc` (`map`, `x`, `y`) | that flight master's map opens, or "New flight path discovered!" comes up, or the flight node at `x`/`y` is already known (display: "Get the flight path at") |
+| `FLIGHTPATH` | [`npc`] (`map`, `x`, `y`) | that flight master's map opens, or "New flight path discovered!" comes up, or the flight node at `x`/`y` is already known (display: "Get the flight path at") |
 | `NOTE`     | `text`               | manual (`/fg skip`), or when the next automatic step completes |
 
 Any step with a `quest` counts as done once that quest is flagged completed,

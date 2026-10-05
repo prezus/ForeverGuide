@@ -128,6 +128,26 @@ function DB:ZoneName(areaID)
     return ns.ZoneDB and ns.ZoneDB.names[areaID] or nil
 end
 
+--- A zone name as Guidelime compares it: lower case, no spaces or apostrophes, no leading "the".
+local function zoneKey(name)
+    local k = string.lower(name):gsub("[%s']", "")
+    return (k:gsub("^the", ""))
+end
+
+--- The uiMapID of a zone named as a guide names it ("The Barrens", "Stormwind City", "Un'Goro Crater").
+function DB:MapForZoneName(name)
+    local Z = ns.ZoneDB
+    if not Z or type(name) ~= "string" or name == "" then return nil end
+    local want = zoneKey(name)
+    for mapID, n in pairs(Z.mapNames or {}) do
+        if zoneKey(n) == want then return mapID end
+    end
+    for areaID, n in pairs(Z.names or {}) do
+        if zoneKey(n) == want and Z.areaToMap[areaID] then return Z.areaToMap[areaID] end
+    end
+    return nil
+end
+
 --- The top-level zone (areaID) a sub-zone belongs to (Northshire Valley -> Elwynn Forest).
 function DB:ParentZone(areaID)
     local parent = ns.ZoneDB and ns.ZoneDB.parent

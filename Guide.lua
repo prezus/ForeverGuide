@@ -11,15 +11,19 @@
 --   COMPLETE quest [objective] objective(s) finished / ready to turn in
 --   KILL     quest [objective] same as COMPLETE (display only)
 --   COLLECT  quest [objective] same as COMPLETE (display only)
---   GRIND    level           player level >= level
+--   GRIND    level [xp xpKind] player level >= level; with xp: that much into it (plus), that
+--                            short of it (remaining) or that fraction of it (percent)
 --   BUY      item count      bag count >= count
---   TRAIN    spell           spell known
+--   TRAIN    [spell]         spell known; without one, the trainer's window opening
+--   SKILL    profession skill the profession at that rank
+--   USEHEARTH                the hearthstone cast (or manual)
 --   HEARTH   npc [zone]      hearthstone bound (HEARTHSTONE_BOUND) while talking to that innkeeper;
 --                            bind location == zone (GetBindLocation) for a bind made earlier; else manual
 --   TRAVEL   map x y [radius] arriving within radius (Navigation) — auto
 --   FLY      map x y         same as TRAVEL (flight path hint)
 --   TALK     npc             interacting with that NPC (gossip/quest/vendor/trainer windows)
 --   NOTE     text            manual: /fg skip (or auto when a later step is done)
+--   any step with completeWithNext is done when the next step that applies is (Guidelime's [C])
 --
 -- Recovery rules:
 --   * a step whose quest is already completed is done, whatever its type
@@ -42,7 +46,7 @@ Guide.current = nil      -- current step index
 Guide.note = nil         -- recovery note shown in UI
 Guide.blocked = nil      -- current step is blocked (quest missing, no accept step)
 
-local MANUAL = { TRAVEL = true, FLY = true, TALK = true, FLIGHTPATH = true, NOTE = true }
+local MANUAL = { TRAVEL = true, FLY = true, TALK = true, FLIGHTPATH = true, NOTE = true, USEHEARTH = true }
 local LOOKAHEAD = 6      -- automatic steps checked past a manual one before calling it stale
 local OBJECTIVE = { COMPLETE = true, KILL = true, COLLECT = true }
 Guide.MANUAL, Guide.OBJECTIVE = MANUAL, OBJECTIVE
@@ -260,6 +264,85 @@ function Guide:Routes()
     return order
 end
 
+--- A guide's title without its levels ("1-6 Northshire" is "Northshire").
+local function titleOf(g)
+    return ((g.name or g.id):gsub("^%s*[%d%.]*%s*%-?%s*[%d%.]*%s*", ""))
+end
+
+--- Guide groups (TUGs' Guidelime group), each with its guides for this character in Guidelime's
+--- order: by min level (none first), max level, then name. { { name, guides = {...} }, ... }
+function Guide:Groups()
+    local byName, order = {}, {}
+    for _, id in ipairs(self.list) do
+        local g = self.registry[id]
+        if g and g.group and not self:IsDungeon(g) and self:Applicable(g) then
+            if not byName[g.group] then
+                byName[g.group] = { name = g.group, guides = {} }
+                order[#order + 1] = byName[g.group]
+            end
+            local list = byName[g.group].guides
+            list[#list + 1] = g
+        end
+    end
+    for _, grp in ipairs(order) do
+        table.sort(grp.guides, function(a, b)
+            if (a.minLevel or 0) ~= (b.minLevel or 0) then return (a.minLevel or 0) < (b.minLevel or 0) end
+            if (a.maxLevel or 0) ~= (b.maxLevel or 0) then return (a.maxLevel or 0) < (b.maxLevel or 0) end
+            return (a.name or a.id) < (b.name or b.id)
+        end)
+    end
+    table.sort(order, function(a, b) return a.name < b.name end)
+    return order
+end
+
+-- Guidelime's starting guide for a race (Guides.lua, the classic table): a level-1 guide whose
+-- title, lower case without spaces, holds one of these.
+local START_PHRASES = {
+    Human = { "human", "elwynnforest", "northshireabbey" },
+    Dwarf = { "dwarf", "dunmorogh", "coldridgevalley" },
+    Gnome = { "gnome", "dunmorogh", "coldridgevalley" },
+    NightElf = { "nightelf", "shadowglen", "teldrassil" },
+    Orc = { "orc", "durotar", "valleyoftrials" },
+    Troll = { "troll", "durotar", "valleyoftrials" },
+    Tauren = { "tauren", "mulgore", "campnarache" },
+    Scourge = { "undead", "tirisfalglades", "deathknell" },
+    Skyborne = { "skyborne", "zephrasisle" },
+}
+
+--- The guide a new character starts with, by Guidelime's rule; nil when none matches (TUGs has no
+--- Human match: "Northshire" holds none of Human's phrases).
+function Guide:StartGuide()
+    local _, race = ns.Player:GetRace()
+    local phrases = race and START_PHRASES[race]
+    if not phrases then return nil end
+    for _, grp in ipairs(self:Groups()) do
+        for _, g in ipairs(grp.guides) do
+            if g.minLevel == 1 then
+                local t = string.lower(titleOf(g)):gsub("%s+", "")
+                for _, phrase in ipairs(phrases) do
+                    if string.find(t, phrase, 1, true) then return g end
+                end
+            end
+        end
+    end
+    return nil
+end
+
+--- The group guide that fits a level best: the highest min level at or below it, among those whose
+--- range holds it (nil when no group guide has levels around it).
+function Guide:GroupGuideForLevel(level)
+    level = level or ns.Player:GetLevel()
+    local best
+    for _, grp in ipairs(self:Groups()) do
+        for _, g in ipairs(grp.guides) do
+            if g.minLevel and g.minLevel <= level and (g.maxLevel or 60) >= level then
+                if not best or g.minLevel > best.minLevel then best = g end
+            end
+        end
+    end
+    return best
+end
+
 --- The route the character follows: the chosen one, else the race's own, else nil.
 function Guide:CurrentRoute()
     local routes = self:Routes()
@@ -380,7 +463,8 @@ function Guide:StepApplies(step)
         local _, raceFile = ns.Player:GetRace()
         if raceFile and not ns.Contains(step.race, raceFile) then return false end
     end
-    if step.profession then
+    -- on a SKILL step, profession and skill are the goal ([SK First Aid 20]), not who the step is for
+    if step.profession and step.type ~= "SKILL" then
         local rank = ns.Player:ProfessionRank(step.profession)
         if rank and rank < (step.skill or 1) then return false end
     end
@@ -460,11 +544,24 @@ function Guide:IsStepDone(step, idx, gameOnly)
         local _, _, allDone = Q:GetProgress(step.quest)
         return allDone == true, nil
     elseif t == "GRIND" then
-        return ns.Player:GetLevel() >= (step.level or 0), nil
+        local level, want = ns.Player:GetLevel(), step.level or 0
+        if not step.xp then return level >= want, nil end
+        local xp, max = ns.Player:GetXP()
+        if step.xpKind == "remaining" then
+            -- that much short of `level`: done at `level`, or one below it with no more than that to go
+            return level >= want or (level == want - 1 and max > 0 and max - xp <= step.xp), nil
+        end
+        if level ~= want then return level > want, nil end
+        if step.xpKind == "percent" then return max > 0 and xp / max >= step.xp, nil end
+        return xp >= step.xp, nil
     elseif t == "BUY" then
         return ItemCount(step.item) >= (step.count or 1), nil
     elseif t == "TRAIN" then
+        if not step.spell then return false, nil end   -- the trainer's window marks it done
         return SpellKnown(step.spell), nil
+    elseif t == "SKILL" then
+        local rank = ns.Player:ProfessionRank(step.profession)
+        return rank ~= nil and rank >= (step.skill or 1), nil
     elseif t == "HEARTH" then
         local bind = ns.PlainString(ns.Safe(rawget(_G, "GetBindLocation")))
         if bind and step.zone then return bind == step.zone, nil end
@@ -889,6 +986,12 @@ function Guide:Evaluate(reason)
             end
         end
         local done = self:IsStepDone(step, i)
+        -- Guidelime's [C]: done when the next step that applies is
+        if not done and step.completeWithNext then
+            local k = self:NextIdx(i)
+            while steps[k] and not self:StepApplies(steps[k]) do k = self:NextIdx(k) end
+            if steps[k] and (p.done[k] or self:IsStepDone(steps[k], k)) then done = true end
+        end
         if not done and step.quest then
             local need = self:LevelGate(step)
             if need then
@@ -1002,6 +1105,12 @@ function Guide:Evaluate(reason)
         end
         if not (ns.Tracker and ns.Tracker:IsActive()) then ns.Navigation:Clear() end
         if changed then ns.Events:Fire("FG_STEP_CHANGED", nil, g) end
+        -- a guide of a group (TUGs) whose author names no next that resolves: the player chooses, as
+        -- Guidelime leaves it, from the group's list
+        if changed and g.group and self.picking ~= g then
+            self.note = "Guide complete - choose the next guide."
+            ns.Events:Fire("FG_GUIDE_FINISHED", g)
+        end
         return
     end
 
@@ -1039,6 +1148,7 @@ end
 -- Activation / manual control
 -- ------------------------------------------------------------
 function Guide:Activate(id)
+    self.suggested = nil
     local g = self.registry[id]
     if not g then
         ns.Error("unknown guide: " .. tostring(id))
@@ -1355,6 +1465,29 @@ function Guide:OnInit()
         if want and ns.PlainString(message) == want then Guide:MarkDone(step.index, "flight path") end
     end)
 
+    -- TRAIN steps that name no spell complete when a trainer's window opens
+    ns.Events:Register("TRAINER_SHOW", function()
+        local step = Guide:GetCurrentStep()
+        if step and step.type == "TRAIN" and not step.spell then Guide:MarkDone(step.index, "trainer") end
+    end)
+    -- USEHEARTH steps complete when the hearthstone is cast
+    ns.Events:Register("UNIT_SPELLCAST_SUCCEEDED", function(_, unit, _, spellID)
+        if unit ~= "player" or ns.PlainNumber(spellID) ~= 8690 then return end
+        local step = Guide:GetCurrentStep()
+        if step and step.type == "USEHEARTH" then Guide:MarkDone(step.index, "hearthstone") end
+    end)
+    -- FLY steps by place name complete when the flight takes off
+    ns.Events:Register("PLAYER_CONTROL_LOST", function()
+        local step = Guide:GetCurrentStep()
+        if not step or step.type ~= "FLY" or not step.place then return end
+        if ns.Plain(ns.Safe(rawget(_G, "UnitOnTaxi"), "player")) == true then Guide:MarkDone(step.index, "flight") end
+    end)
+    -- SKILL steps: the player's skill lines changed (Player forgets its cached ranks on the same event)
+    ns.Events:Register("SKILL_LINES_CHANGED", function(event)
+        local step = Guide:GetCurrentStep()
+        if step and step.type == "SKILL" then Guide:Evaluate(event) end
+    end)
+
     -- TRAVEL/FLY steps complete on arrival (Navigation is polled by the UI)
     ns.Events:Register("FG_NAV_ARRIVED", function(_, target)
         if not target or target.owner ~= "guide" then return end
@@ -1394,11 +1527,20 @@ function Guide:OnEnable()
     end
     local id = ns.char.activeGuide
     local gone = id and not self.registry[id]
+    local start = not id and ns.Player:GetLevel() == 1 and self:StartGuide()
     if id and not gone then
         self:Activate(id)
     elseif gone and self:RouteChapterForLevel() then
         -- its chapter is gone with its route: the chapter of the route it follows now, for its level
         self:Pick(self:RouteChapterForLevel().id)
+    elseif start then
+        -- a new character starts on its race's starting guide, as Guidelime starts it
+        self:Pick(start.id)
+    elseif gone and #self:Groups() > 0 then
+        -- its guide is gone (the routes are TUGs' now): the player chooses, with the one for its level shown
+        self.suggested = self:GroupGuideForLevel()
+        self.note = "Your guide is no longer in the addon - choose one."
+        ns.Events:Fire("FG_GUIDE_FINISHED", nil)
     elseif ns.char.autoPickGuide then
         local g = self:AutoPick()
         if g then self:Activate(g.id) end
