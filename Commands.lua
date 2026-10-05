@@ -50,7 +50,6 @@ local HELP = {
     "/fg wrong [text]    open feedback dialog (or save the supplied text with your step/position); also /fg report",
     "/fg reports [clear] open a copyable list of feedback (clear deletes it)",
     "/fg options         open the options panel",
-    "/fg persist [save]  state of the beta workaround that keeps your guide/settings when the client forgets SavedVariables",
     "/fg debug           toggle debug output",
 }
 
@@ -838,11 +837,6 @@ function handlers.edits(rest)
     else
         ns.Editor:List()
     end
-end
-
-function handlers.persist(rest)
-    if rest == "save" then ns.Persist:Save() ns.Print("cvar mirror saved.") return end
-    ns.Print(ns.Persist:Status())
 end
 
 function handlers.options()
