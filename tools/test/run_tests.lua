@@ -2934,6 +2934,37 @@ section("an alternate route: listed under its own name, never the default, follo
     G:Reset(); settle()
 end)
 
+-- ---- a saved route or chapter the addon no longer ships ----------------------------------------
+-- (2026-10-04: the addon ships TUGs' routes in place of ours; a character saved on one of ours logs in)
+section("a saved chapter whose route is gone: the route the character follows now, at its level", function()
+    local before = { route = ns.char.route, active = ns.char.activeGuide, auto = ns.char.autoPickGuide, level = MOCK.level }
+    MOCK.level = 20
+    ns.Player.cache.level = 20
+    ns.char.route = "GEN_ALLIANCE_RETIRED"
+    ns.char.activeGuide = "GEN_ALLIANCE_RETIRED_05_WETLANDS"
+    ns.char.autoPickGuide = false
+    need(G.registry[ns.char.activeGuide] == nil, "the saved chapter is not registered")
+
+    G:OnEnable(); settle()
+    check(ns.char.route == nil, "the saved route no longer shipped is forgotten (" .. tostring(ns.char.route) .. ")")
+    local want = G:RouteChapterForLevel()
+    need(want ~= nil, "the race's own route has a chapter for level 20")
+    check(G.active ~= nil and G.active.id == want.id, "the character is on its route's chapter for its level, not left without a guide ("
+        .. tostring(G.active and G.active.id) .. ", want " .. tostring(want.id) .. ")")
+    check(G:CurrentRoute().mine, "and that route is its race's own")
+
+    -- a saved route that still ships is kept
+    ns.char.route = G:CurrentRoute().key
+    G:OnEnable(); settle()
+    check(ns.char.route == G:CurrentRoute().key, "a saved route the addon still ships is kept")
+
+    ns.char.route, ns.char.autoPickGuide = before.route, before.auto
+    MOCK.level = before.level
+    ns.Player.cache.level = before.level
+    if before.active and G.registry[before.active] then G:Activate(before.active) end
+    G:Reset(); settle()
+end)
+
 -- ---- a dungeon's own guide: listed apart, never auto-picked, back to the chapter afterwards ----
 section("a dungeon's own guide: listed apart, never auto-picked, back to the chapter afterwards", function()
     local CHAPTER = "GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST"

@@ -1086,7 +1086,7 @@ function Guide:WarnOffRoute()
     if self.warnedOffRoute == (self.active and self.active.id) then return end
     self.warnedOffRoute = self.active and self.active.id
     ns.Printf("this is the %s route's chapter - your own route has %s for level %d. /fg path race goes back to it (or /fg guide %s).",
-        ROUTE_LABEL[race] or race, mine.name or mine.id, ns.Player:GetLevel(), mine.id)
+        self.active.routeLabel or ROUTE_LABEL[race] or race, mine.name or mine.id, ns.Player:GetLevel(), mine.id)
 end
 
 --- Number of steps without forcing a lazy guide to load its steps.
@@ -1386,9 +1386,19 @@ end
 
 function Guide:OnEnable()
     self:PruneForFaction()
+    -- a route the addon no longer ships: the character follows its race's own again
+    if ns.char.route then
+        local kept = false
+        for _, r in ipairs(self:Routes()) do if r.key == ns.char.route then kept = true end end
+        if not kept then ns.char.route = nil end
+    end
     local id = ns.char.activeGuide
-    if id and self.registry[id] then
+    local gone = id and not self.registry[id]
+    if id and not gone then
         self:Activate(id)
+    elseif gone and self:RouteChapterForLevel() then
+        -- its chapter is gone with its route: the chapter of the route it follows now, for its level
+        self:Pick(self:RouteChapterForLevel().id)
     elseif ns.char.autoPickGuide then
         local g = self:AutoPick()
         if g then self:Activate(g.id) end

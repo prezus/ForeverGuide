@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- A character whose saved chapter or route is no longer in the addon starts on its route's chapter for its level at login, instead of with no guide.
 - Picking a guide opens that guide. Choosing a chapter or a route in **Guides**, or `/fg guide <name>`, always lands on the guide you chose, at the first step this character still has open. A saved position from earlier play (or from another character) no longer sends the pick on to a later chapter.
 - Party skulls: in a group, mobs a party member still needs for their quest get a small blue skull, read from the mob's own tooltip. On by default; turn it off under **Options** (Quest mobs) or with `/fg skull party off`. They never take the big skull or the target key, a mob you need too keeps your own skull, and a blue skull clears within a few seconds of your party member finishing that objective.
 - Skulls for quests off the route: when the guide's step wants no kill, the mobs of any quest in your log get the big skull and the target key, so a quest you picked up on your own is marked like a route one. During a route kill step they keep the small skull. Kill objectives worded the way Forever writes them ("0/8 Murloc slain") are now recognised for quests the database does not know, and a mob's own quest tooltip decides the rest: an objective of yours still open there gives it a skull (a loot quest whose drops nobody recorded, too), and one whose objectives are all completed gets none.

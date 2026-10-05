@@ -52,7 +52,7 @@ vmangos database projects). **Redistribution rights are not established by this 
 | WoW Forever overlay records with `src: "rxp"` (merged into the packed `Data/` records), and guides built using the overlay | [RestedXP/RXPGuides](https://github.com/RestedXP/RXPGuides) Forever guides, via the maintainer's data build | Its [license](https://github.com/RestedXP/RXPGuides/blob/main/LICENSE) is CC BY-NC-SA 4.0. Confirm whether the imported material may be redistributed in this form and what attribution/share-alike terms apply; otherwise replace it with independently collected in-game data and regenerate affected outputs. |
 | `Data/ForeverQuestIDs.lua`, and other `src: "db2"` records | WoW Forever client tables exported via wago.tools | Check the applicable game-data/export terms before redistribution; attribution to an export service alone does not grant rights. |
 
-`Guides/` is produced by the maintainer's route planner from the bundled database; they are not automatically free of upstream obligations just because the route is computed. Before publishing a release, the project owner should record the source revision and permission/terms for each input, meet those terms, or remove and regenerate from cleared inputs. Do not treat the MIT license for original code as a license for this data. This is a provenance checklist, **not** a claim that any rights have been granted or denied.
+`Guides/` holds TUGs' levelling routes (GuideLime_TUGs_Forever, "All Rights Reserved", used with the author's permission) for every race they cover, converted onto the bundled database, and the maintainer's route planner's routes for Skyborne, zones and dungeons; they are not automatically free of upstream obligations just because the route is computed. Before publishing a release, the project owner should record the source revision and permission/terms for each input, meet those terms, or remove and regenerate from cleared inputs. Do not treat the MIT license for original code as a license for this data. This is a provenance checklist, **not** a claim that any rights have been granted or denied.
 
 Fields of a decoded record:
 
@@ -87,5 +87,5 @@ The overlay itself is not shipped. Its records are
   (wago.tools export), `fix` = a hand correction, `rxp` = material from the free WoW Forever guides
   shipped with **RestedXP Guides** (https://github.com/RestedXP/RXPGuides, CC BY-NC-SA 4.0): positions,
   and possibly quest titles, objective text, NPC/mob names and prerequisites. Their route ordering and
-  step prose are not copied; ForeverGuide's routes are computed by the maintainer's route planner. See
+  step prose are not copied. See
   the unresolved redistribution status above.
