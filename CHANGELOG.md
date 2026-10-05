@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: every race's levelling route is now TUGs' (Human, Dwarf / Gnome, Night Elf, Orc / Troll, Undead, Tauren), shown as "Human (TUGs)" and so on, and followed by default. Skyborne keeps its route. If you were on one of the old routes, you start on the TUGs chapter for your level at login; progress in the old chapters does not carry over.
 - A character whose saved chapter or route is no longer in the addon starts on its route's chapter for its level at login, instead of with no guide.
 - Picking a guide opens that guide. Choosing a chapter or a route in **Guides**, or `/fg guide <name>`, always lands on the guide you chose, at the first step this character still has open. A saved position from earlier play (or from another character) no longer sends the pick on to a later chapter.
 - Party skulls: in a group, mobs a party member still needs for their quest get a small blue skull, read from the mob's own tooltip. On by default; turn it off under **Options** (Quest mobs) or with `/fg skull party off`. They never take the big skull or the target key, a mob you need too keeps your own skull, and a blue skull clears within a few seconds of your party member finishing that objective.
