@@ -156,10 +156,6 @@ section("contributing data is one opt-in; old switches, mirrors and SavedVariabl
     check(ns.db.contribute == false and ns.db.scanEnabled == false, "fresh login: contributing and the scanner start off")
     check(next(ns.db.contrib.quests) == nil and next(ns.db.contrib.npcs) == nil and #ns.db.contrib.order == 0
         and ns.db.scan == nil and ns.db.harvest == nil, "fresh login does not collect session data")
-    ns.Persist:DecodeAcct("v=2;rec=1;hvo=1")
-    check(not ns.db.contribute, "the old recorder and harvest switches do not opt in to contributing")
-    ns.Persist:DecodeAcct("v=1;con=1;sco=1")
-    check(not ns.db.contribute and not ns.db.scanEnabled, "legacy cvar mirror cannot silently opt the player in")
     ns.db.version, ns.db.contribute = 1, true
     ns.Database:Init()
     check(not ns.db.contribute and not ns.db.scanEnabled, "old SavedVariables are not treated as consent")
@@ -580,15 +576,8 @@ section("record runs: an opt-in, run controls on the guide window, segments thro
     check(R:State() == "paused" and last().e == "PAUSE", "logging out pauses the run")
     ns.Database:Init()
     check(ns.char.run and ns.char.run.seg == 2 and #find("ACCEPT") == 1, "SavedVariables carry the paused run and its entries")
-    -- a login without SavedVariables (the beta bug): the cvar mirror brings back the run, and says entries were lost
-    local id, mirror = ns.char.run.id, ns.Persist:EncodeChar()
-    ns.char.run = nil
-    ns.Persist:DecodeChar(mirror)
-    check(ns.char.run and ns.char.run.id == id and ns.char.run.seg == 2 and R:State() == "paused",
-        "the cvar mirror restores the run's id, segment and paused state")
     R:Resume()
-    local gap = ns.char.run.entries[1]
-    check(gap and gap.e == "GAP" and last().e == "RESUME" and last().t >= nextT.t, "entries lost with the SavedVariables are marked as a gap")
+    check(last().e == "RESUME" and last().t >= nextT.t, "the run resumed after a login carries on its clock")
     -- a full segment pauses itself (the run notice dialog asks to send it: its own section)
     for _ = #ns.char.run.entries, R.MAX_ENTRIES do ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7104, 1, 1, 2, false, "x") end
     check(R:State() == "paused" and #ns.char.run.entries <= R.MAX_ENTRIES + 1, "a full segment pauses the run")
@@ -889,12 +878,6 @@ section("quest database: lean steps resolve through the DB", function()
     do
         local r, pick = ns.Guide:ChooseRoute(other.key)
         check(r and r.key == other.key and pick ~= nil and ns.char.route == other.key and ns.Guide.active and ns.Guide.active.id == pick.id, string.format("choosing another race's route activates its fitting chapter (r=%s pick=%s active=%s route=%s)", tostring(r and r.key), tostring(pick and pick.id), tostring(ns.Guide.active and ns.Guide.active.id), tostring(ns.char.route)))
-        do
-            local enc = ns.Persist:EncodeChar()
-            ns.char.route = nil
-            ns.Persist:DecodeChar(enc)
-            check(ns.char.route == other.key, "the chosen route comes back from the cvar mirror (" .. tostring(ns.char.route) .. ")")
-        end
         local ap = ns.Guide:AutoPick()
         check(ap and ns.Guide:RouteOf(ap) == other.key, "auto-pick follows the chosen route (" .. tostring(ap and ap.id) .. ")")
         ns.Commands:Run("path race")
@@ -977,12 +960,8 @@ section("auto quest + minimap", function()
     check(not ForeverGuideFrame:IsShown(), "leaving combat does not undo the hide-everything switch")
     check(not pointerShown(), "leaving combat does not bring the waypoint / arrow back while hidden")
     ns.db.ui.hideInCombat = false
-    local acct = ns.Persist:EncodeAcct()
     ns.Commands:Run("hideall off")
     check(not ns.UI:AllHidden() and ForeverGuideFrame:IsShown(), "/fg hideall off brings everything back")
-    ns.Persist:DecodeAcct(acct)
-    check(ns.db.ui.hiddenAll == true, "the switch is restored from the cvar mirror")
-    ns.db.ui.hiddenAll = false
     ns.Navigation:Clear()
 
     MOCK.questChoices = 1
@@ -1112,15 +1091,6 @@ section("party quest sharing: share what you accept, accept what the party share
     check(MOCK.confirmedEscort == 1 and MOCK.popupHidden == nil, "with a full quest log a group escort is left to the player")
     MOCK.logCap = nil
 
-    -- both settings survive the beta cvar mirror
-    ns.Commands:Run("auto share off")
-    ns.Commands:Run("auto shared off")
-    local encoded = ns.Persist:EncodeAcct()
-    A.Cfg().share, A.Cfg().shared = true, true
-    ns.Persist:DecodeAcct(encoded)
-    check(A.Cfg().share == false and A.Cfg().shared == false, "share / shared settings are kept in the cvar mirror")
-    ns.Commands:Run("auto share on")
-    ns.Commands:Run("auto shared on")
 
     for _, qid in ipairs({ 7001, 7002, 7003, 7004, 7005, 7007 }) do MOCK_ABANDON(qid) end
     MOCK.group, MOCK.pushed, MOCK.acceptedViaFrame, MOCK.offeredQuest = false, {}, nil, nil
@@ -2138,22 +2108,6 @@ section("level-gated quests: skipped until the level is reached, then revisited"
     local blockedRow = false
     for _, e in ipairs(ForeverGuideFrame.list.entries) do if e.state == "blocked" and e.questID == 20 then blockedRow = true end end
     check(blockedRow, "deferred quest rows show as blocked with the level needed")
-    local enc = ns.Persist:EncodeChar()
-    G.progress.deferred = nil
-    ns.Persist:DecodeChar(enc)
-    G.progress = ns.char.guides.TEST_GATE
-    check(G.progress.deferred and G.progress.deferred[20] == 2, "the deferred quest comes back from the cvar mirror")
-    -- where the player is in the other chapters travels too
-    ns.char.guides.TEST_OTHER_CHAPTER = { step = 7, done = {}, version = 1 }
-    enc = ns.Persist:EncodeChar()
-    ns.char.guides.TEST_OTHER_CHAPTER = nil
-    ns.Persist:DecodeChar(enc)
-    check(ns.char.guides.TEST_OTHER_CHAPTER and ns.char.guides.TEST_OTHER_CHAPTER.step == 7, "another chapter's position comes back from the cvar mirror")
-    ns.char.guides.TEST_OTHER_CHAPTER = nil
-    -- an older mirror spelt flags out in full
-    ns.char.autoPickGuide = false
-    ns.Persist:DecodeChar("v=1;a=true")
-    check(ns.char.autoPickGuide == true, "a flag written as 'true' by an older build still reads as on")
     MOCK_LEVEL(18); settle()
     check(G.current == 2, "reaching the level goes back to the deferred accept (" .. tostring(G.current) .. ")")
     MOCK.log[125] = nil
@@ -2216,15 +2170,6 @@ section("the player's own order: Later / Do now, and skipped steps that come bac
     check(not G.progress.done[4] and not G.progress.done[8] and #G:SkippedSteps() == 0, "...with the rest of its quest, and it is no longer listed")
     check(G:DoNow(99) == false, "Do now on a step that does not exist does nothing")
 
-    -- the moves and the skipped list survive a beta login (cvar mirror)
-    G.progress.done[9] = true G.progress.skipped = { [9] = true }
-    local before = seqString()
-    local enc = ns.Persist:EncodeChar()
-    G.progress.order, G.progress.skipped = nil, nil
-    ns.Persist:DecodeChar(enc)
-    G.progress = ns.char.guides.TEST_ORDER
-    check(seqString() == before, "the order comes back from the mirror (" .. seqString() .. " vs " .. before .. ")")
-    check(G.progress.skipped and G.progress.skipped[9], "the skipped list comes back too")
 
     -- the right-click menu on a row: Do now / Later / Skip
     ns.UI:Refresh(); settle()
@@ -2288,13 +2233,6 @@ section("auto mode: Do first / Do last pins a quest over the distance order", fu
     check(pos(990802) == 1 and ns.Tracker.current.questID == 990802, "Do first puts a far quest on top and the arrow on it")
     ns.Tracker:Pin(990801, "last")
     check(pos(990801) == #ns.Tracker.candidates, "Do last sends a quest to the bottom")
-    do
-        local enc = ns.Persist:EncodeChar()
-        ns.char.trackerPrio = nil
-        ns.Persist:DecodeChar(enc)
-        ns.Tracker:Rethink()
-        check(pos(990802) == 1 and pos(990801) == #ns.Tracker.candidates, "the pins come back from the cvar mirror")
-    end
     ns.Tracker:Pin(990801, nil)
     MOCK_ABANDON(990802); settle()
     ns.Tracker:Rethink()
@@ -2371,43 +2309,22 @@ section("sweep: every command, every UI script, options, keybinds", function()
     check(unexpected == 0, "command / UI sweep produced no errors (" .. unexpected .. ")")
 end)
 
--- ---- beta SavedVariables bug: state survives a login with empty SavedVariables via cvars ----
-section("beta SavedVariables bug: state survives a login with empty SavedVariables via cvars", function()
-    G:Activate("GEN_ALLIANCE_DWARF_01_DUN_MOROGH", true); settle()
-    G:SetStep(20); settle()
-    G.progress.done[7] = true G.progress.done[8] = true G.progress.done[12] = true
-    ns.char.mode = "guide"
-    ns.db.ui.x, ns.db.ui.y = -123, -45
-    ns.db.minimap.angle = 137
-    ns.AutoQuest:Set("accept", "guide")
-    ns.Commands:Run("edit note keep me")
-    ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[G.current] = { type = G:GetCurrentStep().type, quest = G:GetCurrentStep().quest, map = 1426, x = 12.5, y = 34.5, npc = 999 }
-    ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[3] = { type = "ACCEPT", quest = 179, npc = 658 }
-    ns.db.ui.width = 480; ns.db.ui.height = 280; ns.db.ui.hideTracker = false
-    ns.db.contribute, ns.db.scanEnabled = true, false
-    ns.Persist:Save()
-    check(ns.Persist.lastSaveOK == true, "the cvar mirror verified its write")
-    local savedStep, savedGuide = G.progress.step, ns.char.activeGuide
-    -- simulate the beta: SavedVariables come back nil at the next login
-    ForeverGuideDB, ForeverGuideCharDB = nil, nil
+-- ---- saved data lives only in the SavedVariables: no ForeverGuide cvars ----
+section("saved data lives only in the SavedVariables: no ForeverGuide cvars", function()
+    check(ns.Persist == nil, "the beta cvar mirror is gone")
+    local touched = {}
+    for _, name in ipairs(MOCK.cvarCalls) do if name:find("^ForeverGuide") then touched[#touched + 1] = name end end
+    check(#touched == 0, "the addon never reads or writes a ForeverGuide cvar (" .. table.concat(touched, ", ") .. ")")
+    -- a new character starts clean, whatever another character left in the cvars of an older build
+    local was = ForeverGuideCharDB
+    MOCK.cvars.ForeverGuideCchar0 = "v=1;g=GEN_ALLIANCE_DWARF_01_DUN_MOROGH;s=9;r=TUGSDWARF"
+    ForeverGuideCharDB = nil
     ns.Database:Init()
-    need(ns.Database.freshChar and ns.char.activeGuide == nil, "fresh login: character SavedVariables empty")
-    ns.Persist.restored = { acct = false, char = false }
-    ns.Persist:Restore()
-    check(ns.char.activeGuide == savedGuide, "active guide restored from the cvar mirror (" .. tostring(ns.char.activeGuide) .. ")")
-    local p = ns.char.guides[savedGuide]
-    check(p and p.step == savedStep and p.done[7] and p.done[8] and p.done[12] and not p.done[9], "step + done list restored (" .. tostring(p and p.step) .. ")")
-    check(ns.db.ui.x == -123 and ns.db.ui.y == -45 and ns.db.minimap.angle == 137 and ns.db.auto.accept == "guide", "settings restored")
-    local e = ns.db.edits and ns.db.edits[savedGuide] and ns.db.edits[savedGuide][savedStep]
-    check(e and e.x == 12.5 and e.npc == 999, "step edit restored")
-    local e2 = ns.db.edits[savedGuide][3]
-    check(e2 and e2.npc == 658 and e2.quest == 179 and e and e.quest ~= nil, "a second step edit survives the mirror too (separator kept)")
-    check(ns.db.ui.width == 480 and ns.db.ui.height == 280 and ns.db.ui.hideTracker == false,
-        "window size and tracker switch are restored")
-    check(ns.db.contribute and not ns.db.scanEnabled, "each opt-in choice survives a beta login independently")
-    ns.AutoQuest:Set("accept", "on")
-    ns.db.edits = {}
-    G:Activate(savedGuide, true); G:Reset(); settle()
+    check(ns.char.activeGuide == nil and ns.char.route == nil and next(ns.char.guides) == nil,
+        "a new character's empty SavedVariables stay empty: no other character's guide, route or positions")
+    MOCK.cvars.ForeverGuideCchar0 = nil
+    ForeverGuideCharDB = was
+    ns.char = was
 end)
 
 -- ---- arriving in the zone finishes the chapter's travel step; resync moves forward ----
@@ -2636,13 +2553,6 @@ section("level-up announcement", function()
     MOCK.chatBlocked = nil
     MOCK.group, MOCK.raid = false, false
 
-    -- the setting survives the cvar mirror
-    ns.Commands:Run("ding emote")
-    local encoded = ns.Persist:EncodeAcct()
-    ns.db.ding.channel = "party"
-    ns.Persist:DecodeAcct(encoded)
-    check(ns.db.ding.channel == "emote", "the channel is kept in the beta cvar mirror (" .. tostring(ns.db.ding.channel) .. ")")
-    ns.Commands:Run("ding auto")
 end)
 
 -- ---- a quest about to stop paying is flagged where the tracker lists it ----
@@ -2842,15 +2752,6 @@ section("flight points and the trainer nudge", function()
     check(R:TrainerNudge(24) == nil, "/fg remind trainer off keeps it quiet too")
     ns.Commands:Run("remind trainer on")
 
-    -- both switches and the level we last trained at survive the cvar mirror
-    ns.char.lastTrained = 22
-    ns.Commands:Run("remind flight off")
-    local acct, char = ns.Persist:EncodeAcct(), ns.Persist:EncodeChar()
-    ns.db.reminders.flight, ns.char.lastTrained = true, nil
-    ns.Persist:DecodeAcct(acct) ns.Persist:DecodeChar(char)
-    check(ns.db.reminders.flight == false, "the flight switch is kept in the mirror")
-    check(ns.char.lastTrained == 22, "and the level you last trained at (" .. tostring(ns.char.lastTrained) .. ")")
-    ns.Commands:Run("remind flight on")
     ns.char.lastTrained = nil
 end)
 
@@ -2884,12 +2785,6 @@ section("dungeons: the guide steps aside", function()
     check(ns.UI:AllHidden() == true, "and turning it back on puts it away again")
     MOCK_INSTANCE(nil)
 
-    -- the setting survives the cvar mirror
-    ns.Commands:Run("dungeon off")
-    local acct = ns.Persist:EncodeAcct()
-    ns.db.instance.hide = true
-    ns.Persist:DecodeAcct(acct)
-    ns.Commands:Run("dungeon on")
 end)
 
 -- ---- an alternate route: listed under its own name, never the default, followed once chosen ----

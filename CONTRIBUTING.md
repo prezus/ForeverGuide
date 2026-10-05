@@ -35,7 +35,7 @@ python3 tools/package.py && python3 tools/check_package.py
 ```
 
 Locally, also lint the engine files (`.luacheckrc` holds the settings):
-`luacheck Core.lua Database.lua Events.lua Persist.lua Player.lua Navigation.lua Guide.lua DB.lua`,
+`luacheck Core.lua Database.lua Events.lua Player.lua Navigation.lua Guide.lua DB.lua`,
 plus any file you changed. LuaLS (`.luarc.json`) is useful in an editor but isn't a gate. The mock is not the client: an API that
 passes here can still be missing, protected or secret in combat on Forever.
 

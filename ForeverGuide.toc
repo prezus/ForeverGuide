@@ -13,7 +13,6 @@
 Core.lua
 Database.lua
 Events.lua
-Persist.lua
 
 # ---- quest database (published by the maintainer's data build: Questie's Classic data + WoW Forever additions) ----
 Data\ZoneDB.lua

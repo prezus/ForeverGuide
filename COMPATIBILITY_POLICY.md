@@ -27,6 +27,5 @@ The following current paths cross or approach the boundary. They are recorded he
 - `Navigation.lua`: optional engine waypoint sets/super-tracks and later clears a map point.
 - `Ding.lua`: optional level-up chat/emote; even when off, login requests played time and installs chat suppression hooks.
 - `Commands.lua`: `/fg npdbg mark` attempts `SetRaidTarget` on explicit command (reported blocked on this client).
-- `Persist.lua`: writes ForeverGuide-prefixed CVars to work around the beta SavedVariables bug; preserve this workaround until client persistence is verified fixed.
 
 Any change to these paths should move them toward the boundary above or document a specific approved exception. In particular, do not add further automatic state-changing behavior just because another feature already does it.

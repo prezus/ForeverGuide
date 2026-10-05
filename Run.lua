@@ -4,7 +4,7 @@
 -- from Contribute data. Turning it on shows run controls on the guide window (UI/RunStrip.lua);
 -- nothing is recorded until the player presses Start. While a run records, it keeps a timed
 -- log of what happened, for calibrating the route planner:
---   START STOP PAUSE RESUME GAP   the run itself (GAP: entries lost with the SavedVariables)
+--   START STOP PAUSE RESUME GAP   the run itself (GAP: entries lost; only from builds that mirrored the run)
 --   ACCEPT TURNIN ABANDON OBJ     quests (TURNIN: xp, money; OBJ: obj, f, r, done)
 --   LEVEL                         a level-up (l, rested)
 --   KILL                          a creature the player killed (npc, mobLevel, elite, secs, rested)
@@ -18,8 +18,7 @@
 --
 -- A run is sent in segments: Send hands the entries since the last Send to the share window
 -- (Share.lua, docs/SHARE-FORMAT.md) and recording carries on in the next segment. The run lives
--- in ForeverGuideCharDB.run; its id, segment and clock are mirrored in a cvar (Persist.lua), so a
--- login that loses the SavedVariables loses at most the unsent segment, marked with GAP.
+-- in ForeverGuideCharDB.run.
 -- ============================================================
 
 local _, ns = ...
@@ -219,21 +218,6 @@ function Run:SetEnabled(on)
     if not on then self:Pause() end
     ns.db.recordRuns = on and true or false
     Changed()
-end
-
--- ---- the cvar mirror (Persist.lua): "id:seg:elapsed" -------------------------------------------
-function Run:MirrorString()
-    local run = Current()
-    if not run then return nil end
-    return string.format("%s:%d:%.1f", run.id, run.seg, self:Elapsed())
-end
-
---- A login that lost the SavedVariables: bring back the run, paused, its unsent entries lost.
-function Run:RestoreMirror(s)
-    if Current() or type(s) ~= "string" then return end
-    local id, seg, elapsed = s:match("^(%x+):(%d+):([%d%.]+)$")
-    if not id then return end
-    ns.char.run = { id = id, seg = tonumber(seg), elapsed = tonumber(elapsed), state = "paused", entries = {}, gap = true }
 end
 
 -- ---- what is recorded ------------------------------------------------------------------------

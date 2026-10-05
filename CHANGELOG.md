@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Saved data: your guide, progress and settings are kept only in the addon's normal saved variables. The workaround for the early beta, which also copied them into the game's settings cache, is gone (and `/fg persist` with it), so a new character no longer starts from another character's guide position.
+- Guides from TUGs keep TUGs' layout: the **Guides** list shows each guide group in TUGs' order, a new character starts on its race's starting guide, a guide that names no next one opens the list to choose from, and a character whose guide is gone is shown the one for its level. New steps: use the hearthstone, reach a profession skill, train at any trainer, fly to a place by name, and grind to a point within a level.
 - Guides: every race's levelling route is now TUGs' (Human, Dwarf / Gnome, Night Elf, Orc / Troll, Undead, Tauren), shown as "Human (TUGs)" and so on, and followed by default. Skyborne keeps its route. If you were on one of the old routes, you start on the TUGs chapter for your level at login; progress in the old chapters does not carry over.
 - A character whose saved chapter or route is no longer in the addon starts on its route's chapter for its level at login, instead of with no guide.
 - Picking a guide opens that guide. Choosing a chapter or a route in **Guides**, or `/fg guide <name>`, always lands on the guide you chose, at the first step this character still has open. A saved position from earlier play (or from another character) no longer sends the pick on to a later chapter.

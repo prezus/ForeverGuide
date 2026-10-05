@@ -697,14 +697,16 @@ function _G.MOCK_ZONE(mapID, zoneName, mapX, mapY)
 end
 
 
--- ---- CVars (addon-registered ones persist in config-cache.wtf) ---------------
+-- ---- CVars ------------------------------------------------------------------
 world.cvars = { nameplateShowEnemies = "0" }
-_G.GetCVar = function(name) return world.cvars[name] end
+world.cvarCalls = {}       -- every cvar name the addon registered, read or wrote
+local function seen(name) world.cvarCalls[#world.cvarCalls + 1] = tostring(name) end
+_G.GetCVar = function(name) seen(name) return world.cvars[name] end
 _G.SetCVar = function(name, value) return _G.C_CVar.SetCVar(name, value) end
 _G.C_CVar = {
-    RegisterCVar = function(name, default) if world.cvars[name] == nil then world.cvars[name] = default or "" end end,
-    SetCVar = function(name, value) if world.cvars[name] == nil then return false end world.cvars[name] = tostring(value or "") return true end,
-    GetCVar = function(name) return world.cvars[name] end,
+    RegisterCVar = function(name, default) seen(name) if world.cvars[name] == nil then world.cvars[name] = default or "" end end,
+    SetCVar = function(name, value) seen(name) if world.cvars[name] == nil then return false end world.cvars[name] = tostring(value or "") return true end,
+    GetCVar = function(name) seen(name) return world.cvars[name] end,
     AreCVarsLoaded = function() return true end,
 }
 _G.GetRealmName = function() return "Classic Beta PvE 2" end
