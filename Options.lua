@@ -168,9 +168,15 @@ local function MakeKeybind(parent, item, y)
     b:SetSize(150, 22)
     b:SetPoint("TOPLEFT", parent, "TOPLEFT", 336, y)
     b:SetText("Set key")
+    local onKey
+    -- The key script exists only while listening, as Blizzard's KeybindListener:SetListening does: a
+    -- frame with an OnKeyDown script takes the keyboard, and this panel is shown from login (parentless
+    -- until the settings window adopts it), so a script left on swallowed every key, Esc included
+    -- (seen live, 2026-10-06).
     local function listen(on)
         b.listening = on
         b:SetText(on and "Press a key..." or "Set key")
+        b:SetScript("OnKeyDown", on and onKey or nil)
         pcall(b.EnableKeyboard, b, on)
         pcall(b.SetPropagateKeyboardInput, b, not on)
     end
@@ -179,7 +185,9 @@ local function MakeKeybind(parent, item, y)
         listen(not b.listening)
         note:SetText(b.listening and "Press the key to use, with Shift / Ctrl / Alt if you like. Esc cancels." or "")
     end)
-    b:SetScript("OnKeyDown", function(_, key)
+    -- closing the settings while listening gives the keyboard back
+    b:SetScript("OnHide", function() if b.listening then listen(false) note:SetText("") end end)
+    onKey = function(_, key)
         if not b.listening then return end
         local ignored = rawget(_G, "IsKeyPressIgnoredForBinding")
         if ignored and ignored(key) then return end              -- a modifier alone: wait for the key
@@ -193,7 +201,7 @@ local function MakeKeybind(parent, item, y)
         elseif old then note:SetText(string.format("%s was %s; it opens quest objects now.", chord, ns.PlainString(ns.Safe(rawget(_G, "GetBindingName"), old)) or old))
         else note:SetText("") end
         Options:Refresh()
-    end)
+    end
     b.label, b.note = label, note
     return b
 end
@@ -235,12 +243,46 @@ local function MakeScroller(parent, topOffset)
         local byApi = self.GetVerticalScrollRange and self:GetVerticalScrollRange() or 0
         return math.max(byApi or 0, byChild)
     end
+    -- a scroll bar in the gap on the right: a plain Slider with drawn track and thumb, as MakeSlider
+    local bar = CreateFrame("Slider", nil, parent)
+    bar:SetOrientation("VERTICAL")
+    bar:SetWidth(12)
+    bar:SetPoint("TOPRIGHT", parent, "TOPRIGHT", -6, topOffset - 4)
+    bar:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", -6, 12)
+    pcall(bar.SetHitRectInsets, bar, -4, -4, 0, 0)
+    bar:SetValueStep(1)
+    pcall(bar.SetObeyStepOnDrag, bar, true)
+    local track = bar:CreateTexture(nil, "BACKGROUND")
+    track:SetColorTexture(0, 0, 0, 0.6)
+    track:SetPoint("TOP", bar, "TOP", 0, 0)
+    track:SetPoint("BOTTOM", bar, "BOTTOM", 0, 0)
+    track:SetWidth(4)
+    local thumb = bar:CreateTexture(nil, "OVERLAY")
+    thumb:SetColorTexture(0.9, 0.75, 0.2, 1)
+    thumb:SetSize(10, 30)
+    bar:SetThumbTexture(thumb)
+    bar:SetScript("OnValueChanged", function(_, value)
+        if bar.suppress then return end
+        scroll:SetVerticalScroll(math.max(0, math.min(range(scroll), value or 0)))
+    end)
+    --- the bar follows the list: its range, where the list is, and hidden when nothing scrolls
+    function scroll.UpdateBar()
+        local r = range(scroll)
+        bar.suppress = true
+        bar:SetMinMaxValues(0, r)
+        bar:SetValue(scroll.GetVerticalScroll and scroll:GetVerticalScroll() or 0)
+        bar.suppress = false
+        bar:SetShown(r > 0)
+    end
+    scroll.bar = bar
     scroll:SetScript("OnMouseWheel", function(self, delta)
         local at = (self.GetVerticalScroll and self:GetVerticalScroll() or 0) - (delta or 0) * 60
         self:SetVerticalScroll(math.max(0, math.min(range(self), at)))
+        self.UpdateBar()
     end)
     scroll:SetScript("OnSizeChanged", function(self, w)
         if w and w > 0 then content:SetWidth(w) end
+        self.UpdateBar()
     end)
     return content, scroll
 end
@@ -310,6 +352,7 @@ function Options:Create()
     panel:SetScript("OnShow", function()
         Options:Refresh()
         if panel.scroll and panel.scroll.SetVerticalScroll then pcall(panel.scroll.SetVerticalScroll, panel.scroll, 0) end
+        if panel.scroll and panel.scroll.UpdateBar then panel.scroll.UpdateBar() end
     end)
 
     -- register with whichever settings API this client has
