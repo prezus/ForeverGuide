@@ -3537,6 +3537,55 @@ section("XP buff indicators: each icon shows while its buff is missing", functio
     for _, f in pairs(XB.frames) do f:Hide() end
 end)
 
+-- (2026-10-06: quest 982's sunken lockboxes open only with the game's Interact Key, which Forever
+--  ships for gamepads only)
+section("the game's Interact Key: on by default, switched in the options, its key set there", function()
+    local MM = ns.MobMarker
+    check(MOCK.cvars.softTargetInteract == "3", "at login the Interact Key is switched on for keyboard (" .. tostring(MOCK.cvars.softTargetInteract) .. ")")
+    ns.Options:Create()
+    local box, row = ns.Options:GetWidget("qg_interact"), ns.Options:GetWidget("qg_interactkey")
+    need(box ~= nil and row ~= nil, "the options panel has the Interact Key switch and its key")
+    ns.Options:Refresh()
+    check(box:GetChecked() == true, "the switch shows the game's setting")
+
+    box:SetChecked(false); box:GetScript("OnClick")(box)
+    check(MOCK.cvars.softTargetInteract == "1", "switched off: the game's own default comes back (gamepads only)")
+    MM:ApplyInteract()
+    check(MOCK.cvars.softTargetInteract == "1", "and the next login leaves it off")
+    MOCK.inCombat = true
+    box:SetChecked(true); box:GetScript("OnClick")(box)
+    check(MOCK.cvars.softTargetInteract == "1", "in combat the switch waits")
+    MOCK.inCombat = false
+    MOCK_FIRE("PLAYER_REGEN_ENABLED")
+    check(MOCK.cvars.softTargetInteract == "3", "...and lands once combat ends")
+
+    local bindingsWas = MOCK.bindings
+    MOCK.bindings = { ["SHIFT-F"] = "TOGGLEAUTORUN" }
+    ns.Options:Refresh()
+    check(row.label:GetText():find("not bound", 1, true) ~= nil, "no key yet: the row says so (" .. row.label:GetText() .. ")")
+    local press = row:GetScript("OnKeyDown")
+    row:GetScript("OnClick")(row)
+    MOCK.shift = true
+    press(row, "LSHIFT")
+    check(row.listening == true and MOCK.bindings["SHIFT-F"] == "TOGGLEAUTORUN", "a modifier alone waits for the key")
+    press(row, "F")
+    MOCK.shift = false
+    check(MOCK.bindings["SHIFT-F"] == "INTERACTTARGET" and MOCK.bindingsSaved > 0, "Shift-F is the Interact Key now, and saved")
+    check(row.label:GetText():find("Shift-F", 1, true) ~= nil, "the row shows the key as the bindings menu writes it (" .. row.label:GetText() .. ")")
+    check(row.note:GetText():find("TOGGLEAUTORUN", 1, true) ~= nil, "and says what the key did before (" .. row.note:GetText() .. ")")
+
+    row:GetScript("OnClick")(row); press(row, "G")
+    check(MOCK.bindings.G == "INTERACTTARGET" and MOCK.bindings["SHIFT-F"] == nil, "a new key replaces the old one")
+    row:GetScript("OnClick")(row); press(row, "ESCAPE")
+    check(MOCK.bindings.G == "INTERACTTARGET" and MOCK.bindings.ESCAPE == nil and not row.listening, "Esc cancels and keeps the key")
+    MOCK.inCombat = true
+    row:GetScript("OnClick")(row)
+    check(not row.listening, "in combat the key cannot be set")
+    MOCK.inCombat = false
+    MOCK.bindings = bindingsWas
+    ns.Options:Refresh()
+end)
+
 section("docs agree with the code", function()
     local function read(path)
         local f = io.open(root .. path)

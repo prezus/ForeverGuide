@@ -65,6 +65,8 @@ Config.TOGGLES = {
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().plates = v ns.MobMarker:Scan() end end },
     skulluse   = { label = "the target-quest-mob key also uses the step's quest item", get = function() return ns.MobMarker and ns.MobMarker.Cfg().useItem ~= false end,
                    set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().useItem = v ns.MobMarker:Scan() end end },
+    interact   = { label = "open quest objects (chests, lockboxes) with the game's Interact Key", get = function() return ns.MobMarker ~= nil and ns.MobMarker:InteractEnabled() end,
+                   set = function(v) if ns.MobMarker then ns.MobMarker:SetInteract(v) end end },
     wpengine   = { label = "ride the client's own pin instead of the plain arrow (off by default - most Forever clients cannot project it, and guessing felt sluggish)", get = function() return Config.Waypoint().engine == true end,
                    set = function(v) Config.Waypoint().engine = v if ns.Waypoint then ns.Waypoint:Tick() end end },
     tracker    = { label = "hide Blizzard's objective tracker while the Quest Guide shows", get = function() return ns.db.ui.hideTracker ~= false end,
@@ -115,5 +117,11 @@ function Config.OptionItems()
         local t = Config.TOGGLES[key]
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end
+    items[#items + 1] = { header = "Quest objects" }
+    local t = Config.TOGGLES.interact
+    items[#items + 1] = { key = "qg_interact", label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
+    items[#items + 1] = { key = "qg_interactkey", type = "keybind", label = "Interact Key",
+                          get = function() return ns.MobMarker and ns.MobMarker:InteractKey() end,
+                          bind = function(chord) if ns.MobMarker then return ns.MobMarker:BindInteractKey(chord) end return false end }
     return items
 end
