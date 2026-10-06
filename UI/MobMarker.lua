@@ -557,7 +557,8 @@ function MM:Scan()
     local openKills, openLoot = self:OpenKillNames()
     local killStep = step ~= nil
     local current = ns.Guide and ns.Guide:GetCurrentStep()
-    local stepItem = c.useItem ~= false and current and ns.Guide:StepUseItem(current) or nil
+    -- the hearthstone is the row's button only: the target key must never send the player home
+    local stepItem = c.useItem ~= false and current and current.type ~= "USEHEARTH" and ns.Guide:StepUseItem(current) or nil
     -- the route wants no kill and has no item for the key: the quests in the log, on the route or
     -- not, get the big skull and the target key (a quest the player picked up on their own)
     local offRoute = next(names) == nil and stepItem == nil

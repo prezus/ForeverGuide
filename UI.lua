@@ -195,6 +195,25 @@ function UI:RefreshPicker()
             shown = shown + 1
         end
     end
+    -- guide groups (TUGs), in Guidelime's order: the levelled guides around the level, then the rest
+    -- (professions, lists); the guide that fits the level is marked when the player has to choose
+    for _, grp in ipairs(G:Groups()) do
+        add(grp.name:upper(), "", nil, false, false, true)
+        local levelled, other = {}, {}
+        for _, g in ipairs(grp.guides) do
+            if g.minLevel then levelled[#levelled + 1] = g else other[#other + 1] = g end
+        end
+        local start = 1
+        for k, g in ipairs(levelled) do if (g.maxLevel or 60) >= level - 2 then start = math.max(1, k - 2) break end end
+        local function row(g)
+            local fits = not g.minLevel or ((g.minLevel or 1) <= level + 3 and (g.maxLevel or 60) >= level - 2)
+            local levels = g.minLevel and string.format("%s-%s  ", tostring(g.minLevel), tostring(g.maxLevel or "?")) or ""
+            local mark = G.suggested == g and "  <- for your level" or ""
+            add(g.name or g.id, string.format("%s%d steps%s", levels, ns.Guide.StepCount(g), mark), g.id, not fits, G.active == g and ns.char.mode ~= "auto")
+        end
+        for k = start, math.min(#levelled, start + 11) do row(levelled[k]) end
+        for _, g in ipairs(other) do row(g) end
+    end
     -- dungeons live in the window's Dungeon Quests panel, which never moves the guide off its step
     if i == 0 then add("no guides installed", "", nil, true) end
     for j = i + 1, #p.rows do p.rows[j]:Hide() p.rows[j].sub:Hide() end
@@ -329,6 +348,12 @@ function UI:OnInit()
         "FG_LEVEL_CHANGED", "FG_ZONE_CHANGED", "FG_QUEST_TITLE_LOADED", "FG_NAV_TARGET_CHANGED",
         "FG_TRACKER_CHANGED", "FG_MODE_CHANGED", "BAG_UPDATE_DELAYED",
     }, function() ns.Events:Debounce("ui", 0.05, refresh) end)
+    -- a group guide ended with no next, or the saved guide is gone: open the list to choose from
+    ns.Events:Register("FG_GUIDE_FINISHED", function()
+        local p = UI:CreatePicker()
+        UI:RefreshPicker()
+        p:Show()
+    end)
 end
 
 -- Keep the guide above the fullscreen map without changing whether it is shown.

@@ -323,7 +323,10 @@ function Nav:ResolveStep(step)
                     if info.name == step.zone then mapID = id break end
                 end
             end
+            if not mapID and ns.DB then mapID = ns.DB:MapForZoneName(step.zone) end
         end
+        -- a place with no map or zone at all is on the map the player is on (Guidelime's reading)
+        if not mapID and not step.map and not step.zone then mapID = ns.Player:GetMapID() end
         if mapID then return mapID, step.x, step.y, step.text end
     end
     local loc = self:DBLocationForStep(step)
