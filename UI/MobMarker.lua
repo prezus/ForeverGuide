@@ -35,7 +35,6 @@ local SKULL_TEX = "Interface\\TargetingFrame\\UI-RaidTargetingIcons"
 local SKULL_COORDS = { 0.75, 1, 0.25, 0.5 }    -- 4x4 atlas, index 8
 
 local pool, used = {}, {}
-local wanted, wantedAt = {}, 0     -- lower-case npc names for the current step
 local forcedPlates = nil           -- previous nameplateShowEnemies value when we switched them on
 local lastPrimary
 
@@ -546,7 +545,7 @@ function MM:Scan()
         return
     end
     local plates = ns.Safe(NP.GetNamePlates) or {}
-    local best, bestScore, mine
+    local best, bestScore
     local others, partyPlates = {}, {}
     local targetGUID = ns.PlainString(ns.Safe(UnitGUID, "target"))
     local seen = {}               -- lower name -> best closeness of a living, untagged plate
@@ -636,10 +635,10 @@ function MM:OnEnable()
     -- a slow ticker catches tap changes and deaths the events miss
     local t = CreateFrame("Frame")
     t.elapsed = 0
-    t:SetScript("OnUpdate", function(self, elapsed)
-        self.elapsed = self.elapsed + (elapsed or 0)
-        if self.elapsed < 0.5 then return end
-        self.elapsed = 0
+    t:SetScript("OnUpdate", function(ticker, elapsed)
+        ticker.elapsed = ticker.elapsed + (elapsed or 0)
+        if ticker.elapsed < 0.5 then return end
+        ticker.elapsed = 0
         local ok, err = pcall(MM.Scan, MM)
         if not ok then ns.ReportOnce("mobmarker:scan", err) end
     end)
