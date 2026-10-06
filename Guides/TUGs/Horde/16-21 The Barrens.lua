@@ -3,10 +3,11 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_16_21_THE_BARRENS",
     name = "16-21 The Barrens",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 16,
     maxLevel = 21,
+    next = "TUGS_HORDE_21_25_PART",
     author = "TUGs | The Unprofessional Gamer",
     notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
     group = "TUGs The Ultimate (Leveling) Guides",

@@ -3,11 +3,11 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_22_23_DUSKWOOD",
     name = "22-23 Duskwood",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 22,
     maxLevel = 23,
-    next = "TUGS_ALLIANCE_23_24_REDRIDGE_MOUNTAINS",
+    next = "TUGS_ALLIANCE_23_24_STOCKADES",
     author = "TUGs | The Unprofessional Gamer",
     notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
     group = "TUGs The Ultimate (Leveling) Guides",

@@ -3,10 +3,11 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_MULGORE",
     name = "1-6 Mulgore",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,
+    next = "TUGS_HORDE_6_9_MULGORE",
     author = "TUGs | The Unprofessional Gamer",
     notes = "This guide was written by TUGs and is totally free.",
     group = "TUGs The Ultimate (Leveling) Guides",

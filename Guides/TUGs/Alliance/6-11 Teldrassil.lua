@@ -3,11 +3,11 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_6_11_TELDRASSIL",
     name = "6-9 Teldrassil",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 6,
     maxLevel = 9,
-    next = "TUGS_ALLIANCE_6_11_TELDRASSIL",
+    next = "TUGS_ALLIANCE_11_14_DARKSHORE",
     author = "TUGs | The Unprofessional Gamer",
     notes = "This guide was written by TUGs and is totally free.",
     group = "TUGs The Ultimate (Leveling) Guides",
