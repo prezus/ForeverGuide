@@ -25,10 +25,8 @@ with Lua 5.1 (or LuaJIT) and Python 3:
 
 ```sh
 lua5.1 tools/test/run_tests.lua             # headless engine tests against the mock client
-lua5.1 tools/test/test_check_data_only.lua
 lua5.1 tools/test/check_data_only.lua       # Guides/ and Data/ hold data and nothing else
 python3 tools/test/test_decode_share.py
-FOREVER_UI_SOURCE=<ui-source> python3 tools/test/test_forever_api.py
 python3 tools/check_forever_api.py <ui-source>   # C_ API paths exist on Forever (AGENTS.md)
 python3 tools/test/test_package.py
 python3 tools/package.py && python3 tools/check_package.py

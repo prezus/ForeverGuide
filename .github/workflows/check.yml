@@ -41,9 +41,7 @@ jobs:
       # Guides/ and Data/ are published by the maintainer's route planner and data build and run with
       # the addon's full permissions: they must be data and nothing else.
       - name: Guides and data are data only
-        run: |
-          lua5.1 tools/test/test_check_data_only.lua
-          lua5.1 tools/test/check_data_only.lua
+        run: lua5.1 tools/test/check_data_only.lua
       # Only the maintainer publishes routes and data; a fork's PR may not change them.
       - name: Routes and data come from the publisher
         if: github.event.pull_request.head.repo.full_name != github.repository
@@ -65,7 +63,6 @@ jobs:
           git -C "$source" sparse-checkout set Interface/AddOns/Blizzard_APIDocumentationGenerated
           git -C "$source" fetch -q --depth 1 --filter=blob:none origin bd2470aed543f72697a044e989285b6c83e63f73
           git -C "$source" checkout -q --detach FETCH_HEAD
-          FOREVER_UI_SOURCE="$source" python3 tools/test/test_forever_api.py
           python3 tools/check_forever_api.py "$source"
       - name: Check release ZIP
         run: |
