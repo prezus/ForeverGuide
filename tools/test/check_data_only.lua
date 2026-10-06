@@ -3,7 +3,7 @@
 -- Guides/ and Data/ arrive by pull request from the maintainer's route planner and data build.
 -- The game runs them with the addon's full permissions, so they must be data and nothing else:
 --
---     lua5.1 tools/test/check_data_only.lua [dir ...]     (default: Guides Data tools/test/fixtures/Guides)
+--     lua5.1 tools/test/check_data_only.lua [dir ...]     (default: Guides Data tools/test/fixtures/Guides; each searched at any depth)
 --
 -- Two checks, both required:
 --   static   with strings and comments removed, a file holds only table constructors, the
@@ -171,15 +171,14 @@ end
 
 local files, failed = 0, 0
 for _, dir in ipairs(dirs) do
-    local list = io.popen('ls "' .. dir .. '" 2>/dev/null')
-    for name in list:lines() do
-        if name:match("%.lua$") then
-            files = files + 1
-            local problem = checkFile(dir .. "/" .. name)
-            if problem then
-                failed = failed + 1
-                print("NOT DATA " .. dir .. "/" .. name .. ": " .. problem)
-            end
+    -- Every .lua at any depth: TUGs' guides sit in TUGs' own folders (Guides/TUGs/Alliance/...).
+    local list = io.popen('find "' .. dir .. '" -type f -name "*.lua" 2>/dev/null | sort')
+    for path in list:lines() do
+        files = files + 1
+        local problem = checkFile(path)
+        if problem then
+            failed = failed + 1
+            print("NOT DATA " .. path .. ": " .. problem)
         end
     end
     list:close()
