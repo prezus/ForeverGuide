@@ -1414,6 +1414,96 @@ section("a run near its limit, full, or paused at login asks the player with a d
     ns.db.recordRuns = recordWas
 end)
 
+section("record runs with ForeverGuide Companion: closed segments wait in the outbox until its receipt", function()
+    local json = dofile(root .. "tools/test/json.lua")
+    local R = ns.Run
+    need(R ~= nil and R.Outbox ~= nil, "the run recorder keeps an outbox")
+    local recordWas = ns.db.recordRuns
+    local function fill(n)
+        for _ = 1, n do ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7201, 1, 1, 2, false, "x") end
+    end
+    local function share() return rawget(_G, "ForeverGuideShare") end
+    local function hideShare() if share() then share():Hide() end end
+    ns.char.run, ns.char.runSent, ns.char.runOutbox = nil, nil, nil
+    hideShare()
+
+    -- without the companion nothing changes: a full segment pauses and nothing goes to the outbox
+    _G.ForeverGuideCompanionReceipt = nil
+    R:SetEnabled(true)
+    R:Start()
+    fill(R.MAX_ENTRIES + 1)
+    check(R:State() == "paused" and #R:Outbox() == 0, "without the companion a full segment pauses and waits for Send")
+    if ns.UI.HideRunNotice then ns.UI:HideRunNotice() end
+    ns.Commands:Run("run discard")
+
+    -- with the companion: 2,600 entries leave a closed segment of 2,500 and recording carries on
+    _G.ForeverGuideCompanionReceipt = {}
+    R:Start()
+    local id = ns.char.run.id
+    fill(2600)
+    local outbox = R:Outbox()
+    need(#outbox == 1, "a full segment closes into the outbox (" .. #outbox .. " waiting)")
+    local doc = outbox[1]
+    check(doc.run and doc.run.id == id and doc.run.seg == 1 and #doc.run.entries == R.MAX_ENTRIES,
+        "the outbox holds the closed segment, all 2,500 entries of it")
+    check(R:State() == "recording" and ns.char.run.seg == 2 and #ns.char.run.entries == 2600 + 1 - R.MAX_ENTRIES,
+        "recording carries on in the next segment, losing no entry")
+    check(not (share() and share():IsShown()), "the companion uploads it: no share window, no dialog interrupts play")
+    local said = {}
+    local printWas = print
+    print = function(...) said[#said + 1] = table.concat({ ... }, " ") end
+    -- each entry is the segment's share document, exactly what /fg share would encode
+    check(doc.format == 2 and doc.profile and doc.profile.class and doc.maps and doc.maps[MOCK.mapID] ~= nil,
+        "an outbox entry is the share document: format, profile and the maps its entries stand on")
+    local decoded = json.decode(ns.Share:Json(false, doc))
+    check(decoded.run and decoded.run.seg == 1 and #decoded.run.entries == R.MAX_ENTRIES and decoded.quests == nil,
+        "an outbox entry encodes as a run segment share, nothing else in it")
+
+    -- Send hands the segment to the companion too; logout closes the open one
+    fill(10)
+    R:Send()
+    check(#R:Outbox() == 2 and R:Outbox()[2].run.seg == 2 and not (share() and share():IsShown()),
+        "with the companion, Send puts the segment in the outbox instead of the share window")
+    print = printWas
+    check(#said == 0, "and says nothing in chat: chat stays quiet (" .. tostring(said[1]) .. ")")
+    fill(5)
+    MOCK_FIRE("PLAYER_LOGOUT")
+    outbox = R:Outbox()
+    check(#outbox == 3 and outbox[3].run.seg == 3 and outbox[3].run.entries[#outbox[3].run.entries].e == "PAUSE",
+        "logging out pauses the run and closes the open segment into the outbox")
+    check(R:State() == "paused" and #ns.char.run.entries == 0 and ns.char.run.seg == 4,
+        "the run waits paused in segment 4")
+    MOCK_FIRE("PLAYER_LOGOUT")
+    check(#R:Outbox() == 3, "an empty segment is not sent")
+
+    -- the next load: SavedVariables keep the outbox, and the receipt drops what codex has
+    ns.Database:Init()
+    check(#R:Outbox() == 3, "SavedVariables keep the outbox across a login")
+    _G.ForeverGuideCompanionReceipt = { [id .. ":1"] = true, [id .. ":3"] = true, ["someone-else:2"] = true }
+    R:OnEnterWorld(true, false)
+    outbox = R:Outbox()
+    check(#outbox == 1 and outbox[1].run.seg == 2, "the receipt's segments leave the outbox; the others wait")
+    _G.ForeverGuideCompanionReceipt = { [id .. ":2"] = true }
+    R:OnEnterWorld(false, true)
+    check(ns.char.runOutbox == nil, "once the receipt names them all the outbox is gone")
+
+    -- Stop: the last segment, marked done, waits for the companion too
+    R:Resume()
+    fill(3)
+    R:Stop()
+    outbox = R:Outbox()
+    check(#outbox == 1 and outbox[1].run.done == true and outbox[1].run.seg == 4 and R:State() == "idle",
+        "Stop puts the last segment, marked done, in the outbox")
+    -- without the companion's receipt, nothing leaves the outbox
+    _G.ForeverGuideCompanionReceipt = nil
+    R:OnEnterWorld(true, false)
+    check(#R:Outbox() == 1, "without the receipt the outbox keeps everything")
+
+    ns.char.runOutbox, ns.char.runSent = nil, nil
+    hideShare()
+    ns.db.recordRuns = recordWas
+end)
+
 section("corpse run", function()
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
     local before = ns.Navigation.target

@@ -105,7 +105,7 @@ mode). The kinds:
 | Kind | Fields | When |
 |---|---|---|
 | START, STOP | | The run starts; the run ends (in the `done` segment) |
-| PAUSE, RESUME | | Recording paused and resumed, at the same `t`. Logging out pauses. A segment that fills up (2,500 entries) pauses too |
+| PAUSE, RESUME | | Recording paused and resumed, at the same `t`. Logging out pauses. A segment that fills up (2,500 entries) pauses too, unless ForeverGuide Companion is installed (see below) |
 | GAP | | The client lost the SavedVariables: this segment's entries before `GAP` are missing |
 | ACCEPT, ABANDON | `q` | A quest accepted or abandoned |
 | TURNIN | `q`, `xp`, `money` | A quest turned in, with its reward (copper) |
@@ -118,6 +118,29 @@ mode). The kinds:
 | DEATH | | The player died |
 | RESURRECT | `secs` | The player came back, `secs` after dying |
 | HEARTH | `action` | `use`: the hearthstone was cast; `bind`: it was set here |
+
+### With ForeverGuide Companion
+
+[ForeverGuide Companion](https://github.com/prezus/foreverguide-companion) is a desktop app that
+uploads recorded runs to codex for invited players, so nobody has to copy and paste them. It
+installs a tiny addon of its own, `ForeverGuideCompanion`, whose only file assigns
+`ForeverGuideCompanionReceipt`. While that table is loaded (`## OptionalDeps` loads it before
+ForeverGuide):
+
+- **The outbox.** Closed segments go to `ForeverGuideCharDB.runOutbox` instead of the share
+  window: a list, oldest first, each entry the segment's full share document (`format`, `addon`,
+  `build`, `profile`, `maps`, `run`), exactly what Send would have shown. The app reads only this
+  field from the SavedVariables, after the game writes them (`/reload`, logout, exit).
+- **Recording carries on.** A full segment (2,500 entries) closes into the outbox and the next
+  segment starts, with no pause and no dialog. Send and Stop put their segment in the outbox, and
+  logging out closes the open segment into it too (after its `PAUSE`).
+- **The receipt.** Once codex has a segment, the app lists it in the receipt:
+  `ForeverGuideCompanionReceipt = { ["<run.id>:<run.seg>"] = true, ... }`. On entering the world
+  (login or `/reload`) ForeverGuide drops the segments the receipt names from the outbox; the rest
+  wait for the next upload.
+
+Without the companion nothing changes: a full segment pauses until Send, and Send and Stop open the
+share window.
 
 ## The JSON
 
