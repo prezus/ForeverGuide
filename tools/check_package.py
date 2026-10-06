@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check that the release ZIP loads every file its TOC/XML lists and holds only committed release files."""
 
+import html
 import os
 import posixpath
 import re
@@ -24,7 +25,8 @@ with zipfile.ZipFile(archive) as package:
                     if line.strip() and not line.lstrip().startswith("#")
                     and line.strip().lower().endswith((".lua", ".xml"))]
         else:
-            refs = re.findall(r'<(?:Script|Include)\s+file="([^"]+)"', text, re.I)
+            # as the game reads the attribute: "&amp;" is "&" (TUGs' "Ashenvale&Wetlands")
+            refs = [html.unescape(ref) for ref in re.findall(r'<(?:Script|Include)\s+file="([^"]+)"', text, re.I)]
         for ref in refs:
             target = posixpath.normpath(posixpath.join(posixpath.dirname(path), ref.replace("\\", "/")))
             assert target in files, f"{path} references missing {target}"
