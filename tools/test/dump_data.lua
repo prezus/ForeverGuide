@@ -19,7 +19,11 @@ for line in io.lines(root .. "ForeverGuide.toc") do
             local dir = line:match("^(.*)[/\\][^/\\]+$") or ""
             for xl in io.lines(root .. line:gsub("\\", "/")) do
                 local f = xl:match('file="([^"]+)"')
-                if f then files[#files + 1] = (dir .. "/" .. f):gsub("\\", "/") end
+                -- as the game reads the attribute: "&amp;" is "&" (TUGs' "Ashenvale&Wetlands")
+                if f then
+                    f = f:gsub("&lt;", "<"):gsub("&gt;", ">"):gsub("&quot;", '"'):gsub("&apos;", "'"):gsub("&amp;", "&")
+                    files[#files + 1] = (dir .. "/" .. f):gsub("\\", "/")
+                end
             end
         else
             files[1] = line:gsub("\\", "/")

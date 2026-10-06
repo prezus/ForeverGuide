@@ -16,12 +16,16 @@ local function loadAddonFile(path)
     assert(chunk, err)
     chunk("ForeverGuide", ns)
 end
+--- an XML attribute's value as the game reads it: "&amp;" is "&" (TUGs' "Ashenvale&Wetlands")
+local function xmlText(s)
+    return (s:gsub("&lt;", "<"):gsub("&gt;", ">"):gsub("&quot;", '"'):gsub("&apos;", "'"):gsub("&amp;", "&"))
+end
 --- the files a guides .xml lists, addon-relative
 local function xmlFiles(xmlPath)
     local dir, files = xmlPath:match("^(.*)/[^/]+$") or "", {}
     for xl in io.lines(root .. xmlPath) do
         local f = xl:match('file="([^"]+)"')
-        if f then files[#files + 1] = (dir .. "/" .. f):gsub("\\", "/") end
+        if f then files[#files + 1] = (dir .. "/" .. xmlText(f)):gsub("\\", "/") end
     end
     return files
 end
