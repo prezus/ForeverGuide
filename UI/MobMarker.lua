@@ -375,6 +375,58 @@ local function inCombat()
     return ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true
 end
 
+-- ---- the game's Interact Key --------------------------------------------------------------
+-- No macro or secure button can open a game object; the game's own Interact Key can
+-- (INTERACTTARGET -> C_PlayerInteractionManager.InteractUnit("anyinteract"), Bindings_Camelot.xml).
+-- Forever ships it for gamepads only (softTargetInteract = 1); with it on for keyboard, the key opens
+-- the quest object the player faces (quest 982's sunken lockboxes, verified in game 2026-10-06).
+-- It is on by default: switched on at login unless the player switched it off in our options.
+local INTERACT_CVAR, INTERACT_ACTION = "softTargetInteract", "INTERACTTARGET"
+local INTERACT_ON, INTERACT_OFF = "3", "1"   -- Enum.SoftTargetEnableFlags Any / Gamepad, as Blizzard's checkbox
+local interactPending
+
+--- The Interact Key works from the keyboard (softTargetInteract is Kbm or Any).
+function MM:InteractEnabled()
+    return (tonumber(getCVar(INTERACT_CVAR)) or 0) >= 2
+end
+
+--- Make the game's setting match ours (deferred while in combat). Only switches it on; switching it
+--- off is SetInteract's, so once a player unticks ours, logins leave the game's setting alone.
+function MM:ApplyInteract()
+    if inCombat() then interactPending = true return end
+    interactPending = nil
+    if cfg().interact ~= false and not self:InteractEnabled() then setCVar(INTERACT_CVAR, INTERACT_ON) end
+end
+
+function MM:SetInteract(on)
+    cfg().interact = on and true or false
+    if on then return self:ApplyInteract() end
+    if inCombat() then interactPending = true return end
+    interactPending = nil
+    setCVar(INTERACT_CVAR, INTERACT_OFF)
+end
+
+--- The key bound to the game's Interact Key as the bindings menu shows it ("F", "Shift-F"), or nil.
+function MM:InteractKey()
+    local key = ns.PlainString(ns.Safe(rawget(_G, "GetBindingKey"), INTERACT_ACTION))
+    if not key then return nil end
+    return ns.PlainString(ns.Safe(rawget(_G, "GetBindingText"), key)) or key
+end
+
+--- Bind a key chord ("SHIFT-F") to the game's Interact Key in place of its first key, the way the
+--- bindings menu does, and save it. Returns false in combat; else true and the action the chord
+--- had before (nil when none).
+function MM:BindInteractKey(chord)
+    if inCombat() or type(chord) ~= "string" or chord == "" then return false end
+    local old = ns.PlainString(ns.Safe(rawget(_G, "GetBindingAction"), chord))
+    if old == "" or old == INTERACT_ACTION then old = nil end
+    local first = ns.PlainString(ns.Safe(rawget(_G, "GetBindingKey"), INTERACT_ACTION))
+    if first then ns.Safe(rawget(_G, "SetBinding"), first, nil) end
+    ns.Safe(rawget(_G, "SetBinding"), chord, INTERACT_ACTION)
+    ns.Safe(rawget(_G, "SaveBindings"), ns.Safe(rawget(_G, "GetCurrentBindingSet")))
+    return true, old
+end
+
 --- nameplateShowEnemies/nameplateShowFriends* are protected cvars: setting them from combat lockdown
 --- is silently denied by the client (Ilya, 2026-09-24: "Interface action failed because of an AddOn" -
 --- firing live, right as a kill step started mid-fight) and, since Scan() retries every 0.5s while a
@@ -570,6 +622,7 @@ function MM:OnInit()
     ns.Events:RegisterMany({ "NAME_PLATE_UNIT_ADDED", "NAME_PLATE_UNIT_REMOVED", "PLAYER_TARGET_CHANGED", "UNIT_FLAGS", "PLAYER_REGEN_ENABLED" },
         function() ns.Events:Debounce("mobmarker", 0.1, function() MM:Scan() end) end)
     ns.Events:Register("PLAYER_REGEN_ENABLED", function() if macroPending then MM:UpdateTargetMacro(macroPending.names, macroPending.item) end end)
+    ns.Events:Register("PLAYER_REGEN_ENABLED", function() if interactPending then MM:SetInteract(cfg().interact ~= false) end end)
     -- your log changing, a party member's (UNIT_QUEST_LOG_CHANGED names their unit) or the group's
     ns.Events:RegisterMany({ "FG_QUEST_LOG_CHANGED", "FG_OBJECTIVE_PROGRESS", "UNIT_QUEST_LOG_CHANGED", "GROUP_ROSTER_UPDATE" },
         function() tipCache = {} end)
@@ -579,6 +632,7 @@ end
 
 function MM:OnEnable()
     self:TargetButton()
+    self:ApplyInteract()
     -- a slow ticker catches tap changes and deaths the events miss
     local t = CreateFrame("Frame")
     t.elapsed = 0

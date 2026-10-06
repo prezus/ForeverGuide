@@ -155,11 +155,56 @@ local function MakeButton(parent, text, x, y, onClick)
     return b
 end
 
+--- A game key binding: what it is bound to, and a button that takes the next key pressed (with its
+--- modifiers, as the bindings menu builds the chord) and binds it. Esc cancels.
+local function MakeKeybind(parent, item, y)
+    local label = parent:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+    label:SetPoint("TOPLEFT", parent, "TOPLEFT", 20, y - 4)
+    local note = parent:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
+    note:SetPoint("TOPLEFT", parent, "TOPLEFT", 20, y - 24)
+    note:SetWidth(540)
+    note:SetJustifyH("LEFT")
+    local b = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
+    b:SetSize(150, 22)
+    b:SetPoint("TOPLEFT", parent, "TOPLEFT", 336, y)
+    b:SetText("Set key")
+    local function listen(on)
+        b.listening = on
+        b:SetText(on and "Press a key..." or "Set key")
+        pcall(b.EnableKeyboard, b, on)
+        pcall(b.SetPropagateKeyboardInput, b, not on)
+    end
+    b:SetScript("OnClick", function()
+        if ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true then note:SetText("Key bindings cannot change in combat.") return end
+        listen(not b.listening)
+        note:SetText(b.listening and "Press the key to use, with Shift / Ctrl / Alt if you like. Esc cancels." or "")
+    end)
+    b:SetScript("OnKeyDown", function(_, key)
+        if not b.listening then return end
+        local ignored = rawget(_G, "IsKeyPressIgnoredForBinding")
+        if ignored and ignored(key) then return end              -- a modifier alone: wait for the key
+        listen(false)
+        if key == "ESCAPE" then note:SetText("") return end
+        local chordOf = rawget(_G, "CreateKeyChordStringUsingMetaKeyState")
+        local chord = chordOf and chordOf(key) or key
+        local ok, bound, old = pcall(item.bind, chord)
+        if not ok then ns.ReportOnce("options:" .. item.key, bound) end
+        if not (ok and bound) then note:SetText("Not bound: key bindings cannot change in combat.")
+        elseif old then note:SetText(string.format("%s was %s; it is the Interact Key now.", chord, ns.PlainString(ns.Safe(rawget(_G, "GetBindingName"), old)) or old))
+        else note:SetText("") end
+        Options:Refresh()
+    end)
+    b.label, b.note = label, note
+    return b
+end
+
 function Options:Refresh()
     for _, w in pairs(widgets) do
         local item = w.item
         local ok, v = pcall(item.get)
-        if w.kind == "slider" then
+        if w.kind == "keybind" then
+            w.widget.label:SetText(item.label .. ": " .. ((ok and v) or "not bound"))
+        elseif w.kind == "slider" then
             v = (ok and tonumber(v)) or item.min
             w.widget.suppress = true
             w.widget:SetValue(v)
@@ -229,6 +274,10 @@ function Options:Create()
             h:SetPoint("TOPLEFT", 16, y - 6)
             h:SetText(item.header)
             y = y - 26
+        elseif item.type == "keybind" then
+            local b = MakeKeybind(body, item, y)
+            widgets[item.key] = { widget = b, item = item, kind = "keybind" }
+            y = y - 44
         elseif item.type == "slider" then
             local slider, valueText = MakeSlider(body, item, y)
             widgets[item.key] = { widget = slider, item = item, kind = "slider", valueText = valueText }

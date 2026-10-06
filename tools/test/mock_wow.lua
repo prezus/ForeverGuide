@@ -93,6 +93,8 @@ local function NewRegion(kind)
     function r:SetMovable() end
     function r:SetClampedToScreen() end
     function r:EnableMouse(on) self.mouse = on end
+    function r:EnableKeyboard(on) self.keyboard = on end
+    function r:SetPropagateKeyboardInput(on) self.propagateKeys = on end
     function r:RegisterForDrag() end
     function r:StartMoving() self.moving = true end
     function r:StartSizing() self.sizing = true end
@@ -698,7 +700,7 @@ end
 
 
 -- ---- CVars ------------------------------------------------------------------
-world.cvars = { nameplateShowEnemies = "0" }
+world.cvars = { nameplateShowEnemies = "0", softTargetInteract = "1" }   -- Forever: Interact Key for gamepads only
 world.cvarCalls = {}       -- every cvar name the addon registered, read or wrote
 local function seen(name) world.cvarCalls[#world.cvarCalls + 1] = tostring(name) end
 _G.GetCVar = function(name) seen(name) return world.cvars[name] end
@@ -710,6 +712,38 @@ _G.C_CVar = {
     AreCVarsLoaded = function() return true end,
 }
 _G.GetRealmName = function() return "Classic Beta PvE 2" end
+
+-- ---- key bindings (Forever's BindingUtil.lua / Blizzard_Keybindings.lua) ------------------
+world.bindings = {}        -- key chord -> action
+world.bindingsSaved = 0
+_G.GetBindingAction = function(key) return world.bindings[key] or "" end
+_G.GetBindingKey = function(action)
+    local keys = {}
+    for key, a in pairs(world.bindings) do if a == action then keys[#keys + 1] = key end end
+    table.sort(keys)
+    return unpack(keys)
+end
+_G.SetBinding = function(key, action)
+    if world.inCombat then return false end
+    world.bindings[key] = action
+    return true
+end
+_G.GetCurrentBindingSet = function() return 2 end
+_G.SaveBindings = function() world.bindingsSaved = world.bindingsSaved + 1 end
+_G.GetBindingText = function(key) return (key:gsub("SHIFT%-", "Shift-")) end
+_G.GetBindingName = function(action) return _G["BINDING_NAME_" .. action] or action end
+_G.IsControlKeyDown = function() return world.ctrl == true end
+_G.IsMetaKeyDown = function() return false end
+local metaKeys = { LALT = 1, RALT = 1, LCTRL = 2, RCTRL = 2, LSHIFT = 3, RSHIFT = 3, LMETA = 4, RMETA = 4 }
+_G.IsKeyPressIgnoredForBinding = function(key) return metaKeys[key] ~= nil or key == "UNKNOWN" end
+_G.CreateKeyChordStringUsingMetaKeyState = function(key)
+    local chord = {}
+    if IsAltKeyDown() then chord[#chord + 1] = "ALT" end
+    if IsControlKeyDown() then chord[#chord + 1] = "CTRL" end
+    if IsShiftKeyDown() then chord[#chord + 1] = "SHIFT" end
+    if not metaKeys[key] then chord[#chord + 1] = key end
+    return table.concat(chord, "-")
+end
 
 -- ---- Retail settings API (as on Forever's 12.x engine) ----------------------
 _G.Settings = {
