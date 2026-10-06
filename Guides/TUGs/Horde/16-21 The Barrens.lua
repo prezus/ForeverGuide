@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_16_21_THE_BARRENS",
     name = "16-21 The Barrens",
+    version = 1,
     faction = "Horde",
     minLevel = 16,
     maxLevel = 21,

@@ -3,10 +3,10 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_58_60_PART",
     name = "58-60 Part",
+    version = 2,
     faction = "Horde",
     minLevel = 58,
     maxLevel = 60,
-    next = "TUGS_PROFESSIONS_ALCHEMY",
     author = "TUGs | The Unprofessional Gamer",
     notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
     group = "TUGs The Ultimate (Leveling) Guides",

@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_SHADOWGLEN",
     name = "1-6 Shadowglen",
+    version = 1,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,

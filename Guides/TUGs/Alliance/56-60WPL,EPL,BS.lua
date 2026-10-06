@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_56_60WPL_EPL_BS",
     name = "56-60 WPL,EPL,BS",
+    version = 1,
     faction = "Alliance",
     minLevel = 56,
     maxLevel = 60,

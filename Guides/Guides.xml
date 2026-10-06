@@ -59,19 +59,4 @@
     <Script file="TUGs\Horde\6-9 Mulgore.lua"/>
     <Script file="TUGs\Horde\9-12 Orgrimmar.lua"/>
     <Script file="TUGs\Leveling ShoppingList.lua"/>
-    <Script file="TUGs\Professions\Alchemy.lua"/>
-    <Script file="TUGs\Professions\Alchemy Shopping List.lua"/>
-    <Script file="TUGs\Professions\Blacksmithing.lua"/>
-    <Script file="TUGs\Professions\Blacksmithing Shopping List.lua"/>
-    <Script file="TUGs\Professions\Cooking.lua"/>
-    <Script file="TUGs\Professions\Cooking Shopping List.lua"/>
-    <Script file="TUGs\Professions\Enchanting.lua"/>
-    <Script file="TUGs\Professions\Enchanting Shopping List.lua"/>
-    <Script file="TUGs\Professions\Engineering.lua"/>
-    <Script file="TUGs\Professions\Engineering Shopping List.lua"/>
-    <Script file="TUGs\Professions\First Aid Shopping List.lua"/>
-    <Script file="TUGs\Professions\Leatherworking.lua"/>
-    <Script file="TUGs\Professions\Leatherworking Shopping List.lua"/>
-    <Script file="TUGs\Professions\Tailoring.lua"/>
-    <Script file="TUGs\Professions\Tailoring Shopping List.lua"/>
 </Ui>

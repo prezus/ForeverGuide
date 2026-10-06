@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_GENERAL",
     name = "#Leveling ShoppingList",
+    version = 1,
     author = "TUGs | The Unprofessional Gamer",
     notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
     group = "TUGs The Ultimate (Leveling) Guides",

@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_19_21_DEADMINES",
     name = "19-21 Deadmines",
+    version = 1,
     faction = "Alliance",
     minLevel = 19,
     maxLevel = 21,

@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_31_36STV_DESOLACE",
     name = "31-36 STV,Desolace",
+    version = 1,
     faction = "Alliance",
     minLevel = 31,
     maxLevel = 36,
