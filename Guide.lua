@@ -20,7 +20,8 @@
 --   HEARTH   npc [zone]      hearthstone bound (HEARTHSTONE_BOUND) while talking to that innkeeper;
 --                            bind location == zone (GetBindLocation) for a bind made earlier; else manual
 --   TRAVEL   map x y [radius] arriving within radius (Navigation) — auto
---   FLY      map x y         same as TRAVEL (flight path hint)
+--   FLY      map x y         same as TRAVEL (flight path hint); by place: the flight taking off
+--   FLIGHTPATH [map x y]     that flight point known (Reminders), or the new-path message
 --   TALK     npc             interacting with that NPC (gossip/quest/vendor/trainer windows)
 --   NOTE     text            manual: /fg skip (or auto when a later step is done)
 --   any step with completeWithNext is done when the next step that applies is (Guidelime's [C])

@@ -3746,6 +3746,45 @@ section("TUGs' step types complete as Guidelime's do", function()
     G:Reset(); settle()
 end)
 
+-- Every guide that ships is TUGs' as codex writes it (forever-codex docs/TUGS.md): each step type it
+-- uses is one the engine documents and completes, and each field one the engine reads.
+section("the shipped guides use only step types and fields the engine knows", function()
+    local function read(path)
+        local f = io.open(root .. path)
+        if not f then return nil end
+        local s = f:read("*a")
+        f:close()
+        return s
+    end
+    local engine = read("Guide.lua") or ""
+    local known = {}
+    for t in engine:match("Step types and how they complete:(.-)\n%-%-\n"):gmatch("\n%-%-   (%u+) ") do known[t] = true end
+    need(known.ACCEPT and known.TURNIN, "Guide.lua lists its step types")
+    local code = ""
+    for _, f in ipairs({ "Guide.lua", "Navigation.lua", "UI.lua", "DB.lua", "UI/QuestGuideFrame.lua", "UI/MobMarker.lua", "Editor.lua" }) do code = code .. (read(f) or "") end
+    local types, fields, files = {}, {}, 0
+    local list = io.popen('find "' .. root .. 'Guides" -type f -name "*.lua" 2>/dev/null')
+    for path in list:lines() do
+        files = files + 1
+        local f = io.open(path)
+        local text = f:read("*a")
+        f:close()
+        local steps = text:match("steps = %[(=*)%[") and text:match("steps = %[=*%[(.*)%]=*%]") or ""
+        for t in steps:gmatch('type="(%u+)"') do types[t] = path end
+        for k in steps:gmatch("[{,](%a+)=") do fields[k] = path end
+    end
+    list:close()
+    need(files > 0, "the shipped guides are found under Guides/")
+    local unknownTypes, unreadFields = {}, {}
+    for t, path in pairs(types) do if not known[t] then unknownTypes[#unknownTypes + 1] = t .. " (" .. path:gsub("^.*Guides/", "") .. ")" end end
+    for k, path in pairs(fields) do
+        if k ~= "type" and not code:find("%." .. k .. "%f[^%w_]") then unreadFields[#unreadFields + 1] = k .. " (" .. path:gsub("^.*Guides/", "") .. ")" end
+    end
+    table.sort(unknownTypes) table.sort(unreadFields)
+    check(#unknownTypes == 0, "every step type in the shipped guides is one Guide.lua completes (" .. table.concat(unknownTypes, ", ") .. ")")
+    check(#unreadFields == 0, "every step field in the shipped guides is read by the engine (" .. table.concat(unreadFields, ", ") .. ")")
+end)
+
 section("docs agree with the code", function()
     local function read(path)
         local f = io.open(root .. path)
