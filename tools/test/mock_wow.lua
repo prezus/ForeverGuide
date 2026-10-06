@@ -728,6 +728,15 @@ _G.SetBinding = function(key, action)
     world.bindings[key] = action
     return true
 end
+world.overrides = {}       -- key chord -> action, from SetOverrideBinding (one owner is enough here)
+_G.SetOverrideBinding = function(_, _, key, action)
+    if world.inCombat then error("SetOverrideBinding is protected in combat") end
+    world.overrides[key] = action
+end
+_G.ClearOverrideBindings = function()
+    if world.inCombat then error("ClearOverrideBindings is protected in combat") end
+    world.overrides = {}
+end
 _G.GetCurrentBindingSet = function() return 2 end
 _G.SaveBindings = function() world.bindingsSaved = world.bindingsSaved + 1 end
 _G.GetBindingText = function(key) return (key:gsub("SHIFT%-", "Shift-")) end

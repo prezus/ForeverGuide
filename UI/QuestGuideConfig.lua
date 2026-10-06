@@ -120,7 +120,7 @@ function Config.OptionItems()
     items[#items + 1] = { header = "Quest objects" }
     local t = Config.TOGGLES.interact
     items[#items + 1] = { key = "qg_interact", label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
-    items[#items + 1] = { key = "qg_interactkey", type = "keybind", label = "Interact Key",
+    items[#items + 1] = { key = "qg_interactkey", type = "keybind", label = "Open quest object key",
                           get = function() return ns.MobMarker and ns.MobMarker:InteractKey() end,
                           bind = function(chord) if ns.MobMarker then return ns.MobMarker:BindInteractKey(chord) end return false end }
     return items
