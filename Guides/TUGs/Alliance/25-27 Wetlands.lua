@@ -3,10 +3,11 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_25_27_WETLANDS",
     name = "25-27 Wetlands",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 25,
     maxLevel = 27,
+    next = "TUGS_ALLIANCE_26_28_ASHENVALE_WETLANDS",
     author = "TUGs | The Unprofessional Gamer",
     notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
     group = "TUGs The Ultimate (Leveling) Guides",

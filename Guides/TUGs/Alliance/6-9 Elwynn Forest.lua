@@ -3,10 +3,11 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_6_9_ELWYNN_FOREST",
     name = "6-9 Elwynn Forest",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 6,
     maxLevel = 9,
+    next = "TUGS_ALLIANCE_9_11_DUN_MOROGH_LOCH_MODAN",
     author = "TUGs | The Unprofessional Gamer",
     notes = "This guide was written by TUGs and is totally free.",
     group = "TUGs The Ultimate (Leveling) Guides",
