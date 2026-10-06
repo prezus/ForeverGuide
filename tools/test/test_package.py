@@ -31,10 +31,13 @@ class PackageTest(unittest.TestCase):
         self.repo = Path(self.tmp.name) / NAME
         r = self.repo
         # committed: a minimal loadable addon, contributor material and a dev tool
-        write(r / (NAME + ".toc"), "## Version: 9.9.9\nCore.lua\nUI\\Frame.lua\nData\\DB.lua\n")
+        write(r / (NAME + ".toc"), "## Version: 9.9.9\nCore.lua\nUI\\Frame.lua\nData\\DB.lua\nGuides\\Guides.xml\n")
         write(r / "Core.lua", "-- committed\n")
         write(r / "UI" / "Frame.lua", "-- frame\n")
         write(r / "Data" / "DB.lua", "-- data\n")
+        # a guide in a subfolder, its name with an "&" the XML writes as "&amp;"
+        write(r / "Guides" / "Guides.xml", '<Ui><Script file="TUGs\\Alliance\\9-11 A&amp;B.lua"/></Ui>\n')
+        write(r / "Guides" / "TUGs" / "Alliance" / "9-11 A&B.lua", "-- guide\n")
         write(r / "LICENSE", "license\n")
         write(r / "README.md", "readme\n")
         write(r / "CHANGELOG.md", "changes\n")
@@ -71,6 +74,7 @@ class PackageTest(unittest.TestCase):
         files = self.build()
         p = NAME + "/"
         self.assertEqual(set(files), {p + n for n in (NAME + ".toc", "Core.lua", "UI/Frame.lua", "Data/DB.lua",
+                                                      "Guides/Guides.xml", "Guides/TUGs/Alliance/9-11 A&B.lua",
                                                       "LICENSE", "README.md", "CHANGELOG.md")})
         self.assertEqual(files[p + "Core.lua"], "-- committed\n", "an uncommitted edit must not ship")
 

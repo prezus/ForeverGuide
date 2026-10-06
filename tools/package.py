@@ -53,7 +53,8 @@ def ships(path, dev=False):
     folder, fn = posix_split(path)
     if fn.startswith("."):
         return False
-    if folder in RUNTIME_DIRS and os.path.splitext(fn)[1].lower() in RUNTIME_EXT:
+    # Runtime folders ship at any depth: TUGs' guides sit in TUGs' own folders (Guides/TUGs/Alliance/...).
+    if folder.split("/")[0] in RUNTIME_DIRS and os.path.splitext(fn)[1].lower() in RUNTIME_EXT:
         return True
     if folder == "" and fn in RELEASE_DOCS:
         return True
