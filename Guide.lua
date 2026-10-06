@@ -1477,11 +1477,17 @@ function Guide:OnInit()
         local step = Guide:GetCurrentStep()
         if step and step.type == "USEHEARTH" then Guide:MarkDone(step.index, "hearthstone") end
     end)
-    -- FLY steps by place name complete when the flight takes off
-    ns.Events:Register("PLAYER_CONTROL_LOST", function()
+    -- FLY steps by place name complete when the flight takes off. The client can report the taxi a
+    -- moment after control is lost (Run.lua polls it for the same reason), so a miss is looked at again.
+    local function tookOff()
         local step = Guide:GetCurrentStep()
-        if not step or step.type ~= "FLY" or not step.place then return end
-        if ns.Plain(ns.Safe(rawget(_G, "UnitOnTaxi"), "player")) == true then Guide:MarkDone(step.index, "flight") end
+        if not step or step.type ~= "FLY" or not step.place then return true end
+        if ns.Plain(ns.Safe(rawget(_G, "UnitOnTaxi"), "player")) ~= true then return false end
+        Guide:MarkDone(step.index, "flight")
+        return true
+    end
+    ns.Events:Register("PLAYER_CONTROL_LOST", function()
+        if not tookOff() then ns.Events:Debounce("fly-takeoff", 1, tookOff) end
     end)
     -- SKILL steps: the player's skill lines changed (Player forgets its cached ranks on the same event)
     ns.Events:Register("SKILL_LINES_CHANGED", function(event)

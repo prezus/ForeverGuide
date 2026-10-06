@@ -3734,6 +3734,13 @@ section("TUGs' step types complete as Guidelime's do", function()
     MOCK_FIRE("PLAYER_CONTROL_LOST"); settle()
     MOCK.onTaxi = false
     check(G:GetCurrentStep() ~= step, "[F Place] is done when the flight takes off")
+    step = at({ { type = "FLY", place = "Ironforge" }, { type = "NOTE", text = "after" } })
+    MOCK_FIRE("PLAYER_CONTROL_LOST")
+    check(G:GetCurrentStep() == step, "control lost without a taxi yet: the step waits")
+    MOCK.onTaxi = true
+    settle()
+    MOCK.onTaxi = false
+    check(G:GetCurrentStep() ~= step, "...and is done once the client reports the flight a moment later")
 
     -- [C]: done when the next step is
     step = at({ { type = "NOTE", text = "loot the note", completeWithNext = true }, { type = "GRIND", level = 5 }, { type = "GRIND", level = 99 } })
