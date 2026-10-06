@@ -19,6 +19,13 @@
 -- A run is sent in segments: Send hands the entries since the last Send to the share window
 -- (Share.lua, docs/SHARE-FORMAT.md) and recording carries on in the next segment. The run lives
 -- in ForeverGuideCharDB.run.
+--
+-- With ForeverGuide Companion (the desktop app that uploads runs; its ForeverGuideCompanion addon
+-- defines ForeverGuideCompanionReceipt), closed segments go to ForeverGuideCharDB.runOutbox instead
+-- of the share window, each as its full share document. A full segment closes into the outbox and
+-- recording carries on, and logging out closes the open segment too. On entering the world, the
+-- segments the receipt names (codex has them) leave the outbox. Without the companion nothing
+-- changes.
 -- ============================================================
 
 local _, ns = ...
@@ -48,6 +55,15 @@ local noticed = false        -- the near-full dialog has been shown for this seg
 
 local function Enabled() return ns.db and ns.db.recordRuns == true end
 local function Current() return ns.char and ns.char.run end
+
+-- ForeverGuide Companion is installed: its addon's receipt is loaded (## OptionalDeps loads it
+-- first). Its only file assigns the receipt, so the table being there is the companion being there.
+local function Receipt()
+    local receipt = rawget(_G, "ForeverGuideCompanionReceipt")
+    return type(receipt) == "table" and receipt or nil
+end
+local function Companion() return Receipt() ~= nil end
+Run.Companion = Companion
 
 --- Ask the player with the run dialog (UI:ShowRunNotice): "near" the limit, "full" and paused, or
 --- "paused" at login. A long recording must not lose play to a chat line nobody read.
@@ -96,9 +112,14 @@ local function Add(kind, fields, force)
     if not run or not Enabled() and not force then return nil end
     if run.state ~= "recording" and not force then return nil end
     if #run.entries >= Run.MAX_ENTRIES and not force then
-        Run:Pause()
-        Notice("full")
-        return nil
+        if Companion() then
+            -- the companion uploads it: close the full segment and record on in the next
+            Run.ToOutbox(Run.CloseSegment(false))
+        else
+            Run:Pause()
+            Notice("full")
+            return nil
+        end
     end
     local e = fields or {}
     e.e, e.t, e.lvl = kind, Round(Run:Elapsed(), 1), ns.Player:GetLevel()
@@ -106,7 +127,7 @@ local function Add(kind, fields, force)
     e.m, e.x, e.y = m, Round(x, 2), Round(y, 2)
     e.g, e.s = GuideStep()
     run.entries[#run.entries + 1] = e
-    if #run.entries >= Run.NOTICE_AT and not noticed and not force then
+    if #run.entries >= Run.NOTICE_AT and not noticed and not force and not Companion() then
         noticed = true
         Notice("near")
     end
@@ -179,13 +200,51 @@ local function CloseSegment(done)
     run.seg, run.entries, noticed = run.seg + 1, {}, false
     return segment
 end
+Run.CloseSegment = CloseSegment
+
+--- Keep a closed segment for ForeverGuide Companion: its share document, exactly what Send would
+--- show, at the end of ForeverGuideCharDB.runOutbox.
+function Run.ToOutbox(segment)
+    local outbox = ns.char.runOutbox or {}
+    ns.char.runOutbox = outbox
+    outbox[#outbox + 1] = ns.Share:RunDoc(segment)
+end
+
+--- The segments waiting for ForeverGuide Companion.
+function Run:Outbox()
+    return ns.char and ns.char.runOutbox or {}
+end
+
+-- A closed segment goes to the companion's outbox when it is installed, else to the share window.
+local function Deliver(segment)
+    if Companion() then
+        Run.ToOutbox(segment)
+        -- chat stays quiet (the changelog's rule): the run strip and the app say what happens
+        ns.Debug("run: segment", segment.seg, "saved for ForeverGuide Companion")
+    else
+        ns.Share:ShowRun(segment)
+    end
+end
+
+--- Drop the segments the companion's receipt names: codex has them.
+function Run:ApplyReceipt()
+    local receipt, outbox = Receipt(), ns.char and ns.char.runOutbox
+    if not (receipt and outbox) then return end
+    local kept = {}
+    for _, doc in ipairs(outbox) do
+        local run = type(doc) == "table" and doc.run
+        local key = run and tostring(run.id) .. ":" .. tostring(run.seg)
+        if not (key and receipt[key] == true) then kept[#kept + 1] = doc end
+    end
+    ns.char.runOutbox = #kept > 0 and kept or nil
+end
 
 --- Hand the current segment to the share window; recording carries on in the next segment.
 --- With nothing new recorded, the last segment sent is shown again to copy.
 function Run:Send()
     local run = Current()
     if run and #run.entries > 0 then
-        ns.Share:ShowRun(CloseSegment(false))
+        Deliver(CloseSegment(false))
         if ns.UI and ns.UI.HideRunNotice then ns.UI:HideRunNotice() end
         Changed()
     elseif ns.char.runSent then
@@ -204,10 +263,10 @@ function Run:Stop()
     local segment = CloseSegment(true)
     ns.char.run, resumedAt = nil, nil
     Changed()
-    ns.Share:ShowRun(segment)
+    Deliver(segment)
 end
 
---- Throw the run away, sent segments included.
+--- Throw the run away, sent segments included (the outbox keeps what is waiting for the companion).
 function Run:Discard()
     ns.char.run, ns.char.runSent, resumedAt = nil, nil, nil
     Changed()
@@ -339,6 +398,8 @@ function Run:OnInit()
 end
 
 function Run:OnEnterWorld()
+    -- every addon has loaded by now, the companion's receipt included
+    self:ApplyReceipt()
     Changed()
     -- logging out pauses the run: say so, or the session goes unrecorded
     local run = Current()
@@ -353,4 +414,7 @@ end
 
 function Run:OnLogout()
     self:Pause()
+    -- with the companion, the open segment goes to the outbox now, so it uploads as the game saves
+    local run = Current()
+    if run and Companion() and #run.entries > 0 then Run.ToOutbox(CloseSegment(false)) end
 end
