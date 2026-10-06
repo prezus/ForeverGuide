@@ -3725,9 +3725,19 @@ section("TUGs' step types complete as Guidelime's do", function()
     MOCK_FIRE("TRAINER_SHOW"); settle()
     check(G:GetCurrentStep() ~= step, "[T] is done when a trainer's window opens")
 
+    MOCK.items[6948] = nil
     step = at({ { type = "USEHEARTH" }, { type = "NOTE", text = "after" } })
+    check(G:StepUseItem(step) == nil, "no hearthstone in the bags: the [H] step has nothing to click")
+    MOCK.items[6948] = 1
+    ns.MobMarker:Scan() ns.QuestGuide:Refresh()
+    check(G:StepUseItem(step) == 6948, "the [H] step's item is the player's hearthstone")
+    local row
+    for _, e in ipairs(ns.QuestGuide.frame.list.entries) do if e.state == "active" then row = e end end
+    check(row and row.useItem == 6948, "and its row carries the hearthstone button")
+    check(not (ForeverGuideTargetButton:GetAttribute("macrotext") or ""):find("6948", 1, true), "the target key never uses the hearthstone")
     MOCK_FIRE("UNIT_SPELLCAST_SUCCEEDED", "player", "cast", 8690); settle()
     check(G:GetCurrentStep() ~= step, "[H] is done when the hearthstone is cast")
+    MOCK.items[6948] = nil
 
     step = at({ { type = "FLY", place = "Stormwind City" }, { type = "NOTE", text = "after" } })
     MOCK.onTaxi = true

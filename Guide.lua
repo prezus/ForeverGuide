@@ -1206,11 +1206,14 @@ function Guide.StepCount(g)
 end
 
 local USE_ITEM_STEP = { KILL = true, COLLECT = true, COMPLETE = true }
+local HEARTHSTONE_ITEM = 6948      -- casts 8690, the spell a USEHEARTH step waits for
 
 --- The item the player clicks for this step, or nil: the quest's usable item while its objectives
---- are open, or on an accept step the item in your bags that starts the quest.
+--- are open, on an accept step the item in your bags that starts the quest, or on a USEHEARTH step
+--- your hearthstone.
 ---@return number?
 function Guide:StepUseItem(step)
+    if step and step.type == "USEHEARTH" then return ItemCount(HEARTHSTONE_ITEM) > 0 and HEARTHSTONE_ITEM or nil end
     if not step or not step.quest then return nil end
     if step.type == "ACCEPT" then return ns.Quest:StarterItem(step.quest) end
     if not USE_ITEM_STEP[step.type] then return nil end
