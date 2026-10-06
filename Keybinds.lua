@@ -16,6 +16,7 @@ BINDING_NAME_FOREVERGUIDE_BACK = "Back one step"
 BINDING_NAME_FOREVERGUIDE_MODE = "Switch guide / auto mode"
 BINDING_NAME_FOREVERGUIDE_WRONG = "Report the current step as wrong"
 _G["BINDING_NAME_CLICK ForeverGuideTargetButton:LeftButton"] = "Target the nearest quest mob"
+BINDING_NAME_FOREVERGUIDE_INTERACT = "Open the quest object in front of you"
 
 local function guarded(name, fn)
     _G[name] = function(...)
@@ -36,3 +37,5 @@ guarded("ForeverGuide_ToggleMode", function()
     ns.Tracker:SetMode(ns.char.mode == "auto" and "guide" or "auto")
 end)
 guarded("ForeverGuide_ReportWrong", function() ns.Commands:Run("wrong") end)
+-- MobMarker points this key at the game's Interact Key; this runs only while that waits for combat to end
+guarded("ForeverGuide_Interact", function() ns.MobMarker:ApplyInteractBinding() end)

@@ -405,24 +405,54 @@ function MM:SetInteract(on)
     setCVar(INTERACT_CVAR, INTERACT_OFF)
 end
 
---- The key bound to the game's Interact Key as the bindings menu shows it ("F", "Shift-F"), or nil.
+-- ---- ForeverGuide's own interact key ------------------------------------------------------
+-- Key Bindings > AddOns > ForeverGuide has its own entry, apart from the target key. An addon may not
+-- interact itself (InteractUnit is restricted), so the entry's keys are pointed at the game's
+-- INTERACTTARGET with override bindings: outside combat only, the change waiting for combat to end.
+local INTERACT_BINDING = "FOREVERGUIDE_INTERACT"
+local overrideOwner, overrideKeys, overridePending
+
+local function bindingKeys(action)
+    local keys = {}
+    for _, k in ipairs({ ns.Safe(rawget(_G, "GetBindingKey"), action) }) do
+        k = ns.PlainString(k)
+        if k then keys[#keys + 1] = k end
+    end
+    return keys
+end
+
+--- Make the keys bound to our entry fire the game's Interact Key (again after any rebinding).
+function MM:ApplyInteractBinding()
+    local keys = bindingKeys(INTERACT_BINDING)
+    local id = table.concat(keys, "|")
+    if id == overrideKeys then return end
+    if inCombat() then overridePending = true return end
+    overridePending = nil
+    overrideOwner = overrideOwner or CreateFrame("Frame")
+    ns.Safe(rawget(_G, "ClearOverrideBindings"), overrideOwner)
+    for _, key in ipairs(keys) do ns.Safe(rawget(_G, "SetOverrideBinding"), overrideOwner, false, key, INTERACT_ACTION) end
+    overrideKeys = id
+end
+
+--- The key bound to our interact entry as the bindings menu shows it ("F", "Shift-F"), or nil.
 function MM:InteractKey()
-    local key = ns.PlainString(ns.Safe(rawget(_G, "GetBindingKey"), INTERACT_ACTION))
+    local key = bindingKeys(INTERACT_BINDING)[1]
     if not key then return nil end
     return ns.PlainString(ns.Safe(rawget(_G, "GetBindingText"), key)) or key
 end
 
---- Bind a key chord ("SHIFT-F") to the game's Interact Key in place of its first key, the way the
+--- Bind a key chord ("SHIFT-F") to our interact entry in place of its first key, the way the
 --- bindings menu does, and save it. Returns false in combat; else true and the action the chord
 --- had before (nil when none).
 function MM:BindInteractKey(chord)
     if inCombat() or type(chord) ~= "string" or chord == "" then return false end
     local old = ns.PlainString(ns.Safe(rawget(_G, "GetBindingAction"), chord))
-    if old == "" or old == INTERACT_ACTION then old = nil end
-    local first = ns.PlainString(ns.Safe(rawget(_G, "GetBindingKey"), INTERACT_ACTION))
+    if old == "" or old == INTERACT_BINDING then old = nil end
+    local first = bindingKeys(INTERACT_BINDING)[1]
     if first then ns.Safe(rawget(_G, "SetBinding"), first, nil) end
-    ns.Safe(rawget(_G, "SetBinding"), chord, INTERACT_ACTION)
+    ns.Safe(rawget(_G, "SetBinding"), chord, INTERACT_BINDING)
     ns.Safe(rawget(_G, "SaveBindings"), ns.Safe(rawget(_G, "GetCurrentBindingSet")))
+    self:ApplyInteractBinding()
     return true, old
 end
 
@@ -621,7 +651,11 @@ function MM:OnInit()
     ns.Events:RegisterMany({ "NAME_PLATE_UNIT_ADDED", "NAME_PLATE_UNIT_REMOVED", "PLAYER_TARGET_CHANGED", "UNIT_FLAGS", "PLAYER_REGEN_ENABLED" },
         function() ns.Events:Debounce("mobmarker", 0.1, function() MM:Scan() end) end)
     ns.Events:Register("PLAYER_REGEN_ENABLED", function() if macroPending then MM:UpdateTargetMacro(macroPending.names, macroPending.item) end end)
-    ns.Events:Register("PLAYER_REGEN_ENABLED", function() if interactPending then MM:SetInteract(cfg().interact ~= false) end end)
+    ns.Events:Register("PLAYER_REGEN_ENABLED", function()
+        if interactPending then MM:SetInteract(cfg().interact ~= false) end
+        if overridePending then MM:ApplyInteractBinding() end
+    end)
+    ns.Events:Register("UPDATE_BINDINGS", function() MM:ApplyInteractBinding() end)
     -- your log changing, a party member's (UNIT_QUEST_LOG_CHANGED names their unit) or the group's
     ns.Events:RegisterMany({ "FG_QUEST_LOG_CHANGED", "FG_OBJECTIVE_PROGRESS", "UNIT_QUEST_LOG_CHANGED", "GROUP_ROSTER_UPDATE" },
         function() tipCache = {} end)
@@ -632,6 +666,7 @@ end
 function MM:OnEnable()
     self:TargetButton()
     self:ApplyInteract()
+    self:ApplyInteractBinding()
     -- a slow ticker catches tap changes and deaths the events miss
     local t = CreateFrame("Frame")
     t.elapsed = 0

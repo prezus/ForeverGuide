@@ -190,7 +190,7 @@ local function MakeKeybind(parent, item, y)
         local ok, bound, old = pcall(item.bind, chord)
         if not ok then ns.ReportOnce("options:" .. item.key, bound) end
         if not (ok and bound) then note:SetText("Not bound: key bindings cannot change in combat.")
-        elseif old then note:SetText(string.format("%s was %s; it is the Interact Key now.", chord, ns.PlainString(ns.Safe(rawget(_G, "GetBindingName"), old)) or old))
+        elseif old then note:SetText(string.format("%s was %s; it opens quest objects now.", chord, ns.PlainString(ns.Safe(rawget(_G, "GetBindingName"), old)) or old))
         else note:SetText("") end
         Options:Refresh()
     end)

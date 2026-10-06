@@ -8,4 +8,5 @@
     <Binding name="FOREVERGUIDE_MODE" category="ADDONS">ForeverGuide_ToggleMode()</Binding>
     <Binding name="FOREVERGUIDE_WRONG" category="ADDONS">ForeverGuide_ReportWrong()</Binding>
     <Binding name="CLICK ForeverGuideTargetButton:LeftButton" category="ADDONS"/>
+    <Binding name="FOREVERGUIDE_INTERACT" category="ADDONS">ForeverGuide_Interact()</Binding>
 </Bindings>

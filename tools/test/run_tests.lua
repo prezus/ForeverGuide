@@ -3539,7 +3539,7 @@ end)
 
 -- (2026-10-06: quest 982's sunken lockboxes open only with the game's Interact Key, which Forever
 --  ships for gamepads only)
-section("the game's Interact Key: on by default, switched in the options, its key set there", function()
+section("the Interact Key: on by default, and ForeverGuide's own key for it, set in the options or the bindings menu", function()
     local MM = ns.MobMarker
     check(MOCK.cvars.softTargetInteract == "3", "at login the Interact Key is switched on for keyboard (" .. tostring(MOCK.cvars.softTargetInteract) .. ")")
     ns.Options:Create()
@@ -3570,19 +3570,37 @@ section("the game's Interact Key: on by default, switched in the options, its ke
     check(row.listening == true and MOCK.bindings["SHIFT-F"] == "TOGGLEAUTORUN", "a modifier alone waits for the key")
     press(row, "F")
     MOCK.shift = false
-    check(MOCK.bindings["SHIFT-F"] == "INTERACTTARGET" and MOCK.bindingsSaved > 0, "Shift-F is the Interact Key now, and saved")
+    check(MOCK.bindings["SHIFT-F"] == "FOREVERGUIDE_INTERACT" and MOCK.bindingsSaved > 0, "Shift-F is ForeverGuide's interact key now, and saved")
+    check(MOCK.overrides["SHIFT-F"] == "INTERACTTARGET", "and it fires the game's Interact Key (" .. tostring(MOCK.overrides["SHIFT-F"]) .. ")")
     check(row.label:GetText():find("Shift-F", 1, true) ~= nil, "the row shows the key as the bindings menu writes it (" .. row.label:GetText() .. ")")
     check(row.note:GetText():find("TOGGLEAUTORUN", 1, true) ~= nil, "and says what the key did before (" .. row.note:GetText() .. ")")
 
     row:GetScript("OnClick")(row); press(row, "G")
-    check(MOCK.bindings.G == "INTERACTTARGET" and MOCK.bindings["SHIFT-F"] == nil, "a new key replaces the old one")
+    check(MOCK.bindings.G == "FOREVERGUIDE_INTERACT" and MOCK.bindings["SHIFT-F"] == nil, "a new key replaces the old one")
+    check(MOCK.overrides.G == "INTERACTTARGET" and MOCK.overrides["SHIFT-F"] == nil, "and only the new key interacts")
     row:GetScript("OnClick")(row); press(row, "ESCAPE")
-    check(MOCK.bindings.G == "INTERACTTARGET" and MOCK.bindings.ESCAPE == nil and not row.listening, "Esc cancels and keeps the key")
+    check(MOCK.bindings.G == "FOREVERGUIDE_INTERACT" and MOCK.bindings.ESCAPE == nil and not row.listening, "Esc cancels and keeps the key")
     MOCK.inCombat = true
     row:GetScript("OnClick")(row)
     check(not row.listening, "in combat the key cannot be set")
     MOCK.inCombat = false
+
+    -- bound in the game's Key Bindings > AddOns > ForeverGuide instead
+    check(BINDING_NAME_FOREVERGUIDE_INTERACT ~= nil, "the entry has a name in Key Bindings > AddOns > ForeverGuide")
+    MOCK.bindings = { T = "CLICK ForeverGuideTargetButton:LeftButton" }
+    MOCK.bindings.H = "FOREVERGUIDE_INTERACT"
+    MOCK_FIRE("UPDATE_BINDINGS")
+    check(MOCK.overrides.H == "INTERACTTARGET" and MOCK.overrides.G == nil, "a key bound in the menu interacts (" .. tostring(MOCK.overrides.H) .. ")")
+    check(MOCK.overrides.T == nil and MOCK.bindings.T == "CLICK ForeverGuideTargetButton:LeftButton", "the target key stays a key of its own")
+    MOCK.inCombat = true
+    MOCK.bindings.H, MOCK.bindings.J = nil, "FOREVERGUIDE_INTERACT"
+    MOCK_FIRE("UPDATE_BINDINGS")
+    check(MOCK.overrides.H == "INTERACTTARGET" and MOCK.overrides.J == nil, "rebound in combat: the change waits")
+    MOCK.inCombat = false
+    MOCK_FIRE("PLAYER_REGEN_ENABLED")
+    check(MOCK.overrides.J == "INTERACTTARGET" and MOCK.overrides.H == nil, "...and lands once combat ends")
     MOCK.bindings = bindingsWas
+    MOCK_FIRE("UPDATE_BINDINGS")
     ns.Options:Refresh()
 end)
 
