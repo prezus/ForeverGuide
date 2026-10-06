@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_49_51UN_GORO",
     name = "49-51 Un'Goro",
+    version = 1,
     faction = "Alliance",
     minLevel = 49,
     maxLevel = 51,

@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_21_22_ASHENVALE",
     name = "21-22 Ashenvale",
+    version = 1,
     faction = "Alliance",
     minLevel = 21,
     maxLevel = 22,

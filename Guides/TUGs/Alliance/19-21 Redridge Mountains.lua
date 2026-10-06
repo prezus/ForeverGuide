@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_19_21_REDRIDGE_MOUNTAINS",
     name = "19-21 Redridge Mountains",
+    version = 1,
     faction = "Alliance",
     minLevel = 19,
     maxLevel = 21,

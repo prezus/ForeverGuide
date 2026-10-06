@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_1_6_SKYBORNE",
     name = "1-6 Skyborne",
+    version = 1,
     minLevel = 1,
     maxLevel = 6,
     author = "TUGs | The Unprofessional Gamer",

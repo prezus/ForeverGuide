@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: the profession guides and their shopping lists are no longer included; Horde 58-60 no longer leads on to Alchemy.
 - "Use your hearthstone" steps show your hearthstone on the step's row, with its cooldown: click it to hearth. The target key never uses it.
 - Options has a scroll bar: drag it, or use the mouse wheel as before, to reach the settings further down.
 - Quest objects open with a key of ForeverGuide's own: chests, lockboxes and other clickable quest objects (the sunken lockboxes of Deep Ocean, Vast Sea in Darkshore among them) open when you face one and press **Open the quest object in front of you**, under Key Bindings > AddOns > ForeverGuide, separate from the target key. Set it there or with **Set key** under **Options** (Quest objects). It works through the game's Interact Key, which ForeverGuide now switches on for keyboard and mouse (Forever ships it for gamepads only); untick the switch in Options to give the game its own setting back. A key bound during combat takes effect when the fight ends.

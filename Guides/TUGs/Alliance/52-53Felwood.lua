@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_52_53FELWOOD",
     name = "52-53 Felwood",
+    version = 1,
     faction = "Alliance",
     minLevel = 52,
     maxLevel = 53,

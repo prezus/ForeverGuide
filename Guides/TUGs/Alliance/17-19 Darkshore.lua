@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_17_19_DARKSHORE",
     name = "17-19 Darkshore",
+    version = 1,
     faction = "Alliance",
     minLevel = 17,
     maxLevel = 19,

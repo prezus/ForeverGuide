@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_6_9_ELWYNN_FOREST",
     name = "6-9 Elwynn Forest",
+    version = 1,
     faction = "Alliance",
     minLevel = 6,
     maxLevel = 9,
