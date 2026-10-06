@@ -3695,6 +3695,36 @@ section("a guide group as TUGs ships it: listed in Guidelime's order, started an
     G:Reset(); settle()
 end)
 
+-- (2026-10-06: the list showed only TUGs' 1-22: a group lists every guide of the faction, 1-60)
+section("the guide list shows a group's every guide, and scrolls rather than run off the screen", function()
+    local before = { level = MOCK.level }
+    local GROUP = "TUGs Long Test Guides"
+    for k = 1, 20 do
+        local lo = (k - 1) * 3
+        ns.RegisterGuide({ id = "TUGL_" .. k, name = string.format("%d-%d Part", lo, lo + 3), group = GROUP, source = "TUGs/L" .. k .. ".lua",
+            minLevel = lo, maxLevel = lo + 3, faction = "Alliance", steps = { { type = "NOTE", text = "part " .. k } } })
+    end
+    MOCK.level = 1
+    ns.Player.cache.level = 1
+    ns.UI:RefreshPicker()
+    local picker = ns.UI:CreatePicker()
+    local listed = {}
+    for _, r in ipairs(picker.rows) do if r:IsShown() and r.guideID then listed[r.guideID] = true end end
+    local missing = {}
+    for k = 1, 20 do if not listed["TUGL_" .. k] then missing[#missing + 1] = k end end
+    check(#missing == 0, "a level-1 character sees the group's guides through 57-60 (missing parts: " .. table.concat(missing, ",") .. ")")
+
+    local screen = UIParent:GetHeight() > 0 and UIParent:GetHeight() or 768
+    check(picker:GetHeight() <= screen and picker.scroll ~= nil and picker.scroll:GetScrollChild() == picker.body,
+        "the list is no taller than the screen and scrolls (" .. picker:GetHeight() .. " of " .. screen .. ")")
+    check(picker.body:GetHeight() > picker.scroll:GetHeight(), "a list longer than the screen scrolls inside it")
+
+    for k = 1, 20 do G.registry["TUGL_" .. k] = nil end
+    for k = #G.list, 1, -1 do if G.list[k]:find("^TUGL_") then table.remove(G.list, k) end end
+    MOCK.level = before.level
+    ns.Player.cache.level = before.level
+end)
+
 section("TUGs' step types complete as Guidelime's do", function()
     local before = { active = G.active and G.active.id, level = MOCK.level, xp = MOCK.xp, xpMax = MOCK.xpMax, skills = MOCK.skills }
     local n = 0

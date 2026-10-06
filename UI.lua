@@ -42,6 +42,7 @@ end
 -- ------------------------------------------------------------
 local picker
 local PAD = 12
+local BODY_TOP = 48     -- the list starts under the title, hint and line
 
 function UI:CreatePicker()
     if picker then return picker end
@@ -75,6 +76,20 @@ function UI:CreatePicker()
     p.close = Theme.NewButton(p, "x", 26, 20, function() p:Hide() end)
     p.close:SetPoint("TOPRIGHT", p, "TOPRIGHT", -8, -8)
 
+    -- the list scrolls inside the panel, which is never taller than the screen: a TUGs group runs 1-60
+    local scroll = CreateFrame("ScrollFrame", nil, p)
+    scroll:SetPoint("TOPLEFT", p, "TOPLEFT", 0, -BODY_TOP)
+    scroll:SetPoint("TOPRIGHT", p, "TOPRIGHT", 0, -BODY_TOP)
+    scroll:EnableMouseWheel(true)
+    scroll:SetScript("OnMouseWheel", function(sf, delta)
+        local range = math.max(sf:GetVerticalScrollRange(), p.body:GetHeight() - sf:GetHeight(), 0)
+        sf:SetVerticalScroll(math.max(0, math.min(range, sf:GetVerticalScroll() - delta * 48)))
+    end)
+    p.body = CreateFrame("Frame", nil, scroll)
+    p.body:SetSize(p:GetWidth(), 10)
+    scroll:SetScrollChild(p.body)
+    p.scroll = scroll
+
     p.rows = {}
     p:Hide()
     return p
@@ -83,7 +98,7 @@ end
 local function PickerRow(p, i)
     local row = p.rows[i]
     if row then return row end
-    local btn = CreateFrame("Button", nil, p)
+    local btn = CreateFrame("Button", nil, p.body)
     btn:SetHeight(22)
     local hl = btn:CreateTexture(nil, "HIGHLIGHT")
     hl:SetAllPoints()
@@ -127,15 +142,17 @@ function UI:RefreshPicker()
     local p = self:CreatePicker()
     local G = ns.Guide
     p:SetWidth(math.max(ns.db.ui.width or 300, 320))
-    local y = 54
+    p.body:SetWidth(p:GetWidth())
+    local y = 6
     local i = 0
+    local focus                 -- where the list opens: the guide in play, else the first that fits the level
     local level = ns.Player:GetLevel()
     local function add(text, sub, id, dim, active, header, onClick)
         i = i + 1
         local row = PickerRow(p, i)
         row:ClearAllPoints()
-        row:SetPoint("TOPLEFT", p, "TOPLEFT", PAD - 4, -y)
-        row:SetPoint("TOPRIGHT", p, "TOPRIGHT", -(PAD - 4), -y)
+        row:SetPoint("TOPLEFT", p.body, "TOPLEFT", PAD - 4, -y)
+        row:SetPoint("TOPRIGHT", p.body, "TOPRIGHT", -(PAD - 4), -y)
         row:SetText(text)
         row.sub:SetText(sub or "")
         row.guideID = id
@@ -154,6 +171,7 @@ function UI:RefreshPicker()
             row:SetAlpha(dim and 0.6 or 1)
             row:EnableMouse(true)
             row:SetHeight(22)
+            if active then focus = y end
             y = y + 22 + 2
         end
         row:Show()
@@ -195,29 +213,34 @@ function UI:RefreshPicker()
             shown = shown + 1
         end
     end
-    -- guide groups (TUGs), in Guidelime's order: the levelled guides around the level, then the rest
-    -- (professions, lists); the guide that fits the level is marked when the player has to choose
+    -- guide groups (TUGs), in Guidelime's order: every levelled guide of the faction, then the rest
+    -- (lists); the guide that fits the level is marked when the player has to choose
     for _, grp in ipairs(G:Groups()) do
         add(grp.name:upper(), "", nil, false, false, true)
         local levelled, other = {}, {}
         for _, g in ipairs(grp.guides) do
             if g.minLevel then levelled[#levelled + 1] = g else other[#other + 1] = g end
         end
-        local start = 1
-        for k, g in ipairs(levelled) do if (g.maxLevel or 60) >= level - 2 then start = math.max(1, k - 2) break end end
         local function row(g)
             local fits = not g.minLevel or ((g.minLevel or 1) <= level + 3 and (g.maxLevel or 60) >= level - 2)
+            if g.minLevel and fits and not focus then focus = y - 2 * 24 end
             local levels = g.minLevel and string.format("%s-%s  ", tostring(g.minLevel), tostring(g.maxLevel or "?")) or ""
             local mark = G.suggested == g and "  <- for your level" or ""
             add(g.name or g.id, string.format("%s%d steps%s", levels, ns.Guide.StepCount(g), mark), g.id, not fits, G.active == g and ns.char.mode ~= "auto")
         end
-        for k = start, math.min(#levelled, start + 11) do row(levelled[k]) end
+        for _, g in ipairs(levelled) do row(g) end
         for _, g in ipairs(other) do row(g) end
     end
     -- dungeons live in the window's Dungeon Quests panel, which never moves the guide off its step
     if i == 0 then add("no guides installed", "", nil, true) end
     for j = i + 1, #p.rows do p.rows[j]:Hide() p.rows[j].sub:Hide() end
-    p:SetHeight(y + PAD)
+    local screen = UIParent:GetHeight()
+    if not screen or screen <= 0 then screen = 768 end
+    local viewport = math.min(y, math.floor(screen * 0.85) - BODY_TOP - PAD)
+    p.body:SetHeight(y)
+    p.scroll:SetHeight(viewport)
+    p:SetHeight(BODY_TOP + viewport + PAD)
+    p.scroll:SetVerticalScroll(math.max(0, math.min(y - viewport, (focus or 0) - 6)))
     p:ClearAllPoints()
     local f = frame()
     if f then p:SetPoint("TOPRIGHT", f, "TOPLEFT", -12, 0) else p:SetPoint("CENTER") end

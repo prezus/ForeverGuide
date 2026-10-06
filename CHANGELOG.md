@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- **Guides** lists every leveling guide for your faction, 1 to 60, not just the dozen around your level. The list scrolls with the mouse wheel, opens at the guide you're on (or the one for your level), and never runs off the screen.
 - Guides: the profession guides and their shopping lists are no longer included; Horde 58-60 no longer leads on to Alchemy.
 - "Use your hearthstone" steps show your hearthstone on the step's row, with its cooldown: click it to hearth. The target key never uses it.
 - Options has a scroll bar: drag it, or use the mouse wheel as before, to reach the settings further down.
