@@ -2678,6 +2678,16 @@ section("the options panel fits in the settings canvas", function()
         check(p.scroll:GetVerticalScroll() > 0, "wheeling down moves the list (" .. tostring(p.scroll:GetVerticalScroll()) .. ")")
         wheel(p.scroll, 1) wheel(p.scroll, 1)
         check(p.scroll:GetVerticalScroll() == 0, "and it stops at the top (" .. tostring(p.scroll:GetVerticalScroll()) .. ")")
+        local bar = p.scroll.bar
+        need(bar ~= nil, "the list has a scroll bar")
+        p.scroll.UpdateBar()
+        local _, max = bar:GetMinMaxValues()
+        check(bar:IsShown() and max > 0, "the bar shows while the list is longer than the window (" .. tostring(max) .. ")")
+        bar:SetValue(max)
+        check(p.scroll:GetVerticalScroll() == max, "dragging it to the bottom scrolls the list there")
+        wheel(p.scroll, 1)
+        check(bar:GetValue() == p.scroll:GetVerticalScroll(), "and the wheel moves the bar with the list")
+        bar:SetValue(0)
     end
     local ding = ns.Options:GetWidget("qg_ding")
     need(ding ~= nil, "the level-up announcement has a switch in the panel")
@@ -3563,8 +3573,12 @@ section("the Interact Key: on by default, and ForeverGuide's own key for it, set
     MOCK.bindings = { ["SHIFT-F"] = "TOGGLEAUTORUN" }
     ns.Options:Refresh()
     check(row.label:GetText():find("not bound", 1, true) ~= nil, "no key yet: the row says so (" .. row.label:GetText() .. ")")
-    local press = row:GetScript("OnKeyDown")
+    -- (2026-10-06: "I cant press any keys until I go into the addons settings" - a key script left on
+    --  the button took the whole keyboard from login, the panel being shown before the settings adopt it)
+    check(row:GetScript("OnKeyDown") == nil and row.keyboard ~= true, "not listening: the button takes no keys")
+    local function press(frame, key) local fn = frame:GetScript("OnKeyDown") if fn then fn(frame, key) end end
     row:GetScript("OnClick")(row)
+    check(row:GetScript("OnKeyDown") ~= nil and row.keyboard == true and row.propagateKeys == false, "Set key: the button listens, and only then")
     MOCK.shift = true
     press(row, "LSHIFT")
     check(row.listening == true and MOCK.bindings["SHIFT-F"] == "TOGGLEAUTORUN", "a modifier alone waits for the key")
@@ -3574,6 +3588,11 @@ section("the Interact Key: on by default, and ForeverGuide's own key for it, set
     check(MOCK.overrides["SHIFT-F"] == "INTERACTTARGET", "and it fires the game's Interact Key (" .. tostring(MOCK.overrides["SHIFT-F"]) .. ")")
     check(row.label:GetText():find("Shift-F", 1, true) ~= nil, "the row shows the key as the bindings menu writes it (" .. row.label:GetText() .. ")")
     check(row.note:GetText():find("TOGGLEAUTORUN", 1, true) ~= nil, "and says what the key did before (" .. row.note:GetText() .. ")")
+    check(row:GetScript("OnKeyDown") == nil and row.keyboard ~= true, "a key taken: the keyboard goes back to the game")
+    row:GetScript("OnClick")(row)
+    row:Hide()
+    check(not row.listening and row:GetScript("OnKeyDown") == nil, "closing the settings while listening gives the keyboard back")
+    row:Show()
 
     row:GetScript("OnClick")(row); press(row, "G")
     check(MOCK.bindings.G == "FOREVERGUIDE_INTERACT" and MOCK.bindings["SHIFT-F"] == nil, "a new key replaces the old one")
