@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: no more credit, thanks, "#N/A" or general-advice notes in the guides; they are listed as Leveling Guides. Saved step positions reset once with this update.
 - The guide list opens only when you open it (the **Guides** button, the key binding or the minimap button). Logging in no longer pops it up in the middle of the screen: a character whose guide is gone moves to the guide for its level, and a finished guide goes on to the one for your level, or says to pick the next under **Guides** when there is none.
 - A finished guide names the next chapter by its name ("Next chapter: 6-9 Elwynn Forest"), not an internal id.
 - The target key targets the mob a guide step's kill objective names, by the exact name your quest log gives ("0/8 Kobold Vermin slain"), also for quests Forever added or reworded. Before, it could get only part of the name, or every quest's mobs in alphabetical order, and target nothing or the wrong mob. `/fg skull debug` shows the step, its objectives and what the key will target.
