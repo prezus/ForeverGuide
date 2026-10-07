@@ -1816,6 +1816,51 @@ section("skulls over quest mobs", function()
     for i = 1, 4 do MOCK_PLATE("nameplate" .. i, nil) end
 end)
 
+-- ---- the target key on TUGs' steps: no target field, the quest names the mob -----------------
+section("the target key takes the mob a COMPLETE step's own kill objective names", function()
+    -- TUGs' steps name no target. Here the database knows only "Kobold", a name the live objective
+    -- merely contains, and /targetexact on it finds no "Kobold Vermin".
+    ns.NpcDB[990911] = { n = "Kobold" }
+    ns.QuestDB[990910] = { n = "Vermin Cull", kill = { { 990911 } } }
+    ns.RegisterGuide({ id = "AUDIT_TARGET_TEXT", name = "target text", steps = {
+        { type = "ACCEPT", quest = 990910 },
+        { type = "COMPLETE", quest = 990910 },
+        { type = "TURNIN", quest = 990910 },
+        { type = "ACCEPT", quest = 990912 },     -- a Forever quest the database does not know
+        { type = "COMPLETE", quest = 990912, objective = 2 },
+        { type = "TURNIN", quest = 990912 } } })
+    G:Activate("AUDIT_TARGET_TEXT", true); settle()
+    local function macro() return (ForeverGuideTargetButton:GetAttribute("macrotext") or "") .. "\n" end
+    local function targets(name) return macro():find("/targetexact [noexists][dead] " .. name .. "\n", 1, true) ~= nil end
+
+    MOCK_ACCEPT(990910, "Vermin Cull", { { text = "0/8 Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 8 } }); settle()
+    need(step().type == "COMPLETE" and step().quest == 990910, "target text: on the kill step (cur=" .. tostring(cur()) .. ")")
+    ns.MobMarker:Scan()
+    check(targets("Kobold Vermin"), "the key targets the mob by the name the objective gives (" .. macro():gsub("\n", " | ") .. ")")
+
+    MOCK_ACCEPT(990912, "Forever Quest", {
+        { text = "0/1 Ancient Relic", finished = false, numFulfilled = 0, numRequired = 1 },
+        { text = "0/6 Murloc Forager slain", finished = false, numFulfilled = 0, numRequired = 6 } }); settle()
+    G:SetStep(5); settle(); ns.MobMarker:Scan()
+    need(step().quest == 990912, "target text: on the Forever quest's step (cur=" .. tostring(cur()) .. ")")
+    check(targets("Murloc Forager"), "a quest the database does not know: the step's objective names the mob (" .. macro():gsub("\n", " | ") .. ")")
+    check(not macro():find("Kobold", 1, true), "...and only the step's mob, not another quest's in the log (" .. macro():gsub("\n", " | ") .. ")")
+    local said, realPrint = {}, ns.Print
+    ns.Print = function(msg) said[#said + 1] = tostring(msg) end
+    ns.Commands:Run("skull debug")
+    ns.Print = realPrint
+    local shown = table.concat(said, "\n")
+    check(shown:find("quest=990912 objective=2", 1, true) and shown:find("0/6 Murloc Forager slain", 1, true)
+        and shown:find("target key: /cleartarget | /targetexact [noexists][dead] Murloc Forager", 1, true),
+        "/fg skull debug shows the step, its objectives and the key's macro (" .. shown .. ")")
+    MOCK_PROGRESS(990912, 2, 6); settle(); ns.MobMarker:Scan()
+    check(not targets("Murloc Forager"), "the objective is done: its mob leaves the key (" .. macro():gsub("\n", " | ") .. ")")
+
+    for _, q in ipairs({ 990910, 990912 }) do if ns.Quest:IsOnQuest(q) then MOCK_ABANDON(q) end end
+    settle()
+    ns.QuestDB[990910], ns.NpcDB[990911] = nil, nil
+end)
+
 -- ---- combat lockdown: nameplate cvars are protected, must never be touched mid-fight -------
 -- (Ilya, 2026-09-24: live "Interface action failed because of an AddOn" - forcePlates() called
 -- SetCVar unconditionally, and Scan() retries every 0.5s while a kill step is current, so it kept

@@ -28,7 +28,7 @@ local HELP = {
     "/fg arrow on|off|size <0.5-2.5>   the compact chevron above your head (the everyday indicator) and its size",
     "/fg path [name|race] follow another race's leveling route (any of your faction's)",
     "/fg waypoint on|off  the in-world gold waypoint diamond (advanced)  |  /fg waypoint engine on|off  ride the client's own pin instead of the arrow  |  /fg route on|off  its dotted path",
-    "/fg skull on|off  skull over the nearest quest mob  |  /fg skull others|party|plates|item on|off",
+    "/fg skull on|off  skull over the nearest quest mob  |  /fg skull others|party|plates|item on|off  |  /fg skull debug  what the target key targets",
     "/fg perf  what the addon costs per frame",
     "/fg qg <scale|opacity|width|rows|wpsize> <value>   Quest Guide look  |  /fg qg completed|distances|subtitles on|off",
     "/fg minimap on|off  the minimap button",
@@ -219,8 +219,28 @@ function handlers.npdbg(rest)
     end
 end
 
+--- /fg skull debug - what the target key will target, and why
+local function targetDebug()
+    local MM = ns.MobMarker
+    local step = ns.Guide and ns.Guide:GetCurrentStep()
+    if not MM or not step then ns.Print("no current step") return end
+    ns.Printf("step: %s quest=%s objective=%s", tostring(step.type), tostring(step.quest), tostring(step.objective))
+    for k, o in ipairs(step.quest and ns.Quest:GetObjectives(step.quest) or {}) do
+        ns.Printf("   %d. %s%s", k, tostring(o.text), o.finished and " (done)" or "")
+    end
+    local list = {}
+    for _, name in pairs((MM:WantedNames())) do list[#list + 1] = name end
+    table.sort(list)
+    ns.Printf("step's mobs: %s  |  item: %s", #list > 0 and table.concat(list, ", ") or "none", tostring(ns.Guide:StepUseItem(step)))
+    local b = rawget(_G, "ForeverGuideTargetButton")
+    local text = b and b:GetAttribute("macrotext") or ""
+    ns.Printf("target key: %s%s", text ~= "" and text:gsub("\n", " | ") or "(empty)",
+        ns.Safe(rawget(_G, "InCombatLockdown")) and "  (in combat: changes wait for the fight to end)" or "")
+end
+
 function handlers.skull(rest)
     rest = (rest or ""):lower()
+    if rest == "debug" then targetDebug() return end
     local key = "skull"
     if rest:match("^plates") then key = "skullplates" rest = rest:gsub("^plates%s*", "")
     elseif rest:match("^others") then key = "skullothers" rest = rest:gsub("^others%s*", "")
