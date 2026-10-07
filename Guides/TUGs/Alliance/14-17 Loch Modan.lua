@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_14_17_LOCH_MODAN",
     name = "14-17 Loch Modan",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 14,
     maxLevel = 17,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/14-17 Loch Modan.lua",
     nextName = { "17-19 Darkshore" },
-    order = 16,
+    order = 17,
     stepCount = 66,
     steps = [[{
 {type="TRAIN",note="Get your Level 14 skills at your trainer."},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_MULGORE",
     name = "1-6 Mulgore",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Horde/1-6 Mulgore.lua",
     nextName = { "6-12 Mulgore" },
     order = 10,
-    stepCount = 46,
+    stepCount = 47,
     steps = [[{
 {type="ACCEPT",quest=747,note="Accept:"},
 {type="ACCEPT",quest=752,note="Accept:"},
@@ -59,6 +59,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1520,class={"SHAMAN"},note="Accept:"},
 {type="TURNIN",quest=757,note="TurnIn:"},
 {type="ACCEPT",quest=763,note="Accept:"},
-{type="TURNIN",quest=781,note="TurnIn:"}
+{type="TURNIN",quest=781,note="TurnIn:"},
+{type="ACCEPT",quest=96659,note="Accept:"}
 }]],
 })

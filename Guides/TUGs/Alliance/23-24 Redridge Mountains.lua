@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_23_24_REDRIDGE_MOUNTAINS",
     name = "23-24 Redridge Mountains",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 23,
     maxLevel = 24,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/23-24 Redridge Mountains.lua",
     nextName = { "24-25 Ashenvale" },
-    order = 22,
+    order = 23,
     stepCount = 54,
     steps = [[{
 {type="USEHEARTH",note="Use your Hearthstone."},

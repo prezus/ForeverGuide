@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_17_19_DARKSHORE",
     name = "17-19 Darkshore",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 17,
     maxLevel = 19,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/17-19 Darkshore.lua",
     nextName = { "19-21 Deadmines" },
-    order = 17,
+    order = 18,
     stepCount = 71,
     steps = [[{
 {type="ACCEPT",quest=729,note="Accept:"},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_41_44TANARIS_STV",
     name = "41-44 Tanaris,STV",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 41,
     maxLevel = 44,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/41-44Tanaris,STV.lua",
     nextName = { "44-45 Feralas" },
-    order = 32,
+    order = 33,
     stepCount = 146,
     steps = [[{
 {type="NOTE",text="Fly to Stormwind City"},

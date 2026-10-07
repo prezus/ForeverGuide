@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_19_21_REDRIDGE_MOUNTAINS",
     name = "19-21 Redridge Mountains",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 19,
     maxLevel = 21,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/19-21 Redridge Mountains.lua",
     nextName = { "21-22 Ashenvale" },
-    order = 19,
+    order = 20,
     stepCount = 53,
     steps = [[{
 {type="TURNIN",quest=1338,note="TurnIn:"},
