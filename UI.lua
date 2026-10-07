@@ -214,7 +214,7 @@ function UI:RefreshPicker()
         end
     end
     -- guide groups (TUGs), in Guidelime's order: every levelled guide of the faction, then the rest
-    -- (lists); the guide that fits the level is marked when the player has to choose
+    -- (lists)
     for _, grp in ipairs(G:Groups()) do
         add(grp.name:upper(), "", nil, false, false, true)
         local levelled, other = {}, {}
@@ -225,8 +225,7 @@ function UI:RefreshPicker()
             local fits = not g.minLevel or ((g.minLevel or 1) <= level + 3 and (g.maxLevel or 60) >= level - 2)
             if g.minLevel and fits and not focus then focus = y - 2 * 24 end
             local levels = g.minLevel and string.format("%s-%s  ", tostring(g.minLevel), tostring(g.maxLevel or "?")) or ""
-            local mark = G.suggested == g and "  <- for your level" or ""
-            add(g.name or g.id, string.format("%s%d steps%s", levels, ns.Guide.StepCount(g), mark), g.id, not fits, G.active == g and ns.char.mode ~= "auto")
+            add(g.name or g.id, string.format("%s%d steps", levels, ns.Guide.StepCount(g)), g.id, not fits, G.active == g and ns.char.mode ~= "auto")
         end
         for _, g in ipairs(levelled) do row(g) end
         for _, g in ipairs(other) do row(g) end
@@ -371,12 +370,6 @@ function UI:OnInit()
         "FG_LEVEL_CHANGED", "FG_ZONE_CHANGED", "FG_QUEST_TITLE_LOADED", "FG_NAV_TARGET_CHANGED",
         "FG_TRACKER_CHANGED", "FG_MODE_CHANGED", "BAG_UPDATE_DELAYED",
     }, function() ns.Events:Debounce("ui", 0.05, refresh) end)
-    -- a group guide ended with no next, or the saved guide is gone: open the list to choose from
-    ns.Events:Register("FG_GUIDE_FINISHED", function()
-        local p = UI:CreatePicker()
-        UI:RefreshPicker()
-        p:Show()
-    end)
 end
 
 -- Keep the guide above the fullscreen map without changing whether it is shown.
