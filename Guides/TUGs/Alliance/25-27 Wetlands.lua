@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_25_27_WETLANDS",
     name = "25-27 Wetlands",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 25,
     maxLevel = 27,
     next = "TUGS_ALLIANCE_26_28_ASHENVALE_WETLANDS",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/25-27 Wetlands.lua",
     nextName = { "27-28 Ashenvale&Wetlands" },
     order = 25,
-    stepCount = 71,
+    stepCount = 69,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="BUY",count=1,item=2594,itemName="Flagon of Dwarven Honeymead",note="Buy: from Innkeeper Helbrek"},
 {type="TURNIN",quest=942,note="TurnIn:"},
 {type="ACCEPT",quest=943,note="Accept:"},
@@ -85,7 +82,6 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=471,note="Do:"},
 {type="TURNIN",quest=471,note="TurnIn:"},
 {type="TURNIN",quest=286,note="TurnIn:"},
-{type="TURNIN",quest=289,note="TurnIn:"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="TURNIN",quest=289,note="TurnIn:"}
 }]],
 })

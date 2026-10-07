@@ -3,19 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_6_11_TELDRASSIL",
     name = "6-9 Teldrassil",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 6,
     maxLevel = 9,
     next = "TUGS_ALLIANCE_11_14_DARKSHORE",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free.",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/6-11 Teldrassil.lua",
     nextName = { "6-9 Teldrassil" },
     order = 6,
-    stepCount = 1,
+    stepCount = 0,
     steps = [[{
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+
 }]],
 })

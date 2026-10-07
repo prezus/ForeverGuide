@@ -3,18 +3,16 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_6_9_ELWYNN_FOREST",
     name = "6-9 Elwynn Forest",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 6,
     maxLevel = 9,
     next = "TUGS_ALLIANCE_9_11_DUN_MOROGH_LOCH_MODAN",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free.",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/6-9 Elwynn Forest.lua",
     nextName = { "9-11 Dun Morogh" },
     order = 4,
-    stepCount = 133,
+    stepCount = 132,
     steps = [[{
 {type="TURNIN",quest=96627,note="TurnIn:"},
 {type="ACCEPT",quest=95998,note="Accept:"},
@@ -147,7 +145,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1097,note="TurnIn:"},
 {type="ACCEPT",quest=353,note="Accept:"},
 {type="TRAVEL",zone="Stormwind City",x=69.1,y=30.8,note="Take the Tram to Ironforge"},
-{type="FLIGHTPATH",zone="Ironforge",x=55.5,y=47.8,note="Get the flightpath at:"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="FLIGHTPATH",zone="Ironforge",x=55.5,y=47.8,note="Get the flightpath at:"}
 }]],
 })

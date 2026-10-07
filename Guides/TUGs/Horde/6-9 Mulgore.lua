@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_9_MULGORE",
     name = "6-9 Mulgore",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 9,
     next = "TUGS_HORDE_9_12_ORGRIMMAR",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free.",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Horde/6-9 Mulgore.lua",
     nextName = { "9-12 Orgrimmar" },
     order = 11,
-    stepCount = 106,
+    stepCount = 104,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free."},
 {type="TURNIN",quest=1520,class={"SHAMAN"},note="TurnIn:"},
 {type="ACCEPT",quest=1521,class={"SHAMAN"},note="Accept:"},
 {type="TURNIN",quest=1521,class={"SHAMAN"},note="TurnIn:"},
@@ -120,7 +117,6 @@ ns.RegisterGuide({
 {type="TRAVEL",zone="The Barrens",x=52,y=46.5,note="Run to , die and rezz up."},
 {type="TURNIN",quest=854,note="TurnIn:"},
 {type="FLIGHTPATH",zone="The Barrens",x=51.5,y=30.3,note="Get the flightpath at:"},
-{type="USEHEARTH",zone="The Barrens",x=52,y=29.9,note="Set your to The Barrens at"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="USEHEARTH",zone="The Barrens",x=52,y=29.9,note="Set your to The Barrens at"}
 }]],
 })

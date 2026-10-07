@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_17_19_DARKSHORE",
     name = "17-19 Darkshore",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 17,
     maxLevel = 19,
     next = "TUGS_ALLIANCE_19_21_DEADMINES",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/17-19 Darkshore.lua",
     nextName = { "19-21 Deadmines" },
     order = 17,
-    stepCount = 73,
+    stepCount = 71,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="ACCEPT",quest=729,note="Accept:"},
 {type="ACCEPT",quest=4740,note="Accept:"},
 {type="ACCEPT",quest=1138,note="Accept:"},
@@ -87,7 +84,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=968,note="TurnIn:"},
 {type="ACCEPT",quest=2041,note="Accept:"},
 {type="NOTE",text="Take the Train to Stormwind."},
-{type="TRAVEL",zone="Stormwind City",x=55.3,y=7.1,note="If it is in stock: Buy a Bronzetube at"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="TRAVEL",zone="Stormwind City",x=55.3,y=7.1,note="If it is in stock: Buy a Bronzetube at"}
 }]],
 })

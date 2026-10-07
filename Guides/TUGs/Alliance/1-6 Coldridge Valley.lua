@@ -3,18 +3,16 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_COLDRIDGE_VALLEY",
     name = "1-6 Coldridge Valley",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,
     next = "TUGS_ALLIANCE_6_9_DUN_MOROGH",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free.",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/1-6 Coldridge Valley.lua",
     nextName = { "12-16 The Barrens" },
     order = 1,
-    stepCount = 58,
+    stepCount = 57,
     steps = [[{
 {type="ACCEPT",quest=179,note="Accept:"},
 {type="COMPLETE",quest=179,note="Do:"},
@@ -72,7 +70,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=282,note="TurnIn:"},
 {type="ACCEPT",quest=420,note="Accept:"},
 {type="ACCEPT",quest=96628,note="Accept:"},
-{type="ACCEPT",quest=2160,note="Accept:"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="ACCEPT",quest=2160,note="Accept:"}
 }]],
 })

@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_23_24_STOCKADES",
     name = "23-24 Stockades",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 23,
     maxLevel = 24,
     next = "TUGS_ALLIANCE_23_24_REDRIDGE_MOUNTAINS",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/23-24 Stockades.lua",
     nextName = { "23-24 Redridge Mountains" },
     order = 23,
-    stepCount = 28,
+    stepCount = 26,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="ACCEPT",quest=387,note="Accept:"},
 {type="ACCEPT",quest=391,note="Accept:"},
 {type="ACCEPT",quest=388,note="Accept:"},
@@ -42,7 +39,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2745,note="Accept:"},
 {type="TURNIN",quest=2745,note="TurnIn:"},
 {type="ACCEPT",quest=2746,note="Accept:"},
-{type="NOTE",text="We will turn in the other 2 dungeons quests in the next guide."},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="NOTE",text="We will turn in the other 2 dungeons quests in the next guide."}
 }]],
 })

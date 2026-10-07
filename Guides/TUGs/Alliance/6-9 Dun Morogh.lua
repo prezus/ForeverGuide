@@ -3,21 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_6_9_DUN_MOROGH",
     name = "6-9 Dwarf&Gnome",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 6,
     maxLevel = 9,
     next = "TUGS_ALLIANCE_9_11_DUN_MOROGH_LOCH_MODAN",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/6-9 Dun Morogh.lua",
     nextName = { "9-11 Dun Morogh, Loch Modan" },
     order = 5,
-    stepCount = 57,
+    stepCount = 54,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
-{type="NOTE",text="Every Level you should grind 2-5 experience bars, this will make sure that this guide works properly!"},
 {type="NOTE",text="Go through the tunnel, afterwards kill EVERY boar on your way to the tavern!"},
 {type="TURNIN",quest=420,note="TurnIn:"},
 {type="HEARTH",zone="Dun Morogh",x=47.4,y=52.5,note="Set your to Dun Morogh at"},
@@ -71,7 +67,6 @@ ns.RegisterGuide({
 {type="NOTE",text="MAKE SURE YOU GOT THE EXPLORATION part of \"Frostmane Hold\". Die on purpose and rezz up! If youre a pserver player: dieing IN the cave gets you to Kharanos not the starting area!"},
 {type="TURNIN",quest=287,note="TurnIn:"},
 {type="ACCEPT",quest=291,note="Accept:"},
-{type="TURNIN",quest=320,note="TurnIn:"},
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use the Paypal link on Curseforge"}
+{type="TURNIN",quest=320,note="TurnIn:"}
 }]],
 })

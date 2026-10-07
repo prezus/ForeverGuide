@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_21_22_ASHENVALE",
     name = "21-22 Ashenvale",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 21,
     maxLevel = 22,
     next = "TUGS_ALLIANCE_22_23_DUSKWOOD",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/21-22 Ashenvale.lua",
     nextName = { "22-23 Duskwood" },
     order = 20,
-    stepCount = 42,
+    stepCount = 40,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="TURNIN",quest=3765,note="TurnIn:"},
 {type="TURNIN",quest=951,note="TurnIn:"},
 {type="NOTE",text="ESCORT QUEST INCOMING,make sure all group members are on the same questprogress."},
@@ -56,7 +53,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1134,note="Accept:"},
 {type="TURNIN",quest=1023,note="TurnIn:"},
 {type="USEHEARTH",note="Use your Hearthstone."},
-{type="ACCEPT",quest=143,note="Accept:"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="ACCEPT",quest=143,note="Accept:"}
 }]],
 })

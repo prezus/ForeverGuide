@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_19_21_REDRIDGE_MOUNTAINS",
     name = "19-21 Redridge Mountains",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 19,
     maxLevel = 21,
     next = "TUGS_ALLIANCE_21_22_ASHENVALE",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/19-21 Redridge Mountains.lua",
     nextName = { "21-22 Ashenvale" },
     order = 19,
-    stepCount = 55,
+    stepCount = 53,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="TURNIN",quest=1338,note="TurnIn:"},
 {type="ACCEPT",quest=3765,note="Accept:"},
 {type="HEARTH",zone="Stormwind City",x=52.6,y=65.7,note="Set your to Stormwind City at"},
@@ -69,7 +66,6 @@ ns.RegisterGuide({
 {type="GRIND",level=20,note="Grind  the gnolls till level",xp=19800,xpKind="plus"},
 {type="FLY",note="Fly to",place="Wetlands"},
 {type="TURNIN",quest=942,note="TurnIn:"},
-{type="NOTE",text="Take the boat to Auberdine."},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="NOTE",text="Take the boat to Auberdine."}
 }]],
 })

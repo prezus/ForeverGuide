@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_22_23_DUSKWOOD",
     name = "22-23 Duskwood",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 22,
     maxLevel = 23,
     next = "TUGS_ALLIANCE_23_24_STOCKADES",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/22-23 Duskwood.lua",
     nextName = { "23-24 Redridge Mountains" },
     order = 21,
-    stepCount = 61,
+    stepCount = 59,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="NOTE",text="On your way through Duskwood kill spiders for some Gooey Spider legs. It doesnt matter how many you get,even 0 is \"ok\"."},
 {type="ACCEPT",quest=66,note="Accept:"},
 {type="ACCEPT",quest=101,note="Accept:"},
@@ -75,7 +72,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=72,note="Accept:"},
 {type="TURNIN",quest=72,note="TurnIn:"},
 {type="ACCEPT",quest=74,note="Accept:"},
-{type="NOTE",text="The next guide is 23-24 Redridge Mountains. There is another 23-24 guide if you want to do stockades(what I would suggest doing now)."},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="NOTE",text="The next guide is 23-24 Redridge Mountains. There is another 23-24 guide if you want to do stockades(what I would suggest doing now)."}
 }]],
 })
