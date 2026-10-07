@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: follow TUGs' latest update: Dun Morogh & Loch Modan 9-11, Darkshore 11-14 and Northshire reworked, Teldrassil 6-11 added; Horde Barrens 12-20 replaces 12-16, with Orgrimmar, Mulgore and Tirisfal changes.
 - Key bindings in Options: ForeverGuide > **Key Bindings** lists every ForeverGuide key with the game's own binding rows, so a key can be a mouse button, the mouse wheel or a gamepad button, each action takes two keys, and right-click clears one. The ForeverGuide page shows the keys for targeting quest mobs and opening quest objects, with a **Key bindings...** button to that list.
 - Guides: no more credit, thanks, "#N/A" or general-advice notes in the guides; they are listed as Leveling Guides. Saved step positions reset once with this update.
 - The guide list opens only when you open it (the **Guides** button, the key binding or the minimap button). Logging in no longer pops it up in the middle of the screen: a character whose guide is gone moves to the guide for its level, and a finished guide goes on to the one for your level, or says to pick the next under **Guides** when there is none.

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_31_36STV_DESOLACE",
     name = "31-36 STV,Desolace",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 31,
     maxLevel = 36,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/31-36STV,Desolace.lua",
     nextName = { "36-37 Arathi" },
-    order = 28,
+    order = 29,
     stepCount = 231,
     steps = [[{
 {type="FLY",note="Fly to",place="Stormwind City"},

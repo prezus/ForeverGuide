@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_47_49SEARING_GORGE",
     name = "47-49 Searing Gorge",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 47,
     maxLevel = 49,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/47-49Searing Gorge.lua",
     nextName = { "49-51 Un'Goro" },
-    order = 35,
+    order = 36,
     stepCount = 162,
     steps = [[{
 {type="ACCEPT",quest=706,optional=true,note="Accept:"},

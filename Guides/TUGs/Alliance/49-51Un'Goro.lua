@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_49_51UN_GORO",
     name = "49-51 Un'Goro",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 49,
     maxLevel = 51,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/49-51Un'Goro.lua",
     nextName = { "52-53 Felwood" },
-    order = 36,
+    order = 37,
     stepCount = 74,
     steps = [[{
 {type="ACCEPT",quest=4289,note="Accept:"},

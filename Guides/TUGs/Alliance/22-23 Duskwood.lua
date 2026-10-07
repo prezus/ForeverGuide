@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_22_23_DUSKWOOD",
     name = "22-23 Duskwood",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 22,
     maxLevel = 23,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/22-23 Duskwood.lua",
     nextName = { "23-24 Redridge Mountains" },
-    order = 21,
+    order = 22,
     stepCount = 59,
     steps = [[{
 {type="NOTE",text="On your way through Duskwood kill spiders for some Gooey Spider legs. It doesnt matter how many you get,even 0 is \"ok\"."},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_36_37ARATHI",
     name = "36-37 Arathi",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 36,
     maxLevel = 37,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/36-37Arathi.lua",
     nextName = { "38-39 Dustwallow Marsh,STV" },
-    order = 29,
+    order = 30,
     stepCount = 51,
     steps = [[{
 {type="NOTE",text="Fly to Arathi Highlands"},

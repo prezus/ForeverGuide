@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_23_24_STOCKADES",
     name = "23-24 Stockades",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 23,
     maxLevel = 24,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/23-24 Stockades.lua",
     nextName = { "23-24 Redridge Mountains" },
-    order = 23,
+    order = 24,
     stepCount = 26,
     steps = [[{
 {type="ACCEPT",quest=387,note="Accept:"},

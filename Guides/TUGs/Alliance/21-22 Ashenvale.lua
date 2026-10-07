@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_21_22_ASHENVALE",
     name = "21-22 Ashenvale",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 21,
     maxLevel = 22,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/21-22 Ashenvale.lua",
     nextName = { "22-23 Duskwood" },
-    order = 20,
+    order = 21,
     stepCount = 40,
     steps = [[{
 {type="TURNIN",quest=3765,note="TurnIn:"},

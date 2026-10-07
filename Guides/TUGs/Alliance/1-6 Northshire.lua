@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_NORTHSHIRE",
     name = "1-6 Northshire",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,
@@ -64,7 +64,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=21,note="Accept:"},
 {type="TALK",npc=152,zone="Elwynn Forest",x=47.6,y=41.6,note="Vendor at"},
 {type="BUY",npc=152,count=1,item=2901,itemName="Mining Pick",note="Buy: at"},
-{type="TALK",npc=247227,note="Learn Skinning at \""},
+{type="TALK",npc=247227,note="Learn Skinning at"},
 {type="BUY",npc=247227,count=1,item=7005,itemName="Skinning Knife",note="Buy: at"},
 {type="COMPLETE",quest=21,note="Do"},
 {type="COMPLETE",quest=91743},

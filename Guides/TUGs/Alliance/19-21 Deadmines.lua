@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_19_21_DEADMINES",
     name = "19-21 Deadmines",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 19,
     maxLevel = 21,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/19-21 Deadmines.lua",
     nextName = { "19-21 Redridge Mountains" },
-    order = 18,
+    order = 19,
     stepCount = 22,
     steps = [[{
 {type="NOTE",text="If you do not intend to do deadmines, skip to the next guide!"},
