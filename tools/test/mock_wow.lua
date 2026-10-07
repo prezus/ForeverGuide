@@ -737,6 +737,20 @@ _G.ClearOverrideBindings = function()
     if world.inCombat then error("ClearOverrideBindings is protected in combat") end
     world.overrides = {}
 end
+-- the entries the game read from Bindings.xml, in its order (run_tests.lua fills it before the addon loads)
+world.bindingDefs = {}
+_G.C_KeyBindings = {
+    GetBindingIndex = function(action)
+        for i, a in ipairs(world.bindingDefs) do if a == action then return i end end
+        return nil
+    end,
+}
+--- Blizzard_Keybindings.lua's row for one binding: its data, and search tags (the settings list draws it)
+_G.CreateKeybindingEntryInitializer = function(bindingIndex, search)
+    local row = { data = { bindingIndex = bindingIndex, search = search }, tags = {} }
+    function row:AddSearchTags(...) for _, t in ipairs({ ... }) do self.tags[#self.tags + 1] = t end end
+    return row
+end
 _G.GetCurrentBindingSet = function() return 2 end
 _G.SaveBindings = function() world.bindingsSaved = world.bindingsSaved + 1 end
 _G.GetBindingText = function(key) return (key:gsub("SHIFT%-", "Shift-")) end
@@ -760,6 +774,14 @@ _G.Settings = {
         local cat = { name = name, frame = frame }
         function cat:GetID() return name end
         return cat
+    end,
+    RegisterVerticalLayoutSubcategory = function(parent, name)
+        local cat, layout = { name = name, parent = parent }, { rows = {} }
+        function cat:GetID() return parent:GetID() .. "/" .. name end
+        function layout:AddInitializer(row) self.rows[#self.rows + 1] = row end
+        world.settingsSubcategories = world.settingsSubcategories or {}
+        world.settingsSubcategories[name] = { category = cat, layout = layout, registeredBeforeParent = world.settingsCategory ~= parent }
+        return cat, layout
     end,
     RegisterAddOnCategory = function(cat) world.settingsCategory = cat end,
     OpenToCategory = function(id) world.settingsOpened = id end,

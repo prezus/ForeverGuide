@@ -45,6 +45,11 @@ for line in io.lines(root .. "ForeverGuide.toc") do
     end
 end
 assert(shippedGuides, "the TOC lists no guides .xml")
+-- the game reads Bindings.xml with the addon; the mock's binding indexes follow it
+for xl in io.lines(root .. "Bindings.xml") do
+    local name = xl:match('<Binding name="([^"]+)"')
+    if name then MOCK.bindingDefs[#MOCK.bindingDefs + 1] = name end
+end
 for _, f in ipairs(order) do loadAddonFile(f) end
 
 -- every error the addon swallows and reports must surface here
@@ -3615,40 +3620,34 @@ section("the Interact Key: on by default, and ForeverGuide's own key for it, set
     MOCK_FIRE("PLAYER_REGEN_ENABLED")
     check(MOCK.cvars.softTargetInteract == "3", "...and lands once combat ends")
 
+    -- (2026-10-06: "we need to use blizzards modern api that allows mouse and other key binds and displays it")
     local bindingsWas = MOCK.bindings
-    MOCK.bindings = { ["SHIFT-F"] = "TOGGLEAUTORUN" }
+    MOCK.bindings = {}
     ns.Options:Refresh()
     check(row.label:GetText():find("not bound", 1, true) ~= nil, "no key yet: the row says so (" .. row.label:GetText() .. ")")
-    -- (2026-10-06: "I cant press any keys until I go into the addons settings" - a key script left on
-    --  the button took the whole keyboard from login, the panel being shown before the settings adopt it)
-    check(row:GetScript("OnKeyDown") == nil and row.keyboard ~= true, "not listening: the button takes no keys")
-    local function press(frame, key) local fn = frame:GetScript("OnKeyDown") if fn then fn(frame, key) end end
-    row:GetScript("OnClick")(row)
-    check(row:GetScript("OnKeyDown") ~= nil and row.keyboard == true and row.propagateKeys == false, "Set key: the button listens, and only then")
-    MOCK.shift = true
-    press(row, "LSHIFT")
-    check(row.listening == true and MOCK.bindings["SHIFT-F"] == "TOGGLEAUTORUN", "a modifier alone waits for the key")
-    press(row, "F")
-    MOCK.shift = false
-    check(MOCK.bindings["SHIFT-F"] == "FOREVERGUIDE_INTERACT" and MOCK.bindingsSaved > 0, "Shift-F is ForeverGuide's interact key now, and saved")
-    check(MOCK.overrides["SHIFT-F"] == "INTERACTTARGET", "and it fires the game's Interact Key (" .. tostring(MOCK.overrides["SHIFT-F"]) .. ")")
+    check(row:GetScript("OnKeyDown") == nil and row.keyboard ~= true, "the row never takes the keyboard")
+    MOCK.bindings = { ["SHIFT-F"] = "FOREVERGUIDE_INTERACT", BUTTON4 = "CLICK ForeverGuideTargetButton:LeftButton" }
+    ns.Options:Refresh()
     check(row.label:GetText():find("Shift-F", 1, true) ~= nil, "the row shows the key as the bindings menu writes it (" .. row.label:GetText() .. ")")
-    check(row.note:GetText():find("TOGGLEAUTORUN", 1, true) ~= nil, "and says what the key did before (" .. row.note:GetText() .. ")")
-    check(row:GetScript("OnKeyDown") == nil and row.keyboard ~= true, "a key taken: the keyboard goes back to the game")
-    row:GetScript("OnClick")(row)
-    row:Hide()
-    check(not row.listening and row:GetScript("OnKeyDown") == nil, "closing the settings while listening gives the keyboard back")
-    row:Show()
+    local target = ns.Options:GetWidget("qg_targetkey")
+    need(target ~= nil, "the options panel shows the target key too")
+    check(target.label:GetText():find("BUTTON4", 1, true) ~= nil, "a mouse button bound to the target key shows (" .. target.label:GetText() .. ")")
 
-    row:GetScript("OnClick")(row); press(row, "G")
-    check(MOCK.bindings.G == "FOREVERGUIDE_INTERACT" and MOCK.bindings["SHIFT-F"] == nil, "a new key replaces the old one")
-    check(MOCK.overrides.G == "INTERACTTARGET" and MOCK.overrides["SHIFT-F"] == nil, "and only the new key interacts")
-    row:GetScript("OnClick")(row); press(row, "ESCAPE")
-    check(MOCK.bindings.G == "FOREVERGUIDE_INTERACT" and MOCK.bindings.ESCAPE == nil and not row.listening, "Esc cancels and keeps the key")
-    MOCK.inCombat = true
+    local sub = MOCK.settingsSubcategories and MOCK.settingsSubcategories["Key Bindings"]
+    need(sub ~= nil, "ForeverGuide has a Key Bindings page in the settings")
+    check(sub.category.parent == MOCK.settingsCategory and sub.registeredBeforeParent, "under ForeverGuide, registered before ForeverGuide is")
+    local listed = {}
+    for i, r in ipairs(sub.layout.rows) do listed[i] = MOCK.bindingDefs[r.data.bindingIndex] end
+    check(#listed == #MOCK.bindingDefs, "one of the game's binding rows per Bindings.xml entry (" .. #listed .. " of " .. #MOCK.bindingDefs .. ")")
+    local seen = {}
+    for _, a in ipairs(listed) do seen[a] = true end
+    for _, a in ipairs(MOCK.bindingDefs) do check(seen[a], "listed: " .. a) end
+    check(listed[1] == "CLICK ForeverGuideTargetButton:LeftButton" and listed[2] == "FOREVERGUIDE_INTERACT", "the target and quest object keys come first")
+    check(sub.layout.rows[2].tags[1] == BINDING_NAME_FOREVERGUIDE_INTERACT, "a row is found by its name in the settings search")
+    check(row:IsShown(), "with the page there, the row has its button")
+    MOCK.settingsOpened = nil
     row:GetScript("OnClick")(row)
-    check(not row.listening, "in combat the key cannot be set")
-    MOCK.inCombat = false
+    check(MOCK.settingsOpened == sub.category:GetID(), "Key bindings... opens that page (" .. tostring(MOCK.settingsOpened) .. ")")
 
     -- bound in the game's Key Bindings > AddOns > ForeverGuide instead
     check(BINDING_NAME_FOREVERGUIDE_INTERACT ~= nil, "the entry has a name in Key Bindings > AddOns > ForeverGuide")
