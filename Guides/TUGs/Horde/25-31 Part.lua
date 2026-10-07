@@ -3,21 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_25_31_PART",
     name = "25-31 Part",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 25,
     maxLevel = 31,
     next = "TUGS_HORDE_31_33_PART",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Horde/25-31 Part.lua",
     nextName = { "31-33 Part" },
     order = 43,
-    stepCount = 139,
+    stepCount = 136,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
-{type="NOTE",text="I am leaving out EVERY Elite quest and most dungeons in this guide. especially on release YOU SHOULD NOT!!! You'll easily find groups for elite quests and dungeons. Do them as often as you can and at least once for their quests!"},
 {type="COMPLETE",quest=25,note="Do:"},
 {type="NOTE",text="A named mob called Tideress roams around here, Kill it. He drops quest item, accept it."},
 {type="ACCEPT",quest=1918,note="Accept:"},
@@ -153,7 +149,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=5062,note="TurnIn:"},
 {type="ACCEPT",quest=5088,optional=true,note="Accept:"},
 {type="USEHEARTH",note="Use your Hearthstone."},
-{type="NOTE",text="I recommend to do Razorfen Kraul now to get to 31"},
-{type="NOTE",text="TODO for TUGs: Add Razorfen Kraul quests here."}
+{type="NOTE",text="I recommend to do Razorfen Kraul now to get to 31"}
 }]],
 })

@@ -3,18 +3,16 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_NORTHSHIRE",
     name = "1-6 Northshire",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,
     next = "TUGS_ALLIANCE_6_9_ELWYNN_FOREST",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free.",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/1-6 Northshire.lua",
     nextName = { "6-9 Elwynn Forest" },
     order = 2,
-    stepCount = 65,
+    stepCount = 64,
     steps = [[{
 {type="ACCEPT",quest=783,note="Accept:"},
 {type="TURNIN",quest=783,note="TurnIn:"},
@@ -79,7 +77,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=91743,note="TurnIn:"},
 {type="TRAIN",spell=2580,note="Use:"},
 {type="TURNIN",quest=3905,note="TurnIn:"},
-{type="ACCEPT",quest=2158,note="Accept:"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="ACCEPT",quest=2158,note="Accept:"}
 }]],
 })

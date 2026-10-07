@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_9_DUROTAR",
     name = "6-9 Durotar",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 9,
     next = "TUGS_HORDE_9_12_ORGRIMMAR",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free.",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Horde/6-9 Durotar.lua",
     nextName = { "9-12 Orgrimmar" },
     order = 12,
-    stepCount = 105,
+    stepCount = 103,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free."},
 {type="ACCEPT",quest=2161,note="Accept:"},
 {type="ACCEPT",quest=786,note="Accept:"},
 {type="ACCEPT",quest=97223,note="Accept:"},
@@ -119,7 +116,6 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=6082,class={"HUNTER"},note="Do:"},
 {type="TURNIN",quest=6082,class={"HUNTER"},note="TurnIn:"},
 {type="ACCEPT",quest=6081,class={"HUNTER"},note="Accept:"},
-{type="NOTE",text="You have two options now: Continue with the 9-12 Orgrimmar guide or finish durotar. I highly suggest the 9-12 Guide."},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="NOTE",text="You have two options now: Continue with the 9-12 Orgrimmar guide or finish durotar. I highly suggest the 9-12 Guide."}
 }]],
 })

@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_23_24_REDRIDGE_MOUNTAINS",
     name = "23-24 Redridge Mountains",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 23,
     maxLevel = 24,
     next = "TUGS_ALLIANCE_24_25_ASHENVALE",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/23-24 Redridge Mountains.lua",
     nextName = { "24-25 Ashenvale" },
     order = 22,
-    stepCount = 56,
+    stepCount = 54,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="USEHEARTH",note="Use your Hearthstone."},
 {type="NOTE",text="Search for people to do the Elite quests with, they are NOT included in the guide, but they are:Tharil'zun,Shadow Magic & WANTED: Gath'llzogg"},
 {type="TURNIN",quest=65,note="TurnIn:"},
@@ -70,7 +67,6 @@ ns.RegisterGuide({
 {type="TRAIN",note="Get your Level 24 skills at your trainer."},
 {type="FLY",note="Fly to",place="Wetlands"},
 {type="HEARTH",zone="Wetlands",x=11,y=61,note="Set your to Wetlands at"},
-{type="NOTE",text="Take the boat to Auberdine"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="NOTE",text="Take the boat to Auberdine"}
 }]],
 })

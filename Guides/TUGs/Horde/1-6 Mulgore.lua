@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_MULGORE",
     name = "1-6 Mulgore",
-    version = 2,
+    version = 3,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,
     next = "TUGS_HORDE_6_9_MULGORE",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free.",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Horde/1-6 Mulgore.lua",
     nextName = { "6-12 Mulgore" },
     order = 10,
-    stepCount = 48,
+    stepCount = 46,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free."},
 {type="ACCEPT",quest=747,note="Accept:"},
 {type="ACCEPT",quest=752,note="Accept:"},
 {type="COMPLETE",quest=747,note="Do:"},
@@ -62,7 +59,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1520,class={"SHAMAN"},note="Accept:"},
 {type="TURNIN",quest=757,note="TurnIn:"},
 {type="ACCEPT",quest=763,note="Accept:"},
-{type="TURNIN",quest=781,note="TurnIn:"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="TURNIN",quest=781,note="TurnIn:"}
 }]],
 })

@@ -3,18 +3,16 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_VALLEY_OF_TRIALS",
     name = "1-6 Valley of Trials",
-    version = 2,
+    version = 3,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,
     next = "TUGS_HORDE_6_9_DUROTAR",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free.",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Horde/1-6 Valley of Trials.lua",
     nextName = { "6-12 Durotar" },
     order = 9,
-    stepCount = 62,
+    stepCount = 61,
     steps = [[{
 {type="ACCEPT",quest=4641,note="Accept:"},
 {type="TURNIN",quest=4641,note="TurnIn:"},
@@ -76,7 +74,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1518,note="Accept:"},
 {type="COMPLETE",quest=1518,note="Do:"},
 {type="TURNIN",quest=1518,note="TurnIn:"},
-{type="TURNIN",quest=6394,note="TurnIn:"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="TURNIN",quest=6394,note="TurnIn:"}
 }]],
 })

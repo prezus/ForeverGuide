@@ -3,15 +3,12 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_LEVELING_SHOPPINGLIST",
     name = "Leveling ShoppingList",
-    version = 1,
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    version = 2,
+    group = "Leveling Guides",
     source = "TUGs/Leveling ShoppingList.lua",
     order = 58,
-    stepCount = 55,
+    stepCount = 54,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="NOTE",text="The majority of Items in this List can be obtained via grinding. So take this as a \"cant be asked to grind\"-List"},
 {type="NOTE",text="Shopping List:"},
 {type="BUY",count=1,item=16645,itemName="Shredder Operating Manual - Page 1",faction="Horde",note="Buy"},

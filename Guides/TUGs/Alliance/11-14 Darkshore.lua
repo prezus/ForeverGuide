@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_11_14_DARKSHORE",
     name = "11-14 Darkshore",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 11,
     maxLevel = 14,
     next = "TUGS_ALLIANCE_14_17_LOCH_MODAN",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/11-14 Darkshore.lua",
     nextName = { "14-17 Loch Modan" },
     order = 15,
-    stepCount = 105,
+    stepCount = 103,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="TURNIN",quest=6342,race={"NightElf"},note="TurnIn:"},
 {type="ACCEPT",quest=6343,race={"NightElf"},note="Accept:"},
 {type="ACCEPT",quest=983,note="Accept:"},
@@ -119,7 +116,6 @@ ns.RegisterGuide({
 {type="NOTE",race={"NightElf"},text="As a Nightelf you have to do the Wetlands run now all the way to Ironforge, Get the Flightpaths in Wetlands,Loch Modan and Ironforge itself"},
 {type="HEARTH",zone="Ironforge",x=18.6,y=51.6,race={"NightElf"},note="Set your to Ironforge at"},
 {type="USEHEARTH",race={"Dwarf","Gnome","Human"},note="Use your Hearthstone."},
-{type="NOTE",text="Buy lvl 15 Food/Water (I recommend 30-40 each)"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="NOTE",text="Buy lvl 15 Food/Water (I recommend 30-40 each)"}
 }]],
 })

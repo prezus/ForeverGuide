@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_9_11_DUN_MOROGH_LOCH_MODAN",
     name = "9-11 Dun Morogh, Loch Modan",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 9,
     maxLevel = 11,
     next = "TUGS_ALLIANCE_11_14_DARKSHORE",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/9-11 Dun Morogh&Loch Modan.lua",
     nextName = { "11-14 Darkshore" },
     order = 7,
-    stepCount = 75,
+    stepCount = 73,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="ACCEPT",quest=314,optional=true,note="Accept:"},
 {type="COMPLETE",quest=314,note="Do(this is an optional quest!):"},
 {type="TURNIN",quest=314,optional=true,note="TurnIn:"},
@@ -89,7 +86,6 @@ ns.RegisterGuide({
 {type="TRAVEL",zone="Wetlands",x=10.5,y=55.7,race={"Human"},note="Run to"},
 {type="TURNIN",quest=6388,race={"Dwarf","Gnome"},note="TurnIn:"},
 {type="FLY",race={"Dwarf","Gnome"},note="Fly to",place="Wetlands"},
-{type="FLIGHTPATH",zone="Wetlands",x=9.6,y=59.6,race={"Human"},note="Get the flightpath at:"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="FLIGHTPATH",zone="Wetlands",x=9.6,y=59.6,race={"Human"},note="Get the flightpath at:"}
 }]],
 })

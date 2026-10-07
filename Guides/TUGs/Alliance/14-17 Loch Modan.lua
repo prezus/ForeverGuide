@@ -3,20 +3,17 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_14_17_LOCH_MODAN",
     name = "14-17 Loch Modan",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 14,
     maxLevel = 17,
     next = "TUGS_ALLIANCE_17_19_DARKSHORE",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Alliance/14-17 Loch Modan.lua",
     nextName = { "17-19 Darkshore" },
     order = 16,
-    stepCount = 68,
+    stepCount = 66,
     steps = [[{
-{type="NOTE",text="This guide was written by TUGs and is totally free, but if you want to support my work use: https://www.youtube.com/user/HydroxXTV"},
 {type="TRAIN",note="Get your Level 14 skills at your trainer."},
 {type="ACCEPT",quest=2999,class={"PALADIN"},note="Accept:"},
 {type="TURNIN",quest=2999,note="TurnIn:"},
@@ -82,7 +79,6 @@ ns.RegisterGuide({
 {type="TRAIN",note="Get your Level 16 skills at your trainer."},
 {type="TURNIN",quest=301,note="TurnIn:"},
 {type="FLY",note="Fly to",place="Wetlands"},
-{type="NOTE",text="Take the boat to Darkshore"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="NOTE",text="Take the boat to Darkshore"}
 }]],
 })

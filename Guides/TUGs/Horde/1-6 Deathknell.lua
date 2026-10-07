@@ -3,18 +3,16 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_DEATHKNELL",
     name = "1-6 Deathknell",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,
     next = "TUGS_HORDE_6_12_TIRISFAL_GLADES",
-    author = "TUGs | The Unprofessional Gamer",
-    notes = "This guide was written by TUGs and is totally free.",
-    group = "TUGs The Ultimate (Leveling) Guides",
+    group = "Leveling Guides",
     source = "TUGs/Horde/1-6 Deathknell.lua",
     nextName = { "6-12 Tirisfal Glades" },
     order = 8,
-    stepCount = 57,
+    stepCount = 56,
     steps = [[{
 {type="ACCEPT",quest=363,note="Accept:"},
 {type="NOTE",text="Kill as many mobs on your way down the road as you can"},
@@ -71,7 +69,6 @@ ns.RegisterGuide({
 {type="TALK",npc=267324,note="Learn Skinning at \""},
 {type="BUY",npc=267324,count=1,item=7005,itemName="Skinning Knife",note="Buy: at"},
 {type="NOTE",text="From now on skin everything. You need to get skinning and mining to 20 by the end of lvl ~10(mining can be increased by smelting ore,so you dont need to find 20nodes)."},
-{type="ACCEPT",quest=8,note="Accept:"},
-{type="NOTE",text="Thanks for using my guide. If it helped you and you \"want to give back a little\": There is a Paypal-Link on curseforge. Thanks <3"}
+{type="ACCEPT",quest=8,note="Accept:"}
 }]],
 })
