@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- The target key targets the mob a guide step's kill objective names, by the exact name your quest log gives ("0/8 Kobold Vermin slain"), also for quests Forever added or reworded. Before, it could get only part of the name, or every quest's mobs in alphabetical order, and target nothing or the wrong mob. `/fg skull debug` shows the step, its objectives and what the key will target.
 - Guides: every race's guides now run on from 1 to 60. Eight guides that stopped without a next one (Horde after 16-21 The Barrens, Alliance after 6-9 Elwynn Forest and 25-27 Wetlands, three starting zones, and Teldrassil) now lead on to the next chapter.
 - **Guides** lists every leveling guide for your faction, 1 to 60, not just the dozen around your level. The list scrolls with the mouse wheel, opens at the guide you're on (or the one for your level), and never runs off the screen.
 - Guides: the profession guides and their shopping lists are no longer included; Horde 58-60 no longer leads on to Alchemy.

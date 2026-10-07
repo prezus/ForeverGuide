@@ -112,17 +112,21 @@ function MM:WantedNames()
     if step.quest and DB and DB:IsLoaded() then
         local objIdx = ns.Guide:StepObjectiveIndex(step)
         local live = ns.Quest:GetObjectives(step.quest) or {}
+        -- an open objective's mobs: the name its kill wording gives is the one /targetexact needs
+        -- (the database's may only be part of it, or missing for a quest Forever added or reworded)
+        local function openMobs(k)
+            local o = live[k]
+            if not o or o.finished then return end
+            local mob = mobFromText(o.text)
+            local d = liveToDB(DB, step.quest, k, live)
+            if mob then addName(set, mob)
+            elseif d then objectiveMobs(DB, d, set) end
+        end
         if objIdx then
-            local d = liveToDB(DB, step.quest, objIdx, live)
-            if d and not (live[objIdx] and live[objIdx].finished) then objectiveMobs(DB, d, set) end
+            openMobs(objIdx)
         elseif #live > 0 then
             -- no single objective identified: every objective that is still open
-            for k, o in ipairs(live) do
-                if not o.finished then
-                    local d = liveToDB(DB, step.quest, k, live)
-                    if d then objectiveMobs(DB, d, set) end
-                end
-            end
+            for k in ipairs(live) do openMobs(k) end
         else
             for _, d in ipairs(DB:QuestObjectives(step.quest) or {}) do objectiveMobs(DB, d, set) end
         end
