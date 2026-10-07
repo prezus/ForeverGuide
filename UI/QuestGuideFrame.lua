@@ -886,6 +886,13 @@ function QG:RefreshExtra()
     f.extra:Fit()
 end
 
+--- The next chapter as a player reads it: its name, never its id ("TUGS_ALLIANCE_..."); the id
+--- only when that guide is not loaded.
+local function nextChapterName(g)
+    local nextGuide = g.next and ns.Guide:Get(g.next)
+    return nextGuide and (nextGuide.name or nextGuide.id) or g.next
+end
+
 function QG:Refresh()
     if not frame then return end
     local f = frame
@@ -916,7 +923,7 @@ function QG:Refresh()
     if pace then sub = sub .. "  ·  " .. pace end
     f.header:Set(string.format("%d / %d", math.min(cur, total), total), sub)
     if cur > total then
-        f.list:Set({}, "Guide complete!" .. (g.next and ("\nNext chapter: " .. g.next) or ""))
+        f.list:Set({}, "Guide complete!" .. (g.next and ("\nNext chapter: " .. nextChapterName(g)) or ""))
     else
         f.list:Set(entries)
     end
@@ -977,7 +984,7 @@ function QG:RefreshInfo()
             local eff = ns.Editor and ns.Editor:Effective(step) or step
             if eff.note and eff.note ~= "" then lines[#lines + 1] = "|cffff8040" .. eff.note .. "|r" end
         else
-            lines[#lines + 1] = "Guide complete!" .. (g.next and ("  Next: " .. g.next) or "")
+            lines[#lines + 1] = "Guide complete!" .. (g.next and ("  Next: " .. nextChapterName(g)) or "")
         end
         if G.note then lines[#lines + 1] = "|cffff8040" .. G.note .. "|r" end
         local moved = G.progress and G.progress.order and #G.progress.order or 0

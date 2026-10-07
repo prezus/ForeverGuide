@@ -3770,6 +3770,27 @@ section("the guide list shows a group's every guide, and scrolls rather than run
     ns.Player.cache.level = before.level
 end)
 
+-- (2026-10-06: "Guide complete! Next chapter: TUGS_ALLIANCE_..." showed an internal id in game)
+section("a finished guide names the next chapter by its name, not its id", function()
+    local before = { active = G.active and G.active.id, mode = ns.char.mode, char = ns.char.activeGuide, current = G.current }
+    ns.RegisterGuide({ id = "NEXTNAME_A", name = "1-6 First Place", next = "NEXTNAME_B", steps = { { type = "NOTE", text = "only step" } } })
+    ns.RegisterGuide({ id = "NEXTNAME_B", name = "6-9 Next Place", steps = { { type = "NOTE", text = "b" } } })
+    ns.char.guides.NEXTNAME_A = nil
+    G:Pick("NEXTNAME_A")
+    need(G.active and G.active.id == "NEXTNAME_A", "precondition: the first guide is open")
+    G.current = 2
+    ns.UI:Show()
+    ns.QuestGuide:Refresh()
+    local shown = ns.QuestGuide.frame.list.empty:GetText() or ""
+    check(shown:find("Next chapter: 6-9 Next Place", 1, true) ~= nil and not shown:find("NEXTNAME_B", 1, true), "the next chapter by name (" .. shown .. ")")
+
+    for _, id in ipairs({ "NEXTNAME_A", "NEXTNAME_B" }) do G.registry[id] = nil ns.char.guides[id] = nil end
+    for k = #G.list, 1, -1 do if G.list[k]:find("^NEXTNAME_") then table.remove(G.list, k) end end
+    ns.char.mode, ns.char.activeGuide = before.mode, before.char
+    if before.active and G.registry[before.active] then G:Activate(before.active) else G.active, G.current = nil, before.current end
+    G:Reset(); settle()
+end)
+
 section("TUGs' step types complete as Guidelime's do", function()
     local before = { active = G.active and G.active.id, level = MOCK.level, xp = MOCK.xp, xpMax = MOCK.xpMax, skills = MOCK.skills }
     local n = 0
