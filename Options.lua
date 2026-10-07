@@ -9,7 +9,7 @@
 local _, ns = ...
 local Options = ns:NewModule("Options")
 
-local panel, category
+local panel, category, keyCategory
 local widgets = {}
 
 local function Bool(v) return v and true or false end
@@ -155,8 +155,9 @@ local function MakeButton(parent, text, x, y, onClick)
     return b
 end
 
---- A game key binding: what it is bound to, and a button that takes the next key pressed (with its
---- modifiers, as the bindings menu builds the chord) and binds it. Esc cancels.
+--- A game key binding: the key it has, and a button to ForeverGuide > Key Bindings, where the game's
+--- own binding rows set it (any key, mouse button, wheel or gamepad button, two keys, right-click to
+--- clear). Without that page the note points at the game's Key Bindings instead.
 local function MakeKeybind(parent, item, y)
     local label = parent:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
     label:SetPoint("TOPLEFT", parent, "TOPLEFT", 20, y - 4)
@@ -167,41 +168,11 @@ local function MakeKeybind(parent, item, y)
     local b = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
     b:SetSize(150, 22)
     b:SetPoint("TOPLEFT", parent, "TOPLEFT", 336, y)
-    b:SetText("Set key")
-    local onKey
-    -- The key script exists only while listening, as Blizzard's KeybindListener:SetListening does: a
-    -- frame with an OnKeyDown script takes the keyboard, and this panel is shown from login (parentless
-    -- until the settings window adopts it), so a script left on swallowed every key, Esc included
-    -- (seen live, 2026-10-06).
-    local function listen(on)
-        b.listening = on
-        b:SetText(on and "Press a key..." or "Set key")
-        b:SetScript("OnKeyDown", on and onKey or nil)
-        pcall(b.EnableKeyboard, b, on)
-        pcall(b.SetPropagateKeyboardInput, b, not on)
-    end
+    b:SetText("Key bindings...")
     b:SetScript("OnClick", function()
-        if ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true then note:SetText("Key bindings cannot change in combat.") return end
-        listen(not b.listening)
-        note:SetText(b.listening and "Press the key to use, with Shift / Ctrl / Alt if you like. Esc cancels." or "")
+        local ok, err = pcall(Options.OpenKeyBindings, Options)
+        if not ok then ns.ReportOnce("options:" .. item.key, err) end
     end)
-    -- closing the settings while listening gives the keyboard back
-    b:SetScript("OnHide", function() if b.listening then listen(false) note:SetText("") end end)
-    onKey = function(_, key)
-        if not b.listening then return end
-        local ignored = rawget(_G, "IsKeyPressIgnoredForBinding")
-        if ignored and ignored(key) then return end              -- a modifier alone: wait for the key
-        listen(false)
-        if key == "ESCAPE" then note:SetText("") return end
-        local chordOf = rawget(_G, "CreateKeyChordStringUsingMetaKeyState")
-        local chord = chordOf and chordOf(key) or key
-        local ok, bound, old = pcall(item.bind, chord)
-        if not ok then ns.ReportOnce("options:" .. item.key, bound) end
-        if not (ok and bound) then note:SetText("Not bound: key bindings cannot change in combat.")
-        elseif old then note:SetText(string.format("%s was %s; it opens quest objects now.", chord, ns.PlainString(ns.Safe(rawget(_G, "GetBindingName"), old)) or old))
-        else note:SetText("") end
-        Options:Refresh()
-    end
     b.label, b.note = label, note
     return b
 end
@@ -212,6 +183,8 @@ function Options:Refresh()
         local ok, v = pcall(item.get)
         if w.kind == "keybind" then
             w.widget.label:SetText(item.label .. ": " .. ((ok and v) or "not bound"))
+            w.widget:SetShown(keyCategory ~= nil)
+            w.widget.note:SetText(keyCategory and "" or "Set it in Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
         elseif w.kind == "slider" then
             v = (ok and tonumber(v)) or item.min
             w.widget.suppress = true
@@ -287,6 +260,34 @@ local function MakeScroller(parent, topOffset)
     return content, scroll
 end
 
+--- ForeverGuide > Key Bindings: a vertical list of the game's own binding rows (Blizzard_Keybindings.lua's
+--- CreateKeybindingEntryInitializer, the row Controls uses for the Interact Key), one per entry of
+--- Bindings.xml. The settings panel takes the key, mouse button, wheel or gamepad button, settles a key
+--- another action had, and saves when it closes. Left out on a client without those calls.
+local function RegisterKeyBindings(S, parent)
+    local entry, index = rawget(_G, "CreateKeybindingEntryInitializer"), rawget(_G, "C_KeyBindings")
+    index = index and index.GetBindingIndex
+    if not (S.RegisterVerticalLayoutSubcategory and entry and index) then return end
+    local sub, layout = S.RegisterVerticalLayoutSubcategory(parent, "Key Bindings")
+    if not (sub and layout) then return end
+    for _, action in ipairs(ns.BINDINGS) do
+        local i = index(action)
+        if i then
+            local row = entry(i, true)
+            row:AddSearchTags(GetBindingName(action))
+            layout:AddInitializer(row)
+        end
+    end
+    keyCategory = sub
+end
+
+--- Open ForeverGuide > Key Bindings (the Key bindings... button is hidden on a client without it).
+function Options:OpenKeyBindings()
+    self:Create()
+    local S = rawget(_G, "Settings")
+    if keyCategory and S and S.OpenToCategory then S.OpenToCategory(keyCategory:GetID()) end
+end
+
 function Options:Create()
     if panel then return panel end
     panel = CreateFrame("Frame", "ForeverGuideOptionsPanel")
@@ -341,7 +342,7 @@ function Options:Create()
     hint:SetPoint("TOPLEFT", 16, y)
     hint:SetWidth(560)
     hint:SetJustifyH("LEFT")
-    hint:SetText("Data collection switches stop future capture when off; /fg share clear erases collected facts, /fg share copies them.\nSomething wrong? Stand where it should be, then use Report wrong step or /fg wrong. /fg reports opens a copyable list for review.\nLook: /fg qg scale|opacity|width|rows|wpsize|arrowsize <value>   (e.g. /fg qg opacity 0.8, or /fg arrow size 1.5)\nKey bindings: Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
+    hint:SetText("Data collection switches stop future capture when off; /fg share clear erases collected facts, /fg share copies them.\nSomething wrong? Stand where it should be, then use Report wrong step or /fg wrong. /fg reports opens a copyable list for review.\nLook: /fg qg scale|opacity|width|rows|wpsize|arrowsize <value>   (e.g. /fg qg opacity 0.8, or /fg arrow size 1.5)\nKey bindings: ForeverGuide > Key Bindings in this list, or Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
 
     -- the scrolling child is exactly as tall as what we put on it
     if body ~= panel then
@@ -361,6 +362,8 @@ function Options:Create()
         local ok, cat = pcall(S.RegisterCanvasLayoutCategory, panel, panel.name)
         if ok and cat then
             category = cat
+            local subOk, err = pcall(RegisterKeyBindings, S, cat)
+            if not subOk then ns.ReportOnce("options:keybindings", err) end
             pcall(S.RegisterAddOnCategory, cat)
         end
     elseif rawget(_G, "InterfaceOptions_AddCategory") then

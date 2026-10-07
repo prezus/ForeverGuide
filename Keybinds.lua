@@ -1,7 +1,7 @@
 -- ============================================================
 -- ForeverGuide / Keybinds.lua
 -- Names and global functions for Bindings.xml
--- (Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide).
+-- (Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide, and Options' ForeverGuide > Key Bindings).
 -- ============================================================
 
 local _, ns = ...
@@ -17,6 +17,21 @@ BINDING_NAME_FOREVERGUIDE_MODE = "Switch guide / auto mode"
 BINDING_NAME_FOREVERGUIDE_WRONG = "Report the current step as wrong"
 _G["BINDING_NAME_CLICK ForeverGuideTargetButton:LeftButton"] = "Target the nearest quest mob"
 BINDING_NAME_FOREVERGUIDE_INTERACT = "Open the quest object in front of you"
+
+--- Every Bindings.xml entry, in the order Options lists them under ForeverGuide > Key Bindings:
+--- the two keys used while playing first.
+ns.BINDINGS = {
+    "CLICK ForeverGuideTargetButton:LeftButton",
+    "FOREVERGUIDE_INTERACT",
+    "FOREVERGUIDE_TOGGLE",
+    "FOREVERGUIDE_PICKER",
+    "FOREVERGUIDE_ARROW",
+    "FOREVERGUIDE_HIDEALL",
+    "FOREVERGUIDE_SKIP",
+    "FOREVERGUIDE_BACK",
+    "FOREVERGUIDE_MODE",
+    "FOREVERGUIDE_WRONG",
+}
 
 local function guarded(name, fn)
     _G[name] = function(...)

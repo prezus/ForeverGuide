@@ -445,21 +445,6 @@ function MM:InteractKey()
     return ns.PlainString(ns.Safe(rawget(_G, "GetBindingText"), key)) or key
 end
 
---- Bind a key chord ("SHIFT-F") to our interact entry in place of its first key, the way the
---- bindings menu does, and save it. Returns false in combat; else true and the action the chord
---- had before (nil when none).
-function MM:BindInteractKey(chord)
-    if inCombat() or type(chord) ~= "string" or chord == "" then return false end
-    local old = ns.PlainString(ns.Safe(rawget(_G, "GetBindingAction"), chord))
-    if old == "" or old == INTERACT_BINDING then old = nil end
-    local first = bindingKeys(INTERACT_BINDING)[1]
-    if first then ns.Safe(rawget(_G, "SetBinding"), first, nil) end
-    ns.Safe(rawget(_G, "SetBinding"), chord, INTERACT_BINDING)
-    ns.Safe(rawget(_G, "SaveBindings"), ns.Safe(rawget(_G, "GetCurrentBindingSet")))
-    self:ApplyInteractBinding()
-    return true, old
-end
-
 --- nameplateShowEnemies/nameplateShowFriends* are protected cvars: setting them from combat lockdown
 --- is silently denied by the client (Ilya, 2026-09-24: "Interface action failed because of an AddOn" -
 --- firing live, right as a kill step started mid-fight) and, since Scan() retries every 0.5s while a
