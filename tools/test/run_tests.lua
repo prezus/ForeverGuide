@@ -3704,30 +3704,49 @@ section("a guide group as TUGs ships it: listed in Guidelime's order, started an
     check(start ~= nil and start.id == "TUGT_COLDRIDGE", "a Dwarf starts in Coldridge Valley (" .. tostring(start and start.id) .. ")")
     asRace("Human")
 
-    -- a link that resolved is followed; at a guide with none the list opens
-    local finished
-    ns.Events:Register("FG_GUIDE_FINISHED", function(_, g) finished = g or "gone" end)
+    -- (2026-10-07: every login opened the list in the middle of the screen.) The list opens only
+    -- when the player asks for it; otherwise the guide keeps the character on rails.
+    local function listShown() local p = rawget(_G, "ForeverGuidePicker") return p ~= nil and p:IsShown() end
+    local function setLevel(n) MOCK.level = n; ns.Player.cache.level = n end
+    setLevel(1)
     G:Activate("TUGT_NORTHSHIRE"); settle()
     G:MarkDone(G.current, "test"); settle()
     check(G.active and G.active.id == "TUGT_ELWYNN", "finishing Northshire goes on to the guide it links to (" .. tostring(G.active and G.active.id) .. ")")
-    G:MarkDone(G.current, "test"); settle()
-    check(finished ~= nil and finished.id == "TUGT_ELWYNN", "finishing Elwynn, which links to no guide, asks the player to choose")
-    check(rawget(_G, "ForeverGuidePicker") and ForeverGuidePicker:IsShown(), "and the list opens")
-    ForeverGuidePicker:Hide()
 
-    -- a saved guide that is gone: the list, with the guide for the level suggested
-    finished = nil
-    MOCK.level = 7
-    ns.Player.cache.level = 7
+    -- a guide with no next: on to the guide for the level, never the list
+    setLevel(7)
+    G:Reset(); settle()
+    G:Activate("TUGT_COLDRIDGE"); settle()
+    G:MarkDone(G.current, "test"); settle()
+    check(G.active and G.active.id == "TUGT_ELWYNN", "finishing a guide that links to none goes on to the guide for the level ("
+        .. tostring(G.active and G.active.id) .. ")")
+    check(not listShown(), "...and the guide list stays closed")
+    G:MarkDone(G.current, "test"); settle()
+    check(G.active and G.active.id == "TUGT_ELWYNN" and tostring(G.note):find("Guides", 1, true) and not listShown(),
+        "no other guide for the level: the finished guide stays, its note points to Guides, the list stays closed (" .. tostring(G.note) .. ")")
+
+    -- logging in on that finished guide: no list either
+    ns.char.activeGuide = "TUGT_ELWYNN"
+    G:OnEnable(); settle()
+    check(not listShown() and G.active and G.active.id == "TUGT_ELWYNN", "logging in on a finished guide does not open the list")
+
+    -- a saved guide that is gone: the guide for the level, said once in chat
     ns.char.route = nil
     ns.char.activeGuide = "GEN_ALLIANCE_HUMAN_05_GONE"
-    local routeChapter = G:RouteChapterForLevel()
-    if not routeChapter then
+    if not G:RouteChapterForLevel() then
+        local said, realPrint = {}, ns.Print
+        ns.Print = function(msg) said[#said + 1] = tostring(msg) end
         G:OnEnable(); settle()
-        check(finished == "gone" and G.suggested ~= nil and G.suggested.id == "TUGT_ELWYNN", "a gone guide opens the list with the guide for the level suggested ("
-            .. tostring(G.suggested and G.suggested.id) .. ")")
-        if rawget(_G, "ForeverGuidePicker") then ForeverGuidePicker:Hide() end
+        ns.Print = realPrint
+        check(not listShown(), "logging in on a guide that is gone does not open the list")
+        check(G.active and G.active.id == "TUGT_ELWYNN", "...the character is on the guide for its level (" .. tostring(G.active and G.active.id) .. ")")
+        check(table.concat(said, "\n"):find("no longer in the addon", 1, true), "...and is told why (" .. table.concat(said, " / ") .. ")")
     end
+
+    -- the player asks: the list opens
+    ns.UI:TogglePicker()
+    check(listShown(), "the Guides button still opens the list")
+    ns.UI:TogglePicker()
 
     -- zone names as TUGs writes them
     check(ns.DB:MapForZoneName("The Barrens") == 1413 and ns.DB:MapForZoneName("Un'Goro Crater") ~= nil and ns.DB:MapForZoneName("Nowhere") == nil,

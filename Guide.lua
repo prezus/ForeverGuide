@@ -1104,14 +1104,18 @@ function Guide:Evaluate(reason)
             self.chainDepth = self.chainDepth - 1
             return
         end
+        -- a guide of a group (TUGs) whose author names no next that resolves: on to the group's guide
+        -- for the level. The list opens only when the player asks for it.
+        local forLevel = self.picking ~= g and g.group and self:GroupGuideForLevel()
+        if changed and forLevel and forLevel ~= g and (self.chainDepth or 0) < 10 then
+            self.chainDepth = (self.chainDepth or 0) + 1
+            self:Activate(forLevel.id)
+            self.chainDepth = self.chainDepth - 1
+            return
+        end
         if not (ns.Tracker and ns.Tracker:IsActive()) then ns.Navigation:Clear() end
         if changed then ns.Events:Fire("FG_STEP_CHANGED", nil, g) end
-        -- a guide of a group (TUGs) whose author names no next that resolves: the player chooses, as
-        -- Guidelime leaves it, from the group's list
-        if changed and g.group and self.picking ~= g then
-            self.note = "Guide complete - choose the next guide."
-            ns.Events:Fire("FG_GUIDE_FINISHED", g)
-        end
+        if g.group then self.note = "Guide complete - pick the next one under Guides." end
         return
     end
 
@@ -1149,7 +1153,6 @@ end
 -- Activation / manual control
 -- ------------------------------------------------------------
 function Guide:Activate(id)
-    self.suggested = nil
     local g = self.registry[id]
     if not g then
         ns.Error("unknown guide: " .. tostring(id))
@@ -1546,11 +1549,11 @@ function Guide:OnEnable()
     elseif start then
         -- a new character starts on its race's starting guide, as Guidelime starts it
         self:Pick(start.id)
-    elseif gone and #self:Groups() > 0 then
-        -- its guide is gone (the routes are TUGs' now): the player chooses, with the one for its level shown
-        self.suggested = self:GroupGuideForLevel()
-        self.note = "Your guide is no longer in the addon - choose one."
-        ns.Events:Fire("FG_GUIDE_FINISHED", nil)
+    elseif gone and self:GroupGuideForLevel() then
+        -- its guide is gone (the routes are TUGs' now): the group's guide for its level
+        local g = self:GroupGuideForLevel()
+        self:Pick(g.id)
+        ns.Printf("your guide is no longer in the addon: now on %s. Guides picks another.", g.name or g.id)
     elseif ns.char.autoPickGuide then
         local g = self:AutoPick()
         if g then self:Activate(g.id) end
