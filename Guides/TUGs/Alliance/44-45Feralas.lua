@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_44_45FERALAS",
     name = "44-45 Feralas",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 44,
     maxLevel = 45,
@@ -16,7 +16,7 @@ ns.RegisterGuide({
     steps = [[{
 {type="NOTE",text="Fly to Feralas"},
 {type="ACCEPT",quest=2821,zone="Feralas",x=30.63,y=42.7,note="Accept:"},
-{type="USEHEARTH",zone="Feralas",x=31,y=43.2,note="Set your to Feralas at"},
+{type="HEARTH",npc=7736,npcName="Innkeeper Shyria",zone="Feralas",x=31,y=43.2,note="Set your Hearthstone to Feralas at"},
 {type="ACCEPT",quest=3787,zone="Stormwind City",x=44.73,y=77.1,note="Accept:"},
 {type="ACCEPT",quest=2866,zone="Feralas",x=30.27,y=46.16,note="Accept:"},
 {type="ACCEPT",quest=4124,zone="Feralas",x=30.37,y=46.17,note="Accept:"},

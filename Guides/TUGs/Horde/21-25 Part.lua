@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_21_25_PART",
     name = "21-25 Part",
-    version = 2,
+    version = 3,
     faction = "Horde",
     minLevel = 21,
     maxLevel = 25,
@@ -15,7 +15,7 @@ ns.RegisterGuide({
     stepCount = 81,
     steps = [[{
 {type="NOTE",text="Get to Orgrimmar"},
-{type="USEHEARTH",zone="Orgrimmar",x=45.2,y=63.8,note="Set your to Orgrimmar at"},
+{type="HEARTH",zone="Orgrimmar",x=45.2,y=63.8,note="Set your Hearthstone to Orgrimmar at"},
 {type="NOTE",text="Fly to Camp Taurajo"},
 {type="ACCEPT",quest=913,note="Accept:"},
 {type="ACCEPT",quest=6382,note="Accept:"},

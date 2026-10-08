@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_40_43BADLANDS_ULDAMAN",
     name = "40-43 Badlands,Uldaman",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 40,
     maxLevel = 43,
@@ -88,7 +88,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=17,note="TurnIn:"},
 {type="NOTE",text="Fly to Ironforge"},
 {type="NOTE",text="BUY: 5 Silver Bars"},
-{type="USEHEARTH",zone="Ironforge",x=18.6,y=51.6,note="Set your to Ironforge at"},
+{type="HEARTH",npc=5111,npcName="Innkeeper Firebrew",zone="Ironforge",x=18.6,y=51.6,note="Set your Hearthstone to Ironforge at"},
 {type="ACCEPT",quest=2198,note="Accept:"},
 {type="TURNIN",quest=2198,note="TurnIn:"},
 {type="ACCEPT",quest=2199,note="Accept:"},
