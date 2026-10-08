@@ -1586,6 +1586,37 @@ section("a COLLECT step names the creatures that drop its item", function()
     check(names["pristine leopard pelt"] == nil, "the item itself is not a creature to look for")
 end)
 
+-- ---- quest items that arrive without a quest event ------------------------------------------
+-- (2026-10-08: "when a player is traded quest items ... the progress tracker does not update in the
+--  guide", and "the same mechanism [must] work when buying items from a vendor": the game's own quest
+--  log shows the new count, but only the bags fire)
+section("quest items traded or bought count at once, though only the bags fire", function()
+    ns.RegisterGuide({ id = "AUDIT_BAGITEMS", name = "bag items", steps = {
+        { type = "ACCEPT", quest = 990710 },
+        { type = "COLLECT", quest = 990710, target = "Bundle of Wood", count = 3 },
+        { type = "TURNIN", quest = 990710 } } })
+    G:Activate("AUDIT_BAGITEMS", true); settle()
+    MOCK_ACCEPT(990710, "Wood for the Mill", { { text = "Bundle of Wood: 0/3", finished = false, numFulfilled = 0, numRequired = 3 } }); settle()
+    need(cur() == 2 and step().type == "COLLECT", "on the collect step (cur=" .. tostring(cur()) .. ")")
+    local fired = 0
+    ns.Events:Register("FG_OBJECTIVE_PROGRESS", function(_, questID) if questID == 990710 then fired = fired + 1 end end)
+    --- the item lands in the bags and the game's log counts it, with no quest event: a trade, a vendor, mail
+    local function arrive(n)
+        local o = MOCK.log[990710].objectives[1]
+        o.numFulfilled, o.finished, o.text = n, n >= o.numRequired, "Bundle of Wood: " .. n .. "/3"
+        MOCK_FIRE("BAG_UPDATE_DELAYED"); settle()
+    end
+
+    arrive(2)
+    check(G:GetStepProgress(step()) == "2 / 3", "two traded: the step reads 2 / 3 (" .. G:GetStepProgress(step()) .. ")")
+    check(fired == 1, "the objective's progress is announced once (" .. fired .. ")")
+    MOCK_FIRE("BAG_UPDATE_DELAYED"); settle()
+    check(fired == 1, "a bag change that moves no objective announces nothing (" .. fired .. ")")
+    arrive(3)
+    check(cur() == 3 and step().type == "TURNIN", "the last one bought: the step is done and the guide moves on (cur=" .. tostring(cur()) .. ")")
+    MOCK_ABANDON(990710); settle()
+end)
+
 -- ---- skulls over quest mobs ----------------------------------------------------------------
 section("skulls over quest mobs", function()
     ns.RegisterGuide({ id = "AUDIT_SKULL", name = "skull", steps = {

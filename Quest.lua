@@ -11,7 +11,7 @@
 --   QUEST_REMOVED(questID, wasReplayQuest), QUEST_LOG_UPDATE,
 --   UNIT_QUEST_LOG_CHANGED(unit), QUEST_WATCH_UPDATE(questID),
 --   QUEST_LOG_CRITERIA_UPDATE(questID, treeID, desc, fulfilled, required),
---   QUEST_DATA_LOAD_RESULT(questID, success)
+--   QUEST_DATA_LOAD_RESULT(questID, success), BAG_UPDATE_DELAYED (items that arrive without a quest event)
 --
 -- Internal messages fired:
 --   FG_QUEST_ACCEPTED(questID, title)
@@ -424,7 +424,9 @@ function Quest:OnInit()
         end)
     end)
 
-    ns.Events:RegisterMany({ "QUEST_LOG_UPDATE", "QUEST_WATCH_UPDATE", "QUEST_LOG_CRITERIA_UPDATE", "QUEST_POI_UPDATE" },
+    -- BAG_UPDATE_DELAYED too: quest items traded, bought from a vendor or taken from the mail move the
+    -- game's objective count with no quest event we hear, and the guide kept the old count (2026-10-08)
+    ns.Events:RegisterMany({ "QUEST_LOG_UPDATE", "QUEST_WATCH_UPDATE", "QUEST_LOG_CRITERIA_UPDATE", "QUEST_POI_UPDATE", "BAG_UPDATE_DELAYED" },
         ScheduleRefresh)
 
     ns.Events:Register("UNIT_QUEST_LOG_CHANGED", function(_, unit)
