@@ -1,5 +1,5 @@
 {
- "about": "Test vectors for the live beacon, version 2 (docs/LIVE-BEACON.md): each frame, its 24 bytes, and the strip's 18 cell colors (RGB, left to right). The addon's encoder and the Companion's decoder are checked against them. `names` gives the name channel's bytes for a character.",
+ "about": "Test vectors for the live beacon, version 2 (docs/LIVE-BEACON.md): each frame, its 31 bytes, and the strip's 23 cell colors (RGB, left to right). The addon's encoder and the Companion's decoder are checked against them. `names` gives the name channel's bytes for a character.",
  "vectors": [
   {
    "frame": {
@@ -15,7 +15,12 @@
     "eventValue": 0,
     "recording": 0,
     "nameIndex": 0,
-    "nameByte": 0
+    "nameByte": 0,
+    "eventObjective": 0,
+    "eventHave": 0,
+    "eventNeed": 0,
+    "source": 0,
+    "sourceId": 0
    },
    "bytes": [
     252,
@@ -41,7 +46,14 @@
     0,
     0,
     0,
-    25
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    230
    ],
    "cells": [
     [
@@ -126,8 +138,33 @@
     ],
     [
      8,
-     24,
-     152
+     8,
+     8
+    ],
+    [
+     8,
+     8,
+     8
+    ],
+    [
+     8,
+     8,
+     8
+    ],
+    [
+     8,
+     8,
+     8
+    ],
+    [
+     8,
+     8,
+     8
+    ],
+    [
+     232,
+     104,
+     8
     ],
     [
      255,
@@ -150,7 +187,12 @@
     "eventValue": 99267,
     "recording": 439041101,
     "nameIndex": 0,
-    "nameByte": 14
+    "nameByte": 14,
+    "eventObjective": 0,
+    "eventHave": 0,
+    "eventNeed": 0,
+    "source": 0,
+    "sourceId": 0
    },
    "bytes": [
     252,
@@ -170,13 +212,20 @@
     1,
     131,
     195,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
     26,
     43,
     60,
     77,
     0,
     14,
-    100
+    97
    ],
    "cells": [
     [
@@ -241,18 +290,8 @@
     ],
     [
      56,
-     24,
-     168
-    ],
-    [
-     40,
-     184,
-     56
-    ],
-    [
-     200,
-     72,
-     216
+     8,
+     8
     ],
     [
      8,
@@ -260,9 +299,44 @@
      8
     ],
     [
-     232,
+     8,
+     8,
+     8
+    ],
+    [
+     8,
+     8,
+     8
+    ],
+    [
+     8,
+     8,
+     8
+    ],
+    [
+     24,
+     168,
+     40
+    ],
+    [
+     184,
+     56,
+     200
+    ],
+    [
+     72,
+     216,
+     8
+    ],
+    [
+     8,
+     8,
+     232
+    ],
+    [
      104,
-     72
+     24,
+     8
     ],
     [
      255,
@@ -281,11 +355,16 @@
     "classId": 11,
     "flags": 3,
     "eventSeq": 255,
-    "eventKind": 4,
+    "eventKind": 3,
     "eventValue": 60,
     "recording": 4294967295,
     "nameIndex": 3,
-    "nameByte": 75
+    "nameByte": 75,
+    "eventObjective": 2,
+    "eventHave": 3,
+    "eventNeed": 8,
+    "source": 1,
+    "sourceId": 6
    },
    "bytes": [
     252,
@@ -301,17 +380,24 @@
     11,
     3,
     255,
-    4,
+    3,
     0,
     0,
     60,
+    2,
+    3,
+    8,
+    1,
+    0,
+    0,
+    6,
     255,
     255,
     255,
     255,
     3,
     75,
-    44
+    164
    ],
    "cells": [
     [
@@ -365,7 +451,7 @@
      8
     ],
     [
-     72,
+     56,
      8,
      8
     ],
@@ -376,28 +462,53 @@
     ],
     [
      200,
-     248,
-     248
-    ],
-    [
-     248,
-     248,
-     248
-    ],
-    [
-     248,
-     248,
-     248
+     8,
+     40
     ],
     [
      8,
      56,
-     72
+     8
     ],
     [
-     184,
-     40,
-     200
+     136,
+     8,
+     24
+    ],
+    [
+     8,
+     8,
+     8
+    ],
+    [
+     8,
+     8,
+     104
+    ],
+    [
+     248,
+     248,
+     248
+    ],
+    [
+     248,
+     248,
+     248
+    ],
+    [
+     248,
+     248,
+     8
+    ],
+    [
+     56,
+     72,
+     184
+    ],
+    [
+     168,
+     72,
+     8
     ],
     [
      255,
@@ -416,11 +527,16 @@
     "classId": 1,
     "flags": 8,
     "eventSeq": 42,
-    "eventKind": 2,
+    "eventKind": 3,
     "eventValue": 16777215,
     "recording": 12648430,
     "nameIndex": 62,
-    "nameByte": 195
+    "nameByte": 195,
+    "eventObjective": 1,
+    "eventHave": 10,
+    "eventNeed": 10,
+    "source": 3,
+    "sourceId": 11259375
    },
    "bytes": [
     252,
@@ -436,17 +552,24 @@
     1,
     8,
     42,
-    2,
+    3,
     255,
     255,
     255,
+    1,
+    10,
+    10,
+    3,
+    171,
+    205,
+    239,
     0,
     192,
     255,
     238,
     62,
     195,
-    171
+    46
    ],
    "cells": [
     [
@@ -500,7 +623,7 @@
      8
     ],
     [
-     40,
+     56,
      248,
      248
     ],
@@ -512,27 +635,52 @@
     [
      248,
      8,
+     24
+    ],
+    [
+     8,
+     168,
      8
     ],
     [
-     200,
+     168,
      8,
-     248
+     56
     ],
     [
-     248,
-     232,
-     232
-    ],
-    [
-     56,
-     232,
+     168,
+     184,
      200
     ],
     [
-     56,
-     168,
-     184
+     216,
+     232,
+     248
+    ],
+    [
+     8,
+     8,
+     200
+    ],
+    [
+     8,
+     248,
+     248
+    ],
+    [
+     232,
+     232,
+     56
+    ],
+    [
+     232,
+     200,
+     56
+    ],
+    [
+     40,
+     232,
+     8
     ],
     [
      255,
