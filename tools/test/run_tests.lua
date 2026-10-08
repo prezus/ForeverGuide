@@ -4183,11 +4183,14 @@ section("the live beacon carries what the player does, each long enough for the 
     fr = next(EV.xp)
     check(fr and fr.eventValue == 175 and fr.source == S.quest,
         "a turn-in that levels up keeps its experience: the rest of the old level and the new (" .. (fr and fr.eventValue or "none") .. ")")
-    -- the level event names the new level, though the game still answers the old one for a moment
+    -- the level event names the new level, though the game still answers the old one for a moment:
+    -- PLAYER_LEVEL_UP carries the new level while UnitLevel still says the old
     local levelWas = UnitLevel("player")
-    MOCK_LEVEL(levelWas + 1)
+    MOCK_FIRE("PLAYER_LEVEL_UP", levelWas + 1)
     fr = next(EV.level)
-    check(fr and fr.eventValue == levelWas + 1, "a level names the level reached (" .. (fr and fr.eventValue or "none") .. ")")
+    check(fr and fr.eventValue == levelWas + 1, "a level names the level reached, not the one the game still reports (" .. (fr and fr.eventValue or "none") .. ")")
+    check(ns.Player:GetLevel() == levelWas + 1, "and the player's level stays the new one")
+    MOCK_LEVEL(levelWas + 1)
     L:SetEnabled(false)
     ns.Events:Fire("FG_QUEST_ACCEPTED", 9)
     L:SetEnabled(true)
