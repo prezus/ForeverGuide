@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_SHADOWGLEN",
     name = "1-6 Shadowglen",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,
@@ -69,7 +69,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=917,note="TurnIn:"},
 {type="ACCEPT",quest=920,note="Accept:"},
 {type="TURNIN",quest=97236,note="TurnIn:"},
-{type="TRAIN",class={"HUNTER"},note="Train \"Arcane Shot\"."},
+{type="TRAIN",spell=3044,class={"HUNTER"},note="Train \"Arcane Shot\"."},
 {type="TURNIN",quest=920,note="TurnIn:"},
 {type="ACCEPT",quest=921,note="Accept:"},
 {type="COMPLETE",quest=921,note="Do:"},

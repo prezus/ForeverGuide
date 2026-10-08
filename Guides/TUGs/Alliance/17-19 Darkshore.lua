@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_17_19_DARKSHORE",
     name = "17-19 Darkshore",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 17,
     maxLevel = 19,
@@ -78,7 +78,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=2139,note="TurnIn:"},
 {type="TURNIN",quest=4763,note="TurnIn:"},
 {type="NOTE",text="Take the boat to Darnassus"},
-{type="FLIGHTPATH",zone="Teldrassil",x=58.4,y=94,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=3838,npcName="Vesprystus",zone="Teldrassil",x=58.4,y=94,note="Get the flight path flightpath at:"},
 {type="USEHEARTH",note="Use your Hearthstone."},
 {type="TRAIN",note="Get your Level 18 skills at your trainer."},
 {type="TURNIN",quest=968,note="TurnIn:"},

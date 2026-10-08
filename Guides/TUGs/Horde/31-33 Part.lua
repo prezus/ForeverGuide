@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_31_33_PART",
     name = "31-33 Part",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 31,
     maxLevel = 33,
@@ -63,7 +63,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1178,note="Accept:"},
 {type="ACCEPT",quest=1106,note="Accept:"},
 {type="GRIND",level=33,note="Grind in in this area till level"},
-{type="FLIGHTPATH",zone="Tanaris",x=51.6,y=25.4,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=7824,npcName="Bulkrek Ragefist",zone="Tanaris",x=51.6,y=25.4,note="Get the flight path flightpath at:"},
 {type="FLY",note="Fly to Crossroads",place="Crossroads"},
 {type="TURNIN",quest=1148,note="TurnIn:"},
 {type="ACCEPT",quest=1149,note="Accept:"},

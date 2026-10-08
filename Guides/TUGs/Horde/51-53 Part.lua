@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_51_53_PART",
     name = "51-53 Part",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 51,
     maxLevel = 53,
@@ -21,7 +21,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=3441,note="Accept:"},
 {type="TURNIN",quest=3441,note="TurnIn:"},
 {type="ACCEPT",quest=3442,note="Accept:"},
-{type="FLIGHTPATH",zone="Searing Gorge",x=34.8,y=30.8,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=3305,npcName="Grisha",zone="Searing Gorge",x=34.8,y=30.8,note="Get the flight path flightpath at:"},
 {type="ACCEPT",quest=7729,note="Accept:"},
 {type="ACCEPT",quest=7728,note="Accept:"},
 {type="ACCEPT",quest=7701,note="Accept:"},

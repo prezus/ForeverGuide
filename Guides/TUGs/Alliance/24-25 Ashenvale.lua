@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_24_25_ASHENVALE",
     name = "24-25 Ashenvale",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 24,
     maxLevel = 25,
@@ -54,7 +54,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1075,note="Accept:"},
 {type="COMPLETE",quest=1134,note="Do:"},
 {type="TURNIN",quest=1056,note="TurnIn:"},
-{type="FLIGHTPATH",zone="Stonetalon Mountains",x=36.45,y=7.07,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=4407,npcName="Teloren",zone="Stonetalon Mountains",x=36.45,y=7.07,note="Get the flight path flightpath at:"},
 {type="FLY",note="Fly to Ashenvale",place="Ashenvale"},
 {type="TURNIN",quest=1134,note="TurnIn:"},
 {type="ACCEPT",quest=4581,note="Accept:"},

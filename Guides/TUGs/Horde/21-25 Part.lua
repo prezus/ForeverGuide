@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_21_25_PART",
     name = "21-25 Part",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 21,
     maxLevel = 25,
@@ -40,7 +40,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=516,note="Accept:"},
 {type="COMPLETE",quest=516,note="Do:"},
 {type="ACCEPT",quest=494,note="Accept:"},
-{type="FLIGHTPATH",zone="Hillsbrad Foothills",x=60.2,y=18.6,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=2389,npcName="Zarise",zone="Hillsbrad Foothills",x=60.2,y=18.6,note="Get the flight path flightpath at:"},
 {type="TURNIN",quest=493,note="TurnIn:"},
 {type="TURNIN",quest=494,note="TurnIn:"},
 {type="ACCEPT",quest=498,note="Accept:"},

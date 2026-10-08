@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_9_MULGORE",
     name = "6-9 Mulgore",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 9,
@@ -112,11 +112,11 @@ ns.RegisterGuide({
 {type="TURNIN",quest=764,note="TurnIn:"},
 {type="TURNIN",quest=765,note="TurnIn:"},
 {type="TURNIN",quest=98424,note="TurnIn:"},
-{type="FLIGHTPATH",zone="The Barrens",x=44.4,y=59.1,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=10378,npcName="Omusa Thunderhorn",zone="The Barrens",x=44.4,y=59.1,note="Get the flight path flightpath at:"},
 {type="ACCEPT",quest=854,note="Accept:"},
 {type="TRAVEL",zone="The Barrens",x=52,y=46.5,note="Run to , die and rezz up."},
 {type="TURNIN",quest=854,note="TurnIn:"},
-{type="FLIGHTPATH",zone="The Barrens",x=51.5,y=30.3,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=3615,npcName="Devrak",zone="The Barrens",x=51.5,y=30.3,note="Get the flight path flightpath at:"},
 {type="HEARTH",npc=3934,npcName="Innkeeper Boorand Plainswind",zone="The Barrens",x=52,y=29.9,note="Set your Hearthstone to The Barrens at"}
 }]],
 })

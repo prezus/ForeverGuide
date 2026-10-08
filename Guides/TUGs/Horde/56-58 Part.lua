@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_56_58_PART",
     name = "56-58 Part",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 56,
     maxLevel = 58,
@@ -128,7 +128,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=4061,note="Accept:"},
 {type="ACCEPT",quest=3821,note="Accept:"},
 {type="NOTE",text="Go through the blackrock and enter Burning Steppes."},
-{type="FLIGHTPATH",zone="Burning Steppes",x=65.6,y=24.2,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=13177,npcName="Vahgruk",zone="Burning Steppes",x=65.6,y=24.2,note="Get the flight path flightpath at:"},
 {type="ACCEPT",quest=4726,note="Accept:"},
 {type="ACCEPT",quest=4296,note="Accept:"},
 {type="COMPLETE",quest=4296,note="Do:"},

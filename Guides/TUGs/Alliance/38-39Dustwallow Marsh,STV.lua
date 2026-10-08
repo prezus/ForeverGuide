@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_38_39DUSTWALLOW_MARSH_STV",
     name = "38-39 Dustwallow Marsh,STV",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 38,
     maxLevel = 39,
@@ -17,7 +17,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1050,optional=true,note="TurnIn:"},
 {type="NOTE",text="Fly to Wetlands"},
 {type="NOTE",text="Take the Boat to Theramore"},
-{type="FLIGHTPATH",zone="Dustwallow Marsh",x=67,y=51,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=4321,npcName="Baldruc",zone="Dustwallow Marsh",x=67,y=51,note="Get the flight path flightpath at:"},
 {type="NOTE",text="Fly to Tanaris"},
 {type="TURNIN",quest=1112,note="TurnIn:"},
 {type="ACCEPT",quest=1114,note="Accept:"},
