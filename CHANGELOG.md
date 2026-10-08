@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: 269 corrected steps across 48 guides: steps missing a word name their place, item or vendor ("Fly to Hammerfall"), setting your hearthstone says where, spells a class should use no longer read as training, and one step each gains its item and its zone. Saved step positions in those guides reset once.
 - Quest items you are traded, buy from a vendor or take from the mail count toward the guide's progress at once, as the game's quest log shows them. Before, the guide kept the old count until something else updated the quest log.
 - Guide steps never say "nil": a training step names its spell or says what the guide wrote ("Train \"Arcane Shot\"."), a flight path step names the zone when it knows no flight master, "Fly to" names the place, and steps to use a spell name the spell ("Use: Find Minerals").
 - Guides: follow TUGs' latest update: Dun Morogh & Loch Modan 9-11, Darkshore 11-14 and Northshire reworked, Teldrassil 6-11 added; Horde Barrens 12-20 replaces 12-16, with Orgrimmar, Mulgore and Tirisfal changes.
