@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Share your live position with the ForeverGuide Companion (test, off by default): with **Share live position** on (Options, or `/fg live on`), a tiny strip of colored pixels in the top-left corner holds where you are, which way you face and your class; the Companion reads only that strip, so the guide team can watch a run as it happens.
 - Guides: 269 corrected steps across 48 guides: steps missing a word name their place, item or vendor ("Fly to Hammerfall"), setting your hearthstone says where, spells a class should use no longer read as training, and one step each gains its item and its zone. Saved step positions in those guides reset once.
 - Quest items you are traded, buy from a vendor or take from the mail count toward the guide's progress at once, as the game's quest log shows them. Before, the guide kept the old count until something else updated the quest log.
 - Guide steps never say "nil": a training step names its spell or says what the guide wrote ("Train \"Arcane Shot\"."), a flight path step names the zone when it knows no flight master, "Fly to" names the place, and steps to use a spell name the spell ("Use: Find Minerals").

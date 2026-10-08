@@ -4050,6 +4050,38 @@ section("a step's text names what it is about from what the step has, and never 
     end
 end)
 
+-- ---- the live beacon: the player's position drawn for the Companion ------------------
+section("the live beacon draws each frame as forever-codex's test vectors say, and only when switched on", function()
+    local json = dofile(root .. "tools/test/json.lua")
+    local f = assert(io.open(root .. "tools/test/fixtures/live-beacon-vectors.json"))
+    local vectors = json.decode(f:read("*a")).vectors
+    f:close()
+    local L = ns.LiveBeacon
+    need(L and #vectors > 0, "the beacon module and its vectors")
+    for i, v in ipairs(vectors) do
+        local frame = v.frame
+        local bytes = L.Bytes(frame)
+        local cells = L.Cells(frame)
+        local same = #bytes == #v.bytes and #cells == #v.cells
+        for j = 1, #v.bytes do same = same and bytes[j] == v.bytes[j] end
+        for j = 1, #v.cells do
+            for k = 1, 3 do same = same and cells[j][k] == v.cells[j][k] end
+        end
+        check(same, "vector " .. i .. " (seq " .. frame.seq .. ", map " .. frame.map .. ") encodes to the same bytes and cells")
+    end
+    -- off by default: nothing is drawn
+    check(L:Shown() == nil, "the strip is not drawn until the player opts in")
+    L:SetEnabled(true)
+    MOCK_ADVANCE(1)
+    local shown = L:Shown()
+    check(shown ~= nil and #shown == 11, "switched on, the strip draws its 11 cells")
+    check(shown and shown[1][1] == 0 and shown[11][1] == 255, "black and white calibration cells at its ends")
+    local frame = L:Frame()
+    check(frame.map ~= 0 and frame.classId == 1, "the frame reads the player's map and class (" .. frame.map .. ", " .. frame.classId .. ")")
+    L:SetEnabled(false)
+    check(L:Shown() == nil and ns.db.liveBeacon == false, "switched off, the strip is gone")
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0

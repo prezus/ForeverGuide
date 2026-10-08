@@ -36,6 +36,7 @@ local HELP = {
     "/fg auto share|shared on|off   share quests you accept with your group / accept quests (and escorts) your group shares  |  /fg auto announce on|off",
     "/fg share [on|off|status|clear]   contribute quest data (off by default): /fg share copies it for the feedback form",
     "/fg run start|pause|resume|stop|send|discard|status   record a run (Record runs in /fg options shows these as buttons)",
+    "/fg live on|off       share your live position with the Companion (a tiny strip in the top-left corner)",
     "/fg scan on|off | new | [from] [to] | stop | resume | status   opt in before requesting quest data from the server",
     "/fg harvest | sweep [from to] | probe | status   quest discovery and map requests (needs /fg share on)",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
@@ -754,6 +755,14 @@ function handlers.run(rest)
         ns.Printf("record runs %s; run %s, %d entries in this segment, %d s recorded.",
             ns.db.recordRuns and "on" or "off", R:State(), R:Count(), math.floor(R:Elapsed()))
     end
+end
+
+function handlers.live(rest)
+    local L = ns.LiveBeacon
+    if rest == "on" or rest == "off" then L:SetEnabled(rest == "on") end
+    local f = L:Frame()
+    ns.Printf("live position for the Companion %s; map %d at %.2f, %.2f, facing %d, class %d, flags %d.",
+        L:Enabled() and "on" or "off", f.map, f.x, f.y, f.facing, f.classId, f.flags)
 end
 
 function handlers.scan(rest)
