@@ -4083,8 +4083,8 @@ section("the live beacon draws each frame as forever-codex's test vectors say, a
     L:SetEnabled(true)
     MOCK_ADVANCE(1)
     local shown = L:Shown()
-    check(shown ~= nil and #shown == 18, "switched on, the strip draws its 18 cells")
-    check(shown and shown[1][1] == 0 and shown[18][1] == 255, "black and white calibration cells at its ends")
+    check(shown ~= nil and #shown == 23, "switched on, the strip draws its 23 cells")
+    check(shown and shown[1][1] == 0 and shown[23][1] == 255, "black and white calibration cells at its ends")
     local frame = L:Frame()
     check(frame.map ~= 0 and frame.classId == 1, "the frame reads the player's map and class (" .. frame.map .. ", " .. frame.classId .. ")")
     check(frame.recording == 0 and frame.nameIndex == 0 and frame.nameByte == 0, "with no run, no recording id and no name")
@@ -4092,15 +4092,14 @@ section("the live beacon draws each frame as forever-codex's test vectors say, a
     check(L:Shown() == nil and ns.db.liveBeacon == false, "switched off, the strip is gone")
 end)
 
-section("the live beacon carries the player's events, each long enough for the Companion to see", function()
-    local L, EV = ns.LiveBeacon, ns.LiveBeacon.EVENT
+section("the live beacon carries what the player does, each long enough for the Companion to see", function()
+    local L, EV, S = ns.LiveBeacon, ns.LiveBeacon.EVENT, ns.LiveBeacon.SOURCE
     L:SetEnabled(true)
     MOCK_ADVANCE(1)
     local before = L:Frame().eventSeq
     -- a turn-in and at once the next pickup: both drawn, one after the other, each for 3 frames
     ns.Events:Fire("FG_QUEST_TURNED_IN", 783, nil, 100, 0)
     ns.Events:Fire("FG_QUEST_ACCEPTED", 7)
-    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 1, 1, 8, false)
     local seen = {}
     for _ = 1, 8 do
         local fr = L:Frame()
@@ -4109,16 +4108,70 @@ section("the live beacon carries the player's events, each long enough for the C
     local s1, s2 = (before + 1) % 256, (before + 2) % 256
     check(seen[1] == EV.turnIn .. ":783:" .. s1 and seen[3] == seen[1], "the turn-in is drawn 3 frames (" .. seen[1] .. ")")
     check(seen[4] == EV.accept .. ":7:" .. s2 and seen[8] == seen[4], "then the pickup, and it stays until the next event")
-    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 1, 8, 8, true)
-    ns.Events:Fire("FG_LEVEL_CHANGED", 12)
-    local kinds = {}
-    for _ = 1, 6 do kinds[L:Frame().eventKind] = true end
-    check(kinds[EV.objective] and kinds[EV.level], "a finished objective and a level are events; progress short of it is not")
-    L:SetEnabled(false)
-    ns.Events:Fire("FG_QUEST_ACCEPTED", 8)
+
+    local function next(kind)
+        for _ = 1, 12 do
+            local fr = L:Frame()
+            if fr.eventKind == kind and fr.eventSeq ~= before then before = fr.eventSeq return fr end
+        end
+    end
+    before = L:Frame().eventSeq
+    -- a kill that counts: the player killed the creature, and the count went up at once
+    local me = UnitGUID("player")
+    ns.Events:Fire("PARTY_KILL", me, "Creature-0-1-1-1-6-0000000001")
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 2, 3, 8, false)
+    local fr = next(EV.progress)
+    check(fr and fr.eventValue == 7 and fr.eventObjective == 2 and fr.eventHave == 3 and fr.eventNeed == 8,
+        "each count going up is an event: the quest, the objective, have and need")
+    check(fr and fr.source == S.kill and fr.sourceId == 6, "a count right after the player's kill is put down to that creature")
+    -- loot from an object on the ground
+    _G.GetLootSourceInfo = function() return "GameObject-0-1-1-1-1234-0000000002" end
+    MOCK_ADVANCE(5)
+    ns.Events:Fire("LOOT_OPENED")
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 1, 1, 6, false)
+    fr = next(EV.progress)
+    check(fr and fr.source == S.object and fr.sourceId == 1234, "an item from an object's loot window names the object")
+    _G.GetLootSourceInfo = function() return "Creature-0-1-1-1-6-0000000003" end
+    MOCK_ADVANCE(5)
+    ns.Events:Fire("LOOT_OPENED")
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 1, 2, 6, false)
+    fr = next(EV.progress)
+    check(fr and fr.source == S.mobLoot and fr.sourceId == 6, "an item looted from a creature names the creature")
+    _G.GetLootSourceInfo = nil
+    MOCK_ADVANCE(10)
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 8, 1, 1, 1, true)
+    fr = next(EV.progress)
+    check(fr and fr.source == S.other and fr.sourceId == 0, "a count with no kill or loot just before is something else")
+
+    -- experience, and where it came from
+    -- (MOCK_XP fires PLAYER_XP_UPDATE as the game does; a drop from earlier tests' xp is no gain)
+    MOCK_XP(100, 400)
+    L:NoteXP()
+    L:SetEnabled(false)                   -- what was queued before is dropped
     L:SetEnabled(true)
-    local fr = L:Frame()
-    check(not (fr.eventKind == EV.accept and fr.eventValue == 8), "an event while the strip is off is not queued for later")
+    before = L:Frame().eventSeq
+    ns.Events:Fire("PARTY_KILL", "Player-1-000099", "Creature-0-1-1-1-299-0000000004")
+    MOCK_XP(145)
+    fr = next(EV.xp)
+    check(fr and fr.eventValue == 45 and fr.source == S.kill and fr.sourceId == 299, "experience from a group's kill names the creature (" .. (fr and fr.eventValue or "none") .. ")")
+    MOCK_ADVANCE(5)
+    ns.Events:Fire("FG_QUEST_TURNED_IN", 783, nil, 300, 0)
+    MOCK_XP(445)
+    fr = next(EV.xp)
+    check(fr and fr.eventValue == 300 and fr.source == S.quest and fr.sourceId == 783, "experience from a turn-in names the quest")
+    MOCK_ADVANCE(5)
+    ns.Events:Fire("CHAT_MSG_COMBAT_XP_GAIN", "Discovered Kharanos: 80 experience gained")
+    MOCK_XP(525)
+    fr = next(EV.xp)
+    check(fr and fr.eventValue == 80 and fr.source == S.explore, "experience from discovering an area is exploring")
+
+    ns.Events:Fire("FG_LEVEL_CHANGED", 12)
+    check(next(EV.level) ~= nil, "a level is an event")
+    L:SetEnabled(false)
+    ns.Events:Fire("FG_QUEST_ACCEPTED", 9)
+    L:SetEnabled(true)
+    fr = L:Frame()
+    check(not (fr.eventKind == EV.accept and fr.eventValue == 9), "an event while the strip is off is not queued for later")
     L:SetEnabled(false)
 end)
 
