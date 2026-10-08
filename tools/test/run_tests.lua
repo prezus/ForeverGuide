@@ -4171,8 +4171,23 @@ section("the live beacon carries what the player does, each long enough for the 
     fr = next(EV.xp)
     check(fr and fr.eventValue == 80 and fr.source == S.explore, "experience from discovering an area is exploring")
 
-    ns.Events:Fire("FG_LEVEL_CHANGED", 12)
-    check(next(EV.level) ~= nil, "a level is an event")
+    -- a turn-in that dings: the bar starts again, and the game says so before the level changes
+    MOCK_XP(350, 400)                     -- a bar 50 short of the level
+    L:SetEnabled(false)
+    L:SetEnabled(true)
+    L:NoteXP()
+    before = L:Frame().eventSeq
+    MOCK_ADVANCE(5)
+    ns.Events:Fire("FG_QUEST_TURNED_IN", 790, nil, 175, 0)
+    MOCK_XP(125, 600)
+    fr = next(EV.xp)
+    check(fr and fr.eventValue == 175 and fr.source == S.quest,
+        "a turn-in that levels up keeps its experience: the rest of the old level and the new (" .. (fr and fr.eventValue or "none") .. ")")
+    -- the level event names the new level, though the game still answers the old one for a moment
+    local levelWas = UnitLevel("player")
+    MOCK_LEVEL(levelWas + 1)
+    fr = next(EV.level)
+    check(fr and fr.eventValue == levelWas + 1, "a level names the level reached (" .. (fr and fr.eventValue or "none") .. ")")
     L:SetEnabled(false)
     ns.Events:Fire("FG_QUEST_ACCEPTED", 9)
     L:SetEnabled(true)

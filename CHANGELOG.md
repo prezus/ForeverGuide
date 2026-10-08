@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- A level reached is recorded as the level you reached. Before, the game could still report your old level at that moment, and the run said "level 1".
+- Experience from a quest turn-in that levels you up is recorded. Before, the level-up reset the bar and the gain was lost.
 - **Record** button on the guide window (the dot left of R): one click records your character's run, the next pauses it. It turns Record runs on if it is off, and carries on by itself after a `/reload` or logging out and back in, so a run over several evenings is one recording. Each character has its own run. While it records, the ForeverGuide Companion keeps it as a session recording, filed under your character.
 - The live strip (Share live position) also draws while you record, and now carries what you do in the game, with or without a guide: quests you pick up, turn in or abandon; every objective count that goes up and what did it (a kill, loot from a creature, an object on the ground); every bit of experience and where it came from (a kill, a quest, exploring); levels and deaths. It carries your character's name, so the live view shows only the character you play now, and while you have a run, the run's id, for the Companion. It is a little wider: 23 cells. Run segments sent with Send still carry no names.
 - Guides: 65 corrected steps across 35 guides: flight paths name their flight master, setting your hearthstone names the innkeeper, the Arcane Shot training step names the spell, and Evershine's turn-in in Dun Morogh says to go west to Brewnall Village. Saved step positions in those guides reset once.

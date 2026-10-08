@@ -165,23 +165,23 @@ end
 -- ---- where experience came from ----------------------------------------------------------------
 -- The game says only how much experience the player has: a gain is the difference, put down to the
 -- quest just turned in, the area just discovered, or the creature the group just killed.
-local xpWas, xpMaxWas, levelWas, lastTurnIn, lastExplore, lastPartyKill
+local xpWas, xpMaxWas, lastTurnIn, lastExplore, lastPartyKill
 
 --- The player's experience as it stands, to measure the next gain from.
 function LiveBeacon:NoteXP()
     xpWas, xpMaxWas = ns.Player:GetXP()
-    levelWas = ns.Player:GetLevel()
 end
 
---- How much experience came since last time: across a level, the rest of the old level and the new.
+--- How much experience came since last time. Across a level the bar starts again: the rest of the
+--- old level and the new. A level-up is told by the bar going back, not by the level, which the game
+--- can report a moment after the experience.
 function LiveBeacon:XPGained()
     local xp, max = ns.Player:GetXP()
-    local level = ns.Player:GetLevel()
     local gained = 0
-    if xpWas and levelWas then
-        if level and level > levelWas then gained = (xpMaxWas or 0) - xpWas + xp else gained = xp - xpWas end
+    if xpWas then
+        if xp < xpWas then gained = (xpMaxWas or 0) - xpWas + xp else gained = xp - xpWas end
     end
-    xpWas, xpMaxWas, levelWas = xp, max, level
+    xpWas, xpMaxWas = xp, max
     return math.max(0, gained)
 end
 

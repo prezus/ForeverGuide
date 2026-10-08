@@ -36,7 +36,8 @@ Player.cache = {
 -- ------------------------------------------------------------
 function Player:GetLevel()
     local lvl = PlainNumber(Safe(UnitLevel, "player"))
-    if lvl and lvl > 0 then self.cache.level = lvl end
+    -- a level only goes up: right at PLAYER_LEVEL_UP the game can still answer the old one
+    if lvl and lvl > 0 and lvl >= (self.cache.level or 0) then self.cache.level = lvl end
     return self.cache.level
 end
 
