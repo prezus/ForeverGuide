@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Quest items you are traded, buy from a vendor or take from the mail count toward the guide's progress at once, as the game's quest log shows them. Before, the guide kept the old count until something else updated the quest log.
 - Guide steps never say "nil": a training step names its spell or says what the guide wrote ("Train \"Arcane Shot\"."), a flight path step names the zone when it knows no flight master, "Fly to" names the place, and steps to use a spell name the spell ("Use: Find Minerals").
 - Guides: follow TUGs' latest update: Dun Morogh & Loch Modan 9-11, Darkshore 11-14 and Northshire reworked, Teldrassil 6-11 added; Horde Barrens 12-20 replaces 12-16, with Orgrimmar, Mulgore and Tirisfal changes.
 - Key bindings in Options: ForeverGuide > **Key Bindings** lists every ForeverGuide key with the game's own binding rows, so a key can be a mouse button, the mouse wheel or a gamepad button, each action takes two keys, and right-click clears one. The ForeverGuide page shows the keys for targeting quest mobs and opening quest objects, with a **Key bindings...** button to that list.
