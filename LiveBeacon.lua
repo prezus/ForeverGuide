@@ -2,22 +2,30 @@
 -- LiveBeacon.lua - the player's position, drawn for the ForeverGuide Companion
 --
 -- An addon cannot send anything out of the game while it runs, and the game writes saved variables
--- only on /reload, logout or exit. So, when the player opts in ("Share live position with the
--- Companion", off by default), this draws the position as a strip of 11 colored cells, 3x3 physical
--- pixels each, in the window's top-left corner, redrawn every 0.1 s. The Companion captures that
--- strip and nothing else, and streams it to codex, where admins watch the player move on the map.
+-- only on /reload, logout or exit. So, while the player records a run (the Record button) or opts in
+-- ("Share live position with the Companion", off by default), this draws the position as a strip of
+-- 18 colored cells, 3x3 physical pixels each, in the window's top-left corner, redrawn every 0.1 s.
+-- Each frame also carries the player's latest event (a quest picked up or turned in, an objective
+-- done, a level, a death) and, while a run is recorded, the run's id and, a byte a frame, the
+-- character's Name-Realm, so the Companion files the recording under the right character. The
+-- Companion captures that strip and nothing else, and sends it to codex, where admins watch the player
+-- move on the map and play their recordings back.
 -- The contract (frame, cells, checksum) is forever-codex's docs/LIVE-BEACON.md; the encoder is
 -- checked against its test vectors (tools/test/fixtures/live-beacon-vectors.json).
 --
--- Passive: it reads the position the addon already reads (Player.lua) and draws; nothing else.
+-- Passive: it reads what the addon already reads (Player.lua, the run, the quest log's events) and
+-- draws; nothing else.
 --------------------------------------------------------------------------------
 local _, ns = ...
 local LiveBeacon = ns:NewModule("LiveBeacon")
 
-local MAGIC = 0xFB
-local CELLS, CELL_PX = 11, 3
+local MAGIC = 0xFC                -- version 2
+local CELLS, CELL_PX = 18, 3
 local EVERY = 0.1                 -- seconds between frames
-LiveBeacon.FLAG = { mounted = 1, taxi = 2, dead = 4, noPosition = 8, paused = 16 }
+local HOLD = 3                    -- frames each event stays drawn, so a capture at 10 a second sees it
+local NAME_MAX = 62               -- bytes of Name-Realm the name channel carries
+LiveBeacon.FLAG = { mounted = 1, taxi = 2, dead = 4, noPosition = 8, paused = 16, recording = 32 }
+LiveBeacon.EVENT = { none = 0, accept = 1, turnIn = 2, objective = 3, level = 4, death = 5, abandon = 6 }
 
 -- ---- the frame: pure functions, the contract ------------------------------------------------
 -- Lua 5.1 has no bit operators, and WoW's `bit` is not in the headless tests: bytes are XORed by arithmetic.
@@ -49,39 +57,88 @@ local function coordinate(percent)
     return v
 end
 
---- A frame's 13 bytes, the checksum last. frame = { seq, map, x, y, facing, classId, flags }.
+-- byte n of a number, counting from the lowest (0)
+local function byte(value, n) return math.floor(value / 256 ^ n) % 256 end
+
+--- A frame's 24 bytes, the checksum last. frame = { seq, map, x, y, facing, classId, flags,
+--- eventSeq, eventKind, eventValue, recording, nameIndex, nameByte }.
 function LiveBeacon.Bytes(frame)
     local x, y = coordinate(frame.x), coordinate(frame.y)
+    local v, r = frame.eventValue or 0, frame.recording or 0
     local body = {
         MAGIC,
-        math.floor(frame.seq / 256) % 256, frame.seq % 256,
-        math.floor(frame.map / 256) % 256, frame.map % 256,
-        math.floor(x / 256), x % 256,
-        math.floor(y / 256), y % 256,
+        byte(frame.seq, 1), byte(frame.seq, 0),
+        byte(frame.map, 1), byte(frame.map, 0),
+        byte(x, 1), byte(x, 0),
+        byte(y, 1), byte(y, 0),
         frame.facing, frame.classId, frame.flags,
+        frame.eventSeq or 0, frame.eventKind or 0, byte(v, 2), byte(v, 1), byte(v, 0),
+        byte(r, 3), byte(r, 2), byte(r, 1), byte(r, 0),
+        frame.nameIndex or 0, frame.nameByte or 0,
     }
-    body[13] = LiveBeacon.Crc8(body)
+    body[24] = LiveBeacon.Crc8(body)
     return body
 end
 
---- The strip's colors for a frame, 0-255 a channel: black, 9 data cells, white.
+--- The strip's colors for a frame, 0-255 a channel: black, 16 data cells, white.
 function LiveBeacon.Cells(frame)
     local bytes, nibbles = LiveBeacon.Bytes(frame), {}
     for _, b in ipairs(bytes) do
         nibbles[#nibbles + 1] = math.floor(b / 16)
         nibbles[#nibbles + 1] = b % 16
     end
-    nibbles[27] = 0                       -- 26 nibbles of frame, one of padding
     local cells = { { 0, 0, 0 } }
-    for i = 0, 8 do
+    for i = 0, CELLS - 3 do
         cells[#cells + 1] = { nibbles[i * 3 + 1] * 16 + 8, nibbles[i * 3 + 2] * 16 + 8, nibbles[i * 3 + 3] * 16 + 8 }
     end
     cells[#cells + 1] = { 255, 255, 255 }
     return cells
 end
 
+--- The name channel's bytes for a character: the length, then Name-Realm's bytes (at most NAME_MAX).
+function LiveBeacon.NameChannel(name)
+    name = name:sub(1, NAME_MAX)
+    local bytes = { #name }
+    for i = 1, #name do bytes[#bytes + 1] = name:byte(i) end
+    return bytes
+end
+
+--- The recording id a run id draws: its first 8 hex digits as a number; 0 for none.
+function LiveBeacon.RecordingOf(runId)
+    local hex = type(runId) == "string" and runId:match("^(%x%x%x%x%x%x%x%x)")
+    return hex and tonumber(hex, 16) or 0
+end
+
+-- ---- what happened: events, each held for a few frames ---------------------------------------
+local queue, current, held, eventSeq = {}, { kind = 0, value = 0 }, HOLD, 0
+
+--- Queue an event to draw (only while the strip draws: one switched on later starts from now).
+function LiveBeacon:Push(kind, value)
+    if not self:Drawing() or #queue >= 32 then return end
+    queue[#queue + 1] = { kind = kind, value = value or 0 }
+end
+
+-- the event the next frame carries: the current one until it has been drawn HOLD times, then the next
+local function NextEvent()
+    held = held + 1
+    if held >= HOLD and #queue > 0 then
+        current = table.remove(queue, 1)
+        eventSeq, held = (eventSeq + 1) % 256, 0
+    end
+    return current
+end
+
 -- ---- reading the player ---------------------------------------------------------------------
-local seq = 0
+local seq, nameStep, nameBytes, nameOf = 0, 0, nil, nil
+
+-- the name channel's bytes for the character playing, read once a session
+local function Name()
+    if not nameBytes then
+        nameOf = ns.Player:GetName() .. "-" .. ns.Player:GetRealm()
+        nameBytes = LiveBeacon.NameChannel(nameOf)
+    end
+    return nameBytes
+end
 
 --- The frame for where the player is now.
 function LiveBeacon:Frame()
@@ -94,11 +151,25 @@ function LiveBeacon:Frame()
     if Plain(ns.Safe(rawget(_G, "UnitOnTaxi"), "player")) == true then flags = flags + F.taxi end
     if Plain(ns.Safe(rawget(_G, "UnitIsDeadOrGhost"), "player")) == true then flags = flags + F.dead end
     if not x or not y then flags, x, y = flags + F.noPosition, 0, 0 end
+    -- a run: its id and the character's name; the flag says whether it records now
+    local run = ns.char and ns.char.run
+    local recording, nameIndex, nameByte = 0, 0, 0
+    if run then
+        recording = LiveBeacon.RecordingOf(run.id)
+        if ns.Run:State() == "recording" then flags = flags + F.recording else flags = flags + F.paused end
+        local bytes = Name()
+        nameIndex = nameStep % #bytes
+        nameByte = bytes[nameIndex + 1]
+        nameStep = nameStep + 1
+    end
     seq = (seq + 1) % 65536
+    local event = NextEvent()
     return {
         seq = seq, map = map or 0, x = x, y = y,
         facing = facing and (math.floor(facing / (2 * math.pi) * 256 + 0.5) % 256) or 0,
         classId = classId, flags = flags,
+        eventSeq = eventSeq, eventKind = event.kind, eventValue = event.value,
+        recording = recording, nameIndex = nameIndex, nameByte = nameByte,
     }
 end
 
@@ -143,19 +214,39 @@ end
 
 function LiveBeacon:Enabled() return ns.db and ns.db.liveBeacon == true end
 
---- Draw the strip, or stop drawing it, as the setting says.
+--- Whether the strip draws: the setting is on, or a run is recording.
+function LiveBeacon:Drawing()
+    return self:Enabled() or (ns.Run ~= nil and ns.Run:State() == "recording")
+end
+
+--- Draw the strip, or stop drawing it, as the setting and the run say.
 function LiveBeacon:Apply()
-    if self:Enabled() then
+    if self:Drawing() then
         if not strip then Build() end
         strip:SetScale(PixelScale())
         strip:Show()
-    elseif strip then
-        strip:Hide()
+    else
+        -- not drawn: what was waiting will never be seen, and must not burst out when it draws again
+        queue, held = {}, HOLD
+        if strip then strip:Hide() end
     end
 end
 
---- Entering the world: draw the strip when the setting is on.
+--- Entering the world: draw the strip when the setting is on or a run records.
 function LiveBeacon:OnEnable() self:Apply() end
+
+function LiveBeacon:OnInit()
+    local E, EV, PlainNumber = ns.Events, LiveBeacon.EVENT, ns.PlainNumber
+    E:Register("FG_RUN_CHANGED", function() LiveBeacon:Apply() end)
+    E:Register("FG_QUEST_ACCEPTED", function(_, q) LiveBeacon:Push(EV.accept, PlainNumber(q)) end)
+    E:Register("FG_QUEST_TURNED_IN", function(_, q) LiveBeacon:Push(EV.turnIn, PlainNumber(q)) end)
+    E:Register("FG_QUEST_ABANDONED", function(_, q) LiveBeacon:Push(EV.abandon, PlainNumber(q)) end)
+    E:Register("FG_OBJECTIVE_PROGRESS", function(_, q, _, _, _, finished)
+        if ns.PlainBool(finished) == true then LiveBeacon:Push(EV.objective, PlainNumber(q)) end
+    end)
+    E:Register("FG_LEVEL_CHANGED", function(_, level) LiveBeacon:Push(EV.level, PlainNumber(level)) end)
+    E:Register("PLAYER_DEAD", function() LiveBeacon:Push(EV.death, 0) end)
+end
 
 --- The setting switched on or off (Options, /fg live).
 function LiveBeacon:SetEnabled(on)

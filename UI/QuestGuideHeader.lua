@@ -25,7 +25,7 @@ function Header.Create(parent)
 
     h.title = Theme.NewText(h, { fancy = true, size = 16, color = Theme.C.goldLight, oneLine = true })
     h.title:SetPoint("LEFT", h.icon, "RIGHT", 7, 0)
-    h.title:SetPoint("RIGHT", h, "RIGHT", -140, 0)
+    h.title:SetPoint("RIGHT", h, "RIGHT", -168, 0)
     pcall(h.title.SetJustifyV, h.title, "MIDDLE")
     h.title:SetText("QUEST GUIDE")
 
@@ -54,6 +54,28 @@ function Header.Create(parent)
         if tt then tt:Hide() end
     end)
 
+    -- Record: one click records this character's run, again pauses (Run:Record)
+    h.record = Theme.NewButton(h, "", 24, 22, function() ns.Run:Record() end)
+    h.record:SetPoint("RIGHT", h.reports, "LEFT", -4, 0)
+    h.record.dot = h.record:CreateTexture(nil, "OVERLAY")
+    h.record.dot:SetSize(10, 10)
+    h.record.dot:SetPoint("CENTER", h.record, "CENTER", 0, 0)
+    pcall(h.record.dot.SetMask, h.record.dot, "Interface\\CHARACTERFRAME\\TempPortraitAlphaMask")
+    h.record:SetScript("OnEnter", function(self)
+        local tt = rawget(_G, "GameTooltip")
+        if not tt then return end
+        local state = ns.Run:State()
+        tt:SetOwner(self, "ANCHOR_TOP")
+        tt:AddLine(state == "recording" and "Recording: click to pause" or state == "paused" and "Paused: click to record" or "Record this character's run")
+        tt:AddLine("Carries on through /reload and logging out. The Companion keeps it as a session recording.", 1, 1, 1, true)
+        tt:Show()
+    end)
+    h.record:SetScript("OnLeave", function()
+        local tt = rawget(_G, "GameTooltip")
+        if tt then tt:Hide() end
+    end)
+    Header.RefreshRecord(h)
+
     h.sub = Theme.NewText(h, { size = 10, color = Theme.C.textDim, oneLine = true })
     h.sub:SetPoint("TOPLEFT", h, "TOPLEFT", 14, -33)
     h.sub:SetPoint("TOPRIGHT", h, "TOPRIGHT", -12, -33)
@@ -72,6 +94,19 @@ function Header.Create(parent)
     h.Set = Header.Set
     return h
 end
+
+local RECORD_COLOR = { recording = { 1.00, 0.20, 0.15 }, paused = { 1.00, 0.70, 0.20 }, idle = { 0.45, 0.45, 0.45 } }
+
+--- The Record button's dot: red while recording, amber paused, grey with no run.
+function Header.RefreshRecord(h)
+    local c = RECORD_COLOR[ns.Run:State()] or RECORD_COLOR.idle
+    h.record.dot:SetColorTexture(c[1], c[2], c[3], 1)
+end
+
+ns.Events:Register("FG_RUN_CHANGED", function()
+    local f = ns.QuestGuide and ns.QuestGuide.frame
+    if f and f.header and f.header.record then Header.RefreshRecord(f.header) end
+end)
 
 --- title (nil keeps "QUEST GUIDE"), countText ("6 / 14"), subText
 function Header.Set(h, countText, subText, title)
