@@ -128,6 +128,12 @@ function Player:GetName()
     return PlainString(Safe(UnitName, "player")) or "?"
 end
 
+-- The realm, without spaces ("ClassicBetaPvE2"), as Name-Realm spells it.
+function Player:GetRealm()
+    local realm = PlainString(Safe(rawget(_G, "GetNormalizedRealmName"))) or PlainString(Safe(rawget(_G, "GetRealmName"))) or "?"
+    return (realm:gsub("%s", ""))
+end
+
 -- ------------------------------------------------------------
 -- Location
 -- ------------------------------------------------------------

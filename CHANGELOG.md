@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- **Record** button on the guide window (the dot left of R): one click records your character's run, the next pauses it. It turns Record runs on if it is off, and carries on by itself after a `/reload` or logging out and back in, so a run over several evenings is one recording. Each character has its own run. While it records, the ForeverGuide Companion keeps it as a session recording, filed under your character.
+- The live strip (Share live position) also draws while you record, and now carries the quests you pick up and turn in, objectives you finish, levels and deaths, and while you record, the run's id and your character's name, for the Companion. It is a little wider: 18 cells. Run segments sent with Send still carry no names.
 - Guides: 65 corrected steps across 35 guides: flight paths name their flight master, setting your hearthstone names the innkeeper, the Arcane Shot training step names the spell, and Evershine's turn-in in Dun Morogh says to go west to Brewnall Village. Saved step positions in those guides reset once.
 - Share your live position with the ForeverGuide Companion (test, off by default): with **Share live position** on (Options, or `/fg live on`), a tiny strip of colored pixels in the top-left corner holds where you are, which way you face and your class; the Companion reads only that strip, so the guide team can watch a run as it happens.
 - Guides: 269 corrected steps across 48 guides: steps missing a word name their place, item or vendor ("Fly to Hammerfall"), setting your hearthstone says where, spells a class should use no longer read as training, and one step each gains its item and its zone. Saved step positions in those guides reset once.

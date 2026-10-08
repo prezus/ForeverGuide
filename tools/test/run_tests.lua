@@ -4051,11 +4051,12 @@ section("a step's text names what it is about from what the step has, and never 
 end)
 
 -- ---- the live beacon: the player's position drawn for the Companion ------------------
-section("the live beacon draws each frame as forever-codex's test vectors say, and only when switched on", function()
+section("the live beacon draws each frame as forever-codex's test vectors say, and only when switched on or recording", function()
     local json = dofile(root .. "tools/test/json.lua")
     local f = assert(io.open(root .. "tools/test/fixtures/live-beacon-vectors.json"))
-    local vectors = json.decode(f:read("*a")).vectors
+    local doc = json.decode(f:read("*a"))
     f:close()
+    local vectors = doc.vectors
     local L = ns.LiveBeacon
     need(L and #vectors > 0, "the beacon module and its vectors")
     for i, v in ipairs(vectors) do
@@ -4069,17 +4070,98 @@ section("the live beacon draws each frame as forever-codex's test vectors say, a
         end
         check(same, "vector " .. i .. " (seq " .. frame.seq .. ", map " .. frame.map .. ") encodes to the same bytes and cells")
     end
+    for _, n in ipairs(doc.names or {}) do
+        local bytes, same = L.NameChannel(n.character), true
+        same = #bytes == #n.bytes
+        for j = 1, #n.bytes do same = same and bytes[j] == n.bytes[j] end
+        check(same, "the name channel spells " .. n.character .. " as forever-codex does")
+    end
+    check(L.RecordingOf("1a2b3c4d5e6f7081") == 0x1a2b3c4d, "the recording id is the run id's first 8 hex digits")
     -- off by default: nothing is drawn
+    ns.char.run = nil
     check(L:Shown() == nil, "the strip is not drawn until the player opts in")
     L:SetEnabled(true)
     MOCK_ADVANCE(1)
     local shown = L:Shown()
-    check(shown ~= nil and #shown == 11, "switched on, the strip draws its 11 cells")
-    check(shown and shown[1][1] == 0 and shown[11][1] == 255, "black and white calibration cells at its ends")
+    check(shown ~= nil and #shown == 18, "switched on, the strip draws its 18 cells")
+    check(shown and shown[1][1] == 0 and shown[18][1] == 255, "black and white calibration cells at its ends")
     local frame = L:Frame()
     check(frame.map ~= 0 and frame.classId == 1, "the frame reads the player's map and class (" .. frame.map .. ", " .. frame.classId .. ")")
+    check(frame.recording == 0 and frame.nameIndex == 0 and frame.nameByte == 0, "with no run, no recording id and no name")
     L:SetEnabled(false)
     check(L:Shown() == nil and ns.db.liveBeacon == false, "switched off, the strip is gone")
+end)
+
+section("the live beacon carries the player's events, each long enough for the Companion to see", function()
+    local L, EV = ns.LiveBeacon, ns.LiveBeacon.EVENT
+    L:SetEnabled(true)
+    MOCK_ADVANCE(1)
+    local before = L:Frame().eventSeq
+    -- a turn-in and at once the next pickup: both drawn, one after the other, each for 3 frames
+    ns.Events:Fire("FG_QUEST_TURNED_IN", 783, nil, 100, 0)
+    ns.Events:Fire("FG_QUEST_ACCEPTED", 7)
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 1, 1, 8, false)
+    local seen = {}
+    for _ = 1, 8 do
+        local fr = L:Frame()
+        seen[#seen + 1] = fr.eventKind .. ":" .. fr.eventValue .. ":" .. fr.eventSeq
+    end
+    local s1, s2 = (before + 1) % 256, (before + 2) % 256
+    check(seen[1] == EV.turnIn .. ":783:" .. s1 and seen[3] == seen[1], "the turn-in is drawn 3 frames (" .. seen[1] .. ")")
+    check(seen[4] == EV.accept .. ":7:" .. s2 and seen[8] == seen[4], "then the pickup, and it stays until the next event")
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 1, 8, 8, true)
+    ns.Events:Fire("FG_LEVEL_CHANGED", 12)
+    local kinds = {}
+    for _ = 1, 6 do kinds[L:Frame().eventKind] = true end
+    check(kinds[EV.objective] and kinds[EV.level], "a finished objective and a level are events; progress short of it is not")
+    L:SetEnabled(false)
+    ns.Events:Fire("FG_QUEST_ACCEPTED", 8)
+    L:SetEnabled(true)
+    local fr = L:Frame()
+    check(not (fr.eventKind == EV.accept and fr.eventValue == 8), "an event while the strip is off is not queued for later")
+    L:SetEnabled(false)
+end)
+
+section("Record: one click records this character's run, the beacon names it, and a /reload carries on", function()
+    local R, L = ns.Run, ns.LiveBeacon
+    local recordWas = ns.db.recordRuns
+    ns.db.recordRuns = false
+    ns.char.run, ns.char.runWanted = nil, nil
+    ns.UI:Show()
+    local header = ForeverGuideFrame.header
+    need(header.record ~= nil, "the guide header has a Record button")
+    header.record:GetScript("OnClick")(header.record)
+    check(ns.db.recordRuns == true and R:State() == "recording", "Record turns Record runs on and starts a run")
+    MOCK_ADVANCE(1)
+    check(L:Shown() ~= nil, "while recording the strip draws, the live setting off")
+    -- the name channel spells Name-Realm, round and round
+    local name = {}
+    local bytes = L.NameChannel(ns.Player:GetName() .. "-" .. ns.Player:GetRealm())
+    local fr
+    for _ = 1, #bytes * 2 do
+        fr = L:Frame()
+        if fr.nameIndex > 0 then name[fr.nameIndex] = string.char(fr.nameByte) end
+    end
+    check(table.concat(name) == "Tester-ClassicBetaPvE2", "the frames spell the character's Name-Realm (" .. table.concat(name) .. ")")
+    check(fr.recording == L.RecordingOf(ns.char.run.id) and fr.flags % 64 >= 32, "the frames carry the run's id and the recording flag")
+    -- a /reload: the game logs out (pausing the run), then enters the world again
+    local id = ns.char.run.id
+    R:OnLogout()
+    check(R:State() == "paused", "logging out pauses the run, as before")
+    R:OnEnterWorld(false, true)
+    check(R:State() == "recording" and ns.char.run.id == id, "entering the world again carries on with the same run, no click")
+    -- paused by the player: it stays paused across a reload, and the strip says paused
+    header.record:GetScript("OnClick")(header.record)
+    check(R:State() == "paused", "Record again pauses")
+    R:OnLogout()
+    R:OnEnterWorld(false, true)
+    check(R:State() == "paused", "a run the player paused stays paused after a reload")
+    local notice = rawget(_G, "ForeverGuideRunNotice")
+    if notice then notice:Hide() end
+    check(L:Shown() == nil, "paused, with the live setting off, the strip is not drawn")
+    ns.Commands:Run("run discard")
+    check(ns.char.runWanted == nil, "discarding forgets the run")
+    ns.db.recordRuns = recordWas
 end)
 
 -- ---- no swallowed errors anywhere -------------------------------------------------

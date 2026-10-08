@@ -6,7 +6,7 @@ Read the live beacon (LiveBeacon.lua) back from a screenshot, as the Companion r
 
 Take the screenshot in game with the beacon on (/fg live on) and PNG screenshots
 (/console screenshotFormat png; JPEG blurs the cells). Prints the frame: map, x, y, facing, class,
-flags; compare it with /fg live. The contract is forever-codex's docs/LIVE-BEACON.md.
+flags, the latest event, the recording id and the name channel's byte; compare it with /fg live. The contract is forever-codex's docs/LIVE-BEACON.md.
 No dependencies: a small PNG reader (8-bit RGB or RGBA, any filter, not interlaced).
 """
 
@@ -14,7 +14,7 @@ import struct
 import sys
 import zlib
 
-CELLS, CELL_PX, MAGIC = 11, 3, 0xFB
+CELLS, CELL_PX, MAGIC, BYTES = 18, 3, 0xFC, 24
 
 
 def read_png(path):
@@ -71,12 +71,15 @@ def main():
         sys.exit("no beacon: the top-left corner has no black and white calibration cells (/fg live on?)")
     nibbles = [min(15, max(0, int((v - black[ch]) * 255 / (white[ch] - black[ch]) // 16)))
                for cell in cells[1:-1] for ch, v in enumerate(cell)]
-    b = [(nibbles[i * 2] << 4) | nibbles[i * 2 + 1] for i in range(13)]
-    if b[0] != MAGIC or crc8(b[:12]) != b[12]:
-        sys.exit(f"not a beacon frame (magic {b[0]:#x}, checksum {'ok' if crc8(b[:12]) == b[12] else 'broken'})")
+    b = [(nibbles[i * 2] << 4) | nibbles[i * 2 + 1] for i in range(BYTES)]
+    ok = crc8(b[:BYTES - 1]) == b[BYTES - 1]
+    if b[0] != MAGIC or not ok:
+        sys.exit(f"not a beacon frame (magic {b[0]:#x}, checksum {'ok' if ok else 'broken'})")
     word = lambda i: (b[i] << 8) | b[i + 1]
     print(f"seq {word(1)}  map {word(3)}  x {word(5) / 655.35:.2f}  y {word(7) / 655.35:.2f}  "
           f"facing {b[9]}  class {b[10]}  flags {b[11]}")
+    print(f"event #{b[12]} kind {b[13]} value {(b[14] << 16) | (b[15] << 8) | b[16]}  "
+          f"recording {bytes(b[17:21]).hex()}  name [{b[21]}] = {b[22]}")
 
 
 if __name__ == "__main__":

@@ -14,7 +14,9 @@
 --   HEARTH                        the hearthstone (action = "use" | "bind")
 -- Every entry carries t (seconds of recording since the run started: never the clock), lvl,
 -- m/x/y (uiMapID, map percent) and g/s (the guide and step being followed; g = "auto" in auto
--- mode). Never kept: names, realm, GUIDs, chat, the date or time of day.
+-- mode). Never kept: names, realm, GUIDs, chat, the date or time of day. (While a run records, the
+-- live strip, LiveBeacon.lua, draws the character's Name-Realm for the Companion, which files its
+-- session recordings by character; the run's segments still carry no name.)
 --
 -- A run is sent in segments: Send hands the entries since the last Send to the share window
 -- (Share.lua, docs/SHARE-FORMAT.md) and recording carries on in the next segment. The run lives
@@ -161,6 +163,7 @@ function Run:Start()
         return
     end
     ns.char.run = { id = NewId(), seg = 1, elapsed = 0, state = "recording", entries = {} }
+    ns.char.runWanted = true
     StartClock()
     Add("START")
     Changed()
@@ -172,6 +175,7 @@ function Run:Pause()
     run.elapsed = self:Elapsed()
     run.state = "paused"
     resumedAt = nil
+    ns.char.runWanted = nil
     Add("PAUSE", nil, true)
     Changed()
 end
@@ -182,6 +186,7 @@ function Run:Resume()
     if not Enabled() then ns.Print("turn on Record runs under /fg options (Data collection) first.") return end
     if #run.entries >= self.MAX_ENTRIES then ns.Print("the run segment is full: press Send first.") return end
     run.state = "recording"
+    ns.char.runWanted = true
     StartClock()
     if run.gap then
         run.gap = nil
@@ -261,15 +266,24 @@ function Run:Stop()
     run.elapsed, run.state, resumedAt = self:Elapsed(), "stopped", nil
     Add("STOP", nil, true)
     local segment = CloseSegment(true)
-    ns.char.run, resumedAt = nil, nil
+    ns.char.run, ns.char.runWanted, resumedAt = nil, nil, nil
     Changed()
     Deliver(segment)
 end
 
 --- Throw the run away, sent segments included (the outbox keeps what is waiting for the companion).
 function Run:Discard()
-    ns.char.run, ns.char.runSent, resumedAt = nil, nil, nil
+    ns.char.run, ns.char.runSent, ns.char.runWanted, resumedAt = nil, nil, nil, nil
     Changed()
+end
+
+--- The guide header's Record button: one click records (turning Record runs on if it is off), the
+--- next pauses, the next goes on. The run is this character's; it carries on through /reload and
+--- logging out (OnEnterWorld), so a run over several sittings is one recording.
+function Run:Record()
+    if not Enabled() then self:SetEnabled(true) end
+    local state = self:State()
+    if state == "recording" then self:Pause() elseif state == "paused" then self:Resume() else self:Start() end
 end
 
 --- Record runs switched on or off (Options). Off pauses a recording run and hides the controls.
@@ -401,9 +415,15 @@ function Run:OnEnterWorld()
     -- every addon has loaded by now, the companion's receipt included
     self:ApplyReceipt()
     Changed()
-    -- logging out pauses the run: say so, or the session goes unrecorded
     local run = Current()
-    if run and Enabled() and run.state == "paused" then Notice(#run.entries >= self.MAX_ENTRIES and "full" or "paused") end
+    if not (run and Enabled() and run.state == "paused") then return end
+    -- recording when the game reloaded or logged out (or crashed): carry on, no click needed
+    if ns.char.runWanted and #run.entries < self.MAX_ENTRIES then
+        self:Resume()
+        return
+    end
+    -- paused by the player, or full: say so, or the session goes unrecorded
+    Notice(#run.entries >= self.MAX_ENTRIES and "full" or "paused")
 end
 
 --- Send a full segment and record on from here: the dialog's "Send and resume".
@@ -413,7 +433,10 @@ function Run:SendAndResume()
 end
 
 function Run:OnLogout()
+    -- paused for the logout, not by the player: the next session carries on (OnEnterWorld)
+    local wanted = ns.char.runWanted
     self:Pause()
+    ns.char.runWanted = wanted
     -- with the companion, the open segment goes to the outbox now, so it uploads as the game saves
     local run = Current()
     if run and Companion() and #run.entries > 0 then Run.ToOutbox(CloseSegment(false)) end
