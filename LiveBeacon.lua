@@ -8,9 +8,9 @@
 -- Each frame also carries the latest thing the player did in the game, guide or not: a quest picked
 -- up, turned in or abandoned; an objective's count going up, with what made it (a kill, loot from a
 -- creature, an object on the ground) and that creature's or object's id; every bit of experience and
--- where it came from (a kill, a quest turned in, exploring); a level; a death. While the
--- character has a run, it also carries the run's id and, a byte a frame, the character's Name-Realm,
--- so the Companion files the recording under the right character. The
+-- where it came from (a kill, a quest turned in, exploring); a level; a death. It carries the
+-- character's Name-Realm, a byte a frame, so the live view shows only the character played now, and
+-- while the character has a run, the run's id, so the Companion files the recording under them. The
 -- Companion captures that strip and nothing else, and sends it to codex, where admins watch the player
 -- move on the map and play their recordings back.
 -- The contract (frame, cells, checksum) is forever-codex's docs/LIVE-BEACON.md; the encoder is
@@ -248,17 +248,18 @@ function LiveBeacon:Frame()
     if Plain(ns.Safe(rawget(_G, "UnitOnTaxi"), "player")) == true then flags = flags + F.taxi end
     if Plain(ns.Safe(rawget(_G, "UnitIsDeadOrGhost"), "player")) == true then flags = flags + F.dead end
     if not x or not y then flags, x, y = flags + F.noPosition, 0, 0 end
-    -- a run: its id and the character's name; the flag says whether it records now
+    -- the character's name, always, so the live view shows only the character played now; and a
+    -- run's id, the flag saying whether it records now
     local run = ns.char and ns.char.run
-    local recording, nameIndex, nameByte = 0, 0, 0
+    local recording = 0
     if run then
         recording = LiveBeacon.RecordingOf(run.id)
         if ns.Run:State() == "recording" then flags = flags + F.recording else flags = flags + F.paused end
-        local bytes = Name()
-        nameIndex = nameStep % #bytes
-        nameByte = bytes[nameIndex + 1]
-        nameStep = nameStep + 1
     end
+    local bytes = Name()
+    local nameIndex = nameStep % #bytes
+    local nameByte = bytes[nameIndex + 1]
+    nameStep = nameStep + 1
     seq = (seq + 1) % 65536
     local event = NextEvent()
     return {

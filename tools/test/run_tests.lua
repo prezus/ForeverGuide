@@ -4087,7 +4087,13 @@ section("the live beacon draws each frame as forever-codex's test vectors say, a
     check(shown and shown[1][1] == 0 and shown[23][1] == 255, "black and white calibration cells at its ends")
     local frame = L:Frame()
     check(frame.map ~= 0 and frame.classId == 1, "the frame reads the player's map and class (" .. frame.map .. ", " .. frame.classId .. ")")
-    check(frame.recording == 0 and frame.nameIndex == 0 and frame.nameByte == 0, "with no run, no recording id and no name")
+    check(frame.recording == 0, "with no run, no recording id")
+    local spelled, channel = {}, L.NameChannel(ns.Player:GetName() .. "-" .. ns.Player:GetRealm())
+    for _ = 1, #channel do
+        local fr = L:Frame()
+        if fr.nameIndex > 0 then spelled[fr.nameIndex] = string.char(fr.nameByte) end
+    end
+    check(table.concat(spelled) == "Tester-ClassicBetaPvE2", "with no run too, the frames name the character, so the live view knows who plays")
     L:SetEnabled(false)
     check(L:Shown() == nil and ns.db.liveBeacon == false, "switched off, the strip is gone")
 end)

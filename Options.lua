@@ -79,7 +79,7 @@ local ITEMS = {
     { key = "runs", label = "Record runs: Start, Pause, Stop and Send on the guide window; a timed log of your play (no names or clock time)",
       get = function() return Bool(ns.db.recordRuns) end,
       set = function(v) ns.Run:SetEnabled(v) end },
-    { key = "live", label = "Share live position with the Companion: a tiny strip in the top-left corner only the Companion reads (also drawn while you record a run, with your character's name); /fg live",
+    { key = "live", label = "Share live position with the Companion: a tiny strip in the top-left corner only the Companion reads (it names your character; also drawn while you record a run); /fg live",
       get = function() return Bool(ns.db.liveBeacon) end,
       set = function(v) ns.LiveBeacon:SetEnabled(v) end },
     { key = "scanner", label = "Scanner: collect quest IDs; allow /fg scan to query the server",
