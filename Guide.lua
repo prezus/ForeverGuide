@@ -1347,10 +1347,29 @@ local VERB = {
     TRAVEL = "Go to", FLY = "Fly to", TALK = "Talk to", FLIGHTPATH = "Get the flight path at", NOTE = "",
 }
 
+--- A spell's name as the client knows it; nil for a spell it does not know.
+local function spellName(id)
+    if not id then return nil end
+    local name = ns.PlainString(ns.Call("C_Spell.GetSpellName", id))
+    if name and name ~= "" then return name end
+    return nil
+end
+
+--- A step's own words, when it has some.
+local function words(step)
+    if step.note and step.note ~= "" then return step.note end
+    return nil
+end
+
 function Guide:GetStepText(step)
     if not step then return "" end
-    if step.text and step.text ~= "" then return step.text end
     local t = step.type
+    -- A note to use a spell ("Use:" with spell 2580) names the spell after its words.
+    if t == "NOTE" and step.spell and step.text and step.text ~= "" then
+        local name = spellName(step.spell)
+        return name and (step.text .. " " .. name) or step.text
+    end
+    if step.text and step.text ~= "" then return step.text end
     local verb = VERB[t] or t
     local DB = ns.DB
     if step.quest and (t == "ACCEPT" or t == "TURNIN" or OBJECTIVE[t]) then
@@ -1367,21 +1386,33 @@ function Guide:GetStepText(step)
         end
         return verb .. " " .. title
     elseif t == "GRIND" then
-        return verb .. " " .. tostring(step.level)
+        if step.level then return verb .. " " .. step.level end
+        return words(step) or "Grind"
     elseif t == "BUY" then
-        return string.format("%s %d x %s", verb, step.count or 1, step.itemName or (DB and DB:ItemName(step.item)) or ("item " .. tostring(step.item)))
+        return string.format("%s %d x %s", verb, step.count or 1, step.itemName or (step.item and DB and DB:ItemName(step.item)) or "the item")
     elseif t == "TRAIN" then
-        return verb .. " " .. tostring(step.spellName or ("spell " .. tostring(step.spell)))
+        -- TUGs' [T] names no spell: his words say what to train ("Train \"Arcane Shot\".").
+        local name = step.spellName or spellName(step.spell)
+        if name then return verb .. " " .. name end
+        return words(step) or "Train at your trainer"
     elseif t == "TALK" or t == "FLIGHTPATH" then
-        return verb .. " " .. tostring(step.npcName or (DB and DB:NPCName(step.npc)) or ("NPC " .. tostring(step.npc)))
+        local who = step.npcName or (step.npc and DB and DB:NPCName(step.npc))
+        if who then return verb .. " " .. who end
+        if t == "FLIGHTPATH" then return "Get the flight path" .. (step.zone and (" in " .. step.zone) or "") end
+        return words(step) or "Talk to someone here"
     elseif t == "TRAVEL" or t == "FLY" then
-        return verb .. " " .. tostring(step.zone or (step.x and step.y and string.format("%.1f, %.1f", step.x, step.y)) or "destination")
+        local where = (t == "FLY" and step.place) or step.zone or (step.x and step.y and string.format("%.1f, %.1f", step.x, step.y))
+        return verb .. " " .. (where or "destination")
     elseif t == "HEARTH" then
         local keeper = step.npcName or (step.npc and DB and DB:NPCName(step.npc))
         if keeper then return "Set your hearthstone with " .. keeper .. (step.zone and (" (" .. step.zone .. ")") or "") end
-        return verb .. " " .. tostring(step.zone or "the inn")
+        return verb .. " " .. (step.zone or "the inn")
+    elseif t == "USEHEARTH" then
+        return words(step) or "Use your hearthstone"
+    elseif t == "SKILL" then
+        return words(step) or (step.profession and ("Learn " .. step.profession)) or "Learn the skill"
     end
-    return step.note or t
+    return words(step) or t or ""
 end
 
 --- Progress text for the current step ("6 / 8", "ready to turn in", ...).

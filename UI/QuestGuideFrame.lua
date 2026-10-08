@@ -602,9 +602,11 @@ local function subtitle(G, step, idx)
         if prog and prog:find("^%d+ / %d+") then text = text .. "  (" .. prog .. ")" end
         return text
     elseif t == "GRIND" then
-        return step.note or ("Grind to level " .. tostring(step.level))
+        return step.note or G:GetStepText(step)
+    elseif t == "FLY" and step.place then
+        return G:GetStepText(step)
     elseif t == "TRAVEL" or t == "FLY" then
-        return step.note or ("Go to " .. tostring(step.zone or ""))
+        return step.note or G:GetStepText(step)
     elseif t == "NOTE" then
         return nil
     end
@@ -629,7 +631,8 @@ local function rowTitle(G, step)
     local t = step.type
     if step.quest then return questTitle(step) or G:GetStepText(step) end
     if t == "NOTE" then return step.text or "Note" end
-    if t == "GRIND" then return "Grind to level " .. tostring(step.level) end
+    if t == "GRIND" then return G:GetStepText(step) end
+    if t == "FLY" and step.place then return "Fly to " .. step.place end
     if t == "TRAVEL" or t == "FLY" then return (step.zone and ("Travel to " .. step.zone)) or "Travel" end
     return G:GetStepText(step)
 end

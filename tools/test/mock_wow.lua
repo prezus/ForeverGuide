@@ -450,6 +450,11 @@ _G.C_Secrets = { ShouldSpellAuraBeSecret = function(id) return world.secretAuras
 _G.C_TooltipInfo = { GetUnit = function(unit) local p = world.plates and world.plates[unit] return p and { lines = p.tooltip or {} } or nil end }
 _G.C_Spell = _G.C_Spell or {}
 _G.C_Spell.GetSpellTexture = _G.C_Spell.GetSpellTexture or function() return 136000 end
+-- world.spellNames[id]: the spell's name as the client gives it; nil when the client does not know it
+world.spellNames = {}
+_G.C_Spell.GetSpellName = _G.C_Spell.GetSpellName or function(id) return world.spellNames[id] end
+--- the client knows this spell by this name
+function _G.MOCK_SPELL_NAME(id, name) world.spellNames[id] = name end
 _G.GetMaxPlayerLevel = function() return 60 end
 _G.IsXPUserDisabled = function() return world.xpDisabled == true end
 _G.C_GossipInfo = { GetAvailableQuests = function() return {} end, GetActiveQuests = function() return {} end }

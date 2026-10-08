@@ -3982,6 +3982,43 @@ section("docs agree with the code", function()
     check(#broken == 0, "every relative link in the docs resolves (" .. table.concat(broken, "; ") .. ")")
 end)
 
+-- ---- a step's text never says "nil" ------------------------------------------------
+section("a step's text names what it is about from what the step has, and never prints nil", function()
+    MOCK_SPELL_NAME(2580, "Find Minerals")
+    MOCK_SPELL_NAME(465, "Devotion Aura")
+    local cases = {
+        -- TUGs' "[T] Train "Arcane Shot"." names no spell: the step's own words say what to train
+        { { type = "TRAIN", class = { "HUNTER" }, note = 'Train "Arcane Shot".' }, 'Train "Arcane Shot".' },
+        { { type = "TRAIN" }, "Train at your trainer" },
+        { { type = "TRAIN", spell = 465 }, "Train Devotion Aura" },
+        { { type = "TRAIN", spell = 999999, note = "Get your skills." }, "Get your skills." },
+        { { type = "TRAIN", spell = 465, spellName = "Devotion" }, "Train Devotion" },
+        -- "Use: [SP2580]" as codex fixes it: a note with the spell to use
+        { { type = "NOTE", text = "Use:", spell = 2580 }, "Use: Find Minerals" },
+        { { type = "NOTE", text = "Use:", spell = 999999 }, "Use:" },
+        { { type = "FLIGHTPATH", zone = "Redridge Mountains", x = 25.5, y = 59.4, note = "Get the flightpath at:" }, "Get the flight path in Redridge Mountains" },
+        { { type = "FLIGHTPATH" }, "Get the flight path" },
+        { { type = "FLY", place = "Duskwood", note = "Fly to" }, "Fly to Duskwood" },
+        { { type = "FLY" }, "Fly to destination" },
+        { { type = "TALK", note = "Learn Skinning at" }, "Learn Skinning at" },
+        { { type = "TALK" }, "Talk to someone here" },
+        { { type = "GRIND", note = "Farm till level 9" }, "Farm till level 9" },
+        { { type = "GRIND" }, "Grind" },
+        { { type = "BUY", count = 2 }, "Buy 2 x the item" },
+        { { type = "USEHEARTH" }, "Use your hearthstone" },
+        { { type = "SKILL", profession = "Mining", skill = 1 }, "Learn Mining" },
+    }
+    for _, c in ipairs(cases) do
+        local text = G:GetStepText(c[1])
+        check(text == c[2], c[1].type .. " reads \"" .. c[2] .. "\" (" .. tostring(text) .. ")")
+    end
+    -- every type, with nothing but its type, says something and never "nil"
+    for _, t in ipairs({ "ACCEPT", "TURNIN", "COMPLETE", "KILL", "COLLECT", "GRIND", "BUY", "TRAIN", "HEARTH", "USEHEARTH", "TRAVEL", "FLY", "TALK", "FLIGHTPATH", "NOTE", "SKILL" }) do
+        local text = G:GetStepText({ type = t })
+        check(type(text) == "string" and text ~= "" and not text:find("nil", 1, true), t .. " with no fields reads without nil (" .. tostring(text) .. ")")
+    end
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0
