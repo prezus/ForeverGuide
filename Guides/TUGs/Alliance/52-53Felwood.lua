@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_52_53FELWOOD",
     name = "52-53 Felwood",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 52,
     maxLevel = 53,
@@ -133,7 +133,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=4496,note="TurnIn:"},
 {type="USEHEARTH",note="Use your Hearthstone."},
 {type="NOTE",text="Fly to Darkshore"},
-{type="USEHEARTH",zone="Darkshore",x=37,y=40,note="Set your to Darkshore at"},
+{type="HEARTH",zone="Darkshore",x=37,y=40,note="Set your Hearthstone to Darkshore at"},
 {type="NOTE",text="Fly to Ruth'Theran"},
 {type="ACCEPT",quest=978,note="Accept:"},
 {type="ACCEPT",quest=979,note="Accept:"},

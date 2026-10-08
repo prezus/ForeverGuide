@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_45_47TANARIS_HINTERLANDS",
     name = "45-47 Tanaris,Hinterlands",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 45,
     maxLevel = 47,
@@ -93,7 +93,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2988,zone="The Hinterlands",x=9.75,y=44.47,note="Accept:"},
 {type="ACCEPT",quest=2880,zone="The Hinterlands",x=14.83,y=44.56,note="Accept:"},
 {type="ACCEPT",quest=2877,zone="The Hinterlands",x=14.83,y=44.56,note="Accept:"},
-{type="USEHEARTH",zone="The Hinterlands",x=13.8,y=41.6,note="Set your to The Hinterlands at"},
+{type="HEARTH",npc=7744,npcName="Innkeeper Thulfram",zone="The Hinterlands",x=13.8,y=41.6,note="Set your Hearthstone to The Hinterlands at"},
 {type="COMPLETE",quest=3661,zone="The Hinterlands",x=56.49,y=44.83,radius=153,note="Do:"},
 {type="COMPLETE",quest=2988,zone="The Hinterlands",x=23.2,y=58.81,radius=15,note="Do:"},
 {type="GRIND",level=47,note="Grind on the trolls untill youre"},
@@ -119,7 +119,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=2989,zone="The Hinterlands",x=9.75,y=44.47,note="TurnIn:"},
 {type="ACCEPT",quest=2990,zone="The Hinterlands",x=9.75,y=44.47,note="Accept:"},
 {type="NOTE",text="Fly to Loch Modan"},
-{type="USEHEARTH",zone="Loch Modan",x=35.4,y=48.4,note="Set your to Loch Modan at"},
+{type="HEARTH",npc=6734,npcName="Innkeeper Hearthstove",zone="Loch Modan",x=35.4,y=48.4,note="Set your Hearthstone to Loch Modan at"},
 {type="TRAVEL",zone="Loch Modan",x=46.9,y=78.4,note="Run to"}
 }]],
 })

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_49_51UN_GORO",
     name = "49-51 Un'Goro",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 49,
     maxLevel = 51,
@@ -87,6 +87,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=4493,note="Accept:"},
 {type="TURNIN",quest=3378,optional=true,note="TurnIn:"},
 {type="NOTE",text="Fly to Ashenvale"},
-{type="USEHEARTH",zone="Ashenvale",x=37,y=49.2,note="Set your to Ashenvale at"}
+{type="HEARTH",npc=6738,npcName="Innkeeper Kimlya",zone="Ashenvale",x=37,y=49.2,note="Set your Hearthstone to Ashenvale at"}
 }]],
 })

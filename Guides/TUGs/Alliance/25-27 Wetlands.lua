@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_25_27_WETLANDS",
     name = "25-27 Wetlands",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 25,
     maxLevel = 27,
@@ -14,7 +14,7 @@ ns.RegisterGuide({
     order = 26,
     stepCount = 69,
     steps = [[{
-{type="BUY",count=1,item=2594,itemName="Flagon of Dwarven Honeymead",note="Buy: from Innkeeper Helbrek"},
+{type="BUY",count=1,item=2594,itemName="Flagon of Dwarven Honeymead",note="Buy: Flagon of Dwarven Honeymead from Innkeeper Helbrek"},
 {type="TURNIN",quest=942,note="TurnIn:"},
 {type="ACCEPT",quest=943,note="Accept:"},
 {type="ACCEPT",quest=288,note="Accept:"},

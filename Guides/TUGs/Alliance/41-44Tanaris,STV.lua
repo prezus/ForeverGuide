@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_41_44TANARIS_STV",
     name = "41-44 Tanaris,STV",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 41,
     maxLevel = 44,
@@ -46,7 +46,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1425,note="Accept:"},
 {type="TURNIN",quest=1425,note="TurnIn:"},
 {type="NOTE",text="Fly to Stranglethorn Vale"},
-{type="USEHEARTH",zone="Stranglethorn Vale",x=27,y=77.2,note="Set your to Stranglethorn Vale at"},
+{type="HEARTH",npc=6807,npcName="Innkeeper Skindle",zone="Stranglethorn Vale",x=27,y=77.2,note="Set your Hearthstone to Stranglethorn Vale at"},
 {type="TURNIN",quest=1116,note="TurnIn:"},
 {type="ACCEPT",quest=1117,note="Accept:"},
 {type="NOTE",text="Take the Boat to Ratchet"},

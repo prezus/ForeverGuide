@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_14_17_LOCH_MODAN",
     name = "14-17 Loch Modan",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 14,
     maxLevel = 17,
@@ -32,7 +32,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1783,class={"PALADIN"},note="Accept:"},
 {type="ACCEPT",quest=2039,note="Accept:"},
 {type="ACCEPT",quest=6392,race={"Dwarf","Gnome"},note="Accept:"},
-{type="FLY",note="Fly to",place="Loch Modan"},
+{type="FLY",note="Fly to Loch Modan",place="Loch Modan"},
 {type="ACCEPT",quest=436,note="Accept:"},
 {type="TURNIN",quest=6392,race={"Dwarf","Gnome"},note="TurnIn:"},
 {type="ACCEPT",quest=224,race={"NightElf"},note="Accept:"},
@@ -78,7 +78,7 @@ ns.RegisterGuide({
 {type="USEHEARTH",note="Use your Hearthstone."},
 {type="TRAIN",note="Get your Level 16 skills at your trainer."},
 {type="TURNIN",quest=301,note="TurnIn:"},
-{type="FLY",note="Fly to",place="Wetlands"},
+{type="FLY",note="Fly to Wetlands",place="Wetlands"},
 {type="NOTE",text="Take the boat to Darkshore"}
 }]],
 })
