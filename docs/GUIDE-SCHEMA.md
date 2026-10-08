@@ -54,7 +54,7 @@ Common fields (all optional unless the type needs them):
 | `count`     | int    | amount for KILL/COLLECT/BUY display |
 | `item`      | int    | item ID (BUY) |
 | `itemName`  | string | |
-| `spell`     | int    | spell ID (TRAIN) |
+| `spell`     | int    | spell ID (TRAIN; a NOTE's spell to use, named after its `text`: "Use: Find Minerals") |
 | `spellName` | string | |
 | `level`     | int    | GRIND target level |
 | `map`       | int    | uiMapID for the coordinates |
@@ -83,7 +83,7 @@ Common fields (all optional unless the type needs them):
 | `COLLECT`  | same as COMPLETE     | (display: "Collect N target") |
 | `GRIND`    | `level`              | player level >= level |
 | `BUY`      | `item`, `count`      | bag count >= count |
-| `TRAIN`    | [`spell`]            | spell known; without a spell, a trainer's window opening |
+| `TRAIN`    | [`spell`]            | spell known; without a spell, a trainer's window opening. Its text names the spell (`spellName`, else the client's name for `spell`), else says the step's `note` |
 | `SKILL`    | `profession`, `skill` | the profession at that rank |
 | `USEHEARTH` |                     | the hearthstone cast (or manual) |
 | `HEARTH`   | [`npc`] [`zone`]     | hearthstone bound while talking to that innkeeper (`HEARTHSTONE_BOUND`); or, for a bind made earlier, `GetBindLocation()` equals `zone` |
