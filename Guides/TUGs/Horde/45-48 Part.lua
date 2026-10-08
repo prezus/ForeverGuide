@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_45_48_PART",
     name = "45-48 Part",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 45,
     maxLevel = 48,
@@ -19,7 +19,7 @@ ns.RegisterGuide({
 {type="NOTE",text="I recommend doing Uldaman now"},
 {type="NOTE",text="TODO: Add Uldaman Guide/Quests"},
 {type="FLY",note="Fly to Camp Taurajo",place="Camp Taurajo"},
-{type="FLIGHTPATH",zone="Dustwallow Marsh",x=35.6,y=31.8,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=11899,npcName="Shardi",zone="Dustwallow Marsh",x=35.6,y=31.8,note="Get the flight path flightpath at:"},
 {type="ACCEPT",quest=1166,note="Accept:"},
 {type="ACCEPT",quest=1168,note="Accept:"},
 {type="ACCEPT",quest=1169,note="Accept:"},

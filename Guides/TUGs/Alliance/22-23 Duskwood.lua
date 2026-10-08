@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_22_23_DUSKWOOD",
     name = "22-23 Duskwood",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     minLevel = 22,
     maxLevel = 23,
@@ -23,7 +23,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=163,note="Accept:"},
 {type="ACCEPT",quest=164,note="Accept:"},
 {type="ACCEPT",quest=165,note="Accept:"},
-{type="FLIGHTPATH",zone="Duskwood",x=77.12,y=44.17,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=2409,npcName="Felicia Maline",zone="Duskwood",x=77.12,y=44.17,note="Get the flight path flightpath at:"},
 {type="TRAVEL",zone="Duskwood",x=78,y=48.3,note="If it is in stock - and you dont have one yet-: Buy a Bronzetube at"},
 {type="COMPLETE",quest=56,note="Do:"},
 {type="ACCEPT",quest=245,note="Accept:"},

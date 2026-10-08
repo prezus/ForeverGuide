@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_11_14_DARKSHORE",
     name = "11-14 Darkshore",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 11,
     maxLevel = 14,
@@ -18,7 +18,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=6343,race={"NightElf"},note="Accept:"},
 {type="ACCEPT",quest=983,note="Accept:"},
 {type="ACCEPT",quest=3524,note="Accept:"},
-{type="FLIGHTPATH",zone="Darkshore",x=36.3,y=45.6,race={"Dwarf","Gnome","Human"},note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=3841,npcName="Caylais Moonfeather",zone="Darkshore",x=36.3,y=45.6,race={"Dwarf","Gnome","Human"},note="Get the flight path flightpath at:"},
 {type="COMPLETE",quest=983,note="Do"},
 {type="COMPLETE",quest=3524},
 {type="TURNIN",quest=983,note="TurnIn:"},

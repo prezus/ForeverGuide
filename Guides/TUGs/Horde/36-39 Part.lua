@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_36_39_PART",
     name = "36-39 Part",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 36,
     maxLevel = 39,
@@ -66,7 +66,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1435,note="Accept:"},
 {type="ACCEPT",quest=5381,note="Accept:"},
 {type="ACCEPT",quest=6143,note="Accept:"},
-{type="FLIGHTPATH",zone="Desolace",x=21.6,y=74,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=6726,npcName="Thalon",zone="Desolace",x=21.6,y=74,note="Get the flight path flightpath at:"},
 {type="COMPLETE",quest=1368,note="Do:"},
 {type="ACCEPT",quest=5561,note="Accept:"},
 {type="COMPLETE",quest=5561,note="Do:"},

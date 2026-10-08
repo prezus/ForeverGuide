@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_49_51UN_GORO",
     name = "49-51 Un'Goro",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 49,
     maxLevel = 51,
@@ -32,7 +32,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=4243,note="Accept:"},
 {type="TURNIN",quest=3845,note="TurnIn:"},
 {type="ACCEPT",quest=3908,note="Accept:"},
-{type="FLIGHTPATH",zone="Un'Goro Crater",x=45.2,y=5.8,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=10583,npcName="Gryfe",zone="Un'Goro Crater",x=45.2,y=5.8,note="Get the flight path flightpath at:"},
 {type="TURNIN",quest=3884,note="TurnIn:"},
 {type="ACCEPT",quest=3881,note="Accept:"},
 {type="ACCEPT",quest=3883,note="Accept:"},

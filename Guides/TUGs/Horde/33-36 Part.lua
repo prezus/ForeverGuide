@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_33_36_PART",
     name = "33-36 Part",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 33,
     maxLevel = 36,
@@ -15,7 +15,7 @@ ns.RegisterGuide({
     stepCount = 102,
     steps = [[{
 {type="NOTE",text="Take the Zeppelin to Stranglethorn Vale"},
-{type="FLIGHTPATH",zone="Stranglethorn Vale",x=32.6,y=29.2,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=1387,npcName="Thysta",zone="Stranglethorn Vale",x=32.6,y=29.2,note="Get the flight path flightpath at:"},
 {type="ACCEPT",quest=581,note="Accept:"},
 {type="ACCEPT",quest=596,note="Accept:"},
 {type="ACCEPT",quest=629,note="Accept:"},
@@ -86,7 +86,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=547,note="Do:"},
 {type="TRAVEL",zone="Arathi Highlands",x=30.3,y=50.4,note="Run to"},
 {type="COMPLETE",quest=676,note="Do:"},
-{type="FLIGHTPATH",zone="Arathi Highlands",x=73,y=32.6,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=2851,npcName="Urda",zone="Arathi Highlands",x=73,y=32.6,note="Get the flight path flightpath at:"},
 {type="TURNIN",quest=638,note="TurnIn:"},
 {type="TURNIN",quest=676,note="TurnIn:"},
 {type="ACCEPT",quest=677,note="Accept:"},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_6_9_ELWYNN_FOREST",
     name = "6-9 Elwynn Forest",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 6,
     maxLevel = 9,
@@ -109,7 +109,7 @@ ns.RegisterGuide({
 {type="TRAVEL",zone="Redridge Mountains",x=9.8,y=75.6,note="Run to and die to the spiders and rezz up in Redridge."},
 {type="NOTE",spell=465,class={"PALADIN"},text="Use:"},
 {type="TRAVEL",zone="Redridge Mountains",x=20.5,y=56.6,note="Run to for Lake Everstill exploring experience."},
-{type="FLIGHTPATH",zone="Redridge Mountains",x=25.5,y=59.4,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=931,npcName="Ariena Stormfeather",zone="Redridge Mountains",x=25.5,y=59.4,note="Get the flight path flightpath at:"},
 {type="USEHEARTH",note="Use your Hearthstone."},
 {type="COMPLETE",quest=96626,note="Do:"},
 {type="TURNIN",quest=96626,note="TurnIn:"},
@@ -145,6 +145,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1097,note="TurnIn:"},
 {type="ACCEPT",quest=353,note="Accept:"},
 {type="TRAVEL",zone="Stormwind City",x=69.1,y=30.8,note="Take the Tram to Ironforge"},
-{type="FLIGHTPATH",zone="Ironforge",x=55.5,y=47.8,note="Get the flightpath at:"}
+{type="FLIGHTPATH",npc=1573,npcName="Gryth Thurden",zone="Ironforge",x=55.5,y=47.8,note="Get the flight path flightpath at:"}
 }]],
 })

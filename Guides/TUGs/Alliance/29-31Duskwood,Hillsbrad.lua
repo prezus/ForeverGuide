@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_29_31DUSKWOOD_HILLSBRAD",
     name = "29-31 Duskwood,Hillsbrad",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 29,
     maxLevel = 31,
@@ -100,7 +100,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=474,note="(Whenever you can)Do:"},
 {type="COMPLETE",quest=335,objective=2,note="Do:"},
 {type="TURNIN",quest=378,optional=true,note="TurnIn:"},
-{type="FLIGHTPATH",zone="Hillsbrad Foothills",x=49.4,y=52.4,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=2432,npcName="Darla Harris",zone="Hillsbrad Foothills",x=49.4,y=52.4,note="Get the flight path flightpath at:"},
 {type="ACCEPT",quest=564,note="Accept:"},
 {type="HEARTH",npc=2352,npcName="Innkeeper Anderson",zone="Hillsbrad Foothills",x=51.2,y=58.8,note="Set your Hearthstone to Hillsbrad Foothills at"},
 {type="ACCEPT",quest=536,note="Accept:"},

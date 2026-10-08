@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_COLDRIDGE_VALLEY",
     name = "1-6 Coldridge Valley",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,
@@ -54,7 +54,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=3115,class={"WARLOCK"},note="TurnIn:"},
 {type="ACCEPT",quest=1599,class={"WARLOCK"},note="Accept:"},
 {type="TALK",npc=267336,note="Learn Skinning at"},
-{type="BUY",npc=267336,count=1,item=7005,itemName="Skinning Knife",note="Buy: Skinning Knife at"},
+{type="BUY",npc=267336,npcName="Brighid Stormflayer",count=1,item=7005,itemName="Skinning Knife",note="Buy a Skinning Knife from Brighid Stormflayer"},
 {type="TRAVEL",zone="Dun Morogh",x=26.4,y=67.5,note="Run to"},
 {type="COMPLETE",quest=97277,note="Do:"},
 {type="COMPLETE",quest=183,note="Do:"},

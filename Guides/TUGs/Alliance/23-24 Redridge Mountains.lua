@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_23_24_REDRIDGE_MOUNTAINS",
     name = "23-24 Redridge Mountains",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 23,
     maxLevel = 24,
@@ -66,7 +66,7 @@ ns.RegisterGuide({
 {type="FLY",note="Fly to Stormwind City",place="Stormwind City"},
 {type="TRAIN",note="Get your Level 24 skills at your trainer."},
 {type="FLY",note="Fly to Wetlands",place="Wetlands"},
-{type="HEARTH",zone="Wetlands",x=11,y=61,note="Set your to Wetlands at"},
+{type="HEARTH",npc=1464,npcName="Innkeeper Helbrek",zone="Wetlands",x=11,y=61,note="Set your Hearthstone to Wetlands at"},
 {type="NOTE",text="Take the boat to Auberdine"}
 }]],
 })

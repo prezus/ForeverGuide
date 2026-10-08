@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_48_51_PART",
     name = "48-51 Part",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 48,
     maxLevel = 51,
@@ -33,7 +33,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=7841,note="Accept:"},
 {type="ACCEPT",quest=7844,note="Accept:"},
 {type="ACCEPT",quest=7815,note="Accept:"},
-{type="FLIGHTPATH",zone="The Hinterlands",x=81.6,y=81.8,note="Get the flightpath at:"},
+{type="FLIGHTPATH",npc=4314,npcName="Gorkas",zone="The Hinterlands",x=81.6,y=81.8,note="Get the flight path flightpath at:"},
 {type="COMPLETE",quest=7815,note="Do:"},
 {type="COMPLETE",quest=7828,note="Do:"},
 {type="COMPLETE",quest=7839,note="Do:"},
