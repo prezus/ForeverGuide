@@ -14,7 +14,7 @@ import struct
 import sys
 import zlib
 
-CELLS, CELL_PX, MAGIC, BYTES = 18, 3, 0xFC, 24
+CELLS, CELL_PX, MAGIC, BYTES = 23, 3, 0xFC, 31
 
 
 def read_png(path):
@@ -79,7 +79,8 @@ def main():
     print(f"seq {word(1)}  map {word(3)}  x {word(5) / 655.35:.2f}  y {word(7) / 655.35:.2f}  "
           f"facing {b[9]}  class {b[10]}  flags {b[11]}")
     print(f"event #{b[12]} kind {b[13]} value {(b[14] << 16) | (b[15] << 8) | b[16]}  "
-          f"recording {bytes(b[17:21]).hex()}  name [{b[21]}] = {b[22]}")
+          f"objective {b[17]} {b[18]}/{b[19]}  source {b[20]} id {(b[21] << 16) | (b[22] << 8) | b[23]}")
+    print(f"recording {bytes(b[24:28]).hex()}  name [{b[28]}] = {b[29]}")
 
 
 if __name__ == "__main__":
