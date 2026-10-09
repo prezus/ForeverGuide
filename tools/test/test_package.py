@@ -94,6 +94,25 @@ class PackageTest(unittest.TestCase):
         subprocess.run([sys.executable, "tools/package.py", "--test"], cwd=self.repo, check=True, capture_output=True)
         self.assertEqual(sorted(p.name for p in (self.repo / "dist").iterdir()), ["%s-%s.zip" % (NAME, head)])
 
+    def test_toc_names_the_build_after_its_version(self):
+        head = subprocess.run(["git", "-C", str(self.repo), "rev-parse", "--short=7", "HEAD"],
+                              check=True, capture_output=True, text=True).stdout.strip()
+        toc = self.build()[NAME + "/" + NAME + ".toc"]
+        self.assertTrue(toc.startswith("## Version: 9.9.9\n## X-Build: %s\n" % head), toc)
+
+    def test_check_rejects_a_toc_without_its_build(self):
+        self.build()
+        archive = self.repo / "dist" / (NAME + "-9.9.9.zip")
+        committed_toc = (self.repo / (NAME + ".toc")).read_text()
+        rebuilt = self.repo / "dist" / "unstamped.zip"
+        with zipfile.ZipFile(archive) as src, zipfile.ZipFile(rebuilt, "w") as dst:
+            for name in src.namelist():
+                toc = name == NAME + "/" + NAME + ".toc"
+                dst.writestr(name, committed_toc if toc else src.read(name))
+        result = subprocess.run([sys.executable, "tools/check_package.py", str(rebuilt)], cwd=self.repo,
+                                capture_output=True)
+        self.assertNotEqual(result.returncode, 0, "a TOC with no ## X-Build must fail the check")
+
     def test_check_rejects_a_zip_with_an_uncommitted_file(self):
         self.build()
         archive = self.repo / "dist" / (NAME + "-9.9.9.zip")

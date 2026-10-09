@@ -8,7 +8,7 @@ import re
 import sys
 import zipfile
 
-from package import NAME, ROOT, committed, ships, version
+from package import NAME, ROOT, committed, ships, unstamp, version
 
 archive = sys.argv[1] if len(sys.argv) > 1 else f"{ROOT}/dist/{NAME}-{version()}.zip"
 prefix = NAME + "/"
@@ -39,7 +39,12 @@ with zipfile.ZipFile(archive) as package:
         assert path.startswith(prefix), f"file outside addon folder: {path}"
         rel = path[len(prefix):]
         assert rel in head and ships(rel), f"not a committed release file: {path}"
-        assert package.read(path) == head[rel], f"differs from the committed file: {path}"
+        data = package.read(path)
+        if path == toc:
+            # the one change packaging makes: the build it came from, for the Companion
+            assert re.search(rb"^## X-Build: [0-9a-f]{7,40}$", data, re.M), f"{toc} names no build (## X-Build)"
+            data = unstamp(data)
+        assert data == head[rel], f"differs from the committed file: {path}"
     if os.path.isfile(os.path.join(ROOT, "LICENSE")):
         assert prefix + "LICENSE" in files, "LICENSE not included in release ZIP"
 print(f"OK: {archive} contains all TOC/XML references and only committed release files")
