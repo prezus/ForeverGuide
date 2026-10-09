@@ -11,7 +11,8 @@ also the live addon the game loads, so it holds local files that must not ship -
 reports, SavedVariables copies, debug dumps, uncommitted edits. Commit what should ship.
 
 The version comes from ## Version in the committed ForeverGuide.toc. The zip unpacks to
-Interface\\AddOns\\ForeverGuide\\.
+Interface\\AddOns\\ForeverGuide\\. Its TOC gains `## X-Build: <commit>`, the commit it was built from,
+so the ForeverGuide Companion can tell which build is installed and offer the newer one.
 """
 
 import hashlib
@@ -74,6 +75,19 @@ def version(files=None):
     return m.group(1) if m else "0.0.0"
 
 
+def stamp(toc, commit):
+    """The TOC with `## X-Build: <commit>` after its ## Version line (or first, without one)."""
+    lines = toc.decode("utf-8").splitlines(keepends=True)
+    at = next((i + 1 for i, line in enumerate(lines) if re.match(r"##\s*Version:", line)), 0)
+    lines.insert(at, "## X-Build: %s\n" % commit)
+    return "".join(lines).encode("utf-8")
+
+
+def unstamp(toc):
+    """The TOC without its `## X-Build:` line: what was committed."""
+    return re.sub(rb"^##\s*X-Build:[^\n]*\n", b"", toc, flags=re.M)
+
+
 def head_commit():
     """Short hash of HEAD, the commit the zip is built from."""
     return subprocess.run(["git", "-C", ROOT, "rev-parse", "--short=7", "HEAD"],
@@ -89,13 +103,15 @@ def main():
     ver = version(files)
     out_dir = os.path.join(ROOT, "dist")
     os.makedirs(out_dir, exist_ok=True)
-    tag = head_commit() if test else ver + ("-dev" if dev else "")
+    commit = head_commit()
+    tag = commit if test else ver + ("-dev" if dev else "")
     out = os.path.join(out_dir, "%s-%s.zip" % (NAME, tag))
     n = 0
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for path in sorted(files):
             if ships(path, dev):
-                z.writestr(NAME + "/" + path, files[path])
+                data = stamp(files[path], commit) if path == NAME + ".toc" else files[path]
+                z.writestr(NAME + "/" + path, data)
                 n += 1
     dirty = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--untracked-files=no"],
                            capture_output=True, text=True).stdout.strip()
