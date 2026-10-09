@@ -4087,7 +4087,13 @@ section("the live beacon draws each frame as forever-codex's test vectors say, a
     check(shown and shown[1][1] == 0 and shown[23][1] == 255, "black and white calibration cells at its ends")
     local frame = L:Frame()
     check(frame.map ~= 0 and frame.classId == 1, "the frame reads the player's map and class (" .. frame.map .. ", " .. frame.classId .. ")")
-    check(frame.recording == 0 and frame.nameIndex == 0 and frame.nameByte == 0, "with no run, no recording id and no name")
+    check(frame.recording == 0, "with no run, no recording id")
+    local spelled, channel = {}, L.NameChannel(ns.Player:GetName() .. "-" .. ns.Player:GetRealm())
+    for _ = 1, #channel do
+        local fr = L:Frame()
+        if fr.nameIndex > 0 then spelled[fr.nameIndex] = string.char(fr.nameByte) end
+    end
+    check(table.concat(spelled) == "Tester-ClassicBetaPvE2", "with no run too, the frames name the character, so the live view knows who plays")
     L:SetEnabled(false)
     check(L:Shown() == nil and ns.db.liveBeacon == false, "switched off, the strip is gone")
 end)
@@ -4165,8 +4171,26 @@ section("the live beacon carries what the player does, each long enough for the 
     fr = next(EV.xp)
     check(fr and fr.eventValue == 80 and fr.source == S.explore, "experience from discovering an area is exploring")
 
-    ns.Events:Fire("FG_LEVEL_CHANGED", 12)
-    check(next(EV.level) ~= nil, "a level is an event")
+    -- a turn-in that dings: the bar starts again, and the game says so before the level changes
+    MOCK_XP(350, 400)                     -- a bar 50 short of the level
+    L:SetEnabled(false)
+    L:SetEnabled(true)
+    L:NoteXP()
+    before = L:Frame().eventSeq
+    MOCK_ADVANCE(5)
+    ns.Events:Fire("FG_QUEST_TURNED_IN", 790, nil, 175, 0)
+    MOCK_XP(125, 600)
+    fr = next(EV.xp)
+    check(fr and fr.eventValue == 175 and fr.source == S.quest,
+        "a turn-in that levels up keeps its experience: the rest of the old level and the new (" .. (fr and fr.eventValue or "none") .. ")")
+    -- the level event names the new level, though the game still answers the old one for a moment:
+    -- PLAYER_LEVEL_UP carries the new level while UnitLevel still says the old
+    local levelWas = UnitLevel("player")
+    MOCK_FIRE("PLAYER_LEVEL_UP", levelWas + 1)
+    fr = next(EV.level)
+    check(fr and fr.eventValue == levelWas + 1, "a level names the level reached, not the one the game still reports (" .. (fr and fr.eventValue or "none") .. ")")
+    check(ns.Player:GetLevel() == levelWas + 1, "and the player's level stays the new one")
+    MOCK_LEVEL(levelWas + 1)
     L:SetEnabled(false)
     ns.Events:Fire("FG_QUEST_ACCEPTED", 9)
     L:SetEnabled(true)
