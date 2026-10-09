@@ -289,28 +289,37 @@ local function Clock(secs)
 end
 Run.Clock = Clock
 
---- The guide header's Record button: one click records (turning Record runs on if it is off), the
---- next pauses, the next goes on. The run is this character's; it carries on through /reload and
---- logging out (OnEnterWorld), so a run over several sittings is one recording. The very first time,
---- a dialog says what recording does before it starts.
+--- Record on: with Record runs on, every character records whenever it is played (OnEnterWorld):
+--- a login starts its run, or carries on the one it has. Here, from the dot or Options: start or
+--- carry on now.
+local function RecordNow()
+    local run = Current()
+    if not run then
+        Run:Start()
+    elseif run.state == "paused" then
+        Run:Resume()
+    end
+end
+
+--- The guide header's Record button. Recording off: a click turns it on (the very first time after a
+--- dialog says how it works), from then on every character records whenever it is played. Recording:
+--- a click pauses for a break, until the next click or login. Right-click stops recording, after asking.
 function Run:Record()
     local state = self:State()
     if state == "recording" then
         self:Pause()
-        ns.Print("recording paused (" .. Clock(self:Elapsed()) .. "). Click the record dot to go on, or right-click it to finish.")
+        ns.Print("recording paused (" .. Clock(self:Elapsed()) .. "). It goes on when you click the record dot, or at your next login.")
         return
     end
-    if state == "paused" then
-        if not Enabled() then self:SetEnabled(true) end
+    if state == "paused" and Enabled() then
         self:Resume()
         if self:State() == "recording" then ns.Print("recording again (" .. Clock(self:Elapsed()) .. " so far).") end
         return
     end
     local function start()
-        if not Enabled() then self:SetEnabled(true) end
-        self:Start()
+        self:SetEnabled(true)
         if self:State() == "recording" then
-            ns.Print("recording your run on this character. It keeps going through /reload and logging out until you right-click the record dot to finish it.")
+            ns.Print("recording. From now on every character records whenever you play; right-click the record dot to stop.")
         end
     end
     if ns.db.recordExplained or not (ns.UI and ns.UI.ShowRecordIntro) then return start() end
@@ -320,25 +329,27 @@ function Run:Record()
     end)
 end
 
---- The record dot's right-click: finish the recording, after asking.
+--- The record dot's right-click: stop recording, on every character, after asking. What this
+--- character recorded is sent; its recording on codex carries on when recording is turned back on.
 function Run:Finish()
-    if self:State() == "idle" then
-        ns.Print("nothing is recording. Click the record dot to start.")
+    if not Enabled() then
+        ns.Print("recording is off. Click the record dot to record.")
         return
     end
     local function finish()
-        local played = self:Elapsed()
         self:Stop()
-        ns.Print("recording finished (" .. Clock(played) .. " played). Click the record dot to start a new one.")
+        self:SetEnabled(false)
+        ns.Print("recording stopped on all your characters. Click the record dot to record again.")
     end
     if not (ns.UI and ns.UI.ShowStopConfirm) then return finish() end
     ns.UI:ShowStopConfirm(finish)
 end
 
---- Record runs switched on or off (Options). Off pauses a recording run and hides the controls.
+--- Record runs switched on or off (the record dot, Options). On records now; off pauses the run.
 function Run:SetEnabled(on)
     if not on then self:Pause() end
     ns.db.recordRuns = on and true or false
+    if on then RecordNow() end
     Changed()
 end
 
@@ -470,20 +481,21 @@ function Run:OnInit()
     E:Register("HEARTHSTONE_BOUND", function() Add("HEARTH", { action = "bind" }) end)
 end
 
-function Run:OnEnterWorld()
+function Run:OnEnterWorld(isLogin, isReload)
     -- every addon has loaded by now, the companion's receipt included
     self:ApplyReceipt()
     Changed()
+    if not (Enabled() and (isLogin or isReload)) then return end
     local run = Current()
-    if not (run and Enabled() and run.state == "paused") then return end
-    -- recording when the game reloaded or logged out (or crashed): carry on, no click needed
-    if ns.char.runWanted and #run.entries < self.MAX_ENTRIES then
-        self:Resume()
-        ns.Print("still recording your run (" .. Clock(self:Elapsed()) .. " so far). Right-click the record dot to finish it.")
-        return
-    end
-    -- paused by the player, or full: say so, or the session goes unrecorded
-    Notice(#run.entries >= self.MAX_ENTRIES and "full" or "paused")
+    if run and run.state == "recording" then return end
+    if run and #run.entries >= self.MAX_ENTRIES then Notice("full") return end
+    -- a login records, with nothing to remember; a /reload keeps a pause the player made
+    if not (isLogin or ns.char.runWanted) then return end
+    local fresh = run == nil
+    RecordNow()
+    if self:State() ~= "recording" then return end
+    ns.Print((fresh and "recording this character" or "still recording this character") .. " (" .. Clock(self:Elapsed())
+        .. " so far). Click the record dot to pause, right-click it to stop.")
 end
 
 --- Send a full segment and record on from here: the dialog's "Send and resume".

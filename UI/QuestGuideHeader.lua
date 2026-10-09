@@ -54,7 +54,7 @@ function Header.Create(parent)
         if tt then tt:Hide() end
     end)
 
-    -- Record: click records this character's run, again pauses; right-click finishes it
+    -- Record: click turns recording on, or pauses and goes on; right-click stops recording
     h.record = Theme.NewButton(h, "", 24, 22, nil)
     h.record:SetPoint("RIGHT", h.reports, "LEFT", -4, 0)
     h.record:RegisterForClicks("LeftButtonUp", "RightButtonUp")
@@ -76,16 +76,18 @@ function Header.Create(parent)
         tt:SetOwner(self, "ANCHOR_TOP")
         if state == "recording" then
             tt:AddLine("|cffff4d40Recording|r  " .. R.Clock(R:Elapsed()))
-            tt:AddLine("Click: pause.  Right-click: finish this recording.", 1, 1, 1, true)
-        elseif state == "paused" then
+            tt:AddLine("Every character records by itself whenever you log in.", 1, 1, 1, true)
+            tt:AddLine("Click: pause for a break.  Right-click: stop recording.", 1, 1, 1, true)
+        elseif state == "paused" and ns.db.recordRuns then
             tt:AddLine("|cffffb333Paused|r  " .. R.Clock(R:Elapsed()))
-            tt:AddLine("Click: go on recording.  Right-click: finish this recording.", 1, 1, 1, true)
+            tt:AddLine("Goes on at your next login.", 1, 1, 1, true)
+            tt:AddLine("Click: go on now.  Right-click: stop recording.", 1, 1, 1, true)
         else
-            tt:AddLine("Record your run")
-            tt:AddLine("Click to start recording this character's leveling run. It keeps going through /reload and logging out until you finish it.", 1, 1, 1, true)
+            tt:AddLine("Recording is off")
+            tt:AddLine("Click to record your leveling: from then on every character records by itself whenever you log in, until you right-click to stop.", 1, 1, 1, true)
         end
         if R:HasCompanion() then
-            tt:AddLine("The Companion uploads it at each /reload or logout.", 0.6, 0.85, 0.6, true)
+            tt:AddLine("The Companion uploads it when you log out or /reload.", 0.6, 0.85, 0.6, true)
         else
             tt:AddLine("The ForeverGuide Companion is not installed: the recording stays here.", 1, 0.5, 0.5, true)
         end
@@ -118,9 +120,9 @@ end
 
 local RECORD_COLOR = { recording = { 1.00, 0.20, 0.15 }, paused = { 1.00, 0.70, 0.20 }, idle = { 0.45, 0.45, 0.45 } }
 
---- The Record button's dot: red while recording, amber paused, grey with no run.
+--- The Record button's dot: red while recording, amber paused, grey with recording off.
 function Header.RefreshRecord(h)
-    local c = RECORD_COLOR[ns.Run:State()] or RECORD_COLOR.idle
+    local c = ns.db.recordRuns and RECORD_COLOR[ns.Run:State()] or RECORD_COLOR.idle
     h.record.dot:SetColorTexture(c[1], c[2], c[3], 1)
 end
 

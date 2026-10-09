@@ -456,8 +456,9 @@ section("record runs: an opt-in, run controls on the guide window, segments thro
     need(ns.db.recordRuns and strip and strip:IsShown(), "switching Record runs on shows the run controls on the guide window")
     check(ns.QuestGuideHeader.HEIGHT > 50, "the header grows to hold the controls")
     check(ns.db.contribute == contributeWas, "Record runs does not touch Contribute data")
-    check(R:State() == "idle" and ns.char.run == nil and strip.start:IsShown() and not strip.stop:IsShown(),
-        "the controls start idle with only Start offered")
+    check(R:State() == "recording" and ns.char.run ~= nil and strip.stop:IsShown(),
+        "switching it on records at once, with Stop offered")
+    ns.Commands:Run("run discard")
     -- Start: the run begins at t = 0
     strip.start:GetScript("OnClick")(strip.start)
     local run = ns.char.run
@@ -1411,14 +1412,12 @@ section("a run near its limit, full, or paused at login asks the player with a d
 
     R:Pause()
     notice():Hide()
+    R:OnEnterWorld(false, true)
+    check(R:State() == "paused" and not shown(), "a /reload keeps a pause the player made")
+    R:OnEnterWorld(false, false)
+    check(R:State() == "paused", "entering a dungeon or zoning changes nothing")
     R:OnEnterWorld(true, false)
-    check(shown() and notice().kind == "paused", "logging in to a paused run asks to resume it")
-    notice().send:GetScript("OnClick")(notice().send)
-    check(R:State() == "recording" and not shown(), "Resume recording resumes the run")
-    R:Pause()
-    R:OnEnterWorld(true, false)
-    R:Resume()
-    check(not shown(), "resuming from the guide window closes the dialog too")
+    check(R:State() == "recording" and not shown(), "a login records by itself, with no dialog")
 
     ns.Commands:Run("run discard")
     ns.db.recordRuns = recordWas
@@ -4141,7 +4140,7 @@ section("the run log samples the player's position every 2 s while they move", f
     ns.db.recordRuns = recordWas
 end)
 
-section("Record: the first press says what recording does; click records and pauses, right-click finishes; a /reload carries on", function()
+section("Record: the first press says what recording does; then every login records by itself, a click pauses, right-click stops", function()
     local R = ns.Run
     local recordWas, explainedWas = ns.db.recordRuns, ns.db.recordExplained
     ns.db.recordRuns, ns.db.recordExplained = false, false
@@ -4155,7 +4154,7 @@ section("Record: the first press says what recording does; click records and pau
     click()
     check(shown("ForeverGuideRecordIntro") and ns.char.run == nil, "the first press opens what recording does, and records nothing yet")
     local intro = rawget(_G, "ForeverGuideRecordIntro")
-    check(intro.text:GetText():find("until you finish it", 1, true) ~= nil, "it says the run keeps going until finished")
+    check(intro.text:GetText():find("records by itself", 1, true) ~= nil, "it says it records by itself from then on")
     intro.yes:GetScript("OnClick")(intro.yes)
     check(ns.db.recordRuns == true and R:State() == "recording" and not shown("ForeverGuideRecordIntro"),
         "Start recording turns Record runs on and starts the run")
@@ -4163,7 +4162,7 @@ section("Record: the first press says what recording does; click records and pau
     GameTooltip.lines = {}
     header.record:GetScript("OnEnter")(header.record)
     local tip = table.concat(GameTooltip.lines, " ")
-    check(tip:find("Recording", 1, true) and tip:find("Right-click: finish", 1, true), "the tooltip says it records, and how to finish (" .. tip .. ")")
+    check(tip:find("Recording", 1, true) and tip:find("Right-click: stop recording", 1, true), "the tooltip says it records, and how to stop (" .. tip .. ")")
     header.record:GetScript("OnLeave")(header.record)
     local id = ns.char.run.id
     R:OnLogout()
@@ -4173,14 +4172,22 @@ section("Record: the first press says what recording does; click records and pau
     check(R:State() == "paused", "a click pauses")
     click()
     check(R:State() == "recording" and not shown("ForeverGuideRecordIntro"), "the next click goes on, without the explanation again")
-    -- right-click finishes, after asking
+    -- a login with no run (a new character, or one whose run ended) starts one by itself
+    ns.char.run, ns.char.runWanted = nil, nil
+    R:OnEnterWorld(true, false)
+    check(R:State() == "recording" and ns.char.run.id ~= id, "a login with recording on starts this character's run by itself")
+    -- right-click stops recording, after asking: on every character, until the dot is clicked again
     click("RightButton")
-    check(shown("ForeverGuideRecordStop") and R:State() == "recording", "right-click asks before finishing")
+    check(shown("ForeverGuideRecordStop") and R:State() == "recording", "right-click asks before stopping")
     local stop = rawget(_G, "ForeverGuideRecordStop")
     stop.yes:GetScript("OnClick")(stop.yes)
-    check(R:State() == "idle" and ns.char.run == nil, "finishing ends the run")
+    check(R:State() == "idle" and ns.char.run == nil and ns.db.recordRuns == false, "stopping ends the run and turns recording off")
+    R:OnEnterWorld(true, false)
+    check(R:State() == "idle", "after stopping, a login records nothing")
+    click("RightButton")
+    check(not shown("ForeverGuideRecordStop"), "right-click with recording off has nothing to stop")
     click()
-    check(R:State() == "recording" and ns.char.run.id ~= id, "the next press starts a new recording, at once")
+    check(R:State() == "recording" and not shown("ForeverGuideRecordIntro") and ns.db.recordRuns == true, "a click turns it back on, without the explanation again")
     ns.Commands:Run("run discard")
     check(ns.char.runWanted == nil, "discarding forgets the run")
     ns.db.recordRuns, ns.db.recordExplained = recordWas, explainedWas

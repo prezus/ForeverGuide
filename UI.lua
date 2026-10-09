@@ -463,16 +463,16 @@ end
 
 --- Before the first recording: what Record does, so nobody has to guess. `onStart` starts it.
 function UI:ShowRecordIntro(onStart)
-    local f = Ask("ForeverGuideRecordIntro", "RECORD YOUR RUN", 236)
+    local f = Ask("ForeverGuideRecordIntro", "RECORD YOUR LEVELING", 262)
     local companion = ns.Run:HasCompanion()
-        and "|cff7fd17fThe ForeverGuide Companion is installed:|r it uploads your recording at each /reload or logout."
-        or "|cffff7f7fThe ForeverGuide Companion is not installed:|r the recording is kept here, but only reaches codex once it is."
+        and "|cff7fd17fThe ForeverGuide Companion is installed:|r it uploads what you recorded when you log out or /reload."
+        or "|cffff7f7fThe ForeverGuide Companion is not installed:|r the recording is kept here, and reaches codex once it is."
     f.text:SetText(table.concat({
-        "Records this character's leveling run, as you play: the quests you take and turn in, what you kill and loot for them, every bit of experience, and where you go.",
+        "Records your leveling as you play: the quests you take and turn in, what you kill and loot for them, every bit of experience, and where you go.",
         "",
-        "One run is one recording. It keeps going through /reload, logging out and other days, until you finish it.",
+        "Once on, it records by itself: every character, every time you log in. Each character is one recording, over every day you play it.",
         "",
-        "|cffffd100Click|r the record dot to pause or go on. |cffffd100Right-click|r it to finish the recording; the next one starts fresh.",
+        "|cffffd100Click|r the record dot to pause for a break (until you click it again or next log in). |cffffd100Right-click|r it to stop recording.",
         "",
         companion,
     }, "\n"))
@@ -481,11 +481,11 @@ function UI:ShowRecordIntro(onStart)
     f:Show()
 end
 
---- Finish the recording? `onStop` does.
+--- Stop recording? `onStop` does.
 function UI:ShowStopConfirm(onStop)
-    local f = Ask("ForeverGuideRecordStop", "FINISH THIS RECORDING?", 132)
-    f.text:SetText("The run ends here and is sent as finished. Pressing the record dot after this starts a new recording.")
-    f.yes.label:SetText("Finish recording")
+    local f = Ask("ForeverGuideRecordStop", "STOP RECORDING?", 132)
+    f.text:SetText("No character records until you click the record dot again. What this character recorded is sent; its recording carries on when you start again.")
+    f.yes.label:SetText("Stop recording")
     f.onYes = onStop
     f:Show()
 end
