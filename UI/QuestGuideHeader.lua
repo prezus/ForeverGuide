@@ -54,9 +54,16 @@ function Header.Create(parent)
         if tt then tt:Hide() end
     end)
 
-    -- Record: one click records this character's run, again pauses (Run:Record)
-    h.record = Theme.NewButton(h, "", 24, 22, function() ns.Run:Record() end)
+    -- Record: click records this character's run, again pauses; right-click finishes it
+    h.record = Theme.NewButton(h, "", 24, 22, nil)
     h.record:SetPoint("RIGHT", h.reports, "LEFT", -4, 0)
+    h.record:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+    h.record:SetScript("OnClick", function(_, button)
+        local ok, err = pcall(function()
+            if button == "RightButton" then ns.Run:Finish() else ns.Run:Record() end
+        end)
+        if not ok then ns.ReportOnce("button:record", err) end
+    end)
     h.record.dot = h.record:CreateTexture(nil, "OVERLAY")
     h.record.dot:SetSize(10, 10)
     h.record.dot:SetPoint("CENTER", h.record, "CENTER", 0, 0)
@@ -64,10 +71,24 @@ function Header.Create(parent)
     h.record:SetScript("OnEnter", function(self)
         local tt = rawget(_G, "GameTooltip")
         if not tt then return end
-        local state = ns.Run:State()
+        local R = ns.Run
+        local state = R:State()
         tt:SetOwner(self, "ANCHOR_TOP")
-        tt:AddLine(state == "recording" and "Recording: click to pause" or state == "paused" and "Paused: click to record" or "Record this character's run")
-        tt:AddLine("Carries on through /reload and logging out. With the Companion, each /reload or logout uploads it to codex.", 1, 1, 1, true)
+        if state == "recording" then
+            tt:AddLine("|cffff4d40Recording|r  " .. R.Clock(R:Elapsed()))
+            tt:AddLine("Click: pause.  Right-click: finish this recording.", 1, 1, 1, true)
+        elseif state == "paused" then
+            tt:AddLine("|cffffb333Paused|r  " .. R.Clock(R:Elapsed()))
+            tt:AddLine("Click: go on recording.  Right-click: finish this recording.", 1, 1, 1, true)
+        else
+            tt:AddLine("Record your run")
+            tt:AddLine("Click to start recording this character's leveling run. It keeps going through /reload and logging out until you finish it.", 1, 1, 1, true)
+        end
+        if R:HasCompanion() then
+            tt:AddLine("The Companion uploads it at each /reload or logout.", 0.6, 0.85, 0.6, true)
+        else
+            tt:AddLine("The ForeverGuide Companion is not installed: the recording stays here.", 1, 0.5, 0.5, true)
+        end
         tt:Show()
     end)
     h.record:SetScript("OnLeave", function()

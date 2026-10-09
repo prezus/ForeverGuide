@@ -4141,31 +4141,49 @@ section("the run log samples the player's position every 2 s while they move", f
     ns.db.recordRuns = recordWas
 end)
 
-section("Record: one click records this character's run, and a /reload carries on", function()
+section("Record: the first press says what recording does; click records and pauses, right-click finishes; a /reload carries on", function()
     local R = ns.Run
-    local recordWas = ns.db.recordRuns
-    ns.db.recordRuns = false
+    local recordWas, explainedWas = ns.db.recordRuns, ns.db.recordExplained
+    ns.db.recordRuns, ns.db.recordExplained = false, false
     ns.char.run, ns.char.runWanted = nil, nil
     ns.UI:Show()
     local header = ForeverGuideFrame.header
     need(header.record ~= nil, "the guide header has a Record button")
-    header.record:GetScript("OnClick")(header.record)
-    check(ns.db.recordRuns == true and R:State() == "recording", "Record turns Record runs on and starts a run")
+    local function click(button) header.record:GetScript("OnClick")(header.record, button or "LeftButton") end
+    local function shown(name) local f = rawget(_G, name) return f ~= nil and f:IsShown() end
+    -- the first press explains, and records only once the player says so
+    click()
+    check(shown("ForeverGuideRecordIntro") and ns.char.run == nil, "the first press opens what recording does, and records nothing yet")
+    local intro = rawget(_G, "ForeverGuideRecordIntro")
+    check(intro.text:GetText():find("until you finish it", 1, true) ~= nil, "it says the run keeps going until finished")
+    intro.yes:GetScript("OnClick")(intro.yes)
+    check(ns.db.recordRuns == true and R:State() == "recording" and not shown("ForeverGuideRecordIntro"),
+        "Start recording turns Record runs on and starts the run")
+    -- the tooltip says the state and what each click does
+    GameTooltip.lines = {}
+    header.record:GetScript("OnEnter")(header.record)
+    local tip = table.concat(GameTooltip.lines, " ")
+    check(tip:find("Recording", 1, true) and tip:find("Right-click: finish", 1, true), "the tooltip says it records, and how to finish (" .. tip .. ")")
+    header.record:GetScript("OnLeave")(header.record)
     local id = ns.char.run.id
     R:OnLogout()
-    check(R:State() == "paused", "logging out pauses the run, as before")
     R:OnEnterWorld(false, true)
-    check(R:State() == "recording" and ns.char.run.id == id, "entering the world again carries on with the same run, no click")
-    header.record:GetScript("OnClick")(header.record)
-    check(R:State() == "paused", "Record again pauses")
-    R:OnLogout()
-    R:OnEnterWorld(false, true)
-    check(R:State() == "paused", "a run the player paused stays paused after a reload")
-    local notice = rawget(_G, "ForeverGuideRunNotice")
-    if notice then notice:Hide() end
+    check(R:State() == "recording" and ns.char.run.id == id, "a /reload carries on with the same run, no click")
+    click()
+    check(R:State() == "paused", "a click pauses")
+    click()
+    check(R:State() == "recording" and not shown("ForeverGuideRecordIntro"), "the next click goes on, without the explanation again")
+    -- right-click finishes, after asking
+    click("RightButton")
+    check(shown("ForeverGuideRecordStop") and R:State() == "recording", "right-click asks before finishing")
+    local stop = rawget(_G, "ForeverGuideRecordStop")
+    stop.yes:GetScript("OnClick")(stop.yes)
+    check(R:State() == "idle" and ns.char.run == nil, "finishing ends the run")
+    click()
+    check(R:State() == "recording" and ns.char.run.id ~= id, "the next press starts a new recording, at once")
     ns.Commands:Run("run discard")
     check(ns.char.runWanted == nil, "discarding forgets the run")
-    ns.db.recordRuns = recordWas
+    ns.db.recordRuns, ns.db.recordExplained = recordWas, explainedWas
 end)
 
 -- ---- no swallowed errors anywhere -------------------------------------------------
