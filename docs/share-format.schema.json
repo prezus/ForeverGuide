@@ -497,6 +497,16 @@
               "action": {
                 "type": "string",
                 "maxLength": 10
+              },
+              "src": {
+                "type": "string",
+                "maxLength": 10
+              },
+              "sid": {
+                "type": "integer"
+              },
+              "at": {
+                "type": "integer"
               }
             }
           }

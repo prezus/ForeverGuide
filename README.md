@@ -42,7 +42,7 @@ collected data and runs live only in the SavedVariables file, so send them (belo
 | `/fg dungeon on\|off` | Put the guide away inside instances |
 | `/fg edit`, `/fg edits` | Fix the current step where you stand (position, npc, note, radius) |
 | `/fg wrong [text]` (or `report`), `/fg reports` | Report a wrong step; list your reports |
-| `/fg share`, `/fg run`, `/fg scan`, `/fg live` | Data collection (below) |
+| `/fg share`, `/fg run`, `/fg scan` | Data collection (below) |
 | `/fg options` | Options panel |
 
 For debugging: `/fg debug`, `perf`, `eval`, `tracker`, `npdbg`, `wpdbg`, `harvest`.
