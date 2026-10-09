@@ -212,10 +212,17 @@ Run.CloseSegment = CloseSegment
 
 --- Keep a closed segment for ForeverGuide Companion: its share document, exactly what Send would
 --- show, at the end of ForeverGuideCharDB.runOutbox.
+--- It names the character, Name-Realm, as the game does, so codex files the run under it; a segment
+--- shown to copy (Send) never does.
 function Run.ToOutbox(segment)
     local outbox = ns.char.runOutbox or {}
     ns.char.runOutbox = outbox
-    outbox[#outbox + 1] = ns.Share:RunDoc(segment)
+    local doc = ns.Share:RunDoc(segment)
+    local name, realm = ns.Player:GetName(), ns.Player:GetRealm()
+    if type(doc.run) == "table" and name ~= "?" and realm ~= "?" then
+        doc.run.character = (name .. "-" .. realm):sub(1, 62)
+    end
+    outbox[#outbox + 1] = doc
 end
 
 --- The segments waiting for ForeverGuide Companion.
