@@ -489,6 +489,26 @@ for i = 1, 2 do
     function f:AddMessage(message) world.printed[#world.printed + 1] = message end
     _G["ChatFrame" .. i] = f
 end
+-- WoW's string.format takes only 32-bit integers for %d and friends: a bigger number is an error in
+-- game ("integer overflow attempting to store"), so it is one here too
+do
+    local format = string.format
+    string.format = function(pattern, ...)
+        local args, i = { ... }, 0
+        for spec in tostring(pattern):gmatch("%%[%-%+ #0]*%d*%.?%d*([%a%%])") do
+            if spec ~= "%" then
+                i = i + 1
+                local v = args[i]
+                if (spec == "d" or spec == "i" or spec == "x" or spec == "X" or spec == "c")
+                    and type(v) == "number" and (v > 2147483647 or v < -2147483648) then
+                    error("integer overflow attempting to store " .. format("%.0f", v), 2)
+                end
+            end
+        end
+        return format(pattern, ...)
+    end
+end
+
 -- the chat log (/chatlog) and chat windows an addon opens: what LiveLog.lua writes through
 world.chatLogging = false
 _G.LoggingChat = function(on)
