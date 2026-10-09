@@ -76,7 +76,7 @@ local ITEMS = {
     { key = "contribute", label = "Contribute data: quest givers, turn-ins, objective spots, addon errors (no names or times); /fg share",
       get = function() return Bool(ns.db.contribute) end,
       set = function(v) ns.Recorder:SetEnabled(v) end },
-    { key = "runs", label = "Record runs: Start, Pause, Stop and Send on the guide window; a timed log of your play (no names or clock time)",
+    { key = "runs", label = "Record runs: every character records as you play, for the ForeverGuide Companion to upload; the record dot pauses or stops it",
       get = function() return Bool(ns.db.recordRuns) end,
       set = function(v) ns.Run:SetEnabled(v) end },
     { key = "scanner", label = "Scanner: collect quest IDs; allow /fg scan to query the server",
