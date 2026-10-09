@@ -23,10 +23,10 @@ A share never contains:
 - **Who the player is.** No character name, realm, account, GUID, guild or chat. The profile
   holds only race, class and faction. Each report carries the same three for the character that
   made it, since reports outlive the character that ran `/fg share`.
-- **Time.** No timestamps, dates or time of day. `order` is the order in which quests were
-  accepted and turned in during the session. A run segment's `t` counts seconds of recording
-  since the player pressed Start, with paused time left out: it measures how long things took,
-  never when.
+- **Time.** Facts carry no timestamps, dates or time of day: `order` is the order in which quests
+  were accepted and turned in during the session. A run segment's `t` counts seconds of recording
+  since the player pressed Start, with paused time left out; its START and RESUME entries also say
+  when each sitting began (`at`), so a run over several evenings says which evening was which.
 - **Exact positions.** Spots are rounded to half a map unit (`cells`).
 
 Free text appears only in `/fg wrong` reports (`reports[].text`, up to 200 characters). The
@@ -104,15 +104,16 @@ mode). The kinds:
 
 | Kind | Fields | When |
 |---|---|---|
-| START, STOP | | The run starts; the run ends (in the `done` segment) |
-| PAUSE, RESUME | | Recording paused and resumed, at the same `t`. Logging out pauses. A segment that fills up (2,500 entries) pauses too, unless ForeverGuide Companion is installed (see below) |
+| START, STOP | `at` (START) | The run starts, at the date and time `at`; the run ends (in the `done` segment) |
+| PAUSE, RESUME | `at` (RESUME) | Recording paused and resumed, at the same `t`; `at` is when the sitting resumed. Logging out pauses. A segment that fills up (2,500 entries) pauses too, unless ForeverGuide Companion is installed (see below) |
 | GAP | | The client lost the SavedVariables: this segment's entries before `GAP` are missing |
 | ACCEPT, ABANDON | `q` | A quest accepted or abandoned |
 | TURNIN | `q`, `xp`, `money` | A quest turned in, with its reward (copper) |
-| OBJ | `q`, `obj`, `f`, `r`, `done` | Objective `obj` moved to `f` of `r` |
+| OBJ | `q`, `obj`, `f`, `r`, `done`, `src`, `sid` | Objective `obj` moved to `f` of `r`; `src` what did it (`kill`, `mobLoot`, `object`, `other`) and `sid` that creature's or object's id |
+| XP | `xp`, `src`, `sid` | Experience gained: `src` where it came from (`kill`, `quest`, `explore`, `other`) and `sid` the creature's or quest's id |
 | LEVEL | `l`, `rested` | A new level, with rested xp |
 | KILL | `npc`, `mobLevel`, `elite`, `secs`, `rested` | A creature the player killed; `secs` since the pull (or the fight's previous kill) |
-| MOVE | `mounted`, `taxi` | Every 5 s while the player moves |
+| MOVE | `mounted`, `taxi` | Every 2 s while the player moves |
 | TAXI | `cost` | A flight starts here, for this fare (copper) |
 | LAND | `secs` | The flight lands here, after `secs` |
 | DEATH | | The player died |
@@ -227,7 +228,7 @@ the uiMapID's 0-100 map.
 | `run.entries[].g` | string | Guide being followed, or `auto` |
 | `run.entries[].s` | integer | Guide step being followed |
 | `run.entries[].q` | integer | Quest id |
-| `run.entries[].xp` | integer | Turn-in xp |
+| `run.entries[].xp` | integer | Turn-in xp, or the experience an XP entry gained |
 | `run.entries[].money` | integer | Turn-in money (copper) |
 | `run.entries[].obj` | integer | Objective index |
 | `run.entries[].f` | integer | Objective progress |
@@ -243,6 +244,10 @@ the uiMapID's 0-100 map.
 | `run.entries[].taxi` | boolean | On a flight |
 | `run.entries[].cost` | integer | Flight fare (copper) |
 | `run.entries[].action` | string | Hearthstone: `use` or `bind` |
+| `run.character` | string | The character (`Name-Realm`). Never written by the addon: the Companion adds it when it uploads, from where the saved variables are |
+| `run.entries[].src` | string | What made an objective count or experience: `kill`, `mobLoot`, `object`, `quest`, `explore`, `other` |
+| `run.entries[].sid` | integer | That creature's, object's or quest's id |
+| `run.entries[].at` | integer | START and RESUME: the date and time the sitting began, seconds since the epoch |
 
 ## Limits
 

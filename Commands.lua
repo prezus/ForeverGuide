@@ -36,7 +36,6 @@ local HELP = {
     "/fg auto share|shared on|off   share quests you accept with your group / accept quests (and escorts) your group shares  |  /fg auto announce on|off",
     "/fg share [on|off|status|clear]   contribute quest data (off by default): /fg share copies it for the feedback form",
     "/fg run start|pause|resume|stop|send|discard|status   record a run (Record runs in /fg options shows these as buttons)",
-    "/fg live on|off       share your live position with the Companion (lines in the game's chat log)",
     "/fg scan on|off | new | [from] [to] | stop | resume | status   opt in before requesting quest data from the server",
     "/fg harvest | sweep [from to] | probe | status   quest discovery and map requests (needs /fg share on)",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
@@ -755,21 +754,6 @@ function handlers.run(rest)
         ns.Printf("record runs %s; run %s, %d entries in this segment, %d s recorded.",
             ns.db.recordRuns and "on" or "off", R:State(), R:Count(), math.floor(R:Elapsed()))
     end
-end
-
-function handlers.live(rest)
-    local L = ns.LiveLog
-    local target = rest:match("^target%s+(%a+)$")
-    if target then
-        if not L:SetTarget(target) then ns.Print("live log target: window, combat or main.") return end
-    elseif rest == "on" or rest == "off" then
-        L:SetEnabled(rest == "on")
-    end
-    local p, who = L:Place(), L:Who()
-    local logging = ns.Plain(ns.Safe(rawget(_G, "LoggingChat"))) == true
-    ns.Printf("live log for the Companion %s (chat log %s, lines to %s); %s, map %d at %.2f, %.2f, flags %d.",
-        L:Writing() and "on" or "off", logging and "on" or "off", ns.db.liveLogTarget or "window",
-        who.character, p.map, p.x, p.y, p.flags)
 end
 
 function handlers.scan(rest)

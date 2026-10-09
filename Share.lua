@@ -79,6 +79,9 @@ local SCHEMA = Obj {
     -- one segment of a recorded run (Run.lua); a segment share carries it instead of the facts
     { "run", Obj {
         { "id", Str(16) }, { "seg", "int" }, { "done", "bool" },
+        -- the character, Name-Realm: never written by the addon; the Companion adds it when it uploads,
+        -- from where the saved variables are, so codex files the run under its character
+        { "character", Str(62) },
         { "entries", List(Obj {
             { "e", Str(10) }, { "t", "num" }, { "lvl", "int" }, { "m", "int" }, { "x", "num" }, { "y", "num" },
             { "g", Str(80) }, { "s", "int" },
@@ -88,6 +91,7 @@ local SCHEMA = Obj {
             { "npc", "int" }, { "mobLevel", "int" }, { "elite", "bool" }, { "secs", "num" },
             { "mounted", "bool" }, { "taxi", "bool" }, { "cost", "int" },
             { "action", Str(10) },
+            { "src", Str(10) }, { "sid", "int" }, { "at", "int" },
         }, 2500) },
     } },
 }
@@ -336,7 +340,7 @@ function Share:Summary(doc)
     end
     add("WHAT THIS SHARE CONTAINS")
     add("Everything below is in the share string, and nothing else is.")
-    add("Never included: other players, your character name, realm or account, GUIDs, chat, or the date and time of day.")
+    add("Never included: other players, your character name, realm or account, GUIDs or chat. A run segment says when each sitting began; nothing else carries the date or time.")
     add("To check it yourself: the string is base64 of zlib-compressed JSON. docs/SHARE-FORMAT.md in the")
     add("ForeverGuide repository shows how to decode it with common tools and validate it against its schema.")
     add("")
@@ -419,7 +423,7 @@ function Share:Summary(doc)
         end
         section("RUN SEGMENT", #entries, "a timed log of what you did while the run recorded")
         add("Run %s, segment %d%s.", doc.run.id or "?", doc.run.seg or 0, doc.run.done and " (the last one)" or "")
-        add("Times count seconds of recording since the run started, never the clock: this segment covers %s to %s s.",
+        add("Times count seconds of recording since the run started (each sitting's start also says the date and time): this segment covers %s to %s s.",
             entries[1] and Num(entries[1].t or 0) or "0", entries[#entries] and Num(entries[#entries].t or 0) or "0")
         local counts = {}
         for i, k in ipairs(order) do counts[i] = k .. " x" .. kinds[k] end

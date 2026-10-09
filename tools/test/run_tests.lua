@@ -4050,118 +4050,99 @@ section("a step's text names what it is about from what the step has, and never 
     end
 end)
 
--- ---- the live log: who plays, where and what they do, written into the game's chat log --------
-section("the live log writes each line as forever-codex's vectors say", function()
-    local json = dofile(root .. "tools/test/json.lua")
-    local f = assert(io.open(root .. "tools/test/fixtures/live-log-vectors.json"))
-    local doc = json.decode(f:read("*a"))
-    f:close()
-    local L = ns.LiveLog
-    need(L and #doc.vectors > 0, "the live log module and its vectors")
-    for i, v in ipairs(doc.vectors) do
-        local line = {}
-        for k, value in pairs(v.line) do line[k] = value end
-        line.kind, line.eventKind = v.line._tag, v.line.kind
-        check(L.LineOf(line) == v.text, "vector " .. i .. " writes " .. v.text .. " (got " .. L.LineOf(line) .. ")")
-    end
-    check(L.RecordingOf("1A2b3c4d5e6f7081") == "1a2b3c4d" and L.RecordingOf(nil) == "0", "the recording id is the run id's first 8 hex digits, lower case")
-end)
-
-section("the live log: off by default; switched on, it turns the chat log on and writes to a window never shown", function()
-    local L = ns.LiveLog
+-- ---- the run log: what the player did, where it came from, and when each sitting began ---------
+section("the run log keeps every experience gain and objective count with where it came from", function()
+    local R = ns.Run
+    local recordWas = ns.db.recordRuns
+    ns.db.recordRuns = true
     ns.char.run = nil
-    MOCK_ADVANCE(2)
-    check(not L:Writing() and LoggingChat() == false, "off by default: nothing is written and the chat log stays as it was")
-    local printedBefore = #MOCK_PRINTED()
-    local start = #(MOCK_WINDOW_LINES("FG Log") or {})
-    L:SetEnabled(true)
-    MOCK_ADVANCE(2)
-    local out = MOCK_WINDOW_LINES("FG Log")
-    need(out ~= nil and #out > start, "switched on, lines are written to a chat window of its own")
-    check(LoggingChat() == true, "the chat log is switched on, so the game writes the lines to WoWChatLog.txt")
-    local who = out[start + 1] or ""
-    check(who:match("^FGLOG1 W %d+ 0 1 %d+ Tester%-ClassicBetaPvE2$") ~= nil, "it opens with who plays, no run (" .. who .. ")")
-    local place = out[start + 2] or ""
-    check(place:match("^FGLOG1 P %d+ %d+ %d+%.%d%d %d+%.%d%d %d+ %d+$") ~= nil, "then where they are (" .. place .. ")")
-    check(not MOCK_WINDOW_SHOWN("FG Log"), "the window is closed: the player never sees the lines")
-    check(#MOCK_PRINTED() == printedBefore, "nothing goes to the player's chat")
-    -- standing still: a position every 10 s, not every second
-    local before = #out
-    MOCK_ADVANCE(5)
-    check(#out == before, "standing still, no new position for 5 s")
-    MOCK_ADVANCE(6)
-    check(#out == before + 1, "and one after 10 s")
-    L:SetEnabled(false)
-    check(LoggingChat() == false, "switched off, the chat log goes back off, as the addon turned it on")
-    before = #out
-    MOCK_ADVANCE(15)
-    check(#out == before, "and nothing more is written")
-end)
-
-section("the live log writes what the player does, at once, with where it came from", function()
-    local L, EV, S = ns.LiveLog, ns.LiveLog.EVENT, ns.LiveLog.SOURCE
-    L:SetEnabled(true)
-    local out = MOCK_WINDOW_LINES("FG Log")
-    local function events()
-        local list = {}
-        for _, text in ipairs(out) do
-            local k, v, o, h, n, src, id = text:match("^FGLOG1 E %d+ (%d+) (%d+) (%d+) (%d+) (%d+) (%d+) (%d+)$")
-            if k then list[#list + 1] = { kind = tonumber(k), value = tonumber(v), objective = tonumber(o), have = tonumber(h),
-                need = tonumber(n), source = tonumber(src), sourceId = tonumber(id) } end
-        end
-        return list
+    R:Start()
+    local function entries(kind)
+        local out = {}
+        for _, e in ipairs(ns.char.run.entries) do if e.e == kind then out[#out + 1] = e end end
+        return out
     end
-    local function last() local e = events() return e[#e] end
-    local n = #events()
-    ns.Events:Fire("FG_QUEST_TURNED_IN", 783, nil, 100, 0)
-    ns.Events:Fire("FG_QUEST_ACCEPTED", 7)
-    local e = events()
-    check(#e == n + 2 and e[n + 1].kind == EV.turnIn and e[n + 1].value == 783 and e[n + 2].kind == EV.accept,
-        "a turn-in and the next pickup are both written, at once, in order")
-    -- a kill that counts
+    local function last(kind) local list = entries(kind) return list[#list] end
+    check(type(entries("START")[1].at) == "number" and entries("START")[1].at > 1700000000,
+        "the run's start says the date and time it began")
+    -- a kill that counts: the player killed the creature, and the count went up at once
     ns.Events:Fire("PARTY_KILL", UnitGUID("player"), "Creature-0-1-1-1-6-0000000001")
     ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 2, 3, 8, false)
-    local p = last()
-    check(p.kind == EV.progress and p.value == 7 and p.objective == 2 and p.have == 3 and p.need == 8 and p.source == S.kill and p.sourceId == 6,
-        "each count going up, with the quest, objective, have and need, and the creature killed")
+    local o = last("OBJ")
+    check(o and o.q == 7 and o.obj == 2 and o.f == 3 and o.r == 8 and o.src == "kill" and o.sid == 6,
+        "a count going up right after the player's kill names the creature")
     _G.GetLootSourceInfo = function() return "GameObject-0-1-1-1-1234-0000000002" end
     MOCK_ADVANCE(5)
     ns.Events:Fire("LOOT_OPENED")
     ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 1, 1, 6, false)
-    check(last().source == S.object and last().sourceId == 1234, "an item from an object's loot window names the object")
+    check(last("OBJ").src == "object" and last("OBJ").sid == 1234, "an item from an object's loot window names the object")
+    _G.GetLootSourceInfo = function() return "Creature-0-1-1-1-6-0000000003" end
+    MOCK_ADVANCE(5)
+    ns.Events:Fire("LOOT_OPENED")
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 1, 2, 6, false)
+    check(last("OBJ").src == "mobLoot" and last("OBJ").sid == 6, "an item looted from a creature names the creature")
     _G.GetLootSourceInfo = nil
-    -- experience and where it came from
+    MOCK_ADVANCE(10)
+    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 8, 1, 1, 1, true)
+    check(last("OBJ").src == "other" and last("OBJ").sid == nil, "a count with no kill or loot just before is something else")
+    -- experience, and where it came from (MOCK_XP fires PLAYER_XP_UPDATE as the game does)
     MOCK_XP(100, 400)
-    L:NoteXP()
-    n = #events()
+    local n = #entries("XP")
     ns.Events:Fire("PARTY_KILL", "Player-1-000099", "Creature-0-1-1-1-299-0000000004")
     MOCK_XP(145)
-    check(#events() == n + 1 and last().kind == EV.xp and last().value == 45 and last().source == S.kill and last().sourceId == 299,
-        "experience from a group's kill names the creature")
+    local x = last("XP")
+    check(#entries("XP") == n + 1 and x.xp == 45 and x.src == "kill" and x.sid == 299, "experience from a group's kill names the creature")
+    MOCK_ADVANCE(5)
+    MOCK_XP(350, 400)
     MOCK_ADVANCE(5)
     ns.Events:Fire("FG_QUEST_TURNED_IN", 790, nil, 175, 0)
-    MOCK_XP(350, 400)
-    L:NoteXP()
     MOCK_XP(125, 600)
     -- 400 - 350 left of the old level, 125 into the new
-    check(last().kind == EV.xp and last().value == 175 and last().source == S.quest and last().sourceId == 790,
+    check(last("XP").xp == 175 and last("XP").src == "quest" and last("XP").sid == 790,
         "a turn-in that levels up keeps its experience and names the quest")
     MOCK_ADVANCE(5)
     ns.Events:Fire("CHAT_MSG_COMBAT_XP_GAIN", "Discovered Kharanos: 80 experience gained")
     MOCK_XP(205)
-    check(last().value == 80 and last().source == S.explore, "experience from discovering an area is exploring")
+    check(last("XP").xp == 80 and last("XP").src == "explore", "experience from discovering an area is exploring")
     local levelWas = UnitLevel("player")
     MOCK_FIRE("PLAYER_LEVEL_UP", levelWas + 1)
-    check(last().kind == EV.level and last().value == levelWas + 1, "a level names the level reached, not the one the game still reports")
+    check(last("LEVEL").l == levelWas + 1, "a level names the level reached, not the one the game still reports")
     MOCK_LEVEL(levelWas + 1)
-    L:SetEnabled(false)
-    n = #events()
-    ns.Events:Fire("FG_QUEST_ACCEPTED", 9)
-    check(#events() == n, "with the live log off, nothing is written")
+    -- the entries pass the share allowlist: what the Companion uploads is what codex reads
+    local doc = ns.Share:RunDoc({ id = ns.char.run.id, seg = 1, entries = ns.char.run.entries })
+    local kept = 0
+    for _, e in ipairs(doc.run.entries) do if e.e == "XP" and e.src and e.xp then kept = kept + 1 end end
+    check(kept == #entries("XP"), "the share keeps every XP entry with its source")
+    R:Pause()
+    R:Resume()
+    check(type(last("RESUME").at) == "number", "a resumed sitting says when it began")
+    ns.Commands:Run("run discard")
+    ns.db.recordRuns = recordWas
 end)
 
-section("Record: one click records this character's run, the live log names it, and a /reload carries on", function()
-    local R, L = ns.Run, ns.LiveLog
+section("the run log samples the player's position every 2 s while they move", function()
+    local R = ns.Run
+    local recordWas = ns.db.recordRuns
+    ns.db.recordRuns = true
+    ns.char.run = nil
+    R:Start()
+    local function moves()
+        local n = 0
+        for _, e in ipairs(ns.char.run.entries) do if e.e == "MOVE" then n = n + 1 end end
+        return n
+    end
+    local before = moves()
+    for i = 1, 10 do
+        MOCK_MOVE(40 + i, 50)
+        MOCK_ADVANCE(1)
+    end
+    check(moves() - before >= 4 and moves() - before <= 6, "ten seconds of walking, about five positions (" .. (moves() - before) .. ")")
+    ns.Commands:Run("run discard")
+    ns.db.recordRuns = recordWas
+end)
+
+section("Record: one click records this character's run, and a /reload carries on", function()
+    local R = ns.Run
     local recordWas = ns.db.recordRuns
     ns.db.recordRuns = false
     ns.char.run, ns.char.runWanted = nil, nil
@@ -4170,13 +4151,6 @@ section("Record: one click records this character's run, the live log names it, 
     need(header.record ~= nil, "the guide header has a Record button")
     header.record:GetScript("OnClick")(header.record)
     check(ns.db.recordRuns == true and R:State() == "recording", "Record turns Record runs on and starts a run")
-    check(L:Writing() and LoggingChat() == true, "while recording the live log writes, the setting off")
-    local out = MOCK_WINDOW_LINES("FG Log")
-    local who
-    for _, text in ipairs(out) do if text:match("^FGLOG1 W ") then who = text end end
-    local recording = L.RecordingOf(ns.char.run.id)
-    check(who ~= nil and who:match("^FGLOG1 W %d+ " .. recording .. " %d+ (%d+) Tester") ~= nil, "who plays names the run being recorded (" .. tostring(who) .. ")")
-    check(tonumber(who:match("^FGLOG1 W %d+ %x+ %d+ (%d+)")) % 64 >= 32, "with the recording flag")
     local id = ns.char.run.id
     R:OnLogout()
     check(R:State() == "paused", "logging out pauses the run, as before")
@@ -4189,7 +4163,6 @@ section("Record: one click records this character's run, the live log names it, 
     check(R:State() == "paused", "a run the player paused stays paused after a reload")
     local notice = rawget(_G, "ForeverGuideRunNotice")
     if notice then notice:Hide() end
-    check(not L:Writing(), "paused, with the live setting off, nothing is written")
     ns.Commands:Run("run discard")
     check(ns.char.runWanted == nil, "discarding forgets the run")
     ns.db.recordRuns = recordWas

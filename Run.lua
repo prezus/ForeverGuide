@@ -5,19 +5,21 @@
 -- nothing is recorded until the player presses Start. While a run records, it keeps a timed
 -- log of what happened, for calibrating the route planner:
 --   START STOP PAUSE RESUME GAP   the run itself (GAP: entries lost; only from builds that mirrored the run)
---   ACCEPT TURNIN ABANDON OBJ     quests (TURNIN: xp, money; OBJ: obj, f, r, done)
+--   ACCEPT TURNIN ABANDON OBJ     quests (TURNIN: xp, money; OBJ: obj, f, r, done, src, sid)
+--   XP                            every bit of experience (xp, src, sid)
 --   LEVEL                         a level-up (l, rested)
 --   KILL                          a creature the player killed (npc, mobLevel, elite, secs, rested)
---   MOVE                          every 5 s while moving (mounted, taxi)
+--   MOVE                          every 2 s while moving (mounted, taxi)
 --   TAXI LAND                     a flight's start (cost) and landing (secs)
 --   DEATH RESURRECT               dying, and coming back (secs)
 --   HEARTH                        the hearthstone (action = "use" | "bind")
--- Every entry carries t (seconds of recording since the run started: never the clock), lvl,
--- m/x/y (uiMapID, map percent) and g/s (the guide and step being followed; g = "auto" in auto
--- mode). Never kept: names, realm, GUIDs, chat, the date or time of day. (The live log, LiveLog.lua,
--- writes the character's Name-Realm into the game's chat log for the Companion, which shows the
--- character on the live view and files session recordings by character; the run's segments still
--- carry no name.)
+-- Every entry carries t (seconds of recording since the run started), lvl, m/x/y (uiMapID, map
+-- percent) and g/s (the guide and step being followed; g = "auto" in auto mode). START and RESUME
+-- also carry at, the date and time the sitting began (seconds since the epoch), so a run over several
+-- evenings says when each was. src/sid say what made it (Sources.lua): kill, mobLoot, object, quest,
+-- explore or other, and the creature's, object's or quest's id. Never kept: names, realm, GUIDs,
+-- chat. (The Companion knows the character from where the saved variables are, and files the run
+-- under it at codex; the run's segments carry no name.)
 --
 -- A run is sent in segments: Send hands the entries since the last Send to the share window
 -- (Share.lua, docs/SHARE-FORMAT.md) and recording carries on in the next segment. The run lives
@@ -38,7 +40,7 @@ local PlainNumber, PlainString, PlainBool = ns.PlainNumber, ns.PlainString, ns.P
 
 Run.MAX_ENTRIES = 2500     -- one segment: about one 50,000-character share part
 Run.NOTICE_AT = 2250       -- entries: ask with a dialog to send the segment before it fills
-local MOVE_EVERY = 5       -- seconds between movement samples
+local MOVE_EVERY = 2       -- seconds between movement samples
 local MOVE_MIN = 0.05      -- map units the player must have moved for a sample
 local HEARTHSTONE = 8690
 local ELITE = { elite = true, rareelite = true, worldboss = true }
@@ -166,7 +168,7 @@ function Run:Start()
     ns.char.run = { id = NewId(), seg = 1, elapsed = 0, state = "recording", entries = {} }
     ns.char.runWanted = true
     StartClock()
-    Add("START")
+    Add("START", { at = PlainNumber(ns.Safe(rawget(_G, "time"))) })
     Changed()
 end
 
@@ -193,7 +195,7 @@ function Run:Resume()
         run.gap = nil
         Add("GAP")
     end
-    Add("RESUME")
+    Add("RESUME", { at = PlainNumber(ns.Safe(rawget(_G, "time"))) })
     if ns.UI and ns.UI.HideRunNotice then ns.UI:HideRunNotice() end
     Changed()
 end
@@ -323,7 +325,7 @@ local function Died(guid, byPlayer)
     Add("KILL", fields)
 end
 
--- every second while recording: a flight starting or ending; every 5 s: a movement sample
+-- every second while recording: a flight starting or ending; every 2 s: a movement sample
 local function Tick()
     local now = ns.Now()
     local taxi = PlainBool(ns.Safe(rawget(_G, "UnitOnTaxi"), "player")) == true
@@ -374,8 +376,18 @@ function Run:OnInit()
     end)
     E:Register("FG_QUEST_ABANDONED", function(_, questID) Add("ABANDON", { q = PlainNumber(questID) }) end)
     E:Register("FG_OBJECTIVE_PROGRESS", function(_, questID, idx, fulfilled, required, finished)
+        local src, sid = ns.Sources:SourceNow()
         Add("OBJ", { q = PlainNumber(questID), obj = PlainNumber(idx), f = PlainNumber(fulfilled),
-            r = PlainNumber(required), done = PlainBool(finished) })
+            r = PlainNumber(required), done = PlainBool(finished), src = src, sid = sid ~= 0 and sid or nil })
+    end)
+    -- every bit of experience, and where it came from; measured whether or not the run records, so a
+    -- gain is never counted from a stale reading
+    E:Register("PLAYER_XP_UPDATE", function(_, unit)
+        if unit ~= nil and PlainString(unit) ~= "player" then return end
+        local gained = ns.Sources:XPGained()
+        if gained <= 0 then return end
+        local src, sid = ns.Sources:XPSourceNow()
+        Add("XP", { xp = gained, src = src, sid = sid ~= 0 and sid or nil })
     end)
     E:Register("FG_LEVEL_CHANGED", function(_, level) Add("LEVEL", { l = PlainNumber(level), rested = Rested() }) end)
 

@@ -37,8 +37,8 @@ Pace.lua
 Reminders.lua
 Instance.lua
 Recorder.lua
+Sources.lua
 Run.lua
-LiveLog.lua
 Data\VanillaQuestIDs.lua
 Scanner.lua
 Harvest.lua

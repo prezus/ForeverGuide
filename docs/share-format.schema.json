@@ -413,6 +413,10 @@
         "done": {
           "type": "boolean"
         },
+        "character": {
+          "type": "string",
+          "maxLength": 62
+        },
         "entries": {
           "type": "array",
           "maxItems": 2500,
@@ -497,6 +501,16 @@
               "action": {
                 "type": "string",
                 "maxLength": 10
+              },
+              "src": {
+                "type": "string",
+                "maxLength": 10
+              },
+              "sid": {
+                "type": "integer"
+              },
+              "at": {
+                "type": "integer"
               }
             }
           }
