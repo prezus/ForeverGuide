@@ -79,8 +79,8 @@ local SCHEMA = Obj {
     -- one segment of a recorded run (Run.lua); a segment share carries it instead of the facts
     { "run", Obj {
         { "id", Str(16) }, { "seg", "int" }, { "done", "bool" },
-        -- the character, Name-Realm: never written by the addon; the Companion adds it when it uploads,
-        -- from where the saved variables are, so codex files the run under its character
+        -- the character, Name-Realm as the game names it: only on segments kept for the Companion
+        -- (Run.ToOutbox), so codex files the run under its character; never on a segment shown to copy
         { "character", Str(62) },
         { "entries", List(Obj {
             { "e", Str(10) }, { "t", "num" }, { "lvl", "int" }, { "m", "int" }, { "x", "num" }, { "y", "num" },

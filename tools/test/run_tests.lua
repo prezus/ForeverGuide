@@ -602,6 +602,7 @@ section("record runs: an opt-in, run controls on the guide window, segments thro
     doc = json.decode(win.json)
     check(doc.run and doc.run.seg == 3 and doc.run.done == true and doc.run.entries[#doc.run.entries].e == "STOP",
         "Stop sends the last segment, marked done")
+    check(doc.run.character == nil and not win.json:find("Tester", 1, true), "a segment shown to copy names no character")
     check(R:State() == "idle" and ns.char.run == nil and strip.start:IsShown(), "after Stop the controls are idle again")
     win:Hide()
     R:Send()
@@ -1467,6 +1468,8 @@ section("record runs with ForeverGuide Companion: closed segments wait in the ou
     local decoded = json.decode(ns.Share:Json(false, doc))
     check(decoded.run and decoded.run.seg == 1 and #decoded.run.entries == R.MAX_ENTRIES and decoded.quests == nil,
         "an outbox entry encodes as a run segment share, nothing else in it")
+    check(doc.run.character == "Tester-ClassicBetaPvE2" and decoded.run.character == "Tester-ClassicBetaPvE2",
+        "an outbox entry names the character as the game does, Name-Realm without spaces, for codex to file it")
 
     -- Send hands the segment to the companion too; logout closes the open one
     fill(10)
