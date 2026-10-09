@@ -79,6 +79,9 @@ local SCHEMA = Obj {
     -- one segment of a recorded run (Run.lua); a segment share carries it instead of the facts
     { "run", Obj {
         { "id", Str(16) }, { "seg", "int" }, { "done", "bool" },
+        -- the character, Name-Realm: never written by the addon; the Companion adds it when it uploads,
+        -- from where the saved variables are, so codex files the run under its character
+        { "character", Str(62) },
         { "entries", List(Obj {
             { "e", Str(10) }, { "t", "num" }, { "lvl", "int" }, { "m", "int" }, { "x", "num" }, { "y", "num" },
             { "g", Str(80) }, { "s", "int" },

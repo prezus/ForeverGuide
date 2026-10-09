@@ -413,6 +413,10 @@
         "done": {
           "type": "boolean"
         },
+        "character": {
+          "type": "string",
+          "maxLength": 62
+        },
         "entries": {
           "type": "array",
           "maxItems": 2500,

@@ -244,6 +244,7 @@ the uiMapID's 0-100 map.
 | `run.entries[].taxi` | boolean | On a flight |
 | `run.entries[].cost` | integer | Flight fare (copper) |
 | `run.entries[].action` | string | Hearthstone: `use` or `bind` |
+| `run.character` | string | The character (`Name-Realm`). Never written by the addon: the Companion adds it when it uploads, from where the saved variables are |
 | `run.entries[].src` | string | What made an objective count or experience: `kill`, `mobLoot`, `object`, `quest`, `explore`, `other` |
 | `run.entries[].sid` | integer | That creature's, object's or quest's id |
 | `run.entries[].at` | integer | START and RESUME: the date and time the sitting began, seconds since the epoch |
