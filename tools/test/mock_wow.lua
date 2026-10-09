@@ -489,6 +489,38 @@ for i = 1, 2 do
     function f:AddMessage(message) world.printed[#world.printed + 1] = message end
     _G["ChatFrame" .. i] = f
 end
+-- the chat log (/chatlog) and chat windows an addon opens: what LiveLog.lua writes through
+world.chatLogging = false
+_G.LoggingChat = function(on)
+    if on ~= nil then world.chatLogging = on and true or false end
+    return world.chatLogging
+end
+_G.time = function() return 1791504855 + math.floor(world.time or 0) end
+world.windows = { "General", "Combat Log" }
+world.windowLines = {}
+_G.GetChatWindowInfo = function(i) return world.windows[i] end
+_G.FCF_OpenNewWindow = function(name)
+    local i = #world.windows + 1
+    world.windows[i] = name
+    local f = NewRegion("Frame")
+    world.windowLines[name] = {}
+    function f:AddMessage(message) table.insert(world.windowLines[name], message) end
+    _G["ChatFrame" .. i] = f
+    _G.NUM_CHAT_WINDOWS = i
+    return f
+end
+_G.FCF_Close = function(frame) frame:Hide() end
+--- the lines a chat window the addon opened holds, by its name (nil while it has none)
+function _G.MOCK_WINDOW_LINES(name) return world.windowLines[name] end
+--- whether that window is shown
+function _G.MOCK_WINDOW_SHOWN(name)
+    for i, n in ipairs(world.windows) do
+        if n == name then return _G["ChatFrame" .. i]:IsShown() end
+    end
+    return false
+end
+--- what the player's own chat windows printed
+function _G.MOCK_PRINTED() return world.printed end
 --- what ChatFrame1 actually printed for a line the client pushes straight into it
 function _G.MOCK_CHATFRAME(message)
     local before = #world.printed
