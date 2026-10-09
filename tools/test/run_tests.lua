@@ -4171,7 +4171,7 @@ section("Record: the first press says what recording does; then every login reco
     R:OnLogout()
     R:OnEnterWorld(false, true)
     check(R:State() == "recording" and ns.char.run.id == id, "a /reload carries on with the same run, no click")
-    -- #476: at logout the game can answer level 1 for a moment; the PAUSE entry keeps the real level
+    -- at logout the game can answer level 1 for a moment; the PAUSE entry keeps the real level
     local levelWas, receiptWas = MOCK.level, rawget(_G, "ForeverGuideCompanionReceipt")
     _G.ForeverGuideCompanionReceipt = nil
     MOCK.level, ns.Player.cache.level = 13, nil
