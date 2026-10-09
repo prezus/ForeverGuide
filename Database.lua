@@ -65,6 +65,7 @@ local DEFAULTS = {
     scanEnabled = false,          -- explicit consent for quest ID collection / server scans
     contribute = false,           -- explicit consent for collecting quest facts (Recorder.lua, Harvest.lua)
     recordRuns = false,           -- explicit consent for recording runs: shows the run controls (Run.lua)
+    recordExplained = false,      -- the Record dot's first press showed what recording does
     contrib = {                   -- the facts; /fg share exports them (Share.lua, docs/SHARE-FORMAT.md)
         quests = {},
         npcs = {},

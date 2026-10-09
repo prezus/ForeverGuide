@@ -280,13 +280,59 @@ function Run:Discard()
     Changed()
 end
 
+--- Whether the ForeverGuide Companion is installed: it uploads the run at each /reload or logout.
+function Run:HasCompanion() return Companion() end
+
+local function Clock(secs)
+    secs = math.floor(secs or 0)
+    return string.format("%d:%02d:%02d", math.floor(secs / 3600), math.floor(secs / 60) % 60, secs % 60)
+end
+Run.Clock = Clock
+
 --- The guide header's Record button: one click records (turning Record runs on if it is off), the
 --- next pauses, the next goes on. The run is this character's; it carries on through /reload and
---- logging out (OnEnterWorld), so a run over several sittings is one recording.
+--- logging out (OnEnterWorld), so a run over several sittings is one recording. The very first time,
+--- a dialog says what recording does before it starts.
 function Run:Record()
-    if not Enabled() then self:SetEnabled(true) end
     local state = self:State()
-    if state == "recording" then self:Pause() elseif state == "paused" then self:Resume() else self:Start() end
+    if state == "recording" then
+        self:Pause()
+        ns.Print("recording paused (" .. Clock(self:Elapsed()) .. "). Click the record dot to go on, or right-click it to finish.")
+        return
+    end
+    if state == "paused" then
+        if not Enabled() then self:SetEnabled(true) end
+        self:Resume()
+        if self:State() == "recording" then ns.Print("recording again (" .. Clock(self:Elapsed()) .. " so far).") end
+        return
+    end
+    local function start()
+        if not Enabled() then self:SetEnabled(true) end
+        self:Start()
+        if self:State() == "recording" then
+            ns.Print("recording your run on this character. It keeps going through /reload and logging out until you right-click the record dot to finish it.")
+        end
+    end
+    if ns.db.recordExplained or not (ns.UI and ns.UI.ShowRecordIntro) then return start() end
+    ns.UI:ShowRecordIntro(function()
+        ns.db.recordExplained = true
+        start()
+    end)
+end
+
+--- The record dot's right-click: finish the recording, after asking.
+function Run:Finish()
+    if self:State() == "idle" then
+        ns.Print("nothing is recording. Click the record dot to start.")
+        return
+    end
+    local function finish()
+        local played = self:Elapsed()
+        self:Stop()
+        ns.Print("recording finished (" .. Clock(played) .. " played). Click the record dot to start a new one.")
+    end
+    if not (ns.UI and ns.UI.ShowStopConfirm) then return finish() end
+    ns.UI:ShowStopConfirm(finish)
 end
 
 --- Record runs switched on or off (Options). Off pauses a recording run and hides the controls.
@@ -433,6 +479,7 @@ function Run:OnEnterWorld()
     -- recording when the game reloaded or logged out (or crashed): carry on, no click needed
     if ns.char.runWanted and #run.entries < self.MAX_ENTRIES then
         self:Resume()
+        ns.Print("still recording your run (" .. Clock(self:Elapsed()) .. " so far). Right-click the record dot to finish it.")
         return
     end
     -- paused by the player, or full: say so, or the session goes unrecorded

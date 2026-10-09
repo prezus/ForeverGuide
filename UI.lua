@@ -386,7 +386,7 @@ local NOTICE = {
              action = "Send now", later = "Later" },
     full = { text = "Your run segment is full (%d of %d entries), so recording is paused. Send it, and recording resumes from this step.",
              action = "Send and resume", later = "Later" },
-    paused = { text = "Your run is paused: logging out pauses it. Resume to keep recording this session.",
+    paused = { text = "Your recording is paused. Resume to keep recording this run, or right-click the record dot to finish it.",
                action = "Resume recording", later = "Not now" },
 }
 
@@ -428,6 +428,66 @@ function UI:ShowRunNotice(kind, count, max)
     notice.send.label:SetText(spec.action)
     notice.later.label:SetText(spec.later)
     notice:Show()
+end
+
+-- ---- Record: what it does, said once before the first recording; and finishing one --------------
+-- A dialog of the run's own: a title, words, and a button that does it beside one that does not.
+local asks = {}
+local function Ask(name, title, height)
+    if asks[name] then return asks[name] end
+    local ok, f = pcall(CreateFrame, "Frame", name, UIParent, "BackdropTemplate")
+    if not ok or not f then f = CreateFrame("Frame", name, UIParent) end
+    f:SetSize(380, height)
+    f:SetPoint("TOP", UIParent, "TOP", 0, -160)
+    f:SetFrameStrata("DIALOG")
+    f:EnableMouse(true)
+    f:SetClampedToScreen(true)
+    Theme.Backdrop(f, "panel", 0.9)
+    f.title = Theme.NewText(f, { fancy = true, size = 15, color = Theme.C.goldLight, oneLine = true })
+    f.title:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -10)
+    f.title:SetText(title)
+    f.text = Theme.NewText(f, { size = 12 })
+    f.text:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -34)
+    f.text:SetPoint("TOPRIGHT", f, "TOPRIGHT", -PAD, -34)
+    f.yes = Theme.NewButton(f, "", 160, 24, function()
+        f:Hide()
+        if f.onYes then f.onYes() end
+    end)
+    f.yes:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", PAD, 10)
+    f.no = Theme.NewButton(f, "Cancel", 110, 24, function() f:Hide() end)
+    f.no:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -PAD, 10)
+    f:Hide()
+    asks[name] = f
+    return f
+end
+
+--- Before the first recording: what Record does, so nobody has to guess. `onStart` starts it.
+function UI:ShowRecordIntro(onStart)
+    local f = Ask("ForeverGuideRecordIntro", "RECORD YOUR RUN", 236)
+    local companion = ns.Run:HasCompanion()
+        and "|cff7fd17fThe ForeverGuide Companion is installed:|r it uploads your recording at each /reload or logout."
+        or "|cffff7f7fThe ForeverGuide Companion is not installed:|r the recording is kept here, but only reaches codex once it is."
+    f.text:SetText(table.concat({
+        "Records this character's leveling run, as you play: the quests you take and turn in, what you kill and loot for them, every bit of experience, and where you go.",
+        "",
+        "One run is one recording. It keeps going through /reload, logging out and other days, until you finish it.",
+        "",
+        "|cffffd100Click|r the record dot to pause or go on. |cffffd100Right-click|r it to finish the recording; the next one starts fresh.",
+        "",
+        companion,
+    }, "\n"))
+    f.yes.label:SetText("Start recording")
+    f.onYes = onStart
+    f:Show()
+end
+
+--- Finish the recording? `onStop` does.
+function UI:ShowStopConfirm(onStop)
+    local f = Ask("ForeverGuideRecordStop", "FINISH THIS RECORDING?", 132)
+    f.text:SetText("The run ends here and is sent as finished. Pressing the record dot after this starts a new recording.")
+    f.yes.label:SetText("Finish recording")
+    f.onYes = onStop
+    f:Show()
 end
 
 --- Close the run dialog: the segment was sent or the run resumed, from the dialog or the guide window.
