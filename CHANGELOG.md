@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Fixed the error "integer overflow attempting to store" while recording or sharing your live position: the time on each line is too big for the game's `%d`, so it is written another way.
 - **No more strip in the corner.** Share live position, and recording a run, no longer draw colored pixels for the Companion to read from your screen. ForeverGuide now turns on the game's own chat log (`/chatlog`) and writes short lines into it, in a chat window of its own that you never see: your character, your position every second while you move, and what you do (quests, objective counts and what did them, experience and where it came from, levels, deaths). The Companion reads them from the log, the way Warcraft Logs reads the combat log. If you had the chat log off, it goes back off when you stop sharing. `/fg live` says whether it is writing, and `/fg live target combat|main` sends the lines to the Combat Log tab or your main chat if the hidden window does not suit.
 - A level reached is recorded as the level you reached. Before, the game could still report your old level at that moment, and the run said "level 1".
 - Experience from a quest turn-in that levels you up is recorded. Before, the level-up reset the bar and the gain was lost.

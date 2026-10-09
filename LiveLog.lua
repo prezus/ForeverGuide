@@ -33,15 +33,19 @@ LiveLog.TARGETS = { window = true, combat = true, main = true }
 -- ---- the lines: pure functions, the contract ------------------------------------------------
 local function coordinate(n) return string.format("%.2f", math.floor(n * 100 + 0.5) / 100) end
 
+-- WoW's string.format takes only 32-bit integers for %d ("integer overflow attempting to store"):
+-- the clock, in ms since the epoch, is far past that, so it is written as a whole number with %.0f.
+local function whole(n) return string.format("%.0f", math.floor(n)) end
+
 --- A line's text. line = { kind = "W"|"P"|"E", t, ... } with the fields docs/LIVE-LOG.md names.
 function LiveLog.LineOf(line)
     if line.kind == "W" then
-        return string.format("%s W %d %s %d %d %s", PREFIX, line.t, line.recording, line.classId, line.flags, line.character)
+        return string.format("%s W %s %s %d %d %s", PREFIX, whole(line.t), line.recording, line.classId, line.flags, line.character)
     elseif line.kind == "P" then
-        return string.format("%s P %d %d %s %s %d %d", PREFIX, line.t, line.map, coordinate(line.x), coordinate(line.y),
+        return string.format("%s P %s %d %s %s %d %d", PREFIX, whole(line.t), line.map, coordinate(line.x), coordinate(line.y),
             line.facing, line.flags)
     end
-    return string.format("%s E %d %d %d %d %d %d %d %d", PREFIX, line.t, line.eventKind, line.value, line.objective,
+    return string.format("%s E %s %d %d %d %d %d %d %d", PREFIX, whole(line.t), line.eventKind, line.value, line.objective,
         line.have, line.need, line.source, line.sourceId)
 end
 
