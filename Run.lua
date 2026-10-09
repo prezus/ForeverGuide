@@ -14,9 +14,10 @@
 --   HEARTH                        the hearthstone (action = "use" | "bind")
 -- Every entry carries t (seconds of recording since the run started: never the clock), lvl,
 -- m/x/y (uiMapID, map percent) and g/s (the guide and step being followed; g = "auto" in auto
--- mode). Never kept: names, realm, GUIDs, chat, the date or time of day. (The live strip,
--- LiveBeacon.lua, draws the character's Name-Realm for the Companion, which shows the character on
--- the live view and files session recordings by character; the run's segments still carry no name.)
+-- mode). Never kept: names, realm, GUIDs, chat, the date or time of day. (The live log, LiveLog.lua,
+-- writes the character's Name-Realm into the game's chat log for the Companion, which shows the
+-- character on the live view and files session recordings by character; the run's segments still
+-- carry no name.)
 --
 -- A run is sent in segments: Send hands the entries since the last Send to the share window
 -- (Share.lua, docs/SHARE-FORMAT.md) and recording carries on in the next segment. The run lives

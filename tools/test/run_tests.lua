@@ -4050,157 +4050,118 @@ section("a step's text names what it is about from what the step has, and never 
     end
 end)
 
--- ---- the live beacon: the player's position drawn for the Companion ------------------
-section("the live beacon draws each frame as forever-codex's test vectors say, and only when switched on or recording", function()
+-- ---- the live log: who plays, where and what they do, written into the game's chat log --------
+section("the live log writes each line as forever-codex's vectors say", function()
     local json = dofile(root .. "tools/test/json.lua")
-    local f = assert(io.open(root .. "tools/test/fixtures/live-beacon-vectors.json"))
+    local f = assert(io.open(root .. "tools/test/fixtures/live-log-vectors.json"))
     local doc = json.decode(f:read("*a"))
     f:close()
-    local vectors = doc.vectors
-    local L = ns.LiveBeacon
-    need(L and #vectors > 0, "the beacon module and its vectors")
-    for i, v in ipairs(vectors) do
-        local frame = v.frame
-        local bytes = L.Bytes(frame)
-        local cells = L.Cells(frame)
-        local same = #bytes == #v.bytes and #cells == #v.cells
-        for j = 1, #v.bytes do same = same and bytes[j] == v.bytes[j] end
-        for j = 1, #v.cells do
-            for k = 1, 3 do same = same and cells[j][k] == v.cells[j][k] end
-        end
-        check(same, "vector " .. i .. " (seq " .. frame.seq .. ", map " .. frame.map .. ") encodes to the same bytes and cells")
+    local L = ns.LiveLog
+    need(L and #doc.vectors > 0, "the live log module and its vectors")
+    for i, v in ipairs(doc.vectors) do
+        local line = {}
+        for k, value in pairs(v.line) do line[k] = value end
+        line.kind, line.eventKind = v.line._tag, v.line.kind
+        check(L.LineOf(line) == v.text, "vector " .. i .. " writes " .. v.text .. " (got " .. L.LineOf(line) .. ")")
     end
-    for _, n in ipairs(doc.names or {}) do
-        local bytes, same = L.NameChannel(n.character), true
-        same = #bytes == #n.bytes
-        for j = 1, #n.bytes do same = same and bytes[j] == n.bytes[j] end
-        check(same, "the name channel spells " .. n.character .. " as forever-codex does")
-    end
-    check(L.RecordingOf("1a2b3c4d5e6f7081") == 0x1a2b3c4d, "the recording id is the run id's first 8 hex digits")
-    -- off by default: nothing is drawn
-    ns.char.run = nil
-    check(L:Shown() == nil, "the strip is not drawn until the player opts in")
-    L:SetEnabled(true)
-    MOCK_ADVANCE(1)
-    local shown = L:Shown()
-    check(shown ~= nil and #shown == 23, "switched on, the strip draws its 23 cells")
-    check(shown and shown[1][1] == 0 and shown[23][1] == 255, "black and white calibration cells at its ends")
-    local frame = L:Frame()
-    check(frame.map ~= 0 and frame.classId == 1, "the frame reads the player's map and class (" .. frame.map .. ", " .. frame.classId .. ")")
-    check(frame.recording == 0, "with no run, no recording id")
-    local spelled, channel = {}, L.NameChannel(ns.Player:GetName() .. "-" .. ns.Player:GetRealm())
-    for _ = 1, #channel do
-        local fr = L:Frame()
-        if fr.nameIndex > 0 then spelled[fr.nameIndex] = string.char(fr.nameByte) end
-    end
-    check(table.concat(spelled) == "Tester-ClassicBetaPvE2", "with no run too, the frames name the character, so the live view knows who plays")
-    L:SetEnabled(false)
-    check(L:Shown() == nil and ns.db.liveBeacon == false, "switched off, the strip is gone")
+    check(L.RecordingOf("1A2b3c4d5e6f7081") == "1a2b3c4d" and L.RecordingOf(nil) == "0", "the recording id is the run id's first 8 hex digits, lower case")
 end)
 
-section("the live beacon carries what the player does, each long enough for the Companion to see", function()
-    local L, EV, S = ns.LiveBeacon, ns.LiveBeacon.EVENT, ns.LiveBeacon.SOURCE
+section("the live log: off by default; switched on, it turns the chat log on and writes to a window never shown", function()
+    local L = ns.LiveLog
+    ns.char.run = nil
+    MOCK_ADVANCE(2)
+    check(not L:Writing() and LoggingChat() == false, "off by default: nothing is written and the chat log stays as it was")
+    local printedBefore = #MOCK_PRINTED()
+    local start = #(MOCK_WINDOW_LINES("FG Log") or {})
     L:SetEnabled(true)
-    MOCK_ADVANCE(1)
-    local before = L:Frame().eventSeq
-    -- a turn-in and at once the next pickup: both drawn, one after the other, each for 3 frames
+    MOCK_ADVANCE(2)
+    local out = MOCK_WINDOW_LINES("FG Log")
+    need(out ~= nil and #out > start, "switched on, lines are written to a chat window of its own")
+    check(LoggingChat() == true, "the chat log is switched on, so the game writes the lines to WoWChatLog.txt")
+    local who = out[start + 1] or ""
+    check(who:match("^FGLOG1 W %d+ 0 1 %d+ Tester%-ClassicBetaPvE2$") ~= nil, "it opens with who plays, no run (" .. who .. ")")
+    local place = out[start + 2] or ""
+    check(place:match("^FGLOG1 P %d+ %d+ %d+%.%d%d %d+%.%d%d %d+ %d+$") ~= nil, "then where they are (" .. place .. ")")
+    check(not MOCK_WINDOW_SHOWN("FG Log"), "the window is closed: the player never sees the lines")
+    check(#MOCK_PRINTED() == printedBefore, "nothing goes to the player's chat")
+    -- standing still: a position every 10 s, not every second
+    local before = #out
+    MOCK_ADVANCE(5)
+    check(#out == before, "standing still, no new position for 5 s")
+    MOCK_ADVANCE(6)
+    check(#out == before + 1, "and one after 10 s")
+    L:SetEnabled(false)
+    check(LoggingChat() == false, "switched off, the chat log goes back off, as the addon turned it on")
+    before = #out
+    MOCK_ADVANCE(15)
+    check(#out == before, "and nothing more is written")
+end)
+
+section("the live log writes what the player does, at once, with where it came from", function()
+    local L, EV, S = ns.LiveLog, ns.LiveLog.EVENT, ns.LiveLog.SOURCE
+    L:SetEnabled(true)
+    local out = MOCK_WINDOW_LINES("FG Log")
+    local function events()
+        local list = {}
+        for _, text in ipairs(out) do
+            local k, v, o, h, n, src, id = text:match("^FGLOG1 E %d+ (%d+) (%d+) (%d+) (%d+) (%d+) (%d+) (%d+)$")
+            if k then list[#list + 1] = { kind = tonumber(k), value = tonumber(v), objective = tonumber(o), have = tonumber(h),
+                need = tonumber(n), source = tonumber(src), sourceId = tonumber(id) } end
+        end
+        return list
+    end
+    local function last() local e = events() return e[#e] end
+    local n = #events()
     ns.Events:Fire("FG_QUEST_TURNED_IN", 783, nil, 100, 0)
     ns.Events:Fire("FG_QUEST_ACCEPTED", 7)
-    local seen = {}
-    for _ = 1, 8 do
-        local fr = L:Frame()
-        seen[#seen + 1] = fr.eventKind .. ":" .. fr.eventValue .. ":" .. fr.eventSeq
-    end
-    local s1, s2 = (before + 1) % 256, (before + 2) % 256
-    check(seen[1] == EV.turnIn .. ":783:" .. s1 and seen[3] == seen[1], "the turn-in is drawn 3 frames (" .. seen[1] .. ")")
-    check(seen[4] == EV.accept .. ":7:" .. s2 and seen[8] == seen[4], "then the pickup, and it stays until the next event")
-
-    local function next(kind)
-        for _ = 1, 12 do
-            local fr = L:Frame()
-            if fr.eventKind == kind and fr.eventSeq ~= before then before = fr.eventSeq return fr end
-        end
-    end
-    before = L:Frame().eventSeq
-    -- a kill that counts: the player killed the creature, and the count went up at once
-    local me = UnitGUID("player")
-    ns.Events:Fire("PARTY_KILL", me, "Creature-0-1-1-1-6-0000000001")
+    local e = events()
+    check(#e == n + 2 and e[n + 1].kind == EV.turnIn and e[n + 1].value == 783 and e[n + 2].kind == EV.accept,
+        "a turn-in and the next pickup are both written, at once, in order")
+    -- a kill that counts
+    ns.Events:Fire("PARTY_KILL", UnitGUID("player"), "Creature-0-1-1-1-6-0000000001")
     ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 2, 3, 8, false)
-    local fr = next(EV.progress)
-    check(fr and fr.eventValue == 7 and fr.eventObjective == 2 and fr.eventHave == 3 and fr.eventNeed == 8,
-        "each count going up is an event: the quest, the objective, have and need")
-    check(fr and fr.source == S.kill and fr.sourceId == 6, "a count right after the player's kill is put down to that creature")
-    -- loot from an object on the ground
+    local p = last()
+    check(p.kind == EV.progress and p.value == 7 and p.objective == 2 and p.have == 3 and p.need == 8 and p.source == S.kill and p.sourceId == 6,
+        "each count going up, with the quest, objective, have and need, and the creature killed")
     _G.GetLootSourceInfo = function() return "GameObject-0-1-1-1-1234-0000000002" end
     MOCK_ADVANCE(5)
     ns.Events:Fire("LOOT_OPENED")
     ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 1, 1, 6, false)
-    fr = next(EV.progress)
-    check(fr and fr.source == S.object and fr.sourceId == 1234, "an item from an object's loot window names the object")
-    _G.GetLootSourceInfo = function() return "Creature-0-1-1-1-6-0000000003" end
-    MOCK_ADVANCE(5)
-    ns.Events:Fire("LOOT_OPENED")
-    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 1, 2, 6, false)
-    fr = next(EV.progress)
-    check(fr and fr.source == S.mobLoot and fr.sourceId == 6, "an item looted from a creature names the creature")
+    check(last().source == S.object and last().sourceId == 1234, "an item from an object's loot window names the object")
     _G.GetLootSourceInfo = nil
-    MOCK_ADVANCE(10)
-    ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 8, 1, 1, 1, true)
-    fr = next(EV.progress)
-    check(fr and fr.source == S.other and fr.sourceId == 0, "a count with no kill or loot just before is something else")
-
-    -- experience, and where it came from
-    -- (MOCK_XP fires PLAYER_XP_UPDATE as the game does; a drop from earlier tests' xp is no gain)
+    -- experience and where it came from
     MOCK_XP(100, 400)
     L:NoteXP()
-    L:SetEnabled(false)                   -- what was queued before is dropped
-    L:SetEnabled(true)
-    before = L:Frame().eventSeq
+    n = #events()
     ns.Events:Fire("PARTY_KILL", "Player-1-000099", "Creature-0-1-1-1-299-0000000004")
     MOCK_XP(145)
-    fr = next(EV.xp)
-    check(fr and fr.eventValue == 45 and fr.source == S.kill and fr.sourceId == 299, "experience from a group's kill names the creature (" .. (fr and fr.eventValue or "none") .. ")")
-    MOCK_ADVANCE(5)
-    ns.Events:Fire("FG_QUEST_TURNED_IN", 783, nil, 300, 0)
-    MOCK_XP(445)
-    fr = next(EV.xp)
-    check(fr and fr.eventValue == 300 and fr.source == S.quest and fr.sourceId == 783, "experience from a turn-in names the quest")
-    MOCK_ADVANCE(5)
-    ns.Events:Fire("CHAT_MSG_COMBAT_XP_GAIN", "Discovered Kharanos: 80 experience gained")
-    MOCK_XP(525)
-    fr = next(EV.xp)
-    check(fr and fr.eventValue == 80 and fr.source == S.explore, "experience from discovering an area is exploring")
-
-    -- a turn-in that dings: the bar starts again, and the game says so before the level changes
-    MOCK_XP(350, 400)                     -- a bar 50 short of the level
-    L:SetEnabled(false)
-    L:SetEnabled(true)
-    L:NoteXP()
-    before = L:Frame().eventSeq
+    check(#events() == n + 1 and last().kind == EV.xp and last().value == 45 and last().source == S.kill and last().sourceId == 299,
+        "experience from a group's kill names the creature")
     MOCK_ADVANCE(5)
     ns.Events:Fire("FG_QUEST_TURNED_IN", 790, nil, 175, 0)
+    MOCK_XP(350, 400)
+    L:NoteXP()
     MOCK_XP(125, 600)
-    fr = next(EV.xp)
-    check(fr and fr.eventValue == 175 and fr.source == S.quest,
-        "a turn-in that levels up keeps its experience: the rest of the old level and the new (" .. (fr and fr.eventValue or "none") .. ")")
-    -- the level event names the new level, though the game still answers the old one for a moment:
-    -- PLAYER_LEVEL_UP carries the new level while UnitLevel still says the old
+    -- 400 - 350 left of the old level, 125 into the new
+    check(last().kind == EV.xp and last().value == 175 and last().source == S.quest and last().sourceId == 790,
+        "a turn-in that levels up keeps its experience and names the quest")
+    MOCK_ADVANCE(5)
+    ns.Events:Fire("CHAT_MSG_COMBAT_XP_GAIN", "Discovered Kharanos: 80 experience gained")
+    MOCK_XP(205)
+    check(last().value == 80 and last().source == S.explore, "experience from discovering an area is exploring")
     local levelWas = UnitLevel("player")
     MOCK_FIRE("PLAYER_LEVEL_UP", levelWas + 1)
-    fr = next(EV.level)
-    check(fr and fr.eventValue == levelWas + 1, "a level names the level reached, not the one the game still reports (" .. (fr and fr.eventValue or "none") .. ")")
-    check(ns.Player:GetLevel() == levelWas + 1, "and the player's level stays the new one")
+    check(last().kind == EV.level and last().value == levelWas + 1, "a level names the level reached, not the one the game still reports")
     MOCK_LEVEL(levelWas + 1)
     L:SetEnabled(false)
+    n = #events()
     ns.Events:Fire("FG_QUEST_ACCEPTED", 9)
-    L:SetEnabled(true)
-    fr = L:Frame()
-    check(not (fr.eventKind == EV.accept and fr.eventValue == 9), "an event while the strip is off is not queued for later")
-    L:SetEnabled(false)
+    check(#events() == n, "with the live log off, nothing is written")
 end)
 
-section("Record: one click records this character's run, the beacon names it, and a /reload carries on", function()
-    local R, L = ns.Run, ns.LiveBeacon
+section("Record: one click records this character's run, the live log names it, and a /reload carries on", function()
+    local R, L = ns.Run, ns.LiveLog
     local recordWas = ns.db.recordRuns
     ns.db.recordRuns = false
     ns.char.run, ns.char.runWanted = nil, nil
@@ -4209,25 +4170,18 @@ section("Record: one click records this character's run, the beacon names it, an
     need(header.record ~= nil, "the guide header has a Record button")
     header.record:GetScript("OnClick")(header.record)
     check(ns.db.recordRuns == true and R:State() == "recording", "Record turns Record runs on and starts a run")
-    MOCK_ADVANCE(1)
-    check(L:Shown() ~= nil, "while recording the strip draws, the live setting off")
-    -- the name channel spells Name-Realm, round and round
-    local name = {}
-    local bytes = L.NameChannel(ns.Player:GetName() .. "-" .. ns.Player:GetRealm())
-    local fr
-    for _ = 1, #bytes * 2 do
-        fr = L:Frame()
-        if fr.nameIndex > 0 then name[fr.nameIndex] = string.char(fr.nameByte) end
-    end
-    check(table.concat(name) == "Tester-ClassicBetaPvE2", "the frames spell the character's Name-Realm (" .. table.concat(name) .. ")")
-    check(fr.recording == L.RecordingOf(ns.char.run.id) and fr.flags % 64 >= 32, "the frames carry the run's id and the recording flag")
-    -- a /reload: the game logs out (pausing the run), then enters the world again
+    check(L:Writing() and LoggingChat() == true, "while recording the live log writes, the setting off")
+    local out = MOCK_WINDOW_LINES("FG Log")
+    local who
+    for _, text in ipairs(out) do if text:match("^FGLOG1 W ") then who = text end end
+    local recording = L.RecordingOf(ns.char.run.id)
+    check(who ~= nil and who:match("^FGLOG1 W %d+ " .. recording .. " %d+ (%d+) Tester") ~= nil, "who plays names the run being recorded (" .. tostring(who) .. ")")
+    check(tonumber(who:match("^FGLOG1 W %d+ %x+ %d+ (%d+)")) % 64 >= 32, "with the recording flag")
     local id = ns.char.run.id
     R:OnLogout()
     check(R:State() == "paused", "logging out pauses the run, as before")
     R:OnEnterWorld(false, true)
     check(R:State() == "recording" and ns.char.run.id == id, "entering the world again carries on with the same run, no click")
-    -- paused by the player: it stays paused across a reload, and the strip says paused
     header.record:GetScript("OnClick")(header.record)
     check(R:State() == "paused", "Record again pauses")
     R:OnLogout()
@@ -4235,7 +4189,7 @@ section("Record: one click records this character's run, the beacon names it, an
     check(R:State() == "paused", "a run the player paused stays paused after a reload")
     local notice = rawget(_G, "ForeverGuideRunNotice")
     if notice then notice:Hide() end
-    check(L:Shown() == nil, "paused, with the live setting off, the strip is not drawn")
+    check(not L:Writing(), "paused, with the live setting off, nothing is written")
     ns.Commands:Run("run discard")
     check(ns.char.runWanted == nil, "discarding forgets the run")
     ns.db.recordRuns = recordWas

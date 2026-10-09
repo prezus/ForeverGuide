@@ -38,7 +38,7 @@ Reminders.lua
 Instance.lua
 Recorder.lua
 Run.lua
-LiveBeacon.lua
+LiveLog.lua
 Data\VanillaQuestIDs.lua
 Scanner.lua
 Harvest.lua

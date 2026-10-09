@@ -1,0 +1,98 @@
+{
+ "about": "Test vectors for the live log (docs/LIVE-LOG.md): each line as the addon writes it into the chat log, and what it says. The addon's writer and the Companion's reader are checked against them. `logged` are lines of WoWChatLog.txt as the game writes them: only the first is ours.",
+ "vectors": [
+  {
+   "text": "FGLOG1 W 1791504855048 1a2b3c4d 7 32 Kael-Skyfury",
+   "line": {
+    "_tag": "W",
+    "t": 1791504855048,
+    "recording": "1a2b3c4d",
+    "classId": 7,
+    "flags": 32,
+    "character": "Kael-Skyfury"
+   }
+  },
+  {
+   "text": "FGLOG1 W 1791504855100 0 2 0 Zoë-Doomhowl",
+   "line": {
+    "_tag": "W",
+    "t": 1791504855100,
+    "recording": "0",
+    "classId": 2,
+    "flags": 0,
+    "character": "Zoë-Doomhowl"
+   }
+  },
+  {
+   "text": "FGLOG1 P 1791504856048 1426 47.40 52.53 200 33",
+   "line": {
+    "_tag": "P",
+    "t": 1791504856048,
+    "map": 1426,
+    "x": 47.4,
+    "y": 52.53,
+    "facing": 200,
+    "flags": 33
+   }
+  },
+  {
+   "text": "FGLOG1 P 1791504857048 1581 0.00 0.00 0 8",
+   "line": {
+    "_tag": "P",
+    "t": 1791504857048,
+    "map": 1581,
+    "x": 0,
+    "y": 0,
+    "facing": 0,
+    "flags": 8
+   }
+  },
+  {
+   "text": "FGLOG1 E 1791504858120 3 783 1 3 8 1 6",
+   "line": {
+    "_tag": "E",
+    "t": 1791504858120,
+    "kind": 3,
+    "value": 783,
+    "objective": 1,
+    "have": 3,
+    "need": 8,
+    "source": 1,
+    "sourceId": 6
+   }
+  },
+  {
+   "text": "FGLOG1 E 1791504858125 7 450 0 0 0 4 99267",
+   "line": {
+    "_tag": "E",
+    "t": 1791504858125,
+    "kind": 7,
+    "value": 450,
+    "objective": 0,
+    "have": 0,
+    "need": 0,
+    "source": 4,
+    "sourceId": 99267
+   }
+  },
+  {
+   "text": "FGLOG1 E 1791504859000 4 12 0 0 0 0 0",
+   "line": {
+    "_tag": "E",
+    "t": 1791504859000,
+    "kind": 4,
+    "value": 12,
+    "objective": 0,
+    "have": 0,
+    "need": 0,
+    "source": 0,
+    "sourceId": 0
+   }
+  }
+ ],
+ "logged": [
+  "10/8 18:14:15.048  FGLOG1 W 1791504855048 1a2b3c4d 7 32 Kael-Skyfury",
+  "10/8 18:14:16.000  [Guild] Kookus: anyone for Deadmines?",
+  "10/8 18:14:16.500  Gnoll dies, you gain 120 experience."
+ ]
+}
