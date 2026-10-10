@@ -143,6 +143,14 @@ Run.Add = Add
 
 local function Recording() return Enabled() and Run:State() == "recording" end
 
+-- where the experience bar is: XP into the level, XP the level needs, rested XP; for a recording's
+-- XP bar (what an XP entry's gain alone cannot say: where the bar started)
+local function Bar()
+    local cx, mx, rx = ns.Player:GetXP()
+    if not (mx and mx > 0) then return nil end
+    return { cx = cx, mx = mx, rx = rx > 0 and rx or nil }
+end
+
 local function Rested() return select(3, ns.Player:GetXP()) end
 
 -- ---- the run's lifecycle ---------------------------------------------------------------------
@@ -168,7 +176,8 @@ function Run:Start()
     ns.char.run = { id = NewId(), seg = 1, elapsed = 0, state = "recording", entries = {} }
     ns.char.runWanted = true
     StartClock()
-    Add("START", { at = PlainNumber(ns.Safe(rawget(_G, "time"))) })
+    local bar = Bar() or {}
+    Add("START", { at = PlainNumber(ns.Safe(rawget(_G, "time"))), cx = bar.cx, mx = bar.mx, rx = bar.rx })
     Changed()
 end
 
@@ -195,7 +204,8 @@ function Run:Resume()
         run.gap = nil
         Add("GAP")
     end
-    Add("RESUME", { at = PlainNumber(ns.Safe(rawget(_G, "time"))) })
+    local bar = Bar() or {}
+    Add("RESUME", { at = PlainNumber(ns.Safe(rawget(_G, "time"))), cx = bar.cx, mx = bar.mx, rx = bar.rx })
     if ns.UI and ns.UI.HideRunNotice then ns.UI:HideRunNotice() end
     Changed()
 end
@@ -451,9 +461,13 @@ function Run:OnInit()
         local gained = ns.Sources:XPGained()
         if gained <= 0 then return end
         local src, sid = ns.Sources:XPSourceNow()
-        Add("XP", { xp = gained, src = src, sid = sid ~= 0 and sid or nil })
+        local bar = Bar() or {}
+        Add("XP", { xp = gained, src = src, sid = sid ~= 0 and sid or nil, cx = bar.cx, mx = bar.mx, rx = bar.rx })
     end)
-    E:Register("FG_LEVEL_CHANGED", function(_, level) Add("LEVEL", { l = PlainNumber(level), rested = Rested() }) end)
+    E:Register("FG_LEVEL_CHANGED", function(_, level)
+        local bar = Bar() or {}
+        Add("LEVEL", { l = PlainNumber(level), rested = Rested(), cx = bar.cx, mx = bar.mx })
+    end)
 
     E:Register("FG_TARGET_CHANGED", function(_, info) if Recording() then NoteMob(info) end end)
     E:Register("PLAYER_REGEN_DISABLED", function()

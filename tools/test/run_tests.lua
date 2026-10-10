@@ -4067,6 +4067,8 @@ section("the run log keeps every experience gain and objective count with where 
     local function last(kind) local list = entries(kind) return list[#list] end
     check(type(entries("START")[1].at) == "number" and entries("START")[1].at > 1700000000,
         "the run's start says the date and time it began")
+    check(type(entries("START")[1].cx) == "number" and type(entries("START")[1].mx) == "number" and entries("START")[1].mx > 0,
+        "the run's start says where the experience bar is")
     -- a kill that counts: the player killed the creature, and the count went up at once
     ns.Events:Fire("PARTY_KILL", UnitGUID("player"), "Creature-0-1-1-1-6-0000000001")
     ns.Events:Fire("FG_OBJECTIVE_PROGRESS", 7, 2, 3, 8, false)
@@ -4094,6 +4096,7 @@ section("the run log keeps every experience gain and objective count with where 
     MOCK_XP(145)
     local x = last("XP")
     check(#entries("XP") == n + 1 and x.xp == 45 and x.src == "kill" and x.sid == 299, "experience from a group's kill names the creature")
+    check(x.cx == 145 and x.mx == 400, "an XP entry says where the bar is after it: 145 of 400 (" .. tostring(x.cx) .. "/" .. tostring(x.mx) .. ")")
     MOCK_ADVANCE(5)
     MOCK_XP(350, 400)
     MOCK_ADVANCE(5)
@@ -4102,6 +4105,7 @@ section("the run log keeps every experience gain and objective count with where 
     -- 400 - 350 left of the old level, 125 into the new
     check(last("XP").xp == 175 and last("XP").src == "quest" and last("XP").sid == 790,
         "a turn-in that levels up keeps its experience and names the quest")
+    check(last("XP").cx == 125 and last("XP").mx == 600, "after a level-up the bar is the new level's: 125 of 600")
     MOCK_ADVANCE(5)
     ns.Events:Fire("CHAT_MSG_COMBAT_XP_GAIN", "Discovered Kharanos: 80 experience gained")
     MOCK_XP(205)
@@ -4115,9 +4119,13 @@ section("the run log keeps every experience gain and objective count with where 
     local kept = 0
     for _, e in ipairs(doc.run.entries) do if e.e == "XP" and e.src and e.xp then kept = kept + 1 end end
     check(kept == #entries("XP"), "the share keeps every XP entry with its source")
+    local barKept = true
+    for _, e in ipairs(doc.run.entries) do if e.e == "XP" and not (e.cx and e.mx) then barKept = false end end
+    check(barKept, "the share keeps where the bar is on every XP entry")
     R:Pause()
     R:Resume()
     check(type(last("RESUME").at) == "number", "a resumed sitting says when it began")
+    check(last("RESUME").cx ~= nil and last("RESUME").mx ~= nil, "a resumed sitting says where the bar is")
     ns.Commands:Run("run discard")
     ns.db.recordRuns = recordWas
 end)

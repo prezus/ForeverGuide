@@ -248,6 +248,9 @@ the uiMapID's 0-100 map.
 | `run.entries[].src` | string | What made an objective count or experience: `kill`, `mobLoot`, `object`, `quest`, `explore`, `other` |
 | `run.entries[].sid` | integer | That creature's, object's or quest's id |
 | `run.entries[].at` | integer | START and RESUME: the date and time the sitting began, seconds since the epoch |
+| `run.entries[].cx` | integer | START, RESUME, XP and LEVEL: experience into the current level, after the entry (`UnitXP`) |
+| `run.entries[].mx` | integer | START, RESUME, XP and LEVEL: experience the current level needs (`UnitXPMax`) |
+| `run.entries[].rx` | integer | START, RESUME and XP: rested experience left (`GetXPExhaustion`); absent when none |
 
 ## Limits
 
