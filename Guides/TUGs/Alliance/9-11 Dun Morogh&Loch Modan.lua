@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_9_11_DUN_MOROGH_LOCH_MODAN",
     name = "9-11 Dun Morogh&Loch Modan",
-    version = 6,
+    version = 5,
     faction = "Alliance",
     minLevel = 9,
     maxLevel = 11,

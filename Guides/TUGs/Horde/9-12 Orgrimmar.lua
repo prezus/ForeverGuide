@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_9_12_ORGRIMMAR",
     name = "9-12 Orgrimmar",
-    version = 5,
+    version = 4,
     faction = "Horde",
     minLevel = 9,
     maxLevel = 12,

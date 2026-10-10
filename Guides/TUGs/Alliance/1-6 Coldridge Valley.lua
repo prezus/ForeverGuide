@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_COLDRIDGE_VALLEY",
     name = "1-6 Coldridge Valley",
-    version = 6,
+    version = 5,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,

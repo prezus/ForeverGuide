@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_36_37ARATHI",
     name = "36-37 Arathi",
-    version = 4,
+    version = 3,
     faction = "Alliance",
     minLevel = 36,
     maxLevel = 37,

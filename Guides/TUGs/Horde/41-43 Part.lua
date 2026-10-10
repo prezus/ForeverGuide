@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_41_43_PART",
     name = "41-43 Part",
-    version = 4,
+    version = 3,
     faction = "Horde",
     minLevel = 41,
     maxLevel = 43,

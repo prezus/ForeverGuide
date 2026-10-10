@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_47_49SEARING_GORGE",
     name = "47-49 Searing Gorge",
-    version = 5,
+    version = 4,
     faction = "Alliance",
     minLevel = 47,
     maxLevel = 49,

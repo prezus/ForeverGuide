@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_VALLEY_OF_TRIALS",
     name = "1-6 Valley of Trials",
-    version = 5,
+    version = 4,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_GENERAL",
     name = "#Leveling ShoppingList",
-    version = 3,
+    version = 2,
     group = "Leveling Guides",
     source = "TUGs/General.lua",
     nextName = { "Nothing" },

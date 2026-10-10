@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_9_DUROTAR",
     name = "6-9 Durotar",
-    version = 4,
+    version = 3,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 9,
