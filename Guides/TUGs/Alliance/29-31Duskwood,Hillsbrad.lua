@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_29_31DUSKWOOD_HILLSBRAD",
     name = "29-31 Duskwood,Hillsbrad",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     minLevel = 29,
     maxLevel = 31,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/29-31Duskwood,Hillsbrad.lua",
     nextName = { "31-36 STV,Desolace" },
-    order = 28,
+    order = 31,
     stepCount = 145,
     steps = [[{
 {type="TURNIN",quest=1243,note="TurnIn:"},

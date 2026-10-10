@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_51_53_PART",
     name = "51-53 Part",
-    version = 4,
+    version = 5,
     faction = "Horde",
     minLevel = 51,
     maxLevel = 53,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/51-53 Part.lua",
     nextName = { "53-55 Part" },
-    order = 52,
+    order = 55,
     stepCount = 97,
     steps = [[{
 {type="USEHEARTH",note="Use your Hearthstone."},

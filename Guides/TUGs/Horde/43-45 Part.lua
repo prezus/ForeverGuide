@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_43_45_PART",
     name = "43-45 Part",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 43,
     maxLevel = 45,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/43-45 Part.lua",
     nextName = { "45-48 Part" },
-    order = 49,
+    order = 52,
     stepCount = 96,
     steps = [[{
 {type="TURNIN",quest=734,note="TurnIn:"},

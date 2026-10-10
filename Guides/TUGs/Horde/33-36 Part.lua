@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_33_36_PART",
     name = "33-36 Part",
-    version = 4,
+    version = 5,
     faction = "Horde",
     minLevel = 33,
     maxLevel = 36,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/33-36 Part.lua",
     nextName = { "36-39 Part" },
-    order = 45,
+    order = 48,
     stepCount = 102,
     steps = [[{
 {type="NOTE",text="Take the Zeppelin to Stranglethorn Vale"},

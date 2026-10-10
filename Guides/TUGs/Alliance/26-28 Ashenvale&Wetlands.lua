@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_26_28_ASHENVALE_WETLANDS",
     name = "26-28 Ashenvale&Wetlands",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 26,
     maxLevel = 28,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/26-28 Ashenvale&Wetlands.lua",
     nextName = { "29-31 Duskwood,Hillsbrad" },
-    order = 27,
+    order = 30,
     stepCount = 81,
     steps = [[{
 {type="FLY",note="Fly to Stormwind City",place="Stormwind City"},

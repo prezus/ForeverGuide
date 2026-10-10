@@ -3,13 +3,13 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_1_6_SKYBORNE",
     name = "1-6 Skyborne",
-    version = 2,
+    version = 3,
     minLevel = 1,
     maxLevel = 6,
     group = "Leveling Guides",
     source = "TUGs/1-6 Skyborne.lua",
     nextName = { "6-12 Skyborne" },
-    order = 0,
+    order = 1,
     stepCount = 91,
     steps = [[{
 {type="NOTE",text="This is a temporary 0.1version of the Skyborne guide, take with a grain of salt."},

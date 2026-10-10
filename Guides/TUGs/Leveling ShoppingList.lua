@@ -3,10 +3,10 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_LEVELING_SHOPPINGLIST",
     name = "Leveling ShoppingList",
-    version = 3,
+    version = 4,
     group = "Leveling Guides",
     source = "TUGs/Leveling ShoppingList.lua",
-    order = 58,
+    order = 61,
     stepCount = 54,
     steps = [[{
 {type="NOTE",text="The majority of Items in this List can be obtained via grinding. So take this as a \"cant be asked to grind\"-List"},

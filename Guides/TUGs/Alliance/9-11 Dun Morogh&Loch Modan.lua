@@ -3,15 +3,15 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_9_11_DUN_MOROGH_LOCH_MODAN",
     name = "9-11 Dun Morogh&Loch Modan",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     minLevel = 9,
     maxLevel = 11,
-    next = "TUGS_ALLIANCE_11_14_DARKSHORE",
+    next = "TUGS_ALLIANCE_11_13_DARKSHORE",
     group = "Leveling Guides",
     source = "TUGs/Alliance/9-11 Dun Morogh&Loch Modan.lua",
     nextName = { "11-14 Darkshore" },
-    order = 7,
+    order = 8,
     stepCount = 68,
     steps = [[{
 {type="ACCEPT",quest=314,optional=true,note="Accept(Elite/Hard Optional Quest):"},

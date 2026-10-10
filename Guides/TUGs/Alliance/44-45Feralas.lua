@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_44_45FERALAS",
     name = "44-45 Feralas",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 44,
     maxLevel = 45,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/44-45Feralas.lua",
     nextName = { "45-47 Tanaris,Hinterlands" },
-    order = 34,
+    order = 37,
     stepCount = 61,
     steps = [[{
 {type="NOTE",text="Fly to Feralas"},

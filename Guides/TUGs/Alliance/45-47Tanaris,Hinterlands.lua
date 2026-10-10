@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_45_47TANARIS_HINTERLANDS",
     name = "45-47 Tanaris,Hinterlands",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 45,
     maxLevel = 47,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/45-47Tanaris,Hinterlands.lua",
     nextName = { "47-49 Searing Gorge" },
-    order = 35,
+    order = 38,
     stepCount = 107,
     steps = [[{
 {type="TURNIN",quest=3022,zone="Teldrassil",x=55.49,y=92.04,note="TurnIn:"},

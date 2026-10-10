@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_45_48_PART",
     name = "45-48 Part",
-    version = 4,
+    version = 5,
     faction = "Horde",
     minLevel = 45,
     maxLevel = 48,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/45-48 Part.lua",
     nextName = { "48-51 Part" },
-    order = 50,
+    order = 53,
     stepCount = 149,
     steps = [[{
 {type="NOTE",text="Take the Zeppelin to Orgrimmar"},

@@ -3,14 +3,14 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_56_60WPL_EPL_BS",
     name = "56-60 WPL,EPL,BS",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 56,
     maxLevel = 60,
     group = "Leveling Guides",
     source = "TUGs/Alliance/56-60WPL,EPL,BS.lua",
     nextName = { "1-12 Human TUGs Leveling Guide" },
-    order = 40,
+    order = 43,
     stepCount = 112,
     steps = [[{
 {type="ACCEPT",quest=5542,note="Accept:"},

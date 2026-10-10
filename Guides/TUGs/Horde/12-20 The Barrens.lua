@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_12_20_THE_BARRENS",
     name = "12-20 The Barrens",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 12,
     maxLevel = 20,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/12-20 The Barrens.lua",
     nextName = { "16-21 The Barrens" },
-    order = 15,
+    order = 24,
     stepCount = 159,
     steps = [[{
 {type="ACCEPT",quest=6365,note="Accept:"},

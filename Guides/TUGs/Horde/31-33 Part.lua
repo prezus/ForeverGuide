@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_31_33_PART",
     name = "31-33 Part",
-    version = 4,
+    version = 5,
     faction = "Horde",
     minLevel = 31,
     maxLevel = 33,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/31-33 Part.lua",
     nextName = { "33-36 Part" },
-    order = 44,
+    order = 47,
     stepCount = 69,
     steps = [[{
 {type="FLY",note="Fly to Freewind Post",place="Freewind Post"},

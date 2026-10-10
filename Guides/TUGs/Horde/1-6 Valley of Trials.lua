@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_VALLEY_OF_TRIALS",
     name = "1-6 Valley of Trials",
-    version = 4,
+    version = 5,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/1-6 Valley of Trials.lua",
     nextName = { "6-12 Durotar" },
-    order = 9,
+    order = 18,
     stepCount = 61,
     steps = [[{
 {type="ACCEPT",quest=4641,note="Accept:"},

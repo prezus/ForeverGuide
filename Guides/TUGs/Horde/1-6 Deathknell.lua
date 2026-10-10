@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_DEATHKNELL",
     name = "1-6 Deathknell",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/1-6 Deathknell.lua",
     nextName = { "6-12 Tirisfal Glades" },
-    order = 8,
+    order = 17,
     stepCount = 56,
     steps = [[{
 {type="ACCEPT",quest=363,note="Accept:"},

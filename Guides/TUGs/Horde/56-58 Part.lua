@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_56_58_PART",
     name = "56-58 Part",
-    version = 4,
+    version = 5,
     faction = "Horde",
     minLevel = 56,
     maxLevel = 58,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/56-58 Part.lua",
     nextName = { "58-60 Part" },
-    order = 55,
+    order = 58,
     stepCount = 176,
     steps = [[{
 {type="FLY",note="Fly to Winterspring",place="Winterspring"},

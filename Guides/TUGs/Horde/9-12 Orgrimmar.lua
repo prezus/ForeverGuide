@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_9_12_ORGRIMMAR",
     name = "9-12 Orgrimmar",
-    version = 4,
+    version = 5,
     faction = "Horde",
     minLevel = 9,
     maxLevel = 12,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/9-12 Orgrimmar.lua",
     nextName = { "12-16 The Barrens" },
-    order = 14,
+    order = 23,
     stepCount = 121,
     steps = [[{
 {type="ACCEPT",quest=97246,note="Accept:"},
