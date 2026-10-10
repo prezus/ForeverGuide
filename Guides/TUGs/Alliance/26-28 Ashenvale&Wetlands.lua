@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_26_28_ASHENVALE_WETLANDS",
     name = "26-28 Ashenvale&Wetlands",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 26,
     maxLevel = 28,
@@ -14,12 +14,12 @@ ns.RegisterGuide({
     order = 30,
     stepCount = 81,
     steps = [[{
-{type="FLY",note="Fly to Stormwind City",place="Stormwind City"},
+{type="FLY",note="Fly to",place="Stormwind City"},
 {type="ACCEPT",quest=2923,note="Accept:"},
 {type="ACCEPT",quest=335,note="Accept:"},
 {type="TURNIN",quest=1075,note="TurnIn:"},
 {type="TURNIN",quest=7791,note="TurnIn:"},
-{type="FLY",note="Fly to Duskwood",place="Duskwood"},
+{type="FLY",note="Fly to",place="Duskwood"},
 {type="COMPLETE",quest=335,objective=1,note="Do:"},
 {type="ACCEPT",quest=101,note="Accept:"},
 {type="NOTE",text="Buy Food&Water and repair."},
@@ -41,7 +41,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=230,note="TurnIn:"},
 {type="ACCEPT",quest=262,note="Accept:"},
 {type="TRAVEL",zone="Westfall",x=56.4,y=52.6,note="Run to"},
-{type="FLY",note="Fly to Duskwood",place="Duskwood"},
+{type="FLY",note="Fly to",place="Duskwood"},
 {type="TURNIN",quest=262,note="TurnIn:"},
 {type="ACCEPT",quest=265,note="Accept:"},
 {type="TURNIN",quest=57,note="TurnIn:"},
@@ -94,6 +94,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=395,optional=true,note="TurnIn:"},
 {type="ACCEPT",quest=396,optional=true,note="Accept:"},
 {type="TURNIN",quest=396,optional=true,note="TurnIn:"},
-{type="FLY",note="Fly to Duskwood",place="Duskwood"}
+{type="FLY",note="Fly to",place="Duskwood"}
 }]],
 })

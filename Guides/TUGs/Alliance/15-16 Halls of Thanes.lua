@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_15_16_HALLS_OF_THANES",
     name = "15-16 Halls of Thanes",
+    version = 1,
     faction = "Alliance",
     minLevel = 15,
     maxLevel = 16,

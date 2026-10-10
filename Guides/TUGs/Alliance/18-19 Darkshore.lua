@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_18_19_DARKSHORE",
     name = "18-19 Darkshore",
+    version = 2,
     faction = "Alliance",
     minLevel = 18,
     maxLevel = 19,
@@ -82,7 +83,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=951,note="Do:"},
 {type="TURNIN",quest=2139,note="TurnIn:"},
 {type="NOTE",text="Take the boat to Darnassus"},
-{type="FLIGHTPATH",npc=3838,npcName="Vesprystus",zone="Teldrassil",x=58.4,y=94,note="Get the flight path flightpath at:"},
+{type="FLIGHTPATH",zone="Teldrassil",x=58.4,y=94,race={"Human","Dwarf","Gnome"},note="Get the flightpath at:"},
 {type="TURNIN",quest=731,note="TurnIn:"},
 {type="NOTE",text="I suggest to do RoL now and DM after. RoL does not need any pre-quests you get all in the dungeon. Get your level 18spells though(Sry Palas no trainer in Teldrassil, hearthstone it is)."}
 }]],

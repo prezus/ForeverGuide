@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_22_22_ASHENVALE",
     name = "21-22 Ashenvale",
+    version = 2,
     faction = "Alliance",
     minLevel = 21,
     maxLevel = 22,
@@ -31,7 +32,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=970,note="TurnIn:"},
 {type="ACCEPT",quest=973,note="Accept:"},
 {type="TURNIN",quest=945,note="TurnIn:"},
-{type="FLIGHTPATH",npc=4267,npcName="Daelyshia",zone="Ashenvale",x=34.59,y=48.01,note="Get the flight path flightpath at:"},
+{type="FLIGHTPATH",zone="Ashenvale",x=34.59,y=48.01,note="Get the flightpath at:"},
 {type="ACCEPT",quest=1008,note="Accept:"},
 {type="ACCEPT",quest=1070,note="Accept:"},
 {type="ACCEPT",quest=991,note="Accept:"},
