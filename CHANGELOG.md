@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: follow TUGs' latest update: 11-13 Darkshore replaces 11-14 Darkshore, 14-15 Westfall added, 15-16 Halls of Thanes added, 16-18 Loch Modan replaces 14-17 Loch Modan, 18-19 Darkshore replaces 17-19 Darkshore, 19-21 Ruins of Lordaeron&Deadmines replaces 19-21 Deadmines, 21-22 Redridge Mountains replaces 19-21 Redridge Mountains, 21-22 Ashenvale replaces 21-22 Ashenvale, 6-11 Teldrassil.
 - Recordings know where your experience bar is: each sitting, each bit of experience and each level-up notes your XP into the level, what the level needs and your rested XP, so a recording can show your XP bar as it was at any moment.
 - Guides: the quest database follows Questie's latest Forever data and the game's build 1.60.1.70245: about 1,500 more quests know their givers, turn-ins, spawns and objectives, with many creatures and objects added; four new quests the game added count as Forever quests.
 - Recordings are filed under your character's real name and realm, as the game gives them. Before, the Companion took them from your WoW folders, and a realm could read as "Windlight-70".
