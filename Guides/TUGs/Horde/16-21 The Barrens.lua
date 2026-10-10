@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_16_21_THE_BARRENS",
     name = "16-21 The Barrens",
-    version = 5,
+    version = 6,
     faction = "Horde",
     minLevel = 16,
     maxLevel = 21,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/16-21 The Barrens.lua",
     nextName = { "21-25 Hillsbrad Foothills" },
-    order = 41,
+    order = 44,
     stepCount = 108,
     steps = [[{
 {type="TURNIN",quest=855,note="TurnIn:"},

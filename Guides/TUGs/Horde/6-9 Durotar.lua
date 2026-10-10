@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_9_DUROTAR",
     name = "6-9 Durotar",
-    version = 3,
+    version = 4,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 9,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/6-9 Durotar.lua",
     nextName = { "9-12 Orgrimmar" },
-    order = 12,
+    order = 21,
     stepCount = 103,
     steps = [[{
 {type="ACCEPT",quest=2161,note="Accept:"},

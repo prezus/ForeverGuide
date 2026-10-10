@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_SHADOWGLEN",
     name = "1-6 Shadowglen",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/1-6 Shadowglen.lua",
     nextName = { "6-9 Teldrassil" },
-    order = 3,
+    order = 4,
     stepCount = 63,
     steps = [[{
 {type="ACCEPT",quest=456,note="Accept:"},

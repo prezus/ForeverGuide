@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_40_43BADLANDS_ULDAMAN",
     name = "40-43 Badlands,Uldaman",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 40,
     maxLevel = 43,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/40-43Badlands,Uldaman.lua",
     nextName = { "41-44 Tanaris,STV" },
-    order = 32,
+    order = 35,
     stepCount = 118,
     steps = [[{
 {type="TURNIN",quest=697,optional=true,note="TurnIn:"},

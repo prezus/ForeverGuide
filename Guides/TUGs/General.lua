@@ -3,11 +3,11 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_GENERAL",
     name = "#Leveling ShoppingList",
-    version = 2,
+    version = 3,
     group = "Leveling Guides",
     source = "TUGs/General.lua",
     nextName = { "Nothing" },
-    order = 57,
+    order = 60,
     stepCount = 6,
     steps = [[{
 {type="NOTE",text="This is a WORK IN PROGRESS."},

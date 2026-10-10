@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_38_39DUSTWALLOW_MARSH_STV",
     name = "38-39 Dustwallow Marsh,STV",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     minLevel = 38,
     maxLevel = 39,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/38-39Dustwallow Marsh,STV.lua",
     nextName = { "40-43 Badlands,Uldaman" },
-    order = 31,
+    order = 34,
     stepCount = 98,
     steps = [[{
 {type="TURNIN",quest=1050,optional=true,note="TurnIn:"},

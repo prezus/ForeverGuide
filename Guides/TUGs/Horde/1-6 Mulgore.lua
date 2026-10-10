@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_MULGORE",
     name = "1-6 Mulgore",
-    version = 5,
+    version = 6,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/1-6 Mulgore.lua",
     nextName = { "6-12 Mulgore" },
-    order = 10,
+    order = 19,
     stepCount = 47,
     steps = [[{
 {type="ACCEPT",quest=747,note="Accept:"},

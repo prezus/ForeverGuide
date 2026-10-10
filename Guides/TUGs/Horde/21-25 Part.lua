@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_21_25_PART",
     name = "21-25 Part",
-    version = 4,
+    version = 5,
     faction = "Horde",
     minLevel = 21,
     maxLevel = 25,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/21-25 Part.lua",
     nextName = { "25-31 Part" },
-    order = 42,
+    order = 45,
     stepCount = 81,
     steps = [[{
 {type="NOTE",text="Get to Orgrimmar"},

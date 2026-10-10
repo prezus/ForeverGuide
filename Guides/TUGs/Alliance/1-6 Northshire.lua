@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_NORTHSHIRE",
     name = "1-6 Northshire",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/1-6 Northshire.lua",
     nextName = { "6-9 Elwynn Forest" },
-    order = 2,
+    order = 3,
     stepCount = 64,
     steps = [[{
 {type="ACCEPT",quest=783,note="Accept:"},

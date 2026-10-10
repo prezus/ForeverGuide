@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_6_9_ELWYNN_FOREST",
     name = "6-9 Elwynn Forest",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     minLevel = 6,
     maxLevel = 9,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/6-9 Elwynn Forest.lua",
     nextName = { "9-11 Dun Morogh" },
-    order = 4,
+    order = 6,
     stepCount = 132,
     steps = [[{
 {type="TURNIN",quest=96627,note="TurnIn:"},

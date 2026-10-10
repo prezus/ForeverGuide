@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_24_25_ASHENVALE",
     name = "24-25 Ashenvale",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     minLevel = 24,
     maxLevel = 25,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/24-25 Ashenvale.lua",
     nextName = { "25-27 Wetlands" },
-    order = 25,
+    order = 28,
     stepCount = 54,
     steps = [[{
 {type="TURNIN",quest=994,note="TurnIn:"},

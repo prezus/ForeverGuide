@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_55_56BS_WPL",
     name = "55-56 BS,WPL",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 55,
     maxLevel = 56,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/55-56BS,WPL.lua",
     nextName = { "56-60 WPL,EPL,BS" },
-    order = 39,
+    order = 42,
     stepCount = 80,
     steps = [[{
 {type="ACCEPT",quest=3823,note="Accept:"},

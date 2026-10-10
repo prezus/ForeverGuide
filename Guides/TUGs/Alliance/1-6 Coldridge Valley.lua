@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_COLDRIDGE_VALLEY",
     name = "1-6 Coldridge Valley",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/1-6 Coldridge Valley.lua",
     nextName = { "12-16 The Barrens" },
-    order = 1,
+    order = 2,
     stepCount = 57,
     steps = [[{
 {type="ACCEPT",quest=179,note="Accept:"},

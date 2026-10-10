@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_53_55_PART",
     name = "53-55 Part",
-    version = 4,
+    version = 5,
     faction = "Horde",
     minLevel = 53,
     maxLevel = 55,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/53-55 Part.lua",
     nextName = { "55-56 Part" },
-    order = 53,
+    order = 56,
     stepCount = 166,
     steps = [[{
 {type="FLIGHTPATH",npc=10583,npcName="Gryfe",zone="Un'Goro Crater",x=45.2,y=5.8,note="Get the flight path flightpath at:"},
