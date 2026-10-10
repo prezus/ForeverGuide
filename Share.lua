@@ -92,6 +92,8 @@ local SCHEMA = Obj {
             { "mounted", "bool" }, { "taxi", "bool" }, { "cost", "int" },
             { "action", Str(10) },
             { "src", Str(10) }, { "sid", "int" }, { "at", "int" },
+            -- the experience bar: XP into the level, XP the level needs, rested XP (START, RESUME, XP, LEVEL)
+            { "cx", "int" }, { "mx", "int" }, { "rx", "int" },
         }, 2500) },
     } },
 }

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Recordings know where your experience bar is: each sitting, each bit of experience and each level-up notes your XP into the level, what the level needs and your rested XP, so a recording can show your XP bar as it was at any moment.
 - Guides: the quest database follows Questie's latest Forever data and the game's build 1.60.1.70245: about 1,500 more quests know their givers, turn-ins, spawns and objectives, with many creatures and objects added; four new quests the game added count as Forever quests.
 - Recordings are filed under your character's real name and realm, as the game gives them. Before, the Companion took them from your WoW folders, and a realm could read as "Windlight-70".
 - **Recording starts by itself.** Once recording is on (the first click of the record dot, or Record runs in Options), every character records whenever you log in: there is nothing to remember. A click on the dot pauses for a break, until you click it again or next log in (a /reload keeps the pause). Right-click stops recording on all your characters, after asking, until you click the dot again. Each character is one recording on codex, over every day you play it. The dot is grey while recording is off, and its tooltip and the first-time window say all this.
