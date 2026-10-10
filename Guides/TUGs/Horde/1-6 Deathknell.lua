@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_DEATHKNELL",
     name = "1-6 Deathknell",
-    version = 4,
+    version = 3,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,

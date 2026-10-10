@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_12_TIRISFAL_GLADES",
     name = "6-12 Tirisfal Glades",
-    version = 6,
+    version = 5,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 12,

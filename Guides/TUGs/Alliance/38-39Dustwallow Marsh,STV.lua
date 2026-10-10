@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_38_39DUSTWALLOW_MARSH_STV",
     name = "38-39 Dustwallow Marsh,STV",
-    version = 6,
+    version = 5,
     faction = "Alliance",
     minLevel = 38,
     maxLevel = 39,

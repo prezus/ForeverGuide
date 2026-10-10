@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_41_44TANARIS_STV",
     name = "41-44 Tanaris,STV",
-    version = 5,
+    version = 4,
     faction = "Alliance",
     minLevel = 41,
     maxLevel = 44,

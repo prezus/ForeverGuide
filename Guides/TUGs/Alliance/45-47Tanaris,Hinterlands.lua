@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_45_47TANARIS_HINTERLANDS",
     name = "45-47 Tanaris,Hinterlands",
-    version = 5,
+    version = 4,
     faction = "Alliance",
     minLevel = 45,
     maxLevel = 47,

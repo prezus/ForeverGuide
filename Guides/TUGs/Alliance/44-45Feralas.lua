@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_44_45FERALAS",
     name = "44-45 Feralas",
-    version = 5,
+    version = 4,
     faction = "Alliance",
     minLevel = 44,
     maxLevel = 45,

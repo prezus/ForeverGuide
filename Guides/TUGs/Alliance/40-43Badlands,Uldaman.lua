@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_40_43BADLANDS_ULDAMAN",
     name = "40-43 Badlands,Uldaman",
-    version = 5,
+    version = 4,
     faction = "Alliance",
     minLevel = 40,
     maxLevel = 43,
