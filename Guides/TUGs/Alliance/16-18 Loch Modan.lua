@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_16_18_LOCH_MODAN",
     name = "16-18 Loch Modan",
+    version = 2,
     faction = "Alliance",
     minLevel = 16,
     maxLevel = 18,
@@ -32,7 +33,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=2039,note="Accept:"},
 {type="NOTE",text="Learn your Level 14 skills."},
 {type="ACCEPT",quest=6392,race={"Dwarf","Gnome"},note="Accept:"},
-{type="FLY",note="Fly to Loch Modan",place="Loch Modan"},
+{type="FLY",race={"Dwarf","Gnome","Human"},note="Fly to",place="Loch Modan"},
 {type="ACCEPT",quest=436,note="Accept:"},
 {type="TURNIN",quest=6392,race={"Dwarf","Gnome"},note="TurnIn:"},
 {type="ACCEPT",quest=224,race={"NightElf"},note="Accept:"},

@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_13_15_WESTFALL",
     name = "14-15 Westfall",
+    version = 1,
     faction = "Alliance",
     minLevel = 14,
     maxLevel = 15,

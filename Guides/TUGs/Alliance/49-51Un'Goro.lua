@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_49_51UN_GORO",
     name = "49-51 Un'Goro",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     minLevel = 49,
     maxLevel = 51,
@@ -32,7 +32,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=4243,note="Accept:"},
 {type="TURNIN",quest=3845,note="TurnIn:"},
 {type="ACCEPT",quest=3908,note="Accept:"},
-{type="FLIGHTPATH",npc=10583,npcName="Gryfe",zone="Un'Goro Crater",x=45.2,y=5.8,note="Get the flight path flightpath at:"},
+{type="FLIGHTPATH",zone="Un'Goro Crater",x=45.2,y=5.8,note="Get the flightpath at:"},
 {type="TURNIN",quest=3884,note="TurnIn:"},
 {type="ACCEPT",quest=3881,note="Accept:"},
 {type="ACCEPT",quest=3883,note="Accept:"},
@@ -87,6 +87,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=4493,note="Accept:"},
 {type="TURNIN",quest=3378,optional=true,note="TurnIn:"},
 {type="NOTE",text="Fly to Ashenvale"},
-{type="HEARTH",npc=6738,npcName="Innkeeper Kimlya",zone="Ashenvale",x=37,y=49.2,note="Set your Hearthstone to Ashenvale at"}
+{type="USEHEARTH",zone="Ashenvale",x=37,y=49.2,note="Set your to Ashenvale at"}
 }]],
 })

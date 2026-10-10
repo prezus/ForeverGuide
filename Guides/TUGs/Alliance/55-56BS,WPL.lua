@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_55_56BS_WPL",
     name = "55-56 BS,WPL",
-    version = 4,
+    version = 5,
     faction = "Alliance",
     minLevel = 55,
     maxLevel = 56,
@@ -91,7 +91,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=4985,note="TurnIn:"},
 {type="ACCEPT",quest=4986,note="Accept:"},
 {type="TRAVEL",zone="Western Plaguelands",x=65.3,y=86.8,note="Run to"},
-{type="HEARTH",npc=7744,npcName="Innkeeper Thulfram",zone="The Hinterlands",x=13.8,y=41.6,note="Set your Hearthstone to The Hinterlands at"},
+{type="USEHEARTH",zone="The Hinterlands",x=13.8,y=41.6,note="Set your to The Hinterlands at"},
 {type="TURNIN",quest=626,note="TurnIn:"},
 {type="USEHEARTH",note="Use your Hearthstone."}
 }]],

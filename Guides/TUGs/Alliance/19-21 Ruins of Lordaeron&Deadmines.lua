@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_19_21_RUINS_OF_LORDAERON_DEADMINES",
     name = "19-21 Ruins of Lordaeron&Deadmines",
+    version = 1,
     faction = "Alliance",
     minLevel = 19,
     maxLevel = 21,
