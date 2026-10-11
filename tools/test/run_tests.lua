@@ -1488,6 +1488,7 @@ section("record runs with ForeverGuide Companion: closed segments wait in the ou
     MOCK_FIRE("PLAYER_LOGOUT")
     check(#R:Outbox() == 3, "an empty segment is not sent")
 
+
     -- the next load: SavedVariables keep the outbox, and the receipt drops what codex has
     ns.Database:Init()
     check(#R:Outbox() == 3, "SavedVariables keep the outbox across a login")
@@ -1510,6 +1511,17 @@ section("record runs with ForeverGuide Companion: closed segments wait in the ou
     _G.ForeverGuideCompanionReceipt = nil
     R:OnEnterWorld(true, false)
     check(#R:Outbox() == 1, "without the receipt the outbox keeps everything")
+
+    -- the companion's addon is installed but did not load (turned off): logout still fills the outbox
+    ns.char.runOutbox = nil
+    MOCK.addonsInstalled.ForeverGuideCompanion = true
+    R:Start()
+    fill(4)
+    MOCK_FIRE("PLAYER_LOGOUT")
+    check(#R:Outbox() == 1 and R:Outbox()[1].run.entries[#R:Outbox()[1].run.entries].e == "PAUSE",
+        "with the companion's addon installed but not loaded, logout closes the open segment into the outbox")
+    MOCK.addonsInstalled.ForeverGuideCompanion = nil
+    ns.Commands:Run("run discard")
 
     ns.char.runOutbox, ns.char.runSent = nil, nil
     hideShare()
