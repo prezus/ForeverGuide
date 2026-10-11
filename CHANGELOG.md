@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Recordings reach the Companion at logout even when its ForeverGuideCompanion addon is turned off in the AddOns list. Before, the recording stayed in the game until a login with that addon on.
 - Loot objectives for Forever items now name the mobs that drop them, e.g. Gnarlpine Fang and Tallonkai's Jewel.
 - Guides are TUGs' current guides exactly as written, with none of our edits on top. Your place in the 52 changed guides starts over.
 - Guides: follow TUGs' latest update: 11-13 Darkshore replaces 11-14 Darkshore, 14-15 Westfall added, 15-16 Halls of Thanes added, 16-18 Loch Modan replaces 14-17 Loch Modan, 18-19 Darkshore replaces 17-19 Darkshore, 19-21 Ruins of Lordaeron&Deadmines replaces 19-21 Deadmines, 21-22 Redridge Mountains replaces 19-21 Redridge Mountains, 21-22 Ashenvale replaces 21-22 Ashenvale, 6-11 Teldrassil.

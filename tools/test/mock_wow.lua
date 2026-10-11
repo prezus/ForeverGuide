@@ -458,7 +458,12 @@ function _G.MOCK_SPELL_NAME(id, name) world.spellNames[id] = name end
 _G.GetMaxPlayerLevel = function() return 60 end
 _G.IsXPUserDisabled = function() return world.xpDisabled == true end
 _G.C_GossipInfo = { GetAvailableQuests = function() return {} end, GetActiveQuests = function() return {} end }
-_G.C_AddOns = { GetAddOnMetadata = function() return "0.1.0-test" end }
+-- MOCK.addonsInstalled: the folders in Interface\AddOns besides ForeverGuide, loaded or not
+MOCK.addonsInstalled = {}
+_G.C_AddOns = {
+    GetAddOnMetadata = function() return "0.1.0-test" end,
+    DoesAddOnExist = function(name) return name == "ForeverGuide" or MOCK.addonsInstalled[name] == true end,
+}
 
 -- ---- helpers for tests ---------------------------------------------------------
 local function fire(event, ...)

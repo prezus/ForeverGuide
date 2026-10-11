@@ -62,12 +62,15 @@ local function Enabled() return ns.db and ns.db.recordRuns == true end
 local function Current() return ns.char and ns.char.run end
 
 -- ForeverGuide Companion is installed: its addon's receipt is loaded (## OptionalDeps loads it
--- first). Its only file assigns the receipt, so the table being there is the companion being there.
+-- first), or the addon is there but did not load (turned off in the AddOns list). Its only file
+-- assigns the receipt, so the table being there is the companion being there.
 local function Receipt()
     local receipt = rawget(_G, "ForeverGuideCompanionReceipt")
     return type(receipt) == "table" and receipt or nil
 end
-local function Companion() return Receipt() ~= nil end
+local function Companion()
+    return Receipt() ~= nil or ns.Call("C_AddOns.DoesAddOnExist", "ForeverGuideCompanion") == true
+end
 Run.Companion = Companion
 
 --- Ask the player with the run dialog (UI:ShowRunNotice): "near" the limit, "full" and paused, or
