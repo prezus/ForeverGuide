@@ -129,6 +129,15 @@ function Player:GetName()
     return PlainString(Safe(UnitName, "player")) or "?"
 end
 
+--- The character's whole name. Forever's characters have a surname, which UnitName gives as its
+--- second value ("Arkan", "Stonebrow"), and many share a first name: "Arkan Stonebrow".
+function Player:GetFullName()
+    local name, surname = Safe(UnitName, "player")
+    name, surname = PlainString(name), PlainString(surname)
+    if not name then return "?" end
+    return surname and surname ~= "" and (name .. " " .. surname) or name
+end
+
 -- The realm, without spaces ("ClassicBetaPvE2"), as Name-Realm spells it.
 function Player:GetRealm()
     local realm = PlainString(Safe(rawget(_G, "GetNormalizedRealmName"))) or PlainString(Safe(rawget(_G, "GetRealmName"))) or "?"

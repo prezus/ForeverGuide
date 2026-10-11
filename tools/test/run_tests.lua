@@ -1470,6 +1470,12 @@ section("record runs with ForeverGuide Companion: closed segments wait in the ou
         "an outbox entry encodes as a run segment share, nothing else in it")
     check(doc.run.character == "Tester-ClassicBetaPvE2" and decoded.run.character == "Tester-ClassicBetaPvE2",
         "an outbox entry names the character as the game does, Name-Realm without spaces, for codex to file it")
+    MOCK.surname = "Stonebrow"
+    R.ToOutbox({ id = "0123456789abcdef", seg = 1, entries = {} })
+    check(R:Outbox()[#R:Outbox()].run.character == "Tester Stonebrow-ClassicBetaPvE2",
+        "a Forever character's surname is part of its name, so two characters sharing a first name stay apart")
+    table.remove(ns.char.runOutbox)
+    MOCK.surname = nil
 
     -- Send hands the segment to the companion too; logout closes the open one
     fill(10)
