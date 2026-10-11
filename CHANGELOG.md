@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Loot objectives for Forever items now name the mobs that drop them, e.g. Gnarlpine Fang and Tallonkai's Jewel.
 - Guides are TUGs' current guides exactly as written, with none of our edits on top. Your place in the 52 changed guides starts over.
 - Guides: follow TUGs' latest update: 11-13 Darkshore replaces 11-14 Darkshore, 14-15 Westfall added, 15-16 Halls of Thanes added, 16-18 Loch Modan replaces 14-17 Loch Modan, 18-19 Darkshore replaces 17-19 Darkshore, 19-21 Ruins of Lordaeron&Deadmines replaces 19-21 Deadmines, 21-22 Redridge Mountains replaces 19-21 Redridge Mountains, 21-22 Ashenvale replaces 21-22 Ashenvale, 6-11 Teldrassil.
 - Recordings know where your experience bar is: each sitting, each bit of experience and each level-up notes your XP into the level, what the level needs and your rested XP, so a recording can show your XP bar as it was at any moment.
