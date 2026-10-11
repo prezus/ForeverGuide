@@ -275,7 +275,7 @@ _G.UnitFactionGroup = function() return world.faction, world.faction end
 _G.UnitClass = function() return unpack(world.class) end
 _G.UnitRace = function() return unpack(world.race) end
 _G.UnitName = function(unit)
-    if unit == "player" then return "Tester" end
+    if unit == "player" then return "Tester", world.surname end
     if world.plates and world.plates[unit] then return world.plates[unit].name end
     local u = unit == "npc" and world.npc or world.target
     return u and u.name

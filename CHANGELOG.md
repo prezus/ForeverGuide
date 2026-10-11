@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Recordings are filed under your character's whole name, surname included ("Arkan Stonebrow"). Before, every character sharing a first name went into one recording.
 - Recordings reach the Companion at logout even when its ForeverGuideCompanion addon is turned off in the AddOns list. Before, the recording stayed in the game until a login with that addon on.
 - Loot objectives for Forever items now name the mobs that drop them, e.g. Gnarlpine Fang and Tallonkai's Jewel.
 - Guides are TUGs' current guides exactly as written, with none of our edits on top. Your place in the 52 changed guides starts over.
