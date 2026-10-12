@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: Street's Speed Demon v1, a route for Dwarves and Gnomes chosen in the route list: 1-13 dwarf and gnome route
 - Recordings are filed under your character's whole name, surname included ("Arkan Stonebrow"). Before, every character sharing a first name went into one recording.
 - Recordings reach the Companion at logout even when its ForeverGuideCompanion addon is turned off in the AddOns list. Before, the recording stayed in the game until a login with that addon on.
 - Loot objectives for Forever items now name the mobs that drop them, e.g. Gnarlpine Fang and Tallonkai's Jewel.
