@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_33_34_GNOMEREGAN",
     name = "33-34 Gnomeregan",
+    version = 1,
     faction = "Alliance",
     minLevel = 33,
     maxLevel = 34,
