@@ -79,6 +79,7 @@ local CHAR_DEFAULTS = {
     version = DB_VERSION,
     activeGuide = nil,            -- guide id
     autoPickGuide = true,
+    routeAsked = false,           -- asked at level 1 which route to follow (UI:ShowRouteChoice)
     guides = {},                  -- [guideID] = { step = n, done = { [idx] = true }, version = n }
 }
 

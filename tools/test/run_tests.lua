@@ -3035,6 +3035,73 @@ section("an alternate route: listed under its own name, never the default, follo
     G:Reset(); settle()
 end)
 
+-- ---- a new character is asked which route to follow, when its race has one to choose ------------
+-- (2026-10-12: Street's Speed Demon ships for Dwarves and Gnomes beside the standard guides)
+section("a level-1 character whose race has a route to choose is asked once which to follow", function()
+    local KEY = "GEN_ALLIANCE_SPEED_DEMON_DWARF"
+    local race, level, routeBefore, askedBefore, activeBefore = MOCK.race, MOCK.level, ns.char.route, ns.char.routeAsked, G.active and G.active.id
+    for n, name in ipairs({ "01_1_6_COLDRIDGE_VALLEY", "02_6_11_DUN_MOROGH" }) do
+        ns.RegisterGuide({ id = KEY .. "_" .. name, name = n .. ". Speed " .. name, version = 1, kind = "alternate", routeLabel = "Street's Speed Demon",
+            faction = "Alliance", race = { "Dwarf" }, minLevel = n == 1 and 1 or 6, maxLevel = n == 1 and 6 or 11, map = 1426, zone = "Dun Morogh",
+            next = n == 1 and (KEY .. "_02_6_11_DUN_MOROGH") or nil, steps = { { type = "NOTE", text = "Go." } } })
+    end
+    local function listed()
+        for _, r in ipairs(G:Routes()) do if r.key == KEY then return r end end
+    end
+    ns.char.route, ns.char.routeAsked = nil, false
+    MOCK.level = 1
+    ns.Player.cache = {}
+
+    check(listed() == nil, "a Human is not offered a route for Dwarves")
+    local offered = false
+    for _, r in ipairs(G:AlternateRoutes()) do if r.key == KEY then offered = true end end
+    check(not offered, "nor asked to choose it")
+
+    MOCK.race = { "Dwarf", "Dwarf" }
+    ns.Player.cache = {}
+    check(listed() ~= nil and #G:AlternateRoutes() == 1, "a Dwarf is offered Street's Speed Demon")
+    need(G:ShouldAskRoute(), "a level-1 Dwarf that has not chosen is asked")
+    ns.UI:OnEnterWorld(true)
+    settle()
+    local dialog = _G.ForeverGuideRouteChoice
+    need(dialog and dialog:IsShown(), "entering the world shows the route choice")
+    check(dialog.buttons[1].label:GetText() == "Standard guides" and dialog.buttons[2].label:GetText() == "Street's Speed Demon",
+        "it offers the standard guides first, then the route by its name (" .. tostring(dialog.buttons[2].label:GetText()) .. ")")
+    dialog.buttons[2]:GetScript("OnClick")()
+    check(not dialog:IsShown() and ns.char.routeAsked and ns.char.route == KEY, "choosing Street's Speed Demon follows it and remembers the answer")
+    check(G.active and G.active.id == KEY .. "_01_1_6_COLDRIDGE_VALLEY", "on its first chapter (" .. tostring(G.active and G.active.id) .. ")")
+    check(not G:ShouldAskRoute(), "and the character is not asked again")
+
+    -- the way back, from the Guides list's Routes or /fg path
+    ns.Commands:Run("path default")
+    check(ns.char.route == nil and G:CurrentRoute() == nil or (G:CurrentRoute() and G:CurrentRoute().key ~= KEY), "/fg path default goes back to the standard guides")
+    check(not G:ShouldAskRoute(), "which still counts as answered")
+
+    -- answered the other way: the standard guides, and no route followed
+    ns.char.route, ns.char.routeAsked = nil, false
+    ns.UI:OnEnterWorld(true)
+    settle()
+    dialog.buttons[1]:GetScript("OnClick")()
+    check(ns.char.routeAsked and ns.char.route == nil, "choosing the standard guides follows no route and remembers the answer")
+
+    -- not at a later level, nor on a reload
+    ns.char.routeAsked = false
+    MOCK.level = 2
+    ns.Player.cache = {}
+    check(not G:ShouldAskRoute(), "a character past level 1 is not asked: it chooses in the Guides list if it wants")
+    MOCK.level = 1
+    ns.Player.cache = {}
+    ns.UI:OnEnterWorld(false)
+    settle()
+    check(not dialog:IsShown(), "a /reload does not ask")
+
+    MOCK.race, MOCK.level = race, level
+    ns.Player.cache = {}
+    ns.char.route, ns.char.routeAsked = routeBefore, askedBefore
+    if activeBefore then G:Activate(activeBefore, true) end
+    G:Reset(); settle()
+end)
+
 -- ---- a saved route or chapter the addon no longer ships ----------------------------------------
 -- (2026-10-04: the addon ships TUGs' routes in place of ours; a character saved on one of ours logs in)
 section("a saved chapter whose route is gone: the route the character follows now, at its level", function()

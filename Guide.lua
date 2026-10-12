@@ -242,7 +242,8 @@ function Guide:Routes()
     for _, id in ipairs(self.list) do
         local g = self.registry[id]
         local key, race = self:RouteOf(g)
-        if key and self:Applicable(g) then
+        -- an alternate route is offered to the races it is for (Street's Speed Demon: Dwarves and Gnomes)
+        if key and self:Applicable(g) and (not self:IsAlternate(g) or self:ForMyRace(g)) then
             local r = byKey[key]
             if not r then
                 local alternate = self:IsAlternate(g)
@@ -351,6 +352,31 @@ function Guide:CurrentRoute()
     for _, r in ipairs(routes) do if r.mine then return r end end
     for _, r in ipairs(routes) do if not r.alternate then return r end end
     return nil
+end
+
+--- The routes this character may choose besides the guides it follows by default: the alternate
+--- routes for its race (Street's Speed Demon for a Dwarf or a Gnome).
+function Guide:AlternateRoutes()
+    local out = {}
+    for _, r in ipairs(self:Routes()) do if r.alternate then out[#out + 1] = r end end
+    return out
+end
+
+--- Follow the guides by default again (TUGs'), leaving a chosen route: the starting guide at level 1,
+--- else the guide for the level. Returns the guide picked.
+function Guide:FollowDefault()
+    ns.char.route = nil
+    local level = ns.Player:GetLevel()
+    local pick = (level == 1 and self:StartGuide()) or self:GroupGuideForLevel(level)
+    if pick then self:Pick(pick.id) end
+    if ns.Tracker then ns.Tracker:SetMode("guide") end
+    return pick
+end
+
+--- Whether to ask a new character which route to follow: once, at level 1, when there is a route to
+--- choose besides the default (`ns.char.routeAsked` remembers the answer).
+function Guide:ShouldAskRoute()
+    return not ns.char.routeAsked and not ns.char.route and ns.Player:GetLevel() == 1 and #self:AlternateRoutes() > 0
 end
 
 --- Choose a route (key or label); activates the chapter that fits the level.
