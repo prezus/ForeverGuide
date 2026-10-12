@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_29_30_WETLANDS",
     name = "29-30 Wetlands",
+    version = 1,
     faction = "Alliance",
     minLevel = 29,
     maxLevel = 30,
