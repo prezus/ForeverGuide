@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/51-53 Part.lua",
     nextName = { "53-55 Part" },
-    order = 55,
+    order = 58,
     stepCount = 97,
     steps = [[{
 {type="USEHEARTH",note="Use your Hearthstone."},

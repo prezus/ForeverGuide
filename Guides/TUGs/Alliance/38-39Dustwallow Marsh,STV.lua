@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/38-39Dustwallow Marsh,STV.lua",
     nextName = { "40-43 Badlands,Uldaman" },
-    order = 34,
+    order = 37,
     stepCount = 98,
     steps = [[{
 {type="TURNIN",quest=1050,optional=true,note="TurnIn:"},

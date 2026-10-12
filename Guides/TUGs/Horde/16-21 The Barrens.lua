@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/16-21 The Barrens.lua",
     nextName = { "21-25 Hillsbrad Foothills" },
-    order = 44,
+    order = 47,
     stepCount = 108,
     steps = [[{
 {type="TURNIN",quest=855,note="TurnIn:"},

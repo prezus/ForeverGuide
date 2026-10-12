@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_01_1_6_COLDRIDGE_VALLEY",
     name = "1-6 Coldridge Valley",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -63,6 +64,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_02_6_11_DUN_MOROGH",
     name = "6-11 Dun Morogh",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -171,6 +173,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_03_11_12_LOCH_MODAN",
     name = "11-12 Loch Modan",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -207,6 +210,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_04_12_13_ELWYNN_FOREST",
     name = "12-13 Elwynn Forest",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -271,6 +275,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_01_1_6_COLDRIDGE_VALLEY",
     name = "1-6 Coldridge Valley",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -331,6 +336,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_02_6_11_DUN_MOROGH",
     name = "6-11 Dun Morogh",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -439,6 +445,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_03_11_12_LOCH_MODAN",
     name = "11-12 Loch Modan",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -475,6 +482,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_04_12_13_ELWYNN_FOREST",
     name = "12-13 Elwynn Forest",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",

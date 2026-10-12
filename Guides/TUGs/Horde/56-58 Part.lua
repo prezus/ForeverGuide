@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/56-58 Part.lua",
     nextName = { "58-60 Part" },
-    order = 58,
+    order = 61,
     stepCount = 176,
     steps = [[{
 {type="FLY",note="Fly to",place="Winterspring"},

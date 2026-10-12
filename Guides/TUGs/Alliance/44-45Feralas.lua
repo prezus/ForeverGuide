@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/44-45Feralas.lua",
     nextName = { "45-47 Tanaris,Hinterlands" },
-    order = 37,
+    order = 40,
     stepCount = 61,
     steps = [[{
 {type="NOTE",text="Fly to Feralas"},

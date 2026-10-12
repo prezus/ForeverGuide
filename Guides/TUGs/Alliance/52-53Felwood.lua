@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/52-53Felwood.lua",
     nextName = { "55-56 BS,WPL" },
-    order = 41,
+    order = 44,
     stepCount = 195,
     steps = [[{
 {type="ACCEPT",quest=4101,note="Accept:"},
