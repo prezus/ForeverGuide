@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/6-12 Tirisfal Glades.lua",
     nextName = { "12-16 The Barrens" },
-    order = 22,
+    order = 33,
     stepCount = 167,
     steps = [[{
 {type="ACCEPT",quest=365,note="Accept:"},

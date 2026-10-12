@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/1-6 Valley of Trials.lua",
     nextName = { "6-12 Durotar" },
-    order = 18,
+    order = 29,
     stepCount = 61,
     steps = [[{
 {type="ACCEPT",quest=4641,note="Accept:"},

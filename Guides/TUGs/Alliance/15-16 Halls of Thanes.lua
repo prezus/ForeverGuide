@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_15_16_HALLS_OF_THANES",
     name = "15-16 Halls of Thanes",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 15,
     maxLevel = 16,
@@ -11,11 +11,23 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/15-16 Halls of Thanes.lua",
     nextName = { "16-18 Loch Modan" },
-    order = 11,
-    stepCount = 3,
+    order = 10,
+    stepCount = 15,
     steps = [[{
-{type="NOTE",text="This will have the Dungeon quests soonTM."},
-{type="NOTE",text="CAREFUL, the endboss FEARS, make sure to clear the room beforehand."},
-{type="ACCEPT",quest=2041,note="Accept:"}
+{type="ACCEPT",quest=96394,note="Accept:"},
+{type="ACCEPT",quest=96403,note="Accept:"},
+{type="ACCEPT",quest=96395,note="Accept:"},
+{type="COMPLETE",quest=96395,note="Do:"},
+{type="TURNIN",quest=96395,note="TurnIn:"},
+{type="COMPLETE",quest=96394,note="Do:"},
+{type="COMPLETE",quest=96403,note="Do:"},
+{type="COMPLETE",quest=96393,note="Do:"},
+{type="NOTE",text="CAREFUL, the endboss FEARS at roughly 35%, make sure to kill the adds first and move the boss into the previous room."},
+{type="ACCEPT",quest=98423,note="Accept:"},
+{type="NOTE",text="Use the lever right next to the Quest you just accepted, it opens the gates so you can run out in a straight line."},
+{type="TURNIN",quest=96403,note="TurnIn:"},
+{type="TURNIN",quest=96394,note="TurnIn:"},
+{type="TURNIN",quest=96393,note="TurnIn:"},
+{type="TURNIN",quest=98423,note="TurnIn:"}
 }]],
 })

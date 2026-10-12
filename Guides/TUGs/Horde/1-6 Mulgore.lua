@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/1-6 Mulgore.lua",
     nextName = { "6-12 Mulgore" },
-    order = 19,
+    order = 30,
     stepCount = 47,
     steps = [[{
 {type="ACCEPT",quest=747,note="Accept:"},

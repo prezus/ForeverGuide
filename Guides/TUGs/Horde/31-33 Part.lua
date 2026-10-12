@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/31-33 Part.lua",
     nextName = { "33-36 Part" },
-    order = 47,
+    order = 50,
     stepCount = 69,
     steps = [[{
 {type="FLY",note="Fly to",place="Freewind Post"},

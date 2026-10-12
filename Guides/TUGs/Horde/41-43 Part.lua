@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/41-43 Part.lua",
     nextName = { "43-45 Part" },
-    order = 51,
+    order = 54,
     stepCount = 40,
     steps = [[{
 {type="COMPLETE",quest=782,note="Do:"},

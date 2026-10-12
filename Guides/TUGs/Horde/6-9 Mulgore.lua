@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/6-9 Mulgore.lua",
     nextName = { "9-12 Orgrimmar" },
-    order = 20,
+    order = 31,
     stepCount = 104,
     steps = [[{
 {type="TURNIN",quest=1520,class={"SHAMAN"},note="TurnIn:"},

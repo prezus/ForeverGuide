@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/12-20 The Barrens.lua",
     nextName = { "16-21 The Barrens" },
-    order = 24,
+    order = 35,
     stepCount = 159,
     steps = [[{
 {type="ACCEPT",quest=6365,note="Accept:"},
