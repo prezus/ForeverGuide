@@ -42,6 +42,8 @@ end
 -- ------------------------------------------------------------
 local picker
 local PAD = 12
+--- The guides a character follows unless it chose a route: TUGs', named without his name in game.
+local DEFAULT_ROUTE = "Standard guides"
 local BODY_TOP = 48     -- the list starts under the title, hint and line
 
 function UI:CreatePicker()
@@ -185,8 +187,13 @@ function UI:RefreshPicker()
     local current = G:CurrentRoute()
     if #routes > 0 then
         add("ROUTES", "", nil, false, false, true)
+        -- the guides every character follows unless it chose a route: a way back from one
+        if #G:AlternateRoutes() > 0 then
+            add(DEFAULT_ROUTE, "the default", nil, false, ns.char.route == nil, false, function() G:FollowDefault() end)
+        end
         for _, r in ipairs(routes) do
-            local sub = string.format("%d chapters%s", #r.chapters, r.mine and "  ·  your race" or (r.alternate and "  ·  alternate, chosen by hand" or ""))
+            local sub = string.format("%d chapters%s%s", #r.chapters, r.mine and "  ·  your race" or (r.alternate and "  ·  alternate, chosen by hand" or ""),
+                r.away and ("  ·  starts in " .. r.away) or "")
             add(r.label .. " route", sub, nil, not r.mine and not r.chosen, current and current.key == r.key, false,
                 function() G:ChooseRoute(r.key) end)
         end
@@ -488,6 +495,78 @@ function UI:ShowStopConfirm(onStop)
     f.yes.label:SetText("Stop recording")
     f.onYes = onStop
     f:Show()
+end
+
+-- ---- Which route: asked once, when a new character can follow more than the default ----------------
+local ROUTE_BUTTON_H = 26
+local routeChoice
+
+--- Ask a level-1 character which route to follow: the standard guides, or a route for its race
+--- (Street's Speed Demon for a Dwarf or a Gnome). The answer is kept (`ns.char.routeAsked`); the
+--- route list under Guides, or /fg path, changes it later.
+function UI:ShowRouteChoice()
+    local G = ns.Guide
+    local alternates = G:AlternateRoutes()
+    if #alternates == 0 then return end
+    if not routeChoice then
+        local ok, f = pcall(CreateFrame, "Frame", "ForeverGuideRouteChoice", UIParent, "BackdropTemplate")
+        if not ok or not f then f = CreateFrame("Frame", "ForeverGuideRouteChoice", UIParent) end
+        f:SetWidth(360)
+        f:SetPoint("TOP", UIParent, "TOP", 0, -160)
+        f:SetFrameStrata("DIALOG")
+        f:EnableMouse(true)
+        f:SetClampedToScreen(true)
+        Theme.Backdrop(f, "panel", 0.9)
+        f.title = Theme.NewText(f, { fancy = true, size = 15, color = Theme.C.goldLight, oneLine = true })
+        f.title:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -10)
+        f.title:SetText("CHOOSE YOUR ROUTE")
+        f.text = Theme.NewText(f, { size = 12 })
+        f.text:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -34)
+        f.text:SetPoint("TOPRIGHT", f, "TOPRIGHT", -PAD, -34)
+        f.buttons = {}
+        routeChoice = f
+    end
+    local f = routeChoice
+    local lines = { "How do you want to level this character? You can change it any time in the Guides list, under Routes, or with /fg path." }
+    local options = { { label = DEFAULT_ROUTE, choose = function() G:FollowDefault() end } }
+    for _, r in ipairs(alternates) do
+        options[#options + 1] = { label = r.away and (r.label .. " (starts in " .. r.away .. ")") or r.label, choose = function() G:ChooseRoute(r.key) end }
+        -- a route that starts in another race's starting area: the player travels there first
+        if r.away then
+            lines[#lines + 1] = string.format("\n|cffffd100%s|r starts in %s, not your race's starting area: you travel there first. After that it is the same for every race.", r.label, r.away)
+        end
+    end
+    f.text:SetText(table.concat(lines, "\n"))
+    for i, option in ipairs(options) do
+        local b = f.buttons[i]
+        if not b then
+            b = Theme.NewButton(f, "", 360 - 2 * PAD, ROUTE_BUTTON_H, function()
+                ns.char.routeAsked = true
+                f:Hide()
+                if b.choose then b.choose() end
+                UI:Refresh()
+            end)
+            f.buttons[i] = b
+        end
+        b.choose = option.choose
+        b.label:SetText(option.label)
+        b:ClearAllPoints()
+        b:SetPoint("TOPLEFT", f.text, "BOTTOMLEFT", 0, -12 - (i - 1) * (ROUTE_BUTTON_H + 6))
+        b:Show()
+    end
+    for i = #options + 1, #f.buttons do f.buttons[i]:Hide() end
+    local textH = f.text:GetStringHeight() or 30
+    f:SetHeight(34 + textH + 12 + #options * (ROUTE_BUTTON_H + 6) + 8)
+    f:Show()
+end
+
+--- A new character at level 1 is asked once, as it enters the world, which route to follow.
+function UI:OnEnterWorld(isLogin)
+    if not isLogin or not ns.Guide:ShouldAskRoute() then return end
+    -- after the guide window has opened its guide, so the choice lands on top of it
+    C_Timer.After(1, function()
+        if ns.Guide:ShouldAskRoute() then UI:ShowRouteChoice() end
+    end)
 end
 
 --- Close the run dialog: the segment was sent or the run resumed, from the dialog or the guide window.

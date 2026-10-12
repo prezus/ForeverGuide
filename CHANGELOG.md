@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- **Choose your route.** A new Alliance character is asked at level 1 how to level: the standard guides, or Street's Speed Demon. Street's Speed Demon starts in Coldridge Valley, the Dwarf and Gnome start: any other race travels there first, and says so before you choose. Change it any time in the Guides list, under Routes (Standard guides is listed there too), or with `/fg path speed demon` and `/fg path default`.
 - Guides: Street's Speed Demon v1, a route for Dwarves and Gnomes chosen in the route list: 1-13 dwarf and gnome route
 - Recordings are filed under your character's whole name, surname included ("Arkan Stonebrow"). Before, every character sharing a first name went into one recording.
 - Recordings reach the Companion at logout even when its ForeverGuideCompanion addon is turned off in the AddOns list. Before, the recording stayed in the game until a login with that addon on.

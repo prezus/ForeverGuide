@@ -3035,6 +3035,101 @@ section("an alternate route: listed under its own name, never the default, follo
     G:Reset(); settle()
 end)
 
+-- ---- a new character is asked which route to follow, when there is one to choose ----------------
+-- (2026-10-12: Street's Speed Demon ships beside the standard guides, from the Dwarf and Gnome start)
+section("a level-1 character is asked once which route to follow; one that starts elsewhere says so", function()
+    local DWARF, GNOME = "GEN_ALLIANCE_SPEED_DEMON_DWARF", "GEN_ALLIANCE_SPEED_DEMON_GNOME"
+    local race, level, routeBefore, askedBefore, activeBefore = MOCK.race, MOCK.level, ns.char.route, ns.char.routeAsked, G.active and G.active.id
+    for _, chain in ipairs({ { DWARF, "Dwarf" }, { GNOME, "Gnome" } }) do
+        local key, who = chain[1], chain[2]
+        ns.RegisterGuide({ id = key .. "_01_1_6_COLDRIDGE_VALLEY", name = "1-6 Coldridge Valley", version = 1, kind = "alternate", routeLabel = "Street's Speed Demon",
+            faction = "Alliance", race = { who }, minLevel = 1, maxLevel = 6, map = 1426, zone = "Dun Morogh", next = key .. "_02_6_11_DUN_MOROGH",
+            steps = { { type = "NOTE", text = "Go." } } })
+        ns.RegisterGuide({ id = key .. "_02_6_11_DUN_MOROGH", name = "6-11 Dun Morogh", version = 1, kind = "alternate", routeLabel = "Street's Speed Demon",
+            faction = "Alliance", race = { who }, minLevel = 6, maxLevel = 11, map = 1426, zone = "Dun Morogh", steps = { { type = "NOTE", text = "Go on." } } })
+    end
+    local function speed()
+        local found = {}
+        for _, r in ipairs(G:AlternateRoutes()) do if r.label == "Street's Speed Demon" then found[#found + 1] = r end end
+        return found
+    end
+    local function as(who)
+        MOCK.race = { who, who }
+        ns.Player.cache = {}
+    end
+    local dialog
+    local function ask()
+        ns.UI:OnEnterWorld(true)
+        settle()
+        dialog = _G.ForeverGuideRouteChoice
+        return dialog and dialog:IsShown()
+    end
+    local function button(prefix)
+        for _, b in ipairs(dialog.buttons) do
+            local text = b:IsShown() and b.label:GetText() or ""
+            if text:sub(1, #prefix) == prefix then return b, text end
+        end
+    end
+    ns.char.route, ns.char.routeAsked = nil, false
+    MOCK.level = 1
+
+    -- a Dwarf, and a Gnome: their own race's chain, nothing to warn about
+    as("Dwarf")
+    local offered = speed()
+    check(#offered == 1 and offered[1].key == DWARF and offered[1].away == nil, "a Dwarf is offered Street's Speed Demon once, its own chain")
+    as("Gnome")
+    offered = speed()
+    check(#offered == 1 and offered[1].key == GNOME and offered[1].away == nil, "a Gnome is offered its own chain")
+
+    -- a Human: one Street's Speed Demon, with where it starts
+    as("Human")
+    offered = speed()
+    check(#offered == 1 and offered[1].key == DWARF and offered[1].away == "Coldridge Valley",
+        "a Human is offered it once, saying it starts in Coldridge Valley (" .. tostring(offered[1] and offered[1].away) .. ")")
+    need(G:ShouldAskRoute() and ask(), "a level-1 Human that has not chosen is asked")
+    check(dialog.buttons[1].label:GetText() == "Standard guides", "the standard guides come first")
+    local b, text = button("Street's Speed Demon")
+    check(b ~= nil and text == "Street's Speed Demon (starts in Coldridge Valley)", "its button says where it starts (" .. tostring(text) .. ")")
+    check((dialog.text:GetText() or ""):find("Street's Speed Demon|r starts in Coldridge Valley, not your race's starting area: you travel there first.", 1, true) ~= nil,
+        "and the box warns the Human travels there first")
+    b:GetScript("OnClick")()
+    check(not dialog:IsShown() and ns.char.routeAsked and ns.char.route == DWARF, "choosing it follows it and remembers the answer")
+    check(G.active and G.active.id == DWARF .. "_01_1_6_COLDRIDGE_VALLEY", "from its first chapter (" .. tostring(G.active and G.active.id) .. ")")
+    check(not G:ShouldAskRoute(), "and the character is not asked again")
+
+    -- the way back
+    ns.Commands:Run("path default")
+    check(ns.char.route == nil, "/fg path default goes back to the standard guides")
+    check(not G:ShouldAskRoute(), "which still counts as answered")
+
+    -- a Dwarf, answering the standard guides: no route followed, and no warning in the box
+    as("Dwarf")
+    ns.char.route, ns.char.routeAsked = nil, false
+    need(ask(), "a level-1 Dwarf is asked")
+    local own, ownText = button("Street's Speed Demon")
+    check(own ~= nil and ownText == "Street's Speed Demon", "its button is the route's name alone")
+    check((dialog.text:GetText() or ""):find("Street's Speed Demon|r starts in", 1, true) == nil, "with nothing to warn about it")
+    dialog.buttons[1]:GetScript("OnClick")()
+    check(ns.char.routeAsked and ns.char.route == nil, "choosing the standard guides follows no route and remembers the answer")
+
+    -- not at a later level, nor on a reload
+    ns.char.routeAsked = false
+    MOCK.level = 2
+    ns.Player.cache = {}
+    check(not G:ShouldAskRoute(), "a character past level 1 is not asked: it chooses in the Guides list if it wants")
+    MOCK.level = 1
+    ns.Player.cache = {}
+    ns.UI:OnEnterWorld(false)
+    settle()
+    check(not dialog:IsShown(), "a /reload does not ask")
+
+    MOCK.race, MOCK.level = race, level
+    ns.Player.cache = {}
+    ns.char.route, ns.char.routeAsked = routeBefore, askedBefore
+    if activeBefore then G:Activate(activeBefore, true) end
+    G:Reset(); settle()
+end)
+
 -- ---- a saved route or chapter the addon no longer ships ----------------------------------------
 -- (2026-10-04: the addon ships TUGs' routes in place of ours; a character saved on one of ours logs in)
 section("a saved chapter whose route is gone: the route the character follows now, at its level", function()

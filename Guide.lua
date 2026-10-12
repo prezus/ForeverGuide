@@ -236,7 +236,16 @@ function Guide:RouteOf(guide)
     return "GEN_" .. faction .. "_" .. key, key
 end
 
---- The routes this character's faction can follow: { key, label, chapters = {guide...}, mine = bool, alternate = bool, chosen = bool }
+--- A guide's title without its levels ("1-6 Northshire" is "Northshire").
+local function titleOf(g)
+    return ((g.name or g.id):gsub("^%s*[%d%.]*%s*%-?%s*[%d%.]*%s*", ""))
+end
+
+--- The routes this character's faction can follow: { key, label, chapters = {guide...}, mine = bool,
+--- alternate = bool, chosen = bool, away = start zone or nil }. An alternate route is one per name: a
+--- route written for several races' starts (Street's Speed Demon has a Dwarf and a Gnome chain) is
+--- offered once, the chain for this character's race, else the first; `away` names where it starts
+--- when that is not this character's race's start, for the warning that it travels there first.
 function Guide:Routes()
     local byKey, order = {}, {}
     for _, id in ipairs(self.list) do
@@ -247,7 +256,7 @@ function Guide:Routes()
             if not r then
                 local alternate = self:IsAlternate(g)
                 r = { key = key, race = race, label = g.routeLabel or ROUTE_LABEL[race] or race, chapters = {},
-                      mine = self:ForMyRace(g) and not alternate, alternate = alternate }
+                      mine = self:ForMyRace(g) and not alternate, alternate = alternate, forMyRace = self:ForMyRace(g) }
                 byKey[key] = r
                 order[#order + 1] = r
             end
@@ -258,16 +267,28 @@ function Guide:Routes()
         table.sort(r.chapters, function(a, b) return a.id < b.id end)
         r.chosen = (ns.char.route == r.key)
     end
+    -- one alternate route per name: the chain chosen, else this race's, else the first by key
+    local best = {}
+    for _, r in ipairs(order) do
+        if r.alternate then
+            local b = best[r.label]
+            local function rank(x) return (x.chosen and 0) or (x.forMyRace and 1) or 2 end
+            if not b or rank(r) < rank(b) or (rank(r) == rank(b) and r.key < b.key) then best[r.label] = r end
+        end
+    end
+    local kept = {}
+    for _, r in ipairs(order) do
+        if not r.alternate or best[r.label] == r then
+            if r.alternate and not r.forMyRace and r.chapters[1] then r.away = titleOf(r.chapters[1]) end
+            kept[#kept + 1] = r
+        end
+    end
+    order = kept
     table.sort(order, function(a, b)
         if a.mine ~= b.mine then return a.mine end
         return a.label < b.label
     end)
     return order
-end
-
---- A guide's title without its levels ("1-6 Northshire" is "Northshire").
-local function titleOf(g)
-    return ((g.name or g.id):gsub("^%s*[%d%.]*%s*%-?%s*[%d%.]*%s*", ""))
 end
 
 --- Guide groups (TUGs' Guidelime group), each with its guides for this character in Guidelime's
@@ -351,6 +372,31 @@ function Guide:CurrentRoute()
     for _, r in ipairs(routes) do if r.mine then return r end end
     for _, r in ipairs(routes) do if not r.alternate then return r end end
     return nil
+end
+
+--- The routes this character may choose besides the guides it follows by default: the alternate
+--- routes, one per name (Street's Speed Demon, from the Dwarf and Gnome start for every race).
+function Guide:AlternateRoutes()
+    local out = {}
+    for _, r in ipairs(self:Routes()) do if r.alternate then out[#out + 1] = r end end
+    return out
+end
+
+--- Follow the guides by default again (TUGs'), leaving a chosen route: the starting guide at level 1,
+--- else the guide for the level. Returns the guide picked.
+function Guide:FollowDefault()
+    ns.char.route = nil
+    local level = ns.Player:GetLevel()
+    local pick = (level == 1 and self:StartGuide()) or self:GroupGuideForLevel(level)
+    if pick then self:Pick(pick.id) end
+    if ns.Tracker then ns.Tracker:SetMode("guide") end
+    return pick
+end
+
+--- Whether to ask a new character which route to follow: once, at level 1, when there is a route to
+--- choose besides the default (`ns.char.routeAsked` remembers the answer).
+function Guide:ShouldAskRoute()
+    return not ns.char.routeAsked and not ns.char.route and ns.Player:GetLevel() == 1 and #self:AlternateRoutes() > 0
 end
 
 --- Choose a route (key or label); activates the chapter that fits the level.

@@ -136,12 +136,12 @@ function handlers.path(rest)
         for _, r in ipairs(G:Routes()) do
             ns.Printf("  %s route - %d chapters%s%s", r.label, #r.chapters, r.mine and "  (your race)" or (r.alternate and "  (alternate)" or ""), cur and cur.key == r.key and "  <- following" or "")
         end
-        ns.Print("/fg path <name> follows that route (e.g. /fg path dwarf); /fg path race goes back to your race's own.")
+        ns.Print("/fg path <name> follows that route (e.g. /fg path speed demon); /fg path default goes back to the standard guides.")
         return
     end
     if rest:lower() == "race" or rest:lower() == "default" then
-        ns.char.route = nil
-        ns.Print("following your race's own route again.")
+        local pick = G:FollowDefault()
+        ns.Printf("following the standard guides again%s.", pick and (" - " .. (pick.name or pick.id)) or "")
         ns.UI:Refresh()
         return
     end
