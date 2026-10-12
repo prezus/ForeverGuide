@@ -192,7 +192,8 @@ function UI:RefreshPicker()
             add(DEFAULT_ROUTE, "the default", nil, false, ns.char.route == nil, false, function() G:FollowDefault() end)
         end
         for _, r in ipairs(routes) do
-            local sub = string.format("%d chapters%s", #r.chapters, r.mine and "  ·  your race" or (r.alternate and "  ·  alternate, chosen by hand" or ""))
+            local sub = string.format("%d chapters%s%s", #r.chapters, r.mine and "  ·  your race" or (r.alternate and "  ·  alternate, chosen by hand" or ""),
+                r.away and ("  ·  starts in " .. r.away) or "")
             add(r.label .. " route", sub, nil, not r.mine and not r.chosen, current and current.key == r.key, false,
                 function() G:ChooseRoute(r.key) end)
         end
@@ -522,15 +523,20 @@ function UI:ShowRouteChoice()
         f.text = Theme.NewText(f, { size = 12 })
         f.text:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -34)
         f.text:SetPoint("TOPRIGHT", f, "TOPRIGHT", -PAD, -34)
-        f.text:SetText("How do you want to level this character? You can change it any time in the Guides list, under Routes, or with /fg path.")
         f.buttons = {}
         routeChoice = f
     end
     local f = routeChoice
+    local lines = { "How do you want to level this character? You can change it any time in the Guides list, under Routes, or with /fg path." }
     local options = { { label = DEFAULT_ROUTE, choose = function() G:FollowDefault() end } }
     for _, r in ipairs(alternates) do
-        options[#options + 1] = { label = r.label, choose = function() G:ChooseRoute(r.key) end }
+        options[#options + 1] = { label = r.away and (r.label .. " (starts in " .. r.away .. ")") or r.label, choose = function() G:ChooseRoute(r.key) end }
+        -- a route that starts in another race's starting area: the player travels there first
+        if r.away then
+            lines[#lines + 1] = string.format("\n|cffffd100%s|r starts in %s, not your race's starting area: you travel there first. After that it is the same for every race.", r.label, r.away)
+        end
     end
+    f.text:SetText(table.concat(lines, "\n"))
     for i, option in ipairs(options) do
         local b = f.buttons[i]
         if not b then
