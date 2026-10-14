@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/18-20 Darkshore.lua",
     nextName = { "20-22 Ruins of Lordaeron&Deadmines" },
-    order = 12,
+    order = 13,
     stepCount = 117,
     steps = [[{
 {type="ACCEPT",quest=1138,note="Accept:"},

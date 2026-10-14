@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/32-33 Excavation Site.lua",
     nextName = { "32-33 Stranglethorn Vale" },
-    order = 24,
+    order = 25,
     stepCount = 1,
     steps = [[{
 {type="NOTE",text="This will be added later"}

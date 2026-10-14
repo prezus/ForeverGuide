@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/15-16 Halls of Thanes.lua",
     nextName = { "16-18 Loch Modan" },
-    order = 10,
+    order = 11,
     stepCount = 15,
     steps = [[{
 {type="ACCEPT",quest=96394,note="Accept:"},

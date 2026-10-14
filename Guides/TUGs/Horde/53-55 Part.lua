@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/53-55 Part.lua",
     nextName = { "55-56 Part" },
-    order = 59,
+    order = 60,
     stepCount = 166,
     steps = [[{
 {type="FLIGHTPATH",zone="Un'Goro Crater",x=45.2,y=5.8,note="Get the flightpath at:"},

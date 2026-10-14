@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/6-9 Durotar.lua",
     nextName = { "9-12 Orgrimmar" },
-    order = 32,
+    order = 33,
     stepCount = 103,
     steps = [[{
 {type="ACCEPT",quest=2161,note="Accept:"},

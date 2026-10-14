@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/9-11 Dun Morogh&Loch Modan.lua",
     nextName = { "11-13 Darkshore" },
-    order = 7,
+    order = 8,
     stepCount = 77,
     steps = [[{
 {type="ACCEPT",quest=314,optional=true,note="Accept(Elite/Hard Optional Quest):"},

@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/20-22 Ruins of Lordaeron&Deadmines.lua",
     nextName = { "22-23 Redridge Mountains" },
-    order = 13,
+    order = 14,
     stepCount = 63,
     steps = [[{
 {type="NOTE",text="I suggest to do RoL now. RoL does not need any pre-quests you get all in the dungeon."},

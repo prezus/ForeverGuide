@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/6-11 Teldrassil.lua",
     nextName = { "9-11 Dun Morogh&Loch Modan" },
-    order = 6,
+    order = 7,
     stepCount = 157,
     steps = [[{
 {type="NOTE",text="Kill all spiders whilst continuing the guide, we need 7 small Spider Legs later!"},

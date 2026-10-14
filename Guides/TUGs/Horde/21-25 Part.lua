@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/21-25 Part.lua",
     nextName = { "25-31 Part" },
-    order = 48,
+    order = 49,
     stepCount = 81,
     steps = [[{
 {type="NOTE",text="Get to Orgrimmar"},

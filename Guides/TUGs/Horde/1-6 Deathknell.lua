@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/1-6 Deathknell.lua",
     nextName = { "6-12 Tirisfal Glades" },
-    order = 28,
+    order = 29,
     stepCount = 56,
     steps = [[{
 {type="ACCEPT",quest=363,note="Accept:"},

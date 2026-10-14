@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/16-18 Loch Modan.lua",
     nextName = { "18-20 Darkshore" },
-    order = 11,
+    order = 12,
     stepCount = 41,
     steps = [[{
 {type="NOTE",text="Learn your Level 16 skills."},

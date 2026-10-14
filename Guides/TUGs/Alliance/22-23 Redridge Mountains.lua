@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/22-23 Redridge Mountains.lua",
     nextName = { "23-24 Ashenvale" },
-    order = 14,
+    order = 15,
     stepCount = 42,
     steps = [[{
 {type="FLY",note="Fly to",place="Redridge Mountains"},

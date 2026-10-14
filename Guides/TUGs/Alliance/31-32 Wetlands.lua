@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/31-32 Wetlands.lua",
     nextName = { "32-33 Excavation Site" },
-    order = 23,
+    order = 24,
     stepCount = 73,
     steps = [[{
 {type="NOTE",text="Take the tram to Ironforge."},

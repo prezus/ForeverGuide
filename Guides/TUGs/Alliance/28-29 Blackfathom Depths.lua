@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/28-29 Blackfathom Depths.lua",
     nextName = { "29-30 Wetlands" },
-    order = 20,
+    order = 21,
     stepCount = 2,
     steps = [[{
 {type="NOTE",text="This will be added later"},

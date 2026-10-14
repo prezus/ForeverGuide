@@ -7,7 +7,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/General.lua",
     nextName = { "Nothing" },
-    order = 63,
+    order = 64,
     stepCount = 6,
     steps = [[{
 {type="NOTE",text="This is a WORK IN PROGRESS."},

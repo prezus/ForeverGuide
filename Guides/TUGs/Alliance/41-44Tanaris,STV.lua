@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/41-44Tanaris,STV.lua",
     nextName = { "44-45 Feralas" },
-    order = 39,
+    order = 40,
     stepCount = 146,
     steps = [[{
 {type="NOTE",text="Fly to Stormwind City"},
