@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/6-9 Elwynn Forest.lua",
     nextName = { "9-11 Dun Morogh" },
-    order = 5,
+    order = 6,
     stepCount = 132,
     steps = [[{
 {type="TURNIN",quest=96627,note="TurnIn:"},

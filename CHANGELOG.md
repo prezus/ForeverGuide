@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: follow TUGs' latest update: 1-6 Skyborne, 6-12 Skyborne added.
 - Guides: Street's Speed Demon marks Rough Wolf Pelts in 12-13 Elwynn Forest as a Skinning step; the quest database adds 187 quests and corrects about 125
 - Guides: Street's Speed Demon v2, a route any Alliance character can choose in the route list, starting in Coldridge Valley: corrected loc
 - Guides: follow TUGs' latest update: 6-9 Elwynn Forest, 9-11 Dun Morogh&Loch Modan, 11-14 Darkshore replaces 11-13 Darkshore, 14-15 Westfall replaces 14-15 Westfall, 15-16 Halls of Thanes, 16-18 Loch Modan, 18-20 Darkshore replaces 18-19 Darkshore, 20-22 Ruins of Lordaeron&Deadmines replaces 19-21 Ruins of Lordaeron&Deadmines, 22-23 Redridge Mountains replaces 21-22 Redridge Mountains, 23-24 Ashenvale replaces 21-22 Ashenvale, 24-25 Duskwood replaces 22-23 Duskwood, 25-26 Stockades replaces 23-24 Stockades, 26-27 Redridge Mountains replaces 23-24 Redridge Mountains, 27-28 Ashenvale replaces 24-25 Ashenvale, 28-29 Blackfathom Depths added, 29-30 Wetlands replaces 25-27 Wetlands, 30-31 Duskwood replaces 26-28 Ashenvale&Wetlands, 31-32 Wetlands added, 32-33 Excavation Site added, 32-33 Stranglethorn Vale added, 33-34 Gnomeregan added, 34-35 Ashenvale added, 6-9 Dun Morogh, 1-6 Shadowglen, 6-11 Teldrassil, 29-31 Duskwood,Hillsbrad removed, 31-36 STV,Desolace removed.

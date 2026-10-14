@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/27-28 Ashenvale.lua",
     nextName = { "28-29 Blackfathom Depths" },
-    order = 19,
+    order = 20,
     stepCount = 37,
     steps = [[{
 {type="NOTE",text="Take the boat to Auberdine."},

@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/6-9 Dun Morogh.lua",
     nextName = { "6-12 Durotar" },
-    order = 4,
+    order = 5,
     stepCount = 46,
     steps = [[{
 {type="NOTE",text="Go through the tunnel, afterwards kill EVERY boar on your way to the tavern!"},

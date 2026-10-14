@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/33-34 Gnomeregan.lua",
     nextName = { "34-35 Ashenvale" },
-    order = 26,
+    order = 27,
     stepCount = 26,
     steps = [[{
 {type="ACCEPT",quest=2924,optional=true,note="Accept(Elite/Hard Optional Quest):"},

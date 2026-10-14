@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/33-36 Part.lua",
     nextName = { "36-39 Part" },
-    order = 51,
+    order = 52,
     stepCount = 102,
     steps = [[{
 {type="NOTE",text="Take the Zeppelin to Stranglethorn Vale"},

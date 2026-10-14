@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/14-15 Westfall.lua",
     nextName = { "15-16 Halls of Thanes" },
-    order = 9,
+    order = 10,
     stepCount = 65,
     steps = [[{
 {type="FLIGHTPATH",zone="Stormwind City",x=66.2,y=62.4,race={"NightElf","Gnome","Dwarf"},note="Get the flightpath at:"},

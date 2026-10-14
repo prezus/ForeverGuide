@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/29-30 Wetlands.lua",
     nextName = { "30-31 Duskwood" },
-    order = 21,
+    order = 22,
     stepCount = 104,
     steps = [[{
 {type="ACCEPT",quest=98208,note="Accept:"},

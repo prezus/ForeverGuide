@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/23-24 Ashenvale.lua",
     nextName = { "24-25 Duskwood" },
-    order = 15,
+    order = 16,
     stepCount = 41,
     steps = [[{
 {type="TURNIN",quest=4763,note="TurnIn:"},

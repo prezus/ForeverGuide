@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/24-25 Duskwood.lua",
     nextName = { "25-26 Stockades" },
-    order = 16,
+    order = 17,
     stepCount = 69,
     steps = [[{
 {type="FLY",note="Fly to",place="Redridge Mountains"},

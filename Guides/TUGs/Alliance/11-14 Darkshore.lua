@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/11-14 Darkshore.lua",
     nextName = { "14-15 Westfall" },
-    order = 8,
+    order = 9,
     stepCount = 62,
     steps = [[{
 {type="ACCEPT",quest=983,note="Accept:"},

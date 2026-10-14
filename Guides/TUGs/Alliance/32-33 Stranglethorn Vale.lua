@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/32-33 Stranglethorn Vale.lua",
     nextName = { "33-34 Gnomeregan" },
-    order = 25,
+    order = 26,
     stepCount = 58,
     steps = [[{
 {type="NOTE",class={"MAGE"},text="Learn your Level 32 skills."},

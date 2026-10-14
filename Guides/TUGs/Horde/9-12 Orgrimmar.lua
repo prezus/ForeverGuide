@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/9-12 Orgrimmar.lua",
     nextName = { "12-16 The Barrens" },
-    order = 34,
+    order = 35,
     stepCount = 121,
     steps = [[{
 {type="ACCEPT",quest=97246,note="Accept:"},

@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/34-35 Ashenvale.lua",
     nextName = { "27-28 Duskwood" },
-    order = 27,
+    order = 28,
     stepCount = 78,
     steps = [[{
 {type="FLY",note="Fly to",place="Ashenvale"},

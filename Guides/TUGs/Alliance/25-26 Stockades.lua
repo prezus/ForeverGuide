@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/25-26 Stockades.lua",
     nextName = { "26-27 Redridge Mountains" },
-    order = 17,
+    order = 18,
     stepCount = 26,
     steps = [[{
 {type="ACCEPT",quest=387,note="Accept:"},
