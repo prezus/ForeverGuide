@@ -5,7 +5,8 @@
 -- nothing is recorded until the player presses Start. While a run records, it keeps a timed
 -- log of what happened, for calibrating the route planner:
 --   START STOP PAUSE RESUME GAP   the run itself (GAP: entries lost; only from builds that mirrored the run)
---   ACCEPT TURNIN ABANDON OBJ     quests (TURNIN: xp, money; OBJ: obj, f, r, done, src, sid)
+--   ACCEPT TURNIN ABANDON OBJ     quests (ACCEPT, TURNIN: npc, the creature whose quest window it was;
+--                                 TURNIN: xp, money; OBJ: obj, f, r, done, src, sid)
 --   XP                            every bit of experience (xp, src, sid)
 --   LEVEL                         a level-up (l, rested)
 --   KILL                          a creature the player killed (npc, mobLevel, elite, secs, rested)
@@ -13,6 +14,9 @@
 --   TAXI LAND                     a flight's start (cost) and landing (secs)
 --   DEATH RESURRECT               dying, and coming back (secs)
 --   HEARTH                        the hearthstone (action = "use" | "bind")
+--   FPATH                         a new flight path discovered
+--   TRAIN                         a trainer's window opened (npc)
+--   BUY                           something bought from a vendor (sid item, f how many, money copper, npc)
 -- Every entry carries t (seconds of recording since the run started), lvl, m/x/y (uiMapID, map
 -- percent) and g/s (the guide and step being followed; g = "auto" in auto mode). START and RESUME
 -- also carry at, the date and time the sitting began (seconds since the epoch), so a run over several
@@ -43,6 +47,7 @@ Run.NOTICE_AT = 2250       -- entries: ask with a dialog to send the segment bef
 local MOVE_EVERY = 2       -- seconds between movement samples
 local MOVE_MIN = 0.05      -- map units the player must have moved for a sample
 local HEARTHSTONE = 8690
+local QUEST_WINDOW_FOR = 30 -- seconds a quest window's NPC stays the one a quest is taken from or given to
 local ELITE = { elite = true, rareelite = true, worldboss = true }
 
 -- session state, never saved: what the kill, flight and death timers need
@@ -52,6 +57,7 @@ local lastSample             -- { t = ns.Now(), m, x, y } of the last movement c
 local mobs = {}              -- guid -> { npc, level, elite }: creatures targeted this session
 local mobCount = 0
 local engaged = {}           -- guid -> true: creatures targeted during the current fight
+local questWindow            -- { npc, at }: the creature whose quest window opened last
 local killed = {}            -- guid -> true: deaths already recorded
 local fightStart, lastKill
 local taxiMoney, taxiStart, onTaxi
@@ -145,6 +151,45 @@ end
 Run.Add = Add
 
 local function Recording() return Enabled() and Run:State() == "recording" end
+
+-- The creature whose window is open ("npc"), never the target: the target near a vendor is not the vendor.
+local function WindowNpc()
+    local info = ns.Player:GetUnitInfo("npc")
+    return info and PlainNumber(info.npcID) or nil
+end
+
+-- A quest window opened: remember whose, as Recorder.lua reads it ("questnpc", else "npc"). A player who
+-- shared the quest, or an object, is no one.
+local function QuestWindowOpened()
+    local UnitIsPlayer = rawget(_G, "UnitIsPlayer")
+    questWindow = nil
+    if PlainBool(ns.Safe(UnitIsPlayer, "questnpc")) == true or PlainBool(ns.Safe(UnitIsPlayer, "npc")) == true then return end
+    local info = ns.Player:GetUnitInfo("questnpc") or ns.Player:GetUnitInfo("npc")
+    local npc = info and PlainNumber(info.npcID)
+    if npc then questWindow = { npc = npc, at = ns.Now() } end
+end
+
+-- The creature a quest accepted or turned in now came from: its window opened moments ago.
+local function QuestNpc()
+    if questWindow and ns.Now() - questWindow.at <= QUEST_WINDOW_FOR then return questWindow.npc end
+    return nil
+end
+
+-- Something bought from the vendor whose window is open: BuyMerchantItem(index, quantity), quantity
+-- nil for one stack. The price is the vendor's for a stack.
+local function Bought(index, quantity)
+    if not Recording() then return end
+    local i = PlainNumber(index)
+    local item = i and PlainNumber(ns.Safe(rawget(_G, "GetMerchantItemID"), i))
+    if not item then return end
+    local info = ns.Call("C_MerchantFrame.GetItemInfo", i)
+    local stack = type(info) == "table" and PlainNumber(info.stackCount) or 1
+    if not stack or stack < 1 then stack = 1 end
+    local count = PlainNumber(quantity) or stack
+    local price = type(info) == "table" and PlainNumber(info.price) or nil
+    local money = price and math.floor(price * count / stack + 0.5) or nil
+    Add("BUY", { sid = item, f = count, money = money, npc = WindowNpc() })
+end
 
 -- where the experience bar is: XP into the level, XP the level needs, rested XP; for a recording's
 -- XP bar (what an XP entry's gain alone cannot say: where the bar started)
@@ -448,9 +493,10 @@ function Run:OnInit()
         if not ok then ns.ReportOnce("run:tick", err) end
     end)
 
-    E:Register("FG_QUEST_ACCEPTED", function(_, questID) Add("ACCEPT", { q = PlainNumber(questID) }) end)
+    E:RegisterMany({ "QUEST_DETAIL", "QUEST_PROGRESS", "QUEST_COMPLETE" }, QuestWindowOpened)
+    E:Register("FG_QUEST_ACCEPTED", function(_, questID) Add("ACCEPT", { q = PlainNumber(questID), npc = QuestNpc() }) end)
     E:Register("FG_QUEST_TURNED_IN", function(_, questID, _, xp, money)
-        Add("TURNIN", { q = PlainNumber(questID), xp = PlainNumber(xp), money = PlainNumber(money) })
+        Add("TURNIN", { q = PlainNumber(questID), xp = PlainNumber(xp), money = PlainNumber(money), npc = QuestNpc() })
     end)
     E:Register("FG_QUEST_ABANDONED", function(_, questID) Add("ABANDON", { q = PlainNumber(questID) }) end)
     E:Register("FG_OBJECTIVE_PROGRESS", function(_, questID, idx, fulfilled, required, finished)
@@ -504,6 +550,20 @@ function Run:OnInit()
         if PlainString(unit) == "player" and PlainNumber(spellID) == HEARTHSTONE then Add("HEARTH", { action = "use" }) end
     end)
     E:Register("HEARTHSTONE_BOUND", function() Add("HEARTH", { action = "bind" }) end)
+
+    E:Register("UI_INFO_MESSAGE", function(_, _, message)
+        local want = rawget(_G, "ERR_NEWTAXIPATH")
+        if want and PlainString(message) == want then Add("FPATH") end
+    end)
+    E:Register("TRAINER_SHOW", function() Add("TRAIN", { npc = WindowNpc() }) end)
+    -- every purchase goes through BuyMerchantItem, the merchant window's and any other addon's
+    local hook = rawget(_G, "hooksecurefunc")
+    if type(hook) == "function" and type(rawget(_G, "BuyMerchantItem")) == "function" then
+        hook("BuyMerchantItem", function(index, quantity)
+            local ok, err = pcall(Bought, index, quantity)
+            if not ok then ns.ReportOnce("run:buy", err) end
+        end)
+    end
 end
 
 function Run:OnEnterWorld(isLogin, isReload)
