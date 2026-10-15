@@ -4243,6 +4243,64 @@ section("the run log keeps every experience gain and objective count with where 
     ns.db.recordRuns = recordWas
 end)
 
+section("the run log names who a quest came from and went to, and keeps trainers, purchases and flight paths", function()
+    local R = ns.Run
+    local recordWas = ns.db.recordRuns
+    ns.db.recordRuns = true
+    ns.char.run = nil
+    R:Start()
+    local function last(kind)
+        local found
+        for _, e in ipairs(ns.char.run.entries) do if e.e == kind then found = e end end
+        return found
+    end
+    -- taken from Senir Whitebeard's quest window, given back at his turn-in window
+    MOCK_QUEST_WINDOW("QUEST_DETAIL", 1252, "Senir Whitebeard")
+    MOCK_ACCEPT(287, "Frostmane Hold")
+    check(last("ACCEPT").q == 287 and last("ACCEPT").npc == 1252, "an accept names the NPC whose quest window offered it")
+    MOCK_ADVANCE(5)
+    MOCK_QUEST_WINDOW("QUEST_COMPLETE", 1252, "Senir Whitebeard")
+    MOCK_TURNIN(287)
+    check(last("TURNIN").q == 287 and last("TURNIN").npc == 1252, "a turn-in names the NPC whose window took it in")
+    -- an offer from an object, or a window long closed, names no one
+    MOCK_ADVANCE(5)
+    MOCK_QUEST_WINDOW("QUEST_DETAIL", nil)
+    MOCK_ACCEPT(400, "A Note on the Ground")
+    check(last("ACCEPT").q == 400 and last("ACCEPT").npc == nil, "a quest from an object names no NPC")
+    MOCK_QUEST_WINDOW("QUEST_DETAIL", 1252, "Senir Whitebeard")
+    MOCK_ADVANCE(120)
+    MOCK_ACCEPT(401, "Later")
+    check(last("ACCEPT").q == 401 and last("ACCEPT").npc == nil, "a quest window closed long before names no one")
+    -- a quest a player shared names no one
+    MOCK.offerFromPlayer = true
+    MOCK_QUEST_WINDOW("QUEST_DETAIL", 1252, "Senir Whitebeard")
+    MOCK_ACCEPT(402, "Shared")
+    MOCK.offerFromPlayer = nil
+    check(last("ACCEPT").q == 402 and last("ACCEPT").npc == nil, "a quest a player shared names no NPC")
+    -- a trainer, a purchase, a flight path
+    MOCK_TRAINER(1232, "Azar Stronghammer")
+    check(last("TRAIN") and last("TRAIN").npc == 1232, "a trainer's window is a TRAIN entry naming the trainer")
+    MOCK_MERCHANT(1247, "Innkeeper Belm", { { id = 4540, price = 25, stackCount = 1 }, { id = 159, price = 25, stackCount = 5 } })
+    BuyMerchantItem(1, 5)
+    local b = last("BUY")
+    check(b and b.sid == 4540 and b.f == 5 and b.money == 125 and b.npc == 1247, "a purchase names the item, how many, what they cost and the vendor")
+    BuyMerchantItem(2)
+    b = last("BUY")
+    check(b and b.sid == 159 and b.f == 5 and b.money == 25, "a purchase of one stack counts the stack, at the stack's price")
+    MOCK_MERCHANT_CLOSED()
+    MOCK_FIRE("UI_INFO_MESSAGE", 1, ERR_NEWTAXIPATH)
+    check(last("FPATH") ~= nil, "a new flight path discovered is an FPATH entry")
+    MOCK_FIRE("UI_INFO_MESSAGE", 1, "Something else")
+    -- what the Companion uploads keeps them all
+    local doc = ns.Share:RunDoc({ id = ns.char.run.id, seg = 1, entries = ns.char.run.entries })
+    local kept = {}
+    for _, e in ipairs(doc.run.entries) do kept[e.e] = e end
+    check(kept.ACCEPT and kept.TURNIN.npc == 1252 and kept.TRAIN.npc == 1232 and kept.BUY.sid == 159 and kept.FPATH ~= nil,
+        "the share keeps the NPCs, trainers, purchases and flight paths")
+    ns.Commands:Run("run discard")
+    ns.db.recordRuns = recordWas
+end)
+
 section("the run log samples the player's position every 2 s while they move", function()
     local R = ns.Run
     local recordWas = ns.db.recordRuns

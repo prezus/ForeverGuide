@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Recordings say who you took each quest from and turned it in to, and keep the flight paths you learn, the trainers you visit and what you buy from vendors (item, how many, the price, the vendor), so a route built from a recording needs less filling in by hand.
 - Guides: follow TUGs' latest update: 1-6 Skyborne, 6-12 Skyborne added.
 - Guides: Street's Speed Demon marks Rough Wolf Pelts in 12-13 Elwynn Forest as a Skinning step; the quest database adds 187 quests and corrects about 125
 - Guides: Street's Speed Demon v2, a route any Alliance character can choose in the route list, starting in Coldridge Valley: corrected loc

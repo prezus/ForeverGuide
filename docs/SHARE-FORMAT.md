@@ -107,8 +107,8 @@ mode). The kinds:
 | START, STOP | `at` (START) | The run starts, at the date and time `at`; the run ends (in the `done` segment) |
 | PAUSE, RESUME | `at` (RESUME) | Recording paused and resumed, at the same `t`; `at` is when the sitting resumed. Logging out pauses. A segment that fills up (2,500 entries) pauses too, unless ForeverGuide Companion is installed (see below) |
 | GAP | | The client lost the SavedVariables: this segment's entries before `GAP` are missing |
-| ACCEPT, ABANDON | `q` | A quest accepted or abandoned |
-| TURNIN | `q`, `xp`, `money` | A quest turned in, with its reward (copper) |
+| ACCEPT, ABANDON | `q`, `npc` (ACCEPT) | A quest accepted or abandoned; `npc` the creature whose quest window offered it, when there was one |
+| TURNIN | `q`, `xp`, `money`, `npc` | A quest turned in, with its reward (copper); `npc` the creature whose window took it in |
 | OBJ | `q`, `obj`, `f`, `r`, `done`, `src`, `sid` | Objective `obj` moved to `f` of `r`; `src` what did it (`kill`, `mobLoot`, `object`, `other`) and `sid` that creature's or object's id |
 | XP | `xp`, `src`, `sid` | Experience gained: `src` where it came from (`kill`, `quest`, `explore`, `other`) and `sid` the creature's or quest's id |
 | LEVEL | `l`, `rested` | A new level, with rested xp |
@@ -119,6 +119,9 @@ mode). The kinds:
 | DEATH | | The player died |
 | RESURRECT | `secs` | The player came back, `secs` after dying |
 | HEARTH | `action` | `use`: the hearthstone was cast; `bind`: it was set here |
+| FPATH | | A new flight path discovered here |
+| TRAIN | `npc` | A trainer's window opened, with the trainer |
+| BUY | `sid`, `f`, `money`, `npc` | Item `sid` bought from vendor `npc`: `f` of them, for `money` copper |
 
 ### With ForeverGuide Companion
 
@@ -229,14 +232,14 @@ the uiMapID's 0-100 map.
 | `run.entries[].s` | integer | Guide step being followed |
 | `run.entries[].q` | integer | Quest id |
 | `run.entries[].xp` | integer | Turn-in xp, or the experience an XP entry gained |
-| `run.entries[].money` | integer | Turn-in money (copper) |
+| `run.entries[].money` | integer | Turn-in money, or what a BUY cost (copper) |
 | `run.entries[].obj` | integer | Objective index |
-| `run.entries[].f` | integer | Objective progress |
+| `run.entries[].f` | integer | Objective progress, or how many a BUY bought |
 | `run.entries[].r` | integer | Objective goal |
 | `run.entries[].done` | boolean | Objective done |
 | `run.entries[].l` | integer | New level |
 | `run.entries[].rested` | integer | Rested xp left |
-| `run.entries[].npc` | integer | Creature id killed |
+| `run.entries[].npc` | integer | KILL: creature id killed. ACCEPT and TURNIN: the creature whose quest window it was (absent for an object, a quest a player shared, or no window). TRAIN: the trainer. BUY: the vendor |
 | `run.entries[].mobLevel` | integer | Its level, when it was targeted |
 | `run.entries[].elite` | boolean | It was elite, rare elite or a world boss |
 | `run.entries[].secs` | number | Seconds the kill, flight or death took |
@@ -246,7 +249,7 @@ the uiMapID's 0-100 map.
 | `run.entries[].action` | string | Hearthstone: `use` or `bind` |
 | `run.character` | string | The character (`Name-Realm`, the realm as `GetNormalizedRealmName` spells it). Only on segments kept for the Companion to upload (`runOutbox`), never on a segment shown to copy; the Companion fills it from the saved variables' folders when an older addon left it out |
 | `run.entries[].src` | string | What made an objective count or experience: `kill`, `mobLoot`, `object`, `quest`, `explore`, `other` |
-| `run.entries[].sid` | integer | That creature's, object's or quest's id |
+| `run.entries[].sid` | integer | That creature's, object's or quest's id; BUY: the item's id |
 | `run.entries[].at` | integer | START and RESUME: the date and time the sitting began, seconds since the epoch |
 | `run.entries[].cx` | integer | START, RESUME, XP and LEVEL: experience into the current level, after the entry (`UnitXP`) |
 | `run.entries[].mx` | integer | START, RESUME, XP and LEVEL: experience the current level needs (`UnitXPMax`) |

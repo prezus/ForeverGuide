@@ -240,6 +240,18 @@ end
 
 -- ---- timers -------------------------------------------------------------
 local timers = {}
+-- hooksecurefunc: runs the hook after the original, as the client does
+_G.hooksecurefunc = function(a, b, c)
+    local t, name, hook = _G, a, b
+    if type(a) == "table" then t, name, hook = a, b, c end
+    local original = t[name]
+    t[name] = function(...)
+        local r = { original(...) }
+        hook(...)
+        return unpack(r)
+    end
+end
+
 _G.C_Timer = {
     After = function(delay, fn) timers[#timers + 1] = { at = world.time + delay, fn = fn } end,
 }
@@ -725,6 +737,31 @@ end
 function _G.MOCK_TAXI(mapID, nodes)
     world.taxiNodes[mapID] = nodes
     fire("TAXI_NODE_STATUS_CHANGED")
+end
+
+--- a quest window opens at an NPC (QUEST_DETAIL to offer, QUEST_PROGRESS or QUEST_COMPLETE to take
+--- it in) and closes; npcID nil: a quest from an object, with no creature behind it
+function _G.MOCK_QUEST_WINDOW(event, npcID, name)
+    world.npc = npcID and { npcID = npcID, name = name, level = 10 } or nil
+    fire(event)
+    world.npc = nil
+end
+
+-- ---- a vendor's window: world.merchant[index] = { id, price (copper a stack), stackCount } ----
+world.merchant = {}
+_G.GetMerchantItemID = function(index) local i = world.merchant[index] return i and i.id end
+_G.C_MerchantFrame = { GetItemInfo = function(index) return world.merchant[index] end }
+_G.BuyMerchantItem = function() end
+
+--- the player opens a vendor's window, which stays open until MOCK_MERCHANT_CLOSED
+function _G.MOCK_MERCHANT(npcID, name, items)
+    world.npc = { npcID = npcID, name = name, level = 30 }
+    world.merchant = items or {}
+    fire("MERCHANT_SHOW")
+end
+function _G.MOCK_MERCHANT_CLOSED()
+    world.npc, world.merchant = nil, {}
+    fire("MERCHANT_CLOSED")
 end
 
 --- the player opens a trainer window
