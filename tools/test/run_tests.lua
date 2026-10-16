@@ -4787,6 +4787,18 @@ section("travel planner: the route as dots on the world map and the minimap", fu
         D:DrawWorld()
         local world = D:Shown()
         check(world > 0 and world <= D.WORLD_MAX, "the world map shows dots for the route (" .. world .. ")")
+        -- each dot sits on a darker, larger rim; the legs after the current one are faded
+        local seen = { now = false, later = false }
+        for _, d in ipairs(D.pools().world.list) do
+            if d.core:IsShown() then
+                local rw, cw = d.rim:GetWidth(), d.core:GetWidth()
+                local _, _, _, ra = d.rim:GetVertexColor()
+                local _, _, _, ca = d.core:GetVertexColor()
+                need(d.rim:IsShown() and rw > cw, "a dot's rim shows round it")
+                if ca == 1 then seen.now = true elseif ca == D.LATER_ALPHA and ra < 0.85 then seen.later = true end
+            end
+        end
+        check(seen.now and seen.later, "the current leg's dots are full, the later legs' faded")
         M.mapScale = 2
         D:DrawWorld()
         local zoomed = D:Shown()
@@ -4800,16 +4812,18 @@ section("travel planner: the route as dots on the world map and the minimap", fu
         D:DrawWorld()
         check(D:Shown() == 0, "a closed world map shows none")
 
-        -- the minimap: dots within its round view, at most 40
+        -- the minimap: dots within its round view, spaced in on-screen pixels like the world map's
         M.cvars.rotateMinimap = "0"
         M.minimapRadius = 200
         D:DrawMinimap()
         local _, mini = D:Shown()
+        local farYards = D.miniSpacingYards
         check(mini > 0 and mini <= D.MINI_MAX, "the minimap shows dots for the walk ahead (" .. mini .. ")")
         M.minimapRadius = 30
         D:DrawMinimap()
         local _, few = D:Shown()
-        check(few < mini, "zoomed in, fewer of them fit (" .. mini .. " -> " .. few .. ")")
+        check(few > 0 and D.miniSpacingYards < farYards, "zoomed in, the dots keep their spacing on screen, so they sit closer in yards ("
+            .. string.format("%.1f -> %.1f", farYards, D.miniSpacingYards) .. ")")
         M.minimapRadius = nil
 
         -- off: no dots anywhere

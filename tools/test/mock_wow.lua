@@ -143,6 +143,7 @@ local function NewRegion(kind)
     function r:GetValue() return self.value or self.vmin or 0 end
     function r:SetRotation(a) self.rotation = a end
     function r:SetVertexColor(...) self.vertex = { ... } end
+    function r:GetVertexColor() local v = self.vertex or {} return v[1] or 1, v[2] or 1, v[3] or 1, v[4] or 1 end
     function r:SetAlpha(a) self.alpha = a end
     function r:SetAttribute(k, v) self.attrs = self.attrs or {} self.attrs[k] = v end
     function r:SetParent(p) self.parent = p end
