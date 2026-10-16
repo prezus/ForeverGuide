@@ -27,6 +27,7 @@ DB.lua
 Player.lua
 Quest.lua
 Navigation.lua
+Travel.lua
 Guide.lua
 Dungeons.lua
 Tracker.lua
