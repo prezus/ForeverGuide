@@ -4399,10 +4399,12 @@ local function withTravelWorld(db, fn)
         -- the client draws north up and west left: map x runs along world Y, map y along world X
         return b.inst, CreateVector2D(b.maxX - v.y * (b.maxX - b.minX), b.maxY - v.x * (b.maxY - b.minY))
     end
-    ns.TravelDB = db
+    -- the planner is off by default; these tests are about it, so it is on while they run
+    local realOn = ns.db.nav.travelPlanner
+    ns.TravelDB, ns.db.nav.travelPlanner = db, true
     ns.Travel:ForgetPositions()
     local ok, err = pcall(fn)
-    C_Map.GetWorldPosFromMapPos, ns.TravelDB = realPos, realDb
+    C_Map.GetWorldPosFromMapPos, ns.TravelDB, ns.db.nav.travelPlanner = realPos, realDb, realOn
     ns.Travel:ForgetPositions()
     if not ok then error(err, 0) end
 end
@@ -4793,7 +4795,9 @@ section("travel planner: its switches in the options and /fg travel", function()
     if panel and panel.scripts.OnShow then panel.scripts.OnShow(panel) end
     local travel, dots, hearth = ns.Options:GetWidget("travel"), ns.Options:GetWidget("routedots"), ns.Options:GetWidget("usehearth")
     need(travel and dots and hearth, "the options list the planner, its map dots and its use of the Hearthstone")
-    check(travel:GetChecked() and dots:GetChecked() and hearth:GetChecked(), "all three are on by default")
+    check(not travel:GetChecked() and dots:GetChecked() and hearth:GetChecked(),
+        "the planner is off by default (until it has been checked in game); its dots and the Hearthstone are on for when it is turned on")
+    check(ns.db.nav.travelPlanner == false, "and saved as off")
 
     local db = travelFixture()
     local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
@@ -4804,8 +4808,12 @@ section("travel planner: its switches in the options and /fg travel", function()
     M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
     ns.Player.cache.mapID = nil
     withTravelWorld(db, function()
+        -- as a player who never touched it: off, and setting a target plans nothing
+        ns.db.nav.travelPlanner = nil
         Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
-        need(Nav.route, "Goldshire to Ironforge has a route")
+        check(Nav.route == nil, "with the planner off the arrow points straight at the target, with no planned way")
+        Nav:SetTravelPlanner(true)
+        need(Nav.route, "Goldshire to Ironforge has a route once the planner is turned on")
         -- unticking the planner drops the route at once; ticking it plans again
         travel:SetChecked(false)
         travel.scripts.OnClick(travel)
