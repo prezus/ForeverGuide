@@ -19,7 +19,8 @@
 --   USEHEARTH                the hearthstone cast (or manual)
 --   HEARTH   npc [zone]      hearthstone bound (HEARTHSTONE_BOUND) while talking to that innkeeper;
 --                            bind location == zone (GetBindLocation) for a bind made earlier; else manual
---   TRAVEL   map x y [radius] arriving within radius (Navigation) — auto
+--   TRAVEL   map x y [radius] arriving within radius (Navigation) — auto; one into another zone is
+--                            done on entering the zone, unless it says `arrive`
 --   FLY      map x y         same as TRAVEL (flight path hint); by place: the flight taking off
 --   FLIGHTPATH [map x y]     that flight point known (Reminders), or the new-path message
 --   TALK     npc             interacting with that NPC (gossip/quest/vendor/trainer windows)
@@ -633,7 +634,7 @@ end
 --- or one whose map differs from the step before it) - as opposed to moving around inside
 --- the zone you are already in.
 function Guide:IsZoneEntry(step, idx)
-    if not step or not step.map or not idx then return false end
+    if not step or not step.map or not idx or step.arrive then return false end
     local steps = self.active and self.active.steps
     if not steps then return false end
     local k = self:PrevIdx(idx)
