@@ -1534,6 +1534,47 @@ section("record runs with ForeverGuide Companion: closed segments wait in the ou
     ns.db.recordRuns = recordWas
 end)
 
+section("a recording keeps the addon's errors, with the step and map, and sends them with its segment (#724)", function()
+    local R = ns.Run
+    local was = { record = ns.db.recordRuns, run = ns.char.run, sent = ns.char.runSent, outbox = ns.char.runOutbox, receipt = rawget(_G, "ForeverGuideCompanionReceipt") }
+    local errorsBefore = #reportedErrors
+    ns.char.run, ns.char.runSent, ns.char.runOutbox = nil, nil, nil
+    _G.ForeverGuideCompanionReceipt = nil
+
+    -- not recording: nothing kept
+    R:NoteError("test:idle", "boom")
+    check(ns.char.run == nil, "an error while not recording is not kept")
+
+    R:SetEnabled(true)
+    R:Start()
+    ns.ReportOnce("test:recorded", "Interface/AddOns/ForeverGuide/Test.lua:1: attempt to index a nil value")
+    local kept = ns.char.run.errors and ns.char.run.errors[1]
+    check(kept and kept.key == "test:recorded" and kept.message:find("attempt to index", 1, true) and kept.map ~= nil,
+        "an error printed in chat is kept with the recording, with the map it happened on")
+
+    -- the share window's document carries it at the top, as the share format does
+    local segment = R.CloseSegment(false)
+    local doc = ns.Share:RunDoc(segment)
+    check(doc.errors and doc.errors[1].key == "test:recorded" and doc.run and doc.run.errors == nil, "the segment's share carries its errors beside the run")
+    check(ns.char.run.errors == nil, "the next segment starts with none")
+
+    -- the companion's outbox: errors only to an app whose receipt says it takes them
+    _G.ForeverGuideCompanionReceipt = {}
+    R.ToOutbox(segment)
+    local old = ns.char.runOutbox[#ns.char.runOutbox]
+    check(old.errors == nil and old.run ~= nil, "an older app (no errors in its receipt) gets the segment without them")
+    _G.ForeverGuideCompanionReceipt = { errors = true }
+    R.ToOutbox(segment)
+    local new = ns.char.runOutbox[#ns.char.runOutbox]
+    check(new.errors and new.errors[1].key == "test:recorded", "an app whose receipt says errors gets them")
+
+    -- the error this test reported on purpose is not one of the suite's
+    while #reportedErrors > errorsBefore do table.remove(reportedErrors) end
+    _G.ForeverGuideCompanionReceipt = was.receipt
+    ns.char.run, ns.char.runSent, ns.char.runOutbox = was.run, was.sent, was.outbox
+    ns.db.recordRuns = was.record
+end)
+
 section("corpse run", function()
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
     local before = ns.Navigation.target
