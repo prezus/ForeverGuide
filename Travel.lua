@@ -267,3 +267,135 @@ function Travel:Plan(from, to, opts)
     end
     return { legs = legs, seconds = seconds[target] }
 end
+
+-- ------------------------------------------------------------
+-- The character: where its Hearthstone is bound, which teleports it can
+-- cast and when, what it knows. Plan takes these as options (Options).
+-- ------------------------------------------------------------
+local Plain, PlainNumber, PlainString, Safe = ns.Plain, ns.PlainNumber, ns.PlainString, ns.Safe
+
+local HEARTHSTONE_ITEM, HEARTHSTONE_SPELL, ASTRAL_RECALL = 6948, 8690, 556
+local LANDED_AFTER = 2      -- seconds after a hearth cast to read where it set the player down
+local LANDING_WINDOW = 60   -- a loading screen may delay that past the timer
+
+local function BindName()
+    return PlainString(Safe(rawget(_G, "GetBindLocation")))
+end
+
+local function Here()
+    local map, x, y = ns.Player:GetMapPosition()
+    if map and x and y then return { map = map, x = x, y = y } end
+end
+
+--- Seconds until a cooldown that started at `start` for `duration` ends; 0 when ready.
+local function Remaining(start, duration)
+    start, duration = PlainNumber(start), PlainNumber(duration)
+    if not start or not duration or start <= 0 or duration <= 0 then return 0 end
+    local now = PlainNumber(Safe(rawget(_G, "GetTime"))) or 0
+    local left = start + duration - now
+    return left > 0 and left or 0
+end
+
+local function SpellKnown(spell)
+    local known = Plain(ns.Call("C_SpellBook.IsSpellKnown", spell))
+    if known == nil then known = Plain(Safe(rawget(_G, "IsSpellKnown"), spell)) end
+    return known == true
+end
+
+local function HasReagents(reagents)
+    for item, count in pairs(reagents or {}) do
+        if (PlainNumber(ns.Call("C_Item.GetItemCount", item)) or 0) < count then return false end
+    end
+    return true
+end
+
+--- Remember where the Hearthstone is bound, under the name the client gives the place.
+function Travel:RecordBind(where, npcID)
+    local name = BindName()
+    if not name or not where then return end
+    ns.char.bind = { map = where.map, x = where.x, y = where.y, name = name, npc = npcID }
+end
+
+--- The bind point { map, x, y, name }, or nil while unknown. The client says only the place's
+--- name, so the position is the innkeeper's (or where the player stood) when the player bound,
+--- or where a Hearthstone last set the player down; a bind made elsewhere with the addon off
+--- (the name no longer matches) forgets it.
+function Travel:Bind()
+    local b = ns.char and ns.char.bind
+    if not b then return nil end
+    local name = BindName()
+    if name and b.name ~= name then
+        ns.char.bind = nil
+        return nil
+    end
+    return b
+end
+
+--- Seconds until the Hearthstone is ready (0 now), or nil without one in the bags.
+function Travel:HearthWait()
+    if (PlainNumber(ns.Call("C_Item.GetItemCount", HEARTHSTONE_ITEM)) or 0) == 0 then return nil end
+    local start, duration = ns.Call("C_Container.GetItemCooldown", HEARTHSTONE_ITEM)
+    if start == nil then start, duration = Safe(rawget(_G, "GetItemCooldown"), HEARTHSTONE_ITEM) end
+    return Remaining(start, duration)
+end
+
+--- The class teleports the character knows and has the reagents for: { { spell, wait } }.
+function Travel:Teleports()
+    local out = {}
+    for spell, t in pairs(ns.TravelDB and ns.TravelDB.teleports or {}) do
+        if SpellKnown(spell) and HasReagents(t.reagents) then
+            local info = ns.Call("C_Spell.GetSpellCooldown", spell)
+            local wait = type(info) == "table" and Remaining(info.startTime, info.duration) or 0
+            out[#out + 1] = { spell = spell, wait = wait }
+        end
+    end
+    table.sort(out, function(a, b) return a.spell < b.spell end)
+    return out
+end
+
+--- Plan's options for this character now: faction, known flight points, run speed, and the
+--- Hearthstone and teleports unless the player turned them off (nav.useHearth).
+function Travel:Options()
+    local useHearth = not (ns.db and ns.db.nav and ns.db.nav.useHearth == false)
+    local bind = useHearth and self:Bind() or nil
+    local _, run = Safe(rawget(_G, "GetUnitSpeed"), "player")
+    return {
+        faction = ns.Player:GetFaction(),
+        known = ns.Reminders and ns.Reminders.Known and ns.Reminders.Known() or {},
+        speed = PlainNumber(run),
+        bind = bind,
+        bindName = bind and bind.name,
+        hearthWait = bind and self:HearthWait() or nil,
+        teleports = useHearth and self:Teleports() or {},
+    }
+end
+
+function Travel:OnInit()
+    -- Bound while talking to an innkeeper: the inn is where that innkeeper stands.
+    ns.Events:Register("HEARTHSTONE_BOUND", function()
+        local npc = ns.Player:GetInteractionNPC()
+        local id = npc and npc.npcID
+        local inn = id and ns.TravelDB and ns.TravelDB.inns and ns.TravelDB.inns[id]
+        self:RecordBind(inn or Here(), id)
+    end)
+    -- A Hearthstone or Astral Recall puts the player at the bind point: learn it there if unknown.
+    local function Landed()
+        if not self.castAt then return end
+        local age = (PlainNumber(Safe(rawget(_G, "GetTime"))) or 0) - self.castAt
+        if age > LANDING_WINDOW then
+            self.castAt = nil
+            return
+        end
+        local here = Here()
+        if not here then return end   -- still loading; PLAYER_ENTERING_WORLD tries again
+        self.castAt = nil
+        if not self:Bind() then self:RecordBind(here) end
+    end
+    ns.Events:Register("UNIT_SPELLCAST_SUCCEEDED", function(_, unit, _, spellID)
+        spellID = PlainNumber(spellID)
+        if unit ~= "player" or (spellID ~= HEARTHSTONE_SPELL and spellID ~= ASTRAL_RECALL) then return end
+        self.castAt = PlainNumber(Safe(rawget(_G, "GetTime"))) or 0
+        C_Timer.After(LANDED_AFTER, Landed)
+    end)
+    ns.Events:Register("PLAYER_ENTERING_WORLD", Landed)
+end
