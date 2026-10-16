@@ -122,6 +122,8 @@ function Arrow:Tick()
         return
     end
     local s = Nav:Update(true)
+    -- following a planned route: point at the current leg's end
+    if s and s.leg and s.leg.distance then s = { distance = s.leg.distance, angle = s.leg.angle, arrived = false } end
     f.label:SetText(t.label or "")
     if not s or not s.distance then
         f.tex:SetRotation(0)

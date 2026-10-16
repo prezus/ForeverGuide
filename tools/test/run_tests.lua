@@ -4550,6 +4550,104 @@ section("travel planner: the bind point, the Hearthstone's and teleports' readin
     ns.TravelDB, ns.char.bind, M.bind, M.npc, M.items, M.spells = realDb, nil, realBind, realNpc, realItems, realSpells
 end)
 
+section("travel planner: the arrow follows the planned route leg by leg, and plans again only for a clearly faster way", function()
+    local Nav, T, M = ns.Navigation, ns.Travel, MOCK
+    local db = travelFixture()
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
+    --- put the mock player at a map point, consistently on the map and in the world
+    local function moveTo(p)
+        local b = boxes[p.map]
+        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
+        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+        ns.Player.cache.mapID = nil
+    end
+    local routes = 0
+    local unregister = ns.Events:Register("FG_NAV_ROUTE_CHANGED", function() routes = routes + 1 end)
+    local goldshire, ironforge = { map = 1429, x = 42.1, y = 65.9 }, { map = 1455, x = 50, y = 50 }
+
+    withTravelWorld(db, function()
+        moveTo(goldshire)
+        Nav:SetTarget({ map = ironforge.map, x = ironforge.x, y = ironforge.y, label = "Ironforge" })
+        local r = Nav.route
+        need(r and #r.legs == 3 and r.index == 1, "a target across the tram gets a three-leg route")
+        check(r.legs[2].kind == "tram" and routes >= 1, "the route rides the tram and says so (FG_NAV_ROUTE_CHANGED)")
+        local s = Nav:Update()
+        local portal = T.World(r.legs[1].to)
+        local dx, dy = portal.x - M.worldX, portal.y - M.worldY
+        check(s.leg and s.leg.index == 1 and math.abs(s.leg.distance - math.sqrt(dx * dx + dy * dy)) < 0.5, "the arrow aims at the tram's portal, the first leg's end")
+        check(s.distance and s.distance > s.leg.distance, "the target's own distance stays the final destination's")
+
+        -- At the portal the tram leg is current; out in Ironforge, the last walk.
+        moveTo(r.legs[1].to)
+        s = Nav:Update()
+        check(Nav.route.index == 2 and s.leg.kind == "tram", "reaching the portal makes the tram the current leg")
+        moveTo(r.legs[2].to)
+        s = Nav:Update()
+        check(Nav.route.index == 3 and s.leg.kind == "walk", "leaving the tram in Ironforge makes the last walk current")
+        moveTo(ironforge)
+        s = Nav:Update()
+        check(s.arrived and Nav:CurrentLeg() == nil, "at the target the route is done and the target is reached")
+
+        -- Straying: back in Goldshire with the route done, the next look plans again.
+        Nav:SetTarget({ map = ironforge.map, x = ironforge.x, y = ironforge.y, label = "Ironforge" })
+        moveTo({ map = 1455, x = 40, y = 55 })
+        MOCK_ADVANCE(6)
+        Nav:Update()
+        MOCK_ADVANCE(0)
+        check(Nav.route == nil, "walking into Ironforge off the planned way, a plain walk replaces the tram route")
+
+        -- Switching needs a clearly faster way.
+        moveTo(goldshire)
+        Nav:SetTarget({ map = ironforge.map, x = ironforge.x, y = ironforge.y, label = "Ironforge" })
+        local current = Nav.route
+        local realPlan = T.Plan
+        local remaining = Nav:RemainingSeconds(Nav:Update(), 7)
+        T.Plan = function() return { legs = { { kind = "hearth", seconds = 10 }, { kind = "walk", seconds = 1 } }, seconds = remaining - 10 } end
+        Nav.replanAt = 0
+        Nav:Update()
+        MOCK_ADVANCE(0)
+        check(Nav.route == current, "a way only ten seconds faster does not replace the route")
+        T.Plan = function() return { legs = { { kind = "hearth", seconds = 10 }, { kind = "walk", seconds = 1 } }, seconds = 11 } end
+        Nav.replanAt = 0
+        Nav:Update()
+        MOCK_ADVANCE(0)
+        check(Nav.route ~= current and Nav.route.legs[1].kind == "hearth", "a clearly faster way replaces it")
+        T.Plan = realPlan
+
+        -- A flight: at the flight master the flight is the current leg; landing, the last walk.
+        local lakeshire = db.flightNodes[5].at.A
+        ns.Reminders.Known()["Stormwind, Elwynn"], ns.Reminders.Known()["Lakeshire, Redridge"] = true, true
+        moveTo(goldshire)
+        Nav:SetTarget({ map = 1433, x = lakeshire.x + 1, y = lakeshire.y, label = "Lakeshire" })
+        local fr = Nav.route
+        local flyAt
+        for i, leg in ipairs(fr and fr.legs or {}) do if leg.kind == "fly" then flyAt = i end end
+        need(flyAt, "Goldshire to Lakeshire flies when both flight points are known (" .. kinds(fr) .. ")")
+        moveTo(fr.legs[flyAt].from)
+        Nav:Update()
+        check(Nav.route.index == flyAt, "at Stormwind's flight master the flight is the current leg")
+        moveTo(fr.legs[flyAt].to)
+        Nav:Update()
+        check(Nav.route.index == flyAt + 1, "landing at Lakeshire makes the walk after it current")
+        ns.Reminders.Known()["Stormwind, Elwynn"], ns.Reminders.Known()["Lakeshire, Redridge"] = nil, nil
+
+        -- Off: the arrow points straight at the target as before.
+        ns.db.nav.travelPlanner = false
+        Nav:SetTarget({ map = ironforge.map, x = ironforge.x, y = ironforge.y, label = "Ironforge" })
+        check(Nav.route == nil and Nav:Update().leg == nil, "with the planner off there is no route")
+        ns.db.nav.travelPlanner = true
+    end)
+    -- Without TravelDB (before the data reaches the addon), no route either.
+    Nav:SetTarget({ map = ironforge.map, x = ironforge.x, y = ironforge.y, label = "Ironforge" })
+    check(Nav.route == nil, "without the travel data there is no route")
+
+    if unregister then unregister() end
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0
