@@ -4846,7 +4846,22 @@ section("travel planner: the route as dots on the world map and the minimap", fu
         ns.db.nav.routeDots = nil
         Nav:Clear()
         local w3, m3 = D:Shown()
-        check(w3 == 0 and m3 == 0, "no route, no dots")
+        check(w3 == 0 and m3 == 0, "no target, no dots")
+        -- a plain walk (no route): the dots run from the player to the target, with the planner on
+        moveTo({ map = 1429, x = 42.1, y = 65.9 })
+        Nav:SetTarget({ map = 1429, x = 40.4, y = 82.4, label = "Fargodeep Mine" })
+        need(Nav.route == nil, "Goldshire to the Fargodeep Mine is a plain walk, no route")
+        local walk = D:Segments()
+        check(walk and #walk == 1 and walk[1].kind == "walk" and math.abs(walk[1].ax - M.worldX) < 0.01, "the walk is one segment from the player to the target")
+        M.mapOpen, M.mapShown, M.mapScale = true, 1429, 1
+        D:Refresh()
+        local w4, m4 = D:Shown()
+        check(w4 > 0 and m4 > 0, "and is drawn on the world map and the minimap (" .. w4 .. ", " .. m4 .. ")")
+        M.mapOpen = false
+        ns.db.nav.travelPlanner = false
+        check(D:Segments() == nil, "with the planner off, no dots")
+        ns.db.nav.travelPlanner = true
+        Nav:Clear()
     end)
     C_Map.GetMapPosFromWorldPos = realToMap
     M.mapOpen, M.mapShown, M.mapScale = nil, nil, nil
