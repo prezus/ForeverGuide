@@ -4858,6 +4858,8 @@ section("travel planner: the route as dots on the world map and the minimap", fu
         local w4, m4 = D:Shown()
         check(w4 > 0 and m4 > 0, "and is drawn on the world map and the minimap (" .. w4 .. ", " .. m4 .. ")")
         M.mapOpen = false
+        local said = table.concat(D:Diagnose(), "\n")
+        check(said:find("segments to draw: 1", 1, true) and said:find("route: none (a walk)", 1, true), "/fg dots says what is drawn, and why")
         ns.db.nav.travelPlanner = false
         check(D:Segments() == nil, "with the planner off, no dots")
         ns.db.nav.travelPlanner = true

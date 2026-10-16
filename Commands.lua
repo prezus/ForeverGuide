@@ -40,6 +40,7 @@ local HELP = {
     "/fg harvest | sweep [from to] | probe | status   quest discovery and map requests (needs /fg share on)",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
     "/fg travel          the planned way to the current step, leg by leg  |  /fg travel on|off  |  /fg travel dots on|off  |  /fg travel hearth on|off",
+    "/fg dots            why the planned way's dots show or not",
     "/fg tests           field checks: a short guide that records what the travel planner needs  |  /fg tests off",
     "/fg dungeon on|off  put the guide away while you are in an instance (on by default)",
     "/fg fp              list / walk to the flight points in this zone you have not taken yet",
@@ -783,6 +784,11 @@ function handlers.bliz(rest)
     if rest == "on" then on = true elseif rest == "off" then on = false else on = not ns.db.nav.blizzardWaypoint end
     ns.Navigation:SetBlizzardWaypointEnabled(on)
     ns.Printf("Blizzard waypoint arrow %s", on and "on" or "off")
+end
+
+--- "/fg dots": what decides whether the planned way's dots are drawn.
+function handlers.dots()
+    for _, line in ipairs(ns.RouteDots:Diagnose()) do ns.Print("dots: " .. line) end
 end
 
 --- "/fg tests": the field checks on (the planner and recording with them), or off.
