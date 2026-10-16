@@ -253,16 +253,18 @@ function Share:Doc()
 end
 
 --- The allowlisted copy of a run segment's share (Run.lua): the profile, the maps its entries
---- stand on, and the segment. The contributed facts and reports stay out of it.
-function Share:RunDoc(segment)
+--- stand on, the segment, and the Lua errors while it was recorded unless `withErrors` is false.
+--- The contributed facts and reports stay out of it.
+function Share:RunDoc(segment, withErrors)
     local doc = Build()
     local maps = {}
     for _, e in ipairs(segment.entries or {}) do
         local m = PlainNumber(e.m)
         if m and not maps[m] then maps[m] = ns.Recorder:MapInfo(m) end
     end
+    local errors = withErrors ~= false and type(segment.errors) == "table" and #segment.errors > 0 and segment.errors or nil
     return Filter({ format = doc.format, addon = doc.addon, build = doc.build, profile = doc.profile, maps = maps,
-        run = segment }, SCHEMA) or {}
+        run = segment, errors = errors }, SCHEMA) or {}
 end
 
 --- The share as JSON (pretty = indented, for the JSON view).

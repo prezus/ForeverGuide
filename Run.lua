@@ -21,6 +21,9 @@
 --                                 begun (action its kind, f its number, secs predicted, sid a teleport's spell),
 --                                 a leg done (f, secs it took). Existing fields only: the share allowlist and
 --                                 the Companion take them as they are.
+-- Errors: a ForeverGuide Lua error while recording (ns.ReportOnce, the "error in ..." chat line) is
+-- kept with the open segment, with the guide step and map, and goes with it as the share's
+-- `errors` (to ForeverGuide Companion only when its receipt says `errors`).
 -- Every entry carries t (seconds of recording since the run started), lvl, m/x/y (uiMapID, map
 -- percent) and g/s (the guide and step being followed; g = "auto" in auto mode). START and RESUME
 -- also carry at, the date and time the sitting began (seconds since the epoch), so a run over several
@@ -265,10 +268,27 @@ end
 -- the current segment as it goes into a share, and the run moved on to the next one
 local function CloseSegment(done)
     local run = Current()
-    local segment = { id = run.id, seg = run.seg, done = done or nil, entries = run.entries }
+    local segment = { id = run.id, seg = run.seg, done = done or nil, entries = run.entries, errors = run.errors }
     ns.char.runSent = segment
-    run.seg, run.entries, noticed = run.seg + 1, {}, false
+    run.seg, run.entries, run.errors, noticed = run.seg + 1, {}, nil, false
     return segment
+end
+
+--- Most errors kept with one segment, as the share format allows.
+local MAX_ERRORS = 50
+
+--- A ForeverGuide Lua error while recording (ns.ReportOnce: once per key per session), kept with
+--- the open segment with the guide step and map it happened on, so the recording says what broke.
+function Run:NoteError(key, message)
+    if self:State() ~= "recording" then return end
+    local run = Current()
+    run.errors = run.errors or {}
+    if #run.errors >= MAX_ERRORS then return end
+    local G = ns.Guide
+    run.errors[#run.errors + 1] = {
+        key = tostring(key):sub(1, 120), message = tostring(message):sub(1, 300),
+        guide = G and G.active and G.active.id, step = G and G.current, map = ns.Player:GetMapID(),
+    }
 end
 Run.CloseSegment = CloseSegment
 
@@ -280,7 +300,9 @@ Run.CloseSegment = CloseSegment
 function Run.ToOutbox(segment)
     local outbox = ns.char.runOutbox or {}
     ns.char.runOutbox = outbox
-    local doc = ns.Share:RunDoc(segment)
+    -- its errors only to an app whose receipt says it takes them: an older one refuses the segment
+    local receipt = Receipt()
+    local doc = ns.Share:RunDoc(segment, receipt ~= nil and receipt.errors == true)
     local name, realm = ns.Player:GetFullName(), ns.Player:GetRealm()
     if type(doc.run) == "table" and name ~= "?" and realm ~= "?" then
         doc.run.character = (name .. "-" .. realm):sub(1, 62)

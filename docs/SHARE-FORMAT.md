@@ -94,8 +94,11 @@ recorded until Start. **Send** opens the share window with every entry since the
 recording carries on in the next segment. **Stop** ends the run and opens its last segment,
 marked `done`. `/fg run start|pause|resume|stop|send|discard|status` does the same by command.
 
-A segment share holds `format`, `addon`, `build`, `profile`, the `maps` its entries stand on, and
-`run`. It never holds the contributed facts or reports. Join a run's segments by `run.id`, in
+A segment share holds `format`, `addon`, `build`, `profile`, the `maps` its entries stand on,
+`run`, and `errors`: the ForeverGuide Lua errors printed in chat while the segment was recorded,
+with the guide step and map each happened on (at most 50). Errors go to ForeverGuide Companion only
+when its receipt says `errors` (an older app refuses a segment carrying them). It never holds the
+contributed facts or reports. Join a run's segments by `run.id`, in
 `run.seg` order. `t` never goes back across a run's segments.
 
 Every entry has `e` (its kind), `t`, `lvl`, and where the player stood (`m`, `x`, `y`) when the

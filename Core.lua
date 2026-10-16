@@ -166,6 +166,7 @@ function ns.ReportOnce(key, err)
     reported[key] = true
     local message = tostring(err)
     if ns.Recorder then pcall(ns.Recorder.NoteError, ns.Recorder, key, message) end
+    if ns.Run and ns.Run.NoteError then pcall(ns.Run.NoteError, ns.Run, key, message) end
     ns.Error("error in " .. tostring(key) .. ": " .. message)
 end
 
