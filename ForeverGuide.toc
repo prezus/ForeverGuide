@@ -60,6 +60,7 @@ UI\MobMarker.lua
 XPBuffs.lua
 UI.lua
 Arrow.lua
+UI\RouteDots.lua
 AutoQuest.lua
 Minimap.lua
 Options.lua

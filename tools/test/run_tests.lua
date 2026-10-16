@@ -4707,6 +4707,82 @@ section("travel planner: the time left and what to do on each leg, on the arrow 
     if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
 end)
 
+section("travel planner: the route as dots on the world map and the minimap", function()
+    local Nav, D, M = ns.Navigation, ns.RouteDots, MOCK
+    need(D and D.DrawWorld and #WorldMapFrame.providers >= 1, "the route dots join the world map as a data provider")
+    local db = travelFixture()
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
+    local function moveTo(p)
+        local b = boxes[p.map]
+        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
+        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+        ns.Player.cache.mapID = nil
+    end
+    -- the client's inverse of its map boxes: a world point on a map, 0-1
+    local realToMap = C_Map.GetMapPosFromWorldPos
+    C_Map.GetMapPosFromWorldPos = function(inst, v, mapID)
+        local b = boxes[mapID]
+        if not b or b.inst ~= inst then return nil end
+        local wx, wy = v:GetXY()
+        return mapID, CreateVector2D((b.maxY - wy) / (b.maxY - b.minY), (b.maxX - wx) / (b.maxX - b.minX))
+    end
+
+    withTravelWorld(db, function()
+        moveTo({ map = 1429, x = 42.1, y = 65.9 })
+        Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
+        need(Nav.route, "Goldshire to Ironforge has a route")
+        local segs = D:Segments()
+        check(#segs == 3 and segs[1].kind == "walk" and segs[2].kind == "tram", "the legs ahead are three segments, the walk from the player first")
+        check(math.abs(segs[1].ax - M.worldX) < 0.01 and math.abs(segs[1].ay - M.worldY) < 0.01, "the current walk starts at the player")
+
+        -- the world map showing Elwynn: dots along the walk to Stormwind, inside the map
+        M.mapOpen, M.mapShown, M.mapScale = true, 1429, 1
+        D:DrawWorld()
+        local world = D:Shown()
+        check(world > 0 and world <= D.WORLD_MAX, "the world map shows dots for the route (" .. world .. ")")
+        M.mapScale = 2
+        D:DrawWorld()
+        local zoomed = D:Shown()
+        check(zoomed > world, "zoomed in, the same on-screen spacing needs more dots (" .. world .. " -> " .. zoomed .. ")")
+        local cap = D.WORLD_MAX
+        D.WORLD_MAX = 5
+        D:DrawWorld()
+        check(D:Shown() == 5, "never more dots than the cap")
+        D.WORLD_MAX = cap
+        M.mapOpen = false
+        D:DrawWorld()
+        check(D:Shown() == 0, "a closed world map shows none")
+
+        -- the minimap: dots within its round view, at most 40
+        M.cvars.rotateMinimap = "0"
+        M.minimapRadius = 200
+        D:DrawMinimap()
+        local _, mini = D:Shown()
+        check(mini > 0 and mini <= D.MINI_MAX, "the minimap shows dots for the walk ahead (" .. mini .. ")")
+        M.minimapRadius = 30
+        D:DrawMinimap()
+        local _, few = D:Shown()
+        check(few < mini, "zoomed in, fewer of them fit (" .. mini .. " -> " .. few .. ")")
+        M.minimapRadius = nil
+
+        -- off: no dots anywhere
+        ns.db.nav.routeDots = false
+        D:Refresh()
+        local w2, m2 = D:Shown()
+        check(w2 == 0 and m2 == 0, "with route dots off nothing is drawn")
+        ns.db.nav.routeDots = nil
+        Nav:Clear()
+        local w3, m3 = D:Shown()
+        check(w3 == 0 and m3 == 0, "no route, no dots")
+    end)
+    C_Map.GetMapPosFromWorldPos = realToMap
+    M.mapOpen, M.mapShown, M.mapScale = nil, nil, nil
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0
