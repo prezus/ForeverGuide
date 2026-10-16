@@ -4490,6 +4490,66 @@ section("travel planner: the fastest legs over flights, transports, the tram, th
     end)
 end)
 
+section("travel planner: the bind point, the Hearthstone's and teleports' readiness, the character's options", function()
+    local T, M = ns.Travel, MOCK
+    local db = travelFixture()
+    local realDb, realBind, realNpc, realItems, realSpells = ns.TravelDB, M.bind, M.npc, M.items, M.spells
+    ns.TravelDB, ns.char.bind = db, nil
+    M.items, M.spells = {}, {}
+
+    -- Bound at Innkeeper Allison in Stormwind: the inn is where she stands, not where the player is.
+    M.bind, M.npc = "Stormwind City", { npcID = 6740, name = "Innkeeper Allison" }
+    MOCK_FIRE("HEARTHSTONE_BOUND")
+    local b = T:Bind()
+    check(b and b.npc == 6740 and b.map == db.inns[6740].map and b.x == db.inns[6740].x, "binding at an innkeeper the data knows records the inn's position")
+    check(b and b.name == "Stormwind City", "the bind keeps the place's name the client gives")
+    -- An innkeeper the data lacks: where the player stands.
+    M.npc = { npcID = 999999, name = "Innkeeper Nobody" }
+    MOCK_FIRE("HEARTHSTONE_BOUND")
+    b = T:Bind()
+    check(b and b.npc == 999999 and b.map == M.mapID and math.abs(b.x - M.mapX * 100) < 0.01, "an unknown innkeeper's inn is where the player stood")
+    -- Bound elsewhere with the addon off: the name no longer matches, so the bind is forgotten.
+    M.bind = "Goldshire"
+    check(T:Bind() == nil and ns.char.bind == nil, "a bind whose name no longer matches is forgotten")
+
+    -- A Hearthstone cast while the bind is unknown teaches it where it lands.
+    M.npc = nil
+    MOCK_FIRE("UNIT_SPELLCAST_SUCCEEDED", "player", "cast-1", 8690)
+    MOCK_ADVANCE(3)
+    b = T:Bind()
+    check(b and b.name == "Goldshire" and b.map == M.mapID and b.npc == nil, "a Hearthstone's landing becomes the bind point when none is known")
+
+    -- The Hearthstone: none in the bags, ready, or cooling down.
+    check(T:HearthWait() == nil, "no Hearthstone in the bags: no hearth leg")
+    M.items[6948] = 1
+    check(T:HearthWait() == 0, "a Hearthstone off cooldown is ready now")
+    M.itemCooldowns[6948] = { start = M.time - 600, duration = 3600 }
+    check(math.abs((T:HearthWait() or 0) - 3000) < 0.01, "one used ten minutes ago waits fifty more")
+    M.itemCooldowns[6948] = nil
+
+    -- A mage: Teleport: Stormwind needs its rune.
+    M.spells[3561] = true
+    check(#T:Teleports() == 0, "a mage without Runes of Teleportation has no teleports")
+    M.items[17031] = 2
+    M.spellCooldowns[3561] = { start = M.time - 10, duration = 15 }
+    local tps = T:Teleports()
+    check(#tps == 1 and tps[1].spell == 3561 and math.abs(tps[1].wait - 5) < 0.01, "with the rune, the teleport and its cooldown's rest")
+    M.spellCooldowns[3561] = nil
+
+    -- The options Plan takes, and the switch that leaves the Hearthstone and teleports out.
+    ns.Reminders.Known()["Stormwind, Elwynn"] = true
+    local o = T:Options()
+    check(o.faction == "Alliance" and o.known["Stormwind, Elwynn"] and o.speed == 7, "options carry the faction, known flight points and run speed")
+    check(o.bind and o.bindName == "Goldshire" and o.hearthWait == 0 and #o.teleports == 1, "options carry the bind, the Hearthstone and the teleports")
+    ns.db.nav.useHearth = false
+    o = T:Options()
+    check(o.bind == nil and o.hearthWait == nil and #o.teleports == 0, "with the Hearthstone and teleports turned off, neither is offered")
+    ns.db.nav.useHearth = nil
+
+    ns.Reminders.Known()["Stormwind, Elwynn"] = nil
+    ns.TravelDB, ns.char.bind, M.bind, M.npc, M.items, M.spells = realDb, nil, realBind, realNpc, realItems, realSpells
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0

@@ -589,7 +589,16 @@ _G.C_FriendList = {
     GetNumWhoResults = function() return world.whoCount or 0 end,
 }
 world.bags = { [0] = { size = 16, items = {} } }   -- items: slot -> { quality, hasNoValue, isQuestItem }
+-- world.itemCooldowns[id] / world.spellCooldowns[id] = { start, duration } (GetTime seconds)
+world.itemCooldowns, world.spellCooldowns = {}, {}
+_G.C_Spell.GetSpellCooldown = function(id)
+    local c = world.spellCooldowns[id]
+    return { startTime = c and c.start or 0, duration = c and c.duration or 0, isEnabled = true, modRate = 1 }
+end
+-- current, run, flight, swim speed in yards a second
+_G.GetUnitSpeed = function() return world.speed or 0, world.runSpeed or 7, 7, 4.72 end
 _G.C_Container = {
+    GetItemCooldown = function(id) local c = world.itemCooldowns[id] if not c then return 0, 0, 1 end return c.start, c.duration, 1 end,
     GetContainerNumSlots = function(bag) local b = world.bags[bag] return b and b.size or 0 end,
     GetContainerNumFreeSlots = function(bag) local b = world.bags[bag] if not b then return 0 end local used = 0 for _ in pairs(b.items) do used = used + 1 end return b.size - used, 0 end,
     GetContainerItemInfo = function(bag, slot) local b = world.bags[bag] return b and b.items[slot] end,
