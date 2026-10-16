@@ -131,6 +131,17 @@ function Nav:SetRoute(plan)
     if had or self.route then ns.Events:Fire("FG_NAV_ROUTE_CHANGED", self.route) end
 end
 
+--- Plan the way to the current target again now (an option changed).
+function Nav:Replan()
+    if self.target then self:SetRoute(self:PlanRoute(self.target)) end
+end
+
+--- Turn the travel planner on or off; the current target is planned again, or straight again.
+function Nav:SetTravelPlanner(on)
+    ns.db.nav.travelPlanner = on and true or false
+    self:Replan()
+end
+
 --- The current leg, or nil when there is no route or it is done.
 function Nav:CurrentLeg()
     local r = self.route
