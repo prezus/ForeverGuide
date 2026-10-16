@@ -137,6 +137,9 @@ function List.UpdateDistances(l, force)
         local text
         if e.state == "active" and Nav.target and Nav.state and Nav.state.distance then
             text = Nav:FormatDistance(Nav.state.distance)
+            -- following a planned route: how long the whole way still takes
+            local left = Nav.route and Nav:FormatTime(Nav:SecondsLeft())
+            if left then text = text .. "  " .. left end
         elseif e.distanceText then
             text = e.distanceText
         elseif e.step and DB and DB:IsLoaded() then

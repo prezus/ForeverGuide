@@ -4648,6 +4648,65 @@ section("travel planner: the arrow follows the planned route leg by leg, and pla
     if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
 end)
 
+section("travel planner: the time left and what to do on each leg, on the arrow and in the guide", function()
+    local Nav, M = ns.Navigation, MOCK
+    check(Nav:FormatTime(45) == "45 s" and Nav:FormatTime(255) == "4:15" and Nav:FormatTime(3900) == "1:05:00", "times read 45 s, 4:15, 1:05:00")
+    check(Nav:FormatTime(nil) == nil and Nav:FormatTime(math.huge) == nil, "an unknown time is no text")
+
+    -- every kind of leg says what to do
+    local cap = function(leg, nextLeg) return Nav:LegCaption(leg, nextLeg) end
+    check(cap({ kind = "walk" }, { kind = "fly" }) == "Walk to the flight master", "a walk to a flight names the flight master")
+    check(cap({ kind = "walk" }, { kind = "tram" }) == "Walk to the tram", "a walk to a ride names the ride")
+    check(cap({ kind = "walk" }, nil) == nil, "the last walk, to the target itself, needs no caption")
+    check(cap({ kind = "fly", name = "Ironforge, Dun Morogh" }) == "Fly to Ironforge", "a flight names the place, not the zone")
+    check(cap({ kind = "boat", name = "Menethil Harbor" }) == "Take the boat to Menethil Harbor", "a boat names where it goes")
+    check(cap({ kind = "zeppelin", name = "Undercity" }) == "Take the zeppelin to Undercity", "so does a zeppelin")
+    check(cap({ kind = "hearth", name = "Goldshire" }) == "Use your Hearthstone to Goldshire", "the Hearthstone names the bind point")
+    M.spellNames[3562] = "Teleport: Ironforge"
+    check(cap({ kind = "teleport", spell = 3562, name = "Ironforge" }) == "Cast Teleport: Ironforge", "a teleport names its spell as the client does")
+
+    local db = travelFixture()
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
+    local function moveTo(p)
+        local b = boxes[p.map]
+        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
+        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+        ns.Player.cache.mapID = nil
+    end
+    withTravelWorld(db, function()
+        moveTo({ map = 1429, x = 42.1, y = 65.9 })
+        Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
+        need(Nav.route and Nav.route.legs[2].kind == "tram", "Goldshire to Ironforge rides the tram")
+        local first = Nav:SecondsLeft(Nav:Update())
+        moveTo({ map = 1429, x = 42.1, y = 55 })
+        local closer = Nav:SecondsLeft(Nav:Update())
+        check(first and closer and closer < first, "walking towards the tram, the time left drops")
+
+        -- the arrow: the leg's caption, and the distance with the time left
+        local f = ns.Arrow:Create()
+        ns.Arrow:Tick()
+        check(f.caption:GetText() == "Walk to the tram", "the arrow says to walk to the tram (" .. tostring(f.caption:GetText()) .. ")")
+        check((f.dist:GetText() or ""):find(Nav:FormatTime(Nav:SecondsLeft()), 1, true) ~= nil, "the arrow's distance line carries the time left")
+
+        -- at the tram: the wait counts down, then the ride
+        moveTo(Nav.route.legs[1].to)
+        Nav:Update()
+        local wait = Nav.route.legs[2].wait
+        check(Nav:RideWait() == "Tram in about " .. Nav:FormatTime(wait), "at the tram, the expected wait")
+        MOCK_ADVANCE(20)
+        check(Nav:RideWait() == "Tram in about " .. Nav:FormatTime(wait - 20), "the wait counts down")
+        local riding = Nav:SecondsLeft(Nav:Update())
+        MOCK_ADVANCE(10)
+        check(math.abs(riding - 10 - Nav:SecondsLeft(Nav:Update())) < 0.01, "on the way, the time left counts down with the clock")
+        ns.Arrow:Tick()
+        check(f.caption:GetText() == "Tram in about " .. Nav:FormatTime(wait - 30), "the arrow shows the wait while there is one")
+    end)
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0

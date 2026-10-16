@@ -39,7 +39,7 @@ function Arrow:Create()
     local a = Cfg()
     local f = CreateFrame("Frame", "ForeverGuideArrowFrame", UIParent)
     frame = f
-    f:SetSize(160, SIZE + 40)
+    f:SetSize(160, SIZE + 54)
     f:SetPoint(a.point, UIParent, a.point, a.x, a.y)
     f:SetScale(a.scale)
     f:SetFrameStrata("MEDIUM")
@@ -77,6 +77,16 @@ function Arrow:Create()
     dist:SetJustifyH("CENTER")
     dist:SetTextColor(0.93, 0.89, 0.80)
     f.dist = dist
+
+    -- following a planned route: what to do on this leg ("Fly to Ironforge", "Boat in about 2:45")
+    local caption = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    caption:SetFont(FONT, 11, "OUTLINE")
+    caption:SetPoint("TOP", dist, "BOTTOM", 0, -1)
+    caption:SetWidth(240)
+    caption:SetJustifyH("CENTER")
+    pcall(caption.SetMaxLines, caption, 1)
+    caption:SetTextColor(0.55, 0.85, 1)
+    f.caption = caption
 
     local hint = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     hint:SetFont(FONT, 10, "OUTLINE")
@@ -116,14 +126,20 @@ function Arrow:Tick()
             f.tex:SetVertexColor(0.6, 0.6, 0.6)
             f.label:SetText("no destination")
             f.dist:SetText("")
+            f.caption:SetText("")
         else
             f:Hide()
         end
         return
     end
     local s = Nav:Update(true)
-    -- following a planned route: point at the current leg's end
+    -- following a planned route: point at the current leg's end, say what to do on it, and how
+    -- long the whole way still takes
+    local left = Nav:FormatTime(Nav:SecondsLeft(s))
+    local leg = Nav:CurrentLeg()
+    f.caption:SetText(leg and (Nav:RideWait() or Nav:LegCaption(leg, Nav.route.legs[Nav.route.index + 1])) or "")
     if s and s.leg and s.leg.distance then s = { distance = s.leg.distance, angle = s.leg.angle, arrived = false } end
+    local after = left and ("  -  " .. left) or ""
     f.label:SetText(t.label or "")
     if not s or not s.distance then
         f.tex:SetRotation(0)
@@ -135,7 +151,7 @@ function Arrow:Tick()
         -- distance known but no facing (indoors / instances): grey, no direction claim
         f.tex:SetRotation(0)
         f.tex:SetVertexColor(0.6, 0.6, 0.6)
-        f.dist:SetText(Nav:FormatDistance(s.distance) .. (s.arrived and "  - here" or ""))
+        f.dist:SetText(Nav:FormatDistance(s.distance) .. (s.arrived and "  - here" or after))
         return
     end
     local angle = s.angle
@@ -144,7 +160,7 @@ function Arrow:Tick()
     local a = math.abs(angle)
     local k = math.min(1, a / math.pi)
     f.tex:SetVertexColor(1, 0.92 - 0.35 * k, 0.55 - 0.35 * k)
-    f.dist:SetText(Nav:FormatDistance(s.distance) .. (s.arrived and "  - here" or ""))
+    f.dist:SetText(Nav:FormatDistance(s.distance) .. (s.arrived and "  - here" or after))
 end
 
 -- Suppression has channels so that two reasons to hide the arrow (combat, and the
