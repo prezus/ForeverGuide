@@ -55,6 +55,11 @@ local function World(p)
 end
 Travel.World = World
 
+--- Forget every cached position (the map conversion changed: the tests swap it).
+function Travel:ForgetPositions()
+    worldOf = setmetatable({}, { __mode = "k" })
+end
+
 local function Yards(a, b)
     local dx, dy = a.x - b.x, a.y - b.y
     return sqrt(dx * dx + dy * dy)

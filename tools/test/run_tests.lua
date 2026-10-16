@@ -4400,8 +4400,10 @@ local function withTravelWorld(db, fn)
         return b.inst, CreateVector2D(b.maxX - v.y * (b.maxX - b.minX), b.maxY - v.x * (b.maxY - b.minY))
     end
     ns.TravelDB = db
+    ns.Travel:ForgetPositions()
     local ok, err = pcall(fn)
     C_Map.GetWorldPosFromMapPos, ns.TravelDB = realPos, realDb
+    ns.Travel:ForgetPositions()
     if not ok then error(err, 0) end
 end
 
@@ -4638,9 +4640,11 @@ section("travel planner: the arrow follows the planned route leg by leg, and pla
         check(Nav.route == nil and Nav:Update().leg == nil, "with the planner off there is no route")
         ns.db.nav.travelPlanner = true
     end)
-    -- Without TravelDB (before the data reaches the addon), no route either.
-    Nav:SetTarget({ map = ironforge.map, x = ironforge.x, y = ironforge.y, label = "Ironforge" })
-    check(Nav.route == nil, "without the travel data there is no route")
+    -- Without TravelDB (an addon folder missing its data file), no route either.
+    withTravelWorld(nil, function()
+        Nav:SetTarget({ map = ironforge.map, x = ironforge.x, y = ironforge.y, label = "Ironforge" })
+        check(Nav.route == nil, "without the travel data there is no route")
+    end)
 
     if unregister then unregister() end
     M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
@@ -4842,6 +4846,18 @@ section("travel planner: its switches in the options and /fg travel", function()
     M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
     ns.Player.cache.mapID = nil
     if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
+end)
+
+section("the shipped travel data loads with the addon and plans like the fixture", function()
+    local db = ns.TravelDB
+    need(db and db.flightNodes and db.links and db.teleports and db.inns and db.flightBoard, "Data/TravelDB.lua loads with the addon")
+    local nodes = 0
+    for _ in pairs(db.flightNodes) do nodes = nodes + 1 end
+    check(nodes >= 60 and #db.links >= 40, "it holds the flight network and the transports (" .. nodes .. " nodes, " .. #db.links .. " links)")
+    withTravelWorld(db, function()
+        local plan = ns.Travel:Plan({ map = 1429, x = 42.1, y = 65.9 }, { map = 1455, x = 50, y = 50 }, { faction = "Alliance", known = {} })
+        check(kinds(plan) == "walk,tram,walk", "with the shipped data Goldshire to Ironforge rides the tram (" .. kinds(plan) .. ")")
+    end)
 end)
 
 -- ---- no swallowed errors anywhere -------------------------------------------------

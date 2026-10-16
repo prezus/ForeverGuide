@@ -41,6 +41,7 @@ Recorder.lua
 Sources.lua
 Run.lua
 Data\VanillaQuestIDs.lua
+Data\TravelDB.lua
 Scanner.lua
 Harvest.lua
 Share.lua
