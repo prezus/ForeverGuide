@@ -384,6 +384,13 @@ do
     wm.hooks = {}
     function wm:HookScript(name, fn) self.hooks[name] = fn end
     function wm:IsShown() return world.mapOpen == true end
+    -- the map canvas (Blizzard_MapCanvas): data providers, the shown map, its canvas and zoom
+    wm.providers, wm.canvas = {}, NewRegion("Frame")
+    wm.canvas:SetSize(1000, 667)
+    function wm:AddDataProvider(p) self.providers[#self.providers + 1] = p p.owningMap = self end
+    function wm:GetMapID() return world.mapShown or world.mapID end
+    function wm:GetCanvas() return self.canvas end
+    function wm:GetCanvasScale() return world.mapScale or 1 end
     _G.WorldMapFrame = wm
 end
 
@@ -813,7 +820,24 @@ world.cvarCalls = {}       -- every cvar name the addon registered, read or wrot
 local function seen(name) world.cvarCalls[#world.cvarCalls + 1] = tostring(name) end
 _G.GetCVar = function(name) seen(name) return world.cvars[name] end
 _G.SetCVar = function(name, value) return _G.C_CVar.SetCVar(name, value) end
+-- Blizzard's mixin helpers and the map canvas's data provider base (MapCanvas_DataProviderBase.lua)
+_G.CreateFromMixins = _G.CreateFromMixins or function(...)
+    local t = {}
+    for i = 1, select("#", ...) do for k, v in pairs((select(i, ...))) do t[k] = v end end
+    return t
+end
+_G.MapCanvasDataProviderMixin = {
+    GetMap = function(self) return self.owningMap end,
+    RemoveAllData = function() end,
+    RefreshAllData = function() end,
+    OnMapChanged = function(self) self:RefreshAllData() end,
+}
+_G.C_Minimap = {
+    GetViewRadius = function() return world.minimapRadius or 200 end,
+    IsRotateMinimapIgnored = function() return false end,
+}
 _G.C_CVar = {
+    GetCVarBool = function(name) seen(name) return world.cvars[name] == "1" end,
     RegisterCVar = function(name, default) seen(name) if world.cvars[name] == nil then world.cvars[name] = default or "" end end,
     SetCVar = function(name, value) seen(name) if world.cvars[name] == nil then return false end world.cvars[name] = tostring(value or "") return true end,
     GetCVar = function(name) seen(name) return world.cvars[name] end,

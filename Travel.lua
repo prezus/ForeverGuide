@@ -44,6 +44,7 @@ local worldOf = setmetatable({}, { __mode = "k" })
 
 --- A map point's world position: { inst, x, y }, or nil where the client cannot place it.
 local function World(p)
+    if not p then return nil end
     local w = worldOf[p]
     if w == nil then
         local inst, x, y = ns.Navigation:MapToWorld(p.map, p.x, p.y)
