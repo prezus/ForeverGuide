@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- The travel planner keeps its way through the Deeprun Tram, boats and other rides that change zone. Before, the arrow lost the way while you rode, so after the tram it no longer pointed you on to the next leg (the flight master, say).
+- Field checks wait until you arrive at each place, not just enter its zone.
 - Field checks for testers: `/fg tests` opens a short guide of trips and places (the Deeprun Tram, boats, the Wizard's Sanctum, Undercity's lifts, a zeppelin tower) with the travel planner and recording on, so a recording shows what the planner planned and how it went; `/fg tests off` puts your guide, the planner and recording back.
 
 - While you are dead, the arrow points straight at your corpse instead of planning flights or boats; the way to your next step comes back when you are alive again.

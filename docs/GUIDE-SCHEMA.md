@@ -61,6 +61,7 @@ Common fields (all optional unless the type needs them):
 | `zone`      | string | map name; fallback when `map` is unknown to the client, required for HEARTH |
 | `x`, `y`    | number | 0-100 map coordinates |
 | `radius`    | number | yards; TRAVEL completes within this distance (default 15) |
+| `arrive`    | bool   | TRAVEL / FLY into another zone: done on arriving at `x`/`y`, not on entering the zone |
 | `optional`  | bool   | shown dimmed (group / elite quests); completes itself once the player is past it |
 | `near`      | bool   | objective with many spawns: the addon points at the nearest known spawn at runtime; `x`/`y` is only the planned spot |
 | `faction`   | string | step only for this faction |

@@ -82,9 +82,15 @@ function Nav:SetTarget(target)
         radius = target.radius or (ns.db and ns.db.nav.arrivalRadius) or 15,
     }
     t.instanceID, t.worldX, t.worldY = self:MapToWorld(t.map, t.x, t.y)
+    -- the same place asked for again (the guide re-aims the arrow on every zone change) while a
+    -- route is under way: keep following it. Planning afresh from inside a ride (the tram's own
+    -- instance, a boat between zones) found no way and dropped the route, and its leg with it.
+    local old = self.target
+    local sameRoute = old and self.route and self:CurrentLeg() ~= nil and old.map == t.map and old.x == t.x and old.y == t.y
+    if sameRoute then t.arrivedFired = old.arrivedFired end
     self.target = t
     self.state = nil
-    self:SetRoute(self:PlanRoute(t))
+    if not sameRoute then self:SetRoute(self:PlanRoute(t)) end
     self:UpdateBlizzardWaypoint()
     ns.Events:Fire("FG_NAV_TARGET_CHANGED", t)
 end

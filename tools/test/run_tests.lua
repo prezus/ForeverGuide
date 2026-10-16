@@ -4654,6 +4654,46 @@ section("travel planner: the arrow follows the planned route leg by leg, and pla
     if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
 end)
 
+section("travel planner: a ride through a zone change keeps the route: the guide asking for the same place again neither drops nor replans it (#724)", function()
+    local Nav, M = ns.Navigation, MOCK
+    local db = travelFixture()
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
+    local function moveTo(p)
+        local b = boxes[p.map]
+        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
+        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+        ns.Player.cache.mapID = nil
+    end
+    local ironforge = { map = 1455, x = 50, y = 50, label = "Ironforge" }
+    withTravelWorld(db, function()
+        moveTo({ map = 1429, x = 42.1, y = 65.9 })
+        Nav:SetTarget(ironforge)
+        local r = Nav.route
+        need(r and r.legs[2].kind == "tram", "Goldshire to Ironforge rides the tram")
+        moveTo(r.legs[1].to)
+        Nav:Update()
+        need(Nav.route.index == 2, "at the portal the tram is the current leg")
+        -- inside the tram: its own instance, no map position; the guide re-aims on the zone change
+        M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = nil, nil, nil, nil, nil, 369
+        ns.Player.cache.mapID = nil
+        Nav:SetTarget(ironforge)
+        check(Nav.route == r and r.index == 2, "the same place asked for again inside the tram keeps the route and its leg")
+        -- out in Ironforge, a few yards from the tram's end: the guide re-aims again, and the way carries on
+        local to = r.legs[2].to
+        moveTo({ map = to.map, x = to.x - 3, y = to.y - 0.6 })
+        Nav:SetTarget(ironforge)
+        Nav:Update()
+        check(Nav.route == r and r.index == 3, "out of the tram, the route goes on to its last leg (" .. tostring(Nav.route and Nav.route.index) .. ")")
+        -- a different place is planned afresh
+        Nav:SetTarget({ map = 1455, x = 60, y = 60, label = "elsewhere" })
+        check(Nav.route ~= r, "a different place gets a plan of its own")
+    end)
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
+end)
+
 section("travel planner: the time left and what to do on each leg, on the arrow and in the guide", function()
     local Nav, M = ns.Navigation, MOCK
     check(Nav:FormatTime(45) == "45 s" and Nav:FormatTime(255) == "4:15" and Nav:FormatTime(3900) == "1:05:00", "times read 45 s, 4:15, 1:05:00")
@@ -4957,6 +4997,9 @@ section("field checks: /fg tests opens the checks with the planner and recording
     check(table.concat(printed, "\n"):find("height as 0.00", 1, true) ~= nil, "it says the height the game gives (the mock gives 0)")
     local step = G.active.steps[1]
     check(step.type == "TRAVEL" and step.map == 1455, "the first check is a trip the planner plans: to Ironforge")
+    -- a check into another zone ends at its place, not at the zone line
+    local into = G.active.steps[2]
+    check(into.map ~= step.map and into.arrive == true and not G:IsZoneEntry(into, 2), "a check into another zone waits for the arrival, not the zone line")
     -- every entry recorded names the check being followed, from the run's start
     local first = ns.char.run and ns.char.run.entries[1]
     check(first and first.e == "START" and first.g == "FIELD_CHECKS_ALLIANCE" and first.s == 1, "the run's start names the checks and their first step")
