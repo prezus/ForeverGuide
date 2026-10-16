@@ -39,6 +39,7 @@ collected data and runs live only in the SavedVariables file, so send them (belo
 | `/fg auto accept\|turnin\|share\|shared\|announce` | Auto-accept, auto-turn-in, and quest sharing with your group (hold SHIFT to do it by hand) |
 | `/fg arrow`, `/fg waypoint`, `/fg route`, `/fg skull`, `/fg bliz` | The arrow, the in-world waypoint and its path, skulls over quest mobs, Blizzard's map pin |
 | `/fg travel` | The planned way to the step, leg by leg, with the time left; `/fg travel on\|off`, `/fg travel dots on\|off` (the dots on the world map and minimap), `/fg travel hearth on\|off` (whether it may use your Hearthstone and class teleports) |
+| `/fg tests` | Field checks, for testers: a short guide of places to go while the travel planner and recording are on; `/fg tests off` puts your guide and settings back |
 | `/fg lock` `unlock` `scale <n>` `resetpos`, `/fg qg <setting> <value>`, `/fg minimap` | Window look and position |
 | `/fg dungeon on\|off` | Put the guide away inside instances |
 | `/fg edit`, `/fg edits` | Fix the current step where you stand (position, npc, note, radius) |

@@ -67,6 +67,7 @@ Minimap.lua
 Options.lua
 Editor.lua
 Keybinds.lua
+FieldTests.lua
 Commands.lua
 
 # ---- guide data (published by the maintainer's route planner; Guides.xml lists the files) ----

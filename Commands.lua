@@ -40,6 +40,7 @@ local HELP = {
     "/fg harvest | sweep [from to] | probe | status   quest discovery and map requests (needs /fg share on)",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
     "/fg travel          the planned way to the current step, leg by leg  |  /fg travel on|off  |  /fg travel dots on|off  |  /fg travel hearth on|off",
+    "/fg tests           field checks: a short guide that records what the travel planner needs  |  /fg tests off",
     "/fg dungeon on|off  put the guide away while you are in an instance (on by default)",
     "/fg fp              list / walk to the flight points in this zone you have not taken yet",
     "/fg remind [flight|trainer|food|bag] on|off | buffs reset   the flight-point and trainer nudges, the XP food and sleeping bag icons",
@@ -782,6 +783,11 @@ function handlers.bliz(rest)
     if rest == "on" then on = true elseif rest == "off" then on = false else on = not ns.db.nav.blizzardWaypoint end
     ns.Navigation:SetBlizzardWaypointEnabled(on)
     ns.Printf("Blizzard waypoint arrow %s", on and "on" or "off")
+end
+
+--- "/fg tests": the field checks on (the planner and recording with them), or off.
+function handlers.tests(rest)
+    if rest == "off" then ns.FieldTests:Stop() else ns.FieldTests:Start() end
 end
 
 --- "/fg travel": the planned way, or switch the planner, its map dots, or its use of the Hearthstone.

@@ -4941,6 +4941,43 @@ section("a recording keeps the travel planner's route, each leg, and how long ea
     if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
 end)
 
+section("field checks: /fg tests opens the checks with the planner and recording on; /fg tests off puts all back (#724)", function()
+    local G, M = ns.Guide, MOCK
+    local was = { guide = G.active and G.active.id, planner = ns.db.nav.travelPlanner, record = ns.db.recordRuns, run = ns.char.run, faction = M.faction }
+    local printed = {}
+    local realPrint, realPrintf = ns.Print, ns.Printf
+    ns.Print = function(msg) printed[#printed + 1] = tostring(msg) end
+    ns.Printf = function(fmt, ...) printed[#printed + 1] = string.format(fmt, ...) end
+    ns.db.nav.travelPlanner, ns.db.recordRuns, ns.char.run = false, false, nil
+    local before = G.active and G.active.id
+
+    ns.Commands:Run("tests")
+    check(G.active and G.active.id == "FIELD_CHECKS_ALLIANCE", "an Alliance character gets the Alliance checks (" .. tostring(G.active and G.active.id) .. ")")
+    check(ns.db.nav.travelPlanner == true and ns.db.recordRuns == true and ns.Run:State() == "recording", "the travel planner is on, and the run records")
+    check(table.concat(printed, "\n"):find("height as 0.00", 1, true) ~= nil, "it says the height the game gives (the mock gives 0)")
+    local step = G.active.steps[1]
+    check(step.type == "TRAVEL" and step.map == 1455, "the first check is a trip the planner plans: to Ironforge")
+    -- every entry recorded names the check being followed, from the run's start
+    local first = ns.char.run and ns.char.run.entries[1]
+    check(first and first.e == "START" and first.g == "FIELD_CHECKS_ALLIANCE" and first.s == 1, "the run's start names the checks and their first step")
+
+    ns.Commands:Run("tests off")
+    check(ns.char.fieldTests == nil and ns.db.nav.travelPlanner == false and ns.db.recordRuns == false, "/fg tests off turns the planner and recording back off")
+    check((G.active and G.active.id) == before, "and goes back to the guide that was open (" .. tostring(G.active and G.active.id) .. ")")
+
+    M.faction = "Horde"
+    ns.Player.cache.faction = nil
+    ns.Commands:Run("tests")
+    check(G.active and G.active.id == "FIELD_CHECKS_HORDE", "a Horde character gets the Horde checks")
+    ns.Commands:Run("tests off")
+
+    ns.Print, ns.Printf = realPrint, realPrintf
+    M.faction = was.faction
+    ns.Player.cache.faction = nil
+    ns.db.nav.travelPlanner, ns.db.recordRuns, ns.char.run = was.planner, was.record, was.run
+    if was.guide then G:Activate(was.guide) end
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0
