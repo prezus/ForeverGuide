@@ -122,6 +122,9 @@ mode). The kinds:
 | FPATH | | A new flight path discovered here |
 | TRAIN | `npc` | A trainer's window opened, with the trainer |
 | BUY | `sid`, `f`, `money`, `npc` | Item `sid` bought from vendor `npc`: `f` of them, for `money` copper |
+| ROUTE | `secs`, `r` | The travel planner chose a way to its target: `r` legs, `secs` predicted in all |
+| LEG | `action`, `f`, `secs`, `sid` | Leg `f` of the way became current: its kind in `action` (walk, fly, boat, zeppelin, tram, portal, lift, hearth, teleport), `secs` predicted, `sid` a teleport's spell |
+| LEGDONE | `f`, `secs` | The way moved past leg `f`, `secs` after it began |
 
 ### With ForeverGuide Companion
 
@@ -234,22 +237,22 @@ the uiMapID's 0-100 map.
 | `run.entries[].xp` | integer | Turn-in xp, or the experience an XP entry gained |
 | `run.entries[].money` | integer | Turn-in money, or what a BUY cost (copper) |
 | `run.entries[].obj` | integer | Objective index |
-| `run.entries[].f` | integer | Objective progress, or how many a BUY bought |
-| `run.entries[].r` | integer | Objective goal |
+| `run.entries[].f` | integer | Objective progress, how many a BUY bought, or a travel leg's number (LEG, LEGDONE) |
+| `run.entries[].r` | integer | Objective goal, or a ROUTE's number of legs |
 | `run.entries[].done` | boolean | Objective done |
 | `run.entries[].l` | integer | New level |
 | `run.entries[].rested` | integer | Rested xp left |
 | `run.entries[].npc` | integer | KILL: creature id killed. ACCEPT and TURNIN: the creature whose quest window it was (absent for an object, a quest a player shared, or no window). TRAIN: the trainer. BUY: the vendor |
 | `run.entries[].mobLevel` | integer | Its level, when it was targeted |
 | `run.entries[].elite` | boolean | It was elite, rare elite or a world boss |
-| `run.entries[].secs` | number | Seconds the kill, flight or death took |
+| `run.entries[].secs` | number | Seconds the kill, flight or death took; a ROUTE's or LEG's predicted seconds; a LEGDONE's seconds taken |
 | `run.entries[].mounted` | boolean | Mounted |
 | `run.entries[].taxi` | boolean | On a flight |
 | `run.entries[].cost` | integer | Flight fare (copper) |
-| `run.entries[].action` | string | Hearthstone: `use` or `bind` |
+| `run.entries[].action` | string | Hearthstone: `use` or `bind`; LEG: the leg's kind |
 | `run.character` | string | The character (`Name-Realm`, the realm as `GetNormalizedRealmName` spells it). Only on segments kept for the Companion to upload (`runOutbox`), never on a segment shown to copy; the Companion fills it from the saved variables' folders when an older addon left it out |
 | `run.entries[].src` | string | What made an objective count or experience: `kill`, `mobLoot`, `object`, `quest`, `explore`, `other` |
-| `run.entries[].sid` | integer | That creature's, object's or quest's id; BUY: the item's id |
+| `run.entries[].sid` | integer | That creature's, object's or quest's id; BUY: the item's id; LEG: a teleport's spell |
 | `run.entries[].at` | integer | START and RESUME: the date and time the sitting began, seconds since the epoch |
 | `run.entries[].cx` | integer | START, RESUME, XP and LEVEL: experience into the current level, after the entry (`UnitXP`) |
 | `run.entries[].mx` | integer | START, RESUME, XP and LEVEL: experience the current level needs (`UnitXPMax`) |

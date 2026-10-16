@@ -17,6 +17,10 @@
 --   FPATH                         a new flight path discovered
 --   TRAIN                         a trainer's window opened (npc)
 --   BUY                           something bought from a vendor (sid item, f how many, money copper, npc)
+--   ROUTE LEG LEGDONE             the travel planner (Travel.lua): a route planned (secs predicted, r legs), a leg
+--                                 begun (action its kind, f its number, secs predicted, sid a teleport's spell),
+--                                 a leg done (f, secs it took). Existing fields only: the share allowlist and
+--                                 the Companion take them as they are.
 -- Every entry carries t (seconds of recording since the run started), lvl, m/x/y (uiMapID, map
 -- percent) and g/s (the guide and step being followed; g = "auto" in auto mode). START and RESUME
 -- also carry at, the date and time the sitting began (seconds since the epoch), so a run over several
@@ -550,6 +554,19 @@ function Run:OnInit()
         if PlainString(unit) == "player" and PlainNumber(spellID) == HEARTHSTONE then Add("HEARTH", { action = "use" }) end
     end)
     E:Register("HEARTHSTONE_BOUND", function() Add("HEARTH", { action = "bind" }) end)
+    -- the travel planner: the route it chose, each leg as it begins, and how long the one before took
+    local route, leg, legAt
+    E:Register("FG_NAV_ROUTE_CHANGED", function(_, r)
+        if r ~= route then
+            route, leg, legAt = r, nil, nil
+            if r then Add("ROUTE", { secs = Round(r.seconds, 1), r = #r.legs }) end
+        end
+        if not r or r.index == leg then return end
+        if leg and legAt then Add("LEGDONE", { f = leg, secs = Round(ns.Now() - legAt, 1) }) end
+        leg, legAt = r.index, ns.Now()
+        local current = r.legs[r.index]
+        if current then Add("LEG", { action = current.kind, f = r.index, secs = Round(current.seconds, 1), sid = current.spell }) end
+    end)
 
     E:Register("UI_INFO_MESSAGE", function(_, _, message)
         local want = rawget(_G, "ERR_NEWTAXIPATH")
