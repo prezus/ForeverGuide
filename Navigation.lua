@@ -116,6 +116,9 @@ local function Dead()
     return Plain(Safe(rawget(_G, "UnitIsGhost"), "player")) == true or Plain(Safe(rawget(_G, "UnitIsDead"), "player")) == true
 end
 
+--- Whether the travel planner is on and has its data.
+function Nav:PlannerOn() return PlannerOn() end
+
 --- The way from where the player stands to `t`, or nil (planner off, no position, no way).
 function Nav:PlanRoute(t)
     t = t or self.target

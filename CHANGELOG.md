@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- The travel planner draws the way on walks too: a line of gold dots from you to the next step, on the world map and the minimap, when no flight, boat or tram is faster. Before, a walk drew nothing. The dots are smaller and closer, on a near-black rim, and if their texture cannot load they draw as small squares rather than not at all. `/fg travel` on a walk now says "the way is a walk: no flight, boat or tram is faster".
 - The planned way's dots come out in true colours, one per kind of leg (walks gold, flights green, boats blue, zeppelins peach, the tram and lifts tan), each on a near-black rim. Before, the colours were tinted over an orange dot and came out muddy.
 - `/fg tests` starts the field checks over from the first each time it is run, with nothing done.
 - The travel planner keeps its way through the Deeprun Tram, boats and other rides that change zone. Before, the arrow lost the way while you rode, so after the tram it no longer pointed you on to the next leg (the flight master, say).

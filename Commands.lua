@@ -814,7 +814,7 @@ function handlers.travel(rest)
     elseif not Nav.target then
         ns.Print("no destination")
     elseif not Nav.route then
-        ns.Printf("no planned way: %s (%s)", ns.db.nav.travelPlanner ~= true and "the planner is off" or "walk straight there",
+        ns.Printf("%s (%s)", ns.db.nav.travelPlanner ~= true and "no planned way: the planner is off (/fg travel on)" or "the way is a walk: no flight, boat or tram is faster",
             Nav:Describe())
     else
         local r = Nav.route

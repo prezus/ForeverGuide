@@ -5,7 +5,8 @@
 -- gold, flights green, boats blue, zeppelins peach, the tram and lifts tan) on a
 -- white disc, so the tint comes out true, over a near-black rim so it reads on
 -- the parchment map and the minimap alike. The current leg is drawn full; the
--- legs after it faded.
+-- legs after it faded. With no route (the way is a plain walk) and the planner
+-- on, the walk from the player to the target is drawn.
 -- Straight lines from each leg's start to its end; the current walk starts
 -- at the player. A leg between two world maps (a boat to the other
 -- continent) or a jump (Hearthstone, teleport, portal) draws nothing.
@@ -27,20 +28,20 @@ local Dots = ns:NewModule("RouteDots")
 local Plain, PlainNumber, Safe = ns.Plain, ns.PlainNumber, ns.Safe
 local sqrt, cos, sin, floor = math.sqrt, math.cos, math.sin, math.floor
 
-Dots.WORLD_MAX, Dots.WORLD_SPACING, Dots.WORLD_SIZE = 300, 11, 6   -- dots; on-screen pixels
-Dots.MINI_MAX, Dots.MINI_SPACING, Dots.MINI_SIZE = 120, 9, 5       -- dots; on-screen pixels
-Dots.RIM = 1.5                                                     -- the dark rim round each dot, pixels
-Dots.LATER_ALPHA = 0.45                                            -- the legs after the current one
+Dots.WORLD_MAX, Dots.WORLD_SPACING, Dots.WORLD_SIZE = 300, 9, 4   -- dots; on-screen pixels
+Dots.MINI_MAX, Dots.MINI_SPACING, Dots.MINI_SIZE = 120, 9, 4       -- dots; on-screen pixels
+Dots.RIM = 1                                                       -- the dark rim round each dot, pixels
+Dots.LATER_ALPHA = 0.4                                             -- the legs after the current one
 --- Each kind of leg's colour; a ride not named here is a boat's.
 Dots.COLORS = {
-    walk = { 1, 0.78, 0.25 },
-    flight = { 0.4, 0.9, 0.6 },
-    boat = { 0.5, 0.78, 1 },
-    zeppelin = { 1, 0.65, 0.45 },
-    tram = { 0.88, 0.8, 0.65 },
-    lift = { 0.88, 0.8, 0.65 },
+    walk = { 0.9, 0.73, 0.4 },
+    flight = { 0.42, 0.85, 0.6 },
+    boat = { 0.58, 0.79, 1 },
+    zeppelin = { 0.96, 0.68, 0.52 },
+    tram = { 0.86, 0.79, 0.66 },
+    lift = { 0.86, 0.79, 0.66 },
 }
-local RIM_COLOR = { 0.02, 0.03, 0.06, 0.9 }
+local RIM_COLOR = { 0.02, 0.03, 0.06, 1 }
 local JUMPS = { hearth = true, teleport = true, portal = true }
 
 local function On()
@@ -51,8 +52,14 @@ end
 function Dots:Segments()
     local Nav, T = ns.Navigation, ns.Travel
     local r = Nav.route
-    if not r or not T or not On() then return nil end
+    if not T or not On() then return nil end
     local px, py, pInstance = ns.Player:GetWorldPosition()
+    if not r then
+        -- a plain walk: from the player to the target, when both are in one world
+        local t = Nav.target
+        if not (t and px and t.worldX and Nav:PlannerOn() and t.instanceID == pInstance) then return nil end
+        return { { ax = px, ay = py, bx = t.worldX, by = t.worldY, inst = pInstance, kind = "walk" } }
+    end
     local segs = {}
     for k = r.index, #r.legs do
         local leg = r.legs[k]
@@ -74,7 +81,9 @@ end
 
 local function Texture(pool, sublevel)
     local t = pool.parent:CreateTexture(nil, pool.layer, nil, sublevel)
-    pcall(t.SetTexture, t, ns.Theme.TEX.routeDot)
+    -- a texture the game cannot load draws nothing: a square of colour then, never no dot
+    local ok, loaded = pcall(t.SetTexture, t, ns.Theme.TEX.routeDot)
+    if not ok or loaded == false then t:SetColorTexture(1, 1, 1, 1) end
     return t
 end
 
@@ -232,9 +241,10 @@ function Dots:Shown()
     return count(worldPool), count(miniPool)
 end
 
---- Run the minimap's driver only while a route is followed.
+--- Run the minimap's driver only while there is a way to draw: a route, or a walk to the target.
 function Dots:Refresh()
-    local shown = ns.Navigation.route ~= nil and On()
+    local Nav = ns.Navigation
+    local shown = On() and (Nav.route ~= nil or (Nav.target ~= nil and Nav:PlannerOn()))
     if driver then driver:SetShown(shown) end
     if not shown and miniPool then Finish(miniPool) end
     if shown then self:DrawMinimap() end
@@ -268,9 +278,11 @@ function Dots:OnEnable()
             if name == "Blizzard_WorldMap" then HookWorldMap() end
         end)
     end
-    ns.Events:Register("FG_NAV_ROUTE_CHANGED", function()
-        local ok, err = pcall(Dots.Refresh, Dots)
-        if not ok then ns.ReportOnce("routedots", err) end
-    end)
+    for _, event in ipairs({ "FG_NAV_ROUTE_CHANGED", "FG_NAV_TARGET_CHANGED" }) do
+        ns.Events:Register(event, function()
+            local ok, err = pcall(Dots.Refresh, Dots)
+            if not ok then ns.ReportOnce("routedots", err) end
+        end)
+    end
     self:Refresh()
 end
