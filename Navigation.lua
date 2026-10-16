@@ -102,7 +102,7 @@ end
 -- The planned route (Travel.lua)
 -- ------------------------------------------------------------
 local function PlannerOn()
-    return not (ns.db and ns.db.nav and ns.db.nav.travelPlanner == false) and ns.Travel ~= nil and ns.TravelDB ~= nil
+    return ns.db ~= nil and ns.db.nav ~= nil and ns.db.nav.travelPlanner == true and ns.Travel ~= nil and ns.TravelDB ~= nil
 end
 
 --- Dead or a ghost: no flight, boat, Hearthstone or teleport, so no plan; the corpse run walks straight.

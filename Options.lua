@@ -43,7 +43,7 @@ local ITEMS = {
       set = function(v) ns.Navigation:SetBlizzardWaypointEnabled(v) end },
     { header = "Travel" },
     { key = "travel", label = "Plan the way there (flights, boats, zeppelins, the tram, your Hearthstone) and point the arrow along it",
-      get = function() return ns.db.nav.travelPlanner ~= false end,
+      get = function() return ns.db.nav.travelPlanner == true end,
       set = function(v) ns.Navigation:SetTravelPlanner(v) end },
     { key = "routedots", label = "Show the planned way as dots on the world map and the minimap",
       get = function() return ns.db.nav.routeDots ~= false end,
