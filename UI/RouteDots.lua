@@ -83,7 +83,8 @@ local function Texture(pool, sublevel)
     local t = pool.parent:CreateTexture(nil, pool.layer, nil, sublevel)
     -- a texture the game cannot load draws nothing: a square of colour then, never no dot
     local ok, loaded = pcall(t.SetTexture, t, ns.Theme.TEX.routeDot)
-    if not ok or loaded == false then t:SetColorTexture(1, 1, 1, 1) end
+    Dots.textureLoaded = ok and loaded ~= false
+    if not Dots.textureLoaded then t:SetColorTexture(1, 1, 1, 1) end
     return t
 end
 
@@ -224,6 +225,27 @@ function Dots:DrawMinimap()
         end
     end
     Finish(miniPool)
+end
+
+--- What decides whether dots are drawn, as lines for `/fg dots`.
+function Dots:Diagnose()
+    local Nav = ns.Navigation
+    local lines = {}
+    local function add(fmt, ...) lines[#lines + 1] = string.format(fmt, ...) end
+    local t, r = Nav.target, Nav.route
+    add("route dots option: %s; travel planner on: %s", tostring(On()), tostring(Nav:PlannerOn()))
+    add("target: %s", t and string.format("map %s %.1f, %.1f (world %s, %s, instance %s)", tostring(t.map), t.x or -1, t.y or -1,
+        t.worldX and string.format("%.0f", t.worldX) or "none", t.worldY and string.format("%.0f", t.worldY) or "none", tostring(t.instanceID)) or "none")
+    add("route: %s", r and string.format("%d legs, on leg %d", #r.legs, r.index) or "none (a walk)")
+    local px, py, pInstance = ns.Player:GetWorldPosition()
+    add("you: world %s, %s, instance %s", px and string.format("%.0f", px) or "none", py and string.format("%.0f", py) or "none", tostring(pInstance))
+    local segs = self:Segments()
+    add("segments to draw: %s", segs and tostring(#segs) or "none")
+    local world, mini = self:Shown()
+    add("dots shown: world map %d, minimap %d; world map hooked: %s; minimap driver running: %s",
+        world, mini, tostring(provider ~= nil), tostring(driver ~= nil and driver:IsShown()))
+    add("minimap view radius: %s; dot texture loaded: %s", tostring(PlainNumber(ns.Call("C_Minimap.GetViewRadius"))), tostring(self.textureLoaded))
+    return lines
 end
 
 --- The dot pools, for the tests: world map, minimap.
