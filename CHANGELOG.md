@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: quest fixes: Plagued Lands asks for the bear you capture and Deeprun Rat Roundup for the rats you catch; Grant's Shield and Silvia's Sword are open to every race and class and no longer point at Bath'rah; Abominable Creatures and An Ancient Grudge show who gives and takes them
 - Recordings say who you took each quest from and turned it in to, and keep the flight paths you learn, the trainers you visit and what you buy from vendors (item, how many, the price, the vendor), so a route built from a recording needs less filling in by hand.
 - Guides: follow TUGs' latest update: 1-6 Skyborne, 6-12 Skyborne added.
 - Guides: Street's Speed Demon marks Rough Wolf Pelts in 12-13 Elwynn Forest as a Skinning step; the quest database adds 187 quests and corrects about 125
