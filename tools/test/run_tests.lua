@@ -4387,6 +4387,109 @@ section("Record: the first press says what recording does; then every login reco
     ns.db.recordRuns, ns.db.recordExplained = recordWas, explainedWas
 end)
 
+-- ---- the travel planner ----------------------------------------------------------
+--- Run fn with ns.TravelDB = the fixture (codex's TravelDB.lua) and map points placed by the client's
+--- own zone boxes, then put both back.
+local function withTravelWorld(db, fn)
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local realPos, realDb = C_Map.GetWorldPosFromMapPos, ns.TravelDB
+    C_Map.GetWorldPosFromMapPos = function(mapID, v)
+        local b = boxes[mapID]
+        if not b then return nil end
+        -- the client draws north up and west left: map x runs along world Y, map y along world X
+        return b.inst, CreateVector2D(b.maxX - v.y * (b.maxX - b.minX), b.maxY - v.x * (b.maxY - b.minY))
+    end
+    ns.TravelDB = db
+    local ok, err = pcall(fn)
+    C_Map.GetWorldPosFromMapPos, ns.TravelDB = realPos, realDb
+    if not ok then error(err, 0) end
+end
+
+local function travelFixture()
+    local db = {}
+    local chunk = assert(loadfile(root .. "tools/test/fixtures/TravelDB.lua"))
+    chunk("ForeverGuide", db)
+    return db.TravelDB
+end
+
+local function kinds(plan)
+    local out = {}
+    for _, leg in ipairs(plan and plan.legs or {}) do out[#out + 1] = leg.kind end
+    return table.concat(out, ",")
+end
+
+section("travel planner: the fastest legs over flights, transports, the tram, the Hearthstone and teleports", function()
+    local T = ns.Travel
+    need(T and T.Plan, "Travel module loads")
+    local db = travelFixture()
+    need(db and db.flightNodes and db.links and db.flightBoard, "the fixture TravelDB loads")
+    local goldshire, northshire = { map = 1429, x = 42.1, y = 65.9 }, { map = 1429, x = 48.2, y = 42.0 }
+    local ironforge = { map = 1455, x = 50, y = 50 }
+    withTravelWorld(db, function()
+        -- No flight points known: walk into Stormwind, ride the tram, walk to the target.
+        local plan = T:Plan(goldshire, ironforge, { faction = "Alliance", known = {} })
+        need(plan, "Goldshire to Ironforge has a plan")
+        check(kinds(plan) == "walk,tram,walk", "with no flight points the tram carries the player (" .. kinds(plan) .. ")")
+        check(plan.legs[2] and plan.legs[2].name == "Ironforge" and plan.legs[2].wait and plan.legs[2].wait > 0, "the tram leg names where it goes and its wait")
+        local sum = 0
+        for _, leg in ipairs(plan.legs) do sum = sum + leg.seconds end
+        check(math.abs(sum - plan.seconds) < 0.01, "the legs' seconds add up to the plan's")
+
+        -- Both flight points known: one flight boards once. (To Ironforge the tram beats the flight:
+        -- 242 s in the air plus boarding against about 216 s by tram.)
+        local known = { ["Stormwind, Elwynn"] = true, ["Lakeshire, Redridge"] = true, ["Ironforge, Dun Morogh"] = true }
+        local master, lakeshire = db.flightNodes[2].at.A, db.flightNodes[5].at.A
+        need(db.flights[2][5], "the fixture flies Stormwind to Lakeshire direct")
+        local fly = T:Plan(master, lakeshire, { faction = "Alliance", known = known })
+        need(fly and fly.legs[1], "from Stormwind's flight master there is a plan")
+        check(kinds(fly) == "fly" and fly.legs[1].name == "Lakeshire, Redridge", "from the flight master the player flies to Lakeshire (" .. kinds(fly) .. ")")
+        check(math.abs(fly.legs[1].seconds - (db.flightBoard + db.flights[2][5])) < 0.01, "a flight costs its boarding once and its time in the air")
+        local tram = T:Plan(master, ironforge, { faction = "Alliance", known = known })
+        check(kinds(tram) == "walk,tram,walk", "to Ironforge the tram beats the flight (" .. kinds(tram) .. ")")
+
+        -- The Hearthstone bound in Ironforge and ready: cast it, though it carries a margin.
+        local bind = db.flightNodes[6].at.A
+        local hearth = T:Plan(northshire, ironforge, { faction = "Alliance", known = {}, bind = bind, bindName = "Ironforge", hearthWait = 0 })
+        check(hearth and hearth.legs[1] and hearth.legs[1].kind == "hearth", "a ready Hearthstone bound at the target's city is used (" .. kinds(hearth) .. ")")
+        check(hearth and hearth.legs[1].seconds == 10, "the hearth leg is its cast; the margin is only in the comparison")
+        local cooling = T:Plan(northshire, ironforge, { faction = "Alliance", known = {}, bind = bind, hearthWait = 1800 })
+        check(cooling and kinds(cooling) ~= "" and cooling.legs[1].kind ~= "hearth", "a Hearthstone on a long cooldown is not waited for")
+        -- A mage with Teleport: Ironforge and its rune.
+        local mage = T:Plan(goldshire, ironforge, { faction = "Alliance", known = {}, teleports = { { spell = 3562, wait = 0 } } })
+        check(mage and mage.legs[1] and mage.legs[1].kind == "teleport" and mage.legs[1].spell == 3562, "a castable class teleport to the target's city is used (" .. kinds(mage) .. ")")
+
+        -- Across the sea: Auberdine to Menethil by boat; Orgrimmar to the Undercity by zeppelin.
+        local boat = T:Plan({ map = 1439, x = 37, y = 44 }, { map = 1437, x = 10.7, y = 59.7 }, { faction = "Alliance", known = {} })
+        check(boat and kinds(boat):find("boat", 1, true) ~= nil, "Auberdine to Menethil takes a boat (" .. kinds(boat) .. ")")
+        local zep = T:Plan({ map = 1454, x = 50, y = 50 }, { map = 1458, x = 50, y = 50 }, { faction = "Horde", known = {} })
+        check(zep and kinds(zep):find("zeppelin", 1, true) ~= nil, "Orgrimmar to the Undercity takes a zeppelin (" .. kinds(zep) .. ")")
+        -- An Alliance-only boat is not a Horde character's.
+        local hordeBoat = T:Plan({ map = 1439, x = 37, y = 44 }, { map = 1437, x = 10.7, y = 59.7 }, { faction = "Horde", known = {} })
+        local usedAllianceBoat = false
+        for _, leg in ipairs(hordeBoat and hordeBoat.legs or {}) do
+            if leg.kind == "boat" and leg.name == "Menethil Harbor" then usedAllianceBoat = true end
+        end
+        check(not usedAllianceBoat, "a Horde character never rides the Alliance's boats")
+
+        -- What cannot be planned says why.
+        local _, why = T:Plan({ map = 999999, x = 1, y = 1 }, ironforge, {})
+        check(why == "nowhere", "a point the client cannot place is 'nowhere'")
+        local caps = T.MAX_POPS
+        T.MAX_POPS = 1
+        local _, out = T:Plan(goldshire, ironforge, { faction = "Alliance", known = {} })
+        T.MAX_POPS = caps
+        check(out == "budget", "a search over its caps gives up")
+    end)
+
+    -- Without the data, a walk on the same continent, and nothing across the sea.
+    withTravelWorld(nil, function()
+        local walk = T:Plan(goldshire, northshire, { faction = "Alliance" })
+        check(kinds(walk) == "walk", "with no TravelDB the plan is the walk")
+        local _, why = T:Plan(goldshire, { map = 1439, x = 37, y = 44 }, { faction = "Alliance" })
+        check(why == "unreachable", "with no TravelDB another continent is unreachable")
+    end)
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0
