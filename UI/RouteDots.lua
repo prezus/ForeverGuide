@@ -1,9 +1,11 @@
 -- ============================================================
 -- ForeverGuide / UI/RouteDots.lua
 -- The planned route drawn as dots on the world map and the minimap: the
--- legs still ahead (Navigation.route), walks in yellow and rides in cyan, each
--- dot on a darker rim so it reads on the parchment map and the minimap alike.
--- The current leg is drawn full; the legs after it faded.
+-- legs still ahead (Navigation.route), each kind of leg in its own colour (walks
+-- gold, flights green, boats blue, zeppelins peach, the tram and lifts tan) on a
+-- white disc, so the tint comes out true, over a near-black rim so it reads on
+-- the parchment map and the minimap alike. The current leg is drawn full; the
+-- legs after it faded.
 -- Straight lines from each leg's start to its end; the current walk starts
 -- at the player. A leg between two world maps (a boat to the other
 -- continent) or a jump (Hearthstone, teleport, portal) draws nothing.
@@ -29,7 +31,16 @@ Dots.WORLD_MAX, Dots.WORLD_SPACING, Dots.WORLD_SIZE = 300, 11, 6   -- dots; on-s
 Dots.MINI_MAX, Dots.MINI_SPACING, Dots.MINI_SIZE = 120, 9, 5       -- dots; on-screen pixels
 Dots.RIM = 1.5                                                     -- the dark rim round each dot, pixels
 Dots.LATER_ALPHA = 0.45                                            -- the legs after the current one
-local WALK_COLOR, RIDE_COLOR, RIM_COLOR = { 1, 0.82, 0.1 }, { 0.2, 0.8, 1 }, { 0.05, 0.04, 0.02, 0.85 }
+--- Each kind of leg's colour; a ride not named here is a boat's.
+Dots.COLORS = {
+    walk = { 1, 0.78, 0.25 },
+    flight = { 0.4, 0.9, 0.6 },
+    boat = { 0.5, 0.78, 1 },
+    zeppelin = { 1, 0.65, 0.45 },
+    tram = { 0.88, 0.8, 0.65 },
+    lift = { 0.88, 0.8, 0.65 },
+}
+local RIM_COLOR = { 0.02, 0.03, 0.06, 0.9 }
 local JUMPS = { hearth = true, teleport = true, portal = true }
 
 local function On()
@@ -63,7 +74,7 @@ end
 
 local function Texture(pool, sublevel)
     local t = pool.parent:CreateTexture(nil, pool.layer, nil, sublevel)
-    pcall(t.SetTexture, t, ns.Theme.TEX.dot)
+    pcall(t.SetTexture, t, ns.Theme.TEX.routeDot)
     return t
 end
 
@@ -92,7 +103,7 @@ end
 
 --- A dot of `size` with its rim `rim` wider all round, in the leg's colour; a later leg's faded.
 local function Paint(d, seg, size, rim)
-    local c = seg.kind == "walk" and WALK_COLOR or RIDE_COLOR
+    local c = Dots.COLORS[seg.kind] or Dots.COLORS.boat
     local a = seg.later and Dots.LATER_ALPHA or 1
     d.rim:SetVertexColor(RIM_COLOR[1], RIM_COLOR[2], RIM_COLOR[3], RIM_COLOR[4] * a)
     d.rim:SetSize(size + 2 * rim, size + 2 * rim)

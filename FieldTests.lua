@@ -3,7 +3,8 @@
 -- Field checks: a short, temporary guide a tester follows in game to gather what the travel
 -- planner and its walking maps need (prezus/forever-codex#724). `/fg tests` remembers the guide,
 -- the travel planner and Record runs as they are, then turns the planner and recording on and
--- opens the checks for the character's faction; `/fg tests off` puts all three back.
+-- opens the checks for the character's faction, from the first step with nothing done (run again,
+-- it starts them over); `/fg tests off` puts all three back.
 --
 -- Nothing new is recorded: every recorded entry already names the guide and step being followed
 -- (g/s, Run.lua), so each check's stretch of the recording is its own, with the planner's ROUTE,
@@ -105,6 +106,8 @@ function Tests:Start()
             recording = ns.db.recordRuns == true,
         }
     end
+    -- every /fg tests starts the checks over: nothing done, nothing skipped, step 1
+    ns.Database:ResetGuide(guide.id)
     -- the guide first, so the recording's first entry already names the checks
     ns.Guide:Pick(guide.id)
     ns.Navigation:SetTravelPlanner(true)

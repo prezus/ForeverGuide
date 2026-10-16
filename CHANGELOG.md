@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- The planned way's dots come out in true colours, one per kind of leg (walks gold, flights green, boats blue, zeppelins peach, the tram and lifts tan), each on a near-black rim. Before, the colours were tinted over an orange dot and came out muddy.
+- `/fg tests` starts the field checks over from the first each time it is run, with nothing done.
 - The travel planner keeps its way through the Deeprun Tram, boats and other rides that change zone. Before, the arrow lost the way while you rode, so after the tram it no longer pointed you on to the next leg (the flight master, say).
 - Field checks wait until you arrive at each place, not just enter its zone.
 - The planned way's dots are easier to see: each sits on a dark rim, walks are bright yellow and rides cyan, and they are closer together. On the minimap they keep the same spacing at any zoom, so the way shows when zoomed out too. The legs after the one you are on are faded, so the next one reads first.

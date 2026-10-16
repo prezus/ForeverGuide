@@ -4799,6 +4799,18 @@ section("travel planner: the route as dots on the world map and the minimap", fu
             end
         end
         check(seen.now and seen.later, "the current leg's dots are full, the later legs' faded")
+        -- a white disc tinted per kind of leg: the walk gold, the tram its own colour
+        local tints = {}
+        for _, d in ipairs(D.pools().world.list) do
+            if d.core:IsShown() then
+                local r, g, b = d.core:GetVertexColor()
+                tints[string.format("%.2f,%.2f,%.2f", r, g, b)] = true
+            end
+            need(d.core.texture == ns.Theme.TEX.routeDot, "the dots are the white disc, so the tint comes out true")
+        end
+        local walk, tram = D.COLORS.walk, D.COLORS.tram
+        check(tints[string.format("%.2f,%.2f,%.2f", walk[1], walk[2], walk[3])] and tints[string.format("%.2f,%.2f,%.2f", tram[1], tram[2], tram[3])],
+            "the walk's dots and the tram's are each in their own colour")
         M.mapScale = 2
         D:DrawWorld()
         local zoomed = D:Shown()
@@ -5017,6 +5029,13 @@ section("field checks: /fg tests opens the checks with the planner and recording
     -- every entry recorded names the check being followed, from the run's start
     local first = ns.char.run and ns.char.run.entries[1]
     check(first and first.e == "START" and first.g == "FIELD_CHECKS_ALLIANCE" and first.s == 1, "the run's start names the checks and their first step")
+
+    -- run again part way through, the checks start over, and off still goes back to the first state
+    G:MarkDone(1, "arrived")
+    G:MarkDone(2, "arrived")
+    need(G.progress.done[1] and G.progress.done[2], "two checks done")
+    ns.Commands:Run("tests")
+    check(not G.progress.done[1] and not G.progress.done[2] and G:GetCurrentStep().index == 1, "/fg tests again starts the checks over from the first, nothing done")
 
     ns.Commands:Run("tests off")
     check(ns.char.fieldTests == nil and ns.db.nav.travelPlanner == false and ns.db.recordRuns == false, "/fg tests off turns the planner and recording back off")
