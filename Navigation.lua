@@ -28,7 +28,7 @@
 local _, ns = ...
 local Nav = ns:NewModule("Navigation")
 
-local Plain, PlainNumber, Safe = ns.Plain, ns.PlainNumber, ns.Safe
+local Plain, PlainNumber, PlainString, Safe = ns.Plain, ns.PlainNumber, ns.PlainString, ns.Safe
 local atan2, sqrt, pi = math.atan2, math.sqrt, math.pi
 
 Nav.target = nil        -- { map, x, y, label, radius, worldX, worldY, instanceID }
@@ -126,7 +126,7 @@ function Nav:SetRoute(plan)
         if leg.kind ~= "walk" then worth = true break end
     end
     local had = self.route ~= nil
-    self.route = worth and { legs = plan.legs, seconds = plan.seconds, index = 1 } or nil
+    self.route = worth and { legs = plan.legs, seconds = plan.seconds, index = 1, legAt = ns.Now() } or nil
     self.replanAt = ns.Now() + REPLAN_SECONDS
     if had or self.route then ns.Events:Fire("FG_NAV_ROUTE_CHANGED", self.route) end
 end
@@ -135,6 +135,65 @@ end
 function Nav:CurrentLeg()
     local r = self.route
     return r and r.legs[r.index]
+end
+
+--- The player's run speed in yards a second (a mount counts), else a running character's.
+function Nav:RunSpeed()
+    local _, run = Safe(rawget(_G, "GetUnitSpeed"), "player")
+    run = PlainNumber(run)
+    return (run and run > 0) and run or ns.Travel.DEFAULT_SPEED
+end
+
+--- Seconds to the target from here: what is left of the route, else the walk; nil when unknown.
+function Nav:SecondsLeft(state)
+    state = state or self.state
+    if not self.target or not state or not ns.Travel then return nil end
+    if not self.route and not state.distance then return nil end
+    local left = self:RemainingSeconds(state, self:RunSpeed())
+    return left ~= math.huge and left or nil
+end
+
+local RIDE = { boat = "boat", zeppelin = "zeppelin", tram = "tram", portal = "portal", lift = "lift" }
+
+--- "Ironforge" from the client's "Ironforge, Dun Morogh".
+local function PlaceName(name)
+    return name and (name:match("^([^,]+)") or name)
+end
+
+--- What the player does on this leg, in a few words: "Fly to Ironforge", "Take the boat to
+--- Menethil Harbor", "Use your Hearthstone". A walk names what it walks to; the last walk, to the
+--- target itself, needs no caption.
+function Nav:LegCaption(leg, nextLeg)
+    if not leg then return nil end
+    local kind = leg.kind
+    if kind == "walk" then
+        if not nextLeg then return nil end
+        if nextLeg.kind == "fly" then return "Walk to the flight master" end
+        if RIDE[nextLeg.kind] then return "Walk to the " .. RIDE[nextLeg.kind] end
+        return nil
+    elseif kind == "fly" then
+        return "Fly to " .. (PlaceName(leg.name) or "?")
+    elseif kind == "hearth" then
+        return leg.name and ("Use your Hearthstone to " .. leg.name) or "Use your Hearthstone"
+    elseif kind == "teleport" then
+        local spell = PlainString(ns.Call("C_Spell.GetSpellName", leg.spell))
+        return "Cast " .. (spell or ("Teleport: " .. (leg.name or "?")))
+    elseif kind == "lift" then
+        return "Take the lift"
+    elseif RIDE[kind] then
+        return "Take the " .. RIDE[kind] .. (leg.name and (" to " .. leg.name) or "")
+    end
+    return nil
+end
+
+--- While waiting for a ride: "Boat in about 2:45" (the expected wait, counting down), else nil.
+function Nav:RideWait()
+    local r, leg = self.route, self:CurrentLeg()
+    if not leg or not RIDE[leg.kind] or not leg.wait or leg.wait <= 0 then return nil end
+    local left = leg.wait - (ns.Now() - (r.legAt or ns.Now()))
+    if left <= 0 then return nil end
+    local what = RIDE[leg.kind]
+    return what:sub(1, 1):upper() .. what:sub(2) .. " in about " .. self:FormatTime(left)
 end
 
 local function Near(px, py, pInstance, point, radius)
@@ -154,13 +213,13 @@ function Nav:AdvanceRoute(px, py, pInstance)
         local leg = legs[k]
         if Near(px, py, pInstance, leg.to, leg.kind == "walk" and LEG_WALK_RADIUS or LEG_RIDE_RADIUS) then
             if r.index ~= k + 1 then
-                r.index = k + 1
+                r.index, r.legAt = k + 1, ns.Now()
                 ns.Events:Fire("FG_NAV_ROUTE_CHANGED", r)
             end
             return
         end
         if k > r.index and Near(px, py, pInstance, leg.from, LEG_RIDE_RADIUS) then
-            r.index = k
+            r.index, r.legAt = k, ns.Now()
             ns.Events:Fire("FG_NAV_ROUTE_CHANGED", r)
             return
         end
@@ -179,6 +238,9 @@ function Nav:RemainingSeconds(state, speed)
         local leg = r.legs[k]
         if k == r.index and leg.kind == "walk" and state and state.leg and state.leg.distance then
             total = total + state.leg.distance * detour / speed
+        elseif k == r.index and leg.kind ~= "walk" then
+            -- under way (or waiting at the dock): what is left of the leg's own seconds
+            total = total + math.max(0, leg.seconds - (ns.Now() - (r.legAt or ns.Now())))
         else
             total = total + leg.seconds
         end
@@ -196,8 +258,7 @@ function Nav:MaybeReplan(t, state)
     if Plain(Safe(rawget(_G, "UnitOnTaxi"), "player")) == true then return end
     local plan = self:PlanRoute(t)
     if not plan then return end
-    local options = ns.Travel:Options()
-    local remaining = self:RemainingSeconds(state, options.speed or ns.Travel.DEFAULT_SPEED)
+    local remaining = self:RemainingSeconds(state, self:RunSpeed())
     if plan.seconds < remaining - math.max(SWITCH_SECONDS, SWITCH_SHARE * remaining) then
         ns.Events:After(0, function()
             if self.target == t then self:SetRoute(plan) end
@@ -376,6 +437,16 @@ function Nav:FormatDistance(yards)
     if n < 1000 then return string.format("%d yd", n) end
     local k = string.format("%.1f", n / 1000):gsub("%.0$", "")
     return k .. "k yd"
+end
+
+--- "45 s", "4:15", "1:05:00".
+function Nav:FormatTime(seconds)
+    if not seconds or seconds ~= seconds or seconds == math.huge then return nil end
+    local s = math.floor(seconds + 0.5)
+    if s < 60 then return s .. " s" end
+    local h, m = math.floor(s / 3600), math.floor(s % 3600 / 60)
+    if h > 0 then return string.format("%d:%02d:%02d", h, m, s % 60) end
+    return string.format("%d:%02d", m, s % 60)
 end
 
 --- "ahead", "ahead-left", "left", "behind-left", "behind", ... from a relative angle.
