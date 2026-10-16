@@ -20,6 +20,7 @@ Theme.TEX = {
     ring = PATH .. "ring.tga",
     waypoint = PATH .. "waypoint.tga",
     dot = PATH .. "dot.tga",
+    routeDot = PATH .. "route-dot.tga",   -- a white disc, tinted per leg (UI/RouteDots.lua)
     chevron = PATH .. "chevron.tga",
     skullBtn = PATH .. "skull_btn.tga",
     white = "Interface\\Buttons\\WHITE8x8",
