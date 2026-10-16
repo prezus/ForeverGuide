@@ -13,6 +13,13 @@
 -- Fallback (instances, where UnitPosition is nil): map-space distance
 -- scaled by C_Map.GetMapWorldSize(mapID).
 --
+-- Route: with the travel planner on (nav.travelPlanner) and its data loaded,
+-- setting a target plans the way there (Travel.lua). A route that is more
+-- than a walk is followed leg by leg: state.leg aims at the current leg's
+-- end, the leg advances as the player reaches it, and while walking the way
+-- is planned again every few seconds, switched only for a clearly faster one.
+-- The target, its distance and arrival stay the final destination's.
+--
 -- Optional: also sets Blizzard's own user waypoint + super-track so the
 -- built-in in-world arrow points to the step (C_Map.SetUserWaypoint,
 -- C_SuperTrack.SetSuperTrackedUserWaypoint — both present on 1.60.1).
@@ -26,7 +33,13 @@ local atan2, sqrt, pi = math.atan2, math.sqrt, math.pi
 
 Nav.target = nil        -- { map, x, y, label, radius, worldX, worldY, instanceID }
 Nav.state = nil         -- last Update() result
+Nav.route = nil         -- { legs, seconds, index }: the planned way to the target, when more than a walk
 Nav.ownsWaypoint = false
+
+local LEG_WALK_RADIUS = 20    -- yards from a walk's end that count as there
+local LEG_RIDE_RADIUS = 60    -- the same for a dock, a landing, a flight master
+local REPLAN_SECONDS = 5      -- while walking, look for a better way this often
+local SWITCH_SECONDS, SWITCH_SHARE = 30, 0.1   -- a new way must save this much, and this share
 
 -- ------------------------------------------------------------
 -- Conversions
@@ -71,6 +84,7 @@ function Nav:SetTarget(target)
     t.instanceID, t.worldX, t.worldY = self:MapToWorld(t.map, t.x, t.y)
     self.target = t
     self.state = nil
+    self:SetRoute(self:PlanRoute(t))
     self:UpdateBlizzardWaypoint()
     ns.Events:Fire("FG_NAV_TARGET_CHANGED", t)
 end
@@ -79,8 +93,116 @@ function Nav:Clear()
     if not self.target then return end
     self.target = nil
     self.state = nil
+    self:SetRoute(nil)
     self:ClearBlizzardWaypoint()
     ns.Events:Fire("FG_NAV_TARGET_CHANGED", nil)
+end
+
+-- ------------------------------------------------------------
+-- The planned route (Travel.lua)
+-- ------------------------------------------------------------
+local function PlannerOn()
+    return not (ns.db and ns.db.nav and ns.db.nav.travelPlanner == false) and ns.Travel ~= nil and ns.TravelDB ~= nil
+end
+
+--- The way from where the player stands to `t`, or nil (planner off, no position, no way).
+function Nav:PlanRoute(t)
+    t = t or self.target
+    if not t or not PlannerOn() then return nil end
+    local map, x, y = ns.Player:GetMapPosition()
+    if not (map and x and y) then return nil end
+    local ok, plan = pcall(ns.Travel.Plan, ns.Travel, { map = map, x = x, y = y }, { map = t.map, x = t.x, y = t.y }, ns.Travel:Options())
+    if not ok then
+        ns.ReportOnce("nav:plan", plan)
+        return nil
+    end
+    return plan
+end
+
+--- Follow `plan` when it is more than a walk; otherwise no route (the arrow points at the target).
+function Nav:SetRoute(plan)
+    local worth = false
+    for _, leg in ipairs(plan and plan.legs or {}) do
+        if leg.kind ~= "walk" then worth = true break end
+    end
+    local had = self.route ~= nil
+    self.route = worth and { legs = plan.legs, seconds = plan.seconds, index = 1 } or nil
+    self.replanAt = ns.Now() + REPLAN_SECONDS
+    if had or self.route then ns.Events:Fire("FG_NAV_ROUTE_CHANGED", self.route) end
+end
+
+--- The current leg, or nil when there is no route or it is done.
+function Nav:CurrentLeg()
+    local r = self.route
+    return r and r.legs[r.index]
+end
+
+local function Near(px, py, pInstance, point, radius)
+    local w = point and ns.Travel.World(point)
+    if not w or w.inst ~= pInstance then return false end
+    local dx, dy = w.x - px, w.y - py
+    return dx * dx + dy * dy <= radius * radius
+end
+
+--- Move to the furthest leg the player has reached: past a leg whose end they stand at, or onto
+--- a later leg whose start they stand at (boarding a flight they were walking to, say).
+function Nav:AdvanceRoute(px, py, pInstance)
+    local r = self.route
+    if not r or not px then return end
+    local legs = r.legs
+    for k = #legs, r.index, -1 do
+        local leg = legs[k]
+        if Near(px, py, pInstance, leg.to, leg.kind == "walk" and LEG_WALK_RADIUS or LEG_RIDE_RADIUS) then
+            if r.index ~= k + 1 then
+                r.index = k + 1
+                ns.Events:Fire("FG_NAV_ROUTE_CHANGED", r)
+            end
+            return
+        end
+        if k > r.index and Near(px, py, pInstance, leg.from, LEG_RIDE_RADIUS) then
+            r.index = k
+            ns.Events:Fire("FG_NAV_ROUTE_CHANGED", r)
+            return
+        end
+    end
+end
+
+--- Seconds the current route still takes from here; for no route, the walk to the target.
+function Nav:RemainingSeconds(state, speed)
+    local detour = ns.Travel.WALK_DETOUR
+    local r = self.route
+    if not r then
+        return state and state.distance and state.distance * detour / speed or math.huge
+    end
+    local total = 0
+    for k = r.index, #r.legs do
+        local leg = r.legs[k]
+        if k == r.index and leg.kind == "walk" and state and state.leg and state.leg.distance then
+            total = total + state.leg.distance * detour / speed
+        else
+            total = total + leg.seconds
+        end
+    end
+    return total
+end
+
+--- While walking, plan again now and then, and take the new way only when it is clearly faster.
+--- The switch happens a tick later: Update runs inside callers that are still reading the state.
+function Nav:MaybeReplan(t, state)
+    if not PlannerOn() or ns.Now() < (self.replanAt or 0) then return end
+    self.replanAt = ns.Now() + REPLAN_SECONDS
+    local leg = self:CurrentLeg()
+    if leg and leg.kind ~= "walk" then return end
+    if Plain(Safe(rawget(_G, "UnitOnTaxi"), "player")) == true then return end
+    local plan = self:PlanRoute(t)
+    if not plan then return end
+    local options = ns.Travel:Options()
+    local remaining = self:RemainingSeconds(state, options.speed or ns.Travel.DEFAULT_SPEED)
+    if plan.seconds < remaining - math.max(SWITCH_SECONDS, SWITCH_SHARE * remaining) then
+        ns.Events:After(0, function()
+            if self.target == t then self:SetRoute(plan) end
+        end)
+    end
 end
 
 --- Turn the Blizzard map pin on/off and apply it to the current target right away.
@@ -189,7 +311,32 @@ function Nav:Update(allowCached)
     end
 
     state.arrived = state.distance ~= nil and state.distance <= (t.radius or 15)
+
+    -- the route's current leg: where the arrow points while one is followed
+    if self.route then
+        self:AdvanceRoute(px, py, pInstance)
+        local leg = self:CurrentLeg()
+        if leg then
+            -- a ride to another world map points at where it starts until the player is aboard
+            local aim = ns.Travel.World(leg.to)
+            if not aim or aim.inst ~= pInstance then aim = ns.Travel.World(leg.from) end
+            local l = { index = self.route.index, kind = leg.kind }
+            if px and aim and aim.inst == pInstance then
+                local dx, dy = aim.x - px, aim.y - py
+                l.distance = sqrt(dx * dx + dy * dy)
+                local facing = ns.Player:GetFacing()
+                if facing then
+                    local rel = atan2(dy, dx) - facing
+                    while rel > pi do rel = rel - 2 * pi end
+                    while rel < -pi do rel = rel + 2 * pi end
+                    l.angle = rel
+                end
+            end
+            state.leg = l
+        end
+    end
     self.state, self.stateAt, self.stateTarget = state, ns.Now(), t
+    if px and not state.arrived then self:MaybeReplan(t, state) end
     if state.arrived and not t.arrivedFired then
         t.arrivedFired = true
         -- deferred, not fired in-line: Update() runs synchronously inside whoever just
