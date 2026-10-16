@@ -2,7 +2,7 @@
 -- the travel planner's flights, transports, lifts, portals, class teleports and inns
 local _, ns = ...
 ns.TravelDB = {
-build = "1.60.1.70245",
+build = "1.60.1.70374",
 flightNodes = {
 [2]={at={A={map=1453,x=70.95,y=72.51}},faction="A",name="Stormwind, Elwynn"},
 [4]={at={A={map=1436,x=56.55,y=52.64}},faction="A",name="Sentinel Hill, Westfall"},
