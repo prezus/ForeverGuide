@@ -38,6 +38,7 @@ collected data and runs live only in the SavedVariables file, so send them (belo
 | `/fg fp`, `/fg remind`, `/fg xp`, `/fg ding` | Untaken flight points; flight and trainer nudges, and the XP food and sleeping bag icons (`/fg remind food|bag on|off`, `/fg remind buffs reset`); levelling pace; level-up announcement |
 | `/fg auto accept\|turnin\|share\|shared\|announce` | Auto-accept, auto-turn-in, and quest sharing with your group (hold SHIFT to do it by hand) |
 | `/fg arrow`, `/fg waypoint`, `/fg route`, `/fg skull`, `/fg bliz` | The arrow, the in-world waypoint and its path, skulls over quest mobs, Blizzard's map pin |
+| `/fg travel` | The planned way to the step, leg by leg, with the time left; `/fg travel on\|off`, `/fg travel dots on\|off` (the dots on the world map and minimap), `/fg travel hearth on\|off` (whether it may use your Hearthstone and class teleports) |
 | `/fg lock` `unlock` `scale <n>` `resetpos`, `/fg qg <setting> <value>`, `/fg minimap` | Window look and position |
 | `/fg dungeon on\|off` | Put the guide away inside instances |
 | `/fg edit`, `/fg edits` | Fix the current step where you stand (position, npc, note, radius) |

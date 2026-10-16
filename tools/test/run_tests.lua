@@ -4783,6 +4783,67 @@ section("travel planner: the route as dots on the world map and the minimap", fu
     if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
 end)
 
+section("travel planner: its switches in the options and /fg travel", function()
+    local Nav, M = ns.Navigation, MOCK
+    local panel = rawget(_G, "ForeverGuideOptionsPanel")
+    if panel and panel.scripts.OnShow then panel.scripts.OnShow(panel) end
+    local travel, dots, hearth = ns.Options:GetWidget("travel"), ns.Options:GetWidget("routedots"), ns.Options:GetWidget("usehearth")
+    need(travel and dots and hearth, "the options list the planner, its map dots and its use of the Hearthstone")
+    check(travel:GetChecked() and dots:GetChecked() and hearth:GetChecked(), "all three are on by default")
+
+    local db = travelFixture()
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
+    local p = { map = 1429, x = 42.1, y = 65.9 }
+    local b = boxes[p.map]
+    M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
+    M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+    ns.Player.cache.mapID = nil
+    withTravelWorld(db, function()
+        Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
+        need(Nav.route, "Goldshire to Ironforge has a route")
+        -- unticking the planner drops the route at once; ticking it plans again
+        travel:SetChecked(false)
+        travel.scripts.OnClick(travel)
+        check(ns.db.nav.travelPlanner == false and Nav.route == nil, "unticking the planner points the arrow straight again")
+        travel:SetChecked(true)
+        travel.scripts.OnClick(travel)
+        check(ns.db.nav.travelPlanner == true and Nav.route ~= nil, "ticking it plans the way again")
+        dots:SetChecked(false)
+        dots.scripts.OnClick(dots)
+        check(ns.db.nav.routeDots == false, "the map dots switch off")
+        dots:SetChecked(true)
+        dots.scripts.OnClick(dots)
+        hearth:SetChecked(false)
+        hearth.scripts.OnClick(hearth)
+        check(ns.db.nav.useHearth == false and ns.Travel:Options().hearthWait == nil, "the Hearthstone switch reaches the planner")
+        hearth:SetChecked(true)
+        hearth.scripts.OnClick(hearth)
+
+        -- /fg travel: the legs, and the same switches
+        local printed = {}
+        local realPrint = ns.Print
+        ns.Print = function(msg) printed[#printed + 1] = tostring(msg) end
+        local realPrintf = ns.Printf
+        ns.Printf = function(fmt, ...) printed[#printed + 1] = string.format(fmt, ...) end
+        ns.Commands:Run("travel")
+        ns.Commands:Run("travel off")
+        local off = Nav.route == nil and ns.db.nav.travelPlanner == false
+        ns.Commands:Run("travel on")
+        ns.Commands:Run("travel dots off")
+        local dotsOff = ns.db.nav.routeDots == false
+        ns.Commands:Run("travel dots on")
+        ns.Print, ns.Printf = realPrint, realPrintf
+        local all = table.concat(printed, "\n")
+        check(all:find("Walk to the tram", 1, true) and all:find("Take the tram to Ironforge", 1, true), "/fg travel lists the legs with what to do")
+        check(off and Nav.route ~= nil, "/fg travel off and on switch the planner")
+        check(dotsOff and ns.db.nav.routeDots == true, "/fg travel dots off and on switch the map dots")
+    end)
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0

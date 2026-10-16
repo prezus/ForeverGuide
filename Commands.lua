@@ -39,6 +39,7 @@ local HELP = {
     "/fg scan on|off | new | [from] [to] | stop | resume | status   opt in before requesting quest data from the server",
     "/fg harvest | sweep [from to] | probe | status   quest discovery and map requests (needs /fg share on)",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
+    "/fg travel          the planned way to the current step, leg by leg  |  /fg travel on|off  |  /fg travel dots on|off  |  /fg travel hearth on|off",
     "/fg dungeon on|off  put the guide away while you are in an instance (on by default)",
     "/fg fp              list / walk to the flight points in this zone you have not taken yet",
     "/fg remind [flight|trainer|food|bag] on|off | buffs reset   the flight-point and trainer nudges, the XP food and sleeping bag icons",
@@ -781,6 +782,42 @@ function handlers.bliz(rest)
     if rest == "on" then on = true elseif rest == "off" then on = false else on = not ns.db.nav.blizzardWaypoint end
     ns.Navigation:SetBlizzardWaypointEnabled(on)
     ns.Printf("Blizzard waypoint arrow %s", on and "on" or "off")
+end
+
+--- "/fg travel": the planned way, or switch the planner, its map dots, or its use of the Hearthstone.
+function handlers.travel(rest)
+    local Nav = ns.Navigation
+    local what, value = (rest or ""):match("^(%S*)%s*(%S*)$")
+    local function onOff(v, current)
+        if v == "on" then return true elseif v == "off" then return false end
+        return not current
+    end
+    if what == "on" or what == "off" then
+        Nav:SetTravelPlanner(what == "on")
+        ns.Printf("travel planner %s", what)
+    elseif what == "dots" then
+        local on = onOff(value, ns.db.nav.routeDots ~= false)
+        ns.db.nav.routeDots = on
+        ns.RouteDots:Refresh()
+        ns.Printf("route dots %s", on and "on" or "off")
+    elseif what == "hearth" then
+        local on = onOff(value, ns.db.nav.useHearth ~= false)
+        ns.db.nav.useHearth = on
+        Nav:Replan()
+        ns.Printf("the planned way %s the Hearthstone and class teleports", on and "may use" or "leaves out")
+    elseif not Nav.target then
+        ns.Print("no destination")
+    elseif not Nav.route then
+        ns.Printf("no planned way: %s (%s)", ns.db.nav.travelPlanner == false and "the planner is off" or "walk straight there",
+            Nav:Describe())
+    else
+        local r = Nav.route
+        ns.Printf("the way to %s: %s", tostring(Nav.target.label or "the target"), Nav:FormatTime(Nav:SecondsLeft()) or "?")
+        for i, leg in ipairs(r.legs) do
+            local caption = Nav:LegCaption(leg, r.legs[i + 1]) or (leg.kind == "walk" and "Walk there" or leg.kind)
+            ns.Printf("%s %d. %s  %s", i == r.index and ">" or " ", i, caption, Nav:FormatTime(leg.seconds) or "")
+        end
+    end
 end
 
 -- ------------------------------------------------------------
