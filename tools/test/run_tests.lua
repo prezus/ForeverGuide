@@ -4885,6 +4885,54 @@ section("travel planner: no plan while dead; the way comes back with life (Poles
     if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
 end)
 
+section("a recording keeps the travel planner's route, each leg, and how long each took (#713)", function()
+    local Nav, R, M = ns.Navigation, ns.Run, MOCK
+    local db = travelFixture()
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance, record = ns.db.recordRuns, run = ns.char.run }
+    local function moveTo(p)
+        local b = boxes[p.map]
+        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
+        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+        ns.Player.cache.mapID = nil
+    end
+    local function entries(kind)
+        local out = {}
+        for _, e in ipairs(ns.char.run and ns.char.run.entries or {}) do if e.e == kind then out[#out + 1] = e end end
+        return out
+    end
+    ns.db.recordRuns, ns.char.run = true, nil
+    R:Start()
+    need(R:State() == "recording", "a run records")
+    withTravelWorld(db, function()
+        moveTo({ map = 1429, x = 42.1, y = 65.9 })
+        Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
+        local route = Nav.route
+        need(route and route.legs[2].kind == "tram", "Goldshire to Ironforge rides the tram")
+        local planned, legs = entries("ROUTE"), entries("LEG")
+        check(#planned == 1 and planned[1].r == 3 and math.abs(planned[1].secs - route.seconds) < 0.1, "ROUTE records the legs and the predicted time")
+        check(#legs == 1 and legs[1].action == "walk" and legs[1].f == 1 and legs[1].secs, "LEG records the first leg as it begins")
+        MOCK_ADVANCE(80)
+        moveTo(route.legs[1].to)
+        Nav:Update()
+        local done = entries("LEGDONE")
+        legs = entries("LEG")
+        check(#done == 1 and done[1].f == 1 and done[1].secs >= 80, "reaching the tram, LEGDONE records the walk and how long it took (" .. tostring(done[1] and done[1].secs) .. ")")
+        check(#legs == 2 and legs[2].action == "tram" and legs[2].f == 2, "and LEG the tram, now current")
+        -- every field is one the share allowlist carries
+        local allowed = { e = 1, t = 1, lvl = 1, m = 1, x = 1, y = 1, g = 1, s = 1, secs = 1, r = 1, action = 1, f = 1, sid = 1 }
+        local stray
+        for _, kind in ipairs({ "ROUTE", "LEG", "LEGDONE" }) do
+            for _, e in ipairs(entries(kind)) do for k in pairs(e) do if not allowed[k] then stray = k end end end
+        end
+        check(stray == nil, "the entries use only fields the share allowlist and the Companion carry (" .. tostring(stray) .. ")")
+    end)
+    ns.db.recordRuns, ns.char.run = was.record, was.run
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0
