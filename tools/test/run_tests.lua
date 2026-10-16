@@ -4860,6 +4860,31 @@ section("the shipped travel data loads with the addon and plans like the fixture
     end)
 end)
 
+section("travel planner: no plan while dead; the way comes back with life (Polestar's C11)", function()
+    local Nav, M = ns.Navigation, MOCK
+    local db = travelFixture()
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
+    local p = { map = 1429, x = 42.1, y = 65.9 }
+    local b = boxes[p.map]
+    M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
+    M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+    ns.Player.cache.mapID = nil
+    withTravelWorld(db, function()
+        M.ghost = true
+        local ok = pcall(Nav.SetTarget, Nav, { map = 1455, x = 50, y = 50, label = "Ironforge" })
+        check(ok and Nav.route == nil, "a ghost gets no travel plan, and no error: the arrow points straight")
+        check(ns.Travel:Plan(p, { map = 1455, x = 50, y = 50 }, ns.Travel:Options()) ~= nil, "the planner itself still answers; only following a plan stops")
+        M.ghost = false
+        MOCK_FIRE("PLAYER_UNGHOST")
+        check(Nav.target and Nav.target.label == "Ironforge" and Nav.route ~= nil, "alive again, the same target has its way back")
+    end)
+    M.ghost = false
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0

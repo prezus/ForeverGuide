@@ -105,10 +105,15 @@ local function PlannerOn()
     return not (ns.db and ns.db.nav and ns.db.nav.travelPlanner == false) and ns.Travel ~= nil and ns.TravelDB ~= nil
 end
 
+--- Dead or a ghost: no flight, boat, Hearthstone or teleport, so no plan; the corpse run walks straight.
+local function Dead()
+    return Plain(Safe(rawget(_G, "UnitIsGhost"), "player")) == true or Plain(Safe(rawget(_G, "UnitIsDead"), "player")) == true
+end
+
 --- The way from where the player stands to `t`, or nil (planner off, no position, no way).
 function Nav:PlanRoute(t)
     t = t or self.target
-    if not t or not PlannerOn() then return nil end
+    if not t or not PlannerOn() or Dead() then return nil end
     local map, x, y = ns.Player:GetMapPosition()
     if not (map and x and y) then return nil end
     local ok, plan = pcall(ns.Travel.Plan, ns.Travel, { map = map, x = x, y = y }, { map = t.map, x = t.x, y = t.y }, ns.Travel:Options())
@@ -658,4 +663,11 @@ function Nav:DBLocationForStep(step, around)
     end
     local loc = DB:Nearest(locs)
     return loc
+end
+
+function Nav:OnInit()
+    -- back from the dead: plan the way to whatever the arrow points at again
+    ns.Events:RegisterMany({ "PLAYER_UNGHOST", "PLAYER_ALIVE" }, function()
+        if self.target and not Dead() then self:Replan() end
+    end)
 end
