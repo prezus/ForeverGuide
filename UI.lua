@@ -198,17 +198,13 @@ function UI:RefreshPicker()
                 function() G:ChooseRoute(r.key) end)
         end
     end
-    -- chapters of the route we follow, around the level
+    -- every chapter of the route chosen; the list opens at the one for the level
+    local chosenAlternate = current and current.chosen and current.alternate
     if current then
         add("CHAPTERS  -  " .. current.label:upper() .. " ROUTE", "", nil, false, false, true)
-        local list = current.chapters
-        local start = 1
-        for k, g in ipairs(list) do if (g.maxLevel or 60) >= level - 2 then start = math.max(1, k - 2) break end end
-        local shown = 0
-        for k = start, #list do
-            local g = list[k]
-            if shown >= 9 then break end
+        for _, g in ipairs(current.chapters) do
             local fits = (g.minLevel or 1) <= level + 3 and (g.maxLevel or 60) >= level - 2
+            if fits and not focus then focus = y - 2 * 24 end
             local prog = ns.char.guides and ns.char.guides[g.id]
             local progText = ""
             if prog and prog.step and prog.step > 1 then
@@ -217,12 +213,11 @@ function UI:RefreshPicker()
             end
             local active = G.active == g and ns.char.mode ~= "auto"
             add(g.name or g.id, string.format("%s-%s  %d steps%s", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), ns.Guide.StepCount(g), progText), g.id, not fits, active)
-            shown = shown + 1
         end
     end
-    -- guide groups (TUGs), in Guidelime's order: every levelled guide of the faction, then the rest
-    -- (lists)
-    for _, grp in ipairs(G:Groups()) do
+    -- the standard guides (TUGs), in Guidelime's order: every levelled guide of the faction, then the
+    -- rest (lists). Not while a route of its own is chosen: its chapters above are the whole list.
+    for _, grp in ipairs(chosenAlternate and {} or G:Groups()) do
         add(grp.name:upper(), "", nil, false, false, true)
         local levelled, other = {}, {}
         for _, g in ipairs(grp.guides) do

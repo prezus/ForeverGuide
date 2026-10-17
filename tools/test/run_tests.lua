@@ -3639,6 +3639,47 @@ section("picking a guide opens that guide, whatever position is saved", function
     ns.char.mode = wasMode
 end)
 
+section("the guide list: the route chosen shows all its chapters; TUGs' guides only with the standard guides", function()
+    local Gd = ns.Guide
+    local was = { route = ns.char.route, active = Gd.active and Gd.active.id, mode = ns.char.mode, level = MOCK.level }
+    -- a route of our own with more chapters than the list once showed (Street's Speed Demon has 20)
+    for k = 1, 14 do
+        ns.RegisterGuide({ id = string.format("GEN_ALLIANCE_LONGTEST_%02d_CH", k), name = k .. " Long " .. k, faction = "Alliance",
+            kind = "alternate", routeLabel = "Long test", minLevel = k * 2, maxLevel = k * 2 + 1,
+            steps = { { type = "TRAVEL", map = 1429, x = 10 + k, y = 80, text = "c" .. k } } })
+    end
+    local alt
+    for _, r in ipairs(Gd:AlternateRoutes()) do if r.key == "GEN_ALLIANCE_LONGTEST" then alt = r end end
+    need(alt and #alt.chapters == 14, "a route of fourteen chapters is installed (" .. tostring(alt and #alt.chapters) .. ")")
+    -- the standard guides: TUGs' groups
+    ns.RegisterGuide({ id = "TUGS_LISTTEST_01", name = "10-12 List test", faction = "Alliance", group = "List test", minLevel = 10, maxLevel = 12,
+        steps = { { type = "TRAVEL", map = 1429, x = 30, y = 80, text = "t" } } })
+    local grouped = {}
+    for _, grp in ipairs(Gd:Groups()) do for _, g in ipairs(grp.guides) do grouped[g.id] = true end end
+    need(next(grouped) ~= nil, "the standard guides have groups to list")
+    local function rows()
+        local ours, tugs = 0, 0
+        ns.UI:RefreshPicker()
+        for _, r in ipairs(ns.UI:CreatePicker().rows or {}) do
+            if r:IsShown() and r.guideID and Gd.registry[r.guideID] then
+                if Gd:RouteOf(r.guideID) == alt.key then ours = ours + 1 elseif grouped[r.guideID] then tugs = tugs + 1 end
+            end
+        end
+        return ours, tugs
+    end
+    MOCK.level = 12
+    Gd:ChooseRoute(alt.key)
+    local ours, tugs = rows()
+    check(ours == #alt.chapters, "with the route chosen, every one of its chapters is listed (" .. ours .. " of " .. #alt.chapters .. ")")
+    check(tugs == 0, "and TUGs' guides are not, so the list is the route's alone (" .. tugs .. ")")
+    Gd:FollowDefault()
+    ours, tugs = rows()
+    check(tugs > 0 and ours == 0, "with the standard guides, TUGs' guides are listed and the route's chapters are not (" .. tugs .. ", " .. ours .. ")")
+    MOCK.level = was.level
+    ns.char.route, ns.char.mode = was.route, was.mode
+    if was.active then Gd:Activate(was.active) end
+end)
+
 section("chat stays quiet unless the player typed a command", function()
     local G, R = ns.Guide, ns.Run
     local lines = {}
