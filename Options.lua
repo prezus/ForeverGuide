@@ -45,7 +45,7 @@ local ITEMS = {
     { key = "travel", label = "Plan the way there (flights, boats, zeppelins, the tram, your Hearthstone) and point the arrow along it",
       get = function() return ns.db.nav.travelPlanner == true end,
       set = function(v) ns.Navigation:SetTravelPlanner(v) end },
-    { key = "routedots", label = "Show the planned way as dots on the world map and the minimap",
+    { key = "routedots", label = "Show the breadcrumbs: the planned way as dots on the world map and the minimap",
       get = function() return ns.db.nav.routeDots ~= false end,
       set = function(v) ns.db.nav.routeDots = v ns.RouteDots:Refresh() end },
     { key = "usehearth", label = "Let the planned way use your Hearthstone and class teleports",
