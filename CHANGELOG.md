@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: Street's Speed Demon v4, a route any Alliance character can choose in the route list, starting in Coldridge Valley: test
 - The travel planner keeps its way through the loading screen of the Deeprun Tram or a Hearthstone. The game says you are alive again after a loading screen, and the planner took that as coming back from the dead and planned afresh before it knew where you were, losing the way. Recordings now also note when a planned way is gone.
 - `/fg dots` says why the planned way's dots show or not: the planner, the target, the route, and the dots drawn on the world map and the minimap.
 - Recordings keep ForeverGuide's own errors: an "error in ..." line in chat goes with the recording, with the guide step and the map you were on, so a problem you hit while recording reaches us without you copying it. With ForeverGuide Companion it needs the Companion's newest build.
