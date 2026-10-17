@@ -56,7 +56,7 @@ Walking.DANGER_LEVELS, Walking.DANGER_COST = 4, 3
 Walking.DEADLY_LEVELS, Walking.DEADLY_COST = 10, 10
 local TOWN_BIT = { Alliance = 32, Horde = 64 }
 Walking.BUDGET_MS = 3        -- a search's time a frame
-Walking.MAX_TILES = 96       -- decoded tiles kept; past it the least recently used go
+Walking.MAX_TILES = 24       -- decoded tiles kept (about 300 KB each); past it the least recently used go
 Walking.MAX_WAYS = 200       -- ways remembered
 
 -- ------------------------------------------------------------
@@ -311,6 +311,8 @@ function Walking:Floors(mapID, x, y)
         local region = t and t.regions[r.region]
         out[#out + 1] = { height = r.height, joined = region ~= nil and not region.pocket, swim = region ~= nil and region.swim }
     end
+    -- the floor is looked at as the player walks: the tiles it decodes are kept to MAX_TILES as a search's are
+    Trim()
     return out
 end
 

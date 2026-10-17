@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- ForeverGuide uses less memory and stops creeping up: it keeps fewer pieces of the walking maps decoded at once (about 7 MB at most, from about 28 MB), and the breadcrumbs on the minimap are only redrawn when you move, turn or zoom, not ten times a second while you stand still.
 - If you take a different flight from the one planned, or leave a boat or a Hearthstone the way was counting on, the way is worked out again from where you are, and the arrow and the breadcrumbs follow the new fastest route. Before, it kept pointing along the flight you did not take.
 - The breadcrumbs show on the world map. They were drawn under the map's own picture, so only the minimap showed them. The switch for them in Options (under Travel) now says breadcrumbs.
 - Walks reach upper floors up narrow stairs: Theramore's tower (Lady Jaina), Thelsamar's inn, Feathermoon, Darnassus and other places where the walking maps had the stair in pieces now join the floors, so a walk to someone upstairs ends on their floor.

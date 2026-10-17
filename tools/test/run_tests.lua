@@ -5422,6 +5422,18 @@ section("walking paths: zones far above the player cost more, never the ones a w
     _G.C_EncodingUtil = was
 end)
 
+section("walking paths: the tiles decoded stay within MAX_TILES as the floor is followed across the map", function()
+    local W = ns.Walking
+    local was = rawget(_G, "C_EncodingUtil")
+    _G.C_EncodingUtil = TestCodec()
+    W:Forget()
+    -- one floor look on each of 40 tiles, a tile (533 yd) apart, south through Elwynn and on
+    for i = 0, 39 do W:Floors(0, -8900 - (i % 8) * 534, 300 - math.floor(i / 8) * 534) end
+    local st = W:Status()
+    check(st.tiles <= W.MAX_TILES, string.format("%d tiles decoded, at most %d kept", st.tiles, W.MAX_TILES))
+    _G.C_EncodingUtil = was
+end)
+
 section("walking paths: searches run over frames, wait out combat, and can be cancelled", function()
     local W = ns.Walking
     local was, wasClock = rawget(_G, "C_EncodingUtil"), rawget(_G, "debugprofilestop")
