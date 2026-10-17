@@ -5097,6 +5097,17 @@ section("travel planner: a flight that lands somewhere else is planned afresh fr
         Nav:SetTarget({ map = 1431, x = 77.49, y = 44.29, label = "Darkshire" })
         local route = Nav.route
         need(route and route.legs[route.index].kind == "fly", "Stormwind to Darkshire is a flight")
+        -- 40 yards from the flight master, the flight is the current leg: the arrow points at the flight master
+        local fx, fy = M.worldX, M.worldY
+        M.worldX = fx + 40
+        local st = Nav:Update()
+        check(st.leg and st.leg.kind == "fly" and math.abs(st.leg.distance - 40) < 1, "near the flight master, the arrow points at it, 40 yards off (" .. tostring(st.leg and st.leg.distance) .. ")")
+        M.onTaxi = true
+        st = Nav:Update()
+        check(st.leg and st.leg.distance > 1000, "on the taxi, at where the flight lands (" .. tostring(st.leg and st.leg.distance) .. ")")
+        M.onTaxi = false
+        M.worldX, M.worldY = fx, fy
+        Nav.route = route
         -- waiting at the flight master, or in the air: the route holds
         MOCK_ADVANCE(6)
         Nav:Update()
