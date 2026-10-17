@@ -241,7 +241,7 @@ the uiMapID's 0-100 map.
 | `run.entries[].money` | integer | Turn-in money, or what a BUY cost (copper) |
 | `run.entries[].obj` | integer | Objective index |
 | `run.entries[].f` | integer | Objective progress, how many a BUY bought, or a travel leg's number (LEG, LEGDONE) |
-| `run.entries[].r` | integer | Objective goal, or a ROUTE's number of legs |
+| `run.entries[].r` | integer | Objective goal, or a ROUTE's number of legs (0: the route gone, dropped or the way now a plain walk) |
 | `run.entries[].done` | boolean | Objective done |
 | `run.entries[].l` | integer | New level |
 | `run.entries[].rested` | integer | Rested xp left |

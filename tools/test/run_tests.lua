@@ -4735,6 +4735,43 @@ section("travel planner: a ride through a zone change keeps the route: the guide
     if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
 end)
 
+section("travel planner: PLAYER_ALIVE after a loading screen keeps the route; a route gone is recorded (#724)", function()
+    local Nav, M, R = ns.Navigation, MOCK, ns.Run
+    local db = travelFixture()
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance, record = ns.db.recordRuns, run = ns.char.run }
+    local function moveTo(p)
+        local b = boxes[p.map]
+        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
+        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+        ns.Player.cache.mapID = nil
+    end
+    ns.db.recordRuns, ns.char.run = true, nil
+    R:Start()
+    withTravelWorld(db, function()
+        moveTo({ map = 1429, x = 42.1, y = 65.9 })
+        Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
+        local r = Nav.route
+        need(r and r.legs[2].kind == "tram", "Goldshire to Ironforge rides the tram")
+        moveTo(r.legs[1].to)
+        Nav:Update()
+        need(Nav.route.index == 2, "the tram is the current leg")
+        -- the loading screen into the tram: no position, and the game says PLAYER_ALIVE
+        M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = nil, nil, nil, nil, nil, 369
+        ns.Player.cache.mapID = nil
+        MOCK_FIRE("PLAYER_ALIVE")
+        check(Nav.route == r and r.index == 2, "PLAYER_ALIVE with a route under way keeps it, and its leg")
+        -- a route gone is recorded: ROUTE with no legs
+        Nav:Clear()
+        local last = ns.char.run.entries[#ns.char.run.entries]
+        check(last and last.e == "ROUTE" and last.r == 0 and last.secs == 0, "a route gone is recorded as ROUTE with no legs")
+    end)
+    ns.db.recordRuns, ns.char.run = was.record, was.run
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
+end)
+
 section("travel planner: the time left and what to do on each leg, on the arrow and in the guide", function()
     local Nav, M = ns.Navigation, MOCK
     check(Nav:FormatTime(45) == "45 s" and Nav:FormatTime(255) == "4:15" and Nav:FormatTime(3900) == "1:05:00", "times read 45 s, 4:15, 1:05:00")
