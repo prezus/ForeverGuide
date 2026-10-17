@@ -4991,15 +4991,105 @@ section("travel planner: the route as dots on the world map and the minimap", fu
     if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
 end)
 
+section("route dots: a flight follows its taxi path, a boat its sailing path, and a flight counts down along it (#742)", function()
+    local T, D, Nav, M = ns.Travel, ns.RouteDots, ns.Navigation, MOCK
+    local db = travelFixture()
+    withTravelWorld(db, function()
+        -- Stormwind's flight master to Darkshire's, both flight points known: one flight
+        local known = { ["Stormwind, Elwynn"] = true, ["Darkshire, Duskwood"] = true }
+        local plan = T:Plan({ map = 1453, x = 70.95, y = 72.51 }, { map = 1431, x = 77.49, y = 44.29 }, { faction = "Alliance", known = known })
+        local fly
+        for _, leg in ipairs(plan and plan.legs or {}) do if leg.kind == "fly" then fly = leg end end
+        need(fly, "Stormwind to Darkshire flies")
+        local runs = T.RidePath(fly)
+        need(runs and #runs >= 1, "the flight has its taxi path")
+        check(fly.hops[1] == 2 and fly.hops[#fly.hops] == 12, "from Stormwind's node to Darkshire's, by its hops")
+        local points = 0
+        for _, run in ipairs(runs) do points = points + (#run - 1) / 2 end
+        check(points > 3, "a path that bends, not a straight line (" .. points .. " points)")
+
+        -- its time left in the air: half the path left, half the flight's own seconds
+        local run = runs[1]
+        local mid = math.floor((#run - 1) / 4) * 2
+        M.onTaxi = true
+        M.worldX, M.worldY, M.instance = run[mid], run[mid + 1], run[1]
+        ns.Player.cache.mapID = nil
+        local left, whole = T.PathLeft(runs, run[1], run[mid], run[mid + 1])
+        local secs = Nav:FlightLeft(fly)
+        local flying = fly.seconds - db.flightBoard
+        check(secs and math.abs(secs - flying * left / whole) < 0.01, "on the taxi, the seconds left are the flight's as much as is left of its path")
+        check(left > 0 and left < whole, "part way along, some of the path is left")
+        M.onTaxi = false
+        check(Nav:FlightLeft(fly) == nil, "off a taxi there is no flight time left to count")
+
+        -- the dots: the flight's leg is its path's segments, not one straight line
+        local wasRoute = Nav.route
+        Nav.route = { legs = plan.legs, seconds = plan.seconds, index = 1 }
+        local flySegs = 0
+        for _, sg in ipairs(D:Segments() or {}) do if sg.kind == "fly" then flySegs = flySegs + 1 end end
+        Nav.route = wasRoute
+        check(flySegs == points - #runs, "the dots draw the flight along its path, segment by segment (" .. flySegs .. ")")
+
+        -- Menethil Harbor's boat to Theramore: its sailing path, a run on each continent
+        local boat = T:Plan({ map = 1437, x = 4.79, y = 63.72 }, { map = 1445, x = 71.67, y = 56.55 }, { faction = "Alliance", known = {} })
+        local ride
+        for _, leg in ipairs(boat and boat.legs or {}) do if leg.kind == "boat" then ride = leg end end
+        need(ride and ride.path, "Menethil to Theramore sails, with its path")
+        local maps = {}
+        for _, r in ipairs(T.RidePath(ride)) do maps[#maps + 1] = r[1] end
+        check(table.concat(maps, ",") == "0,1", "the crossing runs on Eastern Kingdoms, then Kalimdor (" .. table.concat(maps, ",") .. ")")
+    end)
+    M.onTaxi = false
+
+    -- dots keep one spacing along many short segments: a dot every 3 yd over 10 segments of 1 yd, not one a segment
+    local placed, carry = 0, nil
+    for i = 0, 9 do
+        carry = D.Along(i, 0, i + 1, 0, 3, carry, function() placed = placed + 1 end)
+    end
+    check(placed == 4, "10 yd at a 3 yd spacing is 4 dots, whatever the segments (" .. placed .. ")")
+end)
+
+section("travel planner: the run speed keeps the last the game gave, so a mounted time left holds (#743)", function()
+    local T, Nav = ns.Travel, ns.Navigation
+    local real = _G.GetUnitSpeed
+    local function gives(...)
+        local values = { ... }
+        _G.GetUnitSpeed = function() return unpack(values) end
+    end
+    T.ForgetSpeed()
+    gives(0, 0)
+    check(Nav:RunSpeed() == T.DEFAULT_SPEED, "before the game gives any speed, a running character's")
+    gives(0, 14)
+    check(Nav:RunSpeed() == 14, "mounted, the game's 14")
+    _G.GetUnitSpeed = function() error("not now") end
+    check(Nav:RunSpeed() == 14, "a failed read keeps the last speed")
+    gives()
+    check(Nav:RunSpeed() == 14, "no value (a secret one in combat reads as none) keeps it")
+    gives(0, 0)
+    check(Nav:RunSpeed() == 14, "a 0 keeps it")
+    check(T:Options().speed == 14, "and the planner plans with it")
+    gives(0, 7)
+    check(Nav:RunSpeed() == 7, "dismounted, the game's 7 again")
+    _G.GetUnitSpeed = real
+    T.ForgetSpeed()
+end)
+
 section("travel planner: its switches in the options and /fg travel", function()
     local Nav, M = ns.Navigation, MOCK
     local panel = rawget(_G, "ForeverGuideOptionsPanel")
     if panel and panel.scripts.OnShow then panel.scripts.OnShow(panel) end
     local travel, dots, hearth = ns.Options:GetWidget("travel"), ns.Options:GetWidget("routedots"), ns.Options:GetWidget("usehearth")
     need(travel and dots and hearth, "the options list the planner, its map dots and its use of the Hearthstone")
-    check(not travel:GetChecked() and dots:GetChecked() and hearth:GetChecked(),
-        "the planner is off by default (until it has been checked in game); its dots and the Hearthstone are on for when it is turned on")
-    check(ns.db.nav.travelPlanner == false, "and saved as off")
+    check(travel:GetChecked() and dots:GetChecked() and hearth:GetChecked(), "the planner, its dots and its use of the Hearthstone are on by default")
+    check(ns.db.nav.travelPlanner == true and ns.db.nav.plannerTurnedOn == true, "and saved as on")
+    -- a player who kept the old default (off) gets it on once; one who turns it off after keeps it off
+    ns.db.nav.travelPlanner, ns.db.nav.plannerTurnedOn = false, nil
+    ns.Database:Init()
+    check(ns.db.nav.travelPlanner == true, "the old default, off, is turned on once")
+    ns.db.nav.travelPlanner = false
+    ns.Database:Init()
+    check(ns.db.nav.travelPlanner == false, "turned off again after that, it stays off")
+    ns.db.nav.travelPlanner = true
 
     local db = travelFixture()
     local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
@@ -5010,7 +5100,7 @@ section("travel planner: its switches in the options and /fg travel", function()
     M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
     ns.Player.cache.mapID = nil
     withTravelWorld(db, function()
-        -- as a player who never touched it: off, and setting a target plans nothing
+        -- with the planner off, setting a target plans nothing
         ns.db.nav.travelPlanner = nil
         Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
         check(Nav.route == nil, "with the planner off the arrow points straight at the target, with no planned way")
