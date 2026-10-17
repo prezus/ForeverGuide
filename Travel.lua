@@ -49,7 +49,8 @@ local function World(p)
     local w = worldOf[p]
     if w == nil then
         local inst, x, y = ns.Navigation:MapToWorld(p.map, p.x, p.y)
-        w = inst and { inst = inst, x = x, y = y } or false
+        -- a point's own height (a lift's landing, a zeppelin's platform) goes with it, for the walk that ends there
+        w = inst and { inst = inst, x = x, y = y, z = type(p.z) == "number" and p.z or nil } or false
         worldOf[p] = w
     end
     return w or nil

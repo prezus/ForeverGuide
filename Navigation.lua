@@ -91,9 +91,12 @@ function Nav:SetTarget(target)
         owner = target.owner,
         guide = target.guide,
         step = target.step,
+        npcs = target.npcs,
         radius = target.radius or (ns.db and ns.db.nav.arrivalRadius) or 15,
     }
     t.instanceID, t.worldX, t.worldY = self:MapToWorld(t.map, t.x, t.y)
+    -- the NPC's own floor where floors stack: a walk there ends at its height
+    t.height = self:SpawnHeight(t.instanceID, t.worldX, t.worldY, t.npcs)
     -- the same place asked for again (the guide re-aims the arrow on every zone change) while a
     -- route is under way: keep following it. Planning afresh from inside a ride (the tram's own
     -- instance, a boat between zones) found no way and dropped the route, and its leg with it.
@@ -173,16 +176,55 @@ local function WayYards(way)
     return way.yards + (way.swimYards or 0) * ((ns.Walking and ns.Walking.SWIM_COST or 1.5) - 1)
 end
 
+local SPAWN_YARDS = 15   -- an NPC's spawn this near the target is the target's
+
+--- The height of the NPC a target leads to: its spawn within SPAWN_YARDS of the target's world point
+--- (TravelDB.heights, from the server's spawns), else nil.
+function Nav:SpawnHeight(inst, wx, wy, npcs)
+    local heights = ns.TravelDB and ns.TravelDB.heights
+    if type(heights) ~= "table" or not inst or not wx or type(npcs) ~= "table" then return nil end
+    local best, nearest = nil, SPAWN_YARDS
+    for _, id in ipairs(npcs) do
+        local h = heights[id]
+        if type(h) == "table" then
+            for i = 1, #h - 3, 4 do
+                if h[i] == inst then
+                    local d = Dist(h[i + 1], h[i + 2], wx, wy)
+                    if d <= nearest then best, nearest = h[i + 3], d end
+                end
+            end
+        end
+    end
+    return best
+end
+
+--- The end of a walk as the walking maps search it: with its own height when it has one (a
+--- zeppelin's platform, TravelDB's z), or the target's when it is the target.
+function Nav:WalkEnd(b)
+    local t = self.target
+    local to = { x = b.x, y = b.y, z = b.z }
+    if not to.z and t and t.height and t.worldX and t.instanceID == b.inst and Dist(b.x, b.y, t.worldX, t.worldY) < 1 then to.z = t.height end
+    return to
+end
+
 --- The way of a walk between two world points ({ inst, x, y }): known now, else asked for, and
---- onFound(way) runs when it arrives. nil where the walking maps cannot tell.
+--- onFound(way) runs when it arrives. nil where the walking maps cannot tell. A walk to the target
+--- searches with its NPC's height; when that finds no way, once more without it.
 function Nav:WalkWay(a, b, onFound)
     local W = ns.Walking
     if not W or not a or not b or a.inst ~= b.inst or not W:Has(a.inst) then return nil end
-    local from, to = { x = a.x, y = a.y }, { x = b.x, y = b.y }
+    local from, to = { x = a.x, y = a.y }, self:WalkEnd(b)
     local known = W:Known(a.inst, from, to)
+    if known == false and to.z then known = W:Known(a.inst, from, { x = to.x, y = to.y }) end
     if known ~= nil then return known or nil end
     W:Request(a.inst, from, to, function(way)
-        if way and onFound then onFound(way) end
+        if way then
+            if onFound then onFound(way) end
+        elseif to.z then
+            W:Request(a.inst, from, { x = to.x, y = to.y }, function(flat)
+                if flat and onFound then onFound(flat) end
+            end)
+        end
     end)
     return nil
 end
@@ -194,7 +236,9 @@ function Nav:WalkYards(a, b)
     -- the first walk starts where the player stood when it was asked for: from a few yards on it still serves
     local s = self.startWay
     if s and s.inst == a.inst and Dist(s.ax, s.ay, a.x, a.y) <= 10 and Dist(s.bx, s.by, b.x, b.y) <= 2 then return WayYards(s.way) end
-    local known = W:Known(a.inst, { x = a.x, y = a.y }, { x = b.x, y = b.y })
+    local to = self:WalkEnd(b)
+    local known = W:Known(a.inst, { x = a.x, y = a.y }, to)
+    if known == false and to.z then known = W:Known(a.inst, { x = a.x, y = a.y }, { x = to.x, y = to.y }) end
     return known and WayYards(known) or nil
 end
 
