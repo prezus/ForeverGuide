@@ -25,7 +25,8 @@
 -- the minimap's view radius in yards (C_Minimap.GetViewRadius) and, when the
 -- minimap rotates, the player's facing. At most 120, spaced in on-screen
 -- pixels like the world map's, inside the round map only. Its driver runs only
--- while a route is shown.
+-- while a route is shown, and redraws only when the player has moved or turned,
+-- the minimap zoomed, or the way changed: standing still makes no garbage.
 -- ============================================================
 
 local _, ns = ...
@@ -356,6 +357,8 @@ end
 function Dots:Refresh()
     local Nav = ns.Navigation
     local shown = On() and (Nav.route ~= nil or (Nav.target ~= nil and Nav:PlannerOn()))
+    -- the way changed: the driver redraws on its next tick whether or not the player moved
+    self.dirty = true
     if driver then driver:SetShown(shown) end
     if not shown and miniPool then Finish(miniPool) end
     if shown then self:DrawMinimap() end
@@ -368,12 +371,22 @@ function Dots:OnEnable()
         miniPool = Pool(mm, "OVERLAY")
         driver = CreateFrame("Frame", nil, mm)
         driver.elapsed, driver.worldElapsed = 0, 0
+        local seen = {}   -- where the last redraw saw the player, their facing and the zoom
         driver:SetScript("OnUpdate", function(f, elapsed)
             f.elapsed, f.worldElapsed = f.elapsed + elapsed, f.worldElapsed + elapsed
             if f.elapsed >= 0.1 then
                 f.elapsed = 0
-                local ok, err = pcall(Dots.DrawMinimap, Dots)
-                if not ok then ns.ReportOnce("routedots:minimap", err) end
+                local px, py = ns.Player:GetWorldPosition()
+                local facing = ns.Player:GetFacing() or 0
+                local radius = PlainNumber(ns.Call("C_Minimap.GetViewRadius")) or 0
+                local moved = not px or not seen.x or math.abs(px - seen.x) + math.abs(py - seen.y) > 0.5
+                    or math.abs(facing - seen.facing) > 0.02 or radius ~= seen.radius
+                if Dots.dirty or moved then
+                    Dots.dirty = false
+                    seen.x, seen.y, seen.facing, seen.radius = px, py, facing, radius
+                    local ok, err = pcall(Dots.DrawMinimap, Dots)
+                    if not ok then ns.ReportOnce("routedots:minimap", err) end
+                end
             end
             -- the current walk starts at the player: move the open world map's dots now and then
             if f.worldElapsed >= 1 and provider and provider:GetMap():IsShown() then
