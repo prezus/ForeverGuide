@@ -39,6 +39,7 @@ local SIDE_HERE = 4
 
 Walking.SNAP_CELLS = 3       -- grid cells searched round a point whose own cell has no ground
 Walking.HEIGHT_YARDS = 40    -- a height further than this from every floor there is ignored
+Walking.ON_FLOOR_YARDS = 4   -- a floor this near the height is the point's: the search round it stops
 Walking.SWIM_COST = 1.5      -- a swum yard costs this many walked ones
 Walking.BUDGET_MS = 3        -- a search's time a frame
 Walking.MAX_TILES = 96       -- decoded tiles kept; past it the least recently used go
@@ -224,8 +225,9 @@ local function HeightNear(tile, r, lx, ly)
     return height
 end
 
---- The regions a point stands on: { { tile, region, height } }. With a height, the region nearest it
---- (searching outwards, as a point at a cliff's edge may hold only the ground below); else all there.
+--- The regions a point stands on: { { tile, region, height } }. With a height, the region nearest it,
+--- searching outwards until one is within ON_FLOOR_YARDS (a point at a cliff's edge may hold only the
+--- ground below, a nearer cell a roof over the point's floor); else all there.
 local function Place(tiles, p)
     local tx, ty = TileAt(p.x, p.y)
     local name = TileName(tx, ty)
@@ -233,7 +235,7 @@ local function Place(tiles, p)
     if not tile then return {} end
     local x0, y0 = Corner(name)
     local cx, cy = floor((p.x - x0) / CELL), floor((p.y - y0) / CELL)
-    local first, seen = nil, {}
+    local first, seen, best, island = nil, {}, nil, nil
     for ring = 0, Walking.SNAP_CELLS do
         local here = {}
         for dx = -ring, ring do
@@ -255,18 +257,24 @@ local function Place(tiles, p)
         if p.z == nil then
             if #first > 0 then return first end
         else
-            local nearest, best = nil, huge
-            local function consider(list)
-                for _, r in ipairs(list) do
-                    local d = abs(r.height - p.z)
-                    if d <= Walking.HEIGHT_YARDS and d < best then nearest, best = r, d end
+            for _, r in ipairs(here) do
+                local d = abs(r.height - p.z)
+                if d <= Walking.HEIGHT_YARDS then
+                    -- a region no portal joins to anything is a roof, a ledge or a pocket: the point's floor only when nothing else is near
+                    local region = tile.regions[r.region]
+                    if region and #region.portals > 0 then
+                        if not best or d < abs(best.height - p.z) then best = r end
+                    elseif not island or d < abs(island.height - p.z) then
+                        island = r
+                    end
                 end
             end
-            consider(first)
-            if here ~= first then consider(here) end
-            if nearest then return { nearest } end
+            -- a joined region at the point's own height ends the search; a nearer cell's floor some yards off may be a roof over it
+            if best and abs(best.height - p.z) <= Walking.ON_FLOOR_YARDS then return { best } end
         end
     end
+    local chosen = best or island
+    if chosen then return { chosen } end
     return first or {}
 end
 
