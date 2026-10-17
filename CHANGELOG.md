@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- A walk starts on the floor you stand on. The game does not tell addons your height, so where floors stack the way was planned from whichever came first: from the mountain over Ironforge's halls, a roof, or the canal under Stormwind's streets. ForeverGuide now follows the floor under you as you walk, up stairs a step at a time, finding it afresh after a teleport from whether you are indoors (the lower floor) or out (the upper).
 - Flights and boats are drawn along the way they really go: a flight's dots follow its route round the mountains, and a boat's or zeppelin's its sailing route, a crossing to the other continent shown on each. In the air, the time left counts down by how much of the flight's route is left, so it holds steady. The dots also keep an even spacing round every bend.
 - On a mount, the time left stays at your mount's pace in combat and while you stand still. Before, when the game gave no speed for a moment, it fell back to running pace and the time left jumped up.
 - **The travel planner is on.** The arrow now plans the way to each step for everyone: the walk round walls and fences, flights, boats, zeppelins, the tram and your Hearthstone, with the way shown as dots on the world map and the minimap. It was off until it had been tried in game. Turn it off in Options under Travel or with `/fg travel off`; turned off, it stays off.

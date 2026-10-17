@@ -280,6 +280,20 @@ local function Place(tiles, p)
     return first or {}
 end
 
+--- The floors at a world point, as a point with no height is placed: { { height, joined, swim } }, joined
+--- when a portal joins the region to its neighbours (a roof or a ledge is not); {} off the walking maps.
+function Walking:Floors(mapID, x, y)
+    local tiles = Tiles(mapID)
+    if not tiles then return {} end
+    local out = {}
+    for _, r in ipairs(Place(tiles, { x = x, y = y })) do
+        local t = tiles(r.tile)
+        local region = t and t.regions[r.region]
+        out[#out + 1] = { height = r.height, joined = region ~= nil and #region.portals > 0, swim = region ~= nil and region.swim }
+    end
+    return out
+end
+
 -- ------------------------------------------------------------
 -- The search
 -- ------------------------------------------------------------

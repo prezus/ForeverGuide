@@ -42,6 +42,7 @@ Nav.target = nil        -- { map, x, y, label, radius, worldX, worldY, instanceI
 Nav.state = nil         -- last Update() result
 Nav.route = nil         -- { legs, seconds, index }: the planned way to the target, when more than a walk
 Nav.walk = nil          -- { target, way, at }: the walking way to the target when there is no route
+Nav.floor = nil         -- { inst, x, y, z }: the floor under the player, followed as they move (TrackFloor)
 Nav.ownsWaypoint = false
 
 local LEG_WALK_RADIUS = 20    -- yards from a walk's end that count as there
@@ -52,6 +53,8 @@ local WAY_REPLANS = 3         -- plans again a found walking way may cause, a ta
 local OFF_WAY_YARDS = 30      -- further than this from the way, it is looked for again from here
 local CORNER_YARDS = 4        -- a corner this near counts as passed
 local ASK_AGAIN_SECONDS = 5   -- and not more often than this
+local FLOOR_JUMP_YARDS = 25   -- moved further than this since the last look: a teleport or a loading screen, the floor found afresh
+local AT_PLAYER_YARDS = 10    -- a walk starting this near the player starts on the player's floor
 
 -- ------------------------------------------------------------
 -- Conversions
@@ -198,6 +201,77 @@ function Nav:SpawnHeight(inst, wx, wy, npcs)
     return best
 end
 
+-- ------------------------------------------------------------
+-- The floor under the player
+-- ------------------------------------------------------------
+-- The game gives addons no height on Forever (UnitPosition's third value is 0), and where floors stack (a
+-- hall under a mountain, a street over a canal, an inn's rooms) a walk planned from the wrong one climbs
+-- the hill or finds no way. So the floor is followed: found once, from where the player is indoors or out,
+-- then kept as the one nearest the last as they walk, up a stair a step at a time.
+
+--- The height the game gives for the player, when it gives a real one.
+local function GameHeight()
+    local _, _, z = Safe(UnitPosition, "player")
+    z = PlainNumber(z)
+    if z and z ~= 0 then return z end
+    return nil
+end
+
+--- The floor among `floors` whose height is nearest z.
+local function Nearest(floors, z)
+    local best
+    for _, f in ipairs(floors) do
+        if not best or abs(f.height - z) < abs(best.height - z) then best = f end
+    end
+    return best
+end
+
+--- The floor a player found with no earlier one stands on: among the floors joined to the rest that are
+--- not water (else any), indoors the lowest (a hall under a mountain, an inn's ground floor), outdoors the
+--- highest (a street over a canal, not the water under it).
+local function Seed(floors)
+    local pick = {}
+    for _, f in ipairs(floors) do if f.joined and not f.swim then pick[#pick + 1] = f end end
+    if #pick == 0 then for _, f in ipairs(floors) do if f.joined then pick[#pick + 1] = f end end end
+    if #pick == 0 then pick = floors end
+    local indoors = Plain(Safe(rawget(_G, "IsIndoors"))) == true
+    local best
+    for _, f in ipairs(pick) do
+        if not best or (indoors and f.height < best.height) or (not indoors and f.height > best.height) then best = f end
+    end
+    return best
+end
+
+--- The height of the floor under the player at (px, py) on `inst`, followed from the last; nil where the
+--- walking maps have none, and on a flight.
+function Nav:TrackFloor(px, py, inst)
+    local W = ns.Walking
+    if not W or not px or not inst or not W:Has(inst) or Plain(Safe(rawget(_G, "UnitOnTaxi"), "player")) == true then
+        self.floor = nil
+        return nil
+    end
+    local last = self.floor
+    local follow = last and last.inst == inst and Dist(last.x, last.y, px, py) <= FLOOR_JUMP_YARDS
+    if follow and Dist(last.x, last.y, px, py) < 1 then return last.z end
+    local floors = W:Floors(inst, px, py)
+    if #floors == 0 then return follow and last.z or nil end
+    local game = GameHeight()
+    local f = (game and Nearest(floors, game)) or (follow and Nearest(floors, last.z)) or Seed(floors)
+    self.floor = { inst = inst, x = px, y = py, z = f.height }
+    return f.height
+end
+
+--- A walk's start as the walking maps search it: with its own height when it has one (a dock's), else, when
+--- it is where the player stands, the player's floor.
+function Nav:WalkStart(a)
+    local from = { x = a.x, y = a.y, z = a.z }
+    if from.z == nil then
+        local px, py, pInstance = ns.Player:GetWorldPosition()
+        if px and pInstance == a.inst and Dist(px, py, a.x, a.y) <= AT_PLAYER_YARDS then from.z = self:TrackFloor(px, py, pInstance) end
+    end
+    return from
+end
+
 --- The end of a walk as the walking maps search it: with its own height when it has one (a
 --- zeppelin's platform, TravelDB's z), or the target's when it is the target.
 function Nav:WalkEnd(b)
@@ -213,15 +287,18 @@ end
 function Nav:WalkWay(a, b, onFound)
     local W = ns.Walking
     if not W or not a or not b or a.inst ~= b.inst or not W:Has(a.inst) then return nil end
-    local from, to = { x = a.x, y = a.y }, self:WalkEnd(b)
+    local from, to = self:WalkStart(a), self:WalkEnd(b)
+    -- when the heights find no way, once more without them: a floor guessed wrong must not lose the walk
+    local flatFrom, flatTo = { x = from.x, y = from.y }, { x = to.x, y = to.y }
+    local heights = from.z ~= nil or to.z ~= nil
     local known = W:Known(a.inst, from, to)
-    if known == false and to.z then known = W:Known(a.inst, from, { x = to.x, y = to.y }) end
+    if known == false and heights then known = W:Known(a.inst, flatFrom, flatTo) end
     if known ~= nil then return known or nil end
     W:Request(a.inst, from, to, function(way)
         if way then
             if onFound then onFound(way) end
-        elseif to.z then
-            W:Request(a.inst, from, { x = to.x, y = to.y }, function(flat)
+        elseif heights then
+            W:Request(a.inst, flatFrom, flatTo, function(flat)
                 if flat and onFound then onFound(flat) end
             end)
         end
@@ -236,9 +313,9 @@ function Nav:WalkYards(a, b)
     -- the first walk starts where the player stood when it was asked for: from a few yards on it still serves
     local s = self.startWay
     if s and s.inst == a.inst and Dist(s.ax, s.ay, a.x, a.y) <= 10 and Dist(s.bx, s.by, b.x, b.y) <= 2 then return WayYards(s.way) end
-    local to = self:WalkEnd(b)
-    local known = W:Known(a.inst, { x = a.x, y = a.y }, to)
-    if known == false and to.z then known = W:Known(a.inst, { x = a.x, y = a.y }, { x = to.x, y = to.y }) end
+    local from, to = self:WalkStart(a), self:WalkEnd(b)
+    local known = W:Known(a.inst, from, to)
+    if known == false and (from.z or to.z) then known = W:Known(a.inst, { x = from.x, y = from.y }, { x = to.x, y = to.y }) end
     return known and WayYards(known) or nil
 end
 
@@ -690,8 +767,15 @@ local poller = CreateFrame("Frame")
 poller.elapsed = 0
 poller:SetScript("OnUpdate", function(self, elapsed)
     self.elapsed = self.elapsed + (elapsed or 0)
-    if self.elapsed < 0.25 or not Nav.target then return end
+    if self.elapsed < 0.25 then return end
     self.elapsed = 0
+    -- the floor under the player is followed whether or not there is a target, so a new one starts on it
+    if PlannerOn() then
+        local px, py, pInstance = ns.Player:GetWorldPosition()
+        local okf, errf = pcall(Nav.TrackFloor, Nav, px, py, pInstance)
+        if not okf then ns.ReportOnce("nav:floor", errf) end
+    end
+    if not Nav.target then return end
     local ok, err = pcall(Nav.Update, Nav, true)
     if not ok then ns.ReportOnce("nav:poll", err) end
 end)
