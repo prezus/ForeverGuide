@@ -286,6 +286,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_05_13_15_DARKSHORE",
     name = "13-15 Darkshore",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -369,6 +370,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_06_15_16_WESTFALL",
     name = "15-16 Westfall",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -425,6 +427,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_07_16_17_HALL_OF_THANES_IRONFORGE",
     name = "16-17 Hall of Thanes/Ironforge",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -456,6 +459,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_08_17_19_DARKSHORE",
     name = "17-19 Darkshore",
+    version = 2,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -504,7 +508,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=4733,questName="Beached Sea Creature",map=1439,zone="Darkshore",x=31.4,y=87.2},
 {type="TURNIN",quest=729,questName="The Absent Minded Prospector",npc=2917,npcName="Prospector Remtravel",map=1439,zone="Darkshore",x=35.8,y=83.7},
 {type="ACCEPT",quest=731,questName="The Absent Minded Prospector",npc=2917,npcName="Prospector Remtravel",map=1439,zone="Darkshore",x=35.8,y=83.7},
-{type="COMPLETE",quest=731,questName="The Absent Minded Prospector"},
+{type="COMPLETE",quest=731,questName="The Absent Minded Prospector",map=1439,zone="Darkshore",x=35.75,y=83.85},
 {type="COMPLETE",quest=944,questName="The Master's Glaive",objective=1,map=1439,zone="Darkshore",x=38.8,y=86.5},
 {type="TURNIN",quest=944,questName="The Master's Glaive",map=1439,zone="Darkshore",x=39,y=86.8},
 {type="ACCEPT",quest=949,questName="The Twilight Camp",map=1439,zone="Darkshore",x=39,y=86.8},
@@ -512,7 +516,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=950,questName="Return to Onu",map=1439,zone="Darkshore",x=38.6,y=86.1},
 {type="ACCEPT",quest=98042,questName="It's All Fun and Games Until...",map=1439,zone="Darkshore",x=38.6,y=86.1},
 {type="ACCEPT",quest=945,questName="Therylune's Escape",npc=3584,npcName="Therylune",map=1439,zone="Darkshore",x=38.5,y=87.3},
-{type="COMPLETE",quest=945,questName="Therylune's Escape"},
+{type="COMPLETE",quest=945,questName="Therylune's Escape",map=1439,zone="Darkshore",x=40.4,y=86.37},
 {type="COMPLETE",quest=98042,questName="It's All Fun and Games Until...",objective=1,map=1439,zone="Darkshore",x=38.5,y=87.3},
 {type="ACCEPT",quest=968,questName="The Powers Below",map=1439,zone="Darkshore",x=39.2,y=86.7},
 {type="TURNIN",quest=950,questName="Return to Onu",npc=3616,npcName="Onu",map=1439,zone="Darkshore",x=43.6,y=76.3},
@@ -542,6 +546,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_09_RUINS_OF_LORDAERON_19_19_5",
     name = "Ruins of Lordaeron 19-19.5",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -564,6 +569,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_10_20_20_LOCH_MODAN",
     name = "20-20  Loch Modan",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -592,6 +598,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_11_21_23_DW_RR_INTO_DEADMINES",
     name = "21-23 DW/RR/into Deadmines",
+    version = 2,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -688,7 +695,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=142,questName="The Defias Brotherhood",map=1436,zone="Westfall",x=44.4,y=69.6},
 {type="TURNIN",quest=142,questName="The Defias Brotherhood",npc=234,npcName="Gryan Stoutmantle",map=1436,zone="Westfall",x=56.2,y=47.6},
 {type="ACCEPT",quest=155,questName="The Defias Brotherhood",npc=467,npcName="The Defias Traitor",map=1436,zone="Westfall",x=55.6,y=47.4},
-{type="COMPLETE",quest=155,questName="The Defias Brotherhood"},
+{type="COMPLETE",quest=155,questName="The Defias Brotherhood",map=1436,zone="Westfall",x=42.54,y=71.69},
 {type="TURNIN",quest=155,questName="The Defias Brotherhood",npc=234,npcName="Gryan Stoutmantle",map=1436,zone="Westfall",x=56.2,y=47.6},
 {type="NOTE",text="Go to Deadmines Complete",note="go to Deadmines"},
 {type="ACCEPT",quest=214,questName="Red Silk Bandanas",npc=820,npcName="Scout Riell",map=1436,zone="Westfall",x=56.6,y=47.4},
@@ -715,6 +722,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_12_24_25_REDRIDGE",
     name = "24-25 RedRidge",
+    version = 2,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -743,7 +751,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=249,questName="Morganth",map=1433,zone="Redridge Mountains",x=75.02,y=49.49},
 {type="ACCEPT",quest=219,questName="Missing In Action",npc=349,npcName="Corporal Keeshan",map=1433,zone="Redridge Mountains",x=23.3,y=12.55},
 {type="COMPLETE",quest=128,questName="Blackrock Bounty",map=1433,zone="Redridge Mountains",x=22.16,y=16.42},
-{type="COMPLETE",quest=219,questName="Missing In Action"},
+{type="COMPLETE",quest=219,questName="Missing In Action",map=1433,zone="Redridge Mountains",x=28.33,y=48.52},
 {type="TURNIN",quest=219,questName="Missing In Action",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=28.41,y=48.97},
 {type="TURNIN",quest=128,questName="Blackrock Bounty",npc=903,npcName="Guard Howe",map=1433,zone="Redridge Mountains",x=26.45,y=57.85},
 {type="TURNIN",quest=19,questName="Tharil'zun",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=28.41,y=48.97},
@@ -757,6 +765,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_13_25_26_ASHENVALE_BFD",
     name = "25-26 Ashenvale/BFD",
+    version = 2,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -764,7 +773,7 @@ ns.RegisterGuide({
     minLevel = 25,
     maxLevel = 26,
     next = "GEN_ALLIANCE_SPEED_DEMON_DWARF_14_25_26_DUN_MODR_WETLANDS",
-    stepCount = 42,
+    stepCount = 41,
     steps = [[{
 {type="ACCEPT",quest=1008,questName="The Zoram Strand",npc=3845,npcName="Shindrell Swiftfire",map=1440,zone="Ashenvale",x=34.6,y=48.8},
 {type="ACCEPT",quest=1054,questName="Culling the Threat",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
@@ -774,7 +783,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1054,questName="Culling the Threat",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
 {type="TURNIN",quest=1010,questName="Bathran's Hair",npc=3847,npcName="Orendil Broadleaf",map=1440,zone="Ashenvale",x=26.4,y=38.6},
 {type="ACCEPT",quest=1020,questName="Orendil's Cure",npc=3847,npcName="Orendil Broadleaf",map=1440,zone="Ashenvale",x=26.4,y=38.6},
-{type="COMPLETE",quest=1020,questName="Orendil's Cure"},
 {type="TURNIN",quest=1020,questName="Orendil's Cure",npc=3894,npcName="Pelturas Whitemoon",map=1440,zone="Ashenvale",x=37.2,y=51.8},
 {type="ACCEPT",quest=1033,questName="Elune's Tear",npc=3894,npcName="Pelturas Whitemoon",map=1440,zone="Ashenvale",x=37.2,y=51.8},
 {type="COMPLETE",quest=1033,questName="Elune's Tear",map=1440,zone="Ashenvale",x=46.34,y=45.91},
@@ -813,6 +821,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_14_25_26_DUN_MODR_WETLANDS",
     name = "25-26 Dun Modr-Wetlands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -831,6 +840,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_15_26_27_DUSKWOOD",
     name = "26-27 Duskwood",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -861,6 +871,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_16_27_28_STOCKS",
     name = "27-28 Stocks",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -876,6 +887,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_17_28_29_EXCAVATION_SITE_WETLANDS_ELITES",
     name = "28-29 Excavation Site / Wetlands Elites",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -891,6 +903,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_18_29_30_HILLSBRAD_COAST",
     name = "29-30  Hillsbrad Coast",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -906,6 +919,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_19_29_29_5_30_CITY_OF_DALARAN",
     name = "29-29.5/30 City of Dalaran",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -921,6 +935,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_20_30_31_GNOMER",
     name = "30-31 Gnomer",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1216,6 +1231,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_05_13_15_DARKSHORE",
     name = "13-15 Darkshore",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1299,6 +1315,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_06_15_16_WESTFALL",
     name = "15-16 Westfall",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1355,6 +1372,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_07_16_17_HALL_OF_THANES_IRONFORGE",
     name = "16-17 Hall of Thanes/Ironforge",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1386,6 +1404,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_08_17_19_DARKSHORE",
     name = "17-19 Darkshore",
+    version = 2,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1434,7 +1453,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=4733,questName="Beached Sea Creature",map=1439,zone="Darkshore",x=31.4,y=87.2},
 {type="TURNIN",quest=729,questName="The Absent Minded Prospector",npc=2917,npcName="Prospector Remtravel",map=1439,zone="Darkshore",x=35.8,y=83.7},
 {type="ACCEPT",quest=731,questName="The Absent Minded Prospector",npc=2917,npcName="Prospector Remtravel",map=1439,zone="Darkshore",x=35.8,y=83.7},
-{type="COMPLETE",quest=731,questName="The Absent Minded Prospector"},
+{type="COMPLETE",quest=731,questName="The Absent Minded Prospector",map=1439,zone="Darkshore",x=35.75,y=83.85},
 {type="COMPLETE",quest=944,questName="The Master's Glaive",objective=1,map=1439,zone="Darkshore",x=38.8,y=86.5},
 {type="TURNIN",quest=944,questName="The Master's Glaive",map=1439,zone="Darkshore",x=39,y=86.8},
 {type="ACCEPT",quest=949,questName="The Twilight Camp",map=1439,zone="Darkshore",x=39,y=86.8},
@@ -1442,7 +1461,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=950,questName="Return to Onu",map=1439,zone="Darkshore",x=38.6,y=86.1},
 {type="ACCEPT",quest=98042,questName="It's All Fun and Games Until...",map=1439,zone="Darkshore",x=38.6,y=86.1},
 {type="ACCEPT",quest=945,questName="Therylune's Escape",npc=3584,npcName="Therylune",map=1439,zone="Darkshore",x=38.5,y=87.3},
-{type="COMPLETE",quest=945,questName="Therylune's Escape"},
+{type="COMPLETE",quest=945,questName="Therylune's Escape",map=1439,zone="Darkshore",x=40.4,y=86.37},
 {type="COMPLETE",quest=98042,questName="It's All Fun and Games Until...",objective=1,map=1439,zone="Darkshore",x=38.5,y=87.3},
 {type="ACCEPT",quest=968,questName="The Powers Below",map=1439,zone="Darkshore",x=39.2,y=86.7},
 {type="TURNIN",quest=950,questName="Return to Onu",npc=3616,npcName="Onu",map=1439,zone="Darkshore",x=43.6,y=76.3},
@@ -1472,6 +1491,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_09_RUINS_OF_LORDAERON_19_19_5",
     name = "Ruins of Lordaeron 19-19.5",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1494,6 +1514,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_10_20_20_LOCH_MODAN",
     name = "20-20  Loch Modan",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1522,6 +1543,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_11_21_23_DW_RR_INTO_DEADMINES",
     name = "21-23 DW/RR/into Deadmines",
+    version = 2,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1618,7 +1640,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=142,questName="The Defias Brotherhood",map=1436,zone="Westfall",x=44.4,y=69.6},
 {type="TURNIN",quest=142,questName="The Defias Brotherhood",npc=234,npcName="Gryan Stoutmantle",map=1436,zone="Westfall",x=56.2,y=47.6},
 {type="ACCEPT",quest=155,questName="The Defias Brotherhood",npc=467,npcName="The Defias Traitor",map=1436,zone="Westfall",x=55.6,y=47.4},
-{type="COMPLETE",quest=155,questName="The Defias Brotherhood"},
+{type="COMPLETE",quest=155,questName="The Defias Brotherhood",map=1436,zone="Westfall",x=42.54,y=71.69},
 {type="TURNIN",quest=155,questName="The Defias Brotherhood",npc=234,npcName="Gryan Stoutmantle",map=1436,zone="Westfall",x=56.2,y=47.6},
 {type="NOTE",text="Go to Deadmines Complete",note="go to Deadmines"},
 {type="ACCEPT",quest=214,questName="Red Silk Bandanas",npc=820,npcName="Scout Riell",map=1436,zone="Westfall",x=56.6,y=47.4},
@@ -1645,6 +1667,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_12_24_25_REDRIDGE",
     name = "24-25 RedRidge",
+    version = 2,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1673,7 +1696,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=249,questName="Morganth",map=1433,zone="Redridge Mountains",x=75.02,y=49.49},
 {type="ACCEPT",quest=219,questName="Missing In Action",npc=349,npcName="Corporal Keeshan",map=1433,zone="Redridge Mountains",x=23.3,y=12.55},
 {type="COMPLETE",quest=128,questName="Blackrock Bounty",map=1433,zone="Redridge Mountains",x=22.16,y=16.42},
-{type="COMPLETE",quest=219,questName="Missing In Action"},
+{type="COMPLETE",quest=219,questName="Missing In Action",map=1433,zone="Redridge Mountains",x=28.33,y=48.52},
 {type="TURNIN",quest=219,questName="Missing In Action",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=28.41,y=48.97},
 {type="TURNIN",quest=128,questName="Blackrock Bounty",npc=903,npcName="Guard Howe",map=1433,zone="Redridge Mountains",x=26.45,y=57.85},
 {type="TURNIN",quest=19,questName="Tharil'zun",npc=382,npcName="Marshal Marris",map=1433,zone="Redridge Mountains",x=28.41,y=48.97},
@@ -1687,6 +1710,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_13_25_26_ASHENVALE_BFD",
     name = "25-26 Ashenvale/BFD",
+    version = 2,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1694,7 +1718,7 @@ ns.RegisterGuide({
     minLevel = 25,
     maxLevel = 26,
     next = "GEN_ALLIANCE_SPEED_DEMON_GNOME_14_25_26_DUN_MODR_WETLANDS",
-    stepCount = 42,
+    stepCount = 41,
     steps = [[{
 {type="ACCEPT",quest=1008,questName="The Zoram Strand",npc=3845,npcName="Shindrell Swiftfire",map=1440,zone="Ashenvale",x=34.6,y=48.8},
 {type="ACCEPT",quest=1054,questName="Culling the Threat",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
@@ -1704,7 +1728,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1054,questName="Culling the Threat",npc=3691,npcName="Raene Wolfrunner",map=1440,zone="Ashenvale",x=36.6,y=49.6},
 {type="TURNIN",quest=1010,questName="Bathran's Hair",npc=3847,npcName="Orendil Broadleaf",map=1440,zone="Ashenvale",x=26.4,y=38.6},
 {type="ACCEPT",quest=1020,questName="Orendil's Cure",npc=3847,npcName="Orendil Broadleaf",map=1440,zone="Ashenvale",x=26.4,y=38.6},
-{type="COMPLETE",quest=1020,questName="Orendil's Cure"},
 {type="TURNIN",quest=1020,questName="Orendil's Cure",npc=3894,npcName="Pelturas Whitemoon",map=1440,zone="Ashenvale",x=37.2,y=51.8},
 {type="ACCEPT",quest=1033,questName="Elune's Tear",npc=3894,npcName="Pelturas Whitemoon",map=1440,zone="Ashenvale",x=37.2,y=51.8},
 {type="COMPLETE",quest=1033,questName="Elune's Tear",map=1440,zone="Ashenvale",x=46.34,y=45.91},
@@ -1743,6 +1766,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_14_25_26_DUN_MODR_WETLANDS",
     name = "25-26 Dun Modr-Wetlands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1761,6 +1785,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_15_26_27_DUSKWOOD",
     name = "26-27 Duskwood",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1791,6 +1816,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_16_27_28_STOCKS",
     name = "27-28 Stocks",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1806,6 +1832,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_17_28_29_EXCAVATION_SITE_WETLANDS_ELITES",
     name = "28-29 Excavation Site / Wetlands Elites",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1821,6 +1848,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_18_29_30_HILLSBRAD_COAST",
     name = "29-30  Hillsbrad Coast",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1836,6 +1864,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_19_29_29_5_30_CITY_OF_DALARAN",
     name = "29-29.5/30 City of Dalaran",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1851,6 +1880,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_20_30_31_GNOMER",
     name = "30-31 Gnomer",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
