@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- ForeverGuide makes far less memory garbage as you walk, so its memory no longer climbs into the hundreds of megabytes between the game's clean-ups: working out a walk makes about a sixth of the garbage it did, a piece of the walking maps takes under half the memory, and drawing the breadcrumbs reuses what it drew last time.
 - The way prefers fewer changes: to Loch Modan from Westfall it is one flight to Thelsamar, on through Stormwind and Ironforge, not a flight to Stormwind, the tram and another flight. Each change (boarding a flight, a boat, the tram) now has to save real time to be chosen; the time shown is still the true time.
 - When the way is a flight, the arrow takes you to the flight master and points at them until you take off. Before, within 60 yards of the flight point it already pointed at where the flight lands. The same for a boat's or a zeppelin's dock while you are at it.
 - ForeverGuide uses less memory and stops creeping up: it keeps fewer pieces of the walking maps decoded at once (about 7 MB at most, from about 28 MB), and the breadcrumbs on the minimap are only redrawn when you move, turn or zoom, not ten times a second while you stand still.

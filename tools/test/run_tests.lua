@@ -5452,6 +5452,25 @@ section("walking paths: zones far above the player cost more, never the ones a w
     _G.C_EncodingUtil = was
 end)
 
+section("route dots: the segments are refilled each draw, not made anew", function()
+    local D, Nav, M = ns.RouteDots, ns.Navigation, MOCK
+    local db = travelFixture()
+    withTravelWorld(db, function()
+        Nav:SetTarget({ map = 1429, x = 40.4, y = 82.4, label = "Fargodeep" })
+        local first = D:Segments()
+        local seg = first and first[1]
+        local again = D:Segments()
+        check(first ~= nil and again == first and again[1] == seg, "the same list and segment tables, refilled")
+        collectgarbage("collect") collectgarbage("stop")
+        local before = collectgarbage("count")
+        for _ = 1, 20 do D:Segments() end
+        local per = (collectgarbage("count") - before) / 20
+        collectgarbage("restart")
+        check(per < 2, string.format("building the breadcrumbs makes almost no garbage (%.1f KB a time)", per))
+    end)
+    Nav:Clear()
+end)
+
 section("walking paths: the tiles decoded stay within MAX_TILES as the floor is followed across the map", function()
     local W = ns.Walking
     local was = rawget(_G, "C_EncodingUtil")

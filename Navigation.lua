@@ -52,7 +52,7 @@ local SWITCH_SECONDS, SWITCH_SHARE = 30, 0.1   -- a new way must save this much,
 local WAY_REPLANS = 3         -- plans again a found walking way may cause, a target
 local OFF_WAY_YARDS = 30      -- further than this from the way, it is looked for again from here
 local CORNER_YARDS = 4        -- a corner this near counts as passed
-local ASK_AGAIN_SECONDS = 5   -- and not more often than this
+local ASK_AGAIN_SECONDS = 10  -- and not more often than this: a long walk's search makes megabytes of garbage
 local FLOOR_JUMP_YARDS = 25   -- moved further than this since the last look: a teleport or a loading screen, the floor found afresh
 local AT_PLAYER_YARDS = 10    -- a walk starting this near the player starts on the player's floor
 

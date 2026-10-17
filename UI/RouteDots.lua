@@ -56,12 +56,25 @@ local function On()
     return not (ns.db and ns.db.nav and ns.db.nav.routeDots == false)
 end
 
+-- The segments are redrawn ten times a second while the player moves: their tables are kept and filled
+-- again each time, not made anew, so drawing makes no garbage. A caller reads them before the next call.
+local segPool, segOut = {}, {}
+
+--- Add a segment to `segs`, from the pool.
+local function Seg(segs, ax, ay, bx, by, inst, kind, later)
+    local n = #segs + 1
+    local t = segPool[n]
+    if not t then t = {} segPool[n] = t end
+    t.ax, t.ay, t.bx, t.by, t.inst, t.kind, t.later = ax, ay, bx, by, inst, kind, later
+    segs[n] = t
+end
+
 --- A walk's way from the player on, as segments: the player to the corner ahead, then corner to corner.
 local function AlongWay(segs, way, at, px, py, inst, later)
     local _, aim = ns.Navigation.Along(way, at, px, py)
     local pts, ax, ay = way.points, px, py
     for i = aim, #pts do
-        segs[#segs + 1] = { ax = ax, ay = ay, bx = pts[i][1], by = pts[i][2], inst = inst, kind = "walk", later = later }
+        Seg(segs, ax, ay, pts[i][1], pts[i][2], inst, "walk", later)
         ax, ay = pts[i][1], pts[i][2]
     end
 end
@@ -70,46 +83,49 @@ end
 local function WholeWay(segs, way, inst, later)
     local pts = way.points
     for i = 2, #pts do
-        segs[#segs + 1] = { ax = pts[i - 1][1], ay = pts[i - 1][2], bx = pts[i][1], by = pts[i][2], inst = inst, kind = "walk", later = later }
+        Seg(segs, pts[i - 1][1], pts[i - 1][2], pts[i][1], pts[i][2], inst, "walk", later)
     end
 end
 
 --- The legs still ahead as world segments { ax, ay, bx, by, inst, kind, later }, or nil without a route.
+--- The list and its segments are reused by the next call.
 function Dots:Segments()
     local Nav, T = ns.Navigation, ns.Travel
     local r = Nav.route
     if not T or not On() then return nil end
     local px, py, pInstance = ns.Player:GetWorldPosition()
+    local segs = segOut
+    for i = #segs, 1, -1 do segs[i] = nil end
     if not r then
         -- a plain walk: from the player to the target, when both are in one world; along its way when found
         local t = Nav.target
         if not (t and px and t.worldX and Nav:PlannerOn() and t.instanceID == pInstance) then return nil end
         local walk = Nav.walk
         if walk and walk.target == t and walk.way then
-            local segs = {}
             AlongWay(segs, walk.way, walk.at, px, py, pInstance, false)
             return segs
         end
-        return { { ax = px, ay = py, bx = t.worldX, by = t.worldY, inst = pInstance, kind = "walk" } }
+        Seg(segs, px, py, t.worldX, t.worldY, pInstance, "walk", false)
+        return segs
     end
-    local segs = {}
     for k = r.index, #r.legs do
         local leg = r.legs[k]
         local a, b = T.World(leg.from), T.World(leg.to)
         local current = k == r.index and leg.kind == "walk" and px
         if current then a = { x = px, y = py, inst = pInstance } end
+        local later = k > r.index
         local path = leg.kind ~= "walk" and not JUMPS[leg.kind] and T.RidePath(leg)
         if leg.kind == "walk" and leg.way and a and b and a.inst == b.inst then
             if current then AlongWay(segs, leg.way, leg.wayAt, px, py, a.inst, false)
-            else WholeWay(segs, leg.way, a.inst, k > r.index) end
+            else WholeWay(segs, leg.way, a.inst, later) end
         elseif path then
             for _, run in ipairs(path) do
                 for i = 4, #run - 1, 2 do
-                    segs[#segs + 1] = { ax = run[i - 2], ay = run[i - 1], bx = run[i], by = run[i + 1], inst = run[1], kind = leg.kind, later = k > r.index }
+                    Seg(segs, run[i - 2], run[i - 1], run[i], run[i + 1], run[1], leg.kind, later)
                 end
             end
         elseif a and b and a.inst == b.inst and not JUMPS[leg.kind] then
-            segs[#segs + 1] = { ax = a.x, ay = a.y, bx = b.x, by = b.y, inst = a.inst, kind = leg.kind, later = k > r.index }
+            Seg(segs, a.x, a.y, b.x, b.y, a.inst, leg.kind, later)
         end
     end
     return segs
@@ -215,18 +231,22 @@ function Dots:DrawWorld()
         local scale = map:GetCanvasScale() or 1
         local spacing, size, rim = self.WORLD_SPACING / scale, self.WORLD_SIZE / scale, self.RIM / scale
         local prev, carry
-        for _, s in ipairs(segs) do
-            local ax, ay = OnMap(mapID, s.inst, s.ax, s.ay)
-            local bx, by = OnMap(mapID, s.inst, s.bx, s.by)
+        -- one placing function a draw, reading the segment being drawn from these
+        local s, ax, ay, bx, by
+        local function place(f)
+            if worldPool.used >= self.WORLD_MAX then return false end
+            local x, y = ax + (bx - ax) * f, ay + (by - ay) * f
+            if x >= 0 and x <= 1 and y >= 0 and y <= 1 then
+                Paint(Next(worldPool, canvas, "TOPLEFT", x * w, -y * h), s, size, rim)
+            end
+        end
+        for _, seg in ipairs(segs) do
+            s = seg
+            ax, ay = OnMap(mapID, s.inst, s.ax, s.ay)
+            bx, by = OnMap(mapID, s.inst, s.bx, s.by)
             if ax and bx then
                 if not Continues(prev, s) then carry = nil end
-                carry = Along(ax * w, ay * h, bx * w, by * h, spacing, carry, function(f)
-                    if worldPool.used >= self.WORLD_MAX then return false end
-                    local x, y = ax + (bx - ax) * f, ay + (by - ay) * f
-                    if x >= 0 and x <= 1 and y >= 0 and y <= 1 then
-                        Paint(Next(worldPool, canvas, "TOPLEFT", x * w, -y * h), s, size, rim)
-                    end
-                end)
+                carry = Along(ax * w, ay * h, bx * w, by * h, spacing, carry, place)
             else
                 carry = nil
             end
@@ -286,19 +306,23 @@ function Dots:DrawMinimap()
         local facing = rotate and ns.Player:GetFacing() or 0
         local c, s = cos(-facing), sin(-facing)
         local prev, carry
-        for _, seg in ipairs(segs) do
+        -- one placing function a draw, reading the segment being drawn from these
+        local seg, dx, dy
+        local function place(f)
+            if miniPool.used >= self.MINI_MAX then return false end
+            local north, west = seg.ax + dx * f - px, seg.ay + dy * f - py
+            if north * north + west * west < radius * radius * 0.9 then
+                -- north is up and west left; a rotating minimap turns with the player
+                local sx, sy = -west * perYard, north * perYard
+                Paint(Next(miniPool, mm, "CENTER", sx * c - sy * s, sx * s + sy * c), seg, self.MINI_SIZE, self.RIM)
+            end
+        end
+        for _, one in ipairs(segs) do
+            seg = one
             if seg.inst == pInstance then
                 if not Continues(prev, seg) then carry = nil end
-                local dx, dy = seg.bx - seg.ax, seg.by - seg.ay
-                carry = Along(seg.ax, seg.ay, seg.bx, seg.by, spacing, carry, function(f)
-                    if miniPool.used >= self.MINI_MAX then return false end
-                    local north, west = seg.ax + dx * f - px, seg.ay + dy * f - py
-                    if north * north + west * west < radius * radius * 0.9 then
-                        -- north is up and west left; a rotating minimap turns with the player
-                        local sx, sy = -west * perYard, north * perYard
-                        Paint(Next(miniPool, mm, "CENTER", sx * c - sy * s, sx * s + sy * c), seg, self.MINI_SIZE, self.RIM)
-                    end
-                end)
+                dx, dy = seg.bx - seg.ax, seg.by - seg.ay
+                carry = Along(seg.ax, seg.ay, seg.bx, seg.by, spacing, carry, place)
             else
                 carry = nil
             end

@@ -56,7 +56,7 @@ Walking.DANGER_LEVELS, Walking.DANGER_COST = 4, 3
 Walking.DEADLY_LEVELS, Walking.DEADLY_COST = 10, 10
 local TOWN_BIT = { Alliance = 32, Horde = 64 }
 Walking.BUDGET_MS = 3        -- a search's time a frame
-Walking.MAX_TILES = 24       -- decoded tiles kept (about 300 KB each); past it the least recently used go
+Walking.MAX_TILES = 48       -- decoded tiles kept (about 175 KB each: 8 MB); past it the least recently used go
 Walking.MAX_WAYS = 200       -- ways remembered
 
 -- ------------------------------------------------------------
@@ -104,14 +104,30 @@ local function TileAt(wx, wy)
     return floor(32 - wy / TILE_YARDS), floor(32 - wx / TILE_YARDS)
 end
 local function TileName(tx, ty) return tx .. "_" .. ty end
+-- a tile name's column and row, its corner and its neighbours, worked out once: searches ask them often
+local tileInfo = {}
+local function InfoOf(name)
+    local t = tileInfo[name]
+    if not t then
+        local tx, ty = name:match("^(%-?%d+)_(%-?%d+)$")
+        tx, ty = tonumber(tx), tonumber(ty)
+        t = { tx = tx, ty = ty, x0 = (31 - ty) * TILE_YARDS, y0 = (31 - tx) * TILE_YARDS, id = (tx + 64) * 256 + (ty + 64), sides = {} }
+        tileInfo[name] = t
+    end
+    return t
+end
 local function Corner(name)
-    local tx, ty = name:match("^(%-?%d+)_(%-?%d+)$")
-    tx, ty = tonumber(tx), tonumber(ty)
-    return (31 - ty) * TILE_YARDS, (31 - tx) * TILE_YARDS
+    local t = InfoOf(name)
+    return t.x0, t.y0
 end
 local function Neighbour(name, side)
-    local tx, ty = name:match("^(%-?%d+)_(%-?%d+)$")
-    return TileName(tonumber(tx) + side % 3 - 1, tonumber(ty) + floor(side / 3) - 1)
+    local t = InfoOf(name)
+    local n = t.sides[side]
+    if not n then
+        n = TileName(t.tx + side % 3 - 1, t.ty + floor(side / 3) - 1)
+        t.sides[side] = n
+    end
+    return n
 end
 
 --- A tile's bytes read back: regions, portals and the grid of which regions cover each cell.
@@ -135,20 +151,15 @@ local function Decode(s)
         local portals = {}
         for i = 1, k do portals[i] = u16() + 1 end
         local pairs_ = k * (k - 1) / 2
-        local costs, corners = {}, {}
+        local costs = {}
         for i = 1, pairs_ do
             local c = u16()
             costs[i] = c == 65535 and huge or c / 2
         end
-        for i = 1, pairs_ do
-            local list = {}
-            for j = 1, u8() do
-                local cx = u16() / 2
-                list[j] = { cx, u16() / 2 }
-            end
-            corners[i] = list
-        end
-        regions[r] = { swim = swim, ground = ground, pocket = pocket, towns = towns, height = height, portals = portals, costs = costs, corners = corners }
+        -- the stored ways' corners stay in the bytes, read for the way found only (Corners)
+        local cornersAt = o
+        for _ = 1, pairs_ do o = o + 1 + 4 * byte(s, o) end
+        regions[r] = { swim = swim, ground = ground, pocket = pocket, towns = towns, height = height, portals = portals, costs = costs, cornersAt = cornersAt }
     end
     local portals = {}
     for p = 1, portalCount do
@@ -158,8 +169,9 @@ local function Decode(s)
         local side = u8()
         portals[p] = { ax = ax, ay = ay, bx = bx, by = by, height = height, region = region, side = side, other = u16() + 1 }
     end
-    local raw = {}
-    for c = 1, GRID * GRID do raw[c] = u16() end
+    -- the grid stays in the bytes too: a cell is read where a point is placed (Cell)
+    local rawAt = o
+    o = o + 2 * GRID * GRID
     local lists = {}
     for l = 1, u16() do
         local list = {}
@@ -170,17 +182,38 @@ local function Decode(s)
     local zones = {}
     for z = 1, u8() do zones[z] = u16() end
     for r = 1, regionCount do regions[r].zone = zones[u8() + 1] or 0 end
-    return { regions = regions, portals = portals, raw = raw, lists = lists }
+    return { regions = regions, portals = portals, bytes = s, rawAt = rawAt, lists = lists, single = {} }
 end
 Walking.Decode = Decode
+
+--- The corners of a region's stored way between two of its portals (`pair`, as the costs number them), in
+--- tile coordinates: { {x, y}, ... }. Read from the tile's bytes, for the way found.
+local function Corners(tile, region, pair)
+    local s, o = tile.bytes, region.cornersAt
+    for _ = 1, pair - 1 do o = o + 1 + 4 * byte(s, o) end
+    local list = {}
+    for j = 1, byte(s, o) do
+        local at = o + 1 + 4 * (j - 1)
+        local a, b, c, d = byte(s, at, at + 3)
+        list[j] = { (a + b * 256) / 2, (c + d * 256) / 2 }
+    end
+    return list
+end
 
 local NONE = {}
 --- The regions covering a grid cell (gx, gy from 0).
 local function Cell(tile, gx, gy)
-    local v = tile.raw[gx * GRID + gy + 1]
+    local at = tile.rawAt + 2 * (gx * GRID + gy)
+    local a, b = byte(tile.bytes, at, at + 1)
+    local v = a and a + b * 256
     if not v or v == 0 then return NONE end
     local n = #tile.regions
-    if v <= n then return { v } end
+    if v <= n then
+        -- one region: the same list each time, made once
+        local one = tile.single[v]
+        if not one then one = { v } tile.single[v] = one end
+        return one
+    end
     return tile.lists[v - n] or NONE
 end
 
@@ -426,19 +459,21 @@ local function Search(tiles, from, to, pause, faction, danger)
     local function PortalOf(tile, i) local t = tiles(tile); return t and t.portals[i] end
     local function RegionOf(tile, r) local t = tiles(tile); return t and t.regions[r] end
 
-    -- a border portal is in both its tiles: one node, named by the copy that sorts first
+    -- a border portal is in both its tiles: one node, keyed by the copy whose number is lower. Keys are
+    -- numbers (a tile's id times 65536 plus the portal), so a search makes no strings.
     local function KeyOf(tile, i)
         local p = PortalOf(tile, i)
-        local here = tile .. "#" .. i
+        local here = InfoOf(tile).id * 65536 + i
         if not p or p.side == SIDE_HERE then return here end
-        local there = Neighbour(tile, p.side) .. "#" .. p.other
+        local there = InfoOf(Neighbour(tile, p.side)).id * 65536 + p.other
         return here < there and here or there
     end
-    local function Middle(tile, i)
+    -- a portal's middle, as numbers
+    local function MidXY(tile, i)
         local p = PortalOf(tile, i)
         local x0, y0 = Corner(tile)
-        if not p then return { x0, y0, 0 } end
-        return { x0 + (p.ax + p.bx) / 2, y0 + (p.ay + p.by) / 2, p.height }
+        if not p then return x0, y0, 0 end
+        return x0 + (p.ax + p.bx) / 2, y0 + (p.ay + p.by) / 2, p.height
     end
     local function Segment(tile, i)
         local p = PortalOf(tile, i)
@@ -446,17 +481,7 @@ local function Search(tiles, from, to, pause, faction, danger)
         if not p then return { { x0, y0, 0 }, { x0, y0, 0 } } end
         return { { x0 + p.ax, y0 + p.ay, p.height }, { x0 + p.bx, y0 + p.by, p.height } }
     end
-    -- the regions either side of a portal, each with the portal's index among its own
-    local function Sides(tile, i)
-        local p = PortalOf(tile, i)
-        if not p then return NONE end
-        local mine = { tile = tile, region = p.region, index = i }
-        if p.side == SIDE_HERE then return { mine, { tile = tile, region = p.other, index = i } } end
-        local there = Neighbour(tile, p.side)
-        local copy = PortalOf(there, p.other)
-        if not copy then return { mine } end
-        return { mine, { tile = there, region = copy.region, index = p.other } }
-    end
+    local function RegionKey(tile, r) return InfoOf(tile).id * 65536 + r end
 
     local start, goal = Place(tiles, from), Place(tiles, to)
     if #start == 0 then return nil, "off-start" end
@@ -468,90 +493,108 @@ local function Search(tiles, from, to, pause, faction, danger)
         end
     end
     local goalSet = {}
-    for _, g in ipairs(goal) do goalSet[g.tile .. "@" .. g.region] = g end
+    for _, g in ipairs(goal) do goalSet[RegionKey(g.tile, g.region)] = g end
     local goalPoint = { to.x, to.y, to.z or goal[1].height }
     local startPoint = { from.x, from.y, from.z or start[1].height }
     local best, refs, done, heap = {}, {}, {}, {}
     local GOAL = "goal"
 
-    local function Offer(key, step, at)
+    -- a step is made only when it improves on the best known: most offers are turned down
+    -- via: the stored way's corners, kept by reference (its region, pair and direction) and built for the way found
+    local function Offer(key, cost, from_, swim, yards, origin, arrived, viaRegion, viaPair, viaBack, viaTile, ax, ay)
         local known = best[key]
-        if known and step.cost >= known.cost then return end
-        best[key] = step
-        Push(heap, step.cost + (key == GOAL and 0 or Flat(at, goalPoint) * Walking.MIN_GROUND_COST), key)
+        if known and cost >= known.cost then return end
+        best[key] = { cost = cost, from = from_, swim = swim, yards = yards, origin = origin, arrived = arrived,
+            viaRegion = viaRegion, viaPair = viaPair, viaBack = viaBack, viaTile = viaTile }
+        local h = 0
+        if key ~= GOAL then
+            local dx, dy = ax - goalPoint[1], ay - goalPoint[2]
+            h = sqrt(dx * dx + dy * dy) * Walking.MIN_GROUND_COST
+        end
+        Push(heap, cost + h, key)
     end
 
     for _, s in ipairs(start) do
         local region = RegionOf(s.tile, s.region)
         if region then
             local weight = (region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)) * TownCost(region)
-            if goalSet[s.tile .. "@" .. s.region] then
+            if goalSet[RegionKey(s.tile, s.region)] then
                 local d = Flat(startPoint, goalPoint)
-                Offer(GOAL, { cost = d * weight, via = NONE, swim = region.swim and d or 0, yards = d, origin = s, arrived = s }, goalPoint)
+                Offer(GOAL, d * weight, nil, region.swim and d or 0, d, s, s, nil, nil, nil, nil, goalPoint[1], goalPoint[2])
             end
             for _, p in ipairs(region.portals) do
                 local key = KeyOf(s.tile, p)
-                local at = Middle(s.tile, p)
-                local d = Flat(startPoint, at)
-                refs[key] = refs[key] or { tile = s.tile, portal = p }
-                Offer(key, { cost = d * weight, via = NONE, swim = region.swim and d or 0, yards = d, origin = s }, at)
+                local mx, my = MidXY(s.tile, p)
+                local dx, dy = startPoint[1] - mx, startPoint[2] - my
+                local d = sqrt(dx * dx + dy * dy)
+                if not refs[key] then refs[key] = { tile = s.tile, portal = p } end
+                Offer(key, d * weight, nil, region.swim and d or 0, d, s, nil, nil, nil, nil, nil, mx, my)
+            end
+        end
+    end
+
+    -- from a portal, on through one of the regions either side of it
+    local here, key
+    local function Through(tile, regionIndex, portalIndex, ax, ay)
+        local region = RegionOf(tile, regionIndex)
+        if not region then return end
+        -- a straight stretch in the region costs its ground's multiplier; a stored way is priced already
+        local town = TownCost(region)
+        local weight = (region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)) * town
+        local wayWeight = (region.swim and Walking.SWIM_COST or 1) * town
+        local arrived = goalSet[RegionKey(tile, regionIndex)]
+        if arrived then
+            local dx, dy = ax - goalPoint[1], ay - goalPoint[2]
+            local d = sqrt(dx * dx + dy * dy)
+            Offer(GOAL, here.cost + d * weight, key, here.swim + (region.swim and d or 0), here.yards + d, here.origin, arrived,
+                nil, nil, nil, nil, goalPoint[1], goalPoint[2])
+        end
+        local portals = region.portals
+        local k, i = #portals, nil
+        for n = 1, k do if portals[n] == portalIndex then i = n break end end
+        if not i then return end
+        for j = 1, k do
+            if j ~= i then
+                local pair = PairIndex(min(i, j), max(i, j), k)
+                local length = region.costs[pair] or huge
+                if length < huge then
+                    local nextPortal = portals[j]
+                    local nextKey = KeyOf(tile, nextPortal)
+                    local cost = here.cost + length * wayWeight
+                    local known = best[nextKey]
+                    if not known or cost < known.cost then
+                        if not refs[nextKey] then refs[nextKey] = { tile = tile, portal = nextPortal } end
+                        local mx, my = MidXY(tile, nextPortal)
+                        Offer(nextKey, cost, key, here.swim + (region.swim and length or 0), here.yards + length, here.origin, nil,
+                            region, pair, i > j, tile, mx, my)
+                    end
+                end
             end
         end
     end
 
     local searched = 0
     while true do
-        local key = Pop(heap)
+        key = Pop(heap)
         if not key then break end
-        local here = best[key]
+        here = best[key]
         if here and not done[key] then
             done[key] = true
             if key == GOAL then break end
             searched = searched + 1
             if pause and searched % 16 == 0 then pause() end
             local ref = refs[key]
-            if ref then
-                local at = Middle(ref.tile, ref.portal)
-                for _, side in ipairs(Sides(ref.tile, ref.portal)) do
-                    local region = RegionOf(side.tile, side.region)
-                    if region then
-                        -- a straight stretch in the region costs its ground's multiplier; a stored way is priced already
-                        local town = TownCost(region)
-                        local weight = (region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)) * town
-                        local wayWeight = (region.swim and Walking.SWIM_COST or 1) * town
-                        local arrived = goalSet[side.tile .. "@" .. side.region]
-                        if arrived then
-                            local d = Flat(at, goalPoint)
-                            Offer(GOAL, { cost = here.cost + d * weight, from = key, via = NONE, swim = here.swim + (region.swim and d or 0),
-                                yards = here.yards + d, origin = here.origin, arrived = arrived }, goalPoint)
-                        end
-                        local k, i = #region.portals, nil
-                        for n, p in ipairs(region.portals) do if p == side.index then i = n break end end
-                        if i then
-                            local x0, y0 = Corner(side.tile)
-                            for j = 1, k do
-                                if j ~= i then
-                                    local a, b = min(i, j), max(i, j)
-                                    local pair = PairIndex(a, b, k)
-                                    local length = region.costs[pair] or huge
-                                    if length < huge then
-                                        local stored = region.corners[pair] or NONE
-                                        local via = {}
-                                        if i < j then
-                                            for n = 1, #stored do via[n] = { x0 + stored[n][1], y0 + stored[n][2], region.height } end
-                                        else
-                                            for n = #stored, 1, -1 do via[#via + 1] = { x0 + stored[n][1], y0 + stored[n][2], region.height } end
-                                        end
-                                        local nextPortal = region.portals[j]
-                                        local nextKey = KeyOf(side.tile, nextPortal)
-                                        refs[nextKey] = refs[nextKey] or { tile = side.tile, portal = nextPortal }
-                                        Offer(nextKey, { cost = here.cost + length * wayWeight, from = key, via = via, swim = here.swim + (region.swim and length or 0),
-                                            yards = here.yards + length, origin = here.origin }, Middle(side.tile, nextPortal))
-                                    end
-                                end
-                            end
-                        end
-                    end
+            local p = ref and PortalOf(ref.tile, ref.portal)
+            if p then
+                local ax, ay = MidXY(ref.tile, ref.portal)
+                -- the regions either side of the portal, each with the portal's index among its own
+                Through(ref.tile, p.region, ref.portal, ax, ay)
+                if p.side == SIDE_HERE then
+                    Through(ref.tile, p.other, ref.portal, ax, ay)
+                else
+                    local there = Neighbour(ref.tile, p.side)
+                    local copy = PortalOf(there, p.other)
+                    if copy then Through(there, copy.region, p.other, ax, ay) end
                 end
             end
         end
@@ -563,7 +606,19 @@ local function Search(tiles, from, to, pause, faction, danger)
     -- back from the goal: each portal crossed (anywhere along it) and each corner passed (exactly)
     local crossed, step = {}, finish
     while step and step.from do
-        for n = #step.via, 1, -1 do crossed[#crossed + 1] = { step.via[n], step.via[n] } end
+        -- the corners of the stored way this step took, last first (built now, for the way found only)
+        local region = step.viaRegion
+        if region then
+            local tile = tiles(step.viaTile)
+            local stored = tile and Corners(tile, region, step.viaPair) or NONE
+            local x0, y0 = Corner(step.viaTile)
+            local m = #stored
+            for n = 1, m do
+                local c = stored[step.viaBack and n or (m - n + 1)]
+                local pt = { x0 + c[1], y0 + c[2], region.height }
+                crossed[#crossed + 1] = { pt, pt }
+            end
+        end
         local ref = refs[step.from]
         if ref then crossed[#crossed + 1] = Segment(ref.tile, ref.portal) end
         step = best[step.from]
