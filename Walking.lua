@@ -20,7 +20,9 @@
 -- them) and, when known, the height, which picks the floor where floors stack.
 --
 -- Searches run in a coroutine, a few milliseconds a frame and never in
--- combat (Request); FindWay runs one at once, for the tests. The format and
+-- combat (Request); FindWay runs one at once, for the tests. Each search in
+-- play that ends fires FG_WALK_SEARCHED with what it found and what it cost
+-- (Run.lua records it as WAY). The format and
 -- the search follow codex's reference router, which nav check holds to
 -- recorded walks: change them together.
 -- ============================================================
@@ -576,6 +578,17 @@ local function Now()
     return f and f() or nil
 end
 
+--- A search in play has ended: what it found and what it cost, for the recording (FG_WALK_SEARCHED:
+--- { map, way, why, height = the goal had one, secs = from asked to answered, peakMs = the most
+--- one frame spent on it }).
+local function Searched(job, way, why)
+    if not ns.Events then return end
+    ns.Events:Fire("FG_WALK_SEARCHED", {
+        map = job.map, way = way, why = why, height = job.to.z ~= nil,
+        secs = job.asked and ns.Now() - job.asked or nil, peakMs = job.peak,
+    })
+end
+
 local function Run()
     if #jobs == 0 then
         if runner then runner:SetScript("OnUpdate", nil) end
@@ -590,6 +603,7 @@ local function Run()
             if not tiles then
                 table.remove(jobs, 1)
                 job.done = true
+                Searched(job, nil, "no-map")
                 pcall(job.callback, nil, "no-map")
             else
                 job.co = coroutine.create(function()
@@ -601,18 +615,26 @@ local function Run()
             end
         end
         if job.co then
+            local t0 = Now()
             local ok, way, why = coroutine.resume(job.co)
+            local t1 = Now()
+            -- one resume is one frame's share: the longest is what the search cost a frame at worst
+            if t0 and t1 then job.peak = max(job.peak or 0, t1 - t0) end
             if not ok then
                 table.remove(jobs, 1)
                 job.done = true
                 ns.ReportOnce("walking-search", way)
+                Searched(job, nil, "error")
                 pcall(job.callback, nil, "error")
             elseif coroutine.status(job.co) == "dead" then
                 table.remove(jobs, 1)
                 job.done = true
                 Remember(job.key, way)
                 Trim()
-                if not job.cancelled then pcall(job.callback, way, why) end
+                if not job.cancelled then
+                    Searched(job, way, why)
+                    pcall(job.callback, way, why)
+                end
             else
                 return     -- out of time this frame
             end
@@ -638,7 +660,7 @@ function Walking:Request(mapID, from, to, callback)
             return job
         end
     end
-    local job = { key = key, map = mapID, from = from, to = to, callback = callback }
+    local job = { key = key, map = mapID, from = from, to = to, callback = callback, asked = ns.Now() }
     jobs[#jobs + 1] = job
     if not runner then runner = CreateFrame("Frame") end
     runner:SetScript("OnUpdate", Run)

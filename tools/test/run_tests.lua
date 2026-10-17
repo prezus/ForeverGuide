@@ -5119,8 +5119,22 @@ section("field checks: /fg tests opens the checks with the planner and recording
     local step = G.active.steps[1]
     check(step.type == "TRAVEL" and step.map == 1455, "the first check is a trip the planner plans: to Ironforge")
     -- a check into another zone ends at its place, not at the zone line
-    local into = G.active.steps[2]
-    check(into.map ~= step.map and into.arrive == true and not G:IsZoneEntry(into, 2), "a check into another zone waits for the arrival, not the zone line")
+    local into = G.active.steps[3]
+    check(into.map ~= step.map and into.arrive == true and not G:IsZoneEntry(into, 3), "a check into another zone waits for the arrival, not the zone line")
+    -- the floor checks name their NPC, whose spawn height the travel data has, so the walk ends on his floor
+    local floors = 0
+    for _, s in ipairs(G.active.steps) do
+        if s.npc then
+            floors = floors + 1
+            local h = ns.TravelDB and ns.TravelDB.heights and ns.TravelDB.heights[s.npc]
+            check(type(h) == "table" and #h >= 4, "the floor check to " .. s.text .. " has its NPC's height in the travel data")
+        end
+    end
+    check(floors >= 2, "two floor checks: under a mountain and over water (" .. floors .. ")")
+    check(table.concat(printed, "\n"):find("walking maps", 1, true) ~= nil, "it says which walking maps loaded")
+    local perf = {}
+    for _, e in ipairs(ns.char.run.entries) do if e.e == "PERF" then perf[#perf + 1] = e end end
+    check(#perf == 1 and perf[1].action == "start", "the recording keeps the addon's cost as the checks start (PERF start)")
     -- every entry recorded names the check being followed, from the run's start
     local first = ns.char.run and ns.char.run.entries[1]
     check(first and first.e == "START" and first.g == "FIELD_CHECKS_ALLIANCE" and first.s == 1, "the run's start names the checks and their first step")
@@ -5132,7 +5146,11 @@ section("field checks: /fg tests opens the checks with the planner and recording
     ns.Commands:Run("tests")
     check(not G.progress.done[1] and not G.progress.done[2] and G:GetCurrentStep().index == 1, "/fg tests again starts the checks over from the first, nothing done")
 
+    local run = ns.char.run
     ns.Commands:Run("tests off")
+    local ended
+    for _, e in ipairs(run and run.entries or {}) do if e.e == "PERF" and e.action == "end" then ended = true end end
+    check(ended, "and as they end (PERF end), before recording goes back off")
     check(ns.char.fieldTests == nil and ns.db.nav.travelPlanner == false and ns.db.recordRuns == false, "/fg tests off turns the planner and recording back off")
     check((G.active and G.active.id) == before, "and goes back to the guide that was open (" .. tostring(G.active and G.active.id) .. ")")
 
@@ -5230,6 +5248,63 @@ section("walking paths: searches run over frames, wait out combat, and can be ca
     for _ = 1, 200 do MOCK_ADVANCE(0.01) end
     check(not called, "a cancelled search never calls back")
     _G.C_EncodingUtil, _G.debugprofilestop = was, wasClock
+end)
+
+section("walking paths: a recording keeps each search, what it found and what it cost a frame (WAY)", function()
+    local W, R = ns.Walking, ns.Run
+    local was = { codec = rawget(_G, "C_EncodingUtil"), clock = rawget(_G, "debugprofilestop"), record = ns.db.recordRuns, run = ns.char.run }
+    _G.C_EncodingUtil = TestCodec()
+    local ms = 0
+    _G.debugprofilestop = function() ms = ms + 1 return ms end
+    ns.db.recordRuns, ns.char.run = true, nil
+    R:Start()
+    need(R:State() == "recording", "a run records")
+    W:Forget()
+    local cases = dofile(root .. "tools/test/fixtures/nav_ways.lua")
+    local found, none
+    for _, c in ipairs(cases) do
+        if not found and not c.none then found = c end
+        if not none and c.none == "NoWalk" then none = c end
+    end
+    need(found and none, "the reference has a way and a no-walk")
+    local function ask(c)
+        local answered = false
+        W:Request(c.map, c.from, c.to, function() answered = true end)
+        for _ = 1, 4000 do
+            if answered then break end
+            MOCK_ADVANCE(0.01)
+        end
+        local entries = ns.char.run.entries
+        return entries[#entries], answered
+    end
+    local e, answered = ask(found)
+    need(answered, "the search answers")
+    local way = W:Known(found.map, found.from, found.to)
+    check(e and e.e == "WAY" and e.action == (found.to.z and "found-z" or "found"), "a way found is recorded as WAY (" .. tostring(e and e.action) .. ")")
+    check(e and way and e.r == math.floor(way.yards + 0.5) and e.f == #way.points - 2, "with its yards and its corners")
+    check(e and e.secs and e.secs > 0, "and how long it took to answer (" .. tostring(e and e.secs) .. " s)")
+    check(e and e.cost and e.cost >= 1 and e.cost <= W.BUDGET_MS + 3, "and the most one frame spent on it, near the budget (" .. tostring(e and e.cost) .. " ms)")
+    e = ask(none)
+    check(e and e.e == "WAY" and e.action == "no-walk" and e.r == 0, "no way is recorded too, with why (" .. tostring(e and e.action) .. ")")
+    local count = 0
+    for _, x in ipairs(ns.char.run.entries) do if x.e == "WAY" then count = count + 1 end end
+    W:Request(found.map, found.from, found.to, function() end)
+    local after = 0
+    for _, x in ipairs(ns.char.run.entries) do if x.e == "WAY" then after = after + 1 end end
+    check(after == count, "a way already known is not searched, and not recorded again")
+    local allowed = { e = 1, t = 1, lvl = 1, m = 1, x = 1, y = 1, g = 1, s = 1, secs = 1, r = 1, action = 1, f = 1, cost = 1 }
+    local stray
+    for _, x in ipairs(ns.char.run.entries) do
+        if x.e == "WAY" or x.e == "PERF" then for k in pairs(x) do if not allowed[k] then stray = k end end end
+    end
+    R:Perf("start")
+    local p = ns.char.run.entries[#ns.char.run.entries]
+    check(p.e == "PERF" and p.action == "start", "PERF records the addon's cost")
+    for k in pairs(p) do if not allowed[k] then stray = k end end
+    check(stray == nil, "WAY and PERF use only fields the share allowlist and the Companion carry (" .. tostring(stray) .. ")")
+    check(#tostring(e.action) <= 10 and #"off-start" <= 10, "their actions fit the allowlist's 10 characters")
+    _G.C_EncodingUtil, _G.debugprofilestop = was.codec, was.clock
+    ns.db.recordRuns, ns.char.run = was.record, was.run
 end)
 
 section("walking paths: a map that does not match its manifest is left out, reported once", function()
