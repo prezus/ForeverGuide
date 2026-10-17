@@ -29,14 +29,15 @@ local Dots = ns:NewModule("RouteDots")
 local Plain, PlainNumber, Safe = ns.Plain, ns.PlainNumber, ns.Safe
 local sqrt, cos, sin, floor = math.sqrt, math.cos, math.sin, math.floor
 
-Dots.WORLD_MAX, Dots.WORLD_SPACING, Dots.WORLD_SIZE = 300, 9, 4   -- dots; on-screen pixels
-Dots.MINI_MAX, Dots.MINI_SPACING, Dots.MINI_SIZE = 120, 9, 4       -- dots; on-screen pixels
-Dots.RIM = 1                                                       -- the dark rim round each dot, pixels
-Dots.LATER_ALPHA = 0.4                                             -- the legs after the current one
+-- Sized to read on Elwynn's greens and the parchment map alike: 4 px dots on a 1 px rim were lost there.
+Dots.WORLD_MAX, Dots.WORLD_SPACING, Dots.WORLD_SIZE = 300, 11, 7  -- dots; on-screen pixels
+Dots.MINI_MAX, Dots.MINI_SPACING, Dots.MINI_SIZE = 120, 10, 6      -- dots; on-screen pixels
+Dots.RIM = 1.5                                                     -- the dark rim round each dot, pixels
+Dots.LATER_ALPHA = 0.5                                             -- the legs after the current one
 --- Each kind of leg's colour; a ride not named here is a boat's.
 Dots.COLORS = {
-    walk = { 0.9, 0.73, 0.4 },
-    flight = { 0.42, 0.85, 0.6 },
+    walk = { 1, 0.84, 0.2 },
+    flight = { 0.3, 1, 0.55 },
     boat = { 0.58, 0.79, 1 },
     zeppelin = { 0.96, 0.68, 0.52 },
     tram = { 0.86, 0.79, 0.66 },
