@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: Street's Speed Demon v5, a route any Alliance character can choose in the route list, starting in Coldridge Valley: latest
 - Guides: Street's Speed Demon v4, a route any Alliance character can choose in the route list, starting in Coldridge Valley: test
 - The travel planner keeps its way through the loading screen of the Deeprun Tram or a Hearthstone. The game says you are alive again after a loading screen, and the planner took that as coming back from the dead and planned afresh before it knew where you were, losing the way. Recordings now also note when a planned way is gone.
 - `/fg dots` says why the planned way's dots show or not: the planner, the target, the route, and the dots drawn on the world map and the minimap.
