@@ -450,11 +450,9 @@ function Nav:CurrentLeg()
     return r and r.legs[r.index]
 end
 
---- The player's run speed in yards a second (a mount counts), else a running character's.
+--- The player's run speed in yards a second (a mount counts): the game's, else the last it gave (Travel.RunSpeed).
 function Nav:RunSpeed()
-    local _, run = Safe(rawget(_G, "GetUnitSpeed"), "player")
-    run = PlainNumber(run)
-    return (run and run > 0) and run or ns.Travel.DEFAULT_SPEED
+    return ns.Travel.RunSpeed()
 end
 
 --- Seconds to the target from here: what is left of the route, else the walk; nil when unknown.
@@ -553,6 +551,9 @@ function Nav:RemainingSeconds(state, speed)
         if k == r.index and leg.kind == "walk" and state and state.leg and state.leg.distance then
             -- along its way, the yards are the walk's own; a straight line is a guess
             total = total + state.leg.distance * (state.leg.onWay and 1 or detour) / speed
+        elseif k == r.index and leg.kind == "fly" and self:FlightLeft(leg) then
+            -- in the air: the flight's own seconds, as much of them as is left of its path
+            total = total + self:FlightLeft(leg)
         elseif k == r.index and leg.kind ~= "walk" then
             -- under way (or waiting at the dock): what is left of the leg's own seconds
             total = total + math.max(0, leg.seconds - (ns.Now() - (r.legAt or ns.Now())))
@@ -561,6 +562,19 @@ function Nav:RemainingSeconds(state, speed)
         end
     end
     return total
+end
+
+--- Seconds left of a flight the player is on, from how much of its taxi path is left: steady whatever the
+--- flight's pace (#742). nil off a taxi, or without the path.
+function Nav:FlightLeft(leg)
+    if Plain(Safe(rawget(_G, "UnitOnTaxi"), "player")) ~= true then return nil end
+    local runs = ns.Travel.RidePath(leg)
+    local px, py, pInstance = ns.Player:GetWorldPosition()
+    if not runs or not px then return nil end
+    local left, whole = ns.Travel.PathLeft(runs, pInstance, px, py)
+    if not left or whole <= 0 then return nil end
+    local board = ns.TravelDB and ns.TravelDB.flightBoard or 0
+    return math.max(0, leg.seconds - board) * left / whole
 end
 
 --- While walking, plan again now and then, and take the new way only when it is clearly faster.

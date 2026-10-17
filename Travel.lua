@@ -153,7 +153,7 @@ local function Build(from, to, opts)
             local a = Add({ kind = "board", pos = link.from, w = wa })
             local b = Add({ kind = "land", pos = link.to, w = wb })
             local seconds = (link.wait or 0) + (link.ride or 0)
-            Edge(a, b, seconds, seconds, { kind = link.kind, name = link.name, wait = link.wait, ride = link.ride })
+            Edge(a, b, seconds, seconds, { kind = link.kind, name = link.name, wait = link.wait, ride = link.ride, path = link.path })
         end
     end
 
@@ -260,9 +260,10 @@ function Travel:Plan(from, to, opts)
         local a, b, kind = nodes[step.from], nodes[step.to], step.leg.kind
         local span = seconds[step.to] - seconds[step.from]
         if kind == "board" then
-            flight = { kind = "fly", from = a.pos, seconds = span, node = a.node }
+            flight = { kind = "fly", from = a.pos, seconds = span, node = a.node, hops = { a.node } }
         elseif kind == "hop" and flight then
             flight.seconds = flight.seconds + span
+            flight.hops[#flight.hops + 1] = b.node
         elseif kind == "land" and flight then
             flight.to, flight.name, flight.toNode = b.pos, b.name, b.node
             legs[#legs + 1] = flight
@@ -272,10 +273,58 @@ function Travel:Plan(from, to, opts)
                 legs[#legs + 1] = { kind = "walk", from = a.pos, to = b.pos, seconds = span }
             end
         else
-            legs[#legs + 1] = { kind = kind, from = a.pos, to = b.pos, seconds = span, wait = step.leg.wait, name = step.leg.name, spell = step.leg.spell }
+            legs[#legs + 1] = { kind = kind, from = a.pos, to = b.pos, seconds = span, wait = step.leg.wait, name = step.leg.name, spell = step.leg.spell, path = step.leg.path }
         end
     end
     return { legs = legs, seconds = seconds[target] }
+end
+
+-- ------------------------------------------------------------
+-- A ride's path: a flight's taxi path, a boat's or zeppelin's sailing path (TravelDB, #742), as runs
+-- { map, x1, y1, x2, y2, ... } in world yards, one a world map
+-- ------------------------------------------------------------
+--- A ride leg's path: its link's own, or a flight's hops' taxi paths end to end; nil when TravelDB has none.
+function Travel.RidePath(leg)
+    if not leg then return nil end
+    if leg.path then return leg.path end
+    local fp = leg.kind == "fly" and leg.hops and ns.TravelDB and ns.TravelDB.flightPaths
+    if not fp then return nil end
+    local out = {}
+    for i = 1, #leg.hops - 1 do
+        local runs = fp[leg.hops[i]] and fp[leg.hops[i]][leg.hops[i + 1]]
+        if not runs then return nil end
+        for _, run in ipairs(runs) do out[#out + 1] = run end
+    end
+    return #out > 0 and out or nil
+end
+
+--- How much of a path is left from (x, y) on world map `inst`: the yards from the nearest point of the
+--- path on that map to its end, and the whole path's yards; nil when the path does not cross that map.
+function Travel.PathLeft(runs, inst, x, y)
+    local total, lengths = 0, {}
+    for r, run in ipairs(runs) do
+        local len = 0
+        for i = 4, #run - 1, 2 do len = len + math.sqrt((run[i] - run[i - 2]) ^ 2 + (run[i + 1] - run[i - 1]) ^ 2) end
+        lengths[r], total = len, total + len
+    end
+    local best, left = math.huge, nil
+    local after = total
+    for r, run in ipairs(runs) do
+        after = after - lengths[r]
+        if run[1] == inst then
+            local tail = lengths[r]
+            for i = 4, #run - 1, 2 do
+                local ax, ay, bx, by = run[i - 2], run[i - 1], run[i], run[i + 1]
+                local seg = math.sqrt((bx - ax) ^ 2 + (by - ay) ^ 2)
+                local f = seg > 0 and math.max(0, math.min(1, ((x - ax) * (bx - ax) + (y - ay) * (by - ay)) / (seg * seg))) or 0
+                local d = math.sqrt((ax + (bx - ax) * f - x) ^ 2 + (ay + (by - ay) * f - y) ^ 2)
+                if d < best then best, left = d, tail - seg * f + after end
+                tail = tail - seg
+            end
+        end
+    end
+    if not left then return nil end
+    return left, total
 end
 
 -- ------------------------------------------------------------
@@ -363,16 +412,29 @@ function Travel:Teleports()
     return out
 end
 
+local lastSpeed   -- the last run speed the game gave (session state, never saved)
+
+--- The player's run speed in yards a second, a mount counted: the game's, else the last it gave (it gives
+--- none, or a secret value, in combat), else a running character's before any.
+function Travel.RunSpeed()
+    local _, run = Safe(rawget(_G, "GetUnitSpeed"), "player")
+    run = PlainNumber(run)
+    if run and run > 0 and run < math.huge then lastSpeed = run end
+    return lastSpeed or Travel.DEFAULT_SPEED
+end
+
+--- Forget the last run speed (the tests).
+function Travel.ForgetSpeed() lastSpeed = nil end
+
 --- Plan's options for this character now: faction, known flight points, run speed, and the
 --- Hearthstone and teleports unless the player turned them off (nav.useHearth).
 function Travel:Options()
     local useHearth = not (ns.db and ns.db.nav and ns.db.nav.useHearth == false)
     local bind = useHearth and self:Bind() or nil
-    local _, run = Safe(rawget(_G, "GetUnitSpeed"), "player")
     return {
         faction = ns.Player:GetFaction(),
         known = ns.Reminders and ns.Reminders.Known and ns.Reminders.Known() or {},
-        speed = PlainNumber(run),
+        speed = self.RunSpeed(),
         bind = bind,
         bindName = bind and bind.name,
         hearthWait = bind and self:HearthWait() or nil,
