@@ -5078,6 +5078,53 @@ section("travel planner: the run speed keeps the last the game gave, so a mounte
     T.ForgetSpeed()
 end)
 
+section("travel planner: a flight that lands somewhere else is planned afresh from there", function()
+    local Nav, M = ns.Navigation, MOCK
+    local db = travelFixture()
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance, known = ns.Reminders.Known() }
+    local function moveTo(p)
+        local b = boxes[p.map]
+        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
+        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+        ns.Player.cache.mapID = nil
+    end
+    local known = ns.Reminders.Known()
+    for _, n in ipairs({ "Stormwind, Elwynn", "Darkshire, Duskwood", "Sentinel Hill, Westfall" }) do known[n] = true end
+    withTravelWorld(db, function()
+        -- at Stormwind's flight master, bound for Darkshire's: a flight
+        moveTo({ map = 1453, x = 70.95, y = 72.51 })
+        Nav:SetTarget({ map = 1431, x = 77.49, y = 44.29, label = "Darkshire" })
+        local route = Nav.route
+        need(route and route.legs[route.index].kind == "fly", "Stormwind to Darkshire is a flight")
+        -- waiting at the flight master, or in the air: the route holds
+        MOCK_ADVANCE(6)
+        Nav:Update()
+        MOCK_ADVANCE(0.1)
+        check(Nav.route == route, "at the flight master the route holds")
+        M.onTaxi = true
+        moveTo({ map = 1436, x = 56.55, y = 52.64 })
+        MOCK_ADVANCE(6)
+        Nav:Update()
+        MOCK_ADVANCE(0.1)
+        check(Nav.route == route, "in the air, wherever the taxi is, the route holds")
+        -- landed at Sentinel Hill instead
+        M.onTaxi = false
+        MOCK_ADVANCE(6)
+        Nav:Update()
+        MOCK_ADVANCE(0.1)
+        local again = Nav.route
+        check(again ~= nil and again ~= route, "landed somewhere else, the way is planned afresh")
+        local first = again and again.legs[again.index]
+        check(first and first.from and first.from.map == 1436, "from where the player landed, Westfall (" .. tostring(first and first.from and first.from.map) .. ")")
+    end)
+    M.onTaxi = false
+    for _, n in ipairs({ "Stormwind, Elwynn", "Darkshire, Duskwood", "Sentinel Hill, Westfall" }) do known[n] = was.known[n] end
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
+end)
+
 section("travel planner: its switches in the options and /fg travel", function()
     local Nav, M = ns.Navigation, MOCK
     local panel = rawget(_G, "ForeverGuideOptionsPanel")
