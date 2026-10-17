@@ -5078,6 +5078,25 @@ section("travel planner: the run speed keeps the last the game gave, so a mounte
     T.ForgetSpeed()
 end)
 
+section("travel planner: a way of fewer changes wins unless another saves real time", function()
+    local T = ns.Travel
+    local db = travelFixture()
+    withTravelWorld(db, function()
+        local all = {}
+        for _, n in pairs(db.flightNodes) do if n.faction ~= "H" then all[n.name] = true end end
+        -- Sentinel Hill to Thelsamar: one flight on through Stormwind and Ironforge, not a flight, the tram and another
+        local plan = T:Plan({ map = 1436, x = 56.55, y = 52.64 }, { map = 1432, x = 33.9, y = 50.9 }, { faction = "Alliance", known = all })
+        need(plan, "Sentinel Hill to Thelsamar has a way")
+        check(#plan.legs == 1 and plan.legs[1].kind == "fly" and plan.legs[1].name == "Thelsamar, Loch Modan",
+            "one flight to Thelsamar, its hops through Stormwind and Ironforge on the same taxi (" .. #plan.legs .. " legs)")
+        -- Stormwind's flight master to Ironforge: the tram, which saves its change and more
+        plan = T:Plan({ map = 1453, x = 70.95, y = 72.51 }, { map = 1455, x = 50, y = 50 }, { faction = "Alliance", known = all })
+        local tram = false
+        for _, l in ipairs(plan and plan.legs or {}) do if l.kind == "tram" then tram = true end end
+        check(tram, "Stormwind to Ironforge still takes the tram: it saves more than its change")
+    end)
+end)
+
 section("travel planner: a flight that lands somewhere else is planned afresh from there", function()
     local Nav, M = ns.Navigation, MOCK
     local db = travelFixture()
