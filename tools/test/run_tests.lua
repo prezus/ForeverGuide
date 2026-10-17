@@ -5361,6 +5361,9 @@ section("walking paths: a walk to an NPC ends on its floor where floors stack (#
         need(Nav.walk.way, "the way is found")
         check(math.abs(Nav.walk.way.goalHeight - andron.z) <= 5, "and ends on Andron Gant's floor (" .. tostring(Nav.walk.way.goalHeight) .. ")")
 
+        local atTarget = Nav:WalkEnd({ inst = 0, x = Nav.target.worldX, y = Nav.target.worldY })
+        local platform = Nav:WalkEnd({ inst = 0, x = 10, y = 20, z = 99.9 })
+        check(atTarget.z == andron.z and platform.z == 99.9, "a walk ends at its own height (a zeppelin's platform), or the target's NPC's at the target")
         Nav:SetTarget({ map = 1458, x = ax, y = ay, label = "Andron Gant", npcs = { 9999 } })
         check(Nav.target.height == nil, "an NPC with no spawn near the target gives it no height")
     end)

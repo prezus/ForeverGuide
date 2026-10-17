@@ -1,7 +1,7 @@
 # Changelog
 
 ## Unreleased
-- Where floors stack (the Undercity's quarters, a tower's rooms), a walk to a quest giver, a trainer or a vendor ends on their floor, not the one above or below: the walk takes the NPC's height from the travel data.
+- Where floors stack (the Undercity's quarters, a tower's rooms), a walk to a quest giver, a trainer or a vendor ends on their floor, not the one above or below: the walk takes the NPC's height from the travel data. A walk to a zeppelin ends on its tower's platform, and one to a boat on the pier, where the travel data now boards them.
 - Walks follow the ground. With the travel planner on, a walk now goes round walls, cliffs, fences and water instead of straight through them: the arrow points at the next corner of the way, the dots on the world map and the minimap follow it, and the time left is the way's own length. The way is worked out a little at a time in the background, never in combat, from walking maps of Eastern Kingdoms, Kalimdor and Zephras Isle that come with the addon; until it is found, or where the maps have no way, the walk is a straight line as before. `/fg dots` says whether the current walk follows its way.
 - Guides: Street's Speed Demon v5, a route any Alliance character can choose in the route list, starting in Coldridge Valley: latest
 - Guides: Street's Speed Demon v4, a route any Alliance character can choose in the route list, starting in Coldridge Valley: test

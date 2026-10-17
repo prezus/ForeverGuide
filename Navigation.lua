@@ -198,11 +198,12 @@ function Nav:SpawnHeight(inst, wx, wy, npcs)
     return best
 end
 
---- The end of a walk as the walking maps search it: with the target's height when it is the target.
+--- The end of a walk as the walking maps search it: with its own height when it has one (a
+--- zeppelin's platform, TravelDB's z), or the target's when it is the target.
 function Nav:WalkEnd(b)
     local t = self.target
-    local to = { x = b.x, y = b.y }
-    if t and t.height and t.worldX and t.instanceID == b.inst and Dist(b.x, b.y, t.worldX, t.worldY) < 1 then to.z = t.height end
+    local to = { x = b.x, y = b.y, z = b.z }
+    if not to.z and t and t.height and t.worldX and t.instanceID == b.inst and Dist(b.x, b.y, t.worldX, t.worldY) < 1 then to.z = t.height end
     return to
 end
 
