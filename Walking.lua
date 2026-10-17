@@ -47,6 +47,10 @@ Walking.SWIM_COST = 1.5      -- a swum yard costs this many walked ones
 -- gentle slope, steep slope, under a roof or a mountain. A region's stored ways are priced already.
 Walking.GROUND_COST = { [0] = 1, 0.8, 1.3, 2.5, 1.5 }
 Walking.MIN_GROUND_COST = 0.8 -- the smallest: the search's heuristic scales by it, so it never overstates
+-- A yard in the other faction's town costs a walker this many (codex src/nav/hubs.ts, #746): kept out of
+-- where the way round is there, never closed. A region's flags say whose town it is in.
+Walking.HOSTILE_TOWN_COST = 20
+local TOWN_BIT = { Alliance = 32, Horde = 64 }
 Walking.BUDGET_MS = 3        -- a search's time a frame
 Walking.MAX_TILES = 96       -- decoded tiles kept; past it the least recently used go
 Walking.MAX_WAYS = 200       -- ways remembered
@@ -121,6 +125,7 @@ local function Decode(s)
         local swim = flags % 2 == 1
         local ground = floor(flags / 2) % 8
         local pocket = floor(flags / 16) % 2 == 1
+        local towns = floor(flags / 32) % 4 * 32
         local height = i16() / 2
         local k = u8()
         local portals = {}
@@ -139,7 +144,7 @@ local function Decode(s)
             end
             corners[i] = list
         end
-        regions[r] = { swim = swim, ground = ground, pocket = pocket, height = height, portals = portals, costs = costs, corners = corners }
+        regions[r] = { swim = swim, ground = ground, pocket = pocket, towns = towns, height = height, portals = portals, costs = costs, corners = corners }
     end
     local portals = {}
     for p = 1, portalCount do
@@ -398,7 +403,14 @@ Walking.Funnel = Funnel
 --- The way from one point to another on one map's tiles: { points = { {x, y} }, yards, swimYards,
 --- startHeight, goalHeight }, or nil and why ("off-start", "off-goal", "no-walk"). `pause`, when
 --- given, is called now and then so a coroutine can yield.
-local function Search(tiles, from, to, pause)
+--- A yard's price for the walker in a region: the other faction's town costs more. `hostile` is the town bit
+--- of the walker's other side, or nil for none.
+local function TownCost(region, hostile)
+    return hostile and floor(region.towns / hostile) % 2 == 1 and Walking.HOSTILE_TOWN_COST or 1
+end
+
+local function Search(tiles, from, to, pause, faction)
+    local hostile = (faction == "Alliance" and TOWN_BIT.Horde) or (faction == "Horde" and TOWN_BIT.Alliance) or nil
     local function PortalOf(tile, i) local t = tiles(tile); return t and t.portals[i] end
     local function RegionOf(tile, r) local t = tiles(tile); return t and t.regions[r] end
 
@@ -454,7 +466,7 @@ local function Search(tiles, from, to, pause)
     for _, s in ipairs(start) do
         local region = RegionOf(s.tile, s.region)
         if region then
-            local weight = region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)
+            local weight = (region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)) * TownCost(region, hostile)
             if goalSet[s.tile .. "@" .. s.region] then
                 local d = Flat(startPoint, goalPoint)
                 Offer(GOAL, { cost = d * weight, via = NONE, swim = region.swim and d or 0, yards = d, origin = s, arrived = s }, goalPoint)
@@ -486,8 +498,9 @@ local function Search(tiles, from, to, pause)
                     local region = RegionOf(side.tile, side.region)
                     if region then
                         -- a straight stretch in the region costs its ground's multiplier; a stored way is priced already
-                        local weight = region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)
-                        local wayWeight = region.swim and Walking.SWIM_COST or 1
+                        local town = TownCost(region, hostile)
+                        local weight = (region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)) * town
+                        local wayWeight = (region.swim and Walking.SWIM_COST or 1) * town
                         local arrived = goalSet[side.tile .. "@" .. side.region]
                         if arrived then
                             local d = Flat(at, goalPoint)
@@ -564,11 +577,12 @@ local function Search(tiles, from, to, pause)
 end
 
 --- The way between two world points on a map, found at once (the tests; a search in play uses Request).
---- from, to: { x, y, z? } in world yards. Returns the way, or nil and why ("no-map" too).
-function Walking:FindWay(mapID, from, to)
+--- from, to: { x, y, z? } in world yards; faction ("Alliance", "Horde") prices the other's towns, none none.
+--- Returns the way, or nil and why ("no-map" too).
+function Walking:FindWay(mapID, from, to, faction)
     local tiles = Tiles(mapID)
     if not tiles then return nil, "no-map" end
-    local way, why = Search(tiles, from, to)
+    local way, why = Search(tiles, from, to, nil, faction)
     Trim()
     return way, why
 end
@@ -633,7 +647,7 @@ local function Run()
                     return Search(tiles, job.from, job.to, function()
                         local now = Now()
                         if now and began and now - began > Walking.BUDGET_MS then coroutine.yield() end
-                    end)
+                    end, job.faction)
                 end)
             end
         end
@@ -683,7 +697,9 @@ function Walking:Request(mapID, from, to, callback)
             return job
         end
     end
-    local job = { key = key, map = mapID, from = from, to = to, callback = callback, asked = ns.Now() }
+    -- the player's faction: the other's towns cost them more (a character's faction is its own for good, so ways remembered stay right)
+    local faction = ns.Player and ns.Player:GetFaction()
+    local job = { key = key, map = mapID, from = from, to = to, callback = callback, asked = ns.Now(), faction = faction }
     jobs[#jobs + 1] = job
     if not runner then runner = CreateFrame("Frame") end
     runner:SetScript("OnUpdate", Run)
