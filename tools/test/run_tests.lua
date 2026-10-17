@@ -5049,15 +5049,47 @@ section("route dots: a flight follows its taxi path, a boat its sailing path, an
     check(placed == 4, "10 yd at a 3 yd spacing is 4 dots, whatever the segments (" .. placed .. ")")
 end)
 
+section("travel planner: the run speed keeps the last the game gave, so a mounted time left holds (#743)", function()
+    local T, Nav = ns.Travel, ns.Navigation
+    local real = _G.GetUnitSpeed
+    local function gives(...)
+        local values = { ... }
+        _G.GetUnitSpeed = function() return unpack(values) end
+    end
+    T.ForgetSpeed()
+    gives(0, 0)
+    check(Nav:RunSpeed() == T.DEFAULT_SPEED, "before the game gives any speed, a running character's")
+    gives(0, 14)
+    check(Nav:RunSpeed() == 14, "mounted, the game's 14")
+    _G.GetUnitSpeed = function() error("not now") end
+    check(Nav:RunSpeed() == 14, "a failed read keeps the last speed")
+    gives()
+    check(Nav:RunSpeed() == 14, "no value (a secret one in combat reads as none) keeps it")
+    gives(0, 0)
+    check(Nav:RunSpeed() == 14, "a 0 keeps it")
+    check(T:Options().speed == 14, "and the planner plans with it")
+    gives(0, 7)
+    check(Nav:RunSpeed() == 7, "dismounted, the game's 7 again")
+    _G.GetUnitSpeed = real
+    T.ForgetSpeed()
+end)
+
 section("travel planner: its switches in the options and /fg travel", function()
     local Nav, M = ns.Navigation, MOCK
     local panel = rawget(_G, "ForeverGuideOptionsPanel")
     if panel and panel.scripts.OnShow then panel.scripts.OnShow(panel) end
     local travel, dots, hearth = ns.Options:GetWidget("travel"), ns.Options:GetWidget("routedots"), ns.Options:GetWidget("usehearth")
     need(travel and dots and hearth, "the options list the planner, its map dots and its use of the Hearthstone")
-    check(not travel:GetChecked() and dots:GetChecked() and hearth:GetChecked(),
-        "the planner is off by default (until it has been checked in game); its dots and the Hearthstone are on for when it is turned on")
-    check(ns.db.nav.travelPlanner == false, "and saved as off")
+    check(travel:GetChecked() and dots:GetChecked() and hearth:GetChecked(), "the planner, its dots and its use of the Hearthstone are on by default")
+    check(ns.db.nav.travelPlanner == true and ns.db.nav.plannerTurnedOn == true, "and saved as on")
+    -- a player who kept the old default (off) gets it on once; one who turns it off after keeps it off
+    ns.db.nav.travelPlanner, ns.db.nav.plannerTurnedOn = false, nil
+    ns.Database:Init()
+    check(ns.db.nav.travelPlanner == true, "the old default, off, is turned on once")
+    ns.db.nav.travelPlanner = false
+    ns.Database:Init()
+    check(ns.db.nav.travelPlanner == false, "turned off again after that, it stays off")
+    ns.db.nav.travelPlanner = true
 
     local db = travelFixture()
     local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
@@ -5068,7 +5100,7 @@ section("travel planner: its switches in the options and /fg travel", function()
     M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
     ns.Player.cache.mapID = nil
     withTravelWorld(db, function()
-        -- as a player who never touched it: off, and setting a target plans nothing
+        -- with the planner off, setting a target plans nothing
         ns.db.nav.travelPlanner = nil
         Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
         check(Nav.route == nil, "with the planner off the arrow points straight at the target, with no planned way")

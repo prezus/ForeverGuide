@@ -373,11 +373,9 @@ function Nav:CurrentLeg()
     return r and r.legs[r.index]
 end
 
---- The player's run speed in yards a second (a mount counts), else a running character's.
+--- The player's run speed in yards a second (a mount counts): the game's, else the last it gave (Travel.RunSpeed).
 function Nav:RunSpeed()
-    local _, run = Safe(rawget(_G, "GetUnitSpeed"), "player")
-    run = PlainNumber(run)
-    return (run and run > 0) and run or ns.Travel.DEFAULT_SPEED
+    return ns.Travel.RunSpeed()
 end
 
 --- Seconds to the target from here: what is left of the route, else the walk; nil when unknown.

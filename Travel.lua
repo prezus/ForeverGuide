@@ -412,16 +412,29 @@ function Travel:Teleports()
     return out
 end
 
+local lastSpeed   -- the last run speed the game gave (session state, never saved)
+
+--- The player's run speed in yards a second, a mount counted: the game's, else the last it gave (it gives
+--- none, or a secret value, in combat), else a running character's before any.
+function Travel.RunSpeed()
+    local _, run = Safe(rawget(_G, "GetUnitSpeed"), "player")
+    run = PlainNumber(run)
+    if run and run > 0 and run < math.huge then lastSpeed = run end
+    return lastSpeed or Travel.DEFAULT_SPEED
+end
+
+--- Forget the last run speed (the tests).
+function Travel.ForgetSpeed() lastSpeed = nil end
+
 --- Plan's options for this character now: faction, known flight points, run speed, and the
 --- Hearthstone and teleports unless the player turned them off (nav.useHearth).
 function Travel:Options()
     local useHearth = not (ns.db and ns.db.nav and ns.db.nav.useHearth == false)
     local bind = useHearth and self:Bind() or nil
-    local _, run = Safe(rawget(_G, "GetUnitSpeed"), "player")
     return {
         faction = ns.Player:GetFaction(),
         known = ns.Reminders and ns.Reminders.Known and ns.Reminders.Known() or {},
-        speed = PlainNumber(run),
+        speed = self.RunSpeed(),
         bind = bind,
         bindName = bind and bind.name,
         hearthWait = bind and self:HearthWait() or nil,
