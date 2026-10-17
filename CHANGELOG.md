@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Walks keep out of zones far above your level: a zone 4 levels or more above you is gone round where the way round is there, one 10 or more above even more so, and walks are worked out again when you level up. A walk into or out of such a zone still goes there.
 - Walks keep out of the other faction's towns, where the guards attack you: an Alliance walk across the Barrens goes round the Crossroads, a Horde walk past Southshore round it. A walk to somewhere inside such a town still takes you there.
 - Walks keep to flat, open ground: the way goes round a steep hillside or a cliff face, and out from under roofs and over-hanging rock, when that is not much longer. A walk to someone no longer ends on a small roof or a sealed room over or beside them.
 - A walk starts on the floor you stand on. The game does not tell addons your height, so where floors stack the way was planned from whichever came first: from the mountain over Ironforge's halls, a roof, or the canal under Stormwind's streets. ForeverGuide now follows the floor under you as you walk, up stairs a step at a time, finding it afresh after a teleport from whether you are indoors (the lower floor) or out (the upper).

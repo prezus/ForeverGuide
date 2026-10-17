@@ -5355,6 +5355,22 @@ section("walking paths: the Lua router finds the reference router's ways", funct
     _G.C_EncodingUtil = was
 end)
 
+section("walking paths: zones far above the player cost more, never the ones a walk starts and ends in (#747)", function()
+    local W = ns.Walking
+    local was = rawget(_G, "C_EncodingUtil")
+    _G.C_EncodingUtil = TestCodec()
+    need(type(ns.NavZoneLevels) == "table" and ns.NavZoneLevels[12] == 1 and ns.NavZoneLevels[10] == 18, "the manifest carries the zones' lowest levels (Elwynn 1, Duskwood 18)")
+    local d = W:DangerFor(12)
+    check(d and d[10] == W.DANGER_COST and d[33] == W.DEADLY_COST and d[12] == nil, "at level 12 Duskwood is dangerous, Stranglethorn deadly, Elwynn neither")
+    check(W:DangerFor(60) == nil, "at 60 nothing is")
+    local c = dofile(root .. "tools/test/fixtures/nav_ways.lua")[1]
+    local plain = W:FindWay(c.map, c.from, c.to)
+    local own = W:FindWay(c.map, c.from, c.to, nil, { [12] = W.DEADLY_COST })
+    need(plain and own, "Goldshire to the Fargodeep Mine has a way")
+    check(math.abs(own.yards - plain.yards) < 0.01, "Elwynn priced deadly changes nothing for a walk that starts and ends in it")
+    _G.C_EncodingUtil = was
+end)
+
 section("walking paths: searches run over frames, wait out combat, and can be cancelled", function()
     local W = ns.Walking
     local was, wasClock = rawget(_G, "C_EncodingUtil"), rawget(_G, "debugprofilestop")
