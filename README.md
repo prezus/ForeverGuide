@@ -75,7 +75,7 @@ prints the errors it catches itself once per reload as `ForeverGuide: error in â
 
 ## How this repository is managed
 
-- **Guides and data** (`Guides/`, `Data/`) are planned and built in
+- **Guides and data** (`Guides/`, `Data/`, and the walking maps in `Nav/`) are planned and built in
   [forever-codex](https://github.com/prezus/forever-codex) and arrive here as pull requests of
   finished Lua. Don't edit them by hand: CI checks that they are data only, and refuses a fork's PR
   that changes them. [Data/README.md](Data/README.md) lists the sources.

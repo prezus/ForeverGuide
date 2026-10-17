@@ -38,7 +38,7 @@ jobs:
         run: ln -s lua "$GITHUB_WORKSPACE/.lua/bin/lua5.1"
       - name: Test engine
         run: lua5.1 tools/test/run_tests.lua
-      # Guides/ and Data/ are published by the maintainer's route planner and data build and run with
+      # Guides/, Data/ and Nav/ are published by the maintainer's route planner and data build and run with
       # the addon's full permissions: they must be data and nothing else.
       - name: Guides and data are data only
         run: lua5.1 tools/test/check_data_only.lua
@@ -47,7 +47,7 @@ jobs:
         if: github.event.pull_request.head.repo.full_name != github.repository
         run: |
           git fetch -q --depth=1 origin "${{ github.base_ref }}"
-          changed="$(git diff --name-only FETCH_HEAD HEAD -- Guides Data)"
+          changed="$(git diff --name-only FETCH_HEAD HEAD -- Guides Data Nav)"
           if [ -n "$changed" ]; then
             echo "This PR changes published routes or data; report a wrong step as an issue instead:"
             echo "$changed"

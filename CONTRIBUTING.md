@@ -10,7 +10,7 @@ go to [forever-codex](https://github.com/prezus/forever-codex/issues).
    [client and player-control policy](COMPATIBILITY_POLICY.md) before changing runtime Lua, UI or
    loaded files. In the PR, name each new game API call, what triggers it, and whether it acts for
    the player. Look API calls up in Forever's UI source as [AGENTS.md](AGENTS.md#look-up-forevers-api) describes.
-2. Leave `Guides/` and `Data/` alone: [forever-codex](https://github.com/prezus/forever-codex)
+2. Leave `Guides/`, `Data/` and `Nav/` alone: [forever-codex](https://github.com/prezus/forever-codex)
    publishes them, the next publish replaces hand edits, and CI refuses a fork's PR that changes them.
 3. Run the checks below, then test in the beta: the affected step or window, a `/reload`, and combat
    if the change touches the UI. Put the client build, the steps and the results in the PR.
@@ -25,7 +25,7 @@ with Lua 5.1 (or LuaJIT) and Python 3:
 
 ```sh
 lua5.1 tools/test/run_tests.lua             # headless engine tests against the mock client
-lua5.1 tools/test/check_data_only.lua       # Guides/ and Data/ hold data and nothing else
+lua5.1 tools/test/check_data_only.lua       # Guides/, Data/ and Nav/ hold data and nothing else
 python3 tools/test/test_decode_share.py
 python3 tools/check_forever_api.py <ui-source>   # C_ API paths exist on Forever (AGENTS.md)
 python3 tools/test/test_package.py

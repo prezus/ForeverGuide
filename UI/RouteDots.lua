@@ -7,9 +7,10 @@
 -- the parchment map and the minimap alike. The current leg is drawn full; the
 -- legs after it faded. With no route (the way is a plain walk) and the planner
 -- on, the walk from the player to the target is drawn.
--- Straight lines from each leg's start to its end; the current walk starts
--- at the player. A leg between two world maps (a boat to the other
--- continent) or a jump (Hearthstone, teleport, portal) draws nothing.
+-- A walk whose way the walking maps have found follows it, corner to corner;
+-- other legs are straight lines from start to end. The current walk starts at
+-- the player. A leg between two world maps (a boat to the other continent) or
+-- a jump (Hearthstone, teleport, portal) draws nothing.
 --
 -- World map: a map canvas data provider (WorldMapFrame:AddDataProvider)
 -- redrawn when the map, its zoom or the route changes, and every second
@@ -48,6 +49,24 @@ local function On()
     return not (ns.db and ns.db.nav and ns.db.nav.routeDots == false)
 end
 
+--- A walk's way from the player on, as segments: the player to the corner ahead, then corner to corner.
+local function AlongWay(segs, way, at, px, py, inst, later)
+    local _, aim = ns.Navigation.Along(way, at, px, py)
+    local pts, ax, ay = way.points, px, py
+    for i = aim, #pts do
+        segs[#segs + 1] = { ax = ax, ay = ay, bx = pts[i][1], by = pts[i][2], inst = inst, kind = "walk", later = later }
+        ax, ay = pts[i][1], pts[i][2]
+    end
+end
+
+--- A whole way, corner to corner.
+local function WholeWay(segs, way, inst, later)
+    local pts = way.points
+    for i = 2, #pts do
+        segs[#segs + 1] = { ax = pts[i - 1][1], ay = pts[i - 1][2], bx = pts[i][1], by = pts[i][2], inst = inst, kind = "walk", later = later }
+    end
+end
+
 --- The legs still ahead as world segments { ax, ay, bx, by, inst, kind, later }, or nil without a route.
 function Dots:Segments()
     local Nav, T = ns.Navigation, ns.Travel
@@ -55,17 +74,27 @@ function Dots:Segments()
     if not T or not On() then return nil end
     local px, py, pInstance = ns.Player:GetWorldPosition()
     if not r then
-        -- a plain walk: from the player to the target, when both are in one world
+        -- a plain walk: from the player to the target, when both are in one world; along its way when found
         local t = Nav.target
         if not (t and px and t.worldX and Nav:PlannerOn() and t.instanceID == pInstance) then return nil end
+        local walk = Nav.walk
+        if walk and walk.target == t and walk.way then
+            local segs = {}
+            AlongWay(segs, walk.way, walk.at, px, py, pInstance, false)
+            return segs
+        end
         return { { ax = px, ay = py, bx = t.worldX, by = t.worldY, inst = pInstance, kind = "walk" } }
     end
     local segs = {}
     for k = r.index, #r.legs do
         local leg = r.legs[k]
         local a, b = T.World(leg.from), T.World(leg.to)
-        if k == r.index and leg.kind == "walk" and px then a = { x = px, y = py, inst = pInstance } end
-        if a and b and a.inst == b.inst and not JUMPS[leg.kind] then
+        local current = k == r.index and leg.kind == "walk" and px
+        if current then a = { x = px, y = py, inst = pInstance } end
+        if leg.kind == "walk" and leg.way and a and b and a.inst == b.inst then
+            if current then AlongWay(segs, leg.way, leg.wayAt, px, py, a.inst, false)
+            else WholeWay(segs, leg.way, a.inst, k > r.index) end
+        elseif a and b and a.inst == b.inst and not JUMPS[leg.kind] then
             segs[#segs + 1] = { ax = a.x, ay = a.y, bx = b.x, by = b.y, inst = a.inst, kind = leg.kind, later = k > r.index }
         end
     end
@@ -239,6 +268,15 @@ function Dots:Diagnose()
     add("route: %s", r and string.format("%d legs, on leg %d", #r.legs, r.index) or "none (a walk)")
     local px, py, pInstance = ns.Player:GetWorldPosition()
     add("you: world %s, %s, instance %s", px and string.format("%.0f", px) or "none", py and string.format("%.0f", py) or "none", tostring(pInstance))
+    local W = ns.Walking
+    if W then
+        local st = W:Status()
+        local walk = Nav.walk
+        local current = r and r.legs[r.index]
+        local way = (walk and walk.way) or (current and current.way)
+        add("walking maps: %s; tiles read %d; searches waiting %d; this walk: %s", #st.maps > 0 and table.concat(st.maps, ", ") or "none",
+            st.tiles, st.waiting, way and string.format("follows its way, %d yd", way.yards) or "a straight line")
+    end
     local segs = self:Segments()
     add("segments to draw: %s", segs and tostring(#segs) or "none")
     local world, mini = self:Shown()
@@ -300,7 +338,7 @@ function Dots:OnEnable()
             if name == "Blizzard_WorldMap" then HookWorldMap() end
         end)
     end
-    for _, event in ipairs({ "FG_NAV_ROUTE_CHANGED", "FG_NAV_TARGET_CHANGED" }) do
+    for _, event in ipairs({ "FG_NAV_ROUTE_CHANGED", "FG_NAV_TARGET_CHANGED", "FG_NAV_WAY_FOUND" }) do
         ns.Events:Register(event, function()
             local ok, err = pcall(Dots.Refresh, Dots)
             if not ok then ns.ReportOnce("routedots", err) end

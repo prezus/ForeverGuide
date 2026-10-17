@@ -28,6 +28,7 @@ Player.lua
 Quest.lua
 Navigation.lua
 Travel.lua
+Walking.lua
 Guide.lua
 Dungeons.lua
 Tracker.lua
@@ -42,6 +43,10 @@ Sources.lua
 Run.lua
 Data\VanillaQuestIDs.lua
 Data\TravelDB.lua
+Nav\NavManifest.lua
+Nav\NavData0.lua
+Nav\NavData1.lua
+Nav\NavData2991.lua
 Scanner.lua
 Harvest.lua
 Share.lua
