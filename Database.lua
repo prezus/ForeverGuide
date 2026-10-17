@@ -39,7 +39,7 @@ local DEFAULTS = {
     nav = {
         blizzardWaypoint = false, -- use the addon arrow without placing a map pin
         arrivalRadius = 15,       -- yards: TRAVEL steps complete within this distance
-        travelPlanner = false,    -- plan the way (flights, boats, hearth) and point the arrow along it (Travel.lua); off until checked in game
+        travelPlanner = true,     -- plan the way (flights, boats, hearth) and point the arrow along it (Travel.lua)
         useHearth = true,         -- the planner may use the Hearthstone and class teleports
         updateInterval = 0.1,     -- seconds between distance/arrow updates
         waypoint = {              -- optional in-world diamond (UI/QuestWaypoint.lua)
@@ -96,6 +96,11 @@ function Database:Init()
     if oldVersion ~= DB_VERSION then
         ns.db.contribute = false
         ns.db.scanEnabled = false
+    end
+    -- The travel planner was off for everyone until it had been tried in game: it is turned on once,
+    -- here, for those who kept the old default; anyone may turn it off again, and that sticks.
+    if not ns.db.nav.plannerTurnedOn then
+        ns.db.nav.travelPlanner, ns.db.nav.plannerTurnedOn = true, true
     end
     -- the old recorder event log (it could hold a quest sharer's name) and harvest switch
     ns.db.recorder, ns.db.harvestEnabled = nil, nil
