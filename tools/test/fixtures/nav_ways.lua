@@ -8,4 +8,6 @@ return {
     { id = "z1", map = 0, from = { x = 1766.270, y = 66.630, z = -46.240 }, to = { x = 1389.340, y = 347.320, z = -65.960 }, yards = 563.50, points = 15, goalHeight = -62 },
     { id = "splintertree", map = 1, from = { x = 1982.292, y = -606.667 }, to = { x = 2302.390, y = -2524.550 }, none = "NoWalk" },
     { id = "sea", map = 0, from = { x = -10937.666, y = 1543.167 }, to = { x = -10000.000, y = 3900.000 }, none = "OffTheMap" },
+    { id = "crossroads-alliance", map = 1, from = { x = 126.125, y = -2646.417 }, to = { x = -954.875, y = -2646.417 }, yards = 1236.06, points = 11, goalHeight = 99, faction = "Alliance" },
+    { id = "crossroads", map = 1, from = { x = 126.125, y = -2646.417 }, to = { x = -954.875, y = -2646.417 }, yards = 1092.97, points = 10, goalHeight = 99 },
 }

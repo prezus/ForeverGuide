@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Walks keep out of the other faction's towns, where the guards attack you: an Alliance walk across the Barrens goes round the Crossroads, a Horde walk past Southshore round it. A walk to somewhere inside such a town still takes you there.
 - Walks keep to flat, open ground: the way goes round a steep hillside or a cliff face, and out from under roofs and over-hanging rock, when that is not much longer. A walk to someone no longer ends on a small roof or a sealed room over or beside them.
 - A walk starts on the floor you stand on. The game does not tell addons your height, so where floors stack the way was planned from whichever came first: from the mountain over Ironforge's halls, a roof, or the canal under Stormwind's streets. ForeverGuide now follows the floor under you as you walk, up stairs a step at a time, finding it afresh after a teleport from whether you are indoors (the lower floor) or out (the upper).
 - The Guides list shows every chapter of the route you chose, not nine around your level: choose Street's Speed Demon and all its chapters are there to pick, without the standard guides beside them; choose the standard guides and they are listed as before. The list still opens at the chapter for your level.

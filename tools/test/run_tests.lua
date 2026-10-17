@@ -5243,7 +5243,7 @@ section("walking paths: the Lua router finds the reference router's ways", funct
     need(W:Has(0) and W:Has(1) and W:Has(2991), "the three walking maps load against their manifest")
     local cases = dofile(root .. "tools/test/fixtures/nav_ways.lua")
     for _, c in ipairs(cases) do
-        local way, why = W:FindWay(c.map, c.from, c.to)
+        local way, why = W:FindWay(c.map, c.from, c.to, c.faction)
         if c.none then
             local want = c.none == "NoWalk" and "no-walk" or "off-goal"
             check(way == nil and why == want, c.id .. ": no way (" .. want .. "), got " .. tostring(why))
@@ -5256,6 +5256,12 @@ section("walking paths: the Lua router finds the reference router's ways", funct
             end
         end
     end
+    -- the other faction's town: an Alliance walker goes round the Crossroads, a walker of neither side through it
+    local byId = {}
+    for _, c in ipairs(cases) do byId[c.id] = c end
+    local round, through = byId["crossroads-alliance"], byId["crossroads"]
+    need(round and through, "the reference holds a walk past the Crossroads, with and without a faction")
+    check(round.yards > through.yards + 50, string.format("the Alliance walk goes round the Crossroads: %.0f yd against %.0f", round.yards, through.yards))
     _G.C_EncodingUtil = was
 end)
 
