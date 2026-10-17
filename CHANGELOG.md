@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Flights and boats are drawn along the way they really go: a flight's dots follow its route round the mountains, and a boat's or zeppelin's its sailing route, a crossing to the other continent shown on each. In the air, the time left counts down by how much of the flight's route is left, so it holds steady. The dots also keep an even spacing round every bend.
 - On a mount, the time left stays at your mount's pace in combat and while you stand still. Before, when the game gave no speed for a moment, it fell back to running pace and the time left jumped up.
 - **The travel planner is on.** The arrow now plans the way to each step for everyone: the walk round walls and fences, flights, boats, zeppelins, the tram and your Hearthstone, with the way shown as dots on the world map and the minimap. It was off until it had been tried in game. Turn it off in Options under Travel or with `/fg travel off`; turned off, it stays off.
 - The Guides list shows every chapter of the route you chose, not nine around your level: choose Street's Speed Demon and all its chapters are there to pick, without the standard guides beside them; choose the standard guides and they are listed as before. The list still opens at the chapter for your level.
