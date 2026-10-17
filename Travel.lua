@@ -32,6 +32,11 @@ Travel.WALK_DETOUR = 1.2      -- straight-line yards to walked yards; #695 fits 
 Travel.DEFAULT_SPEED = 7      -- yards a second, a running character
 Travel.HEARTH_MARGIN = 120    -- seconds added to a Hearthstone's cost, not its time
 Travel.TELEPORT_MARGIN = 10   -- the same for a class teleport (a reagent, a cooldown)
+-- Each boarding (a flight, a boat, a zeppelin, the tram, a lift, a portal) costs this many seconds more than
+-- it takes, not in the time shown: a way of fewer changes wins unless another saves real time. A flight on
+-- through further flight points is one ride (the taxi carries the player), so its hops add none: from
+-- Sentinel Hill to Thelsamar, one flight on through Stormwind and Ironforge, not a flight, the tram and another.
+Travel.CHANGE_SECONDS = 45
 Travel.LOADING_SECONDS = 5    -- a jump to another world map
 Travel.MAX_POPS = 1500        -- search caps: a plan never costs a frame
 Travel.BUDGET_MS = 25
@@ -132,7 +137,7 @@ local function Build(from, to, opts)
             local air = Add({ kind = "air", pos = at, w = w, node = id, name = node.name })
             airOf[id] = air
             local board = db.flightBoard or 15
-            Edge(ground, air, board, board, { kind = "board" })
+            Edge(ground, air, board + Travel.CHANGE_SECONDS, board, { kind = "board" })
             Edge(air, ground, 0, 0, { kind = "land" })
         end
     end
@@ -153,7 +158,7 @@ local function Build(from, to, opts)
             local a = Add({ kind = "board", pos = link.from, w = wa })
             local b = Add({ kind = "land", pos = link.to, w = wb })
             local seconds = (link.wait or 0) + (link.ride or 0)
-            Edge(a, b, seconds, seconds, { kind = link.kind, name = link.name, wait = link.wait, ride = link.ride, path = link.path })
+            Edge(a, b, seconds + Travel.CHANGE_SECONDS, seconds, { kind = link.kind, name = link.name, wait = link.wait, ride = link.ride, path = link.path })
         end
     end
 
