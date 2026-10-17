@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- On a mount, the time left stays at your mount's pace in combat and while you stand still. Before, when the game gave no speed for a moment, it fell back to running pace and the time left jumped up.
 - **The travel planner is on.** The arrow now plans the way to each step for everyone: the walk round walls and fences, flights, boats, zeppelins, the tram and your Hearthstone, with the way shown as dots on the world map and the minimap. It was off until it had been tried in game. Turn it off in Options under Travel or with `/fg travel off`; turned off, it stays off.
 - The Guides list shows every chapter of the route you chose, not nine around your level: choose Street's Speed Demon and all its chapters are there to pick, without the standard guides beside them; choose the standard guides and they are listed as before. The list still opens at the chapter for your level.
 - The planned way's dots are bigger and brighter again, on a thicker dark rim, so they read on Elwynn's greens and the world map's parchment.
