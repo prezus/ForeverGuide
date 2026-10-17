@@ -730,9 +730,17 @@ function Nav:Update(allowCached)
         self:AdvanceRoute(px, py, pInstance)
         local leg = self:CurrentLeg()
         if leg then
-            -- a ride to another world map points at where it starts until the player is aboard
+            -- a ride points at where it starts until the player is aboard: a flight at the flight master
+            -- until the taxi takes off, a boat, zeppelin, tram or lift at its dock while the player is there;
+            -- one to another world map at its start until it leaves
             local aim = ns.Travel.World(leg.to)
-            if not aim or aim.inst ~= pInstance then aim = ns.Travel.World(leg.from) end
+            local from = ns.Travel.World(leg.from)
+            -- (a Hearthstone or a teleport is cast where the player stands: it keeps pointing where it leads)
+            if leg.kind ~= "walk" and leg.kind ~= "hearth" and leg.kind ~= "teleport" and from and from.inst == pInstance then
+                local onTaxi = Plain(Safe(rawget(_G, "UnitOnTaxi"), "player")) == true
+                if (leg.kind == "fly" and not onTaxi) or (leg.kind ~= "fly" and Near(px, py, pInstance, leg.from, LEG_RIDE_RADIUS * 2)) then aim = from end
+            end
+            if not aim or aim.inst ~= pInstance then aim = from end
             local l = { index = self.route.index, kind = leg.kind }
             local cx, cy, left
             if leg.kind == "walk" and leg.way and px and aim and aim.inst == pInstance then
