@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Less memory garbage again, mainly while the travel planner is working out your way: the planner keeps its map of flights and transports from one look to the next instead of building it every few seconds, and no longer looks again while you stand still; every game call the addon makes, and every breadcrumb dot drawn, no longer leaves a scrap behind. Walking along the arrow's way makes about 40% of the garbage it did in the last release, and a single look for a faster way about a tenth.
 - ForeverGuide makes far less memory garbage as you walk, so its memory no longer climbs into the hundreds of megabytes between the game's clean-ups: working out a walk makes about a sixth of the garbage it did, a piece of the walking maps takes under half the memory, and drawing the breadcrumbs reuses what it drew last time.
 - The way prefers fewer changes: to Loch Modan from Westfall it is one flight to Thelsamar, on through Stormwind and Ironforge, not a flight to Stormwind, the tram and another flight. Each change (boarding a flight, a boat, the tram) now has to save real time to be chosen; the time shown is still the true time.
 - When the way is a flight, the arrow takes you to the flight master and points at them until you take off. Before, within 60 yards of the flight point it already pointed at where the flight lands. The same for a boat's or a zeppelin's dock while you are at it.

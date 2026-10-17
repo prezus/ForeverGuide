@@ -4690,12 +4690,16 @@ section("travel planner: the arrow follows the planned route leg by leg, and pla
         local realPlan = T.Plan
         local remaining = Nav:RemainingSeconds(Nav:Update(), 7)
         T.Plan = function() return { legs = { { kind = "hearth", seconds = 10 }, { kind = "walk", seconds = 1 } }, seconds = remaining - 10 } end
-        Nav.replanAt = 0
+        Nav.replanAt, Nav.plannedAt = 0, nil   -- standing still, it plans again only now and then
         Nav:Update()
         MOCK_ADVANCE(0)
         check(Nav.route == current, "a way only ten seconds faster does not replace the route")
         T.Plan = function() return { legs = { { kind = "hearth", seconds = 10 }, { kind = "walk", seconds = 1 } }, seconds = 11 } end
         Nav.replanAt = 0
+        Nav:Update()
+        MOCK_ADVANCE(0)
+        check(Nav.route == current, "standing where it last planned, it does not plan again every few seconds")
+        Nav.replanAt, Nav.plannedAt = 0, nil
         Nav:Update()
         MOCK_ADVANCE(0)
         check(Nav.route ~= current and Nav.route.legs[1].kind == "hearth", "a clearly faster way replaces it")
@@ -5469,6 +5473,56 @@ section("route dots: the segments are refilled each draw, not made anew", functi
         check(per < 2, string.format("building the breadcrumbs makes almost no garbage (%.1f KB a time)", per))
     end)
     Nav:Clear()
+end)
+
+section("travel planner: a plan keeps the flights and links from the last and makes little garbage", function()
+    local db, Nav = ns.TravelDB, ns.Navigation
+    local was = rawget(_G, "C_EncodingUtil")
+    _G.C_EncodingUtil = TestCodec()
+    local known = {}
+    for _, n in pairs(db.flightNodes) do known[n.name] = true end
+    withTravelWorld(db, function()
+        local from, to = { map = 1433, x = 30, y = 45 }, { map = 1432, x = 35, y = 48 }
+        local opts = { faction = "Alliance", known = known, walk = function(a, b) return Nav:WalkYards(a, b) end }
+        local first = ns.Travel:Plan(from, to, opts)
+        collectgarbage("collect") collectgarbage("stop")
+        local before = collectgarbage("count")
+        local again = ns.Travel:Plan(from, to, opts)
+        local kb = collectgarbage("count") - before
+        collectgarbage("restart")
+        check(kinds(first) == "walk,fly,walk" and kinds(again) == kinds(first) and math.abs(again.seconds - first.seconds) < 0.01,
+            "Redridge to Loch Modan flies, the same the second time (" .. kinds(again) .. ")")
+        check(kb < 40, string.format("a plan with the walking maps asked makes little garbage (%.0f KB)", kb))
+        -- learning no flight point but Lakeshire's, the kept flights are rebuilt: no flight from there
+        local some = { ["Lakeshire, Redridge"] = true }
+        local walked = ns.Travel:Plan(from, to, { faction = "Alliance", known = some })
+        check(walked and not kinds(walked):find("fly"), "with one flight point known, it does not fly (" .. kinds(walked) .. ")")
+        check(kinds(ns.Travel:Plan(from, to, opts)) == "walk,fly,walk", "and with all known, it flies again")
+    end)
+    _G.C_EncodingUtil = was
+end)
+
+section("walking paths: a remembered way is found by its ends, and the ends forgotten with it", function()
+    local W = ns.Walking
+    local was = rawget(_G, "C_EncodingUtil")
+    _G.C_EncodingUtil = TestCodec()
+    W:Forget()
+    local c = dofile(root .. "tools/test/fixtures/nav_ways.lua")[1]
+    check(not W:EndsAt(c.map, c.to.x, c.to.y) and W:Known(c.map, c.from, c.to) == nil, "nothing is known before a search")
+    local got
+    W:Request(c.map, c.from, c.to, function(way) got = way end)
+    for _ = 1, 200 do if got then break end MOCK_ADVANCE(0.05) end
+    need(got, "the search ends")
+    check(W:EndsAt(c.map, c.to.x, c.to.y) and W:Known(c.map, c.from, c.to) == got, "the way is known by its ends")
+    check(not W:EndsAt(c.map, c.to.x + 50, c.to.y), "and not at another end")
+    local max = W.MAX_WAYS
+    W.MAX_WAYS = 0
+    W:Request(c.map, c.from, { x = c.to.x + 50, y = c.to.y }, function() end)
+    for _ = 1, 200 do if W:Status().waiting == 0 then break end MOCK_ADVANCE(0.05) end
+    W.MAX_WAYS = max
+    check(not W:EndsAt(c.map, c.to.x, c.to.y) and W:Known(c.map, c.from, c.to) == nil, "a way dropped from memory drops its end")
+    W:Forget()
+    _G.C_EncodingUtil = was
 end)
 
 section("walking paths: the tiles decoded stay within MAX_TILES as the floor is followed across the map", function()

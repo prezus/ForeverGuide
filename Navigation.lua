@@ -48,6 +48,7 @@ Nav.ownsWaypoint = false
 local LEG_WALK_RADIUS = 20    -- yards from a walk's end that count as there
 local LEG_RIDE_RADIUS = 60    -- the same for a dock, a landing, a flight master
 local REPLAN_SECONDS = 5      -- while walking, look for a better way this often
+local STILL_YARDS, STILL_REPLAN_SECONDS = 10, 30   -- moved less than this since the last look: look again only this often
 local SWITCH_SECONDS, SWITCH_SHARE = 30, 0.1   -- a new way must save this much, and this share
 local WAY_REPLANS = 3         -- plans again a found walking way may cause, a target
 local OFF_WAY_YARDS = 30      -- further than this from the way, it is looked for again from here
@@ -313,6 +314,8 @@ function Nav:WalkYards(a, b)
     -- the first walk starts where the player stood when it was asked for: from a few yards on it still serves
     local s = self.startWay
     if s and s.inst == a.inst and Dist(s.ax, s.ay, a.x, a.y) <= 10 and Dist(s.bx, s.by, b.x, b.y) <= 2 then return WayYards(s.way) end
+    -- nearly every walk a plan asks after was never searched: answer those before making anything
+    if not W:EndsAt(a.inst, b.x, b.y) then return nil end
     local from, to = self:WalkStart(a), self:WalkEnd(b)
     local known = W:Known(a.inst, from, to)
     if known == false and (from.z or to.z) then known = W:Known(a.inst, { x = from.x, y = from.y }, { x = to.x, y = to.y }) end
@@ -608,6 +611,11 @@ function Nav:MaybeReplan(t, state)
         end
         return
     end
+    -- standing about, a plan finds what the last did: plan again only once moved, or now and then (a cooldown ends)
+    local px, py, inst = ns.Player:GetWorldPosition()
+    local still = px and inst == self.plannedInst and Dist(px, py, self.plannedX, self.plannedY) < STILL_YARDS
+    if still and ns.Now() - (self.plannedAt or 0) < STILL_REPLAN_SECONDS then return end
+    self.plannedX, self.plannedY, self.plannedInst, self.plannedAt = px, py, inst, ns.Now()
     local plan = self:PlanRoute(t)
     if not plan then return end
     local remaining = self:RemainingSeconds(state, self:RunSpeed())
