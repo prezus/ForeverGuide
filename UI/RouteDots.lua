@@ -18,7 +18,9 @@
 -- World map: a map canvas data provider (WorldMapFrame:AddDataProvider)
 -- redrawn when the map, its zoom or the route changes, and every second
 -- while the map is open; dots keep their on-screen size and spacing at any
--- zoom. At most 300.
+-- zoom. At most 300. They are drawn on a frame of their own over the map:
+-- the canvas's own textures sit under its tiles (the detail layers are its
+-- child frames), so dots on the canvas itself never showed.
 -- Minimap: textures on the Minimap placed from the player's world position,
 -- the minimap's view radius in yards (C_Minimap.GetViewRadius) and, when the
 -- minimap rotates, the player's facing. At most 120, spaced in on-screen
@@ -244,7 +246,20 @@ local function HookWorldMap()
     function provider:OnCanvasScaleChanged() Dots:DrawWorld() end
     function provider:OnCanvasSizeChanged() Dots:DrawWorld() end
     map:AddDataProvider(provider)
-    worldPool = Pool(map:GetCanvas(), "OVERLAY")
+    -- a layer over the map's tiles, at a pin frame level of its own when the map has its manager
+    local canvas = map:GetCanvas()
+    local layer = CreateFrame("Frame", nil, canvas)
+    layer:SetAllPoints(canvas)
+    local levels = type(map.GetPinFrameLevelsManager) == "function" and map:GetPinFrameLevelsManager()
+    local level
+    if levels and levels.AddFrameLevel and levels.GetValidFrameLevel then
+        pcall(levels.AddFrameLevel, levels, "PIN_FRAME_LEVEL_FOREVERGUIDE_ROUTE")
+        local ok, got = pcall(levels.GetValidFrameLevel, levels, "PIN_FRAME_LEVEL_FOREVERGUIDE_ROUTE")
+        level = ok and got or nil
+    end
+    layer:SetFrameLevel(level or ((canvas:GetFrameLevel() or 1) + 100))
+    Dots.worldLayer = layer
+    worldPool = Pool(layer, "OVERLAY")
     return true
 end
 

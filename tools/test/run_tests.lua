@@ -4906,6 +4906,10 @@ section("travel planner: the route as dots on the world map and the minimap", fu
         D:DrawWorld()
         local world = D:Shown()
         check(world > 0 and world <= D.WORLD_MAX, "the world map shows dots for the route (" .. world .. ")")
+        -- on a layer of their own over the map's tiles: on the canvas itself they draw under the map
+        local layer = D.worldLayer
+        check(layer ~= nil and layer:GetParent() == WorldMapFrame:GetCanvas() and D.pools().world.parent == layer,
+            "the world map's dots are on a layer of their own over the canvas, not on the canvas under its tiles")
         -- each dot sits on a darker, larger rim; the legs after the current one are faded
         local seen = { now = false, later = false }
         for _, d in ipairs(D.pools().world.list) do
