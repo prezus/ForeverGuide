@@ -1174,12 +1174,29 @@ function Guide:Evaluate(reason)
     end
 end
 
+--- The NPCs a step leads to, for the floor a walk there ends on: the place it resolved to when
+--- that is an NPC, its own NPC, and its quest's givers (an accept) or enders (a turn-in).
+function Guide:StepNPCs(step, loc)
+    local ids = {}
+    local function add(id) if type(id) == "number" then ids[#ids + 1] = id end end
+    if loc and loc.kind == "npc" then add(loc.id) end
+    add(step.npc)
+    local DB = ns.DB
+    local q = step.quest and DB and DB:IsLoaded() and DB:GetQuest(step.quest)
+    if q and step.type == "ACCEPT" then
+        for _, id in ipairs(q.snpc or {}) do add(id) end
+    elseif q and step.type == "TURNIN" then
+        for _, id in ipairs(q.enpc or {}) do add(id) end
+    end
+    return ids
+end
+
 function Guide:UpdateNavigation()
     if ns.Navigation.override then return end                  -- a ghost walks to its corpse first (Corpse.lua)
     if ns.Tracker and ns.Tracker:IsActive() then return end   -- tracker drives navigation (auto mode, or no guide)
     local step = self:GetCurrentStep()
     if not step then ns.Navigation:Clear() return end
-    local mapID, x, y = ns.Navigation:ResolveStep(step)
+    local mapID, x, y, _, loc = ns.Navigation:ResolveStep(step)
     if mapID then
         local t = ns.Navigation.target
         local eff = ns.Editor and ns.Editor:Effective(step) or step
@@ -1189,7 +1206,7 @@ function Guide:UpdateNavigation()
         if not (t and t.map == mapID and t.x == x and t.y == y and t.label == label and t.radius == (eff.radius or t.radius)
                 and t.guide == self.active.id and t.step == step.index) then
             ns.Navigation:SetTarget({ map = mapID, x = x, y = y, label = label, radius = eff.radius, owner = "guide",
-                                      guide = self.active.id, step = step.index })
+                                      guide = self.active.id, step = step.index, npcs = self:StepNPCs(step, loc) })
         end
     else
         ns.Navigation:Clear()

@@ -5329,6 +5329,57 @@ section("walking paths: the arrow, the time left and the dots follow a walk's wa
     if was.target then Nav:SetTarget(was.target) end
 end)
 
+section("walking paths: a walk to an NPC ends on its floor where floors stack (#712)", function()
+    local Nav, W, M = ns.Navigation, ns.Walking, MOCK
+    local db = travelFixture()
+    local box = dofile(root .. "tools/test/fixtures/map_boxes.lua")[1458]
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance,
+        codec = rawget(_G, "C_EncodingUtil") }
+    --- the Undercity's map point over a world point
+    local function onMap(wx, wy)
+        return (box.maxY - wy) / (box.maxY - box.minY) * 100, (box.maxX - wx) / (box.maxX - box.minX) * 100
+    end
+    -- Bethor Iceshard, the mage trainer, and Andron Gant in the Rogues' Quarter on the floor under him
+    local bethor, andron = { x = 1766.27, y = 66.63 }, { x = 1389.34, y = 347.32, z = -65.96 }
+    _G.C_EncodingUtil = TestCodec()
+    W:Forget()
+    db.heights = { [4583] = { 1, 1389.3, 347.3, 99, 0, andron.x + 2, andron.y, andron.z } }
+
+    withTravelWorld(db, function()
+        local bx, by = onMap(bethor.x, bethor.y)
+        M.mapID, M.mapX, M.mapY = 1458, bx / 100, by / 100
+        M.worldX, M.worldY, M.instance = bethor.x, bethor.y, 0
+        ns.Player.cache.mapID = nil
+        local ax, ay = onMap(andron.x, andron.y)
+        Nav:SetTarget({ map = 1458, x = ax, y = ay, label = "Andron Gant", npcs = { 4583 } })
+        check(Nav.target.height == andron.z, "the target takes its NPC's spawn height, on its own world map (" .. tostring(Nav.target.height) .. ")")
+        need(Nav.walk, "the walk asks for its way")
+        for _ = 1, 20 do
+            if Nav.walk.way then break end
+            MOCK_ADVANCE(0.05)
+        end
+        need(Nav.walk.way, "the way is found")
+        check(math.abs(Nav.walk.way.goalHeight - andron.z) <= 5, "and ends on Andron Gant's floor (" .. tostring(Nav.walk.way.goalHeight) .. ")")
+
+        Nav:SetTarget({ map = 1458, x = ax, y = ay, label = "Andron Gant", npcs = { 9999 } })
+        check(Nav.target.height == nil, "an NPC with no spawn near the target gives it no height")
+    end)
+
+    -- the NPCs a step leads to: its quest's giver for an accept, its ender for a turn-in, its own, the place it resolved to
+    local G = ns.Guide
+    local function has(list, id) for _, v in ipairs(list) do if v == id then return true end end return false end
+    check(has(G:StepNPCs({ type = "ACCEPT", quest = 7 }), 197), "an accept leads to its quest's giver (Marshal McBride)")
+    check(has(G:StepNPCs({ type = "TURNIN", quest = 7 }), 197), "a turn-in to its quest's ender")
+    local own = G:StepNPCs({ type = "TRAIN", npc = 375 }, { kind = "npc", id = 376 })
+    check(has(own, 375) and has(own, 376), "a step's own NPC and the NPC it resolved to")
+
+    Nav:Clear()
+    _G.C_EncodingUtil = was.codec
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) end
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0
