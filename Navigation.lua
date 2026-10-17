@@ -577,14 +577,37 @@ function Nav:FlightLeft(leg)
     return math.max(0, leg.seconds - board) * left / whole
 end
 
+local RIDE_SLACK_SECONDS = 120   -- a boat, zeppelin, tram or lift this much later than due has been left
+
+--- Whether the player has left the ride the route is on: off the taxi and away from where it starts. A flight
+--- or a jump (Hearthstone, teleport, portal) that ends anywhere but its end is left; a boat, zeppelin, tram or
+--- lift, which carries the player away from both ends, only once it is well past its time.
+function Nav:LeftRide(leg)
+    local px, py, pInstance = ns.Player:GetWorldPosition()
+    if not px or Near(px, py, pInstance, leg.from, LEG_RIDE_RADIUS * 2) then return false end
+    if leg.kind == "fly" or leg.kind == "hearth" or leg.kind == "teleport" or leg.kind == "portal" then return true end
+    local r = self.route
+    return r ~= nil and ns.Now() - (r.legAt or ns.Now()) > (leg.seconds or 0) + RIDE_SLACK_SECONDS
+end
+
 --- While walking, plan again now and then, and take the new way only when it is clearly faster.
+--- On a ride, follow it; one the player has left is planned afresh (LeftRide).
 --- The switch happens a tick later: Update runs inside callers that are still reading the state.
 function Nav:MaybeReplan(t, state)
     if not PlannerOn() or ns.Now() < (self.replanAt or 0) then return end
     self.replanAt = ns.Now() + REPLAN_SECONDS
     local leg = self:CurrentLeg()
-    if leg and leg.kind ~= "walk" then return end
     if Plain(Safe(rawget(_G, "UnitOnTaxi"), "player")) == true then return end
+    if leg and leg.kind ~= "walk" then
+        -- a ride is followed to its end; one the player left (flew somewhere else, walked off from the
+        -- dock) is planned afresh from where they are, whatever it saves
+        if self:LeftRide(leg) then
+            ns.Events:After(0, function()
+                if self.target == t then self:SetRoute(self:PlanRoute(t)) end
+            end)
+        end
+        return
+    end
     local plan = self:PlanRoute(t)
     if not plan then return end
     local remaining = self:RemainingSeconds(state, self:RunSpeed())

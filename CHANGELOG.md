@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- If you take a different flight from the one planned, or leave a boat or a Hearthstone the way was counting on, the way is worked out again from where you are, and the arrow and the breadcrumbs follow the new fastest route. Before, it kept pointing along the flight you did not take.
 - The breadcrumbs show on the world map. They were drawn under the map's own picture, so only the minimap showed them. The switch for them in Options (under Travel) now says breadcrumbs.
 - Walks reach upper floors up narrow stairs: Theramore's tower (Lady Jaina), Thelsamar's inn, Feathermoon, Darnassus and other places where the walking maps had the stair in pieces now join the floors, so a walk to someone upstairs ends on their floor.
 - Walks keep out of zones far above your level: a zone 4 levels or more above you is gone round where the way round is there, one 10 or more above even more so, and walks are worked out again when you level up. A walk into or out of such a zone still goes there.
