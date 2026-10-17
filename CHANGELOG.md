@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- The travel planner keeps its way through the loading screen of the Deeprun Tram or a Hearthstone. The game says you are alive again after a loading screen, and the planner took that as coming back from the dead and planned afresh before it knew where you were, losing the way. Recordings now also note when a planned way is gone.
 - `/fg dots` says why the planned way's dots show or not: the planner, the target, the route, and the dots drawn on the world map and the minimap.
 - Recordings keep ForeverGuide's own errors: an "error in ..." line in chat goes with the recording, with the guide step and the map you were on, so a problem you hit while recording reaches us without you copying it. With ForeverGuide Companion it needs the Companion's newest build.
 - The travel planner draws the way on walks too: a line of gold dots from you to the next step, on the world map and the minimap, when no flight, boat or tram is faster. Before, a walk drew nothing. The dots are smaller and closer, on a near-black rim, and if their texture cannot load they draw as small squares rather than not at all. `/fg travel` on a walk now says "the way is a walk: no flight, boat or tram is faster".

@@ -17,7 +17,8 @@
 --   FPATH                         a new flight path discovered
 --   TRAIN                         a trainer's window opened (npc)
 --   BUY                           something bought from a vendor (sid item, f how many, money copper, npc)
---   ROUTE LEG LEGDONE             the travel planner (Travel.lua): a route planned (secs predicted, r legs), a leg
+--   ROUTE LEG LEGDONE             the travel planner (Travel.lua): a route planned (secs predicted, r legs; r = 0:
+--                                 the route gone, dropped or the way now a plain walk), a leg
 --                                 begun (action its kind, f its number, secs predicted, sid a teleport's spell),
 --                                 a leg done (f, secs it took). Existing fields only: the share allowlist and
 --                                 the Companion take them as they are.
@@ -580,8 +581,11 @@ function Run:OnInit()
     local route, leg, legAt
     E:Register("FG_NAV_ROUTE_CHANGED", function(_, r)
         if r ~= route then
+            -- a route gone (dropped, or the way is now a plain walk): ROUTE with no legs
+            local dropped = route ~= nil and r == nil
             route, leg, legAt = r, nil, nil
             if r then Add("ROUTE", { secs = Round(r.seconds, 1), r = #r.legs }) end
+            if dropped then Add("ROUTE", { secs = 0, r = 0 }) end
         end
         if not r or r.index == leg then return end
         if leg and legAt then Add("LEGDONE", { f = leg, secs = Round(ns.Now() - legAt, 1) }) end

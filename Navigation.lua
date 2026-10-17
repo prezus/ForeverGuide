@@ -675,8 +675,10 @@ function Nav:DBLocationForStep(step, around)
 end
 
 function Nav:OnInit()
-    -- back from the dead: plan the way to whatever the arrow points at again
+    -- back from the dead: plan the way to whatever the arrow points at again. Only with no route
+    -- (dead, there was none): the game also says PLAYER_ALIVE after a loading screen (the tram, a
+    -- Hearthstone), where planning afresh, with no position yet, dropped the way being followed
     ns.Events:RegisterMany({ "PLAYER_UNGHOST", "PLAYER_ALIVE" }, function()
-        if self.target and not Dead() then self:Replan() end
+        if self.target and not self.route and not Dead() then self:Replan() end
     end)
 end
