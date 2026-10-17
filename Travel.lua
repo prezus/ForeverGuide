@@ -26,7 +26,7 @@
 local _, ns = ...
 local Travel = ns:NewModule("Travel")
 
-local sqrt, huge, floor = math.sqrt, math.huge, math.floor
+local sqrt, huge, floor, max = math.sqrt, math.huge, math.floor, math.max
 
 Travel.WALK_DETOUR = 1.2      -- straight-line yards to walked yards; #695 fits it to recorded runs
 Travel.DEFAULT_SPEED = 7      -- yards a second, a running character
@@ -42,6 +42,9 @@ Travel.MAX_POPS = 1500        -- search caps: a plan never costs a frame
 Travel.BUDGET_MS = 25
 
 local SAME_SPOT_YARDS = 5     -- a walk shorter than this is no leg
+local WALK_LEG = { kind = "walk" }   -- every walk the search tries is this one (read only)
+
+local graph   -- the flights and links, kept between plans (Static)
 
 -- ------------------------------------------------------------
 -- World positions of map points, cached per point table
@@ -65,6 +68,7 @@ Travel.World = World
 --- Forget every cached position (the map conversion changed: the tests swap it).
 function Travel:ForgetPositions()
     worldOf = setmetatable({}, { __mode = "k" })
+    graph = nil
 end
 
 local function Yards(a, b)
@@ -110,9 +114,29 @@ end
 --- flight node), "board" (a link's start), "land" (a link's end), "arrive" (where a
 --- hearth or teleport puts the player). Walks go from any node on the ground to a
 --- "target", "ground" or "board" node on the same world map.
-local function Build(from, to, opts)
-    local db = ns.TravelDB or {}
-    local side = opts.faction == "Horde" and "H" or "A"
+---
+--- The flights and links are the same from plan to plan, so they are built once and kept (a plan
+--- every few seconds made hundreds of KB of garbage); a plan adds its start, target and landings
+--- past them and drops them at the next. Kept until the data, the side, the flight points known or
+--- the change cost differ: graph = { db, side, sig, change, links, size, walks, nodes, edges, walkTo }.
+
+--- What the flight points known add up to, for the side: their count and their ids' sum.
+local function KnownSig(db, side, known)
+    local n, sum = 0, 0
+    for id, node in pairs(db.flightNodes or {}) do
+        if known[node.name] and (node.faction == nil or node.faction == side) and node.at and node.at[side] then
+            n, sum = n + 1, sum + id
+        end
+    end
+    return n * 1000003 + sum
+end
+
+local function Static(db, side, known)
+    local sig = KnownSig(db, side, known)
+    local g = graph
+    if g and g.db == db and g.side == side and g.sig == sig and g.change == Travel.CHANGE_SECONDS and g.links == #(db.links or {}) then
+        return g
+    end
     local nodes, edges = {}, {}
     local function Add(node)
         nodes[#nodes + 1] = node
@@ -124,11 +148,8 @@ local function Build(from, to, opts)
         list[#list + 1] = { to = b, cost = cost, seconds = seconds, leg = leg }
     end
 
-    local start = Add({ kind = "start", pos = from, w = World(from) })
-    local target = Add({ kind = "target", pos = to, w = World(to) })
-
     -- Flights: a ground node where the master stands and an air node above it.
-    local known, airOf = opts.known or {}, {}
+    local airOf = {}
     for id, node in pairs(db.flightNodes or {}) do
         local at = node.at and node.at[side]
         local w = at and World(at)
@@ -162,6 +183,38 @@ local function Build(from, to, opts)
         end
     end
 
+    -- Where a walk may lead; the plan's target joins them.
+    local walkTo = {}
+    for i, node in ipairs(nodes) do
+        if node.w and (node.kind == "ground" or node.kind == "board") then walkTo[#walkTo + 1] = i end
+    end
+    graph = { db = db, side = side, sig = sig, change = Travel.CHANGE_SECONDS, links = #(db.links or {}),
+        size = #nodes, walks = #walkTo, nodes = nodes, edges = edges, walkTo = walkTo }
+    return graph
+end
+
+local function Build(from, to, opts)
+    local db = ns.TravelDB or {}
+    local side = opts.faction == "Horde" and "H" or "A"
+    local g = Static(db, side, opts.known or {})
+    local nodes, edges, walkTo = g.nodes, g.edges, g.walkTo
+    -- the last plan's own nodes go
+    for i = #nodes, g.size + 1, -1 do nodes[i], edges[i] = nil, nil end
+    for i = #walkTo, g.walks + 1, -1 do walkTo[i] = nil end
+    local function Add(node)
+        nodes[#nodes + 1] = node
+        edges[#nodes] = {}
+        return #nodes
+    end
+    local function Edge(a, b, cost, seconds, leg)
+        local list = edges[a]
+        list[#list + 1] = { to = b, cost = cost, seconds = seconds, leg = leg }
+    end
+
+    local start = Add({ kind = "start", pos = from, w = World(from) })
+    local target = Add({ kind = "target", pos = to, w = World(to) })
+    if nodes[target].w then walkTo[#walkTo + 1] = target end
+
     -- The Hearthstone and teleports, cast where the player stands.
     local sw = nodes[start].w
     local function Jump(pos, wait, cast, margin, leg)
@@ -184,20 +237,15 @@ local function Build(from, to, opts)
             end
         end
     end
-
-    -- Where a walk may lead.
-    local walkTo = {}
-    for i, node in ipairs(nodes) do
-        if node.w and (node.kind == "target" or node.kind == "ground" or node.kind == "board") then
-            walkTo[#walkTo + 1] = i
-        end
-    end
     return nodes, edges, start, target, walkTo
 end
 
 -- ------------------------------------------------------------
 -- Plan
 -- ------------------------------------------------------------
+-- The search's own tables, refilled each plan rather than made anew
+local work = { cost = {}, seconds = {}, prev = {}, via = {}, done = {}, heap = {}, used = 0 }
+
 --- The fastest way from `from` to `to` (map points { map, x, y }).
 --- opts: faction ("Alliance"|"Horde"), known (set of flight node names), speed
 --- (yards a second), bind ({ map, x, y }) and bindName, hearthWait (seconds until
@@ -213,10 +261,12 @@ function Travel:Plan(from, to, opts)
     if not nodes[start].w or not nodes[target].w then return nil, "nowhere" end
     local speed = (opts.speed and opts.speed > 0) and opts.speed or Travel.DEFAULT_SPEED
 
-    local cost, seconds, prev, via, done = {}, {}, {}, {}, {}
-    for i = 1, #nodes do cost[i] = huge end
+    local cost, seconds, prev, via, done, heap = work.cost, work.seconds, work.prev, work.via, work.done, work.heap
+    for i = 1, max(#nodes, work.used) do cost[i], seconds[i], prev[i], via[i], done[i] = huge, nil, nil, nil, nil end
+    for i = #heap, 1, -1 do heap[i] = nil end
+    work.used = #nodes
     cost[start], seconds[start] = 0, 0
-    local heap = { start }
+    heap[1] = start
     local clock = rawget(_G, "debugprofilestop")
     local began = clock and clock()
     local pops = 0
@@ -246,7 +296,7 @@ function Travel:Plan(from, to, opts)
                     if v ~= u and not done[v] and nv.w.inst == nu.w.inst then
                         local walked = opts.walk and opts.walk(nu.w, nv.w)
                         local s = (walked or Yards(nu.w, nv.w) * Travel.WALK_DETOUR) / speed
-                        Relax(u, v, s, s, { kind = "walk" })
+                        Relax(u, v, s, s, WALK_LEG)
                     end
                 end
             end

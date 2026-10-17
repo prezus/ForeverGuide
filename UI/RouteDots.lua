@@ -155,10 +155,10 @@ local function Next(pool, relative, point, x, y)
         d = { rim = Texture(pool, 1), core = Texture(pool, 2) }
         pool.list[pool.used] = d
     end
-    for _, t in ipairs({ d.rim, d.core }) do
-        t:ClearAllPoints()
-        t:SetPoint("CENTER", relative, point, x, y)
-    end
+    d.rim:ClearAllPoints()
+    d.rim:SetPoint("CENTER", relative, point, x, y)
+    d.core:ClearAllPoints()
+    d.core:SetPoint("CENTER", relative, point, x, y)
     return d
 end
 

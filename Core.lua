@@ -92,23 +92,34 @@ end
 ns.PlainBool = PlainBool
 
 --- pcall a game function; returns its results, or nil on error/missing.
-local function pack(...) return { n = select("#", ...), ... } end
+--- pcall's results past its first, or nil when it failed: passed on as they are, so results with
+--- nils in the middle survive, and no table is made (Safe runs on every arrow tick and redraw).
+local function Passed(ok, ...)
+    if not ok then return nil end
+    return ...
+end
 local function Safe(fn, ...)
     if type(fn) ~= "function" then return nil end
-    local r = pack(pcall(fn, ...))
-    if not r[1] then return nil end
-    return unpack(r, 2, r.n)     -- explicit count: results with nils in the middle survive
+    return Passed(pcall(fn, ...))
 end
 ns.Safe = Safe
 
 --- Resolve "C_Namespace.Func" to a function, or nil if it does not exist.
 ---@param path string
 ---@return function?
+local pathParts = {}   -- "C_Map.GetBestMapForUnit" -> { "C_Map", "GetBestMapForUnit" }, split once
 local function API(path)
+    local parts = pathParts[path]
+    if not parts then
+        parts = {}
+        for part in string.gmatch(path, "[^%.]+") do parts[#parts + 1] = part end
+        pathParts[path] = parts
+    end
+    -- looked up afresh each call: another add-on, or the tests, may have replaced the function
     local tbl = _G
-    for part in string.gmatch(path, "[^%.]+") do
+    for i = 1, #parts do
         if type(tbl) ~= "table" then return nil end
-        tbl = rawget(tbl, part)
+        tbl = rawget(tbl, parts[i])
     end
     if type(tbl) == "function" then return tbl end
     return nil

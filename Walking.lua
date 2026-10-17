@@ -665,6 +665,7 @@ end
 -- Searches in play: a few milliseconds a frame, never in combat, remembered
 -- ------------------------------------------------------------
 local ways, wayOrder = {}, {}     -- remembered ways (false: no walk), oldest first
+local ends, endOf = {}, {}        -- how many remembered ways end at a point (EndKey), and each way's
 local jobs = {}                   -- searches waiting or running, in order
 local runner
 
@@ -673,14 +674,35 @@ local function WayKey(mapID, from, to)
     return table.concat({ mapID, Q(from.x), Q(from.y), from.z and Q(from.z) or "-", Q(to.x), Q(to.y), to.z and Q(to.z) or "-" }, ":")
 end
 
-local function Remember(key, way)
-    if ways[key] == nil then wayOrder[#wayOrder + 1] = key end
+--- A number for a way's end, its height aside: the travel planner asks after hundreds of walks a plan,
+--- nearly all never searched, and a number answers those without making a key string each.
+local function EndKey(mapID, x, y)
+    return (mapID * 20011 + Q(x) + 10000) * 20011 + Q(y) + 10000
+end
+
+local function Remember(key, way, mapID, to)
+    if ways[key] == nil then
+        wayOrder[#wayOrder + 1] = key
+        local e = EndKey(mapID, to.x, to.y)
+        endOf[key], ends[e] = e, (ends[e] or 0) + 1
+    end
     ways[key] = way or false
-    while #wayOrder > Walking.MAX_WAYS do ways[table.remove(wayOrder, 1)] = nil end
+    while #wayOrder > Walking.MAX_WAYS do
+        local old = table.remove(wayOrder, 1)
+        local e = endOf[old]
+        ways[old], endOf[old] = nil, nil
+        if e then ends[e] = ends[e] > 1 and ends[e] - 1 or nil end
+    end
+end
+
+--- Whether any remembered way ends at (x, y) on the map: when not, Known is nil for every walk there.
+function Walking:EndsAt(mapID, x, y)
+    return ends[EndKey(mapID, x, y)] ~= nil
 end
 
 --- The way between two points if a search has found it: the way, false for no walk, nil when not yet searched.
 function Walking:Known(mapID, from, to)
+    if not ends[EndKey(mapID, to.x, to.y)] then return nil end
     return ways[WayKey(mapID, from, to)]
 end
 
@@ -740,7 +762,7 @@ local function Run()
             elseif coroutine.status(job.co) == "dead" then
                 table.remove(jobs, 1)
                 job.done = true
-                Remember(job.key, way)
+                Remember(job.key, way, job.map, job.to)
                 Trim()
                 if not job.cancelled then
                     Searched(job, way, why)
@@ -803,7 +825,7 @@ end
 
 --- Forget the remembered ways (the tests).
 function Walking:Forget()
-    ways, wayOrder = {}, {}
+    ways, wayOrder, ends, endOf = {}, {}, {}, {}
 end
 
 --- The zones dangerous for a walker of `level`, { [zone] = multiplier }: those whose lowest level is well above theirs.
