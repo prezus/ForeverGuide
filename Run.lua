@@ -22,6 +22,12 @@
 --                                 begun (action its kind, f its number, secs predicted, sid a teleport's spell),
 --                                 a leg done (f, secs it took). Existing fields only: the share allowlist and
 --                                 the Companion take them as they are.
+--   WAY                           a walking way searched (Walking.lua): action what came of it (found, found-z:
+--                                 found searching with the goal's height, or why none: no-walk, off-start,
+--                                 off-goal, no-map, error), r its yards, f its corners, secs from asked to
+--                                 answered, cost the most milliseconds one frame spent on it. Existing fields only.
+--   PERF                          what the addon costs (Run:Perf, the field checks): action when (start, end),
+--                                 r memory in KB, f frames over 5 ms this session, cost the longest frame in ms.
 -- Errors: a ForeverGuide Lua error while recording (ns.ReportOnce, the "error in ..." chat line) is
 -- kept with the open segment, with the guide step and map, and goes with it as the share's
 -- `errors` (to ForeverGuide Companion only when its receipt says `errors`).
@@ -594,6 +600,19 @@ function Run:OnInit()
         if current then Add("LEG", { action = current.kind, f = r.index, secs = Round(current.seconds, 1), sid = current.spell }) end
     end)
 
+    -- the walking maps: each search's outcome and its cost a frame
+    E:Register("FG_WALK_SEARCHED", function(_, s)
+        if not Recording() or type(s) ~= "table" then return end
+        local way = s.way
+        Add("WAY", {
+            action = way and (s.height and "found-z" or "found") or (s.why or "no-walk"),
+            r = way and math.floor(way.yards + 0.5) or 0,
+            f = way and math.max(0, #way.points - 2) or 0,
+            secs = s.secs and Round(s.secs, 2) or nil,
+            cost = s.peakMs and math.ceil(s.peakMs) or nil,
+        })
+    end)
+
     E:Register("UI_INFO_MESSAGE", function(_, _, message)
         local want = rawget(_G, "ERR_NEWTAXIPATH")
         if want and PlainString(message) == want then Add("FPATH") end
@@ -607,6 +626,35 @@ function Run:OnInit()
             if not ok then ns.ReportOnce("run:buy", err) end
         end)
     end
+end
+
+--- What the addon costs now: memory in KB, frames over 5 ms this session and the longest frame in ms
+--- (C_AddOnProfiler, where the client has it). Any of them nil when the client does not say.
+function Run.Cost()
+    local okm, mem = pcall(function()
+        UpdateAddOnMemoryUsage()
+        return GetAddOnMemoryUsage("ForeverGuide")
+    end)
+    local P = rawget(_G, "C_AddOnProfiler")
+    local M = rawget(_G, "Enum") and Enum.AddOnProfilerMetric
+    local over5, peak
+    if P and M then
+        over5 = PlainNumber(ns.Safe(P.GetAddOnMetric, "ForeverGuide", M.CountTimeOver5Ms))
+        peak = PlainNumber(ns.Safe(P.GetAddOnMetric, "ForeverGuide", M.PeakTime))
+    end
+    return okm and PlainNumber(mem) or nil, over5, peak
+end
+
+--- Record what the addon costs now, as PERF with `when` (start, end).
+function Run:Perf(when)
+    if not Recording() then return end
+    local kb, over5, peak = Run.Cost()
+    Add("PERF", {
+        action = when,
+        r = kb and math.floor(kb + 0.5) or nil,
+        f = over5 and math.floor(over5) or nil,
+        cost = peak and math.ceil(peak) or nil,
+    })
 end
 
 function Run:OnEnterWorld(isLogin, isReload)

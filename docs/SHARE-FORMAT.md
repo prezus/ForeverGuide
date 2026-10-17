@@ -128,6 +128,8 @@ mode). The kinds:
 | ROUTE | `secs`, `r` | The travel planner chose a way to its target: `r` legs, `secs` predicted in all |
 | LEG | `action`, `f`, `secs`, `sid` | Leg `f` of the way became current: its kind in `action` (walk, fly, boat, zeppelin, tram, portal, lift, hearth, teleport), `secs` predicted, `sid` a teleport's spell |
 | LEGDONE | `f`, `secs` | The way moved past leg `f`, `secs` after it began |
+| WAY | `action`, `r`, `f`, `secs`, `cost` | A walking way was searched: `action` what came of it (`found`; `found-z`, found searching with the goal's height; or why none: `no-walk`, `off-start`, `off-goal`, `no-map`, `error`), `r` its yards and `f` its corners (0 when none), `secs` from asked to answered, `cost` the most milliseconds one frame spent on it |
+| PERF | `action`, `r`, `f`, `cost` | What ForeverGuide costs (the field checks): `action` when (`start`, `end`), `r` its memory in KB, `f` its frames over 5 ms this session, `cost` its longest frame in ms; a value the client does not give is left out |
 
 ### With ForeverGuide Companion
 
@@ -240,19 +242,19 @@ the uiMapID's 0-100 map.
 | `run.entries[].xp` | integer | Turn-in xp, or the experience an XP entry gained |
 | `run.entries[].money` | integer | Turn-in money, or what a BUY cost (copper) |
 | `run.entries[].obj` | integer | Objective index |
-| `run.entries[].f` | integer | Objective progress, how many a BUY bought, or a travel leg's number (LEG, LEGDONE) |
-| `run.entries[].r` | integer | Objective goal, or a ROUTE's number of legs (0: the route gone, dropped or the way now a plain walk) |
+| `run.entries[].f` | integer | Objective progress, how many a BUY bought, a travel leg's number (LEG, LEGDONE), a WAY's corners, or PERF's frames over 5 ms |
+| `run.entries[].r` | integer | Objective goal, a ROUTE's number of legs (0: the route gone, dropped or the way now a plain walk), a WAY's yards, or PERF's memory in KB |
 | `run.entries[].done` | boolean | Objective done |
 | `run.entries[].l` | integer | New level |
 | `run.entries[].rested` | integer | Rested xp left |
 | `run.entries[].npc` | integer | KILL: creature id killed. ACCEPT and TURNIN: the creature whose quest window it was (absent for an object, a quest a player shared, or no window). TRAIN: the trainer. BUY: the vendor |
 | `run.entries[].mobLevel` | integer | Its level, when it was targeted |
 | `run.entries[].elite` | boolean | It was elite, rare elite or a world boss |
-| `run.entries[].secs` | number | Seconds the kill, flight or death took; a ROUTE's or LEG's predicted seconds; a LEGDONE's seconds taken |
+| `run.entries[].secs` | number | Seconds the kill, flight or death took; a ROUTE's or LEG's predicted seconds; a LEGDONE's seconds taken; a WAY's seconds to answer |
 | `run.entries[].mounted` | boolean | Mounted |
 | `run.entries[].taxi` | boolean | On a flight |
-| `run.entries[].cost` | integer | Flight fare (copper) |
-| `run.entries[].action` | string | Hearthstone: `use` or `bind`; LEG: the leg's kind |
+| `run.entries[].cost` | integer | Flight fare (copper); a WAY's or PERF's longest frame (ms) |
+| `run.entries[].action` | string | Hearthstone: `use` or `bind`; LEG: the leg's kind; WAY: what came of the search; PERF: when |
 | `run.character` | string | The character (`Name-Realm`, the realm as `GetNormalizedRealmName` spells it). Only on segments kept for the Companion to upload (`runOutbox`), never on a segment shown to copy; the Companion fills it from the saved variables' folders when an older addon left it out |
 | `run.entries[].src` | string | What made an objective count or experience: `kill`, `mobLoot`, `object`, `quest`, `explore`, `other` |
 | `run.entries[].sid` | integer | That creature's, object's or quest's id; BUY: the item's id; LEG: a teleport's spell |
