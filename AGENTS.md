@@ -7,11 +7,11 @@ Verify client-dependent behavior in-game; the headless mock is not the client.
 
 PRs, commits and docs for the addon live here (prezus/ForeverGuide). Issues are turned off: they are
 filed on [prezus/forever-codex](https://github.com/prezus/forever-codex/issues), which also publishes
-`Guides/` and `Data/`. The original author's credit lives in `LICENSE`, the `.toc`, and the README credits.
+`Guides/`, `Data/` and `Nav/` (the walking maps). The original author's credit lives in `LICENSE`, the `.toc`, and the README credits.
 
 ## Change the source of truth
 
-- Routes and quest data are published: `Guides/` and `Data/` arrive as finished Lua by pull
+- Routes, quest data and walking maps are published: `Guides/`, `Data/` and `Nav/` arrive as finished Lua by pull
   request from forever-codex's route planner and data build
   ([README](README.md#how-this-repository-is-managed)). Route or data changes belong there; a wrong
   step becomes a forever-codex issue. CI refuses anything in them but data (`tools/test/check_data_only.lua`) and a fork's PR

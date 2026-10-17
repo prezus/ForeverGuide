@@ -20,6 +20,13 @@
 -- is planned again every few seconds, switched only for a clearly faster one.
 -- The target, its distance and arrival stay the final destination's.
 --
+-- Walking paths: where the walking maps cover a walk (Walking.lua), its way
+-- is looked for in the background, for each walk of the route and for a walk
+-- to the target with no route. Once found, the arrow aims at the way's next
+-- corner, the time left follows the way's own yards, and the dots follow it
+-- (FG_NAV_WAY_FOUND). A way much longer or shorter than the straight-line
+-- guess the plan was made with plans again, a few times a target at most.
+--
 -- Optional: also sets Blizzard's own user waypoint + super-track so the
 -- built-in in-world arrow points to the step (C_Map.SetUserWaypoint,
 -- C_SuperTrack.SetSuperTrackedUserWaypoint — both present on 1.60.1).
@@ -29,17 +36,22 @@ local _, ns = ...
 local Nav = ns:NewModule("Navigation")
 
 local Plain, PlainNumber, PlainString, Safe = ns.Plain, ns.PlainNumber, ns.PlainString, ns.Safe
-local atan2, sqrt, pi = math.atan2, math.sqrt, math.pi
+local atan2, sqrt, pi, abs, max, huge = math.atan2, math.sqrt, math.pi, math.abs, math.max, math.huge
 
 Nav.target = nil        -- { map, x, y, label, radius, worldX, worldY, instanceID }
 Nav.state = nil         -- last Update() result
 Nav.route = nil         -- { legs, seconds, index }: the planned way to the target, when more than a walk
+Nav.walk = nil          -- { target, way, at }: the walking way to the target when there is no route
 Nav.ownsWaypoint = false
 
 local LEG_WALK_RADIUS = 20    -- yards from a walk's end that count as there
 local LEG_RIDE_RADIUS = 60    -- the same for a dock, a landing, a flight master
 local REPLAN_SECONDS = 5      -- while walking, look for a better way this often
 local SWITCH_SECONDS, SWITCH_SHARE = 30, 0.1   -- a new way must save this much, and this share
+local WAY_REPLANS = 3         -- plans again a found walking way may cause, a target
+local OFF_WAY_YARDS = 30      -- further than this from the way, it is looked for again from here
+local CORNER_YARDS = 4        -- a corner this near counts as passed
+local ASK_AGAIN_SECONDS = 5   -- and not more often than this
 
 -- ------------------------------------------------------------
 -- Conversions
@@ -125,7 +137,9 @@ function Nav:PlanRoute(t)
     if not t or not PlannerOn() or Dead() then return nil end
     local map, x, y = ns.Player:GetMapPosition()
     if not (map and x and y) then return nil end
-    local ok, plan = pcall(ns.Travel.Plan, ns.Travel, { map = map, x = x, y = y }, { map = t.map, x = t.x, y = t.y }, ns.Travel:Options())
+    local opts = ns.Travel:Options()
+    opts.walk = function(a, b) return self:WalkYards(a, b) end
+    local ok, plan = pcall(ns.Travel.Plan, ns.Travel, { map = map, x = x, y = y }, { map = t.map, x = t.x, y = t.y }, opts)
     if not ok then
         ns.ReportOnce("nav:plan", plan)
         return nil
@@ -143,6 +157,159 @@ function Nav:SetRoute(plan)
     self.route = worth and { legs = plan.legs, seconds = plan.seconds, index = 1, legAt = ns.Now() } or nil
     self.replanAt = ns.Now() + REPLAN_SECONDS
     if had or self.route then ns.Events:Fire("FG_NAV_ROUTE_CHANGED", self.route) end
+    self:FindWalks()
+end
+
+-- ------------------------------------------------------------
+-- Walking ways (Walking.lua)
+-- ------------------------------------------------------------
+local function Dist(ax, ay, bx, by)
+    local dx, dy = ax - bx, ay - by
+    return sqrt(dx * dx + dy * dy)
+end
+
+--- A way's yards as the planner prices them: a swum yard costs more than a walked one.
+local function WayYards(way)
+    return way.yards + (way.swimYards or 0) * ((ns.Walking and ns.Walking.SWIM_COST or 1.5) - 1)
+end
+
+--- The way of a walk between two world points ({ inst, x, y }): known now, else asked for, and
+--- onFound(way) runs when it arrives. nil where the walking maps cannot tell.
+function Nav:WalkWay(a, b, onFound)
+    local W = ns.Walking
+    if not W or not a or not b or a.inst ~= b.inst or not W:Has(a.inst) then return nil end
+    local from, to = { x = a.x, y = a.y }, { x = b.x, y = b.y }
+    local known = W:Known(a.inst, from, to)
+    if known ~= nil then return known or nil end
+    W:Request(a.inst, from, to, function(way)
+        if way and onFound then onFound(way) end
+    end)
+    return nil
+end
+
+--- The yards of a walk for the planner (Travel's opts.walk): its way's when found, else nil.
+function Nav:WalkYards(a, b)
+    local W = ns.Walking
+    if not W or not a or not b or not W:Has(a.inst) then return nil end
+    -- the first walk starts where the player stood when it was asked for: from a few yards on it still serves
+    local s = self.startWay
+    if s and s.inst == a.inst and Dist(s.ax, s.ay, a.x, a.y) <= 10 and Dist(s.bx, s.by, b.x, b.y) <= 2 then return WayYards(s.way) end
+    local known = W:Known(a.inst, { x = a.x, y = a.y }, { x = b.x, y = b.y })
+    return known and WayYards(known) or nil
+end
+
+--- A found way for a walk: kept, drawn, and, when it changes the walk's time a lot, planned again.
+function Nav:WayFound(t, leg, way, a, b)
+    if leg then
+        leg.way, leg.wayAt = way, 1
+        if a and b and leg == (self.route and self.route.legs[1]) then
+            self.startWay = { inst = a.inst, ax = a.x, ay = a.y, bx = b.x, by = b.y, way = way }
+        end
+        local secs = WayYards(way) / self:RunSpeed()
+        if t and abs(secs - leg.seconds) > max(10, 0.2 * leg.seconds) and (t.wayReplans or 0) < WAY_REPLANS then
+            t.wayReplans = (t.wayReplans or 0) + 1
+            local r = self.route
+            ns.Events:After(0, function()
+                if self.target == t and self.route == r then self:SetRoute(self:PlanRoute(t)) end
+            end)
+        end
+    end
+    ns.Events:Fire("FG_NAV_WAY_FOUND")
+end
+
+--- Look for the ways of the route's walks, or of the walk to the target when there is no route.
+function Nav:FindWalks()
+    local t, r = self.target, self.route
+    self.walk = nil
+    if not t or not PlannerOn() then return end
+    if r then
+        for _, leg in ipairs(r.legs) do
+            if leg.kind == "walk" and not leg.way then
+                local a, b = ns.Travel.World(leg.from), ns.Travel.World(leg.to)
+                local way = self:WalkWay(a, b, function(found)
+                    if self.route == r and self.target == t then self:WayFound(t, leg, found, a, b) end
+                end)
+                if way then
+                    leg.way, leg.wayAt = way, 1
+                    if leg == r.legs[1] then self.startWay = { inst = a.inst, ax = a.x, ay = a.y, bx = b.x, by = b.y, way = way } end
+                end
+            end
+        end
+        return
+    end
+    self:FindPlainWalk()
+end
+
+--- The way from where the player stands to the target, for a walk with no route.
+function Nav:FindPlainWalk()
+    local t = self.target
+    local px, py, pInstance = ns.Player:GetWorldPosition()
+    if self.route or not t or not t.worldX or not px or pInstance ~= t.instanceID or not PlannerOn() then
+        self.walk = nil
+        return
+    end
+    local walk = { target = t, askedAt = ns.Now() }
+    self.walk = walk
+    local way = self:WalkWay({ inst = pInstance, x = px, y = py }, { inst = t.instanceID, x = t.worldX, y = t.worldY }, function(found)
+        if self.walk == walk then
+            walk.way, walk.at = found, 1
+            self:WayFound(t, nil, found)
+        end
+    end)
+    if way then walk.way, walk.at = way, 1 end
+end
+
+--- How far a point is from the segment p-q.
+local function SegmentDistance(px, py, p, q)
+    local dx, dy = q[1] - p[1], q[2] - p[2]
+    local len2 = dx * dx + dy * dy
+    local f = len2 > 0 and ((px - p[1]) * dx + (py - p[2]) * dy) / len2 or 0
+    if f < 0 then f = 0 elseif f > 1 then f = 1 end
+    return Dist(px, py, p[1] + dx * f, p[2] + dy * f)
+end
+
+--- Where along a way the player is: the segment they are on (from `at`, the last one reached, on),
+--- the index of the corner the arrow aims at, the yards left along the way, and how far off it they are.
+function Nav.Along(way, at, px, py)
+    local pts = way.points
+    local seg, off = at or 1, huge
+    for i = max(1, at or 1), #pts - 1 do
+        local d = SegmentDistance(px, py, pts[i], pts[i + 1])
+        if d < off then seg, off = i, d end
+    end
+    local aim = math.min(seg + 1, #pts)
+    if aim < #pts and Dist(px, py, pts[aim][1], pts[aim][2]) <= CORNER_YARDS then aim = aim + 1 end
+    local left = Dist(px, py, pts[aim][1], pts[aim][2])
+    for i = aim, #pts - 1 do left = left + Dist(pts[i][1], pts[i][2], pts[i + 1][1], pts[i + 1][2]) end
+    return seg, aim, left, off
+end
+
+--- The angle to a world point from the player, relative to their facing; nil without a facing.
+local function AngleTo(px, py, x, y)
+    local facing = ns.Player:GetFacing()
+    if not facing then return nil end
+    local rel = atan2(y - py, x - px) - facing
+    while rel > pi do rel = rel - 2 * pi end
+    while rel < -pi do rel = rel + 2 * pi end
+    return rel
+end
+
+--- Follow a way from (px, py): the corner to aim at and the yards left; nil when the player has
+--- left it (it is then looked for again from here, now and then).
+function Nav:FollowWay(holder, wayKey, atKey, px, py, again)
+    local way = holder[wayKey]
+    if not way or not px then return nil end
+    local seg, aim, left, off = Nav.Along(way, holder[atKey], px, py)
+    if off > OFF_WAY_YARDS then
+        if ns.Now() - (holder.askedAt or 0) >= ASK_AGAIN_SECONDS then
+            holder.askedAt = ns.Now()
+            again()
+        end
+        return nil
+    end
+    holder[atKey] = seg
+    local p = way.points[aim]
+    return p[1], p[2], left
 end
 
 --- Plan the way to the current target again now (an option changed).
@@ -256,13 +423,15 @@ function Nav:RemainingSeconds(state, speed)
     local detour = ns.Travel.WALK_DETOUR
     local r = self.route
     if not r then
+        if state and state.wayYards then return state.wayYards / speed end
         return state and state.distance and state.distance * detour / speed or math.huge
     end
     local total = 0
     for k = r.index, #r.legs do
         local leg = r.legs[k]
         if k == r.index and leg.kind == "walk" and state and state.leg and state.leg.distance then
-            total = total + state.leg.distance * detour / speed
+            -- along its way, the yards are the walk's own; a straight line is a guess
+            total = total + state.leg.distance * (state.leg.onWay and 1 or detour) / speed
         elseif k == r.index and leg.kind ~= "walk" then
             -- under way (or waiting at the dock): what is left of the leg's own seconds
             total = total + math.max(0, leg.seconds - (ns.Now() - (r.legAt or ns.Now())))
@@ -407,18 +576,35 @@ function Nav:Update(allowCached)
             local aim = ns.Travel.World(leg.to)
             if not aim or aim.inst ~= pInstance then aim = ns.Travel.World(leg.from) end
             local l = { index = self.route.index, kind = leg.kind }
-            if px and aim and aim.inst == pInstance then
+            local cx, cy, left
+            if leg.kind == "walk" and leg.way and px and aim and aim.inst == pInstance then
+                cx, cy, left = self:FollowWay(leg, "way", "wayAt", px, py, function()
+                    local b = ns.Travel.World(leg.to)
+                    local r = self.route
+                    local way = self:WalkWay({ inst = pInstance, x = px, y = py }, b, function(found)
+                        if self.route == r then self:WayFound(t, leg, found) end
+                    end)
+                    if way then leg.way, leg.wayAt = way, 1 end
+                end)
+            end
+            if cx then
+                l.distance, l.onWay = left, true
+                l.angle = AngleTo(px, py, cx, cy)
+            elseif px and aim and aim.inst == pInstance then
                 local dx, dy = aim.x - px, aim.y - py
                 l.distance = sqrt(dx * dx + dy * dy)
-                local facing = ns.Player:GetFacing()
-                if facing then
-                    local rel = atan2(dy, dx) - facing
-                    while rel > pi do rel = rel - 2 * pi end
-                    while rel < -pi do rel = rel + 2 * pi end
-                    l.angle = rel
-                end
+                l.angle = AngleTo(px, py, aim.x, aim.y)
             end
             state.leg = l
+        end
+    end
+    -- a walk with no route: the arrow aims along its way, and the time left is the way's
+    local walk = self.walk
+    if not self.route and walk and walk.target == t and walk.way and px and pInstance == t.instanceID and not state.arrived then
+        local cx, cy, left = self:FollowWay(walk, "way", "at", px, py, function() self:FindPlainWalk() end)
+        if cx then
+            state.wayYards = left
+            state.angle = AngleTo(px, py, cx, cy) or state.angle
         end
     end
     self.state, self.stateAt, self.stateTarget = state, ns.Now(), t

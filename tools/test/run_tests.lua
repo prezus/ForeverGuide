@@ -5149,6 +5149,186 @@ section("field checks: /fg tests opens the checks with the planner and recording
     if was.guide then G:Activate(was.guide) end
 end)
 
+-- ---- walking paths over the walking maps (#693) -------------------------------------
+-- The game decodes tiles with C_EncodingUtil; here base64 is plain Lua and zlib is python3's.
+local function TestCodec()
+    local B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    local val = {}
+    for i = 1, 64 do val[B64:byte(i)] = i - 1 end
+    local function decode(s)
+        s = s:gsub("[^%w%+/=]", "")
+        local out, n = {}, 0
+        for i = 1, #s, 4 do
+            local a, b, c, d = val[s:byte(i)], val[s:byte(i + 1)], val[s:byte(i + 2)], val[s:byte(i + 3)]
+            local v = a * 262144 + b * 4096 + (c or 0) * 64 + (d or 0)
+            n = n + 1; out[n] = string.char(math.floor(v / 65536) % 256)
+            if c then n = n + 1; out[n] = string.char(math.floor(v / 256) % 256) end
+            if d then n = n + 1; out[n] = string.char(v % 256) end
+        end
+        return table.concat(out)
+    end
+    local function inflate(bin)
+        local tmp = os.tmpname()
+        local f = assert(io.open(tmp, "wb")); f:write(bin); f:close()
+        local p = assert(io.popen('python3 -c "import sys,zlib; sys.stdout.buffer.write(zlib.decompress(open(sys.argv[1],\'rb\').read()))" "' .. tmp .. '"', "r"))
+        local out = p:read("*a"); p:close(); os.remove(tmp)
+        return out
+    end
+    return { DecodeBase64 = decode, DecompressString = function(bin) return inflate(bin) end }
+end
+
+section("walking paths: the Lua router finds the reference router's ways", function()
+    local W = ns.Walking
+    local was = rawget(_G, "C_EncodingUtil")
+    _G.C_EncodingUtil = TestCodec()
+    need(W:Has(0) and W:Has(1) and W:Has(2991), "the three walking maps load against their manifest")
+    local cases = dofile(root .. "tools/test/fixtures/nav_ways.lua")
+    for _, c in ipairs(cases) do
+        local way, why = W:FindWay(c.map, c.from, c.to)
+        if c.none then
+            local want = c.none == "NoWalk" and "no-walk" or "off-goal"
+            check(way == nil and why == want, c.id .. ": no way (" .. want .. "), got " .. tostring(why))
+        else
+            check(way ~= nil, c.id .. ": a way (" .. tostring(why) .. ")")
+            if way then
+                check(math.abs(way.yards - c.yards) <= c.yards * 0.005 + 0.5, string.format("%s: %.1f yd, the reference %.1f", c.id, way.yards, c.yards))
+                check(#way.points == c.points, string.format("%s: %d points, the reference %d", c.id, #way.points, c.points))
+                check(math.abs(way.goalHeight - c.goalHeight) < 0.01, c.id .. ": arrives on the reference's floor (" .. way.goalHeight .. ")")
+            end
+        end
+    end
+    _G.C_EncodingUtil = was
+end)
+
+section("walking paths: searches run over frames, wait out combat, and can be cancelled", function()
+    local W = ns.Walking
+    local was, wasClock = rawget(_G, "C_EncodingUtil"), rawget(_G, "debugprofilestop")
+    _G.C_EncodingUtil = TestCodec()
+    -- a clock where every reading is a millisecond later: a search spans many frames
+    local ms = 0
+    _G.debugprofilestop = function() ms = ms + 1 return ms end
+    W:Forget()
+    local cases = dofile(root .. "tools/test/fixtures/nav_ways.lua")
+    local c = cases[2]
+    local got, frames = nil, 0
+    W:Request(c.map, c.from, c.to, function(way) got = way end)
+    MOCK.inCombat = true
+    MOCK_ADVANCE(0.1)
+    check(got == nil, "in combat the search waits")
+    MOCK.inCombat = false
+    while got == nil and frames < 2000 do MOCK_ADVANCE(0.01) frames = frames + 1 end
+    check(got ~= nil and math.abs(got.yards - c.yards) <= c.yards * 0.005 + 0.5, "the search over frames finds the reference's way")
+    check(frames > 1, "it took more than one frame within its budget (" .. frames .. ")")
+    check(W:Known(c.map, c.from, c.to) == got, "and is remembered")
+    local again
+    W:Request(c.map, c.from, c.to, function(way) again = way end)
+    check(again == got, "asked again, it answers at once")
+
+    local called = false
+    local job = W:Request(cases[3].map, cases[3].from, cases[3].to, function() called = true end)
+    W:Cancel(job)
+    for _ = 1, 200 do MOCK_ADVANCE(0.01) end
+    check(not called, "a cancelled search never calls back")
+    _G.C_EncodingUtil, _G.debugprofilestop = was, wasClock
+end)
+
+section("walking paths: a map that does not match its manifest is left out, reported once", function()
+    local W = ns.Walking
+    local was = rawget(_G, "C_EncodingUtil")
+    _G.C_EncodingUtil = TestCodec()
+    local errorsBefore = #reportedErrors
+    local real = ns.NavMap2991
+    ns.NavMap2991 = { version = 1, hash = "0000000000000000", tiles = {} }
+    W:Load()
+    check(not W:Has(2991) and W:Has(0), "the damaged map is out, the others stay")
+    check(#reportedErrors > errorsBefore, "and reported")
+    ns.NavMap2991 = real
+    W:Load()
+    while #reportedErrors > errorsBefore do table.remove(reportedErrors) end
+    check(W:Has(2991), "with its file back it loads")
+    _G.C_EncodingUtil = nil
+    check(not W:Has(0), "a client that cannot read the tiles walks straight")
+    _G.C_EncodingUtil = was
+end)
+
+section("walking paths: the arrow, the time left and the dots follow a walk's way (#694)", function()
+    local Nav, D, W, M = ns.Navigation, ns.RouteDots, ns.Walking, MOCK
+    local db = travelFixture()
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance, facing = M.facing,
+        codec = rawget(_G, "C_EncodingUtil") }
+    local function moveTo(p)
+        local b = boxes[p.map]
+        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
+        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+        ns.Player.cache.mapID = nil
+    end
+    _G.C_EncodingUtil = TestCodec()
+    W:Forget()
+    local found = 0
+    local onFound = function() found = found + 1 end
+    ns.Events:Register("FG_NAV_WAY_FOUND", onFound)
+    local goldshire, fargodeep = { map = 1429, x = 42.1, y = 65.9 }, { map = 1429, x = 40.4, y = 82.4 }
+    local ref = dofile(root .. "tools/test/fixtures/nav_ways.lua")[1]
+
+    withTravelWorld(db, function()
+        -- A walk with no route: its way is looked for, then followed.
+        moveTo(goldshire)
+        M.facing = 0
+        Nav:SetTarget({ map = fargodeep.map, x = fargodeep.x, y = fargodeep.y, label = "Fargodeep Mine" })
+        need(Nav.route == nil and Nav.walk and Nav.walk.target == Nav.target, "a plain walk asks for its way")
+        local straight = Nav:Update().distance
+        for _ = 1, 20 do
+            if Nav.walk.way then break end
+            MOCK_ADVANCE(0.05)
+        end
+        need(Nav.walk.way, "the way is found")
+        check(found >= 1, "and announced (FG_NAV_WAY_FOUND)")
+        local way = Nav.walk.way
+        check(math.abs(way.yards - ref.yards) < 1, string.format("it is the reference's way (%.1f yd)", way.yards))
+        local s = Nav:Update()
+        check(s.wayYards and math.abs(s.wayYards - way.yards) < 1, "the time left follows the way's yards (" .. tostring(s.wayYards) .. ")")
+        check(s.distance == straight and s.wayYards > straight, "while the target's distance stays the straight line")
+        local c = way.points[2]
+        local want = math.atan2(c[2] - M.worldY, c[1] - M.worldX)
+        check(math.abs(s.angle - want) < 0.01, "the arrow aims at the way's first corner")
+        check(math.abs(Nav:SecondsLeft(s) - way.yards / Nav:RunSpeed()) < 0.5, "and the seconds left are the way's yards at the run speed")
+        local segs = D:Segments()
+        check(#segs == #way.points - 1 and segs[1].ax == M.worldX, "the dots follow the way from the player, corner to corner (" .. #segs .. ")")
+
+        -- At the first corner the arrow turns to the next; far off the way, it is looked for again.
+        M.worldX, M.worldY = c[1], c[2]
+        s = Nav:Update()
+        local nextCorner = way.points[3]
+        check(math.abs(s.angle - math.atan2(nextCorner[2] - c[2], nextCorner[1] - c[1])) < 0.01, "at the first corner the arrow turns to the next")
+        local asked = Nav.walk
+        M.worldX, M.worldY = M.worldX + 200, M.worldY + 200
+        MOCK_ADVANCE(6)
+        Nav:Update()
+        check(Nav.walk ~= asked, "200 yards off the way, it is looked for again from there")
+
+        -- A route's walk to the tram follows its way too; found ways replan a target a few times at most.
+        moveTo(goldshire)
+        Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
+        need(Nav.route and Nav.route.legs[1].kind == "walk", "Goldshire to Ironforge starts with a walk")
+        for _ = 1, 40 do MOCK_ADVANCE(0.05) end
+        local leg = Nav.route.legs[1]
+        check(leg.way ~= nil, "the first walk's way is found")
+        check((Nav.target.wayReplans or 0) <= 3, "found ways replan a target at most three times (" .. tostring(Nav.target.wayReplans) .. ")")
+        s = Nav:Update()
+        check(s.leg and s.leg.onWay and math.abs(s.leg.distance - leg.way.yards) < 1, "the arrow's leg follows the way's yards")
+        segs = D:Segments()
+        check(#segs >= #leg.way.points - 1 and segs[1].kind == "walk", "the route's dots follow the walk's way, then the rest")
+    end)
+
+    ns.Events:Unregister("FG_NAV_WAY_FOUND", onFound)
+    Nav:Clear()
+    _G.C_EncodingUtil = was.codec
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance, M.facing = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst, was.facing
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) end
+end)
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 section("no swallowed errors anywhere", function()
     local expected = 0

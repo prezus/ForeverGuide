@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Walks follow the ground. With the travel planner on, a walk now goes round walls, cliffs, fences and water instead of straight through them: the arrow points at the next corner of the way, the dots on the world map and the minimap follow it, and the time left is the way's own length. The way is worked out a little at a time in the background, never in combat, from walking maps of Eastern Kingdoms, Kalimdor and Zephras Isle that come with the addon; until it is found, or where the maps have no way, the walk is a straight line as before. `/fg dots` says whether the current walk follows its way.
 - Guides: Street's Speed Demon v5, a route any Alliance character can choose in the route list, starting in Coldridge Valley: latest
 - Guides: Street's Speed Demon v4, a route any Alliance character can choose in the route list, starting in Coldridge Valley: test
 - The travel planner keeps its way through the loading screen of the Deeprun Tram or a Hearthstone. The game says you are alive again after a loading screen, and the planner took that as coming back from the dead and planned afresh before it knew where you were, losing the way. Recordings now also note when a planned way is gone.

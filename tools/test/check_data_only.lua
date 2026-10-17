@@ -1,9 +1,9 @@
 -- ============================================================
 -- ForeverGuide / tools/test/check_data_only.lua
--- Guides/ and Data/ arrive by pull request from the maintainer's route planner and data build.
+-- Guides/, Data/ and Nav/ arrive by pull request from the maintainer's route planner and data build.
 -- The game runs them with the addon's full permissions, so they must be data and nothing else:
 --
---     lua5.1 tools/test/check_data_only.lua [dir ...]     (default: Guides Data tools/test/fixtures/Guides; each searched at any depth)
+--     lua5.1 tools/test/check_data_only.lua [dir ...]     (default: Guides Data Nav tools/test/fixtures/Guides; each searched at any depth)
 --
 -- Two checks, both required:
 --   static   with strings and comments removed, a file holds only table constructors, the
@@ -16,7 +16,7 @@
 -- Exits non-zero naming the first problem in each failing file.
 -- ============================================================
 
-local dirs = (#arg > 0) and arg or { "Guides", "Data", "tools/test/fixtures/Guides" }
+local dirs = (#arg > 0) and arg or { "Guides", "Data", "Nav", "tools/test/fixtures/Guides" }
 
 --- Text with every string literal and comment replaced by a space, so only code remains.
 local function codeOnly(src)

@@ -29,7 +29,7 @@ ROOT = os.path.dirname(HERE)
 NAME = os.path.basename(ROOT)
 
 RUNTIME_EXT = {".lua", ".xml", ".toc", ".tga", ".blp"}
-RUNTIME_DIRS = {"", "Data", "Guides", "Textures", "UI"}
+RUNTIME_DIRS = {"", "Data", "Guides", "Nav", "Textures", "UI"}
 RELEASE_DOCS = {"LICENSE", "README.md", "CHANGELOG.md"}
 DEV_DIRS = {"tools", "guides-src", "data-src"}
 

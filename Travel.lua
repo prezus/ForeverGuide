@@ -12,6 +12,7 @@
 -- The plan is Dijkstra over the start, the target, the flight masters the
 -- character knows, the links' ends, the bind point and the teleports'
 -- landings. Walking is straight-line yards x WALK_DETOUR at the run speed,
+-- or, where the walking maps have found the way (opts.walk), its own yards;
 -- and only within one world map (a continent, or Zephras Isle). A flight
 -- boards once (TravelDB.flightBoard) and may chain direct flights through
 -- known nodes. The Hearthstone and teleports carry a margin in the cost the
@@ -195,7 +196,8 @@ end
 --- opts: faction ("Alliance"|"Horde"), known (set of flight node names), speed
 --- (yards a second), bind ({ map, x, y }) and bindName, hearthWait (seconds until
 --- the Hearthstone is ready; nil when there is none), teleports ({ { spell, wait } }
---- castable now or after `wait`).
+--- castable now or after `wait`), walk (function(a, b) -> the yards a walk between two world
+--- points takes when the walking maps know its way, else nil).
 --- Returns { legs = { { kind, from, to, seconds, wait?, name?, spell? } }, seconds },
 --- or nil and why: "nowhere" (start or target has no world position), "unreachable",
 --- "budget" (the search ran out of its caps).
@@ -236,7 +238,8 @@ function Travel:Plan(from, to, opts)
                 for _, v in ipairs(walkTo) do
                     local nv = nodes[v]
                     if v ~= u and not done[v] and nv.w.inst == nu.w.inst then
-                        local s = Yards(nu.w, nv.w) * Travel.WALK_DETOUR / speed
+                        local walked = opts.walk and opts.walk(nu.w, nv.w)
+                        local s = (walked or Yards(nu.w, nv.w) * Travel.WALK_DETOUR) / speed
                         Relax(u, v, s, s, { kind = "walk" })
                     end
                 end
