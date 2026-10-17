@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- A walk starts on the floor you stand on. The game does not tell addons your height, so where floors stack the way was planned from whichever came first: from the mountain over Ironforge's halls, a roof, or the canal under Stormwind's streets. ForeverGuide now follows the floor under you as you walk, up stairs a step at a time, finding it afresh after a teleport from whether you are indoors (the lower floor) or out (the upper).
 - The Guides list shows every chapter of the route you chose, not nine around your level: choose Street's Speed Demon and all its chapters are there to pick, without the standard guides beside them; choose the standard guides and they are listed as before. The list still opens at the chapter for your level.
 - The planned way's dots are bigger and brighter again, on a thicker dark rim, so they read on Elwynn's greens and the world map's parchment.
 - `/fg tests` (field checks for testers) now tries the walking paths: walks to King Magni under Ironforge's mountain and to Morgan Pestle's shop over Stormwind's canal, out through Stormwind's gate, round Goldshire's farm fences, and onto Menethil's pier for the Theramore boat, each step saying what the arrow and the dots should do. It says which walking maps loaded, and the recording keeps each way the addon looked for (what it found, how long it is, and how long a frame it took) and ForeverGuide's memory and frame cost as the checks start and end.

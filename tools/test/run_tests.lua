@@ -5445,6 +5445,75 @@ section("walking paths: the arrow, the time left and the dots follow a walk's wa
     if was.target then Nav:SetTarget(was.target) end
 end)
 
+section("walking paths: a walk starts on the floor under the player, followed as they move (#744)", function()
+    local Nav, W, M = ns.Navigation, ns.Walking, MOCK
+    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+    local was = { codec = rawget(_G, "C_EncodingUtil"), indoors = rawget(_G, "IsIndoors"), pos = _G.UnitPosition,
+        wx = M.worldX, wy = M.worldY, inst = M.instance, planner = ns.db.nav.travelPlanner }
+    _G.C_EncodingUtil = TestCodec()
+    ns.db.nav.travelPlanner = true
+    local indoors = false
+    _G.IsIndoors = function() return indoors end
+    local function at(map, x, y)
+        local b = boxes[map]
+        return b.maxX - y / 100 * (b.maxX - b.minX), b.maxY - x / 100 * (b.maxY - b.minY)
+    end
+    local function stand(wx, wy) M.worldX, M.worldY, M.instance = wx, wy, 0 end
+    local function spread(floors)
+        local lo, hi = math.huge, -math.huge
+        for _, f in ipairs(floors) do lo, hi = math.min(lo, f.height), math.max(hi, f.height) end
+        return lo, hi
+    end
+
+    -- Ironforge's High Seat: the hall under the mountain
+    local hx, hy = at(1455, 39.4, 55.4)
+    local lo, hi = spread(W:Floors(0, hx, hy))
+    need(hi - lo > 100, string.format("King Magni stands under the mountain: floors %.0f to %.0f", lo, hi))
+    Nav.floor = nil
+    indoors = true
+    stand(hx, hy)
+    local z = Nav:TrackFloor(hx, hy, 0)
+    check(z and z < 560, "indoors, the player is placed on the hall's floor, not the mountain over it (" .. tostring(z) .. ")")
+    -- followed: a step on, and outdoors now (the client may say so at a door), still the hall's floor
+    indoors = false
+    z = Nav:TrackFloor(hx + 3, hy + 3, 0)
+    check(z and z < 560, "a few yards on, the floor followed stays the hall's, indoors or out (" .. tostring(z) .. ")")
+    -- a walk to the throne from here searches from that floor
+    stand(hx + 3, hy + 3)
+    local from = Nav:WalkStart({ inst = 0, x = hx + 3, y = hy + 3 })
+    check(from.z and from.z < 560, "a walk starting where the player stands starts on their floor (" .. tostring(from.z) .. ")")
+    local way = W:FindWay(0, from, { x = hx, y = hy, z = 505.8 })
+    check(way and way.startHeight < 560 and way.goalHeight < 560, "and the way to the throne keeps to the hall, start and end (" .. tostring(way and way.startHeight) .. ")")
+    local away = Nav:WalkStart({ inst = 0, x = hx + 300, y = hy })
+    check(away.z == nil, "one starting elsewhere does not")
+
+    -- Stormwind's Trade District: the street over the canal, outdoors
+    local sx, sy = at(1453, 63.2, 74.4)
+    lo, hi = spread(W:Floors(0, sx, sy))
+    need(hi - lo > 15, string.format("Morgan Pestle's shop stands over the canal: floors %.0f to %.0f", lo, hi))
+    indoors = false
+    stand(sx, sy)
+    z = Nav:TrackFloor(sx, sy, 0)
+    check(z and z > lo + 10, "a teleport there finds the floor afresh: outdoors, the street, not the canal under it (" .. tostring(z) .. ")")
+
+    -- a height from the game, when the client gives one, wins
+    Nav.floor = nil
+    _G.UnitPosition = function() return sx, sy, lo + 1, 0 end
+    z = Nav:TrackFloor(sx, sy, 0)
+    check(z and math.abs(z - lo) < 10, "a height from the game places the player on its floor (" .. tostring(z) .. ")")
+    _G.UnitPosition = was.pos
+
+    -- on a flight there is no floor
+    M.onTaxi = true
+    check(Nav:TrackFloor(sx, sy, 0) == nil and Nav.floor == nil, "on a flight, no floor is kept")
+    M.onTaxi = false
+
+    Nav.floor = nil
+    _G.C_EncodingUtil, _G.IsIndoors, _G.UnitPosition = was.codec, was.indoors, was.pos
+    M.worldX, M.worldY, M.instance = was.wx, was.wy, was.inst
+    ns.db.nav.travelPlanner = was.planner
+end)
+
 section("walking paths: a walk to an NPC ends on its floor where floors stack (#712)", function()
     local Nav, W, M = ns.Navigation, ns.Walking, MOCK
     local db = travelFixture()
