@@ -4991,6 +4991,31 @@ section("travel planner: the route as dots on the world map and the minimap", fu
     if was.target then Nav:SetTarget(was.target) else Nav:Clear() end
 end)
 
+section("travel planner: the run speed keeps the last the game gave, so a mounted time left holds (#743)", function()
+    local T, Nav = ns.Travel, ns.Navigation
+    local real = _G.GetUnitSpeed
+    local function gives(...)
+        local values = { ... }
+        _G.GetUnitSpeed = function() return unpack(values) end
+    end
+    T.ForgetSpeed()
+    gives(0, 0)
+    check(Nav:RunSpeed() == T.DEFAULT_SPEED, "before the game gives any speed, a running character's")
+    gives(0, 14)
+    check(Nav:RunSpeed() == 14, "mounted, the game's 14")
+    _G.GetUnitSpeed = function() error("not now") end
+    check(Nav:RunSpeed() == 14, "a failed read keeps the last speed")
+    gives()
+    check(Nav:RunSpeed() == 14, "no value (a secret one in combat reads as none) keeps it")
+    gives(0, 0)
+    check(Nav:RunSpeed() == 14, "a 0 keeps it")
+    check(T:Options().speed == 14, "and the planner plans with it")
+    gives(0, 7)
+    check(Nav:RunSpeed() == 7, "dismounted, the game's 7 again")
+    _G.GetUnitSpeed = real
+    T.ForgetSpeed()
+end)
+
 section("travel planner: its switches in the options and /fg travel", function()
     local Nav, M = ns.Navigation, MOCK
     local panel = rawget(_G, "ForeverGuideOptionsPanel")
