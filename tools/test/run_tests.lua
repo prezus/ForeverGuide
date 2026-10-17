@@ -4997,9 +4997,16 @@ section("travel planner: its switches in the options and /fg travel", function()
     if panel and panel.scripts.OnShow then panel.scripts.OnShow(panel) end
     local travel, dots, hearth = ns.Options:GetWidget("travel"), ns.Options:GetWidget("routedots"), ns.Options:GetWidget("usehearth")
     need(travel and dots and hearth, "the options list the planner, its map dots and its use of the Hearthstone")
-    check(not travel:GetChecked() and dots:GetChecked() and hearth:GetChecked(),
-        "the planner is off by default (until it has been checked in game); its dots and the Hearthstone are on for when it is turned on")
-    check(ns.db.nav.travelPlanner == false, "and saved as off")
+    check(travel:GetChecked() and dots:GetChecked() and hearth:GetChecked(), "the planner, its dots and its use of the Hearthstone are on by default")
+    check(ns.db.nav.travelPlanner == true and ns.db.nav.plannerTurnedOn == true, "and saved as on")
+    -- a player who kept the old default (off) gets it on once; one who turns it off after keeps it off
+    ns.db.nav.travelPlanner, ns.db.nav.plannerTurnedOn = false, nil
+    ns.Database:Init()
+    check(ns.db.nav.travelPlanner == true, "the old default, off, is turned on once")
+    ns.db.nav.travelPlanner = false
+    ns.Database:Init()
+    check(ns.db.nav.travelPlanner == false, "turned off again after that, it stays off")
+    ns.db.nav.travelPlanner = true
 
     local db = travelFixture()
     local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
@@ -5010,7 +5017,7 @@ section("travel planner: its switches in the options and /fg travel", function()
     M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
     ns.Player.cache.mapID = nil
     withTravelWorld(db, function()
-        -- as a player who never touched it: off, and setting a target plans nothing
+        -- with the planner off, setting a target plans nothing
         ns.db.nav.travelPlanner = nil
         Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
         check(Nav.route == nil, "with the planner off the arrow points straight at the target, with no planned way")
