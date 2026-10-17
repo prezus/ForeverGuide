@@ -251,7 +251,8 @@ local work = { cost = {}, seconds = {}, prev = {}, via = {}, done = {}, heap = {
 --- (yards a second), bind ({ map, x, y }) and bindName, hearthWait (seconds until
 --- the Hearthstone is ready; nil when there is none), teleports ({ { spell, wait } }
 --- castable now or after `wait`), walk (function(a, b) -> the yards a walk between two world
---- points takes when the walking maps know its way, else nil).
+--- points takes when the walking maps know its way, else nil; and the yards it is priced at, when
+--- more: the other faction's towns and zones far above the player on the way).
 --- Returns { legs = { { kind, from, to, seconds, wait?, name?, spell? } }, seconds },
 --- or nil and why: "nowhere" (start or target has no world position), "unreachable",
 --- "budget" (the search ran out of its caps).
@@ -294,9 +295,11 @@ function Travel:Plan(from, to, opts)
                 for _, v in ipairs(walkTo) do
                     local nv = nodes[v]
                     if v ~= u and not done[v] and nv.w.inst == nu.w.inst then
-                        local walked = opts.walk and opts.walk(nu.w, nv.w)
+                        -- a found way's yards; priced with what its towns and dangerous zones add (#747)
+                        local walked, priced
+                        if opts.walk then walked, priced = opts.walk(nu.w, nv.w) end
                         local s = (walked or Yards(nu.w, nv.w) * Travel.WALK_DETOUR) / speed
-                        Relax(u, v, s, s, WALK_LEG)
+                        Relax(u, v, priced and priced / speed or s, s, WALK_LEG)
                     end
                 end
             end

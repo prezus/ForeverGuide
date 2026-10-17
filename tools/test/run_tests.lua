@@ -5456,6 +5456,66 @@ section("walking paths: zones far above the player cost more, never the ones a w
     _G.C_EncodingUtil = was
 end)
 
+section("walking paths: a way says what dangerous zones and the other faction's towns add to it, for the planner (#747)", function()
+    local W = ns.Walking
+    local was = rawget(_G, "C_EncodingUtil")
+    _G.C_EncodingUtil = TestCodec()
+    -- Sentinel Hill (Westfall) to Lakeshire (Redridge): through Elwynn, or Duskwood
+    local from, to = { x = -10628, y = 1037 }, { x = -9435, y = -2234 }
+    local plain = W:FindWay(0, from, to, "Alliance")
+    need(plain, "Sentinel Hill to Lakeshire has a way")
+    check(plain.riskYards == 0, "with nothing dangerous it adds nothing (" .. plain.riskYards .. ")")
+    local round = W:FindWay(0, from, to, "Alliance", W:DangerFor(5))
+    check(round and round.riskYards == 0 and round.yards > plain.yards,
+        string.format("at level 5 it goes round Duskwood through Elwynn: %.0f yd against %.0f, nothing added", round and round.yards or -1, plain.yards))
+    local through = W:FindWay(0, from, to, "Alliance", { [12] = W.DANGER_COST, [10] = W.DANGER_COST })
+    check(through and through.riskYards > through.yards, string.format("with Elwynn and Duskwood both dangerous it must cross one: %.0f yd added to %.0f",
+        through and through.riskYards or -1, through and through.yards or -1))
+    _G.C_EncodingUtil = was
+end)
+
+section("travel planner: a walk is priced with its dangers, its time still its own; a dangerous way found, or a level up, plans again (#747)", function()
+    local db, Nav, T = ns.TravelDB, ns.Navigation, ns.Travel
+    local known = { ["Stormwind, Elwynn"] = true, ["Lakeshire, Redridge"] = true }
+    withTravelWorld(db, function()
+        local from, to = { map = 1429, x = 42.1, y = 65.9 }, { map = 1429, x = 90, y = 75 }   -- Goldshire to Eastvale
+        local sw, tw = T.World(from), T.World(to)
+        local function direct(a, b) return a.x == sw.x and a.y == sw.y and b.x == tw.x and b.y == tw.y end
+        local function yards(a, b) return math.sqrt((a.x - b.x) ^ 2 + (a.y - b.y) ^ 2) * T.WALK_DETOUR end
+        local safe = T:Plan(from, to, { faction = "Alliance", known = known, walk = function(a, b) return yards(a, b) end })
+        check(kinds(safe) == "walk", "Goldshire to Eastvale walks (" .. kinds(safe) .. ")")
+        -- the walk straight there crosses somewhere dangerous: priced four times its yards
+        local risky = T:Plan(from, to, { faction = "Alliance", known = known, walk = function(a, b)
+            local y = yards(a, b)
+            if direct(a, b) then return y, 4 * y end
+            return y
+        end })
+        check(kinds(risky) ~= "walk" and kinds(risky):find("fly") ~= nil, "priced with its danger, the walk loses to the flight (" .. kinds(risky) .. ")")
+        local sum = 0
+        for _, leg in ipairs(risky and risky.legs or {}) do sum = sum + leg.seconds end
+        check(risky and math.abs(sum - risky.seconds) < 0.01 and risky.seconds < 4 * safe.seconds, "the time shown is the legs' own, not the price")
+
+        -- a way found through danger plans again; one without does not
+        local plans, realPlanRoute = 0, Nav.PlanRoute
+        Nav.PlanRoute = function() plans = plans + 1 return nil end
+        local t = { map = to.map, x = to.x, y = to.y }
+        Nav.target = t
+        Nav:WayFound(t, nil, { points = { { 0, 0 }, { 700, 0 } }, yards = 700, swimYards = 0, riskYards = 0 })
+        MOCK_ADVANCE(0)
+        check(plans == 0, "a safe way found does not plan again")
+        Nav:WayFound(t, nil, { points = { { 0, 0 }, { 700, 0 } }, yards = 700, swimYards = 0, riskYards = 1400 })
+        MOCK_ADVANCE(0)
+        check(plans == 1, "a way through a dangerous zone plans again, for a flight to weigh against it")
+        -- the guide may set its step's target again at once; the way is planned again a tick later in any
+        -- case, once the walking maps have forgotten the ways searched at the old level
+        MOCK_FIRE("PLAYER_LEVEL_UP", 13)
+        local fired = plans
+        MOCK_ADVANCE(0)
+        check(plans == fired + 1, "a level up plans the way again a tick later")
+        Nav.PlanRoute, Nav.target = realPlanRoute, nil
+    end)
+end)
+
 section("route dots: the segments are refilled each draw, not made anew", function()
     local D, Nav, M = ns.RouteDots, ns.Navigation, MOCK
     local db = travelFixture()
