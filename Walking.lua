@@ -33,7 +33,7 @@ local Walking = ns:NewModule("Walking")
 local floor, abs, sqrt, huge, min, max = math.floor, math.abs, math.sqrt, math.huge, math.min, math.max
 local byte = string.byte
 
-local PACK_VERSION = 1
+local PACK_VERSION = 2
 local TILE_YARDS = 1600 / 3
 local GRID = 64
 local CELL = TILE_YARDS / GRID
@@ -43,6 +43,10 @@ Walking.SNAP_CELLS = 3       -- grid cells searched round a point whose own cell
 Walking.HEIGHT_YARDS = 40    -- a height further than this from every floor there is ignored
 Walking.ON_FLOOR_YARDS = 4   -- a floor this near the height is the point's: the search round it stops
 Walking.SWIM_COST = 1.5      -- a swum yard costs this many walked ones
+-- What a walked yard costs on each ground, by its class (codex src/nav/ground.ts, #745): normal, road,
+-- gentle slope, steep slope, under a roof or a mountain. A region's stored ways are priced already.
+Walking.GROUND_COST = { [0] = 1, 0.8, 1.3, 2.5, 1.5 }
+Walking.MIN_GROUND_COST = 0.8 -- the smallest: the search's heuristic scales by it, so it never overstates
 Walking.BUDGET_MS = 3        -- a search's time a frame
 Walking.MAX_TILES = 96       -- decoded tiles kept; past it the least recently used go
 Walking.MAX_WAYS = 200       -- ways remembered
@@ -113,7 +117,10 @@ local function Decode(s)
     local regionCount, portalCount = u16(), u16()
     local regions = {}
     for r = 1, regionCount do
-        local swim = u8() % 2 == 1
+        local flags = u8()
+        local swim = flags % 2 == 1
+        local ground = floor(flags / 2) % 8
+        local pocket = floor(flags / 16) % 2 == 1
         local height = i16() / 2
         local k = u8()
         local portals = {}
@@ -132,7 +139,7 @@ local function Decode(s)
             end
             corners[i] = list
         end
-        regions[r] = { swim = swim, height = height, portals = portals, costs = costs, corners = corners }
+        regions[r] = { swim = swim, ground = ground, pocket = pocket, height = height, portals = portals, costs = costs, corners = corners }
     end
     local portals = {}
     for p = 1, portalCount do
@@ -262,9 +269,9 @@ local function Place(tiles, p)
             for _, r in ipairs(here) do
                 local d = abs(r.height - p.z)
                 if d <= Walking.HEIGHT_YARDS then
-                    -- a region no portal joins to anything is a roof, a ledge or a pocket: the point's floor only when nothing else is near
+                    -- a pocket (a roof, a sealed room: a small surface on its own) is the point's floor only when nothing else is near
                     local region = tile.regions[r.region]
-                    if region and #region.portals > 0 then
+                    if region and not region.pocket then
                         if not best or d < abs(best.height - p.z) then best = r end
                     elseif not island or d < abs(island.height - p.z) then
                         island = r
@@ -289,7 +296,7 @@ function Walking:Floors(mapID, x, y)
     for _, r in ipairs(Place(tiles, { x = x, y = y })) do
         local t = tiles(r.tile)
         local region = t and t.regions[r.region]
-        out[#out + 1] = { height = r.height, joined = region ~= nil and #region.portals > 0, swim = region ~= nil and region.swim }
+        out[#out + 1] = { height = r.height, joined = region ~= nil and not region.pocket, swim = region ~= nil and region.swim }
     end
     return out
 end
@@ -441,13 +448,13 @@ local function Search(tiles, from, to, pause)
         local known = best[key]
         if known and step.cost >= known.cost then return end
         best[key] = step
-        Push(heap, step.cost + (key == GOAL and 0 or Flat(at, goalPoint)), key)
+        Push(heap, step.cost + (key == GOAL and 0 or Flat(at, goalPoint) * Walking.MIN_GROUND_COST), key)
     end
 
     for _, s in ipairs(start) do
         local region = RegionOf(s.tile, s.region)
         if region then
-            local weight = region.swim and Walking.SWIM_COST or 1
+            local weight = region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)
             if goalSet[s.tile .. "@" .. s.region] then
                 local d = Flat(startPoint, goalPoint)
                 Offer(GOAL, { cost = d * weight, via = NONE, swim = region.swim and d or 0, yards = d, origin = s, arrived = s }, goalPoint)
@@ -478,7 +485,9 @@ local function Search(tiles, from, to, pause)
                 for _, side in ipairs(Sides(ref.tile, ref.portal)) do
                     local region = RegionOf(side.tile, side.region)
                     if region then
-                        local weight = region.swim and Walking.SWIM_COST or 1
+                        -- a straight stretch in the region costs its ground's multiplier; a stored way is priced already
+                        local weight = region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)
+                        local wayWeight = region.swim and Walking.SWIM_COST or 1
                         local arrived = goalSet[side.tile .. "@" .. side.region]
                         if arrived then
                             local d = Flat(at, goalPoint)
@@ -505,7 +514,7 @@ local function Search(tiles, from, to, pause)
                                         local nextPortal = region.portals[j]
                                         local nextKey = KeyOf(side.tile, nextPortal)
                                         refs[nextKey] = refs[nextKey] or { tile = side.tile, portal = nextPortal }
-                                        Offer(nextKey, { cost = here.cost + length * weight, from = key, via = via, swim = here.swim + (region.swim and length or 0),
+                                        Offer(nextKey, { cost = here.cost + length * wayWeight, from = key, via = via, swim = here.swim + (region.swim and length or 0),
                                             yards = here.yards + length, origin = here.origin }, Middle(side.tile, nextPortal))
                                     end
                                 end
