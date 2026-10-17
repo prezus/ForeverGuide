@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Walks reach upper floors up narrow stairs: Theramore's tower (Lady Jaina), Thelsamar's inn, Feathermoon, Darnassus and other places where the walking maps had the stair in pieces now join the floors, so a walk to someone upstairs ends on their floor.
 - Walks keep out of zones far above your level: a zone 4 levels or more above you is gone round where the way round is there, one 10 or more above even more so, and walks are worked out again when you level up. A walk into or out of such a zone still goes there.
 - Walks keep out of the other faction's towns, where the guards attack you: an Alliance walk across the Barrens goes round the Crossroads, a Horde walk past Southshore round it. A walk to somewhere inside such a town still takes you there.
 - Walks keep to flat, open ground: the way goes round a steep hillside or a cliff face, and out from under roofs and over-hanging rock, when that is not much longer. A walk to someone no longer ends on a small roof or a sealed room over or beside them.
