@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- A walk through a zone far above your level, or through the other faction's town, now counts against it when the way is planned: when it cannot go round, a flight or a boat is taken instead if one is near as quick. The time shown is still the walk's own. When you level up, the way is worked out again for your new level.
 - Less memory garbage again, mainly while the travel planner is working out your way: the planner keeps its map of flights and transports from one look to the next instead of building it every few seconds, and no longer looks again while you stand still; every game call the addon makes, and every breadcrumb dot drawn, no longer leaves a scrap behind. Walking along the arrow's way makes about 40% of the garbage it did in the last release, and a single look for a faster way about a tenth.
 - ForeverGuide makes far less memory garbage as you walk, so its memory no longer climbs into the hundreds of megabytes between the game's clean-ups: working out a walk makes about a sixth of the garbage it did, a piece of the walking maps takes under half the memory, and drawing the breadcrumbs reuses what it drew last time.
 - The way prefers fewer changes: to Loch Modan from Westfall it is one flight to Thelsamar, on through Stormwind and Ironforge, not a flight to Stormwind, the tram and another flight. Each change (boarding a flight, a boat, the tram) now has to save real time to be chosen; the time shown is still the true time.

@@ -444,7 +444,8 @@ end
 Walking.Funnel = Funnel
 
 --- The way from one point to another on one map's tiles: { points = { {x, y} }, yards, swimYards,
---- startHeight, goalHeight }, or nil and why ("off-start", "off-goal", "no-walk"). `pause`, when
+--- riskYards (what the other faction's towns and zones far above the walker add to its yards: the
+--- travel planner weighs it against a flight), startHeight, goalHeight }, or nil and why ("off-start", "off-goal", "no-walk"). `pause`, when
 --- given, is called now and then so a coroutine can yield.
 local function Search(tiles, from, to, pause, faction, danger)
     local hostile = (faction == "Alliance" and TOWN_BIT.Horde) or (faction == "Horde" and TOWN_BIT.Alliance) or nil
@@ -501,10 +502,10 @@ local function Search(tiles, from, to, pause, faction, danger)
 
     -- a step is made only when it improves on the best known: most offers are turned down
     -- via: the stored way's corners, kept by reference (its region, pair and direction) and built for the way found
-    local function Offer(key, cost, from_, swim, yards, origin, arrived, viaRegion, viaPair, viaBack, viaTile, ax, ay)
+    local function Offer(key, cost, from_, swim, yards, risk, origin, arrived, viaRegion, viaPair, viaBack, viaTile, ax, ay)
         local known = best[key]
         if known and cost >= known.cost then return end
-        best[key] = { cost = cost, from = from_, swim = swim, yards = yards, origin = origin, arrived = arrived,
+        best[key] = { cost = cost, from = from_, swim = swim, yards = yards, risk = risk, origin = origin, arrived = arrived,
             viaRegion = viaRegion, viaPair = viaPair, viaBack = viaBack, viaTile = viaTile }
         local h = 0
         if key ~= GOAL then
@@ -517,10 +518,11 @@ local function Search(tiles, from, to, pause, faction, danger)
     for _, s in ipairs(start) do
         local region = RegionOf(s.tile, s.region)
         if region then
-            local weight = (region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)) * TownCost(region)
+            local town = TownCost(region)
+            local weight = (region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)) * town
             if goalSet[RegionKey(s.tile, s.region)] then
                 local d = Flat(startPoint, goalPoint)
-                Offer(GOAL, d * weight, nil, region.swim and d or 0, d, s, s, nil, nil, nil, nil, goalPoint[1], goalPoint[2])
+                Offer(GOAL, d * weight, nil, region.swim and d or 0, d, d * (town - 1), s, s, nil, nil, nil, nil, goalPoint[1], goalPoint[2])
             end
             for _, p in ipairs(region.portals) do
                 local key = KeyOf(s.tile, p)
@@ -528,7 +530,7 @@ local function Search(tiles, from, to, pause, faction, danger)
                 local dx, dy = startPoint[1] - mx, startPoint[2] - my
                 local d = sqrt(dx * dx + dy * dy)
                 if not refs[key] then refs[key] = { tile = s.tile, portal = p } end
-                Offer(key, d * weight, nil, region.swim and d or 0, d, s, nil, nil, nil, nil, nil, mx, my)
+                Offer(key, d * weight, nil, region.swim and d or 0, d, d * (town - 1), s, nil, nil, nil, nil, nil, mx, my)
             end
         end
     end
@@ -546,7 +548,7 @@ local function Search(tiles, from, to, pause, faction, danger)
         if arrived then
             local dx, dy = ax - goalPoint[1], ay - goalPoint[2]
             local d = sqrt(dx * dx + dy * dy)
-            Offer(GOAL, here.cost + d * weight, key, here.swim + (region.swim and d or 0), here.yards + d, here.origin, arrived,
+            Offer(GOAL, here.cost + d * weight, key, here.swim + (region.swim and d or 0), here.yards + d, here.risk + d * (town - 1), here.origin, arrived,
                 nil, nil, nil, nil, goalPoint[1], goalPoint[2])
         end
         local portals = region.portals
@@ -565,7 +567,7 @@ local function Search(tiles, from, to, pause, faction, danger)
                     if not known or cost < known.cost then
                         if not refs[nextKey] then refs[nextKey] = { tile = tile, portal = nextPortal } end
                         local mx, my = MidXY(tile, nextPortal)
-                        Offer(nextKey, cost, key, here.swim + (region.swim and length or 0), here.yards + length, here.origin, nil,
+                        Offer(nextKey, cost, key, here.swim + (region.swim and length or 0), here.yards + length, here.risk + length * (town - 1), here.origin, nil,
                             region, pair, i > j, tile, mx, my)
                     end
                 end
@@ -639,10 +641,12 @@ local function Search(tiles, from, to, pause, faction, danger)
     local yards = 0
     for i = 2, #points do yards = yards + Flat(points[i], points[i - 1]) end
     local swim = finish.yards > 0 and finish.swim / finish.yards * yards or 0
+    local risk = finish.yards > 0 and finish.risk / finish.yards * yards or 0
     return {
         points = points,
         yards = yards,
         swimYards = swim,
+        riskYards = risk,
         startHeight = finish.origin and finish.origin.height or startPoint[3],
         goalHeight = finish.arrived and finish.arrived.height or goalPoint[3],
         searched = searched,

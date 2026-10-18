@@ -180,6 +180,12 @@ local function WayYards(way)
     return way.yards + (way.swimYards or 0) * ((ns.Walking and ns.Walking.SWIM_COST or 1.5) - 1)
 end
 
+--- A way's yards as the planner weighs them against a flight or a boat: its yards and what the other
+--- faction's towns and zones far above the player add (#747). Not the time: that is WayYards.
+local function WayPriced(way)
+    return WayYards(way) + (way.riskYards or 0)
+end
+
 local SPAWN_YARDS = 15   -- an NPC's spawn this near the target is the target's
 
 --- The height of the NPC a target leads to: its spawn within SPAWN_YARDS of the target's world point
@@ -307,36 +313,43 @@ function Nav:WalkWay(a, b, onFound)
     return nil
 end
 
---- The yards of a walk for the planner (Travel's opts.walk): its way's when found, else nil.
+--- The yards of a walk for the planner (Travel's opts.walk): its way's when found, and the yards it is
+--- priced at (its towns' and dangerous zones' cost added); nil when not found.
 function Nav:WalkYards(a, b)
     local W = ns.Walking
     if not W or not a or not b or not W:Has(a.inst) then return nil end
     -- the first walk starts where the player stood when it was asked for: from a few yards on it still serves
     local s = self.startWay
-    if s and s.inst == a.inst and Dist(s.ax, s.ay, a.x, a.y) <= 10 and Dist(s.bx, s.by, b.x, b.y) <= 2 then return WayYards(s.way) end
+    if s and s.inst == a.inst and Dist(s.ax, s.ay, a.x, a.y) <= 10 and Dist(s.bx, s.by, b.x, b.y) <= 2 then return WayYards(s.way), WayPriced(s.way) end
     -- nearly every walk a plan asks after was never searched: answer those before making anything
     if not W:EndsAt(a.inst, b.x, b.y) then return nil end
     local from, to = self:WalkStart(a), self:WalkEnd(b)
     local known = W:Known(a.inst, from, to)
     if known == false and (from.z or to.z) then known = W:Known(a.inst, { x = from.x, y = from.y }, { x = to.x, y = to.y }) end
-    return known and WayYards(known) or nil
+    if not known then return nil end
+    return WayYards(known), WayPriced(known)
 end
 
---- A found way for a walk: kept, drawn, and, when it changes the walk's time a lot, planned again.
+--- A found way for a walk: kept, drawn, and planned again when it changes the walk's time a lot, or
+--- leads through the other faction's town or a zone far above the player (a flight may be the better way).
 function Nav:WayFound(t, leg, way, a, b)
+    local speed = self:RunSpeed()
+    local secs = WayYards(way) / speed
+    local again = false
     if leg then
         leg.way, leg.wayAt = way, 1
         if a and b and leg == (self.route and self.route.legs[1]) then
             self.startWay = { inst = a.inst, ax = a.x, ay = a.y, bx = b.x, by = b.y, way = way }
         end
-        local secs = WayYards(way) / self:RunSpeed()
-        if t and abs(secs - leg.seconds) > max(10, 0.2 * leg.seconds) and (t.wayReplans or 0) < WAY_REPLANS then
-            t.wayReplans = (t.wayReplans or 0) + 1
-            local r = self.route
-            ns.Events:After(0, function()
-                if self.target == t and self.route == r then self:SetRoute(self:PlanRoute(t)) end
-            end)
-        end
+        again = abs(secs - leg.seconds) > max(10, 0.2 * leg.seconds)
+    end
+    if (way.riskYards or 0) / speed > max(10, 0.2 * secs) then again = true end
+    if t and again and (t.wayReplans or 0) < WAY_REPLANS then
+        t.wayReplans = (t.wayReplans or 0) + 1
+        local r = self.route
+        ns.Events:After(0, function()
+            if self.target == t and self.route == r then self:SetRoute(self:PlanRoute(t)) end
+        end)
     end
     ns.Events:Fire("FG_NAV_WAY_FOUND")
 end
@@ -1047,5 +1060,15 @@ function Nav:OnInit()
     -- Hearthstone), where planning afresh, with no position yet, dropped the way being followed
     ns.Events:RegisterMany({ "PLAYER_UNGHOST", "PLAYER_ALIVE" }, function()
         if self.target and not self.route and not Dead() then self:Replan() end
+    end)
+    -- a level up makes zones safer (#747): the walking maps forget their ways, and the way is planned
+    -- afresh a tick later, its walks searched again at the new level
+    ns.Events:Register("PLAYER_LEVEL_UP", function()
+        ns.Events:After(0, function()
+            if self.target and not Dead() then
+                self.target.wayReplans = nil
+                self:Replan()
+            end
+        end)
     end)
 end
