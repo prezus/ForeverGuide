@@ -42,7 +42,7 @@ Nav.target = nil        -- { map, x, y, label, radius, worldX, worldY, instanceI
 Nav.state = nil         -- last Update() result
 Nav.route = nil         -- { legs, seconds, index }: the planned way to the target, when more than a walk
 Nav.walk = nil          -- { target, way, at }: the walking way to the target when there is no route
-Nav.floor = nil         -- { inst, x, y, z }: the floor under the player, followed as they move (TrackFloor)
+Nav.floor = nil         -- { inst, x, y, z, tile, region }: the floor under the player, followed as they move (TrackFloor)
 Nav.ownsWaypoint = false
 
 local LEG_WALK_RADIUS = 20    -- yards from a walk's end that count as there
@@ -214,7 +214,9 @@ end
 -- The game gives addons no height on Forever (UnitPosition's third value is 0), and where floors stack (a
 -- hall under a mountain, a street over a canal, an inn's rooms) a walk planned from the wrong one climbs
 -- the hill or finds no way. So the floor is followed: found once, from where the player is indoors or out,
--- then kept as the one nearest the last as they walk, up a stair a step at a time.
+-- then kept as the one the last walks on to, up a stair a step at a time: its own region or one a portal
+-- joins to it (a cave's floor sloping down under a roof nearer the last height), else the one nearest the
+-- last height.
 
 --- The height the game gives for the player, when it gives a real one.
 local function GameHeight()
@@ -229,6 +231,20 @@ local function Nearest(floors, z)
     local best
     for _, f in ipairs(floors) do
         if not best or abs(f.height - z) < abs(best.height - z) then best = f end
+    end
+    return best
+end
+
+--- The floor among `floors` a walker steps on to from the last (its region, or one a portal joins to it)
+--- nearest the last height; nil when none is.
+local function Joined(floors, last)
+    local W, best = ns.Walking, nil
+    if not last.tile then return nil end
+    for _, f in ipairs(floors) do
+        if (not best or abs(f.height - last.z) < abs(best.height - last.z))
+            and W:Joins(last.inst, last.tile, last.region, f.tile, f.region) then
+            best = f
+        end
     end
     return best
 end
@@ -263,8 +279,11 @@ function Nav:TrackFloor(px, py, inst)
     local floors = W:Floors(inst, px, py)
     if #floors == 0 then return follow and last.z or nil end
     local game = GameHeight()
-    local f = (game and Nearest(floors, game)) or (follow and Nearest(floors, last.z)) or Seed(floors)
-    self.floor = { inst = inst, x = px, y = py, z = f.height }
+    local f = (game and Nearest(floors, game)) or (follow and (Joined(floors, last) or Nearest(floors, last.z))) or Seed(floors)
+    -- kept in the same table as the player walks: looked at four times a second
+    local kept = last or {}
+    kept.inst, kept.x, kept.y, kept.z, kept.tile, kept.region = inst, px, py, f.height, f.tile, f.region
+    self.floor = kept
     return f.height
 end
 
