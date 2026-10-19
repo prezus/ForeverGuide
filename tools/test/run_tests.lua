@@ -5852,6 +5852,61 @@ section("walking paths: a walk starts on the floor under the player, followed as
     ns.db.nav.travelPlanner = was.planner
 end)
 
+section("walking paths: the floor followed into a cave is the one the last joins, not a roof nearer its height (#805)", function()
+    local Nav, W, M = ns.Navigation, ns.Walking, MOCK
+    local was = { codec = rawget(_G, "C_EncodingUtil"), indoors = rawget(_G, "IsIndoors"), planner = ns.db.nav.travelPlanner,
+        wx = M.worldX, wy = M.worldY, inst = M.instance }
+    _G.C_EncodingUtil = TestCodec()
+    ns.db.nav.travelPlanner = true
+    _G.IsIndoors = function() return false end
+    local function heights(x, y)
+        local cave, roof
+        for _, f in ipairs(W:Floors(0, x, y)) do
+            if f.joined and math.abs(f.height - 390) < 3 then cave = f end
+            if f.joined and math.abs(f.height - 399) < 1 then roof = f end
+        end
+        return cave, roof
+    end
+    -- Frostmane Hold, Dun Morogh: the ground slopes from 400 at the mouth to 390 inside, under the cave's
+    -- roof, flat at 399 and joined to no walk
+    local mouth = { x = -5604, y = 620 }
+    local cave, roof = heights(mouth.x, mouth.y)
+    need(cave and roof and not W:Joins(0, cave.tile, cave.region, roof.tile, roof.region),
+        "inside the mouth, the cave's floor at 390 lies under a roof at 399 no portal joins it to")
+
+    -- found outside, on the ground before the mouth, then walking in two yards a look, round the rock in the mouth
+    Nav.floor = nil
+    local z = Nav:TrackFloor(-5554, 622, 0)
+    need(z and math.abs(z - 400) < 3, "outside the mouth the player is found on the ground at 400 (" .. tostring(z) .. ")")
+    local path = { { -5554, 622 }, { -5564, 630 }, { -5588, 630 }, { -5596, 620 }, { mouth.x, mouth.y } }
+    local onRoof
+    for i = 2, #path do
+        local ax, ay, bx, by = path[i - 1][1], path[i - 1][2], path[i][1], path[i][2]
+        local n = math.ceil(math.sqrt((bx - ax) ^ 2 + (by - ay) ^ 2) / 2)
+        for s = 1, n do
+            local x, y = ax + (bx - ax) * s / n, ay + (by - ay) * s / n
+            z = Nav:TrackFloor(x, y, 0)
+            if not onRoof and Nav.floor.tile == roof.tile and Nav.floor.region == roof.region then onRoof = string.format("%.0f, %.0f", x, y) end
+        end
+    end
+    check(not onRoof, "walking in, the floor followed never steps on to the roof (" .. tostring(onRoof) .. ")")
+    check(z and math.abs(z - 390) < 3, "in the mouth the player stands on the cave's floor, 390, not the roof at 399 (" .. tostring(z) .. ")")
+    check(Nav.floor.tile == cave.tile and Nav.floor.region == cave.region, "and the floor kept is the cave floor's region")
+    M.worldX, M.worldY, M.instance = mouth.x, mouth.y, 0
+    local from = Nav:WalkStart({ inst = 0, x = mouth.x, y = mouth.y })
+    check(from.z and math.abs(from.z - 390) < 3, "so a walk planned from here starts on the cave's floor (" .. tostring(from.z) .. ")")
+
+    -- with no floor there joined to the last, the nearest height still decides
+    Nav.floor = { inst = 0, x = mouth.x + 2, y = mouth.y, z = 400, tile = roof.tile, region = -1 }
+    z = Nav:TrackFloor(mouth.x, mouth.y, 0)
+    check(z and math.abs(z - 399) < 1, "a last floor joined to none there falls back to the nearest height (" .. tostring(z) .. ")")
+
+    Nav.floor = nil
+    _G.C_EncodingUtil, _G.IsIndoors = was.codec, was.indoors
+    ns.db.nav.travelPlanner = was.planner
+    M.worldX, M.worldY, M.instance = was.wx, was.wy, was.inst
+end)
+
 section("walking paths: a walk to an NPC ends on its floor where floors stack (#712)", function()
     local Nav, W, M = ns.Navigation, ns.Walking, MOCK
     local db = travelFixture()

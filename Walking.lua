@@ -333,8 +333,9 @@ local function Place(tiles, p)
     return first or {}
 end
 
---- The floors at a world point, as a point with no height is placed: { { height, joined, swim } }, joined
---- when a portal joins the region to its neighbours (a roof or a ledge is not); {} off the walking maps.
+--- The floors at a world point, as a point with no height is placed: { { height, joined, swim, tile, region } },
+--- joined when a portal joins the region to its neighbours (a roof or a ledge is not); tile and region name
+--- the region, for Joins. {} off the walking maps.
 function Walking:Floors(mapID, x, y)
     local tiles = Tiles(mapID)
     if not tiles then return {} end
@@ -342,11 +343,36 @@ function Walking:Floors(mapID, x, y)
     for _, r in ipairs(Place(tiles, { x = x, y = y })) do
         local t = tiles(r.tile)
         local region = t and t.regions[r.region]
-        out[#out + 1] = { height = r.height, joined = region ~= nil and not region.pocket, swim = region ~= nil and region.swim }
+        out[#out + 1] = { height = r.height, joined = region ~= nil and not region.pocket, swim = region ~= nil and region.swim,
+            tile = r.tile, region = r.region }
     end
     -- the floor is looked at as the player walks: the tiles it decodes are kept to MAX_TILES as a search's are
     Trim()
     return out
+end
+
+--- Whether a walker can step from one region to the other: the same region, or one a portal joins to it
+--- (in its tile, or the copy across a tile's border). Reads only tiles already decoded, and allocates
+--- nothing: it is asked as the floor is followed.
+function Walking:Joins(mapID, aTile, aRegion, bTile, bRegion)
+    if aTile == bTile and aRegion == bRegion then return true end
+    local m = maps[mapID]
+    local tile = m and m.decoded[aTile]
+    local region = tile and tile.regions[aRegion]
+    if not region then return false end
+    for _, i in ipairs(region.portals) do
+        local p = tile.portals[i]
+        if p then
+            if p.side == SIDE_HERE then
+                if aTile == bTile and ((p.region == aRegion and p.other == bRegion) or (p.other == aRegion and p.region == bRegion)) then return true end
+            elseif Neighbour(aTile, p.side) == bTile then
+                local there = m.decoded[bTile]
+                local copy = there and there.portals[p.other]
+                if copy and copy.region == bRegion then return true end
+            end
+        end
+    end
+    return false
 end
 
 -- ------------------------------------------------------------
