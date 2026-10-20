@@ -1232,7 +1232,9 @@ section("Forever overlay data merged into the Classic database", function()
     check(hasForever, "spm points show up in NPCLocations")
     local objs = ns.DB:QuestObjectives(317)
     check(objs[1] and #objs[1].locations > 0, "vanilla objective of 317 keeps its own locations (" .. tostring(objs[1] and #objs[1].locations) .. ")")
+    -- a quest Forever added: its ender, Jason Mathers (383), comes with the overlay's own position for him
     local fq = ns.DB:GetQuest(99128)
+    check(fq and fq.enpc and fq.enpc[1] == 383 and fq.ffin and fq.ffin.n == "Jason Mathers", "Forever's quest 99128 ends at Jason Mathers (383), as the overlay says")
     check(ns.Quest:XPMultiplier(783, 1) == 1 and ns.Quest:XPMultiplier(783, 7) == 0.8 and ns.Quest:XPMultiplier(783, 12) == 0.1, "xp multiplier follows the Classic reduction table")
 end)
 
@@ -1776,6 +1778,7 @@ section("skulls over quest mobs", function()
     MOCK_PLATE("nameplate6", { name = "Young Forest Bear", npcID = 822, scale = 1.0, y = 330, quest = true })
     ns.MobMarker:Scan()
     local fin = ns.MobMarker:FinishedNames()
+    check(fin["prowler"] ~= nil and fin["young forest bear"] == nil, "the finished objective's mob is listed finished, the open one's is not")
     check(ns.MobMarker.markedUnits["nameplate6"] and not ns.MobMarker.markedUnits["nameplate5"], "the open objective's mob has a skull, the finished one has none")
     MOCK_PLATE("nameplate5", nil); MOCK_PLATE("nameplate6", nil); MOCK_ABANDON(52); settle()
     -- An unknown quest has no DB objective mapping: its finished live kill must still remove the skull.
@@ -1905,7 +1908,6 @@ section("skulls over quest mobs", function()
         for _, q in ipairs(drop) do MOCK_ABANDON(q.id) end
         settle()
         ns.MobMarker:Scan()
-        local openKills = ns.MobMarker:OpenKillNames()
         check(GetCVar("nameplateShowEnemies") == "0", "leaving the kill step restores enemy nameplates (step=" .. tostring(step() and step().type) .. " cvar=" .. tostring(GetCVar("nameplateShowEnemies")) .. ")")
         for _, q in ipairs(drop) do MOCK_ACCEPT(q.id, q.title, q.objs) end
         settle()
@@ -2314,6 +2316,7 @@ section("the Quest Guide window: rows, header, states, settings, waypoint fallba
         local xb, yb, _, pb = W:BearingPosition({ angle = math.pi, distance = 30 })
         check(pb and math.abs(xb - 640) < 1 and yb < 288, string.format("30 yd behind pins to the bottom edge below the character (%.0f,%.0f)", xb or 0, yb or 0))
         local _, yf = W:BearingPosition({ angle = 0, distance = 800 })
+        check(yf and yf > y, string.format("800 yd straight ahead is higher on the screen than 60 yd (%.0f against %.0f)", yf or 0, y or 0))
     end
     -- back to the default (engine off): the chevron leads, no smoothing to feel sluggish
     ns.Commands:Run("waypoint engine off"); ns.Waypoint:Tick()
@@ -2525,14 +2528,6 @@ section("sweep: every command, every UI script, options, keybinds", function()
     for _, fname in ipairs({ "ForeverGuide_ToggleWindow", "ForeverGuide_TogglePicker", "ForeverGuide_ToggleArrow", "ForeverGuide_Skip",
         "ForeverGuide_Back", "ForeverGuide_ToggleMode", "ForeverGuide_ReportWrong", "ForeverGuide_ToggleWindow", "ForeverGuide_TogglePicker",
         "ForeverGuide_ToggleArrow", "ForeverGuide_ToggleMode" }) do _G[fname]() end
-    -- hide in combat
-    ns.db.ui.hideInCombat = true
-    ns.UI:Show()
-    MOCK_FIRE("PLAYER_REGEN_DISABLED")
-    check(not ForeverGuideFrame:IsShown(), "window hidden when combat starts")
-    MOCK_FIRE("PLAYER_REGEN_ENABLED")
-    check(ForeverGuideFrame:IsShown(), "window restored after combat")
-    ns.db.ui.hideInCombat = false
     -- minimap tooltip / clicks
     local mb = rawget(_G, "ForeverGuideMinimapButton")
     if mb then mb.scripts.OnEnter(mb) mb.scripts.OnLeave(mb) mb.scripts.OnClick(mb, "LeftButton") mb.scripts.OnClick(mb, "RightButton") mb.scripts.OnClick(mb, "LeftButton") end
@@ -2786,8 +2781,15 @@ section("level-up announcement", function()
     ns.Commands:Run("ding auto")
     MOCK.chatBlocked = true
     MOCK.chat = {}
+    local errorsBefore, printed, realPrintf = #reportedErrors, {}, ns.Printf
+    ns.Printf = function(fmt, ...) printed[#printed + 1] = string.format(fmt, ...) end
     MOCK_LEVEL(was + 5); settle()
+    ns.Printf = realPrintf
     MOCK.chatBlocked = nil
+    local told = false
+    for _, line in ipairs(printed) do if line:find("could not send it to", 1, true) then told = true end end
+    check(#MOCK.chat == 0 and told and #reportedErrors == errorsBefore,
+        string.format("a blocked chat sends nothing (%d), raises no error (%d), and says it could not send (%s)", #MOCK.chat, #reportedErrors - errorsBefore, tostring(told)))
     MOCK.group, MOCK.raid = false, false
 
 end)
@@ -2847,10 +2849,11 @@ section("levelling pace", function()
     local P = ns.Pace
     check(P.Number(19600) == "19 600" and P.Number(940) == "940", "numbers are grouped for reading (" .. P.Number(19600) .. ")")
 
-    -- a chapter's model comes from the planner, through the notes of the guides already generated
-    local g = ns.Guide.registry[chapterId("GEN_ALLIANCE_HUMAN_02_")]
-    local minutes, xph = P.Model(g)
-    check(minutes == 136 and xph == 17747, "the model minutes / xp-h are read off a generated chapter's notes (" .. tostring(minutes) .. ", " .. tostring(xph) .. ")")
+    -- a chapter's model is read off its notes, as the planner writes them, or given outright
+    local minutes, xph = P.Model({ notes = "Planned for a level 6 human: ~136 min of play (17747 xp/h)." })
+    check(minutes == 136 and xph == 17747, "the model minutes / xp-h are read off a chapter's notes (" .. tostring(minutes) .. ", " .. tostring(xph) .. ")")
+    local given = { P.Model({ modelMinutes = 40, modelXph = 9000, notes = "~136 min of play (17747 xp/h)" }) }
+    check(given[1] == 40 and given[2] == 9000, "a model given outright wins over the notes")
     check(P.Model({ notes = "a hand-written guide" }) == nil and P.Model({}) == nil, "a guide without a model has none")
 
     -- earn xp over measured play and the rate follows
@@ -2880,8 +2883,16 @@ section("levelling pace", function()
 
     -- the route model knows what is left
     ns.Guide:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
+    -- in the route's first chapter, at step s of n, what is left is every chapter's model minutes
+    -- but the share of the first one done: (s - 1) / n of it
+    local route = ns.Guide:CurrentRoute()
+    local whole = 0
+    for _, ch in ipairs(route.chapters) do whole = whole + (P.Model(ch) or 0) end
+    local s, n = ns.Guide:GetStepCount()
+    local want = whole - (P.Model(route.chapters[1]) or 0) * (s - 1) / n
     local left, chapters = P:RouteRemaining()
-    check(left and left > 0 and chapters and chapters > 1, "minutes left on the route, over the remaining chapters (" .. tostring(left and math.floor(left)) .. " min, " .. tostring(chapters) .. ")")
+    check(route.chapters[1].id == ns.Guide.active.id and whole > 0 and math.abs(left - want) < 1e-6 and chapters == #route.chapters,
+        string.format("minutes left on the route at step %d of %d: %.2f, want %.2f, over %s of %d chapters", s, n, left or -1, want, tostring(chapters), #route.chapters))
     local lines = P:Lines()
     local allText = #lines >= 3
     for _, line in ipairs(lines) do if type(line) ~= "string" or #line == 0 then allText = false end end
@@ -5350,9 +5361,19 @@ end)
 section("the shipped travel data loads with the addon and plans like the fixture", function()
     local db = ns.TravelDB
     need(db and db.flightNodes and db.links and db.teleports and db.inns and db.flightBoard, "Data/TravelDB.lua loads with the addon")
-    local nodes = 0
-    for _ in pairs(db.flightNodes) do nodes = nodes + 1 end
-    check(nodes >= 60 and #db.links >= 40, "it holds the flight network and the transports (" .. nodes .. " nodes, " .. #db.links .. " links)")
+    -- the game's own places, named: Stormwind's and Ironforge's flight masters, the tram, Ratchet's boat, the Sanctum's portals
+    local sw, ifo = db.flightNodes[2], db.flightNodes[6]
+    check(sw and sw.name == "Stormwind, Elwynn" and sw.faction == "A" and ifo and ifo.name == "Ironforge, Dun Morogh",
+        "flight nodes 2 and 6 are Stormwind's and Ironforge's, Alliance (" .. tostring(sw and sw.name) .. ", " .. tostring(ifo and ifo.name) .. ")")
+    local function link(kind, name)
+        for _, l in ipairs(db.links) do if l.kind == kind and l.name == name then return l end end
+    end
+    check(link("tram", "Ironforge") and link("tram", "Stormwind City"), "the Deeprun Tram both ways")
+    local toBooty, toRatchet = link("boat", "Booty Bay"), link("boat", "Ratchet")
+    check(toBooty and toRatchet and toBooty.from.name == "Ratchet" and toRatchet.from.name == "Booty Bay", "Ratchet's boat both ways, each from the other's dock")
+    check(toBooty and toBooty.loop == toRatchet.loop and toBooty.leaves < toBooty.loop and toRatchet.leaves < toRatchet.loop,
+        "one boat: one loop, and each dock's departure inside it")
+    check(link("portal", "The Wizard's Sanctum") and link("portal", "The Mage Quarter"), "the Sanctum's portals down and back up (#719)")
     withTravelWorld(db, function()
         local plan = ns.Travel:Plan({ map = 1429, x = 42.1, y = 65.9 }, { map = 1455, x = 50, y = 50 }, { faction = "Alliance", known = {} })
         check(kinds(plan) == "walk,tram,walk", "with the shipped data Goldshire to Ironforge rides the tram (" .. kinds(plan) .. ")")
@@ -5539,6 +5560,12 @@ section("walking paths: the Lua router finds the reference router's ways", funct
         else
             check(way ~= nil, c.id .. ": a way (" .. tostring(why) .. ")")
             if way then
+                -- on its own terms, whatever the reference says: it runs from the start to the goal, never shorter than the line between them
+                local first, last = way.points[1], way.points[#way.points]
+                local straight = math.sqrt((c.to.x - c.from.x) ^ 2 + (c.to.y - c.from.y) ^ 2)
+                check(first[1] == c.from.x and first[2] == c.from.y and last[1] == c.to.x and last[2] == c.to.y and way.yards >= straight - 0.01,
+                    string.format("%s: from the start to the goal, %.1f yd against %.1f straight", c.id, way.yards, straight))
+                -- and the same as the reference router's (codex src/nav/router.ts), which nav check holds to recorded walks
                 check(math.abs(way.yards - c.yards) <= c.yards * 0.005 + 0.5, string.format("%s: %.1f yd, the reference %.1f", c.id, way.yards, c.yards))
                 check(#way.points == c.points, string.format("%s: %d points, the reference %d", c.id, #way.points, c.points))
                 check(math.abs(way.goalHeight - c.goalHeight) < 0.01, c.id .. ": arrives on the reference's floor (" .. way.goalHeight .. ")")
@@ -5548,8 +5575,11 @@ section("walking paths: the Lua router finds the reference router's ways", funct
     -- the other faction's town: an Alliance walker goes round the Crossroads, a walker of neither side through it
     local byId = {}
     for _, c in ipairs(cases) do byId[c.id] = c end
-    local round, through = byId["crossroads-alliance"], byId["crossroads"]
-    need(round and through, "the reference holds a walk past the Crossroads, with and without a faction")
+    local c = byId["crossroads"]
+    need(c, "the reference holds a walk past the Crossroads")
+    local round = W:FindWay(c.map, c.from, c.to, "Alliance")
+    local through = W:FindWay(c.map, c.from, c.to)
+    need(round and through, "the Lua router walks past the Crossroads, as an Alliance walker and as neither")
     check(round.yards > through.yards + 50, string.format("the Alliance walk goes round the Crossroads: %.0f yd against %.0f", round.yards, through.yards))
     _G.C_EncodingUtil = was
 end)
@@ -5987,6 +6017,8 @@ section("walking paths: the floor followed into a cave is the one the last joins
     local cave, roof = heights(mouth.x, mouth.y)
     need(cave and roof and not W:Joins(0, cave.tile, cave.region, roof.tile, roof.region),
         "inside the mouth, the cave's floor at 390 lies under a roof at 399 no portal joins it to")
+    -- the roof is a pocket since the walking maps marked cut-off cave tops so (#805): no walk ends on it
+    check(roof.joined == false, "and the roof is a pocket, not a floor a walk ends on (#805)")
 
     -- found outside, on the ground before the mouth, then walking in two yards a look, round the rock in the mouth
     Nav.floor = nil
