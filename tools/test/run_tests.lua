@@ -2608,26 +2608,60 @@ end)
 -- ---- a quest this character's race can never take is not part of the route ----
 -- (Ilya, 2026-09-21: the Dwarf chapter offered 6181 "A Swift Message", a Human-only quest, and the
 --  guide sat on it at Quartermaster Lewis - who has nothing to say to a dwarf)
-section("a quest this character's race can never take is not part of the route", function()
-    -- A Swift Message (6181) is Human-only (race mask 1) and was on the Dwarf route, seen 2026-09-21
-    ns.QuestDB[990811] = { n = "Human Only", races = 1 }
+-- who may take a quest, by the Classic race and class masks and Forever's own Skyborne bits:
+-- Human 1, Night Elf 8, the four Alliance races 77, the four Horde races 178; Alliance Skyborne
+-- 65536, Horde Skyborne 131072; Shaman 64, Druid 1024. Skyborne has no Classic bit: it takes what
+-- every race of its faction can take, and nothing race-specific
+section("who may take a quest: race and class masks, and Skyborne's own bits", function()
+    local quests = {
+        human = { id = 990811, n = "Human only", races = 1 },               -- as A Swift Message (6181)
+        alliance = { id = 990814, n = "All Alliance", races = 77 },
+        horde = { id = 990815, n = "All Horde", races = 178 },
+        shaman = { id = 990813, n = "Shaman only", classes = 64 },          -- as the second Stalk With The Earthmother (76160)
+        elfOrSkyborneDruid = { id = 999901, n = "Night Elf and Alliance Skyborne druids", races = 8 + 65536, classes = 1024 }, -- as The Principal Source (6122)
+        skyborne = { id = 999902, n = "Alliance Skyborne only", races = 65536 },
+    }
+    for _, q in pairs(quests) do ns.QuestDB[q.id] = { n = q.n, races = q.races, classes = q.classes } end
+    local CLASS = { Warrior = { "Warrior", "WARRIOR", 1 }, Shaman = { "Shaman", "SHAMAN", 7 }, Druid = { "Druid", "DRUID", 11 } }
+    local was = { race = MOCK.race, faction = MOCK.faction, class = MOCK.class }
+    local function as(race, faction, class)
+        MOCK.race, MOCK.faction, MOCK.class = { race, race }, faction, CLASS[class]; ns.Player.cache = {}
+    end
+    -- race, faction, class, quest, may take it
+    local cases = {
+        { "Dwarf", "Alliance", "Warrior", "human", false }, { "Human", "Alliance", "Warrior", "human", true },
+        { "Tauren", "Horde", "Warrior", "shaman", false }, { "Tauren", "Horde", "Shaman", "shaman", true },
+        { "Skyborne", "Alliance", "Warrior", "human", false }, { "Skyborne", "Alliance", "Warrior", "alliance", true },
+        { "Skyborne", "Alliance", "Warrior", "horde", false }, { "Skyborne", "Alliance", "Warrior", "skyborne", true },
+        { "Skyborne", "Horde", "Warrior", "horde", true }, { "Skyborne", "Horde", "Warrior", "alliance", false },
+        { "Skyborne", "Alliance", "Druid", "elfOrSkyborneDruid", true }, { "Skyborne", "Horde", "Druid", "elfOrSkyborneDruid", false },
+        { "Human", "Alliance", "Druid", "elfOrSkyborneDruid", false }, { "NightElf", "Alliance", "Druid", "elfOrSkyborneDruid", true },
+    }
+    for _, c in ipairs(cases) do
+        as(c[1], c[2], c[3])
+        local got = ns.DB:RaceClassOK(quests[c[4]].id)
+        check(got == c[5], string.format("a %s %s %s %s take the %s quest", c[2], c[1], c[3], c[5] and "may" or "may not", c[4]))
+    end
+    check(ns.DB:QuestFaction(quests.skyborne.id) == "Alliance", "a quest only Alliance Skyborne may take is an Alliance quest")
+
+    -- the route walks past what the character may not take: a dwarf's route has no human-only accept or turn-in
+    as("Dwarf", "Alliance", "Warrior")
     ns.QuestDB[990812] = { n = "For Everyone" }
-    local mine = MOCK.race
-    MOCK.race = { "Dwarf", "Dwarf" }
-    ns.Player.cache = {}
     ns.RegisterGuide({ id = "AUDIT_RACE", name = "race", steps = {
-        { type = "ACCEPT", quest = 990811 },
-        { type = "TURNIN", quest = 990811 },
+        { type = "ACCEPT", quest = quests.human.id },
+        { type = "TURNIN", quest = quests.human.id },
         { type = "ACCEPT", quest = 990812 } } })
     G:Activate("AUDIT_RACE", true); settle()
-    check(ns.DB:RaceClassOK(990811) == false, "a dwarf cannot take a human-only quest")
-    check(cur() == 3, "its accept and turn-in are not part of the route for a dwarf (" .. tostring(cur()) .. ")")
-    MOCK.race = { "Human", "Human" }
-    ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(990811) == true, "a human can")
-    MOCK.race = mine
-    ns.Player.cache = {}
-    ns.QuestDB[990811], ns.QuestDB[990812] = nil, nil
+    check(cur() == 3, "a human-only quest's accept and turn-in are not part of a dwarf's route (" .. tostring(cur()) .. ")")
+    as("Tauren", "Horde", "Warrior")
+    check(G:StepApplies({ type = "ACCEPT", quest = quests.shaman.id }) == false, "a shaman quest's step is not in a warrior's route")
+    as("Tauren", "Horde", "Shaman")
+    check(G:StepApplies({ type = "ACCEPT", quest = quests.shaman.id }) == true, "...and is in a shaman's")
+    check(G:StepApplies({ type = "ACCEPT", quest = 7, class = { "WARRIOR" } }) == false, "a warrior-only guide step is not a shaman's")
+
+    for _, q in pairs(quests) do ns.QuestDB[q.id] = nil end
+    ns.QuestDB[990812] = nil
+    MOCK.race, MOCK.faction, MOCK.class = was.race, was.faction, was.class; ns.Player.cache = {}
 end)
 
 -- a quest the client no longer has (vanilla data, no Forever id) is walked past like a race-only one
@@ -2659,65 +2693,6 @@ section("a breadcrumb is passed once its quest is taken", function()
     check(done == true and why == "breadcrumb passed", "...and is passed once the quest it leads to is in the log (" .. tostring(why) .. ")")
     MOCK_ABANDON(990817); settle()
     ns.QuestDB[990816], ns.QuestDB[990817] = nil, nil
-end)
-
--- class-limited WoW Forever quests: the second Stalk With The Earthmother is for shamans (the first
--- is open to Tauren, Orc and Troll warriors, shamans and druids, so it cannot stand for it)
-section("class-limited WoW Forever quests", function()
-    -- the second Stalk With The Earthmother (76160) is for shamans only (class mask 64)
-    ns.QuestDB[990813] = { n = "Shaman Only", classes = 64 }
-    local class, race, faction = MOCK.class, MOCK.race, MOCK.faction
-    MOCK.race, MOCK.faction = { "Tauren", "Tauren" }, "Horde"
-    MOCK.class = { "Warrior", "WARRIOR", 1 }; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(990813) == false, "a warrior cannot take the shaman quest")
-    check(G:StepApplies({ type = "ACCEPT", quest = 990813 }) == false, "...so its step is not in a warrior's route")
-    MOCK.class = { "Shaman", "SHAMAN", 7 }; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(990813) == true and G:StepApplies({ type = "ACCEPT", quest = 990813 }) == true, "a shaman gets it")
-    ns.QuestDB[990813] = nil
-    MOCK.class = { "Mage", "MAGE", 8 }; ns.Player.cache = {}
-    check(G:StepApplies({ type = "ACCEPT", quest = 7, class = { "WARRIOR" } }) == false, "a warrior-only guide step is not a mage's")
-    MOCK.class, MOCK.race, MOCK.faction = class, race, faction; ns.Player.cache = {}
-end)
-
--- Skyborne (WoW Forever's race, file name "Skyborne", on both factions) has no bit in the Classic
--- race masks: it takes what every race of its faction can take, and nothing race-specific
-section("race masks: it takes what every race of its faction can take, and nothing race-specific", function()
-    -- Classic race masks: Human 1, the four Alliance races 77, the four Horde races 178
-    ns.QuestDB[990811] = { n = "Human Only", races = 1 }
-    ns.QuestDB[990814] = { n = "All Alliance", races = 77 }
-    ns.QuestDB[990815] = { n = "All Horde", races = 178 }
-    local mine, faction = MOCK.race, MOCK.faction
-    MOCK.race, MOCK.faction = { "Skyborne", "Skyborne" }, "Alliance"; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(990811) == false, "a Skyborne cannot take a Human-only quest")
-    check(ns.DB:RaceClassOK(990814) == true, "an Alliance Skyborne takes an all-Alliance quest")
-    check(ns.DB:RaceClassOK(990815) == false, "an Alliance Skyborne cannot take a Horde quest")
-    MOCK.faction = "Horde"; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(990815) == true and ns.DB:RaceClassOK(990814) == false, "a Horde Skyborne: the Horde quest yes, the Alliance one no")
-    MOCK.race, MOCK.faction = mine, faction; ns.Player.cache = {}
-    ns.QuestDB[990811], ns.QuestDB[990814], ns.QuestDB[990815] = nil, nil, nil
-end)
-
--- Skyborne's own bits (65536 Alliance, 131072 Horde): a quest Forever opened to Skyborne says so,
--- as The Principal Source (6122) is open to Night Elf and Alliance Skyborne druids
-section("Skyborne's own race bits", function()
-    local race, faction, class = MOCK.race, MOCK.faction, MOCK.class
-    local nightElfAndSkyborne, skyborneOnly, humanOnly = 999901, 999902, 999903
-    ns.QuestDB[nightElfAndSkyborne] = { n = "Night Elf and Alliance Skyborne druids", races = 8 + 65536, classes = 1024 }
-    ns.QuestDB[skyborneOnly] = { n = "Alliance Skyborne only", races = 65536 }
-    ns.QuestDB[humanOnly] = { n = "Human only", races = 1 }
-    MOCK.class = { "Druid", "DRUID", 11 }
-    MOCK.race, MOCK.faction = { "Skyborne", "Skyborne" }, "Alliance"; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(nightElfAndSkyborne) == true, "an Alliance Skyborne druid takes a quest that names Alliance Skyborne")
-    check(ns.DB:RaceClassOK(skyborneOnly) == true and ns.DB:RaceClassOK(humanOnly) == false, "...and still nothing race-specific of another race")
-    MOCK.faction = "Horde"; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(nightElfAndSkyborne) == false, "a Horde Skyborne does not: the bit is per faction")
-    MOCK.race, MOCK.faction = { "Human", "Human" }, "Alliance"; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(nightElfAndSkyborne) == false, "a Human druid does not")
-    MOCK.race = { "NightElf", "NightElf" }; ns.Player.cache = {}
-    check(ns.DB:RaceClassOK(nightElfAndSkyborne) == true, "a Night Elf druid does")
-    check(ns.DB:QuestFaction(skyborneOnly) == "Alliance", "a quest only Alliance Skyborne may take is an Alliance quest")
-    ns.QuestDB[nightElfAndSkyborne], ns.QuestDB[skyborneOnly], ns.QuestDB[humanOnly] = nil, nil, nil
-    MOCK.race, MOCK.faction, MOCK.class = race, faction, class; ns.Player.cache = {}
 end)
 
 -- ---- level-up announcement ------------------------------------------------------------------
@@ -4481,13 +4456,23 @@ section("Record: the first press says what recording does; then every login reco
 end)
 
 -- ---- the travel planner ----------------------------------------------------------
+--- The client's own zone boxes for the maps the travel tests walk on.
+local MAP_BOXES = dofile(root .. "tools/test/fixtures/map_boxes.lua")
+
+--- Put the mock player at a map point, consistently on the map and in the world (by MAP_BOXES).
+local function moveTo(p)
+    local b = MAP_BOXES[p.map]
+    MOCK.mapID, MOCK.mapX, MOCK.mapY = p.map, p.x / 100, p.y / 100
+    MOCK.worldX, MOCK.worldY, MOCK.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
+    ns.Player.cache.mapID = nil
+end
+
 --- Run fn with ns.TravelDB = the fixture (codex's TravelDB.lua) and map points placed by the client's
 --- own zone boxes, then put both back.
 local function withTravelWorld(db, fn)
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local realPos, realDb = C_Map.GetWorldPosFromMapPos, ns.TravelDB
     C_Map.GetWorldPosFromMapPos = function(mapID, v)
-        local b = boxes[mapID]
+        local b = MAP_BOXES[mapID]
         if not b then return nil end
         -- the client draws north up and west left: map x runs along world Y, map y along world X
         return b.inst, CreateVector2D(b.maxX - v.y * (b.maxX - b.minX), b.maxY - v.x * (b.maxY - b.minY))
@@ -4764,15 +4749,7 @@ end)
 section("travel planner: the arrow follows the planned route leg by leg, and plans again only for a clearly faster way", function()
     local Nav, T, M = ns.Navigation, ns.Travel, MOCK
     local db = travelFixture()
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
-    --- put the mock player at a map point, consistently on the map and in the world
-    local function moveTo(p)
-        local b = boxes[p.map]
-        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
-        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
-        ns.Player.cache.mapID = nil
-    end
     local routes = 0
     local unregister = ns.Events:Register("FG_NAV_ROUTE_CHANGED", function() routes = routes + 1 end)
     local goldshire, ironforge = { map = 1429, x = 42.1, y = 65.9 }, { map = 1455, x = 50, y = 50 }
@@ -4868,14 +4845,7 @@ end)
 section("travel planner: a ride through a zone change keeps the route: the guide asking for the same place again neither drops nor replans it (#724)", function()
     local Nav, M = ns.Navigation, MOCK
     local db = travelFixture()
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
-    local function moveTo(p)
-        local b = boxes[p.map]
-        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
-        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
-        ns.Player.cache.mapID = nil
-    end
     local ironforge = { map = 1455, x = 50, y = 50, label = "Ironforge" }
     withTravelWorld(db, function()
         moveTo({ map = 1429, x = 42.1, y = 65.9 })
@@ -4908,14 +4878,7 @@ end)
 section("travel planner: PLAYER_ALIVE after a loading screen keeps the route; a route gone is recorded (#724)", function()
     local Nav, M, R = ns.Navigation, MOCK, ns.Run
     local db = travelFixture()
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance, record = ns.db.recordRuns, run = ns.char.run }
-    local function moveTo(p)
-        local b = boxes[p.map]
-        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
-        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
-        ns.Player.cache.mapID = nil
-    end
     ns.db.recordRuns, ns.char.run = true, nil
     R:Start()
     withTravelWorld(db, function()
@@ -4960,14 +4923,7 @@ section("travel planner: the time left and what to do on each leg, on the arrow 
     check(cap({ kind = "teleport", spell = 3562, name = "Ironforge" }) == "Cast Teleport: Ironforge", "a teleport names its spell as the client does")
 
     local db = travelFixture()
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
-    local function moveTo(p)
-        local b = boxes[p.map]
-        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
-        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
-        ns.Player.cache.mapID = nil
-    end
     withTravelWorld(db, function()
         moveTo({ map = 1429, x = 42.1, y = 65.9 })
         Nav:SetTarget({ map = 1455, x = 50, y = 50, label = "Ironforge" })
@@ -5005,18 +4961,11 @@ section("travel planner: the route as dots on the world map and the minimap", fu
     local Nav, D, M = ns.Navigation, ns.RouteDots, MOCK
     need(D and D.DrawWorld and #WorldMapFrame.providers >= 1, "the route dots join the world map as a data provider")
     local db = travelFixture()
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
-    local function moveTo(p)
-        local b = boxes[p.map]
-        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
-        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
-        ns.Player.cache.mapID = nil
-    end
     -- the client's inverse of its map boxes: a world point on a map, 0-1
     local realToMap = C_Map.GetMapPosFromWorldPos
     C_Map.GetMapPosFromWorldPos = function(inst, v, mapID)
-        local b = boxes[mapID]
+        local b = MAP_BOXES[mapID]
         if not b or b.inst ~= inst then return nil end
         local wx, wy = v:GetXY()
         return mapID, CreateVector2D((b.maxY - wy) / (b.maxY - b.minY), (b.maxX - wx) / (b.maxX - b.minX))
@@ -5229,14 +5178,7 @@ end)
 section("travel planner: a flight that lands somewhere else is planned afresh from there", function()
     local Nav, M = ns.Navigation, MOCK
     local db = travelFixture()
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance, known = ns.Reminders.Known() }
-    local function moveTo(p)
-        local b = boxes[p.map]
-        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
-        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
-        ns.Player.cache.mapID = nil
-    end
     local known = ns.Reminders.Known()
     for _, n in ipairs({ "Stormwind, Elwynn", "Darkshire, Duskwood", "Sentinel Hill, Westfall" }) do known[n] = true end
     withTravelWorld(db, function()
@@ -5302,13 +5244,8 @@ section("travel planner: its switches in the options and /fg travel", function()
     ns.db.nav.travelPlanner = true
 
     local db = travelFixture()
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
-    local p = { map = 1429, x = 42.1, y = 65.9 }
-    local b = boxes[p.map]
-    M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
-    M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
-    ns.Player.cache.mapID = nil
+    moveTo({ map = 1429, x = 42.1, y = 65.9 })
     withTravelWorld(db, function()
         -- with the planner off, setting a target plans nothing
         ns.db.nav.travelPlanner = nil
@@ -5383,13 +5320,9 @@ end)
 section("travel planner: no plan while dead; the way comes back with life (Polestar's C11)", function()
     local Nav, M = ns.Navigation, MOCK
     local db = travelFixture()
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance }
     local p = { map = 1429, x = 42.1, y = 65.9 }
-    local b = boxes[p.map]
-    M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
-    M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
-    ns.Player.cache.mapID = nil
+    moveTo(p)
     withTravelWorld(db, function()
         M.ghost = true
         local ok = pcall(Nav.SetTarget, Nav, { map = 1455, x = 50, y = 50, label = "Ironforge" })
@@ -5408,14 +5341,7 @@ end)
 section("a recording keeps the travel planner's route, each leg, and how long each took (#713)", function()
     local Nav, R, M = ns.Navigation, ns.Run, MOCK
     local db = travelFixture()
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance, record = ns.db.recordRuns, run = ns.char.run }
-    local function moveTo(p)
-        local b = boxes[p.map]
-        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
-        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
-        ns.Player.cache.mapID = nil
-    end
     local function entries(kind)
         local out = {}
         for _, e in ipairs(ns.char.run and ns.char.run.entries or {}) do if e.e == kind then out[#out + 1] = e end end
@@ -5852,15 +5778,8 @@ end)
 section("walking paths: the arrow, the time left and the dots follow a walk's way (#694)", function()
     local Nav, D, W, M = ns.Navigation, ns.RouteDots, ns.Walking, MOCK
     local db = travelFixture()
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance, facing = M.facing,
         codec = rawget(_G, "C_EncodingUtil") }
-    local function moveTo(p)
-        local b = boxes[p.map]
-        M.mapID, M.mapX, M.mapY = p.map, p.x / 100, p.y / 100
-        M.worldX, M.worldY, M.instance = b.maxX - p.y / 100 * (b.maxX - b.minX), b.maxY - p.x / 100 * (b.maxY - b.minY), b.inst
-        ns.Player.cache.mapID = nil
-    end
     _G.C_EncodingUtil = TestCodec()
     W:Forget()
     local found = 0
@@ -5929,7 +5848,6 @@ end)
 
 section("walking paths: a walk starts on the floor under the player, followed as they move (#744)", function()
     local Nav, W, M = ns.Navigation, ns.Walking, MOCK
-    local boxes = dofile(root .. "tools/test/fixtures/map_boxes.lua")
     local was = { codec = rawget(_G, "C_EncodingUtil"), indoors = rawget(_G, "IsIndoors"), pos = _G.UnitPosition,
         wx = M.worldX, wy = M.worldY, inst = M.instance, planner = ns.db.nav.travelPlanner }
     _G.C_EncodingUtil = TestCodec()
@@ -5937,7 +5855,7 @@ section("walking paths: a walk starts on the floor under the player, followed as
     local indoors = false
     _G.IsIndoors = function() return indoors end
     local function at(map, x, y)
-        local b = boxes[map]
+        local b = MAP_BOXES[map]
         return b.maxX - y / 100 * (b.maxX - b.minX), b.maxY - x / 100 * (b.maxY - b.minY)
     end
     local function stand(wx, wy) M.worldX, M.worldY, M.instance = wx, wy, 0 end
