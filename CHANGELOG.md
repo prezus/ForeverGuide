@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- A step at a quest object (a brazier to douse, a chest, a sign that starts a quest) walks to the object's own floor where floors stack, as a step at an NPC does: a cave under a hill, a tower's rooms.
 - Guides: data and walking maps updated to the current client; sub-zones belong to the zones the game shows.
 - Guides: the Wizard's Sanctum's portals take the way down to Stormwind's mage trainers and back.
 - Guides: the way through Loch Modan's trogg cave and Felwood's Shadow Hold is found again.
