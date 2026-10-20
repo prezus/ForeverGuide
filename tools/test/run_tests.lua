@@ -5775,6 +5775,27 @@ section("walking paths: a map that does not match its manifest is left out, repo
     _G.C_EncodingUtil = was
 end)
 
+section("walking paths: a drop is walked down off its ledge, never back up it (#800)", function()
+    local W = ns.Walking
+    local was = { codec = rawget(_G, "C_EncodingUtil"), manifest = ns.NavManifest[9998] }
+    _G.C_EncodingUtil = TestCodec()
+    local ref = loadfile(root .. "tools/test/fixtures/nav_drop.lua")(ns)
+    ns.NavManifest[9998] = { hash = ref.hash, tiles = ref.tiles }
+    W:Load()
+    need(W:Has(9998), "a version 3 map loads")
+    local down, why = W:FindWay(9998, ref.from, ref.to)
+    check(down ~= nil, "a way down the drop (" .. tostring(why) .. ")")
+    if down then
+        check(math.abs(down.yards - ref.yards) <= 0.5 and #down.points == ref.points,
+            string.format("as the reference router's: %.1f yd and %d points, against %.1f and %d", down.yards, #down.points, ref.yards, ref.points))
+    end
+    local up, upWhy = W:FindWay(9998, ref.to, ref.from)
+    check(up == nil and upWhy == "no-walk", "and none back up it (" .. tostring(upWhy) .. ")")
+    ns.NavManifest[9998], ns.NavMap9998 = was.manifest, nil
+    W:Load()
+    _G.C_EncodingUtil = was.codec
+end)
+
 section("walking paths: the arrow, the time left and the dots follow a walk's way (#694)", function()
     local Nav, D, W, M = ns.Navigation, ns.RouteDots, ns.Walking, MOCK
     local db = travelFixture()

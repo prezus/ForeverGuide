@@ -33,11 +33,16 @@ local Walking = ns:NewModule("Walking")
 local floor, abs, sqrt, huge, min, max = math.floor, math.abs, math.sqrt, math.huge, math.min, math.max
 local byte = string.byte
 
-local PACK_VERSION = 2
+-- the pack's format versions read: 3 adds the drops' two sides to 2, decoded alike
+local PACK_VERSIONS = { [2] = true, [3] = true }
 local TILE_YARDS = 1600 / 3
 local GRID = 64
 local CELL = TILE_YARDS / GRID
 local SIDE_HERE = 4
+-- a drop (codex src/nav/drops.ts, #800): a way down off a ledge too steep to climb back. Its top is a
+-- portal of the region it leaves (side 9, other: its landing's portal in the tile), its landing one of
+-- the region it lands in (side 10, other: its top's); a walk goes from the top to the landing, never back
+local SIDE_DROP, SIDE_LANDING = 9, 10
 
 Walking.SNAP_CELLS = 3       -- grid cells searched round a point whose own cell has no ground
 Walking.HEIGHT_YARDS = 40    -- a height further than this from every floor there is ignored
@@ -77,7 +82,7 @@ function Walking:Load()
             if type(data) == "table" and type(data.tiles) == "table" then
                 for _ in pairs(data.tiles) do count = count + 1 end
             end
-            if type(data) ~= "table" or data.version ~= PACK_VERSION or data.hash ~= want.hash or count ~= want.tiles then
+            if type(data) ~= "table" or not PACK_VERSIONS[data.version] or data.hash ~= want.hash or count ~= want.tiles then
                 ns.ReportOnce("walking-map-" .. mapID, string.format(
                     "the walking map %d is missing or not the one this release lists; walks there stay straight", mapID))
             else
@@ -137,7 +142,7 @@ local function Decode(s)
     local function u8() local v = byte(s, o); o = o + 1; return v end
     local function u16() local a, b = byte(s, o, o + 1); o = o + 2; return a + b * 256 end
     local function i16() local v = u16(); if v >= 32768 then v = v - 65536 end return v end
-    if #s < 5 or u8() ~= PACK_VERSION then return nil end
+    if #s < 5 or not PACK_VERSIONS[u8()] then return nil end
     local regionCount, portalCount = u16(), u16()
     local regions = {}
     for r = 1, regionCount do
@@ -265,13 +270,14 @@ end
 -- ------------------------------------------------------------
 -- Placing a point on the regions under it
 -- ------------------------------------------------------------
---- A region's height near a point: its nearest portal's (a region on a slope varies), else its own.
+--- A region's height near a point: its nearest portal's (a region on a slope varies), else its own. A
+--- drop's ends stand at a ledge's or a landing's height, not the region's: left out.
 local function HeightNear(tile, r, lx, ly)
     local region = tile.regions[r]
     local best, height = huge, region and region.height or 0
     for _, i in ipairs(region and region.portals or NONE) do
         local p = tile.portals[i]
-        if p then
+        if p and p.side ~= SIDE_DROP and p.side ~= SIDE_LANDING then
             local dx, dy = (p.ax + p.bx) / 2 - lx, (p.ay + p.by) / 2 - ly
             local d = dx * dx + dy * dy
             if d < best then best, height = d, p.height end
@@ -365,7 +371,12 @@ function Walking:Joins(mapID, aTile, aRegion, bTile, bRegion)
         if p then
             if p.side == SIDE_HERE then
                 if aTile == bTile and ((p.region == aRegion and p.other == bRegion) or (p.other == aRegion and p.region == bRegion)) then return true end
-            elseif Neighbour(aTile, p.side) == bTile then
+            elseif p.side == SIDE_DROP then
+                -- down a drop, not up it
+                local landing = tile.portals[p.other]
+                if aTile == bTile and landing and landing.region == bRegion then return true end
+            elseif p.side ~= SIDE_LANDING and Neighbour(aTile, p.side) == bTile then
+                -- across a tile's border (a landing joins nothing back up)
                 local there = m.decoded[bTile]
                 local copy = there and there.portals[p.other]
                 if copy and copy.region == bRegion then return true end
@@ -491,7 +502,7 @@ local function Search(tiles, from, to, pause, faction, danger)
     local function KeyOf(tile, i)
         local p = PortalOf(tile, i)
         local here = InfoOf(tile).id * 65536 + i
-        if not p or p.side == SIDE_HERE then return here end
+        if not p or p.side == SIDE_HERE or p.side == SIDE_DROP or p.side == SIDE_LANDING then return here end
         local there = InfoOf(Neighbour(tile, p.side)).id * 65536 + p.other
         return here < there and here or there
     end
@@ -617,9 +628,18 @@ local function Search(tiles, from, to, pause, faction, danger)
                 local ax, ay = MidXY(ref.tile, ref.portal)
                 -- the regions either side of the portal, each with the portal's index among its own
                 Through(ref.tile, p.region, ref.portal, ax, ay)
-                if p.side == SIDE_HERE then
+                if p.side == SIDE_DROP then
+                    -- down the drop to its landing, the run's yards on
+                    local landingKey = KeyOf(ref.tile, p.other)
+                    local lx, ly = MidXY(ref.tile, p.other)
+                    local dx, dy = lx - ax, ly - ay
+                    local run = sqrt(dx * dx + dy * dy)
+                    if not refs[landingKey] then refs[landingKey] = { tile = ref.tile, portal = p.other } end
+                    Offer(landingKey, here.cost + run, key, here.swim, here.yards + run, here.risk, here.origin, nil, nil, nil, nil, nil, lx, ly)
+                elseif p.side == SIDE_HERE then
                     Through(ref.tile, p.other, ref.portal, ax, ay)
-                else
+                elseif p.side ~= SIDE_LANDING then
+                    -- across a tile's border (a landing is crossed into, never back up)
                     local there = Neighbour(ref.tile, p.side)
                     local copy = PortalOf(there, p.other)
                     if copy then Through(there, copy.region, p.other, ax, ay) end
