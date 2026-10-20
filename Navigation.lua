@@ -96,11 +96,12 @@ function Nav:SetTarget(target)
         guide = target.guide,
         step = target.step,
         npcs = target.npcs,
+        objects = target.objects,
         radius = target.radius or (ns.db and ns.db.nav.arrivalRadius) or 15,
     }
     t.instanceID, t.worldX, t.worldY = self:MapToWorld(t.map, t.x, t.y)
-    -- the NPC's own floor where floors stack: a walk there ends at its height
-    t.height = self:SpawnHeight(t.instanceID, t.worldX, t.worldY, t.npcs)
+    -- the NPC's or object's own floor where floors stack: a walk there ends at its height
+    t.height = self:SpawnHeight(t.instanceID, t.worldX, t.worldY, t.npcs, t.objects)
     -- the same place asked for again (the guide re-aims the arrow on every zone change) while a
     -- route is under way: keep following it. Planning afresh from inside a ride (the tram's own
     -- instance, a boat between zones) found no way and dropped the route, and its leg with it.
@@ -186,25 +187,31 @@ local function WayPriced(way)
     return WayYards(way) + (way.riskYards or 0)
 end
 
-local SPAWN_YARDS = 15   -- an NPC's spawn this near the target is the target's
+local SPAWN_YARDS = 15   -- an NPC's or object's spawn this near the target is the target's
 
---- The height of the NPC a target leads to: its spawn within SPAWN_YARDS of the target's world point
---- (TravelDB.heights, from the server's spawns), else nil.
-function Nav:SpawnHeight(inst, wx, wy, npcs)
-    local heights = ns.TravelDB and ns.TravelDB.heights
-    if type(heights) ~= "table" or not inst or not wx or type(npcs) ~= "table" then return nil end
+--- The height of the NPC or game object a target leads to: its spawn within SPAWN_YARDS of the
+--- target's world point (TravelDB.heights by NPC id, TravelDB.objectHeights by object id: two id
+--- spaces), else nil.
+function Nav:SpawnHeight(inst, wx, wy, npcs, objects)
+    local db = ns.TravelDB
+    if type(db) ~= "table" or not inst or not wx then return nil end
     local best, nearest = nil, SPAWN_YARDS
-    for _, id in ipairs(npcs) do
-        local h = heights[id]
-        if type(h) == "table" then
-            for i = 1, #h - 3, 4 do
-                if h[i] == inst then
-                    local d = Dist(h[i + 1], h[i + 2], wx, wy)
-                    if d <= nearest then best, nearest = h[i + 3], d end
+    local function near(heights, ids)
+        if type(heights) ~= "table" or type(ids) ~= "table" then return end
+        for _, id in ipairs(ids) do
+            local h = heights[id]
+            if type(h) == "table" then
+                for i = 1, #h - 3, 4 do
+                    if h[i] == inst then
+                        local d = Dist(h[i + 1], h[i + 2], wx, wy)
+                        if d <= nearest then best, nearest = h[i + 3], d end
+                    end
                 end
             end
         end
     end
+    near(db.heights, npcs)
+    near(db.objectHeights, objects)
     return best
 end
 

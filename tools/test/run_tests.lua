@@ -6058,6 +6058,16 @@ section("walking paths: a walk to an NPC ends on its floor where floors stack (#
         check(atTarget.z == andron.z and platform.z == 99.9, "a walk ends at its own height (a zeppelin's platform), or the target's NPC's at the target")
         Nav:SetTarget({ map = 1458, x = ax, y = ay, label = "Andron Gant", npcs = { 9999 } })
         check(Nav.target.height == nil, "an NPC with no spawn near the target gives it no height")
+
+        -- an object's height is by object id: 4583 as an object is not Andron Gant
+        db.objectHeights = { [4583] = { 0, andron.x - 3, andron.y, andron.z + 0.5 } }
+        Nav:SetTarget({ map = 1458, x = ax, y = ay, label = "a chest", objects = { 4583 } })
+        check(Nav.target.height == andron.z + 0.5, "the target takes its object's spawn height (" .. tostring(Nav.target.height) .. ")")
+        Nav:SetTarget({ map = 1458, x = ax, y = ay, label = "a chest", npcs = { 4583 }, objects = { 4583 } })
+        check(Nav.target.height == andron.z, "the nearest spawn wins, an NPC's or an object's")
+        db.objectHeights = nil
+        Nav:SetTarget({ map = 1458, x = ax, y = ay, label = "a chest", objects = { 4583 } })
+        check(Nav.target.height == nil, "a table without objectHeights gives an object no height")
     end)
 
     -- the NPCs a step leads to: its quest's giver for an accept, its ender for a turn-in, its own, the place it resolved to
@@ -6067,6 +6077,12 @@ section("walking paths: a walk to an NPC ends on its floor where floors stack (#
     check(has(G:StepNPCs({ type = "TURNIN", quest = 7 }), 197), "a turn-in to its quest's ender")
     local own = G:StepNPCs({ type = "TRAIN", npc = 375 }, { kind = "npc", id = 376 })
     check(has(own, 375) and has(own, 376), "a step's own NPC and the NPC it resolved to")
+
+    -- the objects a step leads to: its quest's objective objects, its starter or ender object, the place it resolved to
+    check(has(G:StepObjects({ type = "COMPLETE", quest = 5165 }), 176161), "an objective's step leads to its quest's objects (the Brazier of Hatred)")
+    check(has(G:StepObjects({ type = "ACCEPT", quest = 45 }), 55) and has(G:StepObjects({ type = "TURNIN", quest = 45 }), 56), "an accept to the object that starts its quest, a turn-in to the one that ends it")
+    check(has(G:StepObjects({ type = "COMPLETE" }, { kind = "object", id = 176158 }), 176158) and #G:StepObjects({ type = "TRAIN", npc = 375 }, { kind = "npc", id = 376 }) == 0,
+        "the object a step resolved to, and none for an NPC's step")
 
     Nav:Clear()
     _G.C_EncodingUtil = was.codec

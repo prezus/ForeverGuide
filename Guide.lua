@@ -1191,6 +1191,27 @@ function Guide:StepNPCs(step, loc)
     return ids
 end
 
+local OBJECTIVE_STEP = { COMPLETE = true, KILL = true, COLLECT = true }
+
+--- The game objects a step leads to, for the floor a walk there ends on: the place it resolved to
+--- when that is an object, its quest's objective objects (an objective's step: a brazier to douse),
+--- and the objects that start (an accept) or end (a turn-in) its quest.
+function Guide:StepObjects(step, loc)
+    local ids = {}
+    local function add(id) if type(id) == "number" then ids[#ids + 1] = id end end
+    if loc and loc.kind == "object" then add(loc.id) end
+    local DB = ns.DB
+    local q = step.quest and DB and DB:IsLoaded() and DB:GetQuest(step.quest)
+    if q and OBJECTIVE_STEP[step.type] then
+        for _, o in ipairs(q.obj or {}) do add(type(o) == "table" and o[1] or nil) end
+    elseif q and step.type == "ACCEPT" then
+        for _, id in ipairs(q.sobj or {}) do add(id) end
+    elseif q and step.type == "TURNIN" then
+        for _, id in ipairs(q.eobj or {}) do add(id) end
+    end
+    return ids
+end
+
 function Guide:UpdateNavigation()
     if ns.Navigation.override then return end                  -- a ghost walks to its corpse first (Corpse.lua)
     if ns.Tracker and ns.Tracker:IsActive() then return end   -- tracker drives navigation (auto mode, or no guide)
@@ -1206,7 +1227,8 @@ function Guide:UpdateNavigation()
         if not (t and t.map == mapID and t.x == x and t.y == y and t.label == label and t.radius == (eff.radius or t.radius)
                 and t.guide == self.active.id and t.step == step.index) then
             ns.Navigation:SetTarget({ map = mapID, x = x, y = y, label = label, radius = eff.radius, owner = "guide",
-                                      guide = self.active.id, step = step.index, npcs = self:StepNPCs(step, loc) })
+                                      guide = self.active.id, step = step.index, npcs = self:StepNPCs(step, loc),
+                                      objects = self:StepObjects(step, loc) })
         end
     else
         ns.Navigation:Clear()
