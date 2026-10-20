@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Guides: a step at a quest object walks to the object's own floor where floors stack.
+- Guides: the way into Thistlefur Village in Ashenvale is found.
 - A step at a quest object (a brazier to douse, a chest, a sign that starts a quest) walks to the object's own floor where floors stack, as a step at an NPC does: a cave under a hill, a tower's rooms.
 - Guides: data and walking maps updated to the current client; sub-zones belong to the zones the game shows.
 - Guides: the Wizard's Sanctum's portals take the way down to Stormwind's mage trainers and back.
