@@ -532,14 +532,16 @@ function Nav:LegCaption(leg, nextLeg)
     return nil
 end
 
---- While waiting for a ride: "Boat in about 2:45" (the expected wait, counting down), else nil.
+--- While waiting for a ride: "Boat in 1:20" when its departure is timed (#697), else "Boat in about
+--- 2:45" (the expected wait, counting down); nil once it is due.
 function Nav:RideWait()
     local r, leg = self.route, self:CurrentLeg()
     if not leg or not RIDE[leg.kind] or not leg.wait or leg.wait <= 0 then return nil end
-    local left = leg.wait - (ns.Now() - (r.legAt or ns.Now()))
+    local now = leg.departs and PlainNumber(Safe(rawget(_G, "GetServerTime")))
+    local left = now and leg.departs - now or leg.wait - (ns.Now() - (r.legAt or ns.Now()))
     if left <= 0 then return nil end
     local what = RIDE[leg.kind]
-    return what:sub(1, 1):upper() .. what:sub(2) .. " in about " .. self:FormatTime(left)
+    return what:sub(1, 1):upper() .. what:sub(2) .. (now and " in " or " in about ") .. self:FormatTime(left)
 end
 
 local function Near(px, py, pInstance, point, radius)
@@ -845,6 +847,9 @@ poller:SetScript("OnUpdate", function(self, elapsed)
         local px, py, pInstance = ns.Player:GetWorldPosition()
         local okf, errf = pcall(Nav.TrackFloor, Nav, px, py, pInstance)
         if not okf then ns.ReportOnce("nav:floor", errf) end
+        -- a boat or zeppelin the player is on times its departures (#697)
+        local oks, errs = pcall(ns.Travel.SeeRide, ns.Travel, pInstance, px, py, PlainNumber(Safe(rawget(_G, "GetServerTime"))))
+        if not oks then ns.ReportOnce("nav:ride", errs) end
     end
     if not Nav.target then return end
     local ok, err = pcall(Nav.Update, Nav, true)

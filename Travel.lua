@@ -17,7 +17,9 @@
 -- boards once (TravelDB.flightBoard) and may chain direct flights through
 -- known nodes. The Hearthstone and teleports carry a margin in the cost the
 -- search compares (not in the seconds shown), so a spent cooldown has to buy
--- real time.
+-- real time. A boat or zeppelin waits half its loop, or, once the player has
+-- been seen riding it, until its next departure after they reach the dock
+-- (opts.departures, #697).
 --
 -- Pure: Plan reads only its arguments and the data, so the engine decides
 -- when to plan and the tests drive it directly.
@@ -179,7 +181,8 @@ local function Static(db, side, known)
             local a = Add({ kind = "board", pos = link.from, w = wa })
             local b = Add({ kind = "land", pos = link.to, w = wb })
             local seconds = (link.wait or 0) + (link.ride or 0)
-            Edge(a, b, seconds + Travel.CHANGE_SECONDS, seconds, { kind = link.kind, name = link.name, wait = link.wait, ride = link.ride, path = link.path })
+            Edge(a, b, seconds + Travel.CHANGE_SECONDS, seconds, { kind = link.kind, name = link.name, wait = link.wait, ride = link.ride, path = link.path,
+                transport = link.transport, loop = link.loop, leaves = link.leaves })
         end
     end
 
@@ -252,8 +255,10 @@ local work = { cost = {}, seconds = {}, prev = {}, via = {}, done = {}, heap = {
 --- the Hearthstone is ready; nil when there is none), teleports ({ { spell, wait } }
 --- castable now or after `wait`), walk (function(a, b) -> the yards a walk between two world
 --- points takes when the walking maps know its way, else nil; and the yards it is priced at, when
---- more: the other faction's towns and zones far above the player on the way).
---- Returns { legs = { { kind, from, to, seconds, wait?, name?, spell? } }, seconds },
+--- more: the other faction's towns and zones far above the player on the way), now (server time) and
+--- departures ({ [transport] = when its loop began, server time }: Travel:Departures) for the boats
+--- and zeppelins seen under way, whose wait is then until their next departure.
+--- Returns { legs = { { kind, from, to, seconds, wait?, departs?, name?, spell? } }, seconds },
 --- or nil and why: "nowhere" (start or target has no world position), "unreachable",
 --- "budget" (the search ran out of its caps).
 function Travel:Plan(from, to, opts)
@@ -261,6 +266,7 @@ function Travel:Plan(from, to, opts)
     local nodes, edges, start, target, walkTo = Build(from, to, opts)
     if not nodes[start].w or not nodes[target].w then return nil, "nowhere" end
     local speed = (opts.speed and opts.speed > 0) and opts.speed or Travel.DEFAULT_SPEED
+    local now, departures = opts.now, opts.departures
 
     local cost, seconds, prev, via, done, heap = work.cost, work.seconds, work.prev, work.via, work.done, work.heap
     for i = 1, max(#nodes, work.used) do cost[i], seconds[i], prev[i], via[i], done[i] = huge, nil, nil, nil, nil end
@@ -288,7 +294,18 @@ function Travel:Plan(from, to, opts)
             pops = pops + 1
             if pops > Travel.MAX_POPS or (clock and clock() - began > Travel.BUDGET_MS) then return nil, "budget" end
             for _, e in ipairs(edges[u]) do
-                if not done[e.to] then Relax(u, e.to, e.cost, e.seconds, e.leg) end
+                if not done[e.to] then
+                    local leg = e.leg
+                    local loopBegan = now and leg.loop and departures and departures[leg.transport]
+                    if loopBegan then
+                        -- timed: wait at the dock for its next departure (a later arrival never leaves sooner)
+                        local reach = now + seconds[u]
+                        local s = Travel.NextDeparture(loopBegan, leg.leaves, leg.loop, reach) - reach + (leg.ride or 0)
+                        Relax(u, e.to, s + Travel.CHANGE_SECONDS, s, leg)
+                    else
+                        Relax(u, e.to, e.cost, e.seconds, leg)
+                    end
+                end
             end
             local nu = nodes[u]
             if nu.kind ~= "air" and nu.w then
@@ -331,7 +348,14 @@ function Travel:Plan(from, to, opts)
                 legs[#legs + 1] = { kind = "walk", from = a.pos, to = b.pos, seconds = span }
             end
         else
-            legs[#legs + 1] = { kind = kind, from = a.pos, to = b.pos, seconds = span, wait = step.leg.wait, name = step.leg.name, spell = step.leg.spell, path = step.leg.path }
+            local leg, wait, departs = step.leg, step.leg.wait, nil
+            local loopBegan = now and leg.loop and departures and departures[leg.transport]
+            if loopBegan then
+                local reach = now + seconds[step.from]
+                departs = Travel.NextDeparture(loopBegan, leg.leaves, leg.loop, reach)
+                wait = departs - reach
+            end
+            legs[#legs + 1] = { kind = kind, from = a.pos, to = b.pos, seconds = span, wait = wait, departs = departs, name = leg.name, spell = leg.spell, path = leg.path }
         end
     end
     return { legs = legs, seconds = seconds[target] }
@@ -357,7 +381,8 @@ function Travel.RidePath(leg)
 end
 
 --- How much of a path is left from (x, y) on world map `inst`: the yards from the nearest point of the
---- path on that map to its end, and the whole path's yards; nil when the path does not cross that map.
+--- path on that map to its end, the whole path's yards, and how far (x, y) is from that nearest point;
+--- nil when the path does not cross that map.
 function Travel.PathLeft(runs, inst, x, y)
     local total, lengths = 0, {}
     for r, run in ipairs(runs) do
@@ -382,7 +407,7 @@ function Travel.PathLeft(runs, inst, x, y)
         end
     end
     if not left then return nil end
-    return left, total
+    return left, total, best
 end
 
 -- ------------------------------------------------------------
@@ -470,6 +495,79 @@ function Travel:Teleports()
     return out
 end
 
+-- ------------------------------------------------------------
+-- Departures (#697): a boat or zeppelin leaves each of its docks once a loop (TravelDB's `loop`), at
+-- its own moment in the loop (`leaves`). The player seen riding one fixes when its loop began, which
+-- times its departures from every dock for hours; until then a wait is half a loop.
+-- ------------------------------------------------------------
+local SEE_EVERY = 2               -- seconds between looks for a ride under way
+local OFF_PATH_YARDS = 40         -- this near a ride's path is on it
+local PACE_SLACK = 0.35           -- moving along the path within this share of the ride's own pace
+local DEPARTURES_HOLD = 6 * 3600  -- seconds a timetable is kept: a server restart starts the loops anew
+
+local function ServerTime()
+    return PlainNumber(Safe(rawget(_G, "GetServerTime")))
+end
+
+--- This realm's timetables, saved for every character: { [transport] = { began, at } }.
+local function RealmTimetables()
+    ns.db.departures = ns.db.departures or {}
+    local realm = PlainString(Safe(rawget(_G, "GetRealmName"))) or "?"
+    local t = ns.db.departures[realm]
+    if not t then
+        t = {}
+        ns.db.departures[realm] = t
+    end
+    return t
+end
+
+--- The first departure at or after `t` from a dock a transport leaves `leaves` seconds into each loop of
+--- `loop` seconds, its loop having begun at `began` (all server time).
+function Travel.NextDeparture(began, leaves, loop, t)
+    local first = began + leaves
+    return first + math.ceil((t - first) / loop) * loop
+end
+
+--- The transports timed on this realm and seen recently enough: { [transport] = when its loop began }.
+function Travel:Departures(now)
+    local out = {}
+    if not now or not ns.db then return out end
+    for transport, seen in pairs(RealmTimetables()) do
+        if now - seen.at <= DEPARTURES_HOLD then out[transport] = seen.began end
+    end
+    return out
+end
+
+local looked = {}   -- the last look: { [link] = { left, at } } for each ride path the player was on
+local lookedAt      -- when it was taken
+
+--- Look for a ride under way at world point (x, y) on map `inst` at server time `now`. The player is on a
+--- boat or zeppelin when two looks in a row find them on one of its links' paths, gone along it at the
+--- ride's own pace (a mount on the shore goes faster, a walker slower, and the way back goes against it);
+--- how far along they are says when it left the dock, and so when its loop began.
+function Travel:SeeRide(inst, x, y, now)
+    if not now or (lookedAt and now - lookedAt < SEE_EVERY) then return end
+    local before = looked
+    looked, lookedAt = {}, now
+    if not inst or not x or Plain(Safe(rawget(_G, "UnitOnTaxi"), "player")) == true then return end
+    for _, link in ipairs(ns.TravelDB and ns.TravelDB.links or {}) do
+        if link.transport and link.loop and link.leaves and link.path and (link.ride or 0) > 0 then
+            local left, whole, off = Travel.PathLeft(link.path, inst, x, y)
+            if left and whole > 0 and off <= OFF_PATH_YARDS and left > 0 and left < whole then
+                looked[link] = { left = left, at = now }
+                local last = before[link]
+                if last and now > last.at then
+                    local pace, own = (last.left - left) / (now - last.at), whole / link.ride
+                    if math.abs(pace - own) <= own * PACE_SLACK then
+                        local left_dock = now - (whole - left) / whole * link.ride
+                        RealmTimetables()[link.transport] = { began = left_dock - link.leaves, at = now }
+                    end
+                end
+            end
+        end
+    end
+end
+
 local lastSpeed   -- the last run speed the game gave (session state, never saved)
 
 --- The player's run speed in yards a second, a mount counted: the game's, else the last it gave (it gives
@@ -487,6 +585,7 @@ function Travel.ForgetSpeed() lastSpeed = nil end
 --- Plan's options for this character now: faction, known flight points, run speed, and the
 --- Hearthstone and teleports unless the player turned them off (nav.useHearth).
 function Travel:Options()
+    local now = ServerTime()
     local useHearth = not (ns.db and ns.db.nav and ns.db.nav.useHearth == false)
     local bind = useHearth and self:Bind() or nil
     return {
@@ -497,6 +596,8 @@ function Travel:Options()
         bindName = bind and bind.name,
         hearthWait = bind and self:HearthWait() or nil,
         teleports = useHearth and self:Teleports() or {},
+        now = now,
+        departures = self:Departures(now),
     }
 end
 

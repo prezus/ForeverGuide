@@ -68,6 +68,7 @@ local DEFAULTS = {
     contribute = false,           -- explicit consent for collecting quest facts (Recorder.lua, Harvest.lua)
     recordRuns = false,           -- explicit consent for recording runs: shows the run controls (Run.lua)
     recordExplained = false,      -- the Record dot's first press showed what recording does
+    departures = {},              -- [realm][transport] = { began, at }: boats and zeppelins seen under way (Travel.lua, #697)
     contrib = {                   -- the facts; /fg share exports them (Share.lua, docs/SHARE-FORMAT.md)
         quests = {},
         npcs = {},
