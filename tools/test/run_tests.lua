@@ -4636,6 +4636,120 @@ section("travel planner: the bind point, the Hearthstone's and teleports' readin
     ns.TravelDB, ns.char.bind, M.bind, M.npc, M.items, M.spells = realDb, nil, realBind, realNpc, realItems, realSpells
 end)
 
+section("travel planner: a boat seen under way times its departures; unseen, the wait is half a loop (#697)", function()
+    local T = ns.Travel
+    need(T.NextDeparture and T.SeeRide and T.Departures, "the departures API exists")
+    local db = travelFixture()
+    local realDepartures = ns.db.departures
+    -- one boat of the fixture made a transport of the test's own: a 300 s loop, leaving its dock 40 s in
+    local boat
+    for _, l in ipairs(db.links) do if l.kind == "boat" and l.path then boat = l break end end
+    need(boat, "the fixture has a boat with a path")
+    boat.transport, boat.loop, boat.leaves, boat.ride, boat.wait = "test-boat", 300, 40, 100, 150
+    for _, l in ipairs(db.links) do if l ~= boat and l.transport then l.transport, l.loop, l.leaves = nil, nil, nil end end
+    ns.db.departures = {}
+    local ok, err = pcall(withTravelWorld, db, function()
+
+    -- the next departure from a dock, at or after a time
+    check(T.NextDeparture(1000, 40, 300, 1000) == 1040 and T.NextDeparture(1000, 40, 300, 1041) == 1340 and T.NextDeparture(1000, 40, 300, 1340) == 1340,
+        "a departure 40 s into a 300 s loop: the next one at or after a time")
+
+    -- a point a share of the way along the boat's path, in world yards
+    local function along(f)
+        local run = boat.path[1]
+        local len, segs = 0, {}
+        for i = 4, #run - 1, 2 do
+            local d = math.sqrt((run[i] - run[i - 2]) ^ 2 + (run[i + 1] - run[i - 1]) ^ 2)
+            segs[#segs + 1], len = { run[i - 2], run[i - 1], run[i], run[i + 1], d }, len + d
+        end
+        local whole = 0
+        for _, r in ipairs(boat.path) do
+            for i = 4, #r - 1, 2 do whole = whole + math.sqrt((r[i] - r[i - 2]) ^ 2 + (r[i + 1] - r[i - 1]) ^ 2) end
+        end
+        local want = whole * f
+        need(want <= len, "the share lies on the path's first run")
+        for _, sg in ipairs(segs) do
+            if want <= sg[5] then
+                local k = sg[5] > 0 and want / sg[5] or 0
+                return run[1], sg[1] + (sg[3] - sg[1]) * k, sg[2] + (sg[4] - sg[2]) * k
+            end
+            want = want - sg[5]
+        end
+    end
+    local share
+    do
+        local r, total = boat.path[1], 0
+        for i = 4, #r - 1, 2 do total = total + math.sqrt((r[i] - r[i - 2]) ^ 2 + (r[i + 1] - r[i - 1]) ^ 2) end
+        local whole = 0
+        for _, rr in ipairs(boat.path) do for i = 4, #rr - 1, 2 do whole = whole + math.sqrt((rr[i] - rr[i - 2]) ^ 2 + (rr[i + 1] - rr[i - 1]) ^ 2) end end
+        share = math.min(0.3, 0.5 * total / whole)
+    end
+
+    -- unseen: the plan waits half a loop
+    local from, to = boat.from, boat.to
+    local opts = { faction = "Alliance", known = {}, now = 5000, departures = T:Departures(5000) }
+    local plan = T:Plan(from, to, opts)
+    local leg
+    for _, l in ipairs(plan and plan.legs or {}) do if l.kind == "boat" then leg = l end end
+    check(leg and leg.wait == 150 and leg.departs == nil, "no boat seen: the boat leg waits half its loop (" .. tostring(leg and leg.wait) .. ")")
+
+    -- riding it: two looks a few seconds apart, moving along its path at its pace
+    local t0 = GetServerTime() + 1000   -- after any look the poller took in earlier sections
+    local inst, x1, y1 = along(share * 0.5)
+    local _, x2, y2 = along(share)
+    T:SeeRide(inst, x1, y1, t0)
+    check(next(T:Departures(t0)) == nil, "one look is not a ride")
+    T:SeeRide(inst, x2, y2, t0 + share * 0.5 * 100)
+    local epoch = T:Departures(t0 + 60)["test-boat"]
+    -- it left its dock share x 100 s before the second look, 40 s into its loop
+    local want = t0 + share * 0.5 * 100 - share * 100 - 40
+    check(epoch and math.abs(epoch - want) < 1, "a ride seen under way times its loop (" .. tostring(epoch) .. ", want " .. want .. ")")
+
+    -- a walker on the shore at a mount's pace, or going the wrong way, times nothing
+    ns.db.departures = {}
+    T:SeeRide(inst, x1, y1, t0 + 1000)
+    T:SeeRide(inst, x2, y2, t0 + 1000 + share * 0.5 * 100 / 4)
+    check(T:Departures(t0 + 1100)["test-boat"] == nil, "moving along the path four times too fast is no ride")
+    T:SeeRide(inst, x2, y2, t0 + 2000)
+    T:SeeRide(inst, x1, y1, t0 + 2000 + share * 0.5 * 100)
+    check(T:Departures(t0 + 2100)["test-boat"] == nil, "moving against the path is no ride of this link")
+
+    -- seen: the plan waits for the next departure after reaching the dock
+    ns.db.departures = {}
+    local t1 = t0 + 3000
+    T:SeeRide(inst, x1, y1, t1)
+    T:SeeRide(inst, x2, y2, t1 + share * 0.5 * 100)
+    epoch = t1 + share * 0.5 * 100 - share * 100 - 40
+    local now = t1 + 400
+    plan = T:Plan(from, to, { faction = "Alliance", known = {}, now = now, departures = T:Departures(now) })
+    leg = nil
+    local reach = now
+    for _, l in ipairs(plan and plan.legs or {}) do
+        if l.kind == "boat" then leg = l break end
+        reach = reach + l.seconds
+    end
+    local departs = T.NextDeparture(epoch, 40, 300, reach)
+    check(leg and leg.departs and math.abs(leg.departs - departs) < 1, "the boat leg leaves at the next departure after the player reaches the dock")
+    check(leg and math.abs(leg.wait - (departs - reach)) < 1 and math.abs(leg.seconds - (departs - reach) - 100) < 1, "its wait is the time to that departure, and its seconds that wait and the ride")
+    local untimed = T:Plan(from, to, { faction = "Alliance", known = {} })
+    check(untimed and leg and math.abs((plan.seconds - untimed.seconds) - (leg.wait - 150)) < 1, "the plan takes the timed wait instead of half a loop")
+
+    -- the arrow's wait: a timed departure counts down to it; an untimed one is "about" half a loop
+    local Nav, realRoute = ns.Navigation, ns.Navigation.route
+    Nav.route = { legs = { { kind = "boat", wait = 80, departs = GetServerTime() + 80, seconds = 180 } }, index = 1, legAt = ns.Now() }
+    check(Nav:RideWait() == "Boat in 1:20", "a timed boat: \"Boat in 1:20\" (" .. tostring(Nav:RideWait()) .. ")")
+    Nav.route = { legs = { { kind = "boat", wait = 150, seconds = 250 } }, index = 1, legAt = ns.Now() }
+    check(Nav:RideWait() == "Boat in about 2:30", "an untimed boat: \"Boat in about 2:30\" (" .. tostring(Nav:RideWait()) .. ")")
+    Nav.route = realRoute
+
+    -- a timetable seen long ago is forgotten: a server restart resets the loops
+    check(T:Departures(t0 + 7 * 3600)["test-boat"] == nil, "a timetable seen seven hours ago is dropped")
+
+    end)
+    ns.db.departures = realDepartures
+    if not ok then error(err, 0) end
+end)
+
 section("travel planner: the arrow follows the planned route leg by leg, and plans again only for a clearly faster way", function()
     local Nav, T, M = ns.Navigation, ns.Travel, MOCK
     local db = travelFixture()
