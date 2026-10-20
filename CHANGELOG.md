@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Guides: data and walking maps updated to the current client; sub-zones belong to the zones the game shows.
+- Guides: the Wizard's Sanctum's portals take the way down to Stormwind's mage trainers and back.
+- Guides: the way through Loch Modan's trogg cave and Felwood's Shadow Hold is found again.
 - The walking maps are rebuilt. Walks keep to the roads where a road is about as quick, follow caves inside instead of over them (into Frostmane Hold, the way now goes in through the mouth, not over the hill on top), and reach more floors that the maps had cut off: of the guide steps a walk could not reach, 9 are left from 15. A walk to someone no longer ends on a roof or a ledge no way leads to, and the walks follow recorded runs more closely (about 5% off their length, from 7%).
 - A walk through a zone far above your level, or through the other faction's town, now counts against it when the way is planned: when it cannot go round, a flight or a boat is taken instead if one is near as quick. The time shown is still the walk's own. When you level up, the way is worked out again for your new level.
 - Less memory garbage again, mainly while the travel planner is working out your way: the planner keeps its map of flights and transports from one look to the next instead of building it every few seconds, and no longer looks again while you stand still; every game call the addon makes, and every breadcrumb dot drawn, no longer leaves a scrap behind. Walking along the arrow's way makes about 40% of the garbage it did in the last release, and a single look for a faster way about a tenth.
