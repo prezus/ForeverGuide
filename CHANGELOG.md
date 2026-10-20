@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: walks go down slopes and off ledges you could not climb back up, where you would slide down, instead of the long way round; never down a cliff's face.
 - Guides: a step at a quest object walks to the object's own floor where floors stack.
 - Guides: the way into Thistlefur Village in Ashenvale is found.
 - A step at a quest object (a brazier to douse, a chest, a sign that starts a quest) walks to the object's own floor where floors stack, as a step at an NPC does: a cave under a hill, a tower's rooms.
