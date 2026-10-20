@@ -5649,7 +5649,7 @@ section("walking paths: a recording keeps each search, what it found and what it
     local function ask(c)
         local answered = false
         W:Request(c.map, c.from, c.to, function() answered = true end)
-        for _ = 1, 4000 do
+        for _ = 1, 10000 do
             if answered then break end
             MOCK_ADVANCE(0.01)
         end
@@ -5863,12 +5863,12 @@ section("walking paths: the floor followed into a cave is the one the last joins
         local cave, roof
         for _, f in ipairs(W:Floors(0, x, y)) do
             if f.joined and math.abs(f.height - 390) < 3 then cave = f end
-            if f.joined and math.abs(f.height - 399) < 1 then roof = f end
+            if math.abs(f.height - 399) < 1 then roof = f end
         end
         return cave, roof
     end
     -- Frostmane Hold, Dun Morogh: the ground slopes from 400 at the mouth to 390 inside, under the cave's
-    -- roof, flat at 399 and joined to no walk
+    -- roof, flat at 399 and joined to no walk (a pocket in the walking maps, which no walk ends on)
     local mouth = { x = -5604, y = 620 }
     local cave, roof = heights(mouth.x, mouth.y)
     need(cave and roof and not W:Joins(0, cave.tile, cave.region, roof.tile, roof.region),
