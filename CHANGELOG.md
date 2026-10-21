@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: walks to Stormwind's mage trainers, under the Wizard's Sanctum, end on their floor instead of the street above.
 - Guides: walks go down slopes and off ledges you could not climb back up, where you would slide down, instead of the long way round; never down a cliff's face.
 - Guides: a step at a quest object walks to the object's own floor where floors stack.
 - Guides: the way into Thistlefur Village in Ashenvale is found.
