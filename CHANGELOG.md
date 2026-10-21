@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: walks no longer go straight up a cliff's face where the ground wraps round it, as by the Raptor Horns in the Barrens; they go round by the way up.
 - Guides: walks to Stormwind's mage trainers, under the Wizard's Sanctum, end on their floor instead of the street above.
 - Guides: walks go down slopes and off ledges you could not climb back up, where you would slide down, instead of the long way round; never down a cliff's face.
 - Guides: a step at a quest object walks to the object's own floor where floors stack.
