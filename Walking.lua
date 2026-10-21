@@ -14,7 +14,10 @@
 -- share is a portal. Each region holds, for each two of its portals, the way
 -- between them (its length, and the corners it turns at). A search is A* over
 -- the portals; the way found is then pulled straight through the portals it
--- crosses, past those corners: the points drawn, and the yards walked.
+-- crosses, past those corners: the points drawn, and the yards walked. A walk
+-- goes straight from its start to its region's portals and from a portal to
+-- its goal, but not to one the pack found no straight line to from that grid
+-- cell over the surface: a region wrapping round a cliff (codex #809).
 --
 -- Positions are world yards (X north, Y west, as Navigation:MapToWorld gives
 -- them) and, when known, the height, which picks the floor where floors stack.
@@ -33,8 +36,10 @@ local Walking = ns:NewModule("Walking")
 local floor, abs, sqrt, huge, min, max = math.floor, math.abs, math.sqrt, math.huge, math.min, math.max
 local byte = string.byte
 
--- the pack's format versions read: 3 adds the drops' two sides to 2, decoded alike
-local PACK_VERSIONS = { [2] = true, [3] = true }
+-- the pack's format versions read: 3 adds the drops' two sides to 2, decoded alike; 4 adds each region's
+-- crooked portals after its stored ways (codex src/nav/pack.ts, #809)
+local PACK_VERSIONS = { [2] = true, [3] = true, [4] = true }
+local CROOKED_VERSION = 4
 local TILE_YARDS = 1600 / 3
 local GRID = 64
 local CELL = TILE_YARDS / GRID
@@ -142,7 +147,8 @@ local function Decode(s)
     local function u8() local v = byte(s, o); o = o + 1; return v end
     local function u16() local a, b = byte(s, o, o + 1); o = o + 2; return a + b * 256 end
     local function i16() local v = u16(); if v >= 32768 then v = v - 65536 end return v end
-    if #s < 5 or not PACK_VERSIONS[u8()] then return nil end
+    local version = #s >= 5 and u8()
+    if not PACK_VERSIONS[version] then return nil end
     local regionCount, portalCount = u16(), u16()
     local regions = {}
     for r = 1, regionCount do
@@ -164,7 +170,26 @@ local function Decode(s)
         -- the stored ways' corners stay in the bytes, read for the way found only (Corners)
         local cornersAt = o
         for _ = 1, pairs_ do o = o + 1 + 4 * byte(s, o) end
-        regions[r] = { swim = swim, ground = ground, pocket = pocket, towns = towns, height = height, portals = portals, costs = costs, cornersAt = cornersAt }
+        local region = { swim = swim, ground = ground, pocket = pocket, towns = towns, height = height, portals = portals, costs = costs, cornersAt = cornersAt }
+        -- its crooked portals (#809): the distinct lists, each the portals (1-based, among its own) no straight line
+        -- over the surface joins to a grid cell, leaving the cell then arriving at it; then a box of cells, each
+        -- naming its list, left in the bytes and read where a walk starts or ends (Crooked)
+        if version >= CROOKED_VERSION then
+            local d = u8()
+            if d > 0 then
+                local lists = {}
+                for l = 1, d do
+                    local leaving, arriving = {}, {}
+                    for _ = 1, u8() do leaving[u8() + 1] = true end
+                    for _ = 1, u8() do arriving[u8() + 1] = true end
+                    lists[l] = { leaving = leaving, arriving = arriving }
+                end
+                local x0, y0, w, h = u8(), u8(), u8(), u8()
+                region.crooked = { lists = lists, x0 = x0, y0 = y0, w = w, h = h, at = o }
+                o = o + w * h
+            end
+        end
+        regions[r] = region
     end
     local portals = {}
     for p = 1, portalCount do
@@ -206,6 +231,20 @@ local function Corners(tile, region, pair)
 end
 
 local NONE = {}
+
+--- A region's crooked portals at a world point (#809): { leaving = { [n] = true }, arriving = ... }, its
+--- portals (by their place among its own) no straight line over the surface joins to the point's grid cell,
+--- walking from it and walking to it; nil where it has none.
+local function Crooked(tile, name, region, wx, wy)
+    local c = region.crooked
+    if not c then return nil end
+    local x0, y0 = Corner(name)
+    local gx, gy = floor((wx - x0) / CELL) - c.x0, floor((wy - y0) / CELL) - c.y0
+    if gx < 0 or gy < 0 or gx >= c.w or gy >= c.h then return nil end
+    local v = byte(tile.bytes, c.at + gx * c.h + gy)
+    return v and v > 0 and c.lists[v] or nil
+end
+
 --- The regions covering a grid cell (gx, gy from 0).
 local function Cell(tile, gx, gy)
     local at = tile.rawAt + 2 * (gx * GRID + gy)
@@ -561,13 +600,18 @@ local function Search(tiles, from, to, pause, faction, danger)
                 local d = Flat(startPoint, goalPoint)
                 Offer(GOAL, d * weight, nil, region.swim and d or 0, d, d * (town - 1), s, s, nil, nil, nil, nil, goalPoint[1], goalPoint[2])
             end
-            for _, p in ipairs(region.portals) do
-                local key = KeyOf(s.tile, p)
-                local mx, my = MidXY(s.tile, p)
-                local dx, dy = startPoint[1] - mx, startPoint[2] - my
-                local d = sqrt(dx * dx + dy * dy)
-                if not refs[key] then refs[key] = { tile = s.tile, portal = p } end
-                Offer(key, d * weight, nil, region.swim and d or 0, d, d * (town - 1), s, nil, nil, nil, nil, nil, mx, my)
+            -- a portal no straight line from the start's cell reaches over the surface is left by another (#809)
+            local crooked = Crooked(tiles(s.tile), s.tile, region, startPoint[1], startPoint[2])
+            local unleft = crooked and crooked.leaving or NONE
+            for n, p in ipairs(region.portals) do
+                if not unleft[n] then
+                    local key = KeyOf(s.tile, p)
+                    local mx, my = MidXY(s.tile, p)
+                    local dx, dy = startPoint[1] - mx, startPoint[2] - my
+                    local d = sqrt(dx * dx + dy * dy)
+                    if not refs[key] then refs[key] = { tile = s.tile, portal = p } end
+                    Offer(key, d * weight, nil, region.swim and d or 0, d, d * (town - 1), s, nil, nil, nil, nil, nil, mx, my)
+                end
             end
         end
     end
@@ -581,16 +625,18 @@ local function Search(tiles, from, to, pause, faction, danger)
         local town = TownCost(region)
         local weight = (region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)) * town
         local wayWeight = (region.swim and Walking.SWIM_COST or 1) * town
+        local portals = region.portals
+        local k, i = #portals, nil
+        for n = 1, k do if portals[n] == portalIndex then i = n break end end
         local arrived = goalSet[RegionKey(tile, regionIndex)]
-        if arrived then
+        -- nor is the goal walked to straight from a portal no straight line from its cell reaches (#809)
+        local crooked = arrived and i and Crooked(tiles(tile), tile, region, goalPoint[1], goalPoint[2])
+        if arrived and not (crooked and crooked.arriving[i]) then
             local dx, dy = ax - goalPoint[1], ay - goalPoint[2]
             local d = sqrt(dx * dx + dy * dy)
             Offer(GOAL, here.cost + d * weight, key, here.swim + (region.swim and d or 0), here.yards + d, here.risk + d * (town - 1), here.origin, arrived,
                 nil, nil, nil, nil, goalPoint[1], goalPoint[2])
         end
-        local portals = region.portals
-        local k, i = #portals, nil
-        for n = 1, k do if portals[n] == portalIndex then i = n break end end
         if not i then return end
         for j = 1, k do
             if j ~= i then
