@@ -55,8 +55,8 @@ Walking.ON_FLOOR_YARDS = 4   -- a floor this near the height is the point's: the
 Walking.SWIM_COST = 1.5      -- a swum yard costs this many walked ones
 -- What a walked yard costs on each ground, by its class (codex src/nav/ground.ts, #745): normal, road,
 -- gentle slope, steep slope, under a roof or a mountain. A region's stored ways are priced already.
-Walking.GROUND_COST = { [0] = 1, 0.8, 1.3, 2.5, 1.5 }
-Walking.MIN_GROUND_COST = 0.8 -- the smallest: the search's heuristic scales by it, so it never overstates
+Walking.GROUND_COST = { [0] = 1, 0.95, 1.3, 2.5, 1.5 }
+Walking.MIN_GROUND_COST = 0.95-- the smallest: the search's heuristic scales by it, so it never overstates
 -- A yard in the other faction's town costs a walker this many (codex src/nav/hubs.ts, #746): kept out of
 -- where the way round is there, never closed. A region's flags say whose town it is in.
 Walking.HOSTILE_TOWN_COST = 20
