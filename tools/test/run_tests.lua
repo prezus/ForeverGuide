@@ -5796,6 +5796,27 @@ section("walking paths: a drop is walked down off its ledge, never back up it (#
     _G.C_EncodingUtil = was.codec
 end)
 
+section("walking paths: a region wrapping round a cliff is left round it, not up its face (codex #809)", function()
+    local W = ns.Walking
+    local was = { codec = rawget(_G, "C_EncodingUtil"), manifest = ns.NavManifest[9997] }
+    _G.C_EncodingUtil = TestCodec()
+    local ref = loadfile(root .. "tools/test/fixtures/nav_crooked.lua")(ns)
+    ns.NavManifest[9997] = { hash = ref.hash, tiles = ref.tiles }
+    W:Load()
+    need(W:Has(9997), "a version 4 map loads")
+    for _, c in ipairs({ { "up, round by the ramp", ref.foot, ref.west, ref.up }, { "down, straight off the face", ref.west, ref.foot, ref.down } }) do
+        local way, why = W:FindWay(9997, c[2], c[3])
+        check(way ~= nil, c[1] .. ": a way (" .. tostring(why) .. ")")
+        if way then
+            check(math.abs(way.yards - c[4].yards) <= 0.5 and #way.points == c[4].points,
+                string.format("%s, as the reference router's: %.1f yd and %d points, against %.1f and %d", c[1], way.yards, #way.points, c[4].yards, c[4].points))
+        end
+    end
+    ns.NavManifest[9997], ns.NavMap9997 = was.manifest, nil
+    W:Load()
+    _G.C_EncodingUtil = was.codec
+end)
+
 section("walking paths: the arrow, the time left and the dots follow a walk's way (#694)", function()
     local Nav, D, W, M = ns.Navigation, ns.RouteDots, ns.Walking, MOCK
     local db = travelFixture()
