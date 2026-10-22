@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: walks step round a rock beside where they are going, instead of going round by the hilltop and back.
 - Guides: walks cut across where a road bends round, as players do, and keep to a road only where it is about as short: Thelsamar to Menethil Harbor crosses the Wetlands' plateau instead of going round by the road.
 - Guides: walks no longer go straight up a cliff's face where the ground wraps round it, as by the Raptor Horns in the Barrens; they go round by the way up.
 - Guides: walks to Stormwind's mage trainers, under the Wizard's Sanctum, end on their floor instead of the street above.
