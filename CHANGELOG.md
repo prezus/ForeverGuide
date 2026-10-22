@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Guides: updated to TUGs' newest guides. Skyborne has its own Alliance and Horde guides, and Horde levels 6-39 follow his new, shorter chapters with the dungeons on the way.
+- Guides: walks go down Stonewrought Dam's west end into the Wetlands, as players do; never back up it.
 - Guides: walks step round a rock beside where they are going, instead of going round by the hilltop and back.
 - Guides: walks cut across where a road bends round, as players do, and keep to a road only where it is about as short: Thelsamar to Menethil Harbor crosses the Wetlands' plateau instead of going round by the road.
 - Guides: walks no longer go straight up a cliff's face where the ground wraps round it, as by the Raptor Horns in the Barrens; they go round by the way up.

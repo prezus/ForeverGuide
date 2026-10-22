@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/1-6 Coldridge Valley.lua",
     nextName = { "12-16 The Barrens" },
-    order = 2,
+    order = 0,
     stepCount = 57,
     steps = [[{
 {type="ACCEPT",quest=179,note="Accept:"},

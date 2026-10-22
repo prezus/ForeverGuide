@@ -10,7 +10,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/58-60 Part.lua",
     nextName = { "Alchemy" },
-    order = 63,
+    order = 76,
     stepCount = 153,
     steps = [[{
 {type="USEHEARTH",note="Use your Hearthstone."},

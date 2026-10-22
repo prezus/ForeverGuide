@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/45-48 Part.lua",
     nextName = { "48-51 Part" },
-    order = 57,
+    order = 70,
     stepCount = 149,
     steps = [[{
 {type="NOTE",text="Take the Zeppelin to Orgrimmar"},

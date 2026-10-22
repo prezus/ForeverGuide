@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/40-43Badlands,Uldaman.lua",
     nextName = { "41-44 Tanaris,STV" },
-    order = 39,
+    order = 31,
     stepCount = 118,
     steps = [[{
 {type="TURNIN",quest=697,optional=true,note="TurnIn:"},

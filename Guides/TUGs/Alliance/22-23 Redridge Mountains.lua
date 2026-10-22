@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_22_23_REDRIDGE_MOUNTAINS",
     name = "22-23 Redridge Mountains",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 22,
     maxLevel = 23,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/22-23 Redridge Mountains.lua",
     nextName = { "23-24 Ashenvale" },
     order = 15,
-    stepCount = 42,
+    stepCount = 41,
     steps = [[{
 {type="FLY",note="Fly to",place="Redridge Mountains"},
 {type="ACCEPT",quest=98387,note="Accept:"},
@@ -41,7 +41,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=121,note="TurnIn:"},
 {type="ACCEPT",quest=143,note="Accept:"},
 {type="ACCEPT",quest=91,note="Accept:"},
-{type="ACCEPT",quest=150,note="Accept:"},
 {type="TURNIN",quest=150,note="TurnIn:"},
 {type="TURNIN",quest=127,note="TurnIn:"},
 {type="TURNIN",quest=130,note="TurnIn:"},

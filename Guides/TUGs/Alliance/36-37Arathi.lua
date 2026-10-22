@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/36-37Arathi.lua",
     nextName = { "38-39 Dustwallow Marsh,STV" },
-    order = 37,
+    order = 29,
     stepCount = 51,
     steps = [[{
 {type="NOTE",text="Fly to Arathi Highlands"},

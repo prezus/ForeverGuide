@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_9_DUROTAR",
     name = "6-9 Durotar",
-    version = 4,
+    version = 5,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 9,
@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/6-9 Durotar.lua",
     nextName = { "9-12 Orgrimmar" },
-    order = 33,
+    order = 44,
     stepCount = 103,
     steps = [[{
 {type="ACCEPT",quest=2161,note="Accept:"},
@@ -116,6 +116,6 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=6082,class={"HUNTER"},note="Do:"},
 {type="TURNIN",quest=6082,class={"HUNTER"},note="TurnIn:"},
 {type="ACCEPT",quest=6081,class={"HUNTER"},note="Accept:"},
-{type="NOTE",text="You have two options now: Continue with the 9-12 Orgrimmar guide or finish durotar. I highly suggest the 9-12 Guide."}
+{type="NOTE",text="You have two options now: Continue with the 9-12 Orgrimmar guide or finish durotar. I highly recommend the 9-12 Guide."}
 }]],
 })
