@@ -42,7 +42,12 @@ passes here can still be missing, protected or secret in combat on Forever.
 
 ## Releases
 
-The maintainer cuts a release from `main`:
+Every merge to `main` that adds lines to [CHANGELOG.md](CHANGELOG.md) is released as
+`build-<commit>`, its notes the lines added since the last release (`release.yml`); a merge that adds
+none is not. Street's Speed Demon's merges are released by its ship job. `release-cleanup.yml` keeps
+the two newest releases.
+
+A version release (`vX.Y.Z`) is cut by the maintainer from `main`:
 
 1. Bump `## Version` in `ForeverGuide.toc`. `package.py` and the addon both read it.
 2. Move `Unreleased` in [CHANGELOG.md](CHANGELOG.md) into a dated section for that version,
@@ -51,7 +56,6 @@ The maintainer cuts a release from `main`:
 4. On the merged `main`: `python3 tools/package.py && python3 tools/check_package.py`. The zip holds
    only committed files.
 5. `gh release create vX.Y.Z dist/ForeverGuide-X.Y.Z.zip --notes-file <the version's notes>`.
-   `release-cleanup.yml` keeps the two newest releases.
 6. Record the data provenance [Data/README.md](Data/README.md#redistribution-status-unresolved) asks for.
 
 A private test build for Windows: `python3 tools/package.py --test` writes `dist/ForeverGuide-<commit>.zip`

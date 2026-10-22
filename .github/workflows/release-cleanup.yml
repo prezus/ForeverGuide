@@ -8,6 +8,12 @@ name: Keep the latest release and the one before it
 on:
   release:
     types: [published]
+  # release.yml's own releases start no workflow: it calls this one with the tag it published.
+  workflow_call:
+    inputs:
+      keep:
+        type: string
+        required: true
 
 concurrency:
   group: release-cleanup
@@ -24,7 +30,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-          KEEP: ${{ github.event.release.tag_name }}
+          KEEP: ${{ inputs.keep || github.event.release.tag_name }}
         run: |
           gh release list --limit 1000 --json tagName,publishedAt |
           jq -r --arg keep "$KEEP" '[.[] | select(.tagName != $keep)] | sort_by(.publishedAt // "") | reverse | .[1:] | .[].tagName' |
