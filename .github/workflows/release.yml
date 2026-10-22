@@ -1,0 +1,56 @@
+name: Release what players have not got
+
+# Every merge to main that adds changelog lines since the latest release is released to players as
+# build-<commit>, with those lines as its notes: the site's download link takes the latest release.
+# A merge that adds none (tests, tools) is not released. Street's Speed Demon's merges are left to
+# its ship job in forever-codex, which releases them under the route's own name.
+# A release made with the run's own token starts no other workflow, so this one calls the cleanup.
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.release.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Release
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          if [[ "$MESSAGE" == "Merge pull request #"*" from prezus/guides/speed-demon-"* ]]; then
+            echo "A Street's Speed Demon merge: its ship job releases it."
+            exit 0
+          fi
+          latest="$(gh release view --json tagName -q .tagName)"
+          git fetch -q origin "refs/tags/$latest:refs/tags/$latest"
+          git diff "$latest" HEAD -- CHANGELOG.md | sed -n 's/^+- /- /p' >"$RUNNER_TEMP/notes.md"
+          if [[ ! -s "$RUNNER_TEMP/notes.md" ]]; then
+            echo "No changelog line since $latest: nothing for players to release."
+            exit 0
+          fi
+          sha="$(git rev-parse HEAD)"; c="${sha:0:7}"
+          python3 tools/package.py --test
+          gh release create "build-$c" "dist/ForeverGuide-$c.zip" --target "$sha" --title "ForeverGuide $c" --notes-file "$RUNNER_TEMP/notes.md"
+          echo "tag=build-$c" >>"$GITHUB_OUTPUT"
+
+  cleanup:
+    needs: release
+    if: needs.release.outputs.tag != ''
+    uses: ./.github/workflows/release-cleanup.yml
+    with:
+      keep: ${{ needs.release.outputs.tag }}
