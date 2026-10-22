@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/1-6 Shadowglen.lua",
     nextName = { "6-11 Teldrassil" },
-    order = 4,
+    order = 2,
     stepCount = 62,
     steps = [[{
 {type="ACCEPT",quest=456,note="Accept:"},

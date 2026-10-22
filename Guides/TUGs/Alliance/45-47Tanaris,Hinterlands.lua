@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/45-47Tanaris,Hinterlands.lua",
     nextName = { "47-49 Searing Gorge" },
-    order = 42,
+    order = 34,
     stepCount = 107,
     steps = [[{
 {type="TURNIN",quest=3022,zone="Teldrassil",x=55.49,y=92.04,note="TurnIn:"},

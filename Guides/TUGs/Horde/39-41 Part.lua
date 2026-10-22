@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Horde/39-41 Part.lua",
     nextName = { "41-43 Part" },
-    order = 54,
+    order = 67,
     stepCount = 71,
     steps = [[{
 {type="GRIND",level=39,note="Grind in  till level"},

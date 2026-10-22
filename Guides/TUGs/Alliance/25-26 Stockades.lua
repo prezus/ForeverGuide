@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_25_26_STOCKADES",
     name = "25-26 Stockades",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 25,
     maxLevel = 26,
@@ -12,11 +12,12 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/25-26 Stockades.lua",
     nextName = { "26-27 Redridge Mountains" },
     order = 18,
-    stepCount = 26,
+    stepCount = 27,
     steps = [[{
 {type="ACCEPT",quest=387,note="Accept:"},
 {type="ACCEPT",quest=391,note="Accept:"},
 {type="ACCEPT",quest=388,note="Accept:"},
+{type="NOTE",text="If you do NOT have the stockade quests Crime And Punishment and What Comes Around... then do the next fly-steps. otherwise skip them."},
 {type="FLY",note="Fly to",place="Duskwood"},
 {type="ACCEPT",quest=377,note="Accept:"},
 {type="FLY",note="Fly to",place="Redridge Mountains"},

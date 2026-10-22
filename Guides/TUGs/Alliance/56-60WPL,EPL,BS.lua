@@ -10,7 +10,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/56-60WPL,EPL,BS.lua",
     nextName = { "1-12 Human TUGs Leveling Guide" },
-    order = 47,
+    order = 39,
     stepCount = 112,
     steps = [[{
 {type="ACCEPT",quest=5542,note="Accept:"},

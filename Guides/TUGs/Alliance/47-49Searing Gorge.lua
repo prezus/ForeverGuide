@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/47-49Searing Gorge.lua",
     nextName = { "49-51 Un'Goro" },
-    order = 43,
+    order = 35,
     stepCount = 162,
     steps = [[{
 {type="ACCEPT",quest=706,optional=true,note="Accept:"},

@@ -11,7 +11,7 @@ ns.RegisterGuide({
     group = "Leveling Guides",
     source = "TUGs/Alliance/1-6 Northshire.lua",
     nextName = { "6-9 Elwynn Forest" },
-    order = 3,
+    order = 1,
     stepCount = 64,
     steps = [[{
 {type="ACCEPT",quest=783,note="Accept:"},
