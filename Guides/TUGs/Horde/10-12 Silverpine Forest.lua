@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_10_12_SILVERPINE_FOREST",
     name = "10-12 Silverpine Forest",
+    version = 1,
     faction = "Horde",
     minLevel = 10,
     maxLevel = 12,

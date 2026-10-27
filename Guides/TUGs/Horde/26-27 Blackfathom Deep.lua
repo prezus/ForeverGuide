@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_26_27_BLACKFATHOM_DEEP",
     name = "26-27 Blackfathom Deep",
+    version = 1,
     faction = "Horde",
     minLevel = 26,
     maxLevel = 27,

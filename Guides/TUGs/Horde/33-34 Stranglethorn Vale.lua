@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_33_34_STRANGLETHORN_VALE",
     name = "33-34 Stranglethorn Vale",
+    version = 1,
     faction = "Horde",
     minLevel = 33,
     maxLevel = 34,

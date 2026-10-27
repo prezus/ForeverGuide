@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_16_18_RUINS_OF_LORDAERON",
     name = "16-18 Ruins of Lordaeron",
+    version = 1,
     faction = "Horde",
     minLevel = 16,
     maxLevel = 18,
