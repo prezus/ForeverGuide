@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: Street's Speed Demon v8, a route any Alliance character can choose in the route list, starting in Coldridge Valley: adding nelf
 - Guides: updated to TUGs' newest guides. Skyborne has its own Alliance and Horde guides, and Horde levels 6-39 follow his new, shorter chapters with the dungeons on the way.
 - Guides: walks go down Stonewrought Dam's west end into the Wetlands, as players do; never back up it.
 - Guides: walks step round a rock beside where they are going, instead of going round by the hilltop and back.
