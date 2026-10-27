@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_34_35_DALARAN_CITY",
     name = "34-35 Dalaran City",
+    version = 1,
     faction = "Horde",
     minLevel = 34,
     maxLevel = 35,

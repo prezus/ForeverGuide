@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_SKYBORNE",
     name = "1-6 Skyborne",
+    version = 1,
     minLevel = 1,
     maxLevel = 6,
     next = "TUGS_HORDE_6_12_SKYBORNE",

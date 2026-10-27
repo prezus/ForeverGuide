@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_24_25_SHADOWFANG_KEEP",
     name = "24-25 Shadowfang Keep",
+    version = 1,
     faction = "Horde",
     minLevel = 24,
     maxLevel = 25,

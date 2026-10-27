@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_31_32_THOUSAND_NEEDLES",
     name = "31-32 Thousand Needles",
+    version = 1,
     faction = "Horde",
     minLevel = 31,
     maxLevel = 32,

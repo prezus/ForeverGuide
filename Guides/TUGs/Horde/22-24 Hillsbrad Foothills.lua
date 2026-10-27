@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_22_24_HILLSBRAD_FOOTHILLS",
     name = "22-24 Hillsbrad Foothills",
+    version = 1,
     faction = "Horde",
     minLevel = 22,
     maxLevel = 24,

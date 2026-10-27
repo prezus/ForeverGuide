@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_20_22_WAILING_CAVERNS",
     name = "20-22 Wailing Caverns",
+    version = 1,
     faction = "Horde",
     minLevel = 20,
     maxLevel = 22,

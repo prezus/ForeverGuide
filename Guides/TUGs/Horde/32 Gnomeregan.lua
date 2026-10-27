@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_32_GNOMEREGAN",
     name = "32- Gnomeregan",
+    version = 1,
     faction = "Horde",
     minLevel = 32,
     next = "TUGS_HORDE_33_34_STRANGLETHORN_VALE",

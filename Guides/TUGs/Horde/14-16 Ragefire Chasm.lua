@@ -3,6 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_14_16_RAGEFIRE_CHASM",
     name = "14-16 Ragefire Chasm",
+    version = 1,
     faction = "Horde",
     minLevel = 14,
     maxLevel = 16,
