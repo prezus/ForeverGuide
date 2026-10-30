@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: quest data follows the released game: givers, turn-ins and where NPCs and objectives stand, from Questie's newest Forever data, and flight paths from the released client.
 - Guides: Street's Speed Demon v9, a route any Alliance character can choose in the route list, starting in Coldridge Valley: 17
 - Guides: Street's Speed Demon v8, a route any Alliance character can choose in the route list, starting in Coldridge Valley: adding nelf
 - Guides: updated to TUGs' newest guides. Skyborne has its own Alliance and Horde guides, and Horde levels 6-39 follow his new, shorter chapters with the dungeons on the way.
