@@ -1222,6 +1222,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_21_31_32_STRANGLETHORN_VALE",
     name = "31-32 Stranglethorn Vale",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1267,6 +1268,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_22_31_32_THOUSAND_NEEDLES",
     name = "31-32 Thousand Needles",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1289,6 +1291,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_23_34_35_DESOLACE",
     name = "34-35 Desolace",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1350,6 +1353,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_24_35_36_STV",
     name = "35-36 STV",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1400,6 +1404,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_25_36_37_ARATHI",
     name = "36-37 Arathi",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2661,6 +2666,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_21_31_32_STRANGLETHORN_VALE",
     name = "31-32 Stranglethorn Vale",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2706,6 +2712,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_22_31_32_THOUSAND_NEEDLES",
     name = "31-32 Thousand Needles",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2728,6 +2735,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_23_34_35_DESOLACE",
     name = "34-35 Desolace",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2789,6 +2797,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_24_35_36_STV",
     name = "35-36 STV",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2839,6 +2848,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_25_36_37_ARATHI",
     name = "36-37 Arathi",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -4072,6 +4082,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_20_31_32_STRANGLETHORN_VALE",
     name = "31-32 Stranglethorn Vale",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -4117,6 +4128,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_21_31_32_THOUSAND_NEEDLES",
     name = "31-32 Thousand Needles",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -4139,6 +4151,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_22_34_35_DESOLACE",
     name = "34-35 Desolace",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -4200,6 +4213,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_23_35_36_STV",
     name = "35-36 STV",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -4250,6 +4264,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_24_36_37_ARATHI",
     name = "36-37 Arathi",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
