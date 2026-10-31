@@ -97,7 +97,8 @@ marked `done`. `/fg run start|pause|resume|stop|send|discard|status` does the sa
 A segment share holds `format`, `addon`, `build`, `profile`, the `maps` its entries stand on,
 `run`, and `errors`: the ForeverGuide Lua errors printed in chat while the segment was recorded,
 with the guide step and map each happened on (at most 50). Errors go to ForeverGuide Companion only
-when its receipt says `errors` (an older app refuses a segment carrying them). It never holds the
+when its receipt says `errors` (an older app refuses a segment carrying them), and GOSSIP entries
+and OFFER's `shared` only when it says `gossip`: without it they are left out. It never holds the
 contributed facts or reports. Join a run's segments by `run.id`, in
 `run.seg` order. `t` never goes back across a run's segments.
 
@@ -112,6 +113,8 @@ mode). The kinds:
 | GAP | | The client lost the SavedVariables: this segment's entries before `GAP` are missing |
 | ACCEPT, ABANDON | `q`, `npc` (ACCEPT) | A quest accepted or abandoned; `npc` the creature whose quest window offered it, when there was one |
 | TURNIN | `q`, `xp`, `money`, `npc` | A quest turned in, with its reward (copper); `npc` the creature whose window took it in |
+| OFFER | `q`, `npc`, `shared` | A quest's offer window opened; `npc` the creature offering it. A quest a player shared is flagged `shared`, with no `npc` and never who. Not kept again for the same quest until a quest is accepted, turned in or abandoned, or the level changes |
+| GOSSIP | `npc`, `avail`, `active` | A creature's gossip window opened: `avail` the quest ids it offered, `active` those it would take in (at most 20 each, absent when none). Kept for a creature with quests in either list, or one the quest data knows (a giver with nothing to offer yet); not kept again for the same creature and lists until a quest is accepted, turned in or abandoned, or the level changes |
 | OBJ | `q`, `obj`, `f`, `r`, `done`, `src`, `sid` | Objective `obj` moved to `f` of `r`; `src` what did it (`kill`, `mobLoot`, `object`, `other`) and `sid` that creature's or object's id |
 | XP | `xp`, `src`, `sid` | Experience gained: `src` where it came from (`kill`, `quest`, `explore`, `other`) and `sid` the creature's or quest's id |
 | LEVEL | `l`, `rested` | A new level, with rested xp |
@@ -247,7 +250,7 @@ the uiMapID's 0-100 map.
 | `run.entries[].done` | boolean | Objective done |
 | `run.entries[].l` | integer | New level |
 | `run.entries[].rested` | integer | Rested xp left |
-| `run.entries[].npc` | integer | KILL: creature id killed. ACCEPT and TURNIN: the creature whose quest window it was (absent for an object, a quest a player shared, or no window). TRAIN: the trainer. BUY: the vendor |
+| `run.entries[].npc` | integer | KILL: creature id killed. ACCEPT, TURNIN and OFFER: the creature whose quest window it was (absent for an object, a quest a player shared, or no window). GOSSIP: the creature whose gossip window it was. TRAIN: the trainer. BUY: the vendor |
 | `run.entries[].mobLevel` | integer | Its level, when it was targeted |
 | `run.entries[].elite` | boolean | It was elite, rare elite or a world boss |
 | `run.entries[].secs` | number | Seconds the kill, flight or death took; a ROUTE's or LEG's predicted seconds; a LEGDONE's seconds taken; a WAY's seconds to answer |
@@ -262,6 +265,9 @@ the uiMapID's 0-100 map.
 | `run.entries[].cx` | integer | START, RESUME, XP and LEVEL: experience into the current level, after the entry (`UnitXP`) |
 | `run.entries[].mx` | integer | START, RESUME, XP and LEVEL: experience the current level needs (`UnitXPMax`) |
 | `run.entries[].rx` | integer | START, RESUME and XP: rested experience left (`GetXPExhaustion`); absent when none |
+| `run.entries[].avail[]` | integer | GOSSIP: the quest ids the creature offered (at most 20) |
+| `run.entries[].active[]` | integer | GOSSIP: the quest ids the creature would take in (at most 20) |
+| `run.entries[].shared` | boolean | OFFER: the quest was shared by a player, who is not recorded |
 
 ## Limits
 
@@ -273,6 +279,6 @@ These are the most the addon writes. A reader may reject a share that exceeds th
 - 12 cells per NPC per map;
 - 1,000 `order` entries, 500 maps, 3,000 `starts` and 3,000 `titles`;
 - 50 errors and 300 reports;
-- 2,500 entries per run segment.
+- 2,500 entries per run segment, and 20 quest ids in each of a GOSSIP entry's lists.
 
 Strings are cut to the lengths in `Share.lua`.

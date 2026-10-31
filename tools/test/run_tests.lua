@@ -1577,6 +1577,145 @@ section("a recording keeps the addon's errors, with the step and map, and sends 
     ns.db.recordRuns = was.record
 end)
 
+section("a recording keeps quest offers and gossip, a shared quest flagged and never credited (forever-codex#295)", function()
+    local json = dofile(root .. "tools/test/json.lua")
+    local R = ns.Run
+    local was = { record = ns.db.recordRuns, run = ns.char.run, sent = ns.char.runSent, outbox = ns.char.runOutbox,
+        receipt = rawget(_G, "ForeverGuideCompanionReceipt"), npc = MOCK.npc, offered = MOCK.offeredQuest,
+        fromPlayer = MOCK.offerFromPlayer }
+    ns.char.run, ns.char.runSent, ns.char.runOutbox = nil, nil, nil
+    _G.ForeverGuideCompanionReceipt = nil
+    local function find(kind)
+        local out = {}
+        for _, e in ipairs(ns.char.run and ns.char.run.entries or {}) do if e.e == kind then out[#out + 1] = e end end
+        return out
+    end
+    local GIVER, STRANGER = 990301, 990302
+    ns.NpcDB[GIVER] = "{n=\"Hold Giver\"}"
+    R:SetEnabled(true)
+    R:Start()
+
+    -- a giver with nothing to offer yet: its gossip is kept, lists empty, once until something changes
+    MOCK.npc, MOCK.gossipAvail, MOCK.gossipActive = { name = "Hold Giver", npcID = GIVER, level = 20 }, {}, { 990311 }
+    MOCK_FIRE("GOSSIP_SHOW")
+    local g = find("GOSSIP")
+    check(#g == 1 and g[1].npc == GIVER and g[1].avail == nil and g[1].active[1] == 990311 and #g[1].active == 1,
+        "a quest giver's gossip keeps the creature and the quests it offers and takes in")
+    MOCK_FIRE("GOSSIP_SHOW")
+    check(#find("GOSSIP") == 1, "the same gossip again, with nothing changed, is not kept twice")
+    ns.Events:Fire("FG_QUEST_TURNED_IN", 990311, "Held Quest", 100, 0)
+    MOCK.gossipActive = nil
+    MOCK_FIRE("GOSSIP_SHOW")
+    MOCK.gossipAvail = { 990312 }
+    MOCK_FIRE("GOSSIP_SHOW")
+    g = find("GOSSIP")
+    check(#g == 3 and g[2].avail == nil and g[2].active == nil and g[3].avail[1] == 990312,
+        "after a turn-in the giver is kept again: still nothing, then the quest it held back")
+    MOCK.gossipActive = { 990311 }
+    MOCK_FIRE("GOSSIP_SHOW")
+    MOCK.gossipActive = nil
+    check(#find("GOSSIP") == 4, "the same creature with different lists is kept")
+
+    -- the lists are capped; a creature the data does not know and with no quests is not kept
+    MOCK.gossipAvail = {}
+    for i = 1, 25 do MOCK.gossipAvail[i] = 990400 + i end
+    MOCK_FIRE("GOSSIP_SHOW")
+    check(#find("GOSSIP")[5].avail == 20, "a gossip entry keeps at most 20 quests a list")
+    MOCK.npc, MOCK.gossipAvail = { name = "Innkeeper", npcID = STRANGER, level = 30 }, nil
+    MOCK_FIRE("GOSSIP_SHOW")
+    check(#find("GOSSIP") == 5, "an innkeeper the quest data does not know, offering nothing, is not kept")
+    MOCK.gossipAvail = { 990313 }
+    MOCK_FIRE("GOSSIP_SHOW")
+    check(#find("GOSSIP") == 6 and find("GOSSIP")[6].npc == STRANGER, "a creature offering a quest is kept, known or not")
+
+    -- an offer window: the quest and the creature offering it, once
+    MOCK.npc, MOCK.offeredQuest = { name = "Hold Giver", npcID = GIVER, level = 20 }, 990312
+    MOCK_FIRE("QUEST_DETAIL")
+    MOCK_FIRE("QUEST_DETAIL")
+    local o = find("OFFER")
+    check(#o == 1 and o[1].q == 990312 and o[1].npc == GIVER and o[1].shared == nil,
+        "an offer window keeps the quest and the creature offering it, once")
+    MOCK_ACCEPT(990312, "Lifted Quest")
+    local a = find("ACCEPT")[1]
+    check(a and a.q == 990312 and a.npc == GIVER, "the accept after it names the giver")
+
+    -- a quest shared by a player: flagged, never who, never credited to anyone
+    MOCK.npc, MOCK.offerFromPlayer, MOCK.offeredQuest = { name = "Partymate", npcID = 424242, level = 12 }, true, 990314
+    MOCK_FIRE("QUEST_DETAIL")
+    o = find("OFFER")
+    check(#o == 2 and o[2].q == 990314 and o[2].shared == true and o[2].npc == nil,
+        "an offer a player shared is flagged shared, with no one named")
+    MOCK.gossipAvail = { 990315 }
+    MOCK_FIRE("GOSSIP_SHOW")
+    check(#find("GOSSIP") == 6, "a player's gossip window is not kept")
+    local sharerId = false
+    for _, e in ipairs(ns.char.run.entries) do
+        for _, v in pairs(e) do if v == 424242 then sharerId = true end end
+    end
+    check(not mentions(ns.char.run, "Partymate") and not sharerId, "the sharing player's name and id are nowhere in the run")
+    MOCK.offerFromPlayer = false
+
+    -- an object's window is no creature: not kept as one
+    local unitInfo = ns.Player.GetUnitInfo
+    ns.Player.GetUnitInfo = function(self, unit)
+        local info = unitInfo(self, unit)
+        if info then info.guidType = "GameObject" end
+        return info
+    end
+    MOCK.npc, MOCK.offeredQuest = { name = "Wanted Poster", npcID = 990320, level = 1 }, 990316
+    MOCK_FIRE("GOSSIP_SHOW")
+    MOCK_FIRE("QUEST_DETAIL")
+    ns.Player.GetUnitInfo = unitInfo
+    o = find("OFFER")
+    check(#find("GOSSIP") == 6 and o[3] and o[3].q == 990316 and o[3].npc == nil,
+        "an object's offer keeps the quest with no creature, and its gossip is not kept")
+
+    -- paused: nothing
+    R:Pause()
+    local n = #ns.char.run.entries
+    MOCK.npc = { name = "Hold Giver", npcID = GIVER, level = 20 }
+    MOCK.gossipAvail, MOCK.offeredQuest = { 990317 }, 990317
+    MOCK_FIRE("GOSSIP_SHOW")
+    MOCK_FIRE("QUEST_DETAIL")
+    check(#ns.char.run.entries == n, "while paused no offer or gossip is kept")
+    R:Resume()
+
+    -- the share carries them; the companion gets them only when its receipt says gossip
+    local segment = R.CloseSegment(false)
+    local doc = json.decode(ns.Share:Json(false, ns.Share:RunDoc(segment)))
+    local kinds = {}
+    for _, e in ipairs(doc.run.entries) do kinds[e.e] = (kinds[e.e] or 0) + 1 end
+    check(kinds.GOSSIP == 6 and kinds.OFFER == 3, "a segment's share holds its offers and gossip")
+    local shared
+    for _, e in ipairs(doc.run.entries) do if e.e == "OFFER" and e.q == 990314 then shared = e end end
+    check(shared and shared.shared == true and shared.npc == nil, "the shared offer goes out flagged, naming no one")
+    _G.ForeverGuideCompanionReceipt = {}
+    R.ToOutbox(segment)
+    local old = json.decode(ns.Share:Json(false, ns.char.runOutbox[#ns.char.runOutbox]))
+    local gossip, flags, offers = 0, 0, 0
+    for _, e in ipairs(old.run.entries) do
+        if e.e == "GOSSIP" then gossip = gossip + 1 end
+        if e.e == "OFFER" then offers = offers + 1 end
+        if e.shared ~= nil or e.avail ~= nil or e.active ~= nil then flags = flags + 1 end
+    end
+    check(gossip == 0 and flags == 0 and offers == 3 and #old.run.entries == #doc.run.entries - 6,
+        "an older app (no gossip in its receipt) gets the segment without gossip or shared flags, the rest whole")
+    check(#segment.entries == #doc.run.entries and segment.entries[#segment.entries] ~= nil,
+        "leaving them out for the app does not change the segment itself")
+    _G.ForeverGuideCompanionReceipt = { gossip = true }
+    R.ToOutbox(segment)
+    local new = json.decode(ns.Share:Json(false, ns.char.runOutbox[#ns.char.runOutbox]))
+    check(#new.run.entries == #doc.run.entries, "an app whose receipt says gossip gets them")
+
+    ns.Commands:Run("run discard")
+    ns.NpcDB[GIVER] = nil
+    MOCK.gossipAvail, MOCK.gossipActive = nil, nil
+    MOCK.npc, MOCK.offeredQuest, MOCK.offerFromPlayer = was.npc, was.offered, was.fromPlayer
+    _G.ForeverGuideCompanionReceipt = was.receipt
+    ns.char.run, ns.char.runSent, ns.char.runOutbox = was.run, was.sent, was.outbox
+    ns.db.recordRuns = was.record
+end)
+
 section("corpse run", function()
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
     local before = ns.Navigation.target

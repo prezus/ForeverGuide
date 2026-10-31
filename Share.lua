@@ -94,6 +94,9 @@ local SCHEMA = Obj {
             { "src", Str(10) }, { "sid", "int" }, { "at", "int" },
             -- the experience bar: XP into the level, XP the level needs, rested XP (START, RESUME, XP, LEVEL)
             { "cx", "int" }, { "mx", "int" }, { "rx", "int" },
+            -- a gossip window's quests: those it offers and those it takes in (GOSSIP); an offer of a
+            -- quest a player shared, never who (OFFER)
+            { "avail", List("int", 20) }, { "active", List("int", 20) }, { "shared", "bool" },
         }, 2500) },
     } },
 }
@@ -252,10 +255,34 @@ function Share:Doc()
     return Filter(Build(), SCHEMA) or {}
 end
 
+-- The segment without what ForeverGuide Companion before its `gossip` receipt refuses: GOSSIP
+-- entries (their lists) and OFFER's shared flag. A GOSSIP without its lists would say the creature
+-- offered nothing, so it is left out whole.
+local function WithoutGossip(segment)
+    local entries = {}
+    for _, e in ipairs(segment.entries or {}) do
+        if type(e) == "table" and e.e ~= "GOSSIP" then
+            if e.shared ~= nil then
+                local copy = {}
+                for k, v in pairs(e) do copy[k] = v end
+                copy.shared = nil
+                e = copy
+            end
+            entries[#entries + 1] = e
+        end
+    end
+    local out = {}
+    for k, v in pairs(segment) do out[k] = v end
+    out.entries = entries
+    return out
+end
+
 --- The allowlisted copy of a run segment's share (Run.lua): the profile, the maps its entries
 --- stand on, the segment, and the Lua errors while it was recorded unless `withErrors` is false.
---- The contributed facts and reports stay out of it.
-function Share:RunDoc(segment, withErrors)
+--- `withGossip` false leaves out GOSSIP entries and OFFER's `shared` flag, for a Companion that
+--- refuses them. The contributed facts and reports stay out of it.
+function Share:RunDoc(segment, withErrors, withGossip)
+    if withGossip == false then segment = WithoutGossip(segment) end
     local doc = Build()
     local maps = {}
     for _, e in ipairs(segment.entries or {}) do
