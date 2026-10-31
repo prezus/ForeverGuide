@@ -1,8 +1,8 @@
 -- Prints the share JSON Run.lua and Share.lua write for a short recorded run, one segment per
 -- line, outside the game:
 --     lua5.1 tools/test/run_fixture.lua
--- The run: START, a quest, a kill, movement, a flight, Send; a death and a level, Send; a turn-in,
--- Stop. forever-codex imports these three segments as one run in its tests.
+-- The run: START, a quest, a kill, movement, a flight, Send; a death and a level, Send; a giver's
+-- gossip, the turn-in, his gossip again offering the quest he held back, its offer and accept, Stop. forever-codex imports these three segments as one run in its tests.
 local root = arg and arg[0] and arg[0]:match("^(.*)tools[/\\]test[/\\]run_fixture%.lua$") or "./"
 if root == "" then root = "./" end
 
@@ -57,7 +57,20 @@ MOCK_ADVANCE(300)
 R:Resume()
 MOCK_ADVANCE(2)
 R:Send()
+-- Marshal McBride holds Kobold Camp Cleanup (7) back until A Threat Within (783) is turned in: his
+-- gossip before and after, the offer, and the accept
+MOCK.npc = { name = "Marshal McBride", npcID = 197, level = 20 }
+MOCK.gossipActive = { 783 }
+MOCK_FIRE("GOSSIP_SHOW")
+MOCK.offeredQuest = 783
+MOCK_FIRE("QUEST_COMPLETE")
 ns.Events:Fire("FG_QUEST_TURNED_IN", 783, "A Threat Within", 450, 35)
+MOCK_ADVANCE(2)
+MOCK.gossipActive, MOCK.gossipAvail = nil, { 7 }
+MOCK_FIRE("GOSSIP_SHOW")
+MOCK.offeredQuest = 7
+MOCK_FIRE("QUEST_DETAIL")
+MOCK_ACCEPT(7, "Kobold Camp Cleanup")
 MOCK_ADVANCE(2)
 R:Stop()
 io.write(table.concat(segments, "\n"), "\n")

@@ -7,6 +7,14 @@
 --   START STOP PAUSE RESUME GAP   the run itself (GAP: entries lost; only from builds that mirrored the run)
 --   ACCEPT TURNIN ABANDON OBJ     quests (ACCEPT, TURNIN: npc, the creature whose quest window it was;
 --                                 TURNIN: xp, money; OBJ: obj, f, r, done, src, sid)
+--   OFFER                         a quest's offer window (q; npc, the creature offering it; shared, a quest a
+--                                 player shared: flagged, never who). Not again for the same quest until a
+--                                 quest is taken, given or dropped, or the level changes.
+--   GOSSIP                        a creature's gossip window (npc; avail, active: the quest ids it offers and
+--                                 takes in, at most 20 each). Only a creature that has quests or that the quest
+--                                 data knows, and not again for the same creature and lists until a quest is
+--                                 taken, given or dropped, or the level changes. For prerequisite inference:
+--                                 a giver that did not offer a quest, then did (forever-codex#295).
 --   XP                            every bit of experience (xp, src, sid)
 --   LEVEL                         a level-up (l, rested)
 --   KILL                          a creature the player killed (npc, mobLevel, elite, secs, rested)
@@ -62,6 +70,7 @@ local MOVE_EVERY = 2       -- seconds between movement samples
 local MOVE_MIN = 0.05      -- map units the player must have moved for a sample
 local HEARTHSTONE = 8690
 local QUEST_WINDOW_FOR = 30 -- seconds a quest window's NPC stays the one a quest is taken from or given to
+local GOSSIP_QUESTS = 20    -- most quest ids a GOSSIP entry keeps in each of its lists
 local ELITE = { elite = true, rareelite = true, worldboss = true }
 
 -- session state, never saved: what the kill, flight and death timers need
@@ -77,6 +86,8 @@ local fightStart, lastKill
 local taxiMoney, taxiStart, onTaxi
 local deadAt
 local noticed = false        -- the near-full dialog has been shown for this segment
+local questState = 0         -- counts quests taken, given and dropped: an offer or gossip seen again after one says something new
+local lastOffer, lastGossip  -- what the last OFFER and GOSSIP said, with questState and the level: the same again is not kept
 
 local function Enabled() return ns.db and ns.db.recordRuns == true end
 local function Current() return ns.char and ns.char.run end
@@ -155,6 +166,7 @@ local function Add(kind, fields, force)
     e.m, e.x, e.y = m, Round(x, 2), Round(y, 2)
     e.g, e.s = GuideStep()
     run.entries[#run.entries + 1] = e
+    if kind == "ACCEPT" or kind == "TURNIN" or kind == "ABANDON" then questState = questState + 1 end
     if #run.entries >= Run.NOTICE_AT and not noticed and not force and not Companion() then
         noticed = true
         Notice("near")
@@ -172,15 +184,60 @@ local function WindowNpc()
     return info and PlainNumber(info.npcID) or nil
 end
 
+-- A unit's creature id: nil for a player and for an object, whose ids are not creatures'.
+local function CreatureId(info)
+    if not info or info.isPlayer or not (info.guidType == "Creature" or info.guidType == "Vehicle") then return nil end
+    return PlainNumber(info.npcID)
+end
+
+local function Offered(npc, shared)
+    local q = PlainNumber(ns.Safe(rawget(_G, "GetQuestID")))
+    if not q or q <= 0 then return end
+    local key = q .. "@" .. questState .. ":" .. tostring(ns.Player:GetLevel())
+    if key == lastOffer then return end
+    if Add("OFFER", { q = q, npc = npc, shared = shared or nil }) then lastOffer = key end
+end
+
 -- A quest window opened: remember whose, as Recorder.lua reads it ("questnpc", else "npc"). A player who
--- shared the quest, or an object, is no one.
-local function QuestWindowOpened()
+-- shared the quest, or an object, is no one. An offer window is an OFFER: a shared quest's flagged
+-- `shared`, never credited to the player who shared it.
+local function QuestWindowOpened(event)
     local UnitIsPlayer = rawget(_G, "UnitIsPlayer")
     questWindow = nil
-    if PlainBool(ns.Safe(UnitIsPlayer, "questnpc")) == true or PlainBool(ns.Safe(UnitIsPlayer, "npc")) == true then return end
-    local info = ns.Player:GetUnitInfo("questnpc") or ns.Player:GetUnitInfo("npc")
-    local npc = info and PlainNumber(info.npcID)
+    local shared = PlainBool(ns.Safe(UnitIsPlayer, "questnpc")) == true or PlainBool(ns.Safe(UnitIsPlayer, "npc")) == true
+    local npc = not shared and CreatureId(ns.Player:GetUnitInfo("questnpc") or ns.Player:GetUnitInfo("npc")) or nil
     if npc then questWindow = { npc = npc, at = ns.Now() } end
+    if event == "QUEST_DETAIL" and Recording() then Offered(npc, shared) end
+end
+
+-- the quest ids one of the gossip window's lists holds, in its order
+local function GossipQuests(fn)
+    local out = {}
+    local list = ns.Call(fn)
+    if type(list) ~= "table" then return out end
+    for _, g in ipairs(list) do
+        local id = type(g) == "table" and PlainNumber(g.questID) or nil
+        if id and id > 0 and #out < GOSSIP_QUESTS then out[#out + 1] = id end
+    end
+    return out
+end
+
+-- A creature's gossip window: the quests it offers and takes in. A creature with neither is kept only
+-- when the quest data knows it (a giver with nothing to offer yet is the hold-back inference needs);
+-- an innkeeper or a flight master the data does not know is not.
+local function GossipShown()
+    if not Recording() then return end
+    local npc = CreatureId(ns.Player:GetUnitInfo("npc"))
+    if not npc then return end
+    local avail = GossipQuests("C_GossipInfo.GetAvailableQuests")
+    local active = GossipQuests("C_GossipInfo.GetActiveQuests")
+    if #avail == 0 and #active == 0 and not (ns.NpcDB and ns.NpcDB[npc] ~= nil) then return end
+    local key = table.concat({ npc, table.concat(avail, ","), table.concat(active, ","), questState,
+        tostring(ns.Player:GetLevel()) }, ":")
+    if key == lastGossip then return end
+    if Add("GOSSIP", { npc = npc, avail = #avail > 0 and avail or nil, active = #active > 0 and active or nil }) then
+        lastGossip = key
+    end
 end
 
 -- The creature a quest accepted or turned in now came from: its window opened moments ago.
@@ -224,6 +281,7 @@ end
 
 local function StartClock()
     resumedAt = ns.Now()
+    lastOffer, lastGossip = nil, nil
     local m, x, y = ns.Player:GetMapPosition()
     lastSample = { t = ns.Now(), m = m, x = x, y = y }
     onTaxi = PlainBool(ns.Safe(rawget(_G, "UnitOnTaxi"), "player")) == true
@@ -307,9 +365,10 @@ Run.CloseSegment = CloseSegment
 function Run.ToOutbox(segment)
     local outbox = ns.char.runOutbox or {}
     ns.char.runOutbox = outbox
-    -- its errors only to an app whose receipt says it takes them: an older one refuses the segment
+    -- its errors, and the gossip lists and shared flags, only to an app whose receipt says it takes
+    -- them: an older one refuses a segment holding a field it does not know
     local receipt = Receipt()
-    local doc = ns.Share:RunDoc(segment, receipt ~= nil and receipt.errors == true)
+    local doc = ns.Share:RunDoc(segment, receipt ~= nil and receipt.errors == true, receipt ~= nil and receipt.gossip == true)
     local name, realm = ns.Player:GetFullName(), ns.Player:GetRealm()
     if type(doc.run) == "table" and name ~= "?" and realm ~= "?" then
         doc.run.character = (name .. "-" .. realm):sub(1, 62)
@@ -527,6 +586,7 @@ function Run:OnInit()
     end)
 
     E:RegisterMany({ "QUEST_DETAIL", "QUEST_PROGRESS", "QUEST_COMPLETE" }, QuestWindowOpened)
+    E:Register("GOSSIP_SHOW", GossipShown)
     E:Register("FG_QUEST_ACCEPTED", function(_, questID) Add("ACCEPT", { q = PlainNumber(questID), npc = QuestNpc() }) end)
     E:Register("FG_QUEST_TURNED_IN", function(_, questID, _, xp, money)
         Add("TURNIN", { q = PlainNumber(questID), xp = PlainNumber(xp), money = PlainNumber(money), npc = QuestNpc() })

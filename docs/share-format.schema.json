@@ -520,6 +520,23 @@
               },
               "rx": {
                 "type": "integer"
+              },
+              "avail": {
+                "type": "array",
+                "maxItems": 20,
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "active": {
+                "type": "array",
+                "maxItems": 20,
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "shared": {
+                "type": "boolean"
               }
             }
           }
