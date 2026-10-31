@@ -4672,7 +4672,7 @@ section("travel planner: the fastest legs over flights, transports, the tram, th
         local bind = db.flightNodes[6].at.A
         local hearth = T:Plan(northshire, ironforge, { faction = "Alliance", known = {}, bind = bind, bindName = "Ironforge", hearthWait = 0 })
         check(hearth and hearth.legs[1] and hearth.legs[1].kind == "hearth", "a ready Hearthstone bound at the target's city is used (" .. kinds(hearth) .. ")")
-        check(hearth and hearth.legs[1].seconds == 10, "the hearth leg is its cast; the margin is only in the comparison")
+        check(hearth and hearth.legs[1].seconds == db.hearth, "the hearth leg is TravelDB's recorded Hearthstone; the margin is only in the comparison")
         local cooling = T:Plan(northshire, ironforge, { faction = "Alliance", known = {}, bind = bind, hearthWait = 1800 })
         check(cooling and kinds(cooling) ~= "" and cooling.legs[1].kind ~= "hearth", "a Hearthstone on a long cooldown is not waited for")
         -- A mage with Teleport: Ironforge and its rune.
@@ -4708,6 +4708,70 @@ section("travel planner: the fastest legs over flights, transports, the tram, th
         check(kinds(walk) == "walk", "with no TravelDB the plan is the walk")
         local _, why = T:Plan(goldshire, { map = 1439, x = 37, y = 44 }, { faction = "Alliance" })
         check(why == "unreachable", "with no TravelDB another continent is unreachable")
+    end)
+end)
+
+section("travel planner: TravelDB's recorded Hearthstone, walk detour and run speed, else the constants (codex #907)", function()
+    local T = ns.Travel
+    local db = travelFixture()
+    need(db and db.hearth and db.walkDetour and db.runSpeed, "the fixture TravelDB carries hearth, walkDetour and runSpeed")
+    need(db.hearth ~= T.HEARTH_SECONDS and db.walkDetour ~= T.WALK_DETOUR and db.runSpeed ~= T.DEFAULT_SPEED,
+        "the fixture's measures differ from the constants, so the checks tell them apart")
+    -- the same table without the three measures: TravelDB as written before codex measured them
+    local old = {}
+    for k, v in pairs(db) do old[k] = v end
+    old.hearth, old.walkDetour, old.runSpeed = nil, nil, nil
+
+    local goldshire, northshire = { map = 1429, x = 42.1, y = 65.9 }, { map = 1429, x = 48.2, y = 42.0 }
+    local ironforge = { map = 1455, x = 50, y = 50 }
+    local bind = db.flightNodes[6].at.A
+    -- straight-line yards between two points on one map, placed as withTravelWorld places them
+    local function straight(a, b)
+        local box = MAP_BOXES[a.map]
+        local ax, ay = box.maxX - a.y / 100 * (box.maxX - box.minX), box.maxY - a.x / 100 * (box.maxY - box.minY)
+        local bx, by = box.maxX - b.y / 100 * (box.maxX - box.minX), box.maxY - b.x / 100 * (box.maxY - box.minY)
+        return math.sqrt((ax - bx) ^ 2 + (ay - by) ^ 2)
+    end
+    local yards = straight(goldshire, northshire)
+    need(yards > 100, "Goldshire to Northshire is a real walk")
+    local function plans()
+        local hearth = T:Plan(northshire, ironforge, { faction = "Alliance", known = {}, bind = bind, hearthWait = 0 })
+        local walk = T:Plan(goldshire, northshire, { faction = "Alliance", known = {}, speed = 7 })
+        local unknown = T:Plan(goldshire, northshire, { faction = "Alliance", known = {} })
+        return hearth, walk, unknown
+    end
+
+    withTravelWorld(db, function()
+        local hearth, walk, unknown = plans()
+        check(hearth and hearth.legs[1] and hearth.legs[1].kind == "hearth" and math.abs(hearth.legs[1].seconds - 11.6) < 0.001,
+            "with TravelDB's hearth the hearth leg is 11.6 s (" .. tostring(hearth and hearth.legs[1] and hearth.legs[1].seconds) .. ")")
+        check(kinds(walk) == "walk" and math.abs(walk.seconds - yards * 1.1 / 7) < 0.001,
+            "a walk with no walking-maps way is straight yards x TravelDB's walkDetour at the run speed")
+        check(kinds(unknown) == "walk" and math.abs(unknown.seconds - yards * 1.1 / 6.83) < 0.001,
+            "with no run speed given, the walk is at TravelDB's runSpeed")
+        T.ForgetSpeed()
+        local real = _G.GetUnitSpeed
+        _G.GetUnitSpeed = function() return 0, 0 end
+        check(T.RunSpeed() == 6.83, "before the game gives any speed, TravelDB's runSpeed")
+        _G.GetUnitSpeed = real
+        T.ForgetSpeed()
+    end)
+
+    withTravelWorld(old, function()
+        local hearth, walk, unknown = plans()
+        check(hearth and hearth.legs[1] and hearth.legs[1].kind == "hearth" and hearth.legs[1].seconds == 10,
+            "a TravelDB without hearth keeps the 10 s cast")
+        check(kinds(walk) == "walk" and math.abs(walk.seconds - yards * 1.2 / 7) < 0.001, "without walkDetour a walk keeps the 1.2 detour")
+        check(kinds(unknown) == "walk" and math.abs(unknown.seconds - yards * 1.2 / 7) < 0.001, "without runSpeed a walk keeps 7 yd/s")
+        check(T.WalkDetour() == 1.2 and T.DefaultSpeed() == 7 and T.HearthSeconds() == 10, "and the accessors give the constants")
+    end)
+
+    -- A measure that is not a positive number is not taken.
+    local bad = {}
+    for k, v in pairs(old) do bad[k] = v end
+    bad.hearth, bad.walkDetour, bad.runSpeed = 0, "1.1", -3
+    withTravelWorld(bad, function()
+        check(T.HearthSeconds() == 10 and T.WalkDetour() == 1.2 and T.DefaultSpeed() == 7, "a zero, negative or non-number measure falls back to the constant")
     end)
 end)
 
@@ -5279,7 +5343,7 @@ section("travel planner: the run speed keeps the last the game gave, so a mounte
     end
     T.ForgetSpeed()
     gives(0, 0)
-    check(Nav:RunSpeed() == T.DEFAULT_SPEED, "before the game gives any speed, a running character's")
+    check(Nav:RunSpeed() == T.DefaultSpeed(), "before the game gives any speed, a running character's")
     gives(0, 14)
     check(Nav:RunSpeed() == 14, "mounted, the game's 14")
     _G.GetUnitSpeed = function() error("not now") end
@@ -6001,7 +6065,7 @@ section("walking paths: the arrow, the time left and the dots follow a walk's wa
         check(math.abs(s.angle - math.atan2(nextCorner[2] - c[2], nextCorner[1] - c[1])) < 0.01, "at the first corner the arrow turns to the next")
         local asked = Nav.walk
         M.worldX, M.worldY = M.worldX + 200, M.worldY + 200
-        MOCK_ADVANCE(6)
+        MOCK_ADVANCE(10)   -- the off-way search is asked again at most every ASK_AGAIN_SECONDS (10)
         Nav:Update()
         check(Nav.walk ~= asked, "200 yards off the way, it is looked for again from there")
 

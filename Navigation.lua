@@ -583,7 +583,7 @@ end
 
 --- Seconds the current route still takes from here; for no route, the walk to the target.
 function Nav:RemainingSeconds(state, speed)
-    local detour = ns.Travel.WALK_DETOUR
+    local detour = ns.Travel.WalkDetour()
     local r = self.route
     if not r then
         if state and state.wayYards then return state.wayYards / speed end
