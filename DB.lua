@@ -530,6 +530,28 @@ function DB:IsAvailable(questID)
     return true
 end
 
+--- Why the quest cannot be offered to this character now, or nil: a prerequisite neither done nor
+--- in the log (so not on its way either), or a quest that rules it out done or taken. Level is left
+--- out: the guide waits for that (Guide:LevelGate).
+function DB:Unreachable(questID)
+    local q = self:GetQuest(questID)
+    if not q then return nil end
+    local Q = ns.Quest
+    local function held(id) return Q:IsCompleted(id) or Q:IsOnQuest(id) end
+    for _, pre in ipairs(q.pregroup or {}) do
+        if not held(pre) then return "requires " .. (self:QuestName(pre) or pre) end
+    end
+    if q.pre and #q.pre > 0 then
+        local any = false
+        for _, pre in ipairs(q.pre) do if held(pre) then any = true break end end
+        if not any then return "requires " .. (self:QuestName(q.pre[1]) or q.pre[1]) end
+    end
+    for _, ex in ipairs(q.excl or {}) do
+        if held(ex) then return "excluded by " .. (self:QuestName(ex) or ex) end
+    end
+    return nil
+end
+
 --- Quests by (partial) name.
 function DB:Search(text, limit)
     local out = {}

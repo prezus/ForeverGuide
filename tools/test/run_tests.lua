@@ -871,7 +871,9 @@ section("quest database: lean steps resolve through the DB", function()
     local ok, why = ns.DB:IsAvailable(76)
     check(ok == false and why:match("requires"), "76 needs 62 first: " .. tostring(why))
 
-    -- a guide with no coordinates at all
+    -- a guide with no coordinates at all; Riverpaw Gnoll Bounty (11) needs The Jasperlode Mine (76) in the
+    -- database, done here so 11 is a quest this character may take
+    MOCK.completed[76] = true
     ns.RegisterGuide({ id = "LEAN_TEST", name = "Lean test", steps = {
         { type = "ACCEPT", quest = 62 }, { type = "TURNIN", quest = 62 }, { type = "ACCEPT", quest = 11 },
         { type = "KILL", quest = 11 }, { type = "TURNIN", quest = 11 } } })
@@ -921,6 +923,7 @@ section("quest database: lean steps resolve through the DB", function()
         check(ns.char.route == nil, "/fg path race goes back to the race's own route")
     end
     ns.Tracker:SetMode("guide")
+    MOCK.completed[76] = nil
 end)
 
 -- ---- auto quest + minimap ----
@@ -1340,6 +1343,7 @@ section("audit regressions (2026-09-20)", function()
         { type = "KILL", quest = 11, target = "Defias Trapper", npc = 6 },   -- npc 6 = Kobold Vermin in the DB, wording matches nothing
         { type = "TURNIN", quest = 11 } } })
     if ns.Quest:IsOnQuest(11) then MOCK_ABANDON(11); settle() end
+    MOCK.completed[76] = true        -- 11's prerequisite (The Jasperlode Mine): 11 is the character's to take
     G:Activate("AUDIT_OBJ", true); settle()
     -- quest 11 needs a higher level than the test character has: the whole quest is deferred (guide runs past its end)
     check(G.progress.deferred[11] == 1 and cur() == 4, "a quest above the level is deferred with all its steps (cur=" .. tostring(cur()) .. " lvl=" .. tostring(ns.Player:GetLevel()) .. ")")
@@ -1362,6 +1366,7 @@ section("audit regressions (2026-09-20)", function()
     MOCK_MOVE(40, 60); ns.Navigation:Update(); settle()
     ns.Navigation:Update(); settle()
     check(cur() == 5, "two TRAVEL steps to the same spot both complete on arrival (" .. tostring(cur()) .. ")")
+    MOCK.completed[76] = nil
 end)
 
 -- ---- optional group quests ------------------------------------------------------------------
@@ -2857,6 +2862,56 @@ section("a breadcrumb is passed once its quest is taken", function()
     check(done == true and why == "breadcrumb passed", "...and is passed once the quest it leads to is in the log (" .. tostring(why) .. ")")
     MOCK_ABANDON(990817); settle()
     ns.QuestDB[990816], ns.QuestDB[990817] = nil, nil
+end)
+
+-- Stout to Kadrell (414) needs Shimmer Stout (413), given only in a Dwarf/Gnome chapter; The Reports (291)
+-- is taken only there too. A Night Elf on the same route never had either (forever-codex#951).
+section("a step this character cannot do is passed: an accept whose prerequisite is not done, a turn-in of a quest it never took", function()
+    ns.QuestDB[990951] = { n = "Shimmer Test" }                     -- as Shimmer Stout (413)
+    ns.QuestDB[990952] = { n = "Stout Test", pre = { 990951 } }     -- as Stout to Kadrell (414)
+    ns.QuestDB[990953] = { n = "Reports Test" }                     -- as The Reports (291): accepted in another chapter
+    ns.QuestDB[990954] = { n = "After Test" }
+    local was = { race = MOCK.race, faction = MOCK.faction }
+    local function as(race) MOCK.race, MOCK.faction = { race, race }, "Alliance"; ns.Player.cache = {} end
+    local function chapter(id)
+        ns.RegisterGuide({ id = id, name = id, steps = {
+            { type = "ACCEPT", quest = 990952 },
+            { type = "TURNIN", quest = 990952 },
+            { type = "TURNIN", quest = 990953 },
+            { type = "ACCEPT", quest = 990954 } } })
+        G:Activate(id, true); settle()
+    end
+
+    as("NightElf")
+    chapter("TEST_NA_ELF")
+    check(cur() == 4 and step().quest == 990954, "a night elf passes the accept and turn-ins of quests it cannot have (" .. tostring(cur()) .. ")")
+    local done, why = G:IsStepDone(G.active.steps[1], 1)
+    check(done == true and why == "n/a", "the accept whose prerequisite is not done is n/a (" .. tostring(why) .. ")")
+    check(not G.blocked, "the guide is not stopped on a quest missing from the log")
+
+    as("Dwarf")
+    MOCK_ACCEPT(990951, "Shimmer Test"); settle()
+    chapter("TEST_NA_ON_ITS_WAY")
+    check(cur() == 1, "a prerequisite still in the log keeps the accept waiting (" .. tostring(cur()) .. ")")
+    MOCK_TURNIN(990951); settle()
+    MOCK_ACCEPT(990952, "Stout Test"); settle()
+    check(cur() == 2 and step().type == "TURNIN" and step().quest == 990952, "a dwarf with the quest in the log waits on its turn-in (" .. tostring(cur()) .. ")")
+    MOCK_ABANDON(990952); settle()
+    check(cur() == 1 and step().type == "ACCEPT", "a quest the player abandoned goes back to its accept, not past it (" .. tostring(cur()) .. ")")
+
+    -- passed, then taken by hand after all (another route, or data that was wrong): back to it
+    MOCK.completed[990951], ns.Quest.recentTurnIns[990951] = nil, nil
+    as("NightElf")
+    chapter("TEST_NA_BY_HAND")
+    need(cur() == 4, "the night elf passed the quest it could not take (" .. tostring(cur()) .. ")")
+    MOCK_ACCEPT(990952, "Stout Test"); settle()
+    check(cur() == 2 and step().type == "TURNIN" and step().quest == 990952, "taking a passed quest by hand brings the guide back to its turn-in (" .. tostring(cur()) .. ")")
+    MOCK_ABANDON(990952); settle()
+
+    MOCK.completed[990951] = nil
+    ns.QuestDB[990951], ns.QuestDB[990952], ns.QuestDB[990953], ns.QuestDB[990954] = nil, nil, nil, nil
+    MOCK.race, MOCK.faction = was.race, was.faction; ns.Player.cache = {}
+    G:Activate("HUMAN_NORTHSHIRE_1_6", true); settle()
 end)
 
 -- ---- level-up announcement ------------------------------------------------------------------

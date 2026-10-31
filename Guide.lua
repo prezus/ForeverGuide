@@ -34,6 +34,8 @@
 --     back to that quest's ACCEPT step (unless the player skipped it)
 --   * manual steps are auto-completed once the next automatic step is done
 --   * steps filtered by class/race/faction are skipped
+--   * an accept whose prerequisites are not done, and the turn-in / objectives of a quest the
+--     character never took (its accept passed so, or not in this guide), are passed (n/a)
 -- ============================================================
 
 local _, ns = ...
@@ -558,6 +560,8 @@ function Guide:IsStepDone(step, idx, gameOnly)
         if target and (Q:IsOnQuest(target) or Q:IsCompleted(target)) then return true, "breadcrumb passed" end
     end
 
+    if self:Unavailable(step, idx) then return true, "n/a" end
+
     if t == "ACCEPT" then
         return Q:IsOnQuest(step.quest), nil
     elseif t == "TURNIN" then
@@ -632,6 +636,28 @@ function Guide:IsStepDone(step, idx, gameOnly)
         return false, nil
     end
     return false, nil   -- manual types
+end
+
+--- A quest step this character cannot do now (forever-codex#951): an accept whose prerequisites it
+--- has not done and is not on its way to (DB:Unreachable), or a turn-in or objective of a quest it
+--- neither holds nor has done while this guide passed its accept for that reason, or has none. An
+--- accept the player made and then abandoned is not passed, so that quest stays one to come back to.
+function Guide:Unavailable(step, idx)
+    local t = step.type
+    if not step.quest or not (t == "ACCEPT" or t == "TURNIN" or OBJECTIVE[t]) then return false end
+    if not (ns.DB and ns.DB:IsLoaded()) then return false end
+    local Q = ns.Quest
+    if Q:IsOnQuest(step.quest) or Q:IsCompleted(step.quest) then return false end
+    if t == "ACCEPT" then return ns.DB:Unreachable(step.quest) ~= nil end
+    if not (self.active and self.progress) then return false end
+    local a = self:FindAcceptStep(step.quest, idx)
+    if not a then return true end
+    return not self.progress.done[a] and self:Unavailable(self.active.steps[a], a)
+end
+
+--- Passed without being the character's: not for it at all, or out of its reach for now.
+function Guide:IsNA(step, idx)
+    return not self:StepApplies(step) or self:Unavailable(step, idx)
 end
 
 --- A TRAVEL/FLY step that crosses into another zone (the first mapped step of a chapter,
@@ -1020,6 +1046,20 @@ function Guide:Evaluate(reason)
         end
     end
 
+    -- 0c. a quest passed as out of reach (Unavailable): taken by hand after all, its steps are guided
+    for quest, idx in pairs(self.unavailablePassed or {}) do
+        local s = steps[idx]
+        if not s or s.quest ~= quest or p.done[idx] or ns.Quest:IsCompleted(quest) then
+            self.unavailablePassed[quest] = nil
+        elseif ns.Quest:IsOnQuest(quest) then
+            self.unavailablePassed[quest] = nil
+            if self:PosOf(idx) < self:PosOf(i) then
+                i = idx
+                self.note = string.format("%s is in your log - back to it.", ns.Quest:GetTitle(quest) or ("quest " .. quest))
+            end
+        end
+    end
+
     -- 1. advance over done steps; auto-complete manual steps when the next
     --    automatic step is already done; skip quests the level does not allow yet
     local guard = 0
@@ -1037,11 +1077,18 @@ function Guide:Evaluate(reason)
                 end
             end
         end
-        local done = self:IsStepDone(step, i)
+        local done, why = self:IsStepDone(step, i)
+        if why == "n/a" and step.quest and self:StepApplies(step) then
+            -- passed as out of reach: remember the first such step, should the player take the quest anyway (0c)
+            self.unavailablePassed = self.unavailablePassed or {}
+            local at = self.unavailablePassed[step.quest]
+            if not at then ns.Debug("route passes", ns.DB:QuestName(step.quest) or step.quest, ns.DB:Unreachable(step.quest) or "quest never taken") end
+            if not at or self:PosOf(i) < self:PosOf(at) then self.unavailablePassed[step.quest] = i end
+        end
         -- Guidelime's [C]: done when the next step that applies is
         if not done and step.completeWithNext then
             local k = self:NextIdx(i)
-            while steps[k] and not self:StepApplies(steps[k]) do k = self:NextIdx(k) end
+            while steps[k] and self:IsNA(steps[k], k) do k = self:NextIdx(k) end
             if steps[k] and (p.done[k] or self:IsStepDone(steps[k], k)) then done = true end
         end
         if not done and step.quest then
@@ -1075,7 +1122,7 @@ function Guide:Evaluate(reason)
             -- even when the step right after it is still open.
             local k, seen = self:NextIdx(i), 0
             while steps[k] and seen < LOOKAHEAD do
-                if not (MANUAL[steps[k].type] or not self:StepApplies(steps[k])) then
+                if not (MANUAL[steps[k].type] or self:IsNA(steps[k], k)) then
                     seen = seen + 1
                     if self:IsStepDone(steps[k], k) or p.done[k] then
                         p.done[i] = true
@@ -1408,7 +1455,7 @@ function Guide:Resync()
     local last = 0
     for k, i in ipairs(seq) do
         local s = steps[i]
-        if p.done[i] or (self:StepApplies(s) and self:IsStepDone(s, i)) then last = k end
+        if p.done[i] or (not self:IsNA(s, i) and self:IsStepDone(s, i)) then last = k end
     end
     for k = 1, last - 1 do
         if MANUAL[steps[seq[k]].type] then p.done[seq[k]] = true end
