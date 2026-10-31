@@ -477,7 +477,16 @@ _G.C_Spell.GetSpellName = _G.C_Spell.GetSpellName or function(id) return world.s
 function _G.MOCK_SPELL_NAME(id, name) world.spellNames[id] = name end
 _G.GetMaxPlayerLevel = function() return 60 end
 _G.IsXPUserDisabled = function() return world.xpDisabled == true end
-_G.C_GossipInfo = { GetAvailableQuests = function() return {} end, GetActiveQuests = function() return {} end }
+-- MOCK.gossipAvail / MOCK.gossipActive: the quest ids the open gossip window offers and takes in
+local function GossipList(ids)
+    local out = {}
+    for i, id in ipairs(ids or {}) do out[i] = { questID = id, title = "Quest " .. id } end
+    return out
+end
+_G.C_GossipInfo = {
+    GetAvailableQuests = function() return GossipList(world.gossipAvail) end,
+    GetActiveQuests = function() return GossipList(world.gossipActive) end,
+}
 -- MOCK.addonsInstalled: the folders in Interface\AddOns besides ForeverGuide, loaded or not
 MOCK.addonsInstalled = {}
 _G.C_AddOns = {
