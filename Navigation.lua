@@ -805,6 +805,8 @@ function Nav:Update(allowCached)
             if cx then
                 l.distance, l.onWay = left, true
                 l.angle = AngleTo(px, py, cx, cy)
+                -- the next named place the way passes: "Enter Fargodeep Mine" (#696)
+                l.place = ns.Walking and ns.Walking:PlaceAhead(pInstance, leg.way, left)
             elseif px and aim and aim.inst == pInstance then
                 local dx, dy = aim.x - px, aim.y - py
                 l.distance = sqrt(dx * dx + dy * dy)
@@ -820,6 +822,7 @@ function Nav:Update(allowCached)
         if cx then
             state.wayYards = left
             state.angle = AngleTo(px, py, cx, cy) or state.angle
+            state.place = ns.Walking and ns.Walking:PlaceAhead(pInstance, walk.way, left)
         end
     end
     self.state, self.stateAt, self.stateTarget = state, ns.Now(), t

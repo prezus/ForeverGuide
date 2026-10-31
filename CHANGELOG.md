@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- The arrow names the places a walk passes as you come to them: "Enter Fargodeep Mine", "Cross the Thandol Span", "Go through Dun Algaz". For now, only places the game names: mines, caves and dens, spans and passes.
 - Recordings keep which quests each quest giver offered when you talked to them, and each quest's offer window, so codex can tell which quests a giver holds back until another is done. A quest a party member shared is only flagged shared: who shared it is never kept. With ForeverGuide Companion they go up once the Companion takes them; until then its uploads leave them out.
 - Guides: quest data follows the released game: givers, turn-ins and where NPCs and objectives stand, from Questie's newest Forever data, and flight paths from the released client.
 - Guides: Street's Speed Demon v9, a route any Alliance character can choose in the route list, starting in Coldridge Valley: 17
