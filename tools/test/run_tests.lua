@@ -6091,6 +6091,102 @@ section("walking paths: the arrow, the time left and the dots follow a walk's wa
     if was.target then Nav:SetTarget(was.target) end
 end)
 
+section("walking paths: a walk names the places its way passes, entering, leaving and crossing (codex #696)", function()
+    local W, Nav, M = ns.Walking, ns.Navigation, MOCK
+    local shipped = rawget(ns, "NavNames")
+    -- the shipped places are only those named by their own area: no caption from them says "the cave" or "the building"
+    need(type(shipped) == "table" and shipped.version == 1, "Nav/NavNames.lua loads with the addon")
+    local rows, unnamed, named = 0, {}, {}
+    for _, list in pairs(shipped) do
+        if type(list) == "table" then
+            for _, r in ipairs(list) do
+                rows = rows + 1
+                if r[7] == "the " .. tostring(r[1]) then unnamed[#unnamed + 1] = r[7] end
+                named[r[7]] = true
+            end
+        end
+    end
+    check(rows > 0 and #unnamed == 0, "every shipped place has a name of its own (" .. rows .. " places, " .. #unnamed .. " called only by their kind)")
+    check(named["Fargodeep Mine"] and named["the Thandol Span"] and named["Dun Algaz"], "Fargodeep Mine, the Thandol Span and Dun Algaz are among them")
+    -- a mine's mouth at x 0-16 along y 0, a bridge from (300, -30) to (300, 30), a building's door at x 600
+    ns.NavNames = { version = 1, [9999] = {
+        { "cave", 0, 0, 16, 0, 57, "Fargodeep Mine" },
+        { "bridge", 300, -30, 300, 30, 880, "the Thandol Span" },
+        { "building", 600, 0, 616, 0, 0, "the building" },
+        { "lift", 700, 0, 716, 0, 0, "an unknown kind" },
+    } }
+    W:ForgetPlaces()
+    local function texts(way)
+        local out = {}
+        for _, p in ipairs(W:PlacesOn(9999, way)) do out[#out + 1] = p.text end
+        return table.concat(out, " | ")
+    end
+    local into = { points = { { -100, 3 }, { 100, 3 } }, yards = 200 }
+    check(texts(into) == "Enter Fargodeep Mine", "a way from outside the mouth to inside enters the mine (" .. texts(into) .. ")")
+    local out = { points = { { 100, -3 }, { -100, -3 } }, yards = 200 }
+    check(texts(out) == "Leave Fargodeep Mine", "the other way it leaves it (" .. texts(out) .. ")")
+    local past = { points = { { 8, -100 }, { 8, 100 } }, yards = 200 }
+    check(texts(past) == "", "a way passing across the mouth, along the hillside, goes through no place (" .. texts(past) .. ")")
+    local far = { points = { { -100, 40 }, { 100, 40 } }, yards = 200 }
+    check(texts(far) == "", "nor does one passing 40 yards off it")
+    local long = { points = { { -100, 3 }, { 100, 3 }, { 300, -80 }, { 300, 80 }, { 800, 80 } }, yards = 0 }
+    check(texts(long) == "Enter Fargodeep Mine | Cross the Thandol Span", "a long way names each place it passes, in order, kinds the addon does not know left out (" .. texts(long) .. ")")
+    local over = W:PlacesOn(9999, long)[2]
+    check(over and math.abs(over.at - (280 + math.sqrt(200 * 200 + 83 * 83))) < 5, "the bridge is placed where the way crosses it (" .. tostring(over and over.at) .. ")")
+    check(W:PlacesOn(9999, long) == W:PlacesOn(9999, long), "a way's places are worked out once and kept on it")
+    check(texts({ points = { { -100, 3 }, { 100, 3 } }, yards = 200 }) ~= "" and #W:PlacesOn(1, into) == 1, "another map's way looks at its own places (none here)")
+
+    -- the arrow names the next one ahead, within PLACE_AHEAD_YARDS, until just past it
+    local way = { points = { { -300, 3 }, { 100, 3 } }, yards = 400 }
+    check(W:PlaceAhead(9999, way, 400) == nil, "300 yards before the mouth, nothing yet")
+    check(W:PlaceAhead(9999, way, 200) == "Enter Fargodeep Mine", "100 yards before it, the arrow says to enter the mine")
+    check(W:PlaceAhead(9999, way, 85) == "Enter Fargodeep Mine", "and still a few yards past it")
+    check(W:PlaceAhead(9999, way, 60) == nil, "30 yards in, nothing")
+    ns.NavNames = { version = 2, [9999] = { { "cave", 0, 0, 16, 0, 57, "Fargodeep Mine" } } }
+    W:ForgetPlaces()
+    check(#W:PlacesOn(9999, { points = { { -100, 3 }, { 100, 3 } }, yards = 200 }) == 0, "a places file of another version is left out")
+
+    -- in play: the arrow's caption on a plain walk, from the way the router found
+    local db = travelFixture()
+    local was = { target = Nav.target, mapID = M.mapID, mapX = M.mapX, mapY = M.mapY, wx = M.worldX, wy = M.worldY, inst = M.instance, facing = M.facing,
+        codec = rawget(_G, "C_EncodingUtil") }
+    _G.C_EncodingUtil = TestCodec()
+    W:Forget()
+    withTravelWorld(db, function()
+        moveTo({ map = 1429, x = 42.1, y = 65.9 })
+        M.facing = 0
+        Nav:SetTarget({ map = 1429, x = 40.4, y = 82.4, label = "Fargodeep Mine" })
+        for _ = 1, 20 do
+            if Nav.walk and Nav.walk.way then break end
+            MOCK_ADVANCE(0.05)
+        end
+        need(Nav.walk and Nav.walk.way, "the walk's way is found")
+        local pts = Nav.walk.way.points
+        -- a cave's mouth across the way's last stretch, 16 yards long, ending 10 yards before its end
+        local p, q = pts[#pts - 1], pts[#pts]
+        local len = math.sqrt((q[1] - p[1]) ^ 2 + (q[2] - p[2]) ^ 2)
+        need(len > 30, "the way's last stretch is long enough to hold a mouth")
+        local ux, uy = (q[1] - p[1]) / len, (q[2] - p[2]) / len
+        ns.NavNames = { version = 1, [M.instance] = { { "cave", q[1] - 26 * ux, q[2] - 26 * uy, q[1] - 10 * ux, q[2] - 10 * uy, 57, "Fargodeep Mine" } } }
+        W:ForgetPlaces()
+        Nav.walk.way.places = nil
+        local f = ns.Arrow:Create()
+        ns.Arrow:Tick()
+        local far = f.caption:GetText()
+        M.worldX, M.worldY = q[1] - 60 * ux, q[2] - 60 * uy
+        MOCK_ADVANCE(0.05)     -- past the arrow's shared 40 ms state
+        ns.Arrow:Tick()
+        check(far ~= "Enter Fargodeep Mine" and f.caption:GetText() == "Enter Fargodeep Mine", "the arrow says to enter the mine as its mouth comes near (" .. tostring(far) .. " -> " .. tostring(f.caption:GetText()) .. ")")
+    end)
+    Nav:Clear()
+    _G.C_EncodingUtil = was.codec
+    M.mapID, M.mapX, M.mapY, M.worldX, M.worldY, M.instance, M.facing = was.mapID, was.mapX, was.mapY, was.wx, was.wy, was.inst, was.facing
+    ns.Player.cache.mapID = nil
+    if was.target then Nav:SetTarget(was.target) end
+    ns.NavNames = shipped
+    W:ForgetPlaces()
+end)
+
 section("walking paths: a walk starts on the floor under the player, followed as they move (#744)", function()
     local Nav, W, M = ns.Navigation, ns.Walking, MOCK
     local was = { codec = rawget(_G, "C_EncodingUtil"), indoors = rawget(_G, "IsIndoors"), pos = _G.UnitPosition,
