@@ -159,6 +159,41 @@ function DB:ParentZone(areaID)
     return areaID
 end
 
+--- Is `place` (by zone key) `zone` or under it in the zone data's sub-zone parents?
+local function findPlaceInZone(place, zone)
+    local Z = ns.ZoneDB
+    local want, key, parent = zoneKey(zone), zoneKey(place), Z.parent or {}
+    if key == want then return true end
+    for areaID, n in pairs(Z.names) do
+        if zoneKey(n) == key then
+            local a, guard = parent[areaID], 0
+            while a and guard < 8 do
+                local up = Z.names[a]
+                if up and zoneKey(up) == want then return true end
+                a, guard = parent[a], guard + 1
+            end
+        end
+    end
+    return false
+end
+
+--- Is the place GetBindLocation() or GetZoneText() names (a town, a sub-zone) the zone a guide
+--- names, or inside it? Kharanos is in Dun Morogh; Stormwind City is only itself (forever-codex#935).
+--- Names compare as Guidelime compares zones; a name several areas carry counts for each of them.
+local placeInZone = {}     -- "place\0zone" -> true/false: the zone data does not change in a session
+function DB:PlaceInZone(place, zone)
+    if type(place) ~= "string" or type(zone) ~= "string" or place == "" or zone == "" then return false end
+    if place == zone then return true end
+    if not (ns.ZoneDB and ns.ZoneDB.names) then return false end
+    local cacheKey = place .. "\0" .. zone
+    local known = placeInZone[cacheKey]
+    if known == nil then
+        known = findPlaceInZone(place, zone)
+        placeInZone[cacheKey] = known
+    end
+    return known
+end
+
 --- The zone a quest belongs to (parent zone of its zoneOrSort, nil for sort categories).
 function DB:QuestZone(questID)
     local q = self:GetQuest(questID)

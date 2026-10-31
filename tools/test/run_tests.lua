@@ -776,6 +776,31 @@ check(cur() == 4 and step().quest == 3100 and next(G.progress.done) == nil,
 
 ns.UI:Refresh()
 end)
+-- TUGs' hearth steps name the zone ("Dun Morogh"); GetBindLocation() names the inn's town ("Kharanos")
+-- (forever-codex#935)
+section("a hearth step naming the zone is done when bound at a town inside it", function()
+    local Z = ns.ZoneDB
+    need(Z and Z.names and Z.parent, "the zone data is loaded")
+    Z.names[999350], Z.names[999351], Z.names[999352] = "Test Vale", "Test Hamlet", "Test Inn Square"
+    Z.parent[999351], Z.parent[999352] = 999350, 999351
+    local was = MOCK.bind
+    local function doneAt(bind, zone)
+        MOCK.bind = bind
+        return (G:IsStepDone({ type = "HEARTH", zone = zone }, 9999)) == true
+    end
+    check(doneAt("Test Hamlet", "Test Vale"), "bound at a town inside the step's zone")
+    check(doneAt("Test Inn Square", "Test Vale"), "...or at a place inside one of its towns")
+    check(doneAt("Test Vale", "Test Vale"), "bound at the zone itself")
+    check(not doneAt("Test Vale", "Test Hamlet"), "a zone is not inside its own town")
+    check(not doneAt("Test Hamlet", "Dun Morogh"), "a town in another zone does not count")
+    check(doneAt("Kharanos", "Dun Morogh"), "TUGs' Dun Morogh hearth step is done when bound at Kharanos")
+    check(doneAt("Stormwind City", "Stormwind City"), "Stormwind City still matches exactly")
+    check(not doneAt("Goldshire", "Stormwind City") and not doneAt("Stormwind City", "Elwynn Forest"),
+        "Goldshire is not Stormwind City, and Stormwind City is not in Elwynn Forest")
+    check(not doneAt(nil, "Dun Morogh") and not doneAt("Kharanos", nil), "no bind location or no zone: not done")
+    Z.names[999350], Z.names[999351], Z.names[999352], Z.parent[999351], Z.parent[999352] = nil, nil, nil, nil, nil
+    MOCK.bind = was
+end)
 -- The extra quest panel follows the guide window but never duplicates a routed quest.
 section("The extra quest panel follows the guide window but never duplicates a routed quest", function()
     local f = ns.QuestGuide.frame
