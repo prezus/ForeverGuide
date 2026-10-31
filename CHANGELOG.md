@@ -1,6 +1,10 @@
 # Changelog
 
 ## Unreleased
+- Guides: quest data current with Wowhead for Street's Speed Demon's quests; quests Wowhead closes to Humans alone stay open to every Alliance race.
+- Guides: where the sources disagree on where an NPC or object stands, the place players met it wins.
+- Guides: the zones' inns, so a hearth step that names no innkeeper points at one.
+- Guides: walks reach the camp over the Wetlands at 65.7, 76.4.
 - A "set your hearthstone" step that names no innkeeper (TUGs' guides) names the zone's innkeeper ("Set your hearthstone with Innkeeper Belm"), the arrow leads to them, and setting your hearthstone with another innkeeper leaves the step open; once the data carries the inns.
 - A "set your hearthstone" step that names the zone (TUGs' guides: Dun Morogh, Teldrassil, Elwynn Forest, Loch Modan, Zephras Isle) is done when your hearthstone is already set at an inn in that zone (Kharanos, Dolanaar, Goldshire, Thelsamar, Shen'dar Village, Valanaar), not only when you set it while on the step.
 - The guide passes a step your character cannot do: accepting a quest whose earlier quest you have not done, and turning in or working a quest you never took (Street's Speed Demon on a Night Elf: Stout to Kadrell, The Reports). A quest you abandoned still takes you back to accept it, and taking a passed quest after all brings the guide back to it.
