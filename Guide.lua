@@ -18,7 +18,8 @@
 --   SKILL    profession skill the profession at that rank
 --   USEHEARTH                the hearthstone cast (or manual)
 --   HEARTH   npc [zone]      hearthstone bound (HEARTHSTONE_BOUND) while talking to that innkeeper;
---                            bind location == zone (GetBindLocation) for a bind made earlier; else manual
+--                            bind location == zone, or a town inside it (GetBindLocation), for a bind
+--                            made earlier; else manual
 --   TRAVEL   map x y [radius] arriving within radius (Navigation) — auto; one into another zone is
 --                            done on entering the zone, unless it says `arrive`
 --   FLY      map x y         same as TRAVEL (flight path hint); by place: the flight taking off
@@ -616,7 +617,10 @@ function Guide:IsStepDone(step, idx, gameOnly)
         return rank ~= nil and rank >= (step.skill or 1), nil
     elseif t == "HEARTH" then
         local bind = ns.PlainString(ns.Safe(rawget(_G, "GetBindLocation")))
-        if bind and step.zone then return bind == step.zone, nil end
+        if bind and step.zone then
+            -- TUGs' steps name the zone, the bind names the inn's town in it (forever-codex#935)
+            return bind == step.zone or (ns.DB ~= nil and ns.DB:PlaceInZone(bind, step.zone)), nil
+        end
         return false, nil
     elseif t == "FLIGHTPATH" then
         -- a path learnt before (this guide, another guide, or on the character's own) is not asked for again
