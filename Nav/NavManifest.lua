@@ -1,7 +1,7 @@
 local _, ns = ...
 ns.NavManifest = {
   version = 4,
-  [0] = { hash = "2e7dbddfe71005a3", tiles = 736 },
+  [0] = { hash = "e50a936aea3a40a8", tiles = 736 },
   [1] = { hash = "52a9ee22e1124f68", tiles = 988 },
   [2991] = { hash = "f692cfa7660b960a", tiles = 32 },
 }
