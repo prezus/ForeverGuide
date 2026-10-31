@@ -24,8 +24,15 @@ permissions:
 
 jobs:
   cleanup:
-    runs-on: ubuntu-latest
+    runs-on: arc-runner-set-foreverguide
     steps:
+      # Our cluster's runner (arc-runner-set-foreverguide, decepticon.io) is the bare actions-runner image:
+      # what a step needs and the image lacks is installed from Ubuntu's packages.
+      - name: Tools
+        run: |
+          missing=""
+          for tool in gh jq; do command -v "$tool" >/dev/null || missing="$missing $tool"; done
+          if [ -n "$missing" ]; then sudo apt-get update -qq && sudo apt-get install -y -qq $missing; fi
       - name: Delete releases older than the previous one
         env:
           GH_TOKEN: ${{ github.token }}
