@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: about 100 quests follow the released game: givers, turn-ins, objectives, levels and xp; travel times follow players' recorded runs; walks slide down three more slopes players take, into Loch Modan and in Dun Morogh.
 - The travel planner times the Hearthstone, walks and your run speed from players' recorded runs once the data carries them (about 11.6 s for a Hearthstone, walks a little shorter than the old guess); with older data it keeps its own estimates.
 - The arrow names the places a walk passes as you come to them: "Enter Fargodeep Mine", "Cross the Thandol Span", "Go through Dun Algaz". For now, only places the game names: mines, caves and dens, spans and passes.
 - Recordings keep which quests each quest giver offered when you talked to them, and each quest's offer window, so codex can tell which quests a giver holds back until another is done. A quest a party member shared is only flagged shared: who shared it is never kept. With ForeverGuide Companion they go up once the Companion takes them; until then its uploads leave them out.
