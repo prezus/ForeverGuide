@@ -137,7 +137,9 @@ function Arrow:Tick()
     -- long the whole way still takes
     local left = Nav:FormatTime(Nav:SecondsLeft(s))
     local leg = Nav:CurrentLeg()
-    f.caption:SetText(leg and (Nav:RideWait() or Nav:LegCaption(leg, Nav.route.legs[Nav.route.index + 1])) or "")
+    -- a walk names the place its way passes next ("Cross the Thandol Span"), else what the leg is for
+    local place = s and ((s.leg and s.leg.place) or s.place)
+    f.caption:SetText(leg and (Nav:RideWait() or place or Nav:LegCaption(leg, Nav.route.legs[Nav.route.index + 1])) or place or "")
     if s and s.leg and s.leg.distance then s = { distance = s.leg.distance, angle = s.leg.angle, arrived = false } end
     local after = left and ("  -  " .. left) or ""
     f.label:SetText(t.label or "")

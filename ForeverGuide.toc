@@ -47,6 +47,7 @@ Nav\NavManifest.lua
 Nav\NavData0.lua
 Nav\NavData1.lua
 Nav\NavData2991.lua
+Nav\NavNames.lua
 Scanner.lua
 Harvest.lua
 Share.lua

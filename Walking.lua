@@ -940,6 +940,127 @@ function Walking:DangerFor(level)
     return out
 end
 
+-- ------------------------------------------------------------
+-- Named places a way passes (codex src/nav/places.ts, #696): cave and building mouths, tunnels,
+-- gates and bridges, from Nav/NavNames.lua. Each is a line from a to b that a walk through it goes
+-- along (a mouth's from outside to inside); a way passing near a, then near b, passes it that way.
+-- ------------------------------------------------------------
+local NAMES_VERSION = 1
+local PLACE_BUCKET = 128      -- yards: the index's cells
+Walking.PLACE_REACH = { cave = 12, building = 12, tunnel = 15, gate = 12, bridge = 20 }   -- yards off a and b a way may pass
+Walking.PLACE_ALONG = 0.5     -- and the way between them at least this share of a to b: a way passing beside a mouth is not through it
+Walking.PLACE_AHEAD_YARDS = 150   -- a place this far ahead along the way is named on the arrow
+Walking.PLACE_PASSED_YARDS = 10   -- and still this far behind it
+-- what the arrow says, going a to b, then b to a
+local PLACE_VERBS = {
+    cave = { "Enter ", "Leave " }, building = { "Enter ", "Leave " },
+    tunnel = { "Go through ", "Go through " }, gate = { "Go through ", "Go through " },
+    bridge = { "Cross ", "Cross " },
+}
+local placeIndex = {}         -- world map id -> { [cell] = { place, ... } }, or false: none
+
+local function PlaceCell(cx, cy) return cx * 100003 + cy end
+
+--- A map's places, by the index cells their lines' boxes (with their reach) cover; nil when there are none.
+local function Places(mapID)
+    local index = placeIndex[mapID]
+    if index ~= nil then return index or nil end
+    local names = rawget(ns, "NavNames")
+    local rows = type(names) == "table" and names.version == NAMES_VERSION and names[mapID]
+    index = false
+    if type(rows) == "table" then
+        index = {}
+        for _, r in ipairs(rows) do
+            local kind, ax, ay, bx, by, label = r[1], r[2], r[3], r[4], r[5], r[7]
+            local reach = Walking.PLACE_REACH[kind]
+            if reach and type(ax) == "number" and type(ay) == "number" and type(bx) == "number" and type(by) == "number" and type(label) == "string" then
+                local place = { kind = kind, ax = ax, ay = ay, bx = bx, by = by, area = r[6], label = label }
+                for cx = floor((min(ax, bx) - reach) / PLACE_BUCKET), floor((max(ax, bx) + reach) / PLACE_BUCKET) do
+                    for cy = floor((min(ay, by) - reach) / PLACE_BUCKET), floor((max(ay, by) + reach) / PLACE_BUCKET) do
+                        local key = PlaceCell(cx, cy)
+                        local list = index[key]
+                        if not list then list = {} index[key] = list end
+                        list[#list + 1] = place
+                    end
+                end
+            end
+        end
+    end
+    placeIndex[mapID] = index
+    return index or nil
+end
+
+--- How near a way passes (x, y), and how many yards along it it is nearest.
+local function Nearest(pts, along, x, y)
+    local best, at = huge, 0
+    for i = 1, #pts - 1 do
+        local p, q = pts[i], pts[i + 1]
+        local dx, dy = q[1] - p[1], q[2] - p[2]
+        local len2 = dx * dx + dy * dy
+        local f = len2 > 0 and ((x - p[1]) * dx + (y - p[2]) * dy) / len2 or 0
+        if f < 0 then f = 0 elseif f > 1 then f = 1 end
+        local ex, ey = p[1] + dx * f - x, p[2] + dy * f - y
+        local d = ex * ex + ey * ey
+        if d < best then best, at = d, along[i] + f * sqrt(len2) end
+    end
+    return sqrt(best), at
+end
+
+--- The named places a way on a world map passes, in order: { at = yards along it, text = "Enter
+--- Fargodeep Mine", place }. Worked out once a way (kept on it): the cells its segments cross, and
+--- for each place there how near the way passes its two ends.
+function Walking:PlacesOn(mapID, way)
+    if way.places then return way.places end
+    local out = {}
+    way.places = out
+    local index = Places(mapID)
+    local pts = way.points
+    if not index or not pts or #pts < 2 then return out end
+    local along = { 0 }
+    for i = 2, #pts do along[i] = along[i - 1] + Flat(pts[i], pts[i - 1]) end
+    local seen = {}
+    for i = 1, #pts - 1 do
+        local p, q = pts[i], pts[i + 1]
+        for cx = floor(min(p[1], q[1]) / PLACE_BUCKET), floor(max(p[1], q[1]) / PLACE_BUCKET) do
+            for cy = floor(min(p[2], q[2]) / PLACE_BUCKET), floor(max(p[2], q[2]) / PLACE_BUCKET) do
+                for _, place in ipairs(index[PlaceCell(cx, cy)] or NONE) do
+                    if not seen[place] then
+                        seen[place] = true
+                        local reach = self.PLACE_REACH[place.kind]
+                        local da, sa = Nearest(pts, along, place.ax, place.ay)
+                        local db, sb = Nearest(pts, along, place.bx, place.by)
+                        local length = sqrt((place.bx - place.ax) ^ 2 + (place.by - place.ay) ^ 2)
+                        if da <= reach and db <= reach and abs(sb - sa) >= self.PLACE_ALONG * length then
+                            local verb = PLACE_VERBS[place.kind][sa <= sb and 1 or 2]
+                            out[#out + 1] = { at = (sa + sb) / 2, text = verb .. place.label, place = place }
+                        end
+                    end
+                end
+            end
+        end
+    end
+    table.sort(out, function(x, y) return x.at < y.at end)
+    return out
+end
+
+--- The next named place on a way, with `left` yards of it still to walk: its text, or nil when none is
+--- within PLACE_AHEAD_YARDS ahead (or just passed).
+function Walking:PlaceAhead(mapID, way, left)
+    if not way or not left then return nil end
+    local here = (way.yards or 0) - left
+    for _, p in ipairs(self:PlacesOn(mapID, way)) do
+        if p.at >= here - self.PLACE_PASSED_YARDS then
+            return p.at - here <= self.PLACE_AHEAD_YARDS and p.text or nil
+        end
+    end
+    return nil
+end
+
+--- Read the named places again (the tests; a new release's data).
+function Walking:ForgetPlaces()
+    placeIndex = {}
+end
+
 function Walking:OnInit()
     self:Load()
     -- a level up makes zones safer: the ways remembered are searched again
