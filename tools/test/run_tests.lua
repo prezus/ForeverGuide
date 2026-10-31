@@ -5891,6 +5891,20 @@ end)
 section("walking paths: a walk names the places its way passes, entering, leaving and crossing (codex #696)", function()
     local W, Nav, M = ns.Walking, ns.Navigation, MOCK
     local shipped = rawget(ns, "NavNames")
+    -- the shipped places are only those named by their own area: no caption from them says "the cave" or "the building"
+    need(type(shipped) == "table" and shipped.version == 1, "Nav/NavNames.lua loads with the addon")
+    local rows, unnamed, named = 0, {}, {}
+    for _, list in pairs(shipped) do
+        if type(list) == "table" then
+            for _, r in ipairs(list) do
+                rows = rows + 1
+                if r[7] == "the " .. tostring(r[1]) then unnamed[#unnamed + 1] = r[7] end
+                named[r[7]] = true
+            end
+        end
+    end
+    check(rows > 0 and #unnamed == 0, "every shipped place has a name of its own (" .. rows .. " places, " .. #unnamed .. " called only by their kind)")
+    check(named["Fargodeep Mine"] and named["the Thandol Span"] and named["Dun Algaz"], "Fargodeep Mine, the Thandol Span and Dun Algaz are among them")
     -- a mine's mouth at x 0-16 along y 0, a bridge from (300, -30) to (300, 30), a building's door at x 600
     ns.NavNames = { version = 1, [9999] = {
         { "cave", 0, 0, 16, 0, 57, "Fargodeep Mine" },

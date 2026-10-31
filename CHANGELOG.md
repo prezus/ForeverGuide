@@ -1,7 +1,7 @@
 # Changelog
 
 ## Unreleased
-- The arrow names the places a walk passes as you come to them: "Enter Fargodeep Mine", "Cross the Thandol Span", "Go through Dun Algaz", "Leave the cave".
+- The arrow names the places a walk passes as you come to them: "Enter Fargodeep Mine", "Cross the Thandol Span", "Go through Dun Algaz". For now, only places the game names: mines, caves and dens, spans and passes.
 - Guides: quest data follows the released game: givers, turn-ins and where NPCs and objectives stand, from Questie's newest Forever data, and flight paths from the released client.
 - Guides: Street's Speed Demon v9, a route any Alliance character can choose in the route list, starting in Coldridge Valley: 17
 - Guides: Street's Speed Demon v8, a route any Alliance character can choose in the route list, starting in Coldridge Valley: adding nelf
