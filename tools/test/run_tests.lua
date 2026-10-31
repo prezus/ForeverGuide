@@ -801,6 +801,57 @@ section("a hearth step naming the zone is done when bound at a town inside it", 
     Z.names[999350], Z.names[999351], Z.names[999352], Z.parent[999351], Z.parent[999352] = nil, nil, nil, nil, nil
     MOCK.bind = was
 end)
+-- TUGs' hearth steps name the zone and the inn's coordinates, no innkeeper (forever-codex#956)
+section("a hearth step naming no innkeeper takes its zone's inn nearest its coordinates", function()
+    local was, wasFaction = ns.InnDB, MOCK.faction
+    MOCK.faction, ns.Player.cache = "Alliance", {}
+    ns.InnDB = {
+        [999401] = { n = "Keeper North", faction = "A", map = 1429, x = 40, y = 20, zone = "Test Vale", town = "North Hamlet" },
+        [999402] = { n = "Keeper South", faction = "A", map = 1429, x = 40, y = 70, zone = "Test Vale", town = "South Hamlet" },
+        [999403] = { n = "Keeper Horde", faction = "H", map = 1429, x = 41, y = 71, zone = "Test Vale", town = "South Camp" },
+        [999404] = { n = "Keeper Elsewhere", faction = "A", map = 1429, x = 40, y = 69, zone = "Other Vale", town = "Elsewhere" },
+        [999405] = { n = "Keeper Both", map = 1429, x = 80, y = 80, zone = "Both Vale", town = "Both Town" },
+    }
+    local D = ns.DB
+    local function keeper(s) local inn = D:InnForStep(s) return inn and inn.npc end
+    local south = { type = "HEARTH", zone = "Test Vale", x = 41, y = 71 }
+    check(keeper(south) == 999402, "the zone's inn nearest the step, not the other side's nearer one nor another zone's (" .. tostring(keeper(south)) .. ")")
+    check(keeper({ type = "HEARTH", zone = "Test Vale", x = 40, y = 25 }) == 999401, "the other inn of the zone when nearer it")
+    check(keeper({ type = "HEARTH", zone = "Test Vale" }) == 999401, "no coordinates: the zone's lowest innkeeper id")
+    check(keeper({ type = "HEARTH", zone = "Both Vale", x = 80, y = 80 }) == 999405, "an inn both sides use")
+    check(keeper({ type = "HEARTH", zone = "Test Vale", map = 1426, x = 41, y = 71 }) == nil, "a step on another map than the zone's inns: none")
+    check(keeper({ type = "HEARTH", zone = "Nowhere", x = 41, y = 71 }) == nil, "a zone with no inn: none")
+    check(keeper({ type = "HEARTH", npc = 295, zone = "Test Vale", x = 41, y = 71 }) == nil, "a step that names its innkeeper keeps it")
+    MOCK.faction, ns.Player.cache = "Horde", {}
+    check(keeper(south) == 999403, "a Horde character gets the Horde inn")
+    MOCK.faction, ns.Player.cache = "Alliance", {}
+
+    ns.RegisterGuide({ id = "INN_TEST", name = "inn test", steps = {
+        { type = "HEARTH", zone = "Test Vale", x = 41, y = 71, note = "Set your to Test Vale at" },
+        { type = "NOTE", text = "end" } } })
+    G:Activate("INN_TEST", true); settle()
+    check(cur() == 1 and step().type == "HEARTH", "on the hearth step (" .. tostring(cur()) .. ")")
+    local text = G:GetStepText(step())
+    check(text == "Set your hearthstone with Keeper South (Test Vale)",
+        "the step names the inferred innkeeper (" .. tostring(text) .. ")")
+    local loc = ns.Navigation:DBLocationForStep(step())
+    check(loc and loc.id == 999402 and loc.map == 1429 and loc.x == 40 and loc.y == 70, "the arrow's place is the innkeeper (" .. tostring(loc and loc.id) .. ")")
+    local function bindWith(npcID)
+        MOCK.npc = { npcID = npcID, name = "Keeper", level = 30 }
+        MOCK_FIRE("HEARTHSTONE_BOUND"); settle()
+        MOCK.npc = nil
+    end
+    bindWith(999401)
+    check(cur() == 1, "binding with the zone's other innkeeper leaves the step open (" .. tostring(cur()) .. ")")
+    bindWith(999402)
+    check(cur() == 2, "binding with the inferred innkeeper completes it (" .. tostring(cur()) .. ")")
+    G.progress.done[1] = nil; G:SetStep(1); settle()
+    ns.InnDB = nil
+    check(ns.DB:InnForStep(step()) == nil, "with no inn data there is no inferred innkeeper")
+    bindWith(999401)
+    check(cur() == 2, "with no inn data any bind completes it, as before (" .. tostring(cur()) .. ")")
+    ns.InnDB, MOCK.faction, ns.Player.cache = was, wasFaction, {}
+end)
 -- The extra quest panel follows the guide window but never duplicates a routed quest.
 section("The extra quest panel follows the guide window but never duplicates a routed quest", function()
     local f = ns.QuestGuide.frame

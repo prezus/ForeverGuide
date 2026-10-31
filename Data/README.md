@@ -63,6 +63,7 @@ Fields of a decoded record:
 | `ObjectDB.lua` | `ns.ObjectDB[objectID]`| `n`, `zone`, `sp`, `starts`, `ends` |
 | `ItemDB.lua`   | `ns.ItemDB[itemID]`    | `n`, `npc` drop sources, `obj` object sources, `startq` quest started by the item, `vendors`, `quests` |
 | `ZoneDB.lua`   | `ns.ZoneDB`            | `areaToMap[areaID] = uiMapID` (Classic Era ids, identical on WoW Forever), `names[areaID]`, `parent[areaID]` (sub-zone to zone), `mapNames[uiMapID]` / `mapParent[uiMapID]` (Forever maps) |
+| `ZoneDB.lua`   | `ns.InnDB`             | `[npcID] = { n, faction?, map, x, y, zone, town }`: every innkeeper a hearthstone binds at, as plain tables; `faction` is `"A"` or `"H"`, absent for both; `town` is what `GetBindLocation()` names once bound there. A HEARTH step naming no innkeeper takes its zone's inn nearest its coordinates (`DB:InnForStep`) |
 
 Only NPCs, objects and items that matter for quests are included. Coordinates are 0-100 on the
 zone's uiMapID. Race bits: Human 1, Orc 2, Dwarf 4, Night Elf 8, Undead 16, Tauren 32, Gnome 64,

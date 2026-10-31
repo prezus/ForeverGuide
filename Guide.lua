@@ -17,7 +17,8 @@
 --   TRAIN    [spell]         spell known; without one, the trainer's window opening
 --   SKILL    profession skill the profession at that rank
 --   USEHEARTH                the hearthstone cast (or manual)
---   HEARTH   npc [zone]      hearthstone bound (HEARTHSTONE_BOUND) while talking to that innkeeper;
+--   HEARTH   npc [zone]      hearthstone bound (HEARTHSTONE_BOUND) while talking to that innkeeper
+--                            (with no npc: the zone's inn nearest x, y, DB:InnForStep);
 --                            bind location == zone, or a town inside it (GetBindLocation), for a bind
 --                            made earlier; else manual
 --   TRAVEL   map x y [radius] arriving within radius (Navigation) — auto; one into another zone is
@@ -1541,7 +1542,8 @@ function Guide:GetStepText(step)
         local where = (t == "FLY" and step.place) or step.zone or (step.x and step.y and string.format("%.1f, %.1f", step.x, step.y))
         return verb .. " " .. (where or "destination")
     elseif t == "HEARTH" then
-        local keeper = step.npcName or (step.npc and DB and DB:NPCName(step.npc))
+        local inn = not step.npc and DB and DB:InnForStep(step)
+        local keeper = step.npcName or (step.npc and DB and DB:NPCName(step.npc)) or (inn and inn.n)
         if keeper then return "Set your hearthstone with " .. keeper .. (step.zone and (" (" .. step.zone .. ")") or "") end
         return verb .. " " .. (step.zone or "the inn")
     elseif t == "USEHEARTH" then
@@ -1625,13 +1627,16 @@ function Guide:OnInit()
         if not step.npc or not npc or step.npc == npc.npcID then Guide:MarkDone(step.index, "flight path") end
     end)
     -- HEARTH steps complete when the hearthstone is bound while the step is the current one, unless
-    -- the NPC still open is another innkeeper. The inn's name does not matter here; GetBindLocation()
-    -- only covers a bind made before the step (see IsStepDone).
+    -- the NPC still open is another innkeeper: the step's own, or for a step that names none, its
+    -- zone's inn nearest its coordinates (DB:InnForStep). The inn's name does not matter here;
+    -- GetBindLocation() only covers a bind made before the step (see IsStepDone).
     ns.Events:Register("HEARTHSTONE_BOUND", function()
         local step = Guide:GetCurrentStep()
         if not step or step.type ~= "HEARTH" then return end
         local npc = ns.Player:GetInteractionNPC()
-        if not step.npc or not npc or step.npc == npc.npcID then Guide:MarkDone(step.index, "hearth bound") end
+        local inn = not step.npc and ns.DB and ns.DB:InnForStep(step)
+        local keeper = step.npc or (inn and inn.npc)
+        if not keeper or not npc or keeper == npc.npcID then Guide:MarkDone(step.index, "hearth bound") end
     end)
     ns.Events:Register("UI_INFO_MESSAGE", function(_, _, message)
         local step = Guide:GetCurrentStep()
