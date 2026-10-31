@@ -6181,6 +6181,7 @@ ns.NpcDB = {
 [270419]=[[{f="A",max=60,min=60,n="Credit",rank=0,sp={[1657]={{41,43.6}}},zone=1657}]],
 [270420]=[[{max=60,min=60,n="Credit",rank=0,sp={[1657]={{66.5,15.4}}},zone=1657}]],
 [270421]=[[{max=60,min=60,n="Credit",rank=0,sp={[1657]={{89.1,34.8}}},zone=1657}]],
+[270424]=[[{max=0,min=0,n="Credit",rank=0}]],
 [270426]=[[{max=0,min=0,n="Credit",rank=0}]],
 [270438]=[[{ends={98094,98095},max=30,min=30,n="Deathstalker Masoj",rank=0,sp={[267]={{63.6,53.1}}},starts={98095},zone=267}]],
 [270459]=[[{f="A",max=28,min=28,n="Alfina Nightgaze",rank=0,sp={[36]={{11.8,56.6}}},starts={6121,94912},sub="Druid Trainer",zone=36}]],
