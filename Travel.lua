@@ -11,7 +11,7 @@
 --
 -- The plan is Dijkstra over the start, the target, the flight masters the
 -- character knows, the links' ends, the bind point and the teleports'
--- landings. Walking is straight-line yards x WALK_DETOUR at the run speed,
+-- landings. Walking is straight-line yards x the walk detour at the run speed,
 -- or, where the walking maps have found the way (opts.walk), its own yards;
 -- and only within one world map (a continent, or Zephras Isle). A flight
 -- boards once (TravelDB.flightBoard) and may chain direct flights through
@@ -30,8 +30,11 @@ local Travel = ns:NewModule("Travel")
 
 local sqrt, huge, floor, max = math.sqrt, math.huge, math.floor, math.max
 
-Travel.WALK_DETOUR = 1.2      -- straight-line yards to walked yards; #695 fits it to recorded runs
+-- TravelDB's measures from players' recorded runs (walkDetour, runSpeed, hearth; codex #907) replace these
+-- three where it carries them: Travel.WalkDetour, Travel.DefaultSpeed, Travel.HearthSeconds.
+Travel.WALK_DETOUR = 1.2      -- straight-line yards to walked yards
 Travel.DEFAULT_SPEED = 7      -- yards a second, a running character
+Travel.HEARTH_SECONDS = 10    -- the Hearthstone's cast to its landing on the same world map
 Travel.HEARTH_MARGIN = 120    -- seconds added to a Hearthstone's cost, not its time
 Travel.TELEPORT_MARGIN = 10   -- the same for a class teleport (a reagent, a cooldown)
 -- Each boarding (a flight, a boat, a zeppelin, the tram, a lift, a portal) costs this many seconds more than
@@ -47,6 +50,20 @@ local SAME_SPOT_YARDS = 5     -- a walk shorter than this is no leg
 local WALK_LEG = { kind = "walk" }   -- every walk the search tries is this one (read only)
 
 local graph   -- the flights and links, kept between plans (Static)
+
+--- TravelDB's measure `key` when it carries a positive number, else `fallback` (older data lacks them).
+local function Measured(key, fallback)
+    local v = ns.TravelDB and ns.TravelDB[key]
+    if type(v) == "number" and v > 0 and v < huge then return v end
+    return fallback
+end
+
+--- Straight-line yards to walked yards: TravelDB's walkDetour, else WALK_DETOUR.
+function Travel.WalkDetour() return Measured("walkDetour", Travel.WALK_DETOUR) end
+--- A running character's yards a second when the game gives none: TravelDB's runSpeed, else DEFAULT_SPEED.
+function Travel.DefaultSpeed() return Measured("runSpeed", Travel.DEFAULT_SPEED) end
+--- The Hearthstone's seconds, cast to landing on the same map: TravelDB's hearth, else HEARTH_SECONDS.
+function Travel.HearthSeconds() return Measured("hearth", Travel.HEARTH_SECONDS) end
 
 -- ------------------------------------------------------------
 -- World positions of map points, cached per point table
@@ -228,7 +245,7 @@ local function Build(from, to, opts)
         Edge(start, landing, seconds + margin, seconds, leg)
     end
     if opts.bind and opts.hearthWait then
-        Jump(opts.bind, opts.hearthWait, 10, Travel.HEARTH_MARGIN, { kind = "hearth", name = opts.bindName })
+        Jump(opts.bind, opts.hearthWait, Travel.HearthSeconds(), Travel.HEARTH_MARGIN, { kind = "hearth", name = opts.bindName })
     end
     for _, t in ipairs(opts.teleports or {}) do
         local spell = db.teleports and db.teleports[t.spell]
@@ -265,7 +282,8 @@ function Travel:Plan(from, to, opts)
     opts = opts or {}
     local nodes, edges, start, target, walkTo = Build(from, to, opts)
     if not nodes[start].w or not nodes[target].w then return nil, "nowhere" end
-    local speed = (opts.speed and opts.speed > 0) and opts.speed or Travel.DEFAULT_SPEED
+    local speed = (opts.speed and opts.speed > 0) and opts.speed or Travel.DefaultSpeed()
+    local detour = Travel.WalkDetour()
     local now, departures = opts.now, opts.departures
 
     local cost, seconds, prev, via, done, heap = work.cost, work.seconds, work.prev, work.via, work.done, work.heap
@@ -315,7 +333,7 @@ function Travel:Plan(from, to, opts)
                         -- a found way's yards; priced with what its towns and dangerous zones add (#747)
                         local walked, priced
                         if opts.walk then walked, priced = opts.walk(nu.w, nv.w) end
-                        local s = (walked or Yards(nu.w, nv.w) * Travel.WALK_DETOUR) / speed
+                        local s = (walked or Yards(nu.w, nv.w) * detour) / speed
                         Relax(u, v, priced and priced / speed or s, s, WALK_LEG)
                     end
                 end
@@ -576,7 +594,7 @@ function Travel.RunSpeed()
     local _, run = Safe(rawget(_G, "GetUnitSpeed"), "player")
     run = PlainNumber(run)
     if run and run > 0 and run < math.huge then lastSpeed = run end
-    return lastSpeed or Travel.DEFAULT_SPEED
+    return lastSpeed or Travel.DefaultSpeed()
 end
 
 --- Forget the last run speed (the tests).

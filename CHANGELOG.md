@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- The travel planner times the Hearthstone, walks and your run speed from players' recorded runs once the data carries them (about 11.6 s for a Hearthstone, walks a little shorter than the old guess); with older data it keeps its own estimates.
 - Guides: quest data follows the released game: givers, turn-ins and where NPCs and objectives stand, from Questie's newest Forever data, and flight paths from the released client.
 - Guides: Street's Speed Demon v9, a route any Alliance character can choose in the route list, starting in Coldridge Valley: 17
 - Guides: Street's Speed Demon v8, a route any Alliance character can choose in the route list, starting in Coldridge Valley: adding nelf

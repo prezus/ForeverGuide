@@ -77,6 +77,9 @@ flightNodes = {
 [3276]={at={A={map=2548,x=60.6,y=81.6}},faction="A",name="Farholde Keep, Riverglades"},
 },
 flightBoard = 15,
+hearth = 11.6,
+runSpeed = 6.83,
+walkDetour = 1.1,
 flights = {
 [2]={[4]=72.8,[5]=105.6,[6]=242.4,[12]=108.8,[19]=228.7,[45]=165.1,[71]=147.1},
 [4]={[2]=76.3,[5]=121.6,[12]=90.5,[19]=173.8},
