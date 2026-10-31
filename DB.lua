@@ -110,6 +110,35 @@ function DB:NPCName(id)
     return n and n.n or nil
 end
 
+--- Who may bind at an inn, as `ns.InnDB` writes a side.
+local INN_SIDE = { Alliance = "A", Horde = "H" }
+
+--- The inn a HEARTH step that names no innkeeper means (forever-codex#956): TUGs' hearth steps carry
+--- the inn's zone and coordinates and no `npc`. Of `ns.InnDB`'s inns in the step's zone (on its map,
+--- when the step has one) that the character's side may bind at, the one nearest the step's
+--- coordinates; equally near, the lowest npc id. Nil for a step that names its innkeeper, or when no
+--- inn matches. Returns { npc, n, map, x, y, zone, town }.
+function DB:InnForStep(step)
+    local inns = ns.InnDB
+    if not inns or not step or step.type ~= "HEARTH" or step.npc or not step.zone then return nil end
+    local side = ns.Player and INN_SIDE[ns.Player:GetFaction() or ""]
+    local bestId, bestD
+    for npc, inn in pairs(inns) do
+        if inn.zone == step.zone and (not step.map or inn.map == step.map)
+            and (not inn.faction or not side or inn.faction == side) then
+            local d = 0
+            if step.x and step.y then
+                local dx, dy = inn.x - step.x, inn.y - step.y
+                d = dx * dx + dy * dy
+            end
+            if not bestD or d < bestD or (d == bestD and npc < bestId) then bestId, bestD = npc, d end
+        end
+    end
+    if not bestId then return nil end
+    local inn = inns[bestId]
+    return { npc = bestId, n = inn.n, map = inn.map, x = inn.x, y = inn.y, zone = inn.zone, town = inn.town }
+end
+
 function DB:ObjectName(id)
     local o = self:GetObject(id)
     return o and o.n or nil
