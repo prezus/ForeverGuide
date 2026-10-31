@@ -1039,6 +1039,10 @@ function Nav:DBLocationForStep(step, around)
     local locs
     if step.npc and (t == "TALK" or t == "TRAIN" or t == "FLY" or t == "ACCEPT" or t == "TURNIN" or t == "HEARTH") then
         locs = DB:NPCLocations(step.npc)
+    elseif t == "HEARTH" then
+        -- a hearth step naming no innkeeper: its zone's inn (forever-codex#956)
+        local inn = DB:InnForStep(step)
+        if inn then locs = { { map = inn.map, x = inn.x, y = inn.y, kind = "npc", id = inn.npc, name = inn.n } } end
     end
     if (not locs or #locs == 0) and step.quest then
         if t == "ACCEPT" then
