@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Walking: walks find Ironforge's halls under the mountain, and keep nearer the straight line across open ground (Coldridge Valley, Kharanos).
 - Guides: quest data current with Wowhead for Street's Speed Demon's quests; quests Wowhead closes to Humans alone stay open to every Alliance race.
 - Guides: where the sources disagree on where an NPC or object stands, the place players met it wins.
 - Guides: the zones' inns, so a hearth step that names no innkeeper points at one.
