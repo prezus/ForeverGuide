@@ -301,7 +301,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_05_13_15_DARKSHORE",
     name = "13-15 Darkshore",
-    version = 2,
+    version = 3,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -309,7 +309,7 @@ ns.RegisterGuide({
     minLevel = 13,
     maxLevel = 15,
     next = "GEN_ALLIANCE_SPEED_DEMON_DWARF_06_15_16_WESTFALL",
-    stepCount = 72,
+    stepCount = 74,
     steps = [[{
 {type="ACCEPT",quest=963,questName="For Love Eternal",npc=3644,npcName="Cerellean Whiteclaw",map=1439,zone="Darkshore",x=35.8,y=43.7},
 {type="ACCEPT",quest=947,questName="Cave Mushrooms",npc=3583,npcName="Barithras Moonshade",map=1439,zone="Darkshore",x=37.3,y=43.8},
@@ -366,6 +366,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=957,questName="Bashal'Aran",npc=3650,npcName="Asterion",map=1439,zone="Darkshore",x=44.2,y=36.3},
 {type="COMPLETE",quest=947,questName="Cave Mushrooms",map=1439,zone="Darkshore",x=55.13,y=34.59},
 {type="COMPLETE",quest=2138,questName="Cleansing of the Infected",map=1439,zone="Darkshore",x=54.6,y=31.8},
+{type="ACCEPT",quest=4727,questName="Beached Sea Turtle",map=1439,zone="Darkshore",x=53.1,y=18.2},
 {type="COMPLETE",quest=4762,questName="The Cliffspring River",objective=1,map=1439,zone="Darkshore",x=50.9,y=25.3},
 {type="ACCEPT",quest=4725,questName="Beached Sea Turtle",map=1439,zone="Darkshore",x=44.2,y=20.8},
 {type="COMPLETE",quest=982,questName="Deep Ocean, Vast Sea",objective=2,map=1439,zone="Darkshore",x=39.6,y=27.5},
@@ -382,6 +383,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=4813,questName="The Fragments Within",npc=2930,npcName="Sentinel Glynda Nal'Shea",map=1439,zone="Darkshore",x=37.7,y=43.5},
 {type="ACCEPT",quest=4740,questName="WANTED: Murkdeep!",map=1439,zone="Darkshore",x=37.3,y=44.2},
 {type="TURNIN",quest=4725,questName="Beached Sea Turtle",npc=10219,npcName="Gwennyth Bly'Leggonde",map=1439,zone="Darkshore",x=36.6,y=45.5},
+{type="TURNIN",quest=4727,questName="Beached Sea Turtle",npc=10219,npcName="Gwennyth Bly'Leggonde",map=1439,zone="Darkshore",x=36.6,y=45.4},
 {type="USEHEARTH",zone="Westfall",note="Hearth to Sentinel Hill"}
 }]],
 })
@@ -473,6 +475,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_08_17_20_DARKSHORE_ASHENVALE",
     name = "17-20 Darkshore/Ashenvale",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -584,6 +587,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_09_19_19_5_RUINS_OF_LORDAERON",
     name = "19-19.5 Ruins of Lordaeron",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1157,6 +1161,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_19_30_31_CITY_OF_DALARAN_HILLSBRAD",
     name = "30-31 City of Dalaran/Hillsbrad",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1212,6 +1217,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_20_31_31_GNOMER",
     name = "31-31 Gnomer",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1283,6 +1289,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_22_32_33_THOUSAND_NEEDLES",
     name = "32-33 Thousand Needles",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1488,6 +1495,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_26_38_39_DUSTWALLOW_MARSH_STV",
     name = "38-39 Dustwallow Marsh,STV",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1607,6 +1615,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_27_40_43_BADLANDS_ULDAMAN",
     name = "40-43 Badlands,Uldaman",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1741,6 +1750,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_28_41_44_TANARIS_STV",
     name = "41-44 Tanaris,STV",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1900,6 +1910,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_29_44_45_FERALAS",
     name = "44-45 Feralas",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -1975,6 +1986,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_30_45_47_TANARIS_HINTERLANDS",
     name = "45-47 Tanaris,Hinterlands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2096,6 +2108,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_31_47_49_SEARING_GORGE",
     name = "47-49 Searing Gorge",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2272,6 +2285,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_32_49_51_UN_GORO",
     name = "49-51 Un'Goro",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2359,6 +2373,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_33_52_53_FELWOOD",
     name = "52-53 Felwood",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2582,6 +2597,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_34_53_54_FELWOOD_WINTERSPRING_UN_GORO",
     name = "53-54 Felwood,Winterspring,Un'Goro",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2633,6 +2649,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_35_54_55_SUNKEN_TEMPLE",
     name = "54-55 Sunken Temple",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2674,6 +2691,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_36_55_56_BLASTED_LANDS",
     name = "55-56 Blasted Lands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2729,6 +2747,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_37_55_56_BS_WPL",
     name = "55-56 BS,WPL",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2823,6 +2842,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_38_56_60_WPL_EPL_BS",
     name = "56-60 WPL,EPL,BS",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -2950,6 +2970,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_39_58_60_AZSHARA",
     name = "58-60 Azshara",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -3018,6 +3039,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_40_58_60_WINTERSPRING_MOONGLADE",
     name = "58-60 Winterspring,Moonglade",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -3069,6 +3091,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_41_58_60_BRD",
     name = "58-60 BRD",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -3132,6 +3155,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_42_58_60_PLAGUELANDS",
     name = "58-60 Plaguelands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -3248,6 +3272,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_43_59_60_SILITHUS",
     name = "59-60 Silithus",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -3308,6 +3333,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_44_60_60_BLACKROCK_SPIRE",
     name = "60-60 Blackrock Spire",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -3394,6 +3420,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_45_60_60_DIRE_MAUL",
     name = "60-60 Dire Maul",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -3442,6 +3469,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_46_60_60_STRATHOLME",
     name = "60-60 Stratholme",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -3495,6 +3523,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_DWARF_47_60_60_SCHOLOMANCE",
     name = "60-60 Scholomance",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -3835,7 +3864,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_05_13_15_DARKSHORE",
     name = "13-15 Darkshore",
-    version = 2,
+    version = 3,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -3843,7 +3872,7 @@ ns.RegisterGuide({
     minLevel = 13,
     maxLevel = 15,
     next = "GEN_ALLIANCE_SPEED_DEMON_GNOME_06_15_16_WESTFALL",
-    stepCount = 72,
+    stepCount = 74,
     steps = [[{
 {type="ACCEPT",quest=963,questName="For Love Eternal",npc=3644,npcName="Cerellean Whiteclaw",map=1439,zone="Darkshore",x=35.8,y=43.7},
 {type="ACCEPT",quest=947,questName="Cave Mushrooms",npc=3583,npcName="Barithras Moonshade",map=1439,zone="Darkshore",x=37.3,y=43.8},
@@ -3900,6 +3929,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=957,questName="Bashal'Aran",npc=3650,npcName="Asterion",map=1439,zone="Darkshore",x=44.2,y=36.3},
 {type="COMPLETE",quest=947,questName="Cave Mushrooms",map=1439,zone="Darkshore",x=55.13,y=34.59},
 {type="COMPLETE",quest=2138,questName="Cleansing of the Infected",map=1439,zone="Darkshore",x=54.6,y=31.8},
+{type="ACCEPT",quest=4727,questName="Beached Sea Turtle",map=1439,zone="Darkshore",x=53.1,y=18.2},
 {type="COMPLETE",quest=4762,questName="The Cliffspring River",objective=1,map=1439,zone="Darkshore",x=50.9,y=25.3},
 {type="ACCEPT",quest=4725,questName="Beached Sea Turtle",map=1439,zone="Darkshore",x=44.2,y=20.8},
 {type="COMPLETE",quest=982,questName="Deep Ocean, Vast Sea",objective=2,map=1439,zone="Darkshore",x=39.6,y=27.5},
@@ -3916,6 +3946,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=4813,questName="The Fragments Within",npc=2930,npcName="Sentinel Glynda Nal'Shea",map=1439,zone="Darkshore",x=37.7,y=43.5},
 {type="ACCEPT",quest=4740,questName="WANTED: Murkdeep!",map=1439,zone="Darkshore",x=37.3,y=44.2},
 {type="TURNIN",quest=4725,questName="Beached Sea Turtle",npc=10219,npcName="Gwennyth Bly'Leggonde",map=1439,zone="Darkshore",x=36.6,y=45.5},
+{type="TURNIN",quest=4727,questName="Beached Sea Turtle",npc=10219,npcName="Gwennyth Bly'Leggonde",map=1439,zone="Darkshore",x=36.6,y=45.4},
 {type="USEHEARTH",zone="Westfall",note="Hearth to Sentinel Hill"}
 }]],
 })
@@ -4007,6 +4038,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_08_17_20_DARKSHORE_ASHENVALE",
     name = "17-20 Darkshore/Ashenvale",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -4118,6 +4150,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_09_19_19_5_RUINS_OF_LORDAERON",
     name = "19-19.5 Ruins of Lordaeron",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -4691,6 +4724,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_19_30_31_CITY_OF_DALARAN_HILLSBRAD",
     name = "30-31 City of Dalaran/Hillsbrad",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -4746,6 +4780,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_20_31_31_GNOMER",
     name = "31-31 Gnomer",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -4817,6 +4852,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_22_32_33_THOUSAND_NEEDLES",
     name = "32-33 Thousand Needles",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -5022,6 +5058,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_26_38_39_DUSTWALLOW_MARSH_STV",
     name = "38-39 Dustwallow Marsh,STV",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -5141,6 +5178,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_27_40_43_BADLANDS_ULDAMAN",
     name = "40-43 Badlands,Uldaman",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -5275,6 +5313,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_28_41_44_TANARIS_STV",
     name = "41-44 Tanaris,STV",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -5434,6 +5473,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_29_44_45_FERALAS",
     name = "44-45 Feralas",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -5509,6 +5549,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_30_45_47_TANARIS_HINTERLANDS",
     name = "45-47 Tanaris,Hinterlands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -5630,6 +5671,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_31_47_49_SEARING_GORGE",
     name = "47-49 Searing Gorge",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -5806,6 +5848,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_32_49_51_UN_GORO",
     name = "49-51 Un'Goro",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -5893,6 +5936,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_33_52_53_FELWOOD",
     name = "52-53 Felwood",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6116,6 +6160,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_34_53_54_FELWOOD_WINTERSPRING_UN_GORO",
     name = "53-54 Felwood,Winterspring,Un'Goro",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6167,6 +6212,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_35_54_55_SUNKEN_TEMPLE",
     name = "54-55 Sunken Temple",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6208,6 +6254,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_36_55_56_BLASTED_LANDS",
     name = "55-56 Blasted Lands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6263,6 +6310,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_37_55_56_BS_WPL",
     name = "55-56 BS,WPL",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6357,6 +6405,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_38_56_60_WPL_EPL_BS",
     name = "56-60 WPL,EPL,BS",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6484,6 +6533,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_39_58_60_AZSHARA",
     name = "58-60 Azshara",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6552,6 +6602,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_40_58_60_WINTERSPRING_MOONGLADE",
     name = "58-60 Winterspring,Moonglade",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6603,6 +6654,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_41_58_60_BRD",
     name = "58-60 BRD",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6666,6 +6718,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_42_58_60_PLAGUELANDS",
     name = "58-60 Plaguelands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6782,6 +6835,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_43_59_60_SILITHUS",
     name = "59-60 Silithus",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6842,6 +6896,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_44_60_60_BLACKROCK_SPIRE",
     name = "60-60 Blackrock Spire",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6928,6 +6983,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_45_60_60_DIRE_MAUL",
     name = "60-60 Dire Maul",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -6976,6 +7032,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_46_60_60_STRATHOLME",
     name = "60-60 Stratholme",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -7029,6 +7086,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_GNOME_47_60_60_SCHOLOMANCE",
     name = "60-60 Scholomance",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -7338,7 +7396,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_04_13_15_DARKSHORE",
     name = "13-15 Darkshore",
-    version = 2,
+    version = 3,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -7346,7 +7404,7 @@ ns.RegisterGuide({
     minLevel = 13,
     maxLevel = 15,
     next = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_05_15_16_WESTFALL",
-    stepCount = 72,
+    stepCount = 74,
     steps = [[{
 {type="ACCEPT",quest=963,questName="For Love Eternal",npc=3644,npcName="Cerellean Whiteclaw",map=1439,zone="Darkshore",x=35.8,y=43.7},
 {type="ACCEPT",quest=947,questName="Cave Mushrooms",npc=3583,npcName="Barithras Moonshade",map=1439,zone="Darkshore",x=37.3,y=43.8},
@@ -7403,6 +7461,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=957,questName="Bashal'Aran",npc=3650,npcName="Asterion",map=1439,zone="Darkshore",x=44.2,y=36.3},
 {type="COMPLETE",quest=947,questName="Cave Mushrooms",map=1439,zone="Darkshore",x=55.13,y=34.59},
 {type="COMPLETE",quest=2138,questName="Cleansing of the Infected",map=1439,zone="Darkshore",x=54.6,y=31.8},
+{type="ACCEPT",quest=4727,questName="Beached Sea Turtle",map=1439,zone="Darkshore",x=53.1,y=18.2},
 {type="COMPLETE",quest=4762,questName="The Cliffspring River",objective=1,map=1439,zone="Darkshore",x=50.9,y=25.3},
 {type="ACCEPT",quest=4725,questName="Beached Sea Turtle",map=1439,zone="Darkshore",x=44.2,y=20.8},
 {type="COMPLETE",quest=982,questName="Deep Ocean, Vast Sea",objective=2,map=1439,zone="Darkshore",x=39.6,y=27.5},
@@ -7419,6 +7478,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=4813,questName="The Fragments Within",npc=2930,npcName="Sentinel Glynda Nal'Shea",map=1439,zone="Darkshore",x=37.7,y=43.5},
 {type="ACCEPT",quest=4740,questName="WANTED: Murkdeep!",map=1439,zone="Darkshore",x=37.3,y=44.2},
 {type="TURNIN",quest=4725,questName="Beached Sea Turtle",npc=10219,npcName="Gwennyth Bly'Leggonde",map=1439,zone="Darkshore",x=36.6,y=45.5},
+{type="TURNIN",quest=4727,questName="Beached Sea Turtle",npc=10219,npcName="Gwennyth Bly'Leggonde",map=1439,zone="Darkshore",x=36.6,y=45.4},
 {type="USEHEARTH",zone="Westfall",note="Hearth to Sentinel Hill"}
 }]],
 })
@@ -7510,6 +7570,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_07_17_20_DARKSHORE_ASHENVALE",
     name = "17-20 Darkshore/Ashenvale",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -7621,6 +7682,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_08_19_19_5_RUINS_OF_LORDAERON",
     name = "19-19.5 Ruins of Lordaeron",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -8194,6 +8256,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_18_30_31_CITY_OF_DALARAN_HILLSBRAD",
     name = "30-31 City of Dalaran/Hillsbrad",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -8249,6 +8312,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_19_31_31_GNOMER",
     name = "31-31 Gnomer",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -8320,6 +8384,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_21_32_33_THOUSAND_NEEDLES",
     name = "32-33 Thousand Needles",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -8525,6 +8590,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_25_38_39_DUSTWALLOW_MARSH_STV",
     name = "38-39 Dustwallow Marsh,STV",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -8644,6 +8710,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_26_40_43_BADLANDS_ULDAMAN",
     name = "40-43 Badlands,Uldaman",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -8778,6 +8845,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_27_41_44_TANARIS_STV",
     name = "41-44 Tanaris,STV",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -8937,6 +9005,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_28_44_45_FERALAS",
     name = "44-45 Feralas",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -9012,6 +9081,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_29_45_47_TANARIS_HINTERLANDS",
     name = "45-47 Tanaris,Hinterlands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -9133,6 +9203,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_30_47_49_SEARING_GORGE",
     name = "47-49 Searing Gorge",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -9309,6 +9380,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_31_49_51_UN_GORO",
     name = "49-51 Un'Goro",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -9396,6 +9468,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_32_52_53_FELWOOD",
     name = "52-53 Felwood",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -9619,6 +9692,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_33_53_54_FELWOOD_WINTERSPRING_UN_GORO",
     name = "53-54 Felwood,Winterspring,Un'Goro",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -9670,6 +9744,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_34_54_55_SUNKEN_TEMPLE",
     name = "54-55 Sunken Temple",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -9711,6 +9786,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_35_55_56_BLASTED_LANDS",
     name = "55-56 Blasted Lands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -9766,6 +9842,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_36_55_56_BS_WPL",
     name = "55-56 BS,WPL",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -9860,6 +9937,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_37_56_60_WPL_EPL_BS",
     name = "56-60 WPL,EPL,BS",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -9987,6 +10065,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_38_58_60_AZSHARA",
     name = "58-60 Azshara",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -10055,6 +10134,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_39_58_60_WINTERSPRING_MOONGLADE",
     name = "58-60 Winterspring,Moonglade",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -10106,6 +10186,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_40_58_60_BRD",
     name = "58-60 BRD",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -10169,6 +10250,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_41_58_60_PLAGUELANDS",
     name = "58-60 Plaguelands",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -10285,6 +10367,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_42_59_60_SILITHUS",
     name = "59-60 Silithus",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -10345,6 +10428,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_43_60_60_BLACKROCK_SPIRE",
     name = "60-60 Blackrock Spire",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -10431,6 +10515,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_44_60_60_DIRE_MAUL",
     name = "60-60 Dire Maul",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -10479,6 +10564,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_45_60_60_STRATHOLME",
     name = "60-60 Stratholme",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",
@@ -10532,6 +10618,7 @@ ns.RegisterGuide({
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SPEED_DEMON_NIGHTELF_46_60_60_SCHOLOMANCE",
     name = "60-60 Scholomance",
+    version = 1,
     kind = "alternate",
     routeLabel = "Street's Speed Demon",
     faction = "Alliance",

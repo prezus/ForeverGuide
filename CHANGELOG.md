@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: Street's Speed Demon v13, a route any Alliance character can choose in the route list, starting in Coldridge Valley: darkshore
 - Guides: Street's Speed Demon v12, a route any Alliance character can choose in the route list, starting in Coldridge Valley: added 40-60
 - Walking: walks find Ironforge's halls under the mountain, and keep nearer the straight line across open ground (Coldridge Valley, Kharanos).
 - Guides: quest data current with Wowhead for Street's Speed Demon's quests; quests Wowhead closes to Humans alone stay open to every Alliance race.
