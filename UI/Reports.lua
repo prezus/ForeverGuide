@@ -32,11 +32,11 @@ local REPORT_TEXT_MAX = 200
 Reports.TEXT_MAX = REPORT_TEXT_MAX
 function Reports:Prompt()
     if not prompt then
-        local f = Window("ForeverGuideReportPrompt", 420, 170, "Report a wrong step")
+        local f = Window("ForeverGuideReportPrompt", 420, 170, ns.L("Report a wrong step"))
         local hint = Theme.NewText(f, { size = 11, color = Theme.C.textDim, maxLines = 3 })
         hint:SetPoint("TOPLEFT", f, "TOPLEFT", 14, -42)
         hint:SetPoint("TOPRIGHT", f, "TOPRIGHT", -14, -42)
-        hint:SetText("What is wrong? Stand at the correct location or target the correct NPC first. Leave out names of players, characters and realms.")
+        hint:SetText(ns.L("What is wrong? Stand at the correct location or target the correct NPC first. Leave out names of players, characters and realms."))
         f.hint = hint
         local input = CreateFrame("EditBox", nil, f, "InputBoxTemplate")
         input:SetSize(376, 26)
@@ -45,9 +45,9 @@ function Reports:Prompt()
         input:SetMaxLetters(REPORT_TEXT_MAX)
         input:SetScript("OnEscapePressed", function(box) box:ClearFocus() f:Hide() end)
         f.input = input
-        local save = Theme.NewButton(f, "Save report", 110, 24, function()
+        local save = Theme.NewButton(f, ns.L("Save report"), 110, 24, function()
             local text = ns.Trim(input:GetText() or "")
-            if text == "" then ns.Warn("describe what is wrong before saving.") return end
+            if text == "" then ns.Warn(ns.L("describe what is wrong before saving.")) return end
             ns.Commands:Run("wrong " .. text)
             input:ClearFocus()
             f:Hide()
@@ -144,7 +144,7 @@ local function CopyWindow(name, title)
     end)
     text:SetHeight(330)
     scroll:SetScrollChild(text)
-    local selectAll = Theme.NewButton(f, "Select all", 86, 22, function() text:SetFocus() text:HighlightText() end)
+    local selectAll = Theme.NewButton(f, ns.L("Select all"), 86, 22, function() text:SetFocus() text:HighlightText() end)
     selectAll:SetPoint("TOPRIGHT", f, "TOPRIGHT", -42, -8)
     scroll:SetScript("OnMouseWheel", function(self, delta)
         self:SetVerticalScroll(math.max(0, math.min(self:GetVerticalScrollRange(), self:GetVerticalScroll() - delta * 60)))
@@ -155,25 +155,25 @@ end
 
 function Reports:ShowList()
     if not list then
-        local f = CopyWindow("ForeverGuideReports", "Reports (select text and copy)")
-        local clear = Theme.NewButton(f, "Clear all", 92, 22, function()
+        local f = CopyWindow("ForeverGuideReports", ns.L("Reports (select text and copy)"))
+        local clear = Theme.NewButton(f, ns.L("Clear all"), 92, 22, function()
             if not f.confirmClear then
                 f.confirmClear = true
-                f.clear.label:SetText("Confirm clear")
+                f.clear.label:SetText(ns.L("Confirm clear"))
                 return
             end
             ns.Commands:Run("reports clear")
             f.confirmClear = false
-            f.clear.label:SetText("Clear all")
+            f.clear.label:SetText(ns.L("Clear all"))
             Reports:ShowList()
         end)
         clear:SetPoint("RIGHT", f.selectAll, "LEFT", -8, 0)
         f.clear = clear
-        f:SetScript("OnHide", function() f.confirmClear = false clear.label:SetText("Clear all") end)
+        f:SetScript("OnHide", function() f.confirmClear = false clear.label:SetText(ns.L("Clear all")) end)
         list = f
     end
     local reports = ns.db.reports or {}
-    list.text:SetText(#reports > 0 and Export(reports) or "No reports yet. Use /fg wrong to add one.")
+    list.text:SetText(#reports > 0 and Export(reports) or ns.L("No reports yet. Use /fg wrong to add one."))
     list.scroll:SetVerticalScroll(0)
     list:Show()
 end

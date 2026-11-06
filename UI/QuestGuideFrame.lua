@@ -47,7 +47,7 @@ function QG:NewDrawer(f, title)
     Theme.Backdrop(d, "panel", ns.db.ui.opacity or 0.75)
     d.title = Theme.NewText(d, { fancy = true, size = 13, color = Theme.C.goldLight, oneLine = true })
     d.title:SetPoint("TOPLEFT", d, "TOPLEFT", 14, -10)
-    d.title:SetText(title)
+    d.title:SetText(ns.L(title))
     local scroll = CreateFrame("ScrollFrame", nil, d)
     scroll:SetPoint("TOPLEFT", d, "TOPLEFT", 6, -32)
     scroll:SetPoint("BOTTOMRIGHT", d, "BOTTOMRIGHT", -6, 6)
@@ -137,7 +137,7 @@ function QG:Create()
     scroll:SetScrollChild(f.list)
 
     -- quests in the log that no guide covers, under the window while its button is on
-    f.extra = self:NewDrawer(f, "UNKNOWN QUESTS")
+    f.extra = self:NewDrawer(f, ns.L("UNKNOWN QUESTS"))
 
     f.footerLine = f:CreateTexture(nil, "ARTWORK")
     f.footerLine:SetHeight(1)
@@ -152,13 +152,13 @@ function QG:Create()
         self.footerLine:SetPoint("TOPRIGHT", self, "TOPRIGHT", -12, -(height - FOOTER))
     end)
 
-    f.guideBtn = Theme.NewButton(f, "Details", 104, 24, function() QG:ToggleInfo() end, "compass")
-    f.guidesBtn = Theme.NewButton(f, "Guides", 104, 24, function() ns.UI:TogglePicker() end, "current")
+    f.guideBtn = Theme.NewButton(f, ns.L("Details"), 104, 24, function() QG:ToggleInfo() end, "compass")
+    f.guidesBtn = Theme.NewButton(f, ns.L("Guides"), 104, 24, function() ns.UI:TogglePicker() end, "current")
     f.guideBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 39)
     f.guidesBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 39)
     -- the panels under the window
-    f.unknownBtn = Theme.NewButton(f, "Unknown Quests", 104, 24, function() QG:ToggleDrawer("unknown") end)
-    f.dungeonsBtn = Theme.NewButton(f, "Dungeon Quests", 104, 24, function() QG:ToggleDrawer("dungeons") end)
+    f.unknownBtn = Theme.NewButton(f, ns.L("Unknown Quests"), 104, 24, function() QG:ToggleDrawer("unknown") end)
+    f.dungeonsBtn = Theme.NewButton(f, ns.L("Dungeon Quests"), 104, 24, function() QG:ToggleDrawer("dungeons") end)
     f.unknownBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 9)
     f.unknownBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOM", -3, 9)
     f.dungeonsBtn:SetPoint("BOTTOMLEFT", f, "BOTTOM", 3, 9)
@@ -189,10 +189,10 @@ function QG:Create()
                 local tt = rawget(_G, "GameTooltip")
                 if not tt then return end
                 tt:SetOwner(self, "ANCHOR_TOP")
-                tt:AddLine("Target the nearest quest mob", 1, 0.88, 0.55)
+                tt:AddLine(ns.L("Target the nearest quest mob"), 1, 0.88, 0.55)
                 local key = ns.MobMarker:TargetKey()
-                tt:AddLine(key and ("Key: " .. key) or "Bind a key: Key Bindings > AddOns > ForeverGuide", 0.85, 0.82, 0.75, true)
-                tt:AddLine("Press again if the first one is taken.", 0.66, 0.61, 0.52, true)
+                tt:AddLine(key and (ns.L("Key: ") .. key) or ns.L("Bind a key: Key Bindings > AddOns > ForeverGuide"), 0.85, 0.82, 0.75, true)
+                tt:AddLine(ns.L("Press again if the first one is taken."), 0.66, 0.61, 0.52, true)
                 tt:Show()
             end)
             tb:SetScript("OnLeave", function() local tt = rawget(_G, "GameTooltip") if tt then tt:Hide() end end)
@@ -500,12 +500,12 @@ function QG:CreateItemButton(f)
         local tt = rawget(_G, "GameTooltip")
         if not tt or not self.itemID then return end
         tt:SetOwner(self, "ANCHOR_LEFT")
-        if not pcall(tt.SetItemByID, tt, self.itemID) then tt:AddLine("Quest item", 1, 0.88, 0.55) end
+        if not pcall(tt.SetItemByID, tt, self.itemID) then tt:AddLine(ns.L("Quest item"), 1, 0.88, 0.55) end
         local key = ns.MobMarker and ns.MobMarker:TargetKey()
         if key and ns.MobMarker.Cfg().useItem ~= false then
-            tt:AddLine("Click to use.  " .. key .. " targets the quest mob and uses it too.", 0.66, 0.61, 0.52, true)
+            tt:AddLine(string.format(ns.L("Click to use.  %s targets the quest mob and uses it too."), key), 0.66, 0.61, 0.52, true)
         else
-            tt:AddLine("Click to use.", 0.66, 0.61, 0.52, true)
+            tt:AddLine(ns.L("Click to use."), 0.66, 0.61, 0.52, true)
         end
         tt:Show()
     end)
@@ -571,6 +571,12 @@ end
 
 -- ---- entries ---------------------------------------------------------------------------
 local function questTitle(step)
+    -- The compiled guide and quest database ship English names; prefer the client's cached/log
+    -- title so a Russian client can show its own localization, then retain the data fallback.
+    if step.quest and ns.Quest then
+        local localized = ns.Quest:GetTitle(step.quest)
+        if localized and localized ~= "" then return localized end
+    end
     if step.questName and step.questName ~= "" then return step.questName end
     if step.quest and ns.DB and ns.DB:IsLoaded() then
         local q = ns.DB:GetQuest(step.quest)
@@ -585,12 +591,18 @@ local function subtitle(G, step, idx)
     local DB = ns.DB
     if t == "ACCEPT" then
         local who = step.npcName or (step.npc and DB and DB:NPCName(step.npc))
-        return who and ("Accept from " .. who) or "Accept the quest"
+        return who and string.format(ns.L("Accept from %s"), who) or ns.L("Accept the quest")
     elseif t == "TURNIN" then
         local who = step.npcName or (step.npc and DB and DB:NPCName(step.npc))
-        return who and ("Turn in to " .. who) or "Turn in"
+        return who and string.format(ns.L("Turn in to %s"), who) or ns.L("Turn in")
     elseif t == "KILL" or t == "COLLECT" or t == "COMPLETE" then
-        local verb = t == "KILL" and "Kill" or (t == "COLLECT" and "Collect" or "Complete")
+        -- For quests in the player's log, C_QuestLog supplies the client's localized objective
+        -- text. Use it as the subtitle; the guide's target/note remains the fallback off quest.
+        if step.quest and ns.Quest then
+            local objective = ns.Quest:GetObjective(step.quest, G:StepObjectiveIndex(step) or 1)
+            if objective and objective.text and objective.text ~= "" then return objective.text end
+        end
+        local verb = ns.L(t == "KILL" and "Kill" or (t == "COLLECT" and "Collect" or "Complete"))
         local target = step.target
         if not target and step.quest and DB and DB:IsLoaded() then
             local objs = DB:QuestObjectives(step.quest)
@@ -630,10 +642,10 @@ end
 local function rowTitle(G, step)
     local t = step.type
     if step.quest then return questTitle(step) or G:GetStepText(step) end
-    if t == "NOTE" then return step.text or "Note" end
+    if t == "NOTE" then return step.text or ns.L("Note") end
     if t == "GRIND" then return G:GetStepText(step) end
-    if t == "FLY" and step.place then return "Fly to " .. step.place end
-    if t == "TRAVEL" or t == "FLY" then return (step.zone and ("Travel to " .. step.zone)) or "Travel" end
+    if t == "FLY" and step.place then return string.format(ns.L("Fly to %s"), step.place) end
+    if t == "TRAVEL" or t == "FLY" then return (step.zone and string.format(ns.L("Travel to %s"), step.zone)) or ns.L("Travel") end
     return G:GetStepText(step)
 end
 
@@ -681,12 +693,12 @@ function QG:BuildGuideEntries()
             if state ~= "done" and state ~= "skipped" and (gate or (deferred and not ns.Quest:IsOnQuest(s.quest))) then
                 state = "blocked"
                 local q = ns.DB and ns.DB:GetQuest(s.quest)
-                sub = string.format("Needs level %d - skipped until then", gate or (q and q.req) or 0)
+                sub = string.format(ns.L("Needs level %d - skipped until then"), gate or (q and q.req) or 0)
             end
             local title = (forTag(s) and ((rowTitle(G, s) or "") .. " " .. forTag(s))) or rowTitle(G, s)
             if state == "skipped" then
                 title = "|cffd99a4dSkipped:|r " .. (title or "")
-                sub = "Right-click > Do now brings it back"
+                sub = ns.L("Right-click > Do now brings it back")
             end
             local e = {
                 number = pos, index = idx, step = s, icon = ICON_FOR[s.type] or "accept", state = state,
@@ -697,14 +709,14 @@ function QG:BuildGuideEntries()
             }
             local tip = {}
             local eff = ns.Editor and ns.Editor:Effective(s) or s
-            if eff.note and eff.note ~= "" then tip[#tip + 1] = eff.note .. (eff.hasEdit and "  (edited)" or "") end
+            if eff.note and eff.note ~= "" then tip[#tip + 1] = eff.note .. (eff.hasEdit and ns.L("  (edited)") or "") end
             if s.quest and ns.Quest then
                 local grey = ns.Quest:GreyWarning(s.quest)
                 if grey then tip[#tip + 1] = "|cffff8040" .. grey .. "|r" end
             end
-            if G:IsMoved(idx) then tip[#tip + 1] = "|cff8a8070Moved by you (/fg order reset puts it back).|r" end
-            tip[#tip + 1] = state == "skipped" and "|cff8a8070You skipped this. Right click: Do now brings it back.|r"
-                or "|cff8a8070Left click: jump here.  Right click: do it now, later, or skip it.|r"
+            if G:IsMoved(idx) then tip[#tip + 1] = ns.L("|cff8a8070Moved by you (/fg order reset puts it back).|r") end
+            tip[#tip + 1] = state == "skipped" and ns.L("|cff8a8070You skipped this. Right click: Do now brings it back.|r")
+                or ns.L("|cff8a8070Left click: jump here.  Right click: do it now, later, or skip it.|r")
             e.tooltip = tip
             entries[#entries + 1] = e
         end
@@ -721,7 +733,7 @@ function QG:BuildTrackerEntries()
             title = ns.Quest:TitleWithLevel(c.questID, c.title), subtitle = c.what, loc = c.loc, questID = c.questID,
             useItem = i == 1 and c.kind ~= "turnin" and ns.Quest:UsableItem(c.questID) or nil,
             tooltip = { c.loc and ns.DB:DescribeLocation(c.loc) or "", c.grey and ("|cffff8040" .. c.grey .. "|r") or nil,
-                        "|cff8a8070Right click: do it first, last, or in nearest order.|r" },
+                        ns.L("|cff8a8070Right click: do it first, last, or in nearest order.|r") },
             onRightClick = function(_, row) QG:ShowMenu(row, QG:QuestMenuItems(c.questID)) end,
         }
     end
@@ -789,8 +801,8 @@ function QG:ShowMenu(row, items)
                 local tt = rawget(_G, "GameTooltip")
                 if tt and self.item and self.item[3] then
                     tt:SetOwner(self, "ANCHOR_LEFT")
-                    tt:AddLine(self.item[1], 1, 0.88, 0.55)
-                    tt:AddLine(self.item[3], 0.85, 0.82, 0.75, true)
+                    tt:AddLine(ns.L(self.item[1]), 1, 0.88, 0.55)
+                    tt:AddLine(ns.L(self.item[3]), 0.85, 0.82, 0.75, true)
                     tt:Show()
                 end
             end)
@@ -803,7 +815,7 @@ function QG:ShowMenu(row, items)
             b = btn
         end
         b.item = item
-        b.label:SetText(item[1])
+        b.label:SetText(ns.L(item[1]))
         b:Show()
     end
     for i = #items + 1, #m.buttons do m.buttons[i].item = nil m.buttons[i]:Hide() end
@@ -836,12 +848,13 @@ function QG:StepMenuItems(idx)
                 "Becomes the current step; the one you're on comes next." }
         end
         items[#items + 1] = { "Later", function() G:Later(idx) end,
-            "Comes back after the next 5 steps" .. (s.quest and ", with its quest" or "") .. ". Not marked done." }
-        items[#items + 1] = { "Skip", function() G:MarkDone(idx, "skip") end, (quest and "Skips the whole quest." or "Marked done.") .. " It stays in the list to undo." }
+            string.format(ns.L("Comes back after the next %d steps%s. Not marked done."), 5, s.quest and ns.L(", with its quest") or "") }
+        items[#items + 1] = { "Skip", function() G:MarkDone(idx, "skip") end,
+            ns.L(quest and "Skips the whole quest." or "Marked done.") .. " " .. ns.L("It stays in the list to undo.") }
     elseif p.done[idx] and G:StepApplies(s) and not G:IsStepDone(s, idx, true) then
         -- marked done or skipped by hand, not by the game: it can come back
         items[#items + 1] = { "Do now", function() G:DoNow(idx) end,
-            "Brings it back as the current step" .. (quest and ", with its quest." or ".") }
+            ns.L("Brings it back as the current step") .. (quest and ns.L(", with its quest.") or ".") }
     end
     return items
 end
@@ -875,15 +888,15 @@ function QG:RefreshExtra()
             local objective = quest.objectives[1]
             entries[#entries + 1] = {
                 questID = quest.questID, title = ns.Quest:TitleWithLevel(quest.questID, quest.title),
-                subtitle = quest.ready and "Ready to turn in" or (objective and objective.text or "In progress"),
+                subtitle = quest.ready and ns.L("Ready to turn in") or (objective and objective.text or ns.L("In progress")),
                 icon = quest.ready and "turnin" or "collect", state = quest.ready and "available" or "future",
-                tooltip = { "|cff8a8070Left click: open in the quest log.  Right click: report missing route quest.|r" },
+                tooltip = { ns.L("|cff8a8070Left click: open in the quest log.  Right click: report missing route quest.|r") },
                 onClick = function() ns.Quest:OpenInLog(quest.questID) end,
                 onRightClick = function() ns.Reports:MissingQuest(quest.questID) end,
             }
         end
     end
-    f.unknownBtn.label:SetText(#entries > 0 and string.format("Unknown Quests (%d)", #entries) or "Unknown Quests")
+    f.unknownBtn.label:SetText(ns.L("Unknown Quests") .. (#entries > 0 and string.format(" (%d)", #entries) or ""))
     if not f.extra:IsShown() then return end
     f.extra.list:Set(entries, "Every quest in your log is in a guide.")
     f.extra:Fit()
@@ -954,10 +967,10 @@ function QG:CreateInfo()
     p.body = Theme.NewText(p, { size = 11, color = Theme.C.text, maxLines = 12 })
     p.body:SetPoint("TOPLEFT", p.title, "BOTTOMLEFT", 0, -8)
     p.body:SetPoint("TOPRIGHT", p, "TOPRIGHT", -14, 0)
-    p.back = Theme.NewButton(p, "Back", 66, 22, function() ns.Guide:Back() QG:RefreshInfo() end)
-    p.skip = Theme.NewButton(p, "Skip", 66, 22, function() ns.Guide:Skip() QG:RefreshInfo() end)
-    p.auto = Theme.NewButton(p, "Auto", 66, 22, function() ns.Tracker:SetMode(ns.char.mode == "auto" and "guide" or "auto") QG:RefreshInfo() end)
-    p.resync = Theme.NewButton(p, "Resync", 66, 22, function() ns.Commands:Run("resync") QG:RefreshInfo() end)
+    p.back = Theme.NewButton(p, ns.L("Back"), 66, 22, function() ns.Guide:Back() QG:RefreshInfo() end)
+    p.skip = Theme.NewButton(p, ns.L("Skip"), 66, 22, function() ns.Guide:Skip() QG:RefreshInfo() end)
+    p.auto = Theme.NewButton(p, ns.L("Auto"), 66, 22, function() ns.Tracker:SetMode(ns.char.mode == "auto" and "guide" or "auto") QG:RefreshInfo() end)
+    p.resync = Theme.NewButton(p, ns.L("Resync"), 66, 22, function() ns.Commands:Run("resync") QG:RefreshInfo() end)
     p.close = Theme.NewButton(p, "x", 26, 20, function() info:Hide() end)
     p.back:SetPoint("BOTTOMLEFT", p, "BOTTOMLEFT", 12, 10)
     p.skip:SetPoint("LEFT", p.back, "RIGHT", 6, 0)
@@ -976,7 +989,7 @@ function QG:RefreshInfo()
     if g then
         info.title:SetText(g.name or g.id)
         local cur, total = G:GetStepCount()
-        lines[#lines + 1] = string.format("|cffdeb24aStep %d of %d|r", math.min(cur, total), total)
+        lines[#lines + 1] = string.format(ns.L("|cffdeb24aStep %d of %d|r"), math.min(cur, total), total)
         local step = G:GetCurrentStep()
         if step then
             lines[#lines + 1] = G:GetStepText(step)
@@ -987,19 +1000,19 @@ function QG:RefreshInfo()
             local eff = ns.Editor and ns.Editor:Effective(step) or step
             if eff.note and eff.note ~= "" then lines[#lines + 1] = "|cffff8040" .. eff.note .. "|r" end
         else
-            lines[#lines + 1] = "Guide complete!" .. (g.next and ("  Next: " .. nextChapterName(g)) or "")
+            lines[#lines + 1] = ns.L("Guide complete!") .. (g.next and ("  " .. ns.L("Next:") .. " " .. nextChapterName(g)) or "")
         end
         if G.note then lines[#lines + 1] = "|cffff8040" .. G.note .. "|r" end
         local moved = G.progress and G.progress.order and #G.progress.order or 0
         if moved > 0 then
-            lines[#lines + 1] = string.format("|cff8a8070%d step%s moved by you - /fg order reset puts them back.|r", moved, moved == 1 and "" or "s")
+            lines[#lines + 1] = string.format(ns.L("|cff8a8070%d step(s) moved by you - /fg order reset puts them back.|r"), moved)
         end
         if g.notes then lines[#lines + 1] = " " lines[#lines + 1] = "|cff8a8070" .. g.notes .. "|r" end
-        info.auto:SetText(ns.char.mode == "auto" and "Guide" or "Auto")
-        info.auto.label:SetText(ns.char.mode == "auto" and "Guide" or "Auto")
+        info.auto:SetText(ns.L(ns.char.mode == "auto" and "Guide" or "Auto"))
+        info.auto.label:SetText(ns.L(ns.char.mode == "auto" and "Guide" or "Auto"))
     else
-        info.title:SetText("No guide active")
-        lines[#lines + 1] = "Pick a route with the Guides button, or /fg guides. Auto mode tracks your quest log without a guide."
+        info.title:SetText(ns.L("No guide active"))
+        lines[#lines + 1] = ns.L("Pick a route with the Guides button, or /fg guides. Auto mode tracks your quest log without a guide.")
     end
     info.body:SetText(table.concat(lines, "\n"))
     local titleH = info.title.GetStringHeight and info.title:GetStringHeight() or 18

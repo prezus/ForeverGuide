@@ -101,7 +101,7 @@ local function MakeCheck(parent, item, y)
     cb:SetPoint("TOPLEFT", parent, "TOPLEFT", 16, y)
     local label = cb:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
     label:SetPoint("LEFT", cb, "RIGHT", 4, 0)
-    label:SetText(item.label)
+    label:SetText(ns.L(item.label))
     cb.label = label
     cb:SetScript("OnClick", function(self)
         local ok, err = pcall(item.set, self:GetChecked() and true or false)
@@ -117,7 +117,7 @@ end
 local function MakeSlider(parent, item, y)
     local label = parent:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
     label:SetPoint("TOPLEFT", parent, "TOPLEFT", 16, y)
-    label:SetText(item.label)
+    label:SetText(ns.L(item.label))
 
     local slider = CreateFrame("Slider", nil, parent)
     slider:SetOrientation("HORIZONTAL")
@@ -157,7 +157,7 @@ local function MakeButton(parent, text, x, y, onClick)
     local b = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
     b:SetSize(150, 22)
     b:SetPoint("TOPLEFT", parent, "TOPLEFT", x, y)
-    b:SetText(text)
+    b:SetText(ns.L(text))
     b:SetScript("OnClick", function()
         local ok, err = pcall(onClick)
         if not ok then ns.ReportOnce("options:button", err) end
@@ -178,7 +178,7 @@ local function MakeKeybind(parent, item, y)
     local b = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
     b:SetSize(150, 22)
     b:SetPoint("TOPLEFT", parent, "TOPLEFT", 336, y)
-    b:SetText("Key bindings...")
+    b:SetText(ns.L("Key bindings..."))
     b:SetScript("OnClick", function()
         local ok, err = pcall(Options.OpenKeyBindings, Options)
         if not ok then ns.ReportOnce("options:" .. item.key, err) end
@@ -192,9 +192,9 @@ function Options:Refresh()
         local item = w.item
         local ok, v = pcall(item.get)
         if w.kind == "keybind" then
-            w.widget.label:SetText(item.label .. ": " .. ((ok and v) or "not bound"))
+            w.widget.label:SetText(ns.L(item.label) .. ": " .. ((ok and v) or ns.L("not bound")))
             w.widget:SetShown(keyCategory ~= nil)
-            w.widget.note:SetText(keyCategory and "" or "Set it in Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
+            w.widget.note:SetText(keyCategory and "" or ns.L("Set it in Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide."))
         elseif w.kind == "slider" then
             v = (ok and tonumber(v)) or item.min
             w.widget.suppress = true
@@ -309,14 +309,29 @@ function Options:Create()
     sub:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
     sub:SetWidth(600)
     sub:SetJustifyH("LEFT")
-    sub:SetText("Free leveling guide engine for WoW Forever. Everything here is also available as /fg commands (/fg help).")
+    sub:SetText(ns.L("Free leveling guide engine for WoW Forever. Everything here is also available as /fg commands (/fg help)."))
     local more = panel:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
     more:SetPoint("TOPLEFT", sub, "BOTTOMLEFT", 0, -2)
-    more:SetText("Scroll for the rest of the settings. Data collection is off until you opt in.")
+    more:SetText(ns.L("Scroll for the rest of the settings. Data collection is off until you opt in."))
 
     local body, scroll = MakeScroller(panel, -80)
     panel.body, panel.scroll = body, scroll
     local y = body == panel and -80 or -4
+    local quick = body:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+    quick:SetPoint("TOPLEFT", 16, y)
+    quick:SetText(ns.L("Quick actions"))
+    y = y - 24
+    MakeButton(body, "Pick a guide", 16, y, function() ns.UI:TogglePicker() end)
+    MakeButton(body, "Back", 176, y, function() ns.Commands:Run("back") end)
+    MakeButton(body, "Next", 336, y, function() ns.Commands:Run("next") end)
+    y = y - 34
+    MakeButton(body, "Skip step", 16, y, function() ns.Commands:Run("skip") end)
+    MakeButton(body, "Dungeons", 176, y, function() ns.Commands:Run("dungeons") end)
+    MakeButton(body, "Show reports", 336, y, function() ns.Commands:Run("reports") end)
+    y = y - 34
+    MakeButton(body, "Reset positions", 16, y, function() ns.UI:ResetPosition() ns.Arrow:ResetPosition() end)
+    MakeButton(body, "Report wrong step", 176, y, function() ns.Commands:Run("wrong") end)
+    y = y - 42
     -- the Quest Guide / waypoint toggles live with their settings module
     local items = {}
     for _, it in ipairs(ITEMS) do items[#items + 1] = it end
@@ -325,7 +340,7 @@ function Options:Create()
         if item.header then
             local h = body:CreateFontString(nil, "ARTWORK", "GameFontNormal")
             h:SetPoint("TOPLEFT", 16, y - 6)
-            h:SetText(item.header)
+            h:SetText(ns.L(item.header))
             y = y - 26
         elseif item.type == "keybind" then
             local b = MakeKeybind(body, item, y)
@@ -342,17 +357,11 @@ function Options:Create()
         end
     end
     y = y - 10
-    MakeButton(body, "Reset positions", 16, y, function() ns.UI:ResetPosition() ns.Arrow:ResetPosition() end)
-    MakeButton(body, "Pick a guide", 176, y, function() ns.UI:TogglePicker() end)
-    MakeButton(body, "Show reports", 336, y, function() ns.Commands:Run("reports") end)
-    y = y - 34
-    MakeButton(body, "Report wrong step", 16, y, function() ns.Commands:Run("wrong") end)
-    y = y - 34
     local hint = body:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
     hint:SetPoint("TOPLEFT", 16, y)
     hint:SetWidth(560)
     hint:SetJustifyH("LEFT")
-    hint:SetText("Data collection switches stop future capture when off; /fg share clear erases collected facts, /fg share copies them.\nSomething wrong? Stand where it should be, then use Report wrong step or /fg wrong. /fg reports opens a copyable list for review.\nLook: /fg qg scale|opacity|width|rows|wpsize|arrowsize <value>   (e.g. /fg qg opacity 0.8, or /fg arrow size 1.5)\nKey bindings: ForeverGuide > Key Bindings in this list, or Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
+    hint:SetText(ns.L("Data collection switches stop future capture when off; /fg share clear erases collected facts, /fg share copies them.\nSomething wrong? Stand where it should be, then use Report wrong step or /fg wrong. /fg reports opens a copyable list for review.\nLook: /fg qg scale|opacity|width|rows|wpsize|arrowsize <value>   (e.g. /fg qg opacity 0.8, or /fg arrow size 1.5)\nKey bindings: ForeverGuide > Key Bindings in this list, or Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide."))
 
     -- the scrolling child is exactly as tall as what we put on it
     if body ~= panel then

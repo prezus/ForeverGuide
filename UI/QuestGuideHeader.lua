@@ -27,7 +27,7 @@ function Header.Create(parent)
     h.title:SetPoint("LEFT", h.icon, "RIGHT", 7, 0)
     h.title:SetPoint("RIGHT", h, "RIGHT", -168, 0)
     pcall(h.title.SetJustifyV, h.title, "MIDDLE")
-    h.title:SetText("QUEST GUIDE")
+    h.title:SetText(ns.L("QUEST GUIDE"))
 
     h.count = Theme.NewText(h, { fancy = true, size = 14, color = Theme.C.gold, justify = "RIGHT", oneLine = true })
     h.count:SetPoint("TOPRIGHT", h, "TOPRIGHT", -12, -11)
@@ -37,7 +37,7 @@ function Header.Create(parent)
     h.report:SetPoint("TOPRIGHT", h, "TOPRIGHT", -80, -8)
     h.report:SetScript("OnEnter", function(self)
         local tt = rawget(_G, "GameTooltip")
-        if tt then tt:SetOwner(self, "ANCHOR_TOP") tt:AddLine("Report wrong step") tt:Show() end
+        if tt then tt:SetOwner(self, "ANCHOR_TOP") tt:AddLine(ns.L("Report wrong step")) tt:Show() end
     end)
     h.report:SetScript("OnLeave", function()
         local tt = rawget(_G, "GameTooltip")
@@ -47,7 +47,7 @@ function Header.Create(parent)
     h.reports:SetPoint("RIGHT", h.report, "LEFT", -4, 0)
     h.reports:SetScript("OnEnter", function(self)
         local tt = rawget(_G, "GameTooltip")
-        if tt then tt:SetOwner(self, "ANCHOR_TOP") tt:AddLine("View saved feedback") tt:Show() end
+        if tt then tt:SetOwner(self, "ANCHOR_TOP") tt:AddLine(ns.L("View saved feedback")) tt:Show() end
     end)
     h.reports:SetScript("OnLeave", function()
         local tt = rawget(_G, "GameTooltip")
@@ -75,21 +75,21 @@ function Header.Create(parent)
         local state = R:State()
         tt:SetOwner(self, "ANCHOR_TOP")
         if state == "recording" then
-            tt:AddLine("|cffff4d40Recording|r  " .. R.Clock(R:Elapsed()))
-            tt:AddLine("Every character records by itself whenever you log in.", 1, 1, 1, true)
-            tt:AddLine("Click: pause for a break.  Right-click: stop recording.", 1, 1, 1, true)
+            tt:AddLine("|cffff4d40" .. ns.L("Recording") .. "|r  " .. R.Clock(R:Elapsed()))
+            tt:AddLine(ns.L("Every character records by itself whenever you log in."), 1, 1, 1, true)
+            tt:AddLine(ns.L("Click: pause for a break.  Right-click: stop recording."), 1, 1, 1, true)
         elseif state == "paused" and ns.db.recordRuns then
-            tt:AddLine("|cffffb333Paused|r  " .. R.Clock(R:Elapsed()))
-            tt:AddLine("Goes on at your next login.", 1, 1, 1, true)
-            tt:AddLine("Click: go on now.  Right-click: stop recording.", 1, 1, 1, true)
+            tt:AddLine("|cffffb333" .. ns.L("Paused") .. "|r  " .. R.Clock(R:Elapsed()))
+            tt:AddLine(ns.L("Goes on at your next login."), 1, 1, 1, true)
+            tt:AddLine(ns.L("Click: go on now.  Right-click: stop recording."), 1, 1, 1, true)
         else
-            tt:AddLine("Recording is off")
-            tt:AddLine("Click to record your leveling: from then on every character records by itself whenever you log in, until you right-click to stop.", 1, 1, 1, true)
+            tt:AddLine(ns.L("Recording is off"))
+            tt:AddLine(ns.L("Click to record your leveling: from then on every character records by itself whenever you log in, until you right-click to stop."), 1, 1, 1, true)
         end
         if R:HasCompanion() then
-            tt:AddLine("The Companion uploads it when you log out or /reload.", 0.6, 0.85, 0.6, true)
+            tt:AddLine(ns.L("The Companion uploads it when you log out or /reload."), 0.6, 0.85, 0.6, true)
         else
-            tt:AddLine("The ForeverGuide Companion is not installed: the recording stays here.", 1, 0.5, 0.5, true)
+            tt:AddLine(ns.L("The ForeverGuide Companion is not installed: the recording stays here."), 1, 0.5, 0.5, true)
         end
         tt:Show()
     end)
@@ -133,7 +133,7 @@ end)
 
 --- title (nil keeps "QUEST GUIDE"), countText ("6 / 14"), subText
 function Header.Set(h, countText, subText, title)
-    h.title:SetText(title or "QUEST GUIDE")
+    h.title:SetText(ns.L(title or "QUEST GUIDE"))
     h.count:SetText(countText or "")
     h.sub:SetText(subText or "")
 end
