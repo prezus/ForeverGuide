@@ -18,11 +18,11 @@ local STATE_FOR = { done = "done", ready = "available", late = "available", gath
 local function Create()
     if drawer then return drawer end
     local f = ns.QuestGuide.frame or ns.QuestGuide:Create()
-    local d = ns.QuestGuide:NewDrawer(f, "DUNGEON QUESTS")
+    local d = ns.QuestGuide:NewDrawer(f, ns.L("DUNGEON QUESTS"))
     drawer = d
     f.dungeons = d
-    d.back = Theme.NewButton(d, "Back", 52, 20, function() Dungeons:ShowDungeon(nil) end)
-    d.waypoint = Theme.NewButton(d, "Waypoint", 78, 20, function()
+    d.back = Theme.NewButton(d, ns.L("Back"), 52, 20, function() Dungeons:ShowDungeon(nil) end)
+    d.waypoint = Theme.NewButton(d, ns.L("Waypoint"), 78, 20, function()
         local at = d.guide and Dungeons:Entrance(d.guide)
         if at then ns.Navigation:SetTarget({ map = at.map, x = at.x, y = at.y, label = Dungeons:Name(d.guide) .. " entrance", owner = "dungeon", radius = 30 }) end
     end)
@@ -50,7 +50,7 @@ local function DungeonEntries()
         entries[#entries + 1] = {
             guideID = g.id, icon = "kill", state = STATE_FOR[st.state] or "future",
             title = Dungeons:Name(g), subtitle = sub,
-            tooltip = { "|cff8a8070Left click: its quests and where they stand.|r" },
+            tooltip = { ns.L("|cff8a8070Left click: its quests and where they stand.|r") },
             onClick = function() Dungeons:ShowDungeon(g) end,
         }
     end
@@ -66,8 +66,8 @@ local function QuestEntries(g)
         entries[#entries + 1] = {
             questID = l.quest, icon = inLog and "turnin" or "accept",
             state = l.where == "done" and "done" or (inLog and "available" or "future"),
-            title = l.name, subtitle = l.where,
-            tooltip = inLog and { "|cff8a8070Left click: open in the quest log.|r" } or nil,
+            title = ns.Quest:GetTitle(l.quest) or l.name, subtitle = ns.L(l.where),
+            tooltip = inLog and { ns.L("|cff8a8070Left click: open in the quest log.|r") } or nil,
             onClick = inLog and function() ns.Quest:OpenInLog(l.quest) end or nil,
         }
     end
@@ -81,7 +81,7 @@ function Dungeons:RefreshPanel()
         local entries, st = QuestEntries(g)
         d.title:SetText(string.format("%s  %d-%d", self:Name(g), st.minLevel, st.maxLevel))
         local at = self:Entrance(g)
-        d.note:SetText(string.format("Quests from level %d; hand them in by %d for full XP.%s", st.minLevel, st.maxLevel,
+        d.note:SetText(string.format(ns.L("Quests from level %d; hand them in by %d for full XP.%s"), st.minLevel, st.maxLevel,
             at and string.format("  Entrance: %s %.1f, %.1f", at.zone or "", at.x, at.y) or ""))
         d.note:Show()
         d.back:Show()
@@ -89,7 +89,7 @@ function Dungeons:RefreshPanel()
         d.top = 58
         d.list:Set(entries, "No quests for this dungeon.")
     else
-        d.title:SetText("DUNGEON QUESTS")
+        d.title:SetText(ns.L("DUNGEON QUESTS"))
         d.note:Hide()
         d.back:Hide()
         d.waypoint:Hide()

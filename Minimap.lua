@@ -106,25 +106,25 @@ function MM:Create()
         if not tt then return end
         tt:SetOwner(self, "ANCHOR_LEFT")
         tt:AddLine("ForeverGuide", 0.31, 0.82, 0.77)
-        if ns.UI:AllHidden() then tt:AddLine("hidden (still tracking)", 1, 0.82, 0.2) end
+        if ns.UI:AllHidden() then tt:AddLine(ns.L("hidden (still tracking)"), 1, 0.82, 0.2) end
         local G = ns.Guide
         if ns.Tracker and ns.Tracker:IsActive() and (not G.active or ns.char.mode == "auto") then
-            tt:AddLine("auto mode - quest log", 0.9, 0.9, 0.9)
+            tt:AddLine(ns.L("auto mode - quest log"), 0.9, 0.9, 0.9)
             if ns.Tracker.current then tt:AddLine(ns.Tracker:Describe(), 0.7, 0.7, 0.7, true) end
         elseif G.active then
             local cur, total = G:GetStepCount()
-            tt:AddLine(string.format("%s  (step %d/%d)", G.active.name or G.active.id, math.min(cur, total), total), 0.9, 0.9, 0.9)
+            tt:AddLine(string.format(ns.L("%s  (step %d/%d)"), G.active.name or G.active.id, math.min(cur, total), total), 0.9, 0.9, 0.9)
             local step = G:GetCurrentStep()
             if step then tt:AddLine(G:GetStepText(step), 1, 0.85, 0.3, true) end
         else
-            tt:AddLine("no guide active", 0.7, 0.7, 0.7)
+            tt:AddLine(ns.L("no guide active"), 0.7, 0.7, 0.7)
         end
         tt:AddLine(" ")
-        tt:AddLine("Left click: guide window", 0.6, 0.6, 0.6)
-        tt:AddLine("Right click: pick a guide / auto mode", 0.6, 0.6, 0.6)
-        tt:AddLine("Shift-click: toggle the arrow", 0.6, 0.6, 0.6)
-        tt:AddLine(ns.UI:AllHidden() and "Alt-click: show everything again" or "Alt-click: hide everything (window + arrow)", 0.6, 0.6, 0.6)
-        tt:AddLine("Drag: move the button", 0.6, 0.6, 0.6)
+        tt:AddLine(ns.L("Left click: guide window"), 0.6, 0.6, 0.6)
+        tt:AddLine(ns.L("Right click: pick a guide / auto mode"), 0.6, 0.6, 0.6)
+        tt:AddLine(ns.L("Shift-click: toggle the arrow"), 0.6, 0.6, 0.6)
+        tt:AddLine(ns.L(ns.UI:AllHidden() and "Alt-click: show everything again" or "Alt-click: hide everything (window + arrow)"), 0.6, 0.6, 0.6)
+        tt:AddLine(ns.L("Drag: move the button"), 0.6, 0.6, 0.6)
         tt:Show()
     end)
     b:SetScript("OnLeave", function()

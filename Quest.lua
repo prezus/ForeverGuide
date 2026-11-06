@@ -201,7 +201,7 @@ end
 --- Requests the data from the server when unknown; nil until it arrives.
 function Quest:GetTitle(questID)
     local entry = self.log[questID]
-    if entry then return entry.title end
+    if entry and entry.title ~= ("Quest " .. tostring(questID)) then return entry.title end
     if self.titles[questID] then return self.titles[questID] end
     local title = PlainString(ns.Call("C_QuestLog.GetTitleForQuestID", questID))
     if not title or title == "" then

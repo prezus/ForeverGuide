@@ -12,6 +12,7 @@
 
 # ---- engine (load order matters) ----
 Core.lua
+Locale.lua
 Database.lua
 Events.lua
 

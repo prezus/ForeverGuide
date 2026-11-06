@@ -63,11 +63,11 @@ function UI:CreatePicker()
     p.icon:Hide()
     p.title = Theme.NewText(p, { fancy = true, size = 15, color = Theme.C.goldLight, oneLine = true })
     p.title:SetPoint("LEFT", p.icon, "RIGHT", 6, 0)
-    p.title:SetText("GUIDES")
+    p.title:SetText(ns.L("GUIDES"))
     p.hint = Theme.NewText(p, { size = 10, color = Theme.C.textDim, oneLine = true })
     p.hint:SetPoint("TOPLEFT", p, "TOPLEFT", PAD + 2, -32)
     p.hint:SetPoint("TOPRIGHT", p, "TOPRIGHT", -PAD, -32)
-    p.hint:SetText("pick a route, a chapter, or a single zone - dimmed = outside your level")
+    p.hint:SetText(ns.L("pick a route, a chapter, or a single zone - dimmed = outside your level"))
     p.line = p:CreateTexture(nil, "ARTWORK")
     p.line:SetHeight(1)
     p.line:SetPoint("TOPLEFT", p, "TOPLEFT", 6, -44)
@@ -404,7 +404,7 @@ local function CreateNotice()
     Theme.Backdrop(f, "panel", 0.85)
     f.title = Theme.NewText(f, { fancy = true, size = 15, color = Theme.C.goldLight, oneLine = true })
     f.title:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -10)
-    f.title:SetText("RECORD RUNS")
+    f.title:SetText(ns.L("RECORD RUNS"))
     f.text = Theme.NewText(f, { size = 12 })
     f.text:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -34)
     f.text:SetPoint("TOPRIGHT", f, "TOPRIGHT", -PAD, -34)
@@ -426,9 +426,9 @@ function UI:ShowRunNotice(kind, count, max)
     if not spec then return end
     notice = notice or CreateNotice()
     notice.kind = kind
-    notice.text:SetText(string.format(spec.text, count or 0, max or 0))
-    notice.send.label:SetText(spec.action)
-    notice.later.label:SetText(spec.later)
+    notice.text:SetText(string.format(ns.L(spec.text), count or 0, max or 0))
+    notice.send.label:SetText(ns.L(spec.action))
+    notice.later.label:SetText(ns.L(spec.later))
     notice:Show()
 end
 
@@ -447,7 +447,7 @@ local function Ask(name, title, height)
     Theme.Backdrop(f, "panel", 0.9)
     f.title = Theme.NewText(f, { fancy = true, size = 15, color = Theme.C.goldLight, oneLine = true })
     f.title:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -10)
-    f.title:SetText(title)
+    f.title:SetText(ns.L(title))
     f.text = Theme.NewText(f, { size = 12 })
     f.text:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -34)
     f.text:SetPoint("TOPRIGHT", f, "TOPRIGHT", -PAD, -34)
@@ -456,7 +456,7 @@ local function Ask(name, title, height)
         if f.onYes then f.onYes() end
     end)
     f.yes:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", PAD, 10)
-    f.no = Theme.NewButton(f, "Cancel", 110, 24, function() f:Hide() end)
+    f.no = Theme.NewButton(f, ns.L("Cancel"), 110, 24, function() f:Hide() end)
     f.no:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -PAD, 10)
     f:Hide()
     asks[name] = f
@@ -467,18 +467,18 @@ end
 function UI:ShowRecordIntro(onStart)
     local f = Ask("ForeverGuideRecordIntro", "RECORD YOUR LEVELING", 262)
     local companion = ns.Run:HasCompanion()
-        and "|cff7fd17fThe ForeverGuide Companion is installed:|r it uploads what you recorded when you log out or /reload."
-        or "|cffff7f7fThe ForeverGuide Companion is not installed:|r the recording is kept here, and reaches codex once it is."
+        and ns.L("|cff7fd17fThe ForeverGuide Companion is installed:|r it uploads what you recorded when you log out or /reload.")
+        or ns.L("|cffff7f7fThe ForeverGuide Companion is not installed:|r the recording is kept here, and reaches codex once it is.")
     f.text:SetText(table.concat({
-        "Records your leveling as you play: the quests you take and turn in, what you kill and loot for them, every bit of experience, and where you go.",
+        ns.L("Records your leveling as you play: the quests you take and turn in, what you kill and loot for them, every bit of experience, and where you go."),
         "",
-        "Once on, it records by itself: every character, every time you log in. Each character is one recording, over every day you play it.",
+        ns.L("Once on, it records by itself: every character, every time you log in. Each character is one recording, over every day you play it."),
         "",
-        "|cffffd100Click|r the record dot to pause for a break (until you click it again or next log in). |cffffd100Right-click|r it to stop recording.",
+        ns.L("|cffffd100Click|r the record dot to pause for a break (until you click it again or next log in). |cffffd100Right-click|r it to stop recording."),
         "",
         companion,
     }, "\n"))
-    f.yes.label:SetText("Start recording")
+    f.yes.label:SetText(ns.L("Start recording"))
     f.onYes = onStart
     f:Show()
 end
@@ -486,8 +486,8 @@ end
 --- Stop recording? `onStop` does.
 function UI:ShowStopConfirm(onStop)
     local f = Ask("ForeverGuideRecordStop", "STOP RECORDING?", 132)
-    f.text:SetText("No character records until you click the record dot again. What this character recorded is sent; its recording carries on when you start again.")
-    f.yes.label:SetText("Stop recording")
+    f.text:SetText(ns.L("No character records until you click the record dot again. What this character recorded is sent; its recording carries on when you start again."))
+    f.yes.label:SetText(ns.L("Stop recording"))
     f.onYes = onStop
     f:Show()
 end
@@ -514,7 +514,7 @@ function UI:ShowRouteChoice()
         Theme.Backdrop(f, "panel", 0.9)
         f.title = Theme.NewText(f, { fancy = true, size = 15, color = Theme.C.goldLight, oneLine = true })
         f.title:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -10)
-        f.title:SetText("CHOOSE YOUR ROUTE")
+        f.title:SetText(ns.L("CHOOSE YOUR ROUTE"))
         f.text = Theme.NewText(f, { size = 12 })
         f.text:SetPoint("TOPLEFT", f, "TOPLEFT", PAD, -34)
         f.text:SetPoint("TOPRIGHT", f, "TOPRIGHT", -PAD, -34)
@@ -522,13 +522,13 @@ function UI:ShowRouteChoice()
         routeChoice = f
     end
     local f = routeChoice
-    local lines = { "How do you want to level this character? You can change it any time in the Guides list, under Routes, or with /fg path." }
+    local lines = { ns.L("How do you want to level this character? You can change it any time in the Guides list, under Routes, or with /fg path.") }
     local options = { { label = DEFAULT_ROUTE, choose = function() G:FollowDefault() end } }
     for _, r in ipairs(alternates) do
         options[#options + 1] = { label = r.away and (r.label .. " (starts in " .. r.away .. ")") or r.label, choose = function() G:ChooseRoute(r.key) end }
         -- a route that starts in another race's starting area: the player travels there first
         if r.away then
-            lines[#lines + 1] = string.format("\n|cffffd100%s|r starts in %s, not your race's starting area: you travel there first. After that it is the same for every race.", r.label, r.away)
+            lines[#lines + 1] = string.format(ns.L("\n|cffffd100%s|r starts in %s, not your race's starting area: you travel there first. After that it is the same for every race."), r.label, r.away)
         end
     end
     f.text:SetText(table.concat(lines, "\n"))

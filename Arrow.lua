@@ -91,7 +91,7 @@ function Arrow:Create()
     local hint = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     hint:SetFont(FONT, 10, "OUTLINE")
     hint:SetPoint("BOTTOM", tex, "TOP", 0, 2)
-    hint:SetText("drag me  (/fg lock)")
+    hint:SetText(ns.L("drag me  (/fg lock)"))
     hint:SetTextColor(1, 0.8, 0.3)
     hint:Hide()
     f.hint = hint
@@ -124,7 +124,7 @@ function Arrow:Tick()
         if unlocked then
             f.tex:SetRotation(0)
             f.tex:SetVertexColor(0.6, 0.6, 0.6)
-            f.label:SetText("no destination")
+            f.label:SetText(ns.L("no destination"))
             f.dist:SetText("")
             f.caption:SetText("")
         else

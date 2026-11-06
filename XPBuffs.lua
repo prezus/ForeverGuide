@@ -134,10 +134,10 @@ local function tooltip(f)
     if not tt then return end
     local buff, stacks = XB.BUFFS[f.key], f.stacks or 0
     tt:SetOwner(f, "ANCHOR_BOTTOM")
-    tt:AddLine(buff.needed > 1 and string.format("%s %d/%d", buff.name, stacks, buff.needed) or ("Missing: " .. buff.name), 1, 0.82, 0)
-    tt:AddLine(buff.bonus, 1, 1, 1, true)
-    tt:AddLine(buff.hint, 1, 1, 1, true)
-    tt:AddLine("Shift-drag to move both icons.  /fg remind " .. f.key .. " off hides this one.", 0.66, 0.61, 0.52, true)
+    tt:AddLine(buff.needed > 1 and string.format("%s %d/%d", ns.L(buff.name), stacks, buff.needed) or (ns.L("Missing: ") .. ns.L(buff.name)), 1, 0.82, 0)
+    tt:AddLine(ns.L(buff.bonus), 1, 1, 1, true)
+    tt:AddLine(ns.L(buff.hint), 1, 1, 1, true)
+    tt:AddLine(string.format(ns.L("Shift-drag to move both icons.  /fg remind %s off hides this one."), f.key), 0.66, 0.61, 0.52, true)
     tt:Show()
 end
 

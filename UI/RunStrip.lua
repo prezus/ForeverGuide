@@ -23,7 +23,7 @@ local function Tip(button, lines)
         local tt = rawget(_G, "GameTooltip")
         if not tt then return end
         tt:SetOwner(self, "ANCHOR_TOP")
-        for _, line in ipairs(lines) do tt:AddLine(line, 1, 1, 1, true) end
+        for _, line in ipairs(lines) do tt:AddLine(ns.L(line), 1, 1, 1, true) end
         tt:Show()
     end)
     button:SetScript("OnLeave", function(self)
@@ -46,19 +46,19 @@ function Strip.Create(header)
     s:Hide()
 
     local R = ns.Run
-    s.send = Theme.NewButton(s, "Send", 48, 22, function() R:Send() end)
+    s.send = Theme.NewButton(s, ns.L("Send"), 48, 22, function() R:Send() end)
     s.send:SetPoint("RIGHT", s, "RIGHT", -12, 0)
     Tip(s.send, { "Send segment", "Opens the share window with everything since the last Send.",
         "Paste it into the feedback form; recording carries on." })
-    s.stop = Theme.NewButton(s, "Stop", 44, 22, function() R:Stop() end)
+    s.stop = Theme.NewButton(s, ns.L("Stop"), 44, 22, function() R:Stop() end)
     s.stop:SetPoint("RIGHT", s.send, "LEFT", -4, 0)
     Tip(s.stop, { "Stop the run", "Ends the run and opens its last segment to paste." })
-    s.pause = Theme.NewButton(s, "Pause", 60, 22, function()
+    s.pause = Theme.NewButton(s, ns.L("Pause"), 60, 22, function()
         if R:State() == "recording" then R:Pause() else R:Resume() end
     end)
     s.pause:SetPoint("RIGHT", s.stop, "LEFT", -4, 0)
     Tip(s.pause, { "Pause / Resume", "While paused nothing is recorded and the run's clock stops." })
-    s.start = Theme.NewButton(s, "Start", 60, 22, function() R:Start() end)
+    s.start = Theme.NewButton(s, ns.L("Start"), 60, 22, function() R:Start() end)
     s.start:SetPoint("RIGHT", s, "RIGHT", -12, 0)
     Tip(s.start, { "Start a run", "Records a timed log of your play (no names or clock time)",
         "until you Stop; send it in segments with Send." })
@@ -95,13 +95,13 @@ function Strip.Refresh(s)
         s.send:ClearAllPoints()
         s.send:SetPoint("RIGHT", s, "RIGHT", -12, 0)
     end
-    s.pause.label:SetText(state == "recording" and "Pause" or "Resume")
+    s.pause.label:SetText(ns.L(state == "recording" and "Pause" or "Resume"))
     s.status:ClearAllPoints()
     s.status:SetPoint("LEFT", s, "LEFT", 14, 0)
     s.status:SetPoint("RIGHT", idle and (ns.char.runSent and s.send or s.start) or s.pause, "LEFT", -6, 0)
     if idle then
         Theme.Color(s.status, Theme.C.textDim)
-        s.status:SetText("Run recorder: ready")
+        s.status:SetText(ns.L("Run recorder: ready"))
     else
         local tag = state == "recording" and "REC" or "PAUSED"
         Theme.Color(s.status, state == "recording" and COLOR_REC or Theme.C.skipped)

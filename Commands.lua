@@ -124,7 +124,7 @@ function handlers.status()
 end
 
 function handlers.help()
-    for _, line in ipairs(HELP) do ns.Print(line) end
+    for _, line in ipairs(HELP) do ns.Print(ns.L(line)) end
 end
 
 function handlers.show() ns.UI:Show() end

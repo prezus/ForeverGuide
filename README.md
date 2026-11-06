@@ -5,6 +5,11 @@ you the next step: a quest window, an arrow, a waypoint and skulls over the mobs
 casts, moves or fights for you. Auto-accept and auto-turn-in are on by default. Everything it does
 for you is listed in the [client and player-control policy](COMPATIBILITY_POLICY.md).
 
+The addon's controls and settings are shown in Russian on a Russian-language client. Route and quest
+names come from the published guide and quest data, so their language depends on those data sources.
+Open `/fg options` for settings and quick actions such as choosing a guide, moving between steps,
+opening dungeon guides and reviewing reports.
+
 ## Install
 
 1. Download `ForeverGuide-<version>.zip` from the [releases page](https://github.com/prezus/ForeverGuide/releases)
