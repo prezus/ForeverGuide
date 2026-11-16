@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_12_14_THE_BARRENS",
     name = "12-14 The Barrens",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 12,
     maxLevel = 14,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Horde/12-14 The Barrens.lua",
     nextName = { "14-16 Ragefire Chasm" },
     order = 50,
-    stepCount = 179,
+    stepCount = 180,
     steps = [[{
 {type="ACCEPT",quest=97246,note="Accept:"},
 {type="TURNIN",quest=97246,note="TurnIn:"},
@@ -27,6 +27,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=97326,note="Do:"},
 {type="TURNIN",quest=97326,note="TurnIn:"},
 {type="TURNIN",quest=831,race={"Orc","Troll"},note="TurnIn:"},
+{type="TURNIN",quest=95350,note="TurnIn:"},
 {type="ACCEPT",quest=5726,note="Accept:"},
 {type="FLIGHTPATH",zone="Orgrimmar",x=45.13,y=63.89,race={"Scourge"},note="Get the flightpath at:"},
 {type="COMPLETE",quest=5726,note="Do:"},

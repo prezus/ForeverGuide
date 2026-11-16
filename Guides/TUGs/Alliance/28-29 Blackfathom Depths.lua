@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_28_29_BLACKFATHOM_DEPTHS",
     name = "28-29 Blackfathom Depths",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 28,
     maxLevel = 29,
@@ -12,9 +12,21 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/28-29 Blackfathom Depths.lua",
     nextName = { "29-30 Wetlands" },
     order = 21,
-    stepCount = 2,
+    stepCount = 14,
     steps = [[{
-{type="NOTE",text="This will be added later"},
-{type="USEHEARTH",note="Use your Hearthstone."}
+{type="ACCEPT",quest=971,note="Accept:"},
+{type="ACCEPT",quest=1198,note="Accept:"},
+{type="ACCEPT",quest=1199,note="Accept:"},
+{type="ACCEPT",quest=1275,note="Accept:"},
+{type="COMPLETE",quest=971,note="Do:"},
+{type="COMPLETE",quest=1275,note="Do:"},
+{type="TURNIN",quest=1198,note="TurnIn:"},
+{type="ACCEPT",quest=1200,note="Accept:"},
+{type="COMPLETE",quest=1199,note="Do:"},
+{type="COMPLETE",quest=1200,note="Do:"},
+{type="TURNIN",quest=1275,note="TurnIn:"},
+{type="TURNIN",quest=1199,note="TurnIn:"},
+{type="TURNIN",quest=1200,note="TurnIn:"},
+{type="TURNIN",quest=971,note="TurnIn:"}
 }]],
 })

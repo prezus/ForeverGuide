@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_32_33_EXCAVATION_SITE",
     name = "32-33 Excavation Site",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 32,
     maxLevel = 33,
@@ -14,6 +14,6 @@ ns.RegisterGuide({
     order = 25,
     stepCount = 1,
     steps = [[{
-{type="NOTE",text="This will be added later"}
+{type="NOTE",text="This will be added later (After 01.01.2027 i am busy till then)"}
 }]],
 })

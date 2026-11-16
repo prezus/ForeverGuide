@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_14_15_WESTFALL",
     name = "14-15 Westfall",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 14,
     maxLevel = 15,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/14-15 Westfall.lua",
     nextName = { "15-16 Halls of Thanes" },
     order = 10,
-    stepCount = 65,
+    stepCount = 67,
     steps = [[{
 {type="FLIGHTPATH",zone="Stormwind City",x=66.2,y=62.4,race={"NightElf","Gnome","Dwarf"},note="Get the flightpath at:"},
 {type="ACCEPT",quest=109,zone="Elwynn Forest",x=24.3,y=74.5,note="Accept:"},
@@ -73,11 +73,13 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1783,class={"PALADIN"},race={"Human"},note="Accept:"},
 {type="ACCEPT",quest=97894,note="Accept:"},
 {type="ACCEPT",quest=2040,note="Accept:"},
+{type="ACCEPT",quest=353,race={"Dwarf","Gnome"},note="Accept:"},
 {type="TURNIN",quest=1338,note="TurnIn:"},
 {type="ACCEPT",quest=167,note="Accept:"},
 {type="ACCEPT",quest=168,note="Accept:"},
 {type="NOTE",text="Start looking for a Halls of Thanes group."},
 {type="NOTE",class={"HUNTER"},text="Learn your Level 16 skills."},
-{type="NOTE",text="Take the tram to Ironforge."}
+{type="NOTE",text="Take the tram to Ironforge."},
+{type="ACCEPT",quest=2039,note="Accept:"}
 }]],
 })

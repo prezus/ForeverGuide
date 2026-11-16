@@ -2,7 +2,7 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_SKYBORNE",
-    name = "1-6 Skyborne",
+    name = "1-6 Skyborne - Alliance",
     version = 1,
     faction = "Alliance",
     minLevel = 1,
@@ -10,7 +10,7 @@ ns.RegisterGuide({
     next = "TUGS_ALLIANCE_6_12_SKYBORNE",
     group = "Leveling Guides",
     source = "TUGs/Alliance/1-6 Skyborne.lua",
-    nextName = { "6-12 Skyborne" },
+    nextName = { "6-12 Skyborne - Alliance" },
     order = 3,
     stepCount = 77,
     steps = [[{

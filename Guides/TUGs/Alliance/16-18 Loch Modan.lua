@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_16_18_LOCH_MODAN",
     name = "16-18 Loch Modan",
-    version = 3,
+    version = 4,
     faction = "Alliance",
     minLevel = 16,
     maxLevel = 18,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/16-18 Loch Modan.lua",
     nextName = { "18-20 Darkshore" },
     order = 12,
-    stepCount = 41,
+    stepCount = 42,
     steps = [[{
 {type="NOTE",text="Learn your Level 16 skills."},
 {type="ACCEPT",quest=6392,race={"Dwarf","Gnome"},note="Accept:"},
@@ -46,6 +46,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=199,note="TurnIn:"},
 {type="TURNIN",quest=2038,note="TurnIn:"},
 {type="TURNIN",quest=385,note="TurnIn:"},
+{type="TURNIN",quest=86758,note="TurnIn:"},
 {type="COMPLETE",quest=297,note="Do:"},
 {type="TURNIN",quest=297,note="TurnIn:"},
 {type="TURNIN",quest=298,note="TurnIn:"},

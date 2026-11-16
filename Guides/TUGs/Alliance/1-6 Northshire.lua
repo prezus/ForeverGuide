@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_1_6_NORTHSHIRE",
     name = "1-6 Northshire",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     minLevel = 1,
     maxLevel = 6,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/1-6 Northshire.lua",
     nextName = { "6-9 Elwynn Forest" },
     order = 1,
-    stepCount = 64,
+    stepCount = 71,
     steps = [[{
 {type="ACCEPT",quest=783,note="Accept:"},
 {type="TURNIN",quest=783,note="TurnIn:"},
@@ -63,7 +63,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=15,note="TurnIn:"},
 {type="ACCEPT",quest=21,note="Accept:"},
 {type="TALK",npc=152,zone="Elwynn Forest",x=47.6,y=41.6,note="Vendor at"},
-{type="BUY",npc=152,count=1,item=2901,itemName="Mining Pick",note="Buy: at"},
 {type="TALK",npc=247227,note="Learn Skinning at"},
 {type="BUY",npc=247227,count=1,item=7005,itemName="Skinning Knife",note="Buy: at"},
 {type="COMPLETE",quest=21,note="Do"},
@@ -73,10 +72,18 @@ ns.RegisterGuide({
 {type="TURNIN",quest=21,note="TurnIn:"},
 {type="ACCEPT",quest=54,note="Accept:"},
 {type="ACCEPT",quest=96627,note="Accept:"},
-{type="NOTE",text="For the next quest choose the MINING card even if you do not intent to be a miner for long. Turn on \"Find Minerals\""},
+{type="NOTE",text="For the next quest choose the SKINNING card even if you do not intend to be a skinner for your character. You can drop it later."},
 {type="TURNIN",quest=91743,note="TurnIn:"},
-{type="TRAIN",spell=2580,note="Use:"},
+{type="ACCEPT",quest=91745,note="Accept:"},
 {type="TURNIN",quest=3905,note="TurnIn:"},
-{type="ACCEPT",quest=2158,note="Accept:"}
+{type="TURNIN",quest=91745,note="TurnIn:"},
+{type="ACCEPT",quest=91752,note="Accept:"},
+{type="COMPLETE",quest=91752,note="Do:"},
+{type="TURNIN",quest=91752,note="TurnIn:"},
+{type="ACCEPT",quest=91758,note="Accept:"},
+{type="TURNIN",quest=91758,note="TurnIn:"},
+{type="ACCEPT",quest=91772,note="Accept:"},
+{type="ACCEPT",quest=2158,note="Accept:"},
+{type="COMPLETE",quest=91772,note="Do:"}
 }]],
 })

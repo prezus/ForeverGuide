@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_DEATHKNELL",
     name = "1-6 Deathknell",
-    version = 5,
+    version = 6,
     faction = "Horde",
     minLevel = 1,
     maxLevel = 6,
@@ -66,7 +66,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=96656,note="Accept:"},
 {type="TALK",npc=267324,note="Learn Skinning at \""},
 {type="BUY",npc=267324,count=1,item=7005,itemName="Skinning Knife",note="Buy: at"},
-{type="NOTE",text="From now on skin everything. You need to get skinning and mining to 20 by the end of lvl ~10(mining can be increased by smelting ore,so you dont need to find 20nodes)."},
+{type="NOTE",text="From now on skin everything. You need to get skinning to 20."},
 {type="ACCEPT",quest=8,note="Accept:"}
 }]],
 })

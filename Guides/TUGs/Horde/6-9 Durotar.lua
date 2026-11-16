@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_9_DUROTAR",
     name = "6-9 Durotar",
-    version = 5,
+    version = 6,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 9,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Horde/6-9 Durotar.lua",
     nextName = { "9-12 Orgrimmar" },
     order = 44,
-    stepCount = 103,
+    stepCount = 100,
     steps = [[{
 {type="ACCEPT",quest=2161,note="Accept:"},
 {type="ACCEPT",quest=786,note="Accept:"},
@@ -31,7 +31,6 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=96604,note="Do:"},
 {type="TURNIN",quest=96604,note="TurnIn:"},
 {type="ACCEPT",quest=96655,note="Accept:"},
-{type="ACCEPT",quest=97907,note="Accept:"},
 {type="ACCEPT",quest=97908,note="Accept:"},
 {type="TURNIN",quest=823,note="TurnIn:"},
 {type="ACCEPT",quest=806,note="Accept:"},
@@ -89,7 +88,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=826,note="TurnIn:"},
 {type="TURNIN",quest=817,note="TurnIn:"},
 {type="USEHEARTH",note="Use your Hearthstone."},
-{type="TURNIN",quest=97907,note="TurnIn:"},
 {type="TURNIN",quest=825,note="TurnIn:"},
 {type="ACCEPT",quest=99048,note="Accept:"},
 {type="TURNIN",quest=99048,note="TurnIn:"},
@@ -115,7 +113,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=6082,class={"HUNTER"},note="Accept:"},
 {type="COMPLETE",quest=6082,class={"HUNTER"},note="Do:"},
 {type="TURNIN",quest=6082,class={"HUNTER"},note="TurnIn:"},
-{type="ACCEPT",quest=6081,class={"HUNTER"},note="Accept:"},
-{type="NOTE",text="You have two options now: Continue with the 9-12 Orgrimmar guide or finish durotar. I highly recommend the 9-12 Guide."}
+{type="ACCEPT",quest=6081,class={"HUNTER"},note="Accept:"}
 }]],
 })

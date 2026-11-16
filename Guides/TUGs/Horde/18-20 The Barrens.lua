@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_18_20_THE_BARRENS",
     name = "18-20 The Barrens",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 18,
     maxLevel = 20,
@@ -40,6 +40,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=1069},
 {type="TURNIN",quest=1093,note="TurnIn:"},
 {type="ACCEPT",quest=1094,note="Accept:"},
+{type="ACCEPT",quest=6562,note="Accept:"},
 {type="TURNIN",quest=6284,optional=true,note="TurnIn(Elite/Hard Optional Quest):"},
 {type="TURNIN",quest=6401,note="TurnIn:"},
 {type="FLIGHTPATH",zone="Stonetalon Mountains",x=45.1,y=59.9,note="Get the flightpath at:"},
@@ -79,7 +80,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=1489,note="TurnIn:"},
 {type="ACCEPT",quest=1490,note="Accept:"},
 {type="TURNIN",quest=1490,note="TurnIn:"},
-{type="ACCEPT",quest=914,note="Accept:"},
-{type="NOTE",text="Do Wailing caverns now."}
+{type="ACCEPT",quest=914,note="Accept:"}
 }]],
 })

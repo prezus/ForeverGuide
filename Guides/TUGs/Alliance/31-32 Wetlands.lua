@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_31_32_WETLANDS",
     name = "31-32 Wetlands",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 31,
     maxLevel = 32,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/31-32 Wetlands.lua",
     nextName = { "32-33 Excavation Site" },
     order = 24,
-    stepCount = 73,
+    stepCount = 72,
     steps = [[{
 {type="NOTE",text="Take the tram to Ironforge."},
 {type="TURNIN",quest=2927,note="TurnIn:"},
@@ -85,7 +85,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=563,note="Accept:"},
 {type="TURNIN",quest=98071,note="TurnIn:"},
 {type="FLIGHTPATH",zone="Hillsbrad Foothills",x=49.4,y=52.4,note="Get the flightpath at:"},
-{type="NOTE",text="TODO: Add Wetlands dungeon guide here! For now: Do the Wetlands Excavation dungeon."},
 {type="USEHEARTH",note="Use your Hearthstone."}
 }]],
 })

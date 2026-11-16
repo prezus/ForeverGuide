@@ -3,7 +3,8 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_1_6_SKYBORNE",
     name = "1-6 Skyborne",
-    version = 1,
+    version = 2,
+    faction = "Horde",
     minLevel = 1,
     maxLevel = 6,
     next = "TUGS_HORDE_6_12_SKYBORNE",
@@ -75,7 +76,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=92470,note="TurnIn:"},
 {type="ACCEPT",quest=92472,note="Accept:"},
 {type="ACCEPT",quest=96638,note="Accept:"},
-{type="NOTE",text="Chose the Skinning \"picture book\". (Even if you do not intent to do skinning long term,this is for experience gain."},
+{type="NOTE",text="Take the SKINNING reward for the next quest and learn skinning."},
 {type="TURNIN",quest=93552,note="TurnIn:"},
 {type="TURNIN",quest=92473,note="TurnIn:"},
 {type="ACCEPT",quest=92544,note="Accept:"},

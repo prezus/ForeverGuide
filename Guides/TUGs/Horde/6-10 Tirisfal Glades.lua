@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_10_TIRISFAL_GLADES",
     name = "6-10 Tirisfal Glades",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 10,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Horde/6-10 Tirisfal Glades.lua",
     nextName = { "12-16 The Barrens" },
     order = 46,
-    stepCount = 104,
+    stepCount = 103,
     steps = [[{
 {type="ACCEPT",quest=365,note="Accept:"},
 {type="COMPLETE",quest=365,note="Do:"},
@@ -52,7 +52,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=96607,note="TurnIn:"},
 {type="ACCEPT",quest=96658,note="Accept:"},
 {type="ACCEPT",quest=97955,note="Accept:"},
-{type="ACCEPT",quest=97959,note="Accept:"},
 {type="ACCEPT",quest=97960,note="Accept:"},
 {type="TURNIN",quest=404,note="TurnIn:"},
 {type="ACCEPT",quest=426,note="Accept:"},

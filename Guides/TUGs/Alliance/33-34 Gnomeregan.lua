@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_33_34_GNOMEREGAN",
     name = "33-34 Gnomeregan",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 33,
     maxLevel = 34,
@@ -12,8 +12,9 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/33-34 Gnomeregan.lua",
     nextName = { "34-35 Ashenvale" },
     order = 27,
-    stepCount = 26,
+    stepCount = 27,
     steps = [[{
+{type="NOTE",text="This will be added later (After 01.01.2027 i am busy till then)"},
 {type="ACCEPT",quest=2924,optional=true,note="Accept(Elite/Hard Optional Quest):"},
 {type="ACCEPT",quest=2930,optional=true,note="Accept(Elite/Hard Optional Quest):"},
 {type="TURNIN",quest=2923,optional=true,note="TurnIn(Elite/Hard Optional Quest):"},

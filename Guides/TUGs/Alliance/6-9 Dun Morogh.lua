@@ -10,7 +10,7 @@ ns.RegisterGuide({
     next = "TUGS_ALLIANCE_9_11_DUN_MOROGH_LOCH_MODAN",
     group = "Leveling Guides",
     source = "TUGs/Alliance/6-9 Dun Morogh.lua",
-    nextName = { "6-12 Durotar" },
+    nextName = { "9-11 Dun Morogh&Loch Modan" },
     order = 4,
     stepCount = 64,
     steps = [[{

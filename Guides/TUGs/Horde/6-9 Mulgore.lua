@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_9_MULGORE",
     name = "6-9 Mulgore",
-    version = 6,
+    version = 7,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 9,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Horde/6-9 Mulgore.lua",
     nextName = { "9-12 Orgrimmar" },
     order = 45,
-    stepCount = 118,
+    stepCount = 117,
     steps = [[{
 {type="TURNIN",quest=1520,class={"SHAMAN"},note="TurnIn:"},
 {type="ACCEPT",quest=1521,class={"SHAMAN"},note="Accept:"},
@@ -23,7 +23,6 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=96605,note="Do:"},
 {type="TURNIN",quest=96605,note="TurnIn:"},
 {type="ACCEPT",quest=96661,note="Accept:"},
-{type="ACCEPT",quest=97935,note="Accept:"},
 {type="ACCEPT",quest=97936,note="Accept:"},
 {type="TURNIN",quest=763,note="TurnIn:"},
 {type="ACCEPT",quest=767,note="Accept:"},
