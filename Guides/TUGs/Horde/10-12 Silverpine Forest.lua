@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_10_12_SILVERPINE_FOREST",
     name = "10-12 Silverpine Forest",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 10,
     maxLevel = 12,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Horde/10-12 Silverpine Forest.lua",
     nextName = { "12-14 The Barrens" },
     order = 49,
-    stepCount = 76,
+    stepCount = 77,
     steps = [[{
 {type="ACCEPT",quest=445,note="Accept:"},
 {type="ACCEPT",quest=435,note="Accept:"},
@@ -61,6 +61,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=91921,note="Accept:"},
 {type="TURNIN",quest=439,note="TurnIn:"},
 {type="ACCEPT",quest=440,note="Accept:"},
+{type="TRAVEL",zone="Silverpine Forest",x=43.4,y=41.3,note="Loot the book in the shelf."},
 {type="TURNIN",quest=91921,note="TurnIn:"},
 {type="ACCEPT",quest=425,note="Accept:"},
 {type="COMPLETE",quest=425,note="Do:"},
@@ -87,7 +88,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=5725,note="Accept:"},
 {type="TURNIN",quest=357,note="TurnIn:"},
 {type="USEHEARTH",note="Use your Hearthstone."},
-{type="NOTE",race={"Scourge"},text="Take the zepelin to Orgrimmar"},
+{type="NOTE",race={"Scourge"},text="Take the zeppelin to Orgrimmar"},
 {type="TURNIN",quest=840,race={"Orc","Troll"},note="TurnIn:"},
 {type="ACCEPT",quest=842,race={"Orc","Troll"},note="Accept:"}
 }]],

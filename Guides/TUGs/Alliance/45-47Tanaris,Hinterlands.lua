@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_45_47TANARIS_HINTERLANDS",
     name = "45-47 Tanaris,Hinterlands",
-    version = 5,
+    version = 6,
     faction = "Alliance",
     minLevel = 45,
     maxLevel = 47,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/45-47Tanaris,Hinterlands.lua",
     nextName = { "47-49 Searing Gorge" },
     order = 34,
-    stepCount = 107,
+    stepCount = 106,
     steps = [[{
 {type="TURNIN",quest=3022,zone="Teldrassil",x=55.49,y=92.04,note="TurnIn:"},
 {type="ACCEPT",quest=3661,zone="Teldrassil",x=55.49,y=92.04,note="Accept:"},
@@ -33,7 +33,6 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=3042,zone="Tanaris",x=51.41,y=28.75,optional=true,note="Accept:"},
 {type="ACCEPT",quest=992,zone="Tanaris",x=50.21,y=27.48,note="Accept:"},
 {type="COMPLETE",quest=992,note="Do:"},
-{type="NOTE",text="Grind in Zul'Farrak till level 48"},
 {type="USEHEARTH",note="Use your Hearthstone."},
 {type="ACCEPT",quest=3445,zone="Feralas",x=31.82,y=45.61,note="Accept:"},
 {type="NOTE",text="Fly to Tanaris"},

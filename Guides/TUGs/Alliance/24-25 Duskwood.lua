@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_24_25_DUSKWOOD",
     name = "24-25 Duskwood",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 24,
     maxLevel = 25,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/24-25 Duskwood.lua",
     nextName = { "25-26 Stockades" },
     order = 17,
-    stepCount = 68,
+    stepCount = 71,
     steps = [[{
 {type="FLY",note="Fly to",place="Redridge Mountains"},
 {type="NOTE",text="On your way through Duskwood kill spiders for some Gooey Spider legs."},
@@ -30,6 +30,9 @@ ns.RegisterGuide({
 {type="TRAVEL",zone="Duskwood",x=78,y=48.3,note="If it is in stock - and you dont have one yet-: Buy a Bronzetube at"},
 {type="NOTE",text="The Look To The Stars questline can only be started if you have a bronzetube. If you did not get one yet that is fine, we will finish parts here now. At the end of this guide you will buy one from the ah. Next time you come to duskwood make sure to not forget this questline then."},
 {type="ACCEPT",quest=174,note="Accept:"},
+{type="NOTE",text="There are two ghosts that drop a quest. They have spawns all over(need to be confirmed how many still) I will make them OPTIONAL accept quests now. the DO and TURNIN part is not in the guide yet, do them if you get them."},
+{type="ACCEPT",quest=96138,optional=true,note="You got a Questitem(Merrick's Bow) that starts a quest. Accept it"},
+{type="ACCEPT",quest=281143,optional=true,note="You got a Questitem(Ira's Dagger) that starts a quest. Accept it"},
 {type="TURNIN",quest=174,note="TurnIn:"},
 {type="ACCEPT",quest=175,note="Accept:"},
 {type="TURNIN",quest=175,note="TurnIn:"},

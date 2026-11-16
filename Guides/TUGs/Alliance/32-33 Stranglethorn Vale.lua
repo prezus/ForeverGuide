@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_32_33_STRANGLETHORN_VALE",
     name = "32-33 Stranglethorn Vale",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 32,
     maxLevel = 33,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/32-33 Stranglethorn Vale.lua",
     nextName = { "33-34 Gnomeregan" },
     order = 26,
-    stepCount = 58,
+    stepCount = 59,
     steps = [[{
 {type="NOTE",class={"MAGE"},text="Learn your Level 32 skills."},
 {type="TURNIN",quest=7793,zone="Stormwind City",x=44.3,y=73.9,note="If you have 60 silk already: TurnIn: A Donation of silk at:"},
@@ -68,6 +68,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=210,note="TurnIn:"},
 {type="ACCEPT",quest=616,note="Accept:"},
 {type="TURNIN",quest=616,note="TurnIn:"},
+{type="TURNIN",quest=98463,note="TurnIn:"},
 {type="FLIGHTPATH",zone="Stranglethorn Vale",x=27.4,y=77.6,note="Get the flightpath at:"},
 {type="NOTE",text="Take the Boat to Ratchet"},
 {type="FLIGHTPATH",zone="The Barrens",x=63,y=37.2,note="Get the flightpath at:"},

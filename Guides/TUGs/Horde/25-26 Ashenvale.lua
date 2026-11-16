@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_25_26_ASHENVALE",
     name = "25-26 Ashenvale",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 25,
     maxLevel = 26,
@@ -14,7 +14,7 @@ ns.RegisterGuide({
     order = 57,
     stepCount = 54,
     steps = [[{
-{type="FLY",note="Fly to",place="Splintertree Post"},
+{type="NOTE",text="Get the flightpath in: Ashenvale (coords soonTM)"},
 {type="TURNIN",quest=742,note="TurnIn:"},
 {type="ACCEPT",quest=6383,note="Accept:"},
 {type="TURNIN",quest=6383,note="TurnIn:"},
@@ -29,6 +29,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=6442,note="Do:"},
 {type="TURNIN",quest=6641,note="TurnIn:"},
 {type="TURNIN",quest=6442,note="TurnIn:"},
+{type="TURNIN",quest=6562,note="TurnIn:"},
 {type="ACCEPT",quest=6563,note="Accept:"},
 {type="ACCEPT",quest=6921,note="Accept:"},
 {type="COMPLETE",quest=6462,note="Do:"},
@@ -66,7 +67,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=216,note="TurnIn:"},
 {type="TURNIN",quest=6462,note="TurnIn:"},
 {type="TURNIN",quest=824,note="TurnIn:"},
-{type="NOTE",text="Do BFD now."},
-{type="USEHEARTH",note="Use your Hearthstone."}
+{type="NOTE",text="Do BFD now."}
 }]],
 })

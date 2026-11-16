@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_29_30_WETLANDS",
     name = "29-30 Wetlands",
-    version = 1,
+    version = 2,
     faction = "Alliance",
     minLevel = 29,
     maxLevel = 30,
@@ -96,6 +96,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=471,note="Accept:"},
 {type="TURNIN",quest=98197,note="TurnIn:"},
 {type="TURNIN",quest=464,note="TurnIn:"},
+{type="TURNIN",quest=98221,note="TurnIn:"},
 {type="ACCEPT",quest=465,note="Accept:"},
 {type="TURNIN",quest=470,note="TurnIn:"},
 {type="TURNIN",quest=98282,note="TurnIn:"},
@@ -116,7 +117,6 @@ ns.RegisterGuide({
 {type="TURNIN",quest=289,note="TurnIn:"},
 {type="ACCEPT",quest=290,note="Accept:"},
 {type="TURNIN",quest=98189,note="TurnIn:"},
-{type="ACCEPT",quest=98190,note="Accept:"},
-{type="USEHEARTH",note="Use your Hearthstone."}
+{type="ACCEPT",quest=98190,note="Accept:"}
 }]],
 })

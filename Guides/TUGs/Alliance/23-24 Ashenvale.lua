@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_23_24_ASHENVALE",
     name = "23-24 Ashenvale",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 23,
     maxLevel = 24,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/23-24 Ashenvale.lua",
     nextName = { "24-25 Duskwood" },
     order = 16,
-    stepCount = 40,
+    stepCount = 41,
     steps = [[{
 {type="TURNIN",quest=4763,note="TurnIn:"},
 {type="TURNIN",quest=2139,note="TurnIn:"},
@@ -42,6 +42,7 @@ ns.RegisterGuide({
 {type="ACCEPT",quest=1033,note="Accept:"},
 {type="TURNIN",quest=991,note="TurnIn:"},
 {type="ACCEPT",quest=1023,note="Accept:"},
+{type="ACCEPT",quest=95737,note="Accept:"},
 {type="COMPLETE",quest=1023,note="Do:"},
 {type="ACCEPT",quest=1007,note="Accept:"},
 {type="COMPLETE",quest=1007,note="Do:"},

@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_ALLIANCE_26_27_REDRIDGE_MOUNTAINS",
     name = "26-27 Redridge Mountains",
-    version = 2,
+    version = 3,
     faction = "Alliance",
     minLevel = 26,
     maxLevel = 27,
@@ -12,7 +12,7 @@ ns.RegisterGuide({
     source = "TUGs/Alliance/26-27 Redridge Mountains.lua",
     nextName = { "27-28 Ashenvale" },
     order = 19,
-    stepCount = 56,
+    stepCount = 57,
     steps = [[{
 {type="FLY",note="Fly to",place="Redridge Mountains"},
 {type="NOTE",text="Search for people to do the Elite quests with."},
@@ -56,6 +56,7 @@ ns.RegisterGuide({
 {type="TURNIN",quest=19,optional=true,note="TurnIn(Elite/Hard Optional Quest):"},
 {type="TURNIN",quest=115,optional=true,note="TurnIn(Elite/Hard Optional Quest):"},
 {type="TURNIN",quest=128,note="TurnIn:"},
+{type="ACCEPT",quest=95772,note="Accept:"},
 {type="FLY",note="Fly to",place="Darkshire"},
 {type="TURNIN",quest=78,note="TurnIn:"},
 {type="ACCEPT",quest=79,note="Accept:"},

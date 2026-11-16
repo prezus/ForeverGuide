@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_14_16_RAGEFIRE_CHASM",
     name = "14-16 Ragefire Chasm",
-    version = 1,
+    version = 2,
     faction = "Horde",
     minLevel = 14,
     maxLevel = 16,
@@ -12,8 +12,27 @@ ns.RegisterGuide({
     source = "TUGs/Horde/14-16 Ragefire Chasm.lua",
     nextName = { "16-18 Ruins of Lordaeron" },
     order = 51,
-    stepCount = 1,
+    stepCount = 20,
     steps = [[{
-{type="NOTE",text="nothing here yet"}
+{type="FLY",note="Fly to",place="Thunder Bluff"},
+{type="ACCEPT",quest=5723,note="Accept:"},
+{type="ACCEPT",quest=5722,note="Accept:"},
+{type="FLY",note="Fly to",place="Orgrimmar"},
+{type="ACCEPT",quest=5726,note="Accept:"},
+{type="COMPLETE",quest=5726,note="Do:"},
+{type="TURNIN",quest=5726,note="TurnIn:"},
+{type="ACCEPT",quest=5727,note="Accept:"},
+{type="COMPLETE",quest=5727,note="Do:"},
+{type="ACCEPT",quest=5761,note="Accept:"},
+{type="TURNIN",quest=5727,note="TurnIn:"},
+{type="ACCEPT",quest=5728,note="Accept:"},
+{type="ACCEPT",quest=5725,note="Accept:"},
+{type="COMPLETE",quest=5723,note="Do:"},
+{type="TURNIN",quest=5722,note="TurnIn:"},
+{type="ACCEPT",quest=5724,note="Accept:"},
+{type="COMPLETE",quest=5725,note="Do:"},
+{type="COMPLETE",quest=5761,note="Do:"},
+{type="COMPLETE",quest=5728,note="Do:"},
+{type="NOTE",text="Turn the quests in before level 19 at your convenience."}
 }]],
 })
