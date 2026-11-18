@@ -2,7 +2,7 @@
 ## Title: ForeverGuide
 ## Notes: Free, data-driven leveling guide engine for WoW Forever. Reads game state and shows you the next step. Never automates combat, movement or chat (quest accept / turn-in is optional).
 ## Author: prezus, based on work by RevoltLive85
-## Version: 0.4.0
+## Version: 0.5.0
 ## SavedVariables: ForeverGuideDB
 ## SavedVariablesPerCharacter: ForeverGuideCharDB
 ## OptionalDeps: ForeverGuideCompanion
