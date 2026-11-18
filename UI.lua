@@ -232,7 +232,7 @@ function UI:RefreshPicker()
         for _, g in ipairs(levelled) do row(g) end
         for _, g in ipairs(other) do row(g) end
     end
-    -- dungeons live in the window's Dungeon Quests panel, which never moves the guide off its step
+    -- dungeon guides are not listed here: picking one would move the guide off its step
     if i == 0 then add("no guides installed", "", nil, true) end
     for j = i + 1, #p.rows do p.rows[j]:Hide() p.rows[j].sub:Hide() end
     local screen = UIParent:GetHeight()

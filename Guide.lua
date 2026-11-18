@@ -180,40 +180,6 @@ function Guide:IsAlternate(guide)
     return type(guide) == "table" and guide.kind == "alternate"
 end
 
---- The dungeon guides this character may follow, by level then name.
-function Guide:Dungeons()
-    local out = {}
-    for _, id in ipairs(self.list) do
-        local g = self.registry[id]
-        if self:IsDungeon(g) and self:Applicable(g) then out[#out + 1] = g end
-    end
-    table.sort(out, function(a, b)
-        if (a.minLevel or 1) ~= (b.minLevel or 1) then return (a.minLevel or 1) < (b.minLevel or 1) end
-        return (a.name or a.id) < (b.name or b.id)
-    end)
-    return out
-end
-
---- The quests some guide will take this character through: every chapter of the route it
---- follows, every dungeon guide, and the open guide. Cached until one of those changes.
-local coveredCache, coveredKey
-function Guide:CoveredQuests()
-    local route = self:CurrentRoute()
-    local key = (route and route.key or "") .. "|" .. (self.active and self.active.id or "") .. "|" .. #self.list
-    if coveredKey == key then return coveredCache end
-    local covered = {}
-    local function add(g)
-        for _, step in ipairs(self:ScanSteps(g)) do
-            if step.quest then covered[step.quest] = true end
-        end
-    end
-    for _, g in ipairs(route and route.chapters or {}) do add(g) end
-    for _, g in ipairs(self:Dungeons()) do add(g) end
-    add(self.active)
-    coveredCache, coveredKey = covered, key
-    return covered
-end
-
 --- Leave a dungeon guide for the chapter it was opened from (else the route's chapter for the
 --- level). Returns the guide activated, or nil when there is nowhere to go.
 function Guide:Resume()

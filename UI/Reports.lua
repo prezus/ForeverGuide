@@ -62,34 +62,6 @@ function Reports:Prompt()
     prompt.input:SetFocus()
 end
 
--- Snapshot the selected log quest now; the player may move or abandon it later.
-function Reports:MissingQuest(questID)
-    local quest = ns.Quest:GetEntry(questID)
-    if not quest then return end
-    local map, x, y = ns.Player:GetMapPosition()
-    local zone, sub = ns.Player:GetZone()
-    local npc = ns.Player:GetUnitInfo("target")
-    local guide = ns.Guide.active
-    local r = {
-        t = ns.Now(), type = "MISSING_ROUTE_QUEST", q = quest.questID,
-        title = quest.title, questLevel = quest.level, ready = quest.ready, failed = quest.isFailed,
-        m = map, x = x, y = y, zone = zone, sub = sub, lvl = ns.Player:GetLevel(),
-        guide = guide and guide.id, step = guide and ns.Guide.current, objectives = {},
-    }
-    if npc and npc.npcID then r.npc, r.npcName = npc.npcID, npc.name end
-    r.race, r.class, r.faction = ns.Player:GetIdentity()
-    for _, obj in ipairs(quest.objectives) do
-        r.objectives[#r.objectives + 1] = {
-            text = obj.text, numFulfilled = obj.numFulfilled,
-            numRequired = obj.numRequired, finished = obj.finished,
-        }
-    end
-    ns.db.reports = ns.db.reports or {}
-    table.insert(ns.db.reports, r)
-    while #ns.db.reports > 300 do table.remove(ns.db.reports, 1) end
-    ns.Printf("missing route quest reported: %s (%d). Copy it with /fg reports.", quest.title, questID)
-end
-
 -- " Scourge ROGUE Horde" after the level: the character the report is about. Empty for a report
 -- saved before reports recorded it.
 local function Identity(r)
