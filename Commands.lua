@@ -12,7 +12,7 @@ local HELP = {
     "/fg                 status readout (level, zone, coords, quests, current step)",
     "/fg show|hide|toggle   guide window  |  /fg hideall  hide window + arrow (alt-click the minimap button)",
     "/fg guides          list guides   |  /fg guide <name>   start a guide",
-    "/fg dungeons        list dungeon guides  |  /fg resume   back to your chapter",
+    "/fg resume          back to your chapter after a dungeon guide",
     "/fg skip | back | next | step <n> | reset     move through the guide",
     "/fg later | now <n> | skipped | order reset   put the current step off, do step n now, bring back skipped steps, undo your moves",
     "/fg quests          quest log with objectives and states",
@@ -441,19 +441,7 @@ function handlers.guides()
                 tostring(g.maxLevel or "?"), ns.Guide.StepCount(g), active, usable)
         end
     end
-    ns.Print("start one with /fg guide <id or name>; dungeons are listed with /fg dungeons")
-end
-
-function handlers.dungeons()
-    local G = ns.Guide
-    local list = G:Dungeons()
-    if #list == 0 then ns.Print("no dungeon guides for this character.") return end
-    ns.Print("Dungeons (all quests available from the first level; hand in by the second for full XP):")
-    for _, g in ipairs(list) do
-        local active = (G.active == g) and (OK .. " (active)" .. END) or ""
-        ns.Printf("  %s%s%s  %s-%s%s", C, g.name or g.id, END, tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), active)
-    end
-    ns.Print("open one with /fg guide <name> when you have a group; /fg resume goes back to your chapter")
+    ns.Print("start one with /fg guide <id or name>")
 end
 
 function handlers.resume()

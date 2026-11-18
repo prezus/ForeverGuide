@@ -13,7 +13,7 @@ for you is listed in the [client and player-control policy](COMPATIBILITY_POLICY
    **Load out of date AddOns**.
 3. Log in. The guide window picks the route for your race and level. **Guides** switches to another
    route of your faction or another chapter; `/fg guides` lists every guide, zone guides included.
-   **Dungeon Quests** shows your dungeons and their quests. **Details** shows the current step, with
+   **Details** shows the current step, with
    Back, Skip, Auto and Resync.
 
 The beta client does not read SavedVariables back at login. ForeverGuide keeps your guide, progress,
@@ -29,7 +29,7 @@ collected data and runs live only in the SavedVariables file, so send them (belo
 | `/fg` | Status: level, zone, coordinates, quest log, current step, target |
 | `/fg show` `hide` `toggle`, `/fg hideall` | The guide window; hideall hides the window and the arrow (alt-click the minimap button) |
 | `/fg guides`, `/fg guide <name>`, `/fg path [name\|race]` | List or start a guide; follow another race's route |
-| `/fg dungeons`, `/fg resume` | Dungeon guides; back to your chapter |
+| `/fg resume` | Back to your chapter after a dungeon guide |
 | `/fg skip` `back` `next` `step <n>` `reset`, `/fg resync` | Move through the guide; resync skips quests you out-levelled |
 | `/fg later` `now <n>` `skipped` `order reset` | Put a step off, do one now, bring back skipped steps (or right-click a step) |
 | `/fg mode auto\|guide`, `/fg track` | Auto mode follows your quest log without a guide |

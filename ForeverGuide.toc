@@ -30,7 +30,6 @@ Navigation.lua
 Travel.lua
 Walking.lua
 Guide.lua
-Dungeons.lua
 Tracker.lua
 Corpse.lua
 ItemTips.lua
@@ -60,7 +59,6 @@ UI\RunStrip.lua
 UI\QuestRow.lua
 UI\QuestList.lua
 UI\QuestGuideFrame.lua
-UI\DungeonPanel.lua
 UI\QuestWaypoint.lua
 UI\QuestRoute.lua
 UI\MobMarker.lua

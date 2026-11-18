@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- The guide window drops its Unknown Quests and Dungeon Quests buttons and their panels, and `/fg dungeons` goes: the guides carry no dungeon guides of their own, and the window is one button row shorter. Reports saved from Unknown Quests still show in `/fg reports`.
 - Guides: death-skip steps now read "die and spirit res" (Shadowglen, Teldrassil, Elwynn Forest, Mulgore)
 - Guides: TUGs' latest update: 20 Alliance chapters change (Northshire, Elwynn Forest, Blackfathom Depths, Ashenvale and Skyborne among them) and 14 Horde chapters; the Skyborne chapters are named for their faction.
 - Guides: quest data follows the launched game: about 690 more quests, mostly levels 30-60, with their NPCs and items, givers and turn-ins for about 110 quests that had none, and the quest list and flight paths from the client's newest build.

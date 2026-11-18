@@ -128,7 +128,7 @@ local function seedReports()
         { t = now - 120, guide = "GEN_ALLIANCE_DWARF_01_DUN_MOROGH", step = 31, type = "KILL", q = 179,
           text = "the wolves are further up the hill", loc = { m = 1426, x = 26.3, y = 79.2 },
           m = 1426, x = 24.9, y = 76.8, zone = "Dun Morogh", sub = "Coldridge Valley", lvl = 4 },
-        -- a right click on Camping 101 in Unknown Quests
+        -- a report saved by an older version's Unknown Quests panel (right click on Camping 101)
         { t = now - 60, type = "MISSING_ROUTE_QUEST", q = 96047, title = "Camping 101: First Aid", questLevel = 6, ready = false,
           guide = "GEN_ALLIANCE_DWARF_01_DUN_MOROGH", step = 52, m = 1426, x = 28.6, y = 66.9, zone = "Dun Morogh", sub = "Anvilmar", lvl = 4,
           objectives = { { text = "Linen Bandage", numFulfilled = 0, numRequired = 1, finished = false } } },
@@ -159,15 +159,6 @@ local scenes = {
     ["guide-report-button"] = function()
         local f = guideWindow()
         return f, { { region = f.header.report, tooltip = { "Report wrong step" } } }
-    end,
-    ["unknown-quests"] = function()
-        -- a Forever quest in Dun Morogh that no guide takes you through
-        MOCK_ACCEPT(96047, "Camping 101: First Aid", { { text = "Linen Bandage: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } })
-        local f = guideWindow()
-        ns.QuestGuide:SetDrawer("unknown")
-        ns.QuestGuide:Refresh()
-        local row = f.extra.list.rows and f.extra.list.rows[1]
-        return f, { { region = f.unknownBtn }, row and { region = row, anchor = "BOTTOM", tooltip = { "Camping 101: First Aid", "Left click: open in the quest log.  Right click: report missing route quest." } } or nil }
     end,
     ["report-prompt"] = function()
         ns.Reports:Prompt()
