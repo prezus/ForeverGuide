@@ -3,7 +3,7 @@ local _, ns = ...
 ns.RegisterGuide({
     id = "TUGS_HORDE_6_9_MULGORE",
     name = "6-9 Mulgore",
-    version = 7,
+    version = 8,
     faction = "Horde",
     minLevel = 6,
     maxLevel = 9,
@@ -104,7 +104,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=765,note="Do:"},
 {type="ACCEPT",quest=98424,note="You got a Questitem(Fizsprocket's Notes) that starts a quest. Accept it"},
 {type="COMPLETE",quest=98424,note="Do:"},
-{type="NOTE",text="Die and Rezz up."},
+{type="NOTE",text="Die and spirit res."},
 {type="TURNIN",quest=99080,note="TurnIn:"},
 {type="ACCEPT",quest=99082,note="Accept:"},
 {type="TURNIN",quest=764,note="TurnIn:"},
@@ -127,7 +127,7 @@ ns.RegisterGuide({
 {type="COMPLETE",quest=6089,class={"HUNTER"},note="Do:"},
 {type="FLIGHTPATH",zone="The Barrens",x=44.4,y=59.1,note="Get the flightpath at:"},
 {type="ACCEPT",quest=854,note="Accept:"},
-{type="TRAVEL",zone="The Barrens",x=52,y=46.5,note="Run to , die and rezz up."},
+{type="TRAVEL",zone="The Barrens",x=52,y=46.5,note="Run to , die and spirit res."},
 {type="TURNIN",quest=854,note="TurnIn:"},
 {type="FLIGHTPATH",zone="The Barrens",x=51.5,y=30.3,note="Get the flightpath at:"},
 {type="USEHEARTH",zone="The Barrens",x=52,y=29.9,note="Set your to The Barrens at"}
