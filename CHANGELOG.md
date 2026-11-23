@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: about 460 vendors who sell quest items are in the quest data, so an item you buy for a quest shows where to buy it.
 
 ## 0.5.0 - 2026-11-18
 
