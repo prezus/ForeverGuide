@@ -17,7 +17,10 @@
 -- crosses, past those corners: the points drawn, and the yards walked. A walk
 -- goes straight from its start to its region's portals and from a portal to
 -- its goal, but not to one the pack found no straight line to from that grid
--- cell over the surface: a region wrapping round a cliff (codex #809).
+-- cell over the surface: a region wrapping round a cliff (codex #809). Nor does it go straight from its
+-- start to a goal in the start's region more than CROOKED_RISE above or below it when the start's cell has
+-- a portal it does not leave straight or the goal's one it does not reach straight: it goes by the region's
+-- portals instead (codex #1165).
 --
 -- Positions are world yards (X north, Y west, as Navigation:MapToWorld gives
 -- them) and, when known, the height, which picks the floor where floors stack.
@@ -40,6 +43,9 @@ local byte = string.byte
 -- crooked portals after its stored ways (codex src/nav/pack.ts, #809)
 local PACK_VERSIONS = { [2] = true, [3] = true, [4] = true }
 local CROOKED_VERSION = 4
+-- a portal this far above or below a cell's centre, yards, is one whose straight line may cross a face (codex
+-- src/nav/packed-tile.ts, #809): a start and a goal in one region this far apart are held to it too (#1165)
+local CROOKED_RISE = 8
 local TILE_YARDS = 1600 / 3
 local GRID = 64
 local CELL = TILE_YARDS / GRID
@@ -596,13 +602,20 @@ local function Search(tiles, from, to, pause, faction, danger)
         if region then
             local town = TownCost(region)
             local weight = (region.swim and Walking.SWIM_COST or (Walking.GROUND_COST[region.ground] or 1)) * town
-            if goalSet[RegionKey(s.tile, s.region)] then
-                local d = Flat(startPoint, goalPoint)
-                Offer(GOAL, d * weight, nil, region.swim and d or 0, d, d * (town - 1), s, s, nil, nil, nil, nil, goalPoint[1], goalPoint[2])
-            end
             -- a portal no straight line from the start's cell reaches over the surface is left by another (#809)
             local crooked = Crooked(tiles(s.tile), s.tile, region, startPoint[1], startPoint[2])
             local unleft = crooked and crooked.leaving or NONE
+            -- the start's region, wrapping round a cliff, may hold the goal above it: then the way goes by its portals (#1165)
+            local arrival = goalSet[RegionKey(s.tile, s.region)]
+            if arrival then
+                local goalCrooked = Crooked(tiles(s.tile), s.tile, region, goalPoint[1], goalPoint[2])
+                local unreached = goalCrooked and goalCrooked.arriving or NONE
+                local rise = abs((to.z or arrival.height) - (from.z or s.height))
+                if not (rise > CROOKED_RISE and (next(unleft) ~= nil or next(unreached) ~= nil)) then
+                    local d = Flat(startPoint, goalPoint)
+                    Offer(GOAL, d * weight, nil, region.swim and d or 0, d, d * (town - 1), s, s, nil, nil, nil, nil, goalPoint[1], goalPoint[2])
+                end
+            end
             for n, p in ipairs(region.portals) do
                 if not unleft[n] then
                     local key = KeyOf(s.tile, p)

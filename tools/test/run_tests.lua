@@ -6020,6 +6020,35 @@ section("walking paths: a region wrapping round a cliff is left round it, not up
     _G.C_EncodingUtil = was.codec
 end)
 
+section("walking paths: a start and a goal in a region wrapping round a sheer cliff go round it, not up its face (codex #1165)", function()
+    local W = ns.Walking
+    local was = { codec = rawget(_G, "C_EncodingUtil"), manifest = ns.NavManifest[9996] }
+    _G.C_EncodingUtil = TestCodec()
+    local ref = loadfile(root .. "tools/test/fixtures/nav_crooked_sheer.lua")(ns)
+    ns.NavManifest[9996] = { hash = ref.hash, tiles = ref.tiles }
+    W:Load()
+    need(W:Has(9996), "a version 4 map loads")
+    for _, c in ipairs({
+        { "up to the strip over the foot, round by the ramp", ref.foot, ref.top, ref.ways.up },
+        { "down from it, straight off the face", ref.top, ref.foot, ref.ways.down },
+        { "along the foot's strip, straight", ref.foot, ref.along, ref.ways.along },
+    }) do
+        local way, why = W:FindWay(9996, c[2], c[3])
+        check(way ~= nil, c[1] .. ": a way (" .. tostring(why) .. ")")
+        if way then
+            check(math.abs(way.yards - c[4].yards) <= 0.5 and #way.points == c[4].points,
+                string.format("%s, as the reference router's: %.1f yd and %d points, against %.1f and %d", c[1], way.yards, #way.points, c[4].yards, c[4].points))
+        end
+    end
+    local up = W:FindWay(9996, ref.foot, ref.top)
+    local east = false
+    for _, p in ipairs(up and up.points or {}) do if p[1] >= ref.foot.x + 50 then east = true end end
+    check(east, "up passes by the ramp at the strips' east end")
+    ns.NavManifest[9996], ns.NavMap9996 = was.manifest, nil
+    W:Load()
+    _G.C_EncodingUtil = was.codec
+end)
+
 section("walking paths: the arrow, the time left and the dots follow a walk's way (#694)", function()
     local Nav, D, W, M = ns.Navigation, ns.RouteDots, ns.Walking, MOCK
     local db = travelFixture()

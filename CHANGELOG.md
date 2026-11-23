@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Walking: a walk from a cliff's foot to the ledge over it goes round by the way up, not straight up the face, also where the walking map holds the foot and the ledge as one stretch of ground.
+
 ## 0.5.0 - 2026-11-18
 
 - The guide window drops its Unknown Quests and Dungeon Quests buttons and their panels, and `/fg dungeons` goes: the guides carry no dungeon guides of their own, and the window is one button row shorter. Reports saved from Unknown Quests still show in `/fg reports`.
