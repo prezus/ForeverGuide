@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Guides: travel times follow players' recorded runs more strictly: a time needs at least three runs, so a few flights and a portal fall back to the planner's own estimate, and flight times shift by under a second.
 - Guides: about 460 vendors who sell quest items are in the quest data, so an item you buy for a quest shows where to buy it.
 
 - Walking: a walk from a cliff's foot to the ledge over it goes round by the way up, not straight up the face, also where the walking map holds the foot and the ledge as one stretch of ground.
